@@ -6,6 +6,7 @@ import 'smart_media_desk_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// Displays all recent uploads from a specific YouTube channel.
 class ChannelVideosScreen extends ConsumerStatefulWidget {
@@ -139,7 +140,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -155,7 +157,9 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                     ? NetworkImage(_currentChannelLogoUrl)
                     : null,
                 child: _currentChannelLogoUrl.isEmpty
-                    ? Icon(Icons.person, size: 16, color: isDark ? Colors.white54 : Colors.grey.shade600)
+                    ? Icon(Icons.person,
+                        size: 16,
+                        color: isDark ? Colors.white54 : Colors.grey.shade600)
                     : null,
               ),
               const SizedBox(width: 10),
@@ -180,7 +184,7 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
           // Persistent Channel Row
           const SizedBox(height: 4),
           _buildChannelRow(),
-          
+
           // 3-sentence channel description banner
           _buildChannelDescriptionCard(),
           const SizedBox(height: 8),
@@ -200,7 +204,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
       (e) =>
           e.channelId == _currentChannelId ||
           e.displayName == _currentChannelName ||
-          (_currentChannelName.contains(e.displayName) || e.displayName.contains(_currentChannelName)),
+          (_currentChannelName.contains(e.displayName) ||
+              e.displayName.contains(_currentChannelName)),
       orElse: () => const ChannelEntry(
         displayName: '',
         logoUrl: '',
@@ -249,7 +254,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                   decoration: BoxDecoration(
                     color: const Color(0xFF3F51B5).withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(6),
@@ -279,7 +285,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                         width: 5,
                         height: 5,
                         decoration: BoxDecoration(
-                          color: isDark ? Colors.amber : const Color(0xFF3F51B5),
+                          color:
+                              isDark ? Colors.amber : const Color(0xFF3F51B5),
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -290,7 +297,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                         style: TextStyle(
                           fontSize: 12,
                           height: 1.35,
-                          color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
+                          color:
+                              isDark ? Colors.white70 : const Color(0xFF2C2C2E),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -333,7 +341,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                 final logoUrl = channel['logoUrl'] ?? '';
                 final title = channel['title'] ?? '';
                 final channelId = channel['id'] ?? '';
-                final isSelected = channelId == _currentChannelId || title == _currentChannelName;
+                final isSelected = channelId == _currentChannelId ||
+                    title == _currentChannelName;
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -348,21 +357,25 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: isSelected
-                                ? Border.all(color: const Color(0xFF3F51B5), width: 2.5)
+                                ? Border.all(
+                                    color: const Color(0xFF3F51B5), width: 2.5)
                                 : null,
                           ),
                           child: CircleAvatar(
                             radius: 26,
                             backgroundColor: isDark
                                 ? const Color(0xFF2C2C2E)
-                                : const Color(0xFFB0C4DE).withValues(alpha: 0.6),
+                                : const Color(0xFFB0C4DE)
+                                    .withValues(alpha: 0.6),
                             backgroundImage: logoUrl.isNotEmpty
                                 ? NetworkImage(logoUrl)
                                 : null,
                             child: logoUrl.isEmpty
                                 ? Icon(Icons.person,
                                     size: 22,
-                                    color: isDark ? Colors.white54 : Colors.grey.shade600)
+                                    color: isDark
+                                        ? Colors.white54
+                                        : Colors.grey.shade600)
                                 : null,
                           ),
                         ),
@@ -376,7 +389,9 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 10,
-                              fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
+                              fontWeight: isSelected
+                                  ? FontWeight.w800
+                                  : FontWeight.w600,
                               color: isSelected
                                   ? const Color(0xFF3F51B5)
                                   : (isDark ? Colors.white70 : Colors.black87),
@@ -495,7 +510,7 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
             ElevatedButton.icon(
               onPressed: _loadUploads,
               icon: const Icon(Icons.refresh),
-              label: const Text('Tap to Retry'),
+              label: Text(AppLocalizations.of(context)!.tapToRetry),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.indigo,
                 backgroundColor: Colors.indigo.withValues(alpha: 0.1),
@@ -551,8 +566,11 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                     width: double.infinity,
                     height: 200,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) =>
-                        Container(height: 200, color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade300),
+                    errorBuilder: (_, __, ___) => Container(
+                        height: 200,
+                        color: isDark
+                            ? const Color(0xFF2C2C2E)
+                            : Colors.grey.shade300),
                   ),
                 ),
                 _buildDurationBadge(video.duration),
@@ -578,7 +596,9 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    video.channelTitle.isNotEmpty ? video.channelTitle : _currentChannelName,
+                    video.channelTitle.isNotEmpty
+                        ? video.channelTitle
+                        : _currentChannelName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

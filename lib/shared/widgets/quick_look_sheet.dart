@@ -17,6 +17,7 @@ import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explainer_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -270,7 +271,9 @@ class _FoundBody extends ConsumerWidget {
                           fontSize: 11.5,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.6,
-                          color: isDark ? Colors.white70 : textColor.withValues(alpha: 0.45),
+                          color: isDark
+                              ? Colors.white70
+                              : textColor.withValues(alpha: 0.45),
                         ),
                       ),
                     ],
@@ -307,7 +310,9 @@ class _FoundBody extends ConsumerWidget {
                                   w.hanzi,
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color: isDark ? Colors.blue.shade100 : Colors.indigo,
+                                    color: isDark
+                                        ? Colors.blue.shade100
+                                        : Colors.indigo,
                                     fontWeight: FontWeight.w600,
                                     height: 1,
                                   ),
@@ -362,7 +367,7 @@ class _FoundBody extends ConsumerWidget {
               // Shadowing button
               Expanded(
                 child: _ActionButton(
-                  label: 'Shadow',
+                  label: AppLocalizations.of(context)!.shadow,
                   icon: Icons.mic_outlined,
                   isPrimary: false,
                   isDisabled: false,
@@ -430,7 +435,7 @@ class _FoundBody extends ConsumerWidget {
               // Trace button
               Expanded(
                 child: _ActionButton(
-                  label: 'Trace',
+                  label: AppLocalizations.of(context)!.traceLabel,
                   icon: Icons.draw_outlined,
                   isPrimary: false,
                   isDisabled: false,
@@ -444,7 +449,7 @@ class _FoundBody extends ConsumerWidget {
                 const SizedBox(width: 6),
                 Expanded(
                   child: _ActionButton(
-                    label: 'Grammar',
+                    label: AppLocalizations.of(context)!.grammar,
                     icon: Icons.auto_awesome,
                     isPrimary: false,
                     isDisabled: false,
@@ -604,11 +609,11 @@ class _CharacterHero extends StatelessWidget {
 
                         // English definition integrated into the card
                         if (definition.isNotEmpty)
-                          Text(
-                            _cleanDefinition(definition),
+                          TranslatedDefinition(
+                            definition: definition,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            originalStyle: TextStyle(
                               fontSize: 14,
                               color: isDark
                                   ? Colors.white.withValues(alpha: 0.75)
@@ -623,14 +628,14 @@ class _CharacterHero extends StatelessWidget {
                           children: [
                             if (hskLevel > 0)
                               _Badge(
-                                label: 'HSK $hskLevel',
+                                label: AppLocalizations.of(context)!.hsk(hskLevel),
                                 color: Colors.indigo,
                                 isDark: isDark,
                               ),
                             if (ChineseHelper.isTraditionalChinese(hanzi)) ...[
                               if (hskLevel > 0) const SizedBox(width: 6),
                               _Badge(
-                                label: 'Traditional',
+                                label: AppLocalizations.of(context)!.traditional,
                                 color: Colors.orange,
                                 isDark: isDark,
                               ),

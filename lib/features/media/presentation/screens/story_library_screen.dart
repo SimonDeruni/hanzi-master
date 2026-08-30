@@ -16,6 +16,7 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_detail_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -36,11 +37,17 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   List<String> _bookmarkedUrls = [];
   final TextEditingController _searchController = TextEditingController();
 
-  String _selectedCategory = 'All';
+  late String _selectedCategory;
+  bool _categoryInitialized = false;
   int _selectedHskLevel = -1; // -1 = All
 
-  List<String> get _categories =>
-      ['All', 'Chinese Poetry', 'Contemporary', 'AI Stories', 'Bookmarks'];
+  List<String> get _categories => [
+        AppLocalizations.of(context)!.allLabel,
+        AppLocalizations.of(context)!.chinesePoetry,
+        AppLocalizations.of(context)!.contemporary,
+        AppLocalizations.of(context)!.ai_stories,
+        AppLocalizations.of(context)!.bookmarks
+      ];
   List<int> get _hskLevels => [-1, 0, 1, 2, 3, 4, 5, 6];
 
   @override
@@ -50,6 +57,14 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     _searchController.addListener(() {
       setState(() {}); // Re-render when typing
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_categoryInitialized) return;
+    _selectedCategory = AppLocalizations.of(context)!.allLabel;
+    _categoryInitialized = true;
   }
 
   @override
@@ -85,11 +100,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     final customLibraryStories = customStories.map((story) {
       final summaryText = story.sentences.isNotEmpty
           ? story.sentences.first.chinese
-          : 'Custom AI generated story.';
+          : AppLocalizations.of(context)!.custom_ai_generated_story;
 
       return LibraryStory(
         title: story.title,
-        sourceName: 'AI Generated',
+        sourceName: AppLocalizations.of(context)!.aiGenerated,
         link: story.id,
         imageUrl: null,
         summary: summaryText,
@@ -126,13 +141,15 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         titleEn: story.titleEn ?? story.title,
         author: story.sourceName,
         authorEn: story.sourceName,
-        category: story.category.isNotEmpty ? story.category : 'Chinese Poetry',
+        category: story.category.isNotEmpty
+            ? story.category
+            : AppLocalizations.of(context)!.chinesePoetry,
         description: story.summary,
         descriptionEn: story.summaryEn ?? story.summary,
         dynastyOrEra: 'Tang Dynasty',
         hskLevel: story.hskLevel,
         totalChapters: 1,
-        coverEmoji: '📜',
+        coverEmoji: 'ðŸ“œ',
         tags: story.keywords.isNotEmpty
             ? story.keywords
             : const ['Poetry', 'Classical', 'Verse'],
@@ -163,15 +180,17 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           story.category.toLowerCase().contains(query) ||
           story.keywords.any((k) => k.contains(query));
 
-      final matchesCategory = _selectedCategory == 'All' ||
-          (_selectedCategory == 'Chinese Poetry' &&
-              (story.category == 'Chinese Poetry' ||
+      final matchesCategory = _selectedCategory ==
+              AppLocalizations.of(context)!.allLabel ||
+          (_selectedCategory == AppLocalizations.of(context)!.chinesePoetry &&
+              (story.category == AppLocalizations.of(context)!.chinesePoetry ||
                   isPoetryCategory(story.category))) ||
-          (_selectedCategory == 'Contemporary' &&
-              story.category.contains('Contemporary')) ||
-          (_selectedCategory == 'AI Stories' &&
-              story.sourceName == 'AI Generated') ||
-          (_selectedCategory == 'Bookmarks' &&
+          (_selectedCategory == AppLocalizations.of(context)!.contemporary &&
+              story.category
+                  .contains(AppLocalizations.of(context)!.contemporary)) ||
+          (_selectedCategory == AppLocalizations.of(context)!.ai_stories &&
+              story.sourceName == AppLocalizations.of(context)!.aiGenerated) ||
+          (_selectedCategory == AppLocalizations.of(context)!.bookmarks &&
               _bookmarkedUrls.contains(story.link));
 
       final matchesHsk =
@@ -189,7 +208,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           ? const Color(0xFF1A1A1B)
           : const Color(0xFFFDFCF0), // Zen Paper
       appBar: AppBar(
-        title: const Text('文化书房 Library',
+        title: const Text('æ–‡åŒ–ä¹¦æˆ¿ Library',
             style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -230,14 +249,14 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                 ),
                 child: Row(
                   children: [
-                    const Text('🏛️', style: TextStyle(fontSize: 28)),
+                    const Text('ðŸ›ï¸', style: TextStyle(fontSize: 28)),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            '经典藏书阁 · Grand Library',
+                            'ç»å…¸è—ä¹¦é˜ Â· Grand Library',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -284,8 +303,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         },
         backgroundColor: const Color(0xFF8B0000), // Crimson/Deep Red
         icon: const Icon(Icons.auto_awesome, color: Colors.white),
-        label: const Text('Create Story',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        label: Text(AppLocalizations.of(context)!.createStory,
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -307,7 +326,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         ),
         child: HanziTextField(
           controller: _searchController,
-          hintText: 'Search stories, idioms, news...',
+          hintText: AppLocalizations.of(context)!.searchStoriesIdiomsNews,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.search, color: Colors.grey),
             border: InputBorder.none,
@@ -370,11 +389,14 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                       child: ChoiceChip(
                         label: Text(level == -1
                             ? 'All HSK'
-                            : (level == 0 ? 'Native' : 'HSK $level')),
+                            : (level == 0
+                                ? AppLocalizations.of(context)!.native
+                                : 'HSK $level')),
                         selected: _selectedHskLevel == level,
                         onSelected: (selected) {
-                          if (selected)
+                          if (selected) {
                             setState(() => _selectedHskLevel = level);
+                          }
                         },
                         selectedColor:
                             isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -398,7 +420,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
 
   Widget _buildLibraryContent() {
     final isDefaultState = _searchController.text.isEmpty &&
-        _selectedCategory == 'All' &&
+        _selectedCategory == AppLocalizations.of(context)!.allLabel &&
         _selectedHskLevel == -1;
     final results = _filteredStories;
 
@@ -432,11 +454,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             }),
             const SizedBox(height: 16),
             if (results.isEmpty)
-              const Center(
+              Center(
                 child: Padding(
-                  padding: EdgeInsets.all(32.0),
-                  child: Text('No stories found.',
-                      style: TextStyle(color: Colors.grey, fontSize: 16)),
+                  padding: const EdgeInsets.all(32.0),
+                  child: Text(AppLocalizations.of(context)!.noStoriesFound,
+                      style: const TextStyle(color: Colors.grey, fontSize: 16)),
                 ),
               )
             else
@@ -626,10 +648,12 @@ class StoryCardWidget extends StatelessWidget {
   Color _getCategoryColor() {
     final cat = story.category.toLowerCase();
     if (cat.contains('idiom')) return const Color(0xFF8B0000); // Deep Red
-    if (isPoetryCategory(story.category))
+    if (isPoetryCategory(story.category)) {
       return const Color(0xFF2C3E50); // Slate Blue
-    if (cat.contains('contemporary'))
+    }
+    if (cat.contains('contemporary')) {
       return const Color(0xFF2E8B57); // Forest Green
+    }
     return const Color(0xFFD35400); // Orange for Graded Readers / Others
   }
 
@@ -714,7 +738,7 @@ class StoryCardWidget extends StatelessWidget {
                       ),
                       child: Text(
                         story.hskLevel == 0
-                            ? 'Native'
+                            ? AppLocalizations.of(context)!.native
                             : 'HSK ${story.hskLevel}',
                         style: TextStyle(
                           fontSize: 10,

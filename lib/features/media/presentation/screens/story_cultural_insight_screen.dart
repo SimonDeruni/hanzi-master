@@ -7,6 +7,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class StoryCulturalInsightScreen extends ConsumerStatefulWidget {
   final LibraryStory story;
@@ -23,7 +24,8 @@ class StoryCulturalInsightScreen extends ConsumerStatefulWidget {
       _StoryCulturalInsightScreenState();
 }
 
-class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsightScreen> {
+class _StoryCulturalInsightScreenState
+    extends ConsumerState<StoryCulturalInsightScreen> {
   Future<CulturalInsight>? _insightFuture;
 
   @override
@@ -34,7 +36,8 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
 
   Future<String> _loadPoemFullText() async {
     try {
-      final jsonString = await rootBundle.loadString('assets/data/tang_poetry_en.json');
+      final jsonString =
+          await rootBundle.loadString('assets/data/tang_poetry_en.json');
       final data = json.decode(jsonString) as List<dynamic>;
       final entry = data.firstWhere(
         (d) => (d['link'] ?? 'tang_poetry_${d['title']}') == widget.story.link,
@@ -65,9 +68,10 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final hasImage = widget.story.imageUrl != null && widget.story.imageUrl!.isNotEmpty;
-    final displayImageUrl = hasImage 
-        ? widget.story.imageUrl! 
+    final hasImage =
+        widget.story.imageUrl != null && widget.story.imageUrl!.isNotEmpty;
+    final displayImageUrl = hasImage
+        ? widget.story.imageUrl!
         : 'assets/images/ai_hub_ink_mountains.png';
     final isNetworkImage = displayImageUrl.startsWith('http');
 
@@ -85,7 +89,12 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  shadows: [Shadow(color: Colors.black45, blurRadius: 4, offset: Offset(0, 2))],
+                  shadows: [
+                    Shadow(
+                        color: Colors.black45,
+                        blurRadius: 4,
+                        offset: Offset(0, 2))
+                  ],
                 ),
               ),
               background: Hero(
@@ -125,7 +134,7 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
                   if (snapshot.hasError || !snapshot.hasData) {
                     return _buildErrorState(theme);
                   }
-                  
+
                   final insight = snapshot.data!;
                   return _buildInsightContent(theme, insight);
                 },
@@ -169,12 +178,14 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 32),
-        Center(child: CircularProgressIndicator(color: theme.colorScheme.primary)),
+        Center(
+            child: CircularProgressIndicator(color: theme.colorScheme.primary)),
         const SizedBox(height: 24),
         Center(
           child: Text(
             'Analyzing cultural context...',
-            style: TextStyle(color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
+            style: TextStyle(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
           ),
         ),
       ],
@@ -195,7 +206,7 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: _fetchInsight,
-            child: const Text('Retry'),
+            child: Text(AppLocalizations.of(context)!.retry),
           ),
         ],
       ),
@@ -209,11 +220,12 @@ class _StoryCulturalInsightScreenState extends ConsumerState<StoryCulturalInsigh
         _buildSectionTitle(theme, 'Historical Context', Icons.history_edu),
         _buildSectionBody(theme, insight.historicalContext),
         const SizedBox(height: 32),
-        
-        _buildSectionTitle(theme, 'Cultural Significance', Icons.diamond_outlined),
+
+        _buildSectionTitle(
+            theme, 'Cultural Significance', Icons.diamond_outlined),
         _buildSectionBody(theme, insight.culturalSignificance),
         const SizedBox(height: 32),
-        
+
         _buildSectionTitle(theme, 'Author Background', Icons.person_outline),
         _buildSectionBody(theme, insight.authorBackground),
         const SizedBox(height: 48), // Padding before button

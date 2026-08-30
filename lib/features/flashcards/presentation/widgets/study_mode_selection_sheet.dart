@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/study_mode.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class StudyModeSelectionSheet extends StatelessWidget {
   final Function(StudyMode) onModeSelected;
@@ -25,7 +26,7 @@ class StudyModeSelectionSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'How would you like to study?',
+            AppLocalizations.of(context)!.howWouldYouLikeToStudy,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,

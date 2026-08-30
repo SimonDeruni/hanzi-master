@@ -5,6 +5,8 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/dictiona
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CrossReferenceText extends ConsumerStatefulWidget {
   final String text;
@@ -53,19 +55,30 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
         strokePaths: const [],
         modeStats: const {},
       );
-      
+
       Navigator.push(
         context,
-        SwipeBackPageRoute(builder: (context) => CharacterDetailScreen(card: card)),
+        SwipeBackPageRoute(
+            builder: (context) => CharacterDetailScreen(card: card)),
       );
     } else {
       // Show "Pre-import" detail view or a snackbar with basic info
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("${entry.hanzi} [${entry.pinyin}]: ${entry.definition}"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('${entry.hanzi} [${entry.pinyin}]'),
+              TranslatedDefinition(
+                definition: entry.definition,
+                originalStyle: const TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
           duration: const Duration(seconds: 3),
           action: SnackBarAction(
-            label: "Detail",
+            label: AppLocalizations.of(context)!.detail,
             onPressed: () {
               final card = Flashcard(
                 id: hanzi,
@@ -78,7 +91,8 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
               );
               Navigator.push(
                 context,
-                SwipeBackPageRoute(builder: (context) => CharacterDetailScreen(card: card)),
+                SwipeBackPageRoute(
+                    builder: (context) => CharacterDetailScreen(card: card)),
               );
             },
           ),
@@ -96,22 +110,24 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
 
     final dictionaryAsync = ref.watch(masterDictionaryProvider);
     final dictionary = ref.read(masterDictionaryProvider.notifier);
-    
+
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    final TextStyle baseStyle = widget.style == null 
-        ? defaultTextStyle.style 
+    final TextStyle baseStyle = widget.style == null
+        ? defaultTextStyle.style
         : defaultTextStyle.style.merge(widget.style);
-    
+
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final TextStyle libraryLinkStyle = widget.linkStyle ?? baseStyle.copyWith(
-      color: isDark ? Colors.amber.shade300 : Colors.orange.shade800,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.underline,
-    );
-    final TextStyle dictionaryLinkStyle = widget.linkStyle ?? baseStyle.copyWith(
-      color: isDark ? Colors.indigo.shade300 : Colors.indigo.shade700,
-      fontWeight: FontWeight.bold,
-    );
+    final TextStyle libraryLinkStyle = widget.linkStyle ??
+        baseStyle.copyWith(
+          color: isDark ? Colors.amber.shade300 : Colors.orange.shade800,
+          fontWeight: FontWeight.bold,
+          decoration: TextDecoration.underline,
+        );
+    final TextStyle dictionaryLinkStyle = widget.linkStyle ??
+        baseStyle.copyWith(
+          color: isDark ? Colors.indigo.shade300 : Colors.indigo.shade700,
+          fontWeight: FontWeight.bold,
+        );
 
     // If dictionary isn't ready yet, just show plain text
     if (dictionaryAsync is AsyncLoading || dictionaryAsync is AsyncError) {
@@ -124,7 +140,7 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
 
     for (final segment in segments) {
       final entry = dictionary.lookup(segment);
-      
+
       if (entry != null) {
         final TapGestureRecognizer recognizer = TapGestureRecognizer()
           ..onTap = () => _onEntryTapped(segment, entry);
@@ -146,7 +162,8 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
     return RichText(
       textAlign: widget.textAlign,
       maxLines: widget.maxLines,
-      overflow: widget.overflow ?? (widget.maxLines != null ? TextOverflow.ellipsis : TextOverflow.clip),
+      overflow: widget.overflow ??
+          (widget.maxLines != null ? TextOverflow.ellipsis : TextOverflow.clip),
       text: TextSpan(children: spans),
     );
   }

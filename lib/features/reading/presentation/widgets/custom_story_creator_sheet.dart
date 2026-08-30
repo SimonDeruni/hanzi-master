@@ -11,14 +11,18 @@ class CustomStoryCreatorSheet extends ConsumerStatefulWidget {
   const CustomStoryCreatorSheet({super.key});
 
   @override
-  ConsumerState<CustomStoryCreatorSheet> createState() => _CustomStoryCreatorSheetState();
+  ConsumerState<CustomStoryCreatorSheet> createState() =>
+      _CustomStoryCreatorSheetState();
 }
 
-class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorSheet> with SingleTickerProviderStateMixin {
+class _CustomStoryCreatorSheetState
+    extends ConsumerState<CustomStoryCreatorSheet>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController _topicController = TextEditingController();
   final TextEditingController _tagsController = TextEditingController();
-  final TextEditingController _textToSimplifyController = TextEditingController();
+  final TextEditingController _textToSimplifyController =
+      TextEditingController();
   int _selectedHskLevel = 0; // Default to Adaptive (Flow State)
 
   @override
@@ -38,17 +42,22 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
 
   Future<void> _handleGenerate(BuildContext context) async {
     final controller = ref.read(storyControllerProvider.notifier);
-    
+
     if (_tabController.index == 0) {
       // Generate Topic
       final topic = _topicController.text.trim();
       if (topic.isEmpty) return;
-      
-      final tags = _tagsController.text.split(',').map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
-      
+
+      final tags = _tagsController.text
+          .split(',')
+          .map((e) => e.trim())
+          .where((e) => e.isNotEmpty)
+          .toList();
+
       Navigator.pop(context); // Close sheet
-      
-      final blueprint = await controller.generateCustomStoryByTopic(topic, tags, _selectedHskLevel);
+
+      final blueprint = await controller.generateCustomStoryByTopic(
+          topic, tags, _selectedHskLevel);
       if (context.mounted) {
         _openStoryImmediate(context, blueprint);
       }
@@ -56,10 +65,11 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
       // Simplify text
       final text = _textToSimplifyController.text.trim();
       if (text.isEmpty) return;
-      
+
       Navigator.pop(context); // Close sheet
-      
-      final blueprint = await controller.generateSimplifiedStory(text, _selectedHskLevel);
+
+      final blueprint =
+          await controller.generateSimplifiedStory(text, _selectedHskLevel);
       if (context.mounted) {
         _openStoryImmediate(context, blueprint);
       }
@@ -70,7 +80,8 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
     Navigator.push(
       context,
       SwipeBackPageRoute(
-        builder: (_) => StoryReaderScreen(blueprint: blueprint, hskLevel: _selectedHskLevel),
+        builder: (_) => StoryReaderScreen(
+            blueprint: blueprint, hskLevel: _selectedHskLevel),
       ),
     );
   }
@@ -78,7 +89,9 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
   Future<void> _scanText() async {
     final extractedText = await Navigator.push<String>(
       context,
-      SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.textExtraction)),
+      SwipeBackPageRoute(
+          builder: (context) => const UniversalScannerScreen(
+              intent: CameraIntent.textExtraction)),
     );
 
     if (extractedText != null && extractedText.isNotEmpty && mounted) {
@@ -119,19 +132,21 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
           // HSK Level Selector
           Row(
             children: [
-              Text(AppLocalizations.of(context)!.targetHskLevel, style: Theme.of(context).textTheme.titleSmall),
+              Text(AppLocalizations.of(context)!.targetHskLevel,
+                  style: Theme.of(context).textTheme.titleSmall),
               const SizedBox(width: 8),
               GestureDetector(
                 onTap: () {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
                       title: Row(
                         children: [
                           Icon(Icons.psychology, color: Colors.amber[800]),
                           const SizedBox(width: 8),
-                          const Text('Dynamic Flow State'),
+                          Text(AppLocalizations.of(context)!.dynamicFlowState),
                         ],
                       ),
                       content: const Text(
@@ -143,13 +158,15 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text('Got it'),
+                          child:
+                              Text(AppLocalizations.of(context)!.gotItSimple),
                         ),
                       ],
                     ),
                   );
                 },
-                child: Icon(Icons.info_outline, size: 18, color: Colors.grey[600]),
+                child:
+                    Icon(Icons.info_outline, size: 18, color: Colors.grey[600]),
               ),
             ],
           ),
@@ -162,14 +179,21 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: FilterChip(
-                    label: const Text('Dynamic (Flow State)', style: TextStyle(fontWeight: FontWeight.bold)),
+                    label: Text(
+                        AppLocalizations.of(context)!
+                            .dynamicFlowStateParenthetical,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     selected: _selectedHskLevel == 0,
                     onSelected: (selected) {
                       if (selected) setState(() => _selectedHskLevel = 0);
                     },
                     selectedColor: Colors.amber.withValues(alpha: 0.3),
                     checkmarkColor: Colors.amber[800],
-                    avatar: Icon(Icons.psychology, size: 18, color: _selectedHskLevel == 0 ? Colors.amber[800] : Colors.grey),
+                    avatar: Icon(Icons.psychology,
+                        size: 18,
+                        color: _selectedHskLevel == 0
+                            ? Colors.amber[800]
+                            : Colors.grey),
                   ),
                 ),
                 // HSK 1-6
@@ -179,7 +203,7 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                   return Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: FilterChip(
-                      label: Text('HSK $level'),
+                      label: Text(AppLocalizations.of(context)?.hsk(level) ?? "HSK $level"),
                       selected: isSelected,
                       onSelected: (selected) {
                         if (selected) setState(() => _selectedHskLevel = level);
@@ -225,7 +249,8 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                       controller: _textToSimplifyController,
                       maxLines: 6,
                       decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.pasteScanToSimplify,
+                        labelText:
+                            AppLocalizations.of(context)!.pasteScanToSimplify,
                         border: const OutlineInputBorder(),
                         alignLabelWithHint: true,
                       ),
@@ -234,9 +259,10 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
                       right: 8,
                       bottom: 8,
                       child: IconButton(
-                        icon: const Icon(Icons.document_scanner, color: Colors.indigo),
+                        icon: const Icon(Icons.document_scanner,
+                            color: Colors.indigo),
                         onPressed: _scanText,
-                        tooltip: 'Scan Text',
+                        tooltip: AppLocalizations.of(context)!.scanText,
                         style: IconButton.styleFrom(
                           backgroundColor: Colors.indigo.withValues(alpha: 0.1),
                         ),
@@ -255,7 +281,9 @@ class _CustomStoryCreatorSheetState extends ConsumerState<CustomStoryCreatorShee
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
-            child: Text(AppLocalizations.of(context)!.createMagic, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            child: Text(AppLocalizations.of(context)!.createMagic,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           ),
           const SizedBox(height: 16),
         ],

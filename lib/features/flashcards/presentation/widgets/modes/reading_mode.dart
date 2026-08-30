@@ -7,6 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class ReadingModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -64,7 +65,8 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(32),
                       decoration: BoxDecoration(
-                        color: isDark ? Colors.white.withAlpha(12) : Colors.white,
+                        color:
+                            isDark ? Colors.white.withAlpha(12) : Colors.white,
                         borderRadius: BorderRadius.circular(32),
                         border: Border.all(
                           color: isDark ? Colors.white12 : Colors.black12,
@@ -91,7 +93,8 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   style: TextStyle(
                                     fontSize: 120,
                                     fontWeight: FontWeight.bold,
-                                    color: isDark ? Colors.white : Colors.black87,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87,
                                   ),
                                 ),
                               ),
@@ -121,12 +124,15 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                 children: [
                                   PinyinText(
                                     text: widget.card.pinyin,
-                                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(height: 16),
-                                  Text(
-                                    widget.card.definition,
-                                    style: const TextStyle(fontSize: 20),
+                                  TranslatedDefinition(
+                                    definition: widget.card.definition,
+                                    originalStyle:
+                                        const TextStyle(fontSize: 20),
                                     textAlign: TextAlign.center,
                                   ),
                                 ],
@@ -135,9 +141,14 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                           ],
                         ],
                       ),
-                    ).animate()
-                     .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-                     .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+                    )
+                        .animate()
+                        .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                        .slideY(
+                            begin: 0.1,
+                            end: 0,
+                            duration: 500.ms,
+                            curve: Curves.easeOutCubic),
                   ),
                 ),
               ),
@@ -175,4 +186,3 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
     );
   }
 }
-

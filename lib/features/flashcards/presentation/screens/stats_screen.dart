@@ -52,7 +52,7 @@ class StatsScreen extends ConsumerWidget {
 
             // Library Mastery Donut Chart
             _ChartCard(
-              title: "Library Mastery",
+              title: AppLocalizations.of(context)!.libraryMastery,
               cardColor: cardColor,
               child: SizedBox(
                 height: 200,

@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class NotificationPermissionScreen extends ConsumerStatefulWidget {
   const NotificationPermissionScreen({
@@ -13,10 +14,12 @@ class NotificationPermissionScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<NotificationPermissionScreen> createState() => _NotificationPermissionScreenState();
+  ConsumerState<NotificationPermissionScreen> createState() =>
+      _NotificationPermissionScreenState();
 }
 
-class _NotificationPermissionScreenState extends ConsumerState<NotificationPermissionScreen> {
+class _NotificationPermissionScreenState
+    extends ConsumerState<NotificationPermissionScreen> {
   bool _isRequested = false;
   bool _isNavigating = false;
   int _secretTapCount = 0;
@@ -26,14 +29,16 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
     _isNavigating = true;
 
     final isPremium = await MonetizationService.checkPremiumStatus();
-    
+
     if (mounted) {
       if (isPremium) {
         Navigator.pushReplacement(
           context,
           PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => const MainNavigationScreen(),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const MainNavigationScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
               return FadeTransition(opacity: animation, child: child);
             },
           ),
@@ -52,22 +57,26 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-    final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final textColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     const accentColor = Color(0xFFD4C4A8);
-    final btnBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final btnTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final btnBgColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnTextColor =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return Scaffold(
       backgroundColor: bgColor,
       body: CalligraphyBackground(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 12),
-                
+
                 // Icon Header
                 Center(
                   child: GestureDetector(
@@ -76,7 +85,9 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                       _secretTapCount++;
                       if (_secretTapCount >= 5) {
                         MonetizationService.unlockDeveloperBackdoor();
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Developer Backdoor Unlocked!')));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .developerBackdoorUnlocked)));
                         _secretTapCount = 0;
                       }
                     },
@@ -86,22 +97,27 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                       decoration: BoxDecoration(
                         color: textColor.withValues(alpha: 0.05),
                         shape: BoxShape.circle,
-                        border: Border.all(color: textColor.withValues(alpha: 0.08)),
+                        border: Border.all(
+                            color: textColor.withValues(alpha: 0.08)),
                       ),
                       child: Icon(
-                        _isRequested ? Icons.check_circle_outline : Icons.notifications_active_outlined,
+                        _isRequested
+                            ? Icons.check_circle_outline
+                            : Icons.notifications_active_outlined,
                         size: 38,
                         color: _isRequested ? Colors.green[600] : accentColor,
                       ),
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Title
                 Text(
-                  _isRequested ? "Notifications Configured" : "Never Miss a Stroke",
+                  _isRequested
+                      ? "Notifications Configured"
+                      : "Never Miss a Stroke",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: textColor,
@@ -111,9 +127,9 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                     height: 1.2,
                   ),
                 ),
-                
+
                 const SizedBox(height: 8),
-                
+
                 // Description
                 Text(
                   _isRequested
@@ -126,14 +142,15 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                     height: 1.4,
                   ),
                 ),
-                
+
                 const SizedBox(height: 24),
 
                 // Benefit Cards
                 _buildBenefitCard(
                   icon: Icons.auto_awesome,
                   title: "Daily Discovery Drop",
-                  description: "A new Word and Story waiting for your daily ritual.",
+                  description:
+                      "A new Word and Story waiting for your daily ritual.",
                   isDark: isDark,
                   textColor: textColor,
                   accentColor: accentColor,
@@ -142,7 +159,8 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                 _buildBenefitCard(
                   icon: Icons.alarm,
                   title: "Smart Spaced Repetition",
-                  description: "Gentle prompts before characters fade from your memory.",
+                  description:
+                      "Gentle prompts before characters fade from your memory.",
                   isDark: isDark,
                   textColor: textColor,
                   accentColor: accentColor,
@@ -151,14 +169,15 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                 _buildBenefitCard(
                   icon: Icons.shield_outlined,
                   title: "Trial Protection Alert",
-                  description: "Receive a reminder 2 days before your free trial ends.",
+                  description:
+                      "Receive a reminder 2 days before your free trial ends.",
                   isDark: isDark,
                   textColor: textColor,
                   accentColor: accentColor,
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Action Buttons
                 if (!_isRequested)
                   BouncingButton(
@@ -225,7 +244,7 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                       ),
                       child: Center(
                         child: Text(
-                          "Continue",
+                          AppLocalizations.of(context)!.continueText,
                           style: TextStyle(
                             color: btnTextColor,
                             fontSize: 16,
@@ -235,7 +254,7 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                       ),
                     ),
                   ),
-                
+
                 if (!_isRequested) ...[
                   const SizedBox(height: 10),
                   TextButton(
@@ -243,9 +262,10 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
                     style: TextButton.styleFrom(
                       foregroundColor: textColor.withValues(alpha: 0.5),
                     ),
-                    child: const Text(
-                      "Maybe Later",
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    child: Text(
+                      AppLocalizations.of(context)!.maybeLater,
+                      style:
+                          const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ] else ...[
@@ -274,11 +294,14 @@ class _NotificationPermissionScreenState extends ConsumerState<NotificationPermi
         color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06),
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.08)
+              : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
-            color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+            color:
+                (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),

@@ -19,7 +19,8 @@ class FlashcardEditDialog extends ConsumerStatefulWidget {
     required this.initialDefinition,
   });
 
-  static Future<void> show(BuildContext context, {
+  static Future<void> show(
+    BuildContext context, {
     required String hanzi,
     required String pinyin,
     required String definition,
@@ -39,7 +40,8 @@ class FlashcardEditDialog extends ConsumerStatefulWidget {
   }
 
   @override
-  ConsumerState<FlashcardEditDialog> createState() => _FlashcardEditDialogState();
+  ConsumerState<FlashcardEditDialog> createState() =>
+      _FlashcardEditDialogState();
 }
 
 class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
@@ -52,7 +54,8 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
     super.initState();
     _hanziController = TextEditingController(text: widget.initialHanzi);
     _pinyinController = TextEditingController(text: widget.initialPinyin);
-    _definitionController = TextEditingController(text: widget.initialDefinition);
+    _definitionController =
+        TextEditingController(text: widget.initialDefinition);
   }
 
   @override
@@ -75,7 +78,9 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
     if (!hasChinese) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context)!.pleaseEnterValidChinese)),
+          SnackBar(
+              content:
+                  Text(AppLocalizations.of(context)!.pleaseEnterValidChinese)),
         );
       }
       return;
@@ -97,7 +102,8 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
     if (mounted) {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Added '$hanzi' to your Library")),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)!.added_to_your_library)),
       );
     }
   }
@@ -134,39 +140,42 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
                   icon: const Icon(Icons.close),
                   onPressed: () => Navigator.pop(context),
                   padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                  constraints:
+                      const BoxConstraints(minWidth: 36, minHeight: 36),
                 ),
               ],
             ),
             const SizedBox(height: 16),
             Text(
               AppLocalizations.of(context)!.pleaseDoublecheckTheAis,
-              style: TextStyle(fontSize: 13, color: textColor.withValues(alpha: 0.6)),
+              style: TextStyle(
+                  fontSize: 13, color: textColor.withValues(alpha: 0.6)),
             ),
             const SizedBox(height: 24),
             HanziTextField(
               controller: _hanziController,
-              decoration: const InputDecoration(
-                labelText: "Character / Word",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.characterOrWord,
+                border: const OutlineInputBorder(),
               ),
-              style: TextStyle(color: textColor, fontFamily: 'NotoSerifSC', fontSize: 24),
+              style: TextStyle(
+                  color: textColor, fontFamily: 'NotoSerifSC', fontSize: 24),
             ),
             const SizedBox(height: 16),
             HanziTextField(
               controller: _pinyinController,
-              decoration: const InputDecoration(
-                labelText: "Pinyin",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.pinyin,
+                border: const OutlineInputBorder(),
               ),
               style: TextStyle(color: textColor),
             ),
             const SizedBox(height: 16),
             HanziTextField(
               controller: _definitionController,
-              decoration: const InputDecoration(
-                labelText: "Definition",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.definition,
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
               style: TextStyle(color: textColor),
@@ -178,9 +187,12 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
               ),
-              child: Text(AppLocalizations.of(context)!.saveToLibrary, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              child: Text(AppLocalizations.of(context)!.saveToLibrary,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w600)),
             ),
           ],
         ),

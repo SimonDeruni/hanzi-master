@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/radical_de
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -36,9 +37,11 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
 
   Future<void> _loadRadicals() async {
     try {
-      final radicalString = await rootBundle.loadString('assets/data/radicals.json');
-      final radicalData = json.decode(radicalString)['radicals'] as Map<String, dynamic>;
-      
+      final radicalString =
+          await rootBundle.loadString('assets/data/radicals.json');
+      final radicalData =
+          json.decode(radicalString)['radicals'] as Map<String, dynamic>;
+
       if (mounted) {
         setState(() {
           _radicals = radicalData;
@@ -62,7 +65,9 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
           final data = _radicals[key];
           final name = (data['name'] ?? '').toString().toLowerCase();
           final meaning = (data['meaning'] ?? '').toString().toLowerCase();
-          return key.contains(lowerQuery) || name.contains(lowerQuery) || meaning.contains(lowerQuery);
+          return key.contains(lowerQuery) ||
+              name.contains(lowerQuery) ||
+              meaning.contains(lowerQuery);
         }).toList();
       }
     });
@@ -84,7 +89,9 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                      icon: Icon(Icons.arrow_back,
+                          color:
+                              isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       onPressed: () => Navigator.pop(context),
                     ),
                     const SizedBox(width: 8),
@@ -99,10 +106,14 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
                 child: Text(
                   AppLocalizations.of(context)!.masteringRadicalsIsThe,
-                  style: TextStyle(fontSize: 16, color: isDark ? Colors.white70 : Colors.black54, height: 1.5),
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: isDark ? Colors.white70 : Colors.black54,
+                      height: 1.5),
                 ),
               ),
               Padding(
@@ -115,25 +126,31 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               ),
               const SizedBox(height: 8),
               Expanded(
-                child: _isLoading 
-                  ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
-                  : _filteredKeys.isEmpty
-                      ? Center(child: Text(AppLocalizations.of(context)!.noRadicalsFound))
-                      : GridView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 16,
-                            mainAxisSpacing: 16,
-                            childAspectRatio: 0.85,
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(color: Colors.indigo))
+                    : _filteredKeys.isEmpty
+                        ? Center(
+                            child: Text(
+                                AppLocalizations.of(context)!.noRadicalsFound))
+                        : GridView.builder(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 16),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: 0.85,
+                            ),
+                            itemCount: _filteredKeys.length,
+                            itemBuilder: (context, index) {
+                              final key = _filteredKeys[index];
+                              final data = _radicals[key];
+                              return _buildRadicalCard(
+                                  context, key, data, isDark);
+                            },
                           ),
-                          itemCount: _filteredKeys.length,
-                          itemBuilder: (context, index) {
-                            final key = _filteredKeys[index];
-                            final data = _radicals[key];
-                            return _buildRadicalCard(context, key, data, isDark);
-                          },
-                        ),
               ),
             ],
           ),
@@ -142,7 +159,8 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
     );
   }
 
-  Widget _buildRadicalCard(BuildContext context, String character, dynamic data, bool isDark) {
+  Widget _buildRadicalCard(
+      BuildContext context, String character, dynamic data, bool isDark) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -182,7 +200,8 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
             ),
             const SizedBox(height: 4),
             Text(
-              PinyinHelper.getPinyin(character, separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
+              PinyinHelper.getPinyin(character,
+                  separator: ' ', format: PinyinFormat.WITH_TONE_MARK),
               style: TextStyle(
                 fontSize: 14,
                 color: isDark ? Colors.white70 : Colors.black54,
@@ -192,9 +211,9 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
             const SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                data['name'] ?? '',
-                style: TextStyle(
+              child: TranslatedDefinition(
+                definition: (data['name'] ?? '').toString(),
+                originalStyle: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   color: isDark ? Colors.white70 : Colors.black87,

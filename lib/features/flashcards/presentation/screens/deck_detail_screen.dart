@@ -22,6 +22,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_card_picker_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
@@ -35,7 +36,8 @@ class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => tabBar.preferredSize.height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       color: backgroundColor,
       child: tabBar,
@@ -75,30 +77,39 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-        floatingActionButton: widget.deck.id != 'default' ? FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.push(
-              context,
-              SwipeBackPageRoute(
-                builder: (context) => DeckCardPickerScreen(deckId: widget.deck.id, deckName: widget.deck.localizedName(context)),
-              ),
-            );
-          },
-          icon: const Icon(Icons.add),
-          label: Text(AppLocalizations.of(context)!.addCards),
-          backgroundColor: Colors.indigo,
-          foregroundColor: Colors.white,
-        ) : null,
+        backgroundColor:
+            isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+        floatingActionButton: widget.deck.id != 'default'
+            ? FloatingActionButton.extended(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                      builder: (context) => DeckCardPickerScreen(
+                          deckId: widget.deck.id,
+                          deckName: widget.deck.localizedName(context)),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.add),
+                label: Text(AppLocalizations.of(context)!.addCards),
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+              )
+            : null,
         body: asyncFlashcards.when(
           data: (allCards) {
-            final deckCards = allCards.where((c) => c.deckId == widget.deck.id || (widget.deck.id == 'default' && c.deckId.isEmpty)).toList();
-            
+            final deckCards = allCards
+                .where((c) =>
+                    c.deckId == widget.deck.id ||
+                    (widget.deck.id == 'default' && c.deckId.isEmpty))
+                .toList();
+
             final filteredCards = deckCards.where((c) {
               if (_searchQuery.isEmpty) return true;
-              return c.hanzi.contains(_searchQuery) || 
-                     c.pinyin.toLowerCase().contains(_searchQuery) || 
-                     c.definition.toLowerCase().contains(_searchQuery);
+              return c.hanzi.contains(_searchQuery) ||
+                  c.pinyin.toLowerCase().contains(_searchQuery) ||
+                  c.definition.toLowerCase().contains(_searchQuery);
             }).toList();
 
             return NestedScrollView(
@@ -109,11 +120,14 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     expandedHeight: 140.0,
                     floating: false,
                     pinned: true,
-                    backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                    backgroundColor: isDark
+                        ? const Color(0xFF1A1A1B)
+                        : const Color(0xFFFDFCF0),
                     elevation: 0,
                     flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
-                      titlePadding: const EdgeInsets.only(bottom: 8, left: 60, right: 60),
+                      titlePadding:
+                          const EdgeInsets.only(bottom: 8, left: 60, right: 60),
                       title: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -123,7 +137,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: isDark ? Colors.white : const Color(0xFF2C2C2C),
+                              color: isDark
+                                  ? Colors.white
+                                  : const Color(0xFF2C2C2C),
                               fontWeight: FontWeight.w800,
                               fontSize: 16,
                               letterSpacing: 0.5,
@@ -131,9 +147,11 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                           ),
                           const SizedBox(height: 4),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 4),
                             decoration: BoxDecoration(
-                              color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+                              color: (isDark ? Colors.white : Colors.black)
+                                  .withValues(alpha: 0.05),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -150,46 +168,78 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       ),
                       background: Opacity(
                         opacity: isDark ? 0.3 : 0.1,
-                        child: const CalligraphyBackground(child: SizedBox.expand()),
+                        child: const CalligraphyBackground(
+                            child: SizedBox.expand()),
                       ),
                     ),
                     actions: [
-                                            IconButton(
-                        icon: Icon(Icons.settings_outlined, color: isDark ? Colors.white70 : Colors.black87),
+                      IconButton(
+                        icon: Icon(Icons.settings_outlined,
+                            color: isDark ? Colors.white70 : Colors.black87),
                         onPressed: () {
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,
-                            builder: (ctx) => DeckSettingsSheet(deck: widget.deck),
+                            builder: (ctx) =>
+                                DeckSettingsSheet(deck: widget.deck),
                           );
                         },
                       ),
                       if (widget.deck.id != 'default')
                         IconButton(
-                          icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                          icon: const Icon(Icons.delete_outline,
+                              color: Colors.redAccent),
                           onPressed: () async {
                             final bool? confirm = await showDialog<bool>(
                               context: context,
                               builder: (ctx) => AlertDialog(
-                                backgroundColor: isDark ? const Color(0xFF2A2A2C) : const Color(0xFFFDFCF0),
-                                title: Text('Erase Deck?', style: TextStyle(fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black)),
-                                content: Text('Are you sure you want to permanently erase "${widget.deck.name}"? This action cannot be undone and will delete all cards inside it.', style: TextStyle(color: isDark ? Colors.white70 : Colors.black87)),
+                                backgroundColor: isDark
+                                    ? const Color(0xFF2A2A2C)
+                                    : const Color(0xFFFDFCF0),
+                                title: Text(
+                                    AppLocalizations.of(context)!
+                                        .eraseDeckQuestion,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: isDark
+                                            ? Colors.white
+                                            : Colors.black)),
+                                content: Text(
+                                    AppLocalizations.of(context)!
+                                        .are_you_sure_you_want_to(
+                                            widget.deck.name),
+                                    style: TextStyle(
+                                        color: isDark
+                                            ? Colors.white70
+                                            : Colors.black87)),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(ctx, false),
-                                    child: Text('Cancel', style: TextStyle(color: isDark ? Colors.white60 : Colors.grey)),
+                                    child: Text(
+                                        AppLocalizations.of(context)!
+                                            .cancelAction,
+                                        style: TextStyle(
+                                            color: isDark
+                                                ? Colors.white60
+                                                : Colors.grey)),
                                   ),
                                   TextButton(
                                     onPressed: () => Navigator.pop(ctx, true),
-                                    child: const Text('Erase', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                                    child: Text(
+                                        AppLocalizations.of(context)!.erase,
+                                        style: const TextStyle(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold)),
                                   ),
                                 ],
                               ),
                             );
 
                             if (confirm == true) {
-                              await ref.read(deckControllerProvider.notifier).deleteDeck(widget.deck.id);
+                              await ref
+                                  .read(deckControllerProvider.notifier)
+                                  .deleteDeck(widget.deck.id);
                               if (context.mounted) {
                                 Navigator.pop(context);
                               }
@@ -198,7 +248,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         ),
                     ],
                   ),
-                  
+
                   // Action Row (Compact & Premium)
                   if (deckCards.isNotEmpty)
                     SliverToBoxAdapter(
@@ -214,14 +264,18 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                     height: 56,
                                     decoration: BoxDecoration(
                                       gradient: const LinearGradient(
-                                        colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
+                                        colors: [
+                                          Color(0xFF8E2DE2),
+                                          Color(0xFF4A00E0)
+                                        ],
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
                                       ),
                                       borderRadius: BorderRadius.circular(16),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: const Color(0xFF4A00E0).withValues(alpha: 0.3),
+                                          color: const Color(0xFF4A00E0)
+                                              .withValues(alpha: 0.3),
                                           blurRadius: 12,
                                           offset: const Offset(0, 4),
                                         ),
@@ -229,32 +283,50 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                     ),
                                     child: ElevatedButton(
                                       onPressed: () {
-                                          StudyModeSelectionSheet.show(
-                                            context,
-                                            onModeSelected: (mode) {
-                                              ref.read(analyticsServiceProvider).logStudySession(
-                                                action: 'started',
-                                                mode: mode.name,
-                                                deckId: widget.deck.id,
-                                                cardCount: deckCards.length,
-                                              );
-                                              Navigator.push(context, SwipeBackPageRoute(
-                                                builder: (context) => DeckReviewSessionScreen(deckId: widget.deck.id, mode: mode),
-                                              ));
-                                            },
-                                          );
+                                        StudyModeSelectionSheet.show(
+                                          context,
+                                          onModeSelected: (mode) {
+                                            ref
+                                                .read(analyticsServiceProvider)
+                                                .logStudySession(
+                                                  action: 'started',
+                                                  mode: mode.name,
+                                                  deckId: widget.deck.id,
+                                                  cardCount: deckCards.length,
+                                                );
+                                            Navigator.push(
+                                                context,
+                                                SwipeBackPageRoute(
+                                                  builder: (context) =>
+                                                      DeckReviewSessionScreen(
+                                                          deckId:
+                                                              widget.deck.id,
+                                                          mode: mode),
+                                                ));
+                                          },
+                                        );
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent,
                                         shadowColor: Colors.transparent,
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          const Icon(Icons.play_arrow_rounded, size: 24, color: Colors.white),
+                                          const Icon(Icons.play_arrow_rounded,
+                                              size: 24, color: Colors.white),
                                           const SizedBox(width: 8),
-                                          Text(AppLocalizations.of(context)!.review, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                  .review,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white)),
                                         ],
                                       ),
                                     ),
@@ -268,27 +340,54 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                     child: OutlinedButton(
                                       onPressed: () {
                                         if (deckCards.isEmpty) return;
-                                        ref.read(analyticsServiceProvider).logStoryAction(
-                                          action: 'started',
-                                          storyId: 'custom_deck_story',
-                                          storyLevel: widget.deck.id,
-                                        );
-                                        Navigator.push(context, SwipeBackPageRoute(
-                                          builder: (context) => StoryModeScreen(deck: widget.deck, cards: deckCards),
-                                        ));
+                                        ref
+                                            .read(analyticsServiceProvider)
+                                            .logStoryAction(
+                                              action: 'started',
+                                              storyId: 'custom_deck_story',
+                                              storyLevel: widget.deck.id,
+                                            );
+                                        Navigator.push(
+                                            context,
+                                            SwipeBackPageRoute(
+                                              builder: (context) =>
+                                                  StoryModeScreen(
+                                                      deck: widget.deck,
+                                                      cards: deckCards),
+                                            ));
                                       },
                                       style: OutlinedButton.styleFrom(
-                                        foregroundColor: isDark ? Colors.purple[300] : Colors.purple[700],
-                                        backgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.purple.withValues(alpha: 0.05),
-                                        side: BorderSide(color: isDark ? Colors.purple[300]!.withValues(alpha: 0.5) : Colors.purple[200]!, width: 1.5),
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                        foregroundColor: isDark
+                                            ? Colors.purple[300]
+                                            : Colors.purple[700],
+                                        backgroundColor: isDark
+                                            ? Colors.white
+                                                .withValues(alpha: 0.05)
+                                            : Colors.purple
+                                                .withValues(alpha: 0.05),
+                                        side: BorderSide(
+                                            color: isDark
+                                                ? Colors.purple[300]!
+                                                    .withValues(alpha: 0.5)
+                                                : Colors.purple[200]!,
+                                            width: 1.5),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          const Icon(Icons.auto_awesome, size: 18),
+                                          const Icon(Icons.auto_awesome,
+                                              size: 18),
                                           const SizedBox(width: 6),
-                                          Text(AppLocalizations.of(context)!.story, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                  .story,
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                     ),
@@ -302,22 +401,45 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                               width: double.infinity,
                               child: OutlinedButton(
                                 onPressed: () {
-                                  Navigator.push(context, SwipeBackPageRoute(
-                                    builder: (context) => ScenarioSelectionScreen(deck: widget.deck),
-                                  ));
+                                  Navigator.push(
+                                      context,
+                                      SwipeBackPageRoute(
+                                        builder: (context) =>
+                                            ScenarioSelectionScreen(
+                                                deck: widget.deck),
+                                      ));
                                 },
                                 style: OutlinedButton.styleFrom(
-                                  foregroundColor: isDark ? Colors.tealAccent[400] : Colors.teal[700],
-                                  backgroundColor: isDark ? Colors.tealAccent[400]!.withValues(alpha: 0.05) : Colors.teal[700]!.withValues(alpha: 0.05),
-                                  side: BorderSide(color: isDark ? Colors.tealAccent[400]!.withValues(alpha: 0.5) : Colors.teal[700]!.withValues(alpha: 0.5), width: 1.5),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                  foregroundColor: isDark
+                                      ? Colors.tealAccent[400]
+                                      : Colors.teal[700],
+                                  backgroundColor: isDark
+                                      ? Colors.tealAccent[400]!
+                                          .withValues(alpha: 0.05)
+                                      : Colors.teal[700]!
+                                          .withValues(alpha: 0.05),
+                                  side: BorderSide(
+                                      color: isDark
+                                          ? Colors.tealAccent[400]!
+                                              .withValues(alpha: 0.5)
+                                          : Colors.teal[700]!
+                                              .withValues(alpha: 0.5),
+                                      width: 1.5),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)),
                                 ),
-                                child: const Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.record_voice_over, size: 18),
-                                    SizedBox(width: 6),
-                                    Text("Practice in Roleplay", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                    const Icon(Icons.record_voice_over,
+                                        size: 18),
+                                    const SizedBox(width: 6),
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .practiceInRoleplay,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               ),
@@ -326,22 +448,26 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         ),
                       ),
                     ),
-                    
+
                   // Tab Bar
                   SliverPersistentHeader(
                     pinned: true,
                     delegate: _SliverTabBarDelegate(
                       TabBar(
-                        labelColor: isDark ? Colors.purple[300] : Colors.purple[700],
+                        labelColor:
+                            isDark ? Colors.purple[300] : Colors.purple[700],
                         unselectedLabelColor: Colors.grey,
-                        indicatorColor: isDark ? Colors.purple[300] : Colors.purple[700],
+                        indicatorColor:
+                            isDark ? Colors.purple[300] : Colors.purple[700],
                         indicatorWeight: 3,
-                        tabs: const [
-                          Tab(text: "Cards"),
-                          Tab(text: "Statistics"),
+                        tabs: [
+                          Tab(text: AppLocalizations.of(context)!.cardsTitle),
+                          Tab(text: AppLocalizations.of(context)!.statistics),
                         ],
                       ),
-                      isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                      isDark
+                          ? const Color(0xFF1A1A1B)
+                          : const Color(0xFFFDFCF0),
                     ),
                   ),
                 ];
@@ -356,117 +482,226 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                           child: ZenSearchBar(
                             controller: _searchController,
-                            hintText: "Search character, pinyin...",
-                            onChanged: (val) => setState(() => _searchQuery = val.toLowerCase()),
+                            hintText:
+                                AppLocalizations.of(context)!.searchDeckHint,
+                            onChanged: (val) => setState(
+                                () => _searchQuery = val.toLowerCase()),
                           ),
                         ),
                       Expanded(
-                        child: deckCards.isEmpty 
-                          ? Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.inbox_outlined, size: 80, color: Colors.grey.withValues(alpha: 0.3)),
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    AppLocalizations.of(context)!.thisDeckIsEmpty,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: isDark ? Colors.white54 : Colors.black54,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    AppLocalizations.of(context)!.tapTheAddCards,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.purple.withValues(alpha: 0.8),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : filteredCards.isEmpty
+                        child: deckCards.isEmpty
                             ? Center(
-                                child: Text(
-                                  AppLocalizations.of(context)!.noCardsFound,
-                                  style: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
-                                ),
-                              )
-                            : ListView.builder(
-                                padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 80),
-                                itemCount: filteredCards.length,
-                                itemBuilder: (context, index) {
-                                  final card = filteredCards[index];
-                                  return StaggeredListItem(
-                                    index: index,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(bottom: 12.0),
-                                      child: widget.deck.id == 'default' ? _buildCardContent(context, card, isDark) : Dismissible(
-                                        key: Key('dismiss_${card.id}'),
-                                        direction: DismissDirection.endToStart,
-                                        background: Container(
-                                          alignment: Alignment.centerRight,
-                                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                                          decoration: BoxDecoration(
-                                            color: Colors.redAccent,
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                          child: const Icon(Icons.delete_sweep, color: Colors.white, size: 32),
-                                        ),
-                                        confirmDismiss: (direction) async {
-                                          return await showDialog<bool>(
-                                            context: context,
-                                            builder: (context) {
-                                              final dialogIsDark = Theme.of(context).brightness == Brightness.dark;
-                                              return AlertDialog(
-                                                backgroundColor: dialogIsDark ? const Color(0xFF2A2A2C) : const Color(0xFFFDFCF0),
-                                                title: Text(AppLocalizations.of(context)!.removeCard, style: TextStyle(color: dialogIsDark ? Colors.white : Colors.black)),
-                                                content: Text("Remove ${card.hanzi} from this deck?", style: TextStyle(color: dialogIsDark ? Colors.white70 : Colors.black87)),
-                                                actions: [
-                                                  TextButton(onPressed: () => Navigator.pop(context, false), child: Text(AppLocalizations.of(context)!.cancel, style: TextStyle(color: dialogIsDark ? Colors.white60 : Colors.grey))),
-                                                  TextButton(onPressed: () => Navigator.pop(context, true), child: Text(AppLocalizations.of(context)!.remove, style: const TextStyle(color: Colors.red))),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        onDismissed: (direction) {
-                                          final updatedCard = card.copyWith(deckId: 'default');
-                                          ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(
-                                              content: Text(AppLocalizations.of(context)!.removedFromDeck(card.hanzi)),
-                                              backgroundColor: Colors.redAccent,
-                                              duration: const Duration(seconds: 2),
-                                              action: SnackBarAction(
-                                                label: 'UNDO',
-                                                textColor: Colors.white,
-                                                onPressed: () {
-                                                  ref.read(flashcardControllerProvider.notifier).updateFlashcard(card);
-                                                },
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: _buildCardContent(context, card, isDark),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.inbox_outlined,
+                                        size: 80,
+                                        color:
+                                            Colors.grey.withValues(alpha: 0.3)),
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .thisDeckIsEmpty,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: isDark
+                                            ? Colors.white54
+                                            : Colors.black54,
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .tapTheAddCards,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.purple
+                                            .withValues(alpha: 0.8),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : filteredCards.isEmpty
+                                ? Center(
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .noCardsFound,
+                                      style: TextStyle(
+                                          color: isDark
+                                              ? Colors.white54
+                                              : Colors.black54),
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    padding: const EdgeInsets.only(
+                                        top: 16,
+                                        left: 16,
+                                        right: 16,
+                                        bottom: 80),
+                                    itemCount: filteredCards.length,
+                                    itemBuilder: (context, index) {
+                                      final card = filteredCards[index];
+                                      return StaggeredListItem(
+                                        index: index,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 12.0),
+                                          child: widget.deck.id == 'default'
+                                              ? _buildCardContent(
+                                                  context, card, isDark)
+                                              : Dismissible(
+                                                  key:
+                                                      Key('dismiss_${card.id}'),
+                                                  direction: DismissDirection
+                                                      .endToStart,
+                                                  background: Container(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 24),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.redAccent,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16),
+                                                    ),
+                                                    child: const Icon(
+                                                        Icons.delete_sweep,
+                                                        color: Colors.white,
+                                                        size: 32),
+                                                  ),
+                                                  confirmDismiss:
+                                                      (direction) async {
+                                                    return await showDialog<
+                                                        bool>(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        final dialogIsDark =
+                                                            Theme.of(context)
+                                                                    .brightness ==
+                                                                Brightness.dark;
+                                                        return AlertDialog(
+                                                          backgroundColor:
+                                                              dialogIsDark
+                                                                  ? const Color(
+                                                                      0xFF2A2A2C)
+                                                                  : const Color(
+                                                                      0xFFFDFCF0),
+                                                          title: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .removeCard,
+                                                              style: TextStyle(
+                                                                  color: dialogIsDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black)),
+                                                          content: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .remove_from_this_deck(
+                                                                      card
+                                                                          .hanzi),
+                                                              style: TextStyle(
+                                                                  color: dialogIsDark
+                                                                      ? Colors
+                                                                          .white70
+                                                                      : Colors
+                                                                          .black87)),
+                                                          actions: [
+                                                            TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        context,
+                                                                        false),
+                                                                child: Text(
+                                                                    AppLocalizations.of(
+                                                                            context)!
+                                                                        .cancel,
+                                                                    style: TextStyle(
+                                                                        color: dialogIsDark
+                                                                            ? Colors.white60
+                                                                            : Colors.grey))),
+                                                            TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        context,
+                                                                        true),
+                                                                child: Text(
+                                                                    AppLocalizations.of(
+                                                                            context)!
+                                                                        .remove,
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .red))),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  onDismissed: (direction) {
+                                                    final updatedCard =
+                                                        card.copyWith(
+                                                            deckId: 'default');
+                                                    ref
+                                                        .read(
+                                                            flashcardControllerProvider
+                                                                .notifier)
+                                                        .updateFlashcard(
+                                                            updatedCard);
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .removedFromDeck(
+                                                                    card.hanzi)),
+                                                        backgroundColor:
+                                                            Colors.redAccent,
+                                                        duration:
+                                                            const Duration(
+                                                                seconds: 2),
+                                                        action: SnackBarAction(
+                                                          label: AppLocalizations
+                                                                  .of(context)!
+                                                              .undo,
+                                                          textColor:
+                                                              Colors.white,
+                                                          onPressed: () {
+                                                            ref
+                                                                .read(flashcardControllerProvider
+                                                                    .notifier)
+                                                                .updateFlashcard(
+                                                                    card);
+                                                          },
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: _buildCardContent(
+                                                      context, card, isDark),
+                                                ),
+                                        ),
+                                      );
+                                    },
+                                  ),
                       ),
                     ],
                   ),
-                  
-                   // Tab 2: Statistics (unified polished view)
-                   StatsScreen(deckId: widget.deck.id),
+
+                  // Tab 2: Statistics (unified polished view)
+                  StatsScreen(deckId: widget.deck.id),
                 ],
               ),
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (err, stack) => Center(child: Text('Error: $err')),
+          error: (err, stack) => Center(child: Text("Error: $err")),
         ),
       ),
     );
@@ -483,14 +718,17 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
         decoration: BoxDecoration(
           color: isDark ? const Color(0xFF2A2A2C) : Colors.white,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: isDark ? [] : [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-          border: Border.all(color: isDark ? Colors.white12 : Colors.transparent, width: 1),
+          boxShadow: isDark
+              ? []
+              : [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.04),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+          border: Border.all(
+              color: isDark ? Colors.white12 : Colors.transparent, width: 1),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -499,7 +737,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
               width: 72,
               height: 72,
               decoration: BoxDecoration(
-                color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade50,
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(16),
               ),
               alignment: Alignment.center,
@@ -510,7 +750,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w900,
-                    color: isDark ? Colors.white.withValues(alpha: 0.9) : const Color(0xFF2C2C2C),
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.9)
+                        : const Color(0xFF2C2C2C),
                     height: 1.1,
                   ),
                 ),
@@ -531,9 +773,9 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Text(
-                    card.definition,
-                    style: TextStyle(
+                  TranslatedDefinition(
+                    definition: card.definition,
+                    originalStyle: TextStyle(
                       fontSize: 16,
                       color: isDark ? Colors.white : Colors.black87,
                       fontWeight: FontWeight.w500,
@@ -560,18 +802,19 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
 
     if (stats.isNew) {
       return const SizedBox.shrink();
-
     } else if (card.isDue(StudyMode.reading)) {
-      statusText = "To Be Reviewed";
+      statusText = AppLocalizations.of(context)!.to_be_reviewed;
       color = Colors.orange;
       icon = Icons.access_time;
     } else if (stats.isMastered) {
-      statusText = "Mastered";
+      statusText = AppLocalizations.of(context)!.masteredStatus;
       color = Colors.green;
       icon = Icons.workspace_premium;
     } else {
       final days = stats.nextReviewDate.difference(DateTime.now()).inDays;
-      statusText = days <= 1 ? "Review Tomorrow" : "Review in $days days";
+      statusText = days <= 1
+          ? AppLocalizations.of(context)!.review_tomorrow
+          : "Review in $days days";
       color = Colors.indigo;
       icon = Icons.calendar_today;
     }

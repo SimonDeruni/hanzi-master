@@ -6,18 +6,20 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class TutorialLessonScreen extends ConsumerStatefulWidget {
   const TutorialLessonScreen({super.key});
 
   @override
-  ConsumerState<TutorialLessonScreen> createState() => _TutorialLessonScreenState();
+  ConsumerState<TutorialLessonScreen> createState() =>
+      _TutorialLessonScreenState();
 }
 
 class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   final PageController _pageController = PageController();
   int _currentStep = 0;
-  
+
   Flashcard? _cardOne;
   Flashcard? _cardWater;
   bool _isLoading = true;
@@ -39,10 +41,10 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     try {
       final controller = ref.read(flashcardControllerProvider.notifier);
       final allCards = await ref.read(flashcardControllerProvider.future);
-      
+
       // 1. Find the real HSK1 cards for 'One' and 'Water'
       final one = allCards.firstWhere((c) => c.hanzi == '一');
-      final water = allCards.firstWhere((c) => c.hanzi == '水'); 
+      final water = allCards.firstWhere((c) => c.hanzi == '水');
 
       // 2. Hydrate them with vector stroke data (Skeletons/Outlines)
       _cardOne = await controller.loadStrokesFor(one);
@@ -58,7 +60,8 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
 
   void _nextPage() {
     if (_currentStep < 5) {
-      _pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+      _pageController.nextPage(
+          duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
       setState(() => _currentStep++);
     } else {
       ref.read(settingsProvider.notifier).completeTutorial();
@@ -69,14 +72,16 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading || _cardOne == null || _cardWater == null) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircularProgressIndicator(color: Colors.indigo),
-              SizedBox(height: 16),
-              Text("Opening the Origin Scroll...", style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold)),
+              const CircularProgressIndicator(color: Colors.indigo),
+              const SizedBox(height: 16),
+              Text(AppLocalizations.of(context)!.openingTheOriginScroll,
+                  style: const TextStyle(
+                      color: Colors.indigo, fontWeight: FontWeight.bold)),
             ],
           ),
         ),
@@ -99,18 +104,14 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             _buildIntroStep(),
-            _buildDrawingStep(
-              "THE HORIZONTAL STROKE", 
-              "This is ONE (Yī). Always draw from Left to Right.", 
-              _cardOne!
-            ),
+            _buildDrawingStep("THE HORIZONTAL STROKE",
+                "This is ONE (Yī). Always draw from Left to Right.", _cardOne!),
             _buildRadicalExplanationStep(),
             _buildConstellationExplanationStep(),
             _buildDrawingStep(
-              "THE RADICAL", 
-              "This is the full character WATER (Shuǐ).\n\nWhen used as a left-side component, it shapeshifts into '氵' (Three Drops)!", 
-              _cardWater!
-            ),
+                "THE RADICAL",
+                "This is the full character WATER (Shuǐ).\n\nWhen used as a left-side component, it shapeshifts into '氵' (Three Drops)!",
+                _cardWater!),
             _buildFinaleStep(),
           ],
         ),
@@ -128,7 +129,11 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
           const SizedBox(height: 32),
           const Text(
             "INDEPENDENT STARS",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.amber, letterSpacing: 2),
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.amber,
+                letterSpacing: 2),
           ),
           const SizedBox(height: 48),
           const Text(
@@ -139,7 +144,8 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
           const SizedBox(height: 24),
           const Text(
             "On the map, we group these independent characters into CONSTELLATIONS (✨).",
-            style: TextStyle(fontSize: 18, height: 1.5, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 18, height: 1.5, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48),
@@ -148,8 +154,9 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.amber.shade800,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: const Text("I UNDERSTAND"),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+            child: Text(AppLocalizations.of(context)!.iUnderstand),
           ),
         ],
       ),
@@ -164,7 +171,11 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         children: [
           const Text(
             "WHAT ARE RADICALS?",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.indigo, letterSpacing: 2),
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.indigo,
+                letterSpacing: 2),
           ),
           const SizedBox(height: 48),
           // Visual Decomposition
@@ -174,12 +185,16 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
               _buildComponentBox("氵", "Water", Colors.cyan),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("+", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                child: Text("+",
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
               ),
               _buildComponentBox("工", "Work", Colors.grey),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("=", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                child: Text("=",
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
               ),
               _buildComponentBox("江", "River", Colors.indigo),
             ],
@@ -196,8 +211,9 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: const Text("CONTINUE"),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+            child: Text(AppLocalizations.of(context)!.continueText),
           ),
         ],
       ),
@@ -208,18 +224,23 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     return Column(
       children: [
         Container(
-          width: 70, height: 70,
+          width: 70,
+          height: 70,
           decoration: BoxDecoration(
             color: color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: color, width: 2),
           ),
           child: Center(
-            child: Text(hanzi, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: color)),
+            child: Text(hanzi,
+                style: TextStyle(
+                    fontSize: 32, fontWeight: FontWeight.bold, color: color)),
           ),
         ),
         const SizedBox(height: 8),
-        Text(label, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: color)),
+        Text(label,
+            style: TextStyle(
+                fontSize: 12, fontWeight: FontWeight.bold, color: color)),
       ],
     );
   }
@@ -232,7 +253,12 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         children: [
           const Icon(Icons.auto_stories, size: 80, color: Colors.amber),
           const SizedBox(height: 32),
-          const Text("THE SCROLL OF ORIGIN", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.amber, letterSpacing: 2)),
+          Text(AppLocalizations.of(context)!.theScrollOfOrigin,
+              style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber,
+                  letterSpacing: 2)),
           const SizedBox(height: 24),
           const Text(
             "Hanzi are not just letters. They are pictures frozen in time.\n\nTo master them, you must learn to trace their flow.",
@@ -245,8 +271,9 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: const Text("I AM READY"),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+            child: Text(AppLocalizations.of(context)!.iAmReady),
           ),
         ],
       ),
@@ -257,20 +284,23 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     return Column(
       children: [
         const SizedBox(height: 100),
-        Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.indigo)),
+        Text(title,
+            style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.indigo)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           child: Text(subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 18, 
-                  color: Colors.grey.shade700,
-                  height: 1.4)),
+                  fontSize: 18, color: Colors.grey.shade700, height: 1.4)),
         ),
         Expanded(
           child: Center(
             child: SizedBox(
-              width: 300, height: 300,
+              width: 300,
+              height: 300,
               child: _TutorialCanvasWrapper(
                 card: card,
                 onComplete: _nextPage,
@@ -291,8 +321,8 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         children: [
           const Icon(Icons.check_circle, size: 80, color: Colors.green),
           const SizedBox(height: 32),
-          const Text("YOU ARE A SCHOLAR",
-              style: TextStyle(
+          Text(AppLocalizations.of(context)!.youAreAScholar,
+              style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.green,
@@ -311,7 +341,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                 foregroundColor: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: const Text("ENTER THE SCROLL"),
+            child: Text(AppLocalizations.of(context)!.enterTheScroll),
           ),
         ],
       ),
@@ -340,7 +370,7 @@ class _TutorialCanvasWrapperState extends State<_TutorialCanvasWrapper> {
         boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 20)],
       ),
       child: DrawingCanvas(
-        key: ValueKey(widget.card.id), 
+        key: ValueKey(widget.card.id),
         strokePaths: widget.card.strokePaths,
         medianPaths: widget.card.medianPaths,
         isFlipped: widget.card.isFlipped,
@@ -355,9 +385,11 @@ class _TutorialCanvasWrapperState extends State<_TutorialCanvasWrapper> {
         showControls: false,
         onStrokeComplete: (idx, size) {
           HapticsManager.light();
-          
-          final validStrokes = widget.card.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
-          
+
+          final validStrokes = widget.card.strokePaths
+              .where((s) => s != '__CHAR_SEPARATOR__')
+              .toList();
+
           if (_currentIndex < validStrokes.length - 1) {
             setState(() => _currentIndex++);
           } else {

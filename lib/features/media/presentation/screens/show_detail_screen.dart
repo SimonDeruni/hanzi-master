@@ -6,6 +6,8 @@ import '../../data/repositories/show_repository.dart';
 import '../../../../shared/routes/swipe_back_route.dart';
 import 'smart_media_desk_screen.dart';
 import '../providers/show_progress_provider.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 
 final showEpisodesProvider = FutureProvider.family<List<YoutubeVideo>, String>((ref, showId) {
   final repo = ref.watch(showRepositoryProvider);
@@ -184,15 +186,24 @@ class ShowDetailScreen extends ConsumerWidget {
                           : const Color(0xFFD4CFB8).withValues(alpha: 0.5),
                     ),
                   ),
-                  child: Text(
-                    show.summary!,
-                    style: TextStyle(
-                      color: isDark
-                          ? Colors.grey[300]
-                          : const Color(0xFF4A4A3B),
-                      fontSize: 13,
-                      height: 1.55,
+                  child: FutureBuilder<String>(
+                    future: LocalizedCatalogService.getShowSummary(
+                      showTitle: show.title,
+                      localeCode: Localizations.localeOf(context).languageCode,
+                      fallbackEn: show.summary!,
                     ),
+                    builder: (context, snapshot) {
+                      return Text(
+                        snapshot.data ?? show.summary!,
+                        style: TextStyle(
+                          color: isDark
+                              ? Colors.grey[300]
+                              : const Color(0xFF4A4A3B),
+                          fontSize: 13,
+                          height: 1.55,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -214,14 +225,14 @@ class ShowDetailScreen extends ConsumerWidget {
                   children: [
                     const Icon(Icons.error_outline, color: Colors.red, size: 40),
                     const SizedBox(height: 12),
-                    Text('Failed to load episodes',
+                    Text(AppLocalizations.of(context)!.failedToLoadEpisodes,
                         style: TextStyle(
                           color: isDark ? Colors.grey[400] : Colors.grey.shade700,
                         )),
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () => ref.invalidate(showEpisodesProvider(show.id)),
-                      child: Text('Retry',
+                      child: Text(AppLocalizations.of(context)!.retry,
                           style: TextStyle(
                             color: isDark ? Colors.amber : const Color(0xFF8B6914),
                           )),
@@ -234,7 +245,7 @@ class ShowDetailScreen extends ConsumerWidget {
               if (episodes.isEmpty) {
                 return SliverFillRemaining(
                   child: Center(
-                    child: Text('No episodes found',
+                    child: Text(AppLocalizations.of(context)!.noEpisodesFound,
                         style: TextStyle(
                           color: isDark ? Colors.grey[500] : Colors.grey.shade600,
                         )),

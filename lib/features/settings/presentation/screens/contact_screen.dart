@@ -225,7 +225,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                     child: Text(
                       AppLocalizations.of(context)!.sendMessage,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.2,

@@ -34,7 +34,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      ref.read(conversationControllerProvider.notifier).startScenario(widget.scenario);
+      ref
+          .read(conversationControllerProvider.notifier)
+          .startScenario(widget.scenario);
     });
   }
 
@@ -61,7 +63,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent + 200, // buffer for new message
+        _scrollController.position.maxScrollExtent +
+            200, // buffer for new message
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
@@ -77,12 +80,16 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         isSaved ? Icons.bookmark : Icons.bookmark_border,
         color: isSaved ? theme.colorScheme.primary : null,
       ),
-      tooltip: isSaved ? 'Remove from saved scenarios' : 'Save this scenario',
+      tooltip: isSaved
+          ? AppLocalizations.of(context)!.removeFromSavedScenarios
+          : AppLocalizations.of(context)!.saveThisScenario,
       onPressed: () {
         ref.read(savedScenariosProvider.notifier).toggle(widget.scenario);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(isSaved ? 'Scenario removed' : 'Scenario saved! Find it in the Custom tab.'),
+            content: Text(isSaved
+                ? AppLocalizations.of(context)!.scenarioRemoved
+                : AppLocalizations.of(context)!.scenarioSavedFindInCustomTab),
             duration: const Duration(seconds: 2),
             behavior: SnackBarBehavior.floating,
           ),
@@ -96,7 +103,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     final state = ref.watch(conversationControllerProvider);
     final theme = Theme.of(context);
 
-    ref.listen(conversationControllerProvider.select((state) => state.messages.length), (previous, next) {
+    ref.listen(
+        conversationControllerProvider.select((state) => state.messages.length),
+        (previous, next) {
       if (previous != null && next > previous) {
         Future.delayed(const Duration(milliseconds: 100), _scrollToBottom);
       }
@@ -119,12 +128,14 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                           pinned: true,
                           backgroundColor: theme.colorScheme.surface,
                           surfaceTintColor: Colors.transparent,
-                          iconTheme: IconThemeData(color: theme.colorScheme.onSurface),
+                          iconTheme:
+                              IconThemeData(color: theme.colorScheme.onSurface),
                           actions: [
                             _buildBookmarkButton(theme),
                           ],
                           flexibleSpace: FlexibleSpaceBar(
-                            titlePadding: const EdgeInsets.symmetric(horizontal: 56, vertical: 12),
+                            titlePadding: const EdgeInsets.symmetric(
+                                horizontal: 56, vertical: 12),
                             title: Text(
                               widget.scenario.title,
                               maxLines: 1,
@@ -159,7 +170,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       Positioned(
                         top: 240, // Below expanded app bar
                         right: 12,
-                        child: _QuestsFloatingButton(quests: widget.scenario.quests),
+                        child: _QuestsFloatingButton(
+                            quests: widget.scenario.quests),
                       ),
                   ],
                 ),
@@ -262,7 +274,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       ? const Color(0xFF2C2C34)
                       : const Color(0xFFFAF7F0),
                   border: Border.all(
-                    color: const Color(0xFFD4AF37).withValues(alpha: isDark ? 0.7 : 0.8),
+                    color: const Color(0xFFD4AF37)
+                        .withValues(alpha: isDark ? 0.7 : 0.8),
                     width: 2.0,
                   ),
                   boxShadow: [
@@ -279,7 +292,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: isDark ? const Color(0xFFFFD54F) : const Color(0xFF8C6B1C),
+                      color: isDark
+                          ? const Color(0xFFFFD54F)
+                          : const Color(0xFF8C6B1C),
                     ),
                   ),
                 ),
@@ -317,7 +332,9 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                   decoration: BoxDecoration(
                     color: theme.cardTheme.color,
                     borderRadius: BorderRadius.circular(24),
-                    border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+                    border: Border.all(
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.1)),
                   ),
                   child: Row(
                     children: [
@@ -327,12 +344,19 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                           style: theme.textTheme.bodyLarge,
                           maxLines: 4,
                           decoration: InputDecoration(
-                            hintText: state.isProcessing ? "Thinking..." : (state.isRecording ? "Listening..." : "Type your message..."),
+                            hintText: state.isProcessing
+                                ? AppLocalizations.of(context)!.thinking
+                                : (state.isRecording
+                                    ? AppLocalizations.of(context)!.listening
+                                    : AppLocalizations.of(context)!
+                                        .typeYourMessage),
                             hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                              color: theme.colorScheme.onSurface
+                                  .withValues(alpha: 0.4),
                             ),
                             border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
                           ),
                           onSubmitted: (_) => _handleSubmitted(),
                         ),
@@ -342,38 +366,54 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 ),
               ),
               const SizedBox(width: 8),
-              
               ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _textController,
                 builder: (context, value, child) {
                   final isTextMode = value.text.trim().isNotEmpty;
-                  
+
                   if (isTextMode) {
                     return GestureDetector(
-                      onTap: state.isProcessing ? null : () {
-                        FocusScope.of(context).unfocus();
-                        ref.read(conversationControllerProvider.notifier).sendMessage(_textController.text);
-                        _textController.clear();
-                      },
+                      onTap: state.isProcessing
+                          ? null
+                          : () {
+                              FocusScope.of(context).unfocus();
+                              ref
+                                  .read(conversationControllerProvider.notifier)
+                                  .sendMessage(_textController.text);
+                              _textController.clear();
+                            },
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: theme.colorScheme.primary,
                         ),
-                        child: Icon(Icons.send_rounded, color: theme.colorScheme.onPrimary, size: 24),
+                        child: Icon(Icons.send_rounded,
+                            color: theme.colorScheme.onPrimary, size: 24),
                       ),
                     );
                   } else {
                     return Listener(
                       onPointerDown: (_) {
-                        if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).startRecording();
+                        if (!state.isProcessing) {
+                          ref
+                              .read(conversationControllerProvider.notifier)
+                              .startRecording();
+                        }
                       },
                       onPointerUp: (_) {
-                        if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
+                        if (!state.isProcessing) {
+                          ref
+                              .read(conversationControllerProvider.notifier)
+                              .stopRecordingAndProcess();
+                        }
                       },
                       onPointerCancel: (_) {
-                        if (!state.isProcessing) ref.read(conversationControllerProvider.notifier).stopRecordingAndProcess();
+                        if (!state.isProcessing) {
+                          ref
+                              .read(conversationControllerProvider.notifier)
+                              .stopRecordingAndProcess();
+                        }
                       },
                       child: BreathingWidget(
                         isBreathing: state.isRecording,
@@ -381,11 +421,16 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: state.isRecording ? Colors.redAccent : theme.colorScheme.primary.withValues(alpha: 0.1),
+                            color: state.isRecording
+                                ? Colors.redAccent
+                                : theme.colorScheme.primary
+                                    .withValues(alpha: 0.1),
                           ),
                           child: Icon(
                             state.isRecording ? Icons.mic : Icons.mic_none,
-                            color: state.isRecording ? Colors.white : theme.colorScheme.primary,
+                            color: state.isRecording
+                                ? Colors.white
+                                : theme.colorScheme.primary,
                             size: 24,
                           ),
                         ),
@@ -401,8 +446,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     );
   }
 
-
-Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) {
+  Widget _buildScoreBadge(
+      PronunciationGrade grade, ThemeData theme, bool isUser) {
     final scoreVal = grade.score;
     if (scoreVal == null) {
       return Row(
@@ -423,7 +468,8 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
         ? scoreVal
         : ((grade.accuracy + grade.completeness + grade.fluency) / 3).round();
 
-    final color = effectiveScore >= 80 ? Colors.green.shade600 : Colors.red.shade600;
+    final color =
+        effectiveScore >= 80 ? Colors.green.shade600 : Colors.red.shade600;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -435,7 +481,9 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
           ),
         ),
         const SizedBox(width: 4),
-        Text('score', style: theme.textTheme.labelSmall?.copyWith(color: color.withValues(alpha: 0.7))),
+        Text(AppLocalizations.of(context)!.scoreText,
+            style: theme.textTheme.labelSmall
+                ?.copyWith(color: color.withValues(alpha: 0.7))),
         if (scoreVal == 0 && effectiveScore > 0) ...[
           const SizedBox(width: 4),
           Text(
@@ -449,6 +497,7 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
       ],
     );
   }
+
   Widget _buildMessage(GradedChatMessage message, ThemeData theme) {
     final isUser = message.role == ChatRole.user;
     final isExpanded = _translationVisibility[message.id] ?? false;
@@ -469,19 +518,26 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
         child: Container(
           margin: const EdgeInsets.only(bottom: 16),
           padding: const EdgeInsets.all(16),
-          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
           decoration: BoxDecoration(
-            color: isUser ? theme.colorScheme.primary.withValues(alpha: 0.1) : theme.cardTheme.color,
+            color: isUser
+                ? theme.colorScheme.primary.withValues(alpha: 0.1)
+                : theme.cardTheme.color,
             borderRadius: BorderRadius.only(
               topLeft: const Radius.circular(20),
               topRight: const Radius.circular(20),
               bottomLeft: Radius.circular(isUser ? 20 : 4),
               bottomRight: Radius.circular(isUser ? 4 : 20),
             ),
-            border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+            border: Border.all(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
             boxShadow: [
               if (!isUser)
-                 BoxShadow(color: theme.colorScheme.onSurface.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))
+                BoxShadow(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4))
             ],
           ),
           child: Column(
@@ -495,19 +551,23 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: TappableMarkdownHanziText(
                       message.content,
-                      style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                      style: theme.textTheme.bodyLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(height: 8),
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
-                    children: message.grade!.words.map((w) => _buildGradedWord(w, theme)).toList(),
+                    children: message.grade!.words
+                        .map((w) => _buildGradedWord(w, theme))
+                        .toList(),
                   ),
                 ] else ...[
                   TappableMarkdownHanziText(
                     message.content,
-                    style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                    style: theme.textTheme.bodyLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
                 if (message.english != null && message.english!.isNotEmpty) ...[
@@ -526,9 +586,14 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.volume_up, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 20),
+                      icon: Icon(Icons.volume_up,
+                          color: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.4),
+                          size: 20),
                       onPressed: () {
-                        ref.read(audioServiceProvider).playSentence(message.content, voiceName: widget.scenario.voiceName);
+                        ref.read(audioServiceProvider).playSentence(
+                            message.content,
+                            voiceName: widget.scenario.voiceName);
                       },
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
@@ -540,66 +605,84 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                         children: [
                           TappableMarkdownHanziText(
                             message.content,
-                            style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                            style: theme.textTheme.bodyLarge
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
-                          
                           if (isExpanded) ...[
                             Builder(
                               builder: (context) {
-                                final pinyin = (message.pinyin != null && message.pinyin!.isNotEmpty)
+                                final pinyin = (message.pinyin != null &&
+                                        message.pinyin!.isNotEmpty)
                                     ? message.pinyin!
-                                    : PinyinHelper.getPinyinE(message.content, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
-                                if (pinyin.isEmpty) return const SizedBox.shrink();
+                                    : PinyinHelper.getPinyinE(message.content,
+                                        separator: ' ',
+                                        format: PinyinFormat.WITH_TONE_MARK);
+                                if (pinyin.isEmpty) {
+                                  return const SizedBox.shrink();
+                                }
                                 return Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
                                     pinyin,
                                     style: theme.textTheme.bodyMedium?.copyWith(
-                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                                      color: theme.colorScheme.onSurface
+                                          .withValues(alpha: 0.6),
                                     ),
                                   ),
                                 );
                               },
                             ),
-                            if (message.english != null && message.english!.isNotEmpty) ...[
+                            if (message.english != null &&
+                                message.english!.isNotEmpty) ...[
                               const SizedBox(height: 6),
                               Text(
                                 message.english!,
                                 style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                                  color: theme.colorScheme.onSurface
+                                      .withValues(alpha: 0.8),
                                   fontStyle: FontStyle.italic,
                                 ),
                               ),
                             ],
                           ],
-                          
                           if (message.role == ChatRole.scholar) ...[
                             const SizedBox(height: 8),
                             InkWell(
                               onTap: () {
                                 // Lazy-load translation if not yet cached
-                                if (message.english == null || message.english!.isEmpty) {
-                                  ref.read(conversationControllerProvider.notifier).translateMessage(message.id);
+                                if (message.english == null ||
+                                    message.english!.isEmpty) {
+                                  ref
+                                      .read(conversationControllerProvider
+                                          .notifier)
+                                      .translateMessage(message.id);
                                 }
                                 setState(() {
-                                  _translationVisibility[message.id] = !isExpanded;
+                                  _translationVisibility[message.id] =
+                                      !isExpanded;
                                 });
                               },
                               borderRadius: BorderRadius.circular(12),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 4, horizontal: 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(
-                                      isExpanded ? Icons.visibility_off_outlined : Icons.translate_rounded,
+                                      isExpanded
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.translate_rounded,
                                       size: 14,
                                       color: theme.colorScheme.primary,
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      isExpanded ? "Hide Translation" : "Translate",
-                                      style: theme.textTheme.labelSmall?.copyWith(
+                                      isExpanded
+                                          ? "Hide Translation"
+                                          : "Translate",
+                                      style:
+                                          theme.textTheme.labelSmall?.copyWith(
                                         color: theme.colorScheme.primary,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -609,40 +692,58 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                               ),
                             ),
                           ],
-                          
                           if (message.suggestion != null) ...[
                             const SizedBox(height: 16),
                             Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                color: theme.colorScheme.primary.withValues(alpha: 0.05),
+                                color: theme.colorScheme.primary
+                                    .withValues(alpha: 0.05),
                                 borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
+                                border: Border.all(
+                                    color: theme.colorScheme.primary
+                                        .withValues(alpha: 0.2)),
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(Icons.lightbulb_outline, size: 16, color: theme.colorScheme.primary),
+                                      Icon(Icons.lightbulb_outline,
+                                          size: 16,
+                                          color: theme.colorScheme.primary),
                                       const SizedBox(width: 4),
-                                      Text("Suggestion", style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold)),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .suggestion,
+                                          style: theme.textTheme.labelSmall
+                                              ?.copyWith(
+                                                  color:
+                                                      theme.colorScheme.primary,
+                                                  fontWeight: FontWeight.bold)),
                                     ],
                                   ),
                                   const SizedBox(height: 8),
                                   TappableHanziText(
                                     message.suggestion!['chinese'] ?? '',
-                                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.primary),
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.colorScheme.primary),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
                                     message.suggestion!['pinyin'] ?? '',
-                                    style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                        color: theme.colorScheme.onSurface
+                                            .withValues(alpha: 0.6)),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
                                     message.suggestion!['english'] ?? '',
-                                    style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.8), fontStyle: FontStyle.italic),
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                        color: theme.colorScheme.onSurface
+                                            .withValues(alpha: 0.8),
+                                        fontStyle: FontStyle.italic),
                                   ),
                                 ],
                               ),
@@ -665,25 +766,37 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
     final color = switch (word.gradeLevel) {
       WordGradeLevel.correct => Colors.green.shade600,
       WordGradeLevel.partial => const Color(0xFFF59E0B),
-      WordGradeLevel.wrong   => Colors.red.shade600,
+      WordGradeLevel.wrong => Colors.red.shade600,
     };
-    final isClickable = word.gradeLevel != WordGradeLevel.correct && word.feedback.isNotEmpty;
+    final isClickable =
+        word.gradeLevel != WordGradeLevel.correct && word.feedback.isNotEmpty;
 
     return GestureDetector(
-      onTap: isClickable ? () => _showWordFeedbackDialog(word, color, theme) : null,
+      onTap: isClickable
+          ? () => _showWordFeedbackDialog(word, color, theme)
+          : null,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(word.pinyin, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
+          Text(word.pinyin,
+              style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
           const SizedBox(height: 2),
           Stack(
             alignment: Alignment.topRight,
             children: [
-              Text(word.word, style: theme.textTheme.titleLarge?.copyWith(color: color, fontWeight: FontWeight.bold)),
+              Text(word.word,
+                  style: theme.textTheme.titleLarge
+                      ?.copyWith(color: color, fontWeight: FontWeight.bold)),
               if (isClickable)
                 Positioned(
-                  top: 0, right: -2,
-                  child: Container(width: 6, height: 6, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+                  top: 0,
+                  right: -2,
+                  child: Container(
+                      width: 6,
+                      height: 6,
+                      decoration:
+                          BoxDecoration(color: color, shape: BoxShape.circle)),
                 ),
             ],
           ),
@@ -692,7 +805,8 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
     );
   }
 
-  void _showWordFeedbackDialog(SyllableGrade word, Color color, ThemeData theme) {
+  void _showWordFeedbackDialog(
+      SyllableGrade word, Color color, ThemeData theme) {
     final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
@@ -704,19 +818,34 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 72, height: 72,
-                decoration: BoxDecoration(color: color.withValues(alpha: 0.12), shape: BoxShape.circle),
-                child: Center(child: Text(word.word, style: theme.textTheme.displaySmall?.copyWith(color: color, fontWeight: FontWeight.bold))),
+                width: 72,
+                height: 72,
+                decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.12),
+                    shape: BoxShape.circle),
+                child: Center(
+                    child: Text(word.word,
+                        style: theme.textTheme.displaySmall?.copyWith(
+                            color: color, fontWeight: FontWeight.bold))),
               ),
               const SizedBox(height: 8),
-              Text(word.pinyin, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
+              Text(word.pinyin,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                      color:
+                          theme.colorScheme.onSurface.withValues(alpha: 0.6))),
               const SizedBox(height: 12),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(20)),
                 child: Text(
-                  word.gradeLevel == WordGradeLevel.partial ? l10n.pronunciationPartial : l10n.pronunciationWrong,
-                  style: theme.textTheme.labelMedium?.copyWith(color: color, fontWeight: FontWeight.bold),
+                  word.gradeLevel == WordGradeLevel.partial
+                      ? l10n.pronunciationPartial
+                      : l10n.pronunciationWrong,
+                  style: theme.textTheme.labelMedium
+                      ?.copyWith(color: color, fontWeight: FontWeight.bold),
                 ),
               ),
               if (word.expectedTone > 0) ...[
@@ -724,16 +853,25 @@ Widget _buildScoreBadge(PronunciationGrade grade, ThemeData theme, bool isUser) 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _ToneChip(label: l10n.toneExpected, tone: word.expectedTone, color: Colors.green.shade600),
+                    _ToneChip(
+                        label: l10n.toneExpected,
+                        tone: word.expectedTone,
+                        color: Colors.green.shade600),
                     const SizedBox(width: 12),
-                    _ToneChip(label: l10n.toneYouSaid, tone: word.actualTone, color: color),
+                    _ToneChip(
+                        label: l10n.toneYouSaid,
+                        tone: word.actualTone,
+                        color: color),
                   ],
                 ),
               ],
               const SizedBox(height: 16),
-              Text(word.feedback, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium?.copyWith(height: 1.5)),
+              Text(word.feedback,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(height: 1.5)),
               const SizedBox(height: 20),
-              TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.gotIt)),
+              TextButton(
+                  onPressed: () => Navigator.pop(ctx), child: Text(l10n.gotIt)),
             ],
           ),
         ),
@@ -746,7 +884,8 @@ class _ToneChip extends StatelessWidget {
   final String label;
   final int tone;
   final Color color;
-  const _ToneChip({required this.label, required this.tone, required this.color});
+  const _ToneChip(
+      {required this.label, required this.tone, required this.color});
 
   static const _names = ['', '1st ˉ', '2nd ˊ', '3rd ˇ', '4th ˋ', 'neutral'];
 
@@ -755,12 +894,18 @@ class _ToneChip extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       children: [
-        Text(label, style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.5))),
+        Text(label,
+            style: theme.textTheme.labelSmall?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.5))),
         const SizedBox(height: 4),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(8)),
-          child: Text(tone > 0 && tone < _names.length ? _names[tone] : '?', style: theme.textTheme.labelLarge?.copyWith(color: color, fontWeight: FontWeight.bold)),
+          decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(8)),
+          child: Text(tone > 0 && tone < _names.length ? _names[tone] : '?',
+              style: theme.textTheme.labelLarge
+                  ?.copyWith(color: color, fontWeight: FontWeight.bold)),
         ),
       ],
     );
@@ -797,41 +942,52 @@ class _QuestsFloatingButtonState extends State<_QuestsFloatingButton> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Row(
+                Row(
                   children: [
-                    Icon(Icons.flag, color: Colors.amber, size: 16),
-                    SizedBox(width: 6),
+                    const Icon(Icons.flag, color: Colors.amber, size: 16),
+                    const SizedBox(width: 6),
                     Text(
-                      "QUESTS",
-                      style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 11, letterSpacing: 1),
+                      AppLocalizations.of(context)!.questsTitle,
+                      style: const TextStyle(
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11,
+                          letterSpacing: 1),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
                 ...widget.quests.map((q) => Padding(
-                  padding: const EdgeInsets.only(bottom: 6),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 5),
-                        child: Icon(Icons.circle, size: 5, color: Colors.white70),
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Icon(Icons.circle,
+                                size: 5, color: Colors.white70),
+                          ),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: RegExp(r'[\u4e00-\u9fa5]').hasMatch(q)
+                                ? TranslatedText(
+                                    q,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        height: 1.3),
+                                  )
+                                : Text(
+                                    q,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        height: 1.3),
+                                  ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 6),
-                      Expanded(
-                        child: RegExp(r'[\u4e00-\u9fa5]').hasMatch(q)
-                            ? TranslatedText(
-                                q,
-                                style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
-                              )
-                            : Text(
-                                q,
-                                style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
-                              ),
-                      ),
-                    ],
-                  ),
-                )),
+                    )),
               ],
             ),
           ),

@@ -19,7 +19,8 @@ class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
   final AiSentence sentence;
 
-  const WordDetailDialog({super.key, required this.word, required this.sentence});
+  const WordDetailDialog(
+      {super.key, required this.word, required this.sentence});
 
   static void show(BuildContext context, AiWord word, AiSentence sentence) {
     showDialog(
@@ -54,7 +55,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
     final char = widget.word.hanzi.characters.first;
     final repo = ref.read(globalDictionaryRepositoryProvider);
     final card = await repo.getExact(char);
-    
+
     final flashcards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
     final saved = flashcards.any((c) => c.hanzi == char);
 
@@ -70,15 +71,13 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
   void _addToDeck() async {
     if (_isSaved || _flashcard == null) return;
 
-    final char = widget.word.hanzi.characters.first;
-    
     // Show Deck Selector
     final navContext = Navigator.of(context).context;
     final isDark = Theme.of(navContext).brightness == Brightness.dark;
-    
+
     // We get decks from deckControllerProvider, but it's not imported. We can import it.
     final decks = ref.read(deckControllerProvider).valueOrNull ?? [];
-    
+
     final selectedDeckId = await showModalBottomSheet<String>(
       context: navContext,
       backgroundColor: Colors.transparent,
@@ -95,19 +94,22 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
           children: [
             Text(
               "Select Deck",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white : Colors.black87),
             ),
             const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.layers),
-              title: const Text("Default Deck"),
+              title: Text(AppLocalizations.of(context)!.defaultDeck),
               onTap: () => Navigator.pop(ctx, 'default'),
             ),
             ...decks.map((deck) => ListTile(
-              leading: const Icon(Icons.folder),
-              title: Text(deck.name),
-              onTap: () => Navigator.pop(ctx, deck.id),
-            )),
+                  leading: const Icon(Icons.folder),
+                  title: Text(deck.name),
+                  onTap: () => Navigator.pop(ctx, deck.id),
+                )),
           ],
         ),
       ),
@@ -121,13 +123,16 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
       sourceContext: "Reading Room",
       deckId: selectedDeckId == 'default' ? '' : selectedDeckId,
     );
-    
-    await ref.read(flashcardControllerProvider.notifier).addFlashcard(cardWithContext);
-    
+
+    await ref
+        .read(flashcardControllerProvider.notifier)
+        .addFlashcard(cardWithContext);
+
     if (mounted) {
       setState(() => _isSaved = true);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Added $char to Review Queue")),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)!.added_to_review_queue)),
       );
     }
   }
@@ -175,9 +180,11 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              if (ChineseHelper.isTraditionalChinese(widget.word.hanzi))
+                              if (ChineseHelper.isTraditionalChinese(
+                                  widget.word.hanzi))
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 6, vertical: 2),
                                   decoration: BoxDecoration(
                                     color: Colors.orange.withValues(alpha: 0.2),
                                     borderRadius: BorderRadius.circular(4),
@@ -185,14 +192,20 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                                   ),
                                   child: const Text(
                                     'Traditional Character',
-                                    style: TextStyle(fontSize: 10, color: Colors.orange, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.orange,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               const SizedBox(width: 8),
                               IconButton(
-                                icon: const Icon(Icons.volume_up, color: Colors.blueAccent, size: 28),
+                                icon: const Icon(Icons.volume_up,
+                                    color: Colors.blueAccent, size: 28),
                                 onPressed: () {
-                                  ref.read(audioServiceProvider).playCharacter(widget.word.hanzi);
+                                  ref
+                                      .read(audioServiceProvider)
+                                      .playCharacter(widget.word.hanzi);
                                 },
                               ),
                             ],
@@ -220,7 +233,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                 ],
               ),
               const SizedBox(height: 16),
-              
+
               // Unified Graph Node: Micro Calligraphy Canvas
               if (_isLoadingCard)
                 const SizedBox(
@@ -235,10 +248,15 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: isDark ? Colors.white12 : Colors.black12, width: 1),
+                        border: Border.all(
+                            color: isDark ? Colors.white12 : Colors.black12,
+                            width: 1),
                         boxShadow: [
                           if (!isDark)
-                            BoxShadow(color: Colors.black.withAlpha(12), blurRadius: 10, offset: const Offset(0, 4)),
+                            BoxShadow(
+                                color: Colors.black.withAlpha(12),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4)),
                         ],
                       ),
                       clipBehavior: Clip.antiAlias,
@@ -258,7 +276,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                     ),
                   ),
                 ),
-                
+
               const SizedBox(height: 24),
               Text(
                 AppLocalizations.of(context)!.meaningInContext,
@@ -283,25 +301,28 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                   runSpacing: 8.0,
                   children: widget.word.hanzi.characters.map((char) {
                     return ActionChip(
-                      avatar: const Icon(Icons.explore, size: 16, color: Colors.indigo),
-                      label: Text("Etymology: $char", style: const TextStyle(fontWeight: FontWeight.w600)),
+                      avatar: const Icon(Icons.explore,
+                          size: 16, color: Colors.indigo),
+                      label: Text(AppLocalizations.of(context)!.etymology,
+                          style: const TextStyle(fontWeight: FontWeight.w600)),
                       backgroundColor: Colors.indigo.withValues(alpha: 0.1),
                       side: BorderSide.none,
                       onPressed: () async {
                         // Get data BEFORE popping the dialog to avoid unmounted context errors
                         final lookup = ref.read(characterLookupServiceProvider);
                         final info = await lookup.lookup(char);
-                        
+
                         if (!context.mounted) return;
                         final navContext = Navigator.of(context).context;
                         Navigator.pop(context);
-                        
+
                         GlobalBlurredBottomSheet.show(
                           navContext,
                           child: CharacterChatSheet(
                             hanzi: char,
                             pinyin: info?.pinyin ?? "",
-                            definition: info?.definition ?? "Component of ${widget.word.hanzi}",
+                            definition: info?.definition ??
+                                "Component of ${widget.word.hanzi}",
                           ),
                         );
                       },
@@ -316,13 +337,16 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                   Expanded(
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 8),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                       ),
                       onPressed: () {
                         final navContext = Navigator.of(context).context;
                         Navigator.pop(context);
-                        AiExplainerSheet.show(navContext, widget.word, widget.sentence);
+                        AiExplainerSheet.show(
+                            navContext, widget.word, widget.sentence);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -345,23 +369,31 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: _isSaved ? Colors.green : Colors.blueAccent,
+                        backgroundColor:
+                            _isSaved ? Colors.green : Colors.blueAccent,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 8),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                         elevation: 0,
-                        disabledBackgroundColor: _isSaved ? Colors.green : Colors.grey.shade400,
+                        disabledBackgroundColor:
+                            _isSaved ? Colors.green : Colors.grey.shade400,
                         disabledForegroundColor: Colors.white,
                       ),
-                      onPressed: (_isSaved || _flashcard == null) ? null : _addToDeck,
+                      onPressed:
+                          (_isSaved || _flashcard == null) ? null : _addToDeck,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(_isSaved ? Icons.check_circle : Icons.add_box, size: 18),
+                          Icon(_isSaved ? Icons.check_circle : Icons.add_box,
+                              size: 18),
                           const SizedBox(width: 4),
                           Flexible(
                             child: Text(
-                              _isSaved ? "In Queue" : AppLocalizations.of(context)!.addToLibrary,
+                              _isSaved
+                                  ? "In Queue"
+                                  : AppLocalizations.of(context)!.addToLibrary,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: const TextStyle(fontSize: 13),

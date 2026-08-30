@@ -7,6 +7,7 @@ import 'package:hanzi_master/shared/widgets/shimmer_skeleton.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class NuanceCompareSheet extends ConsumerStatefulWidget {
   final List<Map<String, String>> words;
@@ -97,7 +98,8 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
       if (mounted && _streamedText.isEmpty) {
         setState(() {
           _isLoading = false;
-          _error = 'Generation is taking longer than expected. The AI may be overloaded.';
+          _error =
+              'Generation is taking longer than expected. The AI may be overloaded.';
         });
         _statusTimer?.cancel();
         _streamSubscription?.cancel();
@@ -194,7 +196,8 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _chatMessages.add(const _ChatMessage(isUser: false, text: 'Sorry, something went wrong.'));
+          _chatMessages.add(const _ChatMessage(
+              isUser: false, text: 'Sorry, something went wrong.'));
           _isChatLoading = false;
         });
       }
@@ -292,7 +295,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                       child: OutlinedButton.icon(
                         onPressed: _enterChatMode,
                         icon: const Icon(Icons.chat_bubble_outline, size: 18),
-                        label: const Text('Chat more'),
+                        label: Text(AppLocalizations.of(context)!.chatMore),
                       ),
                     ),
                   ],
@@ -322,49 +325,56 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
         final hanzi = w['hanzi'];
         if (hanzi != null && hanzi.isNotEmpty && block.startsWith('* $hanzi')) {
           block = block.replaceFirst('* $hanzi', '* **$hanzi**');
-        } else if (hanzi != null && hanzi.isNotEmpty && block.startsWith('- $hanzi')) {
+        } else if (hanzi != null &&
+            hanzi.isNotEmpty &&
+            block.startsWith('- $hanzi')) {
           block = block.replaceFirst('- $hanzi', '- **$hanzi**');
-        } else if (hanzi != null && hanzi.isNotEmpty && block.startsWith('• $hanzi')) {
+        } else if (hanzi != null &&
+            hanzi.isNotEmpty &&
+            block.startsWith('• $hanzi')) {
           block = block.replaceFirst('• $hanzi', '• **$hanzi**');
-        } else if (hanzi != null && hanzi.isNotEmpty && block.startsWith(hanzi)) {
+        } else if (hanzi != null &&
+            hanzi.isNotEmpty &&
+            block.startsWith(hanzi)) {
           block = block.replaceFirst(hanzi, '**$hanzi**');
         }
       }
 
       // Style Examples
       if (block.trim().startsWith('Usage:')) {
-        children.add(
-          Container(
-            margin: const EdgeInsets.only(bottom: 16, left: 16, right: 8),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1E1E2E) : Colors.indigo.shade50,
-              borderRadius: BorderRadius.circular(8),
-              border: Border(left: BorderSide(color: isDark ? Colors.indigo.shade200 : Colors.indigo.shade300, width: 4)),
+        children.add(Container(
+          margin: const EdgeInsets.only(bottom: 16, left: 16, right: 8),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF1E1E2E) : Colors.indigo.shade50,
+            borderRadius: BorderRadius.circular(8),
+            border: Border(
+                left: BorderSide(
+                    color: isDark
+                        ? Colors.indigo.shade200
+                        : Colors.indigo.shade300,
+                    width: 4)),
+          ),
+          child: TappableMarkdownHanziText(
+            block.replaceFirst('Usage:', '').trim(),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              height: 1.6,
+              fontStyle: FontStyle.italic,
+              fontSize: 13,
+              color: isDark ? Colors.grey.shade300 : Colors.grey.shade800,
             ),
-            child: TappableMarkdownHanziText(
-              block.replaceFirst('Usage:', '').trim(),
-              style: theme.textTheme.bodyMedium?.copyWith(
-                height: 1.6,
-                fontStyle: FontStyle.italic,
-                fontSize: 13,
-                color: isDark ? Colors.grey.shade300 : Colors.grey.shade800,
-              ),
-            ),
-          )
-        );
+          ),
+        ));
       } else {
-        children.add(
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: TappableMarkdownHanziText(
-              block,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                height: 1.7,
-              ),
+        children.add(Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: TappableMarkdownHanziText(
+            block,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              height: 1.7,
             ),
-          )
-        );
+          ),
+        ));
       }
     }
 
@@ -394,20 +404,30 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: isDark ? const Color(0xFF3A2A1A) : Colors.orange.shade50,
+                          color: isDark
+                              ? const Color(0xFF3A2A1A)
+                              : Colors.orange.shade50,
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: isDark ? Colors.orange.shade800 : Colors.orange.shade200),
+                          border: Border.all(
+                              color: isDark
+                                  ? Colors.orange.shade800
+                                  : Colors.orange.shade200),
                         ),
                         child: Row(
                           children: [
                             Icon(Icons.warning_amber_rounded,
-                                color: isDark ? Colors.orange.shade400 : Colors.orange.shade700, size: 20),
+                                color: isDark
+                                    ? Colors.orange.shade400
+                                    : Colors.orange.shade700,
+                                size: 20),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 _error!,
                                 style: TextStyle(
-                                  color: isDark ? Colors.orange.shade300 : Colors.orange.shade800,
+                                  color: isDark
+                                      ? Colors.orange.shade300
+                                      : Colors.orange.shade800,
                                   fontSize: 13,
                                 ),
                               ),
@@ -423,7 +443,9 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
               ),
             ] else ...[
               // No partial text — full error
-              Icon(Icons.cloud_off, size: 48, color: isDark ? Colors.grey.shade600 : Colors.grey.shade400),
+              Icon(Icons.cloud_off,
+                  size: 48,
+                  color: isDark ? Colors.grey.shade600 : Colors.grey.shade400),
               const SizedBox(height: 16),
               Text(
                 _error!,
@@ -435,7 +457,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
             OutlinedButton.icon(
               onPressed: _retry,
               icon: const Icon(Icons.refresh, size: 18),
-              label: const Text('Retry'),
+              label: Text(AppLocalizations.of(context)!.retry),
             ),
           ],
         ),
@@ -582,16 +604,21 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Align(
-                    alignment: msg.isUser ? Alignment.centerRight : Alignment.centerLeft,
+                    alignment: msg.isUser
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
                     child: Container(
                       constraints: BoxConstraints(
                         maxWidth: MediaQuery.of(context).size.width * 0.75,
                       ),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 10),
                       decoration: BoxDecoration(
                         color: msg.isUser
                             ? theme.colorScheme.primary.withValues(alpha: 0.15)
-                            : (isDark ? Colors.grey.shade800 : Colors.grey.shade100),
+                            : (isDark
+                                ? Colors.grey.shade800
+                                : Colors.grey.shade100),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
@@ -614,7 +641,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                     child: HanziTextField(
                       controller: _chatController,
                       decoration: InputDecoration(
-                        hintText: 'Ask a follow-up...',
+                        hintText: AppLocalizations.of(context)!.askAFollowUp,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(24),
                         ),
@@ -691,14 +718,14 @@ class _PulsingCursorAnimatedState extends State<_PulsingCursorAnimated>
         width: 2,
         height: 18,
         decoration: BoxDecoration(
-          color: widget.isDark ? Colors.indigo.shade300 : Colors.indigo.shade400,
+          color:
+              widget.isDark ? Colors.indigo.shade300 : Colors.indigo.shade400,
           borderRadius: BorderRadius.circular(1),
         ),
       ),
     );
   }
 }
-
 
 // ─── Chat message model ──────────────────────────────────────────────────────
 

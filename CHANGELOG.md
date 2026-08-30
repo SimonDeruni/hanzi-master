@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+291] - 2026-08-30
+- **Full 13-Language Dynamic Catalog & UI Screen Integration (Build #291)**:
+  - Created [`LocalizedCatalogService`](file:///c:/Users/simon/Documents/hanzi_master/lib/core/services/localized_catalog_service.dart) for cached async loading of localized book synopses and show summaries based on the user's active language.
+  - Connected [`BookDetailScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/reading/presentation/screens/book_detail_screen.dart) and [`ShowDetailScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/media/presentation/screens/show_detail_screen.dart) to automatically show translated synopses in French, Spanish, German, Japanese, Arabic, Russian, Portuguese, Italian, Hindi, Korean, Vietnamese, Indonesian, and Chinese.
+  - Rewired remaining hardcoded screen widgets into `AppLocalizations`.
+  - Verified `dart analyze lib/`: 0 errors, 0 warnings (Exit code 0).
+
 ## [1.0.0+290] - 2026-08-30
 - **Full 13-Language Content & Catalog Translation Matrix (Build #290)**:
   - Translated all **86 Classical Novels & Books** (`assets/data/grand_library_catalog.json`) and **126 Show & Drama plot summaries** (`show_summaries.dart`) across all 13 supported languages (French, Spanish, German, Italian, Portuguese, Russian, Arabic, Hindi, Japanese, Korean, Vietnamese, Indonesian, Chinese).

@@ -72,6 +72,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   sign_in_with_apple: ^7.0.1
 
+  collection: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -87,6 +88,8 @@ dev_dependencies:
   crypto: ^3.0.7
   change_app_package_name: ^1.5.0
 
+  web_socket_channel: any
+  archive: any
 flutter:
   config:
     enable-swift-package-manager: false

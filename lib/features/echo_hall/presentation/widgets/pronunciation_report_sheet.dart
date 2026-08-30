@@ -7,6 +7,7 @@ import '../../../../core/services/gemini_service.dart';
 import '../../../chat/domain/entities/chat_message.dart';
 import '../providers/conversation_controller.dart';
 import 'tone_comparison_sheet.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class PronunciationReportSheet extends ConsumerStatefulWidget {
   final GradedChatMessage message;
@@ -14,10 +15,12 @@ class PronunciationReportSheet extends ConsumerStatefulWidget {
   const PronunciationReportSheet({super.key, required this.message});
 
   @override
-  ConsumerState<PronunciationReportSheet> createState() => _PronunciationReportSheetState();
+  ConsumerState<PronunciationReportSheet> createState() =>
+      _PronunciationReportSheetState();
 }
 
-class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSheet> {
+class _PronunciationReportSheetState
+    extends ConsumerState<PronunciationReportSheet> {
   Map<String, String>? _intendedMeaning;
   bool _isLoadingIntention = true;
   bool _isRegrading = false;
@@ -35,10 +38,13 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
   }
 
   Future<void> _fetchIntention() async {
-    final chatHistory = ref.read(conversationControllerProvider.notifier).getChatHistory(widget.message.id);
+    final chatHistory = ref
+        .read(conversationControllerProvider.notifier)
+        .getChatHistory(widget.message.id);
     final gemini = ref.read(geminiServiceProvider);
-    
-    final result = await gemini.guessIntendedMeaning(chatHistory, widget.message.content);
+
+    final result =
+        await gemini.guessIntendedMeaning(chatHistory, widget.message.content);
     if (mounted) {
       setState(() {
         _intendedMeaning = result;
@@ -50,33 +56,34 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
   void _handleRegrade() async {
     if (_intendedMeaning == null) return;
     if (widget.message.audioPath == null) return;
-    
+
     setState(() => _isRegrading = true);
-    
+
     try {
       final file = File(widget.message.audioPath!);
       if (await file.exists()) {
         final bytes = await file.readAsBytes();
         final gemini = ref.read(geminiServiceProvider);
-        
+
         final intendedHanzi = _intendedMeaning!['intendedHanzi'] ?? "";
         final intendedPinyin = _intendedMeaning!['intendedPinyin'] ?? "";
-        
-        final gradeMap = await gemini.gradeAudio(bytes, intendedHanzi, intendedPinyin);
+
+        final gradeMap =
+            await gemini.gradeAudio(bytes, intendedHanzi, intendedPinyin);
         final newGrade = PronunciationGrade.fromJson(gradeMap);
-        
+
         if (mounted) {
           setState(() {
             _currentGrade = newGrade;
             _intendedMeaning = null; // hide the intention box
           });
-          
+
           // Attempt to update global provider if the message exists there
           ref.read(conversationControllerProvider.notifier).regradeMessage(
-            widget.message.id,
-            intendedHanzi,
-            intendedPinyin,
-          );
+                widget.message.id,
+                intendedHanzi,
+                intendedPinyin,
+              );
         }
       }
     } catch (e) {
@@ -123,12 +130,13 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
             ],
           ),
           const SizedBox(height: 16),
-          
+
           // Character Breakdown
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: isDark ? 0.3 : 0.5),
+              color: theme.colorScheme.surfaceContainerHighest
+                  .withValues(alpha: isDark ? 0.3 : 0.5),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: theme.dividerColor),
             ),
@@ -136,7 +144,9 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: grade.words.map((w) => _buildCharacterColumn(w, theme)).toList(),
+                  children: grade.words
+                      .map((w) => _buildCharacterColumn(w, theme))
+                      .toList(),
                 ),
                 const Divider(height: 24),
                 ElevatedButton.icon(
@@ -145,15 +155,25 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
                     ref.read(audioServiceProvider).playSentence(sentence);
                   },
                   icon: const Icon(Icons.volume_up, size: 20),
-                  label: const Text('Play Reference Pronunciation', style: TextStyle(fontWeight: FontWeight.bold)),
+                  label: Text(
+                      AppLocalizations.of(context)!
+                          .play_reference_pronunciation,
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isDark ? const Color(0xFF2C2C2E) : Colors.orange.shade50,
-                    foregroundColor: isDark ? const Color(0xFFFDFCF0) : Colors.orange.shade800,
+                    backgroundColor: isDark
+                        ? const Color(0xFF2C2C2E)
+                        : Colors.orange.shade50,
+                    foregroundColor: isDark
+                        ? const Color(0xFFFDFCF0)
+                        : Colors.orange.shade800,
                     elevation: 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(color: isDark ? Colors.white24 : Colors.orange.shade200),
+                      side: BorderSide(
+                          color:
+                              isDark ? Colors.white24 : Colors.orange.shade200),
                     ),
                   ),
                 ),
@@ -163,33 +183,43 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
           const SizedBox(height: 24),
 
           // AI Intention
-          if (widget.message.audioPath != null)
-            _buildAiIntentionBox(theme),
+          if (widget.message.audioPath != null) _buildAiIntentionBox(theme),
 
           const SizedBox(height: 16),
-          
+
           // Good tag
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF2C2C2E) : Colors.orange.shade50,
+                  color:
+                      isDark ? const Color(0xFF2C2C2E) : Colors.orange.shade50,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: isDark ? Colors.white24 : Colors.orange.shade200),
+                  border: Border.all(
+                      color: isDark ? Colors.white24 : Colors.orange.shade200),
                 ),
                 child: Row(
                   children: [
                     Text(
                       grade.score?.toString() ?? 'N/A',
-                      style: TextStyle(color: isDark ? Colors.orange.shade300 : Colors.orange, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color:
+                              isDark ? Colors.orange.shade300 : Colors.orange,
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 4),
-                    Icon(Icons.arrow_upward, size: 12, color: isDark ? Colors.orange.shade300 : Colors.orange),
+                    Icon(Icons.arrow_upward,
+                        size: 12,
+                        color: isDark ? Colors.orange.shade300 : Colors.orange),
                     const SizedBox(width: 8),
                     Text(
-                      grade.score != null ? (grade.score! >= 80 ? 'Great!' : 'Keep trying!') : 'Pending...',
-                      style: TextStyle(fontWeight: FontWeight.bold, color: onSurface),
+                      grade.score != null
+                          ? (grade.score! >= 80 ? 'Great!' : 'Keep trying!')
+                          : 'Pending...',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: onSurface),
                     ),
                   ],
                 ),
@@ -202,8 +232,10 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMetricDial('Accuracy', grade.accuracy, Colors.orange, theme),
-              _buildMetricDial('Completeness', grade.completeness, Colors.green, theme),
+              _buildMetricDial(
+                  'Accuracy', grade.accuracy, Colors.orange, theme),
+              _buildMetricDial(
+                  'Completeness', grade.completeness, Colors.green, theme),
               _buildMetricDial('Fluency', grade.fluency, Colors.orange, theme),
             ],
           ),
@@ -214,27 +246,43 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: isDark ? Colors.yellow.shade50.withValues(alpha: 0.05) : Colors.yellow.shade50,
+              color: isDark
+                  ? Colors.yellow.shade50.withValues(alpha: 0.05)
+                  : Colors.yellow.shade50,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: isDark ? Colors.yellow.shade700.withValues(alpha: 0.3) : Colors.yellow.shade200),
+              border: Border.all(
+                  color: isDark
+                      ? Colors.yellow.shade700.withValues(alpha: 0.3)
+                      : Colors.yellow.shade200),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.auto_awesome, size: 16, color: isDark ? Colors.orange.shade300 : Colors.orange),
+                    Icon(Icons.auto_awesome,
+                        size: 16,
+                        color: isDark ? Colors.orange.shade300 : Colors.orange),
                     const SizedBox(width: 8),
                     Text(
                       'Good pronunciation, but can be better!',
-                      style: TextStyle(color: isDark ? Colors.orange.shade300 : Colors.orange, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color:
+                              isDark ? Colors.orange.shade300 : Colors.orange,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                Divider(color: isDark ? Colors.orange.shade300 : Colors.orange, height: 24),
+                Divider(
+                    color: isDark ? Colors.orange.shade300 : Colors.orange,
+                    height: 24),
                 Text(
                   grade.overallFeedback,
-                  style: TextStyle(color: isDark ? Colors.orange.shade100 : Colors.orange.shade900, height: 1.5),
+                  style: TextStyle(
+                      color: isDark
+                          ? Colors.orange.shade100
+                          : Colors.orange.shade900,
+                      height: 1.5),
                 ),
               ],
             ),
@@ -252,7 +300,8 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
       );
     }
 
-    if (_intendedMeaning == null || _intendedMeaning!['intendedHanzi'] == widget.message.content) {
+    if (_intendedMeaning == null ||
+        _intendedMeaning!['intendedHanzi'] == widget.message.content) {
       return const SizedBox.shrink();
     }
 
@@ -263,7 +312,9 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? Colors.blue.shade50.withValues(alpha: 0.15) : Colors.blue.shade50,
+        color: isDark
+            ? Colors.blue.shade50.withValues(alpha: 0.15)
+            : Colors.blue.shade50,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.blue.shade200),
       ),
@@ -276,23 +327,29 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
               SizedBox(width: 8),
               Text(
                 'Did you mean to say...?',
-                style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: 12),
           Text(
             _intendedMeaning!['intendedHanzi'] ?? "",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: onSurface),
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: onSurface),
           ),
           Text(
             _intendedMeaning!['intendedPinyin'] ?? "",
-            style: TextStyle(fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
+            style: TextStyle(
+                fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
           ),
           const SizedBox(height: 4),
           Text(
             _intendedMeaning!['englishTranslation'] ?? "",
-            style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: onSurface.withValues(alpha: 0.6)),
+            style: TextStyle(
+                fontSize: 14,
+                fontStyle: FontStyle.italic,
+                color: onSurface.withValues(alpha: 0.6)),
           ),
           const SizedBox(height: 12),
           if (_isRegrading)
@@ -307,11 +364,11 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
                       _intendedMeaning = null;
                     });
                   },
-                  child: const Text('No'),
+                  child: Text(AppLocalizations.of(context)!.noLabel),
                 ),
                 ElevatedButton(
                   onPressed: _handleRegrade,
-                  child: const Text('Yes, Re-Grade Me!'),
+                  child: Text(AppLocalizations.of(context)!.yesReGradeMe),
                 ),
               ],
             ),
@@ -347,20 +404,25 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
             // Pinyin
             Text(
               word.pinyin,
-              style: TextStyle(fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
+              style: TextStyle(
+                  fontSize: 14, color: onSurface.withValues(alpha: 0.6)),
             ),
             const SizedBox(height: 2),
             // Hanzi
             Text(
               word.word,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: onSurface),
+              style: TextStyle(
+                  fontSize: 24, fontWeight: FontWeight.bold, color: onSurface),
             ),
             const SizedBox(height: 2),
             // English meaning
             if (word.english != null && word.english!.isNotEmpty)
               Text(
                 word.english!,
-                style: TextStyle(fontSize: 10, color: onSurface.withValues(alpha: 0.5), fontStyle: FontStyle.italic),
+                style: TextStyle(
+                    fontSize: 10,
+                    color: onSurface.withValues(alpha: 0.5),
+                    fontStyle: FontStyle.italic),
                 textAlign: TextAlign.center,
               ),
             // Score / icon
@@ -368,11 +430,19 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  word.wordScore > 0 ? word.wordScore.toString() : (word.isCorrect ? '\u2713' : word.isPartial ? '~' : '\u2717'),
-                  style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.bold),
+                  word.wordScore > 0
+                      ? word.wordScore.toString()
+                      : (word.isCorrect
+                          ? '\u2713'
+                          : word.isPartial
+                              ? '~'
+                              : '\u2717'),
+                  style: TextStyle(
+                      fontSize: 12, color: color, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 2),
-                Icon(Icons.volume_up_outlined, size: 10, color: onSurface.withValues(alpha: 0.4)),
+                Icon(Icons.volume_up_outlined,
+                    size: 10, color: onSurface.withValues(alpha: 0.4)),
               ],
             ),
           ],
@@ -381,7 +451,8 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
     );
   }
 
-  Widget _buildMetricDial(String label, int value, Color color, ThemeData theme) {
+  Widget _buildMetricDial(
+      String label, int value, Color color, ThemeData theme) {
     final onSurface = theme.colorScheme.onSurface;
     return Column(
       children: [
@@ -411,7 +482,8 @@ class _PronunciationReportSheetState extends ConsumerState<PronunciationReportSh
         const SizedBox(height: 8),
         Text(
           label,
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: onSurface),
+          style: TextStyle(
+              fontSize: 12, fontWeight: FontWeight.bold, color: onSurface),
         ),
       ],
     );

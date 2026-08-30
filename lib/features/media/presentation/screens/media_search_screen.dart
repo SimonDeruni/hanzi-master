@@ -7,6 +7,7 @@ import 'channel_videos_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
   const MediaSearchScreen({super.key});
@@ -18,19 +19,9 @@ class MediaSearchScreen extends ConsumerStatefulWidget {
 class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   final TextEditingController _searchController = TextEditingController();
 
-  final Map<String, List<YoutubeVideo>> _categories = {
-    'Lifestyle & Vlog': [],
-    'Gaming & Esports': [],
-    'Food & Cooking': [],
-    'Tech & Gadgets': [],
-  };
-
-  final Map<String, String> _categoryQueries = {
-    'Lifestyle & Vlog': '中国 日常 vlog',
-    'Gaming & Esports': '游戏 实况 王者荣耀 原神',
-    'Food & Cooking': '中国 美食 菜谱',
-    'Tech & Gadgets': '中国 科技 测评',
-  };
+  late final Map<String, List<YoutubeVideo>> _categories;
+  late final Map<String, String> _categoryQueries;
+  bool _categoriesInitialized = false;
 
   // Track loading state per category for progressive rendering
   final Map<String, _CategoryLoadState> _categoryStates = {};
@@ -47,11 +38,32 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   @override
   void initState() {
     super.initState();
+    _loadChannelInfos();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_categoriesInitialized) return;
+
+    final localizations = AppLocalizations.of(context)!;
+    _categories = {
+      localizations.lifestyleAndVlog: [],
+      localizations.gamingAndEsports: [],
+      localizations.foodAndCooking: [],
+      localizations.techAndGadgets: [],
+    };
+    _categoryQueries = {
+      localizations.lifestyleAndVlog: localizations.vlog,
+      localizations.gamingAndEsports: localizations.unknown2,
+      localizations.foodAndCooking: localizations.unknown3,
+      localizations.techAndGadgets: localizations.unknown4,
+    };
     for (final key in _categoryQueries.keys) {
       _categoryStates[key] = _CategoryLoadState.loading;
     }
+    _categoriesInitialized = true;
     _loadInitialCategories();
-    _loadChannelInfos();
   }
 
   Future<void> _loadInitialCategories() async {
@@ -195,12 +207,12 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Channel quick-access row ──
+            // â”€â”€ Channel quick-access row â”€â”€
             const SizedBox(height: 8),
             _buildChannelRow(),
             const SizedBox(height: 12),
 
-            // ── Pill Search Bar (matching reference) ──
+            // â”€â”€ Pill Search Bar (matching reference) â”€â”€
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
@@ -216,7 +228,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.03),
+                      color:
+                          Colors.black.withValues(alpha: isDark ? 0.25 : 0.03),
                       blurRadius: 10,
                       offset: const Offset(0, 3),
                     ),
@@ -235,11 +248,13 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                       child: TextField(
                         controller: _searchController,
                         style: TextStyle(
-                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                          color:
+                              isDark ? Colors.white : const Color(0xFF1A1A1B),
                           fontSize: 15,
                         ),
                         decoration: InputDecoration(
-                          hintText: 'Search topics (e.g., Cooking, History)',
+                          hintText: AppLocalizations.of(context)!
+                              .searchTopicsEgCookingHistory,
                           hintStyle: TextStyle(
                             color: isDark ? Colors.white38 : Colors.black38,
                             fontSize: 14,
@@ -251,7 +266,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.send_rounded, color: Color(0xFF3F51B5), size: 22),
+                      icon: const Icon(Icons.send_rounded,
+                          color: Color(0xFF3F51B5), size: 22),
                       onPressed: () => _performSearch(_searchController.text),
                     ),
                     const SizedBox(width: 4),
@@ -302,7 +318,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                               _searchStatus.contains('Searching')
                           ? _buildSkeletonGrid()
                           : ListView.builder(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               itemCount: _searchResults.length,
                               itemBuilder: (context, index) {
                                 return _buildVideoCard(_searchResults[index],
@@ -318,8 +335,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                 child: ListView(
                   padding: const EdgeInsets.only(bottom: 40),
                   children: _categories.entries.map((entry) {
-                    final state =
-                        _categoryStates[entry.key] ?? _CategoryLoadState.loading;
+                    final state = _categoryStates[entry.key] ??
+                        _CategoryLoadState.loading;
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -334,7 +351,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                                   fontSize: 22,
                                   fontWeight: FontWeight.w900,
                                   fontFamily: 'NotoSerifSC',
-                                  color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                                  color: isDark
+                                      ? Colors.white
+                                      : const Color(0xFF1A1A1B),
                                 ),
                               ),
                               if (state == _CategoryLoadState.loading) ...[
@@ -397,10 +416,11 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                 ElevatedButton.icon(
                   onPressed: () => _loadCategory(categoryKey),
                   icon: const Icon(Icons.refresh, size: 18),
-                  label: const Text('Tap to Retry'),
+                  label: Text(AppLocalizations.of(context)!.tapToRetry),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xFF3F51B5),
-                    backgroundColor: const Color(0xFF3F51B5).withValues(alpha: 0.1),
+                    backgroundColor:
+                        const Color(0xFF3F51B5).withValues(alpha: 0.1),
                     elevation: 0,
                   ),
                 ),
@@ -496,7 +516,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                     errorBuilder: (_, __, ___) => Container(
                       width: width,
                       height: imageHeight,
-                      color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade300,
+                      color: isDark
+                          ? const Color(0xFF2C2C2E)
+                          : Colors.grey.shade300,
                     ),
                   ),
                   // Duration badge (bottom-right)
@@ -504,7 +526,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                     bottom: 8,
                     right: 8,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 3),
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.8),
                         borderRadius: BorderRadius.circular(6),
@@ -524,7 +547,8 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                     top: 8,
                     left: 8,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 3),
                       decoration: BoxDecoration(
                         color: const Color(0xFF3252C7), // Vibrant blue CC badge
                         borderRadius: BorderRadius.circular(6),
@@ -658,13 +682,14 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                           backgroundColor: isDark
                               ? const Color(0xFF2C2C2E)
                               : const Color(0xFFB0C4DE).withValues(alpha: 0.6),
-                          backgroundImage: logoUrl.isNotEmpty
-                              ? NetworkImage(logoUrl)
-                              : null,
+                          backgroundImage:
+                              logoUrl.isNotEmpty ? NetworkImage(logoUrl) : null,
                           child: logoUrl.isEmpty
                               ? Icon(Icons.person,
                                   size: 22,
-                                  color: isDark ? Colors.white54 : Colors.grey.shade600)
+                                  color: isDark
+                                      ? Colors.white54
+                                      : Colors.grey.shade600)
                               : null,
                         ),
                         const SizedBox(height: 4),
@@ -700,11 +725,11 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
   }
 }
 
-// â”€â”€â”€ Loading state enum â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ Loading state enum Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 
 enum _CategoryLoadState { loading, loaded, empty, error }
 
-// â”€â”€â”€ Shimmer Skeleton Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ Shimmer Skeleton Card Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 
 class _SkeletonCard extends StatefulWidget {
   final double width;

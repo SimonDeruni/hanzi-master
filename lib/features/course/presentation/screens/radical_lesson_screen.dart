@@ -10,10 +10,11 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_ca
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class RadicalLessonScreen extends ConsumerStatefulWidget {
   final CourseNode sunNode;
-  final List<CourseNode> clusterNodes; 
+  final List<CourseNode> clusterNodes;
 
   const RadicalLessonScreen({
     super.key,
@@ -22,7 +23,8 @@ class RadicalLessonScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<RadicalLessonScreen> createState() => _RadicalLessonScreenState();
+  ConsumerState<RadicalLessonScreen> createState() =>
+      _RadicalLessonScreenState();
 }
 
 class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
@@ -32,8 +34,8 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   bool _isLoading = true;
 
   // Forge Data
-  Flashcard? _forgeTarget; 
-  String _forgeBase = "";  
+  Flashcard? _forgeTarget;
+  String _forgeBase = "";
   bool _forgeSuccess = false;
   List<String> _forgeDistractors = [];
   List<String> _forgeOptions = [];
@@ -52,48 +54,67 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
     try {
       final controller = ref.read(flashcardControllerProvider.notifier);
       final allCards = await ref.read(flashcardControllerProvider.future);
-      
+
       // Load Metadata for decomposition
-      final metaString = await rootBundle.loadString('assets/data/hanzi_metadata.json');
+      final metaString =
+          await rootBundle.loadString('assets/data/hanzi_metadata.json');
       final Map<String, dynamic> metaData = json.decode(metaString);
-      
+
       // Load Radicals for distractors
-      final radString = await rootBundle.loadString('assets/data/radicals.json');
+      final radString =
+          await rootBundle.loadString('assets/data/radicals.json');
       final radDb = json.decode(radString)['radicals'] as Map<String, dynamic>;
       final allRadicals = radDb.keys.toList();
 
       // 1. Load Radical Card
-      var rad = allCards.firstWhere((c) => c.id == widget.sunNode.uuid, 
-          orElse: () => Flashcard(id: widget.sunNode.uuid, hanzi: widget.sunNode.hanzi, pinyin: "", definition: "", hskLevel: 1, strokePaths: const [], modeStats: const {}));
+      var rad = allCards.firstWhere((c) => c.id == widget.sunNode.uuid,
+          orElse: () => Flashcard(
+              id: widget.sunNode.uuid,
+              hanzi: widget.sunNode.hanzi,
+              pinyin: "",
+              definition: "",
+              hskLevel: 1,
+              strokePaths: const [],
+              modeStats: const {}));
       _radicalCard = await controller.loadStrokesFor(rad);
 
       // 2. Setup Forge (Find a child that is NOT the radical itself)
-      final children = widget.clusterNodes.where((n) => n.uuid != widget.sunNode.uuid).toList();
+      final children = widget.clusterNodes
+          .where((n) => n.uuid != widget.sunNode.uuid)
+          .toList();
       if (children.isNotEmpty) {
         final childNode = children.first;
         var childCard = allCards.firstWhere((c) => c.id == childNode.uuid);
         _forgeTarget = childCard;
-        
+
         if (metaData.containsKey(childCard.hanzi)) {
           final decomp = metaData[childCard.hanzi]['decomposition'] as String;
-          _forgeBase = decomp.replaceAll(widget.sunNode.hanzi, '').replaceAll(RegExp(r'[⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻]'), '');
+          _forgeBase = decomp
+              .replaceAll(widget.sunNode.hanzi, '')
+              .replaceAll(RegExp(r'[⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻]'), '');
           if (_forgeBase.isEmpty) _forgeBase = "?";
         } else {
-          _forgeBase = "?"; 
+          _forgeBase = "?";
         }
-        
+
         _forgeDistractors = allRadicals
             .where((r) => r != widget.sunNode.hanzi)
             .toList()
           ..shuffle();
         _forgeDistractors = _forgeDistractors.take(2).toList();
-        
+
         _forgeOptions = [widget.sunNode.hanzi, ..._forgeDistractors]..shuffle();
       }
 
       // 3. Setup Hunt (3 correct, 3 wrong)
-      final correct = children.take(3).map((n) => allCards.firstWhere((c) => c.id == n.uuid)).toList();
-      final wrong = allCards.where((c) => !widget.clusterNodes.any((n) => n.uuid == c.id)).take(3).toList();
+      final correct = children
+          .take(3)
+          .map((n) => allCards.firstWhere((c) => c.id == n.uuid))
+          .toList();
+      final wrong = allCards
+          .where((c) => !widget.clusterNodes.any((n) => n.uuid == c.id))
+          .take(3)
+          .toList();
       _huntOptions = [...correct, ...wrong]..shuffle();
 
       if (mounted) setState(() => _isLoading = false);
@@ -103,12 +124,15 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   }
 
   void _nextPage() async {
-    if (_currentStep < 2) { 
-      _pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+    if (_currentStep < 2) {
+      _pageController.nextPage(
+          duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
       setState(() => _currentStep++);
     } else {
       if (_radicalCard != null) {
-        await ref.read(flashcardControllerProvider.notifier).reviewFlashcard(_radicalCard!, 5);
+        await ref
+            .read(flashcardControllerProvider.notifier)
+            .reviewFlashcard(_radicalCard!, 5);
       }
       if (mounted) Navigator.pop(context);
     }
@@ -117,12 +141,16 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    if (_isLoading) return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    if (_isLoading) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.close, color: Colors.grey), onPressed: () => Navigator.pop(context)),
+        leading: IconButton(
+            icon: const Icon(Icons.close, color: Colors.grey),
+            onPressed: () => Navigator.pop(context)),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -145,12 +173,20 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(l10n?.stepOneOrigin ?? "STEP 1: THE ORIGIN", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
+        Text(l10n?.stepOneOrigin ?? AppLocalizations.of(context)!.stepOneOrigin,
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2,
+                color: Colors.grey)),
         const SizedBox(height: 24),
-        Text("${l10n?.traceRadical ?? 'Trace the Radical'}: ${widget.sunNode.hanzi}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        Text(
+            "${l10n?.traceRadical ?? AppLocalizations.of(context)!.traceRadical}: ${widget.sunNode.hanzi}",
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         const SizedBox(height: 48),
         SizedBox(
-          width: 300, height: 300,
+          width: 300,
+          height: 300,
           child: _RadicalTraceWrapper(
             card: _radicalCard!,
             onComplete: _nextPage,
@@ -165,20 +201,46 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(l10n?.stepTwoForge ?? "STEP 2: THE FORGE", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
+        Text(l10n?.stepTwoForge ?? AppLocalizations.of(context)!.stepTwoForge,
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2,
+                color: Colors.grey)),
         const SizedBox(height: 24),
-        Text(l10n?.chooseEssence ?? "Choose the Essence", style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+        Text(l10n?.chooseEssence ?? AppLocalizations.of(context)!.chooseEssence,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Text(
-            "${l10n?.toForge ?? 'To forge'} \"${_forgeTarget?.definition.split(';').first.toUpperCase() ?? 'WORD'}\", ${l10n?.whatEssenceDoesNeed ?? 'what essence does'} $_forgeBase ${l10n?.need ?? 'need'}?", 
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.indigo.shade800, height: 1.4)
+          child: Column(
+            children: [
+              Text(
+                '${l10n?.toForge ?? 'To forge'}:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18, color: Colors.indigo.shade800, height: 1.4),
+              ),
+              if (_forgeTarget != null)
+                TranslatedDefinition(
+                  definition: _forgeTarget!.definition,
+                  originalStyle: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.indigo.shade800,
+                      height: 1.4),
+                  textAlign: TextAlign.center,
+                ),
+              Text(
+                '${l10n?.whatEssenceDoesNeed ?? 'What essence does'} $_forgeBase ${l10n?.need ?? 'need'}?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18, color: Colors.indigo.shade800, height: 1.4),
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 48),
-        
         DragTarget<String>(
           onWillAcceptWithDetails: (details) => true,
           onAcceptWithDetails: (details) {
@@ -188,21 +250,29 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               Future.delayed(const Duration(seconds: 2), _nextPage);
             } else {
               HapticsManager.heavy();
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.wrongEssence ?? "Wrong essence! Try again."), duration: const Duration(milliseconds: 1000)));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content:
+                      Text(l10n?.wrongEssence ?? AppLocalizations.of(context)!.wrongEssence),
+                  duration: const Duration(milliseconds: 1000)));
             }
           },
           builder: (context, candidates, rejects) {
             final bool isHovering = candidates.isNotEmpty;
             return AnimatedContainer(
               duration: const Duration(milliseconds: 300),
-              width: 140, height: 140,
+              width: 140,
+              height: 140,
               decoration: BoxDecoration(
-                color: _forgeSuccess 
-                    ? Colors.green.withValues(alpha: 0.2) 
-                    : (isHovering ? Colors.amber.withValues(alpha: 0.2) : Colors.brown.withValues(alpha: 0.1)),
+                color: _forgeSuccess
+                    ? Colors.green.withValues(alpha: 0.2)
+                    : (isHovering
+                        ? Colors.amber.withValues(alpha: 0.2)
+                        : Colors.brown.withValues(alpha: 0.1)),
                 borderRadius: BorderRadius.circular(32),
                 border: Border.all(
-                  color: _forgeSuccess ? Colors.green : (isHovering ? Colors.amber : Colors.brown.shade300),
+                  color: _forgeSuccess
+                      ? Colors.green
+                      : (isHovering ? Colors.amber : Colors.brown.shade300),
                   width: _forgeSuccess || isHovering ? 4 : 2,
                 ),
               ),
@@ -210,35 +280,45 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
                 alignment: Alignment.center,
                 children: [
                   if (!_forgeSuccess)
-                    Text(_forgeBase, style: TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Colors.brown.withValues(alpha: 0.3))),
+                    Text(_forgeBase,
+                        style: TextStyle(
+                            fontSize: 64,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown.withValues(alpha: 0.3))),
                   if (_forgeSuccess)
-                    Text(_forgeTarget!.hanzi, style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Colors.indigo)),
+                    Text(_forgeTarget!.hanzi,
+                        style: const TextStyle(
+                            fontSize: 64,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.indigo)),
                   if (isHovering && !_forgeSuccess)
-                    const Icon(Icons.add_circle_outline, size: 48, color: Colors.amber),
+                    const Icon(Icons.add_circle_outline,
+                        size: 48, color: Colors.amber),
                 ],
               ),
             );
           },
         ),
-        
-        const SizedBox(height: 60), 
-        
+        const SizedBox(height: 60),
         Wrap(
-          spacing: 24, runSpacing: 24,
+          spacing: 24,
+          runSpacing: 24,
           alignment: WrapAlignment.center,
           children: _forgeOptions.map((opt) {
             return Draggable<String>(
               data: opt,
               feedback: Material(
                 color: Colors.transparent,
-                child: _buildTile(opt, Colors.indigo, scale: 1.2, isElevated: true),
+                child: _buildTile(opt, Colors.indigo,
+                    scale: 1.2, isElevated: true),
               ),
-              childWhenDragging: Opacity(opacity: 0.2, child: _buildTile(opt, Colors.indigo)),
-              child: _buildTile(opt, Colors.indigo, scale: 1.0, isElevated: true),
+              childWhenDragging:
+                  Opacity(opacity: 0.2, child: _buildTile(opt, Colors.indigo)),
+              child:
+                  _buildTile(opt, Colors.indigo, scale: 1.0, isElevated: true),
             );
           }).toList(),
         ),
-        
         const SizedBox(height: 32),
         if (_forgeSuccess)
           TweenAnimationBuilder<double>(
@@ -249,9 +329,11 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               child: Transform.translate(
                 offset: Offset(0, 20 * (1 - val)),
                 child: Text(
-                  "${l10n?.forged ?? 'FORGED'}: ${widget.sunNode.hanzi} + $_forgeBase = ${_forgeTarget!.hanzi}", 
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green)
-                ),
+                    "${l10n?.forged ?? 'FORGED'}: ${widget.sunNode.hanzi} + $_forgeBase = ${_forgeTarget!.hanzi}",
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green)),
               ),
             ),
           ),
@@ -259,23 +341,34 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
     );
   }
 
-  Widget _buildTile(String char, Color color, {double scale = 1.0, bool isElevated = false}) {
+  Widget _buildTile(String char, Color color,
+      {double scale = 1.0, bool isElevated = false}) {
     return Transform.scale(
       scale: scale,
       child: Container(
-        width: 90, height: 90,
+        width: 90,
+        height: 90,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: color.withValues(alpha: 0.5), width: 2),
           boxShadow: [
             if (isElevated)
-              BoxShadow(color: color.withValues(alpha: 0.2), blurRadius: 15, spreadRadius: 2, offset: const Offset(0, 8)),
-            BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 5, offset: const Offset(0, 2)),
+              BoxShadow(
+                  color: color.withValues(alpha: 0.2),
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                  offset: const Offset(0, 8)),
+            BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 5,
+                offset: const Offset(0, 2)),
           ],
         ),
         child: Center(
-          child: Text(char, style: TextStyle(fontSize: 44, fontWeight: FontWeight.bold, color: color)),
+          child: Text(char,
+              style: TextStyle(
+                  fontSize: 44, fontWeight: FontWeight.bold, color: color)),
         ),
       ),
     );
@@ -283,23 +376,33 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
 
   // --- STEP 3: THE HUNT ---
   Widget _buildHuntStep(AppLocalizations? l10n) {
-    final int targetCount = _huntOptions.where((c) => widget.clusterNodes.any((n) => n.uuid == c.id)).length;
-    
+    final int targetCount = _huntOptions
+        .where((c) => widget.clusterNodes.any((n) => n.uuid == c.id))
+        .length;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(l10n?.stepThreeHunt ?? "STEP 3: THE HUNT", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.grey)),
+        Text(l10n?.stepThreeHunt ?? AppLocalizations.of(context)!.stepThreeHunt,
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2,
+                color: Colors.grey)),
         const SizedBox(height: 24),
-        Text("${l10n?.findCharactersWith ?? 'Find characters with'} ${widget.sunNode.hanzi}", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        Text(
+            "${l10n?.findCharactersWith ?? AppLocalizations.of(context)!.findCharactersWith} ${widget.sunNode.hanzi}",
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         const SizedBox(height: 48),
-        
         Wrap(
-          spacing: 16, runSpacing: 16,
+          spacing: 16,
+          runSpacing: 16,
           alignment: WrapAlignment.center,
           children: _huntOptions.map((card) {
-            final bool isTarget = widget.clusterNodes.any((n) => n.uuid == card.id);
+            final bool isTarget =
+                widget.clusterNodes.any((n) => n.uuid == card.id);
             final bool isFound = _foundTargets.contains(card.id);
-            
+
             return GestureDetector(
               onTap: () {
                 if (isTarget && !isFound) {
@@ -311,22 +414,38 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
                   }
                 } else if (!isTarget) {
                   HapticsManager.heavy();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.notThatOne ?? "Not that one! Look closer."), duration: const Duration(milliseconds: 500)));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                          l10n?.notThatOne ?? AppLocalizations.of(context)!.notThatOne),
+                      duration: const Duration(milliseconds: 500)));
                 }
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                width: 80, height: 80,
+                width: 80,
+                height: 80,
                 decoration: BoxDecoration(
-                  color: isFound ? Colors.green : Colors.white.withValues(alpha: 0.8),
+                  color: isFound
+                      ? Colors.green
+                      : Colors.white.withValues(alpha: 0.8),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: isFound ? Colors.green : Colors.grey.shade300, width: 2),
-                  boxShadow: [if (!isFound) BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 5, offset: const Offset(0, 2))],
+                  border: Border.all(
+                      color: isFound ? Colors.green : Colors.grey.shade300,
+                      width: 2),
+                  boxShadow: [
+                    if (!isFound)
+                      BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.05),
+                          blurRadius: 5,
+                          offset: const Offset(0, 2))
+                  ],
                 ),
                 child: Center(
-                  child: isFound 
-                    ? const Icon(Icons.check, color: Colors.white, size: 40)
-                    : Text(card.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                  child: isFound
+                      ? const Icon(Icons.check, color: Colors.white, size: 40)
+                      : Text(card.hanzi,
+                          style: const TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.bold)),
                 ),
               ),
             );
@@ -342,15 +461,19 @@ class _HandPointerHint extends StatefulWidget {
   State<_HandPointerHint> createState() => _HandPointerHintState();
 }
 
-class _HandPointerHintState extends State<_HandPointerHint> with SingleTickerProviderStateMixin {
+class _HandPointerHintState extends State<_HandPointerHint>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))..repeat();
-    _animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2))
+          ..repeat();
+    _animation = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -412,8 +535,10 @@ class _RadicalTraceWrapperState extends State<_RadicalTraceWrapper> {
         showControls: false,
         onStrokeComplete: (idx, size) {
           HapticsManager.light();
-          final validStrokes = widget.card.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
-          
+          final validStrokes = widget.card.strokePaths
+              .where((s) => s != '__CHAR_SEPARATOR__')
+              .toList();
+
           if (_currentIndex < validStrokes.length - 1) {
             setState(() => _currentIndex++);
           } else {

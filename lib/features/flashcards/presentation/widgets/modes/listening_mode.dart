@@ -9,6 +9,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class ListeningModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -27,7 +28,8 @@ class ListeningModeWidget extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ListeningModeWidget> createState() => _ListeningModeWidgetState();
+  ConsumerState<ListeningModeWidget> createState() =>
+      _ListeningModeWidgetState();
 }
 
 class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
@@ -54,10 +56,13 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
 
   Widget _buildColoredHanzi(String hanzi, String pinyin, bool isDark) {
     final tokens = PinyinUtils.tokenize(pinyin);
-    final syllableTokens = tokens.where((t) => RegExp(r'[a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]').hasMatch(t['text'])).toList();
-    
+    final syllableTokens = tokens
+        .where((t) =>
+            RegExp(r'[a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]').hasMatch(t['text']))
+        .toList();
+
     final hanziChars = hanzi.characters.toList();
-    
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(hanziChars.length, (index) {
@@ -67,7 +72,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
           final tone = syllableTokens[index]['tone'] as int;
           color = PinyinUtils.toneColors[tone] ?? color;
         }
-        
+
         return Text(
           char,
           style: TextStyle(
@@ -113,7 +118,8 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(32),
                       decoration: BoxDecoration(
-                        color: isDark ? Colors.white.withAlpha(12) : Colors.white,
+                        color:
+                            isDark ? Colors.white.withAlpha(12) : Colors.white,
                         borderRadius: BorderRadius.circular(32),
                         border: Border.all(
                           color: isDark ? Colors.white12 : Colors.black12,
@@ -139,19 +145,27 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                   GestureDetector(
                                     onTap: _playAudio,
                                     child: Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 16),
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
-                                          colors: isDark 
-                                            ? [Colors.purple.shade700, Colors.deepPurple.shade900]
-                                            : [Colors.purple.shade300, Colors.purple.shade600],
+                                          colors: isDark
+                                              ? [
+                                                  Colors.purple.shade700,
+                                                  Colors.deepPurple.shade900
+                                                ]
+                                              : [
+                                                  Colors.purple.shade300,
+                                                  Colors.purple.shade600
+                                                ],
                                           begin: Alignment.topLeft,
                                           end: Alignment.bottomRight,
                                         ),
                                         borderRadius: BorderRadius.circular(32),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.purple.withAlpha(isDark ? 80 : 120),
+                                            color: Colors.purple
+                                                .withAlpha(isDark ? 80 : 120),
                                             blurRadius: 16,
                                             offset: const Offset(0, 8),
                                           ),
@@ -160,7 +174,8 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                       child: const Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Icon(Icons.volume_up_rounded, color: Colors.white, size: 28),
+                                          Icon(Icons.volume_up_rounded,
+                                              color: Colors.white, size: 28),
                                           SizedBox(width: 12),
                                           Text(
                                             'Tap to listen again',
@@ -203,19 +218,23 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                 children: [
                                   FittedBox(
                                     fit: BoxFit.scaleDown,
-                                    child: _buildColoredHanzi(widget.card.hanzi, widget.card.pinyin, isDark),
+                                    child: _buildColoredHanzi(widget.card.hanzi,
+                                        widget.card.pinyin, isDark),
                                   ),
                                   const SizedBox(height: 8),
                                   PinyinText(
                                     text: widget.card.pinyin,
-                                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(height: 16),
                                   Expanded(
                                     child: SingleChildScrollView(
-                                      child: Text(
-                                        widget.card.definition,
-                                        style: const TextStyle(fontSize: 18),
+                                      child: TranslatedDefinition(
+                                        definition: widget.card.definition,
+                                        originalStyle:
+                                            const TextStyle(fontSize: 18),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -226,9 +245,14 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                           ],
                         ],
                       ),
-                    ).animate()
-                     .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-                     .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+                    )
+                        .animate()
+                        .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                        .slideY(
+                            begin: 0.1,
+                            end: 0,
+                            duration: 500.ms,
+                            curve: Curves.easeOutCubic),
                   ),
                 ),
               ),

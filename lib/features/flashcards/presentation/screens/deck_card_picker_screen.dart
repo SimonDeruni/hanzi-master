@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class DeckCardPickerScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -16,7 +17,8 @@ class DeckCardPickerScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<DeckCardPickerScreen> createState() => _DeckCardPickerScreenState();
+  ConsumerState<DeckCardPickerScreen> createState() =>
+      _DeckCardPickerScreenState();
 }
 
 class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
@@ -36,28 +38,30 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add to ${widget.deckName}"),
+        title: Text("${AppLocalizations.of(context)?.addTo ?? 'Add to'} ${widget.deckName}"),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       body: asyncFlashcards.when(
         data: (allCards) {
           // Exclude cards already in this deck
-          final availableCards = allCards.where((c) => c.deckId != widget.deckId).toList();
-          
+          final availableCards =
+              allCards.where((c) => c.deckId != widget.deckId).toList();
+
           final filteredCards = availableCards.where((c) {
             final query = _searchQuery.toLowerCase();
-            return c.hanzi.contains(query) || 
-                   c.pinyin.toLowerCase().contains(query) || 
-                   c.definition.toLowerCase().contains(query);
+            return c.hanzi.contains(query) ||
+                c.pinyin.toLowerCase().contains(query) ||
+                c.definition.toLowerCase().contains(query);
           }).toList();
 
           return Column(
             children: [
               ZenSearchBar(
                 controller: _searchController,
-                hintText: "Search character, pinyin, or meaning...",
+                hintText: AppLocalizations.of(context)!.searchDictionaryHint,
                 onChanged: (val) => setState(() => _searchQuery = val),
               ),
               Expanded(
@@ -65,7 +69,8 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                     ? Center(
                         child: Text(
                           AppLocalizations.of(context)!.noAvailableCardsFound,
-                          style: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
+                          style: TextStyle(
+                              color: isDark ? Colors.white54 : Colors.black54),
                         ),
                       )
                     : ListView.builder(
@@ -76,33 +81,45 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                           return Container(
                             margin: const EdgeInsets.only(bottom: 8),
                             decoration: BoxDecoration(
-                              color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white,
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.05)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+                              border: Border.all(
+                                  color:
+                                      isDark ? Colors.white12 : Colors.black12),
                             ),
                             child: ListTile(
                               leading: Text(
                                 card.hanzi,
                                 style: TextStyle(
-                                  fontSize: 28, 
+                                  fontSize: 28,
                                   fontWeight: FontWeight.bold,
                                   color: isDark ? Colors.white : Colors.black,
                                 ),
                               ),
                               title: PinyinText(text: card.pinyin),
-                              subtitle: Text(
-                                card.definition,
+                              subtitle: TranslatedDefinition(
+                                definition: card.definition,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               trailing: IconButton(
-                                icon: const Icon(Icons.add_circle_outline, color: Colors.indigo),
+                                icon: const Icon(Icons.add_circle_outline,
+                                    color: Colors.indigo),
                                 onPressed: () {
-                                  final updatedCard = card.copyWith(deckId: widget.deckId);
-                                  ref.read(flashcardControllerProvider.notifier).updateFlashcard(updatedCard);
+                                  final updatedCard =
+                                      card.copyWith(deckId: widget.deckId);
+                                  ref
+                                      .read(
+                                          flashcardControllerProvider.notifier)
+                                      .updateFlashcard(updatedCard);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text(AppLocalizations.of(context)!.addedToDeck(card.hanzi, widget.deckName)),
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .addedToDeck(
+                                                  card.hanzi, widget.deckName)),
                                       duration: const Duration(seconds: 1),
                                       backgroundColor: Colors.green,
                                     ),
@@ -118,7 +135,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Error: $err')),
+        error: (err, stack) => Center(child: Text("Error: $err")),
       ),
     );
   }

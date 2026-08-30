@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/media/presentation/screens/media_hub_scree
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/show_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ExploreScreen extends ConsumerStatefulWidget {
   final int initialTabIndex;
@@ -57,7 +58,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       child: _buildSegmentTab(
                         index: 0,
                         icon: Icons.menu_book_rounded,
-                        label: 'Books',
+                        label: AppLocalizations.of(context)!.books,
                         isSelected: _selectedTab == 0,
                         isDark: isDark,
                       ),
@@ -68,7 +69,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       child: _buildSegmentTab(
                         index: 1,
                         icon: Icons.language_rounded,
-                        label: 'Web',
+                        label: AppLocalizations.of(context)!.web,
                         isSelected: _selectedTab == 1,
                         isDark: isDark,
                       ),
@@ -79,7 +80,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       child: _buildSegmentTab(
                         index: 2,
                         icon: Icons.live_tv_rounded,
-                        label: 'Shows',
+                        label: AppLocalizations.of(context)!.shows,
                         isSelected: _selectedTab == 2,
                         isDark: isDark,
                       ),
@@ -90,7 +91,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       child: _buildSegmentTab(
                         index: 3,
                         icon: Icons.smart_display_rounded,
-                        label: 'Video',
+                        label: AppLocalizations.of(context)!.video,
                         isSelected: _selectedTab == 3,
                         isDark: isDark,
                       ),

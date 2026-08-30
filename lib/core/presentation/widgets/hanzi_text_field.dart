@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class HanziTextField extends StatefulWidget {
   final TextEditingController controller;
-  final String hintText;
+  final String? hintText;
   final TextStyle? style;
   final InputDecoration? decoration;
   final Function(String)? onSubmitted;
@@ -24,7 +25,7 @@ class HanziTextField extends StatefulWidget {
   const HanziTextField({
     super.key,
     required this.controller,
-    this.hintText = 'Type Hanzi, Pinyin, or English...',
+    this.hintText,
     this.style,
     this.decoration,
     this.onSubmitted,
@@ -91,7 +92,7 @@ class _HanziTextFieldState extends State<HanziTextField> {
           color: isDark ? Colors.white54 : Colors.black45,
         ),
         splashRadius: 18,
-        tooltip: 'Clear',
+        tooltip: AppLocalizations.of(context)!.clear,
         onPressed: () {
           HapticFeedback.lightImpact();
           widget.controller.clear();
@@ -117,7 +118,8 @@ class _HanziTextFieldState extends State<HanziTextField> {
     final suffix = _buildSuffix(context);
 
     final defaultDeco = InputDecoration(
-      hintText: widget.hintText,
+      hintText: widget.hintText ??
+          AppLocalizations.of(context)!.typeHanziPinyinOrEnglish,
       hintStyle: TextStyle(
         color: isDark ? Colors.white38 : Colors.black38,
         fontSize: 14,
@@ -127,9 +129,7 @@ class _HanziTextFieldState extends State<HanziTextField> {
         borderSide: BorderSide.none,
       ),
       filled: true,
-      fillColor: isDark
-          ? const Color(0xFF252528)
-          : const Color(0xFFF2EFE9),
+      fillColor: isDark ? const Color(0xFF252528) : const Color(0xFFF2EFE9),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       prefixIcon: widget.prefixIcon,
       suffixIcon: suffix,

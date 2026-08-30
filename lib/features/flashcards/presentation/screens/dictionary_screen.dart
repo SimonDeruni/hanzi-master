@@ -22,10 +22,12 @@ import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/nuance_compare_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_library_screen.dart';
-import 'package:hanzi_master/features/course/presentation/screens/tome_manager_screen.dart' as hanzi_tome;
+import 'package:hanzi_master/features/course/presentation/screens/tome_manager_screen.dart'
+    as hanzi_tome;
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
@@ -69,7 +71,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
     final asyncFlashcards = ref.watch(flashcardControllerProvider);
     final asyncDecks = ref.watch(deckControllerProvider);
-    final masterResults = ref.watch(masterSearchProvider(_searchQuery)).valueOrNull ?? [];
+    final masterResults =
+        ref.watch(masterSearchProvider(_searchQuery)).valueOrNull ?? [];
 
     return Scaffold(
       body: CalligraphyBackground(
@@ -85,15 +88,19 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: ZenSearchBar(
                         controller: _searchController,
                         focusNode: _searchFocusNode,
-                        hintText: l10n?.searchPinyinHanziEnglish ?? "Search Pinyin, Hanzi, or English...",
-                        onChanged: (value) => setState(() => _searchQuery = value),
+                        hintText: l10n?.searchPinyinHanziEnglish ??
+                            AppLocalizations.of(context)!
+                                .searchPinyinHanziEnglish,
+                        onChanged: (value) =>
+                            setState(() => _searchQuery = value),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -103,7 +110,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                            color: theme.colorScheme.primary
+                                .withValues(alpha: 0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 4),
                           ),
@@ -113,7 +121,12 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                         icon: const Icon(Icons.camera_alt),
                         color: theme.colorScheme.onPrimary,
                         onPressed: () {
-                          Navigator.push(context, SwipeBackPageRoute(builder: (context) => const UniversalScannerScreen(intent: CameraIntent.dictionary)));
+                          Navigator.push(
+                              context,
+                              SwipeBackPageRoute(
+                                  builder: (context) =>
+                                      const UniversalScannerScreen(
+                                          intent: CameraIntent.dictionary)));
                         },
                       ),
                     ),
@@ -138,7 +151,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         heroTag: 'dictionary_add_fab',
         backgroundColor: Colors.purple,
         icon: const Icon(Icons.auto_awesome, color: Colors.white),
-        label: Text(l10n?.generate ?? "Generate", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        label: Text(l10n?.generate ?? AppLocalizations.of(context)!.generate,
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold)),
         onPressed: () => AiDeckGeneratorSheet.show(context),
       ),
     );
@@ -168,7 +183,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         final localOnlyMatches = flashcards.where((card) {
           if (unifiedHanziSet.contains(card.hanzi)) return false;
           final query = searchQuery.toLowerCase();
-          final cleanPinyin = PinyinUtils.removeToneMarks(card.pinyin).toLowerCase();
+          final cleanPinyin =
+              PinyinUtils.removeToneMarks(card.pinyin).toLowerCase();
           return card.hanzi.contains(query) ||
               cleanPinyin.contains(query) ||
               card.pinyin.toLowerCase().contains(query) ||
@@ -206,8 +222,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 24),
                               scrollDirection: Axis.horizontal,
-                              itemCount:
-                                  flashcards.length > 10 ? 10 : flashcards.length,
+                              itemCount: flashcards.length > 10
+                                  ? 10
+                                  : flashcards.length,
                               separatorBuilder: (context, index) =>
                                   const SizedBox(width: 16),
                               itemBuilder: (context, index) {
@@ -318,16 +335,16 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                           child: Row(
                             children: [
                               Icon(Icons.download_for_offline_outlined,
-                                  color:
-                                      Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   size: 28),
                               const SizedBox(width: 16),
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("HSK Collections",
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .hskCollections,
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -335,8 +352,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
-                                    Text(
-                                        "Download official HSK collections",
+                                    Text("Download official HSK collections",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -347,8 +363,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                 ),
                               ),
                               Icon(Icons.arrow_forward_ios,
-                                  color:
-                                      Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   size: 16),
                             ],
                           ),
@@ -419,7 +434,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                             ref.invalidate(flashcardControllerProvider);
                           },
                           icon: const Icon(Icons.refresh, size: 16),
-                          label: const Text("Retry"),
+                          label: Text(AppLocalizations.of(context)!.retry),
                         ),
                       ],
                     ),
@@ -436,7 +451,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
-                  child: Text("No results found for '$searchQuery'",
+                  child: Text(
+                      AppLocalizations.of(context)!.no_results_found_for,
                       style: const TextStyle(color: Colors.grey))),
             ),
           ];
@@ -457,7 +473,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
           final groupLabel = entry.key;
 
           if (cards.length >= 2) {
-            // Group header with "Compare" button
+            // Group header with AppLocalizations.of(context)!.compare button
             items.add(
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
@@ -490,7 +506,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                         );
                       },
                       icon: const Icon(Icons.compare_arrows, size: 16),
-                      label: const Text('Compare'),
+                      label: Text(AppLocalizations.of(context)!.compare),
                       style: TextButton.styleFrom(
                         visualDensity: VisualDensity.compact,
                         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -549,8 +565,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                 children: [
                   const Icon(Icons.error_outline, size: 48, color: Colors.grey),
                   const SizedBox(height: 16),
-                  const Text(
-                      "Unable to load this section. Please try again.",
+                  const Text("Unable to load this section. Please try again.",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey, fontSize: 14)),
                   const SizedBox(height: 16),
@@ -558,7 +573,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                     onPressed: () =>
                         ref.invalidate(flashcardControllerProvider),
                     icon: const Icon(Icons.refresh, size: 16),
-                    label: const Text("Retry"),
+                    label: Text(AppLocalizations.of(context)!.retry),
                   ),
                 ],
               ),
@@ -612,14 +627,14 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
         HapticsManager.light();
         showQuickLook(context, widget.card.hanzi);
       },
-
       child: Container(
         width: 120,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: theme.cardTheme.color,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+          border: Border.all(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
           boxShadow: [
             BoxShadow(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
@@ -646,9 +661,9 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
               ),
             ),
             const SizedBox(height: 4),
-            Text(
-              DefinitionFormatter.cleanRaw(_definition, ref),
-              style: theme.textTheme.bodySmall,
+            TranslatedDefinition(
+              definition: _definition,
+              originalStyle: theme.textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
@@ -673,23 +688,25 @@ class _BookshelfVerticalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bool isDefault = deck.id == 'default';
-    final Color deckColor = isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
-    
+    final Color deckColor =
+        isDefault ? theme.colorScheme.primary : theme.colorScheme.secondary;
+
     return BouncingButton(
       onPressed: () {
         HapticsManager.light();
         Navigator.push(
           context,
-          SwipeBackPageRoute(builder: (context) => DeckDetailScreen(deck: deck)),
+          SwipeBackPageRoute(
+              builder: (context) => DeckDetailScreen(deck: deck)),
         );
       },
-
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: theme.cardTheme.color,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
+          border: Border.all(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.1)),
           boxShadow: [
             BoxShadow(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
@@ -731,17 +748,15 @@ class _BookshelfVerticalCard extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward_ios_rounded, size: 16, color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+            Icon(Icons.arrow_forward_ios_rounded,
+                size: 16,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
 
 class _RadicalLibraryTab extends ConsumerStatefulWidget {
   final String searchQuery;
@@ -764,9 +779,11 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
 
   Future<void> _loadData() async {
     try {
-      final radString = await rootBundle.loadString('assets/data/radicals.json');
-      final metaString = await rootBundle.loadString('assets/data/hanzi_metadata.json');
-      
+      final radString =
+          await rootBundle.loadString('assets/data/radicals.json');
+      final metaString =
+          await rootBundle.loadString('assets/data/hanzi_metadata.json');
+
       if (mounted) {
         setState(() {
           _radicals = json.decode(radString)['radicals'];
@@ -788,8 +805,10 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
       final key = entry.key;
       final name = (entry.value['name'] as String).toLowerCase();
       final meaning = (entry.value['meaning'] as String).toLowerCase();
-      
-      return key.contains(query) || name.contains(query) || meaning.contains(query);
+
+      return key.contains(query) ||
+          name.contains(query) ||
+          meaning.contains(query);
     }).toList();
 
     return GridView.builder(
@@ -818,7 +837,8 @@ class _RadicalCard extends ConsumerWidget {
   final Map<String, dynamic> info;
   final Map<String, dynamic> metaData;
 
-  const _RadicalCard({required this.radical, required this.info, required this.metaData});
+  const _RadicalCard(
+      {required this.radical, required this.info, required this.metaData});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -829,18 +849,21 @@ class _RadicalCard extends ConsumerWidget {
         HapticsManager.light();
         // 1. Create Sun Node
         final sunNode = CourseNode(uuid: 'rad_$radical', hanzi: radical);
-        
+
         // 2. Find Children (Characters in library that use this radical)
         final allCards = ref.read(flashcardControllerProvider).value ?? [];
         final List<CourseNode> clusterNodes = [];
-        
+
         // Add Sun first
         clusterNodes.add(sunNode);
-        
+
         for (var card in allCards) {
           final meta = metaData[card.hanzi];
-          if (meta != null && meta['radical'] == radical && card.hanzi != radical) {
-            clusterNodes.add(CourseNode(uuid: card.id, hanzi: card.hanzi, parentUuid: sunNode.uuid));
+          if (meta != null &&
+              meta['radical'] == radical &&
+              card.hanzi != radical) {
+            clusterNodes.add(CourseNode(
+                uuid: card.id, hanzi: card.hanzi, parentUuid: sunNode.uuid));
           }
         }
 
@@ -857,28 +880,38 @@ class _RadicalCard extends ConsumerWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.6),
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.white.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.brown.withValues(alpha: 0.2)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(radical, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.redAccent)),
+            Text(radical,
+                style: const TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.redAccent)),
             const SizedBox(height: 8),
-            Text(
-              info['name'],
+            TranslatedDefinition(
+              definition: info['name'].toString(),
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: isDark ? Colors.white70 : Colors.black87),
+              originalStyle: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white70 : Colors.black87),
             ),
-            Text(
-              info['meaning'],
+            TranslatedDefinition(
+              definition: info['meaning'].toString(),
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 10, color: isDark ? Colors.white30 : Colors.grey),
+              originalStyle: TextStyle(
+                  fontSize: 10, color: isDark ? Colors.white30 : Colors.grey),
             ),
           ],
         ),
@@ -894,11 +927,8 @@ String _extractDefinitionGroupKey(String definition) {
   if (definition.isEmpty) return 'Other';
 
   // Split on common definition separators
-  final firstPart = definition
-      .split(RegExp(r'[,;/]'))
-      .first
-      .trim()
-      .toLowerCase();
+  final firstPart =
+      definition.split(RegExp(r'[,;/]')).first.trim().toLowerCase();
 
   // Remove parenthetical notes like "(verb)" or "(adj)"
   final cleaned = firstPart.replaceAll(RegExp(r'\([^)]*\)'), '').trim();
@@ -946,8 +976,12 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
   @override
   Widget build(BuildContext context) {
     // If it's not in the library, it has no real mastery progress yet.
-    final double masteryProgress = widget.isInLibrary ? (widget.card.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0) : 0.0;
-    final bool isMastered = widget.isInLibrary ? widget.card.isMastered(StudyMode.reading) : false;
+    final double masteryProgress = widget.isInLibrary
+        ? (widget.card.getStatsForMode(StudyMode.reading).streak / 5.0)
+            .clamp(0.0, 1.0)
+        : 0.0;
+    final bool isMastered =
+        widget.isInLibrary ? widget.card.isMastered(StudyMode.reading) : false;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return BouncingButton(
@@ -958,9 +992,12 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white.withValues(alpha: 0.6),
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.03)
+              : Colors.white.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: isDark ? Colors.white12 : Colors.black12, width: 1),
+          border: Border.all(
+              color: isDark ? Colors.white12 : Colors.black12, width: 1),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -976,15 +1013,17 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                   style: TextStyle(
                     fontSize: 42,
                     fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white.withValues(alpha: 0.9) : const Color(0xFF2C2C2C),
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.9)
+                        : const Color(0xFF2C2C2C),
                     height: 1.1,
                   ),
                 ),
               ),
             ),
-            
+
             const SizedBox(width: 16),
-            
+
             // Middle: Pinyin & Definition
             Expanded(
               child: Column(
@@ -995,15 +1034,17 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                     text: _pinyin,
                     style: TextStyle(
                       fontSize: 16,
-                      color: isDark ? Colors.indigo.shade300 : Colors.indigo.shade700,
+                      color: isDark
+                          ? Colors.indigo.shade300
+                          : Colors.indigo.shade700,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.5,
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    DefinitionFormatter.cleanRaw(_definition, ref),
-                    style: TextStyle(
+                  TranslatedDefinition(
+                    definition: _definition,
+                    originalStyle: TextStyle(
                       fontSize: 14,
                       color: isDark ? Colors.white : Colors.black,
                       fontStyle: FontStyle.italic,
@@ -1016,7 +1057,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                 ],
               ),
             ),
-            
+
             // Right: Mastery Seal
             if (widget.isInLibrary) ...[
               const SizedBox(width: 12),
@@ -1027,7 +1068,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
               ),
             ] else ...[
               // Placeholder for alignment if needed, or just blank
-              const SizedBox(width: 48), 
+              const SizedBox(width: 48),
             ],
           ],
         ),

@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
   final String radicalChar;
@@ -21,7 +22,8 @@ class RadicalDetailScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<RadicalDetailScreen> createState() => _RadicalDetailScreenState();
+  ConsumerState<RadicalDetailScreen> createState() =>
+      _RadicalDetailScreenState();
 }
 
 class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
@@ -44,9 +46,10 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
 
   Future<void> _loadMatchingCharacters() async {
     try {
-      final metadataString = await rootBundle.loadString('assets/data/hanzi_metadata.json');
+      final metadataString =
+          await rootBundle.loadString('assets/data/hanzi_metadata.json');
       final metadata = json.decode(metadataString) as Map<String, dynamic>;
-      
+
       final List<Map<String, dynamic>> matches = [];
       metadata.forEach((char, data) {
         if (data['radical'] == widget.radicalChar) {
@@ -64,7 +67,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
           });
         }
       });
-      
+
       if (mounted) {
         setState(() {
           _matchingCharacters = matches;
@@ -87,7 +90,9 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
           final char = (item['char'] ?? '').toString().toLowerCase();
           final pinyin = (item['pinyin'] ?? '').toString().toLowerCase();
           final def = (item['definition'] ?? '').toString().toLowerCase();
-          return char.contains(lowerQuery) || pinyin.contains(lowerQuery) || def.contains(lowerQuery);
+          return char.contains(lowerQuery) ||
+              pinyin.contains(lowerQuery) ||
+              def.contains(lowerQuery);
         }).toList();
       }
     });
@@ -110,13 +115,15 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                      icon: Icon(Icons.arrow_back,
+                          color:
+                              isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       onPressed: () => Navigator.pop(context),
                     ),
                   ],
                 ),
               ),
-              
+
               // Radical Hero
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -124,11 +131,15 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 100, height: 100,
+                      width: 100,
+                      height: 100,
                       decoration: BoxDecoration(
-                        color: isDark ? Colors.indigo.withValues(alpha: 0.1) : Colors.white,
+                        color: isDark
+                            ? Colors.indigo.withValues(alpha: 0.1)
+                            : Colors.white,
                         borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: Colors.red.withValues(alpha: 0.2), width: 2),
+                        border: Border.all(
+                            color: Colors.red.withValues(alpha: 0.2), width: 2),
                         boxShadow: [
                           if (!isDark)
                             BoxShadow(
@@ -141,7 +152,10 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                       child: Center(
                         child: Text(
                           widget.radicalChar,
-                          style: const TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: Color(0xFFB22222)),
+                          style: const TextStyle(
+                              fontSize: 64,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFB22222)),
                         ),
                       ),
                     ),
@@ -150,14 +164,21 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            widget.radicalData['name'] ?? 'Unknown Radical',
-                            style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                          TranslatedDefinition(
+                            definition: (widget.radicalData['name'] ??
+                                    'Unknown Radical')
+                                .toString(),
+                            originalStyle: theme.textTheme.titleLarge
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            widget.radicalData['meaning'] ?? '',
-                            style: TextStyle(fontSize: 16, color: isDark ? Colors.white70 : Colors.black87),
+                          TranslatedDefinition(
+                            definition: (widget.radicalData['meaning'] ?? '')
+                                .toString(),
+                            originalStyle: TextStyle(
+                                fontSize: 16,
+                                color:
+                                    isDark ? Colors.white70 : Colors.black87),
                           ),
                         ],
                       ),
@@ -165,7 +186,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                   ],
                 ),
               ),
-              
+
               if (widget.radicalData['mnemonic'] != null) ...[
                 const SizedBox(height: 24),
                 Container(
@@ -174,7 +195,8 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                   decoration: BoxDecoration(
                     color: Colors.amber.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.amber.withValues(alpha: 0.3)),
+                    border:
+                        Border.all(color: Colors.amber.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     children: [
@@ -194,9 +216,9 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                   ),
                 ),
               ],
-              
+
               const SizedBox(height: 32),
-              
+
               // Character Grid
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -214,51 +236,63 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
                 child: HanziTextField(
                   controller: _searchController,
-                  hintText: "Search by pinyin or meaning...",
-                  style: TextStyle(color: isDark ? Colors.white : Colors.black87),
+                  hintText: AppLocalizations.of(context)!.searchByPinyinOrMeaning,
+                  style:
+                      TextStyle(color: isDark ? Colors.white : Colors.black87),
                   decoration: InputDecoration(
-                    hintStyle: TextStyle(color: isDark ? Colors.white54 : Colors.black54),
+                    hintStyle: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.black54),
                     prefixIcon: const Icon(Icons.search, color: Colors.indigo),
                     filled: true,
-                    fillColor: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white,
+                    fillColor: isDark
+                        ? Colors.white.withValues(alpha: 0.1)
+                        : Colors.white,
                     contentPadding: const EdgeInsets.symmetric(vertical: 0),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.indigo.withValues(alpha: 0.2)),
+                      borderSide: BorderSide(
+                          color: Colors.indigo.withValues(alpha: 0.2)),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.indigo.withValues(alpha: 0.1)),
+                      borderSide: BorderSide(
+                          color: Colors.indigo.withValues(alpha: 0.1)),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
-                      borderSide: const BorderSide(color: Colors.indigo, width: 2),
+                      borderSide:
+                          const BorderSide(color: Colors.indigo, width: 2),
                     ),
                   ),
                   onChanged: _filterCharacters,
                 ),
               ),
               const SizedBox(height: 8),
-              
+
               Expanded(
                 child: _isLoading
-                  ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
-                  : _filteredCharacters.isEmpty
-                      ? Center(child: Text(AppLocalizations.of(context)!.noCharactersFound))
-                      : GridView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 0.9,
+                    ? const Center(
+                        child: CircularProgressIndicator(color: Colors.indigo))
+                    : _filteredCharacters.isEmpty
+                        ? Center(
+                            child: Text(AppLocalizations.of(context)!
+                                .noCharactersFound))
+                        : GridView.builder(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 8),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              crossAxisSpacing: 12,
+                              mainAxisSpacing: 12,
+                              childAspectRatio: 0.9,
+                            ),
+                            itemCount: _filteredCharacters.length,
+                            itemBuilder: (context, index) {
+                              final item = _filteredCharacters[index];
+                              return _buildCharacterItem(context, item, isDark);
+                            },
                           ),
-                          itemCount: _filteredCharacters.length,
-                          itemBuilder: (context, index) {
-                            final item = _filteredCharacters[index];
-                            return _buildCharacterItem(context, item, isDark);
-                          },
-                        ),
               ),
             ],
           ),
@@ -267,22 +301,26 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
     );
   }
 
-  Widget _buildCharacterItem(BuildContext context, Map<String, dynamic> item, bool isDark) {
+  Widget _buildCharacterItem(
+      BuildContext context, Map<String, dynamic> item, bool isDark) {
     return GestureDetector(
       onTap: () {
-        final existingCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
-        final existingCard = existingCards.where((c) => c.hanzi == item['char']).firstOrNull;
+        final existingCards =
+            ref.read(flashcardControllerProvider).valueOrNull ?? [];
+        final existingCard =
+            existingCards.where((c) => c.hanzi == item['char']).firstOrNull;
 
-        final targetCard = existingCard ?? Flashcard(
-          id: 'temp_${item['char']}',
-          hanzi: item['char'],
-          pinyin: item['pinyin'],
-          definition: item['definition'],
-          hskLevel: 0,
-          strokePaths: const [],
-          modeStats: const {},
-        );
-        
+        final targetCard = existingCard ??
+            Flashcard(
+              id: 'temp_${item['char']}',
+              hanzi: item['char'],
+              pinyin: item['pinyin'],
+              definition: item['definition'],
+              hskLevel: 0,
+              strokePaths: const [],
+              modeStats: const {},
+            );
+
         Navigator.push(
           context,
           SwipeBackPageRoute(
@@ -292,9 +330,12 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade50,
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.grey.shade50,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.red.withValues(alpha: 0.2), width: 1.5),
+          border:
+              Border.all(color: Colors.red.withValues(alpha: 0.2), width: 1.5),
           boxShadow: [
             if (!isDark)
               BoxShadow(
@@ -312,7 +353,9 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
               style: TextStyle(
                 fontSize: 36,
                 fontWeight: FontWeight.w900,
-                color: isDark ? Colors.white.withValues(alpha: 0.9) : const Color(0xFF2C2C2C),
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.9)
+                    : const Color(0xFF2C2C2C),
               ),
             ),
             if (item['pinyin'].toString().isNotEmpty)
@@ -321,7 +364,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                 child: Text(
                   item['pinyin'].toString().split(' ').first,
                   style: TextStyle(
-                    fontSize: 10, 
+                    fontSize: 10,
                     color: isDark ? Colors.white70 : Colors.black54,
                     fontWeight: FontWeight.w600,
                   ),

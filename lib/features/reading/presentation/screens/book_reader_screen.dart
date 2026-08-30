@@ -1,4 +1,4 @@
-﻿import 'package:lpinyin/lpinyin.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +12,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/settings
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 enum BookPinyinMode { all, ghost, none }
 
@@ -132,11 +133,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       ),
     );
     if (!mounted) return;
-    final progress = ref.read(bookRepositoryProvider).getDetailedReadingProgress(widget.book.id);
+    final progress = ref
+        .read(bookRepositoryProvider)
+        .getDetailedReadingProgress(widget.book.id);
     if (progress != null) {
       setState(() {
-        _currentIndex = progress.chapterIndex.clamp(0, widget.chapters.length - 1);
-        _currentReadingSentenceIndex = _clampSentenceIndex(progress.sentenceIndex);
+        _currentIndex =
+            progress.chapterIndex.clamp(0, widget.chapters.length - 1);
+        _currentReadingSentenceIndex =
+            _clampSentenceIndex(progress.sentenceIndex);
         _resetSentenceKeys();
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -217,10 +222,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     _saveProgress();
     // Persist last reading session
     ref.read(bookRepositoryProvider).saveReadingSession(
-      bookId: widget.book.id,
-      chapterIndex: _currentIndex,
-      sentenceIndex: _currentReadingSentenceIndex,
-    );
+          bookId: widget.book.id,
+          chapterIndex: _currentIndex,
+          sentenceIndex: _currentReadingSentenceIndex,
+        );
     // Record reading event for streak
     ref.read(bookRepositoryProvider).recordReadingEvent();
     _sleepTimer?.cancel();
@@ -275,8 +280,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
   void _showResumeToastIfRestored() {
     // Only show toast when restoring from a non-start position (chapter > 0 or sentence > 0)
-    final isFromStart =
-        _currentIndex == 0 && _currentReadingSentenceIndex == 0;
+    final isFromStart = _currentIndex == 0 && _currentReadingSentenceIndex == 0;
     if (isFromStart) return;
 
     final chapter = widget.chapters[_currentIndex];
@@ -292,10 +296,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         SnackBar(
           content: Row(
             children: [
-              Icon(Icons.my_location_rounded, size: 18,
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.amber.shade300
-                    : const Color(0xFF8B0000)),
+              Icon(Icons.my_location_rounded,
+                  size: 18,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.amber.shade300
+                      : const Color(0xFF8B0000)),
               const SizedBox(width: 8),
               Text(
                 'Resumed: Ch.$chapterNum/$totalChapters, Sent.$sentNum/$totalSentences',
@@ -372,11 +377,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       ),
     );
     if (!mounted) return;
-    final progress = ref.read(bookRepositoryProvider).getDetailedReadingProgress(widget.book.id);
+    final progress = ref
+        .read(bookRepositoryProvider)
+        .getDetailedReadingProgress(widget.book.id);
     if (progress != null) {
       setState(() {
-        _currentIndex = progress.chapterIndex.clamp(0, widget.chapters.length - 1);
-        _currentReadingSentenceIndex = _clampSentenceIndex(progress.sentenceIndex);
+        _currentIndex =
+            progress.chapterIndex.clamp(0, widget.chapters.length - 1);
+        _currentReadingSentenceIndex =
+            _clampSentenceIndex(progress.sentenceIndex);
         _resetSentenceKeys();
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -413,7 +422,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       setState(() => _currentAudioSentenceIndex = sentenceIdx);
       final text = chapter.sentences[sentenceIdx].chinese;
       final voiceName = ref.read(settingsProvider).audiobookVoice;
-      final started = await ref.read(audioServiceProvider).playSentence(text, voiceName: voiceName);
+      final started = await ref
+          .read(audioServiceProvider)
+          .playSentence(text, voiceName: voiceName);
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
       if (!started) {
         setState(() {
@@ -427,7 +438,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       // Pre-fetch the upcoming sentence in the background for 0ms transition gap
       if (sentenceIdx + 1 < chapter.sentences.length) {
         final nextText = chapter.sentences[sentenceIdx + 1].chinese;
-        unawaited(ref.read(audioServiceProvider).prefetchSentence(nextText, voiceName: voiceName));
+        unawaited(ref
+            .read(audioServiceProvider)
+            .prefetchSentence(nextText, voiceName: voiceName));
       }
     }
   }
@@ -461,7 +474,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                   : accent.withValues(alpha: 0.4),
             ),
             color: isLocal
-                ? (isDark ? Colors.orange.shade900.withValues(alpha: 0.2) : Colors.orange.shade50)
+                ? (isDark
+                    ? Colors.orange.shade900.withValues(alpha: 0.2)
+                    : Colors.orange.shade50)
                 : accent.withValues(alpha: 0.08),
           ),
           child: Row(
@@ -481,15 +496,20 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                   fontSize: 10.5,
                   fontWeight: FontWeight.bold,
                   color: isLocal
-                      ? (isDark ? Colors.orange.shade300 : Colors.orange.shade700)
+                      ? (isDark
+                          ? Colors.orange.shade300
+                          : Colors.orange.shade700)
                       : accent,
                 ),
               ),
               const SizedBox(width: 2),
-              Icon(Icons.arrow_drop_down, size: 14,
-                color: isLocal
-                    ? (isDark ? Colors.orange.shade300 : Colors.orange.shade700)
-                    : accent),
+              Icon(Icons.arrow_drop_down,
+                  size: 14,
+                  color: isLocal
+                      ? (isDark
+                          ? Colors.orange.shade300
+                          : Colors.orange.shade700)
+                      : accent),
             ],
           ),
         ),
@@ -497,11 +517,13 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     );
   }
 
-  void _showVoicePickerSheet(BuildContext context, bool isDark, AudioQuotaService quotaService) {
+  void _showVoicePickerSheet(
+      BuildContext context, bool isDark, AudioQuotaService quotaService) {
     HapticsManager.light();
     final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
     final cardBg = isDark ? const Color(0xFF1E1E22) : const Color(0xFFF5F2E4);
-    final primaryText = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final primaryText =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     final hasQuota = quotaService.hasQuotaRemaining;
     final currentVoice = ref.read(settingsProvider).audiobookVoice;
 
@@ -530,7 +552,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             children: [
               Center(
                 child: Container(
-                  width: 40, height: 4,
+                  width: 40,
+                  height: 4,
                   decoration: BoxDecoration(
                     color: isDark ? Colors.white24 : Colors.black12,
                     borderRadius: BorderRadius.circular(2),
@@ -538,17 +561,26 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                 ),
               ),
               const SizedBox(height: 16),
-              Text('Choose Voice', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: primaryText)),
+              Text(AppLocalizations.of(context)!.chooseVoice,
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: primaryText)),
               if (!hasQuota)
                 Padding(
                   padding: const EdgeInsets.only(top: 6),
                   child: Row(
                     children: [
-                      Icon(Icons.info_outline, size: 14, color: Colors.orange.shade400),
+                      Icon(Icons.info_outline,
+                          size: 14, color: Colors.orange.shade400),
                       const SizedBox(width: 4),
                       Text(
                         'Weekly Azure quota reached — switching to local voice',
-                        style: TextStyle(fontSize: 12, color: isDark ? Colors.orange.shade300 : Colors.orange.shade700),
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: isDark
+                                ? Colors.orange.shade300
+                                : Colors.orange.shade700),
                       ),
                     ],
                   ),
@@ -560,20 +592,28 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                 final disabled = isAzure && !hasQuota;
                 return ListTile(
                   dense: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                   leading: Icon(
-                    isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
+                    isSelected
+                        ? Icons.check_circle
+                        : Icons.radio_button_unchecked,
                     size: 20,
                     color: isSelected
                         ? accent
-                        : (disabled ? (isDark ? Colors.white24 : Colors.black26) : (isDark ? Colors.white54 : Colors.black54)),
+                        : (disabled
+                            ? (isDark ? Colors.white24 : Colors.black26)
+                            : (isDark ? Colors.white54 : Colors.black54)),
                   ),
                   title: Text(
                     opt.$2,
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                      color: disabled ? (isDark ? Colors.white30 : Colors.black38) : primaryText,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: disabled
+                          ? (isDark ? Colors.white30 : Colors.black38)
+                          : primaryText,
                     ),
                   ),
                   subtitle: isAzure
@@ -581,18 +621,26 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           opt.$3,
                           style: TextStyle(
                             fontSize: 11,
-                            color: disabled ? (isDark ? Colors.white24 : Colors.black26) : (isDark ? Colors.white38 : Colors.black45),
+                            color: disabled
+                                ? (isDark ? Colors.white24 : Colors.black26)
+                                : (isDark ? Colors.white38 : Colors.black45),
                           ),
                         )
                       : null,
                   trailing: disabled
-                      ? Icon(Icons.lock, size: 16, color: isDark ? Colors.white24 : Colors.black26)
+                      ? Icon(Icons.lock,
+                          size: 16,
+                          color: isDark ? Colors.white24 : Colors.black26)
                       : null,
-                  onTap: disabled ? null : () {
-                    HapticsManager.selection();
-                    ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
-                    Navigator.of(ctx).pop();
-                  },
+                  onTap: disabled
+                      ? null
+                      : () {
+                          HapticsManager.selection();
+                          ref
+                              .read(settingsProvider.notifier)
+                              .setAudiobookVoice(opt.$1);
+                          Navigator.of(ctx).pop();
+                        },
                 );
               }),
             ],
@@ -1070,10 +1118,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       );
       await repo.removeBookmark(target.id);
       if (mounted) {
+        final l10n = AppLocalizations.of(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('书签已移除 · Bookmark removed'),
-            duration: Duration(seconds: 2),
+          SnackBar(
+            content: Text(l10n?.bookmarkRemoved ?? "书签已移除 · Bookmark removed"),
+            duration: const Duration(seconds: 2),
           ),
         );
       }
@@ -1089,9 +1138,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       );
       await repo.saveBookmark(newBm);
       if (mounted) {
+        final l10n = AppLocalizations.of(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('已添加书签 · Bookmark added: 第${chapter.chapterIndex}回'),
+            content: Text(l10n?.bookmarkAdded("第${chapter.chapterIndex}回") ?? "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
             duration: const Duration(seconds: 2),
           ),
         );
@@ -1470,7 +1520,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                 size: 22,
                 color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
               ),
-              tooltip: 'Audiobook Player',
+              tooltip: AppLocalizations.of(context)!.audiobookPlayer,
               onPressed: _openFullscreenAudiobookPlayer,
             ),
           // Bookmark Toggle
@@ -1482,13 +1532,13 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                   ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
                   : primaryText,
             ),
-            tooltip: 'Bookmark Chapter',
+            tooltip: AppLocalizations.of(context)!.bookmarkChapter,
             onPressed: _toggleBookmark,
           ),
           // Bookmarks List
           IconButton(
             icon: Icon(Icons.bookmarks_outlined, size: 20, color: primaryText),
-            tooltip: 'View Bookmarks',
+            tooltip: AppLocalizations.of(context)!.viewBookmarks,
             onPressed: () =>
                 _openBookmarksDrawer(context, isDark, cardBg, primaryText),
           ),
@@ -1496,7 +1546,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
           IconButton(
             icon:
                 Icon(Icons.format_list_bulleted, size: 22, color: primaryText),
-            tooltip: 'Table of Contents',
+            tooltip: AppLocalizations.of(context)!.tableOfContents,
             onPressed: () =>
                 _openChapterDrawer(context, isDark, cardBg, primaryText),
           ),
@@ -1511,7 +1561,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               size: 22,
               color: primaryText,
             ),
-            tooltip: 'Toggle Pinyin',
+            tooltip: AppLocalizations.of(context)!.togglePinyin,
             onPressed: () {
               HapticsManager.light();
               setState(() {
@@ -1545,7 +1595,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
           // Font Size Adjust
           IconButton(
             icon: Icon(Icons.text_fields, size: 22, color: primaryText),
-            tooltip: 'Adjust Font Size',
+            tooltip: AppLocalizations.of(context)!.adjustFontSize,
             onPressed: () {
               HapticsManager.light();
               setState(() {
@@ -1748,7 +1798,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                         ? Colors.amber.shade300
                                         : const Color(0xFF8B0000),
                                   ),
-                                  tooltip: 'Listen in Audiobook Mode',
+                                  tooltip: AppLocalizations.of(context)!
+                                      .listenInAudiobookMode,
                                   onPressed: () {
                                     HapticsManager.medium();
                                     _openAudiobookAtSentence(index);
@@ -1931,8 +1982,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           const SizedBox(width: 8),
                           Expanded(
                             child: GestureDetector(
-                              onTap: () => _showQuotaDetailsSheet(context, isDark,
-                                  cardBg, primaryText, quotaService),
+                              onTap: () => _showQuotaDetailsSheet(context,
+                                  isDark, cardBg, primaryText, quotaService),
                               behavior: HitTestBehavior.opaque,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1986,70 +2037,72 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           // Voice quick-select chip
                           _buildCompactVoiceChip(isDark, quotaService),
                           // Sleep Timer Button
-                      IconButton(
-                        icon: Icon(
-                          (_sleepSecondsRemaining != null ||
-                                  _stopAtEndOfChapter)
-                              ? Icons.bedtime
-                              : Icons.bedtime_outlined,
-                          size: 20,
-                          color: (_sleepSecondsRemaining != null ||
-                                  _stopAtEndOfChapter)
-                              ? (isDark
+                          IconButton(
+                            icon: Icon(
+                              (_sleepSecondsRemaining != null ||
+                                      _stopAtEndOfChapter)
+                                  ? Icons.bedtime
+                                  : Icons.bedtime_outlined,
+                              size: 20,
+                              color: (_sleepSecondsRemaining != null ||
+                                      _stopAtEndOfChapter)
+                                  ? (isDark
+                                      ? Colors.amber.shade400
+                                      : const Color(0xFF8B0000))
+                                  : (isDark ? Colors.white60 : Colors.black54),
+                            ),
+                            tooltip: AppLocalizations.of(context)!.sleepTimer,
+                            onPressed: () => _showSleepTimerModal(
+                                context, isDark, cardBg, primaryText),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.skip_previous, size: 22),
+                            color: primaryText,
+                            onPressed: _currentAudioSentenceIndex > 0
+                                ? _audiobookPrevSentence
+                                : null,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              _isAudiobookPlaying
+                                  ? Icons.pause_circle_filled
+                                  : Icons.play_circle_filled,
+                              size: 32,
+                              color: isDark
                                   ? Colors.amber.shade400
-                                  : const Color(0xFF8B0000))
-                              : (isDark ? Colors.white60 : Colors.black54),
-                        ),
-                        tooltip: 'Sleep Timer',
-                        onPressed: () => _showSleepTimerModal(
-                            context, isDark, cardBg, primaryText),
+                                  : const Color(0xFF8B0000),
+                            ),
+                            onPressed: _togglePlayPauseAudiobook,
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.skip_next, size: 22),
+                            color: primaryText,
+                            onPressed: _currentAudioSentenceIndex <
+                                    chapter.sentences.length - 1
+                                ? _audiobookNextSentence
+                                : null,
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.open_in_full_rounded,
+                                size: 18),
+                            color: isDark
+                                ? Colors.amber.shade300
+                                : const Color(0xFF8B0000),
+                            tooltip: AppLocalizations.of(context)!
+                                .spotifyStylePlayer,
+                            onPressed: _openFullscreenAudiobookPlayer,
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close, size: 20),
+                            color: isDark ? Colors.white54 : Colors.black45,
+                            onPressed: _stopAudiobook,
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.skip_previous, size: 22),
-                        color: primaryText,
-                        onPressed: _currentAudioSentenceIndex > 0
-                            ? _audiobookPrevSentence
-                            : null,
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          _isAudiobookPlaying
-                              ? Icons.pause_circle_filled
-                              : Icons.play_circle_filled,
-                          size: 32,
-                          color: isDark
-                              ? Colors.amber.shade400
-                              : const Color(0xFF8B0000),
-                        ),
-                        onPressed: _togglePlayPauseAudiobook,
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.skip_next, size: 22),
-                        color: primaryText,
-                        onPressed: _currentAudioSentenceIndex <
-                                chapter.sentences.length - 1
-                            ? _audiobookNextSentence
-                            : null,
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.open_in_full_rounded, size: 18),
-                        color: isDark
-                            ? Colors.amber.shade300
-                            : const Color(0xFF8B0000),
-                        tooltip: 'Spotify-style Player',
-                        onPressed: _openFullscreenAudiobookPlayer,
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.close, size: 20),
-                        color: isDark ? Colors.white54 : Colors.black45,
-                        onPressed: _stopAudiobook,
-                      ),
-                    ],
-                  ),
-                  ],  // Column.children
-                ),    // Column
-              );
-            },
+                    ], // Column.children
+                  ), // Column
+                );
+              },
             ),
 
           // Bottom Chapter Navigation Bar
@@ -2072,7 +2125,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                   ElevatedButton.icon(
                     onPressed: _currentIndex > 0 ? _goToPreviousChapter : null,
                     icon: const Icon(Icons.arrow_back_ios, size: 14),
-                    label: const Text('Previous'),
+                    label: Text(AppLocalizations.of(context)!.previous),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isDark ? Colors.white12 : Colors.black12,
                       foregroundColor: primaryText,
@@ -2115,7 +2168,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                     onPressed: _currentIndex < widget.chapters.length - 1
                         ? _goToNextChapter
                         : null,
-                    label: const Text('Next'),
+                    label: Text(AppLocalizations.of(context)!.next),
                     icon: const Icon(Icons.arrow_forward_ios, size: 14),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isDark

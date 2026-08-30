@@ -550,7 +550,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                           },
                           child: Text(AppLocalizations.of(context)!.skip,
                               style:
-                                  TextStyle(color: Colors.grey, fontSize: 16)),
+                                  const TextStyle(color: Colors.grey, fontSize: 16)),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -572,7 +572,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 },
                           child: Text(
                               AppLocalizations.of(context)!.addSelectedToDeck,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16)),
@@ -652,7 +652,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   const Divider(),
                   ListTile(
                     title: Text(AppLocalizations.of(context)!.createNewDeck,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.orange, fontWeight: FontWeight.bold)),
                     subtitle: Text(
                         AppLocalizations.of(context)!.makeACustomCollection,
@@ -701,7 +701,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             TextButton(
               onPressed: () => Navigator.pop(context),
               child: Text(AppLocalizations.of(context)!.cancelAction,
-                  style: TextStyle(color: Colors.grey)),
+                  style: const TextStyle(color: Colors.grey)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
@@ -724,7 +724,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 }
               },
               child: Text(AppLocalizations.of(context)!.createAction,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold)),
             ),
           ],

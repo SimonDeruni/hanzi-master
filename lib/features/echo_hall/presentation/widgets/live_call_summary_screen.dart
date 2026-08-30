@@ -42,17 +42,20 @@ class LiveCallSummaryScreen extends StatelessWidget {
 
               // 2. AI Pattern Analysis Card
               _buildVerdictCard(context, theme),
-              
+
               const SizedBox(height: 32),
-              
-              Text("CONVERSATION REVIEW", style: theme.textTheme.titleSmall?.copyWith(letterSpacing: 2)),
+
+              Text(AppLocalizations.of(context)!.conversationReview,
+                  style:
+                      theme.textTheme.titleSmall?.copyWith(letterSpacing: 2)),
               const SizedBox(height: 16),
-              
+
               // 2. Graded Transcript List
-              ...transcript.map((msg) => _buildSummaryBubble(context, msg, theme)),
-              
+              ...transcript
+                  .map((msg) => _buildSummaryBubble(context, msg, theme)),
+
               const SizedBox(height: 40),
-              
+
               // 3. Action Button
               SizedBox(
                 width: double.infinity,
@@ -62,9 +65,11 @@ class LiveCallSummaryScreen extends StatelessWidget {
                     backgroundColor: theme.colorScheme.primary,
                     foregroundColor: theme.colorScheme.onPrimary,
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
                   ),
-                  child: const Text("Complete Review", style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text(AppLocalizations.of(context)!.completeReview,
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 32),
@@ -81,10 +86,14 @@ class LiveCallSummaryScreen extends StatelessWidget {
     int totalFlu = 0;
     int count = 0;
     for (final msg in transcript) {
-      if (msg.role == ChatRole.user && msg.grade != null && msg.grade!['score'] != null) {
+      if (msg.role == ChatRole.user &&
+          msg.grade != null &&
+          msg.grade!['score'] != null) {
         totalScore += (msg.grade!['score'] as num).toInt();
-        totalAcc += ((msg.grade!['accuracy'] ?? msg.grade!['score']) as num).toInt();
-        totalFlu += ((msg.grade!['fluency'] ?? msg.grade!['score']) as num).toInt();
+        totalAcc +=
+            ((msg.grade!['accuracy'] ?? msg.grade!['score']) as num).toInt();
+        totalFlu +=
+            ((msg.grade!['fluency'] ?? msg.grade!['score']) as num).toInt();
         count++;
       }
     }
@@ -97,7 +106,9 @@ class LiveCallSummaryScreen extends StatelessWidget {
 
     final isGood = avgScore >= 80;
     final isMedium = avgScore >= 65 && avgScore < 80;
-    final accentColor = isGood ? const Color(0xFF10B981) : (isMedium ? const Color(0xFFF59E0B) : const Color(0xFFEF4444));
+    final accentColor = isGood
+        ? const Color(0xFF10B981)
+        : (isMedium ? const Color(0xFFF59E0B) : const Color(0xFFEF4444));
 
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
@@ -128,9 +139,12 @@ class LiveCallSummaryScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMetricItem("Overall Score", "$avgScore%", accentColor, theme),
-              _buildMetricItem("Tone Accuracy", "$avgAcc%", theme.colorScheme.primary, theme),
-              _buildMetricItem("Fluency", "$avgFlu%", const Color(0xFF3B82F6), theme),
+              _buildMetricItem(
+                  "Overall Score", "$avgScore%", accentColor, theme),
+              _buildMetricItem("Tone Accuracy", "$avgAcc%",
+                  theme.colorScheme.primary, theme),
+              _buildMetricItem(
+                  "Fluency", "$avgFlu%", const Color(0xFF3B82F6), theme),
             ],
           ),
         ],
@@ -138,7 +152,8 @@ class LiveCallSummaryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMetricItem(String label, String value, Color color, ThemeData theme) {
+  Widget _buildMetricItem(
+      String label, String value, Color color, ThemeData theme) {
     return Column(
       children: [
         Text(
@@ -166,9 +181,13 @@ class LiveCallSummaryScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.cardTheme.color,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
+        border:
+            Border.all(color: theme.colorScheme.primary.withValues(alpha: 0.2)),
         boxShadow: [
-          BoxShadow(color: theme.colorScheme.primary.withValues(alpha: 0.05), blurRadius: 20, offset: const Offset(0, 10))
+          BoxShadow(
+              color: theme.colorScheme.primary.withValues(alpha: 0.05),
+              blurRadius: 20,
+              offset: const Offset(0, 10))
         ],
       ),
       child: Column(
@@ -178,20 +197,27 @@ class LiveCallSummaryScreen extends StatelessWidget {
             children: [
               Icon(Icons.psychology_outlined, color: theme.colorScheme.primary),
               const SizedBox(width: 12),
-              Text("Linguistic Analysis", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.linguisticAnalysis,
+                  style: theme.textTheme.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.bold)),
             ],
           ),
           const SizedBox(height: 16),
-          InteractiveMarkdownText(text: scholarVerdict, theme: theme, contextText: scholarVerdict),
+          InteractiveMarkdownText(
+              text: scholarVerdict, theme: theme, contextText: scholarVerdict),
         ],
       ),
     );
   }
 
-  Widget _buildSummaryBubble(BuildContext context, LiveCallMessage msg, ThemeData theme) {
+  Widget _buildSummaryBubble(
+      BuildContext context, LiveCallMessage msg, ThemeData theme) {
     final isUser = msg.role == ChatRole.user;
     final hasChinese = RegExp(r'[\u4e00-\u9fa5]').hasMatch(msg.text);
-    final hasReviewableGrade = isUser && hasChinese && msg.grade != null && (msg.grade!['words'] as List?)?.isNotEmpty == true;
+    final hasReviewableGrade = isUser &&
+        hasChinese &&
+        msg.grade != null &&
+        (msg.grade!['words'] as List?)?.isNotEmpty == true;
 
     final bubble = Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -212,7 +238,8 @@ class LiveCallSummaryScreen extends StatelessWidget {
             children: [
               Text(
                 isUser ? "YOU" : "SCHOLAR",
-                style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
+                style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
               ),
               if (hasReviewableGrade) ...[
                 const Spacer(),
@@ -236,7 +263,9 @@ class LiveCallSummaryScreen extends StatelessWidget {
           if (hasReviewableGrade)
             _buildGradedRow(context, msg, msg.grade!['words'] ?? [], theme)
           else
-            Text(msg.text, style: theme.textTheme.bodyLarge?.copyWith(fontWeight: !isUser ? FontWeight.bold : FontWeight.normal)),
+            Text(msg.text,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                    fontWeight: !isUser ? FontWeight.bold : FontWeight.normal)),
         ],
       ),
     );
@@ -249,7 +278,8 @@ class LiveCallSummaryScreen extends StatelessWidget {
     );
   }
 
-  void _showPronunciationReviewSheet(BuildContext context, LiveCallMessage msg, ThemeData theme) {
+  void _showPronunciationReviewSheet(
+      BuildContext context, LiveCallMessage msg, ThemeData theme) {
     PronunciationGrade? parsedGrade;
     if (msg.grade != null) {
       try {
@@ -278,7 +308,8 @@ class LiveCallSummaryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildGradedRow(BuildContext context, LiveCallMessage msg, List<dynamic> words, ThemeData theme) {
+  Widget _buildGradedRow(BuildContext context, LiveCallMessage msg,
+      List<dynamic> words, ThemeData theme) {
     return Wrap(
       spacing: 6,
       runSpacing: 6,
@@ -313,7 +344,8 @@ class LiveCallSummaryScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
             child: Column(
               children: [
-                Text(pinyin, style: theme.textTheme.labelSmall?.copyWith(fontSize: 11)),
+                Text(pinyin,
+                    style: theme.textTheme.labelSmall?.copyWith(fontSize: 11)),
                 Text(
                   word,
                   style: theme.textTheme.titleLarge?.copyWith(
@@ -343,7 +375,8 @@ class InteractiveMarkdownText extends StatefulWidget {
   });
 
   @override
-  State<InteractiveMarkdownText> createState() => _InteractiveMarkdownTextState();
+  State<InteractiveMarkdownText> createState() =>
+      _InteractiveMarkdownTextState();
 }
 
 class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
@@ -361,9 +394,10 @@ class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
   Widget build(BuildContext context) {
     final baseStyle = widget.theme.textTheme.bodyLarge?.copyWith(height: 1.6);
     final spans = <TextSpan>[];
-    
+
     // Pattern to match bold, italic, underline OR Chinese characters
-    final pattern = RegExp(r'(\*\*(.+?)\*\*)|(\*(.+?)\*)|(__(.+?)__)|([\u4e00-\u9fff]+)');
+    final pattern =
+        RegExp(r'(\*\*(.+?)\*\*)|(\*(.+?)\*)|(__(.+?)__)|([\u4e00-\u9fff]+)');
 
     int lastEnd = 0;
     for (final match in pattern.allMatches(widget.text)) {
@@ -389,7 +423,8 @@ class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
       } else if (match.group(7) != null) {
         final hanzi = match.group(7)!;
         final recognizer = TapGestureRecognizer()
-          ..onTap = () => showQuickLook(context, hanzi, contextText: widget.contextText);
+          ..onTap = () =>
+              showQuickLook(context, hanzi, contextText: widget.contextText);
         _recognizers.add(recognizer);
 
         spans.add(TextSpan(
@@ -397,7 +432,8 @@ class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
           style: baseStyle?.copyWith(
             color: widget.theme.colorScheme.primary,
             decoration: TextDecoration.underline,
-            decorationColor: widget.theme.colorScheme.primary.withValues(alpha: 0.5),
+            decorationColor:
+                widget.theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
           recognizer: recognizer,
         ));

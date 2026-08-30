@@ -138,7 +138,7 @@ class CourseScreen extends ConsumerWidget {
                       children: [
                         const CircularProgressIndicator(color: Colors.white),
                         const SizedBox(height: 16),
-                        Text(l10n?.initializingLibrary ?? "Initializing Library...", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                        Text(l10n?.initializingLibrary ?? AppLocalizations.of(context)!.initializingLibrary, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -152,12 +152,12 @@ class CourseScreen extends ConsumerWidget {
         onPressed: () {
           final cards = ref.read(flashcardControllerProvider).value ?? [];
           if (cards.length < 4) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.unlockCharactersToQuiz ?? "Unlock at least 4 characters to start a quiz!")));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.unlockCharactersToQuiz ?? AppLocalizations.of(context)!.unlockCharactersToQuiz)));
             return;
           }
           Navigator.push(context, SwipeBackPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
         },
-        label: Text(l10n?.practiceQuiz ?? "PRACTICE QUIZ"),
+        label: Text(l10n?.practiceQuiz ?? AppLocalizations.of(context)!.practiceQuiz),
         icon: const Icon(Icons.quiz),
         backgroundColor: Colors.indigo,
       ),

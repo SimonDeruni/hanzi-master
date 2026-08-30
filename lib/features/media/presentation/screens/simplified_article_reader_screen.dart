@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class SimplifiedArticleReaderScreen extends StatefulWidget {
   final AiStory story;
@@ -33,7 +34,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Simplified Article", style: TextStyle(fontFamily: 'Serif', fontWeight: FontWeight.bold, color: textColor)),
+        title: Text(AppLocalizations.of(context)!.simplifiedArticle, style: TextStyle(fontFamily: AppLocalizations.of(context)!.serif, fontWeight: FontWeight.bold, color: textColor)),
         backgroundColor: bg,
         elevation: 0,
         iconTheme: IconThemeData(color: textColor),
@@ -43,7 +44,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
               Icons.sort_by_alpha,
               color: _showPinyin ? Colors.blue : (isDark ? Colors.white54 : Colors.grey),
             ),
-            tooltip: "Toggle Pinyin",
+            tooltip: AppLocalizations.of(context)!.togglePinyin,
             onPressed: () {
               setState(() {
                 _showPinyin = !_showPinyin;
@@ -55,7 +56,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
               Icons.translate,
               color: _showTranslation ? Colors.purple : (isDark ? Colors.white54 : Colors.grey),
             ),
-            tooltip: "Toggle Translation",
+            tooltip: AppLocalizations.of(context)!.toggleTranslation,
             onPressed: () {
               setState(() {
                 _showTranslation = !_showTranslation;
@@ -85,7 +86,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        "This article contains Traditional Chinese characters.",
+                        AppLocalizations.of(context)!.thisArticleCharacters,
                         style: TextStyle(
                           color: isDark ? Colors.orange.shade200 : Colors.orange.shade900, 
                           fontWeight: FontWeight.w500
@@ -136,7 +137,7 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                                   style: TextStyle(
                                     fontSize: isChineseStyle ? 24 : 16,
                                     height: 1.2,
-                                    fontFamily: isChineseStyle ? 'Serif' : null,
+                                    fontFamily: isChineseStyle ? AppLocalizations.of(context)!.serif : null,
                                     color: textColor,
                                   ),
                                 ),

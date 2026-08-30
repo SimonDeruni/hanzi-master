@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
@@ -44,7 +45,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       } else {
         if (!_acceptTerms) {
           setState(() {
-            _errorMessage = "You must accept the Terms of Service and Privacy Policy to create an account.";
+            _errorMessage = AppLocalizations.of(context)!.youMustAccount;
           });
           return;
         }
@@ -62,7 +63,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         setState(() {
           final errStr = e.toString();
           if (errStr.contains('CONFIGURATION_NOT_FOUND') || errStr.contains('FIRAuthErrorDomain')) {
-            _errorMessage = "Firebase Auth not enabled. Please enable the required Sign-In method in your Firebase Console.";
+            _errorMessage = AppLocalizations.of(context)!.firebaseAuthConsole;
           } else {
             _errorMessage = errStr.replaceAll(RegExp(r'\[.*?\]'), '').trim();
           }
@@ -104,7 +105,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  _isLogin ? "Welcome Back" : "Begin Your Journey",
+                  _isLogin ? AppLocalizations.of(context)!.welcomeBack : AppLocalizations.of(context)!.beginYourJourney,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w900,
@@ -126,7 +127,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 if (!_isLogin) ...[
                   _buildTextField(
                     controller: _nameController,
-                    label: "Name",
+                    label: AppLocalizations.of(context)!.nameLabel,
                     icon: Icons.person_outline,
                     isDark: isDark,
                   ),
@@ -134,7 +135,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ],
                 _buildTextField(
                   controller: _emailController,
-                  label: "Email",
+                  label: AppLocalizations.of(context)!.emailLabel,
                   icon: Icons.email_outlined,
                   keyboardType: TextInputType.emailAddress,
                   isDark: isDark,
@@ -142,7 +143,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: _passwordController,
-                  label: "Password",
+                  label: AppLocalizations.of(context)!.passwordLabel,
                   icon: Icons.lock_outline,
                   obscureText: true,
                   isDark: isDark,
@@ -204,8 +205,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   },
                   child: Text(
                     _isLogin 
-                        ? "Don't have an account? Sign up" 
-                        : "Already have an account? Sign in",
+                        ? AppLocalizations.of(context)!.dontHaveAccountSignUp
+                        : AppLocalizations.of(context)!.alreadyHaveAccountSignIn,
                     style: TextStyle(
                       color: isDark ? Colors.white70 : Colors.black87,
                       fontWeight: FontWeight.w600,
@@ -290,7 +291,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     ),
                   )
                 : Text(
-                    _isLogin ? "Sign In" : "Create Account",
+                    _isLogin ? AppLocalizations.of(context)!.signIn : AppLocalizations.of(context)!.createAccount,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,

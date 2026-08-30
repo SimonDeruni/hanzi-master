@@ -213,7 +213,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                   }
                 },
                 child: Text(AppLocalizations.of(context)!.turnOn,
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ),
             ],
           ),
@@ -659,7 +659,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                 ),
                 child: Text(
                   AppLocalizations.of(context)!.bestValue,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 10,
                       fontWeight: FontWeight.bold),

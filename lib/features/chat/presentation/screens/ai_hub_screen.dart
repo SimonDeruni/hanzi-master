@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class AiHubScreen extends ConsumerStatefulWidget {
   final int initialTabIndex;
@@ -54,7 +55,7 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
                       child: _buildSegmentTab(
                         index: 0,
                         icon: Icons.forum_rounded,
-                        label: 'Roleplay',
+                        label: AppLocalizations.of(context)!.roleplay,
                         isSelected: _selectedTab == 0,
                         isDark: isDark,
                       ),
@@ -64,7 +65,7 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
                       child: _buildSegmentTab(
                         index: 1,
                         icon: Icons.graphic_eq_rounded,
-                        label: 'Shadowing',
+                        label: AppLocalizations.of(context)!.shadowing,
                         isSelected: _selectedTab == 1,
                         isDark: isDark,
                       ),

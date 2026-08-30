@@ -54,7 +54,7 @@ class LessonScreen extends ConsumerWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: lessonState.inWarmupPhase 
-          ? Text(l10n?.warmUp ?? "WARM UP", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.indigo))
+          ? Text(l10n?.warmUp ?? AppLocalizations.of(context)!.warmUp, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.indigo))
           : null,
         centerTitle: true,
       ),
@@ -171,7 +171,7 @@ class LessonScreen extends ConsumerWidget {
             ref.read(progressionProvider.notifier).addInkPoints(10);
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(l10n?.lessonComplete ?? "Lesson Complete! +10 Ink Points")),
+              SnackBar(content: Text(l10n?.lessonComplete ?? AppLocalizations.of(context)!.lessonComplete)),
             );
           },
         );

@@ -5,6 +5,7 @@ import '../../../../shared/routes/swipe_back_route.dart';
 import '../../../../core/presentation/widgets/zen_search_bar.dart';
 import 'show_detail_screen.dart';
 import '../providers/show_progress_provider.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 final showsProvider = FutureProvider<Map<ShowGenre, List<Show>>>((ref) {
   final repo = ref.watch(showRepositoryProvider);
@@ -48,14 +49,14 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
             children: [
               const Icon(Icons.error_outline, color: Colors.red, size: 40),
               const SizedBox(height: 12),
-              Text('Failed to load shows',
+              Text(AppLocalizations.of(context)!.failedToLoadShows,
                   style: TextStyle(
                     color: isDark ? Colors.grey[400] : Colors.grey.shade700,
                   )),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () => ref.invalidate(showsProvider),
-                child: Text('Retry',
+                child: Text(AppLocalizations.of(context)!.retry,
                     style: TextStyle(
                       color: isDark ? Colors.amber : const Color(0xFF8B6914),
                     )),
@@ -73,7 +74,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                       color: isDark ? Colors.grey[600] : Colors.grey.shade500,
                       size: 48),
                   const SizedBox(height: 12),
-                  Text('No shows available',
+                  Text(AppLocalizations.of(context)!.noShowsAvailable,
                       style: TextStyle(
                         color: isDark ? Colors.grey[500] : Colors.grey.shade600,
                         fontSize: 16,
@@ -102,7 +103,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: ZenSearchBar(
                   controller: _searchController,
-                  hintText: 'Search by title or tag...',
+                  hintText: AppLocalizations.of(context)!.searchByTitleOrTag,
                   onChanged: (value) {
                     setState(() {
                       _searchQuery = value;
@@ -369,7 +370,7 @@ class _ShowCard extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Text(
-                          show.tags.contains('Trailer') ? 'TRAILER' : 'HIGHLIGHT',
+                          show.tags.contains('Trailer') ? AppLocalizations.of(context)!.trailer : AppLocalizations.of(context)!.highlight,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 9,

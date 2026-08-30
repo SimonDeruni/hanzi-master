@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class AiProgressBar extends StatefulWidget {
-  final String label;
+  final String? label;
 
   const AiProgressBar({
     super.key,
-    this.label = 'AI is thinking...',
+    this.label,
   });
 
   @override
@@ -67,10 +68,11 @@ class _AiProgressBarState extends State<AiProgressBar>
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.auto_awesome, size: 16, color: Colors.purpleAccent),
+            const Icon(Icons.auto_awesome,
+                size: 16, color: Colors.purpleAccent),
             const SizedBox(width: 8),
             Text(
-              widget.label,
+              widget.label ?? AppLocalizations.of(context)!.aiIsThinking,
               style: const TextStyle(
                 color: Colors.indigo,
                 fontWeight: FontWeight.w600,

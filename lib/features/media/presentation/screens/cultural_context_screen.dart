@@ -11,6 +11,7 @@ import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CulturalContextScreen extends ConsumerWidget {
   final DailyMediaItem mediaItem;
@@ -21,9 +22,10 @@ class CulturalContextScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    
+
     final encodedParam = '${mediaItem.title}|||${mediaItem.subtitle}';
-    final culturalContextAsync = ref.watch(culturalContextProvider(encodedParam));
+    final culturalContextAsync =
+        ref.watch(culturalContextProvider(encodedParam));
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
@@ -46,8 +48,10 @@ class CulturalContextScreen extends ConsumerWidget {
                         CachedNetworkImage(
                           imageUrl: mediaItem.imageUrl,
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(color: Colors.black12),
-                          errorWidget: (context, url, error) => Container(color: Colors.black12),
+                          placeholder: (context, url) =>
+                              Container(color: Colors.black12),
+                          errorWidget: (context, url, error) =>
+                              Container(color: Colors.black12),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -55,7 +59,8 @@ class CulturalContextScreen extends ConsumerWidget {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Colors.black.withValues(alpha: 0.5), // For status bar visibility
+                                Colors.black.withValues(
+                                    alpha: 0.5), // For status bar visibility
                                 Colors.transparent,
                                 theme.colorScheme.surface,
                               ],
@@ -73,7 +78,8 @@ class CulturalContextScreen extends ConsumerWidget {
                         color: theme.colorScheme.surface.withValues(alpha: 0.5),
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
+                      child: Icon(Icons.arrow_back,
+                          color: theme.colorScheme.onSurface),
                     ),
                     onPressed: () => Navigator.pop(context),
                   ),
@@ -85,9 +91,11 @@ class CulturalContextScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                            color: theme.colorScheme.primary
+                                .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: Text(
@@ -101,15 +109,17 @@ class CulturalContextScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 24),
                         _buildClickableContext(
-                          context, 
-                          mediaItem.title, 
+                          context,
+                          mediaItem.title,
                           theme,
-                          customBaseStyle: theme.textTheme.headlineMedium?.copyWith(
+                          customBaseStyle:
+                              theme.textTheme.headlineMedium?.copyWith(
                             fontWeight: FontWeight.w900,
                             fontFamily: 'NotoSerifSC',
                             height: 1.4,
                           ),
-                          customHanziStyle: theme.textTheme.headlineMedium?.copyWith(
+                          customHanziStyle:
+                              theme.textTheme.headlineMedium?.copyWith(
                             fontWeight: FontWeight.w900,
                             fontFamily: 'NotoSerifSC',
                             color: theme.colorScheme.primary,
@@ -119,7 +129,8 @@ class CulturalContextScreen extends ConsumerWidget {
                         const SizedBox(height: 40),
                         Row(
                           children: [
-                            Icon(Icons.auto_awesome, color: theme.colorScheme.primary, size: 24),
+                            Icon(Icons.auto_awesome,
+                                color: theme.colorScheme.primary, size: 24),
                             const SizedBox(width: 12),
                             Text(
                               "Cultural Insight",
@@ -133,8 +144,8 @@ class CulturalContextScreen extends ConsumerWidget {
                         const SizedBox(height: 24),
                         culturalContextAsync.when(
                           data: (text) => _buildStructuredInsight(
-                            context, 
-                            text, 
+                            context,
+                            text,
                             theme,
                           ),
                           loading: () => Padding(
@@ -142,13 +153,15 @@ class CulturalContextScreen extends ConsumerWidget {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Center(child: CircularProgressIndicator()),
+                                const Center(
+                                    child: CircularProgressIndicator()),
                                 const SizedBox(height: 24),
                                 Center(
                                   child: Text(
                                     "AI is analyzing cultural context...",
                                     style: TextStyle(
-                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                                      color: theme.colorScheme.onSurface
+                                          .withValues(alpha: 0.5),
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
@@ -156,7 +169,9 @@ class CulturalContextScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          error: (err, stack) => Text("Failed to load context: $err"),
+                          error: (err, stack) => Text(
+                              AppLocalizations.of(context)!
+                                  .failed_to_load_context(err.toString())),
                         ),
                       ],
                     ),
@@ -165,15 +180,18 @@ class CulturalContextScreen extends ConsumerWidget {
               ],
             ),
           ),
-          
+
           // Sticky Footer CTA
           Container(
-            padding: EdgeInsets.fromLTRB(24, 16, 24, MediaQuery.of(context).padding.bottom + 16),
+            padding: EdgeInsets.fromLTRB(
+                24, 16, 24, MediaQuery.of(context).padding.bottom + 16),
             decoration: BoxDecoration(
               color: theme.colorScheme.surface,
               boxShadow: [
                 BoxShadow(
-                  color: isDark ? Colors.black.withValues(alpha: 0.4) : Colors.black.withValues(alpha: 0.05),
+                  color: isDark
+                      ? Colors.black.withValues(alpha: 0.4)
+                      : Colors.black.withValues(alpha: 0.05),
                   blurRadius: 10,
                   offset: const Offset(0, -4),
                 ),
@@ -181,7 +199,8 @@ class CulturalContextScreen extends ConsumerWidget {
             ),
             child: BouncingButton(
               onPressed: () async {
-                if (mediaItem.url.contains("youtube.com") || mediaItem.url.contains("youtu.be")) {
+                if (mediaItem.url.contains("youtube.com") ||
+                    mediaItem.url.contains("youtu.be")) {
                   final videoId = _extractVideoId(mediaItem.url);
                   if (videoId != null) {
                     final video = YoutubeVideo(
@@ -205,7 +224,9 @@ class CulturalContextScreen extends ConsumerWidget {
                       launchUrl(uri, mode: LaunchMode.externalApplication);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Unable to open this video. Please try again later.')),
+                        SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .unable_to_open_this_video_please)),
                       );
                     }
                   }
@@ -213,7 +234,8 @@ class CulturalContextScreen extends ConsumerWidget {
                   Navigator.pushReplacement(
                     context,
                     SwipeBackPageRoute(
-                      builder: (_) => WebBrowserScreen(initialUrl: mediaItem.url),
+                      builder: (_) =>
+                          WebBrowserScreen(initialUrl: mediaItem.url),
                     ),
                   );
                 }
@@ -243,7 +265,8 @@ class CulturalContextScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Icon(Icons.arrow_forward, color: theme.colorScheme.onPrimary),
+                    Icon(Icons.arrow_forward,
+                        color: theme.colorScheme.onPrimary),
                   ],
                 ),
               ),
@@ -271,7 +294,8 @@ class CulturalContextScreen extends ConsumerWidget {
       if (uri.pathSegments.contains('watch')) {
         return uri.queryParameters['v'];
       }
-      if (uri.pathSegments.contains('embed') || uri.pathSegments.contains('v')) {
+      if (uri.pathSegments.contains('embed') ||
+          uri.pathSegments.contains('v')) {
         return uri.pathSegments.last;
       }
     }
@@ -280,10 +304,11 @@ class CulturalContextScreen extends ConsumerWidget {
   }
 
   /// Parses AI-generated structured insight text with ## headings, - bullets, and **bold**.
-  Widget _buildStructuredInsight(BuildContext context, String text, ThemeData theme) {
+  Widget _buildStructuredInsight(
+      BuildContext context, String text, ThemeData theme) {
     final lines = text.split('\n');
     final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
-    
+
     final baseStyle = theme.textTheme.bodyLarge?.copyWith(
       height: 1.8,
       fontSize: 17,
@@ -301,16 +326,16 @@ class CulturalContextScreen extends ConsumerWidget {
       color: theme.colorScheme.onSurface,
       height: 1.4,
     );
-    
+
     final List<Widget> widgets = [];
-    
+
     for (final line in lines) {
       final trimmed = line.trim();
       if (trimmed.isEmpty) {
         widgets.add(const SizedBox(height: 8));
         continue;
       }
-      
+
       // Subheading: "## Something"
       if (trimmed.startsWith('## ')) {
         final heading = trimmed.substring(3).trim();
@@ -320,11 +345,12 @@ class CulturalContextScreen extends ConsumerWidget {
         ));
         continue;
       }
-      
+
       // Bullet point: "- Something"
       if (trimmed.startsWith('- ')) {
         final bulletContent = trimmed.substring(2).trim();
-        final spans = _buildRichSpans(bulletContent, baseStyle!, hanziStyle!, chineseRegex, context, theme);
+        final spans = _buildRichSpans(bulletContent, baseStyle!, hanziStyle!,
+            chineseRegex, context, theme);
         widgets.add(Padding(
           padding: const EdgeInsets.only(left: 12, bottom: 8),
           child: Row(
@@ -332,7 +358,7 @@ class CulturalContextScreen extends ConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 2, right: 8),
-                child: Text('•', style: baseStyle),
+                child: Text('â€¢', style: baseStyle),
               ),
               Expanded(child: RichText(text: TextSpan(children: spans))),
             ],
@@ -340,21 +366,22 @@ class CulturalContextScreen extends ConsumerWidget {
         ));
         continue;
       }
-      
+
       // Regular paragraph
-      final spans = _buildRichSpans(trimmed, baseStyle!, hanziStyle!, chineseRegex, context, theme);
+      final spans = _buildRichSpans(
+          trimmed, baseStyle!, hanziStyle!, chineseRegex, context, theme);
       widgets.add(Padding(
         padding: const EdgeInsets.only(bottom: 14),
         child: RichText(text: TextSpan(children: spans)),
       ));
     }
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: widgets,
     );
   }
-  
+
   /// Builds a list of [TextSpan] from raw text, making Chinese characters tappable
   /// and preserving **bold** markers.
   List<TextSpan> _buildRichSpans(
@@ -369,7 +396,7 @@ class CulturalContextScreen extends ConsumerWidget {
     final List<_BoldRange> boldRanges = [];
     final StringBuffer cleanBuffer = StringBuffer();
     bool insideBold = false;
-    
+
     for (int i = 0; i < text.length; i++) {
       if (i + 1 < text.length && text[i] == '*' && text[i + 1] == '*') {
         insideBold = !insideBold;
@@ -381,7 +408,8 @@ class CulturalContextScreen extends ConsumerWidget {
           // Close the last opened bold range
           for (int j = boldRanges.length - 1; j >= 0; j--) {
             if (boldRanges[j].end == -1) {
-              boldRanges[j] = _BoldRange(start: boldRanges[j].start, end: cleanBuffer.length);
+              boldRanges[j] = _BoldRange(
+                  start: boldRanges[j].start, end: cleanBuffer.length);
               break;
             }
           }
@@ -390,18 +418,21 @@ class CulturalContextScreen extends ConsumerWidget {
         cleanBuffer.write(text[i]);
       }
     }
-    
+
     final cleanText = cleanBuffer.toString();
     final List<TextSpan> spans = [];
-    
+
     for (int i = 0; i < cleanText.length; i++) {
       final char = cleanText[i];
       bool isInsideBoldRange = boldRanges.any((r) => i >= r.start && i < r.end);
-      
+
       final effectiveStyle = isInsideBoldRange
-          ? (chineseRegex.hasMatch(char) ? hanziStyle : baseStyle).copyWith(fontWeight: FontWeight.w800)
-          : chineseRegex.hasMatch(char) ? hanziStyle : baseStyle;
-      
+          ? (chineseRegex.hasMatch(char) ? hanziStyle : baseStyle)
+              .copyWith(fontWeight: FontWeight.w800)
+          : chineseRegex.hasMatch(char)
+              ? hanziStyle
+              : baseStyle;
+
       if (chineseRegex.hasMatch(char)) {
         spans.add(TextSpan(
           text: char,
@@ -415,12 +446,14 @@ class CulturalContextScreen extends ConsumerWidget {
         spans.add(TextSpan(text: char, style: effectiveStyle));
       }
     }
-    
+
     return spans;
   }
 
-  /// Legacy renderer — kept for backward compatibility with non-structured text.
-  Widget _buildClickableContext(BuildContext context, String text, ThemeData theme, {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
+  /// Legacy renderer â€” kept for backward compatibility with non-structured text.
+  Widget _buildClickableContext(
+      BuildContext context, String text, ThemeData theme,
+      {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
     final paragraphs = text.split('\n\n');
     final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
 
@@ -431,11 +464,13 @@ class CulturalContextScreen extends ConsumerWidget {
         content = content.replaceAll('**', '');
 
         final List<TextSpan> spans = [];
-        final baseStyle = customBaseStyle ?? theme.textTheme.bodyLarge?.copyWith(height: 1.6);
-        final hanziStyle = customHanziStyle ?? baseStyle?.copyWith(
-          color: theme.colorScheme.primary,
-          fontWeight: FontWeight.w600,
-        );
+        final baseStyle =
+            customBaseStyle ?? theme.textTheme.bodyLarge?.copyWith(height: 1.6);
+        final hanziStyle = customHanziStyle ??
+            baseStyle?.copyWith(
+              color: theme.colorScheme.primary,
+              fontWeight: FontWeight.w600,
+            );
 
         for (int i = 0; i < content.length; i++) {
           final char = content[i];
@@ -460,7 +495,6 @@ class CulturalContextScreen extends ConsumerWidget {
       }).toList(),
     );
   }
-  
 }
 
 /// Small helper to hold bold region boundaries in the cleaned text.

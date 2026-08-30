@@ -401,7 +401,7 @@ class _TravelInterpreterScreenState
                         Navigator.pop(ctx);
                       },
                       child: Text(AppLocalizations.of(context)!.send,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -706,7 +706,7 @@ class _TravelInterpreterScreenState
                                     items: supportedPartnerLanguages
                                         .map((lang) => DropdownMenuItem(
                                             value: lang,
-                                            child: Text("Partner ($lang)")))
+                                            child: Text("${AppLocalizations.of(context)?.partner ?? 'Partner'} ($lang)")))
                                         .toList(),
                                     onChanged: (val) {
                                       if (val != null) {
@@ -875,7 +875,7 @@ class _TravelInterpreterScreenState
                                   items: supportedTranslationLanguages
                                       .map((lang) => DropdownMenuItem(
                                           value: lang,
-                                          child: Text("You ($lang)")))
+                                          child: Text("${AppLocalizations.of(context)?.you ?? 'You'} ($lang)")))
                                       .toList(),
                                   onChanged: (val) {
                                     if (val != null) {
@@ -909,13 +909,13 @@ class _TravelInterpreterScreenState
                               if (_recordingSide != null)
                                 Row(
                                   children: [
-                                    Icon(Icons.circle,
+                                    const Icon(Icons.circle,
                                         color: Colors.redAccent, size: 12),
-                                    SizedBox(width: 8),
+                                    const SizedBox(width: 8),
                                     Text(
                                         AppLocalizations.of(context)!
                                             .youAreSpeaking,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.redAccent,
                                             fontWeight: FontWeight.bold)),
                                   ],

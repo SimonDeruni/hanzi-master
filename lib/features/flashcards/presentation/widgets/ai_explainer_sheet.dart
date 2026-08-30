@@ -407,7 +407,7 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
             child: HanziTextField(
               controller: _textController,
               decoration: InputDecoration(
-                hintText: "Ask a follow-up question...",
+                hintText: AppLocalizations.of(context)!.askFollowUpQuestion,
                 hintStyle: TextStyle(color: textColor.withValues(alpha: 0.4), fontSize: 14),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),

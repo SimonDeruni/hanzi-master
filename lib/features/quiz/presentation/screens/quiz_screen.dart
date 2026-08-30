@@ -3,11 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import '../../domain/entities/quiz_question.dart';
 
 class QuizScreen extends StatefulWidget {
   final List<Flashcard> availableCards;
-  
+
   const QuizScreen({super.key, required this.availableCards});
 
   @override
@@ -19,7 +20,7 @@ class _QuizScreenState extends State<QuizScreen> {
   int _currentIndex = 0;
   int _score = 0;
   bool _isFinished = false;
-  
+
   // Feedback state
   bool _hasAnswered = false;
   String? _selectedOptionId;
@@ -32,32 +33,36 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void _generateQuestions() {
     if (widget.availableCards.length < 4) return;
-    
+
     final random = Random();
     // Generate 10 questions or fewer
     final int count = min(10, widget.availableCards.length);
-    final List<Flashcard> targets = List.from(widget.availableCards)..shuffle(random);
-    
+    final List<Flashcard> targets = List.from(widget.availableCards)
+      ..shuffle(random);
+
     for (int i = 0; i < count; i++) {
       final target = targets[i];
       // Pick 3 distractors
-      final List<Flashcard> others = List.from(widget.availableCards)..removeWhere((c) => c.id == target.id);
+      final List<Flashcard> others = List.from(widget.availableCards)
+        ..removeWhere((c) => c.id == target.id);
       others.shuffle(random);
       final distractors = others.take(3).toList();
-      
+
       final options = [target, ...distractors]..shuffle(random);
-      final type = random.nextBool() ? QuizType.hanziToEnglish : QuizType.englishToHanzi;
-      
-      _questions.add(QuizQuestion(target: target, options: options, type: type));
+      final type =
+          random.nextBool() ? QuizType.hanziToEnglish : QuizType.englishToHanzi;
+
+      _questions
+          .add(QuizQuestion(target: target, options: options, type: type));
     }
   }
 
   void _handleAnswer(Flashcard selected) {
     if (_hasAnswered) return;
-    
+
     final question = _questions[_currentIndex];
     final correct = selected.id == question.target.id;
-    
+
     setState(() {
       _hasAnswered = true;
       _selectedOptionId = selected.id;
@@ -66,7 +71,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     Future.delayed(const Duration(seconds: 1), () {
       if (!mounted) return;
-      
+
       setState(() {
         _hasAnswered = false;
         _selectedOptionId = null;
@@ -83,8 +88,9 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     if (_questions.isEmpty) {
       return Scaffold(
-        appBar: AppBar(), 
-        body: Center(child: Text(AppLocalizations.of(context)!.notEnoughCardsFor)),
+        appBar: AppBar(),
+        body: Center(
+            child: Text(AppLocalizations.of(context)!.notEnoughCardsFor)),
       );
     }
 
@@ -96,7 +102,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Question ${_currentIndex + 1}/${_questions.length}"),
+        title: Text(AppLocalizations.of(context)?.question(_currentIndex + 1, _questions.length) ?? "Question ${_currentIndex + 1}/${_questions.length}"),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
@@ -119,29 +125,46 @@ class _QuizScreenState extends State<QuizScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(24),
-                  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10)],
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 10)
+                  ],
                 ),
                 child: Column(
                   children: [
                     Text(
-                      question.isHanziToEnglish ? "What does this mean?" : "Which character is:",
+                      question.isHanziToEnglish
+                          ? AppLocalizations.of(context)!.whatDoesThisMean
+                          : AppLocalizations.of(context)!.whichCharacterIs,
                       style: const TextStyle(color: Colors.grey, fontSize: 14),
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      question.questionText,
-                      style: TextStyle(
-                        fontSize: question.isHanziToEnglish ? 64 : 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.indigo,
+                    if (question.isHanziToEnglish)
+                      Text(
+                        question.questionText,
+                        style: const TextStyle(
+                          fontSize: 64,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigo,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    else
+                      TranslatedDefinition(
+                        definition: question.target.definition,
+                        originalStyle: const TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigo,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
                   ],
                 ),
               ),
               const SizedBox(height: 32),
-              
+
               // Options
               ...question.options.map((opt) => _buildOption(opt, question)),
             ],
@@ -154,7 +177,7 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget _buildOption(Flashcard option, QuizQuestion question) {
     final isSelected = _selectedOptionId == option.id;
     final isTarget = option.id == question.target.id;
-    
+
     Color color = Colors.white;
     if (_hasAnswered) {
       if (isTarget) {
@@ -177,11 +200,19 @@ class _QuizScreenState extends State<QuizScreen> {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: Colors.indigo.withValues(alpha: 0.1)),
           ),
-          child: Text(
-            question.optionText(option),
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-            textAlign: TextAlign.center,
-          ),
+          child: question.isHanziToEnglish
+              ? TranslatedDefinition(
+                  definition: option.definition,
+                  originalStyle: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
+                )
+              : Text(
+                  option.hanzi,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
+                ),
         ),
       ),
     );
@@ -194,17 +225,22 @@ class _QuizScreenState extends State<QuizScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(AppLocalizations.of(context)!.quizComplete, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+              Text(AppLocalizations.of(context)!.quizComplete,
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
-              Text("Score: $_score / ${_questions.length}", style: const TextStyle(fontSize: 24, color: Colors.indigo)),
+              Text("Score: $_score / ${_questions.length}",
+                  style: const TextStyle(fontSize: 24, color: Colors.indigo)),
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 ),
-                child: Text(AppLocalizations.of(context)!.returnToCourse, style: const TextStyle(color: Colors.white)),
+                child: Text(AppLocalizations.of(context)!.returnToCourse,
+                    style: const TextStyle(color: Colors.white)),
               )
             ],
           ),

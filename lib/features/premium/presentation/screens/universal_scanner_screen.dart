@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
-import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'dart:io';
 import '../../../../core/services/ocr_service.dart';
 import '../../../../core/services/gemini_service.dart';
@@ -24,32 +24,29 @@ import '../../../../shared/widgets/tappable_hanzi_text.dart';
 import '../widgets/ar_bounding_box_painter.dart';
 import '../widgets/interactive_image_overlay.dart';
 
-enum CameraIntent {
-  dictionary,
-  translationHub,
-  travelAR,
-  textExtraction
-}
+enum CameraIntent { dictionary, translationHub, travelAR, textExtraction }
 
 class UniversalScannerScreen extends ConsumerStatefulWidget {
   final CameraIntent intent;
 
   const UniversalScannerScreen({
-    super.key, 
+    super.key,
     this.intent = CameraIntent.translationHub,
   });
 
   @override
-  ConsumerState<UniversalScannerScreen> createState() => _UniversalScannerScreenState();
+  ConsumerState<UniversalScannerScreen> createState() =>
+      _UniversalScannerScreenState();
 }
 
-class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen> with WidgetsBindingObserver {
+class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
+    with WidgetsBindingObserver {
   late final OcrService _ocrService;
   late final GeminiService _geminiService;
   CameraController? _cameraController;
   List<CameraDescription> _cameras = [];
   bool _isCameraInitialized = false;
-  
+
   bool _isScanning = false;
   bool _isLookingUp = false;
   bool _showingResults = false;
@@ -79,7 +76,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   String? _recognizedText;
   Size? _imageSize;
   List<AiTextBlock> _aiTextBlocks = [];
-  final TextRecognizer _textRecognizer = TextRecognizer(script: TextRecognitionScript.chinese);
+  final TextRecognizer _textRecognizer =
+      TextRecognizer(script: TextRecognitionScript.chinese);
   List<TranslatedTextBlock> _translatedBlocks = [];
   bool _permissionDenied = false;
 
@@ -107,13 +105,16 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _cameras.first,
           ResolutionPreset.high,
           enableAudio: false,
-          imageFormatGroup: Platform.isAndroid ? ImageFormatGroup.nv21 : ImageFormatGroup.bgra8888,
+          imageFormatGroup: Platform.isAndroid
+              ? ImageFormatGroup.nv21
+              : ImageFormatGroup.bgra8888,
         );
 
         try {
           await _cameraController!.initialize();
           try {
-            await _cameraController!.lockCaptureOrientation(DeviceOrientation.portraitUp);
+            await _cameraController!
+                .lockCaptureOrientation(DeviceOrientation.portraitUp);
           } catch (e) {
             debugPrint("Orientation lock error (ignored): $e");
           }
@@ -128,21 +129,25 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             }
           }
         } on CameraException catch (e) {
-          if (e.code == 'CameraAccessDenied' || e.code == 'CameraAccessDeniedWithoutPrompt') {
+          if (e.code == 'CameraAccessDenied' ||
+              e.code == 'CameraAccessDeniedWithoutPrompt') {
             if (mounted) {
               setState(() => _permissionDenied = true);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: const Text(
                     'Camera permission required for live scanning.',
-                    style: TextStyle(color: Color(0xFFFDFCF0), fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                        color: Color(0xFFFDFCF0), fontWeight: FontWeight.w500),
                   ),
                   backgroundColor: const Color(0xFF1A1A1B),
                   behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  margin: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  margin:
+                      const EdgeInsets.only(bottom: 24, left: 16, right: 16),
                   action: SnackBarAction(
-                    label: 'Settings',
+                    label: AppLocalizations.of(context)!.settingsTitle,
                     textColor: const Color(0xFFFDFCF0),
                     onPressed: () async {
                       await openAppSettings();
@@ -190,7 +195,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       Future.delayed(const Duration(milliseconds: 300), () {
         if (mounted) _initializeCamera();
       });
-    } else if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
+    } else if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
       if (_cameraController != null && _cameraController!.value.isInitialized) {
         _cameraController!.dispose();
         setState(() {
@@ -207,8 +213,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   Future<void> _handleScaleUpdate(ScaleUpdateDetails details) async {
     if (_cameraController == null || !_isCameraInitialized) return;
-    
-    double zoom = (_baseZoomLevel * details.scale).clamp(_minZoomLevel, _maxZoomLevel);
+
+    double zoom =
+        (_baseZoomLevel * details.scale).clamp(_minZoomLevel, _maxZoomLevel);
     if (zoom != _currentZoomLevel) {
       setState(() => _currentZoomLevel = zoom);
       await _cameraController!.setZoomLevel(zoom);
@@ -237,7 +244,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       newCache[label] = flashcard;
       if (mounted) setState(() => _translationCache = newCache);
     } catch (e) {
-      debugPrint('Error fetching translation for $label: $e');
+      debugPrint(AppLocalizations.of(context)!.error_fetching_translation_for(label));
       final newCache = Map<String, Flashcard>.from(_translationCache);
       newCache.remove(label);
       if (mounted) setState(() => _translationCache = newCache);
@@ -273,7 +280,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       final List<TranslatedTextBlock> newBlocks = [];
       if (recognizedText != null) {
         for (final block in recognizedText.blocks) {
-          if (block.text.trim().length > 1 && chineseRegex.hasMatch(block.text)) {
+          if (block.text.trim().length > 1 &&
+              chineseRegex.hasMatch(block.text)) {
             newBlocks.add(TranslatedTextBlock(
               boundingBox: block.boundingBox,
               originalText: block.text,
@@ -290,7 +298,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         for (final label in obj.labels) {
           final text = label.text;
           if (!currentCache.containsKey(text)) {
-            currentCache[text] = Flashcard(hanzi: '...', pinyin: '...', definition: 'Loading...', id: 'temp_$text', hskLevel: 0, strokePaths: const [], modeStats: const {});
+            currentCache[text] = Flashcard(
+                hanzi: '...',
+                pinyin: '...',
+                definition: 'Loading...',
+                id: 'temp_$text',
+                hskLevel: 0,
+                strokePaths: const [],
+                modeStats: const {});
             cacheUpdated = true;
             _fetchTranslation(text);
           }
@@ -320,11 +335,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     if (Platform.isIOS) {
       rotation = InputImageRotationValue.fromRawValue(sensorOrientation);
     } else if (Platform.isAndroid) {
-      var rotationCompensation = _cameraController!.value.deviceOrientation.index;
+      var rotationCompensation =
+          _cameraController!.value.deviceOrientation.index;
       if (camera.lensDirection == CameraLensDirection.front) {
         rotationCompensation = (sensorOrientation + rotationCompensation) % 360;
       } else {
-        rotationCompensation = (sensorOrientation - rotationCompensation + 360) % 360;
+        rotationCompensation =
+            (sensorOrientation - rotationCompensation + 360) % 360;
       }
       rotation = InputImageRotationValue.fromRawValue(rotationCompensation);
     }
@@ -337,7 +354,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     if (image.planes.isEmpty) return null;
 
     return InputImage.fromBytes(
-      bytes: Platform.isAndroid ? image.planes[0].bytes : image.planes.first.bytes,
+      bytes:
+          Platform.isAndroid ? image.planes[0].bytes : image.planes.first.bytes,
       metadata: InputImageMetadata(
         size: Size(image.width.toDouble(), image.height.toDouble()),
         rotation: rotation,
@@ -348,8 +366,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Future<void> _takePhoto() async {
-    if (_cameraController == null || !_cameraController!.value.isInitialized || _isScanning || _isLookingUp) return;
-    
+    if (_cameraController == null ||
+        !_cameraController!.value.isInitialized ||
+        _isScanning ||
+        _isLookingUp) {
+      return;
+    }
+
     HapticsManager.light();
     setState(() {
       _isScanning = true;
@@ -372,7 +395,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   Future<void> _pickFromGallery() async {
     if (_isScanning || _isLookingUp) return;
-    
+
     HapticsManager.light();
     setState(() {
       _isScanning = true;
@@ -384,7 +407,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     try {
       final result = await _ocrService.scanImageDetailed(fromCamera: false);
       if (result != null) {
-        await _processImageDetailed(result.image, preRecognized: result.text, preBlocks: result.blocks);
+        await _processImageDetailed(result.image,
+            preRecognized: result.text, preBlocks: result.blocks);
       } else {
         setState(() {
           _isScanning = false;
@@ -400,7 +424,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
   }
 
-  Future<void> _processImageDetailed(XFile image, {String? preRecognized, List<AiTextBlock>? preBlocks}) async {
+  Future<void> _processImageDetailed(XFile image,
+      {String? preRecognized, List<AiTextBlock>? preBlocks}) async {
     ({String text, List<AiTextBlock> blocks})? result;
     if (preRecognized != null) {
       result = (text: preRecognized, blocks: preBlocks ?? <AiTextBlock>[]);
@@ -427,7 +452,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         final recognizedText = await _textRecognizer.processImage(inputImage);
         if (recognizedText.blocks.isNotEmpty && result != null) {
           final mlBlocks = recognizedText.blocks
-              .where((b) => b.text.trim().isNotEmpty && b.boundingBox.width > 0 && b.boundingBox.height > 0)
+              .where((b) =>
+                  b.text.trim().isNotEmpty &&
+                  b.boundingBox.width > 0 &&
+                  b.boundingBox.height > 0)
               .map((b) => AiTextBlock(
                     text: b.text.trim(),
                     x: b.boundingBox.left,
@@ -483,7 +511,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context)!.noChineseCharactersFound)),
+          SnackBar(
+              content:
+                  Text(AppLocalizations.of(context)!.noChineseCharactersFound)),
         );
       }
     }
@@ -491,7 +521,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   Future<void> _processExtractedText(String text) async {
     HapticsManager.success();
-    
+
     if (widget.intent == CameraIntent.textExtraction) {
       Navigator.pop(context, text);
       return;
@@ -506,7 +536,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     });
 
     final gemini = ref.read(geminiServiceProvider);
-    
+
     try {
       final extraction = await gemini.extractVocabularyFromScan(text);
       if (mounted) {
@@ -528,7 +558,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _isLookingUp = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('AI Analysis Failed')),
+          SnackBar(
+              content: Text(AppLocalizations.of(context)!.aiAnalysisFailed)),
         );
       }
     }
@@ -544,15 +575,17 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     if (_matchedCharacters.isEmpty) return;
     HapticsManager.light();
 
-    final List<Flashcard> cards = _matchedCharacters.map((info) => Flashcard(
-      id: '',
-      hanzi: info.hanzi,
-      pinyin: info.pinyin,
-      definition: info.meaning,
-      hskLevel: info.hskLevel,
-      strokePaths: const [],
-      modeStats: const {},
-    )).toList();
+    final List<Flashcard> cards = _matchedCharacters
+        .map((info) => Flashcard(
+              id: '',
+              hanzi: info.hanzi,
+              pinyin: info.pinyin,
+              definition: info.meaning,
+              hskLevel: info.hskLevel,
+              strokePaths: const [],
+              modeStats: const {},
+            ))
+        .toList();
 
     await DeckSelectionSheet.show(
       context,
@@ -568,7 +601,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   Future<void> _addSingleCard(AiWord info) async {
     HapticsManager.light();
-    
+
     final card = Flashcard(
       id: '',
       hanzi: info.hanzi,
@@ -593,16 +626,24 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(l10n.universalScanner, style: const TextStyle(color: Colors.white, shadows: [Shadow(blurRadius: 10, color: Colors.black54)])),
+        title: Text(l10n.universalScanner,
+            style: const TextStyle(
+                color: Colors.white,
+                shadows: [Shadow(blurRadius: 10, color: Colors.black54)])),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
-          if (_isCameraInitialized && !_showingInteractiveImage && !_showingResults)
+          if (_isCameraInitialized &&
+              !_showingInteractiveImage &&
+              !_showingResults)
             IconButton(
               icon: Icon(
-                _flashMode == FlashMode.always ? Icons.flash_on :
-                _flashMode == FlashMode.auto ? Icons.flash_auto : Icons.flash_off,
+                _flashMode == FlashMode.always
+                    ? Icons.flash_on
+                    : _flashMode == FlashMode.auto
+                        ? Icons.flash_auto
+                        : Icons.flash_off,
                 color: Colors.white,
                 shadows: const [Shadow(blurRadius: 10, color: Colors.black54)],
               ),
@@ -616,7 +657,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 } else {
                   newMode = FlashMode.off;
                 }
-                
+
                 try {
                   await _cameraController!.setFlashMode(newMode);
                   setState(() {
@@ -632,19 +673,23 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       body: Stack(
         children: [
           // Camera Preview (hidden when gallery image is shown)
-          if (_isCameraInitialized && _cameraController != null && !_showingInteractiveImage)
+          if (_isCameraInitialized &&
+              _cameraController != null &&
+              !_showingInteractiveImage)
             Positioned.fill(
               child: GestureDetector(
                 onScaleStart: _handleScaleStart,
                 onScaleUpdate: _handleScaleUpdate,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    final double screenAspectRatio = constraints.maxWidth / constraints.maxHeight;
-                    final double cameraAspectRatio = _cameraController!.value.aspectRatio;
-                    
+                    final double screenAspectRatio =
+                        constraints.maxWidth / constraints.maxHeight;
+                    final double cameraAspectRatio =
+                        _cameraController!.value.aspectRatio;
+
                     // In portrait, camera visual ratio is inverted (1 / cameraAspectRatio)
                     final double visualCameraRatio = 1 / cameraAspectRatio;
-                    
+
                     double scale = screenAspectRatio / visualCameraRatio;
                     if (scale < 1) scale = 1 / scale;
 
@@ -662,7 +707,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             )
           else
             Positioned.fill(child: Container(color: Colors.black)),
-            
+
           // Blur overlay during loading or results
           if (_isScanning || _isLookingUp || _showingResults)
             Positioned.fill(
@@ -673,38 +718,42 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 ),
               ),
             ),
-            
+
           // Main UI Content
           SafeArea(
             child: Column(
               children: [
                 const SizedBox(height: 16),
-                
+
                 // Content Area
                 Expanded(
                   child: _buildMainContent(theme, l10n),
                 ),
-                
+
                 // Zoom Slider
-                if (!_showingResults && !_showingInteractiveImage && _isCameraInitialized)
+                if (!_showingResults &&
+                    !_showingInteractiveImage &&
+                    _isCameraInitialized)
                   _buildZoomSlider(),
 
                 // Deep Analysis button for AR mode
-                if (_isArLensMode && !_showingResults && !_showingInteractiveImage && _isCameraInitialized)
+                if (_isArLensMode &&
+                    !_showingResults &&
+                    !_showingInteractiveImage &&
+                    _isCameraInitialized)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: FloatingActionButton.extended(
                       onPressed: _deepAnalyzeScene,
                       icon: const Icon(Icons.auto_awesome),
-                      label: const Text('Deep Analysis'),
+                      label: Text(AppLocalizations.of(context)!.deepAnalysis),
                       backgroundColor: theme.colorScheme.primaryContainer,
                       foregroundColor: theme.colorScheme.onPrimaryContainer,
                     ),
                   ),
 
                 // Bottom Control Panel
-                if (!_showingResults)
-                  _buildBottomControls(theme, l10n),
+                if (!_showingResults) _buildBottomControls(theme, l10n),
               ],
             ),
           ),
@@ -712,9 +761,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       ),
     );
   }
-  
+
   Future<void> _deepAnalyzeScene() async {
-    if (_cameraController == null || !_cameraController!.value.isInitialized || _isScanning || _isLookingUp) return;
+    if (_cameraController == null ||
+        !_cameraController!.value.isInitialized ||
+        _isScanning ||
+        _isLookingUp) {
+      return;
+    }
 
     HapticsManager.light();
     setState(() {
@@ -729,8 +783,6 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       final image = await _cameraController!.takePicture();
       final bytes = await image.readAsBytes();
 
-      final langCode = ref.read(translationLanguageProvider);
-
       final Set<String> currentLabels = {};
       for (final obj in _detectedObjects) {
         if (obj.labels.isNotEmpty) {
@@ -738,7 +790,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         }
       }
 
-      final result = await _geminiService.analyzeSceneObjects(bytes, currentLabels.toList(), langCode);
+      // Keep canonical word definitions in English. The presentation layer
+      // translates them and can therefore honor the English override.
+      final result = await _geminiService.analyzeSceneObjects(
+          bytes, currentLabels.toList(), 'English');
 
       final updatedLabels = result['updatedLabels'] as Map<String, AiWord>;
       final allObjects = result['allObjects'] as List<AiWord>;
@@ -775,7 +830,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         if (_isArLensMode) {
           _cameraController!.startImageStream(_processCameraImage);
         }
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('AI Scene Analysis Failed')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content:
+                Text(AppLocalizations.of(context)!.aiSceneAnalysisFailed)));
       }
     }
   }
@@ -788,17 +845,22 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.no_photography_outlined, size: 64, color: Colors.white.withValues(alpha: 0.5)),
+              Icon(Icons.no_photography_outlined,
+                  size: 64, color: Colors.white.withValues(alpha: 0.5)),
               const SizedBox(height: 16),
               const Text(
                 'Camera Access Required',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               const SizedBox(height: 8),
               Text(
                 'Please enable camera access in your device settings to use this feature.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.white.withValues(alpha: 0.7)),
+                style: TextStyle(
+                    fontSize: 16, color: Colors.white.withValues(alpha: 0.7)),
               ),
               const SizedBox(height: 24),
               ElevatedButton.icon(
@@ -807,19 +869,22 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   _startPermissionPolling();
                 },
                 icon: const Icon(Icons.settings),
-                label: const Text('Open Settings'),
+                label: Text(AppLocalizations.of(context)!.open_settings),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.colorScheme.primaryContainer,
                   foregroundColor: theme.colorScheme.onPrimaryContainer,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
               ),
               const SizedBox(height: 16),
               TextButton.icon(
                 onPressed: () => _initializeCamera(),
                 icon: const Icon(Icons.refresh, color: Colors.white70),
-                label: const Text('I\'ve granted access', style: TextStyle(color: Colors.white70)),
+                label: const Text("I've granted access",
+                    style: TextStyle(color: Colors.white70)),
               ),
             ],
           ),
@@ -829,15 +894,21 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
     if (_isScanning || _isLookingUp) {
       final phase = _isScanning ? _scanPhase : 3;
-      final steps = ['Analyzing image…', 'Extracting Chinese text…', 'Looking up vocabulary…'];
+      final steps = [
+        'Analyzing image…',
+        'Extracting Chinese text…',
+        'Looking up vocabulary…'
+      ];
       final currentStep = phase.clamp(1, 3) - 1;
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              width: 48, height: 48,
-              child: CircularProgressIndicator(color: Colors.white, strokeWidth: 3),
+              width: 48,
+              height: 48,
+              child: CircularProgressIndicator(
+                  color: Colors.white, strokeWidth: 3),
             ),
             const SizedBox(height: 24),
             ...List.generate(steps.length, (i) {
@@ -849,16 +920,25 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      isDone ? Icons.check_circle : (isActive ? Icons.circle : Icons.radio_button_unchecked),
-                      color: isDone ? Colors.green : (isActive ? Colors.white : Colors.white38),
+                      isDone
+                          ? Icons.check_circle
+                          : (isActive
+                              ? Icons.circle
+                              : Icons.radio_button_unchecked),
+                      color: isDone
+                          ? Colors.green
+                          : (isActive ? Colors.white : Colors.white38),
                       size: 18,
                     ),
                     const SizedBox(width: 10),
                     Text(
                       steps[i],
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: isDone ? Colors.green : (isActive ? Colors.white : Colors.white38),
-                        fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+                        color: isDone
+                            ? Colors.green
+                            : (isActive ? Colors.white : Colors.white38),
+                        fontWeight:
+                            isActive ? FontWeight.bold : FontWeight.normal,
                       ),
                     ),
                   ],
@@ -869,17 +949,18 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         ),
       );
     }
-    
+
     if (_showingResults) {
       return Column(
         children: [
-           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
+                      icon: const Icon(Icons.close, color: Colors.white),
                       onPressed: () {
                         setState(() {
                           _showingResults = false;
@@ -887,12 +968,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                             _showingInteractiveImage = true;
                           }
                         });
-                      }
-                    ),
-                  Text("Results", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
+                      }),
+                  Text(AppLocalizations.of(context)!.results,
+                      style: theme.textTheme.titleMedium
+                          ?.copyWith(color: Colors.white)),
                   IconButton(
-                    icon: const Icon(Icons.camera_alt_outlined, color: Colors.white),
-                    tooltip: 'Scan Another',
+                    icon: const Icon(Icons.camera_alt_outlined,
+                        color: Colors.white),
+                    tooltip: AppLocalizations.of(context)!.scanAnother,
                     onPressed: () {
                       setState(() {
                         _showingResults = false;
@@ -906,8 +989,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                       });
                     },
                   ),
-               ]
-            ),
+                ]),
           ),
           Expanded(child: _buildResultsList(theme, l10n)),
         ],
@@ -915,63 +997,65 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
 
     if (_showingInteractiveImage) {
-       return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                    IconButton(
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
                       icon: const Icon(Icons.close, color: Colors.white),
                       onPressed: () {
                         setState(() {
                           _showingInteractiveImage = false;
                           _capturedImage = null;
                         });
-                        _cameraController?.startImageStream(_processCameraImage);
-                      }
-                    ),
-                    const SizedBox(width: 48),
-                 ]
-              ),
+                        _cameraController
+                            ?.startImageStream(_processCameraImage);
+                      }),
+                  const SizedBox(width: 48),
+                ]),
+          ),
+          Expanded(
+            child: _capturedImage != null
+                ? InteractiveImageOverlay(
+                    image: _capturedImage!,
+                    blocks: _aiTextBlocks,
+                    imageSize: _imageSize ?? const Size(1000, 1000),
+                    onWordTapped: (word) {
+                      _lookupSingleWord(word);
+                    },
+                  )
+                : const SizedBox.shrink(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 24.0),
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                if (_recognizedText != null) {
+                  _processExtractedText(_recognizedText!);
+                }
+              },
+              icon: const Icon(Icons.list),
+              label: Text(AppLocalizations.of(context)!.viewAsList),
+              backgroundColor: theme.colorScheme.primaryContainer,
+              foregroundColor: theme.colorScheme.onPrimaryContainer,
             ),
-            Expanded(
-              child: _capturedImage != null
-                  ? InteractiveImageOverlay(
-                      image: _capturedImage!,
-                      blocks: _aiTextBlocks,
-                      imageSize: _imageSize ?? const Size(1000, 1000),
-                      onWordTapped: (word) {
-                        _lookupSingleWord(word);
-                      },
-                    )
-                  : const SizedBox.shrink(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 24.0),
-              child: FloatingActionButton.extended(
-                onPressed: () {
-                  if (_recognizedText != null) {
-                    _processExtractedText(_recognizedText!);
-                  }
-                },
-                icon: const Icon(Icons.list),
-                label: const Text('View as List'),
-                backgroundColor: theme.colorScheme.primaryContainer,
-                foregroundColor: theme.colorScheme.onPrimaryContainer,
-              ),
-            ),
-          ],
-       );
+          ),
+        ],
+      );
     }
 
     if (_isArLensMode) {
       if (_cameraController == null) return const SizedBox.shrink();
       InputImageRotation rotation = InputImageRotation.rotation0deg;
-      final sensorOrientation = _cameraController!.description.sensorOrientation;
-      final rawRotation = InputImageRotationValue.fromRawValue(sensorOrientation);
+      final sensorOrientation =
+          _cameraController!.description.sensorOrientation;
+      final rawRotation =
+          InputImageRotationValue.fromRawValue(sensorOrientation);
       if (rawRotation != null) rotation = rawRotation;
 
       return GestureDetector(
@@ -984,9 +1068,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             _cameraController!.value.previewSize!.height,
           );
 
-          final bool isPortrait = rotation == InputImageRotation.rotation90deg || rotation == InputImageRotation.rotation270deg;
-          final double imageWidth = isPortrait ? imageSize.height : imageSize.width;
-          final double imageHeight = isPortrait ? imageSize.width : imageSize.height;
+          final bool isPortrait =
+              rotation == InputImageRotation.rotation90deg ||
+                  rotation == InputImageRotation.rotation270deg;
+          final double imageWidth =
+              isPortrait ? imageSize.height : imageSize.width;
+          final double imageHeight =
+              isPortrait ? imageSize.width : imageSize.height;
 
           final double scaleX = size.width / imageWidth;
           final double scaleY = size.height / imageHeight;
@@ -1014,45 +1102,46 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         child: Stack(
           fit: StackFit.expand,
           children: [
-          CustomPaint(
-            painter: TranslationOverlayPainter(
-              blocks: _translatedBlocks,
-              imageSize: Size(
-                _cameraController!.value.previewSize!.height,
-                _cameraController!.value.previewSize!.width,
+            CustomPaint(
+              painter: TranslationOverlayPainter(
+                blocks: _translatedBlocks,
+                imageSize: Size(
+                  _cameraController!.value.previewSize!.height,
+                  _cameraController!.value.previewSize!.width,
+                ),
+                screenSize: MediaQuery.of(context).size,
               ),
-              screenSize: MediaQuery.of(context).size,
             ),
-          ),
-          CustomPaint(
-            painter: ARBoundingBoxPainter(
-              _detectedObjects,
-              _translationCache,
-              Size(
-                _cameraController!.value.previewSize!.width,
-                _cameraController!.value.previewSize!.height,
+            CustomPaint(
+              painter: ARBoundingBoxPainter(
+                _detectedObjects,
+                _translationCache,
+                Size(
+                  _cameraController!.value.previewSize!.width,
+                  _cameraController!.value.previewSize!.height,
+                ),
+                rotation,
               ),
-              rotation,
             ),
-          ),
-          const Positioned(
-            top: 20,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Text(
-                "Point at Chinese text to translate",
-                style: TextStyle(
-                  color: Colors.white,
-                  backgroundColor: Colors.black54,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+            Positioned(
+              top: 20,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .point_at_chinese_text_to_translate,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    backgroundColor: Colors.black54,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       );
     }
 
@@ -1061,10 +1150,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       child: const SizedBox.expand(),
     );
   }
-  
+
   Widget _buildZoomSlider() {
     if (_minZoomLevel >= _maxZoomLevel) return const SizedBox.shrink();
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 8.0),
       child: Row(
@@ -1090,120 +1179,134 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Widget _buildBottomControls(ThemeData theme, AppLocalizations l10n) {
-     return Padding(
-       padding: const EdgeInsets.only(bottom: 32.0, left: 32.0, right: 32.0),
-       child: ClipRRect(
-         borderRadius: BorderRadius.circular(40),
-         child: BackdropFilter(
-           filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-           child: Container(
-             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-             decoration: BoxDecoration(
-               color: Colors.black.withValues(alpha: 0.2),
-               border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1),
-               borderRadius: BorderRadius.circular(40),
-             ),
-             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // Left Side: Gallery Button or spacing
-                  if (!_isArLensMode)
-                    _buildSideButton(
-                      icon: Icons.photo_library_outlined,
-                      onTap: _pickFromGallery,
-                    )
-                  else if (widget.intent != CameraIntent.textExtraction)
-                    const SizedBox(width: 60), // Maintain layout balance
-                  
-                  // Center: Premium Shutter Button or Scanner mode return
-                  if (!_isArLensMode || widget.intent == CameraIntent.travelAR)
-                    GestureDetector(
-                      onTap: () {
-                         if (widget.intent == CameraIntent.textExtraction) {
-                            // Raw capture is handled inside `_takePhoto` and `_processExtractedText`
-                            _takePhoto();
-                         } else {
-                            _takePhoto();
-                         }
-                      },
-                      child: Container(
-                        width: 76,
-                        height: 76,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 3),
-                          color: Colors.transparent,
-                        ),
-                        child: Center(
-                          child: Container(
-                            width: 62,
-                            height: 62,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 32.0, left: 32.0, right: 32.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(40),
+        child: BackdropFilter(
+          filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.2),
+              border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.1), width: 1),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Left Side: Gallery Button or spacing
+                if (!_isArLensMode)
+                  _buildSideButton(
+                    icon: Icons.photo_library_outlined,
+                    onTap: _pickFromGallery,
+                  )
+                else if (widget.intent != CameraIntent.textExtraction)
+                  const SizedBox(width: 60), // Maintain layout balance
+
+                // Center: Premium Shutter Button or Scanner mode return
+                if (!_isArLensMode || widget.intent == CameraIntent.travelAR)
+                  GestureDetector(
+                    onTap: () {
+                      if (widget.intent == CameraIntent.textExtraction) {
+                        // Raw capture is handled inside `_takePhoto` and `_processExtractedText`
+                        _takePhoto();
+                      } else {
+                        _takePhoto();
+                      }
+                    },
+                    child: Container(
+                      width: 76,
+                      height: 76,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.8),
+                            width: 3),
+                        color: Colors.transparent,
+                      ),
+                      child: Center(
+                        child: Container(
+                          width: 62,
+                          height: 62,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                    )
-                  else if (widget.intent != CameraIntent.textExtraction)
-                    _buildSideButton(
-                      icon: Icons.document_scanner,
-                      isActive: false,
-                      onTap: () => _setMode(false),
                     ),
-                  
-                  // Right Side: AR Lens Button
-                  if (widget.intent != CameraIntent.textExtraction)
-                    _buildSideButton(
-                      icon: Icons.view_in_ar,
-                      isActive: _isArLensMode,
-                      onTap: () => _setMode(!_isArLensMode),
-                    ),
-                ],
-             ),
-           ),
-         ),
-       ),
-     );
+                  )
+                else if (widget.intent != CameraIntent.textExtraction)
+                  _buildSideButton(
+                    icon: Icons.document_scanner,
+                    isActive: false,
+                    onTap: () => _setMode(false),
+                  ),
+
+                // Right Side: AR Lens Button
+                if (widget.intent != CameraIntent.textExtraction)
+                  _buildSideButton(
+                    icon: Icons.view_in_ar,
+                    isActive: _isArLensMode,
+                    onTap: () => _setMode(!_isArLensMode),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
-  
-  Widget _buildSideButton({required IconData icon, required VoidCallback onTap, bool isActive = false}) {
-     return InkWell(
-       onTap: onTap,
-       borderRadius: BorderRadius.circular(30),
-       child: AnimatedContainer(
-         duration: const Duration(milliseconds: 200),
-         padding: const EdgeInsets.all(16),
-         decoration: BoxDecoration(
-           color: isActive ? Colors.white : Colors.white.withValues(alpha: 0.15),
-           shape: BoxShape.circle,
-         ),
-         child: Icon(icon, color: isActive ? Colors.black : Colors.white, size: 28),
-       ),
-     );
+
+  Widget _buildSideButton(
+      {required IconData icon,
+      required VoidCallback onTap,
+      bool isActive = false}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(30),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isActive ? Colors.white : Colors.white.withValues(alpha: 0.15),
+          shape: BoxShape.circle,
+        ),
+        child:
+            Icon(icon, color: isActive ? Colors.black : Colors.white, size: 28),
+      ),
+    );
   }
 
   Widget _buildResultsList(ThemeData theme, AppLocalizations l10n) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     if (widget.intent == CameraIntent.textExtraction) {
       return Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(l10n.extractedText, style: theme.textTheme.headlineMedium?.copyWith(color: Colors.white)),
+            Text(l10n.extractedText,
+                style: theme.textTheme.headlineMedium
+                    ?.copyWith(color: Colors.white)),
             const SizedBox(height: 16),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF1A1A1B).withValues(alpha: 0.95) : Colors.white.withValues(alpha: 0.9),
+                  color: isDark
+                      ? const Color(0xFF1A1A1B).withValues(alpha: 0.95)
+                      : Colors.white.withValues(alpha: 0.9),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: SingleChildScrollView(
-                  child: Text(_rawExtractedText, style: theme.textTheme.bodyLarge?.copyWith(height: 1.6, color: isDark ? Colors.white : Colors.black87)),
+                  child: Text(_rawExtractedText,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                          height: 1.6,
+                          color: isDark ? Colors.white : Colors.black87)),
                 ),
               ),
             ),
@@ -1216,17 +1319,21 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.primary,
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
               ),
-              icon: Icon(Icons.check_circle_outline, color: theme.colorScheme.onPrimary),
-              label: Text(l10n.useText, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onPrimary)),
+              icon: Icon(Icons.check_circle_outline,
+                  color: theme.colorScheme.onPrimary),
+              label: Text(l10n.useText,
+                  style: theme.textTheme.titleMedium
+                      ?.copyWith(color: theme.colorScheme.onPrimary)),
             ),
             const SizedBox(height: 16),
           ],
         ),
       );
     }
-    
+
     if (widget.intent == CameraIntent.dictionary) {
       return _buildDictionaryResultsList(theme, l10n);
     }
@@ -1238,12 +1345,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.search_off_rounded, size: 64, color: Colors.white54),
+              const Icon(Icons.search_off_rounded,
+                  size: 64, color: Colors.white54),
               const SizedBox(height: 16),
               Text(
                 l10n.noMatchingDictionaryEntries,
                 textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(color: Colors.white70),
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(color: Colors.white70),
               ),
             ],
           ),
@@ -1263,7 +1372,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5)),
+                  BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.2),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5)),
                 ],
               ),
               child: Column(
@@ -1271,9 +1383,15 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.text_snippet, size: 20, color: theme.colorScheme.primary),
+                      Icon(Icons.text_snippet,
+                          size: 20, color: theme.colorScheme.primary),
                       const SizedBox(width: 12),
-                      Text("Extracted Text (Tap to lookup)", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+                      Text(
+                          AppLocalizations.of(context)!
+                              .extracted_text_tap_to_lookup,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -1282,7 +1400,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                     child: SingleChildScrollView(
                       child: TappableHanziText(
                         _rawExtractedText,
-                        style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9)),
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                            height: 1.5,
+                            color: Colors.white.withValues(alpha: 0.9)),
                       ),
                     ),
                   ),
@@ -1302,7 +1422,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 5)),
+                  BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.2),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5)),
                 ],
               ),
               child: Column(
@@ -1310,16 +1433,24 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.translate, size: 20, color: theme.colorScheme.primary),
+                      Icon(Icons.translate,
+                          size: 20, color: theme.colorScheme.primary),
                       const SizedBox(width: 12),
-                      Text("Full Translation", style: theme.textTheme.titleMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+                      Text(AppLocalizations.of(context)!.fullTranslation,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                     ],
                   ),
                   const SizedBox(height: 12),
                   ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 250),
                     child: SingleChildScrollView(
-                      child: Text(_fullTranslation, style: theme.textTheme.bodyLarge?.copyWith(height: 1.5, color: Colors.white.withValues(alpha: 0.9), fontStyle: FontStyle.italic)),
+                      child: Text(_fullTranslation,
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                              height: 1.5,
+                              color: Colors.white.withValues(alpha: 0.9),
+                              fontStyle: FontStyle.italic)),
                     ),
                   ),
                 ],
@@ -1335,18 +1466,22 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             children: [
               Text(
                 l10n.foundNCharacters(_matchedCharacters.length),
-                style: theme.textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                style: theme.textTheme.headlineSmall?.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.bold),
               ),
               ElevatedButton.icon(
                 onPressed: _createDeck,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.colorScheme.primary,
                   foregroundColor: theme.colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
                 icon: const Icon(Icons.bookmark_add, size: 20),
-                label: const Text("Save All", style: TextStyle(fontWeight: FontWeight.bold)),
+                label: Text(AppLocalizations.of(context)!.saveAll,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ),
             ],
           ),
@@ -1368,12 +1503,21 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   child: Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF2A2A2B) : const Color(0xFFFDFCF0),
+                      color: isDark
+                          ? const Color(0xFF2A2A2B)
+                          : const Color(0xFFFDFCF0),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
-                        BoxShadow(color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1), blurRadius: 8, offset: const Offset(0, 4)),
+                        BoxShadow(
+                            color: Colors.black
+                                .withValues(alpha: isDark ? 0.3 : 0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4)),
                       ],
-                      border: Border.all(color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.transparent),
+                      border: Border.all(
+                          color: isDark
+                              ? Colors.white.withValues(alpha: 0.1)
+                              : Colors.transparent),
                     ),
                     child: Row(
                       children: [
@@ -1382,14 +1526,22 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                           height: 64,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                            color: theme.colorScheme.primary
+                                .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Padding(
                               padding: const EdgeInsets.all(4),
-                              child: Text(info.hanzi, style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: isDark ? Colors.white : const Color(0xFF1A1A1B), height: 1.0)),
+                              child: Text(info.hanzi,
+                                  style: TextStyle(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w900,
+                                      color: isDark
+                                          ? Colors.white
+                                          : const Color(0xFF1A1A1B),
+                                      height: 1.0)),
                             ),
                           ),
                         ),
@@ -1400,10 +1552,21 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                             children: [
                               PinyinText(
                                 text: info.pinyin,
-                                style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                    color: theme.colorScheme.primary,
+                                    fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 6),
-                              Text(info.meaning, style: theme.textTheme.bodyMedium?.copyWith(color: isDark ? Colors.white70 : Colors.black87), maxLines: 2, overflow: TextOverflow.ellipsis),
+                              TranslatedDefinition(
+                                definition: info.meaning,
+                                originalStyle: theme.textTheme.bodyMedium
+                                    ?.copyWith(
+                                        color: isDark
+                                            ? Colors.white70
+                                            : Colors.black87),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ],
                           ),
                         ),
@@ -1414,9 +1577,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                             if (info.hskLevel > 0)
                               Container(
                                 margin: const EdgeInsets.only(bottom: 8),
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                                  color: theme.colorScheme.primary
+                                      .withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
@@ -1429,11 +1594,17 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                               ),
                             Container(
                               decoration: BoxDecoration(
-                                color: isDark ? Colors.white.withValues(alpha: 0.1) : const Color(0xFF1A1A1B).withValues(alpha: 0.05),
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.1)
+                                    : const Color(0xFF1A1A1B)
+                                        .withValues(alpha: 0.05),
                                 shape: BoxShape.circle,
                               ),
                               child: IconButton(
-                                icon: Icon(Icons.add, color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                                icon: Icon(Icons.add,
+                                    color: isDark
+                                        ? Colors.white
+                                        : const Color(0xFF1A1A1B)),
                                 onPressed: () => _addSingleCard(info),
                                 tooltip: l10n.addToStudyDeck,
                               ),
@@ -1460,12 +1631,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.search_off_rounded, size: 64, color: Colors.white54),
+              const Icon(Icons.search_off_rounded,
+                  size: 64, color: Colors.white54),
               const SizedBox(height: 16),
               Text(
                 l10n.noMatchingDictionaryEntries,
                 textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(color: Colors.white70),
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(color: Colors.white70),
               ),
             ],
           ),
@@ -1473,7 +1646,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       );
     }
 
-    final existingCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+    final existingCards =
+        ref.watch(flashcardControllerProvider).valueOrNull ?? [];
 
     return Stack(
       children: [
@@ -1487,44 +1661,59 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 children: [
                   Text(
                     "Scan Results",
-                    style: theme.textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   Row(
                     children: [
                       TextButton.icon(
                         onPressed: () {
                           setState(() {
-                            if (_selectedWordIndices.length == _matchedCharacters.length) {
+                            if (_selectedWordIndices.length ==
+                                _matchedCharacters.length) {
                               _selectedWordIndices.clear();
                             } else {
-                              _selectedWordIndices = Set.from(List.generate(_matchedCharacters.length, (i) => i));
+                              _selectedWordIndices = Set.from(List.generate(
+                                  _matchedCharacters.length, (i) => i));
                             }
                           });
                           HapticsManager.light();
                         },
                         icon: Icon(
-                          _selectedWordIndices.length == _matchedCharacters.length ? Icons.deselect : Icons.select_all, 
-                          color: Colors.white70,
-                          size: 20
-                        ),
+                            _selectedWordIndices.length ==
+                                    _matchedCharacters.length
+                                ? Icons.deselect
+                                : Icons.select_all,
+                            color: Colors.white70,
+                            size: 20),
                         label: Text(
-                          _selectedWordIndices.length == _matchedCharacters.length ? "Deselect All" : "Select All", 
-                          style: const TextStyle(color: Colors.white70)
-                        ),
+                            _selectedWordIndices.length ==
+                                    _matchedCharacters.length
+                                ? "Deselect All"
+                                : "Select All",
+                            style: const TextStyle(color: Colors.white70)),
                       ),
                       const SizedBox(width: 8),
                       ElevatedButton.icon(
-                        onPressed: _isCreatingSmartDeck ? null : _createSmartDeck,
+                        onPressed:
+                            _isCreatingSmartDeck ? null : _createSmartDeck,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.amber.shade700,
                           foregroundColor: Colors.black,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
                         ),
-                        icon: _isCreatingSmartDeck 
-                            ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.black, strokeWidth: 2))
+                        icon: _isCreatingSmartDeck
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                    color: Colors.black, strokeWidth: 2))
                             : const Icon(Icons.auto_awesome, size: 20),
-                        label: const Text("Smart Deck", style: TextStyle(fontWeight: FontWeight.bold)),
+                        label: Text(AppLocalizations.of(context)!.smartDeck,
+                            style: const TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
@@ -1534,13 +1723,17 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                padding: EdgeInsets.only(left: 24, right: 24, bottom: _selectedWordIndices.isNotEmpty ? 100 : 24),
+                padding: EdgeInsets.only(
+                    left: 24,
+                    right: 24,
+                    bottom: _selectedWordIndices.isNotEmpty ? 100 : 24),
                 itemCount: _matchedCharacters.length,
                 itemBuilder: (context, index) {
                   final info = _matchedCharacters[index];
                   final isSelected = _selectedWordIndices.contains(index);
-                  final isInLibrary = existingCards.any((c) => c.hanzi == info.hanzi);
-                  
+                  final isInLibrary =
+                      existingCards.any((c) => c.hanzi == info.hanzi);
+
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     child: Material(
@@ -1561,10 +1754,16 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                           duration: const Duration(milliseconds: 200),
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: isSelected ? theme.colorScheme.primary.withValues(alpha: 0.15) : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                            color: isSelected
+                                ? theme.colorScheme.primary
+                                    .withValues(alpha: 0.15)
+                                : const Color(0xFF1A1A1B)
+                                    .withValues(alpha: 0.8),
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: isSelected ? theme.colorScheme.primary : Colors.white.withValues(alpha: 0.1),
+                              color: isSelected
+                                  ? theme.colorScheme.primary
+                                  : Colors.white.withValues(alpha: 0.1),
                               width: isSelected ? 2 : 1,
                             ),
                           ),
@@ -1576,12 +1775,19 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: isSelected ? theme.colorScheme.primary : Colors.white54,
+                                    color: isSelected
+                                        ? theme.colorScheme.primary
+                                        : Colors.white54,
                                     width: 2,
                                   ),
-                                  color: isSelected ? theme.colorScheme.primary : Colors.transparent,
+                                  color: isSelected
+                                      ? theme.colorScheme.primary
+                                      : Colors.transparent,
                                 ),
-                                child: isSelected ? const Icon(Icons.check, color: Colors.white, size: 18) : null,
+                                child: isSelected
+                                    ? const Icon(Icons.check,
+                                        color: Colors.white, size: 18)
+                                    : null,
                               ),
                               const SizedBox(width: 16),
                               Container(
@@ -1589,14 +1795,20 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 height: 56,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                                  color: theme.colorScheme.primary
+                                      .withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(14),
                                 ),
                                 child: FittedBox(
                                   fit: BoxFit.scaleDown,
                                   child: Padding(
                                     padding: const EdgeInsets.all(4),
-                                    child: Text(info.hanzi, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white, height: 1.0)),
+                                    child: Text(info.hanzi,
+                                        style: const TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.w900,
+                                            color: Colors.white,
+                                            height: 1.0)),
                                   ),
                                 ),
                               ),
@@ -1607,24 +1819,41 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                   children: [
                                     PinyinText(
                                       text: info.pinyin,
-                                      style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+                                      style: theme.textTheme.titleMedium
+                                          ?.copyWith(
+                                              color: theme.colorScheme.primary,
+                                              fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(height: 4),
-                                    Text(info.meaning.isNotEmpty ? info.meaning : info.english, style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70), maxLines: 1, overflow: TextOverflow.ellipsis),
+                                    TranslatedDefinition(
+                                      definition: info.meaning.isNotEmpty
+                                          ? info.meaning
+                                          : info.english,
+                                      originalStyle: theme.textTheme.bodyMedium
+                                          ?.copyWith(color: Colors.white70),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ],
                                 ),
                               ),
                               const SizedBox(width: 12),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: isInLibrary ? Colors.green.withValues(alpha: 0.2) : theme.colorScheme.primary.withValues(alpha: 0.2),
+                                  color: isInLibrary
+                                      ? Colors.green.withValues(alpha: 0.2)
+                                      : theme.colorScheme.primary
+                                          .withValues(alpha: 0.2),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
                                   isInLibrary ? "In Library" : "New",
                                   style: theme.textTheme.labelSmall?.copyWith(
-                                    color: isInLibrary ? Colors.green.shade300 : theme.colorScheme.primary,
+                                    color: isInLibrary
+                                        ? Colors.green.shade300
+                                        : theme.colorScheme.primary,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -1640,7 +1869,6 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             ),
           ],
         ),
-        
         if (_selectedWordIndices.isNotEmpty)
           Positioned(
             bottom: 32,
@@ -1655,22 +1883,32 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   scale: value,
                   child: FloatingActionButton.extended(
                     onPressed: () {
-                      final selectedWords = _selectedWordIndices.map((i) => _matchedCharacters[i]).toList();
-                      final flashcards = selectedWords.map<Flashcard>((w) => Flashcard(
-                        id: '',
-                        hanzi: w.hanzi,
-                        pinyin: w.pinyin,
-                        definition: w.meaning.isNotEmpty ? w.meaning : w.english,
-                        hskLevel: w.hskLevel,
-                        strokePaths: const [],
-                        modeStats: const {},
-                      )).toList();
-                      
+                      final selectedWords = _selectedWordIndices
+                          .map((i) => _matchedCharacters[i])
+                          .toList();
+                      final flashcards = selectedWords
+                          .map<Flashcard>((w) => Flashcard(
+                                id: '',
+                                hanzi: w.hanzi,
+                                pinyin: w.pinyin,
+                                definition: w.meaning.isNotEmpty
+                                    ? w.meaning
+                                    : w.english,
+                                hskLevel: w.hskLevel,
+                                strokePaths: const [],
+                                modeStats: const {},
+                              ))
+                          .toList();
+
                       DeckSelectionSheet.show(context, cards: flashcards);
                     },
                     backgroundColor: theme.colorScheme.primary,
                     icon: const Icon(Icons.bookmark_add, color: Colors.white),
-                    label: Text("Add to Deck (${_selectedWordIndices.length})", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                    label: Text("Add to Deck (${_selectedWordIndices.length})",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),
                   ),
                 );
               },
@@ -1682,18 +1920,18 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
   Future<void> _createSmartDeck() async {
     if (_matchedCharacters.isEmpty) return;
-    
+
     setState(() {
       _isCreatingSmartDeck = true;
     });
-    
+
     try {
       final deckCtrl = ref.read(deckControllerProvider.notifier);
       final newDeck = await deckCtrl.createDeck(_smartDeckName);
-      
+
       if (newDeck != null) {
         final flashcardCtrl = ref.read(flashcardControllerProvider.notifier);
-        
+
         for (int i = 0; i < _matchedCharacters.length; i++) {
           final w = _matchedCharacters[i];
           final newCard = Flashcard(
@@ -1708,7 +1946,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           );
           await flashcardCtrl.addFlashcard(newCard);
         }
-        
+
         if (mounted) {
           HapticsManager.success();
           ScaffoldMessenger.of(context).showSnackBar(
@@ -1717,7 +1955,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 children: [
                   const Icon(Icons.auto_awesome, color: Colors.white),
                   const SizedBox(width: 12),
-                  Text('Created smart deck: "$_smartDeckName" with ${_matchedCharacters.length} words!'),
+                  Text(AppLocalizations.of(context)!
+                      .created_smart_deck_with_words(
+                          _smartDeckName, _matchedCharacters.length)),
                 ],
               ),
               backgroundColor: Colors.green,
@@ -1738,7 +1978,6 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 }
 
 class ScannerOverlayPainter extends CustomPainter {
-  
   ScannerOverlayPainter();
 
   @override
@@ -1748,7 +1987,7 @@ class ScannerOverlayPainter extends CustomPainter {
       width: 280,
       height: 280,
     );
-    
+
     const radius = 24.0;
 
     // Removed dimmed background outside the rect
@@ -1758,36 +1997,48 @@ class ScannerOverlayPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
-      
+
     const bracketLength = 40.0;
-    
+
     // Top Left
-    canvas.drawPath(Path()
-      ..moveTo(rect.left, rect.top + bracketLength)
-      ..lineTo(rect.left, rect.top + radius)
-      ..arcToPoint(Offset(rect.left + radius, rect.top), radius: const Radius.circular(radius))
-      ..lineTo(rect.left + bracketLength, rect.top), bracketPaint);
-      
+    canvas.drawPath(
+        Path()
+          ..moveTo(rect.left, rect.top + bracketLength)
+          ..lineTo(rect.left, rect.top + radius)
+          ..arcToPoint(Offset(rect.left + radius, rect.top),
+              radius: const Radius.circular(radius))
+          ..lineTo(rect.left + bracketLength, rect.top),
+        bracketPaint);
+
     // Top Right
-    canvas.drawPath(Path()
-      ..moveTo(rect.right, rect.top + bracketLength)
-      ..lineTo(rect.right, rect.top + radius)
-      ..arcToPoint(Offset(rect.right - radius, rect.top), radius: const Radius.circular(radius), clockwise: false)
-      ..lineTo(rect.right - bracketLength, rect.top), bracketPaint);
-      
+    canvas.drawPath(
+        Path()
+          ..moveTo(rect.right, rect.top + bracketLength)
+          ..lineTo(rect.right, rect.top + radius)
+          ..arcToPoint(Offset(rect.right - radius, rect.top),
+              radius: const Radius.circular(radius), clockwise: false)
+          ..lineTo(rect.right - bracketLength, rect.top),
+        bracketPaint);
+
     // Bottom Left
-    canvas.drawPath(Path()
-      ..moveTo(rect.left, rect.bottom - bracketLength)
-      ..lineTo(rect.left, rect.bottom - radius)
-      ..arcToPoint(Offset(rect.left + radius, rect.bottom), radius: const Radius.circular(radius), clockwise: false)
-      ..lineTo(rect.left + bracketLength, rect.bottom), bracketPaint);
-      
+    canvas.drawPath(
+        Path()
+          ..moveTo(rect.left, rect.bottom - bracketLength)
+          ..lineTo(rect.left, rect.bottom - radius)
+          ..arcToPoint(Offset(rect.left + radius, rect.bottom),
+              radius: const Radius.circular(radius), clockwise: false)
+          ..lineTo(rect.left + bracketLength, rect.bottom),
+        bracketPaint);
+
     // Bottom Right
-    canvas.drawPath(Path()
-      ..moveTo(rect.right, rect.bottom - bracketLength)
-      ..lineTo(rect.right, rect.bottom - radius)
-      ..arcToPoint(Offset(rect.right - radius, rect.bottom), radius: const Radius.circular(radius))
-      ..lineTo(rect.right - bracketLength, rect.bottom), bracketPaint);
+    canvas.drawPath(
+        Path()
+          ..moveTo(rect.right, rect.bottom - bracketLength)
+          ..lineTo(rect.right, rect.bottom - radius)
+          ..arcToPoint(Offset(rect.right - radius, rect.bottom),
+              radius: const Radius.circular(radius))
+          ..lineTo(rect.right - bracketLength, rect.bottom),
+        bracketPaint);
 
     // Guidance Text
     final textPainter = TextPainter(
@@ -1803,12 +2054,10 @@ class ScannerOverlayPainter extends CustomPainter {
       textDirection: TextDirection.ltr,
       textAlign: TextAlign.center,
     );
-    
+
     textPainter.layout();
-    textPainter.paint(
-      canvas, 
-      Offset(size.width / 2 - textPainter.width / 2, rect.bottom + 32)
-    );
+    textPainter.paint(canvas,
+        Offset(size.width / 2 - textPainter.width / 2, rect.bottom + 32));
   }
 
   @override
@@ -1841,7 +2090,8 @@ class TranslationOverlayPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // We must use math.min to match BoxFit.contain
-    final double scale = math.min(screenSize.width / imageSize.width, screenSize.height / imageSize.height);
+    final double scale = math.min(screenSize.width / imageSize.width,
+        screenSize.height / imageSize.height);
     final double offsetX = (screenSize.width - imageSize.width * scale) / 2;
     final double offsetY = (screenSize.height - imageSize.height * scale) / 2;
 
@@ -1883,7 +2133,7 @@ class TranslationOverlayPainter extends CustomPainter {
       );
 
       textPainter.layout(maxWidth: rect.width);
-      
+
       final textY = rect.top + (rect.height - textPainter.height) / 2;
       textPainter.paint(canvas, Offset(rect.left + 2, textY));
     }
@@ -1894,4 +2144,3 @@ class TranslationOverlayPainter extends CustomPainter {
     return oldDelegate.blocks != blocks;
   }
 }
-

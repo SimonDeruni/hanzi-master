@@ -28,6 +28,7 @@ class LocalTranslationService {
   static const String _boxName = 'local_translations_cache_v5';
 
   OnDeviceTranslator? _translator;
+  OnDeviceTranslator? _englishDefinitionTranslator;
   bool _isModelDownloaded = false;
 
   LocalTranslationService({
@@ -131,6 +132,142 @@ class LocalTranslationService {
 
   void dispose() {
     _translator?.close();
+    _englishDefinitionTranslator?.close();
+  }
+
+  /// Translates a complete canonical English dictionary definition verbatim.
+  ///
+  /// Unlike [translate], this method never cleans, splits, reformats, or
+  /// capitalizes its input. The exact English value is also the failure
+  /// fallback, while successful results are cached per target language.
+  Future<String> translateEnglishDefinition(String definition) async {
+    if (definition.isEmpty || targetLanguage.toLowerCase() == 'english') {
+      return definition;
+    }
+
+    final cacheKey = 'definition:en:$targetLanguage:$definition';
+    Box<String>? box;
+    if (Hive.isBoxOpen(_boxName)) {
+      box = Hive.box<String>(_boxName);
+    } else {
+      try {
+        box = await Hive.openBox<String>(_boxName);
+      } catch (_) {}
+    }
+
+    final cached = box?.get(cacheKey);
+    if (cached != null && cached.isNotEmpty) return cached;
+
+    final openRouterKey = apiKeyPool?.nextKey ?? '';
+    if (openRouterKey.isNotEmpty && openRouterKey != 'MISSING_KEY') {
+      try {
+        final client = http.Client();
+        try {
+          final response = await client
+              .post(
+                Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+                headers: {
+                  'Authorization': 'Bearer $openRouterKey',
+                  'Content-Type': 'application/json',
+                  'HTTP-Referer': 'https://hanzimaster.app',
+                  'X-Title': 'Hanzi Master',
+                },
+                body: jsonEncode({
+                  'model': 'google/gemini-2.5-flash',
+                  'messages': [
+                    {
+                      'role': 'user',
+                      'content':
+                          'Translate the following complete English dictionary definition into $targetLanguage. Preserve every sense, explanation, usage note, parenthesis, example, and semicolon-separated section. Do not shorten, summarize, omit, reorder, or explain anything. Return only the translation, with no quotes or markdown.\n\n$definition',
+                    }
+                  ],
+                  'max_tokens': 1000,
+                  'provider': {'data_collection': 'deny'}
+                }),
+              )
+              .timeout(const Duration(seconds: 8));
+
+          if (response.statusCode == 200) {
+            final dynamic json = jsonDecode(utf8.decode(response.bodyBytes));
+            final translated =
+                (json['choices']?[0]?['message']?['content'] as String? ?? '')
+                    .trim();
+            if (translated.isNotEmpty) {
+              await box?.put(cacheKey, translated);
+              return translated;
+            }
+          }
+        } finally {
+          client.close();
+        }
+      } catch (error) {
+        debugPrint(
+            '[LocalTranslationService] AI definition translation failed: $error');
+      }
+    }
+
+    try {
+      final target = _getTranslateLanguage(targetLanguage);
+      final modelManager = OnDeviceTranslatorModelManager();
+      final isEnglishDownloaded = await modelManager
+          .isModelDownloaded(TranslateLanguage.english.bcpCode);
+      if (!isEnglishDownloaded) {
+        await modelManager.downloadModel(
+          TranslateLanguage.english.bcpCode,
+          isWifiRequired: false,
+        );
+      }
+      final isDownloaded = await modelManager.isModelDownloaded(target.bcpCode);
+      if (!isDownloaded) {
+        await modelManager.downloadModel(target.bcpCode, isWifiRequired: false);
+      }
+      _englishDefinitionTranslator ??= OnDeviceTranslator(
+        sourceLanguage: TranslateLanguage.english,
+        targetLanguage: target,
+      );
+      final translated = await _englishDefinitionTranslator!
+          .translateText(definition)
+          .timeout(const Duration(seconds: 5));
+      if (translated.isNotEmpty) {
+        await box?.put(cacheKey, translated);
+        return translated;
+      }
+    } catch (error) {
+      debugPrint(
+          '[LocalTranslationService] On-device definition translation failed: $error');
+    }
+
+    try {
+      final targetCode = _getTargetLanguageCode(targetLanguage);
+      final uri = Uri.parse(
+          'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=$targetCode&dt=t&q=${Uri.encodeComponent(definition)}');
+      final client = http.Client();
+      try {
+        final response =
+            await client.get(uri).timeout(const Duration(seconds: 4));
+        if (response.statusCode == 200) {
+          final dynamic data = jsonDecode(response.body);
+          if (data is List && data.isNotEmpty && data[0] is List) {
+            final translated = (data[0] as List<dynamic>)
+                .whereType<List<dynamic>>()
+                .where((part) => part.isNotEmpty && part[0] is String)
+                .map((part) => part[0] as String)
+                .join();
+            if (translated.isNotEmpty) {
+              await box?.put(cacheKey, translated);
+              return translated;
+            }
+          }
+        }
+      } finally {
+        client.close();
+      }
+    } catch (error) {
+      debugPrint(
+          '[LocalTranslationService] Definition translation request failed: $error');
+    }
+
+    return definition;
   }
 
   /// Translates [text] to the current [targetLanguage].
@@ -212,8 +349,7 @@ class LocalTranslationService {
               reply = reply.substring(1, reply.length - 1).trim();
             }
             if (reply.isNotEmpty) {
-              final formatted =
-                  reply[0].toUpperCase() + reply.substring(1);
+              final formatted = reply[0].toUpperCase() + reply.substring(1);
               await box?.put(cacheKey, formatted);
               return formatted;
             }
@@ -251,8 +387,9 @@ class LocalTranslationService {
 
           if (response.statusCode == 200) {
             final dynamic json = jsonDecode(utf8.decode(response.bodyBytes));
-            String reply =
-                json['candidates']?[0]?['content']?['parts']?[0]?['text'] as String? ?? '';
+            String reply = json['candidates']?[0]?['content']?['parts']?[0]
+                    ?['text'] as String? ??
+                '';
             reply = reply.trim();
             if ((reply.startsWith('"') && reply.endsWith('"')) ||
                 (reply.startsWith('“') && reply.endsWith('”')) ||
@@ -260,8 +397,7 @@ class LocalTranslationService {
               reply = reply.substring(1, reply.length - 1).trim();
             }
             if (reply.isNotEmpty) {
-              final formatted =
-                  reply[0].toUpperCase() + reply.substring(1);
+              final formatted = reply[0].toUpperCase() + reply.substring(1);
               await box?.put(cacheKey, formatted);
               return formatted;
             }
@@ -270,7 +406,8 @@ class LocalTranslationService {
           client.close();
         }
       } catch (e) {
-        debugPrint('[LocalTranslationService] Google Gemini AI translation: $e');
+        debugPrint(
+            '[LocalTranslationService] Google Gemini AI translation: $e');
       }
     }
 
@@ -280,7 +417,9 @@ class LocalTranslationService {
       await _ensureModelReady(tl).timeout(const Duration(milliseconds: 1500));
 
       if (_translator != null) {
-        String translated = await _translator!.translateText(cleanedText).timeout(const Duration(milliseconds: 1500));
+        String translated = await _translator!
+            .translateText(cleanedText)
+            .timeout(const Duration(milliseconds: 1500));
         if (translated.isNotEmpty && RegExp(r'[a-zA-Z]').hasMatch(translated)) {
           translated = translated[0].toUpperCase() + translated.substring(1);
           await box?.put(cacheKey, translated);
@@ -288,7 +427,8 @@ class LocalTranslationService {
         }
       }
     } catch (e) {
-      debugPrint('[LocalTranslationService] On-device translation fallback needed: $e');
+      debugPrint(
+          '[LocalTranslationService] On-device translation fallback needed: $e');
     }
 
     // 3. High-speed mechanical endpoint fallback with automatic persistent Hive caching
@@ -311,7 +451,8 @@ class LocalTranslationService {
             }
             final translated = sb.toString().trim();
             if (translated.isNotEmpty) {
-              final formatted = translated[0].toUpperCase() + translated.substring(1);
+              final formatted =
+                  translated[0].toUpperCase() + translated.substring(1);
               await box?.put(cacheKey, formatted);
               return formatted;
             }

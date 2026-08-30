@@ -14,6 +14,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class SpeakingModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -89,7 +90,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
 
   Future<void> _stopRecording() async {
     if (!_isRecording) return;
-    
+
     _amplitudeSubscription?.cancel();
 
     setState(() {
@@ -98,10 +99,11 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
     });
 
     try {
-      final path = await ref.read(audioRecordingServiceProvider).stopRecording();
+      final path =
+          await ref.read(audioRecordingServiceProvider).stopRecording();
       if (path != null) {
         final bytes = await File(path).readAsBytes();
-        
+
         final geminiService = ref.read(geminiServiceProvider);
         final result = await geminiService.gradeAudio(
           bytes,
@@ -158,16 +160,19 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
       String wordText = w['word'];
       bool isCorrect = w['isCorrect'] == true;
       bool isPartial = w['isPartial'] == true;
-      Color color = isCorrect ? Colors.green : (isPartial ? Colors.orange : Colors.red);
-      
+      Color color =
+          isCorrect ? Colors.green : (isPartial ? Colors.orange : Colors.red);
+
       if (remainingHanzi.startsWith(wordText)) {
-         spans.add(TextSpan(text: wordText, style: TextStyle(color: color)));
-         remainingHanzi = remainingHanzi.substring(wordText.length);
+        spans.add(TextSpan(text: wordText, style: TextStyle(color: color)));
+        remainingHanzi = remainingHanzi.substring(wordText.length);
       }
     }
-    
+
     if (remainingHanzi.isNotEmpty) {
-       spans.add(TextSpan(text: remainingHanzi, style: TextStyle(color: isDark ? Colors.white : Colors.black87)));
+      spans.add(TextSpan(
+          text: remainingHanzi,
+          style: TextStyle(color: isDark ? Colors.white : Colors.black87)));
     }
 
     return RichText(
@@ -199,9 +204,13 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
           IconButton(
             icon: Icon(showPinyin ? Icons.visibility : Icons.visibility_off),
             onPressed: () {
-              ref.read(settingsProvider.notifier).togglePinyinSpeaking(!showPinyin);
+              ref
+                  .read(settingsProvider.notifier)
+                  .togglePinyinSpeaking(!showPinyin);
             },
-            tooltip: showPinyin ? 'Hide Pinyin' : 'Show Pinyin',
+            tooltip: showPinyin
+                ? AppLocalizations.of(context)!.hidePinyin
+                : AppLocalizations.of(context)!.showPinyin,
           ),
         ],
       ),
@@ -215,12 +224,15 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                   isSwipeEnabled: _isRevealed || _feedbackResult != null,
                   onSwiped: (grade) => Navigator.pop(context, grade),
                   child: GestureDetector(
-                    onTap: (!_isRevealed && !_isRecording && !_isProcessing) ? _revealAnswer : null,
+                    onTap: (!_isRevealed && !_isRecording && !_isProcessing)
+                        ? _revealAnswer
+                        : null,
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(32),
                       decoration: BoxDecoration(
-                        color: isDark ? Colors.white.withAlpha(12) : Colors.white,
+                        color:
+                            isDark ? Colors.white.withAlpha(12) : Colors.white,
                         borderRadius: BorderRadius.circular(32),
                         border: Border.all(
                           color: isDark ? Colors.white12 : Colors.black12,
@@ -237,7 +249,6 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
                           Expanded(
                             flex: 2,
                             child: Center(
@@ -253,7 +264,9 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                               child: Center(
                                 child: PinyinText(
                                   text: widget.card.pinyin,
-                                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
@@ -281,14 +294,17 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                                 children: [
                                   PinyinText(
                                     text: widget.card.pinyin,
-                                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(height: 16),
                                   Expanded(
                                     child: SingleChildScrollView(
-                                      child: Text(
-                                        widget.card.definition,
-                                        style: const TextStyle(fontSize: 20),
+                                      child: TranslatedDefinition(
+                                        definition: widget.card.definition,
+                                        originalStyle:
+                                            const TextStyle(fontSize: 20),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -299,9 +315,14 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                           ],
                         ],
                       ),
-                    ).animate()
-                     .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-                     .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+                    )
+                        .animate()
+                        .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                        .slideY(
+                            begin: 0.1,
+                            end: 0,
+                            duration: 500.ms,
+                            curve: Curves.easeOutCubic),
                   ),
                 ),
               ),
@@ -309,7 +330,8 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
 
             if (_error != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -326,13 +348,14 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               ),
 
             if (_isProcessing)
-              const Padding(
-                padding: EdgeInsets.all(32.0),
+              Padding(
+                padding: const EdgeInsets.all(32.0),
                 child: Column(
                   children: [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 16),
-                    Text('Analyzing pronunciation with Gemini AI...'),
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: 16),
+                    Text(AppLocalizations.of(context)!
+                        .analyzing_pronunciation_with_gemini_ai),
                   ],
                 ),
               )
@@ -362,21 +385,29 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       scale: _isRecording ? 0.95 : 1.0,
                       duration: const Duration(milliseconds: 150),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 20),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: _isRecording
                                 ? [Colors.red.shade400, Colors.red.shade700]
                                 : (isDark
-                                    ? [Colors.blue.shade700, Colors.blue.shade900]
-                                    : [Colors.blue.shade300, Colors.blue.shade600]),
+                                    ? [
+                                        Colors.blue.shade700,
+                                        Colors.blue.shade900
+                                      ]
+                                    : [
+                                        Colors.blue.shade300,
+                                        Colors.blue.shade600
+                                      ]),
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.circular(40),
                           boxShadow: [
                             BoxShadow(
-                              color: (_isRecording ? Colors.red : Colors.blue).withAlpha(isDark ? 80 : 120),
+                              color: (_isRecording ? Colors.red : Colors.blue)
+                                  .withAlpha(isDark ? 80 : 120),
                               blurRadius: _isRecording ? 24 : 16,
                               spreadRadius: _isRecording ? 4 : 0,
                               offset: const Offset(0, 8),
@@ -387,13 +418,16 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(
-                              _isRecording ? Icons.mic : Icons.mic_none_rounded, 
-                              color: Colors.white, 
-                              size: 32
-                            ),
+                                _isRecording
+                                    ? Icons.mic
+                                    : Icons.mic_none_rounded,
+                                color: Colors.white,
+                                size: 32),
                             const SizedBox(width: 16),
                             Text(
-                              _isRecording ? 'Listening...' : 'Hold to speak (Optional)',
+                              _isRecording
+                                  ? 'Listening...'
+                                  : 'Hold to speak (Optional)',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -413,12 +447,15 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
             // AI Feedback Results
             if (_feedbackResult != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.green.withAlpha(25) : Colors.green.shade50,
+                    color: isDark
+                        ? Colors.green.withAlpha(25)
+                        : Colors.green.shade50,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.green.shade200),
                   ),

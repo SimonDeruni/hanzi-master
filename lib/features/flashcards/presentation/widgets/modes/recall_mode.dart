@@ -12,6 +12,7 @@ import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 
 class RecallModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -40,8 +41,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
   late Flashcard _card;
 
   // Required for DrawingCanvas to capture touch input
-  final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier =
-      ValueNotifier([]);
+  final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier = ValueNotifier([]);
 
   @override
   void initState() {
@@ -57,7 +57,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
 
   Future<void> _reveal() async {
     if (_isRevealed) return;
-    
+
     HapticsManager.light();
 
     // Load stroke data lazily on reveal
@@ -110,38 +110,48 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                         ? SwipeableFlashcard(
                             isSwipeEnabled: !_showScratchpad,
                             onSwiped: (grade) => Navigator.pop(context, grade),
-                            child: _buildRevealedCard(isDark, cardColor, borderColor),
+                            child: _buildRevealedCard(
+                                isDark, cardColor, borderColor),
                           )
                         : _buildHiddenCard(isDark, cardColor, borderColor),
               ),
-            ).animate()
-             .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-             .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
+            )
+                .animate()
+                .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                .slideY(
+                    begin: 0.1,
+                    end: 0,
+                    duration: 500.ms,
+                    curve: Curves.easeOutCubic),
 
             // Controls row below the card
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
               child: _isRevealed
-                  ? (_lines.isNotEmpty 
+                  ? (_lines.isNotEmpty
                       ? TextButton.icon(
-                          onPressed: () => setState(() => _showScratchpad = !_showScratchpad),
+                          onPressed: () => setState(
+                              () => _showScratchpad = !_showScratchpad),
                           icon: Icon(
-                            _showScratchpad ? Icons.check_circle_outline : Icons.brush,
+                            _showScratchpad
+                                ? Icons.check_circle_outline
+                                : Icons.brush,
                             size: 18,
                           ),
-                          label: Text(_showScratchpad ? "View Answer" : "View My Drawing"),
+                          label: Text(_showScratchpad
+                              ? AppLocalizations.of(context)!.viewAnswer
+                              : AppLocalizations.of(context)!.viewMyDrawing),
                           style: TextButton.styleFrom(
-                            foregroundColor: isDark ? Colors.white54 : Colors.black45,
+                            foregroundColor:
+                                isDark ? Colors.white54 : Colors.black45,
                           ),
                         )
                       : const SizedBox.shrink())
                   : TextButton.icon(
-                      onPressed: () => setState(
-                          () => _showScratchpad = !_showScratchpad),
+                      onPressed: () =>
+                          setState(() => _showScratchpad = !_showScratchpad),
                       icon: Icon(
-                        _showScratchpad
-                            ? Icons.close
-                            : Icons.draw_outlined,
+                        _showScratchpad ? Icons.close : Icons.draw_outlined,
                         size: 18,
                       ),
                       label: Text(
@@ -254,19 +264,26 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 clipBehavior: Clip.antiAlias,
                 child: Stack(
                   children: [
-                    Container(color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)),
+                    Container(
+                        color: isDark
+                            ? const Color(0xFF1A1A1B)
+                            : const Color(0xFFFDFCF0)),
                     GestureDetector(
-                      onPanStart: _isRevealed ? null : (details) {
-                        setState(() {
-                          _currentLine = [details.localPosition];
-                          _lines.add(_currentLine);
-                        });
-                      },
-                      onPanUpdate: _isRevealed ? null : (details) {
-                        setState(() {
-                          _currentLine.add(details.localPosition);
-                        });
-                      },
+                      onPanStart: _isRevealed
+                          ? null
+                          : (details) {
+                              setState(() {
+                                _currentLine = [details.localPosition];
+                                _lines.add(_currentLine);
+                              });
+                            },
+                      onPanUpdate: _isRevealed
+                          ? null
+                          : (details) {
+                              setState(() {
+                                _currentLine.add(details.localPosition);
+                              });
+                            },
                       child: CustomPaint(
                         size: Size.infinite,
                         painter: _SimpleStrokePainter(
@@ -317,13 +334,13 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                      AppLocalizations.of(context)!.whatCharacterMeans,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: isDark ? Colors.white54 : Colors.black45,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+              AppLocalizations.of(context)!.whatCharacterMeans,
+              style: TextStyle(
+                fontSize: 15,
+                color: isDark ? Colors.white54 : Colors.black45,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(height: 28),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -339,45 +356,58 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text(
-                widget.card.definition,
-                style: TextStyle(
+              child: TranslatedDefinition(
+                definition: widget.card.definition,
+                originalStyle: TextStyle(
                   fontSize: 22,
                   color: isDark ? Colors.white70 : Colors.black54,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            if (widget.card.sourceSentence != null && widget.card.sourceSentence!.isNotEmpty) ...[
+            if (widget.card.sourceSentence != null &&
+                widget.card.sourceSentence!.isNotEmpty) ...[
               const SizedBox(height: 24),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.blueAccent.withValues(alpha: 0.1) : Colors.blue.shade50,
+                  color: isDark
+                      ? Colors.blueAccent.withValues(alpha: 0.1)
+                      : Colors.blue.shade50,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: isDark ? Colors.blueAccent.withValues(alpha: 0.2) : Colors.blue.shade100),
+                  border: Border.all(
+                      color: isDark
+                          ? Colors.blueAccent.withValues(alpha: 0.2)
+                          : Colors.blue.shade100),
                 ),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.menu_book, size: 14, color: isDark ? Colors.blueAccent.shade100 : Colors.blue.shade700),
+                        Icon(Icons.menu_book,
+                            size: 14,
+                            color: isDark
+                                ? Colors.blueAccent.shade100
+                                : Colors.blue.shade700),
                         const SizedBox(width: 8),
                         Text(
                           "Context Clue",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: isDark ? Colors.blueAccent.shade100 : Colors.blue.shade700,
+                            color: isDark
+                                ? Colors.blueAccent.shade100
+                                : Colors.blue.shade700,
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      widget.card.sourceSentence!.replaceAll(widget.card.hanzi, '___'),
+                      widget.card.sourceSentence!
+                          .replaceAll(widget.card.hanzi, '___'),
                       style: TextStyle(
                         fontSize: 16,
                         fontStyle: FontStyle.italic,
@@ -404,8 +434,6 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
       ),
     );
   }
-
-
 
   Widget _buildRevealedCard(bool isDark, Color cardColor, Color borderColor) {
     return Container(
@@ -439,9 +467,9 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  widget.card.definition,
-                  style: TextStyle(
+                TranslatedDefinition(
+                  definition: widget.card.definition,
+                  originalStyle: TextStyle(
                     fontSize: 16,
                     color: isDark ? Colors.white38 : Colors.black38,
                   ),
@@ -499,17 +527,23 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
             )
           else
             const SizedBox(height: 16),
-            
-          if (widget.card.sourceSentence != null && widget.card.sourceSentence!.isNotEmpty)
+
+          if (widget.card.sourceSentence != null &&
+              widget.card.sourceSentence!.isNotEmpty)
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.blueAccent.withValues(alpha: 0.1) : Colors.blue.shade50,
+                  color: isDark
+                      ? Colors.blueAccent.withValues(alpha: 0.1)
+                      : Colors.blue.shade50,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: isDark ? Colors.blueAccent.withValues(alpha: 0.2) : Colors.blue.shade100),
+                  border: Border.all(
+                      color: isDark
+                          ? Colors.blueAccent.withValues(alpha: 0.2)
+                          : Colors.blue.shade100),
                 ),
                 child: Text(
                   widget.card.sourceSentence!,
@@ -544,20 +578,20 @@ class _SimpleStrokePainter extends CustomPainter {
 
     for (final line in lines) {
       if (line.isEmpty) continue;
-      
+
       final path = Path();
       path.moveTo(line.first.dx, line.first.dy);
-      
+
       for (int i = 1; i < line.length; i++) {
         path.lineTo(line[i].dx, line[i].dy);
       }
-      
+
       canvas.drawPath(path, paint);
     }
   }
 
   @override
   bool shouldRepaint(covariant _SimpleStrokePainter oldDelegate) {
-    return true; 
+    return true;
   }
 }

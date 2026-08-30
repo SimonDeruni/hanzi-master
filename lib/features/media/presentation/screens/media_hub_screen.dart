@@ -14,6 +14,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/config/app_features.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class MediaHubScreen extends ConsumerWidget {
   final bool showBackButton;
@@ -45,7 +46,7 @@ class MediaHubScreen extends ConsumerWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Text(
-                  "Quick Bookmarks",
+                  AppLocalizations.of(context)!.quickBookmarks,
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -64,14 +65,14 @@ class MediaHubScreen extends ConsumerWidget {
                   children: [
                     _buildBookmarkChip(
                       context: context,
-                      title: "BBC 中文",
+                      title: AppLocalizations.of(context)!.bbc,
                       icon: Icons.article,
                       brandColor: const Color(0xFFBB1919),
                       url: 'https://www.bbc.com/zhongwen/simp',
                     ),
                     _buildBookmarkChip(
                       context: context,
-                      title: "Wikipedia",
+                      title: AppLocalizations.of(context)!.wikipedia,
                       icon: Icons.travel_explore,
                       brandColor: const Color(0xFF555555),
                       url:
@@ -172,7 +173,8 @@ class MediaHubScreen extends ConsumerWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24.0, vertical: 16.0),
-                      child: Text("No saved articles yet.",
+                      child: Text(
+                          AppLocalizations.of(context)!.noSavedArticlesYet,
                           style: theme.textTheme.bodyMedium
                               ?.copyWith(color: Colors.grey)),
                     );
@@ -264,7 +266,8 @@ class MediaHubScreen extends ConsumerWidget {
           ),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: const Color(0xFFFFD54F).withValues(alpha: isDark ? 0.22 : 0.28),
+            color:
+                const Color(0xFFFFD54F).withValues(alpha: isDark ? 0.22 : 0.28),
             width: 1.2,
           ),
           boxShadow: [
@@ -286,7 +289,7 @@ class MediaHubScreen extends ConsumerWidget {
                 child: Opacity(
                   opacity: 0.06,
                   child: Text(
-                    '网',
+                    'ç½‘',
                     style: TextStyle(
                       fontSize: 160,
                       fontWeight: FontWeight.bold,
@@ -319,7 +322,8 @@ class MediaHubScreen extends ConsumerWidget {
 
               // Content Layout
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0, vertical: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -331,10 +335,12 @@ class MediaHubScreen extends ConsumerWidget {
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFFB300).withValues(alpha: 0.15),
+                            color:
+                                const Color(0xFFFFB300).withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xFFFFB300).withValues(alpha: 0.35),
+                              color: const Color(0xFFFFB300)
+                                  .withValues(alpha: 0.35),
                               width: 1,
                             ),
                           ),
@@ -345,19 +351,23 @@ class MediaHubScreen extends ConsumerWidget {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFFB300).withValues(alpha: 0.12),
+                            color:
+                                const Color(0xFFFFB300).withValues(alpha: 0.12),
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: const Color(0xFFFFB300).withValues(alpha: 0.3),
+                              color: const Color(0xFFFFB300)
+                                  .withValues(alpha: 0.3),
                               width: 1,
                             ),
                           ),
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.auto_awesome, color: Color(0xFFFFD54F), size: 12),
+                              Icon(Icons.auto_awesome,
+                                  color: Color(0xFFFFD54F), size: 12),
                               SizedBox(width: 5),
                               Text(
                                 "LIVE OVERLAY",
@@ -392,9 +402,10 @@ class MediaHubScreen extends ConsumerWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          '网页探索',
+                          'ç½‘é¡µæŽ¢ç´¢',
                           style: TextStyle(
-                            color: const Color(0xFFFFD54F).withValues(alpha: 0.8),
+                            color:
+                                const Color(0xFFFFD54F).withValues(alpha: 0.8),
                             fontSize: 14,
                             fontFamily: 'NotoSerifSC',
                             fontWeight: FontWeight.w600,
@@ -419,12 +430,15 @@ class MediaHubScreen extends ConsumerWidget {
                     Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 7),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFFB300).withValues(alpha: 0.18),
+                            color:
+                                const Color(0xFFFFB300).withValues(alpha: 0.18),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: const Color(0xFFFFB300).withValues(alpha: 0.4),
+                              color: const Color(0xFFFFB300)
+                                  .withValues(alpha: 0.4),
                               width: 1,
                             ),
                           ),
@@ -692,7 +706,9 @@ class _DailyDiscoveryCarouselState
           if (showItem != null) {
             return _buildDailyShowCard(context, showItem);
           }
-          return const Center(child: Text('Failed to load daily content'));
+          return Center(
+              child:
+                  Text(AppLocalizations.of(context)!.failedToLoadDailyContent));
         },
       ),
     );
@@ -766,7 +782,7 @@ class _DailyDiscoveryCarouselState
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        isCompleted ? "✓ COMPLETED" : item.tag,
+                        isCompleted ? "âœ“ COMPLETED" : item.tag,
                         style: TextStyle(
                           color:
                               isCompleted ? Colors.greenAccent : Colors.white,
@@ -823,8 +839,6 @@ class _DailyDiscoveryCarouselState
   }
 
   Widget _buildDailyShowCard(BuildContext context, Show show) {
-    final theme = Theme.of(context);
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -922,7 +936,7 @@ class _DailyDiscoveryCarouselState
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
-                            '${show.episodeCount} episodes · ${show.channelTitle}',
+                            '${show.episodeCount} episodes Â· ${show.channelTitle}',
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 13,
@@ -964,7 +978,9 @@ class _DailyDiscoveryCarouselState
           Opacity(
             opacity: 0.12,
             child: Icon(
-              item.tag.contains('VIDEO') ? Icons.ondemand_video_rounded : Icons.auto_stories_rounded,
+              item.tag.contains('VIDEO')
+                  ? Icons.ondemand_video_rounded
+                  : Icons.auto_stories_rounded,
               size: 110,
               color: Colors.white,
             ),
@@ -1009,9 +1025,9 @@ class _DailyDiscoveryCarouselState
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Opacity(
+          const Opacity(
             opacity: 0.12,
-            child: const Icon(
+            child: Icon(
               Icons.movie_filter_rounded,
               size: 110,
               color: Colors.white,

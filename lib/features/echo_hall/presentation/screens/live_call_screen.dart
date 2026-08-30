@@ -88,15 +88,16 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   bool _isSpeaker = true;
   bool _isEndingCall = false;
   bool _isAnalyzing = false;
-  String _analyzeStatusText = "Analyzing your pronunciation...";
+  String _analyzeStatusText = '';
   Timer? _analyzeStatusTimer;
-  int _subtitleMode = 0; // 0=full (Chinese+Pinyin+English), 1=Chinese only, 2=hidden
+  int _subtitleMode =
+      0; // 0=full (Chinese+Pinyin+English), 1=Chinese only, 2=hidden
 
-  static const _analyzeStatusMessages = [
-    "Analyzing your pronunciation...",
-    "Reviewing your tones...",
-    "Preparing your Scholar's Verdict...",
-  ];
+  List<String> get _analyzeStatusMessages => [
+        AppLocalizations.of(context)!.analyzing_your_pronunciation,
+        AppLocalizations.of(context)!.reviewingYourTones,
+        AppLocalizations.of(context)!.preparing_your_scholars_verdict,
+      ];
 
   final AudioPlayer _voicePlayer = AudioPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
@@ -262,7 +263,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       }
 
       final tempDir = await getTemporaryDirectory();
-      final path = '${tempDir.path}/live_call_turn_${DateTime.now().millisecondsSinceEpoch}.wav';
+      final path =
+          '${tempDir.path}/live_call_turn_${DateTime.now().millisecondsSinceEpoch}.wav';
       _currentTurnAudioPath = path;
 
       // Sole 16kHz PCM WAV Audio Capture for Azure STT and Pronunciation Assessment
@@ -279,9 +281,16 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       _setCallState(LiveCallState.listening, "Listening...");
 
       // Monitor voice activity level without running any secondary on-device STT plugin
-      _amplitudeSub = _turnRecorder.onAmplitudeChanged(const Duration(milliseconds: 60)).listen((amp) {
-        if (!mounted || _isDisposed || _isHandlingTurn || _callState != LiveCallState.listening) return;
-        
+      _amplitudeSub = _turnRecorder
+          .onAmplitudeChanged(const Duration(milliseconds: 60))
+          .listen((amp) {
+        if (!mounted ||
+            _isDisposed ||
+            _isHandlingTurn ||
+            _callState != LiveCallState.listening) {
+          return;
+        }
+
         final normalized = ((amp.current + 50) / 45).clamp(0.0, 1.0);
         setState(() => _audioLevel = normalized);
 
@@ -290,9 +299,14 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
           _hasDetectedSpeech = true;
           _silenceDebounceTimer?.cancel();
         } else if (_hasDetectedSpeech && amp.current <= -38) {
-          if (_silenceDebounceTimer == null || !_silenceDebounceTimer!.isActive) {
-            _silenceDebounceTimer = Timer(const Duration(milliseconds: 1400), () {
-              if (mounted && !_isDisposed && !_isHandlingTurn && _hasDetectedSpeech) {
+          if (_silenceDebounceTimer == null ||
+              !_silenceDebounceTimer!.isActive) {
+            _silenceDebounceTimer =
+                Timer(const Duration(milliseconds: 1400), () {
+              if (mounted &&
+                  !_isDisposed &&
+                  !_isHandlingTurn &&
+                  _hasDetectedSpeech) {
                 _finalizeTurnAndRespond();
               }
             });
@@ -359,13 +373,17 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
       String? userPinyin;
       try {
-        final p = PinyinHelper.getPinyinE(text, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+        final p = PinyinHelper.getPinyinE(text,
+            separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
         if (p.isNotEmpty) userPinyin = p;
       } catch (_) {}
 
       String? userTranslation;
       try {
-        userTranslation = await ref.read(localTranslationServiceProvider).translate(text).timeout(const Duration(milliseconds: 600));
+        userTranslation = await ref
+            .read(localTranslationServiceProvider)
+            .translate(text)
+            .timeout(const Duration(milliseconds: 600));
       } catch (_) {}
 
       if (!mounted || _isDisposed) return;
@@ -414,7 +432,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     try {
       final bytes = await file.readAsBytes();
       final geminiService = ref.read(geminiServiceProvider);
-      final expectedPinyin = PinyinHelper.getPinyinE(fallbackText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+      final expectedPinyin = PinyinHelper.getPinyinE(fallbackText,
+          separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
 
       // Call genuine Azure Pronunciation Assessment REST API with reference text
       final grade = await geminiService.gradeAudio(
@@ -426,7 +445,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       if (!mounted || _isDisposed) return;
       if (messageIndex >= 0 && messageIndex < _transcript.length) {
         final oldMsg = _transcript[messageIndex];
-        
+
         setState(() {
           _transcript[messageIndex] = oldMsg.copyWith(
             grade: grade,
@@ -446,7 +465,6 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   }
 
   Future<void> _handleUserInputAndRespondContinued(String text) async {
-
     _setCallState(LiveCallState.thinking, "Thinking...");
 
     try {
@@ -482,7 +500,9 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
             'content': t.text,
           });
         } else {
-          final pinyinStr = t.pinyin ?? PinyinHelper.getPinyinE(t.text, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+          final pinyinStr = t.pinyin ??
+              PinyinHelper.getPinyinE(t.text,
+                  separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
           final transStr = t.translation ?? '';
           messages.add({
             'role': 'assistant',
@@ -494,7 +514,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       final aiTextRaw = (await gemini.makeOpenRouterCall(
         model: 'google/gemini-2.5-flash',
         messages: messages,
-      )).trim();
+      ))
+          .trim();
 
       if (_isDisposed || !mounted) return;
       if (aiTextRaw.isEmpty) {
@@ -504,7 +525,7 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       String aiText = aiTextRaw;
       String? pinyin;
       String? translation;
-      
+
       if (aiTextRaw.contains('|||')) {
         final parts = aiTextRaw.split('|||');
         if (parts.length >= 3) {
@@ -520,7 +541,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       // 🛡️ Fail-safe: If pinyin is ever omitted, compute tone-marked Pinyin so subtitles NEVER disappear!
       if (pinyin == null || pinyin.isEmpty) {
         try {
-          final p = PinyinHelper.getPinyinE(aiText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+          final p = PinyinHelper.getPinyinE(aiText,
+              separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
           if (p.isNotEmpty) pinyin = p;
         } catch (_) {}
       }
@@ -529,9 +551,9 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       // can read everything the AI says, even if synthesis/playback fails.
       setState(() {
         _transcript.add(LiveCallMessage(
-          text: aiText, 
-          pinyin: pinyin, 
-          translation: translation, 
+          text: aiText,
+          pinyin: pinyin,
+          translation: translation,
           role: ChatRole.scholar,
         ));
       });
@@ -586,7 +608,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
     _analyzeStatusTimer?.cancel();
     int index = 0;
     setState(() => _analyzeStatusText = _analyzeStatusMessages[0]);
-    _analyzeStatusTimer = Timer.periodic(const Duration(milliseconds: 1500), (timer) {
+    _analyzeStatusTimer =
+        Timer.periodic(const Duration(milliseconds: 1500), (timer) {
       if (!mounted || _isDisposed || !_isAnalyzing) {
         timer.cancel();
         return;
@@ -648,7 +671,12 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
     );
 
     // 3. Resume the call seamlessly once sheet is closed
-    if (mounted && !_isDisposed && !_isEndingCall && !_isMuted && !_isHandlingTurn && _callState != LiveCallState.speaking) {
+    if (mounted &&
+        !_isDisposed &&
+        !_isEndingCall &&
+        !_isMuted &&
+        !_isHandlingTurn &&
+        _callState != LiveCallState.speaking) {
       _startListening();
     }
   }
@@ -759,13 +787,15 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
 
   Future<String> _generateFinalVerdict() async {
     try {
-      final userMessages = _transcript.where((m) => m.role == ChatRole.user).toList();
+      final userMessages =
+          _transcript.where((m) => m.role == ChatRole.user).toList();
       if (userMessages.isEmpty) {
         return "Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.";
       }
 
       // If user only spoke a single short word or 1 phrase
-      if (userMessages.length == 1 && userMessages.first.text.trim().length <= 4) {
+      if (userMessages.length == 1 &&
+          userMessages.first.text.trim().length <= 4) {
         final word = userMessages.first.text.trim();
         return "Good start practicing '$word'. In your next session, try stringing full sentences together to practice tone transitions and natural flow.";
       }
@@ -778,7 +808,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
         if (msg.grade != null && msg.grade!['score'] != null) {
           totalScore += (msg.grade!['score'] as num).toInt();
           scoredTurns++;
-          final words = msg.grade!['words'] as List?;
+          final words =
+              msg.grade![AppLocalizations.of(context)!.words] as List?;
           if (words != null) {
             for (final w in words) {
               if (w['isCorrect'] == false && w['word'] != null) {
@@ -788,12 +819,15 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
           }
         }
       }
-      final avgAzureScore = scoredTurns > 0 ? (totalScore / scoredTurns).round() : null;
-      final weakWordSummary = weakWords.isNotEmpty ? weakWords.take(4).toSet().join(", ") : null;
+      final avgAzureScore =
+          scoredTurns > 0 ? (totalScore / scoredTurns).round() : null;
+      final weakWordSummary =
+          weakWords.isNotEmpty ? weakWords.take(4).toSet().join(", ") : null;
 
       final gemini = ref.read(geminiServiceProvider);
       final transcriptStr = _transcript
-          .map((m) => "${m.role == ChatRole.user ? 'STUDENT' : 'COACH'}: ${m.text}")
+          .map((m) =>
+              "${m.role == ChatRole.user ? 'STUDENT' : 'COACH'}: ${m.text}")
           .join("\n");
 
       const systemPrompt = '''
@@ -896,23 +930,34 @@ Provide your short, professional linguistic analysis directly to the student:
                                     shape: BoxShape.circle,
                                     gradient: SweepGradient(
                                       colors: [
-                                        theme.colorScheme.primary.withValues(alpha: 0.0),
-                                        theme.colorScheme.primary.withValues(alpha: 0.4),
+                                        theme.colorScheme.primary
+                                            .withValues(alpha: 0.0),
+                                        theme.colorScheme.primary
+                                            .withValues(alpha: 0.4),
                                         Colors.amber.withValues(alpha: 0.6),
-                                        theme.colorScheme.primary.withValues(alpha: 0.4),
-                                        theme.colorScheme.primary.withValues(alpha: 0.0),
+                                        theme.colorScheme.primary
+                                            .withValues(alpha: 0.4),
+                                        theme.colorScheme.primary
+                                            .withValues(alpha: 0.0),
                                       ],
-                                      transform: GradientRotation(t * 2 * math.pi),
+                                      transform:
+                                          GradientRotation(t * 2 * math.pi),
                                     ),
                                     border: Border.all(
-                                      color: theme.colorScheme.primary.withValues(
-                                        alpha: 0.5 + 0.3 * (1 + math.sin(t * 2 * math.pi)) / 2,
+                                      color:
+                                          theme.colorScheme.primary.withValues(
+                                        alpha: 0.5 +
+                                            0.3 *
+                                                (1 +
+                                                    math.sin(t * 2 * math.pi)) /
+                                                2,
                                       ),
                                       width: 2.5,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                                        color: theme.colorScheme.primary
+                                            .withValues(alpha: 0.3),
                                         blurRadius: 30 + 10 * t,
                                         spreadRadius: 2,
                                       ),
@@ -922,7 +967,8 @@ Provide your short, professional linguistic analysis directly to the student:
                                     child: Icon(
                                       Icons.psychology_rounded,
                                       size: 56,
-                                      color: Colors.white.withValues(alpha: 0.9),
+                                      color:
+                                          Colors.white.withValues(alpha: 0.9),
                                     ),
                                   ),
                                 );
@@ -952,7 +998,8 @@ Provide your short, professional linguistic analysis directly to the student:
                                   minHeight: 4,
                                   backgroundColor: Colors.white12,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    theme.colorScheme.primary.withValues(alpha: 0.7),
+                                    theme.colorScheme.primary
+                                        .withValues(alpha: 0.7),
                                   ),
                                 ),
                               ),
@@ -963,228 +1010,250 @@ Provide your short, professional linguistic analysis directly to the student:
                     )
                   : Column(
                       key: const ValueKey('call_ui'),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Column(
-                        children: [
-                          Text(AppLocalizations.of(context)!.geminiLiveCall,
-                              style: theme.textTheme.labelMedium?.copyWith(
-                                  color: Colors.white54, letterSpacing: 2.0)),
-                          const SizedBox(height: 6),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                            child: Text(
-                              widget.scenario.title,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.25),
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            _callStatus,
-                            style: TextStyle(
-                              color: _callState == LiveCallState.error
-                                  ? Colors.redAccent
-                                  : _callState == LiveCallState.listening
-                                      ? Colors.cyanAccent
-                                      : _callState == LiveCallState.thinking
-                                          ? Colors.amber
-                                          : _callState == LiveCallState.speaking
-                                              ? theme.colorScheme.primary
-                                              : Colors.white70,
-                              fontSize: 16,
-                            ),
-                          ),
-                          if (_hasError)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.redAccent,
-                                  foregroundColor: Colors.white,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 12),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30)),
-                                  elevation: 8,
-                                ),
-                                icon: const Icon(Icons.arrow_back, size: 20),
-                                label: Text(
-                                  AppLocalizations.of(context)!.returnToMenu,
-                                  style: const TextStyle(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Column(
+                            children: [
+                              Text(AppLocalizations.of(context)!.geminiLiveCall,
+                                  style: theme.textTheme.labelMedium?.copyWith(
+                                      color: Colors.white54,
+                                      letterSpacing: 2.0)),
+                              const SizedBox(height: 6),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 28.0),
+                                child: Text(
+                                  widget.scenario.title,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.textTheme.titleLarge?.copyWith(
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16),
+                                      height: 1.25),
                                 ),
-                                onPressed: () => Navigator.pop(context),
                               ),
-                            ),
-                        ],
-                      ),
-                    ),
-
-                    const Spacer(),
-
-                    // Transcript Overlay
-                    Container(
-                      height: 290,
-                      margin: const EdgeInsets.symmetric(horizontal: 18),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1E293B).withValues(alpha: 0.4),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.12),
-                          width: 1.0,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.25),
-                            blurRadius: 16,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: ShaderMask(
-                        shaderCallback: (rect) {
-                          return const LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black,
-                              Colors.black,
-                              Colors.transparent
+                              const SizedBox(height: 6),
+                              Text(
+                                _callStatus,
+                                style: TextStyle(
+                                  color: _callState == LiveCallState.error
+                                      ? Colors.redAccent
+                                      : _callState == LiveCallState.listening
+                                          ? Colors.cyanAccent
+                                          : _callState == LiveCallState.thinking
+                                              ? Colors.amber
+                                              : _callState ==
+                                                      LiveCallState.speaking
+                                                  ? theme.colorScheme.primary
+                                                  : Colors.white70,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              if (_hasError)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 16.0),
+                                  child: ElevatedButton.icon(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.redAccent,
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 12),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                      elevation: 8,
+                                    ),
+                                    icon:
+                                        const Icon(Icons.arrow_back, size: 20),
+                                    label: Text(
+                                      AppLocalizations.of(context)!
+                                          .returnToMenu,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
+                                ),
                             ],
-                            stops: [0.0, 0.08, 0.92, 1.0],
-                          ).createShader(rect);
-                        },
-                        blendMode: BlendMode.dstIn,
-                        child: ListView.builder(
-                          controller: _scrollController,
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          itemCount: _transcript.length,
-                          itemBuilder: (context, index) {
-                            final msg = _transcript[index];
-                            return _LiveTranscriptBubble(
-                              message: msg,
-                              theme: theme,
-                              subtitleMode: _subtitleMode,
-                              onCharacterTap: _handleCharacterTap,
+                          ),
+                        ),
+
+                        const Spacer(),
+
+                        // Transcript Overlay
+                        Container(
+                          height: 290,
+                          margin: const EdgeInsets.symmetric(horizontal: 18),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 8),
+                          decoration: BoxDecoration(
+                            color:
+                                const Color(0xFF1E293B).withValues(alpha: 0.4),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.12),
+                              width: 1.0,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.25),
+                                blurRadius: 16,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: ShaderMask(
+                            shaderCallback: (rect) {
+                              return const LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black,
+                                  Colors.black,
+                                  Colors.transparent
+                                ],
+                                stops: [0.0, 0.08, 0.92, 1.0],
+                              ).createShader(rect);
+                            },
+                            blendMode: BlendMode.dstIn,
+                            child: ListView.builder(
+                              controller: _scrollController,
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              itemCount: _transcript.length,
+                              itemBuilder: (context, index) {
+                                final msg = _transcript[index];
+                                return _LiveTranscriptBubble(
+                                  message: msg,
+                                  theme: theme,
+                                  subtitleMode: _subtitleMode,
+                                  onCharacterTap: _handleCharacterTap,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        AnimatedBuilder(
+                          animation: _pulseAnimation,
+                          builder: (context, child) {
+                            final bool isActive =
+                                _callState == LiveCallState.listening ||
+                                    _callState == LiveCallState.speaking;
+                            final double baseScale = 1.0 + (_audioLevel * 0.15);
+                            final double scale = isActive
+                                ? baseScale * _pulseAnimation.value
+                                : 1.0;
+                            final Color glowColor =
+                                _callState == LiveCallState.listening
+                                    ? Colors.cyanAccent
+                                    : _callState == LiveCallState.speaking
+                                        ? theme.colorScheme.primary
+                                        : _callState == LiveCallState.thinking
+                                            ? Colors.amber
+                                            : Colors.white24;
+                            return BreathingWidget(
+                              isBreathing: _callState == LiveCallState.thinking,
+                              child: Transform.scale(
+                                scale: scale,
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      if (isActive ||
+                                          _callState == LiveCallState.thinking)
+                                        BoxShadow(
+                                            color: glowColor.withValues(
+                                                alpha: 0.5),
+                                            blurRadius: 40 + (_audioLevel * 20),
+                                            spreadRadius: 5),
+                                    ],
+                                  ),
+                                  child: ClipOval(
+                                    child: widget.scenario.hasAvatar
+                                        ? Image.asset(
+                                            widget.scenario
+                                                .resolvedAvatarAssetPath,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (context, error,
+                                                    stackTrace) =>
+                                                _buildCenterPlaceholder(theme),
+                                          )
+                                        : _buildCenterPlaceholder(theme),
+                                  ),
+                                ),
+                              ),
                             );
                           },
                         ),
-                      ),
-                    ),
 
-                    const SizedBox(height: 24),
+                        const SizedBox(height: 48),
 
-                    AnimatedBuilder(
-                      animation: _pulseAnimation,
-                      builder: (context, child) {
-                        final bool isActive =
-                            _callState == LiveCallState.listening ||
-                                _callState == LiveCallState.speaking;
-                        final double baseScale = 1.0 + (_audioLevel * 0.15);
-                        final double scale =
-                            isActive ? baseScale * _pulseAnimation.value : 1.0;
-                        final Color glowColor =
-                            _callState == LiveCallState.listening
-                                ? Colors.cyanAccent
-                                : _callState == LiveCallState.speaking
-                                    ? theme.colorScheme.primary
-                                    : _callState == LiveCallState.thinking
-                                        ? Colors.amber
-                                        : Colors.white24;
-                        return BreathingWidget(
-                          isBreathing: _callState == LiveCallState.thinking,
-                          child: Transform.scale(
-                            scale: scale,
-                            child: Container(
-                              width: 140,
-                              height: 140,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  if (isActive ||
-                                      _callState == LiveCallState.thinking)
-                                    BoxShadow(
-                                        color: glowColor.withValues(alpha: 0.5),
-                                        blurRadius: 40 + (_audioLevel * 20),
-                                        spreadRadius: 5),
-                                ],
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 40.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              _CallControlButton(
+                                icon: _isMuted ? Icons.play_arrow : Icons.pause,
+                                label: _isMuted
+                                    ? AppLocalizations.of(context)!.resume
+                                    : AppLocalizations.of(context)!.pause,
+                                isActive: _isMuted,
+                                onTap: _togglePause,
                               ),
-                              child: ClipOval(
-                                child: widget.scenario.hasAvatar
-                                    ? Image.asset(
-                                        widget.scenario.resolvedAvatarAssetPath,
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (context, error, stackTrace) =>
-                                            _buildCenterPlaceholder(theme),
-                                      )
-                                    : _buildCenterPlaceholder(theme),
+                              _CallControlButton(
+                                icon: _subtitleMode == 2
+                                    ? Icons.visibility_off
+                                    : (_subtitleMode == 1
+                                        ? Icons.remove_red_eye
+                                        : Icons.subtitles),
+                                label: _subtitleMode == 2
+                                    ? AppLocalizations.of(context)!.hidden
+                                    : (_subtitleMode == 1
+                                        ? AppLocalizations.of(context)!.zhOnly
+                                        : AppLocalizations.of(context)!.cc),
+                                isActive: _subtitleMode != 0,
+                                onTap: _cycleSubtitleMode,
                               ),
-                            ),
+                              GestureDetector(
+                                onTap: _endCall,
+                                child: Container(
+                                  width: 72,
+                                  height: 72,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.redAccent,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.redAccent,
+                                            blurRadius: 20,
+                                            offset: Offset(0, 4))
+                                      ]),
+                                  child: const Icon(Icons.call_end,
+                                      color: Colors.white, size: 36),
+                                ),
+                              ),
+                              _CallControlButton(
+                                icon: _isSpeaker
+                                    ? Icons.volume_up
+                                    : Icons.volume_down,
+                                label: AppLocalizations.of(context)!.speaker,
+                                isActive: _isSpeaker,
+                                onTap: _toggleSpeaker,
+                              ),
+                            ],
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     ),
-
-                    const SizedBox(height: 48),
-
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 40.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _CallControlButton(
-                            icon: _isMuted ? Icons.play_arrow : Icons.pause,
-                            label: _isMuted ? "Resume" : "Pause",
-                            isActive: _isMuted,
-                            onTap: _togglePause,
-                          ),
-                          _CallControlButton(
-                            icon: _subtitleMode == 2 ? Icons.visibility_off : (_subtitleMode == 1 ? Icons.remove_red_eye : Icons.subtitles),
-                            label: _subtitleMode == 2 ? "Hidden" : (_subtitleMode == 1 ? "ZH Only" : "CC"),
-                            isActive: _subtitleMode != 0,
-                            onTap: _cycleSubtitleMode,
-                          ),
-                          GestureDetector(
-                            onTap: _endCall,
-                            child: Container(
-                              width: 72,
-                              height: 72,
-                              decoration: const BoxDecoration(
-                                  color: Colors.redAccent,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.redAccent,
-                                        blurRadius: 20,
-                                        offset: Offset(0, 4))
-                                  ]),
-                              child: const Icon(Icons.call_end,
-                                  color: Colors.white, size: 36),
-                            ),
-                          ),
-                          _CallControlButton(
-                            icon: _isSpeaker
-                                ? Icons.volume_up
-                                : Icons.volume_down,
-                            label: "Speaker",
-                            isActive: _isSpeaker,
-                            onTap: _toggleSpeaker,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
             ),
           ),
         ],
@@ -1270,7 +1339,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mode 2 is "Hidden": completely hide all subtitles and transcripts (voice-only)
+    // Mode 2 is AppLocalizations.of(context)!.hidden: completely hide all subtitles and transcripts (voice-only)
     if (subtitleMode == 2) {
       return const SizedBox.shrink();
     }
@@ -1309,30 +1378,43 @@ class _LiveTranscriptBubble extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (isUser && message.grade != null) ...[
-                _buildGradedText(message.grade!['words'] ?? [], theme, context),
+                _buildGradedText(
+                    message.grade![AppLocalizations.of(context)!.words] ?? [],
+                    theme,
+                    context),
                 const SizedBox(height: 4),
                 Builder(builder: (context) {
-                  final score = message.grade!['score'] ?? message.grade!['overallScore'] ?? 0;
+                  final score = message.grade!['score'] ??
+                      message.grade!['overallScore'] ??
+                      0;
                   final isGood = score >= 80;
                   final isMedium = score >= 65 && score < 80;
                   final badgeColor = isGood
                       ? const Color(0xFF10B981)
-                      : (isMedium ? const Color(0xFFF59E0B) : const Color(0xFFEF4444));
+                      : (isMedium
+                          ? const Color(0xFFF59E0B)
+                          : const Color(0xFFEF4444));
                   final label = isGood
                       ? "Tone Accurate • $score%"
-                      : (isMedium ? "Tone Needs Work • $score%" : "Pronunciation • $score%");
+                      : (isMedium
+                          ? "Tone Needs Work • $score%"
+                          : "Pronunciation • $score%");
                   return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
                       color: badgeColor.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: badgeColor.withValues(alpha: 0.4)),
+                      border:
+                          Border.all(color: badgeColor.withValues(alpha: 0.4)),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          isGood ? Icons.check_circle_outline : Icons.info_outline,
+                          isGood
+                              ? Icons.check_circle_outline
+                              : Icons.info_outline,
                           size: 11,
                           color: badgeColor,
                         ),
@@ -1362,7 +1444,8 @@ class _LiveTranscriptBubble extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
@@ -1401,7 +1484,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
                   ),
                 ),
               ],
-              
+
               // Pinyin Subtitles (shown when not hidden, if message has pinyin and not already rendered in graded text)
               if ((subtitleMode == 0 || subtitleMode == 1) &&
                   (message.grade == null || !isUser) &&

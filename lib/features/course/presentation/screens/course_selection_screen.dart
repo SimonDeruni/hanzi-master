@@ -13,7 +13,8 @@ class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
 
   @override
-  ConsumerState<CourseSelectionScreen> createState() => _CourseSelectionScreenState();
+  ConsumerState<CourseSelectionScreen> createState() =>
+      _CourseSelectionScreenState();
 }
 
 class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
@@ -27,7 +28,8 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.curriculumPaths ?? "CURRICULUM PATHS"),
+        title: Text(l10n?.curriculumPaths ??
+            AppLocalizations.of(context)!.curriculumPaths),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -51,44 +53,56 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
         child: asyncDecks.when(
           data: (decks) {
             if (decks.isEmpty) {
-              return Center(child: Text(l10n?.noDecksFound ?? "No decks found. Add some to your library!"));
+              return Center(
+                  child: Text(l10n?.noDecksFound ??
+                      AppLocalizations.of(context)!.noDecksFound));
             }
-            
+
             return ListView.separated(
               padding: const EdgeInsets.fromLTRB(24, 120, 24, 40),
               itemCount: decks.length,
               separatorBuilder: (context, index) => const SizedBox(height: 20),
               itemBuilder: (context, index) {
                 final deck = decks[index];
-                final cardCount = allCards.where((c) => c.deckId == deck.id).length;
-                
+                final cardCount =
+                    allCards.where((c) => c.deckId == deck.id).length;
+
                 final String jobId = 'path_gen_${deck.id}';
                 final bool isGenerating = aiQueue.contains(jobId);
-                
+
                 return _CourseCard(
                   title: deck.localizedName(context),
-                  subtitle: deck.description.isNotEmpty ? deck.description : "A personalized path based on your deck.",
+                  subtitle: deck.description.isNotEmpty
+                      ? deck.description
+                      : AppLocalizations.of(context)!
+                          .personalizedPathBasedOnDeck,
                   level: "$cardCount CARDS",
                   color: deck.id == 'default' ? Colors.indigo : Colors.teal,
                   isLocked: false,
                   isGenerating: isGenerating,
                   onTap: () async {
                     if (cardCount == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.addCardsFirst ?? "Add some cards to this deck first!")));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(l10n?.addCardsFirst ??
+                              AppLocalizations.of(context)!.addCardsFirst)));
                       return;
                     }
 
-                    if (engine.hasCachedCurriculum(deck.id) || deck.id == 'default') {
+                    if (engine.hasCachedCurriculum(deck.id) ||
+                        deck.id == 'default') {
                       Navigator.push(
-                        context, 
-                        SwipeBackPageRoute(builder: (context) => CourseScreen(deckId: deck.id, deckName: deck.localizedName(context))),
+                        context,
+                        SwipeBackPageRoute(
+                            builder: (context) => CourseScreen(
+                                deckId: deck.id,
+                                deckName: deck.localizedName(context))),
                       );
                     } else {
                       if (isGenerating) return;
-                      
+
                       // Add to background queue
                       ref.read(aiJobQueueProvider.notifier).addJob(jobId);
-                      
+
                       // Notify User
                       showDialog(
                         context: context,
@@ -99,7 +113,8 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                             children: [
                               const CircularProgressIndicator(),
                               const SizedBox(height: 16),
-                              Text(l10n?.aiDraftingPath ?? "The AI Scholar is drafting your path..."),
+                              Text(l10n?.aiDraftingPath ??
+                                  AppLocalizations.of(context)!.aiDraftingPath),
                             ],
                           ),
                         ),
@@ -107,27 +122,35 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
 
                       // Fire and forget generation task
                       try {
-                        await engine.generateAndCacheCurriculum(deck.id, allCards);
-                        
+                        await engine.generateAndCacheCurriculum(
+                            deck.id, allCards);
+
                         // Wait to avoid modifying provider during build phase if UI is refreshing rapidly
                         await Future.delayed(Duration.zero);
                         ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
-                        
+
                         if (mounted && context.mounted) {
-                           Navigator.pop(context); // Close dialog
-                           ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(content: Text(l10n?.pathReady ?? "Your path for '${deck.localizedName(context)}' is ready!"), backgroundColor: Colors.green.shade700),
-                           );
+                          Navigator.pop(context); // Close dialog
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(AppLocalizations.of(context)!
+                                    .your_path_for_is_ready(
+                                        deck.localizedName(context))),
+                                backgroundColor: Colors.green.shade700),
+                          );
                         }
                       } catch (e) {
-                         await Future.delayed(Duration.zero);
-                         ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
-                         if (mounted && context.mounted) {
-                           Navigator.pop(context);
-                           ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(content: Text("${l10n?.errorGeneratingPath ?? 'Error generating path'}: $e"), backgroundColor: Colors.red),
-                           );
-                         }
+                        await Future.delayed(Duration.zero);
+                        ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
+                        if (mounted && context.mounted) {
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    "${l10n?.errorGeneratingPath ?? AppLocalizations.of(context)!.errorGeneratingPath}: $e"),
+                                backgroundColor: Colors.red),
+                          );
+                        }
                       }
                     }
                   },
@@ -136,7 +159,8 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (err, stack) => Center(child: Text("${l10n?.errorPrefix ?? 'Error: '}$err")),
+          error: (err, stack) =>
+              Center(child: Text("${l10n?.errorPrefix ?? 'Error: '}$err")),
         ),
       ),
     );
@@ -165,7 +189,7 @@ class _CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -175,11 +199,15 @@ class _CourseCard extends StatelessWidget {
           height: 160,
           decoration: BoxDecoration(
             color: isLocked || isGenerating
-                ? Colors.grey.withValues(alpha: 0.1) 
-                : (isDark ? const Color(0xFF2A2A2B) : Colors.white.withValues(alpha: 0.8)),
+                ? Colors.grey.withValues(alpha: 0.1)
+                : (isDark
+                    ? const Color(0xFF2A2A2B)
+                    : Colors.white.withValues(alpha: 0.8)),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isLocked || isGenerating ? Colors.grey.withValues(alpha: 0.3) : color.withValues(alpha: 0.3),
+              color: isLocked || isGenerating
+                  ? Colors.grey.withValues(alpha: 0.3)
+                  : color.withValues(alpha: 0.3),
               width: 1.5,
             ),
             boxShadow: [
@@ -202,14 +230,20 @@ class _CourseCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: isLocked || isGenerating ? Colors.grey : color,
+                            color:
+                                isLocked || isGenerating ? Colors.grey : color,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             level.toUpperCase(),
-                            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -218,7 +252,9 @@ class _CourseCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: isLocked || isGenerating ? Colors.grey : (isDark ? Colors.white : Colors.black87),
+                            color: isLocked || isGenerating
+                                ? Colors.grey
+                                : (isDark ? Colors.white : Colors.black87),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -228,7 +264,11 @@ class _CourseCard extends StatelessWidget {
                           subtitle,
                           style: TextStyle(
                             fontSize: 12,
-                            color: isLocked || isGenerating ? Colors.grey : (isDark ? Colors.white70 : Colors.grey.shade700),
+                            color: isLocked || isGenerating
+                                ? Colors.grey
+                                : (isDark
+                                    ? Colors.white70
+                                    : Colors.grey.shade700),
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -239,19 +279,27 @@ class _CourseCard extends StatelessWidget {
                   if (isLocked)
                     const Icon(Icons.lock, color: Colors.grey, size: 32)
                   else if (!isGenerating)
-                    Icon(Icons.arrow_forward_ios, color: color.withValues(alpha: 0.5), size: 20),
+                    Icon(Icons.arrow_forward_ios,
+                        color: color.withValues(alpha: 0.5), size: 20),
                 ],
               ),
               if (isGenerating)
                 Container(
-                  color: (isDark ? Colors.black : Colors.white).withValues(alpha: 0.5),
+                  color: (isDark ? Colors.black : Colors.white)
+                      .withValues(alpha: 0.5),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const CircularProgressIndicator(color: Colors.brown, strokeWidth: 3),
+                        const CircularProgressIndicator(
+                            color: Colors.brown, strokeWidth: 3),
                         const SizedBox(height: 8),
-                        Text(AppLocalizations.of(context)?.brushingCurriculum ?? "Brushing Curriculum...", style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
+                        Text(
+                            AppLocalizations.of(context)?.brushingCurriculum ??
+                                "Brushing Curriculum...",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.brown)),
                       ],
                     ),
                   ),

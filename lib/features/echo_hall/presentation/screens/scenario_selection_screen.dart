@@ -32,7 +32,7 @@ class ScenarioSelectionScreen extends ConsumerStatefulWidget {
 
 class _ScenarioSelectionScreenState
     extends ConsumerState<ScenarioSelectionScreen> {
-  String _selectedCategory = 'All';
+  String _selectedCategory = '';
   String _searchQuery = '';
   final TextEditingController _searchController = TextEditingController();
   bool _autoLaunchHandled = false;
@@ -51,7 +51,7 @@ class _ScenarioSelectionScreenState
 
   List<ConversationScenario> get _filteredScenarios {
     var scenarios = _allScenarios;
-    if (_selectedCategory != 'All') {
+    if (_selectedCategory != AppLocalizations.of(context)!.allLabel) {
       if (_selectedCategory == 'HSK 1') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 1).toList();
       } else if (_selectedCategory == 'HSK 2') {
@@ -64,7 +64,8 @@ class _ScenarioSelectionScreenState
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 5).toList();
       } else if (_selectedCategory == 'HSK 6') {
         scenarios = _allScenarios.where((s) => s.targetHskLevel == 6).toList();
-      } else if (_selectedCategory == 'Custom') {
+      } else if (_selectedCategory ==
+          AppLocalizations.of(context)!.customLabel) {
         scenarios = _allScenarios.where((s) => s.isCustom).toList();
       }
     }
@@ -139,7 +140,6 @@ class _ScenarioSelectionScreenState
     await prefs.setString('deck_scenarios', jsonEncode(map));
   }
 
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -160,7 +160,8 @@ class _ScenarioSelectionScreenState
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                          size: 20),
                       onPressed: () => Navigator.pop(context),
                     ),
                   ],
@@ -171,7 +172,7 @@ class _ScenarioSelectionScreenState
           // Search bar
           ZenSearchBar(
             controller: _searchController,
-            hintText: 'Search scenarios...',
+            hintText: AppLocalizations.of(context)!.searchScenariosHint,
             margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
             onChanged: (value) => setState(() => _searchQuery = value),
           ),
@@ -238,17 +239,35 @@ class _ScenarioSelectionScreenState
 
   List<Color> _getScenarioGradient(String id, int hsk) {
     if (id.startsWith('food')) {
-      return [const Color(0xFF8B1E1E), const Color(0xFF4A0E0E)]; // Chinese Culinary Crimson
+      return [
+        const Color(0xFF8B1E1E),
+        const Color(0xFF4A0E0E)
+      ]; // Chinese Culinary Crimson
     } else if (id.startsWith('taxi') || id.startsWith('travel')) {
-      return [const Color(0xFF1E355B), const Color(0xFF0E1E36)]; // Travel Midnight Indigo
+      return [
+        const Color(0xFF1E355B),
+        const Color(0xFF0E1E36)
+      ]; // Travel Midnight Indigo
     } else if (id.startsWith('market') || id.startsWith('shop')) {
-      return [const Color(0xFF52221B), const Color(0xFF2E100C)]; // Silk Market Amber Terracotta
+      return [
+        const Color(0xFF52221B),
+        const Color(0xFF2E100C)
+      ]; // Silk Market Amber Terracotta
     } else if (id.startsWith('doctor') || id.startsWith('health')) {
-      return [const Color(0xFF1E3A2B), const Color(0xFF0F2218)]; // Herbal Forest Jade
+      return [
+        const Color(0xFF1E3A2B),
+        const Color(0xFF0F2218)
+      ]; // Herbal Forest Jade
     } else if (id.startsWith('job') || id.startsWith('work')) {
-      return [const Color(0xFF233142), const Color(0xFF111B26)]; // Professional Scholar Slate
+      return [
+        const Color(0xFF233142),
+        const Color(0xFF111B26)
+      ]; // Professional Scholar Slate
     } else if (id.startsWith('intro') || id.startsWith('friend')) {
-      return [const Color(0xFF38234D), const Color(0xFF1B0F29)]; // Twilight Purple
+      return [
+        const Color(0xFF38234D),
+        const Color(0xFF1B0F29)
+      ]; // Twilight Purple
     } else {
       switch (hsk) {
         case 1:
@@ -283,7 +302,9 @@ class _ScenarioSelectionScreenState
         onTap: () async {
           final newScenario = await CustomScenarioDialog.show(context);
           if (newScenario != null) {
-            await ref.read(savedScenariosProvider.notifier).saveScenario(newScenario);
+            await ref
+                .read(savedScenariosProvider.notifier)
+                .saveScenario(newScenario);
           }
         },
         borderRadius: BorderRadius.circular(16),
@@ -293,7 +314,8 @@ class _ScenarioSelectionScreenState
             color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFFFFB300).withValues(alpha: isDark ? 0.35 : 0.4),
+              color: const Color(0xFFFFB300)
+                  .withValues(alpha: isDark ? 0.35 : 0.4),
               width: 1.2,
             ),
             boxShadow: [
@@ -310,7 +332,8 @@ class _ScenarioSelectionScreenState
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFB300).withValues(alpha: isDark ? 0.2 : 0.12),
+                  color: const Color(0xFFFFB300)
+                      .withValues(alpha: isDark ? 0.2 : 0.12),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -358,7 +381,8 @@ class _ScenarioSelectionScreenState
 
   Widget _buildCreateFromDeckCard(bool isDark) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 4.0, bottom: 8.0),
+      padding:
+          const EdgeInsets.only(left: 16.0, right: 16.0, top: 4.0, bottom: 8.0),
       child: InkWell(
         onTap: _generateFromDeck,
         borderRadius: BorderRadius.circular(16),
@@ -368,7 +392,8 @@ class _ScenarioSelectionScreenState
             color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFFBA68C8).withValues(alpha: isDark ? 0.35 : 0.4),
+              color: const Color(0xFFBA68C8)
+                  .withValues(alpha: isDark ? 0.35 : 0.4),
               width: 1.2,
             ),
             boxShadow: [
@@ -385,7 +410,8 @@ class _ScenarioSelectionScreenState
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFBA68C8).withValues(alpha: isDark ? 0.2 : 0.12),
+                  color: const Color(0xFFBA68C8)
+                      .withValues(alpha: isDark ? 0.2 : 0.12),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -524,13 +550,16 @@ class _ScenarioSelectionScreenState
                                 ? const Color(0xFF2C2C2E)
                                 : const Color(0xFFF0EAE1),
                             backgroundImage: scenario.hasAvatar
-                                ? _getAvatarImage(scenario.resolvedAvatarAssetPath)
+                                ? _getAvatarImage(
+                                    scenario.resolvedAvatarAssetPath)
                                 : null,
                             child: !scenario.hasAvatar
                                 ? Text(
                                     scenario.personaName.isNotEmpty
                                         ? scenario.personaName[0]
-                                        : (scenario.title.isNotEmpty ? scenario.title[0] : '悟'),
+                                        : (scenario.title.isNotEmpty
+                                            ? scenario.title[0]
+                                            : '悟'),
                                     style: const TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -553,7 +582,8 @@ class _ScenarioSelectionScreenState
                             color: const Color(0xFF9E2A2B),
                             borderRadius: BorderRadius.circular(6),
                             border: Border.all(
-                              color: const Color(0xFFD4AF37).withValues(alpha: 0.8),
+                              color: const Color(0xFFD4AF37)
+                                  .withValues(alpha: 0.8),
                               width: 0.8,
                             ),
                             boxShadow: [
@@ -621,9 +651,7 @@ class _ScenarioSelectionScreenState
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 15,
-                        color: isDark
-                            ? Colors.white
-                            : const Color(0xFF1A1A1B),
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                         letterSpacing: 0.2,
                       ),
                       maxLines: 1,
@@ -635,9 +663,8 @@ class _ScenarioSelectionScreenState
                     Text(
                       scenario.title,
                       style: TextStyle(
-                        color: isDark
-                            ? Colors.white70
-                            : const Color(0xFF555555),
+                        color:
+                            isDark ? Colors.white70 : const Color(0xFF555555),
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
@@ -721,9 +748,9 @@ class _ScenarioSelectionScreenState
                                   .withValues(alpha: isDark ? 0.2 : 0.12),
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            child: const Text(
-                              'Custom',
-                              style: TextStyle(
+                            child: Text(
+                              AppLocalizations.of(context)!.customLabel,
+                              style: const TextStyle(
                                 fontSize: 8.5,
                                 color: Color(0xFFFFB300),
                                 fontWeight: FontWeight.bold,
@@ -744,14 +771,14 @@ class _ScenarioSelectionScreenState
 
   Widget _buildCategoryFilter(bool isDark) {
     final categories = [
-      'All',
+      AppLocalizations.of(context)!.allLabel,
       'HSK 1',
       'HSK 2',
       'HSK 3',
       'HSK 4',
       'HSK 5',
       'HSK 6',
-      'Custom'
+      AppLocalizations.of(context)!.customLabel
     ];
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -772,7 +799,9 @@ class _ScenarioSelectionScreenState
                     .withValues(alpha: isDark ? 0.25 : 0.15),
                 labelStyle: TextStyle(
                   color: isSelected
-                      ? (isDark ? const Color(0xFFFFD54F) : const Color(0xFF1A1A1B))
+                      ? (isDark
+                          ? const Color(0xFFFFD54F)
+                          : const Color(0xFF1A1A1B))
                       : (isDark ? Colors.white70 : Colors.black87),
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                   fontSize: 12.5,
@@ -834,12 +863,16 @@ class _ScenarioSelectionScreenState
                         : null,
                     backgroundColor: scenario.hasAvatar
                         ? Colors.transparent
-                        : (isDark ? const Color(0xFF2C2C2E) : const Color(0xFFF0EAE1)),
+                        : (isDark
+                            ? const Color(0xFF2C2C2E)
+                            : const Color(0xFFF0EAE1)),
                     child: !scenario.hasAvatar
                         ? Text(
                             scenario.personaName.isNotEmpty
                                 ? scenario.personaName[0]
-                                : (scenario.title.isNotEmpty ? scenario.title[0] : '悟'),
+                                : (scenario.title.isNotEmpty
+                                    ? scenario.title[0]
+                                    : '悟'),
                             style: const TextStyle(
                                 color: Color(0xFFFFB300),
                                 fontSize: 20,
@@ -888,18 +921,24 @@ class _ScenarioSelectionScreenState
                           final confirm = await showDialog<bool>(
                               context: ctx,
                               builder: (ctx2) => AlertDialog(
-                                    title: const Text("Delete Scenario"),
-                                    content: const Text("Are you sure?"),
+                                    title: Text(AppLocalizations.of(context)!
+                                        .deleteScenario),
+                                    content: Text(AppLocalizations.of(context)!
+                                        .areYouSure),
                                     actions: [
                                       TextButton(
                                           onPressed: () =>
                                               Navigator.pop(ctx2, false),
-                                          child: const Text("Cancel")),
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .cancelAction)),
                                       TextButton(
                                           onPressed: () =>
                                               Navigator.pop(ctx2, true),
-                                          child: const Text("Delete",
-                                              style: TextStyle(
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .deleteLabel,
+                                              style: const TextStyle(
                                                   color: Colors.red))),
                                     ],
                                   ));
@@ -937,7 +976,7 @@ class _ScenarioSelectionScreenState
                           Icon(Icons.flag,
                               color: Colors.amber.shade700, size: 18),
                           const SizedBox(width: 8),
-                          Text("OBJECTIVES",
+                          Text(AppLocalizations.of(context)!.objectivesTitle,
                               style: TextStyle(
                                   color: Colors.amber.shade700,
                                   fontWeight: FontWeight.bold,
@@ -961,15 +1000,16 @@ class _ScenarioSelectionScreenState
                                               : Colors.black38,
                                           shape: BoxShape.circle)),
                                   Expanded(
-                                      child: RegExp(r'[\u4e00-\u9fa5]').hasMatch(q)
+                                      child: RegExp(r'[\u4e00-\u9fa5]')
+                                              .hasMatch(q)
                                           ? TranslatedText(
                                               q,
                                               style: TextStyle(
                                                   color: isDark
-                                                      ? Colors.white
-                                                          .withValues(alpha: 0.7)
-                                                      : Colors.black
-                                                          .withValues(alpha: 0.6),
+                                                      ? Colors.white.withValues(
+                                                          alpha: 0.7)
+                                                      : Colors.black.withValues(
+                                                          alpha: 0.6),
                                                   fontSize: 14,
                                                   height: 1.3),
                                             )
@@ -977,10 +1017,10 @@ class _ScenarioSelectionScreenState
                                               q,
                                               style: TextStyle(
                                                   color: isDark
-                                                      ? Colors.white
-                                                          .withValues(alpha: 0.7)
-                                                      : Colors.black
-                                                          .withValues(alpha: 0.6),
+                                                      ? Colors.white.withValues(
+                                                          alpha: 0.7)
+                                                      : Colors.black.withValues(
+                                                          alpha: 0.6),
                                                   fontSize: 14,
                                                   height: 1.3),
                                             )),
@@ -1005,8 +1045,8 @@ class _ScenarioSelectionScreenState
                             borderRadius: BorderRadius.circular(16)),
                         elevation: 0),
                     icon: const Icon(Icons.mic, size: 22),
-                    label: const Text("Voice Call",
-                        style: TextStyle(
+                    label: Text(AppLocalizations.of(context)!.voiceCall,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15)),
                   )),
                   const SizedBox(width: 12),
@@ -1027,8 +1067,8 @@ class _ScenarioSelectionScreenState
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16))),
                     icon: const Icon(Icons.chat_bubble_outline, size: 22),
-                    label: const Text("Text Chat",
-                        style: TextStyle(
+                    label: Text(AppLocalizations.of(context)!.textChat,
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15)),
                   )),
                 ])),
@@ -1041,7 +1081,9 @@ class _ScenarioSelectionScreenState
               icon: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                   size: 20,
                   color: isBookmarked ? theme.colorScheme.primary : null),
-              label: Text(isBookmarked ? 'Remove from Saved' : 'Save Scenario'),
+              label: Text(isBookmarked
+                  ? AppLocalizations.of(context)!.removeFromSaved
+                  : AppLocalizations.of(context)!.saveScenario),
             ),
             const SizedBox(height: 16),
           ]),
@@ -1054,22 +1096,60 @@ class _ScenarioSelectionScreenState
 
   (String, String) _pickAvatarAndVoice(String persona, String title) {
     final text = '$persona $title'.toLowerCase();
-    if (text.contains('waiter') || text.contains('restaurant') || text.contains('food') || text.contains('chef') || text.contains('tea') || text.contains('cafe') || text.contains('cook') || text.contains('dish')) {
+    if (text.contains('waiter') ||
+        text.contains('restaurant') ||
+        text.contains('food') ||
+        text.contains('chef') ||
+        text.contains('tea') ||
+        text.contains('cafe') ||
+        text.contains('cook') ||
+        text.contains('dish')) {
       return ('assets/mascot/waiter_avatar.png', 'Fenrir');
     }
-    if (text.contains('taxi') || text.contains('driver') || text.contains('traffic') || text.contains('car') || text.contains('train') || text.contains('airport') || text.contains('station')) {
+    if (text.contains('taxi') ||
+        text.contains('driver') ||
+        text.contains('traffic') ||
+        text.contains('car') ||
+        text.contains('train') ||
+        text.contains('airport') ||
+        text.contains('station')) {
       return ('assets/mascot/taxi_driver_avatar.png', 'Charon');
     }
-    if (text.contains('market') || text.contains('shop') || text.contains('store') || text.contains('vendor') || text.contains('buy') || text.contains('cloth') || text.contains('seller') || text.contains('price')) {
+    if (text.contains('market') ||
+        text.contains('shop') ||
+        text.contains('store') ||
+        text.contains('vendor') ||
+        text.contains('buy') ||
+        text.contains('cloth') ||
+        text.contains('seller') ||
+        text.contains('price')) {
       return ('assets/mascot/market_vendor_avatar.png', 'Kore');
     }
-    if (text.contains('doctor') || text.contains('clinic') || text.contains('hospital') || text.contains('nurse') || text.contains('health') || text.contains('medicine') || text.contains('fever')) {
+    if (text.contains('doctor') ||
+        text.contains('clinic') ||
+        text.contains('hospital') ||
+        text.contains('nurse') ||
+        text.contains('health') ||
+        text.contains('medicine') ||
+        text.contains('fever')) {
       return ('assets/mascot/doctor_avatar.png', 'Aoede');
     }
-    if (text.contains('job') || text.contains('interview') || text.contains('manager') || text.contains('boss') || text.contains('office') || text.contains('company') || text.contains('work')) {
+    if (text.contains('job') ||
+        text.contains('interview') ||
+        text.contains('manager') ||
+        text.contains('boss') ||
+        text.contains('office') ||
+        text.contains('company') ||
+        text.contains('work')) {
       return ('assets/mascot/interviewer_avatar.png', 'Puck');
     }
-    if (text.contains('guide') || text.contains('tour') || text.contains('museum') || text.contains('park') || text.contains('hike') || text.contains('travel') || text.contains('hotel')) {
+    if (text.contains('guide') ||
+        text.contains('tour') ||
+        text.contains('museum') ||
+        text.contains('park') ||
+        text.contains('hike') ||
+        text.contains('travel') ||
+        text.contains('hotel')) {
       return ('assets/mascot/guide_avatar.png', 'Aoede');
     }
     return ('assets/mascot/friend_avatar.png', 'Aoede');
@@ -1105,12 +1185,9 @@ class _ScenarioSelectionScreenState
     setState(() => _isGenerating = true);
 
     try {
-      final allCards = ref
-          .read(flashcardControllerProvider)
-          .valueOrNull ?? [];
-      final cards = allCards
-          .where((c) => c.deckId == selectedDeck!.id)
-          .toList();
+      final allCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
+      final cards =
+          allCards.where((c) => c.deckId == selectedDeck!.id).toList();
 
       final wordsList = cards.take(20).map((c) => c.hanzi).join('\n');
 
@@ -1153,9 +1230,13 @@ Respond ONLY in valid JSON format with NO markdown formatting:
         json['title'] as String? ?? '',
       );
 
-      final initialChinese = (json['initialAiMessage'] as String? ?? '你好！很高兴见到你。').trim();
-      final initialEng = (json['initialEnglish'] as String? ?? 'Hello! Very nice to meet you.').trim();
-      final initialPin = PinyinHelper.getPinyinE(initialChinese, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+      final initialChinese =
+          (json['initialAiMessage'] as String? ?? '你好！很高兴见到你。').trim();
+      final initialEng =
+          (json['initialEnglish'] as String? ?? 'Hello! Very nice to meet you.')
+              .trim();
+      final initialPin = PinyinHelper.getPinyinE(initialChinese,
+          separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
 
       final sysPrompt = (json['systemPrompt'] as String? ?? '').isNotEmpty
           ? json['systemPrompt'] as String
@@ -1169,7 +1250,8 @@ Respond ONLY in valid JSON format with NO markdown formatting:
       final scenario = ConversationScenario(
         id: 'deck-${deck.id}',
         title: json['title'] as String? ?? 'Deck Practice',
-        description: json['description'] as String? ?? 'Practice vocabulary with an AI partner.',
+        description: json['description'] as String? ??
+            'Practice vocabulary with an AI partner.',
         initialAiMessage: initialChinese,
         initialEnglish: initialEng,
         initialPinyin: initialPin,
@@ -1194,8 +1276,9 @@ Respond ONLY in valid JSON format with NO markdown formatting:
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to generate scenario: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text(AppLocalizations.of(context)!.failed_to_generate_scenario(e.toString()))));
     } finally {
       if (mounted) {
         setState(() => _isGenerating = false);

@@ -13,12 +13,13 @@ class FlashcardFormScreen extends ConsumerStatefulWidget {
   const FlashcardFormScreen({super.key, this.cardToEdit});
 
   @override
-  ConsumerState<FlashcardFormScreen> createState() => _FlashcardFormScreenState();
+  ConsumerState<FlashcardFormScreen> createState() =>
+      _FlashcardFormScreenState();
 }
 
 class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
   final _formKey = GlobalKey<FormState>();
-  
+
   late TextEditingController _hanziController;
   late TextEditingController _pinyinController;
   late TextEditingController _defController;
@@ -27,9 +28,12 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
   void initState() {
     super.initState();
     // Pre-fill the boxes if we are editing an existing card
-    _hanziController = TextEditingController(text: widget.cardToEdit?.hanzi ?? '');
-    _pinyinController = TextEditingController(text: widget.cardToEdit?.pinyin ?? '');
-    _defController = TextEditingController(text: widget.cardToEdit?.definition ?? '');
+    _hanziController =
+        TextEditingController(text: widget.cardToEdit?.hanzi ?? '');
+    _pinyinController =
+        TextEditingController(text: widget.cardToEdit?.pinyin ?? '');
+    _defController =
+        TextEditingController(text: widget.cardToEdit?.definition ?? '');
   }
 
   @override
@@ -42,7 +46,6 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
 
   void _save() {
     if (_formKey.currentState!.validate()) {
-      
       // 1. Logic for NEW Card
       if (widget.cardToEdit == null) {
         final newCard = Flashcard(
@@ -57,22 +60,21 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
 
         // We use the controller to save (it handles the repository for us)
         ref.read(flashcardControllerProvider.notifier).addFlashcard(newCard);
-      } 
+      }
       // 2. Logic for EDITING Existing Card
       else {
         ref.read(flashcardControllerProvider.notifier).editFlashcard(
-          widget.cardToEdit!, 
-          _hanziController.text, 
-          _pinyinController.text, 
-          _defController.text
-        );
+            widget.cardToEdit!,
+            _hanziController.text,
+            _pinyinController.text,
+            _defController.text);
       }
 
       // 3. FEEL THE SUCCESS 📳
       HapticsManager.success();
 
       // 4. Close the screen (ONLY ONCE!)
-      Navigator.pop(context); 
+      Navigator.pop(context);
     }
   }
 
@@ -81,7 +83,10 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
     final isEditing = widget.cardToEdit != null;
 
     return Scaffold(
-      appBar: AppBar(title: Text(isEditing ? "Edit Card" : "New Card")),
+      appBar: AppBar(
+          title: Text(isEditing
+              ? AppLocalizations.of(context)!.editCard
+              : AppLocalizations.of(context)!.newCard)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -92,16 +97,20 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
               HanziTextField(
                 controller: _hanziController,
                 hintText: '',
-                decoration: const InputDecoration(labelText: "Hanzi (Character)", border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.hanziCharacter,
+                    border: const OutlineInputBorder()),
                 style: const TextStyle(fontSize: 24),
                 validator: (v) => v!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
-              
+
               // PINYIN
               TextFormField(
                 controller: _pinyinController,
-                decoration: const InputDecoration(labelText: "Pinyin", border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.pinyin,
+                    border: const OutlineInputBorder()),
                 validator: (v) => v!.isEmpty ? "Required" : null,
               ),
               const SizedBox(height: 16),
@@ -109,7 +118,9 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
               // DEFINITION
               TextFormField(
                 controller: _defController,
-                decoration: const InputDecoration(labelText: "Definition", border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.definition,
+                    border: const OutlineInputBorder()),
                 maxLines: 3,
                 validator: (v) => v!.isEmpty ? "Required" : null,
               ),
@@ -122,7 +133,8 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
                   backgroundColor: Colors.indigo,
                 ),
                 onPressed: _save,
-                child: Text(AppLocalizations.of(context)!.saveCard, style: const TextStyle(color: Colors.white, fontSize: 18)),
+                child: Text(AppLocalizations.of(context)!.saveCard,
+                    style: const TextStyle(color: Colors.white, fontSize: 18)),
               ),
             ],
           ),

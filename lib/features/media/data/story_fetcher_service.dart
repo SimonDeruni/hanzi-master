@@ -1,4 +1,4 @@
-﻿import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 import 'package:http/http.dart' as http;
@@ -82,7 +82,9 @@ class StoryFetcherService {
 
     // Stub with no content
     if (summary.contains('appeared first on Mandarin Bean') &&
-        summary.length < 120) return false;
+        summary.length < 120) {
+      return false;
+    }
 
     return true;
   }
@@ -145,13 +147,18 @@ class StoryFetcherService {
                   .toList();
               final titleLower = title.toLowerCase();
 
-              if (categories.contains('news') || titleLower.startsWith('news:'))
+              if (categories.contains('news') || titleLower.startsWith('news:')) {
                 return null;
+              }
               if (categories.contains('jokes') ||
                   titleLower.startsWith('joke:') ||
-                  titleLower.startsWith('jokes:')) return null;
+                  titleLower.startsWith('jokes:')) {
+                return null;
+              }
               if (categories.contains('academic / science') ||
-                  categories.contains('politics & communism')) return null;
+                  categories.contains('politics & communism')) {
+                return null;
+              }
 
               // Parse description, strip HTML tags for summary
               String summary = '';
@@ -172,8 +179,9 @@ class StoryFetcherService {
                 final doc = parse(descNode.innerText);
                 summary = doc.body?.text ?? '';
                 summary = summary.replaceAll(RegExp(r'\s+'), ' ').trim();
-                if (summary.length > 150)
+                if (summary.length > 150) {
                   summary = '${summary.substring(0, 150)}...';
+                }
 
                 // Try image from description
                 imageUrl ??= doc.querySelector('img')?.attributes['src'];

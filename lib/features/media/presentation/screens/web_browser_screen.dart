@@ -22,8 +22,10 @@ import 'package:hanzi_master/features/media/presentation/screens/simplified_arti
 import 'dart:ui';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -108,7 +110,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                 if (!_isZenMode) {
                   _toggleZenMode();
                 } else {
-                  final isDark = Theme.of(context).brightness == Brightness.dark;
+                  final isDark =
+                      Theme.of(context).brightness == Brightness.dark;
                   _applyZenMode(darkMode: isDark);
                 }
               }
@@ -260,7 +263,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           
           if (node.parentNode && node.parentNode.className === 'sentence-text') return;
 
-          const parts = text.split(/([。！？.!?]+)/);
+          const parts = text.split(/([ã€‚ï¼ï¼Ÿ.!?]+)/);
           if (parts.length <= 1) return;
 
           const frag = document.createDocumentFragment();
@@ -310,7 +313,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       if (!translateBtn) {
         translateBtn = document.createElement('button');
         translateBtn.id = 'hanzi-translate-btn';
-        translateBtn.innerText = '文 A';
+        translateBtn.innerText = 'æ–‡ A';
         translateBtn.style.position = 'fixed';
         translateBtn.style.display = 'none';
         translateBtn.style.zIndex = '2147483647'; // Max z-index to be on top of everything
@@ -594,7 +597,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
     final textColor = isDark ? Colors.white : Colors.black87;
     final cardBg = isDark ? const Color(0xFF2A2A2B) : Colors.white;
-    final borderColor = isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.06);
+    final borderColor = isDark
+        ? Colors.white.withValues(alpha: 0.08)
+        : Colors.black.withValues(alpha: 0.06);
 
     showModalBottomSheet(
         context: context,
@@ -645,9 +650,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   _AiToolTile(
                     icon: Icons.playlist_add,
                     iconColor: const Color(0xFF4A90D9),
-                    iconBgColor: const Color(0xFF4A90D9).withValues(alpha: 0.12),
+                    iconBgColor:
+                        const Color(0xFF4A90D9).withValues(alpha: 0.12),
                     title: 'Extract to Deck',
-                    subtitle: 'Extract all unknown words to a new flashcard deck',
+                    subtitle:
+                        'Extract all unknown words to a new flashcard deck',
                     isDark: isDark,
                     cardBg: cardBg,
                     borderColor: borderColor,
@@ -663,7 +670,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   _AiToolTile(
                     icon: Icons.auto_fix_high,
                     iconColor: const Color(0xFFFFB300),
-                    iconBgColor: const Color(0xFFFFB300).withValues(alpha: 0.12),
+                    iconBgColor:
+                        const Color(0xFFFFB300).withValues(alpha: 0.12),
                     title: 'Auto-Simplify',
                     subtitle: 'Rewrite this article to match your HSK level',
                     isDark: isDark,
@@ -673,7 +681,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     onTap: () {
                       HapticsManager.medium();
                       Navigator.pop(ctx);
-                      _showAutoSimplifyLevelPicker(context, isDark, bgColor, textColor);
+                      _showAutoSimplifyLevelPicker(
+                          context, isDark, bgColor, textColor);
                     },
                   ),
                 ],
@@ -683,7 +692,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         });
   }
 
-  void _showAutoSimplifyLevelPicker(BuildContext context, bool isDark, Color bgColor, Color textColor) {
+  void _showAutoSimplifyLevelPicker(
+      BuildContext context, bool isDark, Color bgColor, Color textColor) {
     const amberColor = Color(0xFFFFB300);
     final amberLight = amberColor.withValues(alpha: 0.12);
     final amberBorder = amberColor.withValues(alpha: 0.30);
@@ -721,7 +731,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           color: amberLight,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.auto_fix_high, color: amberColor, size: 22),
+                        child: const Icon(Icons.auto_fix_high,
+                            color: amberColor, size: 22),
                       ),
                       const SizedBox(width: 12),
                       Column(
@@ -771,7 +782,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                         },
                         child: Container(
                           width: (MediaQuery.of(context).size.width - 60) / 3,
-                          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 8),
                           decoration: BoxDecoration(
                             color: amberLight,
                             borderRadius: BorderRadius.circular(14),
@@ -796,9 +808,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 descriptions[index],
                                 style: TextStyle(
                                   fontSize: 11,
-                                  color: isDark
-                                      ? Colors.white54
-                                      : Colors.black45,
+                                  color:
+                                      isDark ? Colors.white54 : Colors.black45,
                                 ),
                               ),
                             ],
@@ -834,7 +845,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final bgColor = darkMode ? '#1A1A1B' : '#FDFCF0';
     final textColor = darkMode ? '#DADADA' : '#1A1A1B';
     final skeletonBorderColor = darkMode ? '#DADADA' : '#1A1A1B';
-    final skeletonBgColor = darkMode ? 'rgba(218,218,218,0.1)' : 'rgba(26,26,27,0.1)';
+    final skeletonBgColor =
+        darkMode ? 'rgba(218,218,218,0.1)' : 'rgba(26,26,27,0.1)';
     final aiLoadingTextColor = darkMode ? '#DADADA' : '#1A1A1B';
 
     final colorCss = darkMode ? '#DADADA' : '#1A1A1B';
@@ -1002,8 +1014,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Analysis Failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context)!.analysis_failed(e.toString()))));
       }
     } finally {
       if (mounted) {
@@ -1039,8 +1051,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
       if (newWords.isEmpty) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('No new words found!')));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(AppLocalizations.of(context)!.noNewWordsFound)));
         }
         return;
       }
@@ -1084,8 +1096,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Extraction Failed: \$e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context)!.extraction_failed(e.toString()))));
       }
     } finally {
       if (mounted) {
@@ -1114,8 +1126,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       );
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Simplify Failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context)!.simplify_failed(e.toString()))));
       }
     } finally {
       if (mounted) {
@@ -1163,8 +1175,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     try {
       if (widget.isStoryMode) {
         final prefs = await SharedPreferences.getInstance();
-        final savedUrls =
-            prefs.getStringList('bookmarked_story_urls') ?? [];
+        final savedUrls = prefs.getStringList('bookmarked_story_urls') ?? [];
         if (mounted) {
           setState(() => _isArticleSaved = savedUrls.contains(url));
         }
@@ -1176,7 +1187,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         }
       }
     } catch (_) {
-      // Silently ignore — if we can't check, just assume not saved
+      // Silently ignore â€” if we can't check, just assume not saved
     }
   }
 
@@ -1189,7 +1200,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
     try {
       // Remove any pinyin/latin characters that might have been copied from ruby tags
-      final cleanSentence = sentence.replaceAll(RegExp(r'[a-zA-Zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü]+'), '').replaceAll(RegExp(r'\s+'), ' ').trim();
+      final cleanSentence = sentence
+          .replaceAll(
+              RegExp(
+                  r'[a-zA-ZÄÃ¡ÇŽÃ Ä“Ã©Ä›Ã¨Ä«Ã­ÇÃ¬ÅÃ³Ç’Ã²Å«ÃºÇ”Ã¹Ç–Ç˜ÇšÇœÃ¼]+'),
+              '')
+          .replaceAll(RegExp(r'\s+'), ' ')
+          .trim();
       final aiSentence = await ref
           .read(geminiServiceProvider)
           .generateSentenceLesson(cleanSentence);
@@ -1204,8 +1221,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         setState(() {
           _isTranslating = false;
         });
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Translation Failed: $e")));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context)!.translation_failed(e.toString()))));
       }
     }
   }
@@ -1236,10 +1253,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: _isTranslating
-              ? const SizedBox(
+              ? SizedBox(
                   height: 150,
                   child: Center(
-                      child: AiProgressBar(label: 'Translating text...')),
+                      child: AiProgressBar(
+                          label:
+                              AppLocalizations.of(context)!.translatingText)),
                 )
               : ConstrainedBox(
                   constraints: BoxConstraints(
@@ -1261,7 +1280,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
-                                    color: isDark ? Colors.white : Colors.black),
+                                    color:
+                                        isDark ? Colors.white : Colors.black),
                               ),
                             ),
                             Row(
@@ -1271,7 +1291,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                   icon: Icon(_isTranslationBlurred
                                       ? Icons.visibility_off
                                       : Icons.visibility),
-                                  color: isDark ? Colors.white54 : Colors.grey[700],
+                                  color: isDark
+                                      ? Colors.white54
+                                      : Colors.grey[700],
                                   onPressed: () {
                                     setState(() {
                                       _isTranslationBlurred =
@@ -1281,7 +1303,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.close),
-                                  color: isDark ? Colors.white54 : Colors.grey[700],
+                                  color: isDark
+                                      ? Colors.white54
+                                      : Colors.grey[700],
                                   onPressed: () {
                                     setState(() {
                                       _activeTranslation = null;
@@ -1340,7 +1364,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16,
-                                                  color: isDark ? Colors.white : Colors.black),
+                                                  color: isDark
+                                                      ? Colors.white
+                                                      : Colors.black),
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
@@ -1364,10 +1390,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                         sigmaY:
                                             _isTranslationBlurred ? 4.0 : 0.0,
                                       ),
-                                      child: Text(w.meaning,
-                                          style: TextStyle(
+                                      child: TranslatedDefinition(
+                                          definition: w.meaning,
+                                          originalStyle: TextStyle(
                                               fontSize: 12,
-                                              color: isDark ? Colors.white54 : Colors.black54),
+                                              color: isDark
+                                                  ? Colors.white54
+                                                  : Colors.black54),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2),
                                     ),
@@ -1382,7 +1411,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           width: double.infinity,
                           child: ElevatedButton.icon(
                             icon: const Icon(Icons.auto_awesome),
-                            label: const Text('Extract & Simplify'),
+                            label: Text(AppLocalizations.of(context)!
+                                .extractAndSimplify),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Colors.blueAccent.withValues(alpha: 0.1),
@@ -1402,18 +1432,24 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                     borderRadius: BorderRadius.vertical(
                                         top: Radius.circular(20))),
                                 builder: (context) {
-                                  final isDark = Theme.of(context).brightness == Brightness.dark;
+                                  final isDark = Theme.of(context).brightness ==
+                                      Brightness.dark;
                                   return SafeArea(
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-                                        borderRadius: const BorderRadius.vertical(top: Radius.circular(20))
-                                      ),
+                                          color: isDark
+                                              ? const Color(0xFF1A1A1B)
+                                              : const Color(0xFFFDFCF0),
+                                          borderRadius:
+                                              const BorderRadius.vertical(
+                                                  top: Radius.circular(20))),
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 24, horizontal: 20),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
                                           children: [
                                             // Drag handle
                                             Center(
@@ -1421,8 +1457,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                 width: 36,
                                                 height: 4,
                                                 decoration: BoxDecoration(
-                                                  color: isDark ? Colors.white24 : Colors.black12,
-                                                  borderRadius: BorderRadius.circular(2),
+                                                  color: isDark
+                                                      ? Colors.white24
+                                                      : Colors.black12,
+                                                  borderRadius:
+                                                      BorderRadius.circular(2),
                                                 ),
                                               ),
                                             ),
@@ -1430,23 +1469,36 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                             Row(
                                               children: [
                                                 Container(
-                                                  padding: const EdgeInsets.all(8),
+                                                  padding:
+                                                      const EdgeInsets.all(8),
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFFFFB300).withValues(alpha: 0.12),
-                                                    borderRadius: BorderRadius.circular(10),
+                                                    color:
+                                                        const Color(0xFFFFB300)
+                                                            .withValues(
+                                                                alpha: 0.12),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
                                                   ),
-                                                  child: const Icon(Icons.auto_fix_high, color: Color(0xFFFFB300), size: 22),
+                                                  child: const Icon(
+                                                      Icons.auto_fix_high,
+                                                      color: Color(0xFFFFB300),
+                                                      size: 22),
                                                 ),
                                                 const SizedBox(width: 12),
                                                 Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       'Select Target HSK Level',
                                                       style: TextStyle(
                                                         fontSize: 20,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: isDark ? Colors.white : Colors.black87,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: isDark
+                                                            ? Colors.white
+                                                            : Colors.black87,
                                                         letterSpacing: -0.3,
                                                       ),
                                                     ),
@@ -1455,7 +1507,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                       'Choose difficulty for simplification',
                                                       style: TextStyle(
                                                         fontSize: 12,
-                                                        color: isDark ? Colors.white54 : Colors.black38,
+                                                        color: isDark
+                                                            ? Colors.white54
+                                                            : Colors.black38,
                                                       ),
                                                     ),
                                                   ],
@@ -1463,47 +1517,76 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                               ],
                                             ),
                                             const SizedBox(height: 24),
-                                          Wrap(
+                                            Wrap(
                                               spacing: 10,
                                               runSpacing: 10,
                                               alignment: WrapAlignment.center,
-                                              children: List.generate(6, (index) {
+                                              children:
+                                                  List.generate(6, (index) {
                                                 final level = index + 1;
                                                 final descriptions = [
-                                                  'Beginner', 'Elementary', 'Intermediate',
-                                                  'Upper-Intermediate', 'Advanced', 'Master',
+                                                  'Beginner',
+                                                  'Elementary',
+                                                  'Intermediate',
+                                                  'Upper-Intermediate',
+                                                  'Advanced',
+                                                  'Master',
                                                 ];
                                                 return GestureDetector(
-                                                  onTap: () =>
-                                                      Navigator.pop(context, level),
+                                                  onTap: () => Navigator.pop(
+                                                      context, level),
                                                   child: Container(
-                                                    width: (MediaQuery.of(context).size.width - 60) / 3,
-                                                    padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                                                    width:
+                                                        (MediaQuery.of(context)
+                                                                    .size
+                                                                    .width -
+                                                                60) /
+                                                            3,
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        vertical: 14,
+                                                        horizontal: 8),
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0xFFFFB300).withValues(alpha: 0.12),
-                                                      borderRadius: BorderRadius.circular(14),
+                                                      color: const Color(
+                                                              0xFFFFB300)
+                                                          .withValues(
+                                                              alpha: 0.12),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              14),
                                                       border: Border.all(
-                                                        color: const Color(0xFFFFB300).withValues(alpha: 0.30),
+                                                        color: const Color(
+                                                                0xFFFFB300)
+                                                            .withValues(
+                                                                alpha: 0.30),
                                                         width: 1,
                                                       ),
                                                     ),
                                                     child: Column(
-                                                      mainAxisSize: MainAxisSize.min,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
                                                       children: [
                                                         Text(
                                                           'HSK $level',
-                                                          style: const TextStyle(
+                                                          style:
+                                                              const TextStyle(
                                                             fontSize: 17,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: Color(0xFFFFB300),
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Color(
+                                                                0xFFFFB300),
                                                           ),
                                                         ),
-                                                        const SizedBox(height: 2),
+                                                        const SizedBox(
+                                                            height: 2),
                                                         Text(
                                                           descriptions[index],
                                                           style: TextStyle(
                                                             fontSize: 11,
-                                                            color: isDark ? Colors.white54 : Colors.black45,
+                                                            color: isDark
+                                                                ? Colors.white54
+                                                                : Colors
+                                                                    .black45,
                                                           ),
                                                         ),
                                                       ],
@@ -1512,9 +1595,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                 );
                                               }),
                                             ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
                                     ),
                                   );
                                 },
@@ -1546,8 +1629,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 if (mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content:
-                                              Text('Simplify Failed: $e')));
+                                          content: Text(
+                                              AppLocalizations.of(context)!
+                                                  .simplify_failed(e.toString()))));
                                 }
                               } finally {
                                 if (mounted) {
@@ -1588,8 +1672,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                 if (_isProcessingAi && _isZenMode)
                   Container(
                     color: Colors.white.withValues(alpha: 0.9),
-                    child: const Center(
-                      child: AiProgressBar(label: 'AI is thinking...'),
+                    child: Center(
+                      child: AiProgressBar(
+                          label: AppLocalizations.of(context)!.aiIsThinking),
                     ),
                   ),
               ],
@@ -1622,10 +1707,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   IconButton(
                     icon: const Icon(Icons.arrow_back_ios, size: 20),
                     onPressed: () => Navigator.of(context).maybePop(),
-                    tooltip: 'Back',
+                    tooltip: AppLocalizations.of(context)!.back,
                   ),
-                Icon(Icons.language, size: 18,
-                    color: isDark ? Colors.white54 : Colors.black54),
+                Icon(Icons.language,
+                    size: 18, color: isDark ? Colors.white54 : Colors.black54),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Container(
@@ -1639,11 +1724,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: HanziTextField(
                       controller: _urlController,
-                      decoration: const InputDecoration(
-                        hintText: 'Search or enter URL',
+                      decoration: InputDecoration(
+                        hintText:
+                            AppLocalizations.of(context)!.searchOrEnterUrl,
                         border: InputBorder.none,
                         isDense: true,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 0, vertical: 8),
                       ),
                       style: theme.textTheme.bodySmall,
                       textInputAction: TextInputAction.go,
@@ -1656,7 +1743,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                 ),
                 IconButton(
                   icon: Icon(
-                    _urlController.text.isNotEmpty ? Icons.close : Icons.refresh,
+                    _urlController.text.isNotEmpty
+                        ? Icons.close
+                        : Icons.refresh,
                     size: 20,
                   ),
                   onPressed: () {
@@ -1666,7 +1755,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                       _controller.reload();
                     }
                   },
-                  tooltip: _urlController.text.isNotEmpty ? 'Clear' : 'Refresh',
+                  tooltip: _urlController.text.isNotEmpty
+                      ? AppLocalizations.of(context)!.clear
+                      : AppLocalizations.of(context)!.refresh,
                 ),
               ],
             ),
@@ -1689,14 +1780,20 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Row(
             children: [
-              _DockIcon(icon: Icons.arrow_back, tooltip: 'Back',
-                onTap: () async {
-                  if (await _controller.canGoBack()) _controller.goBack();
-                }),
-              _DockIcon(icon: Icons.arrow_forward, tooltip: 'Forward',
-                onTap: () async {
-                  if (await _controller.canGoForward()) _controller.goForward();
-                }),
+              _DockIcon(
+                  icon: Icons.arrow_back,
+                  tooltip: AppLocalizations.of(context)!.back,
+                  onTap: () async {
+                    if (await _controller.canGoBack()) _controller.goBack();
+                  }),
+              _DockIcon(
+                  icon: Icons.arrow_forward,
+                  tooltip: AppLocalizations.of(context)!.forward,
+                  onTap: () async {
+                    if (await _controller.canGoForward()) {
+                      _controller.goForward();
+                    }
+                  }),
               const SizedBox(width: 12),
               Expanded(
                 child: _selectedText.isNotEmpty
@@ -1704,37 +1801,47 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                         onPressed: () {
                           HapticsManager.light();
                           _startTranslation(_selectedText);
-                          _controller.runJavaScript('window.getSelection().removeAllRanges();');
+                          _controller.runJavaScript(
+                              'window.getSelection().removeAllRanges();');
                           setState(() => _selectedText = '');
                         },
                         icon: const Icon(Icons.translate, size: 18),
-                        label: const Text('Translate'),
+                        label: Text(AppLocalizations.of(context)!.translate),
                         style: FilledButton.styleFrom(
                           backgroundColor: const Color(0xFFFFB300),
                           foregroundColor: const Color(0xFF1A1A1B),
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
                           textStyle: theme.textTheme.labelMedium,
                         ),
                       )
                     : GestureDetector(
-                        onTap: _isProcessingAi ? null : () {
-                          HapticsManager.selection();
-                          _showAiToolsMenu(context);
-                        },
+                        onTap: _isProcessingAi
+                            ? null
+                            : () {
+                                HapticsManager.selection();
+                                _showAiToolsMenu(context);
+                              },
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 250),
                           curve: Curves.easeInOutQuad,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
                             color: isDark
-                                ? const Color(0xFFFFB300).withValues(alpha: 0.15)
-                                : const Color(0xFFFFB300).withValues(alpha: 0.10),
+                                ? const Color(0xFFFFB300)
+                                    .withValues(alpha: 0.15)
+                                : const Color(0xFFFFB300)
+                                    .withValues(alpha: 0.10),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
                               color: isDark
-                                  ? const Color(0xFFFFB300).withValues(alpha: 0.35)
-                                  : const Color(0xFFFFB300).withValues(alpha: 0.30),
+                                  ? const Color(0xFFFFB300)
+                                      .withValues(alpha: 0.35)
+                                  : const Color(0xFFFFB300)
+                                      .withValues(alpha: 0.30),
                               width: 1,
                             ),
                           ),
@@ -1760,7 +1867,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 ),
                               const SizedBox(width: 6),
                               Text(
-                                _isProcessingAi ? 'Processing…' : 'AI Tools',
+                                _isProcessingAi ? 'Processingâ€¦' : 'AI Tools',
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -1777,12 +1884,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
               ),
               _DockIcon(
                 icon: _isArticleSaved ? Icons.bookmark : Icons.bookmark_border,
-                tooltip: _isArticleSaved ? 'Saved' : 'Save',
+                tooltip: _isArticleSaved
+                    ? AppLocalizations.of(context)!.saved
+                    : AppLocalizations.of(context)!.save,
                 onTap: _isArticleSaved ? null : () => _saveArticle(),
               ),
               _DockIcon(
                 icon: _isZenMode ? Icons.wb_sunny : Icons.menu_book,
-                tooltip: _isZenMode ? 'Exit Focus' : 'Focus',
+                tooltip: _isZenMode
+                    ? AppLocalizations.of(context)!.exitFocus
+                    : AppLocalizations.of(context)!.focus,
                 onTap: _toggleZenMode,
               ),
             ],
@@ -1794,7 +1905,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
   Future<void> _saveArticle() async {
     HapticsManager.light();
-    final urlRaw = await _controller.runJavaScriptReturningResult('window.location.href');
+    final urlRaw =
+        await _controller.runJavaScriptReturningResult('window.location.href');
     final url = urlRaw.toString().replaceAll('"', '');
     if (widget.isStoryMode) {
       final prefs = await SharedPreferences.getInstance();
@@ -1805,27 +1917,34 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         if (mounted) {
           setState(() => _isArticleSaved = true);
           if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Story bookmarked in Library!')));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(
+                    AppLocalizations.of(context)!.storyBookmarkedInLibrary)));
           }
         }
       }
       return;
     }
-    final titleRaw = await _controller.runJavaScriptReturningResult('document.title');
+    final titleRaw =
+        await _controller.runJavaScriptReturningResult('document.title');
     final title = titleRaw.toString().replaceAll('"', '');
-    final textRaw = await _controller.runJavaScriptReturningResult('document.body.innerText');
+    final textRaw = await _controller
+        .runJavaScriptReturningResult('document.body.innerText');
     final text = textRaw.toString().replaceAll('"', '');
     final article = SavedArticle(
-      title: title, url: url, extractedText: text, timestamp: DateTime.now(),
+      title: title,
+      url: url,
+      extractedText: text,
+      timestamp: DateTime.now(),
     );
     final box = Hive.box<SavedArticle>('saved_articles');
     await box.add(article);
     if (mounted) {
       setState(() => _isArticleSaved = true);
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Article saved to Media Hub!')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content:
+                Text(AppLocalizations.of(context)!.articleSavedToMediaHub)));
       }
     }
   }
@@ -1944,7 +2063,8 @@ class ExtractedWordsReviewSheet extends ConsumerStatefulWidget {
       _ExtractedWordsReviewSheetState();
 }
 
-class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReviewSheet> {
+class _ExtractedWordsReviewSheetState
+    extends ConsumerState<ExtractedWordsReviewSheet> {
   late List<bool> _selected;
   bool _isCreating = false;
 
@@ -1955,8 +2075,14 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
   }
 
   Future<void> _createNewDeck() async {
+    if (!_selected.any((isSelected) => isSelected)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context)!.noWordsSelected)));
+      return;
+    }
+
     final deckName = await _showCreateDeckDialog();
-    if (deckName == null || deckName.trim().isEmpty) return;
+    if (!mounted || deckName == null || deckName.trim().isEmpty) return;
 
     setState(() => _isCreating = true);
     try {
@@ -1964,13 +2090,20 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
       final newDeck = await deckCtrl.createDeck(deckName.trim());
       if (newDeck == null) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Failed to create deck')));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(AppLocalizations.of(context)!.failedToCreateDeck)));
         }
         return;
       }
 
       await _addWordsToDeck(newDeck.id, deckName.trim());
+    } catch (error) {
+      if (mounted) {
+        final l10n = AppLocalizations.of(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n?.failedToSaveExtractedWords(error.toString()) ?? "Failed to save extracted words: $error")),
+        );
+      }
     } finally {
       if (mounted) {
         setState(() => _isCreating = false);
@@ -1985,8 +2118,8 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
     }
     if (selectedWords.isEmpty) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No words selected')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(context)!.noWordsSelected)));
       }
       return;
     }
@@ -2023,39 +2156,29 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
     if (mounted) {
       String message;
       if (updatedCount > 0 && addedCount > 0) {
-        message = 'Added $addedCount new words, updated $updatedCount existing words in $deckName';
+        message =
+            'Added $addedCount new words, updated $updatedCount existing words in $deckName';
       } else if (updatedCount > 0) {
         message = 'Updated $updatedCount existing words in $deckName';
       } else {
         message = 'Added $addedCount words to $deckName';
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message), backgroundColor: Colors.green));
-      Navigator.pop(context, selectedWords);
+          SnackBar(content: Text(message), backgroundColor: Colors.green));
+      // A null result tells the browser that this flow is complete. Returning
+      // the words would incorrectly open DeckSelectionSheet after the new deck
+      // and its cards have already been created.
+      Navigator.pop(context);
     }
   }
 
   Future<String?> _showCreateDeckDialog() async {
-    final controller = TextEditingController(text: widget.deckName);
     return showDialog<String>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text("New Deck"),
-        content: HanziTextField(
-          controller: controller,
-          decoration: const InputDecoration(hintText: "Deck Name"),
-          autofocus: true,
-        ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text("Cancel")),
-          ElevatedButton(
-              onPressed: () => Navigator.pop(ctx, controller.text),
-              child: const Text("Create")),
-        ],
+      builder: (context) => _CreateExtractedDeckDialog(
+        initialName: widget.deckName,
       ),
-    ).whenComplete(() => controller.dispose());
+    );
   }
 
   @override
@@ -2072,14 +2195,15 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text("Review Extracted Deck",
-              style: TextStyle(
+          Text(AppLocalizations.of(context)!.reviewExtractedDeck,
+              style: const TextStyle(
                   fontSize: 16,
                   color: Colors.indigo,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
           Text(widget.deckName,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              style:
+                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(
             "${_selected.where((s) => s).length} of ${widget.words.length} words selected",
@@ -2115,8 +2239,22 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
                     title: Text(word.hanzi,
                         style: const TextStyle(
                             fontSize: 22, fontWeight: FontWeight.bold)),
-                    subtitle: Text("${PinyinUtils.convertNumericToMarks(word.pinyin)} - ${word.meaning}",
-                        style: const TextStyle(fontSize: 15)),
+                    subtitle: Row(
+                      children: [
+                        Text(
+                          '${PinyinUtils.convertNumericToMarks(word.pinyin)} - ',
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        Expanded(
+                          child: TranslatedDefinition(
+                            definition: word.meaning,
+                            originalStyle: const TextStyle(fontSize: 15),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                     onChanged: (val) {
                       setState(() => _selected[index] = val ?? false);
                     },
@@ -2130,22 +2268,23 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
             children: [
               Expanded(
                 child: OutlinedButton(
-                  onPressed: _isCreating ? null : () => Navigator.pop(context, null),
+                  onPressed:
+                      _isCreating ? null : () => Navigator.pop(context, null),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     side: const BorderSide(color: Colors.indigo),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text("Cancel",
-                      style: TextStyle(
+                  child: Text(AppLocalizations.of(context)!.cancelAction,
+                      style: const TextStyle(
                           color: Colors.indigo,
                           fontSize: 16,
                           fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(width: 12),
-              // "Create New Deck" — direct creation
+              // AppLocalizations.of(context)!.createNewDeck â€” direct creation
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -2155,22 +2294,20 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
-                  onPressed: _isCreating
-                      ? null
-                      : () => _createNewDeck(),
+                  onPressed: _isCreating ? null : () => _createNewDeck(),
                   child: _isCreating
                       ? const SizedBox(
                           width: 20,
                           height: 20,
                           child: CircularProgressIndicator(
                               strokeWidth: 2, color: Colors.white))
-                      : const Text("Create New Deck",
-                          style: TextStyle(
+                      : Text(AppLocalizations.of(context)!.createNewDeck,
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(width: 12),
-              // "Add to Deck" — returns selected words to caller
+              // "Add to Deck" â€” returns selected words to caller
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -2185,7 +2322,9 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
                       : () {
                           final selectedWords = <AiWord>[];
                           for (int i = 0; i < widget.words.length; i++) {
-                            if (_selected[i]) selectedWords.add(widget.words[i]);
+                            if (_selected[i]) {
+                              selectedWords.add(widget.words[i]);
+                            }
                           }
                           Navigator.pop(context, selectedWords);
                         },
@@ -2199,6 +2338,57 @@ class _ExtractedWordsReviewSheetState extends ConsumerState<ExtractedWordsReview
           const SizedBox(height: 16),
         ],
       ),
+    );
+  }
+}
+
+class _CreateExtractedDeckDialog extends StatefulWidget {
+  final String initialName;
+
+  const _CreateExtractedDeckDialog({required this.initialName});
+
+  @override
+  State<_CreateExtractedDeckDialog> createState() =>
+      _CreateExtractedDeckDialogState();
+}
+
+class _CreateExtractedDeckDialogState
+    extends State<_CreateExtractedDeckDialog> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialName);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(AppLocalizations.of(context)!.newDeck),
+      content: HanziTextField(
+        controller: _controller,
+        decoration:
+            InputDecoration(hintText: AppLocalizations.of(context)!.deckName),
+        autofocus: true,
+        onSubmitted: (value) => Navigator.pop(context, value),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(AppLocalizations.of(context)!.cancelAction),
+        ),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context, _controller.text),
+          child: Text(AppLocalizations.of(context)!.createAction),
+        ),
+      ],
     );
   }
 }

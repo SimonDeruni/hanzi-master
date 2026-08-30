@@ -10,7 +10,7 @@ class SettingsState {
   final bool hasCompletedOnboarding;
   final bool isTutorialCompleted; // The Scroll of Origin
   final int guideDisappearanceStreak;
-  
+
   // Phase 2 Settings
   final bool isHardMode;
   final bool autoPlayAudio;
@@ -18,14 +18,15 @@ class SettingsState {
   final String locale;
   final bool showPinyinInSpeaking;
   final bool enableHaptics;
+  final bool useEnglishDefinitions;
 
   // Audiobook voice selection
   // 'Kore', 'Fenrir', 'Charon', 'Aoede', 'Puck', or 'local'
   final String audiobookVoice;
 
   SettingsState({
-    this.isDarkMode = false, 
-    this.speechRate = 0.5, 
+    this.isDarkMode = false,
+    this.speechRate = 0.5,
     this.animationSpeed = 1.0,
     this.hasCompletedOnboarding = false,
     this.isTutorialCompleted = false,
@@ -36,12 +37,13 @@ class SettingsState {
     this.locale = 'en',
     this.showPinyinInSpeaking = true,
     this.enableHaptics = true,
+    this.useEnglishDefinitions = false,
     this.audiobookVoice = 'Kore',
   });
 
   SettingsState copyWith({
-    bool? isDarkMode, 
-    double? speechRate, 
+    bool? isDarkMode,
+    double? speechRate,
     double? animationSpeed,
     bool? hasCompletedOnboarding,
     bool? isTutorialCompleted,
@@ -52,21 +54,26 @@ class SettingsState {
     String? locale,
     bool? showPinyinInSpeaking,
     bool? enableHaptics,
+    bool? useEnglishDefinitions,
     String? audiobookVoice,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
       speechRate: speechRate ?? this.speechRate,
       animationSpeed: animationSpeed ?? this.animationSpeed,
-      hasCompletedOnboarding: hasCompletedOnboarding ?? this.hasCompletedOnboarding,
+      hasCompletedOnboarding:
+          hasCompletedOnboarding ?? this.hasCompletedOnboarding,
       isTutorialCompleted: isTutorialCompleted ?? this.isTutorialCompleted,
-      guideDisappearanceStreak: guideDisappearanceStreak ?? this.guideDisappearanceStreak,
+      guideDisappearanceStreak:
+          guideDisappearanceStreak ?? this.guideDisappearanceStreak,
       isHardMode: isHardMode ?? this.isHardMode,
       autoPlayAudio: autoPlayAudio ?? this.autoPlayAudio,
       strictGrading: strictGrading ?? this.strictGrading,
       locale: locale ?? this.locale,
       showPinyinInSpeaking: showPinyinInSpeaking ?? this.showPinyinInSpeaking,
       enableHaptics: enableHaptics ?? this.enableHaptics,
+      useEnglishDefinitions:
+          useEnglishDefinitions ?? this.useEnglishDefinitions,
       audiobookVoice: audiobookVoice ?? this.audiobookVoice,
     );
   }
@@ -76,23 +83,26 @@ class SettingsState {
 class SettingsController extends StateNotifier<SettingsState> {
   final SharedPreferences prefs;
 
-  SettingsController(this.prefs) : super(SettingsState(
-      isDarkMode: prefs.getBool(_keyTheme) ?? false,
-      speechRate: prefs.getDouble(_keySpeed) ?? 0.5,
-      animationSpeed: prefs.getDouble(_keyAnimationSpeed) ?? 1.0,
-      hasCompletedOnboarding: prefs.getBool(_keyOnboarding) ?? false,
-      isTutorialCompleted: prefs.getBool(_keyTutorial) ?? false,
-      guideDisappearanceStreak: prefs.getInt(_keyGuideStreak) ?? 2,
-      isHardMode: prefs.getBool(_keyHardMode) ?? false,
-      autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
-      strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
-      locale: prefs.getString(_keyLocale) ?? 'en',
-      showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
-      enableHaptics: prefs.getBool(_keyHaptics) ?? true,
-      audiobookVoice: prefs.getString(_keyAudiobookVoice) ?? 'Kore',
-    )) {
-      HapticsManager.setEnabled(state.enableHaptics);
-    }
+  SettingsController(this.prefs)
+      : super(SettingsState(
+          isDarkMode: prefs.getBool(_keyTheme) ?? false,
+          speechRate: prefs.getDouble(_keySpeed) ?? 0.5,
+          animationSpeed: prefs.getDouble(_keyAnimationSpeed) ?? 1.0,
+          hasCompletedOnboarding: prefs.getBool(_keyOnboarding) ?? false,
+          isTutorialCompleted: prefs.getBool(_keyTutorial) ?? false,
+          guideDisappearanceStreak: prefs.getInt(_keyGuideStreak) ?? 2,
+          isHardMode: prefs.getBool(_keyHardMode) ?? false,
+          autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
+          strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
+          locale: prefs.getString(_keyLocale) ?? 'en',
+          showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
+          enableHaptics: prefs.getBool(_keyHaptics) ?? true,
+          useEnglishDefinitions:
+              prefs.getBool(_keyUseEnglishDefinitions) ?? false,
+          audiobookVoice: prefs.getString(_keyAudiobookVoice) ?? 'Kore',
+        )) {
+    HapticsManager.setEnabled(state.enableHaptics);
+  }
 
   static const _keyTheme = 'is_dark_mode';
   static const _keySpeed = 'speech_rate';
@@ -106,6 +116,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyLocale = 'app_locale';
   static const _keyPinyinSpeaking = 'pinyin_speaking';
   static const _keyHaptics = 'enable_haptics';
+  static const _keyUseEnglishDefinitions = 'use_english_definitions';
   static const _keyAudiobookVoice = 'audiobook_voice';
 
   Future<void> completeTutorial() async {
@@ -169,6 +180,11 @@ class SettingsController extends StateNotifier<SettingsState> {
     HapticsManager.setEnabled(value);
   }
 
+  Future<void> toggleUseEnglishDefinitions(bool value) async {
+    await prefs.setBool(_keyUseEnglishDefinitions, value);
+    state = state.copyWith(useEnglishDefinitions: value);
+  }
+
   Future<void> setAudiobookVoice(String value) async {
     await prefs.setString(_keyAudiobookVoice, value);
     state = state.copyWith(audiobookVoice: value);
@@ -180,7 +196,8 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
-final settingsProvider = StateNotifierProvider<SettingsController, SettingsState>((ref) {
+final settingsProvider =
+    StateNotifierProvider<SettingsController, SettingsState>((ref) {
   final prefs = ref.watch(sharedPreferencesProvider);
   return SettingsController(prefs);
 });

@@ -21,7 +21,7 @@ import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
-import 'package:hanzi_master/core/utils/definition_formatter.dart';
+import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -31,7 +31,8 @@ class CharacterDetailScreen extends ConsumerStatefulWidget {
   const CharacterDetailScreen({super.key, required this.card});
 
   @override
-  ConsumerState<CharacterDetailScreen> createState() => _CharacterDetailScreenState();
+  ConsumerState<CharacterDetailScreen> createState() =>
+      _CharacterDetailScreenState();
 }
 
 class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
@@ -55,14 +56,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // --- Pill Tab Navigation ---
   final ScrollController _scrollController = ScrollController();
   int _activeTabIndex = 0;
-  final List<String> _tabLabels = ['Strokes', 'Anatomy', 'Notes', 'Words', 'Context'];
+  List<String> get _tabLabels {
+    final l10n = AppLocalizations.of(context)!;
+    return [l10n.strokes, l10n.anatomy, l10n.notes, l10n.words, l10n.context];
+  }
+
   final GlobalKey _strokesKey = GlobalKey();
   final GlobalKey _anatomyKey = GlobalKey();
   final GlobalKey _notesKey = GlobalKey();
   final GlobalKey _wordsKey = GlobalKey();
   final GlobalKey _contextKey = GlobalKey();
 
-  List<GlobalKey> get _sectionKeys => [_strokesKey, _anatomyKey, _notesKey, _wordsKey, _contextKey];
+  List<GlobalKey> get _sectionKeys =>
+      [_strokesKey, _anatomyKey, _notesKey, _wordsKey, _contextKey];
 
   void _onScroll() {
     if (!mounted) return;
@@ -108,7 +114,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Future<void> _loadNotes() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _notesController.text = prefs.getString('notes_${widget.card.hanzi}') ?? '';
+      _notesController.text =
+          prefs.getString('notes_${widget.card.hanzi}') ?? '';
     });
   }
 
@@ -127,7 +134,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   Future<void> _hydrateStrokes() async {
-    final updatedCard = await ref.read(flashcardControllerProvider.notifier).loadStrokesFor(widget.card);
+    final updatedCard = await ref
+        .read(flashcardControllerProvider.notifier)
+        .loadStrokesFor(widget.card);
     if (mounted) {
       setState(() {
         _hydratedCard = updatedCard;
@@ -138,44 +147,62 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   Future<void> _loadAnatomyData() async {
     try {
-      final metadataString = await rootBundle.loadString('assets/data/hanzi_metadata.json');
+      final metadataString =
+          await rootBundle.loadString('assets/data/hanzi_metadata.json');
       final hanziMeta = json.decode(metadataString);
-      final radicalString = await rootBundle.loadString('assets/data/radicals.json');
+      final radicalString =
+          await rootBundle.loadString('assets/data/radicals.json');
       final radicalData = json.decode(radicalString)['radicals'];
-      
+
       if (mounted) setState(() => _fullHanziMeta = hanziMeta);
 
       // --- HSK 2 BUNDLE HOOK ---
       Map<String, dynamic> hsk2Meta = {};
       try {
-        final hsk2String = await rootBundle.loadString('assets/data/hsk2_bundle.json');
+        final hsk2String =
+            await rootBundle.loadString('assets/data/hsk2_bundle.json');
         hsk2Meta = json.decode(hsk2String)['metadata'] ?? {};
-      } catch (e) { /* ignore */ }
+      } catch (e) {/* ignore */}
       // -------------------------
 
       final chars = widget.card.hanzi.split('');
       final List<Map<String, dynamic>> foundComponents = [];
-      final structuralChars = ['⿰', '⿱', '⿲', '⿳', '⿴', '⿵', '⿶', '⿷', '⿸', '⿹', '⿺', '⿻', '？'];
+      final structuralChars = [
+        '⿰',
+        '⿱',
+        '⿲',
+        '⿳',
+        '⿴',
+        '⿵',
+        '⿶',
+        '⿷',
+        '⿸',
+        '⿹',
+        '⿺',
+        '⿻',
+        '？'
+      ];
 
       Set<String> findBaseRadicals(String char) {
         Set<String> found = {};
-        
+
         if (radicalData.containsKey(char)) {
           found.add(char);
           return found;
         }
-        
+
         var meta = hanziMeta[char];
         if (meta == null && hsk2Meta.containsKey(char)) {
           meta = hsk2Meta[char];
         }
 
         if (meta != null) {
-          final primaryRadical = meta['radical'];
-          if (primaryRadical != null && radicalData.containsKey(primaryRadical)) {
+          final primaryRadical = meta[AppLocalizations.of(context)!.radical];
+          if (primaryRadical != null &&
+              radicalData.containsKey(primaryRadical)) {
             found.add(primaryRadical);
           }
-          
+
           final decomp = meta['decomposition'] as String?;
           if (decomp != null && decomp != '?') {
             for (var i = 0; i < decomp.length; i++) {
@@ -194,10 +221,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         for (final comp in components) {
           if (radicalData.containsKey(comp)) {
             // Avoid adding duplicates of the same radical
-            if (!foundComponents.any((element) => element['radical'] == comp)) {
+            if (!foundComponents.any((element) =>
+                element[AppLocalizations.of(context)!.radical] == comp)) {
               foundComponents.add({
-                'char': char,
-                'radical': comp,
+                AppLocalizations.of(context)!.char: char,
+                AppLocalizations.of(context)!.radical: comp,
                 'info': radicalData[comp],
                 'decomposition': hanziMeta[char]?['decomposition'] ?? '',
               });
@@ -205,21 +233,21 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           }
         }
       }
-      
+
       if (mounted) {
         setState(() {
           _anatomyComponents.clear();
           _anatomyComponents.addAll(foundComponents);
         });
       }
-    } catch (e) { /* silent fail */ }
+    } catch (e) {/* silent fail */}
   }
 
   void _showRadicalDetails(Map<String, dynamic> comp) {
     if (_fullHanziMeta == null) return;
-    final radicalChar = comp['radical'];
+    final radicalChar = comp[AppLocalizations.of(context)!.radical];
     final info = comp['info'];
-    
+
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -233,24 +261,43 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(child: Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(2)))),
+            Center(
+                child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withValues(alpha: 0.3),
+                        borderRadius: BorderRadius.circular(2)))),
             const SizedBox(height: 24),
             Row(
               children: [
-                Text(radicalChar, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.red)),
+                Text(radicalChar,
+                    style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red)),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(info['name'], style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                      Text(info['meaning'], style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                      TranslatedDefinition(
+                          definition:
+                              info[AppLocalizations.of(context)!.nameLabel]
+                                  .toString(),
+                          originalStyle: const TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
+                      TranslatedDefinition(
+                          definition:
+                              info[AppLocalizations.of(context)!.meaning]
+                                  .toString(),
+                          originalStyle: const TextStyle(
+                              fontSize: 16, color: Colors.grey)),
                     ],
                   ),
                 ),
               ],
             ),
-
             const SizedBox(height: 40),
           ],
         ),
@@ -268,18 +315,26 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       (c) => c.id == widget.card.id,
       orElse: () => widget.card,
     );
-    return (globalCard.strokePaths.isEmpty && _hydratedCard != null && _hydratedCard!.strokePaths.isNotEmpty)
+    return (globalCard.strokePaths.isEmpty &&
+            _hydratedCard != null &&
+            _hydratedCard!.strokePaths.isNotEmpty)
         ? _hydratedCard!
-        : (globalCard.strokePaths.isEmpty && _hydratedCard != null) ? _hydratedCard! : globalCard;
+        : (globalCard.strokePaths.isEmpty && _hydratedCard != null)
+            ? _hydratedCard!
+            : globalCard;
   }
 
-  Widget _buildCharacterCard(Flashcard currentCard, double masteryProgress, bool isDark, {bool isLandscape = false}) {
+  Widget _buildCharacterCard(
+      Flashcard currentCard, double masteryProgress, bool isDark,
+      {bool isLandscape = false}) {
     final double canvasSize = isLandscape ? 220 : 180;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.white.withValues(alpha: 0.5),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.05)
+            : Colors.white.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: Colors.indigo.withValues(alpha: 0.1)),
       ),
@@ -292,7 +347,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 height: canvasSize,
                 width: canvasSize,
                 child: _isLoadingStrokes
-                    ? const Center(child: CircularProgressIndicator(color: Colors.indigo))
+                    ? const Center(
+                        child: CircularProgressIndicator(color: Colors.indigo))
                     : currentCard.strokePaths.isEmpty
                         ? Center(
                             child: Text(
@@ -355,19 +411,25 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             children: [
               PinyinText(
                 text: currentCard.pinyin,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.grey),
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey),
               ),
               const SizedBox(width: 8),
               IconButton(
-                icon: const Icon(Icons.volume_up, color: Colors.indigo, size: 24),
-                onPressed: () => ref.read(audioServiceProvider).playCharacter(currentCard.hanzi),
+                icon:
+                    const Icon(Icons.volume_up, color: Colors.indigo, size: 24),
+                onPressed: () => ref
+                    .read(audioServiceProvider)
+                    .playCharacter(currentCard.hanzi),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          DefinitionFormatter(
-            rawDefinition: currentCard.definition,
-            style: TextStyle(
+          TranslatedDefinition(
+            definition: currentCard.definition,
+            originalStyle: TextStyle(
               fontSize: 18,
               color: isDark ? Colors.white70 : Colors.black87,
             ),
@@ -385,13 +447,17 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         onPressed: () {
           DeckSelectionSheet.show(context, card: currentCard);
         },
-        icon: Icon(inLibrary ? Icons.library_add_check : Icons.add_circle_outline),
-        label: Text(inLibrary ? "Manage Decks" : AppLocalizations.of(context)!.addToStudyDeck),
+        icon: Icon(
+            inLibrary ? Icons.library_add_check : Icons.add_circle_outline),
+        label: Text(inLibrary
+            ? "Manage Decks"
+            : AppLocalizations.of(context)!.addToStudyDeck),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.indigo,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           elevation: 0,
         ),
       ),
@@ -403,16 +469,20 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       children: [
         KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
         if (_anatomyComponents.isNotEmpty) ...[
-          KeyedSubtree(key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
+          KeyedSubtree(
+              key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
         ] else ...[
           KeyedSubtree(key: _anatomyKey, child: const SizedBox.shrink()),
         ],
         const SizedBox(height: 16),
-        KeyedSubtree(key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
+        KeyedSubtree(
+            key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
         const SizedBox(height: 16),
-        KeyedSubtree(key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
+        KeyedSubtree(
+            key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
         const SizedBox(height: 16),
-        KeyedSubtree(key: _contextKey, child: _buildAiContextSection(context, isDark)),
+        KeyedSubtree(
+            key: _contextKey, child: _buildAiContextSection(context, isDark)),
       ],
     );
   }
@@ -427,20 +497,30 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+                shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(24))),
                 builder: (ctx) => SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 24, horizontal: 16),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Text("Practice Modes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                        Text(AppLocalizations.of(context)!.practiceModes,
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
                         const SizedBox(height: 24),
                         ListTile(
-                          leading: const Icon(Icons.record_voice_over, color: Colors.orange, size: 32),
-                          title: const Text("Shadowing Studio", style: TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: const Text("Practice pronouncing this word with AI grading"),
+                          leading: const Icon(Icons.record_voice_over,
+                              color: Colors.orange, size: 32),
+                          title: Text(
+                              AppLocalizations.of(context)!.shadowingStudio,
+                              style: const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(AppLocalizations.of(context)!
+                              .practicePronouncingWithAiGrading),
                           onTap: () {
                             Navigator.pop(ctx);
                             Navigator.push(
@@ -457,9 +537,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         ),
                         const Divider(),
                         ListTile(
-                          leading: const Icon(Icons.brush, color: Colors.teal, size: 32),
-                          title: const Text("Calligraphy Trace", style: TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: const Text("Practice writing the strokes by hand"),
+                          leading: const Icon(Icons.brush,
+                              color: Colors.teal, size: 32),
+                          title: Text(
+                              AppLocalizations.of(context)!.calligraphy_trace,
+                              style: const TextStyle(fontWeight: FontWeight.bold)),
+                          subtitle: Text(AppLocalizations.of(context)!
+                              .practice_writing_the_strokes_by_hand),
                           onTap: () {
                             Navigator.pop(ctx);
                             showCalligraphyCanvas(context, currentCard);
@@ -472,10 +556,15 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               );
             },
             icon: const Icon(Icons.fitness_center, color: Colors.white),
-            label: const Text("Select Practice Mode", style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2, color: Colors.white)),
+            label: Text(AppLocalizations.of(context)!.selectPracticeMode,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: Colors.white)),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.indigo,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
               elevation: 4,
             ),
           ),
@@ -487,11 +576,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           child: OutlinedButton.icon(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.auto_awesome_motion),
-            label: Text(AppLocalizations.of(context)!.backToLibrary, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+            label: Text(AppLocalizations.of(context)!.backToLibrary,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, letterSpacing: 1.2)),
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.indigo,
               side: const BorderSide(color: Colors.indigo, width: 2),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
             ),
           ),
         ),
@@ -503,7 +595,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // Portrait layout
   // ---------------------------------------------------------------------------
 
-  Widget _buildPortraitLayout(Flashcard currentCard, double masteryProgress, bool inLibrary, bool isDark) {
+  Widget _buildPortraitLayout(Flashcard currentCard, double masteryProgress,
+      bool inLibrary, bool isDark) {
     return SingleChildScrollView(
       controller: _scrollController,
       padding: const EdgeInsets.fromLTRB(24, 100, 24, 24),
@@ -527,7 +620,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // Landscape layout — character card on the left, details on the right
   // ---------------------------------------------------------------------------
 
-  Widget _buildLandscapeLayout(Flashcard currentCard, double masteryProgress, bool inLibrary, bool isDark) {
+  Widget _buildLandscapeLayout(Flashcard currentCard, double masteryProgress,
+      bool inLibrary, bool isDark) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -539,7 +633,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildCharacterCard(currentCard, masteryProgress, isDark, isLandscape: true),
+                  _buildCharacterCard(currentCard, masteryProgress, isDark,
+                      isLandscape: true),
                   const SizedBox(height: 16),
                   _buildDeckButton(currentCard, inLibrary),
                 ],
@@ -572,7 +667,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Flashcard currentCard = _getCurrentCard();
-    final double masteryProgress = (currentCard.getStatsForMode(StudyMode.reading).streak / 5.0).clamp(0.0, 1.0);
+    final double masteryProgress =
+        (currentCard.getStatsForMode(StudyMode.reading).streak / 5.0)
+            .clamp(0.0, 1.0);
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final bool inLibrary = allCards.any((c) => c.hanzi == widget.card.hanzi);
 
@@ -583,36 +680,36 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         title: Text(AppLocalizations.of(context)!.characterReference),
         actions: const [],
       ),
-      floatingActionButton: Builder(
-        builder: (context) {
-          return FloatingActionButton.extended(
-            onPressed: () {
-              GlobalBlurredBottomSheet.show(
-                context,
-                child: CharacterChatSheet(
-                  hanzi: widget.card.hanzi,
-                  pinyin: widget.card.pinyin,
-                  definition: widget.card.definition,
-                ),
-              );
-            },
-            icon: const Icon(Icons.auto_awesome),
-            label: Text(AppLocalizations.of(context)!.askTutor),
-            backgroundColor: Colors.indigo,
-            foregroundColor: Colors.white,
-          );
-        }
-      ),
+      floatingActionButton: Builder(builder: (context) {
+        return FloatingActionButton.extended(
+          onPressed: () {
+            GlobalBlurredBottomSheet.show(
+              context,
+              child: CharacterChatSheet(
+                hanzi: widget.card.hanzi,
+                pinyin: widget.card.pinyin,
+                definition: widget.card.definition,
+              ),
+            );
+          },
+          icon: const Icon(Icons.auto_awesome),
+          label: Text(AppLocalizations.of(context)!.askTutor),
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+        );
+      }),
       extendBodyBehindAppBar: true,
       body: CalligraphyBackground(
         child: LayoutBuilder(
           builder: (context, constraints) {
             if (constraints.maxWidth > 600) {
-              return _buildLandscapeLayout(currentCard, masteryProgress, inLibrary, isDark);
+              return _buildLandscapeLayout(
+                  currentCard, masteryProgress, inLibrary, isDark);
             }
             return Stack(
               children: [
-                _buildPortraitLayout(currentCard, masteryProgress, inLibrary, isDark),
+                _buildPortraitLayout(
+                    currentCard, masteryProgress, inLibrary, isDark),
                 Positioned(
                   top: 90,
                   left: 0,
@@ -644,7 +741,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               decoration: BoxDecoration(
                 color: isActive
                     ? Colors.indigo
-                    : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.white.withValues(alpha: 0.7)),
+                    : (isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.white.withValues(alpha: 0.7)),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
                   color: isActive
@@ -653,7 +752,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                   width: 1.5,
                 ),
                 boxShadow: isActive
-                    ? [BoxShadow(color: Colors.indigo.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 2))]
+                    ? [
+                        BoxShadow(
+                            color: Colors.indigo.withValues(alpha: 0.3),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2))
+                      ]
                     : [],
               ),
               child: Text(
@@ -681,8 +785,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)).withValues(alpha: 0.95),
-            (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)).withValues(alpha: 0.0),
+            (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0))
+                .withValues(alpha: 0.95),
+            (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0))
+                .withValues(alpha: 0.0),
           ],
         ),
       ),
@@ -695,7 +801,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     int currentGlobal = 0;
     int charIdx = 0;
     int localIdx = 0;
-    
+
     final currentCard = _hydratedCard ?? widget.card;
     for (int i = 0; i < currentCard.strokePaths.length; i++) {
       if (currentCard.strokePaths[i] == '__CHAR_SEPARATOR__') {
@@ -716,7 +822,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     if (_isLoadingStrokes) return const SizedBox(height: 48);
     final currentCard = _hydratedCard ?? widget.card;
     if (currentCard.strokePaths.isEmpty) return const SizedBox(height: 48);
-    
+
     // Parse character groups from strokePaths using __CHAR_SEPARATOR__
     final chars = currentCard.hanzi.characters.toList();
     final charGroups = <List<String>>[];
@@ -732,18 +838,22 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       }
     }
     if (currentGroup.isNotEmpty) charGroups.add(currentGroup);
-    if (charGroups.isEmpty) charGroups.add(currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList());
-    
+    if (charGroups.isEmpty) {
+      charGroups.add(currentCard.strokePaths
+          .where((s) => s != '__CHAR_SEPARATOR__')
+          .toList());
+    }
+
     // Determine active character index (only when manually scrubbing)
     int activeCharIdx = 0;
     if (_manualCharIndex != null) {
       activeCharIdx = _manualCharIndex!;
     }
     final bool hasActiveChar = _manualCharIndex != null;
-    
+
     // Build global stroke counter
     int globalStroke = 0;
-    
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Column(
@@ -751,7 +861,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           // Dynamic sub-label showing which character is being drawn
-          if (hasActiveChar && charGroups.length > 1 && activeCharIdx < chars.length)
+          if (hasActiveChar &&
+              charGroups.length > 1 &&
+              activeCharIdx < chars.length)
             Padding(
               padding: const EdgeInsets.only(bottom: 6, left: 4),
               child: Text(
@@ -775,7 +887,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     _manualCharIndex = null;
                   }
                 }),
-                icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle, color: Colors.indigo, size: 32),
+                icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle,
+                    color: Colors.indigo, size: 32),
               ),
               const SizedBox(width: 4),
               Column(
@@ -783,9 +896,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(charGroups.length, (charIdx) {
                   final group = charGroups[charIdx];
-                  final isActiveChar = hasActiveChar && charIdx == activeCharIdx;
-                  final charLabel = charIdx < chars.length ? chars[charIdx] : '?';
-                  
+                  final isActiveChar =
+                      hasActiveChar && charIdx == activeCharIdx;
+                  final charLabel =
+                      charIdx < chars.length ? chars[charIdx] : '?';
+
                   final row = Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: Row(
@@ -794,9 +909,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                         // Character label pill
                         Container(
                           margin: const EdgeInsets.only(right: 6),
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: isActiveChar ? Colors.indigo : Colors.grey.shade200,
+                            color: isActiveChar
+                                ? Colors.indigo
+                                : Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
@@ -804,17 +922,20 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: isActiveChar ? Colors.white : Colors.grey.shade700,
+                              color: isActiveChar
+                                  ? Colors.white
+                                  : Colors.grey.shade700,
                             ),
                           ),
                         ),
                         // Stroke pills for this character
                         ...List.generate(group.length, (localIdx) {
                           final strokeNum = globalStroke + localIdx + 1;
-                          final bool isSelected = !_isPlaying && 
-                                                  _manualCharIndex != null && 
-                                                  _manualStrokeLimit != null &&
-                                                  _getCharAndLocalStroke(strokeNum) == (_manualCharIndex!, _manualStrokeLimit!);
+                          final bool isSelected = !_isPlaying &&
+                              _manualCharIndex != null &&
+                              _manualStrokeLimit != null &&
+                              _getCharAndLocalStroke(strokeNum) ==
+                                  (_manualCharIndex!, _manualStrokeLimit!);
                           return GestureDetector(
                             onTap: () => setState(() {
                               final loc = _getCharAndLocalStroke(strokeNum);
@@ -824,12 +945,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                             }),
                             child: Container(
                               margin: const EdgeInsets.symmetric(horizontal: 3),
-                              width: 26, height: 26,
+                              width: 26,
+                              height: 26,
                               decoration: BoxDecoration(
-                                color: isSelected ? Colors.indigo : (isActiveChar ? Colors.indigo.withValues(alpha: 0.08) : Colors.transparent),
+                                color: isSelected
+                                    ? Colors.indigo
+                                    : (isActiveChar
+                                        ? Colors.indigo.withValues(alpha: 0.08)
+                                        : Colors.transparent),
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: isActiveChar ? Colors.indigo.withValues(alpha: 0.5) : Colors.indigo.withValues(alpha: 0.2),
+                                  color: isActiveChar
+                                      ? Colors.indigo.withValues(alpha: 0.5)
+                                      : Colors.indigo.withValues(alpha: 0.2),
                                 ),
                               ),
                               child: Center(
@@ -838,7 +966,12 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.bold,
-                                    color: isSelected ? Colors.white : (isActiveChar ? Colors.indigo : Colors.indigo.withValues(alpha: 0.5)),
+                                    color: isSelected
+                                        ? Colors.white
+                                        : (isActiveChar
+                                            ? Colors.indigo
+                                            : Colors.indigo
+                                                .withValues(alpha: 0.5)),
                                   ),
                                 ),
                               ),
@@ -860,29 +993,42 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   Widget _buildAnatomySection(BuildContext context, bool isDark) {
-    if (_anatomyComponents.length == 1) return _buildAnatomyCard(_anatomyComponents.first, isDark);
+    if (_anatomyComponents.length == 1) {
+      return _buildAnatomyCard(_anatomyComponents.first, isDark);
+    }
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: _anatomyComponents.asMap().entries.map((entry) {
             final int idx = entry.key;
-            final String radical = entry.value['radical'];
+            final String radical =
+                entry.value[AppLocalizations.of(context)!.radical];
             final bool isActive = _activeAnatomyIndex == idx;
             return GestureDetector(
               onTap: () {
                 setState(() => _activeAnatomyIndex = idx);
-                _pageController.animateToPage(idx, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+                _pageController.animateToPage(idx,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut);
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 6),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: isActive ? Colors.indigo : Colors.white.withValues(alpha: 0.3),
+                  color: isActive
+                      ? Colors.indigo
+                      : Colors.white.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.indigo.withValues(alpha: 0.2)),
+                  border:
+                      Border.all(color: Colors.indigo.withValues(alpha: 0.2)),
                 ),
-                child: Text(radical, style: TextStyle(fontSize: 18, color: isActive ? Colors.white : Colors.indigo, fontWeight: FontWeight.bold)),
+                child: Text(radical,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: isActive ? Colors.white : Colors.indigo,
+                        fontWeight: FontWeight.bold)),
               ),
             );
           }).toList(),
@@ -911,7 +1057,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         width: double.infinity,
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: isDark ? Colors.indigo.withValues(alpha: 0.1) : Colors.indigo.shade50.withValues(alpha: 0.5),
+          color: isDark
+              ? Colors.indigo.withValues(alpha: 0.1)
+              : Colors.indigo.shade50.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: Colors.indigo.withValues(alpha: 0.1)),
         ),
@@ -923,9 +1071,15 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.architecture, size: 18, color: Colors.indigo),
+                    const Icon(Icons.architecture,
+                        size: 18, color: Colors.indigo),
                     const SizedBox(width: 8),
-                    Text("${comp['char']} ANATOMY", style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.indigo, letterSpacing: 1.0)),
+                    Text("${comp[AppLocalizations.of(context)!.char]} ANATOMY",
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.indigo,
+                            letterSpacing: 1.0)),
                   ],
                 ),
                 const Icon(Icons.info_outline, size: 16, color: Colors.indigo),
@@ -936,24 +1090,40 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 60, height: 60,
+                  width: 60,
+                  height: 60,
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.red.withValues(alpha: 0.2)),
+                    border:
+                        Border.all(color: Colors.red.withValues(alpha: 0.2)),
                   ),
-                  child: Center(child: Text(comp['radical'], style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFFB22222)))),
+                  child: Center(
+                      child: Text(comp[AppLocalizations.of(context)!.radical],
+                          style: const TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFB22222)))),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Radical: ${comp['info']['name']}", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      TranslatedDefinition(
+                          definition: comp['info']
+                                  [AppLocalizations.of(context)!.nameLabel]
+                              .toString(),
+                          originalStyle: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 4),
-                      CrossReferenceText(
-                        comp['info']['meaning'],
-                        style: TextStyle(fontSize: 13, color: isDark ? Colors.white70 : Colors.black87),
+                      TranslatedDefinition(
+                        definition: comp['info']
+                                [AppLocalizations.of(context)!.meaning]
+                            .toString(),
+                        originalStyle: TextStyle(
+                            fontSize: 13,
+                            color: isDark ? Colors.white70 : Colors.black87),
                       ),
                     ],
                   ),
@@ -964,12 +1134,18 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.3), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.3),
+                    borderRadius: BorderRadius.circular(12)),
                 child: Row(
                   children: [
-                    const Icon(Icons.lightbulb_outline, size: 16, color: Colors.amber),
+                    const Icon(Icons.lightbulb_outline,
+                        size: 16, color: Colors.amber),
                     const SizedBox(width: 8),
-                    Expanded(child: CrossReferenceText(comp['info']['mnemonic'], style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic))),
+                    Expanded(
+                        child: CrossReferenceText(comp['info']['mnemonic'],
+                            style: const TextStyle(
+                                fontSize: 12, fontStyle: FontStyle.italic))),
                   ],
                 ),
               ),
@@ -990,9 +1166,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         onChanged: _saveNotes,
         maxLines: null,
         minLines: 3,
-        style: TextStyle(fontSize: 16, color: isDark ? Colors.white : Colors.black87),
+        style: TextStyle(
+            fontSize: 16, color: isDark ? Colors.white : Colors.black87),
         decoration: InputDecoration(
-          hintText: "Add your own mnemonics or notes here...",
+          hintText: AppLocalizations.of(context)!.addPersonalNotes,
           hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.black38),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
@@ -1007,17 +1184,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             borderSide: const BorderSide(color: Colors.indigo, width: 2),
           ),
           filled: true,
-          fillColor: isDark ? Colors.white.withValues(alpha: 0.02) : Colors.indigo.shade50.withValues(alpha: 0.3),
+          fillColor: isDark
+              ? Colors.white.withValues(alpha: 0.02)
+              : Colors.indigo.shade50.withValues(alpha: 0.3),
         ),
       ),
     );
   }
 
   Widget _buildCommonWordsSection(BuildContext context, bool isDark) {
-    if (widget.card.hanzi.length > 1) return const SizedBox.shrink(); 
-    
+    if (widget.card.hanzi.length > 1) return const SizedBox.shrink();
+
     final commonWordsAsync = ref.watch(commonWordsProvider(widget.card.hanzi));
-    
+
     return commonWordsAsync.when(
       data: (words) {
         if (words.isEmpty) return const SizedBox.shrink();
@@ -1028,25 +1207,33 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           child: Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: words.map((w) => GestureDetector(
-              onTap: () => showQuickLook(context, w.hanzi),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-                decoration: BoxDecoration(
-                  color: isDark ? Colors.indigo.shade900.withValues(alpha: 0.3) : Colors.indigo.shade50,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.indigo.withValues(alpha: isDark ? 0.25 : 0.15)),
-                ),
-                child: Text(
-                  '${w.hanzi}  ${PinyinUtils.convertNumericToMarks(w.pinyin)}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    color: isDark ? Colors.white : Colors.indigo.shade800,
-                  ),
-                ),
-              ),
-            )).toList(),
+            children: words
+                .map((w) => GestureDetector(
+                      onTap: () => showQuickLook(context, w.hanzi),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 7),
+                        decoration: BoxDecoration(
+                          color: isDark
+                              ? Colors.indigo.shade900.withValues(alpha: 0.3)
+                              : Colors.indigo.shade50,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: Colors.indigo
+                                  .withValues(alpha: isDark ? 0.25 : 0.15)),
+                        ),
+                        child: Text(
+                          '${w.hanzi}  ${PinyinUtils.convertNumericToMarks(w.pinyin)}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color:
+                                isDark ? Colors.white : Colors.indigo.shade800,
+                          ),
+                        ),
+                      ),
+                    ))
+                .toList(),
           ),
         );
       },
@@ -1057,11 +1244,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   Widget _buildAiContextSection(BuildContext context, bool isDark) {
     final aiContextAsync = ref.watch(characterContextProvider(widget.card));
-    
+
     return aiContextAsync.when(
       data: (contextData) {
         if (contextData == null) return const SizedBox.shrink();
-        
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1077,47 +1264,59 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               title: AppLocalizations.of(context)!.exampleSentences,
               icon: Icons.format_quote,
               child: Column(
-                children: contextData.sentences.map((sentence) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: TappableHanziText(
-                                sentence.chinese,
-                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
+                children: contextData.sentences
+                    .map((sentence) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.05)
+                                  : Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            IconButton(
-                              icon: const Icon(Icons.volume_up, size: 20, color: Colors.indigo),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              onPressed: () => ref.read(audioServiceProvider).playCharacter(sentence.chinese),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: TappableHanziText(
+                                        sentence.chinese,
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.volume_up,
+                                          size: 20, color: Colors.indigo),
+                                      padding: EdgeInsets.zero,
+                                      constraints: const BoxConstraints(),
+                                      onPressed: () => ref
+                                          .read(audioServiceProvider)
+                                          .playCharacter(sentence.chinese),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                                Text(sentence.pinyin,
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Colors.indigo)),
+                                const SizedBox(height: 8),
+                                _TapToRevealText(
+                                  text: sentence.english,
+                                  isDark: isDark,
+                                  hintText:
+                                      AppLocalizations.of(context)!.tapToReveal,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 4),
-                        Text(sentence.pinyin, style: const TextStyle(fontSize: 14, color: Colors.indigo)),
-                        const SizedBox(height: 8),
-                        _TapToRevealText(
-                          text: sentence.english,
-                          isDark: isDark,
-                          hintText: AppLocalizations.of(context)!.tapToReveal,
-                        ),
-                      ],
-                    ),
-                  ),
-                )).toList(),
+                          ),
+                        ))
+                    .toList(),
               ),
             ),
             if (contextData.lookAlikes.isNotEmpty) ...[
@@ -1127,34 +1326,53 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 title: AppLocalizations.of(context)!.ghostCharacters,
                 icon: Icons.warning_amber_rounded,
                 child: Column(
-                  children: contextData.lookAlikes.map((lookAlike) => Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.orange.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(lookAlike.character, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepOrange)),
-                              const SizedBox(width: 8),
-                              Text("(${lookAlike.pinyin})", style: const TextStyle(fontSize: 16, color: Colors.deepOrange)),
-                              const Spacer(),
-                              Text(lookAlike.english, style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Text(lookAlike.difference, style: TextStyle(fontSize: 14, color: isDark ? Colors.white70 : Colors.black87)),
-                        ],
-                      ),
-                    ),
-                  )).toList(),
+                  children: contextData.lookAlikes
+                      .map((lookAlike) => Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.orange.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color:
+                                        Colors.orange.withValues(alpha: 0.3)),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(lookAlike.character,
+                                          style: const TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.deepOrange)),
+                                      const SizedBox(width: 8),
+                                      Text('(${lookAlike.pinyin})',
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.deepOrange)),
+                                      const Spacer(),
+                                      Text(lookAlike.english,
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              fontStyle: FontStyle.italic)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(lookAlike.difference,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: isDark
+                                              ? Colors.white70
+                                              : Colors.black87)),
+                                ],
+                              ),
+                            ),
+                          ))
+                      .toList(),
                 ),
               ),
             ],
@@ -1183,7 +1401,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               Expanded(
                 child: Text(
                   AppLocalizations.of(context)!.couldNotLoadAi,
-                  style: TextStyle(color: isDark ? Colors.red[300] : Colors.red[700], fontSize: 13),
+                  style: TextStyle(
+                      color: isDark ? Colors.red[300] : Colors.red[700],
+                      fontSize: 13),
                 ),
               ),
               IconButton(
@@ -1199,13 +1419,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     );
   }
 
-  Widget _buildInfoSection(BuildContext context, {required String title, String? content, required IconData icon, Widget? child}) {
+  Widget _buildInfoSection(BuildContext context,
+      {required String title,
+      String? content,
+      required IconData icon,
+      Widget? child}) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white.withValues(alpha: 0.8),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.03)
+            : Colors.white.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -1215,11 +1441,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             children: [
               Icon(icon, size: 18, color: Colors.indigo),
               const SizedBox(width: 8),
-              Text(title.toUpperCase(), style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 1.0)),
+              Text(title.toUpperCase(),
+                  style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                      letterSpacing: 1.0)),
             ],
           ),
           const SizedBox(height: 12),
-          if (content != null) CrossReferenceText(content, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+          if (content != null)
+            CrossReferenceText(content,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
           if (child != null) child,
         ],
       ),
@@ -1252,14 +1486,11 @@ class _TapToRevealTextState extends State<_TapToRevealText> {
       onTap: () => setState(() => _isRevealed = true),
       child: Stack(
         children: [
-          Text(
-            widget.text, 
-            style: TextStyle(
-              fontSize: 14, 
-              color: widget.isDark ? Colors.white70 : Colors.black87, 
-              fontStyle: FontStyle.italic
-            )
-          ),
+          Text(widget.text,
+              style: TextStyle(
+                  fontSize: 14,
+                  color: widget.isDark ? Colors.white70 : Colors.black87,
+                  fontStyle: FontStyle.italic)),
           if (!_isRevealed)
             Positioned.fill(
               child: ClipRect(

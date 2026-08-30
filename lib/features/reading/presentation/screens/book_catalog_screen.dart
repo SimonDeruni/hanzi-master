@@ -487,7 +487,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       error: (e, _) => [
         SliverFillRemaining(
           child: Center(
-              child: Text(AppLocalizations.of(context)!.error_loading_novels)),
+              child: Text(AppLocalizations.of(context)!.error_loading_novels(e.toString()))),
         ),
       ],
     );
@@ -574,7 +574,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         SliverFillRemaining(
           child: Center(
               child:
-                  Text(AppLocalizations.of(context)!.error_loading_microreads)),
+                  Text(AppLocalizations.of(context)!.error_loading_microreads(e.toString()))),
         ),
       ],
     );
@@ -660,7 +660,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       error: (e, _) => [
         SliverFillRemaining(
           child: Center(
-              child: Text(AppLocalizations.of(context)!.error_loading_poetry)),
+              child: Text(AppLocalizations.of(context)!.error_loading_poetry(e.toString()))),
         ),
       ],
     );

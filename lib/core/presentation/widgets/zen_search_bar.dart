@@ -1,11 +1,12 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// A unified, calligraphic search bar adhering to the Zen & Ink aesthetic.
 /// Used across all screens (Dictionary, Reading Room, Media, Shows, Stories, Radicals, Scenarios, Decks).
 class ZenSearchBar extends StatefulWidget {
   final TextEditingController controller;
-  final String hintText;
+  final String? hintText;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final VoidCallback? onClear;
@@ -20,7 +21,7 @@ class ZenSearchBar extends StatefulWidget {
   const ZenSearchBar({
     super.key,
     required this.controller,
-    this.hintText = 'Search...',
+    this.hintText,
     this.onChanged,
     this.onSubmitted,
     this.onClear,
@@ -79,7 +80,8 @@ class _ZenSearchBarState extends State<ZenSearchBar> {
         ? Colors.white.withValues(alpha: 0.08)
         : Colors.black.withValues(alpha: 0.06);
     final shadowColor = Colors.black.withValues(alpha: isDark ? 0.25 : 0.04);
-    final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final textColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     final hintColor = isDark ? Colors.white38 : Colors.black38;
     final iconColor = isDark ? Colors.white54 : Colors.black45;
 
@@ -122,7 +124,8 @@ class _ZenSearchBarState extends State<ZenSearchBar> {
               ),
               cursorColor: isDark ? Colors.amber : const Color(0xFF1A1A1B),
               decoration: InputDecoration(
-                hintText: widget.hintText,
+                hintText:
+                    widget.hintText ?? AppLocalizations.of(context)!.searchHint,
                 hintStyle: TextStyle(
                   color: hintColor,
                   fontSize: 14,
@@ -144,7 +147,7 @@ class _ZenSearchBarState extends State<ZenSearchBar> {
                 color: iconColor,
               ),
               splashRadius: 18,
-              tooltip: 'Clear',
+              tooltip: AppLocalizations.of(context)!.clear,
               onPressed: () {
                 HapticFeedback.lightImpact();
                 widget.controller.clear();

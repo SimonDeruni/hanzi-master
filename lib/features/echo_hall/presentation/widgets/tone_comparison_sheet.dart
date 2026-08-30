@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ToneComparisonSheet extends ConsumerStatefulWidget {
   final String character;
@@ -42,13 +43,15 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
   }
 
   @override
-  ConsumerState<ToneComparisonSheet> createState() => _ToneComparisonSheetState();
+  ConsumerState<ToneComparisonSheet> createState() =>
+      _ToneComparisonSheetState();
 }
 
 class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
   int? _playingTone;
 
-  Future<void> _playToneAudio(int tone, String tonePinyin, String? exemplarHanzi) async {
+  Future<void> _playToneAudio(
+      int tone, String tonePinyin, String? exemplarHanzi) async {
     if (exemplarHanzi == null || exemplarHanzi.isEmpty) return;
     setState(() => _playingTone = tone);
     try {
@@ -134,7 +137,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: isCorrect ? Colors.green.shade700 : Colors.orange.shade800,
+                      color: isCorrect
+                          ? Colors.green.shade700
+                          : Colors.orange.shade800,
                     ),
                   ),
                 ),
@@ -189,7 +194,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.stars, size: 14, color: Color(0xFF10B981)),
+                          const Icon(Icons.stars,
+                              size: 14, color: Color(0xFF10B981)),
                           const SizedBox(width: 4),
                           Text(
                             "Target Tone",
@@ -223,15 +229,21 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                       Row(
                         children: [
                           Icon(
-                            isCorrect ? Icons.check_circle : Icons.record_voice_over,
+                            isCorrect
+                                ? Icons.check_circle
+                                : Icons.record_voice_over,
                             size: 14,
-                            color: isCorrect ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                            color: isCorrect
+                                ? const Color(0xFF10B981)
+                                : const Color(0xFFF59E0B),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             isCorrect ? "You Spoke (Match!)" : "You Spoke",
                             style: theme.textTheme.labelSmall?.copyWith(
-                              color: isCorrect ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                              color: isCorrect
+                                  ? const Color(0xFF10B981)
+                                  : const Color(0xFFF59E0B),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -242,7 +254,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                         "Tone ${widget.actualTone} (${toneMap[widget.actualTone] ?? widget.pinyin})",
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: isCorrect ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                          color: isCorrect
+                              ? const Color(0xFF10B981)
+                              : const Color(0xFFF59E0B),
                         ),
                       ),
                     ],
@@ -259,8 +273,10 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
               color: isCorrect
-                  ? const Color(0xFF10B981).withValues(alpha: isDark ? 0.12 : 0.08)
-                  : const Color(0xFFF59E0B).withValues(alpha: isDark ? 0.12 : 0.08),
+                  ? const Color(0xFF10B981)
+                      .withValues(alpha: isDark ? 0.12 : 0.08)
+                  : const Color(0xFFF59E0B)
+                      .withValues(alpha: isDark ? 0.12 : 0.08),
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
                 color: isCorrect
@@ -272,18 +288,27 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(
-                  isCorrect ? Icons.check_circle_outline : Icons.lightbulb_outline,
+                  isCorrect
+                      ? Icons.check_circle_outline
+                      : Icons.lightbulb_outline,
                   size: 18,
-                  color: isCorrect ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                  color: isCorrect
+                      ? const Color(0xFF10B981)
+                      : const Color(0xFFF59E0B),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    PinyinUtils.getToneDiagnostic(widget.expectedTone, widget.actualTone),
+                    PinyinUtils.getToneDiagnostic(
+                        widget.expectedTone, widget.actualTone),
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: isCorrect
-                          ? (isDark ? const Color(0xFF34D399) : const Color(0xFF047857))
-                          : (isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309)),
+                          ? (isDark
+                              ? const Color(0xFF34D399)
+                              : const Color(0xFF047857))
+                          : (isDark
+                              ? const Color(0xFFFBBF24)
+                              : const Color(0xFFB45309)),
                       fontWeight: FontWeight.w600,
                       height: 1.4,
                     ),
@@ -332,7 +357,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     final isPlaying = _playingTone == tone;
 
     final exemplarHanzi = PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
-    final bool existsInChinese = exemplarHanzi != null && exemplarHanzi.isNotEmpty;
+    final bool existsInChinese =
+        exemplarHanzi != null && exemplarHanzi.isNotEmpty;
 
     Color borderColor = theme.colorScheme.outlineVariant.withValues(alpha: 0.3);
     Color cardBg = isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white;
@@ -348,13 +374,17 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
       cardBg = const Color(0xFFF59E0B).withValues(alpha: isDark ? 0.12 : 0.06);
     } else if (!existsInChinese) {
       borderColor = borderColor.withValues(alpha: 0.15);
-      cardBg = isDark ? Colors.white.withValues(alpha: 0.01) : const Color(0xFFF8F9FA);
+      cardBg = isDark
+          ? Colors.white.withValues(alpha: 0.01)
+          : const Color(0xFFF8F9FA);
     }
 
     final pitchIcon = _getPitchIcon(tone);
 
     return InkWell(
-      onTap: existsInChinese ? () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi) : null,
+      onTap: existsInChinese
+          ? () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi)
+          : null,
       borderRadius: BorderRadius.circular(16),
       child: Opacity(
         opacity: existsInChinese ? 1.0 : 0.65,
@@ -363,7 +393,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
           decoration: BoxDecoration(
             color: cardBg,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: borderColor, width: (isExpected || isActual) ? 1.5 : 1.0),
+            border: Border.all(
+                color: borderColor,
+                width: (isExpected || isActual) ? 1.5 : 1.0),
           ),
           child: Row(
             children: [
@@ -372,7 +404,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                 width: 38,
                 height: 38,
                 decoration: BoxDecoration(
-                  color: existsInChinese ? borderColor.withValues(alpha: 0.15) : Colors.grey.withValues(alpha: 0.1),
+                  color: existsInChinese
+                      ? borderColor.withValues(alpha: 0.15)
+                      : Colors.grey.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
@@ -385,7 +419,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                           ? onSurface.withValues(alpha: 0.3)
                           : (isExpected
                               ? const Color(0xFF3B82F6)
-                              : (isActual ? const Color(0xFFF59E0B) : onSurface.withValues(alpha: 0.6))),
+                              : (isActual
+                                  ? const Color(0xFFF59E0B)
+                                  : onSurface.withValues(alpha: 0.6))),
                     ),
                   ),
                 ),
@@ -400,19 +436,25 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     Row(
                       children: [
                         Text(
-                          existsInChinese ? "$pinyinWithTone  ($exemplarHanzi)" : pinyinWithTone,
+                          existsInChinese
+                              ? "$pinyinWithTone  ($exemplarHanzi)"
+                              : pinyinWithTone,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: existsInChinese ? null : onSurface.withValues(alpha: 0.5),
+                            color: existsInChinese
+                                ? null
+                                : onSurface.withValues(alpha: 0.5),
                           ),
                         ),
                         const SizedBox(width: 8),
                         if (isExpected)
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF3B82F6).withValues(alpha: 0.2),
+                              color: const Color(0xFF3B82F6)
+                                  .withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: const Text(
@@ -426,14 +468,16 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                           )
                         else if (isActual)
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+                              color: const Color(0xFFF59E0B)
+                                  .withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(6),
                             ),
-                            child: const Text(
-                              "🗣️ You Said",
-                              style: TextStyle(
+                            child: Text(
+                              AppLocalizations.of(context)!.you_said,
+                              style: const TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFFD97706),
@@ -442,7 +486,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                           )
                         else if (!existsInChinese)
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
                               color: isDark
                                   ? Colors.white.withValues(alpha: 0.08)
@@ -450,7 +495,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
-                              "Does not exist in Chinese",
+                              AppLocalizations.of(context)!
+                                  .doesNotExistInChinese,
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600,
@@ -464,9 +510,11 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     Text(
                       existsInChinese
                           ? PinyinUtils.getToneDescription(tone)
-                          : "This tone does not exist in standard Mandarin.",
+                          : AppLocalizations.of(context)!
+                              .toneDoesNotExistInMandarin,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: onSurface.withValues(alpha: existsInChinese ? 0.6 : 0.4),
+                        color: onSurface.withValues(
+                            alpha: existsInChinese ? 0.6 : 0.4),
                         fontSize: 11,
                       ),
                     ),
@@ -477,10 +525,13 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               // Audio Action (Disabled & muted if tone does not exist)
               if (existsInChinese)
                 IconButton(
-                  onPressed: () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
+                  onPressed: () =>
+                      _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
                   icon: Icon(
                     isPlaying ? Icons.volume_up : Icons.volume_down_outlined,
-                    color: isPlaying ? const Color(0xFF10B981) : theme.colorScheme.primary,
+                    color: isPlaying
+                        ? const Color(0xFF10B981)
+                        : theme.colorScheme.primary,
                     size: 24,
                   ),
                   tooltip: "Play $pinyinWithTone",

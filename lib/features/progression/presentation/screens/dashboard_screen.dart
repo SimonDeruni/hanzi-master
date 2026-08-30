@@ -29,28 +29,30 @@ class DashboardScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    
+
     // 1. Fetch Flashcard Data
     final rawCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
     final allDecks = ref.watch(deckControllerProvider).valueOrNull ?? [];
-    
+
     // Filter out cards that belong to deleted decks to prevent ghost reviews and raw UUID displays
     final validDeckIds = allDecks.map((d) => d.id).toSet();
     final allCards = rawCards.where((c) {
       final deckId = c.deckId;
-      return deckId.isEmpty || deckId == 'default' || validDeckIds.contains(deckId);
+      return deckId.isEmpty ||
+          deckId == 'default' ||
+          validDeckIds.contains(deckId);
     }).toList();
-    
+
     // 2. Calculate Stats
     final dueCards = allCards.where((c) {
       return StudyMode.values.any((m) => c.isDue(m));
     }).toList();
-    
+
     final Map<String, List<Flashcard>> dueCardsByDeck = {};
     for (var card in dueCards) {
       dueCardsByDeck.putIfAbsent(card.deckId, () => []).add(card);
     }
-    
+
     // 4. Calculate Upcoming Forecast
     int dueLaterToday = 0;
     int dueTomorrow = 0;
@@ -69,8 +71,10 @@ class DashboardScreen extends ConsumerWidget {
       for (var mode in StudyMode.values) {
         final stats = card.getStatsForMode(mode);
         final reviewDate = stats.nextReviewDate;
-        
-        if (stats.interval > 0 && reviewDate.isAfter(now) && reviewDate.isBefore(endOfNext7Days)) {
+
+        if (stats.interval > 0 &&
+            reviewDate.isAfter(now) &&
+            reviewDate.isBefore(endOfNext7Days)) {
           dueNext7Days++;
           next7DaysByDeck[deckName] = (next7DaysByDeck[deckName] ?? 0) + 1;
           if (reviewDate.isBefore(endOfToday)) {
@@ -114,7 +118,8 @@ class DashboardScreen extends ConsumerWidget {
                     color: Colors.transparent,
                     child: GestureDetector(
                       onTap: () {
-                        ref.read(searchFocusRequestProvider.notifier).state = true;
+                        ref.read(searchFocusRequestProvider.notifier).state =
+                            true;
                         Navigator.of(context).push(
                           SwipeBackPageRoute(
                             builder: (_) => const DictionaryScreen(),
@@ -122,22 +127,26 @@ class DashboardScreen extends ConsumerWidget {
                         );
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 15),
                         decoration: BoxDecoration(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? const Color(0xFF1A1A1B).withValues(alpha: 0.8)
                               : Colors.white.withValues(alpha: 0.7),
                           borderRadius: BorderRadius.circular(24),
                           border: Border.all(
-                            color: Theme.of(context).brightness == Brightness.dark
-                                ? Colors.white.withValues(alpha: 0.1)
-                                : Colors.black.withValues(alpha: 0.04),
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white.withValues(alpha: 0.1)
+                                    : Colors.black.withValues(alpha: 0.04),
                           ),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withValues(
-                                alpha: Theme.of(context).brightness == Brightness.dark ? 0.3 : 0.04
-                              ),
+                                  alpha: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? 0.3
+                                      : 0.04),
                               blurRadius: 16,
                               offset: const Offset(0, 6),
                             ),
@@ -145,26 +154,39 @@ class DashboardScreen extends ConsumerWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.search, color: theme.colorScheme.onSurface.withValues(alpha: 0.4), size: 22),
+                            Icon(Icons.search,
+                                color: theme.colorScheme.onSurface
+                                    .withValues(alpha: 0.4),
+                                size: 22),
                             const SizedBox(width: 14),
                             Text(
-                              l10n?.searchHanziOrPinyin ?? "Search Hanzi or Pinyin...",
+                              l10n?.searchHanziOrPinyin ??
+                                  "Search Hanzi or Pinyin...",
                               style: theme.textTheme.titleMedium?.copyWith(
-                                color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                                color: theme.colorScheme.onSurface
+                                    .withValues(alpha: 0.5),
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
                               ),
                             ),
                             const Spacer(),
-                            Icon(Icons.arrow_forward_ios, size: 14, color: theme.colorScheme.onSurface.withValues(alpha: 0.3)),
+                            Icon(Icons.arrow_forward_ios,
+                                size: 14,
+                                color: theme.colorScheme.onSurface
+                                    .withValues(alpha: 0.3)),
                           ],
                         ),
                       ),
                     ),
                   ),
-                ).animate(delay: 150.ms)
-                 .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-                 .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
+                )
+                    .animate(delay: 150.ms)
+                    .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                    .slideY(
+                        begin: 0.05,
+                        end: 0,
+                        duration: 600.ms,
+                        curve: Curves.easeOutCubic),
               ),
             ),
 
@@ -212,14 +234,19 @@ class DashboardScreen extends ConsumerWidget {
                       ),
                     ),
                   ],
-                ).animate(delay: 200.ms)
-                 .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-                 .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
+                )
+                    .animate(delay: 200.ms)
+                    .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                    .slideY(
+                        begin: 0.05,
+                        end: 0,
+                        duration: 600.ms,
+                        curve: Curves.easeOutCubic),
               ),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
-            
+
             // --- UPCOMING FORECAST (COMPACT) ---
             SliverToBoxAdapter(
               child: Padding(
@@ -231,7 +258,7 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.upcomingForecast ?? "Upcoming Forecast",
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w900,
-                        fontFamily: 'NotoSerifSC',
+                        fontFamily: AppLocalizations.of(context)!.notoserifsc,
                         letterSpacing: 0.3,
                         fontSize: 16,
                       ),
@@ -240,22 +267,60 @@ class DashboardScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(child: _ForecastItem(title: l10n?.laterToday ?? "Later Today", count: dueLaterToday, theme: theme, onTap: () => _showForecastDetail(context, l10n?.laterToday ?? "Later Today", laterTodayByDeck, allDecks, l10n, theme))),
+                        Expanded(
+                            child: _ForecastItem(
+                                title: l10n?.laterToday ?? "Later Today",
+                                count: dueLaterToday,
+                                theme: theme,
+                                onTap: () => _showForecastDetail(
+                                    context,
+                                    l10n?.laterToday ?? "Later Today",
+                                    laterTodayByDeck,
+                                    allDecks,
+                                    l10n,
+                                    theme))),
                         const SizedBox(width: 10),
-                        Expanded(child: _ForecastItem(title: l10n?.tomorrow ?? "Tomorrow", count: dueTomorrow, theme: theme, onTap: () => _showForecastDetail(context, l10n?.tomorrow ?? "Tomorrow", tomorrowByDeck, allDecks, l10n, theme))),
+                        Expanded(
+                            child: _ForecastItem(
+                                title: l10n?.tomorrow ?? "Tomorrow",
+                                count: dueTomorrow,
+                                theme: theme,
+                                onTap: () => _showForecastDetail(
+                                    context,
+                                    l10n?.tomorrow ?? "Tomorrow",
+                                    tomorrowByDeck,
+                                    allDecks,
+                                    l10n,
+                                    theme))),
                         const SizedBox(width: 10),
-                        Expanded(child: _ForecastItem(title: l10n?.next7Days ?? "Next 7 Days", count: dueNext7Days, theme: theme, onTap: () => _showForecastDetail(context, l10n?.next7Days ?? "Next 7 Days", next7DaysByDeck, allDecks, l10n, theme))),
+                        Expanded(
+                            child: _ForecastItem(
+                                title: l10n?.next7Days ?? "Next 7 Days",
+                                count: dueNext7Days,
+                                theme: theme,
+                                onTap: () => _showForecastDetail(
+                                    context,
+                                    l10n?.next7Days ?? "Next 7 Days",
+                                    next7DaysByDeck,
+                                    allDecks,
+                                    l10n,
+                                    theme))),
                       ],
                     ),
                   ],
                 ),
-              ).animate(delay: 300.ms)
-               .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.05, end: 0, duration: 600.ms, curve: Curves.easeOutCubic),
+              )
+                  .animate(delay: 300.ms)
+                  .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                  .slideY(
+                      begin: 0.05,
+                      end: 0,
+                      duration: 600.ms,
+                      curve: Curves.easeOutCubic),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
-            
+
             // --- BOTTOM: DAILY REVIEW ---
             SliverToBoxAdapter(
               child: Padding(
@@ -267,7 +332,7 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.dailyReview ?? "Daily Review",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
-                        fontFamily: 'NotoSerifSC',
+                        fontFamily: AppLocalizations.of(context)!.notoserifsc,
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -293,17 +358,21 @@ class DashboardScreen extends ConsumerWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    l10n?.yourMindIsClear ?? "Your mind is clear.",
-                                    style: theme.textTheme.titleMedium?.copyWith(
+                                    l10n?.yourMindIsClear ??
+                                        "Your mind is clear.",
+                                    style:
+                                        theme.textTheme.titleMedium?.copyWith(
                                       color: theme.colorScheme.onSurface,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    l10n?.noReviewsDueToday ?? "No reviews due today.",
+                                    l10n?.noReviewsDueToday ??
+                                        "No reviews due today.",
                                     style: theme.textTheme.bodyMedium?.copyWith(
-                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                                      color: theme.colorScheme.onSurface
+                                          .withValues(alpha: 0.6),
                                     ),
                                   ),
                                 ],
@@ -313,12 +382,20 @@ class DashboardScreen extends ConsumerWidget {
                             ElevatedButton(
                               onPressed: null,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
-                                foregroundColor: theme.colorScheme.onSurface.withValues(alpha: 0.3),
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                backgroundColor: theme.colorScheme.primary
+                                    .withValues(alpha: 0.1),
+                                foregroundColor: theme.colorScheme.onSurface
+                                    .withValues(alpha: 0.3),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16)),
                               ),
-                              child: Text(l10n?.done ?? "Done", style: const TextStyle(fontWeight: FontWeight.bold)),
+                              child: Text(
+                                  l10n?.done ??
+                                      AppLocalizations.of(context)!.done,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
@@ -328,25 +405,51 @@ class DashboardScreen extends ConsumerWidget {
                         final deckId = entry.key;
                         final cards = entry.value;
                         String displayDeckName = deckId;
-                        
-                        final foundDeck = allDecks.where((d) => d.id == deckId).firstOrNull;
+
+                        final foundDeck =
+                            allDecks.where((d) => d.id == deckId).firstOrNull;
                         if (foundDeck != null) {
                           displayDeckName = foundDeck.name;
                         }
 
-                        if (deckId.toLowerCase() == 'hsk1') displayDeckName = l10n?.hskLevel1 ?? "HSK Level 1";
-                        if (deckId.toLowerCase() == 'hsk2') displayDeckName = l10n?.hskLevel2 ?? "HSK Level 2";
-                        if (deckId.toLowerCase() == 'hsk3') displayDeckName = l10n?.hskLevel3 ?? "HSK Level 3";
-                        if (deckId.toLowerCase() == 'hsk4') displayDeckName = l10n?.hskLevel4 ?? "HSK Level 4";
-                        if (deckId.toLowerCase() == 'hsk5') displayDeckName = l10n?.hskLevel5 ?? "HSK Level 5";
-                        if (deckId.toLowerCase() == 'hsk6') displayDeckName = l10n?.hskLevel6 ?? "HSK Level 6";
-                        if (deckId.toLowerCase() == 'default') displayDeckName = l10n?.generalVocabulary ?? "General Vocabulary";
-                        
-                        int readingDue = cards.where((c) => c.isDue(StudyMode.reading)).length;
-                        int listeningDue = cards.where((c) => c.isDue(StudyMode.listening)).length;
-                        int recallDue = cards.where((c) => c.isDue(StudyMode.recall)).length;
-                        int speakingDue = cards.where((c) => c.isDue(StudyMode.speaking)).length;
-                        int calligraphyDue = cards.where((c) => c.isDue(StudyMode.calligraphy)).length;
+                        if (deckId.toLowerCase() == 'hsk1') {
+                          displayDeckName = l10n?.hskLevel1 ?? "HSK Level 1";
+                        }
+                        if (deckId.toLowerCase() == 'hsk2') {
+                          displayDeckName = l10n?.hskLevel2 ?? "HSK Level 2";
+                        }
+                        if (deckId.toLowerCase() == 'hsk3') {
+                          displayDeckName = l10n?.hskLevel3 ?? "HSK Level 3";
+                        }
+                        if (deckId.toLowerCase() == 'hsk4') {
+                          displayDeckName = l10n?.hskLevel4 ?? "HSK Level 4";
+                        }
+                        if (deckId.toLowerCase() == 'hsk5') {
+                          displayDeckName = l10n?.hskLevel5 ?? "HSK Level 5";
+                        }
+                        if (deckId.toLowerCase() == 'hsk6') {
+                          displayDeckName = l10n?.hskLevel6 ?? "HSK Level 6";
+                        }
+                        if (deckId.toLowerCase() == 'default') {
+                          displayDeckName =
+                              l10n?.generalVocabulary ?? "General Vocabulary";
+                        }
+
+                        int readingDue = cards
+                            .where((c) => c.isDue(StudyMode.reading))
+                            .length;
+                        int listeningDue = cards
+                            .where((c) => c.isDue(StudyMode.listening))
+                            .length;
+                        int recallDue = cards
+                            .where((c) => c.isDue(StudyMode.recall))
+                            .length;
+                        int speakingDue = cards
+                            .where((c) => c.isDue(StudyMode.speaking))
+                            .length;
+                        int calligraphyDue = cards
+                            .where((c) => c.isDue(StudyMode.calligraphy))
+                            .length;
                         int totalDue = cards.length;
 
                         // Always use white foreground on the dark indigo gradient for high contrast
@@ -361,12 +464,16 @@ class DashboardScreen extends ConsumerWidget {
                               gradient: const LinearGradient(
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
-                                colors: [Color(0xFF3F51B5), Color(0xFF1A237E)], // Indigo gradient
+                                colors: [
+                                  Color(0xFF3F51B5),
+                                  Color(0xFF1A237E)
+                                ], // Indigo gradient
                               ),
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color(0xFF1A237E).withValues(alpha: 0.4),
+                                  color: const Color(0xFF1A237E)
+                                      .withValues(alpha: 0.4),
                                   blurRadius: 20,
                                   offset: const Offset(0, 8),
                                 ),
@@ -376,11 +483,13 @@ class DashboardScreen extends ConsumerWidget {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         displayDeckName,
-                                        style: theme.textTheme.titleMedium?.copyWith(
+                                        style: theme.textTheme.titleMedium
+                                            ?.copyWith(
                                           color: onCardColor,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -390,16 +499,32 @@ class DashboardScreen extends ConsumerWidget {
                                         spacing: 12,
                                         runSpacing: 8,
                                         children: [
-                                          if (calligraphyDue > 0) _buildMiniStat(Icons.brush, calligraphyDue, onCardColor),
-                                          if (readingDue > 0) _buildMiniStat(Icons.visibility, readingDue, onCardColor),
-                                          if (listeningDue > 0) _buildMiniStat(Icons.headset, listeningDue, onCardColor),
-                                          if (recallDue > 0) _buildMiniStat(Icons.memory, recallDue, onCardColor),
-                                          if (speakingDue > 0) _buildMiniStat(Icons.mic, speakingDue, onCardColor),
-                                          if (readingDue == 0 && listeningDue == 0 && recallDue == 0 && speakingDue == 0 && calligraphyDue == 0)
+                                          if (calligraphyDue > 0)
+                                            _buildMiniStat(Icons.brush,
+                                                calligraphyDue, onCardColor),
+                                          if (readingDue > 0)
+                                            _buildMiniStat(Icons.visibility,
+                                                readingDue, onCardColor),
+                                          if (listeningDue > 0)
+                                            _buildMiniStat(Icons.headset,
+                                                listeningDue, onCardColor),
+                                          if (recallDue > 0)
+                                            _buildMiniStat(Icons.memory,
+                                                recallDue, onCardColor),
+                                          if (speakingDue > 0)
+                                            _buildMiniStat(Icons.mic,
+                                                speakingDue, onCardColor),
+                                          if (readingDue == 0 &&
+                                              listeningDue == 0 &&
+                                              recallDue == 0 &&
+                                              speakingDue == 0 &&
+                                              calligraphyDue == 0)
                                             Text(
                                               "$totalDue ${l10n?.cardsRequireAttention ?? 'cards require attention.'}",
-                                              style: theme.textTheme.bodyMedium?.copyWith(
-                                                color: onCardColor.withValues(alpha: 0.8),
+                                              style: theme.textTheme.bodyMedium
+                                                  ?.copyWith(
+                                                color: onCardColor.withValues(
+                                                    alpha: 0.8),
                                               ),
                                             ),
                                         ],
@@ -414,7 +539,10 @@ class DashboardScreen extends ConsumerWidget {
                                       context,
                                       SwipeBackPageRoute(
                                         builder: (context) => DeckDetailScreen(
-                                          deck: Deck(id: deckId, name: displayDeckName, createdAt: DateTime.now()),
+                                          deck: Deck(
+                                              id: deckId,
+                                              name: displayDeckName,
+                                              createdAt: DateTime.now()),
                                         ),
                                       ),
                                     );
@@ -422,12 +550,21 @@ class DashboardScreen extends ConsumerWidget {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
                                     foregroundColor: cardGradientDark,
-                                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 24, vertical: 14),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16)),
                                     elevation: 4,
-                                    shadowColor: Colors.black.withValues(alpha: 0.3),
+                                    shadowColor:
+                                        Colors.black.withValues(alpha: 0.3),
                                   ),
-                                  child: Text(l10n?.begin ?? "Begin", style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
+                                  child: Text(
+                                      l10n?.begin ??
+                                          AppLocalizations.of(context)!.begin,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 16)),
                                 ),
                               ],
                             ),
@@ -438,7 +575,7 @@ class DashboardScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            
+
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
           ],
         ),
@@ -469,7 +606,9 @@ class DashboardScreen extends ConsumerWidget {
           color: cardBg,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.04),
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.black.withValues(alpha: 0.04),
           ),
           boxShadow: [
             BoxShadow(
@@ -528,23 +667,35 @@ class DashboardScreen extends ConsumerWidget {
     );
   }
 
-  String _deckDisplayName(String deckId, List<Deck> allDecks, AppLocalizations? l10n) {
+  String _deckDisplayName(
+      String deckId, List<Deck> allDecks, AppLocalizations? l10n) {
     if (deckId.toLowerCase() == 'hsk1') return l10n?.hskLevel1 ?? 'HSK Level 1';
     if (deckId.toLowerCase() == 'hsk2') return l10n?.hskLevel2 ?? 'HSK Level 2';
     if (deckId.toLowerCase() == 'hsk3') return l10n?.hskLevel3 ?? 'HSK Level 3';
     if (deckId.toLowerCase() == 'hsk4') return l10n?.hskLevel4 ?? 'HSK Level 4';
     if (deckId.toLowerCase() == 'hsk5') return l10n?.hskLevel5 ?? 'HSK Level 5';
     if (deckId.toLowerCase() == 'hsk6') return l10n?.hskLevel6 ?? 'HSK Level 6';
-    if (deckId.toLowerCase() == 'default') return l10n?.generalVocabulary ?? 'General Vocabulary';
+    if (deckId.toLowerCase() == 'default') {
+      return l10n?.generalVocabulary ?? 'General Vocabulary';
+    }
     final foundDeck = allDecks.where((d) => d.id == deckId).firstOrNull;
     return foundDeck?.name ?? deckId;
   }
-  void _showForecastDetail(BuildContext context, String title, Map<String, int> deckCounts, List<Deck> allDecks, AppLocalizations? l10n, ThemeData theme) {
+
+  void _showForecastDetail(
+      BuildContext context,
+      String title,
+      Map<String, int> deckCounts,
+      List<Deck> allDecks,
+      AppLocalizations? l10n,
+      ThemeData theme) {
     if (deckCounts.isEmpty) return;
-    final sorted = deckCounts.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    final sorted = deckCounts.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (ctx) {
         return Padding(
           padding: const EdgeInsets.all(24),
@@ -552,27 +703,63 @@ class DashboardScreen extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900, fontFamily: 'NotoSerifSC')),
+              Text(title,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppLocalizations.of(context)!.notoserifsc)),
               const SizedBox(height: 4),
-              Text('${sorted.fold<int>(0, (sum, e) => sum + e.value)} cards total',
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.6))),
+              Text(
+                  '${sorted.fold<int>(0, (sum, e) => sum + e.value)} cards total',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                      color:
+                          theme.colorScheme.onSurface.withValues(alpha: 0.6))),
               const SizedBox(height: 20),
               ...sorted.map((entry) {
-                final deckId = allDecks.where((d) => _deckDisplayName(d.id, allDecks, l10n) == entry.key).firstOrNull?.id ?? entry.key;
+                final deckId = allDecks
+                        .where((d) =>
+                            _deckDisplayName(d.id, allDecks, l10n) == entry.key)
+                        .firstOrNull
+                        ?.id ??
+                    entry.key;
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
-                    onTap: () { Navigator.pop(ctx); Navigator.push(context, SwipeBackPageRoute(builder: (_) => DeckDetailScreen(deck: Deck(id: deckId, name: entry.key, createdAt: DateTime.now())))); },
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      Navigator.push(
+                          context,
+                          SwipeBackPageRoute(
+                              builder: (_) => DeckDetailScreen(
+                                  deck: Deck(
+                                      id: deckId,
+                                      name: entry.key,
+                                      createdAt: DateTime.now()))));
+                    },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                      decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.06), borderRadius: BorderRadius.circular(16)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 16),
+                      decoration: BoxDecoration(
+                          color:
+                              theme.colorScheme.primary.withValues(alpha: 0.06),
+                          borderRadius: BorderRadius.circular(16)),
                       child: Row(children: [
-                        Expanded(child: Text(entry.key, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600))),
+                        Expanded(
+                            child: Text(entry.key,
+                                style: theme.textTheme.titleMedium
+                                    ?.copyWith(fontWeight: FontWeight.w600))),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(color: theme.colorScheme.primary.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
-                          child: Text('${entry.value} cards', style: TextStyle(color: theme.colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 13)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                              color: theme.colorScheme.primary
+                                  .withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Text('${entry.value} cards',
+                              style: TextStyle(
+                                  color: theme.colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13)),
                         ),
                       ]),
                     ),
@@ -580,7 +767,15 @@ class DashboardScreen extends ConsumerWidget {
                 );
               }),
               const SizedBox(height: 8),
-              SizedBox(width: double.infinity, child: TextButton(onPressed: () => Navigator.pop(ctx), style: TextButton.styleFrom(foregroundColor: theme.colorScheme.onSurface.withValues(alpha: 0.5)), child: const Text('Done', style: TextStyle(fontWeight: FontWeight.bold)))),
+              SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                      onPressed: () => Navigator.pop(ctx),
+                      style: TextButton.styleFrom(
+                          foregroundColor: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.5)),
+                      child: Text(AppLocalizations.of(context)!.done,
+                          style: const TextStyle(fontWeight: FontWeight.bold)))),
             ],
           ),
         );
@@ -595,22 +790,30 @@ class _ForecastItem extends StatelessWidget {
   final ThemeData theme;
   final VoidCallback? onTap;
 
-  const _ForecastItem({required this.title, required this.count, required this.theme, this.onTap});
+  const _ForecastItem(
+      {required this.title,
+      required this.count,
+      required this.theme,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final fgColor = isDark ? Colors.white : const Color(0xFF2A2D34);
-    
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1A1A1B).withValues(alpha: 0.8) : Colors.white,
+          color: isDark
+              ? const Color(0xFF1A1A1B).withValues(alpha: 0.8)
+              : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.transparent,
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.transparent,
           ),
           boxShadow: [
             BoxShadow(

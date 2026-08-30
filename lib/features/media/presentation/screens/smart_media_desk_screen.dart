@@ -19,6 +19,7 @@ import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   final YoutubeVideo video;
@@ -29,7 +30,7 @@ class SmartMediaDeskScreen extends ConsumerStatefulWidget {
       _SmartMediaDeskScreenState();
 }
 
-// ─── AI Task Progress Dot ─────────────────────────────────────────────────────
+// â”€â”€â”€ AI Task Progress Dot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _AiTaskDot extends StatelessWidget {
   final String label;
@@ -70,7 +71,7 @@ class _AiTaskDot extends StatelessWidget {
   }
 }
 
-// ─── Skeleton Transcript Line ─────────────────────────────────────────────────
+// â”€â”€â”€ Skeleton Transcript Line â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _SkeletonTranscriptLine extends StatefulWidget {
   final int index;
@@ -302,11 +303,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
         _translateIncrementally(transcript, gemini);
       } else {
-        // Captions failed — fall back to YouTube native captions via the player
+        // Captions failed â€” fall back to YouTube native captions via the player
         if (mounted) {
           setState(() {
-            _error =
-                'No Closed Captions (CC) found for this video. '
+            _error = 'No Closed Captions (CC) found for this video. '
                 'Videos with hardcoded or burned-in subtitles do not have digital text tracks available on YouTube.';
             _isLoading = false;
           });
@@ -353,11 +353,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text('Select Target HSK Level',
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                    AppLocalizations.of(context)!.select_target_hsk_level,
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
               ...List.generate(6, (index) {
                 final level = index + 1;
@@ -367,7 +368,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     child: Text('$level',
                         style: const TextStyle(color: Colors.orange)),
                   ),
-                  title: Text('HSK $level'),
+                  title: Text(AppLocalizations.of(context)?.hsk(level) ?? "HSK $level"),
                   onTap: () => Navigator.pop(context, level),
                 );
               }),
@@ -447,8 +448,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         setState(() => _isAdPlaying = isAd);
       }
 
-      // Don't force-disable captions — let users toggle YouTube native CC
-        // _captionsDisabled flag is now kept for tracking but no JS override
+      // Don't force-disable captions â€” let users toggle YouTube native CC
+      // _captionsDisabled flag is now kept for tracking but no JS override
 
       final position = state.position;
       if (_currentPosition != position) {
@@ -509,9 +510,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Cultural Note: \${meme['keyword']}",
+                Text(
+                    "Cultural Note: \${meme[AppLocalizations.of(context)!.keyword]}",
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("\${meme['explanation']}"),
+                Text("\${meme[AppLocalizations.of(context)!.explanation]}"),
               ],
             ),
           ),
@@ -570,7 +572,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               final raw = line.pinyin?.trim();
               final translation = line.translation?.trim().toLowerCase();
               String effectivePinyin = '';
-              if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+              if (raw != null &&
+                  raw.isNotEmpty &&
+                  (translation == null || raw.toLowerCase() != translation)) {
                 effectivePinyin = raw;
               } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
                 effectivePinyin = PinyinHelper.getPinyinE(line.text,
@@ -578,8 +582,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               }
 
               final gemini = ref.read(geminiServiceProvider);
-              final result = await gemini.gradeAudio(
-                  byteData, line.text, effectivePinyin);
+              final result =
+                  await gemini.gradeAudio(byteData, line.text, effectivePinyin);
               final score = result['score'] ?? 0;
 
               setState(() {
@@ -677,10 +681,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   /// Scroll the transcript list to the line matching the given video position and apply highlight emphasis.
   void _scrollToCurrentPosition(Duration targetPosition) {
     if (_transcript == null) return;
-    
+
     // Find matching sentence index
-    final newIndex = _transcript!.lines
-        .indexWhere((l) => targetPosition >= l.start && targetPosition <= l.end);
+    final newIndex = _transcript!.lines.indexWhere(
+        (l) => targetPosition >= l.start && targetPosition <= l.end);
 
     setState(() {
       _currentPosition = targetPosition;
@@ -689,7 +693,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       }
     });
 
-    if (newIndex >= 0 && newIndex < _lineKeys.length && _scrollController.hasClients) {
+    if (newIndex >= 0 &&
+        newIndex < _lineKeys.length &&
+        _scrollController.hasClients) {
       final key = _lineKeys[newIndex];
       if (key.currentContext != null) {
         Scrollable.ensureVisible(
@@ -702,11 +708,11 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     }
   }
 
-  // ─── Portrait Controls Widget ──────────────────────────────────────────────
+  // â”€â”€â”€ Portrait Controls Widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // (inline private widget for the embedded control bar below the video)
 
   /// Skeleton transcript list + step indicator shown while data loads.
-  /// The video player is already visible above — we don't block it.
+  /// The video player is already visible above â€” we don't block it.
   Widget _buildLoadingState() {
     return Column(
       children: [
@@ -736,9 +742,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               ),
               // Show AI task progress
               if (_transcript != null) ...[
-                _AiTaskDot(label: 'Briefing', done: _briefingReady),
+                _AiTaskDot(
+                    label: AppLocalizations.of(context)!.briefing,
+                    done: _briefingReady),
                 const SizedBox(width: 8),
-                _AiTaskDot(label: 'Memes', done: _memesReady),
+                _AiTaskDot(
+                    label: AppLocalizations.of(context)!.memes,
+                    done: _memesReady),
               ],
             ],
           ),
@@ -788,7 +798,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             Text(
               _error ??
                   'This video does not have a digital Closed Captions (CC) track on YouTube. '
-                  'Many gameplay and vlog videos feature burned-in subtitles on the video pixels rather than selectable caption data.',
+                      'Many gameplay and vlog videos feature burned-in subtitles on the video pixels rather than selectable caption data.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13,
@@ -805,12 +815,15 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 }
               },
               icon: const Icon(Icons.open_in_new_rounded, size: 16),
-              label: const Text('Open in YouTube'),
+              label: Text(AppLocalizations.of(context)!.openInYoutube),
               style: TextButton.styleFrom(
                 foregroundColor: const Color(0xFF3252C7),
-                backgroundColor: const Color(0xFF3252C7).withValues(alpha: 0.08),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                backgroundColor:
+                    const Color(0xFF3252C7).withValues(alpha: 0.08),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
               ),
             ),
           ],
@@ -833,7 +846,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       // Hide AppBar when in fullscreen
       appBar: _isFullscreen
           ? null
@@ -867,7 +881,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              iconTheme: IconThemeData(color: isDark ? Colors.white : const Color(0xFF1C2541)),
+              iconTheme: IconThemeData(
+                  color: isDark ? Colors.white : const Color(0xFF1C2541)),
               actions: [
                 PopupMenuButton<String>(
                   icon: const Icon(Icons.closed_caption, color: Colors.indigo),
@@ -877,7 +892,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     PopupMenuItem(
                         child: StatefulBuilder(
                             builder: (ctx, set) => SwitchListTile(
-                                  title: const Text('Show Pinyin'),
+                                  title: Text(
+                                      AppLocalizations.of(context)!.showPinyin),
                                   value: _showPinyin,
                                   activeThumbColor: Colors.indigo,
                                   onChanged: (v) {
@@ -888,7 +904,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     PopupMenuItem(
                         child: StatefulBuilder(
                             builder: (ctx, set) => SwitchListTile(
-                                  title: const Text('Show Translation'),
+                                  title: Text(AppLocalizations.of(context)!
+                                      .showTranslation),
                                   value: _showEnglish,
                                   activeThumbColor: Colors.indigo,
                                   onChanged: (v) {
@@ -900,7 +917,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     PopupMenuItem(
                         child: StatefulBuilder(
                             builder: (ctx, set) => SwitchListTile(
-                                  title: const Text('HSK Simplify Subtitles'),
+                                  title: Text(AppLocalizations.of(context)!
+                                      .hskSimplifySubtitles),
                                   value: _isHskSimplified,
                                   activeThumbColor: Colors.orange,
                                   onChanged: (v) {
@@ -927,14 +945,15 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             }
           });
 
-          // ── LANDSCAPE / FULLSCREEN MODE ──
+          // â”€â”€ LANDSCAPE / FULLSCREEN MODE â”€â”€
           // When in landscape, cancel the native YouTube player UI and let our custom FullscreenMediaOverlay
           // take over 100% of the screen with touch isolation, custom top/bottom bars, karaoke subtitles, and speed controls.
           if (_isFullscreen || isLandscape) {
             final screenSize = MediaQuery.of(context).size;
-            final double landscapeRatio = (screenSize.height > 0 && screenSize.width > 0)
-                ? screenSize.width / screenSize.height
-                : (16 / 9);
+            final double landscapeRatio =
+                (screenSize.height > 0 && screenSize.width > 0)
+                    ? screenSize.width / screenSize.height
+                    : (16 / 9);
 
             return Container(
               width: double.infinity,
@@ -959,8 +978,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                     isShadowingMode: _isShadowingMode,
                     isRecording: _isRecording,
                     shadowFeedback: _shadowFeedback,
-                    onToggleRecord: () =>
-                        _toggleShadowRecording(null),
+                    onToggleRecord: () => _toggleShadowRecording(null),
                     isAdPlaying: _isAdPlaying,
                     showHanzi: _showHanzi,
                     showPinyin: _showPinyin,
@@ -974,7 +992,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             );
           }
 
-          // ── PORTRAIT MODE ──
+          // â”€â”€ PORTRAIT MODE â”€â”€
           return Column(
             children: [
               ClipRect(
@@ -1020,18 +1038,17 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 6),
                                   decoration: BoxDecoration(
-                                    color: Colors.black
-                                        .withValues(alpha: 0.6),
+                                    color: Colors.black.withValues(alpha: 0.6),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Row(
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.fullscreen,
+                                      const Icon(Icons.fullscreen,
                                           color: Colors.white, size: 20),
-                                      SizedBox(width: 4),
-                                      Text('Full',
-                                          style: TextStyle(
+                                      const SizedBox(width: 4),
+                                      Text(AppLocalizations.of(context)!.full,
+                                          style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 11,
                                               fontWeight: FontWeight.w600)),
@@ -1048,7 +1065,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 ),
               ),
 
-              // ── Scrollable content ──
+              // â”€â”€ Scrollable content â”€â”€
               Expanded(
                 child: _isLoading
                     ? _buildLoadingState()
@@ -1071,10 +1088,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                           _shadowFeedback.contains("Perfect")
                                               ? Icons.check_circle
                                               : Icons.mic,
-                                          color:
-                                              _shadowFeedback.contains("Perfect")
-                                                  ? Colors.green
-                                                  : Colors.red,
+                                          color: _shadowFeedback
+                                                  .contains("Perfect")
+                                              ? Colors.green
+                                              : Colors.red,
                                           size: 20),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -1091,15 +1108,17 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                   ),
                                 ),
                               if (_isSimplifyingAi)
-                                const Padding(
-                                  padding: EdgeInsets.all(16.0),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
                                   child: AiProgressBar(
-                                      label: 'Simplifying subtitles...'),
+                                      label: AppLocalizations.of(context)!
+                                          .simplifyingSubtitles),
                                 ),
                               Expanded(
                                 child: ListView(
                                   controller: _scrollController,
-                                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(16, 16, 16, 32),
                                   physics: const BouncingScrollPhysics(),
                                   children: [
                                     if (_briefing != null) ...[
@@ -1119,13 +1138,15 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                           key: _lineKeys[index],
                                           line: line,
                                           isCurrent: _currentIndex == index,
-                                          highlightedCount: _currentIndex == index
-                                              ? _getHighlightedCharCount(
-                                                  line, _currentPosition)
-                                              : (index < _currentIndex
-                                                  ? line.text.length
-                                                  : 0),
-                                          onReplay: () => _replayLine(line.start),
+                                          highlightedCount:
+                                              _currentIndex == index
+                                                  ? _getHighlightedCharCount(
+                                                      line, _currentPosition)
+                                                  : (index < _currentIndex
+                                                      ? line.text.length
+                                                      : 0),
+                                          onReplay: () =>
+                                              _replayLine(line.start),
                                           onLineTapped: () {
                                             _playerController.seekTo(
                                                 seconds: line.start.inSeconds
@@ -1144,22 +1165,38 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                           onShadowTapped: () {
                                             _playerController.pauseVideo();
                                             final raw = line.pinyin?.trim();
-                                            final translation = line.translation?.trim().toLowerCase();
+                                            final translation = line.translation
+                                                ?.trim()
+                                                .toLowerCase();
                                             String effectivePinyin = '';
-                                            if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+                                            if (raw != null &&
+                                                raw.isNotEmpty &&
+                                                (translation == null ||
+                                                    raw.toLowerCase() !=
+                                                        translation)) {
                                               effectivePinyin = raw;
-                                            } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
-                                              effectivePinyin = PinyinHelper.getPinyinE(line.text,
-                                                  separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                                            } else if (RegExp(
+                                                    r'[\u4e00-\u9fff]')
+                                                .hasMatch(line.text)) {
+                                              effectivePinyin =
+                                                  PinyinHelper.getPinyinE(
+                                                      line.text,
+                                                      separator: ' ',
+                                                      format: PinyinFormat
+                                                          .WITH_TONE_MARK);
                                             }
 
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (_) => ShadowingStudioScreen(
-                                                  initialContextSentence: line.text,
-                                                  initialPinyin: effectivePinyin,
-                                                  initialTranslation: line.translation,
+                                                builder: (_) =>
+                                                    ShadowingStudioScreen(
+                                                  initialContextSentence:
+                                                      line.text,
+                                                  initialPinyin:
+                                                      effectivePinyin,
+                                                  initialTranslation:
+                                                      line.translation,
                                                   isCompact: false,
                                                 ),
                                               ),
@@ -1174,7 +1211,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                           ),
               ),
 
-              // ── Portrait Video Controls (docked at the BOTTOM of the screen) ──
+              // â”€â”€ Portrait Video Controls (docked at the BOTTOM of the screen) â”€â”€
               _buildPortraitControls(),
             ],
           );
@@ -1202,7 +1239,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   }
 }
 
-// ─── Portrait Video Controls (below video player) ─────────────────────────
+// â”€â”€â”€ Portrait Video Controls (below video player) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /// Compact video controls bar shown below the video player in portrait mode.
 /// Includes: time labels, scrubber, play/pause, rewind 10s, forward 10s.
@@ -1239,7 +1276,8 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
 
   void _initDurationListener() {
     _fetchDuration();
-    _videoStateSubscription = widget.controller.videoStateStream.listen((state) async {
+    _videoStateSubscription =
+        widget.controller.videoStateStream.listen((state) async {
       if (!mounted) return;
       try {
         final dur = await widget.controller.duration;
@@ -1285,14 +1323,14 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
       widget.controller.playVideo();
     }
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     final accent =
         widget.isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
 
-    final currentPos = _isDragging
-        ? _dragValue
-        : widget.currentPosition.inSeconds.toDouble();
+    final currentPos =
+        _isDragging ? _dragValue : widget.currentPosition.inSeconds.toDouble();
     final currentDuration = Duration(seconds: currentPos.toInt());
     final totalDuration = Duration(seconds: _duration.toInt());
 
@@ -1301,10 +1339,12 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
       child: Container(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
         decoration: BoxDecoration(
-          color: widget.isDark ? const Color(0xFF1E1E22) : const Color(0xFFFAF8EE),
+          color:
+              widget.isDark ? const Color(0xFF1E1E22) : const Color(0xFFFAF8EE),
           border: Border(
             top: BorderSide(
-              color: (widget.isDark ? Colors.white : Colors.black).withValues(alpha: 0.08),
+              color: (widget.isDark ? Colors.white : Colors.black)
+                  .withValues(alpha: 0.08),
             ),
           ),
           boxShadow: [
@@ -1318,116 +1358,117 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-          // Scrubber row: current time / slider / total time
-          Row(
-            children: [
-              SizedBox(
-                width: 40,
-                child: Text(
-                  _fmt(currentDuration),
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                    color: widget.isDark ? Colors.white70 : Colors.black87,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: accent,
-                    inactiveTrackColor:
-                        (widget.isDark ? Colors.white : Colors.black)
-                            .withValues(alpha: 0.2),
-                    thumbColor: accent,
-                    overlayColor: accent.withValues(alpha: 0.15),
-                    trackHeight: 3.0,
-                    thumbShape: const RoundSliderThumbShape(
-                      enabledThumbRadius: 6.0,
-                    ),
-                    overlayShape: const RoundSliderOverlayShape(
-                      overlayRadius: 14.0,
-                    ),
-                  ),
-                  child: Slider(
-                    value: currentPos.clamp(0.0, _duration),
-                    min: 0.0,
-                    max: _duration > 0 ? _duration : 1.0,
-                    onChangeStart: (_) => setState(() => _isDragging = true),
-                    onChanged: (v) =>
-                        setState(() => _dragValue = v.clamp(0.0, _duration)),
-                    onChangeEnd: (v) {
-                      final target = v.clamp(0.0, _duration);
-                      widget.controller.seekTo(
-                        seconds: target,
-                        allowSeekAhead: true,
-                      );
-                      setState(() => _isDragging = false);
-                      // Immediately scroll transcript to the target position
-                      widget.onSeekCompleted(Duration(seconds: target.toInt()));
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 40,
-                child: Text(
-                  _fmt(totalDuration),
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                    color: widget.isDark ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          // Control buttons row
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // Scrubber row: current time / slider / total time
+            Row(
               children: [
-                // Rewind 10s
-                _PortraitCtrlIcon(
-                  icon: Icons.replay_10,
-                  size: 24,
-                  onTap: () => _seek(-10),
-                ),
-
-                // Play / Pause
-                GestureDetector(
-                  onTap: _togglePlayPause,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: accent.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      widget.isPlaying ? Icons.pause : Icons.play_arrow,
-                      color: accent,
-                      size: 24,
+                SizedBox(
+                  width: 40,
+                  child: Text(
+                    _fmt(currentDuration),
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                      color: widget.isDark ? Colors.white70 : Colors.black87,
                     ),
                   ),
                 ),
-
-                // Forward 10s
-                _PortraitCtrlIcon(
-                  icon: Icons.forward_10,
-                  size: 24,
-                  onTap: () => _seek(10),
+                Expanded(
+                  child: SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: accent,
+                      inactiveTrackColor:
+                          (widget.isDark ? Colors.white : Colors.black)
+                              .withValues(alpha: 0.2),
+                      thumbColor: accent,
+                      overlayColor: accent.withValues(alpha: 0.15),
+                      trackHeight: 3.0,
+                      thumbShape: const RoundSliderThumbShape(
+                        enabledThumbRadius: 6.0,
+                      ),
+                      overlayShape: const RoundSliderOverlayShape(
+                        overlayRadius: 14.0,
+                      ),
+                    ),
+                    child: Slider(
+                      value: currentPos.clamp(0.0, _duration),
+                      min: 0.0,
+                      max: _duration > 0 ? _duration : 1.0,
+                      onChangeStart: (_) => setState(() => _isDragging = true),
+                      onChanged: (v) =>
+                          setState(() => _dragValue = v.clamp(0.0, _duration)),
+                      onChangeEnd: (v) {
+                        final target = v.clamp(0.0, _duration);
+                        widget.controller.seekTo(
+                          seconds: target,
+                          allowSeekAhead: true,
+                        );
+                        setState(() => _isDragging = false);
+                        // Immediately scroll transcript to the target position
+                        widget
+                            .onSeekCompleted(Duration(seconds: target.toInt()));
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 40,
+                  child: Text(
+                    _fmt(totalDuration),
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                      color: widget.isDark ? Colors.white54 : Colors.black54,
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+
+            // Control buttons row
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Rewind 10s
+                  _PortraitCtrlIcon(
+                    icon: Icons.replay_10,
+                    size: 24,
+                    onTap: () => _seek(-10),
+                  ),
+
+                  // Play / Pause
+                  GestureDetector(
+                    onTap: _togglePlayPause,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: accent.withValues(alpha: 0.15),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        widget.isPlaying ? Icons.pause : Icons.play_arrow,
+                        color: accent,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+
+                  // Forward 10s
+                  _PortraitCtrlIcon(
+                    icon: Icons.forward_10,
+                    size: 24,
+                    onTap: () => _seek(10),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 }

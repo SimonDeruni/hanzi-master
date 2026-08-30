@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class PremiumVideoTopBar extends StatelessWidget {
   final String title;
@@ -69,12 +69,14 @@ class PremiumVideoTopBar extends StatelessWidget {
                 children: [
                   Icon(Icons.closed_caption, color: Colors.white, size: 20),
                   SizedBox(width: 4),
-                  Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 16),
+                  Icon(Icons.keyboard_arrow_down,
+                      color: Colors.white, size: 16),
                 ],
               ),
             ),
             color: Colors.black87,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             itemBuilder: (context) {
               bool localHanzi = showHanzi;
               bool localPinyin = showPinyin;
@@ -83,42 +85,41 @@ class PremiumVideoTopBar extends StatelessWidget {
               return [
                 PopupMenuItem(
                   enabled: false,
-                  child: StatefulBuilder(
-                    builder: (context, setState) {
-                      return SwitchListTile(
-                        title: const Text('Show Hanzi', style: TextStyle(color: Colors.white)),
-                        value: localHanzi,
-                        activeThumbColor: Colors.white,
-                        onChanged: (v) {
-                          setState(() => localHanzi = v);
-                          onToggleHanzi(v);
-                        },
-                      );
-                    }
-                  ),
+                  child: StatefulBuilder(builder: (context, setState) {
+                    return SwitchListTile(
+                      title: Text(AppLocalizations.of(context)!.showHanzi,
+                          style: const TextStyle(color: Colors.white)),
+                      value: localHanzi,
+                      activeThumbColor: Colors.white,
+                      onChanged: (v) {
+                        setState(() => localHanzi = v);
+                        onToggleHanzi(v);
+                      },
+                    );
+                  }),
+                ),
+                PopupMenuItem(
+                  enabled: false,
+                  child: StatefulBuilder(builder: (context, setState) {
+                    return SwitchListTile(
+                      title: Text(AppLocalizations.of(context)!.showPinyin,
+                          style: const TextStyle(color: Colors.white)),
+                      value: localPinyin,
+                      activeThumbColor: Colors.white,
+                      onChanged: (v) {
+                        setState(() => localPinyin = v);
+                        onTogglePinyin(v);
+                      },
+                    );
+                  }),
                 ),
                 PopupMenuItem(
                   enabled: false,
                   child: StatefulBuilder(
                     builder: (context, setState) {
                       return SwitchListTile(
-                        title: const Text('Show Pinyin', style: TextStyle(color: Colors.white)),
-                        value: localPinyin,
-                        activeThumbColor: Colors.white,
-                        onChanged: (v) {
-                          setState(() => localPinyin = v);
-                          onTogglePinyin(v);
-                        },
-                      );
-                    }
-                  ),
-                ),
-                PopupMenuItem(
-                  enabled: false,
-                  child: StatefulBuilder(
-                    builder: (context, setState) {
-                      return SwitchListTile(
-                        title: const Text('Show English', style: TextStyle(color: Colors.white)),
+                        title: Text(AppLocalizations.of(context)!.showEnglish,
+                            style: const TextStyle(color: Colors.white)),
                         value: localEnglish,
                         activeThumbColor: Colors.white,
                         onChanged: (v) {
@@ -137,9 +138,12 @@ class PremiumVideoTopBar extends StatelessWidget {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Text('Subtitle Opacity', style: TextStyle(color: Colors.white70, fontSize: 12)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                                AppLocalizations.of(context)!.subtitleOpacity,
+                                style: const TextStyle(
+                                    color: Colors.white70, fontSize: 12)),
                           ),
                           Slider(
                             value: localOpacity,
@@ -172,14 +176,19 @@ class PremiumVideoTopBar extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('${playbackRate}x', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
+                  Text('${playbackRate}x',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12)),
                   const SizedBox(width: 4),
                   const Icon(Icons.speed, color: Colors.white, size: 18),
                 ],
               ),
             ),
             color: Colors.black87,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             onSelected: onSpeedChanged,
             itemBuilder: (context) => [
               for (final speed in [0.5, 0.75, 1.0, 1.25, 1.5, 2.0])
@@ -188,7 +197,8 @@ class PremiumVideoTopBar extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${speed}x', style: const TextStyle(color: Colors.white)),
+                      Text('${speed}x',
+                          style: const TextStyle(color: Colors.white)),
                       if (playbackRate == speed)
                         const Icon(Icons.check, color: Colors.white, size: 16),
                     ],

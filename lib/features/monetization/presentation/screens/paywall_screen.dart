@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/revenuecat_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class PaywallScreen extends ConsumerStatefulWidget {
   final VoidCallback? onClose;
@@ -83,7 +84,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
                   ),
                   const SizedBox(height: 40),
                   if (_packages.isEmpty)
-                    Text("No premium packages available at the moment.", style: TextStyle(color: isDark ? Colors.white54 : Colors.black45))
+                    Text(AppLocalizations.of(context)!.noPremiumPackagesAvailable, style: TextStyle(color: isDark ? Colors.white54 : Colors.black45))
                   else
                     ..._packages.map((pkg) => Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),

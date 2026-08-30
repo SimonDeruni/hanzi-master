@@ -7,6 +7,8 @@ import 'package:hanzi_master/features/settings/presentation/screens/qa_screen.da
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
@@ -16,7 +18,8 @@ class ProfileScreen extends ConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -33,26 +36,43 @@ class ProfileScreen extends ConsumerWidget {
             context: context,
             children: [
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 leading: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.blue.withValues(alpha: 0.1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      color: Colors.blue.withValues(alpha: 0.1),
+                      shape: BoxShape.circle),
                   child: const Icon(Icons.bar_chart, color: Colors.blue),
                 ),
-                title: const Text("Learning Stats", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                subtitle: const Text("View your learning history and streaks", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                title: Text(AppLocalizations.of(context)!.learning_stats,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16)),
+                subtitle: Text(
+                    AppLocalizations.of(context)!
+                        .view_your_learning_history_and_streaks,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const StatsScreen())),
+                onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                        builder: (context) => const StatsScreen())),
               ),
               _buildDivider(),
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 leading: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.amber.withValues(alpha: 0.1), shape: BoxShape.circle),
-                  child: const Icon(Icons.workspace_premium, color: Colors.amber),
+                  decoration: BoxDecoration(
+                      color: Colors.amber.withValues(alpha: 0.1),
+                      shape: BoxShape.circle),
+                  child:
+                      const Icon(Icons.workspace_premium, color: Colors.amber),
                 ),
-                title: const Text("SinoSpark Premium", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+                title: Text(AppLocalizations.of(context)!.sinospark_premium,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16)),
                 subtitle: const Text(
                   "You are a Premium member",
                   style: TextStyle(fontSize: 12, color: Colors.grey),
@@ -62,42 +82,70 @@ class ProfileScreen extends ConsumerWidget {
               ),
               _buildDivider(),
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 leading: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.grey.withValues(alpha: 0.1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withValues(alpha: 0.1),
+                      shape: BoxShape.circle),
                   child: const Icon(Icons.settings, color: Colors.grey),
                 ),
-                title: const Text("Settings", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                subtitle: const Text("Preferences, Audio, and Display", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                title: Text(AppLocalizations.of(context)!.settingsTitle,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16)),
+                subtitle: Text(
+                    AppLocalizations.of(context)!.preferences_audio_and_display,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const SettingsScreen())),
+                onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                        builder: (context) => const SettingsScreen())),
               ),
               _buildDivider(),
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 leading: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.green.withValues(alpha: 0.1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      color: Colors.green.withValues(alpha: 0.1),
+                      shape: BoxShape.circle),
                   child: const Icon(Icons.help_outline, color: Colors.green),
                 ),
-                title: const Text("Help & Support", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                subtitle: const Text("Contact us and report issues", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                title: Text(AppLocalizations.of(context)!.helpAndSupport,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16)),
+                subtitle: Text(
+                    AppLocalizations.of(context)!.contact_us_and_report_issues,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const ContactScreen())),
+                onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                        builder: (context) => const ContactScreen())),
               ),
               _buildDivider(),
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 leading: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.purple.withValues(alpha: 0.1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      color: Colors.purple.withValues(alpha: 0.1),
+                      shape: BoxShape.circle),
                   child: const Icon(Icons.forum_outlined, color: Colors.purple),
                 ),
-                title: const Text("Q&A / FAQ", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                subtitle: const Text("Audio, privacy, and how things work", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                title: Text(AppLocalizations.of(context)!.qaFaq,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16)),
+                subtitle: Text(
+                    AppLocalizations.of(context)!.audioPrivacyAndHowThingsWork,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(context, SwipeBackPageRoute(builder: (context) => const QAScreen())),
+                onTap: () => Navigator.push(context,
+                    SwipeBackPageRoute(builder: (context) => const QAScreen())),
               ),
             ],
           ),
@@ -122,7 +170,8 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSettingsCard({required BuildContext context, required List<Widget> children}) {
+  Widget _buildSettingsCard(
+      {required BuildContext context, required List<Widget> children}) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
@@ -147,7 +196,8 @@ class ProfileScreen extends ConsumerWidget {
     return const Divider(height: 1, thickness: 1, indent: 64);
   }
 
-  Widget _buildIdentityCard(BuildContext context, WidgetRef ref, ThemeData theme, bool isDark) {
+  Widget _buildIdentityCard(
+      BuildContext context, WidgetRef ref, ThemeData theme, bool isDark) {
     final user = ref.watch(currentUserProvider);
 
     return Container(
@@ -169,8 +219,9 @@ class ProfileScreen extends ConsumerWidget {
           CircleAvatar(
             radius: 40,
             backgroundColor: isDark ? Colors.grey.shade800 : Colors.white,
-            backgroundImage: user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
-            child: user?.photoURL == null 
+            backgroundImage:
+                user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
+            child: user?.photoURL == null
                 ? Icon(
                     Icons.person_outline,
                     size: 40,
@@ -218,7 +269,10 @@ class ProfileScreen extends ConsumerWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, SwipeBackPageRoute(builder: (context) => const AuthScreen()));
+                    Navigator.push(
+                        context,
+                        SwipeBackPageRoute(
+                            builder: (context) => const AuthScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -247,7 +301,9 @@ class ProfileScreen extends ConsumerWidget {
                   ref.read(authControllerProvider).signOut();
                 },
                 style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: isDark ? Colors.grey.shade800 : Colors.grey.shade300),
+                  side: BorderSide(
+                      color:
+                          isDark ? Colors.grey.shade800 : Colors.grey.shade300),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -267,4 +323,3 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 }
-

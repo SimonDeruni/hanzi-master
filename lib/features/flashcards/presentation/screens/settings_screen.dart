@@ -6,6 +6,7 @@ import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -17,9 +18,12 @@ class SettingsScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
       appBar: AppBar(
-        title: Text(l10n?.settingsTitle ?? "Settings", style: const TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+            l10n?.settingsTitle ?? AppLocalizations.of(context)!.settingsTitle,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -28,19 +32,21 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
         children: [
-
-
-          
-          _buildSectionHeader(l10n?.audioAndHaptics ?? "Audio & Haptics", theme),
+          _buildSectionHeader(
+              l10n?.audioAndHaptics ??
+                  AppLocalizations.of(context)!.audio_haptics,
+              theme),
           _buildSettingsCard(
             context: context,
             children: [
-
               _buildSliderTile(
                 icon: Icons.speed,
                 iconColor: Colors.lightBlue,
-                title: l10n?.voiceSpeed ?? "Voice Speed",
-                subtitle: l10n?.speechRateMultiplier(settings.speechRate.toStringAsFixed(1)) ?? "${settings.speechRate.toStringAsFixed(1)}x",
+                title: l10n?.voiceSpeed ??
+                    AppLocalizations.of(context)!.voiceSpeed,
+                subtitle: l10n?.speechRateMultiplier(
+                        settings.speechRate.toStringAsFixed(1)) ??
+                    "${settings.speechRate.toStringAsFixed(1)}x",
                 value: settings.speechRate,
                 min: 0.1,
                 max: 1.0,
@@ -54,8 +60,9 @@ class SettingsScreen extends ConsumerWidget {
               _buildSwitchTile(
                 icon: Icons.vibration,
                 iconColor: Colors.orange,
-                title: "Haptic Feedback",
-                subtitle: "Vibrations for interactions",
+                title: AppLocalizations.of(context)!.hapticFeedback,
+                subtitle:
+                    AppLocalizations.of(context)!.vibrationsForInteractions,
                 value: settings.enableHaptics,
                 onChanged: (val) {
                   ref.read(settingsProvider.notifier).toggleHaptics(val);
@@ -65,9 +72,11 @@ class SettingsScreen extends ConsumerWidget {
               ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.purple.withValues(alpha: 0.1),
-                  child: const Icon(Icons.record_voice_over, color: Colors.purple, size: 20),
+                  child: const Icon(Icons.record_voice_over,
+                      color: Colors.purple, size: 20),
                 ),
-                title: const Text("Audiobook Voice", style: TextStyle(fontWeight: FontWeight.w600)),
+                title: Text(AppLocalizations.of(context)!.audiobookVoice,
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
                 subtitle: Text(_voiceDisplayName(settings.audiobookVoice)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showVoicePickerDialog(context, ref),
@@ -76,53 +85,87 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
 
-          _buildSectionHeader(l10n?.displayAndContent ?? "Display & Content", theme),
+          _buildSectionHeader(
+              l10n?.displayAndContent ??
+                  AppLocalizations.of(context)!.display_content,
+              theme),
           _buildSettingsCard(
             context: context,
             children: [
-
               _buildSwitchTile(
                 icon: Icons.dark_mode,
                 iconColor: Colors.indigo,
                 title: l10n?.darkMode ?? "Dark Mode",
                 subtitle: l10n?.darkModeDesc ?? "Easy on the eyes",
                 value: settings.isDarkMode,
-                onChanged: (val) => ref.read(settingsProvider.notifier).toggleDarkMode(val),
+                onChanged: (val) =>
+                    ref.read(settingsProvider.notifier).toggleDarkMode(val),
+              ),
+              _buildDivider(),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.teal.withValues(alpha: 0.1),
+                  child: const Icon(Icons.language, color: Colors.teal),
+                ),
+                title: Text(l10n?.appLanguage ?? "App Language",
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(_appLanguageName(settings.locale)),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () => _showAppLanguagePicker(context, ref),
+              ),
+              _buildDivider(),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blue.withValues(alpha: 0.1),
+                  child: const Icon(Icons.translate, color: Colors.blue),
+                ),
+                title: const Text("Translation Language",
+                    style: TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(ref.watch(translationLanguageProvider)),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () => _showTranslationLanguagePicker(context, ref),
               ),
               _buildDivider(),
               _buildSliderTile(
                 icon: Icons.animation,
                 iconColor: Colors.pink,
                 title: l10n?.animationSpeed ?? "Stroke Animation Speed",
-                subtitle: l10n?.animationSpeedMultiplier(settings.animationSpeed.toStringAsFixed(1)) ?? "${settings.animationSpeed.toStringAsFixed(1)}x",
+                subtitle: l10n?.animationSpeedMultiplier(
+                        settings.animationSpeed.toStringAsFixed(1)) ??
+                    "${settings.animationSpeed.toStringAsFixed(1)}x",
                 value: settings.animationSpeed,
                 min: 0.5,
                 max: 2.0,
                 divisions: 15,
-                onChanged: (val) => ref.read(settingsProvider.notifier).setAnimationSpeed(val),
+                onChanged: (val) =>
+                    ref.read(settingsProvider.notifier).setAnimationSpeed(val),
               ),
-
             ],
           ),
           const SizedBox(height: 24),
-          _buildSectionHeader("Notifications", theme, color: Colors.amber.shade700),
+          _buildSectionHeader("Notifications", theme,
+              color: Colors.amber.shade700),
           _buildSettingsCard(
             context: context,
             children: [
               ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.amber.withValues(alpha: 0.1),
-                  child: const Icon(Icons.notifications_active, color: Colors.amber),
+                  child: const Icon(Icons.notifications_active,
+                      color: Colors.amber),
                 ),
-                title: const Text("Notification Settings", style: TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text("Manage Daily Drops and Review Reminders"),
+                title: Text(AppLocalizations.of(context)!.notification_settings,
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                subtitle: Text(AppLocalizations.of(context)!
+                    .manageDailyDropsAndReviewReminders),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showNotificationSettings(context, ref),
               ),
             ],
           ),
-          const SizedBox(height: 24),          // Danger Zone
-          _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme, color: Colors.redAccent),
+          const SizedBox(height: 24), // Danger Zone
+          _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme,
+              color: Colors.redAccent),
           _buildSettingsCard(
             context: context,
             children: [
@@ -131,28 +174,47 @@ class SettingsScreen extends ConsumerWidget {
                   backgroundColor: Colors.red.withValues(alpha: 0.1),
                   child: const Icon(Icons.delete_forever, color: Colors.red),
                 ),
-                title: Text(l10n?.resetAllData ?? "Reset All Data", style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
-                subtitle: Text(l10n?.resetDataDesc ?? "Deletes all progress permanently", style: TextStyle(color: Colors.red.shade300)),
+                title: Text(
+                    l10n?.resetAllData ??
+                        AppLocalizations.of(context)!.resetAllData,
+                    style: const TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold)),
+                subtitle: Text(
+                    l10n?.resetDataDesc ??
+                        AppLocalizations.of(context)!
+                            .deletesAllProgressPermanently,
+                    style: TextStyle(color: Colors.red.shade300)),
                 onTap: () {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text(l10n?.areYouSure ?? "Are you sure?"),
-                      content: Text(l10n?.cannotBeUndone ?? "This cannot be undone."),
+                      title: Text(l10n?.areYouSure ??
+                          AppLocalizations.of(context)!.areYouSure),
+                      content: Text(l10n?.cannotBeUndone ??
+                          AppLocalizations.of(context)!.this_cannot_be_undone),
                       actions: [
                         TextButton(
-                          child: Text(l10n?.cancel ?? "Cancel"),
+                          child: Text(l10n?.cancel ??
+                              AppLocalizations.of(context)!.cancelAction),
                           onPressed: () => Navigator.pop(context),
                         ),
                         TextButton(
-                          child: Text(l10n?.deleteEverything ?? "DELETE EVERYTHING", style: const TextStyle(color: Colors.red)),
+                          child: Text(
+                              l10n?.deleteEverything ??
+                                  AppLocalizations.of(context)!
+                                      .deleteEverything,
+                              style: const TextStyle(color: Colors.red)),
                           onPressed: () async {
-                            await ref.read(flashcardControllerProvider.notifier).resetAllData();
+                            await ref
+                                .read(flashcardControllerProvider.notifier)
+                                .resetAllData();
                             if (context.mounted) {
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(AppLocalizations.of(context)!.allDataHasBeen))
-                              );
+                                  SnackBar(
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .allDataHasBeen)));
                             }
                           },
                         ),
@@ -161,14 +223,31 @@ class SettingsScreen extends ConsumerWidget {
                   );
                 },
               ),
+              _buildDivider(),
+              _buildSwitchTile(
+                icon: Icons.menu_book_outlined,
+                iconColor: Colors.indigo,
+                title: l10n?.useEnglishDefinitions ?? "Use English definitions",
+                subtitle: l10n?.useEnglishDefinitionsDesc ??
+                    "English definitions are generally more accurate and detailed",
+                value: settings.useEnglishDefinitions,
+                onChanged: (val) {
+                  ref
+                      .read(settingsProvider.notifier)
+                      .toggleUseEnglishDefinitions(val);
+                },
+              ),
             ],
           ),
-          
+
           const SizedBox(height: 48),
           Center(
             child: Text(
               AppLocalizations.of(context)!.hanziMasterV100,
-              style: TextStyle(color: Colors.grey.shade500, fontWeight: FontWeight.bold, letterSpacing: 1.2),
+              style: TextStyle(
+                  color: Colors.grey.shade500,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2),
             ),
           ),
           const SizedBox(height: 24),
@@ -193,7 +272,8 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSettingsCard({required BuildContext context, required List<Widget> children}) {
+  Widget _buildSettingsCard(
+      {required BuildContext context, required List<Widget> children}) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
@@ -256,7 +336,8 @@ class SettingsScreen extends ConsumerWidget {
               backgroundColor: iconColor.withValues(alpha: 0.1),
               child: Icon(icon, color: iconColor),
             ),
-            title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+            title: Text(title,
+                style: const TextStyle(fontWeight: FontWeight.w600)),
             subtitle: Text(subtitle),
           ),
           Padding(
@@ -281,14 +362,105 @@ class SettingsScreen extends ConsumerWidget {
 
   static String _voiceDisplayName(String voice) {
     switch (voice) {
-      case 'Kore': return 'Kore — Female, warm (Azure)';
-      case 'Aoede': return 'Aoede — Female, cheerful (Azure)';
-      case 'Fenrir': return 'Fenrir — Male, upbeat (Azure)';
-      case 'Charon': return 'Charon — Male, news-style (Azure)';
-      case 'Puck': return 'Puck — Male, sporty (Azure)';
-      case 'local': return 'Local — On-device TTS';
-      default: return voice;
+      case 'Kore':
+        return 'Kore — Female, warm (Azure)';
+      case 'Aoede':
+        return 'Aoede — Female, cheerful (Azure)';
+      case 'Fenrir':
+        return 'Fenrir — Male, upbeat (Azure)';
+      case 'Charon':
+        return 'Charon — Male, news-style (Azure)';
+      case 'Puck':
+        return 'Puck — Male, sporty (Azure)';
+      case 'local':
+        return 'Local — On-device TTS';
+      default:
+        return voice;
     }
+  }
+
+  static const _appLanguages = <(String, String)>[
+    ('en', 'English'),
+    ('ar', 'العربية'),
+    ('de', 'Deutsch'),
+    ('es', 'Español'),
+    ('fr', 'Français'),
+    ('hi', 'हिन्दी'),
+    ('id', 'Bahasa Indonesia'),
+    ('it', 'Italiano'),
+    ('ja', '日本語'),
+    ('ko', '한국어'),
+    ('pt', 'Português'),
+    ('ru', 'Русский'),
+    ('vi', 'Tiếng Việt'),
+  ];
+
+  static String _appLanguageName(String locale) {
+    return _appLanguages
+        .firstWhere((language) => language.$1 == locale,
+            orElse: () => _appLanguages.first)
+        .$2;
+  }
+
+  static void _showAppLanguagePicker(BuildContext context, WidgetRef ref) {
+    final currentLocale = ref.read(settingsProvider).locale;
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => SimpleDialog(
+        title: const Text('App Language'),
+        children: [
+          RadioGroup<String>(
+            groupValue: currentLocale,
+            onChanged: (locale) async {
+              if (locale == null) return;
+              await ref.read(settingsProvider.notifier).setLocale(locale);
+              if (dialogContext.mounted) Navigator.pop(dialogContext);
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: _appLanguages
+                  .map((language) => RadioListTile<String>(
+                        value: language.$1,
+                        title: Text(language.$2),
+                      ))
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static void _showTranslationLanguagePicker(
+      BuildContext context, WidgetRef ref) {
+    final currentLanguage = ref.read(translationLanguageProvider);
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => SimpleDialog(
+        title: Text(AppLocalizations.of(context)?.translationLanguage ?? "Translation Language"),
+        children: [
+          RadioGroup<String>(
+            groupValue: currentLanguage,
+            onChanged: (selectedLanguage) async {
+              if (selectedLanguage == null) return;
+              await ref
+                  .read(translationLanguageProvider.notifier)
+                  .setLanguage(selectedLanguage);
+              if (dialogContext.mounted) Navigator.pop(dialogContext);
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: supportedTranslationLanguages
+                  .map((language) => RadioListTile<String>(
+                        value: language,
+                        title: Text(language),
+                      ))
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   static void _showVoicePickerDialog(BuildContext context, WidgetRef ref) {
@@ -311,7 +483,10 @@ class SettingsScreen extends ConsumerWidget {
       builder: (ctx) {
         return AlertDialog(
           backgroundColor: cardBg,
-          title: Text('Choose Audiobook Voice', style: TextStyle(fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black87)),
+          title: Text(AppLocalizations.of(context)!.chooseAudiobookVoice,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white : Colors.black87)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: voiceOptions.map((opt) {
@@ -320,10 +495,16 @@ class SettingsScreen extends ConsumerWidget {
                 dense: true,
                 contentPadding: EdgeInsets.zero,
                 leading: Icon(
-                  isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                  isSelected
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_unchecked,
                   color: isSelected ? accent : Colors.grey,
                 ),
-                title: Text(opt.$2, style: TextStyle(fontSize: 14, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal)),
+                title: Text(opt.$2,
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight:
+                            isSelected ? FontWeight.bold : FontWeight.normal)),
                 subtitle: Text(opt.$3, style: const TextStyle(fontSize: 11)),
                 onTap: () {
                   ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
@@ -357,7 +538,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(28)),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -366,7 +548,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                 // Drag handle
                 Center(
                   child: Container(
-                    width: 40, height: 4,
+                    width: 40,
+                    height: 4,
                     decoration: BoxDecoration(
                       color: Colors.grey.withValues(alpha: 0.4),
                       borderRadius: BorderRadius.circular(2),
@@ -375,15 +558,17 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "Notification Settings",
+                  AppLocalizations.of(context)!.notification_settings,
                   style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : Colors.black87,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Manage Daily Drops and Review Reminders",
+                  AppLocalizations.of(context)!
+                      .manageDailyDropsAndReviewReminders,
                   style: TextStyle(
                     fontSize: 14,
                     color: isDark ? Colors.white54 : Colors.black54,
@@ -393,7 +578,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
 
                 // Daily Drops toggle
                 _buildNotifToggle(
-                  context: context, isDark: isDark,
+                  context: context,
+                  isDark: isDark,
                   icon: Icons.wb_sunny_outlined,
                   title: "Daily Drops",
                   subtitle: "Word of the Day & news",
@@ -402,19 +588,22 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                   onChanged: (val) {
                     setSheetState(() => dailyDropsEnabled = val);
                     if (val) {
-                      notificationService.scheduleDailyDrop(dailyDropTime.hour, dailyDropTime.minute);
+                      notificationService.scheduleDailyDrop(
+                          dailyDropTime.hour, dailyDropTime.minute);
                     } else {
                       notificationService.cancel(1);
                       if (reviewRemindersEnabled) {
                         final dueCount = ref.read(dueFlashcardsCountProvider);
-                        notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, dueCount);
+                        notificationService.scheduleSpacedRepetition(
+                            reviewTime.hour, reviewTime.minute, dueCount);
                       }
                     }
                   },
                   onTimePicked: (time) {
                     setSheetState(() => dailyDropTime = time);
                     if (dailyDropsEnabled) {
-                      notificationService.scheduleDailyDrop(time.hour, time.minute);
+                      notificationService.scheduleDailyDrop(
+                          time.hour, time.minute);
                     }
                   },
                 ),
@@ -422,7 +611,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
 
                 // Review Reminders toggle
                 _buildNotifToggle(
-                  context: context, isDark: isDark,
+                  context: context,
+                  isDark: isDark,
                   icon: Icons.menu_book_outlined,
                   title: "Review Reminders",
                   subtitle: "Flashcards due for review",
@@ -432,11 +622,13 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                     setSheetState(() => reviewRemindersEnabled = val);
                     if (val) {
                       final dueCount = ref.read(dueFlashcardsCountProvider);
-                      notificationService.scheduleSpacedRepetition(reviewTime.hour, reviewTime.minute, dueCount);
+                      notificationService.scheduleSpacedRepetition(
+                          reviewTime.hour, reviewTime.minute, dueCount);
                     } else {
                       notificationService.cancel(2);
                       if (dailyDropsEnabled) {
-                        notificationService.scheduleDailyDrop(dailyDropTime.hour, dailyDropTime.minute);
+                        notificationService.scheduleDailyDrop(
+                            dailyDropTime.hour, dailyDropTime.minute);
                       }
                     }
                   },
@@ -444,7 +636,8 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                     setSheetState(() => reviewTime = time);
                     if (reviewRemindersEnabled) {
                       final dueCount = ref.read(dueFlashcardsCountProvider);
-                      notificationService.scheduleSpacedRepetition(time.hour, time.minute, dueCount);
+                      notificationService.scheduleSpacedRepetition(
+                          time.hour, time.minute, dueCount);
                     }
                   },
                 ),
@@ -453,10 +646,11 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                 OutlinedButton.icon(
                   onPressed: () => notificationService.requestPermissions(),
                   icon: const Icon(Icons.notifications_active, size: 18),
-                  label: const Text("Request Permissions"),
+                  label: Text(AppLocalizations.of(context)!.requestPermissions),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -464,9 +658,10 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
                   onPressed: () => Navigator.pop(context),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
                   ),
-                  child: const Text("Done"),
+                  child: Text(AppLocalizations.of(context)!.done),
                 ),
                 const SizedBox(height: 8),
               ],
@@ -500,15 +695,17 @@ Widget _buildNotifToggle({
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: TextStyle(
-              fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white : Colors.black87,
-            )),
+            Text(title,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? Colors.white : Colors.black87,
+                )),
             const SizedBox(height: 2),
-            Text(subtitle, style: TextStyle(
-              fontSize: 12,
-              color: isDark ? Colors.white54 : Colors.black54,
-            )),
+            Text(subtitle,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: isDark ? Colors.white54 : Colors.black54,
+                )),
           ],
         ),
       ),

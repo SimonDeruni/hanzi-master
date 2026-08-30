@@ -20,7 +20,8 @@ class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
   }
 
   @override
-  ConsumerState<AiDeckGeneratorSheet> createState() => _AiDeckGeneratorSheetState();
+  ConsumerState<AiDeckGeneratorSheet> createState() =>
+      _AiDeckGeneratorSheetState();
 }
 
 class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
@@ -39,6 +40,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
     super.initState();
     _countController.addListener(_onCountChanged);
   }
+
   void _onCountChanged() {
     final parsed = int.tryParse(_countController.text);
     if (parsed != null && parsed != _cardCount.round()) {
@@ -46,6 +48,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
       setState(() => _cardCount = clamped.toDouble());
     }
   }
+
   @override
   void dispose() {
     _countController.removeListener(_onCountChanged);
@@ -79,304 +82,372 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                  Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.purple.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(Icons.auto_awesome, color: Colors.purple),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.aiDeckGenerator,
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          _buildTab(0, "New Deck"),
-                          const SizedBox(width: 8),
-                          _buildTab(1, "Add to Deck"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-
-            if (_mode == 1)
-              // Deck picker for add mode
-              _buildDeckPicker(isDark),
-
-            // Topic Field
-            Text(
-              _mode == 0
-                ? AppLocalizations.of(context)!.whatDoYouWant
-                : "Topic (for context)",
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            HanziTextField(
-              controller: _topicController,
-              decoration: InputDecoration(
-                hintText: "e.g., Ordering at a restaurant, Business vocab...",
-                filled: true,
-                fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide.none,
-                ),
-                prefixIcon: const Icon(Icons.lightbulb_outline),
-              ),
-            ),
-            
-            const SizedBox(height: 32),
-            
-            if (_mode == 0) ...[
-              // Difficulty
-              Text(
-                AppLocalizations.of(context)!.targetDifficulty,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  _buildDifficultySegment(0, "Beginner", "HSK 1-2"),
-                  const SizedBox(width: 8),
-                  _buildDifficultySegment(1, "Intermediate", "HSK 3-4"),
-                  const SizedBox(width: 8),
-                  _buildDifficultySegment(2, "Advanced", "HSK 5-6"),
-                ],
-              ),
-              
-              const SizedBox(height: 32),
-              
-              // Focus Area
-              Text(
-                AppLocalizations.of(context)!.focusArea,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  'Mixed', 'Nouns only', 'Verbs only', 'Idioms (Chengyu)', 'Full Sentences'
-                ].map((focus) => _buildFocusChip(focus, isDark)).toList(),
-              ),
-            ],
-
-            const SizedBox(height: 32),
-
-            // Context / Tone
-            Text(
-              AppLocalizations.of(context)!.specificContextOrTone,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            HanziTextField(
-              controller: _contextController,
-              decoration: InputDecoration(
-                hintText: "e.g., Formal business language, slang for texting...",
-                filled: true,
-                fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide.none,
-                ),
-                prefixIcon: const Icon(Icons.psychology_alt),
-              ),
-            ),
-
-            const SizedBox(height: 32),
-            
-            // Card Count
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.numberOfCards,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 80,
-                  height: 36,
-                  child: TextField(
-                    controller: _countController,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                      isDense: true,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Slider(
-              value: _cardCount,
-              min: 5,
-              max: 200,
-              activeColor: Colors.purple,
-              onChanged: (val) {
-                setState(() {
-                  _cardCount = val;
-                  _countController.text = val.toInt().toString();
-                });
-              },
-            ),
-            
-            const SizedBox(height: 16),
-                ],
-              ),
-            ),
-          ),
-          SafeArea(
-            bottom: true,
-            top: false,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
-              child: SizedBox(
-                width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: _isGenerating ? null : () async {
-                  final topic = _topicController.text.trim();
-                  if (topic.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.pleaseEnterTopic)));
-                    return;
-                  }
-
-                  if (_mode == 1 && _selectedDeckId == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please select a deck to add cards to.')));
-                    return;
-                  }
-
-                  setState(() => _isGenerating = true);
-                  try {
-                    final geminiService = ref.read(geminiServiceProvider);
-                    final flashcardController = ref.read(flashcardControllerProvider.notifier);
-
-                    if (_mode == 0) {
-                      // === NEW DECK MODE ===
-                      final difficultyLevel = _difficultyIndex == 0 ? "Beginner (HSK 1-2)" : _difficultyIndex == 1 ? "Intermediate (HSK 3-4)" : "Advanced (HSK 5-6)";
-                      
-                      final cards = await geminiService.generateDeckCards(
-                        topic: topic,
-                        difficulty: difficultyLevel,
-                        contextTone: _contextController.text.trim(),
-                        count: _cardCount.toInt(),
-                      );
-                      
-                      if (cards.isNotEmpty) {
-                        final deckController = ref.read(deckControllerProvider.notifier);
-                        final newDeck = await deckController.createDeck(topic, description: "Generated by AI");
-                        
-                        if (newDeck != null) {
-                          for (final cardMap in cards) {
-                            final newCard = Flashcard(
-                              id: const Uuid().v4(),
-                              deckId: newDeck.id,
-                              hanzi: cardMap['hanzi'] ?? '',
-                              pinyin: cardMap['pinyin'] ?? '',
-                              definition: cardMap['english'] ?? '',
-                              hskLevel: 0,
-                              strokePaths: const [],
-                              modeStats: const {},
-                            );
-                            await flashcardController.addFlashcard(newCard);
-                          }
-                          
-                          if (mounted && context.mounted) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.createdDeckCards(newDeck.name, cards.length))));
-                          }
-                        }
-                      }
-                    } else {
-                      // === ADD TO DECK MODE ===
-                      final allCards = ref.read(flashcardControllerProvider).value ?? [];
-                      final deckCards = allCards.where((c) => c.deckId == _selectedDeckId).toList();
-                      final existingHanzi = deckCards.map((c) => c.hanzi).toList();
-                      final existingPinyin = deckCards.map((c) => c.pinyin).toList();
-
-                      final cards = await geminiService.generateContextualCards(
-                        deckTopic: topic,
-                        contextTone: _contextController.text.trim(),
-                        count: _cardCount.toInt(),
-                        existingHanzi: existingHanzi,
-                        existingPinyin: existingPinyin,
-                      );
-                      
-                      if (cards.isNotEmpty) {
-                        for (final cardMap in cards) {
-                          final newCard = Flashcard(
-                            id: const Uuid().v4(),
-                            deckId: _selectedDeckId!,
-                            hanzi: cardMap['hanzi'] ?? '',
-                            pinyin: cardMap['pinyin'] ?? '',
-                            definition: cardMap['english'] ?? '',
-                            hskLevel: 0,
-                            strokePaths: const [],
-                            modeStats: const {},
-                          );
-                          await flashcardController.addFlashcard(newCard);
-                        }
-                        
-                        if (mounted && context.mounted) {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added ${cards.length} cards to "$_selectedDeckName".')));
-                        }
-                      }
-                    }
-                  } catch (e) {
-                    if (mounted && context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-                    }
-                  } finally {
-                    if (mounted) {
-                      setState(() => _isGenerating = false);
-                    }
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 0,
-                ),
-                child: _isGenerating
-                  ? const SizedBox(
-                      width: 24, height: 24,
-                      child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Row(
                       children: [
-                        const Icon(Icons.auto_awesome),
-                        const SizedBox(width: 8),
-                        Text(
-                          _mode == 0 ? "Generate Deck" : "Generate & Add",
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.purple.withValues(alpha: 0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.auto_awesome,
+                              color: Colors.purple),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.aiDeckGenerator,
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  _buildTab(
+                                      0, AppLocalizations.of(context)!.newDeck),
+                                  const SizedBox(width: 8),
+                                  _buildTab(1, "Add to Deck"),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
+                    const SizedBox(height: 32),
+
+                    if (_mode == 1)
+                      // Deck picker for add mode
+                      _buildDeckPicker(isDark),
+
+                    // Topic Field
+                    Text(
+                      _mode == 0
+                          ? AppLocalizations.of(context)!.whatDoYouWant
+                          : "Topic (for context)",
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    HanziTextField(
+                      controller: _topicController,
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(context)!
+                            .egOrderingAtARestaurantBusinessVocab,
+                        filled: true,
+                        fillColor: isDark
+                            ? Colors.white.withValues(alpha: 0.05)
+                            : Colors.black.withValues(alpha: 0.05),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide.none,
+                        ),
+                        prefixIcon: const Icon(Icons.lightbulb_outline),
+                      ),
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    if (_mode == 0) ...[
+                      // Difficulty
+                      Text(
+                        AppLocalizations.of(context)!.targetDifficulty,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          _buildDifficultySegment(0, "Beginner", "HSK 1-2"),
+                          const SizedBox(width: 8),
+                          _buildDifficultySegment(1, "Intermediate", "HSK 3-4"),
+                          const SizedBox(width: 8),
+                          _buildDifficultySegment(2, "Advanced", "HSK 5-6"),
+                        ],
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      // Focus Area
+                      Text(
+                        AppLocalizations.of(context)!.focusArea,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          'Mixed',
+                          'Nouns only',
+                          'Verbs only',
+                          'Idioms (Chengyu)',
+                          'Full Sentences'
+                        ]
+                            .map((focus) => _buildFocusChip(focus, isDark))
+                            .toList(),
+                      ),
+                    ],
+
+                    const SizedBox(height: 32),
+
+                    // Context / Tone
+                    Text(
+                      AppLocalizations.of(context)!.specificContextOrTone,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    HanziTextField(
+                      controller: _contextController,
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(context)!
+                            .egFormalBusinessLanguageSlangForTexting,
+                        filled: true,
+                        fillColor: isDark
+                            ? Colors.white.withValues(alpha: 0.05)
+                            : Colors.black.withValues(alpha: 0.05),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide.none,
+                        ),
+                        prefixIcon: const Icon(Icons.psychology_alt),
+                      ),
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // Card Count
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.numberOfCards,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 80,
+                          height: 36,
+                          child: TextField(
+                            controller: _countController,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              isDense: true,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      value: _cardCount,
+                      min: 5,
+                      max: 200,
+                      activeColor: Colors.purple,
+                      onChanged: (val) {
+                        setState(() {
+                          _cardCount = val;
+                          _countController.text = val.toInt().toString();
+                        });
+                      },
+                    ),
+
+                    const SizedBox(height: 16),
+                  ],
+                ),
               ),
             ),
+            SafeArea(
+              bottom: true,
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: _isGenerating
+                        ? null
+                        : () async {
+                            final topic = _topicController.text.trim();
+                            if (topic.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .pleaseEnterTopic)));
+                              return;
+                            }
+
+                            if (_mode == 1 && _selectedDeckId == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .please_select_a_deck_to_add)));
+                              return;
+                            }
+
+                            setState(() => _isGenerating = true);
+                            try {
+                              final geminiService =
+                                  ref.read(geminiServiceProvider);
+                              final flashcardController = ref
+                                  .read(flashcardControllerProvider.notifier);
+
+                              if (_mode == 0) {
+                                // === NEW DECK MODE ===
+                                final difficultyLevel = _difficultyIndex == 0
+                                    ? "Beginner (HSK 1-2)"
+                                    : _difficultyIndex == 1
+                                        ? "Intermediate (HSK 3-4)"
+                                        : "Advanced (HSK 5-6)";
+
+                                final cards =
+                                    await geminiService.generateDeckCards(
+                                  topic: topic,
+                                  difficulty: difficultyLevel,
+                                  contextTone: _contextController.text.trim(),
+                                  count: _cardCount.toInt(),
+                                );
+
+                                if (cards.isNotEmpty) {
+                                  final deckController =
+                                      ref.read(deckControllerProvider.notifier);
+                                  final newDeck =
+                                      await deckController.createDeck(topic,
+                                          description: "Generated by AI");
+
+                                  if (newDeck != null) {
+                                    for (final cardMap in cards) {
+                                      final newCard = Flashcard(
+                                        id: const Uuid().v4(),
+                                        deckId: newDeck.id,
+                                        hanzi: cardMap['hanzi'] ?? '',
+                                        pinyin: cardMap['pinyin'] ?? '',
+                                        definition: cardMap['english'] ?? '',
+                                        hskLevel: 0,
+                                        strokePaths: const [],
+                                        modeStats: const {},
+                                      );
+                                      await flashcardController
+                                          .addFlashcard(newCard);
+                                    }
+
+                                    if (mounted && context.mounted) {
+                                      Navigator.pop(context);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .createdDeckCards(
+                                                          newDeck.name,
+                                                          cards.length))));
+                                    }
+                                  }
+                                }
+                              } else {
+                                // === ADD TO DECK MODE ===
+                                final allCards = ref
+                                        .read(flashcardControllerProvider)
+                                        .value ??
+                                    [];
+                                final deckCards = allCards
+                                    .where((c) => c.deckId == _selectedDeckId)
+                                    .toList();
+                                final existingHanzi =
+                                    deckCards.map((c) => c.hanzi).toList();
+                                final existingPinyin =
+                                    deckCards.map((c) => c.pinyin).toList();
+
+                                final cards =
+                                    await geminiService.generateContextualCards(
+                                  deckTopic: topic,
+                                  contextTone: _contextController.text.trim(),
+                                  count: _cardCount.toInt(),
+                                  existingHanzi: existingHanzi,
+                                  existingPinyin: existingPinyin,
+                                );
+
+                                if (cards.isNotEmpty) {
+                                  for (final cardMap in cards) {
+                                    final newCard = Flashcard(
+                                      id: const Uuid().v4(),
+                                      deckId: _selectedDeckId!,
+                                      hanzi: cardMap['hanzi'] ?? '',
+                                      pinyin: cardMap['pinyin'] ?? '',
+                                      definition: cardMap['english'] ?? '',
+                                      hskLevel: 0,
+                                      strokePaths: const [],
+                                      modeStats: const {},
+                                    );
+                                    await flashcardController
+                                        .addFlashcard(newCard);
+                                  }
+
+                                  if (mounted && context.mounted) {
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                AppLocalizations.of(context)!
+                                                    .added_cards_to(
+                                                        cards.length,
+                                                        _selectedDeckName!))));
+                                  }
+                                }
+                              }
+                            } catch (e) {
+                              if (mounted && context.mounted) {
+                                 ScaffoldMessenger.of(context).showSnackBar(
+                                     SnackBar(content: Text("Error: $e")));
+                              }
+                            } finally {
+                              if (mounted) {
+                                setState(() => _isGenerating = false);
+                              }
+                            }
+                          },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: _isGenerating
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                                color: Colors.white, strokeWidth: 2),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.auto_awesome),
+                              const SizedBox(width: 8),
+                              Text(
+                                _mode == 0 ? "Generate Deck" : "Generate & Add",
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                  ),
+                ),
+              ),
             ),
-          ),
           ],
         ),
       ),
@@ -386,7 +457,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
   Widget _buildDifficultySegment(int index, String title, String subtitle) {
     final isSelected = _difficultyIndex == index;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Expanded(
       child: GestureDetector(
         onTap: () => setState(() => _difficultyIndex = index),
@@ -394,9 +465,11 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected 
-              ? Colors.purple.withValues(alpha: 0.1) 
-              : (isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05)),
+            color: isSelected
+                ? Colors.purple.withValues(alpha: 0.1)
+                : (isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.black.withValues(alpha: 0.05)),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isSelected ? Colors.purple : Colors.transparent,
@@ -409,7 +482,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 title,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.purple : (isDark ? Colors.white70 : Colors.black87),
+                  color: isSelected
+                      ? Colors.purple
+                      : (isDark ? Colors.white70 : Colors.black87),
                 ),
               ),
               const SizedBox(height: 4),
@@ -417,7 +492,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                 subtitle,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isSelected ? Colors.purple.withValues(alpha: 0.8) : (isDark ? Colors.white54 : Colors.black54),
+                  color: isSelected
+                      ? Colors.purple.withValues(alpha: 0.8)
+                      : (isDark ? Colors.white54 : Colors.black54),
                 ),
               ),
             ],
@@ -436,9 +513,12 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
         if (selected) setState(() => _focusArea = label);
       },
       selectedColor: Colors.purple.withValues(alpha: 0.2),
-      backgroundColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
+      backgroundColor: isDark
+          ? Colors.white.withValues(alpha: 0.05)
+          : Colors.black.withValues(alpha: 0.05),
       labelStyle: TextStyle(
-        color: isSelected ? Colors.purple : (isDark ? Colors.white : Colors.black),
+        color:
+            isSelected ? Colors.purple : (isDark ? Colors.white : Colors.black),
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
       ),
       side: BorderSide(
@@ -468,13 +548,16 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.purple : Colors.grey.withValues(alpha: 0.2),
+          color:
+              isSelected ? Colors.purple : Colors.grey.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: isSelected ? Colors.white : (isDark ? Colors.white70 : Colors.black54),
+            color: isSelected
+                ? Colors.white
+                : (isDark ? Colors.white70 : Colors.black54),
             fontWeight: FontWeight.bold,
             fontSize: 13,
           ),
@@ -499,7 +582,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
             initialValue: _selectedDeckId,
             decoration: InputDecoration(
               filled: true,
-              fillColor: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05),
+              fillColor: isDark
+                  ? Colors.white.withValues(alpha: 0.05)
+                  : Colors.black.withValues(alpha: 0.05),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,
