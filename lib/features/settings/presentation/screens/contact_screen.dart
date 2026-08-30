@@ -15,18 +15,30 @@ class _ContactScreenState extends State<ContactScreen> {
   final TextEditingController _messageController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final l10n = AppLocalizations.of(context);
+    if (l10n != null && _selectedCategoryKey == 'Bug Report') {
+      _selectedCategoryKey = l10n.bugReport;
+    }
+  }
+
   Future<void> _sendFeedback() async {
     final message = _messageController.text.trim();
     if (message.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a message before sending.')),
+        SnackBar(
+            content: Text(
+                AppLocalizations.of(context)!.pleaseEnterMessageBeforeSending)),
       );
       return;
     }
 
-    final String subject = Uri.encodeComponent("SinoSpark: $_selectedCategoryKey");
+    final String subject =
+        Uri.encodeComponent("SinoSpark: $_selectedCategoryKey");
     final String body = Uri.encodeComponent(message);
-    
+
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: 'contact@sinospark.com',
@@ -43,7 +55,9 @@ class _ContactScreenState extends State<ContactScreen> {
       debugPrint("Could not launch $emailLaunchUri");
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not open email app.')),
+          SnackBar(
+              content:
+                  Text(AppLocalizations.of(context)!.couldNotOpenEmailApp)),
         );
       }
     }
@@ -60,19 +74,23 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final localizations = AppLocalizations.of(context)!;
-    
+
     final Map<String, String> categoryMap = {
-      'Bug Report': localizations.reportBug,
-      'Feature Request': localizations.suggestFeature,
-      'General Feedback': localizations.generalFeedback,
+      AppLocalizations.of(context)!.bugReport: localizations.reportBug,
+      AppLocalizations.of(context)!.feature_request:
+          localizations.suggestFeature,
+      AppLocalizations.of(context)!.generalFeedback:
+          localizations.generalFeedback,
     };
-    
+
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: IconThemeData(color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
+        iconTheme: IconThemeData(
+            color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -95,16 +113,19 @@ class _ContactScreenState extends State<ContactScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                
+
                 // Category Selector
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   decoration: BoxDecoration(
                     color: isDark ? const Color(0xFF252526) : Colors.white,
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: isDark ? Colors.black.withValues(alpha: 0.2) : Colors.black.withValues(alpha: 0.04),
+                        color: isDark
+                            ? Colors.black.withValues(alpha: 0.2)
+                            : Colors.black.withValues(alpha: 0.04),
                         blurRadius: 16,
                         offset: const Offset(0, 8),
                       ),
@@ -114,8 +135,10 @@ class _ContactScreenState extends State<ContactScreen> {
                     child: DropdownButton<String>(
                       value: _selectedCategoryKey,
                       isExpanded: true,
-                      icon: Icon(Icons.keyboard_arrow_down_rounded, color: isDark ? Colors.white54 : Colors.black54),
-                      dropdownColor: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                      icon: Icon(Icons.keyboard_arrow_down_rounded,
+                          color: isDark ? Colors.white54 : Colors.black54),
+                      dropdownColor:
+                          isDark ? const Color(0xFF2A2A2B) : Colors.white,
                       borderRadius: BorderRadius.circular(16),
                       style: TextStyle(
                         fontSize: 16,
@@ -129,7 +152,8 @@ class _ContactScreenState extends State<ContactScreen> {
                           });
                         }
                       },
-                      items: categoryMap.keys.map<DropdownMenuItem<String>>((String key) {
+                      items: categoryMap.keys
+                          .map<DropdownMenuItem<String>>((String key) {
                         return DropdownMenuItem<String>(
                           value: key,
                           child: Text(categoryMap[key]!),
@@ -139,17 +163,20 @@ class _ContactScreenState extends State<ContactScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                
+
                 // Message Area
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
                     decoration: BoxDecoration(
                       color: isDark ? const Color(0xFF252526) : Colors.white,
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
-                          color: isDark ? Colors.black.withValues(alpha: 0.2) : Colors.black.withValues(alpha: 0.04),
+                          color: isDark
+                              ? Colors.black.withValues(alpha: 0.2)
+                              : Colors.black.withValues(alpha: 0.04),
                           blurRadius: 24,
                           offset: const Offset(0, 12),
                         ),
@@ -168,7 +195,8 @@ class _ContactScreenState extends State<ContactScreen> {
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Write your message here...',
+                        hintText:
+                            AppLocalizations.of(context)!.writeYourMessageHere,
                         hintStyle: TextStyle(
                           color: isDark ? Colors.white30 : Colors.black38,
                           fontSize: 16,
@@ -178,7 +206,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                
+
                 // Send Button
                 SizedBox(
                   width: double.infinity,
@@ -186,15 +214,17 @@ class _ContactScreenState extends State<ContactScreen> {
                   child: ElevatedButton(
                     onPressed: _sendFeedback,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                      foregroundColor: isDark ? const Color(0xFF1A1A1B) : Colors.white,
+                      backgroundColor:
+                          isDark ? Colors.white : const Color(0xFF1A1A1B),
+                      foregroundColor:
+                          isDark ? const Color(0xFF1A1A1B) : Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text(
-                      'Send Message',
+                    child: Text(
+                      AppLocalizations.of(context)!.sendMessage,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -212,4 +242,3 @@ class _ContactScreenState extends State<ContactScreen> {
     );
   }
 }
-

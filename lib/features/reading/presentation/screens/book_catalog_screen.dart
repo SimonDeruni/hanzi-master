@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
@@ -11,6 +11,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 enum ReadingRoomSection {
   novels,
@@ -43,23 +44,35 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
 
   final TextEditingController _searchController = TextEditingController();
 
-  final List<String> _novelCategories = [
-    'All',
-    'Chinese Epics',
-    'Ancient Philosophy',
-    'Supernatural & Folklore',
-    'Modern Chinese',
-    'French Classics',
-    'German Classics',
-    'Spanish & World',
-    'English & World',
-  ];
-
+  List<String> _novelCategories = const ['All'];
 
   @override
   void initState() {
     super.initState();
     _activeSection = widget.initialSection;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final l10n = AppLocalizations.of(context);
+    if (l10n != null) {
+      final all = l10n.allLabel;
+      if (_selectedNovelCategory == 'All') {
+        _selectedNovelCategory = all;
+      }
+      _novelCategories = [
+        all,
+        l10n.chineseEpics,
+        l10n.ancientPhilosophy,
+        l10n.supernaturalAndFolklore,
+        l10n.modernChinese,
+        l10n.frenchClassics,
+        l10n.germanClassics,
+        l10n.spanishAndWorld,
+        l10n.englishAndWorld,
+      ];
+    }
   }
 
   @override
@@ -88,7 +101,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               elevation: 0,
               centerTitle: true,
               title: Text(
-                'Reading Room',
+                AppLocalizations.of(context)!.readingRoom,
                 style: TextStyle(
                   color: primaryText,
                   fontWeight: FontWeight.bold,
@@ -395,7 +408,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       data: (books) {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = books.where((b) {
-          final matchesCat = _selectedNovelCategory == 'All' ||
+          final matchesCat = _selectedNovelCategory ==
+                  AppLocalizations.of(context)!.allLabel ||
               b.category == _selectedNovelCategory;
           final matchesSearch = query.isEmpty ||
               b.title.toLowerCase().contains(query) ||
@@ -411,7 +425,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           // Continue Reading Shelf
           if (inProgressItems.isNotEmpty &&
               query.isEmpty &&
-              _selectedNovelCategory == 'All')
+              _selectedNovelCategory == AppLocalizations.of(context)!.allLabel)
             SliverToBoxAdapter(
               child: _buildContinueReadingShelf(
                   context, inProgressItems, isDark, cardBg, primaryText),
@@ -472,7 +486,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(child: Text('Error loading novels: $e')),
+          child: Center(
+              child: Text(AppLocalizations.of(context)!.error_loading_novels)),
         ),
       ],
     );
@@ -557,7 +572,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(child: Text('Error loading micro-reads: $e')),
+          child: Center(
+              child:
+                  Text(AppLocalizations.of(context)!.error_loading_microreads)),
         ),
       ],
     );
@@ -642,7 +659,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(child: Text('Error loading poetry: $e')),
+          child: Center(
+              child: Text(AppLocalizations.of(context)!.error_loading_poetry)),
         ),
       ],
     );
@@ -1073,7 +1091,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             size: 11, color: Colors.orange.shade700),
                         const SizedBox(width: 2),
                         Text(
-                          '1-2 min',
+                          AppLocalizations.of(context)!.duration12Min,
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
@@ -1195,9 +1213,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
-                              color: isDark
-                                  ? Colors.amber.shade400
-                                  : poetryAccent,
+                              color:
+                                  isDark ? Colors.amber.shade400 : poetryAccent,
                             ),
                           ),
                         ),
@@ -1248,7 +1265,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       hskLevel: poem.hskLevel,
       totalChapters: 1,
       coverEmoji: '📜',
-      tags: poem.keywords.isNotEmpty ? poem.keywords : const ['Poetry', 'Classical', 'Verse'],
+      tags: poem.keywords.isNotEmpty
+          ? poem.keywords
+          : const ['Poetry', 'Classical', 'Verse'],
     );
   }
 

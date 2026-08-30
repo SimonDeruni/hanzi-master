@@ -10,6 +10,7 @@ import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class TravelInterpreterScreen extends ConsumerStatefulWidget {
   const TravelInterpreterScreen({super.key});
@@ -22,7 +23,7 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
 class _TravelInterpreterScreenState
     extends ConsumerState<TravelInterpreterScreen>
     with SingleTickerProviderStateMixin {
-  String _status = "Ready";
+  late String _status;
   bool _hasError = false;
   String? _recordingSide; // null = idle, 'a' = User mic, 'b' = Partner mic
   bool _isStopping = false;
@@ -30,8 +31,8 @@ class _TravelInterpreterScreenState
       ''; // tracks latest partial text so stop() can use it
 
   // Side language state (decoupled from global provider)
-  String _sideALanguage = 'English';
-  String _sideBLanguage = 'Mandarin';
+  late String _sideALanguage;
+  late String _sideBLanguage;
 
   // Input modes per side
   bool _isSideAKeyboardMode = false;
@@ -54,6 +55,9 @@ class _TravelInterpreterScreenState
   @override
   void initState() {
     super.initState();
+    _status = 'Ready';
+    _sideALanguage = 'English';
+    _sideBLanguage = 'Mandarin';
 
     _pulseController = AnimationController(
       vsync: this,
@@ -61,6 +65,17 @@ class _TravelInterpreterScreenState
     )..repeat(reverse: true);
 
     _initAudioAndConnect();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final l10n = AppLocalizations.of(context);
+    if (l10n != null) {
+      if (_status == 'Ready') _status = l10n.ready;
+      _sideALanguage = l10n.english;
+      _sideBLanguage = l10n.mandarin;
+    }
   }
 
   void _startSession() async {
@@ -76,8 +91,9 @@ class _TravelInterpreterScreenState
     final speechService = ref.read(speechServiceProvider);
     await speechService.init();
     if (mounted) {
+      final l10n = AppLocalizations.of(context);
       setState(() {
-        _status = "Ready to interpret";
+        _status = l10n?.readyToInterpret ?? 'Ready to interpret';
       });
     }
   }
@@ -89,7 +105,9 @@ class _TravelInterpreterScreenState
 
     setState(() {
       _recordingSide = sideId;
-      _status = sideId == 'b' ? "Partner listening..." : "Listening...";
+      _status = sideId == 'b'
+          ? AppLocalizations.of(context)!.partnerListening
+          : AppLocalizations.of(context)!.listening;
 
       // Insert an empty draft message for the user's live transcription
       _messages.add(TranslationMessage(
@@ -103,7 +121,7 @@ class _TravelInterpreterScreenState
     final speechService = ref.read(speechServiceProvider);
 
     String localeId = 'en_US';
-    if (lang == 'Mandarin' || lang == 'Chinese') {
+    if (lang == AppLocalizations.of(context)!.mandarin || lang == 'Chinese') {
       localeId = 'zh_CN';
     } else if (lang == 'Spanish') {
       localeId = 'es_ES';
@@ -279,7 +297,9 @@ class _TravelInterpreterScreenState
             language: targetLang,
           ));
           _isTranslatingText = false;
-          _status = _recordingSide != null ? "Listening..." : "Paused";
+          _status = _recordingSide != null
+              ? AppLocalizations.of(context)!.listening
+              : "Paused";
         });
       }
     } catch (e) {
@@ -308,8 +328,7 @@ class _TravelInterpreterScreenState
             height: MediaQuery.of(ctx).size.height * 0.5,
             decoration: const BoxDecoration(
               color: Color(0xFF1E1313),
-              borderRadius:
-                  BorderRadius.vertical(top: Radius.circular(24)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
             ),
             child: Column(
               children: [
@@ -347,7 +366,8 @@ class _TravelInterpreterScreenState
                       textAlignVertical: TextAlignVertical.top,
                       style: const TextStyle(color: Colors.white, fontSize: 20),
                       decoration: InputDecoration(
-                        hintText: "Type your message in $_sideBLanguage...",
+                        hintText:
+                            AppLocalizations.of(context)!.type_your_message_in,
                         hintStyle: const TextStyle(color: Colors.white24),
                         filled: true,
                         fillColor: Colors.white.withValues(alpha: 0.08),
@@ -380,7 +400,7 @@ class _TravelInterpreterScreenState
                         }
                         Navigator.pop(ctx);
                       },
-                      child: const Text("Send",
+                      child: Text(AppLocalizations.of(context)!.send,
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
@@ -553,7 +573,7 @@ class _TravelInterpreterScreenState
                 // Side A (User) mic button
                 _buildMicButton(
                   sideId: 'a',
-                  label: 'You',
+                  label: AppLocalizations.of(context)!.youLabel,
                   isActive: _recordingSide == 'a',
                   isDark: isDark,
                 ),
@@ -887,12 +907,14 @@ class _TravelInterpreterScreenState
                                 },
                               ),
                               if (_recordingSide != null)
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(Icons.circle,
                                         color: Colors.redAccent, size: 12),
                                     SizedBox(width: 8),
-                                    Text("You are speaking",
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .youAreSpeaking,
                                         style: TextStyle(
                                             color: Colors.redAccent,
                                             fontWeight: FontWeight.bold)),
@@ -1016,7 +1038,7 @@ class _TravelInterpreterScreenState
                                 color: isDark ? Colors.white : Colors.black,
                                 fontSize: 18),
                             decoration: InputDecoration(
-                              hintText: "Type in $_sideALanguage...",
+                              hintText: AppLocalizations.of(context)!.type_in,
                               hintStyle: TextStyle(
                                   color:
                                       isDark ? Colors.white38 : Colors.black38),

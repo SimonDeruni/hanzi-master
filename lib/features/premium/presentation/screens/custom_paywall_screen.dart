@@ -7,12 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CustomPaywallScreen extends ConsumerStatefulWidget {
   const CustomPaywallScreen({super.key});
 
   @override
-  ConsumerState<CustomPaywallScreen> createState() => _CustomPaywallScreenState();
+  ConsumerState<CustomPaywallScreen> createState() =>
+      _CustomPaywallScreenState();
 }
 
 class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
@@ -35,8 +37,10 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         setState(() {
           _offerings = offerings;
           _isLoading = false;
-          if (offerings.current != null && offerings.current!.availablePackages.isNotEmpty) {
-            _selectedPackage = offerings.current!.annual ?? offerings.current!.availablePackages.first;
+          if (offerings.current != null &&
+              offerings.current!.availablePackages.isNotEmpty) {
+            _selectedPackage = offerings.current!.annual ??
+                offerings.current!.availablePackages.first;
           } else {
             // Simulator fallback
             _usingMockFallback = true;
@@ -56,10 +60,10 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
   Future<void> _purchasePackage() async {
     HapticFeedback.mediumImpact();
-    
+
     // If purchasing annual / trial, check notification permission
     final isAnnual = _usingMockFallback
-        ? (_mockSelectedPackage == "Yearly")
+        ? (_mockSelectedPackage == AppLocalizations.of(context)!.yearly)
         : (_selectedPackage?.packageType == PackageType.annual);
 
     if (isAnnual) {
@@ -71,32 +75,41 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     }
 
     if (_usingMockFallback) {
-       setState(() => _isPurchasing = true);
-       await Future.delayed(const Duration(milliseconds: 300));
-       if (mounted) {
-         Navigator.of(context).pushReplacement(
-           MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
-         );
-       }
-       return;
+      setState(() => _isPurchasing = true);
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+        );
+      }
+      return;
     }
-    
-    if (_selectedPackage == null && _offerings?.current != null && _offerings!.current!.availablePackages.isNotEmpty) {
-      _selectedPackage = _offerings!.current!.annual ?? _offerings!.current!.availablePackages.first;
+
+    if (_selectedPackage == null &&
+        _offerings?.current != null &&
+        _offerings!.current!.availablePackages.isNotEmpty) {
+      _selectedPackage = _offerings!.current!.annual ??
+          _offerings!.current!.availablePackages.first;
     }
-    
+
     if (_selectedPackage == null) return;
-    
+
     setState(() => _isPurchasing = true);
     try {
-      final purchaseResult = await Purchases.purchase(PurchaseParams.package(_selectedPackage!));
+      final purchaseResult =
+          await Purchases.purchase(PurchaseParams.package(_selectedPackage!));
       final isPremium = await MonetizationService.checkPremiumStatus();
-      
-      final entitlement = purchaseResult.customerInfo.entitlements.all["Hanzi AI Pro"];
-      if (entitlement != null && entitlement.periodType == PeriodType.trial && entitlement.expirationDate != null) {
+
+      final entitlement =
+          purchaseResult.customerInfo.entitlements.all["Hanzi AI Pro"];
+      if (entitlement != null &&
+          entitlement.periodType == PeriodType.trial &&
+          entitlement.expirationDate != null) {
         try {
           final expirationDate = DateTime.parse(entitlement.expirationDate!);
-          await ref.read(notificationServiceProvider).scheduleTrialEndingReminder(expirationDate);
+          await ref
+              .read(notificationServiceProvider)
+              .scheduleTrialEndingReminder(expirationDate);
         } catch (e) {
           debugPrint("Failed to schedule trial reminder: $e");
         }
@@ -117,85 +130,95 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Future<bool> _showReminderProtectionDialog() async {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final dialogBg = isDark ? const Color(0xFF222223) : const Color(0xFFFDFCF0);
-    final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final btnBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final btnTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final textColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnBgColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnTextColor =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return await showDialog<bool>(
-      context: context,
-      barrierDismissible: true,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: dialogBg,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: BorderSide(color: textColor.withValues(alpha: 0.08)),
-        ),
-        title: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: const Color(0xFFD4C4A8).withValues(alpha: 0.15),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.notifications_active_outlined, color: Color(0xFFD4C4A8), size: 22),
+          context: context,
+          barrierDismissible: true,
+          builder: (ctx) => AlertDialog(
+            backgroundColor: dialogBg,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(color: textColor.withValues(alpha: 0.08)),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                "Day 5 Reminder",
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 18,
-                  fontFamily: 'Serif',
-                  fontWeight: FontWeight.bold,
+            title: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD4C4A8).withValues(alpha: 0.15),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.notifications_active_outlined,
+                      color: Color(0xFFD4C4A8), size: 22),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    "Day 5 Reminder",
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: 18,
+                      fontFamily: 'Serif',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            content: Text(
+              "We promised to alert you 2 days before your trial ends so you're never charged by surprise. Turn on notifications so we can send your reminder.",
+              style: TextStyle(
+                color: textColor.withValues(alpha: 0.75),
+                fontSize: 14,
+                height: 1.4,
+              ),
+            ),
+            actionsPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(ctx).pop(true),
+                child: Text(
+                  "Continue without reminder",
+                  style: TextStyle(
+                      color: textColor.withValues(alpha: 0.5), fontSize: 13),
                 ),
               ),
-            ),
-          ],
-        ),
-        content: Text(
-          "We promised to alert you 2 days before your trial ends so you're never charged by surprise. Turn on notifications so we can send your reminder.",
-          style: TextStyle(
-            color: textColor.withValues(alpha: 0.75),
-            fontSize: 14,
-            height: 1.4,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: btnBgColor,
+                  foregroundColor: btnTextColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                ),
+                onPressed: () async {
+                  Navigator.of(ctx).pop(true);
+                  try {
+                    final service = ref.read(notificationServiceProvider);
+                    await service.init();
+                    final granted = await service.requestPermissions();
+                    if (!granted) {
+                      await openAppSettings();
+                    }
+                  } catch (e) {
+                    debugPrint("Permission request error: $e");
+                  }
+                },
+                child: Text(AppLocalizations.of(context)!.turnOn,
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+            ],
           ),
-        ),
-        actionsPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(
-              "Continue without reminder",
-              style: TextStyle(color: textColor.withValues(alpha: 0.5), fontSize: 13),
-            ),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: btnBgColor,
-              foregroundColor: btnTextColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            ),
-            onPressed: () async {
-              Navigator.of(ctx).pop(true);
-              try {
-                final service = ref.read(notificationServiceProvider);
-                await service.init();
-                final granted = await service.requestPermissions();
-                if (!granted) {
-                  await openAppSettings();
-                }
-              } catch (e) {
-                debugPrint("Permission request error: $e");
-              }
-            },
-            child: const Text("Turn On", style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ),
-    ) ?? false;
+        ) ??
+        false;
   }
 
   Future<void> _restorePurchases() async {
@@ -210,7 +233,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No active subscription found.')),
+            SnackBar(
+                content: Text(
+                    AppLocalizations.of(context)!.noActiveSubscriptionFound)),
           );
         }
       }
@@ -220,7 +245,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       if (mounted) setState(() => _isPurchasing = false);
     }
   }
-  
+
   Future<void> _launchURL(String url) async {
     final uri = Uri.parse(url);
     try {
@@ -230,16 +255,19 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     }
   }
 
-  String _mockSelectedPackage = "Yearly";
+  String _mockSelectedPackage = 'Yearly';
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-    final textColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final textColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     const accentColor = Color(0xFFD4C4A8);
-    final btnBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final btnTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final btnBgColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final btnTextColor =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -247,7 +275,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         child: _isLoading
             ? Center(child: CircularProgressIndicator(color: textColor))
             : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -260,7 +289,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    
+
                     Text(
                       "Master Chinese with\nSinoSpark",
                       textAlign: TextAlign.center,
@@ -272,40 +301,72 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                         height: 1.15,
                       ),
                     ),
-                    
+
                     const Spacer(flex: 1),
-                    
+
                     // 2-Column Features Grid
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
                       decoration: BoxDecoration(
                         color: textColor.withValues(alpha: 0.03),
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: textColor.withValues(alpha: 0.06)),
+                        border: Border.all(
+                            color: textColor.withValues(alpha: 0.06)),
                       ),
                       child: Column(
                         children: [
                           Row(
                             children: [
-                              Expanded(child: _buildCompactFeature(Icons.gesture, "Precision Strokes", textColor, accentColor)),
+                              Expanded(
+                                  child: _buildCompactFeature(
+                                      Icons.gesture,
+                                      "Precision Strokes",
+                                      textColor,
+                                      accentColor)),
                               const SizedBox(width: 12),
-                              Expanded(child: _buildCompactFeature(Icons.document_scanner, "Universal Scanner", textColor, accentColor)),
+                              Expanded(
+                                  child: _buildCompactFeature(
+                                      Icons.document_scanner,
+                                      "Universal Scanner",
+                                      textColor,
+                                      accentColor)),
                             ],
                           ),
                           const SizedBox(height: 14),
                           Row(
                             children: [
-                              Expanded(child: _buildCompactFeature(Icons.mic_none, "AI Pronunciation", textColor, accentColor)),
+                              Expanded(
+                                  child: _buildCompactFeature(
+                                      Icons.mic_none,
+                                      "AI Pronunciation",
+                                      textColor,
+                                      accentColor)),
                               const SizedBox(width: 12),
-                              Expanded(child: _buildCompactFeature(Icons.translate, "Live Translation", textColor, accentColor)),
+                              Expanded(
+                                  child: _buildCompactFeature(
+                                      Icons.translate,
+                                      "Live Translation",
+                                      textColor,
+                                      accentColor)),
                             ],
                           ),
                           const SizedBox(height: 14),
                           Row(
                             children: [
-                              Expanded(child: _buildCompactFeature(Icons.travel_explore, "Smart News & Dict", textColor, accentColor)),
+                              Expanded(
+                                  child: _buildCompactFeature(
+                                      Icons.travel_explore,
+                                      "Smart News & Dict",
+                                      textColor,
+                                      accentColor)),
                               const SizedBox(width: 12),
-                              Expanded(child: _buildCompactFeature(Icons.menu_book, "HSK 1-6 & AI Decks", textColor, accentColor)),
+                              Expanded(
+                                  child: _buildCompactFeature(
+                                      Icons.menu_book,
+                                      "HSK 1-6 & AI Decks",
+                                      textColor,
+                                      accentColor)),
                             ],
                           ),
                         ],
@@ -316,24 +377,47 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
                     // Horizontal Blinkist Timeline
                     _buildHorizontalTimeline(textColor, accentColor),
-                    
+
                     const Spacer(flex: 2),
 
                     // Packages
                     if (_usingMockFallback)
                       Row(
                         children: [
-                          Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0), child: _buildMockPackageCard("Monthly", "\$9.99/mo", false, textColor, accentColor, null))),
-                          Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0), child: _buildMockPackageCard("Yearly", "\$59.99/yr", true, textColor, accentColor, 59.99))),
+                          Expanded(
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 4.0),
+                                  child: _buildMockPackageCard(
+                                      AppLocalizations.of(context)!.monthly,
+                                      "\$9.99/mo",
+                                      false,
+                                      textColor,
+                                      accentColor,
+                                      null))),
+                          Expanded(
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 4.0),
+                                  child: _buildMockPackageCard(
+                                      AppLocalizations.of(context)!.yearly,
+                                      "\$59.99/yr",
+                                      true,
+                                      textColor,
+                                      accentColor,
+                                      59.99))),
                         ],
                       )
                     else if (_offerings?.current != null)
                       Row(
-                        children: _offerings!.current!.availablePackages.map((package) {
+                        children: _offerings!.current!.availablePackages
+                            .map((package) {
                           return Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: _buildPackageCard(package, textColor, accentColor),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: _buildPackageCard(
+                                  package, textColor, accentColor),
                             ),
                           );
                         }).toList(),
@@ -371,25 +455,40 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                         ),
                       ),
                     ),
-                    
+
                     const SizedBox(height: 10),
-                    
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
                           onPressed: _restorePurchases,
-                          child: Text("Restore", style: TextStyle(color: textColor.withValues(alpha: 0.6), fontSize: 12)),
+                          child: Text(AppLocalizations.of(context)!.restore,
+                              style: TextStyle(
+                                  color: textColor.withValues(alpha: 0.6),
+                                  fontSize: 12)),
                         ),
-                        Text("•", style: TextStyle(color: textColor.withValues(alpha: 0.3))),
+                        Text("•",
+                            style: TextStyle(
+                                color: textColor.withValues(alpha: 0.3))),
                         TextButton(
-                          onPressed: () => _launchURL('https://sinospark.app/terms.html'),
-                          child: Text("Terms", style: TextStyle(color: textColor.withValues(alpha: 0.6), fontSize: 12)),
+                          onPressed: () =>
+                              _launchURL('https://sinospark.app/terms.html'),
+                          child: Text(AppLocalizations.of(context)!.terms,
+                              style: TextStyle(
+                                  color: textColor.withValues(alpha: 0.6),
+                                  fontSize: 12)),
                         ),
-                        Text("•", style: TextStyle(color: textColor.withValues(alpha: 0.3))),
+                        Text("•",
+                            style: TextStyle(
+                                color: textColor.withValues(alpha: 0.3))),
                         TextButton(
-                          onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
-                          child: Text("Privacy", style: TextStyle(color: textColor.withValues(alpha: 0.6), fontSize: 12)),
+                          onPressed: () =>
+                              _launchURL('https://sinospark.app/privacy.html'),
+                          child: Text(AppLocalizations.of(context)!.privacy,
+                              style: TextStyle(
+                                  color: textColor.withValues(alpha: 0.6),
+                                  fontSize: 12)),
                         ),
                       ],
                     ),
@@ -400,8 +499,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       ),
     );
   }
-  
-  Widget _buildCompactFeature(IconData icon, String text, Color textColor, Color accentColor) {
+
+  Widget _buildCompactFeature(
+      IconData icon, String text, Color textColor, Color accentColor) {
     return Row(
       children: [
         Icon(icon, color: accentColor, size: 21),
@@ -433,17 +533,23 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildTimelineNode(Icons.lock_open, "Today", "Full Access", textColor, accentColor),
-          Icon(Icons.arrow_forward, size: 16, color: textColor.withValues(alpha: 0.25)),
-          _buildTimelineNode(Icons.notifications_none, "Day 5", "Reminder", textColor, accentColor),
-          Icon(Icons.arrow_forward, size: 16, color: textColor.withValues(alpha: 0.25)),
-          _buildTimelineNode(Icons.credit_card, "Day 7", "Trial Begins", textColor, accentColor),
+          _buildTimelineNode(
+              Icons.lock_open, "Today", "Full Access", textColor, accentColor),
+          Icon(Icons.arrow_forward,
+              size: 16, color: textColor.withValues(alpha: 0.25)),
+          _buildTimelineNode(Icons.notifications_none, "Day 5", "Reminder",
+              textColor, accentColor),
+          Icon(Icons.arrow_forward,
+              size: 16, color: textColor.withValues(alpha: 0.25)),
+          _buildTimelineNode(Icons.credit_card, "Day 7", "Trial Begins",
+              textColor, accentColor),
         ],
       ),
     );
   }
 
-  Widget _buildTimelineNode(IconData icon, String title, String subtitle, Color textColor, Color accentColor) {
+  Widget _buildTimelineNode(IconData icon, String title, String subtitle,
+      Color textColor, Color accentColor) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -470,30 +576,50 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     );
   }
 
-  Widget _buildMockPackageCard(String title, String price, bool isAnnual, Color textColor, Color accentColor, double? numericPrice) {
+  Widget _buildMockPackageCard(String title, String price, bool isAnnual,
+      Color textColor, Color accentColor, double? numericPrice) {
     final isSelected = _mockSelectedPackage == title;
-    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor, accentColor, numericPrice, () {
+    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor,
+        accentColor, numericPrice, () {
       HapticFeedback.selectionClick();
       setState(() => _mockSelectedPackage = title);
     });
   }
 
-  Widget _buildPackageCard(Package package, Color textColor, Color accentColor) {
+  Widget _buildPackageCard(
+      Package package, Color textColor, Color accentColor) {
     final isSelected = _selectedPackage?.identifier == package.identifier;
     final isAnnual = package.packageType == PackageType.annual;
-    final title = isAnnual ? "Yearly" : "Monthly";
-    return _buildPackageCardUI(title, package.storeProduct.priceString, isAnnual, isSelected, textColor, accentColor, package.storeProduct.price, () {
+    final title = isAnnual
+        ? AppLocalizations.of(context)!.yearly
+        : AppLocalizations.of(context)!.monthly;
+    return _buildPackageCardUI(
+        title,
+        package.storeProduct.priceString,
+        isAnnual,
+        isSelected,
+        textColor,
+        accentColor,
+        package.storeProduct.price, () {
       HapticFeedback.selectionClick();
       setState(() => _selectedPackage = package);
     });
   }
-  
-  Widget _buildPackageCardUI(String title, String price, bool isAnnual, bool isSelected, Color textColor, Color accentColor, double? numericPrice, VoidCallback onTap) {
+
+  Widget _buildPackageCardUI(
+      String title,
+      String price,
+      bool isAnnual,
+      bool isSelected,
+      Color textColor,
+      Color accentColor,
+      double? numericPrice,
+      VoidCallback onTap) {
     final isDark = textColor == const Color(0xFFFDFCF0);
-    final cardBg = isSelected 
+    final cardBg = isSelected
         ? (isDark ? const Color(0xFF2E2E30) : Colors.white)
         : (isDark ? const Color(0xFF222223) : const Color(0xFFF5F4E8));
-    final borderColor = isSelected 
+    final borderColor = isSelected
         ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
         : (isDark ? Colors.white12 : Colors.black12);
 
@@ -510,13 +636,16 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             color: borderColor,
             width: isSelected ? 2 : 1,
           ),
-          boxShadow: isSelected ? [
-            BoxShadow(
-              color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            )
-          ] : null,
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: (isDark ? Colors.white : Colors.black)
+                        .withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  )
+                ]
+              : null,
         ),
         child: Column(
           children: [
@@ -528,9 +657,12 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                   color: const Color(0xFF8B2E2E), // Seal Red
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: const Text(
-                  "Best Value",
-                  style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                child: Text(
+                  AppLocalizations.of(context)!.bestValue,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold),
                 ),
               )
             else

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+287] - 2026-08-30
+- **`dependOnInheritedWidgetOfExactType` in `initState()` Fix (Build #287)**:
+  - **`TravelInterpreterScreen`**: Replaced premature `AppLocalizations.of(context)` lookups in `_TravelInterpreterScreenState.initState()` with direct state defaults and `didChangeDependencies()`.
+  - **Audited & Remediated 4 Other Screens**: Fixed identical `initState()` inherited widget dependencies in `ShadowingStudioScreen`, `CustomPaywallScreen`, `BookCatalogScreen`, and `ContactScreen`.
+  - `dart analyze`: 0 errors.
+
 ## [1.0.0+286] - 2026-08-30
 - **Startup `Null check operator used on a null value` Crash Fix (Build #286)**:
   - **`MaterialApp` Root Title**: Converted `MaterialApp` in [`lib/main.dart`](file:///c:/Users/simon/Documents/hanzi_master/lib/main.dart) from `title: AppLocalizations.of(context)!.hanziMaster` to `onGenerateTitle: (context) => AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master'`, eliminating the frame-0 null check crash above the localization scope.
