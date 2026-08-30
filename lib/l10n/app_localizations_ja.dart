@@ -9,225 +9,223 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get globalMastery => 'å…¨ä½“çš„ãªç¿’ç†Ÿåº¦';
+  String get globalMastery => '全体的な習熟度';
 
   @override
-  String get masteredCards => 'ãƒžã‚¹ã‚¿ãƒ¼';
+  String get masteredCards => 'マスター';
 
   @override
-  String get hsk1Candidate => 'HSK 1 å€™è£œ';
+  String get hsk1Candidate => 'HSK 1 候補';
 
   @override
-  String get hsk2Candidate => 'HSK 2 å€™è£œ';
+  String get hsk2Candidate => 'HSK 2 候補';
 
   @override
-  String get hsk3Candidate => 'HSK 3 å€™è£œ';
+  String get hsk3Candidate => 'HSK 3 候補';
 
   @override
-  String get hsk4Candidate => 'HSK 4 å€™è£œ';
+  String get hsk4Candidate => 'HSK 4 候補';
 
   @override
-  String get hsk5Candidate => 'HSK 5 å€™è£œ';
+  String get hsk5Candidate => 'HSK 5 候補';
 
   @override
-  String get hsk6Candidate => 'HSK 6 å€™è£œ';
+  String get hsk6Candidate => 'HSK 6 候補';
 
   @override
-  String get hsk6Master => 'HSK 6 ãƒžã‚¹ã‚¿ãƒ¼';
+  String get hsk6Master => 'HSK 6 マスター';
 
   @override
-  String get currentRank => 'ç¾åœ¨ã®ãƒ©ãƒ³ã‚¯';
+  String get currentRank => '現在のランク';
 
   @override
   String get next => 'Siguiente';
 
   @override
-  String get searchHanziOrPinyin => 'æ¤œç´¢...';
+  String get searchHanziOrPinyin => '検索...';
 
   @override
-  String get dailyReview => 'æ¯Žæ—¥ã®å¾©ç¿’';
+  String get dailyReview => '毎日の復習';
 
   @override
-  String get upcomingForecast => 'ä»Šå¾Œã®äºˆå®š';
+  String get upcomingForecast => '今後の予定';
 
   @override
-  String get laterToday => 'ä»Šæ—¥ã®å¾ŒåŠ';
+  String get laterToday => '今日の後半';
 
   @override
-  String get tomorrow => 'æ˜Žæ—¥';
+  String get tomorrow => '明日';
 
   @override
-  String get next7Days => 'æ¬¡ã®7æ—¥é–“';
+  String get next7Days => '次の7日間';
 
   @override
-  String get theScholarWay => 'å­¦è€…ã®é“';
+  String get theScholarWay => '学者の道';
 
   @override
-  String get beginJourney => 'å§‹ã‚ã‚‹';
+  String get beginJourney => '始める';
 
   @override
-  String get settingsTitle => 'è¨­å®š';
+  String get settingsTitle => '設定';
 
   @override
-  String get darkMode => 'ãƒ€ãƒ¼ã‚¯ãƒ¢ãƒ¼ãƒ‰';
+  String get darkMode => 'ダークモード';
 
   @override
-  String get darkModeDesc => 'ç›®ã«å„ªã—ã„';
+  String get darkModeDesc => '目に優しい';
 
   @override
-  String get voiceSpeed => 'éŸ³å£°ã®é€Ÿåº¦';
+  String get voiceSpeed => '音声の速度';
 
   @override
-  String get artAndIntellect => 'èŠ¸è¡“ã¨çŸ¥æ€§';
+  String get artAndIntellect => '芸術と知性';
 
   @override
-  String get theDigitalScholar => 'ãƒ‡ã‚¸ã‚¿ãƒ«å­¦è€…';
+  String get theDigitalScholar => 'デジタル学者';
 
   @override
-  String get refineBrushVoice => 'AIã§ç­†ã¨å£°ã‚’ç£¨ãã€‚';
+  String get refineBrushVoice => 'AIで筆と声を磨く。';
 
   @override
-  String get liveVoiceCall => 'ãƒ©ã‚¤ãƒ–éŸ³å£°é€šè©±';
+  String get liveVoiceCall => 'ライブ音声通話';
 
   @override
-  String get immersiveRoleplay => 'æ²¡å…¥åž‹ãƒ­ãƒ¼ãƒ«ãƒ—ãƒ¬ã‚¤';
+  String get immersiveRoleplay => '没入型ロールプレイ';
 
   @override
-  String get readingRoom => 'èª­æ›¸å®¤';
+  String get readingRoom => '読書室';
 
   @override
-  String get shadowingStudio => 'ã‚·ãƒ£ãƒ‰ãƒ¼ã‚¤ãƒ³ã‚°';
+  String get shadowingStudio => 'シャドーイング';
 
   @override
-  String get errorPrefix => 'ã‚¨ãƒ©ãƒ¼: ';
+  String get errorPrefix => 'エラー: ';
 
   @override
-  String get initializingLibrary => 'åˆæœŸåŒ–ä¸­...';
+  String get initializingLibrary => '初期化中...';
 
   @override
-  String get unlockCharactersToQuiz =>
-      'ã‚¯ã‚¤ã‚ºã®ãŸã‚ã«4æ–‡å­—ãƒ­ãƒƒã‚¯è§£é™¤ï¼';
+  String get unlockCharactersToQuiz => 'クイズのために4文字ロック解除！';
 
   @override
-  String get practiceQuiz => 'ã‚¯ã‚¤ã‚º';
+  String get practiceQuiz => 'クイズ';
 
   @override
-  String get curriculumPaths => 'å­¦ç¿’çµŒè·¯';
+  String get curriculumPaths => '学習経路';
 
   @override
-  String get noDecksFound => 'ãƒ‡ãƒƒã‚­ãŒã‚ã‚Šã¾ã›ã‚“ã€‚';
+  String get noDecksFound => 'デッキがありません。';
 
   @override
-  String get addCardsFirst => 'ã‚«ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ï¼';
+  String get addCardsFirst => 'カードを追加してください！';
 
   @override
-  String get aiDraftingPath => 'AIãŒçµŒè·¯ã‚’æº–å‚™ä¸­...';
+  String get aiDraftingPath => 'AIが経路を準備中...';
 
   @override
-  String get pathReady => 'çµŒè·¯ã®æº–å‚™ãŒã§ãã¾ã—ãŸï¼';
+  String get pathReady => '経路の準備ができました！';
 
   @override
-  String get errorGeneratingPath => 'ã‚¨ãƒ©ãƒ¼';
+  String get errorGeneratingPath => 'エラー';
 
   @override
-  String get brushingCurriculum => 'çµŒè·¯ã‚’ä½œæˆä¸­...';
+  String get brushingCurriculum => '経路を作成中...';
 
   @override
-  String get warmUp => 'ã‚¦ã‚©ãƒ¼ãƒ ã‚¢ãƒƒãƒ—';
+  String get warmUp => 'ウォームアップ';
 
   @override
-  String get lessonComplete => 'ãƒ¬ãƒƒã‚¹ãƒ³å®Œäº†ï¼ +10ãƒã‚¤ãƒ³ãƒˆ';
+  String get lessonComplete => 'レッスン完了！ +10ポイント';
 
   @override
-  String get step1Origin => 'ã‚¹ãƒ†ãƒƒãƒ—1ï¼šèµ·æº';
+  String get step1Origin => 'ステップ1：起源';
 
   @override
-  String get traceRadical => 'éƒ¨é¦–ã‚’ãªãžã‚‹';
+  String get traceRadical => '部首をなぞる';
 
   @override
-  String get step2Forge => 'ã‚¹ãƒ†ãƒƒãƒ—2ï¼šé›é€ ';
+  String get step2Forge => 'ステップ2：鍛造';
 
   @override
-  String get chooseEssence => 'æœ¬è³ªã‚’é¸ã¶';
+  String get chooseEssence => '本質を選ぶ';
 
   @override
-  String get wrongEssence => 'é–“é•ã„ï¼ã‚‚ã†ä¸€åº¦ã€‚';
+  String get wrongEssence => '間違い！もう一度。';
 
   @override
-  String get step3Hunt => 'ã‚¹ãƒ†ãƒƒãƒ—3ï¼šç‹©ã‚Š';
+  String get step3Hunt => 'ステップ3：狩り';
 
   @override
-  String get findCharacters => 'æ–‡å­—ã‚’æŽ¢ã™';
+  String get findCharacters => '文字を探す';
 
   @override
-  String get notThatOne => 'ãã‚Œã˜ã‚ƒãªã„ï¼';
+  String get notThatOne => 'それじゃない！';
 
   @override
-  String get successfullyInstalled => 'ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æˆåŠŸ:';
+  String get successfullyInstalled => 'インストール成功:';
 
   @override
-  String get failedToDownload => 'ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å¤±æ•—ã€‚';
+  String get failedToDownload => 'ダウンロード失敗。';
 
   @override
-  String get rescindTitle => 'å–ã‚Šæ¶ˆã—ã¾ã™ã‹ï¼Ÿ';
+  String get rescindTitle => '取り消しますか？';
 
   @override
-  String get removeCharactersWarning =>
-      'ã“ã‚Œã‚‰ã®æ–‡å­—ã‚’å‰Šé™¤ã—ã¾ã™ã€‚';
+  String get removeCharactersWarning => 'これらの文字を削除します。';
 
   @override
   String get cancel => 'Cancelar';
 
   @override
-  String get uninstall => 'ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«';
+  String get uninstall => 'アンインストール';
 
   @override
-  String get removedLibrary => 'å‰Šé™¤ã—ã¾ã—ãŸ:';
+  String get removedLibrary => '削除しました:';
 
   @override
-  String get tomeLibrary => 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒª';
+  String get tomeLibrary => 'ライブラリ';
 
   @override
-  String get libraryError => 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚¨ãƒ©ãƒ¼';
+  String get libraryError => 'ライブラリエラー';
 
   @override
-  String get installTome => 'ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«';
+  String get installTome => 'インストール';
 
   @override
-  String get unitIntro => 'ãƒ¦ãƒ‹ãƒƒãƒˆç´¹ä»‹';
+  String get unitIntro => 'ユニット紹介';
 
   @override
-  String get constellationCluster => 'æ˜Ÿåº§ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼';
+  String get constellationCluster => '星座クラスター';
 
   @override
   String get ok => 'Aceptar';
 
   @override
-  String get divingInto => 'æ·±ãæ½œã‚‹...';
+  String get divingInto => '深く潜る...';
 
   @override
-  String get keyRadicals => 'ä¸»è¦ãªéƒ¨é¦–';
+  String get keyRadicals => '主要な部首';
 
   @override
-  String get noRadicalData => 'ãƒ‡ãƒ¼ã‚¿ãªã—ã€‚';
+  String get noRadicalData => 'データなし。';
 
   @override
-  String get discovery => 'ç™ºè¦‹';
+  String get discovery => '発見';
 
   @override
-  String get startLearning => 'å­¦ç¿’ã‚’é–‹å§‹';
+  String get startLearning => '学習を開始';
 
   @override
-  String get selectPersona => 'ãƒšãƒ«ã‚½ãƒŠã‚’é¸æŠž';
+  String get selectPersona => 'ペルソナを選択';
 
   @override
-  String get customPersona => 'ã‚«ã‚¹ã‚¿ãƒ ãƒšãƒ«ã‚½ãƒŠ';
+  String get customPersona => 'カスタムペルソナ';
 
   @override
-  String get geminiLiveCall => 'ãƒ©ã‚¤ãƒ–é€šè©±';
+  String get geminiLiveCall => 'ライブ通話';
 
   @override
-  String get returnToMenu => 'æˆ»ã‚‹';
+  String get returnToMenu => '戻る';
 
   @override
   String get strokeAnalysis => 'Stroke Analysis';
@@ -272,7 +270,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get uninstallButton => 'UNINSTALL';
 
   @override
-  String get gradedAiStories => 'AIã®ç‰©èªž';
+  String get gradedAiStories => 'AIの物語';
 
   @override
   String get calligraphy => 'Calligraphy';
@@ -320,6 +318,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get displayAndContent => 'Display And Content';
 
   @override
+  String get useEnglishDefinitions => '英語の定義を使用する';
+
+  @override
+  String get useEnglishDefinitionsDesc => '英語の定義は一般に、より正確で詳しい内容です';
+
+  @override
   String get animationSpeed => 'Animation Speed';
 
   @override
@@ -350,554 +354,531 @@ class AppLocalizationsJa extends AppLocalizations {
   String get appLanguage => 'App Language';
 
   @override
-  String get howDidYouDo => 'å­¦ç¿’çµæžœã¯ã„ã‹ãŒã§ã—ãŸã‹ï¼Ÿ';
+  String get howDidYouDo => '学習結果はいかがでしたか？';
 
   @override
-  String get missedItEntirely => 'å…¨ãåˆ†ã‹ã‚‰ãªã‹ã£ãŸ';
+  String get missedItEntirely => '全く分からなかった';
 
   @override
-  String get gotItButStruggled => 'åˆ†ã‹ã£ãŸãŒã€è‹¦æˆ¦ã—ãŸ';
+  String get gotItButStruggled => '分かったが、苦戦した';
 
   @override
-  String get gotItClearly => 'ã¯ã£ãã‚Šç†è§£ã—ãŸ';
+  String get gotItClearly => 'はっきり理解した';
 
   @override
-  String get perfectAndImmediate => 'å®Œç’§ã«å³ç­”';
+  String get perfectAndImmediate => '完璧に即答';
 
   @override
-  String get again => 'ã‚‚ã†ä¸€åº¦';
+  String get again => 'もう一度';
 
   @override
-  String get hard => 'é›£ã—ã„';
+  String get hard => '難しい';
 
   @override
-  String get good => 'æ™®é€š';
+  String get good => '普通';
 
   @override
-  String get easy => 'ç°¡å˜';
+  String get easy => '簡単';
 
   @override
-  String get tapToReveal => 'ã‚¿ãƒƒãƒ—ã—ã¦è¡¨ç¤º';
+  String get tapToReveal => 'タップして表示';
 
   @override
-  String get howWellDidYouRemember => 'è¨˜æ†¶åº¦ã¯ã„ã‹ãŒã§ã—ãŸã‹ï¼Ÿ';
+  String get howWellDidYouRemember => '記憶度はいかがでしたか？';
 
   @override
-  String get completelyForgot => 'å®Œå…¨ã«å¿˜ã‚ŒãŸ';
+  String get completelyForgot => '完全に忘れた';
 
   @override
-  String get gotItWithDifficulty => 'ã‹ã‚ã†ã˜ã¦æ€ã„å‡ºã—ãŸ';
+  String get gotItWithDifficulty => 'かろうじて思い出した';
 
   @override
-  String get recalledCorrectly => 'æ­£ã—ãæ€ã„å‡ºã—ãŸ';
+  String get recalledCorrectly => '正しく思い出した';
 
   @override
-  String get perfectRecall => 'å®Œç’§ã«è¨˜æ†¶';
+  String get perfectRecall => '完璧に記憶';
 
   @override
-  String get practiceWriting => 'ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ç·´ç¿’';
+  String get practiceWriting => 'ライティング練習';
 
   @override
-  String get hideScratchpad => 'ãƒ¡ãƒ¢å¸³ã‚’éš ã™';
+  String get hideScratchpad => 'メモ帳を隠す';
 
   @override
-  String get whatCharacterMeans => 'æ–‡å­—ã®æ„å‘³:';
+  String get whatCharacterMeans => '文字の意味:';
 
   @override
-  String get tapCardToReveal => 'ã‚«ãƒ¼ãƒ‰ã‚’ã‚¿ãƒƒãƒ—ã—ã¦è¡¨ç¤º';
+  String get tapCardToReveal => 'カードをタップして表示';
 
   @override
-  String get ratePronunciationConfidence => 'ç™ºéŸ³ã®è‡ªä¿¡åº¦ã‚’è©•ä¾¡';
+  String get ratePronunciationConfidence => '発音の自信度を評価';
 
   @override
-  String get botchedIt => 'å…¨ããƒ€ãƒ¡ã ã£ãŸ';
+  String get botchedIt => '全くダメだった';
 
   @override
-  String get struggledWithTones => 'å£°èª¿ã«è‹¦æˆ¦ã—ãŸ';
+  String get struggledWithTones => '声調に苦戦した';
 
   @override
-  String get acceptable => 'è¨±å®¹ç¯„å›²';
+  String get acceptable => '許容範囲';
 
   @override
-  String get perfectlyNatural => 'å®Œç’§ã«è‡ªç„¶';
+  String get perfectlyNatural => '完璧に自然';
 
   @override
-  String get sessionComplete => 'ã‚»ãƒƒã‚·ãƒ§ãƒ³å®Œäº†ï¼';
+  String get sessionComplete => 'セッション完了！';
 
   @override
-  String get accuracy => 'æ­£ç­”çŽ‡';
+  String get accuracy => '正答率';
 
   @override
-  String get reviewed => 'å¾©ç¿’æ¸ˆã¿';
+  String get reviewed => '復習済み';
 
   @override
-  String get correct => 'Â¡Correcto!';
+  String get correct => '¡Correcto!';
 
   @override
-  String get backToLibrary => 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«æˆ»ã‚‹';
+  String get backToLibrary => 'ライブラリに戻る';
 
   @override
-  String get revealAnswer => 'ç­”ãˆã‚’è¡¨ç¤º';
+  String get revealAnswer => '答えを表示';
 
   @override
-  String get aiHubTitle => 'AIãƒãƒ–';
+  String get aiHubTitle => 'AIハブ';
 
   @override
-  String get textChat => 'ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ£ãƒƒãƒˆ';
+  String get textChat => 'テキストチャット';
 
   @override
-  String get scholarlyPersonas => 'å­¦è€…ãƒšãƒ«ã‚½ãƒŠ';
+  String get scholarlyPersonas => '学者ペルソナ';
 
   @override
-  String get shadowing => 'ã‚·ãƒ£ãƒ‰ãƒ¼ã‚¤ãƒ³ã‚°';
+  String get shadowing => 'シャドーイング';
 
   @override
-  String get liveTranslation => 'ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ç¿»è¨³';
+  String get liveTranslation => 'リアルタイム翻訳';
 
   @override
-  String get scholarsLibrary => 'å­¦è€…ã®æ›¸åº«';
+  String get scholarsLibrary => '学者の書庫';
 
   @override
-  String get generate => 'ç”Ÿæˆ';
+  String get generate => '生成';
 
   @override
-  String get searchPinyinHanziEnglish =>
-      'ãƒ”ãƒ³ã‚¤ãƒ³ã€æ¼¢å­—ã€è‹±èªžã§æ¤œç´¢...';
+  String get searchPinyinHanziEnglish => 'ピンイン、漢字、英語で検索...';
 
   @override
-  String get liveTranslate => 'ãƒ©ã‚¤ãƒ–ç¿»è¨³';
+  String get liveTranslate => 'ライブ翻訳';
 
   @override
-  String get travelInterpreter => 'æ—…è¡Œé€šè¨³';
+  String get travelInterpreter => '旅行通訳';
 
   @override
-  String get realTimeSplitScreen =>
-      'ãƒã‚¤ãƒ†ã‚£ãƒ–ã‚¹ãƒ”ãƒ¼ã‚«ãƒ¼ã¨ã®ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ åˆ†å‰²ç”»é¢ä¼šè©±ã€‚çž¬æ™‚ã«è¨€è‘‰ã®å£ã‚’æ‰“ã¡ç ´ã‚Šã¾ã™ã€‚';
+  String get realTimeSplitScreen => 'ネイティブスピーカーとのリアルタイム分割画面会話。瞬時に言葉の壁を打ち破ります。';
 
   @override
-  String get whisperEarpiece => 'ã‚¦ã‚£ã‚¹ãƒ‘ãƒ¼ã‚¤ãƒ¤ãƒ›ãƒ³';
+  String get whisperEarpiece => 'ウィスパーイヤホン';
 
   @override
-  String get listenToChineseAudio =>
-      'ä¸­å›½èªžã®éŸ³å£°ã‚’èžãã€ç”»é¢ä¸Šã§ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ã®è‹±èªžå­—å¹•ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚';
+  String get listenToChineseAudio => '中国語の音声を聞き、画面上でリアルタイムの英語字幕を表示します。';
 
   @override
-  String get dashboardTitle => 'ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰';
+  String get dashboardTitle => 'ダッシュボード';
 
   @override
-  String get yourMindIsClear => 'é ­ã¯ã™ã£ãã‚Šã—ã¦ã„ã¾ã™ã€‚';
+  String get yourMindIsClear => '頭はすっきりしています。';
 
   @override
-  String get noReviewsDueToday => 'ä»Šæ—¥ã®å¾©ç¿’ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚';
+  String get noReviewsDueToday => '今日の復習はありません。';
 
   @override
-  String get done => 'å®Œäº†';
+  String get done => '完了';
 
   @override
-  String get hskLevel1 => 'HSK 1ç´š';
+  String get hskLevel1 => 'HSK 1級';
 
   @override
-  String get hskLevel2 => 'HSK 2ç´š';
+  String get hskLevel2 => 'HSK 2級';
 
   @override
-  String get hskLevel3 => 'HSK 3ç´š';
+  String get hskLevel3 => 'HSK 3級';
 
   @override
-  String get hskLevel4 => 'HSK 4ç´š';
+  String get hskLevel4 => 'HSK 4級';
 
   @override
-  String get hskLevel5 => 'HSK 5ç´š';
+  String get hskLevel5 => 'HSK 5級';
 
   @override
-  String get hskLevel6 => 'HSK 6ç´š';
+  String get hskLevel6 => 'HSK 6級';
 
   @override
-  String get generalVocabulary => 'ä¸€èˆ¬èªžå½™';
+  String get generalVocabulary => '一般語彙';
 
   @override
-  String get cardsRequireAttention =>
-      'æžšã®ã‚«ãƒ¼ãƒ‰ã«æ³¨æ„ãŒå¿…è¦ã§ã™ã€‚';
+  String get cardsRequireAttention => '枚のカードに注意が必要です。';
 
   @override
-  String get begin => 'é–‹å§‹';
+  String get begin => '開始';
 
   @override
-  String get poweredByAi =>
-      'æœ€å…ˆç«¯AIã‚’æ­è¼‰ã€‚ã©ã‚“ãªå ´é¢ã§ã‚‚ã‚·ãƒ¼ãƒ ãƒ¬ã‚¹ãªãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ç¿»è¨³ã‚’ã€‚';
+  String get poweredByAi => '最先端AIを搭載。どんな場面でもシームレスなリアルタイム翻訳を。';
 
   @override
-  String get downloadingModel => 'ãƒ¢ãƒ‡ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­...';
+  String get downloadingModel => 'モデルをダウンロード中...';
 
   @override
-  String get soon => 'ã¾ã‚‚ãªã';
+  String get soon => 'まもなく';
 
   @override
-  String get installed => 'ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ¸ˆã¿';
+  String get installed => 'インストール済み';
 
   @override
-  String get premium => 'ãƒ—ãƒ¬ãƒŸã‚¢ãƒ ';
+  String get premium => 'プレミアム';
 
   @override
   String get coreModule => 'CORE MODULE';
 
   @override
-  String get step6Context => 'ã‚¹ãƒ†ãƒƒãƒ—6: æ–‡è„ˆ';
+  String get step6Context => 'ステップ6: 文脈';
 
   @override
-  String get tapBuildingBlocksTo =>
-      'æ§‹æˆè¦ç´ ã‚’ã‚¿ãƒƒãƒ—ã—ã¦ã€ãã®èµ·æºã‚’æŽ¢ã‚Šã¾ã—ã‚‡ã†ã€‚';
+  String get tapBuildingBlocksTo => '構成要素をタップして、その起源を探りましょう。';
 
   @override
-  String get initiateRadicalSequence => 'éƒ¨é¦–ã‚·ãƒ¼ã‚¯ã‚¨ãƒ³ã‚¹ã‚’é–‹å§‹';
+  String get initiateRadicalSequence => '部首シークエンスを開始';
 
   @override
-  String get holdToTalk => 'é•·æŠ¼ã—ã—ã¦è©±ã™';
+  String get holdToTalk => '長押しして話す';
 
   @override
-  String get customScenario => 'ã‚«ã‚¹ã‚¿ãƒ ã‚·ãƒŠãƒªã‚ª';
+  String get customScenario => 'カスタムシナリオ';
 
   @override
-  String get voiceCall => 'éŸ³å£°é€šè©±';
+  String get voiceCall => '音声通話';
 
   @override
-  String get pronunciation => 'PronunciaciÃ³n';
+  String get pronunciation => 'Pronunciación';
 
   @override
   String get selectAScenarioTo =>
-      'ã‚·ãƒŠãƒªã‚ªã‚’é¸æŠžã—ã¦ã€ä¸­å›½èªžã®ä¼šè©±ã‚’ç·´ç¿’ã—ã¾ã—ã‚‡ã†ã€‚ScholarãŒå£°èª¿ã¨æ˜Žçž­ã•ã‚’è©•ä¾¡ã—ã¾ã™ã€‚';
+      'シナリオを選択して、中国語の会話を練習しましょう。Scholarが声調と明瞭さを評価します。';
 
   @override
-  String get create => 'ä½œæˆ';
+  String get create => '作成';
 
   @override
-  String get createYourScenario => 'ã‚·ãƒŠãƒªã‚ªã‚’ä½œæˆ';
+  String get createYourScenario => 'シナリオを作成';
 
   @override
-  String get difficulty => 'é›£æ˜“åº¦';
+  String get difficulty => '難易度';
 
   @override
-  String get scholarsVerdict => 'SCHOLARã®åˆ¤å®š';
+  String get scholarsVerdict => 'SCHOLARの判定';
 
   @override
-  String get completeReview => 'ãƒ¬ãƒ“ãƒ¥ãƒ¼ã‚’å®Œäº†';
+  String get completeReview => 'レビューを完了';
 
   @override
-  String get conversationReview => 'ä¼šè©±ãƒ¬ãƒ“ãƒ¥ãƒ¼';
+  String get conversationReview => '会話レビュー';
 
   @override
-  String get linguisticAnalysis => 'è¨€èªžåˆ†æž';
+  String get linguisticAnalysis => '言語分析';
 
   @override
-  String get examplesInHsk1 => 'HSK 1ã®ä¾‹';
+  String get examplesInHsk1 => 'HSK 1の例';
 
   @override
-  String get characterReference => 'æ–‡å­—ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹';
+  String get characterReference => '文字リファレンス';
 
   @override
-  String get askTutor => 'ãƒãƒ¥ãƒ¼ã‚¿ãƒ¼ã«è³ªå•';
+  String get askTutor => 'チューターに質問';
 
   @override
-  String get addToStudyDeck => 'å­¦ç¿’ãƒ‡ãƒƒã‚­ã«è¿½åŠ ';
+  String get addToStudyDeck => '学習デッキに追加';
 
   @override
-  String get startPractice => 'ç·´ç¿’ã‚’é–‹å§‹';
+  String get startPractice => '練習を開始';
 
   @override
-  String get noOtherHsk1 =>
-      'ã“ã®éƒ¨é¦–ã‚’ä½¿ç”¨ã™ã‚‹ä»–ã®HSK 1æ–‡å­—ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚';
+  String get noOtherHsk1 => 'この部首を使用する他のHSK 1文字はありません。';
 
   @override
   String get couldNotLoadAi =>
-      'AIã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚(ãƒ¬ãƒ¼ãƒˆåˆ¶é™ã¾ãŸã¯ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¨ãƒ©ãƒ¼)\nä¸‹ã®æ›´æ–°ãƒœã‚¿ãƒ³ã‚’ã‚¿ãƒƒãƒ—ã—ã¦ã€å¾Œã§ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚';
+      'AIコンテキストを読み込めませんでした。(レート制限またはネットワークエラー)\n下の更新ボタンをタップして、後でもう一度お試しください。';
 
   @override
-  String get noAvailableCardsFound =>
-      'åˆ©ç”¨å¯èƒ½ãªã‚«ãƒ¼ãƒ‰ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get noAvailableCardsFound => '利用可能なカードが見つかりません。';
 
   @override
-  String get addCards => 'ã‚«ãƒ¼ãƒ‰ã‚’è¿½åŠ ';
+  String get addCards => 'カードを追加';
 
   @override
-  String get removeCard => 'ã‚«ãƒ¼ãƒ‰ã‚’å‰Šé™¤';
+  String get removeCard => 'カードを削除';
 
   @override
-  String get remove => 'å‰Šé™¤';
+  String get remove => '削除';
 
   @override
-  String get review => 'å¾©ç¿’';
+  String get review => '復習';
 
   @override
-  String get story => 'ç‰©èªž';
+  String get story => '物語';
 
   @override
-  String get thisDeckIsEmpty => 'ã“ã®ãƒ‡ãƒƒã‚­ã¯ç©ºã§ã™ã€‚';
+  String get thisDeckIsEmpty => 'このデッキは空です。';
 
   @override
-  String get tapTheAddCards => 'ã‚«ãƒ¼ãƒ‰è¿½åŠ ãƒœã‚¿ãƒ³ã‚’ã‚¿ãƒƒãƒ—ï¼';
+  String get tapTheAddCards => 'カード追加ボタンをタップ！';
 
   @override
-  String get noCardsFound => 'ã‚«ãƒ¼ãƒ‰ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get noCardsFound => 'カードが見つかりません。';
 
   @override
-  String get addCardsToSee =>
-      'çµ±è¨ˆã‚’è¦‹ã‚‹ã«ã¯ã‚«ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚';
+  String get addCardsToSee => '統計を見るにはカードを追加してください。';
 
   @override
-  String get aiGenerated => 'AIç”Ÿæˆ';
+  String get aiGenerated => 'AI生成';
 
   @override
-  String get allCardsCaughtUp =>
-      'ã™ã¹ã¦ã®ã‚«ãƒ¼ãƒ‰ã‚’å¾©ç¿’ã—ã¾ã—ãŸï¼ç´ æ™´ã‚‰ã—ã„ã€‚';
+  String get allCardsCaughtUp => 'すべてのカードを復習しました！素晴らしい。';
 
   @override
-  String get latestDiscoveries => 'æœ€æ–°ã®ç™ºè¦‹';
+  String get latestDiscoveries => '最新の発見';
 
   @override
-  String get noCharactersInLexicon =>
-      'ã¾ã è¾žæ›¸ã«æ–‡å­—ãŒã‚ã‚Šã¾ã›ã‚“ã€‚';
+  String get noCharactersInLexicon => 'まだ辞書に文字がありません。';
 
   @override
-  String get yourBookshelf => 'ã‚ãªãŸã®æœ¬æ£š';
+  String get yourBookshelf => 'あなたの本棚';
 
   @override
-  String get text_1782026184579 => 'å­—';
+  String get text_1782026184579 => '字';
 
   @override
-  String get searchYourDictionary => 'è¾žæ›¸ã‚’æ¤œç´¢...';
+  String get searchYourDictionary => '辞書を検索...';
 
   @override
-  String get saveCard => 'ã‚«ãƒ¼ãƒ‰ã‚’ä¿å­˜';
+  String get saveCard => 'カードを保存';
 
   @override
-  String get noCharactersFound => 'æ–‡å­—ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get noCharactersFound => '文字が見つかりません。';
 
   @override
-  String get radicalsIndex => 'éƒ¨é¦–ç´¢å¼•';
+  String get radicalsIndex => '部首索引';
 
   @override
   String get masteringRadicalsIsThe =>
-      'éƒ¨é¦–ã‚’ãƒžã‚¹ã‚¿ãƒ¼ã™ã‚‹ã“ã¨ã¯ã€ä½•åƒã‚‚ã®æ¼¢å­—ã‚’è§£ãæ”¾ã¤éµã§ã™ã€‚éƒ¨é¦–ã‚’é¸æŠžã—ã¦ã€ãã‚Œã‚’ä½¿ç”¨ã™ã‚‹ã™ã¹ã¦ã®æ–‡å­—ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚';
+      '部首をマスターすることは、何千もの漢字を解き放つ鍵です。部首を選択して、それを使用するすべての文字を表示します。';
 
   @override
-  String get noRadicalsFound => 'éƒ¨é¦–ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get noRadicalsFound => '部首が見つかりません。';
 
   @override
-  String get yourDrawing => 'ã‚ãªãŸã®æç”»';
+  String get yourDrawing => 'あなたの描画';
 
   @override
-  String get reference => 'å‚ç…§';
+  String get reference => '参照';
 
   @override
-  String get rateYourRecall => 'è¨˜æ†¶åº¦ã‚’è©•ä¾¡';
+  String get rateYourRecall => '記憶度を評価';
 
   @override
-  String get contactUs => 'ãŠå•ã„åˆã‚ã›';
+  String get contactUs => 'お問い合わせ';
 
   @override
-  String get reportBugsOrRequest =>
-      'ãƒã‚°ã‚’å ±å‘Šã™ã‚‹ã‹ã€æ©Ÿèƒ½ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆ';
+  String get reportBugsOrRequest => 'バグを報告するか、機能をリクエスト';
 
   @override
-  String get allDataHasBeen =>
-      'ã™ã¹ã¦ã®ãƒ‡ãƒ¼ã‚¿ãŒæ¶ˆåŽ»ã•ã‚Œã¾ã—ãŸã€‚';
+  String get allDataHasBeen => 'すべてのデータが消去されました。';
 
   @override
   String get hanziMasterV100 => 'SinoSpark v1.0.0';
 
   @override
-  String get myProgress => 'ç§ã®é€²æ—';
+  String get myProgress => '私の進捗';
 
   @override
-  String get overview => 'æ¦‚è¦';
+  String get overview => '概要';
 
   @override
-  String get aiStory => 'AIã‚¹ãƒˆãƒ¼ãƒªãƒ¼';
+  String get aiStory => 'AIストーリー';
 
   @override
-  String get usingYourDecksVocabulary => 'ãƒ‡ãƒƒã‚­ã®èªžå½™ã‚’ä½¿ç”¨ä¸­';
+  String get usingYourDecksVocabulary => 'デッキの語彙を使用中';
 
   @override
-  String get tryAgain => 'ã‚‚ã†ä¸€åº¦';
+  String get tryAgain => 'もう一度';
 
   @override
-  String get translate => 'ç¿»è¨³';
+  String get translate => '翻訳';
 
   @override
-  String get pinyin => 'ãƒ”ãƒ³ã‚¤ãƒ³';
+  String get pinyin => 'ピンイン';
 
   @override
-  String get fullTranslation => 'å®Œå…¨ãªç¿»è¨³';
+  String get fullTranslation => '完全な翻訳';
 
   @override
-  String get geminiFlashIsStructuring =>
-      'Gemini FlashãŒã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚’æ§‹ç¯‰ã—ã¦ã„ã¾ã™...';
+  String get geminiFlashIsStructuring => 'Gemini Flashがストーリーを構築しています...';
 
   @override
-  String get aiDeckGenerator => 'AIãƒ‡ãƒƒã‚­ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼';
+  String get aiDeckGenerator => 'AIデッキジェネレーター';
 
   @override
-  String get whatDoYouWant => 'ä½•ã‚’å­¦ã³ãŸã„ã§ã™ã‹ï¼Ÿ';
+  String get whatDoYouWant => '何を学びたいですか？';
 
   @override
-  String get targetDifficulty => 'ç›®æ¨™é›£æ˜“åº¦';
+  String get targetDifficulty => '目標難易度';
 
   @override
-  String get focusArea => 'é‡ç‚¹åˆ†é‡Ž';
+  String get focusArea => '重点分野';
 
   @override
-  String get specificContextOrTone =>
-      'ç‰¹å®šã®æ–‡è„ˆã‚„ãƒˆãƒ¼ãƒ³ï¼ˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼‰';
+  String get specificContextOrTone => '特定の文脈やトーン（オプション）';
 
   @override
-  String get numberOfCards => 'ã‚«ãƒ¼ãƒ‰ã®æžšæ•°';
+  String get numberOfCards => 'カードの枚数';
 
   @override
-  String get generateDeck => 'ãƒ‡ãƒƒã‚­ã‚’ç”Ÿæˆ';
+  String get generateDeck => 'デッキを生成';
 
   @override
-  String get aiGrammarExplanation => 'AIæ–‡æ³•èª¬æ˜Ž';
+  String get aiGrammarExplanation => 'AI文法説明';
 
   @override
-  String get scholarsDesk => 'Scholarã®æœº';
+  String get scholarsDesk => 'Scholarの机';
 
   @override
-  String get chooseADeck => 'ãƒ‡ãƒƒã‚­ã‚’é¸æŠž';
+  String get chooseADeck => 'デッキを選択';
 
   @override
-  String get whereWouldYouLike =>
-      'ã“ã®æ–‡å­—ã‚’ã©ã“ã«ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ';
+  String get whereWouldYouLike => 'この文字をどこに保存しますか？';
 
   @override
-  String get addToDefaultStudy => 'ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å­¦ç¿’ãƒ‡ãƒƒã‚­ã«è¿½åŠ ';
+  String get addToDefaultStudy => 'デフォルトの学習デッキに追加';
 
   @override
-  String get ifOffItsOnly =>
-      'ã‚ªãƒ•ã®å ´åˆã€ã‚°ãƒ­ãƒ¼ãƒãƒ«è¾žæ›¸ã«ã®ã¿ä¿å­˜ã•ã‚Œã¾ã™';
+  String get ifOffItsOnly => 'オフの場合、グローバル辞書にのみ保存されます';
 
   @override
-  String get saveToLibrary => 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä¿å­˜';
+  String get saveToLibrary => 'ライブラリに保存';
 
   @override
-  String get pleaseEnterValidChinese =>
-      'æœ‰åŠ¹ãªä¸­å›½èªžã®æ–‡å­—ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„';
+  String get pleaseEnterValidChinese => '有効な中国語の文字を入力してください';
 
   @override
-  String get reviewAiCard => 'AIã‚«ãƒ¼ãƒ‰ã‚’ãƒ¬ãƒ“ãƒ¥ãƒ¼';
+  String get reviewAiCard => 'AIカードをレビュー';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      'ä»¥ä¸‹ã®AIã®å‡ºåŠ›ã‚’ã‚‚ã†ä¸€åº¦ç¢ºèªã—ã¦ãã ã•ã„ã€‚æ°¸ä¹…ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä¿å­˜ã™ã‚‹å‰ã«ã€ãƒ”ãƒ³ã‚¤ãƒ³ã‚„å®šç¾©ã‚’è‡ªç”±ã«èª¿æ•´ã—ã¦ãã ã•ã„ã€‚';
+      '以下のAIの出力をもう一度確認してください。永久ライブラリに保存する前に、ピンインや定義を自由に調整してください。';
 
   @override
-  String get alreadyInYourLibrary =>
-      'ã™ã§ã«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ã‚ã‚Šã¾ã™ï¼';
+  String get alreadyInYourLibrary => 'すでにライブラリにあります！';
 
   @override
-  String get meaningInContext => 'æ–‡è„ˆã«ãŠã‘ã‚‹æ„å‘³';
+  String get meaningInContext => '文脈における意味';
 
   @override
-  String get explainGrammar => 'æ–‡æ³•ã‚’èª¬æ˜Ž';
+  String get explainGrammar => '文法を説明';
 
   @override
-  String get addToLibrary => 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è¿½åŠ ';
+  String get addToLibrary => 'ライブラリに追加';
 
   @override
   String get masterYourMandarinPronunciation =>
-      'ãƒã‚¤ãƒ†ã‚£ãƒ–ã®ä¼šè©±ã‚’ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ã§æ¨¡å€£ã—ã¦ã€ä¸­å›½èªžã®ç™ºéŸ³ã‚’ãƒžã‚¹ã‚¿ãƒ¼ã—ã¾ã—ã‚‡ã†ã€‚';
+      'ネイティブの会話をリアルタイムで模倣して、中国語の発音をマスターしましょう。';
 
   @override
-  String get startSession => 'ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’é–‹å§‹';
+  String get startSession => 'セッションを開始';
 
   @override
-  String get sessionHistory => 'ã‚»ãƒƒã‚·ãƒ§ãƒ³å±¥æ­´';
+  String get sessionHistory => 'セッション履歴';
 
   @override
-  String get noSavedSessions =>
-      'ä¿å­˜ã•ã‚ŒãŸã‚»ãƒƒã‚·ãƒ§ãƒ³ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚';
+  String get noSavedSessions => '保存されたセッションはありません。';
 
   @override
-  String get aiBreakdown => 'AIåˆ†æž';
+  String get aiBreakdown => 'AI分析';
 
   @override
-  String get sessionDetails => 'ã‚»ãƒƒã‚·ãƒ§ãƒ³è©³ç´°';
+  String get sessionDetails => 'セッション詳細';
 
   @override
-  String get partner => 'ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ (ä¸­æ–‡)';
+  String partner(Object lang) {
+    return 'パートナー ($lang)';
+  }
 
   @override
-  String get youEnglish => 'ã‚ãªãŸ (è‹±èªž)';
+  String get youEnglish => 'あなた (英語)';
 
   @override
-  String get noTranscriptToSave =>
-      'ä¿å­˜ã™ã‚‹æ–‡å­—èµ·ã“ã—ãŒã‚ã‚Šã¾ã›ã‚“ï¼';
+  String get noTranscriptToSave => '保存する文字起こしがありません！';
 
   @override
-  String get sessionSaved => 'ã‚»ãƒƒã‚·ãƒ§ãƒ³ãŒä¿å­˜ã•ã‚Œã¾ã—ãŸï¼';
+  String get sessionSaved => 'セッションが保存されました！';
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      'ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ åŒæ–¹å‘ç¿»è¨³ã€‚è‹±èªžã¾ãŸã¯ä¸­å›½èªžã‚’è©±ã™ã¨ã€ã‚ãªãŸã¨ç›¸æ‰‹ã®ãŸã‚ã«çž¬æ™‚ã«ç¿»è¨³ã•ã‚Œã¾ã™ã€‚';
+      'リアルタイム双方向翻訳。英語または中国語を話すと、あなたと相手のために瞬時に翻訳されます。';
 
   @override
-  String get text_1782026184665 => 'éŒ²éŸ³ä¸­';
+  String get text_1782026184665 => '録音中';
 
   @override
-  String get recording => 'éŒ²éŸ³ä¸­';
+  String get recording => '録音中';
 
   @override
-  String get yourSilentCompanionListen =>
-      'ã‚ãªãŸã®é™ã‹ãªç›¸æ£’ã€‚ä¸­å›½èªžã‚’èžãã¨ã€è‹±èªžã®ç¿»è¨³ãŒçž¬æ™‚ã«èžã“ãˆã¾ã™ã€‚';
+  String get yourSilentCompanionListen => 'あなたの静かな相棒。中国語を聞くと、英語の翻訳が瞬時に聞こえます。';
 
   @override
-  String get startListening => 'èžãå§‹ã‚ã‚‹';
+  String get startListening => '聞き始める';
 
   @override
-  String get skip => 'ã‚¹ã‚­ãƒƒãƒ—';
+  String get skip => 'スキップ';
 
   @override
-  String get independentStars => 'ç‹¬ç«‹ã—ãŸæ˜Ÿ';
+  String get independentStars => '独立した星';
 
   @override
-  String get notEveryCharacterHas =>
-      'ã™ã¹ã¦ã®æ–‡å­—ã«è¦ªéƒ¨é¦–ãŒã‚ã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚ä¸€éƒ¨ã¯ç‹¬ç«‹ã—ãŸè±¡å½¢æ–‡å­—ã§ã™ã€‚';
+  String get notEveryCharacterHas => 'すべての文字に親部首があるわけではありません。一部は独立した象形文字です。';
 
   @override
-  String get onTheMapWe =>
-      'ãƒžãƒƒãƒ—ä¸Šã§ã¯ã€ã“ã‚Œã‚‰ã®ç‹¬ç«‹ã—ãŸæ–‡å­—ã‚’æ˜Ÿåº§ï¼ˆâœ¨ï¼‰ã«ã‚°ãƒ«ãƒ¼ãƒ—åŒ–ã—ã¦ã„ã¾ã™ã€‚';
+  String get onTheMapWe => 'マップ上では、これらの独立した文字を星座（✨）にグループ化しています。';
 
   @override
-  String get iUnderstand => 'åˆ†ã‹ã‚Šã¾ã—ãŸ';
+  String get iUnderstand => '分かりました';
 
   @override
-  String get whatAreRadicals => 'éƒ¨é¦–ã¨ã¯ï¼Ÿ';
+  String get whatAreRadicals => '部首とは？';
 
   @override
   String get hanziAreBuiltFrom =>
-      'æ¼¢å­—ã¯éƒ¨é¦–ã¨å‘¼ã°ã‚Œã‚‹æ§‹æˆè¦ç´ ã‹ã‚‰ä½œã‚‰ã‚Œã¦ã„ã¾ã™ã€‚\n\nãã‚Œã‚‰ã¯æ–‡å­—ã«ãã®æ ¸å¿ƒçš„ãªæ„å‘³ã‚„ãƒ†ãƒ¼ãƒžã‚’ä¸Žãˆã¾ã™ã€‚';
+      '漢字は部首と呼ばれる構成要素から作られています。\n\nそれらは文字にその核心的な意味やテーマを与えます。';
 
   @override
   String get continueText => 'Continuar';
 
   @override
   String get hanziAreNotJust =>
-      'æ¼¢å­—ã¯å˜ãªã‚‹æ–‡å­—ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚ãã‚Œã‚‰ã¯æ™‚é–“ã«å‡çµã•ã‚ŒãŸçµµã§ã™ã€‚\n\nãã‚Œã‚‰ã‚’ãƒžã‚¹ã‚¿ãƒ¼ã™ã‚‹ã«ã¯ã€ãã®æµã‚Œã‚’ãŸã©ã‚‹ã“ã¨ã‚’å­¦ã°ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚';
+      '漢字は単なる文字ではありません。それらは時間に凍結された絵です。\n\nそれらをマスターするには、その流れをたどることを学ばなければなりません。';
 
   @override
-  String get iAmReady => 'æº–å‚™ãŒã§ãã¾ã—ãŸ';
+  String get iAmReady => '準備ができました';
 
   @override
-  String get youAreAScholar => 'ã‚ãªãŸã¯SCHOLARã§ã™';
+  String get youAreAScholar => 'あなたはSCHOLARです';
 
   @override
   String get theGalaxyMapAwaitsnmaster =>
-      'ã‚®ãƒ£ãƒ©ã‚¯ã‚·ãƒ¼ãƒžãƒƒãƒ—ãŒå¾…ã£ã¦ã„ã¾ã™ã€‚\nå¤ªé™½ï¼ˆéƒ¨é¦–ï¼‰ã‚’ãƒžã‚¹ã‚¿ãƒ¼ã—ã¦æƒ‘æ˜Ÿï¼ˆæ–‡å­—ï¼‰ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã—ã¾ã—ã‚‡ã†ã€‚';
+      'ギャラクシーマップが待っています。\n太陽（部首）をマスターして惑星（文字）をアンロックしましょう。';
 
   @override
-  String get enterTheScroll => 'å·»ç‰©ã«å…¥ã‚‹';
+  String get enterTheScroll => '巻物に入る';
 
   @override
-  String get openingTheOriginScroll =>
-      'èµ·æºã®å·»ç‰©ã‚’é–‹ã„ã¦ã„ã¾ã™...';
+  String get openingTheOriginScroll => '起源の巻物を開いています...';
 
   @override
   String get text_1782026184670 => '+';
@@ -906,206 +887,190 @@ class AppLocalizationsJa extends AppLocalizations {
   String get theScholarsEdition => 'Scholar\'s Edition';
 
   @override
-  String get weArePreparingThe =>
-      'Scholar\'s Editionã®ç™ºå£²æº–å‚™ã‚’é€²ã‚ã¦ã„ã¾ã™ã€‚';
+  String get weArePreparingThe => 'Scholar\'s Editionの発売準備を進めています。';
 
   @override
-  String get devBypassUnlockNow =>
-      'é–‹ç™ºè€…ãƒã‚¤ãƒ‘ã‚¹ï¼šä»Šã™ãã‚¢ãƒ³ãƒ­ãƒƒã‚¯';
+  String get devBypassUnlockNow => '開発者バイパス：今すぐアンロック';
 
   @override
-  String get restorePurchases => 'è³¼å…¥ã‚’å¾©å…ƒ';
+  String get restorePurchases => '購入を復元';
 
   @override
-  String get welcomeScholarTheScroll =>
-      'Scholaræ§˜ã€ã‚ˆã†ã“ãã€‚å·»ç‰©ã¯å®Œå…¨ã«é–‹ã‹ã‚Œã¦ã„ã¾ã™ã€‚';
+  String get welcomeScholarTheScroll => 'Scholar様、ようこそ。巻物は完全に開かれています。';
 
   @override
-  String get purchasesRestoredSuccessfully =>
-      'è³¼å…¥ãŒæ­£å¸¸ã«å¾©å…ƒã•ã‚Œã¾ã—ãŸã€‚';
+  String get purchasesRestoredSuccessfully => '購入が正常に復元されました。';
 
   @override
-  String get noPreviousPurchasesFound =>
-      'ã“ã®ã‚¢ã‚«ã‚¦ãƒ³ãƒˆã§ä»¥å‰ã®è³¼å…¥ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚';
+  String get noPreviousPurchasesFound => 'このアカウントで以前の購入は見つかりませんでした。';
 
   @override
   String get unlockTheFullPotential =>
-      'æ—…ã®å¯èƒ½æ€§ã‚’æœ€å¤§é™ã«å¼•ãå‡ºã—ã¾ã—ã‚‡ã†ã€‚ä¸€åº¦è³¼å…¥ã™ã‚Œã°ã€æ°¸ä¹…ã«ã‚ãªãŸã®ã‚‚ã®ã§ã™ã€‚';
+      '旅の可能性を最大限に引き出しましょう。一度購入すれば、永久にあなたのものです。';
 
   @override
-  String get universalScanner => 'ãƒ¦ãƒ‹ãƒãƒ¼ã‚µãƒ«ã‚¹ã‚­ãƒ£ãƒŠãƒ¼';
+  String get universalScanner => 'ユニバーサルスキャナー';
 
   @override
-  String get noChineseCharactersFound =>
-      'ç”»åƒã‹ã‚‰ä¸­å›½èªžã®æ–‡å­—ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚';
+  String get noChineseCharactersFound => '画像から中国語の文字は見つかりませんでした。';
 
   @override
-  String get addedNewCharactersTo =>
-      'æ–°ã—ã„æ–‡å­—ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è¿½åŠ ã—ã¾ã—ãŸï¼';
+  String get addedNewCharactersTo => '新しい文字をライブラリに追加しました！';
 
   @override
-  String get extractingTextAndObjects =>
-      'ãƒ†ã‚­ã‚¹ãƒˆã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŠ½å‡ºä¸­...';
+  String get extractingTextAndObjects => 'テキストとオブジェクトを抽出中...';
 
   @override
-  String get scanATextbookSign =>
-      'æ•™ç§‘æ›¸ã€çœ‹æ¿ã€ã¾ãŸã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¹ã‚­ãƒ£ãƒ³ã—ã¦ä¸­å›½èªžã®æ–‡å­—ã‚’æŠ½å‡ºã—ã¾ã™ã€‚';
+  String get scanATextbookSign => '教科書、看板、またはオブジェクトをスキャンして中国語の文字を抽出します。';
 
   @override
-  String get extractedText => 'æŠ½å‡ºã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆ';
+  String get extractedText => '抽出されたテキスト';
 
   @override
-  String get useText => 'ãƒ†ã‚­ã‚¹ãƒˆã‚’ä½¿ç”¨';
+  String get useText => 'テキストを使用';
 
   @override
-  String get noMatchingDictionaryEntries =>
-      'ä¸€è‡´ã™ã‚‹è¾žæ›¸ã‚¨ãƒ³ãƒˆãƒªãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get noMatchingDictionaryEntries => '一致する辞書エントリが見つかりません。';
 
   @override
-  String get quizComplete => 'ã‚¯ã‚¤ã‚ºå®Œäº†ï¼';
+  String get quizComplete => 'クイズ完了！';
 
   @override
-  String get returnToCourse => 'ã‚³ãƒ¼ã‚¹ã«æˆ»ã‚‹';
+  String get returnToCourse => 'コースに戻る';
 
   @override
-  String get notEnoughCardsFor =>
-      'ã‚¯ã‚¤ã‚ºã«ã¯ã‚«ãƒ¼ãƒ‰ãŒè¶³ã‚Šã¾ã›ã‚“ï¼å°‘ãªãã¨ã‚‚4æžšå¿…è¦ã§ã™ã€‚';
+  String get notEnoughCardsFor => 'クイズにはカードが足りません！少なくとも4枚必要です。';
 
   @override
-  String get creatorMode => 'ã‚¯ãƒªã‚¨ãƒ¼ã‚¿ãƒ¼ãƒ¢ãƒ¼ãƒ‰';
+  String get creatorMode => 'クリエーターモード';
 
   @override
-  String get noStoriesFoundMatching =>
-      'æ¤œç´¢ã«ä¸€è‡´ã™ã‚‹ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get noStoriesFoundMatching => '検索に一致するストーリーが見つかりません。';
 
   @override
-  String get discard => 'ç ´æ£„';
+  String get discard => '破棄';
 
   @override
   String get save => 'Guardar';
 
   @override
-  String get generatingStoryViaDeepseek =>
-      'DeepSeekçµŒç”±ã§ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚’ç”Ÿæˆä¸­...';
+  String get generatingStoryViaDeepseek => 'DeepSeek経由でストーリーを生成中...';
 
   @override
-  String get storySavedToLibrary =>
-      'ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãŒãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä¿å­˜ã•ã‚Œã¾ã—ãŸï¼';
+  String get storySavedToLibrary => 'ストーリーがライブラリに保存されました！';
 
   @override
-  String get storyNotFound => 'ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚';
+  String get storyNotFound => 'ストーリーが見つかりません。';
 
   @override
-  String get targetHskLevel => 'ç›®æ¨™HSKãƒ¬ãƒ™ãƒ«';
+  String get targetHskLevel => '目標HSKレベル';
 
   @override
-  String get wedLoveToHear => 'ã”æ„è¦‹ã‚’ãŠèžã‹ã›ãã ã•ã„ï¼';
+  String get wedLoveToHear => 'ご意見をお聞かせください！';
 
   @override
   String get whetherYouveFoundA =>
-      'ãƒã‚°ã‚’è¦‹ã¤ã‘ãŸå ´åˆã§ã‚‚ã€æ©Ÿèƒ½ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚‹å ´åˆã§ã‚‚ã€å˜ã«æŒ¨æ‹¶ã—ãŸã„å ´åˆã§ã‚‚ã€çš†æ§˜ã®ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ãŒSinoSparkã®æ”¹å–„ã«å½¹ç«‹ã¡ã¾ã™ã€‚';
+      'バグを見つけた場合でも、機能のリクエストがある場合でも、単に挨拶したい場合でも、皆様のフィードバックがSinoSparkの改善に役立ちます。';
 
   @override
-  String get pointYourCameraAt =>
-      'ã‚«ãƒ¡ãƒ©ã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å‘ã‘ã¦ãã ã•ã„';
+  String get pointYourCameraAt => 'カメラをオブジェクトに向けてください';
 
   @override
-  String get reviewAddToLibrary => 'ãƒ¬ãƒ“ãƒ¥ãƒ¼ã—ã¦ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è¿½åŠ ';
+  String get reviewAddToLibrary => 'レビューしてライブラリに追加';
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'é€£ç¶šè¨˜éŒ²: $streakã§æ›¸ãé †ã‚¬ã‚¤ãƒ‰ã‚’éžè¡¨ç¤º';
+    return '連続記録: $streakで書き順ガイドを非表示';
   }
 
   @override
   String inkPoints(Object points) {
-    return '$pointsã‚¤ãƒ³ã‚¯ãƒã‚¤ãƒ³ãƒˆ';
+    return '$pointsインクポイント';
   }
 
   @override
   String speechRateMultiplier(Object rate) {
-    return '$rateå€';
+    return '$rate倍';
   }
 
   @override
   String animationSpeedMultiplier(Object rate) {
-    return '$rateå€';
+    return '$rate倍';
   }
 
   @override
-  String get supportAndFeedback => 'ã‚µãƒãƒ¼ãƒˆï¼†ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯';
+  String get supportAndFeedback => 'サポート＆フィードバック';
 
   @override
-  String get reportBug => 'ãƒã‚°ã‚’å ±å‘Š';
+  String get reportBug => 'バグを報告';
 
   @override
-  String get suggestFeature => 'æ©Ÿèƒ½ã‚’ææ¡ˆ';
+  String get suggestFeature => '機能を提案';
 
   @override
-  String get generalFeedback => 'ä¸€èˆ¬çš„ãªãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯';
+  String get generalFeedback => '一般的なフィードバック';
 
   @override
-  String get pleaseDrawSomethingFirst => 'ã¾ãšä½•ã‹æã„ã¦ãã ã•ã„';
+  String get pleaseDrawSomethingFirst => 'まず何か描いてください';
 
   @override
-  String get drawThisCharacter => 'ã“ã®æ–‡å­—ã‚’æã:';
+  String get drawThisCharacter => 'この文字を描く:';
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'é’ã„ã‚¬ã‚¤ãƒ‰ã«å¾“ã£ã¦$totalç”»ä¸­$currentç”»ç›®ã‚’æãã¾ã—ã‚‡ã†';
+    return '青いガイドに従って$total画中$current画目を描きましょう';
   }
 
   @override
-  String get skipCurrentStroke => 'ç¾åœ¨ã®ç”»ã‚’ã‚¹ã‚­ãƒƒãƒ—';
+  String get skipCurrentStroke => '現在の画をスキップ';
 
   @override
-  String get submitDrawing => 'æç”»ã‚’æå‡º';
+  String get submitDrawing => '描画を提出';
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return '$hanziã‚’$deckNameã«è¿½åŠ ã—ã¾ã—ãŸ';
+    return '$hanziを$deckNameに追加しました';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return 'ãƒ‡ãƒƒã‚­ã‹ã‚‰$hanziã‚’å‰Šé™¤ã—ã¾ã—ãŸ';
+    return 'デッキから$hanziを削除しました';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return '\"$hanzi\"ã‚’ã‚¹ã‚­ãƒƒãƒ—ã—ã¾ã—ãŸ - ã“ã®AIæ–‡å­—ã«ã¯æ›¸ãé †ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ã€‚';
+    return '\"$hanzi\"をスキップしました - このAI文字には書き順データがありません。';
   }
 
   @override
-  String get startingSession => 'ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’é–‹å§‹ã—ã¦ã„ã¾ã™...';
+  String get startingSession => 'セッションを開始しています...';
 
   @override
-  String get masterBuildingBlocks =>
-      'æ¼¢å­—ã®æ§‹æˆè¦ç´ ã‚’ãƒžã‚¹ã‚¿ãƒ¼ã—ã‚ˆã†';
+  String get masterBuildingBlocks => '漢字の構成要素をマスターしよう';
 
   @override
-  String get totalWords => 'ç·å˜èªžæ•°';
+  String get totalWords => '総単語数';
 
   @override
-  String get newInk => 'æ–°ã—ã„ã‚¤ãƒ³ã‚¯';
+  String get newInk => '新しいインク';
 
   @override
-  String get learningStatus => 'å­¦ç¿’ä¸­';
+  String get learningStatus => '学習中';
 
   @override
-  String get masteredStatus => 'ç¿’å¾—æ¸ˆã¿';
+  String get masteredStatus => '習得済み';
 
   @override
-  String get libraryMastery => 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç¿’ç†Ÿåº¦';
+  String get libraryMastery => 'ライブラリ習熟度';
 
   @override
-  String get accuracyByMode => 'ãƒ¢ãƒ¼ãƒ‰åˆ¥ç²¾åº¦';
+  String get accuracyByMode => 'モード別精度';
 
   @override
-  String get upcomingReviews => 'ä»Šå¾Œã®å¾©ç¿’ï¼ˆä»Šå¾Œ7æ—¥é–“ï¼‰';
+  String get upcomingReviews => '今後の復習（今後7日間）';
 
   @override
-  String get culturalReadingRoom => 'æ–‡åŒ–æ›¸æˆ¿';
+  String get culturalReadingRoom => '文化書房';
 
   @override
   String storyTitleHsk(Object level, Object title) {
@@ -1113,337 +1078,1957 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get pleaseEnterTopic => 'ãƒˆãƒ”ãƒƒã‚¯ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„';
+  String get pleaseEnterTopic => 'トピックを入力してください';
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return '$nameã‚’$countæžšã®ã‚«ãƒ¼ãƒ‰ã§ä½œæˆã—ã¾ã—ãŸï¼';
+    return '$nameを$count枚のカードで作成しました！';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'è©•ä¾¡: $grade';
+    return '評価: $grade';
   }
 
   @override
-  String get listeningMode => 'ãƒªã‚¹ãƒ‹ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰';
+  String get listeningMode => 'リスニングモード';
 
   @override
-  String get readingMode => 'ãƒªãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰';
+  String get readingMode => 'リーディングモード';
 
   @override
-  String get recallMode => 'ãƒªã‚³ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰';
+  String get recallMode => 'リコールモード';
 
   @override
-  String get speakingMode => 'ã‚¹ãƒ”ãƒ¼ã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰';
+  String get speakingMode => 'スピーキングモード';
 
   @override
-  String get aiMemoryHook => 'AIè¨˜æ†¶ãƒ•ãƒƒã‚¯';
+  String get aiMemoryHook => 'AI記憶フック';
 
   @override
-  String get exampleSentences => 'ä¾‹æ–‡';
+  String get exampleSentences => '例文';
 
   @override
-  String get ghostCharacters => 'ã‚´ãƒ¼ã‚¹ãƒˆæ–‡å­—';
+  String get ghostCharacters => 'ゴースト文字';
 
   @override
-  String get commonWords => 'é »å‡ºå˜èªž';
+  String get commonWords => '頻出単語';
 
   @override
-  String get personalNotes => 'å€‹äººãƒ¡ãƒ¢';
+  String get personalNotes => '個人メモ';
 
   @override
-  String get addPersonalNotes =>
-      'ç‹¬è‡ªã®ãƒ‹ãƒ¼ãƒ¢ãƒ‹ãƒƒã‚¯ã‚„ãƒ¡ãƒ¢ã‚’ã“ã“ã«è¿½åŠ ...';
+  String get addPersonalNotes => '独自のニーモニックやメモをここに追加...';
 
   @override
-  String get takePhoto => 'å†™çœŸã‚’æ’®ã‚‹';
+  String get takePhoto => '写真を撮る';
 
   @override
-  String get gallery => 'ã‚®ãƒ£ãƒ©ãƒªãƒ¼';
+  String get gallery => 'ギャラリー';
 
   @override
-  String get arLens => 'ARãƒ¬ãƒ³ã‚º';
+  String get arLens => 'ARレンズ';
 
   @override
   String addedCharToLibrary(Object char) {
-    return '$char ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è¿½åŠ ã—ã¾ã—ãŸ';
+    return '$char をライブラリに追加しました';
   }
 
   @override
-  String get scoreText => 'ã‚¹ã‚³ã‚¢';
+  String get scoreText => 'スコア';
 
   @override
-  String get searchDictionaryHint =>
-      'æ–‡å­—ã€ãƒ”ãƒ³ã‚¤ãƒ³ã€æ„å‘³ã‚’æ¤œç´¢...';
+  String get searchDictionaryHint => '文字、ピンイン、意味を検索...';
 
   @override
-  String get searchDeckHint => 'æ–‡å­—ã€ãƒ”ãƒ³ã‚¤ãƒ³ã‚’æ¤œç´¢...';
+  String get searchDeckHint => '文字、ピンインを検索...';
 
   @override
-  String get localRestaurant => 'åœ°å…ƒãƒ¬ã‚¹ãƒˆãƒ©ãƒ³';
+  String get localRestaurant => '地元レストラン';
 
   @override
-  String get taxiToAirport => 'ç©ºæ¸¯ã¾ã§ã‚¿ã‚¯ã‚·ãƒ¼';
+  String get taxiToAirport => '空港までタクシー';
 
   @override
-  String get silkMarketHaggling => 'ã‚·ãƒ«ã‚¯å¸‚å ´ã§ã®å€¤åˆ‡ã‚Š';
+  String get silkMarketHaggling => 'シルク市場での値切り';
 
   @override
-  String get medicalClinic => 'è¨ºç™‚æ‰€';
+  String get medicalClinic => '診療所';
 
   @override
-  String get meetingAFriend => 'å‹é”ã¨ä¼šã†';
+  String get meetingAFriend => '友達と会う';
 
   @override
-  String get jobInterview => 'é¢æŽ¥';
+  String get jobInterview => '面接';
 
   @override
-  String get searchRadicalsHint => 'éƒ¨é¦–ã‚’æ¤œç´¢ï¼ˆä¾‹ï¼šæ°´ã€æ°µï¼‰';
+  String get searchRadicalsHint => '部首を検索（例：水、氵）';
 
   @override
-  String get definition => 'å®šç¾©';
+  String get definition => '定義';
 
   @override
-  String get undo => 'å…ƒã«æˆ»ã™';
+  String get undo => '元に戻す';
 
   @override
-  String get hanziMaster => 'æ¼¢å­—ãƒžã‚¹ã‚¿ãƒ¼';
+  String get hanziMaster => '漢字マスター';
 
   @override
-  String get unlockForever => 'æ°¸ä¹…ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ - \$9.99';
+  String get unlockForever => '永久アンロック - .99';
 
   @override
-  String get clear => 'ã‚¯ãƒªã‚¢';
+  String get clear => 'クリア';
 
   @override
-  String get clearChat => 'ãƒãƒ£ãƒƒãƒˆã‚’ã‚¯ãƒªã‚¢';
+  String get clearChat => 'チャットをクリア';
 
   @override
-  String get typeMessage => 'ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥åŠ›...';
+  String get typeMessage => 'メッセージを入力...';
 
   @override
   String addedToLibrary(Object hanzi) {
-    return 'ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ã€Œ$hanziã€ã‚’è¿½åŠ ã—ã¾ã—ãŸ';
+    return 'ライブラリに「$hanzi」を追加しました';
   }
 
   @override
-  String get generateNewStory => 'æ–°ã—ã„ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚’ç”Ÿæˆ';
+  String get generateNewStory => '新しいストーリーを生成';
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã®ç”Ÿæˆã«å¤±æ•—ã—ã¾ã—ãŸ:\\n$error';
+    return 'ストーリーの生成に失敗しました:\\n$error';
   }
 
   @override
-  String get detail => 'è©³ç´°';
+  String get detail => '詳細';
 
   @override
-  String get scanText => 'ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚¹ã‚­ãƒ£ãƒ³';
+  String get scanText => 'テキストをスキャン';
 
   @override
-  String get createMagic => 'é­”æ³•ã‚’ä½œæˆ';
+  String get createMagic => '魔法を作成';
 
   @override
-  String get learning => 'å­¦ç¿’ä¸­';
+  String get learning => '学習中';
 
   @override
-  String get upcomingReviews7Days => 'ä»Šå¾Œã®å¾©ç¿’ï¼ˆä»Šå¾Œ7æ—¥é–“ï¼‰';
+  String get upcomingReviews7Days => '今後の復習（今後7日間）';
 
   @override
-  String get askFollowUpQuestion => 'è¿½åŠ è³ªå•ã‚’ã™ã‚‹...';
+  String get askFollowUpQuestion => '追加質問をする...';
 
   @override
-  String get pasteScanToSimplify =>
-      'ä¸­å›½èªžã®æ–‡ç« ã‚’è²¼ã‚Šä»˜ã‘ã¾ãŸã¯ã‚¹ã‚­ãƒ£ãƒ³ã—ã¦ç°¡ç´ åŒ–ã™ã‚‹';
+  String get pasteScanToSimplify => '中国語の文章を貼り付けまたはスキャンして簡素化する';
 
   @override
-  String get searchStoriesHint =>
-      'ã‚¿ã‚¤ãƒˆãƒ«ã‚„ã‚¿ã‚°ã§ç‰©èªžã‚’æ¤œç´¢ (ä¾‹: ç¥žè©±, æ—…è¡Œ)';
+  String get searchStoriesHint => 'タイトルやタグで物語を検索 (例: 神話, 旅行)';
 
   @override
-  String get importAll => 'ã™ã¹ã¦ã‚¤ãƒ³ãƒãƒ¼ãƒˆ';
+  String get importAll => 'すべてインポート';
 
   @override
-  String get ascendAll => 'ã™ã¹ã¦æ˜‡æ ¼';
+  String get ascendAll => 'すべて昇格';
 
   @override
-  String get startAscension => 'ä¸Šé”ã‚’é–‹å§‹';
+  String get startAscension => '上達を開始';
 
   @override
-  String get scenarioLocalRestaurant => 'åœ°å…ƒã®ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³';
+  String get scenarioLocalRestaurant => '地元のレストラン';
 
   @override
-  String get scenarioLocalRestaurantDesc =>
-      'æ–™ç†ã‚’æ³¨æ–‡ã—ã€ãŠã™ã™ã‚ã‚’å°‹ã­ã‚‹ç·´ç¿’ã‚’ã—ã¾ã™ã€‚';
+  String get scenarioLocalRestaurantDesc => '料理を注文し、おすすめを尋ねる練習をします。';
 
   @override
-  String get scenarioTaxiAirport => 'ç©ºæ¸¯ã¸ã‚¿ã‚¯ã‚·ãƒ¼';
+  String get scenarioTaxiAirport => '空港へタクシー';
 
   @override
-  String get scenarioTaxiAirportDesc =>
-      'é‹è»¢æ‰‹ã«è¡Œãå…ˆã‚’ä¼ãˆã€äº¤é€šçŠ¶æ³ã«ã¤ã„ã¦è©±ã—ã¾ã™ã€‚';
+  String get scenarioTaxiAirportDesc => '運転手に行き先を伝え、交通状況について話します。';
 
   @override
-  String get scenarioSilkMarket => 'ã‚·ãƒ«ã‚¯ãƒžãƒ¼ã‚±ãƒƒãƒˆã§ã®å€¤åˆ‡ã‚Š';
+  String get scenarioSilkMarket => 'シルクマーケットでの値切り';
 
   @override
-  String get scenarioSilkMarketDesc =>
-      'ãŠåœŸç”£ã®å€¤æ®µäº¤æ¸‰ã‚’ã—ã¾ã™ã€‚';
+  String get scenarioSilkMarketDesc => 'お土産の値段交渉をします。';
 
   @override
-  String get scenarioMedicalClinic => 'è¨ºç™‚æ‰€';
+  String get scenarioMedicalClinic => '診療所';
 
   @override
-  String get scenarioMedicalClinicDesc =>
-      'ä¼çµ±çš„ãªåŒ»å¸«ã«ç—‡çŠ¶ã‚’èª¬æ˜Žã—ã¾ã™ã€‚';
+  String get scenarioMedicalClinicDesc => '伝統的な医師に症状を説明します。';
 
   @override
-  String get scenarioMeetingFriend => 'å‹é”ã¨ä¼šã†';
+  String get scenarioMeetingFriend => '友達と会う';
 
   @override
-  String get scenarioMeetingFriendDesc =>
-      'è‡ªå·±ç´¹ä»‹ã‚’ã—ã¦ä¸–é–“è©±ã‚’ã—ã¾ã™ã€‚';
+  String get scenarioMeetingFriendDesc => '自己紹介をして世間話をします。';
 
   @override
-  String get scenarioJobInterview => 'å°±è·ã®é¢æŽ¥';
+  String get scenarioJobInterview => '就職の面接';
 
   @override
-  String get scenarioJobInterviewDesc =>
-      'ä¸Šæµ·ã®ãƒã‚¤ãƒ†ã‚¯ä¼æ¥­ã§ã®å½¹å‰²ã«å¿œå‹Ÿã—ã¾ã™ã€‚';
+  String get scenarioJobInterviewDesc => '上海のハイテク企業での役割に応募します。';
 
   @override
-  String get createCustomScenario => 'ã‚«ã‚¹ã‚¿ãƒ ã‚·ãƒŠãƒªã‚ªã‚’ä½œæˆ';
+  String get createCustomScenario => 'カスタムシナリオを作成';
 
   @override
-  String get customScenarioTitleHint =>
-      'ã‚¿ã‚¤ãƒˆãƒ«ï¼ˆä¾‹ï¼šçµå©šæŠ«éœ²å®´ï¼‰';
+  String get customScenarioTitleHint => 'タイトル（例：結婚披露宴）';
 
   @override
-  String get customScenarioDescHint => 'èª¬æ˜Žï¼ˆçŠ¶æ³ï¼‰';
+  String get customScenarioDescHint => '説明（状況）';
 
   @override
-  String get customScenarioPersonaHint =>
-      'AIãƒšãƒ«ã‚½ãƒŠï¼ˆä¾‹ï¼šå¥½å¥‡å¿ƒæ—ºç››ãªåŒåƒšï¼‰';
+  String get customScenarioPersonaHint => 'AIペルソナ（例：好奇心旺盛な同僚）';
 
   @override
-  String get customScenarioDifficulty => 'é›£æ˜“åº¦';
+  String get customScenarioDifficulty => '難易度';
 
   @override
-  String get createAction => 'ä½œæˆ';
+  String get createAction => '作成';
 
   @override
-  String get cancelAction => 'ã‚­ãƒ£ãƒ³ã‚»ãƒ«';
+  String get cancelAction => 'キャンセル';
 
   @override
-  String get mythsAndLegends => 'ç¥žè©±ã¨ä¼èª¬';
+  String get mythsAndLegends => '神話と伝説';
 
   @override
-  String get historyAndCulture => 'æ­´å²ã¨æ–‡åŒ–';
+  String get historyAndCulture => '歴史と文化';
 
   @override
-  String get idiomsTitle => 'æ…£ç”¨å¥ï¼ˆæˆèªžï¼‰';
+  String get idiomsTitle => '慣用句（成語）';
 
   @override
-  String get theMonkeyKing => 'å­«æ‚Ÿç©º';
+  String get theMonkeyKing => '孫悟空';
 
   @override
-  String get theMonkeyKingDesc => 'å­«æ‚Ÿç©ºï¼ˆè¥¿éŠè¨˜ï¼‰';
+  String get theMonkeyKingDesc => '孫悟空（西遊記）';
 
   @override
-  String get huaMulan => 'èŠ±æœ¨è˜­';
+  String get huaMulan => '花木蘭';
 
   @override
-  String get huaMulanDesc =>
-      'èŠ±æœ¨è˜­ãŒçˆ¶ã®ä»£ã‚ã‚Šã«è»ã«å…¥éšŠã™ã‚‹è©±';
+  String get huaMulanDesc => '花木蘭が父の代わりに軍に入隊する話';
 
   @override
-  String get confuciusTitle => 'å­”å­';
+  String get confuciusTitle => '孔子';
 
   @override
-  String get confuciusDesc => 'å­”å­ã®ç”Ÿæ¶¯ã¨æ•™ãˆ';
+  String get confuciusDesc => '孔子の生涯と教え';
 
   @override
-  String get theGreatWall => 'ä¸‡é‡Œã®é•·åŸŽ';
+  String get theGreatWall => '万里の長城';
 
   @override
-  String get theGreatWallDesc => 'ä¸‡é‡Œã®é•·åŸŽã®å»ºè¨­';
+  String get theGreatWallDesc => '万里の長城の建設';
 
   @override
-  String get generateTopic => 'ãƒˆãƒ”ãƒƒã‚¯ã‚’ç”Ÿæˆ';
+  String get generateTopic => 'トピックを生成';
 
   @override
-  String get simplifyText => 'ãƒ†ã‚­ã‚¹ãƒˆã‚’ç°¡ç•¥åŒ–';
+  String get simplifyText => 'テキストを簡略化';
 
   @override
-  String get topicHint => 'ãƒˆãƒ”ãƒƒã‚¯ï¼ˆä¾‹ï¼šåŒ—äº¬ã®ã‚¨ã‚¤ãƒªã‚¢ãƒ³ï¼‰';
+  String get topicHint => 'トピック（例：北京のエイリアン）';
 
   @override
-  String get tagsHint => 'ã‚¿ã‚°ï¼ˆã‚³ãƒ³ãƒžåŒºåˆ‡ã‚Šã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼‰';
+  String get tagsHint => 'タグ（コンマ区切り、オプション）';
 
   @override
-  String get speakWithMasterLin => 'ãƒªãƒ³å…ˆç”Ÿã¨è©±ã™';
+  String get speakWithMasterLin => 'リン先生と話す';
 
   @override
-  String get masterLinGreeting =>
-      'ã”æŒ¨æ‹¶ã€å­¦ç”Ÿã‚ˆã€‚å¢¨ã¯ç”¨æ„ã§ãã¦ã„ã¾ã™ã€‚ä»Šæ—¥ã¯ã©ã®æ–‡å­—ã‚„ãƒ•ãƒ¬ãƒ¼ã‚ºã‚’è€ƒå¯Ÿã—ã¾ã—ã‚‡ã†ã‹ï¼Ÿ';
+  String get masterLinGreeting => 'ご挨拶、学生よ。墨は用意できています。今日はどの文字やフレーズを考察しましょうか？';
 
   @override
-  String get typeYourMessage => 'ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥åŠ›...';
+  String get typeYourMessage => 'メッセージを入力...';
 
   @override
-  String get theMainLibrary => 'ãƒ¡ã‚¤ãƒ³ãƒ©ã‚¤ãƒ–ãƒ©ãƒª';
+  String get theMainLibrary => 'メインライブラリ';
 
   @override
-  String get hsk1Foundation => 'HSK 1: åŸºç¤Ž';
+  String get hsk1Foundation => 'HSK 1: 基礎';
 
   @override
-  String get hsk2Elementary => 'HSK 2: åˆç´š';
+  String get hsk2Elementary => 'HSK 2: 初級';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: ä¸­ç´š';
+  String get hsk3Intermediate => 'HSK 3: 中級';
 
   @override
-  String get inDeckCheck => 'ãƒ‡ãƒƒã‚­å†… âœ“';
+  String get inDeckCheck => 'デッキ内 ✓';
 
   @override
-  String get addToDeckPlus => '+ ãƒ‡ãƒƒã‚­ã«è¿½åŠ ';
+  String get addToDeckPlus => '+ デッキに追加';
 
   @override
-  String get openCardArrow => 'ã‚«ãƒ¼ãƒ‰ã‚’é–‹ã â†’';
+  String get openCardArrow => 'カードを開く →';
 
   @override
-  String get pronunciationPartial => 'å£°èª¿ã¯ä¸æ­£ç¢º';
+  String get pronunciationPartial => '声調は不正確';
 
   @override
-  String get pronunciationWrong => 'ä¸æ­£è§£';
+  String get pronunciationWrong => '不正解';
 
   @override
-  String get toneExpected => 'æ­£ã—ã„å£°èª¿';
+  String get toneExpected => '正しい声調';
 
   @override
-  String get toneYouSaid => 'ã‚ãªãŸã®å£°èª¿';
+  String get toneYouSaid => 'あなたの声調';
 
   @override
-  String get gotIt => 'äº†è§£ï¼';
+  String get gotIt => '了解！';
 
   @override
   String foundNCharacters(int count) {
-    return '$countæ–‡å­—ãŒè¦‹ã¤ã‹ã‚Šã¾ã—ãŸ';
+    return '$count文字が見つかりました';
   }
 
   @override
-  String get lookingUpCharacters => 'æ–‡å­—ã‚’æ¤œç´¢ä¸­â€¦';
+  String get lookingUpCharacters => '文字を検索中…';
 
   @override
-  String get practiceAll => 'ã™ã¹ã¦ç·´ç¿’';
+  String get practiceAll => 'すべて練習';
 
   @override
-  String get arLensObjects => 'ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ';
+  String get arLensObjects => 'オブジェクト';
 
   @override
-  String get arLensText => 'ãƒ†ã‚­ã‚¹ãƒˆ';
+  String get arLensText => 'テキスト';
 
   @override
-  String get arLensDetectedText => 'æ¤œå‡ºã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆ';
+  String get arLensDetectedText => '検出されたテキスト';
+
+  @override
+  String get duration12Min => '1～2分';
+
+  @override
+  String get aClassicTangDynastyPoem => '唐詩の名作';
+
+  @override
+  String get aClassicTangDynastyPoemBy => '～による唐詩の名作';
+
+  @override
+  String get aStructuralComponent => '構造部品。';
+
+  @override
+  String get addSelectedToDeck => '選択をデッキに追加';
+
+  @override
+  String get addTo => ' に追加';
+
+  @override
+  String addedHanziToYourLibrary(String hanzi) {
+    return '「$hanzi」をライブラリに追加しました';
+  }
+
+  @override
+  String get adjustFontSize => 'フォントサイズ調整';
+
+  @override
+  String get againGoodEasyHard => '⬅️ もう一度    ➡️ 良い    ⬆️ 簡単    ⬇️ 難しい';
+
+  @override
+  String get aiAnalysisFailed => 'AI分析失敗';
+
+  @override
+  String get aiIsThinking => 'AIが考えています…';
+
+  @override
+  String get aiSceneAnalysisFailed => 'AIシーン分析失敗';
+
+  @override
+  String get allLabel => 'すべて';
+
+  @override
+  String get allPinyin => 'すべてのピンイン';
+
+  @override
+  String get alreadyHaveAccountSignIn => 'すでにアカウントをお持ちですか？ サインイン';
+
+  @override
+  String get analysisFailed => '分析失敗：';
+
+  @override
+  String get analyzingClassicalCharacters => '古典文字を分析中…';
+
+  @override
+  String get anatomy => '解剖学';
+
+  @override
+  String get ancientPhilosophy => '古代哲学';
+
+  @override
+  String get articleSavedToMediaHub => '記事をメディアハブに保存しました！';
+
+  @override
+  String get askAFollowUp => 'フォローアップをする…';
+
+  @override
+  String get audioPrivacyAndHowThingsWork => '音声、プライバシー、仕組みについて';
+
+  @override
+  String get audiobookPlayer => 'オーディオブックプレーヤー';
+
+  @override
+  String get audiobookVoice => 'オーディオブックの声';
+
+  @override
+  String get auntieMaTown => '馬おばさん（马阿姨）、元気いっぱいの屋台店主。町で一番サクサクの肉夹馍と涼皮を作る。';
+
+  @override
+  String get back => '戻る';
+
+  @override
+  String get baristaKevinNotes =>
+      'バリスタの小凱さん（小凯）、雲南コーヒー豆の風味について熱く語る情熱的な若きコーヒーロースター。';
+
+  @override
+  String get bbc => 'BBC 中国語';
+
+  @override
+  String get beginYourJourney => '旅を始める';
+
+  @override
+  String get bestValue => 'お得';
+
+  @override
+  String get bookLinkCopiedToClipboard => 'ブックリンクをクリップボードにコピーしました！';
+
+  @override
+  String get bookmarkChapter => 'チャプターをブックマーク';
+
+  @override
+  String get bookmarks => 'ブックマーク';
+
+  @override
+  String get books => '本';
+
+  @override
+  String get briefing => 'ブリーフィング';
+
+  @override
+  String get bugReport => 'バグ報告';
+
+  @override
+  String get caoXueqinDecline =>
+      '曹雪芹（1715年頃～1763年）は清朝の小説家。雍正帝の時代に没落した裕福な旗人の家系に生まれ、貧困の中にあった晩年に『紅楼夢』を執筆。貴族社会の衰退を描いた心理描写豊かな一大叙事詩は、中国小説の最高峰と広く見なされている。';
+
+  @override
+  String get cardsTitle => 'カード';
+
+  @override
+  String get cc => '字幕';
+
+  @override
+  String get characterOrWord => '文字／単語';
+
+  @override
+  String get chatMore => 'さらにチャット';
+
+  @override
+  String get chefChenShumai => '陳シェフ（陈师傅）、陽気な広東点心シェフ。新鮮なエビ蒸し餃子とシューマイを推奨。';
+
+  @override
+  String get chineseEpics => '中国の叙事詩';
+
+  @override
+  String get chinesePoetry => '中国詩';
+
+  @override
+  String get chng => 'chéng';
+
+  @override
+  String get chongqingSpicyHotpotFeast => '重慶激辛火鍋の宴';
+
+  @override
+  String get chooseAudiobookVoice => 'オーディオブックの声を選択';
+
+  @override
+  String get chooseVoice => '声を選択';
+
+  @override
+  String get compare => '比較';
+
+  @override
+  String get compare4Tones => '四声を比較';
+
+  @override
+  String get configuration => '設定';
+
+  @override
+  String get contemporary => '現代';
+
+  @override
+  String get context => '文脈';
+
+  @override
+  String get couldNotLoadLibrary => 'ライブラリを読み込めませんでした';
+
+  @override
+  String get couldNotLoadVocabulary => '語彙を読み込めませんでした。';
+
+  @override
+  String get couldNotOpenEmailApp => 'メールアプリを開けませんでした。';
+
+  @override
+  String get createAccount => 'アカウント作成';
+
+  @override
+  String get createNewDeck => '新規デッキ作成';
+
+  @override
+  String get createScenario => 'シナリオ作成';
+
+  @override
+  String get createStory => 'ストーリー作成';
+
+  @override
+  String get customLabel => 'カスタム';
+
+  @override
+  String get customWord => 'カスタム単語';
+
+  @override
+  String get days => '日';
+
+  @override
+  String get deck => 'デッキ';
+
+  @override
+  String get deckName => 'デッキ名';
+
+  @override
+  String get deckStory => 'デッキストーリー';
+
+  @override
+  String get deepAnalysis => '詳細分析';
+
+  @override
+  String get defaultDeck => 'デフォルトデッキ';
+
+  @override
+  String get deleteLabel => '削除';
+
+  @override
+  String get deleteScenario => 'シナリオ削除';
+
+  @override
+  String get deletesAllProgressPermanently => 'すべての進行状況を完全に削除します';
+
+  @override
+  String get developerBackdoorUnlocked => '開発者バックドア解除！';
+
+  @override
+  String get doesNotExistInChinese => '中国語に存在しません';
+
+  @override
+  String get dontHaveAccountSignUp => 'アカウントをお持ちでないですか？ サインアップ';
+
+  @override
+  String get draftingStoryOutline => 'ストーリーの概要を作成中…';
+
+  @override
+  String get dynamicFlowState => '動的フロー状態';
+
+  @override
+  String get dynamicFlowStateParenthetical => '動的（フロー状態）';
+
+  @override
+  String get editCard => 'カードを編集';
+
+  @override
+  String get egAnimeVocab => '例：アニメ語彙';
+
+  @override
+  String get egFormalBusinessLanguageSlangForTexting => '例：ビジネス用語、テキスト用スラング…';
+
+  @override
+  String get egOrderingAtARestaurantBusinessVocab => '例：レストランでの注文、ビジネス語彙…';
+
+  @override
+  String get egWeddingReceptionTechInterview => '例：結婚披露宴、技術面接…';
+
+  @override
+  String get emailLabel => 'メール';
+
+  @override
+  String get english => '英語';
+
+  @override
+  String get englishAndWorld => '英語と世界';
+
+  @override
+  String get episodes => 'エピソード';
+
+  @override
+  String get erase => '消去';
+
+  @override
+  String get eraseDeckQuestion => 'デッキを消去しますか？';
+
+  @override
+  String errorFetchingTranslationForLabelE(String label, String e) {
+    return '$labelの翻訳の取得エラー：$e';
+  }
+
+  @override
+  String errorLoadingMicroreadsE(String e) {
+    return 'マイクロリーディングの読み込みエラー：$e';
+  }
+
+  @override
+  String errorLoadingNovelsE(String e) {
+    return '小説の読み込みエラー：$e';
+  }
+
+  @override
+  String errorLoadingPoetryE(String e) {
+    return '詩の読み込みエラー：$e';
+  }
+
+  @override
+  String get exitFocus => 'フォーカス終了';
+
+  @override
+  String get explore => '探索';
+
+  @override
+  String get exportToThisDeck => 'このデッキにエクスポート';
+
+  @override
+  String get extractAndSimplify => '抽出と簡略化';
+
+  @override
+  String get failedToCreateDeck => 'デッキの作成に失敗しました';
+
+  @override
+  String get failedToLoadDailyContent => 'デイリーコンテンツの読み込みに失敗しました';
+
+  @override
+  String get failedToLoadEpisodes => 'エピソードの読み込みに失敗しました';
+
+  @override
+  String get failedToLoadShows => '番組の読み込みに失敗しました';
+
+  @override
+  String get finalizingDetails => '詳細を確定中…';
+
+  @override
+  String get finalizingStoryDetails => 'ストーリー詳細を確定中…';
+
+  @override
+  String get firebaseAuthConsole =>
+      'Firebase認証が有効になっていません。Firebaseコンソールで必要なサインイン方法を有効にしてください。';
+
+  @override
+  String get flashcardDeckTitle => 'フラッシュカードデッキ';
+
+  @override
+  String get focus => 'フォーカス';
+
+  @override
+  String get foodAndCooking => '料理とグルメ';
+
+  @override
+  String get forward => '進む';
+
+  @override
+  String get freeFlow => 'フリーフロー';
+
+  @override
+  String get frenchClassics => 'フランス古典';
+
+  @override
+  String get full => '完全';
+
+  @override
+  String get gamingAndEsports => 'ゲームとeスポーツ';
+
+  @override
+  String get germanClassics => 'ドイツ古典';
+
+  @override
+  String get ghostPinyin => 'ゴーストピンイン';
+
+  @override
+  String get goodAttempt => '良い試み';
+
+  @override
+  String get gotItSimple => '了解';
+
+  @override
+  String get grammar => 'Gramática';
+
+  @override
+  String get grandmaLiuFilling =>
+      '劉おばあちゃん（刘奶奶）、優しい北国の祖母。餃子のひだの作り方と豚ネギあんを教えてくれる。';
+
+  @override
+  String get great => '素晴らしい！';
+
+  @override
+  String get handmadeDumplingFeastInHarbin => 'ハルビン手作り餃子の宴';
+
+  @override
+  String get hanziCharacter => '漢字（文字）';
+
+  @override
+  String get hapticFeedback => '触覚フィードバック';
+
+  @override
+  String get helpAndSupport => 'ヘルプ＆サポート';
+
+  @override
+  String get hidden => '非表示';
+
+  @override
+  String get hideEnglishTranslations => '英語翻訳を隠す';
+
+  @override
+  String get hidePinyin => 'ピンインを隠す';
+
+  @override
+  String get highlight => 'ハイライト';
+
+  @override
+  String get howWouldYouLikeToStudy => 'どのように学習しますか？';
+
+  @override
+  String get hsk1 => 'HSK 1';
+
+  @override
+  String get hsk4UpperIntermediate => 'HSK 4：中上級';
+
+  @override
+  String get hsk5Advanced => 'HSK 5：上級';
+
+  @override
+  String get hsk6Mastery => 'HSK 6：熟達';
+
+  @override
+  String get hskCollections => 'HSKコレクション';
+
+  @override
+  String hskLevel(String level) {
+    return 'HSK $level';
+  }
+
+  @override
+  String get hskSimplifySubtitles => 'HSK字幕簡略化';
+
+  @override
+  String get hskVocabularyCollections => 'HSK語彙コレクション';
+
+  @override
+  String get i => '私\\';
+
+  @override
+  String get ifTheAgain =>
+      'AIが不一致を検出した場合、「～と言いたかったのですか？」と尋ねます。「はい、再評価してください！」ボタンをタップすると、もう一度話すことなく、元の音声を意図に基づいて即座に再評価できます。';
+
+  @override
+  String get install => 'インストール';
+
+  @override
+  String get just => 'わずか\\\$';
+
+  @override
+  String get keyword => 'キーワード';
+
+  @override
+  String get knowledgeBase => '知識ベース';
+
+  @override
+  String get liRuzhenSubjects =>
+      '李汝珍（1763年頃～1830年）は清朝の学者で、音韻論、囲碁、宇宙論に深い関心を持っていた。彼の幻想小説『鏡花縁』は、商人が不可能な王国を旅する物語で、フェミニズム的主題と百科全書的な知識の幅で特筆される。';
+
+  @override
+  String get library => '文化书房 ライブラリ';
+
+  @override
+  String get lifestyleAndVlog => 'ライフスタイル＆ブログ';
+
+  @override
+  String get listenInAudiobookMode => 'オーディオブックモードで聴く';
+
+  @override
+  String get listenToThisWord => 'この単語を聴く';
+
+  @override
+  String get listening => '聴いています…';
+
+  @override
+  String get liuEEncroachment =>
+      '劉鶚（1857～1909年）は清末の博学者——技術者、医者、そして小説家。唯一の小説『老残遊記』は、抒情性に富みながらも政治色の強い旅日記であり、王朝の崩壊と外国の侵食に苦しむ中国を巡る放浪の治療者の物語である。';
+
+  @override
+  String get loadingTranslations => '翻訳を読み込み中…';
+
+  @override
+  String get luXunVernacular =>
+      '魯迅（1881～1936年）、周樹人の筆名。現代中国文学の父。医者から転じて中国の精神を癒すために筆を執り、彼の短編集——『狂人日記』と『阿Q正伝』——は口語';
+
+  @override
+  String get luoGuanzhongEpic =>
+      '羅貫中（1330年頃～1400年）は元末明初の劇作家・小説家で、施耐庵に師事したとされる。『三国志演義』は歴史書、口承伝統、劇的な語りを融合させ、中国歴史叙事詩の決定版を創り上げた。';
+
+  @override
+  String get makeACustomCollection => 'カスタムコレクションを作成';
+
+  @override
+  String get manageDailyDropsAndReviewReminders => 'デイリードロップと復習リマインダーを管理';
+
+  @override
+  String get managerYuOptions =>
+      '余店長（余店长）、熱血火鍋店長。名物のハチノス、鴨血、マイルドなスープのオプションを推奨。';
+
+  @override
+  String get masterGaoRubs =>
+      '高師傅（高师傅）、カリスマ的な炭火焼きマスター。お客とスパイスレベルや秘密のクミンの効き具合について冗談を交わす。';
+
+  @override
+  String get masterThisToUnlockItsGalaxy => 'これを習得して銀河を解除しよう。';
+
+  @override
+  String get masterZhaoBrewing => '趙師傅（赵师傅）、忍耐強く知識豊富な茶ソムリエ。工夫茶の淹れ方を情熱的に解説する。';
+
+  @override
+  String get mastery => '熟達度';
+
+  @override
+  String get maybeLater => '後で';
+
+  @override
+  String get memes => 'ミーム';
+
+  @override
+  String get midnightBbqSkewersInWuhan => '武漢深夜の焼き串';
+
+  @override
+  String get mo => '/mo';
+
+  @override
+  String get modernChinese => '現代中国語';
+
+  @override
+  String get monthly => '月額';
+
+  @override
+  String get morningDimSumCartInGuangzhou => '広州朝の点心カート';
+
+  @override
+  String get nameLabel => '名前';
+
+  @override
+  String get native => 'ネイティブ';
+
+  @override
+  String get newCard => '新規カード';
+
+  @override
+  String get newDeck => '新規デッキ';
+
+  @override
+  String get newDeckName => '新規デッキ名';
+
+  @override
+  String get noActiveSubscriptionFound => '有効なサブスクリプションが見つかりません。';
+
+  @override
+  String get noEpisodesFound => 'エピソードが見つかりません';
+
+  @override
+  String get noKeyWordsFoundForThisStory => 'このストーリーのキーワードは見つかりません。';
+
+  @override
+  String get noLabel => 'いいえ';
+
+  @override
+  String get noNewWordsFound => '新しい単語は見つかりません！';
+
+  @override
+  String get noPinyin => 'ピンインなし';
+
+  @override
+  String get noPremiumPackagesAvailable => '現在利用可能なプレミアムパッケージはありません。';
+
+  @override
+  String noResultsFoundForSearchquery(String searchQuery) {
+    return '「$searchQuery」の検索結果は見つかりません';
+  }
+
+  @override
+  String get noSavedArticlesYet => '保存された記事はまだありません。';
+
+  @override
+  String get noShowsAvailable => '利用可能な番組はありません';
+
+  @override
+  String get noStoriesFound => 'ストーリーが見つかりません。';
+
+  @override
+  String get noWordsSelected => '単語が選択されていません';
+
+  @override
+  String get notes => 'ノート';
+
+  @override
+  String get notoserifsc => 'NotoSerifSC';
+
+  @override
+  String get objectivesTitle => '目標';
+
+  @override
+  String get openInYoutube => 'YouTubeで開く';
+
+  @override
+  String get orderingHanddripCoffeeInShanghai => '上海でハンドドリップコーヒーを注文';
+
+  @override
+  String get orderingSugarcoatedHawsInWinterBeijing => '冬の北京で糖葫芦を注文';
+
+  @override
+  String partnerLang(String lang) {
+    return 'パートナー（$lang）';
+  }
+
+  @override
+  String get partnerListening => 'パートナー聴取中…';
+
+  @override
+  String get partnerSpeaking => 'パートナー発話中…';
+
+  @override
+  String get passwordLabel => 'パスワード';
+
+  @override
+  String get pause => '一時停止';
+
+  @override
+  String get perfect => '完璧！';
+
+  @override
+  String get personalizedPathBasedOnDeck => 'デッキに基づいたパーソナライズされた学習パス。';
+
+  @override
+  String play(Object pinyin) {
+    return '$pinyin を再生';
+  }
+
+  @override
+  String get pleaseEnterMessageBeforeSending => '送信前にメッセージを入力してください。';
+
+  @override
+  String get practiceInRoleplay => 'ロールプレイで練習';
+
+  @override
+  String get practiceModes => '練習モード';
+
+  @override
+  String get practicePronouncingWithAiGrading => 'AI採点でこの単語の発音を練習';
+
+  @override
+  String get preparingReadingInterface => '読書インターフェースを準備中…';
+
+  @override
+  String get privacy => 'プライバシー';
+
+  @override
+  String get privacyAndAudio => 'プライバシーと音声';
+
+  @override
+  String get puSonglingLiterature =>
+      '蒲松齢（1640～1715年）は清朝の作家。科挙に何度も落第した後、長年にわたり『聊斎志異』を編纂。狐の精、幽霊、学者たちを描いた彼の怪異譚は、中国ゴシック文学の最高峰であり続けている。';
+
+  @override
+  String get qaFaq => 'Q&A／FAQ';
+
+  @override
+  String get questsTitle => 'クエスト';
+
+  @override
+  String get quickBookmarks => 'クイックブックマーク';
+
+  @override
+  String get radical => '部首';
+
+  @override
+  String get ready => '準備完了';
+
+  @override
+  String get readyToInterpret => '解釈の準備完了';
+
+  @override
+  String get readyToStart => '開始する準備ができました。';
+
+  @override
+  String get recentBookmarks => '最近のブックマーク';
+
+  @override
+  String get refiningGrammar => '文法を精査中…';
+
+  @override
+  String get refresh => '更新';
+
+  @override
+  String get removeFromSaved => '保存から削除';
+
+  @override
+  String get removeFromSavedScenarios => '保存シナリオから削除';
+
+  @override
+  String get removed => '削除済み';
+
+  @override
+  String get requestPermissions => '許可をリクエスト';
+
+  @override
+  String get rescind => '取り消す';
+
+  @override
+  String get restore => '復元';
+
+  @override
+  String get results => '結果';
+
+  @override
+  String get resume => '再開';
+
+  @override
+  String get retry => '再試行';
+
+  @override
+  String get revenuecatError => 'RevenueCatエラー：';
+
+  @override
+  String revenuecatErrorE(String e) {
+    return 'RevenueCatエラー：$e';
+  }
+
+  @override
+  String get reviewExtractedDeck => '抽出したデッキを復習';
+
+  @override
+  String get reviewIn => '復習予定';
+
+  @override
+  String get reviewingYourTones => '声調を確認中…';
+
+  @override
+  String get saveAll => 'すべて保存';
+
+  @override
+  String get saveScenario => 'シナリオを保存';
+
+  @override
+  String get saveThisScenario => 'このシナリオを保存';
+
+  @override
+  String get saved => '保存済み';
+
+  @override
+  String get scanAnother => '別をスキャン';
+
+  @override
+  String get scenarioRemoved => 'シナリオを削除しました';
+
+  @override
+  String get scenarioSavedFindInCustomTab => 'シナリオを保存しました！カスタムタブで見つけてください。';
+
+  @override
+  String score(Object score, Object total) {
+    return 'スコア: $score / $total';
+  }
+
+  @override
+  String get searchByPinyinOrMeaning => 'ピンインまたは意味で検索…';
+
+  @override
+  String get searchByTitleOrTag => 'タイトルまたはタグで検索…';
+
+  @override
+  String get searchDictionaryOrTypeCustom => '辞書を検索するかカスタム文字を入力';
+
+  @override
+  String get searchHint => '検索…';
+
+  @override
+  String get searchOrEnterUrl => '検索またはURLを入力';
+
+  @override
+  String get searchScenariosHint => 'シナリオを検索…';
+
+  @override
+  String get searchStoriesIdiomsNews => 'ストーリー、慣用句、ニュースを検索…';
+
+  @override
+  String get searchTopicsEgCookingHistory => 'トピックを検索（例：料理、歴史）';
+
+  @override
+  String get seeAll => 'すべて表示';
+
+  @override
+  String get selectADeck => 'デッキを選択';
+
+  @override
+  String get selectPracticeMode => '練習モードを選択';
+
+  @override
+  String get selectingHskVocabulary => 'HSK語彙を選択中…';
+
+  @override
+  String get send => '送信';
+
+  @override
+  String get sendMessage => 'メッセージを送信';
+
+  @override
+  String get serif => 'セリフ';
+
+  @override
+  String get shadow => 'シャドー';
+
+  @override
+  String get shiNaianEpic =>
+      '施耐庵（1296年頃～1372年）は元朝の文人。科挙に合格したと伝えられるが、隠遁生活を選んだ。彼の傑作『水滸伝』は、義侠の英雄たちと正義の反逆を描き、中国武侠叙事詩の原型を確立した。';
+
+  @override
+  String get showEnglish => '英語を表示';
+
+  @override
+  String get showEnglishTranslations => '英語翻訳を表示';
+
+  @override
+  String get showHanzi => '漢字を表示';
+
+  @override
+  String get showPinyin => 'ピンインを表示';
+
+  @override
+  String get showTranslation => '翻訳を表示';
+
+  @override
+  String get shows => '番組';
+
+  @override
+  String get signIn => 'サインイン';
+
+  @override
+  String get simplifiedArticle => '簡略化記事';
+
+  @override
+  String get simplifyingSubtitles => '字幕を簡略化中…';
+
+  @override
+  String get sincereHonest => '誠実な；正直な';
+
+  @override
+  String get sleepTimer => 'スリープタイマー';
+
+  @override
+  String get smartDeck => 'スマートデッキ';
+
+  @override
+  String get spanishAndWorld => 'スペイン語と世界';
+
+  @override
+  String get speaker => '話者';
+
+  @override
+  String get spotifyStylePlayer => 'Spotifyスタイルプレーヤー';
+
+  @override
+  String get storyBookmarkedInLibrary => 'ストーリーをライブラリにブックマークしました！';
+
+  @override
+  String get streetFoodNightMarketInXian => '西安の屋台ナイトマーケット';
+
+  @override
+  String get strokes => '画数';
+
+  @override
+  String get studyCharacter => '文字を学習';
+
+  @override
+  String get subtitleOpacity => '字幕の不透明度';
+
+  @override
+  String get suggestion => '提案';
+
+  @override
+  String get summary => '要約';
+
+  @override
+  String get supernaturalAndFolklore => '超自然と民話';
+
+  @override
+  String get swipeToGrade => 'スワイプで評価：';
+
+  @override
+  String get tableOfContents => '目次';
+
+  @override
+  String get tapToRetry => 'タップして再試行';
+
+  @override
+  String get teaTastingInChengdu => '成都での茶葉テイスティング';
+
+  @override
+  String get techAndGadgets => 'テクノロジーとガジェット';
+
+  @override
+  String get terms => '利用規約';
+
+  @override
+  String get theGalaxyCharacters =>
+      '銀河マップがあなたを待っています。\n太陽（部首）を制覇して、惑星（文字）を解放しよう。';
+
+  @override
+  String get theme => 'テーマ';
+
+  @override
+  String get thinking => '考え中…';
+
+  @override
+  String get thisArticleCharacters => 'この記事は繁体字中国語を含みます。';
+
+  @override
+  String get todaysWord => '今日の単語';
+
+  @override
+  String get togglePinyin => 'ピンイン切替';
+
+  @override
+  String get toggleTranslation => '翻訳切替';
+
+  @override
+  String get toneDoesNotExistInMandarin => 'この声調は標準中国語には存在しません。';
+
+  @override
+  String get toneGraph => '声調グラフ';
+
+  @override
+  String get traceLabel => 'なぞり書き';
+
+  @override
+  String get trailer => '予告編';
+
+  @override
+  String get translatingAndAddingPinyin => '翻訳とピンイン追加中…';
+
+  @override
+  String get translatingText => 'テキストを翻訳中…';
+
+  @override
+  String get turnOn => 'オンにする';
+
+  @override
+  String get typeHanziPinyinOrEnglish => '漢字、ピンイン、または英語を入力…';
+
+  @override
+  String get unknown2 => '游戏 实况 王者荣耀 原神';
+
+  @override
+  String get unknown3 => '中国 美食 菜谱';
+
+  @override
+  String get unknown4 => '中国 科技 测评';
+
+  @override
+  String get unrollingTheScroll => '巻物を広げています…';
+
+  @override
+  String get upperIntermediate => '中上級';
+
+  @override
+  String get vibrationsForInteractions => '操作時のバイブレーション';
+
+  @override
+  String get video => '動画';
+
+  @override
+  String get viewAnswer => '答えを見る';
+
+  @override
+  String get viewAsList => 'リスト表示';
+
+  @override
+  String get viewBookmarks => 'ブックマークを見る';
+
+  @override
+  String get viewMyDrawing => '描いたものを見る';
+
+  @override
+  String get vlog => '中国 日常 vlog';
+
+  @override
+  String get voice => '声：';
+
+  @override
+  String get web => 'ウェブ';
+
+  @override
+  String get wedLoveToHearFromYou => 'ぜひご意見を\nお聞かせください。';
+
+  @override
+  String get welcomeBack => 'おかえりなさい';
+
+  @override
+  String get whatDoesThisMean => 'これはどういう意味ですか？';
+
+  @override
+  String get whatHappensToMyChatHistory => 'チャット履歴はどうなりますか？';
+
+  @override
+  String get whatIfAiMishears => 'AIが言おうとしたことを聞き間違えた場合は？';
+
+  @override
+  String get whichCharacterIs => '次の文字はどれですか：';
+
+  @override
+  String get wikipedia => 'Wikipedia';
+
+  @override
+  String get wordsSavedAndSrsScheduled => '単語を保存し、SRSをスケジュールしました！';
+
+  @override
+  String get writeYourMessageHere => 'ここにメッセージを書く…';
+
+  @override
+  String get wuChengenLiterature =>
+      '呉承恩（1500年頃～1582年）は明朝の小説家、江蘇淮安出身。数十年にわたる民間伝承、仏教の寓意、風刺的機知を基に、唐の巡礼神話を『西遊記』に織り上げた——世界文学の中でも最も独創的で愛される作品の一つである。';
+
+  @override
+  String get wuJingziClass =>
+      '呉敬梓（1701～1754年）は清朝の小説家、安徽出身。相続した財産を捨て、生涯をかけて『儒林外史』を執筆。科挙制度と知識人階級の虚栄、腐敗、不条理を痛烈に風刺した傑作である。';
+
+  @override
+  String get xuZhonglinWarfare =>
+      '許仲琳（16～17世紀）は明朝の著者。『封神演義』の編纂者として知られ、殷周の歴史と道教の宇宙観、天界の官僚機構、英雄的な戦争を融合させた神話小説の記念碑的作品である。';
+
+  @override
+  String get yearly => '年間';
+
+  @override
+  String get yesReGradeMe => 'はい、再評価してください！';
+
+  @override
+  String you(Object lang) {
+    return 'あなた ($lang)';
+  }
+
+  @override
+  String get youAreSpeaking => 'あなたは話しています';
+
+  @override
+  String get youLabel => 'あなた';
+
+  @override
+  String youLang(String lang) {
+    return 'あなた（$lang）';
+  }
+
+  @override
+  String get youMustAccount => 'アカウントを作成するには、利用規約とプライバシーポリシーに同意する必要があります。';
+
+  @override
+  String get yourEchoModels =>
+      'あなたのエコーホールの会話は、いつでも見直せるようデバイスにローカル保存されます。個人の会話がAIモデルのトレーニングに使用されることはありません。';
+
+  @override
+  String get zhOnly => '中文のみ';
+
+  @override
+  String get hsk_1300_cards => '1300 cards';
+
+  @override
+  String get hsk_154_cards => '154 cards';
+
+  @override
+  String get hsk_162_cards => '162 cards';
+
+  @override
+  String get hsk_2500_cards => '2500 cards';
+
+  @override
+  String get hsk_299_cards => '299 cards';
+
+  @override
+  String get hsk_602_cards => '602 cards';
+
+  @override
+  String get added_to_review_queue => 'Added  to Review Queue';
+
+  @override
+  String added_cards_to(int cardCount, String deckName) {
+    return 'Added $cardCount cards to \"$deckName\".';
+  }
+
+  @override
+  String get added_to_your_library => 'Added \'\' to your Library';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get ai_stories => 'AI Stories';
+
+  @override
+  String analysis_failed(Object error) {
+    return 'Analysis Failed: $error';
+  }
+
+  @override
+  String get analyzing_pronunciation_with_gemini_ai =>
+      'Analyzing pronunciation with Gemini AI...';
+
+  @override
+  String get analyzing_your_pronunciation => 'Analyzing your pronunciation...';
+
+  @override
+  String are_you_sure_you_want_to(String deckName) {
+    return 'Are you sure you want to permanently erase \"$deckName\"? This action cannot be undone and will delete all cards inside it.';
+  }
+
+  @override
+  String ask_about(String hanzi) {
+    return 'Ask about $hanzi...';
+  }
+
+  @override
+  String get audio_haptics => 'Audio & Haptics';
+
+  @override
+  String get audio_could_not_start_check_your =>
+      'Audio could not start. Check your connection and device voice settings.';
+
+  @override
+  String get calligraphy_trace => 'Calligraphy Trace';
+
+  @override
+  String get chapters => 'Chapters)';
+
+  @override
+  String get char => 'char';
+
+  @override
+  String get chinese_character => 'CHINESE CHARACTER';
+
+  @override
+  String get contact_us_and_report_issues => 'Contact us and report issues';
+
+  @override
+  String created_smart_deck_with_words(String deckName, int wordCount) {
+    return 'Created smart deck: \"$deckName\" with $wordCount words!';
+  }
+
+  @override
+  String get custom_ai_generated_story => 'Custom AI generated story.';
+
+  @override
+  String get display_content => 'Display & Content';
+
+  @override
+  String get do_you_keep_or_store_my =>
+      'Do you keep or store my voice recordings?';
+
+  @override
+  String get elementary => 'Elementary';
+
+  @override
+  String error_creating_scenario(Object error) {
+    return 'Error creating scenario: $error';
+  }
+
+  @override
+  String error_fetching_translation_for(Object error) {
+    return 'Error fetching translation for : $error';
+  }
+
+  @override
+  String error_loading_chapters(Object error) {
+    return 'Error loading chapters: $error';
+  }
+
+  @override
+  String get error_loading_decks => 'Error loading decks';
+
+  @override
+  String error_loading_microreads(Object error) {
+    return 'Error loading micro-reads: $error';
+  }
+
+  @override
+  String error_loading_novels(Object error) {
+    return 'Error loading novels: $error';
+  }
+
+  @override
+  String error_loading_poetry(Object error) {
+    return 'Error loading poetry: $error';
+  }
+
+  @override
+  String get etymology => 'Etymology: ';
+
+  @override
+  String get explanation => 'explanation';
+
+  @override
+  String get extracted_text_tap_to_lookup => 'Extracted Text (Tap to lookup)';
+
+  @override
+  String extraction_failed(Object error) {
+    return 'Extraction Failed: \\$error';
+  }
+
+  @override
+  String get failed_to_download => 'Failed to download.';
+
+  @override
+  String failed_to_generate_scenario(Object error) {
+    return 'Failed to generate scenario: $error';
+  }
+
+  @override
+  String failed_to_generate_story(Object error) {
+    return 'Failed to generate story:\\n$error';
+  }
+
+  @override
+  String failed_to_load_context(Object error) {
+    return 'Failed to load context: ${error}rr';
+  }
+
+  @override
+  String get feature_request => 'Feature Request';
+
+  @override
+  String get foundation => 'Foundation';
+
+  @override
+  String get how_is_my_pronunciation_scored =>
+      'How is my pronunciation scored?';
+
+  @override
+  String hsk(Object level) {
+    return 'HSK $level';
+  }
+
+  @override
+  String hsk_vocabulary(int hskLevel) {
+    return 'HSK $hskLevel vocabulary';
+  }
+
+  @override
+  String get hsk_level => 'HSK LEVEL';
+
+  @override
+  String get intermediate => 'Intermediate';
+
+  @override
+  String get learning_stats => 'Learning Stats';
+
+  @override
+  String get mandarin => 'Mandarin';
+
+  @override
+  String get meaning => 'meaning';
+
+  @override
+  String get no_decks_found => 'No decks found.';
+
+  @override
+  String get no_results_found_for => 'No results found for \'\'';
+
+  @override
+  String get no_when_you_use_echo_hall =>
+      'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
+
+  @override
+  String get notification_settings => 'Notification Settings';
+
+  @override
+  String get open_settings => 'Open Settings';
+
+  @override
+  String get phoneme => 'phoneme';
+
+  @override
+  String get play_reference_pronunciation => 'Play Reference Pronunciation';
+
+  @override
+  String get please_select_a_deck_to_add =>
+      'Please select a deck to add cards to.';
+
+  @override
+  String get point_at_chinese_text_to_translate =>
+      'Point at Chinese text to translate';
+
+  @override
+  String get practice_writing_the_strokes_by_hand =>
+      'Practice writing the strokes by hand';
+
+  @override
+  String get preferences_audio_and_display => 'Preferences, Audio, and Display';
+
+  @override
+  String get preparing_your_scholars_verdict =>
+      'Preparing your Scholar\'s Verdict...';
+
+  @override
+  String get previous => 'Anterior';
+
+  @override
+  String question(Object current, Object total) {
+    return '質問 $current/$total';
+  }
+
+  @override
+  String remove_from_this_deck(String hanzi) {
+    return 'Remove $hanzi from this deck?';
+  }
+
+  @override
+  String revenuecat_error(Object error) {
+    return 'RevenueCat Error: $error';
+  }
+
+  @override
+  String get review_tomorrow => 'Review Tomorrow';
+
+  @override
+  String get roleplay => 'Roleplay';
+
+  @override
+  String saving_words_to(int wordCount, String deckName) {
+    return 'Saving $wordCount words to $deckName...';
+  }
+
+  @override
+  String get search_radicals_eg_water => 'Search radicals (e.g. Water, 氵)';
+
+  @override
+  String get select_target_hsk_level => 'Select Target HSK Level';
+
+  @override
+  String get sentence => 'Sentence';
+
+  @override
+  String get shadowing_studio_is_a_dedicated_space =>
+      'Shadowing Studio is a dedicated space to practice mimicking native';
+
+  @override
+  String simplify_failed(Object error) {
+    return 'Simplify Failed: $error';
+  }
+
+  @override
+  String get sinospark_premium => 'SinoSpark Premium';
+
+  @override
+  String get speaking_pronunciation => 'Speaking & Pronunciation';
+
+  @override
+  String get statistics => 'Statistics';
+
+  @override
+  String get table_of_contents => 'Table of Contents · 目录 (';
+
+  @override
+  String get the_ai_evaluates_your_speech_across =>
+      'The AI evaluates your speech across three dimensions:\n• Accuracy: Did you articulate the correct syllables?\n• Completeness: Did you skip or miss any words?\n• Fluency: Did you pause naturally and use the correct tones?\nIt compares your audio against native models to generate a score out of 100.';
+
+  @override
+  String get this_cannot_be_undone => 'This cannot be undone.';
+
+  @override
+  String get title => 'title';
+
+  @override
+  String get to_be_reviewed => 'To Be Reviewed';
+
+  @override
+  String get traditional => 'Traditional';
+
+  @override
+  String translation_failed(Object error) {
+    return 'Translation Failed: $error';
+  }
+
+  @override
+  String get type_in => 'Type in ...';
+
+  @override
+  String get type_your_message_in => 'Type your message in ...';
+
+  @override
+  String get unable_to_open_this_video_please =>
+      'Unable to open this video. Please try again later.';
+
+  @override
+  String get view_your_learning_history_and_streaks =>
+      'View your learning history and streaks';
+
+  @override
+  String get what_is_shadowing_studio => 'What is Shadowing Studio?';
+
+  @override
+  String get words => 'words';
+
+  @override
+  String your_path_for_is_ready(String deckName) {
+    return 'Your path for \'$deckName\' is ready!';
+  }
+
+  @override
+  String get you_said => '🗣️ You Said';
+
+  @override
+  String vocabularyBatch(Object index) {
+    return '語彙バッチ $index';
+  }
+
+  @override
+  String get yourDailyDropIsHere => '今日のドロップが届きました！ ✨';
+
+  @override
+  String get timeToReview => '復習の時間です！ 📚';
+
+  @override
+  String get neverMissAStroke => '一画たりともお見逃しなく！ 🖌️';
+
+  @override
+  String get yourTrialEndsTomorrow => '体験期間は明日までです！ ⏳';
+
+  @override
+  String get officialStandardVocabularyTiers => '公式標準語彙レベル';
+
+  @override
+  String get failedToLoadCollections => 'コレクションの読み込みに失敗しました。';
+
+  @override
+  String unnamedKey(Object tag) {
+    return '#$tag';
+  }
+
+  @override
+  String error(Object error) {
+    return 'エラー: $error';
+  }
+
+  @override
+  String get aiSmartContext => 'AIスマートコンテキスト';
+
+  @override
+  String get aiSmartContextError => 'AIスマートコンテキストエラー';
+
+  @override
+  String get downloadOfficialHskCollections => '公式HSKコレクションをダウンロード';
+
+  @override
+  String get unableToLoadThisSection => 'このセクションを読み込めませんでした。もう一度お試しください。';
+
+  @override
+  String get translationLanguage => '翻訳言語';
+
+  @override
+  String get dailyDrops => '今日のドロップ';
+
+  @override
+  String get wordOfTheDayNews => '今日の単語とニュース';
+
+  @override
+  String get reviewReminders => '復習リマインダー';
+
+  @override
+  String get flashcardsDueForReview => '復習期限のフラッシュカード';
+
+  @override
+  String get dailyNewCards => '毎日の新規カード';
+
+  @override
+  String get dailyReviewLimit => '毎日の復習制限';
+
+  @override
+  String get practiceMode => '練習モード';
+
+  @override
+  String get liziqi => '李子柒 Liziqi: 絹花';
+
+  @override
+  String get theLifeOfGarlicTraditional => 'ニンニクの生活 - 伝統的な中国の暮らし';
+
+  @override
+  String get graceMandarin50Phrases => 'Grace Mandarin: 50フレーズ';
+
+  @override
+  String get essentialChinesePhrasesForBeginners => '初心者向け必須中国語フレーズ';
+
+  @override
+  String get makingBambooFurniture => '竹製家具作り';
+
+  @override
+  String get peppaPigChinese => 'ペッパピッグ中国語: かくれんぼ';
+
+  @override
+  String get muddyPuddlesBeginnerFriendly => '泥だらけの水たまり - 初心者向け';
+
+  @override
+  String get mandarinCorner300Verbs => 'Mandarin Corner: 300の動詞';
+
+  @override
+  String get mostCommonChineseVerbs => '最も一般的な中国語の動詞';
+
+  @override
+  String get graceMandarinOrderFood => 'Grace Mandarin: 食べ物を注文する';
+
+  @override
+  String get howToOrderFoodIn => '中華料理店で食べ物を注文する方法';
+
+  @override
+  String get silkFlowersTraditionalCraft => '絹の花 - 伝統工芸';
+
+  @override
+  String get mandarinCorner => 'Mandarin Corner: 中国語を学ぶ - 医者に行く';
+
+  @override
+  String get goingToTheDoctorReal => '医者に行く - 実生活の会話';
+
+  @override
+  String get hideAndSeekBeginnerFriendly => 'かくれんぼ - 初心者向け';
+
+  @override
+  String get linGdp6 => '小Linが語る: なぜGDPが6%成長するのか';
+
+  @override
+  String get why6GdpGrowthEasy => 'なぜGDPが6%成長するのか - やさしい中国経済';
+
+  @override
+  String get bbcWorldNews => 'BBC 中国語 (ワールドニュース)';
+
+  @override
+  String get currentEventsInSimplifiedChinese => '簡体字中国語の時事問題';
+
+  @override
+  String get baidu => 'Baidu';
+
+  @override
+  String get youtubeDesk => 'YouTubeデスク';
+
+  @override
+  String get interactiveTranscriptsShadowing => 'インタラクティブなトランスクリプトとシャドーイング';
+
+  @override
+  String get showsDramas => '番組とドラマ';
+
+  @override
+  String get extractToDeck => 'デッキに抽出';
+
+  @override
+  String get autoSimplify => '自動簡略化';
+
+  @override
+  String get rewriteThisArticleToMatch => 'この記事をあなたのHSKレベルに合わせて書き直す';
+
+  @override
+  String failedToSaveExtractedWords(Object error) {
+    return '抽出された単語の保存に失敗しました: $error';
+  }
+
+  @override
+  String addToDeck(Object count) {
+    return 'デッキに追加 ($count)';
+  }
+
+  @override
+  String get dailyDiscoveryDrop => '毎日のおすすめ';
+
+  @override
+  String get smartSpacedRepetition => 'スマート間隔反復';
+
+  @override
+  String get trialProtectionAlert => 'トライアル保護アラート';
+
+  @override
+  String get masteryLevel => '習熟度レベル';
+
+  @override
+  String get targetObjective => '目標';
+
+  @override
+  String get dailyPractice => '毎日の練習';
+
+  @override
+  String get aiSpacedRepetition => 'AI間隔反復';
+
+  @override
+  String get iVeGrantedAccess => 'アクセスを許可しました';
+
+  @override
+  String get scanner => 'スキャナー';
+
+  @override
+  String get interpreter => '通訳';
+
+  @override
+  String cards(Object count) {
+    return '$count カード';
+  }
+
+  @override
+  String get nWaMendsTheHeavens => '女媧、天を補修する';
+
+  @override
+  String get terracottaArmy => '兵馬俑';
+
+  @override
+  String get forbiddenCity => '紫禁城';
+
+  @override
+  String get aBlessingInDisguise => '災い転じて福となす';
+
+  @override
+  String get drawingASnake => '蛇を描く';
+
+  @override
+  String get takingTheBulletTrain => '新幹線に乗る';
+
+  @override
+  String get visitingTheDoctor => '医者に行く';
+
+  @override
+  String get orderingDumplings => '餃子を注文する';
+
+  @override
+  String get theTeaCeremony => '茶道';
+
+  @override
+  String get chineseCalligraphy => '中国書道';
+
+  @override
+  String get theGiantPanda => 'ジャイアントパンダ';
+
+  @override
+  String get simplifiedText => '簡体字テキスト';
+
+  @override
+  String get novels96 => '小説 (96)';
+
+  @override
+  String get microReads => 'マイクロリーディング';
+
+  @override
+  String get poetry => '詩';
+
+  @override
+  String get bookmarkRemoved => '书签已移除 · ブックマークを削除しました';
+
+  @override
+  String bookmarkAdded(Object chapter) {
+    return '已添加书签 · ブックマークを追加しました: 第$chapter回';
+  }
+
+  @override
+  String get readingVocabulary => '読解と語彙';
 }

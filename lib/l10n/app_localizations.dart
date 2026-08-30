@@ -738,6 +738,18 @@ abstract class AppLocalizations {
   /// **'Display And Content'**
   String get displayAndContent;
 
+  /// No description provided for @useEnglishDefinitions.
+  ///
+  /// In en, this message translates to:
+  /// **'Use English definitions'**
+  String get useEnglishDefinitions;
+
+  /// No description provided for @useEnglishDefinitionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'English definitions are generally more accurate and detailed'**
+  String get useEnglishDefinitionsDesc;
+
   /// No description provided for @animationSpeed.
   ///
   /// In en, this message translates to:
@@ -1696,7 +1708,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Partner (中文)'**
-  String get partner;
+  String partner(Object lang);
 
   /// No description provided for @youEnglish.
   ///
@@ -2367,7 +2379,7 @@ abstract class AppLocalizations {
   /// No description provided for @unlockForever.
   ///
   /// In en, this message translates to:
-  /// **'Unlock Forever - \$9.99'**
+  /// **'Unlock Forever - .99'**
   String get unlockForever;
 
   /// No description provided for @clear.
@@ -2801,6 +2813,3036 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Detected Text'**
   String get arLensDetectedText;
+
+  /// No description provided for @duration12Min.
+  ///
+  /// In en, this message translates to:
+  /// **'1-2 min'**
+  String get duration12Min;
+
+  /// No description provided for @aClassicTangDynastyPoem.
+  ///
+  /// In en, this message translates to:
+  /// **'A classic Tang Dynasty poem'**
+  String get aClassicTangDynastyPoem;
+
+  /// No description provided for @aClassicTangDynastyPoemBy.
+  ///
+  /// In en, this message translates to:
+  /// **'A classic Tang Dynasty poem by'**
+  String get aClassicTangDynastyPoemBy;
+
+  /// No description provided for @aStructuralComponent.
+  ///
+  /// In en, this message translates to:
+  /// **'A structural component.'**
+  String get aStructuralComponent;
+
+  /// No description provided for @addSelectedToDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Selected to Deck'**
+  String get addSelectedToDeck;
+
+  /// No description provided for @addTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to'**
+  String get addTo;
+
+  /// No description provided for @addedHanziToYourLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Added \'{hanzi}\' to your Library'**
+  String addedHanziToYourLibrary(String hanzi);
+
+  /// No description provided for @adjustFontSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust Font Size'**
+  String get adjustFontSize;
+
+  /// No description provided for @againGoodEasyHard.
+  ///
+  /// In en, this message translates to:
+  /// **'⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard'**
+  String get againGoodEasyHard;
+
+  /// No description provided for @aiAnalysisFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Analysis Failed'**
+  String get aiAnalysisFailed;
+
+  /// No description provided for @aiIsThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'AI is thinking...'**
+  String get aiIsThinking;
+
+  /// No description provided for @aiSceneAnalysisFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Scene Analysis Failed'**
+  String get aiSceneAnalysisFailed;
+
+  /// No description provided for @allLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get allLabel;
+
+  /// No description provided for @allPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'All Pinyin'**
+  String get allPinyin;
+
+  /// No description provided for @alreadyHaveAccountSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign in'**
+  String get alreadyHaveAccountSignIn;
+
+  /// No description provided for @analysisFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Analysis Failed:'**
+  String get analysisFailed;
+
+  /// No description provided for @analyzingClassicalCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing classical characters...'**
+  String get analyzingClassicalCharacters;
+
+  /// No description provided for @anatomy.
+  ///
+  /// In en, this message translates to:
+  /// **'Anatomy'**
+  String get anatomy;
+
+  /// No description provided for @ancientPhilosophy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ancient Philosophy'**
+  String get ancientPhilosophy;
+
+  /// No description provided for @articleSavedToMediaHub.
+  ///
+  /// In en, this message translates to:
+  /// **'Article saved to Media Hub!'**
+  String get articleSavedToMediaHub;
+
+  /// No description provided for @askAFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a follow-up...'**
+  String get askAFollowUp;
+
+  /// No description provided for @audioPrivacyAndHowThingsWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio, privacy, and how things work'**
+  String get audioPrivacyAndHowThingsWork;
+
+  /// No description provided for @audiobookPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Audiobook Player'**
+  String get audiobookPlayer;
+
+  /// No description provided for @audiobookVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Audiobook Voice'**
+  String get audiobookVoice;
+
+  /// No description provided for @auntieMaTown.
+  ///
+  /// In en, this message translates to:
+  /// **'Auntie Ma (马阿姨), an energetic and loud stall owner who makes the crispiest Roujiamo and Liangpi in town.'**
+  String get auntieMaTown;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @baristaKevinNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Barista Kevin (小凯), a passionate young coffee roaster who loves discussing Yunnan coffee beans and flavor notes.'**
+  String get baristaKevinNotes;
+
+  /// No description provided for @bbc.
+  ///
+  /// In en, this message translates to:
+  /// **'BBC 中文'**
+  String get bbc;
+
+  /// No description provided for @beginYourJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin Your Journey'**
+  String get beginYourJourney;
+
+  /// No description provided for @bestValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Value'**
+  String get bestValue;
+
+  /// No description provided for @bookLinkCopiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Book link copied to clipboard!'**
+  String get bookLinkCopiedToClipboard;
+
+  /// No description provided for @bookmarkChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark Chapter'**
+  String get bookmarkChapter;
+
+  /// No description provided for @bookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks'**
+  String get bookmarks;
+
+  /// No description provided for @books.
+  ///
+  /// In en, this message translates to:
+  /// **'Books'**
+  String get books;
+
+  /// No description provided for @briefing.
+  ///
+  /// In en, this message translates to:
+  /// **'Briefing'**
+  String get briefing;
+
+  /// No description provided for @bugReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Bug Report'**
+  String get bugReport;
+
+  /// No description provided for @caoXueqinDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Cao Xueqin (c. 1715–1763) was a Qing Dynasty novelist born into a once-wealthy Bannerman family whose fortunes collapsed under Emperor Yongzheng. Dream of the Red Chamber, written in his poverty-stricken final years, is widely regarded as the pinnacle of Chinese fiction — a vast, psychologically rich taphos of aristocratic decline.'**
+  String get caoXueqinDecline;
+
+  /// No description provided for @cardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'CARDS'**
+  String get cardsTitle;
+
+  /// No description provided for @cc.
+  ///
+  /// In en, this message translates to:
+  /// **'CC'**
+  String get cc;
+
+  /// No description provided for @characterOrWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Character / Word'**
+  String get characterOrWord;
+
+  /// No description provided for @chatMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat more'**
+  String get chatMore;
+
+  /// No description provided for @chefChenShumai.
+  ///
+  /// In en, this message translates to:
+  /// **'Chef Chen (陈师傅), a cheerful Cantonese dim sum chef recommending fresh Har Gow shrimp dumplings and Shumai.'**
+  String get chefChenShumai;
+
+  /// No description provided for @chineseEpics.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Epics'**
+  String get chineseEpics;
+
+  /// No description provided for @chinesePoetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Poetry'**
+  String get chinesePoetry;
+
+  /// No description provided for @chng.
+  ///
+  /// In en, this message translates to:
+  /// **'chéng'**
+  String get chng;
+
+  /// No description provided for @chongqingSpicyHotpotFeast.
+  ///
+  /// In en, this message translates to:
+  /// **'Chongqing Spicy Hotpot Feast'**
+  String get chongqingSpicyHotpotFeast;
+
+  /// No description provided for @chooseAudiobookVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Audiobook Voice'**
+  String get chooseAudiobookVoice;
+
+  /// No description provided for @chooseVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Voice'**
+  String get chooseVoice;
+
+  /// No description provided for @compare.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare'**
+  String get compare;
+
+  /// No description provided for @compare4Tones.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare 4 Tones'**
+  String get compare4Tones;
+
+  /// No description provided for @configuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration'**
+  String get configuration;
+
+  /// No description provided for @contemporary.
+  ///
+  /// In en, this message translates to:
+  /// **'Contemporary'**
+  String get contemporary;
+
+  /// No description provided for @context.
+  ///
+  /// In en, this message translates to:
+  /// **'Context'**
+  String get context;
+
+  /// No description provided for @couldNotLoadLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the library'**
+  String get couldNotLoadLibrary;
+
+  /// No description provided for @couldNotLoadVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load vocabulary.'**
+  String get couldNotLoadVocabulary;
+
+  /// No description provided for @couldNotOpenEmailApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open email app.'**
+  String get couldNotOpenEmailApp;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get createAccount;
+
+  /// No description provided for @createNewDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Deck'**
+  String get createNewDeck;
+
+  /// No description provided for @createScenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Scenario'**
+  String get createScenario;
+
+  /// No description provided for @createStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Story'**
+  String get createStory;
+
+  /// No description provided for @customLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get customLabel;
+
+  /// No description provided for @customWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Word'**
+  String get customWord;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get days;
+
+  /// No description provided for @deck.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck'**
+  String get deck;
+
+  /// No description provided for @deckName.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck Name'**
+  String get deckName;
+
+  /// No description provided for @deckStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck Story'**
+  String get deckStory;
+
+  /// No description provided for @deepAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Analysis'**
+  String get deepAnalysis;
+
+  /// No description provided for @defaultDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Default Deck'**
+  String get defaultDeck;
+
+  /// No description provided for @deleteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteLabel;
+
+  /// No description provided for @deleteScenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Scenario'**
+  String get deleteScenario;
+
+  /// No description provided for @deletesAllProgressPermanently.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletes all progress permanently'**
+  String get deletesAllProgressPermanently;
+
+  /// No description provided for @developerBackdoorUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Developer Backdoor Unlocked!'**
+  String get developerBackdoorUnlocked;
+
+  /// No description provided for @doesNotExistInChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Does not exist in Chinese'**
+  String get doesNotExistInChinese;
+
+  /// No description provided for @dontHaveAccountSignUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Sign up'**
+  String get dontHaveAccountSignUp;
+
+  /// No description provided for @draftingStoryOutline.
+  ///
+  /// In en, this message translates to:
+  /// **'Drafting story outline...'**
+  String get draftingStoryOutline;
+
+  /// No description provided for @dynamicFlowState.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic Flow State'**
+  String get dynamicFlowState;
+
+  /// No description provided for @dynamicFlowStateParenthetical.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic (Flow State)'**
+  String get dynamicFlowStateParenthetical;
+
+  /// No description provided for @editCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Card'**
+  String get editCard;
+
+  /// No description provided for @egAnimeVocab.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. Anime Vocab'**
+  String get egAnimeVocab;
+
+  /// No description provided for @egFormalBusinessLanguageSlangForTexting.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Formal business language, slang for texting...'**
+  String get egFormalBusinessLanguageSlangForTexting;
+
+  /// No description provided for @egOrderingAtARestaurantBusinessVocab.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Ordering at a restaurant, Business vocab...'**
+  String get egOrderingAtARestaurantBusinessVocab;
+
+  /// No description provided for @egWeddingReceptionTechInterview.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Wedding Reception, Tech Interview...'**
+  String get egWeddingReceptionTechInterview;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @englishAndWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'English & World'**
+  String get englishAndWorld;
+
+  /// No description provided for @episodes.
+  ///
+  /// In en, this message translates to:
+  /// **'episodes'**
+  String get episodes;
+
+  /// No description provided for @erase.
+  ///
+  /// In en, this message translates to:
+  /// **'Erase'**
+  String get erase;
+
+  /// No description provided for @eraseDeckQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Erase Deck?'**
+  String get eraseDeckQuestion;
+
+  /// No description provided for @errorFetchingTranslationForLabelE.
+  ///
+  /// In en, this message translates to:
+  /// **'Error fetching translation for {label}: {e}'**
+  String errorFetchingTranslationForLabelE(String label, String e);
+
+  /// No description provided for @errorLoadingMicroreadsE.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading micro-reads: {e}'**
+  String errorLoadingMicroreadsE(String e);
+
+  /// No description provided for @errorLoadingNovelsE.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading novels: {e}'**
+  String errorLoadingNovelsE(String e);
+
+  /// No description provided for @errorLoadingPoetryE.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading poetry: {e}'**
+  String errorLoadingPoetryE(String e);
+
+  /// No description provided for @exitFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit Focus'**
+  String get exitFocus;
+
+  /// No description provided for @explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get explore;
+
+  /// No description provided for @exportToThisDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Export to this deck'**
+  String get exportToThisDeck;
+
+  /// No description provided for @extractAndSimplify.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract & Simplify'**
+  String get extractAndSimplify;
+
+  /// No description provided for @failedToCreateDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create deck'**
+  String get failedToCreateDeck;
+
+  /// No description provided for @failedToLoadDailyContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load daily content'**
+  String get failedToLoadDailyContent;
+
+  /// No description provided for @failedToLoadEpisodes.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load episodes'**
+  String get failedToLoadEpisodes;
+
+  /// No description provided for @failedToLoadShows.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load shows'**
+  String get failedToLoadShows;
+
+  /// No description provided for @finalizingDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Finalizing details...'**
+  String get finalizingDetails;
+
+  /// No description provided for @finalizingStoryDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Finalizing story details...'**
+  String get finalizingStoryDetails;
+
+  /// No description provided for @firebaseAuthConsole.
+  ///
+  /// In en, this message translates to:
+  /// **'Firebase Auth not enabled. Please enable the required Sign-In method in your Firebase Console.'**
+  String get firebaseAuthConsole;
+
+  /// No description provided for @flashcardDeckTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'FLASHCARD DECK'**
+  String get flashcardDeckTitle;
+
+  /// No description provided for @focus.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus'**
+  String get focus;
+
+  /// No description provided for @foodAndCooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Food & Cooking'**
+  String get foodAndCooking;
+
+  /// No description provided for @forward.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward'**
+  String get forward;
+
+  /// No description provided for @freeFlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Free Flow'**
+  String get freeFlow;
+
+  /// No description provided for @frenchClassics.
+  ///
+  /// In en, this message translates to:
+  /// **'French Classics'**
+  String get frenchClassics;
+
+  /// No description provided for @full.
+  ///
+  /// In en, this message translates to:
+  /// **'Full'**
+  String get full;
+
+  /// No description provided for @gamingAndEsports.
+  ///
+  /// In en, this message translates to:
+  /// **'Gaming & Esports'**
+  String get gamingAndEsports;
+
+  /// No description provided for @germanClassics.
+  ///
+  /// In en, this message translates to:
+  /// **'German Classics'**
+  String get germanClassics;
+
+  /// No description provided for @ghostPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'Ghost Pinyin'**
+  String get ghostPinyin;
+
+  /// No description provided for @goodAttempt.
+  ///
+  /// In en, this message translates to:
+  /// **'Good attempt'**
+  String get goodAttempt;
+
+  /// No description provided for @gotItSimple.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotItSimple;
+
+  /// No description provided for @grammar.
+  ///
+  /// In en, this message translates to:
+  /// **'Grammar'**
+  String get grammar;
+
+  /// No description provided for @grandmaLiuFilling.
+  ///
+  /// In en, this message translates to:
+  /// **'Grandma Liu (刘奶奶), a doting northern grandmother who teaches you how to pinch dumpling pleats and make pork-scallion filling.'**
+  String get grandmaLiuFilling;
+
+  /// No description provided for @great.
+  ///
+  /// In en, this message translates to:
+  /// **'Great!'**
+  String get great;
+
+  /// No description provided for @handmadeDumplingFeastInHarbin.
+  ///
+  /// In en, this message translates to:
+  /// **'Handmade Dumpling Feast in Harbin'**
+  String get handmadeDumplingFeastInHarbin;
+
+  /// No description provided for @hanziCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi (Character)'**
+  String get hanziCharacter;
+
+  /// No description provided for @hapticFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Haptic Feedback'**
+  String get hapticFeedback;
+
+  /// No description provided for @helpAndSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpAndSupport;
+
+  /// No description provided for @hidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden'**
+  String get hidden;
+
+  /// No description provided for @hideEnglishTranslations.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide English Translations'**
+  String get hideEnglishTranslations;
+
+  /// No description provided for @hidePinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide Pinyin'**
+  String get hidePinyin;
+
+  /// No description provided for @highlight.
+  ///
+  /// In en, this message translates to:
+  /// **'HIGHLIGHT'**
+  String get highlight;
+
+  /// No description provided for @howWouldYouLikeToStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'How would you like to study?'**
+  String get howWouldYouLikeToStudy;
+
+  /// No description provided for @hsk1.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 1'**
+  String get hsk1;
+
+  /// No description provided for @hsk4UpperIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 4: Upper Int.'**
+  String get hsk4UpperIntermediate;
+
+  /// No description provided for @hsk5Advanced.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 5: Advanced'**
+  String get hsk5Advanced;
+
+  /// No description provided for @hsk6Mastery.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 6: Mastery'**
+  String get hsk6Mastery;
+
+  /// No description provided for @hskCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Collections'**
+  String get hskCollections;
+
+  /// No description provided for @hskLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK {level}'**
+  String hskLevel(String level);
+
+  /// No description provided for @hskSimplifySubtitles.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK Simplify Subtitles'**
+  String get hskSimplifySubtitles;
+
+  /// No description provided for @hskVocabularyCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK vocabulary collections'**
+  String get hskVocabularyCollections;
+
+  /// No description provided for @i.
+  ///
+  /// In en, this message translates to:
+  /// **'I\\'**
+  String get i;
+
+  /// No description provided for @ifTheAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'If the AI detects a mismatch, it will ask \'Did you mean to say...?\'. You can tap the \'Yes, Re-Grade Me!\' button to instantly re-evaluate your original audio against your true intention without having to speak again.'**
+  String get ifTheAgain;
+
+  /// No description provided for @install.
+  ///
+  /// In en, this message translates to:
+  /// **'Install'**
+  String get install;
+
+  /// No description provided for @just.
+  ///
+  /// In en, this message translates to:
+  /// **'Just \\\$'**
+  String get just;
+
+  /// No description provided for @keyword.
+  ///
+  /// In en, this message translates to:
+  /// **'keyword'**
+  String get keyword;
+
+  /// No description provided for @knowledgeBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Knowledge Base'**
+  String get knowledgeBase;
+
+  /// No description provided for @liRuzhenSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects.'**
+  String get liRuzhenSubjects;
+
+  /// No description provided for @library.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get library;
+
+  /// No description provided for @lifestyleAndVlog.
+  ///
+  /// In en, this message translates to:
+  /// **'Lifestyle & Vlog'**
+  String get lifestyleAndVlog;
+
+  /// No description provided for @listenInAudiobookMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen in Audiobook Mode'**
+  String get listenInAudiobookMode;
+
+  /// No description provided for @listenToThisWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to this word'**
+  String get listenToThisWord;
+
+  /// No description provided for @listening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening...'**
+  String get listening;
+
+  /// No description provided for @liuEEncroachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Liu E (1857–1909) was a late-Qing polymath — engineer, doctor, and novelist — whose sole novel The Travels of Lao Can is a lyrical yet politically charged travelogue of a wandering healer navigating a China in the throes of dynastic collapse and foreign encroachment.'**
+  String get liuEEncroachment;
+
+  /// No description provided for @loadingTranslations.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading translations...'**
+  String get loadingTranslations;
+
+  /// No description provided for @luXunVernacular.
+  ///
+  /// In en, this message translates to:
+  /// **'Lu Xun (1881–1936), pen name of Zhou Shuren, is the father of modern Chinese literature. A physician who switched to writing to heal the Chinese spirit, his short story collections — Diary of a Madman and The True Story of Ah Q — used vernacular'**
+  String get luXunVernacular;
+
+  /// No description provided for @luoGuanzhongEpic.
+  ///
+  /// In en, this message translates to:
+  /// **'Luo Guanzhong (c. 1330–1400) was a Yuan-to-Ming transition era playwright and novelist, believed to have studied under Shi Nai\'an. His Romance of the Three Kingdoms synthesised historical chronicles, oral tradition, and dramatic storytelling into the definitive Chinese historical epic.'**
+  String get luoGuanzhongEpic;
+
+  /// No description provided for @makeACustomCollection.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a custom collection'**
+  String get makeACustomCollection;
+
+  /// No description provided for @manageDailyDropsAndReviewReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Daily Drops and Review Reminders'**
+  String get manageDailyDropsAndReviewReminders;
+
+  /// No description provided for @managerYuOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Manager Yu (余店长), a fiery hotpot restaurant manager who recommends signature tripe, duck blood, and mild broth options.'**
+  String get managerYuOptions;
+
+  /// No description provided for @masterGaoRubs.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Gao (高师傅), a charismatic charcoal BBQ master bantering with customers about spice levels and secret cumin rubs.'**
+  String get masterGaoRubs;
+
+  /// No description provided for @masterThisToUnlockItsGalaxy.
+  ///
+  /// In en, this message translates to:
+  /// **'Master this to unlock its galaxy.'**
+  String get masterThisToUnlockItsGalaxy;
+
+  /// No description provided for @masterZhaoBrewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Zhao (赵师傅), a patient and knowledgeable tea sommelier who loves explaining Gongfu tea brewing.'**
+  String get masterZhaoBrewing;
+
+  /// No description provided for @mastery.
+  ///
+  /// In en, this message translates to:
+  /// **'Mastery'**
+  String get mastery;
+
+  /// No description provided for @maybeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe Later'**
+  String get maybeLater;
+
+  /// No description provided for @memes.
+  ///
+  /// In en, this message translates to:
+  /// **'Memes'**
+  String get memes;
+
+  /// No description provided for @midnightBbqSkewersInWuhan.
+  ///
+  /// In en, this message translates to:
+  /// **'Midnight BBQ Skewers in Wuhan'**
+  String get midnightBbqSkewersInWuhan;
+
+  /// No description provided for @mo.
+  ///
+  /// In en, this message translates to:
+  /// **'/mo'**
+  String get mo;
+
+  /// No description provided for @modernChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern Chinese'**
+  String get modernChinese;
+
+  /// No description provided for @monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get monthly;
+
+  /// No description provided for @morningDimSumCartInGuangzhou.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning Dim Sum Cart in Guangzhou'**
+  String get morningDimSumCartInGuangzhou;
+
+  /// No description provided for @nameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameLabel;
+
+  /// No description provided for @native.
+  ///
+  /// In en, this message translates to:
+  /// **'Native'**
+  String get native;
+
+  /// No description provided for @newCard.
+  ///
+  /// In en, this message translates to:
+  /// **'New Card'**
+  String get newCard;
+
+  /// No description provided for @newDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'New Deck'**
+  String get newDeck;
+
+  /// No description provided for @newDeckName.
+  ///
+  /// In en, this message translates to:
+  /// **'New Deck Name'**
+  String get newDeckName;
+
+  /// No description provided for @noActiveSubscriptionFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No active subscription found.'**
+  String get noActiveSubscriptionFound;
+
+  /// No description provided for @noEpisodesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No episodes found'**
+  String get noEpisodesFound;
+
+  /// No description provided for @noKeyWordsFoundForThisStory.
+  ///
+  /// In en, this message translates to:
+  /// **'No key words found for this story.'**
+  String get noKeyWordsFoundForThisStory;
+
+  /// No description provided for @noLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get noLabel;
+
+  /// No description provided for @noNewWordsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No new words found!'**
+  String get noNewWordsFound;
+
+  /// No description provided for @noPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'No Pinyin'**
+  String get noPinyin;
+
+  /// No description provided for @noPremiumPackagesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No premium packages available at the moment.'**
+  String get noPremiumPackagesAvailable;
+
+  /// No description provided for @noResultsFoundForSearchquery.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found for \'{searchQuery}\''**
+  String noResultsFoundForSearchquery(String searchQuery);
+
+  /// No description provided for @noSavedArticlesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved articles yet.'**
+  String get noSavedArticlesYet;
+
+  /// No description provided for @noShowsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No shows available'**
+  String get noShowsAvailable;
+
+  /// No description provided for @noStoriesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No stories found.'**
+  String get noStoriesFound;
+
+  /// No description provided for @noWordsSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No words selected'**
+  String get noWordsSelected;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @notoserifsc.
+  ///
+  /// In en, this message translates to:
+  /// **'NotoSerifSC'**
+  String get notoserifsc;
+
+  /// No description provided for @objectivesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'OBJECTIVES'**
+  String get objectivesTitle;
+
+  /// No description provided for @openInYoutube.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in YouTube'**
+  String get openInYoutube;
+
+  /// No description provided for @orderingHanddripCoffeeInShanghai.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordering Hand-Drip Coffee in Shanghai'**
+  String get orderingHanddripCoffeeInShanghai;
+
+  /// No description provided for @orderingSugarcoatedHawsInWinterBeijing.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordering Sugar-Coated Haws in Winter Beijing'**
+  String get orderingSugarcoatedHawsInWinterBeijing;
+
+  /// No description provided for @partnerLang.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner ({lang})'**
+  String partnerLang(String lang);
+
+  /// No description provided for @partnerListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner listening...'**
+  String get partnerListening;
+
+  /// No description provided for @partnerSpeaking.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner speaking…'**
+  String get partnerSpeaking;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @perfect.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect!'**
+  String get perfect;
+
+  /// No description provided for @personalizedPathBasedOnDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'A personalized path based on your deck.'**
+  String get personalizedPathBasedOnDeck;
+
+  /// No description provided for @play.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String play(Object pinyin);
+
+  /// No description provided for @pleaseEnterMessageBeforeSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a message before sending.'**
+  String get pleaseEnterMessageBeforeSending;
+
+  /// No description provided for @practiceInRoleplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice in Roleplay'**
+  String get practiceInRoleplay;
+
+  /// No description provided for @practiceModes.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Modes'**
+  String get practiceModes;
+
+  /// No description provided for @practicePronouncingWithAiGrading.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice pronouncing this word with AI grading'**
+  String get practicePronouncingWithAiGrading;
+
+  /// No description provided for @preparingReadingInterface.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing reading interface...'**
+  String get preparingReadingInterface;
+
+  /// No description provided for @privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get privacy;
+
+  /// No description provided for @privacyAndAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Audio'**
+  String get privacyAndAudio;
+
+  /// No description provided for @puSonglingLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Pu Songling (1640–1715) was a Qing Dynasty writer who spent decades compiling Strange Tales from a Chinese Studio after repeatedly failing the imperial examinations. His supernatural stories of fox spirits, ghosts, and scholars remain the gold standard of Chinese gothic literature.'**
+  String get puSonglingLiterature;
+
+  /// No description provided for @qaFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'Q&A / FAQ'**
+  String get qaFaq;
+
+  /// No description provided for @questsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'QUESTS'**
+  String get questsTitle;
+
+  /// No description provided for @quickBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Bookmarks'**
+  String get quickBookmarks;
+
+  /// No description provided for @radical.
+  ///
+  /// In en, this message translates to:
+  /// **'Radical'**
+  String get radical;
+
+  /// No description provided for @ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get ready;
+
+  /// No description provided for @readyToInterpret.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to interpret'**
+  String get readyToInterpret;
+
+  /// No description provided for @readyToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to start.'**
+  String get readyToStart;
+
+  /// No description provided for @recentBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Bookmarks'**
+  String get recentBookmarks;
+
+  /// No description provided for @refiningGrammar.
+  ///
+  /// In en, this message translates to:
+  /// **'Refining grammar...'**
+  String get refiningGrammar;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @removeFromSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Saved'**
+  String get removeFromSaved;
+
+  /// No description provided for @removeFromSavedScenarios.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved scenarios'**
+  String get removeFromSavedScenarios;
+
+  /// No description provided for @removed.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed'**
+  String get removed;
+
+  /// No description provided for @requestPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Permissions'**
+  String get requestPermissions;
+
+  /// No description provided for @rescind.
+  ///
+  /// In en, this message translates to:
+  /// **'Rescind'**
+  String get rescind;
+
+  /// No description provided for @restore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get restore;
+
+  /// No description provided for @results.
+  ///
+  /// In en, this message translates to:
+  /// **'Results'**
+  String get results;
+
+  /// No description provided for @resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get resume;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @revenuecatError.
+  ///
+  /// In en, this message translates to:
+  /// **'RevenueCat Error:'**
+  String get revenuecatError;
+
+  /// No description provided for @revenuecatErrorE.
+  ///
+  /// In en, this message translates to:
+  /// **'RevenueCat Error: {e}'**
+  String revenuecatErrorE(String e);
+
+  /// No description provided for @reviewExtractedDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Extracted Deck'**
+  String get reviewExtractedDeck;
+
+  /// No description provided for @reviewIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Review in'**
+  String get reviewIn;
+
+  /// No description provided for @reviewingYourTones.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewing your tones...'**
+  String get reviewingYourTones;
+
+  /// No description provided for @saveAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Save All'**
+  String get saveAll;
+
+  /// No description provided for @saveScenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Scenario'**
+  String get saveScenario;
+
+  /// No description provided for @saveThisScenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Save this scenario'**
+  String get saveThisScenario;
+
+  /// No description provided for @saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get saved;
+
+  /// No description provided for @scanAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Another'**
+  String get scanAnother;
+
+  /// No description provided for @scenarioRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenario removed'**
+  String get scenarioRemoved;
+
+  /// No description provided for @scenarioSavedFindInCustomTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenario saved! Find it in the Custom tab.'**
+  String get scenarioSavedFindInCustomTab;
+
+  /// No description provided for @score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score:'**
+  String score(Object score, Object total);
+
+  /// No description provided for @searchByPinyinOrMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by pinyin or meaning...'**
+  String get searchByPinyinOrMeaning;
+
+  /// No description provided for @searchByTitleOrTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by title or tag...'**
+  String get searchByTitleOrTag;
+
+  /// No description provided for @searchDictionaryOrTypeCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Search dictionary or type custom'**
+  String get searchDictionaryOrTypeCustom;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get searchHint;
+
+  /// No description provided for @searchOrEnterUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Search or enter URL'**
+  String get searchOrEnterUrl;
+
+  /// No description provided for @searchScenariosHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search scenarios...'**
+  String get searchScenariosHint;
+
+  /// No description provided for @searchStoriesIdiomsNews.
+  ///
+  /// In en, this message translates to:
+  /// **'Search stories, idioms, news...'**
+  String get searchStoriesIdiomsNews;
+
+  /// No description provided for @searchTopicsEgCookingHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Search topics (e.g., Cooking, History)'**
+  String get searchTopicsEgCookingHistory;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// No description provided for @selectADeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a Deck'**
+  String get selectADeck;
+
+  /// No description provided for @selectPracticeMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Practice Mode'**
+  String get selectPracticeMode;
+
+  /// No description provided for @selectingHskVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Selecting HSK vocabulary...'**
+  String get selectingHskVocabulary;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @sendMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Message'**
+  String get sendMessage;
+
+  /// No description provided for @serif.
+  ///
+  /// In en, this message translates to:
+  /// **'Serif'**
+  String get serif;
+
+  /// No description provided for @shadow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadow'**
+  String get shadow;
+
+  /// No description provided for @shiNaianEpic.
+  ///
+  /// In en, this message translates to:
+  /// **'Shi Nai\'an (c. 1296–1372) was a Yuan Dynasty literatus who reportedly passed the imperial examination yet chose the life of a reclusive scholar. Water Margin, his masterwork of heroic outlaws and righteous rebellion, established the archetype of the Chinese martial epic.'**
+  String get shiNaianEpic;
+
+  /// No description provided for @showEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Show English'**
+  String get showEnglish;
+
+  /// No description provided for @showEnglishTranslations.
+  ///
+  /// In en, this message translates to:
+  /// **'Show English Translations'**
+  String get showEnglishTranslations;
+
+  /// No description provided for @showHanzi.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Hanzi'**
+  String get showHanzi;
+
+  /// No description provided for @showPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Pinyin'**
+  String get showPinyin;
+
+  /// No description provided for @showTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Translation'**
+  String get showTranslation;
+
+  /// No description provided for @shows.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows'**
+  String get shows;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @simplifiedArticle.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplified Article'**
+  String get simplifiedArticle;
+
+  /// No description provided for @simplifyingSubtitles.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplifying subtitles...'**
+  String get simplifyingSubtitles;
+
+  /// No description provided for @sincereHonest.
+  ///
+  /// In en, this message translates to:
+  /// **'sincere; honest'**
+  String get sincereHonest;
+
+  /// No description provided for @sleepTimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep Timer'**
+  String get sleepTimer;
+
+  /// No description provided for @smartDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Deck'**
+  String get smartDeck;
+
+  /// No description provided for @spanishAndWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish & World'**
+  String get spanishAndWorld;
+
+  /// No description provided for @speaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker'**
+  String get speaker;
+
+  /// No description provided for @spotifyStylePlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotify-style Player'**
+  String get spotifyStylePlayer;
+
+  /// No description provided for @storyBookmarkedInLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Story bookmarked in Library!'**
+  String get storyBookmarkedInLibrary;
+
+  /// No description provided for @streetFoodNightMarketInXian.
+  ///
+  /// In en, this message translates to:
+  /// **'Street Food Night Market in Xi\'an'**
+  String get streetFoodNightMarketInXian;
+
+  /// No description provided for @strokes.
+  ///
+  /// In en, this message translates to:
+  /// **'Strokes'**
+  String get strokes;
+
+  /// No description provided for @studyCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Character'**
+  String get studyCharacter;
+
+  /// No description provided for @subtitleOpacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtitle Opacity'**
+  String get subtitleOpacity;
+
+  /// No description provided for @suggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion'**
+  String get suggestion;
+
+  /// No description provided for @summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summary;
+
+  /// No description provided for @supernaturalAndFolklore.
+  ///
+  /// In en, this message translates to:
+  /// **'Supernatural & Folklore'**
+  String get supernaturalAndFolklore;
+
+  /// No description provided for @swipeToGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe to Grade:'**
+  String get swipeToGrade;
+
+  /// No description provided for @tableOfContents.
+  ///
+  /// In en, this message translates to:
+  /// **'Table of Contents'**
+  String get tableOfContents;
+
+  /// No description provided for @tapToRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to Retry'**
+  String get tapToRetry;
+
+  /// No description provided for @teaTastingInChengdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Tea Tasting in Chengdu'**
+  String get teaTastingInChengdu;
+
+  /// No description provided for @techAndGadgets.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech & Gadgets'**
+  String get techAndGadgets;
+
+  /// No description provided for @terms.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms'**
+  String get terms;
+
+  /// No description provided for @theGalaxyCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'The Galaxy Map awaits.\nMaster the Suns (Radicals) to unlock the Planets (Characters).'**
+  String get theGalaxyCharacters;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @thinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinking...'**
+  String get thinking;
+
+  /// No description provided for @thisArticleCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'This article contains Traditional Chinese characters.'**
+  String get thisArticleCharacters;
+
+  /// No description provided for @todaysWord.
+  ///
+  /// In en, this message translates to:
+  /// **'TODAY\'S WORD'**
+  String get todaysWord;
+
+  /// No description provided for @togglePinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle Pinyin'**
+  String get togglePinyin;
+
+  /// No description provided for @toggleTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle Translation'**
+  String get toggleTranslation;
+
+  /// No description provided for @toneDoesNotExistInMandarin.
+  ///
+  /// In en, this message translates to:
+  /// **'This tone does not exist in standard Mandarin.'**
+  String get toneDoesNotExistInMandarin;
+
+  /// No description provided for @toneGraph.
+  ///
+  /// In en, this message translates to:
+  /// **'Tone Graph'**
+  String get toneGraph;
+
+  /// No description provided for @traceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace'**
+  String get traceLabel;
+
+  /// No description provided for @trailer.
+  ///
+  /// In en, this message translates to:
+  /// **'TRAILER'**
+  String get trailer;
+
+  /// No description provided for @translatingAndAddingPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'Translating and adding Pinyin...'**
+  String get translatingAndAddingPinyin;
+
+  /// No description provided for @translatingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Translating text...'**
+  String get translatingText;
+
+  /// No description provided for @turnOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn On'**
+  String get turnOn;
+
+  /// No description provided for @typeHanziPinyinOrEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Type Hanzi, Pinyin, or English...'**
+  String get typeHanziPinyinOrEnglish;
+
+  /// No description provided for @unknown2.
+  ///
+  /// In en, this message translates to:
+  /// **'游戏 实况 王者荣耀 原神'**
+  String get unknown2;
+
+  /// No description provided for @unknown3.
+  ///
+  /// In en, this message translates to:
+  /// **'中国 美食 菜谱'**
+  String get unknown3;
+
+  /// No description provided for @unknown4.
+  ///
+  /// In en, this message translates to:
+  /// **'中国 科技 测评'**
+  String get unknown4;
+
+  /// No description provided for @unrollingTheScroll.
+  ///
+  /// In en, this message translates to:
+  /// **'Unrolling the scroll...'**
+  String get unrollingTheScroll;
+
+  /// No description provided for @upperIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper Int.'**
+  String get upperIntermediate;
+
+  /// No description provided for @vibrationsForInteractions.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibrations for interactions'**
+  String get vibrationsForInteractions;
+
+  /// No description provided for @video.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get video;
+
+  /// No description provided for @viewAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'View Answer'**
+  String get viewAnswer;
+
+  /// No description provided for @viewAsList.
+  ///
+  /// In en, this message translates to:
+  /// **'View as List'**
+  String get viewAsList;
+
+  /// No description provided for @viewBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'View Bookmarks'**
+  String get viewBookmarks;
+
+  /// No description provided for @viewMyDrawing.
+  ///
+  /// In en, this message translates to:
+  /// **'View My Drawing'**
+  String get viewMyDrawing;
+
+  /// No description provided for @vlog.
+  ///
+  /// In en, this message translates to:
+  /// **'中国 日常 vlog'**
+  String get vlog;
+
+  /// No description provided for @voice.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice:'**
+  String get voice;
+
+  /// No description provided for @web.
+  ///
+  /// In en, this message translates to:
+  /// **'Web'**
+  String get web;
+
+  /// No description provided for @wedLoveToHearFromYou.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'d love to\nhear from you.'**
+  String get wedLoveToHearFromYou;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get welcomeBack;
+
+  /// No description provided for @whatDoesThisMean.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this mean?'**
+  String get whatDoesThisMean;
+
+  /// No description provided for @whatHappensToMyChatHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'What happens to my chat history?'**
+  String get whatHappensToMyChatHistory;
+
+  /// No description provided for @whatIfAiMishears.
+  ///
+  /// In en, this message translates to:
+  /// **'What if the AI mishears what I meant to say?'**
+  String get whatIfAiMishears;
+
+  /// No description provided for @whichCharacterIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Which character is:'**
+  String get whichCharacterIs;
+
+  /// No description provided for @wikipedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Wikipedia'**
+  String get wikipedia;
+
+  /// No description provided for @wordsSavedAndSrsScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Words saved and SRS scheduled!'**
+  String get wordsSavedAndSrsScheduled;
+
+  /// No description provided for @writeYourMessageHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your message here...'**
+  String get writeYourMessageHere;
+
+  /// No description provided for @wuChengenLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Wu Cheng\'en (c. 1500–1582) was a Ming Dynasty novelist from Huai\'an, Jiangsu. Drawing on decades of folklore, Buddhist allegory, and satirical wit, he wove the mythology of the Tang pilgrimage into Journey to the West — one of the most inventive and beloved works in world literature.'**
+  String get wuChengenLiterature;
+
+  /// No description provided for @wuJingziClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Wu Jingzi (1701–1754) was a Qing Dynasty novelist from Anhui who abandoned his inherited fortune and spent his life writing The Scholars — a biting satirical novel exposing the vanity, corruption, and absurdity of the imperial examination system and the scholar-gentry class.'**
+  String get wuJingziClass;
+
+  /// No description provided for @xuZhonglinWarfare.
+  ///
+  /// In en, this message translates to:
+  /// **'Xu Zhonglin (fl. 16th–17th century) was a Ming Dynasty author credited with compiling Investiture of the Gods (封神演义), a monumental work of mythological fiction blending Shang-Zhou history with Daoist cosmology, celestial bureaucracy, and heroic warfare.'**
+  String get xuZhonglinWarfare;
+
+  /// No description provided for @yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get yearly;
+
+  /// No description provided for @yesReGradeMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, Re-Grade Me!'**
+  String get yesReGradeMe;
+
+  /// No description provided for @you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String you(Object lang);
+
+  /// No description provided for @youAreSpeaking.
+  ///
+  /// In en, this message translates to:
+  /// **'You are speaking'**
+  String get youAreSpeaking;
+
+  /// No description provided for @youLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get youLabel;
+
+  /// No description provided for @youLang.
+  ///
+  /// In en, this message translates to:
+  /// **'You ({lang})'**
+  String youLang(String lang);
+
+  /// No description provided for @youMustAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'You must accept the Terms of Service and Privacy Policy to create an account.'**
+  String get youMustAccount;
+
+  /// No description provided for @yourEchoModels.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Echo Hall conversations are stored locally on your device so you can review them anytime. We do not use your personal conversations to train our AI models.'**
+  String get yourEchoModels;
+
+  /// No description provided for @zhOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'ZH Only'**
+  String get zhOnly;
+
+  /// No description provided for @hsk_1300_cards.
+  ///
+  /// In en, this message translates to:
+  /// **'1300 cards'**
+  String get hsk_1300_cards;
+
+  /// No description provided for @hsk_154_cards.
+  ///
+  /// In en, this message translates to:
+  /// **'154 cards'**
+  String get hsk_154_cards;
+
+  /// No description provided for @hsk_162_cards.
+  ///
+  /// In en, this message translates to:
+  /// **'162 cards'**
+  String get hsk_162_cards;
+
+  /// No description provided for @hsk_2500_cards.
+  ///
+  /// In en, this message translates to:
+  /// **'2500 cards'**
+  String get hsk_2500_cards;
+
+  /// No description provided for @hsk_299_cards.
+  ///
+  /// In en, this message translates to:
+  /// **'299 cards'**
+  String get hsk_299_cards;
+
+  /// No description provided for @hsk_602_cards.
+  ///
+  /// In en, this message translates to:
+  /// **'602 cards'**
+  String get hsk_602_cards;
+
+  /// No description provided for @added_to_review_queue.
+  ///
+  /// In en, this message translates to:
+  /// **'Added  to Review Queue'**
+  String get added_to_review_queue;
+
+  /// No description provided for @added_cards_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Added {cardCount} cards to \"{deckName}\".'**
+  String added_cards_to(int cardCount, String deckName);
+
+  /// No description provided for @added_to_your_library.
+  ///
+  /// In en, this message translates to:
+  /// **'Added \'\' to your Library'**
+  String get added_to_your_library;
+
+  /// No description provided for @advanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get advanced;
+
+  /// No description provided for @ai_stories.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Stories'**
+  String get ai_stories;
+
+  /// No description provided for @analysis_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Analysis Failed: {error}'**
+  String analysis_failed(Object error);
+
+  /// No description provided for @analyzing_pronunciation_with_gemini_ai.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing pronunciation with Gemini AI...'**
+  String get analyzing_pronunciation_with_gemini_ai;
+
+  /// No description provided for @analyzing_your_pronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing your pronunciation...'**
+  String get analyzing_your_pronunciation;
+
+  /// No description provided for @are_you_sure_you_want_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to permanently erase \"{deckName}\"? This action cannot be undone and will delete all cards inside it.'**
+  String are_you_sure_you_want_to(String deckName);
+
+  /// No description provided for @ask_about.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask about {hanzi}...'**
+  String ask_about(String hanzi);
+
+  /// No description provided for @audio_haptics.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio & Haptics'**
+  String get audio_haptics;
+
+  /// No description provided for @audio_could_not_start_check_your.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio could not start. Check your connection and device voice settings.'**
+  String get audio_could_not_start_check_your;
+
+  /// No description provided for @calligraphy_trace.
+  ///
+  /// In en, this message translates to:
+  /// **'Calligraphy Trace'**
+  String get calligraphy_trace;
+
+  /// No description provided for @chapters.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapters)'**
+  String get chapters;
+
+  /// No description provided for @char.
+  ///
+  /// In en, this message translates to:
+  /// **'char'**
+  String get char;
+
+  /// No description provided for @chinese_character.
+  ///
+  /// In en, this message translates to:
+  /// **'CHINESE CHARACTER'**
+  String get chinese_character;
+
+  /// No description provided for @contact_us_and_report_issues.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us and report issues'**
+  String get contact_us_and_report_issues;
+
+  /// No description provided for @created_smart_deck_with_words.
+  ///
+  /// In en, this message translates to:
+  /// **'Created smart deck: \"{deckName}\" with {wordCount} words!'**
+  String created_smart_deck_with_words(String deckName, int wordCount);
+
+  /// No description provided for @custom_ai_generated_story.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom AI generated story.'**
+  String get custom_ai_generated_story;
+
+  /// No description provided for @display_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Display & Content'**
+  String get display_content;
+
+  /// No description provided for @do_you_keep_or_store_my.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you keep or store my voice recordings?'**
+  String get do_you_keep_or_store_my;
+
+  /// No description provided for @elementary.
+  ///
+  /// In en, this message translates to:
+  /// **'Elementary'**
+  String get elementary;
+
+  /// No description provided for @error_creating_scenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Error creating scenario: {error}'**
+  String error_creating_scenario(Object error);
+
+  /// No description provided for @error_fetching_translation_for.
+  ///
+  /// In en, this message translates to:
+  /// **'Error fetching translation for : {error}'**
+  String error_fetching_translation_for(Object error);
+
+  /// No description provided for @error_loading_chapters.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading chapters: {error}'**
+  String error_loading_chapters(Object error);
+
+  /// No description provided for @error_loading_decks.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading decks'**
+  String get error_loading_decks;
+
+  /// No description provided for @error_loading_microreads.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading micro-reads: {error}'**
+  String error_loading_microreads(Object error);
+
+  /// No description provided for @error_loading_novels.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading novels: {error}'**
+  String error_loading_novels(Object error);
+
+  /// No description provided for @error_loading_poetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading poetry: {error}'**
+  String error_loading_poetry(Object error);
+
+  /// No description provided for @etymology.
+  ///
+  /// In en, this message translates to:
+  /// **'Etymology: '**
+  String get etymology;
+
+  /// No description provided for @explanation.
+  ///
+  /// In en, this message translates to:
+  /// **'explanation'**
+  String get explanation;
+
+  /// No description provided for @extracted_text_tap_to_lookup.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracted Text (Tap to lookup)'**
+  String get extracted_text_tap_to_lookup;
+
+  /// No description provided for @extraction_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Extraction Failed: \\{error}'**
+  String extraction_failed(Object error);
+
+  /// No description provided for @failed_to_download.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to download.'**
+  String get failed_to_download;
+
+  /// No description provided for @failed_to_generate_scenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate scenario: {error}'**
+  String failed_to_generate_scenario(Object error);
+
+  /// No description provided for @failed_to_generate_story.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate story:\\n{error}'**
+  String failed_to_generate_story(Object error);
+
+  /// No description provided for @failed_to_load_context.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load context: {error}rr'**
+  String failed_to_load_context(Object error);
+
+  /// No description provided for @feature_request.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature Request'**
+  String get feature_request;
+
+  /// No description provided for @foundation.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation'**
+  String get foundation;
+
+  /// No description provided for @how_is_my_pronunciation_scored.
+  ///
+  /// In en, this message translates to:
+  /// **'How is my pronunciation scored?'**
+  String get how_is_my_pronunciation_scored;
+
+  /// No description provided for @hsk.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK '**
+  String hsk(Object level);
+
+  /// No description provided for @hsk_vocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK {hskLevel} vocabulary'**
+  String hsk_vocabulary(int hskLevel);
+
+  /// No description provided for @hsk_level.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK LEVEL'**
+  String get hsk_level;
+
+  /// No description provided for @intermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get intermediate;
+
+  /// No description provided for @learning_stats.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Stats'**
+  String get learning_stats;
+
+  /// No description provided for @mandarin.
+  ///
+  /// In en, this message translates to:
+  /// **'Mandarin'**
+  String get mandarin;
+
+  /// No description provided for @meaning.
+  ///
+  /// In en, this message translates to:
+  /// **'meaning'**
+  String get meaning;
+
+  /// No description provided for @no_decks_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No decks found.'**
+  String get no_decks_found;
+
+  /// No description provided for @no_results_found_for.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found for \'\''**
+  String get no_results_found_for;
+
+  /// No description provided for @no_when_you_use_echo_hall.
+  ///
+  /// In en, this message translates to:
+  /// **'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.'**
+  String get no_when_you_use_echo_hall;
+
+  /// No description provided for @notification_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Settings'**
+  String get notification_settings;
+
+  /// No description provided for @open_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get open_settings;
+
+  /// No description provided for @phoneme.
+  ///
+  /// In en, this message translates to:
+  /// **'phoneme'**
+  String get phoneme;
+
+  /// No description provided for @play_reference_pronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Reference Pronunciation'**
+  String get play_reference_pronunciation;
+
+  /// No description provided for @please_select_a_deck_to_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a deck to add cards to.'**
+  String get please_select_a_deck_to_add;
+
+  /// No description provided for @point_at_chinese_text_to_translate.
+  ///
+  /// In en, this message translates to:
+  /// **'Point at Chinese text to translate'**
+  String get point_at_chinese_text_to_translate;
+
+  /// No description provided for @practice_writing_the_strokes_by_hand.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice writing the strokes by hand'**
+  String get practice_writing_the_strokes_by_hand;
+
+  /// No description provided for @preferences_audio_and_display.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences, Audio, and Display'**
+  String get preferences_audio_and_display;
+
+  /// No description provided for @preparing_your_scholars_verdict.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your Scholar\'s Verdict...'**
+  String get preparing_your_scholars_verdict;
+
+  /// No description provided for @previous.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previous;
+
+  /// No description provided for @question.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String question(Object current, Object total);
+
+  /// No description provided for @remove_from_this_deck.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {hanzi} from this deck?'**
+  String remove_from_this_deck(String hanzi);
+
+  /// No description provided for @revenuecat_error.
+  ///
+  /// In en, this message translates to:
+  /// **'RevenueCat Error: {error}'**
+  String revenuecat_error(Object error);
+
+  /// No description provided for @review_tomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Tomorrow'**
+  String get review_tomorrow;
+
+  /// No description provided for @roleplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Roleplay'**
+  String get roleplay;
+
+  /// No description provided for @saving_words_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving {wordCount} words to {deckName}...'**
+  String saving_words_to(int wordCount, String deckName);
+
+  /// No description provided for @search_radicals_eg_water.
+  ///
+  /// In en, this message translates to:
+  /// **'Search radicals (e.g. Water, 氵)'**
+  String get search_radicals_eg_water;
+
+  /// No description provided for @select_target_hsk_level.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Target HSK Level'**
+  String get select_target_hsk_level;
+
+  /// No description provided for @sentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Sentence'**
+  String get sentence;
+
+  /// No description provided for @shadowing_studio_is_a_dedicated_space.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowing Studio is a dedicated space to practice mimicking native'**
+  String get shadowing_studio_is_a_dedicated_space;
+
+  /// No description provided for @simplify_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplify Failed: {error}'**
+  String simplify_failed(Object error);
+
+  /// No description provided for @sinospark_premium.
+  ///
+  /// In en, this message translates to:
+  /// **'SinoSpark Premium'**
+  String get sinospark_premium;
+
+  /// No description provided for @speaking_pronunciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaking & Pronunciation'**
+  String get speaking_pronunciation;
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
+
+  /// No description provided for @table_of_contents.
+  ///
+  /// In en, this message translates to:
+  /// **'Table of Contents · 目录 ('**
+  String get table_of_contents;
+
+  /// No description provided for @the_ai_evaluates_your_speech_across.
+  ///
+  /// In en, this message translates to:
+  /// **'The AI evaluates your speech across three dimensions:\n• Accuracy: Did you articulate the correct syllables?\n• Completeness: Did you skip or miss any words?\n• Fluency: Did you pause naturally and use the correct tones?\nIt compares your audio against native models to generate a score out of 100.'**
+  String get the_ai_evaluates_your_speech_across;
+
+  /// No description provided for @this_cannot_be_undone.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone.'**
+  String get this_cannot_be_undone;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'title'**
+  String get title;
+
+  /// No description provided for @to_be_reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'To Be Reviewed'**
+  String get to_be_reviewed;
+
+  /// No description provided for @traditional.
+  ///
+  /// In en, this message translates to:
+  /// **'Traditional'**
+  String get traditional;
+
+  /// No description provided for @translation_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation Failed: {error}'**
+  String translation_failed(Object error);
+
+  /// No description provided for @type_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Type in ...'**
+  String get type_in;
+
+  /// No description provided for @type_your_message_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your message in ...'**
+  String get type_your_message_in;
+
+  /// No description provided for @unable_to_open_this_video_please.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open this video. Please try again later.'**
+  String get unable_to_open_this_video_please;
+
+  /// No description provided for @view_your_learning_history_and_streaks.
+  ///
+  /// In en, this message translates to:
+  /// **'View your learning history and streaks'**
+  String get view_your_learning_history_and_streaks;
+
+  /// No description provided for @what_is_shadowing_studio.
+  ///
+  /// In en, this message translates to:
+  /// **'What is Shadowing Studio?'**
+  String get what_is_shadowing_studio;
+
+  /// No description provided for @words.
+  ///
+  /// In en, this message translates to:
+  /// **'words'**
+  String get words;
+
+  /// No description provided for @your_path_for_is_ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Your path for \'{deckName}\' is ready!'**
+  String your_path_for_is_ready(String deckName);
+
+  /// No description provided for @you_said.
+  ///
+  /// In en, this message translates to:
+  /// **'🗣️ You Said'**
+  String get you_said;
+
+  /// No description provided for @vocabularyBatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Vocabulary Batch {index}'**
+  String vocabularyBatch(Object index);
+
+  /// No description provided for @yourDailyDropIsHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Daily Drop is here! ✨'**
+  String get yourDailyDropIsHere;
+
+  /// No description provided for @timeToReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to Review! 📚'**
+  String get timeToReview;
+
+  /// No description provided for @neverMissAStroke.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a stroke! 🖌️'**
+  String get neverMissAStroke;
+
+  /// No description provided for @yourTrialEndsTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Your trial ends tomorrow! ⏳'**
+  String get yourTrialEndsTomorrow;
+
+  /// No description provided for @officialStandardVocabularyTiers.
+  ///
+  /// In en, this message translates to:
+  /// **'Official standard vocabulary tiers'**
+  String get officialStandardVocabularyTiers;
+
+  /// No description provided for @failedToLoadCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load collections.'**
+  String get failedToLoadCollections;
+
+  /// No description provided for @unnamedKey.
+  ///
+  /// In en, this message translates to:
+  /// **'#{tag}'**
+  String unnamedKey(Object tag);
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {error}'**
+  String error(Object error);
+
+  /// No description provided for @aiSmartContext.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Smart Context'**
+  String get aiSmartContext;
+
+  /// No description provided for @aiSmartContextError.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Smart Context Error'**
+  String get aiSmartContextError;
+
+  /// No description provided for @downloadOfficialHskCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Download official HSK collections'**
+  String get downloadOfficialHskCollections;
+
+  /// No description provided for @unableToLoadThisSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this section. Please try again.'**
+  String get unableToLoadThisSection;
+
+  /// No description provided for @translationLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation Language'**
+  String get translationLanguage;
+
+  /// No description provided for @dailyDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Drops'**
+  String get dailyDrops;
+
+  /// No description provided for @wordOfTheDayNews.
+  ///
+  /// In en, this message translates to:
+  /// **'Word of the Day & news'**
+  String get wordOfTheDayNews;
+
+  /// No description provided for @reviewReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Reminders'**
+  String get reviewReminders;
+
+  /// No description provided for @flashcardsDueForReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Flashcards due for review'**
+  String get flashcardsDueForReview;
+
+  /// No description provided for @dailyNewCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily New Cards'**
+  String get dailyNewCards;
+
+  /// No description provided for @dailyReviewLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Review Limit'**
+  String get dailyReviewLimit;
+
+  /// No description provided for @practiceMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Mode'**
+  String get practiceMode;
+
+  /// No description provided for @liziqi.
+  ///
+  /// In en, this message translates to:
+  /// **'李子柒 Liziqi: 绢花'**
+  String get liziqi;
+
+  /// No description provided for @theLifeOfGarlicTraditional.
+  ///
+  /// In en, this message translates to:
+  /// **'The Life of Garlic - Traditional Chinese Life'**
+  String get theLifeOfGarlicTraditional;
+
+  /// No description provided for @graceMandarin50Phrases.
+  ///
+  /// In en, this message translates to:
+  /// **'Grace Mandarin: 50 Phrases'**
+  String get graceMandarin50Phrases;
+
+  /// No description provided for @essentialChinesePhrasesForBeginners.
+  ///
+  /// In en, this message translates to:
+  /// **'Essential Chinese Phrases for Beginners'**
+  String get essentialChinesePhrasesForBeginners;
+
+  /// No description provided for @makingBambooFurniture.
+  ///
+  /// In en, this message translates to:
+  /// **'Making Bamboo Furniture'**
+  String get makingBambooFurniture;
+
+  /// No description provided for @peppaPigChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Peppa Pig Chinese: 躲猫猫'**
+  String get peppaPigChinese;
+
+  /// No description provided for @muddyPuddlesBeginnerFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Muddy Puddles - Beginner Friendly'**
+  String get muddyPuddlesBeginnerFriendly;
+
+  /// No description provided for @mandarinCorner300Verbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Mandarin Corner: 300 Verbs'**
+  String get mandarinCorner300Verbs;
+
+  /// No description provided for @mostCommonChineseVerbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Common Chinese Verbs'**
+  String get mostCommonChineseVerbs;
+
+  /// No description provided for @graceMandarinOrderFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Grace Mandarin: Order Food'**
+  String get graceMandarinOrderFood;
+
+  /// No description provided for @howToOrderFoodIn.
+  ///
+  /// In en, this message translates to:
+  /// **'How to order food in a Chinese restaurant'**
+  String get howToOrderFoodIn;
+
+  /// No description provided for @silkFlowersTraditionalCraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Silk Flowers - Traditional Craft'**
+  String get silkFlowersTraditionalCraft;
+
+  /// No description provided for @mandarinCorner.
+  ///
+  /// In en, this message translates to:
+  /// **'Mandarin Corner: 学中文 看病'**
+  String get mandarinCorner;
+
+  /// No description provided for @goingToTheDoctorReal.
+  ///
+  /// In en, this message translates to:
+  /// **'Going to the Doctor - Real Life Conversation'**
+  String get goingToTheDoctorReal;
+
+  /// No description provided for @hideAndSeekBeginnerFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide and Seek - Beginner Friendly'**
+  String get hideAndSeekBeginnerFriendly;
+
+  /// No description provided for @linGdp6.
+  ///
+  /// In en, this message translates to:
+  /// **'小Lin说: 为什么GDP增长6%'**
+  String get linGdp6;
+
+  /// No description provided for @why6GdpGrowthEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Why 6% GDP Growth - Easy Chinese Economics'**
+  String get why6GdpGrowthEasy;
+
+  /// No description provided for @bbcWorldNews.
+  ///
+  /// In en, this message translates to:
+  /// **'BBC 中文 (World News)'**
+  String get bbcWorldNews;
+
+  /// No description provided for @currentEventsInSimplifiedChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Events in Simplified Chinese'**
+  String get currentEventsInSimplifiedChinese;
+
+  /// No description provided for @baidu.
+  ///
+  /// In en, this message translates to:
+  /// **'Baidu'**
+  String get baidu;
+
+  /// No description provided for @youtubeDesk.
+  ///
+  /// In en, this message translates to:
+  /// **'YOUTUBE DESK'**
+  String get youtubeDesk;
+
+  /// No description provided for @interactiveTranscriptsShadowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Interactive transcripts & shadowing'**
+  String get interactiveTranscriptsShadowing;
+
+  /// No description provided for @showsDramas.
+  ///
+  /// In en, this message translates to:
+  /// **'SHOWS & DRAMAS'**
+  String get showsDramas;
+
+  /// No description provided for @extractToDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract to Deck'**
+  String get extractToDeck;
+
+  /// No description provided for @autoSimplify.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-Simplify'**
+  String get autoSimplify;
+
+  /// No description provided for @rewriteThisArticleToMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewrite this article to match your HSK level'**
+  String get rewriteThisArticleToMatch;
+
+  /// No description provided for @failedToSaveExtractedWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save extracted words: {error}'**
+  String failedToSaveExtractedWords(Object error);
+
+  /// No description provided for @addToDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Deck ({count})'**
+  String addToDeck(Object count);
+
+  /// No description provided for @dailyDiscoveryDrop.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Discovery Drop'**
+  String get dailyDiscoveryDrop;
+
+  /// No description provided for @smartSpacedRepetition.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Spaced Repetition'**
+  String get smartSpacedRepetition;
+
+  /// No description provided for @trialProtectionAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Protection Alert'**
+  String get trialProtectionAlert;
+
+  /// No description provided for @masteryLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mastery Level'**
+  String get masteryLevel;
+
+  /// No description provided for @targetObjective.
+  ///
+  /// In en, this message translates to:
+  /// **'Target Objective'**
+  String get targetObjective;
+
+  /// No description provided for @dailyPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Practice'**
+  String get dailyPractice;
+
+  /// No description provided for @aiSpacedRepetition.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Spaced Repetition'**
+  String get aiSpacedRepetition;
+
+  /// No description provided for @iVeGrantedAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve granted access'**
+  String get iVeGrantedAccess;
+
+  /// No description provided for @scanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanner'**
+  String get scanner;
+
+  /// No description provided for @interpreter.
+  ///
+  /// In en, this message translates to:
+  /// **'Interpreter'**
+  String get interpreter;
+
+  /// No description provided for @cards.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} cards'**
+  String cards(Object count);
+
+  /// No description provided for @nWaMendsTheHeavens.
+  ///
+  /// In en, this message translates to:
+  /// **'Nüwa Mends the Heavens'**
+  String get nWaMendsTheHeavens;
+
+  /// No description provided for @terracottaArmy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terracotta Army'**
+  String get terracottaArmy;
+
+  /// No description provided for @forbiddenCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Forbidden City'**
+  String get forbiddenCity;
+
+  /// No description provided for @aBlessingInDisguise.
+  ///
+  /// In en, this message translates to:
+  /// **'A Blessing in Disguise'**
+  String get aBlessingInDisguise;
+
+  /// No description provided for @drawingASnake.
+  ///
+  /// In en, this message translates to:
+  /// **'Drawing a Snake'**
+  String get drawingASnake;
+
+  /// No description provided for @takingTheBulletTrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Taking the Bullet Train'**
+  String get takingTheBulletTrain;
+
+  /// No description provided for @visitingTheDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Visiting the Doctor'**
+  String get visitingTheDoctor;
+
+  /// No description provided for @orderingDumplings.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordering Dumplings'**
+  String get orderingDumplings;
+
+  /// No description provided for @theTeaCeremony.
+  ///
+  /// In en, this message translates to:
+  /// **'The Tea Ceremony'**
+  String get theTeaCeremony;
+
+  /// No description provided for @chineseCalligraphy.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Calligraphy'**
+  String get chineseCalligraphy;
+
+  /// No description provided for @theGiantPanda.
+  ///
+  /// In en, this message translates to:
+  /// **'The Giant Panda'**
+  String get theGiantPanda;
+
+  /// No description provided for @simplifiedText.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplified Text'**
+  String get simplifiedText;
+
+  /// No description provided for @novels96.
+  ///
+  /// In en, this message translates to:
+  /// **'Novels (96)'**
+  String get novels96;
+
+  /// No description provided for @microReads.
+  ///
+  /// In en, this message translates to:
+  /// **'Micro-Reads'**
+  String get microReads;
+
+  /// No description provided for @poetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Poetry'**
+  String get poetry;
+
+  /// No description provided for @bookmarkRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'书签已移除 · Bookmark removed'**
+  String get bookmarkRemoved;
+
+  /// No description provided for @bookmarkAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'已添加书签 · Bookmark added: 第{chapter}回'**
+  String bookmarkAdded(Object chapter);
+
+  /// No description provided for @readingVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading & Vocabulary'**
+  String get readingVocabulary;
 }
 
 class _AppLocalizationsDelegate

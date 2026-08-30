@@ -1,0 +1,148 @@
+"$_transcription"
+(${lookAlike.pinyin})
+).first})
+1300 cards
+154 cards
+162 cards
+2500 cards
+299 cards
+602 cards
+\${meme['explanation']}
+Added $char to Review Queue
+Added ${cards.length} cards to "$_selectedDeckName".
+Added '$hanzi' to your Library
+Advanced
+AI Stories
+Analysis Failed: $e
+Analyzing pronunciation with Gemini AI...
+Analyzing your pronunciation...
+ar
+Are you sure you want to permanently erase "${widget.deck.name}"? This action cannot be undone and will delete all cards inside it.
+Ask about ${widget.hanzi}...
+Audio & Haptics
+Audio could not start. Check your connection and device voice settings.
+Calligraphy Trace
+Chapters)
+char
+CHINESE CHARACTER
+Contact us and report issues
+Created smart deck: "$_smartDeckName" with ${_matchedCharacters.length} words!
+Cultural Note: \${meme['keyword']}
+Custom AI generated story.
+de
+Display & Content
+Do you keep or store my voice recordings?
+Elementary
+en
+Error creating scenario: $e
+Error fetching translation for $label: $e
+Error loading chapters: $e
+Error loading decks
+Error loading micro-reads: $e
+Error loading novels: $e
+Error loading poetry: $e
+es
+Etymology: $char
+explanation
+Extracted Text (Tap to lookup)
+Extraction Failed: \$e
+Failed to download.
+Failed to generate scenario: $e
+Failed to generate story:\n$e
+Failed to load context: $err
+Feature Request
+Foundation
+fr
+hi
+How is my pronunciation scored?
+HSK $hskLevel
+HSK $level
+HSK ${widget.hskLevel} vocabulary
+HSK LEVEL
+https://www.bbc.com/zhongwen/simp
+id
+Intermediate
+it
+ja
+ko
+Learning Stats
+Mandarin
+meaning
+No decks found.
+No results found for '$searchQuery'
+No. When you use Echo Hall, Scholar's Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.
+Notification Settings
+Open Settings
+Partner
+Partner (
+Partner ($lang)
+phoneme
+Play $pinyinWithTone
+Play Reference Pronunciation
+Please select a deck to add cards to.
+Point at Chinese text to translate
+Practice writing the strokes by hand
+Preferences, Audio, and Display
+Preparing your Scholar's Verdict...
+Previous
+pt
+Question
+Question ${_currentIndex + 1}/${_questions.length}
+Radical: ${comp['info']['name']}
+Remove ${card.hanzi} from this deck?
+RevenueCat Error: $e
+Review Tomorrow
+Roleplay
+ru
+Saving ${wordsToAdd.length} words to ${deck.name}...
+Score: $_score / ${_questions.length}
+Search radicals (e.g. Water, æ°µ)
+Select Target HSK Level
+Sentence
+Shadowing Studio is a dedicated space to practice mimicking native
+Simplify Failed: $e
+SinoSpark Premium
+Speaking & Pronunciation
+Statistics
+Table of Contents · 目录 (
+The AI evaluates your speech across three dimensions:
+• Accuracy: Did you articulate the correct syllables?
+• Completeness: Did you skip or miss any words?
+• Fluency: Did you pause naturally and use the correct tones?
+It compares your audio against native models to generate a score out of 100.
+This cannot be undone.
+title
+To Be Reviewed
+tr
+Traditional
+Translation Failed: $e
+Type in $_sideALanguage...
+Type your message in $_sideBLanguage...
+Unable to open this video. Please try again later.
+vi
+View your learning history and streaks
+What is Shadowing Studio?
+words
+Words
+x
+You (
+You ($lang)
+Your path for '${deck.localizedName(context)}' is ready!
+zh
+} ${comp.hanzi}...
+}: ${widget.unit.title}
+}:${cacheKey ??
+·
+â€¢
+æ°µ
+æŸ¥çœ‹ä¸­æ–‡æ¦‚è¿°
+æŸ¥çœ‹ä¸­æ–‡ç®€ä»‹
+æ–‡åŒ–ä¹¦æˆ¿ Library
+ðŸ›ï¸
+ðŸŽ² Loaded: ${preset.topic} (${preset.persona.split(
+书签已移除 · Bookmark removed
+已添加书签 · Bookmark added: 第
+已添加书签 · Bookmark added: 第${chapter.chapterIndex}回
+经典唐诗
+诚
+🗣️ You Said

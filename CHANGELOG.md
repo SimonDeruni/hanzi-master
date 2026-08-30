@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+289] - 2026-08-30
+- **13-Language Multi-Target Batch Translation & Pipeline Guide (Build #289)**:
+  - Created [`docs/LOCALIZATION_PIPELINE.md`](file:///c:/Users/simon/Documents/hanzi_master/docs/LOCALIZATION_PIPELINE.md) documenting the architecture, free API limits, extraction commands, and maintenance steps.
+  - Translated extracted missing UI strings across all 13 supported languages (French, Spanish, German, Italian, Portuguese, Russian, Arabic, Hindi, Japanese, Korean, Vietnamese, Indonesian, Chinese) using Gemini 2.5 Flash batching.
+  - Normalized ICU token syntax and regenerated all localization classes with `flutter gen-l10n`.
+  - `dart analyze lib/l10n/`: 0 errors, 0 warnings.
+
+## [1.0.0+288] - 2026-08-30
+- **Full International & French UTF-8 Encoding / Mojibake Repair (Build #288)**:
+  - Repaired double-encoded UTF-8 strings (`Ã¨`, `Ã©`, `Ã `, etc.) across all 13 `.arb` and `app_localizations_*.dart` files.
+  - Restored pristine accents in French, Spanish, Portuguese, Italian, German, Russian, Arabic, Japanese, Korean, Vietnamese, and Hindi.
+
 ## [1.0.0+287] - 2026-08-30
 - **`dependOnInheritedWidgetOfExactType` in `initState()` Fix (Build #287)**:
   - **`TravelInterpreterScreen`**: Replaced premature `AppLocalizations.of(context)` lookups in `_TravelInterpreterScreenState.initState()` with direct state defaults and `didChangeDependencies()`.

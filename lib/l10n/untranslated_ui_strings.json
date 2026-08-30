@@ -1,0 +1,1745 @@
+{
+  "total_extracted": 152,
+  "total_unique_missing": 107,
+  "missing_strings": {
+    "$voiceName:$sentence": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "core\\services\\audio_service.dart:262",
+        "core\\services\\audio_service.dart:366",
+        "core\\services\\audio_service.dart:516"
+      ]
+    },
+    "tone_v4:$textToSpeak:${pinyin ??": {
+      "proposed_key": "toneV4Pinyin",
+      "occurrences": [
+        "core\\services\\audio_service.dart:541"
+      ]
+    },
+    "Vocabulary Batch ${unitIndex + 1}": {
+      "proposed_key": "vocabularyBatch",
+      "occurrences": [
+        "core\\services\\curriculum_engine.dart:203"
+      ]
+    },
+    "Your Daily Drop is here! ✨": {
+      "proposed_key": "yourDailyDropIsHere",
+      "occurrences": [
+        "core\\services\\notification_service.dart:107"
+      ]
+    },
+    "Time to Review! 📚": {
+      "proposed_key": "timeToReview",
+      "occurrences": [
+        "core\\services\\notification_service.dart:142"
+      ]
+    },
+    "Never miss a stroke! 🖌️": {
+      "proposed_key": "neverMissAStroke",
+      "occurrences": [
+        "core\\services\\notification_service.dart:171"
+      ]
+    },
+    "Your trial ends tomorrow! ⏳": {
+      "proposed_key": "yourTrialEndsTomorrow",
+      "occurrences": [
+        "core\\services\\notification_service.dart:205"
+      ]
+    },
+    "Official standard vocabulary tiers": {
+      "proposed_key": "officialStandardVocabularyTiers",
+      "occurrences": [
+        "features\\course\\presentation\\screens\\tome_manager_screen.dart:285",
+        "features\\course\\presentation\\screens\\tome_manager_screen.dart:285"
+      ]
+    },
+    "Failed to load collections.": {
+      "proposed_key": "failedToLoadCollections",
+      "occurrences": [
+        "features\\course\\presentation\\screens\\tome_manager_screen.dart:539"
+      ]
+    },
+    "\"$_transcription\"": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\course\\presentation\\widgets\\lesson_steps\\discovery_step.dart:164"
+      ]
+    },
+    "Play $pinyinWithTone": {
+      "proposed_key": "play",
+      "occurrences": [
+        "features\\echo_hall\\presentation\\widgets\\tone_comparison_sheet.dart:537"
+      ]
+    },
+    "Error: $e": {
+      "proposed_key": "error",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\character_detail_screen.dart:1239",
+        "features\\flashcards\\presentation\\widgets\\ai_deck_generator_sheet.dart:412"
+      ]
+    },
+    "(${lookAlike.pinyin})": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\character_detail_screen.dart:1351"
+      ]
+    },
+    "AI Smart Context": {
+      "proposed_key": "aiSmartContext",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\character_detail_screen.dart:1382"
+      ]
+    },
+    "AI Smart Context Error": {
+      "proposed_key": "aiSmartContextError",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\character_detail_screen.dart:1393"
+      ]
+    },
+    "Add to ${widget.deckName}": {
+      "proposed_key": "addTo",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\deck_card_picker_screen.dart:41"
+      ]
+    },
+    "Error: $err": {
+      "proposed_key": "error",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\deck_card_picker_screen.dart:138",
+        "features\\flashcards\\presentation\\screens\\deck_detail_screen.dart:704",
+        "features\\flashcards\\presentation\\widgets\\deck_selection_sheet.dart:184"
+      ]
+    },
+    "Download official HSK collections": {
+      "proposed_key": "downloadOfficialHskCollections",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\dictionary_screen.dart:355"
+      ]
+    },
+    "Unable to load this section. Please try again.": {
+      "proposed_key": "unableToLoadThisSection",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\dictionary_screen.dart:568"
+      ]
+    },
+    "${_currentStrokeIndex + 1}/$totalStrokes": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\review_screen.dart:431"
+      ]
+    },
+    "Translation Language": {
+      "proposed_key": "translationLanguage",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:122",
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:440"
+      ]
+    },
+    "Daily Drops": {
+      "proposed_key": "dailyDrops",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:584"
+      ]
+    },
+    "Word of the Day & news": {
+      "proposed_key": "wordOfTheDayNews",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:585",
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:585"
+      ]
+    },
+    "Review Reminders": {
+      "proposed_key": "reviewReminders",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:617"
+      ]
+    },
+    "Flashcards due for review": {
+      "proposed_key": "flashcardsDueForReview",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:618",
+        "features\\flashcards\\presentation\\screens\\settings_screen.dart:618"
+      ]
+    },
+    "${accuracy.toStringAsFixed(1)}%": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\flashcards\\presentation\\screens\\stats_screen.dart:108"
+      ]
+    },
+    "${entry.hanzi} [${entry.pinyin}]": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\flashcards\\presentation\\widgets\\cross_reference_text.dart:72"
+      ]
+    },
+    "Daily New Cards": {
+      "proposed_key": "dailyNewCards",
+      "occurrences": [
+        "features\\flashcards\\presentation\\widgets\\deck_settings_sheet.dart:87"
+      ]
+    },
+    "Daily Review Limit": {
+      "proposed_key": "dailyReviewLimit",
+      "occurrences": [
+        "features\\flashcards\\presentation\\widgets\\deck_settings_sheet.dart:101"
+      ]
+    },
+    "Practice Mode": {
+      "proposed_key": "practiceMode",
+      "occurrences": [
+        "features\\live_translate\\presentation\\screens\\shadowing_studio_screen.dart:1018"
+      ]
+    },
+    "$acc%": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\live_translate\\presentation\\screens\\shadowing_studio_screen.dart:1931"
+      ]
+    },
+    "Partner ($lang)": {
+      "proposed_key": "partner",
+      "occurrences": [
+        "features\\live_translate\\presentation\\screens\\travel_interpreter_screen.dart:709"
+      ]
+    },
+    "You ($lang)": {
+      "proposed_key": "you",
+      "occurrences": [
+        "features\\live_translate\\presentation\\screens\\travel_interpreter_screen.dart:878"
+      ]
+    },
+    "李子柒 Liziqi: 大蒜的一生": {
+      "proposed_key": "liziqi",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:125"
+      ]
+    },
+    "The Life of Garlic - Traditional Chinese Life": {
+      "proposed_key": "theLifeOfGarlicTraditional",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:126",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:126"
+      ]
+    },
+    "Grace Mandarin: 50 Phrases": {
+      "proposed_key": "graceMandarin50Phrases",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:133"
+      ]
+    },
+    "Essential Chinese Phrases for Beginners": {
+      "proposed_key": "essentialChinesePhrasesForBeginners",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:134",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:134"
+      ]
+    },
+    "李子柒 Liziqi: 竹子家具": {
+      "proposed_key": "liziqi",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:140"
+      ]
+    },
+    "Making Bamboo Furniture": {
+      "proposed_key": "makingBambooFurniture",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:141",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:141"
+      ]
+    },
+    "Peppa Pig Chinese: 泥坑": {
+      "proposed_key": "peppaPigChinese",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:147"
+      ]
+    },
+    "Muddy Puddles - Beginner Friendly": {
+      "proposed_key": "muddyPuddlesBeginnerFriendly",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:148",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:148"
+      ]
+    },
+    "Mandarin Corner: 300 Verbs": {
+      "proposed_key": "mandarinCorner300Verbs",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:155"
+      ]
+    },
+    "Most Common Chinese Verbs": {
+      "proposed_key": "mostCommonChineseVerbs",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:156",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:156"
+      ]
+    },
+    "Grace Mandarin: Order Food": {
+      "proposed_key": "graceMandarinOrderFood",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:162"
+      ]
+    },
+    "How to order food in a Chinese restaurant": {
+      "proposed_key": "howToOrderFoodIn",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:163",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:163"
+      ]
+    },
+    "李子柒 Liziqi: 绢花": {
+      "proposed_key": "liziqi",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:169"
+      ]
+    },
+    "Silk Flowers - Traditional Craft": {
+      "proposed_key": "silkFlowersTraditionalCraft",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:170",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:170"
+      ]
+    },
+    "Mandarin Corner: 学中文 看病": {
+      "proposed_key": "mandarinCorner",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:176"
+      ]
+    },
+    "Going to the Doctor - Real Life Conversation": {
+      "proposed_key": "goingToTheDoctorReal",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:177",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:177"
+      ]
+    },
+    "Peppa Pig Chinese: 躲猫猫": {
+      "proposed_key": "peppaPigChinese",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:183"
+      ]
+    },
+    "Hide and Seek - Beginner Friendly": {
+      "proposed_key": "hideAndSeekBeginnerFriendly",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:184",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:184"
+      ]
+    },
+    "小Lin说: 为什么GDP增长6%": {
+      "proposed_key": "linGdp6",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:190"
+      ]
+    },
+    "Why 6% GDP Growth - Easy Chinese Economics": {
+      "proposed_key": "why6GdpGrowthEasy",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:191",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:191"
+      ]
+    },
+    "BBC 中文 (World News)": {
+      "proposed_key": "bbcWorldNews",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:223",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:223"
+      ]
+    },
+    "BBC 中文网": {
+      "proposed_key": "bbc",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:233",
+        "features\\media\\presentation\\providers\\daily_discovery_provider.dart:96",
+        "features\\media\\presentation\\providers\\daily_discovery_provider.dart:106"
+      ]
+    },
+    "Current Events in Simplified Chinese": {
+      "proposed_key": "currentEventsInSimplifiedChinese",
+      "occurrences": [
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:234",
+        "features\\media\\data\\repositories\\daily_discovery_repository.dart:234",
+        "features\\media\\presentation\\providers\\daily_discovery_provider.dart:97",
+        "features\\media\\presentation\\providers\\daily_discovery_provider.dart:97",
+        "features\\media\\presentation\\providers\\daily_discovery_provider.dart:107",
+        "features\\media\\presentation\\providers\\daily_discovery_provider.dart:107"
+      ]
+    },
+    "$subtitle": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\media\\presentation\\providers\\cultural_context_provider.dart:22"
+      ]
+    },
+    "â€¢": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\cultural_context_screen.dart:361"
+      ]
+    },
+    "Baidu": {
+      "proposed_key": "baidu",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\media_hub_screen.dart:83"
+      ]
+    },
+    "YOUTUBE DESK": {
+      "proposed_key": "youtubeDesk",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\media_hub_screen.dart:114"
+      ]
+    },
+    "Interactive transcripts & shadowing": {
+      "proposed_key": "interactiveTranscriptsShadowing",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\media_hub_screen.dart:115",
+        "features\\media\\presentation\\screens\\media_hub_screen.dart:115"
+      ]
+    },
+    "SHOWS & DRAMAS": {
+      "proposed_key": "showsDramas",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\media_hub_screen.dart:131"
+      ]
+    },
+    "Error: $_error": {
+      "proposed_key": "error",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\media_search_screen.dart:283"
+      ]
+    },
+    "$level": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\smart_media_desk_screen.dart:368"
+      ]
+    },
+    "HSK $level": {
+      "proposed_key": "hsk",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\smart_media_desk_screen.dart:371",
+        "features\\reading\\presentation\\screens\\reading_room_screen.dart:138",
+        "features\\reading\\presentation\\widgets\\custom_story_creator_sheet.dart:206"
+      ]
+    },
+    "æ–‡åŒ–ä¹¦æˆ¿ Library": {
+      "proposed_key": "library",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\story_library_screen.dart:211"
+      ]
+    },
+    "ðŸ›ï¸": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\story_library_screen.dart:252"
+      ]
+    },
+    "Extract to Deck": {
+      "proposed_key": "extractToDeck",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\web_browser_screen.dart:655"
+      ]
+    },
+    "Auto-Simplify": {
+      "proposed_key": "autoSimplify",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\web_browser_screen.dart:675"
+      ]
+    },
+    "Rewrite this article to match your HSK level": {
+      "proposed_key": "rewriteThisArticleToMatch",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\web_browser_screen.dart:676",
+        "features\\media\\presentation\\screens\\web_browser_screen.dart:676"
+      ]
+    },
+    "Failed to save extracted words: $error": {
+      "proposed_key": "failedToSaveExtractedWords",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\web_browser_screen.dart:2102"
+      ]
+    },
+    "Add to Deck": {
+      "proposed_key": "addToDeck",
+      "occurrences": [
+        "features\\media\\presentation\\screens\\web_browser_screen.dart:2328"
+      ]
+    },
+    "${playbackRate}x": {
+      "proposed_key": "x",
+      "occurrences": [
+        "features\\media\\presentation\\widgets\\premium_video_top_bar.dart:179"
+      ]
+    },
+    "${speed}x": {
+      "proposed_key": "x",
+      "occurrences": [
+        "features\\media\\presentation\\widgets\\premium_video_top_bar.dart:200"
+      ]
+    },
+    "Daily Discovery Drop": {
+      "proposed_key": "dailyDiscoveryDrop",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\notification_permission_screen.dart:151"
+      ]
+    },
+    "Smart Spaced Repetition": {
+      "proposed_key": "smartSpacedRepetition",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\notification_permission_screen.dart:161"
+      ]
+    },
+    "Trial Protection Alert": {
+      "proposed_key": "trialProtectionAlert",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\notification_permission_screen.dart:171"
+      ]
+    },
+    "Mastery Level": {
+      "proposed_key": "masteryLevel",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\onboarding_screen.dart:522"
+      ]
+    },
+    "Target Objective": {
+      "proposed_key": "targetObjective",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\onboarding_screen.dart:530"
+      ]
+    },
+    "Daily Practice": {
+      "proposed_key": "dailyPractice",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\onboarding_screen.dart:538"
+      ]
+    },
+    "AI Spaced Repetition": {
+      "proposed_key": "aiSpacedRepetition",
+      "occurrences": [
+        "features\\onboarding\\presentation\\screens\\onboarding_screen.dart:546"
+      ]
+    },
+    "I've granted access": {
+      "proposed_key": "iVeGrantedAccess",
+      "occurrences": [
+        "features\\premium\\presentation\\screens\\universal_scanner_screen.dart:882"
+      ]
+    },
+    "Add to Deck (${_selectedWordIndices.length})": {
+      "proposed_key": "addToDeck",
+      "occurrences": [
+        "features\\premium\\presentation\\screens\\universal_scanner_screen.dart:1903"
+      ]
+    },
+    "Scanner": {
+      "proposed_key": "scanner",
+      "occurrences": [
+        "features\\progression\\presentation\\screens\\dashboard_screen.dart:206"
+      ]
+    },
+    "Interpreter": {
+      "proposed_key": "interpreter",
+      "occurrences": [
+        "features\\progression\\presentation\\screens\\dashboard_screen.dart:224"
+      ]
+    },
+    "${entry.value} cards": {
+      "proposed_key": "cards",
+      "occurrences": [
+        "features\\progression\\presentation\\screens\\dashboard_screen.dart:750"
+      ]
+    },
+    "Question ${_currentIndex + 1}/${_questions.length}": {
+      "proposed_key": "question",
+      "occurrences": [
+        "features\\quiz\\presentation\\screens\\quiz_screen.dart:105"
+      ]
+    },
+    "Score: $_score / ${_questions.length}": {
+      "proposed_key": "score",
+      "occurrences": [
+        "features\\quiz\\presentation\\screens\\quiz_screen.dart:232"
+      ]
+    },
+    "Nüwa Mends the Heavens": {
+      "proposed_key": "nWaMendsTheHeavens",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:123"
+      ]
+    },
+    "Terracotta Army": {
+      "proposed_key": "terracottaArmy",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:149"
+      ]
+    },
+    "Forbidden City": {
+      "proposed_key": "forbiddenCity",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:157"
+      ]
+    },
+    "A Blessing in Disguise": {
+      "proposed_key": "aBlessingInDisguise",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:167"
+      ]
+    },
+    "Drawing a Snake": {
+      "proposed_key": "drawingASnake",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:175"
+      ]
+    },
+    "Taking the Bullet Train": {
+      "proposed_key": "takingTheBulletTrain",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:185"
+      ]
+    },
+    "Visiting the Doctor": {
+      "proposed_key": "visitingTheDoctor",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:193"
+      ]
+    },
+    "Ordering Dumplings": {
+      "proposed_key": "orderingDumplings",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:201"
+      ]
+    },
+    "The Tea Ceremony": {
+      "proposed_key": "theTeaCeremony",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:211"
+      ]
+    },
+    "Chinese Calligraphy": {
+      "proposed_key": "chineseCalligraphy",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:219"
+      ]
+    },
+    "The Giant Panda": {
+      "proposed_key": "theGiantPanda",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:227"
+      ]
+    },
+    "Simplified Text": {
+      "proposed_key": "simplifiedText",
+      "occurrences": [
+        "features\\reading\\presentation\\providers\\story_controller.dart:436"
+      ]
+    },
+    "Novels (96)": {
+      "proposed_key": "novels96",
+      "occurrences": [
+        "features\\reading\\presentation\\screens\\book_catalog_screen.dart:153"
+      ]
+    },
+    "Micro-Reads": {
+      "proposed_key": "microReads",
+      "occurrences": [
+        "features\\reading\\presentation\\screens\\book_catalog_screen.dart:163"
+      ]
+    },
+    "Poetry": {
+      "proposed_key": "poetry",
+      "occurrences": [
+        "features\\reading\\presentation\\screens\\book_catalog_screen.dart:173"
+      ]
+    },
+    "书签已移除 · Bookmark removed": {
+      "proposed_key": "bookmarkRemoved",
+      "occurrences": [
+        "features\\reading\\presentation\\screens\\book_reader_screen.dart:1123"
+      ]
+    },
+    "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回": {
+      "proposed_key": "bookmarkAdded",
+      "occurrences": [
+        "features\\reading\\presentation\\screens\\book_reader_screen.dart:1142"
+      ]
+    },
+    "#$tag": {
+      "proposed_key": "unnamedKey",
+      "occurrences": [
+        "features\\reading\\presentation\\screens\\reading_room_screen.dart:574"
+      ]
+    },
+    "Reading & Vocabulary": {
+      "proposed_key": "readingVocabulary",
+      "occurrences": [
+        "features\\settings\\presentation\\screens\\qa_screen.dart:92"
+      ]
+    }
+  },
+  "all_instances": [
+    {
+      "file": "core\\services\\audio_service.dart",
+      "line": 262,
+      "text": "$voiceName:$sentence",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "core\\services\\audio_service.dart",
+      "line": 366,
+      "text": "$voiceName:$sentence",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "core\\services\\audio_service.dart",
+      "line": 516,
+      "text": "$voiceName:$sentence",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "core\\services\\audio_service.dart",
+      "line": 541,
+      "text": "tone_v4:$textToSpeak:${pinyin ??",
+      "existing_key": null,
+      "proposed_key": "toneV4Pinyin"
+    },
+    {
+      "file": "core\\services\\curriculum_engine.dart",
+      "line": 203,
+      "text": "Vocabulary Batch ${unitIndex + 1}",
+      "existing_key": null,
+      "proposed_key": "vocabularyBatch"
+    },
+    {
+      "file": "core\\services\\notification_service.dart",
+      "line": 107,
+      "text": "Your Daily Drop is here! ✨",
+      "existing_key": null,
+      "proposed_key": "yourDailyDropIsHere"
+    },
+    {
+      "file": "core\\services\\notification_service.dart",
+      "line": 142,
+      "text": "Time to Review! 📚",
+      "existing_key": null,
+      "proposed_key": "timeToReview"
+    },
+    {
+      "file": "core\\services\\notification_service.dart",
+      "line": 171,
+      "text": "Never miss a stroke! 🖌️",
+      "existing_key": null,
+      "proposed_key": "neverMissAStroke"
+    },
+    {
+      "file": "core\\services\\notification_service.dart",
+      "line": 205,
+      "text": "Your trial ends tomorrow! ⏳",
+      "existing_key": null,
+      "proposed_key": "yourTrialEndsTomorrow"
+    },
+    {
+      "file": "features\\course\\presentation\\screens\\tome_manager_screen.dart",
+      "line": 284,
+      "text": "HSK Collections",
+      "existing_key": "hskCollections",
+      "proposed_key": "hskCollections"
+    },
+    {
+      "file": "features\\course\\presentation\\screens\\tome_manager_screen.dart",
+      "line": 285,
+      "text": "Official standard vocabulary tiers",
+      "existing_key": null,
+      "proposed_key": "officialStandardVocabularyTiers"
+    },
+    {
+      "file": "features\\course\\presentation\\screens\\tome_manager_screen.dart",
+      "line": 285,
+      "text": "Official standard vocabulary tiers",
+      "existing_key": null,
+      "proposed_key": "officialStandardVocabularyTiers"
+    },
+    {
+      "file": "features\\course\\presentation\\screens\\tome_manager_screen.dart",
+      "line": 539,
+      "text": "Failed to load collections.",
+      "existing_key": null,
+      "proposed_key": "failedToLoadCollections"
+    },
+    {
+      "file": "features\\course\\presentation\\widgets\\lesson_steps\\discovery_step.dart",
+      "line": 164,
+      "text": "\"$_transcription\"",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\echo_hall\\presentation\\widgets\\tone_comparison_sheet.dart",
+      "line": 537,
+      "text": "Play $pinyinWithTone",
+      "existing_key": null,
+      "proposed_key": "play"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\character_detail_screen.dart",
+      "line": 1239,
+      "text": "Error: $e",
+      "existing_key": null,
+      "proposed_key": "error"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\character_detail_screen.dart",
+      "line": 1351,
+      "text": "(${lookAlike.pinyin})",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\character_detail_screen.dart",
+      "line": 1382,
+      "text": "AI Smart Context",
+      "existing_key": null,
+      "proposed_key": "aiSmartContext"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\character_detail_screen.dart",
+      "line": 1393,
+      "text": "AI Smart Context Error",
+      "existing_key": null,
+      "proposed_key": "aiSmartContextError"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\deck_card_picker_screen.dart",
+      "line": 41,
+      "text": "Add to ${widget.deckName}",
+      "existing_key": null,
+      "proposed_key": "addTo"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\deck_card_picker_screen.dart",
+      "line": 138,
+      "text": "Error: $err",
+      "existing_key": null,
+      "proposed_key": "error"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\deck_detail_screen.dart",
+      "line": 704,
+      "text": "Error: $err",
+      "existing_key": null,
+      "proposed_key": "error"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\dictionary_screen.dart",
+      "line": 355,
+      "text": "Download official HSK collections",
+      "existing_key": null,
+      "proposed_key": "downloadOfficialHskCollections"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\dictionary_screen.dart",
+      "line": 568,
+      "text": "Unable to load this section. Please try again.",
+      "existing_key": null,
+      "proposed_key": "unableToLoadThisSection"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\radical_library_screen.dart",
+      "line": 123,
+      "text": "Search radicals (e.g. Water, 氵)",
+      "existing_key": "search_radicals_eg_water",
+      "proposed_key": "search_radicals_eg_water"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\review_screen.dart",
+      "line": 431,
+      "text": "${_currentStrokeIndex + 1}/$totalStrokes",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 122,
+      "text": "Translation Language",
+      "existing_key": null,
+      "proposed_key": "translationLanguage"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 410,
+      "text": "App Language",
+      "existing_key": "appLanguage",
+      "proposed_key": "appLanguage"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 440,
+      "text": "Translation Language",
+      "existing_key": null,
+      "proposed_key": "translationLanguage"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 584,
+      "text": "Daily Drops",
+      "existing_key": null,
+      "proposed_key": "dailyDrops"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 585,
+      "text": "Word of the Day & news",
+      "existing_key": null,
+      "proposed_key": "wordOfTheDayNews"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 585,
+      "text": "Word of the Day & news",
+      "existing_key": null,
+      "proposed_key": "wordOfTheDayNews"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 617,
+      "text": "Review Reminders",
+      "existing_key": null,
+      "proposed_key": "reviewReminders"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 618,
+      "text": "Flashcards due for review",
+      "existing_key": null,
+      "proposed_key": "flashcardsDueForReview"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\settings_screen.dart",
+      "line": 618,
+      "text": "Flashcards due for review",
+      "existing_key": null,
+      "proposed_key": "flashcardsDueForReview"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\stats_screen.dart",
+      "line": 94,
+      "text": "Accuracy by Mode",
+      "existing_key": "accuracyByMode",
+      "proposed_key": "accuracyByMode"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\stats_screen.dart",
+      "line": 108,
+      "text": "${accuracy.toStringAsFixed(1)}%",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\screens\\stats_screen.dart",
+      "line": 129,
+      "text": "Upcoming Reviews (Next 7 Days)",
+      "existing_key": "upcomingReviews7Days",
+      "proposed_key": "upcomingReviews7Days"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\ai_deck_generator_sheet.dart",
+      "line": 412,
+      "text": "Error: $e",
+      "existing_key": null,
+      "proposed_key": "error"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\cross_reference_text.dart",
+      "line": 72,
+      "text": "${entry.hanzi} [${entry.pinyin}]",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\deck_selection_sheet.dart",
+      "line": 184,
+      "text": "Error: $err",
+      "existing_key": null,
+      "proposed_key": "error"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\deck_settings_sheet.dart",
+      "line": 87,
+      "text": "Daily New Cards",
+      "existing_key": null,
+      "proposed_key": "dailyNewCards"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\deck_settings_sheet.dart",
+      "line": 101,
+      "text": "Daily Review Limit",
+      "existing_key": null,
+      "proposed_key": "dailyReviewLimit"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\modes\\listening_mode.dart",
+      "line": 101,
+      "text": "Listening Mode",
+      "existing_key": "listeningMode",
+      "proposed_key": "listeningMode"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\modes\\reading_mode.dart",
+      "line": 48,
+      "text": "Reading Mode",
+      "existing_key": "readingMode",
+      "proposed_key": "readingMode"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\modes\\recall_mode.dart",
+      "line": 95,
+      "text": "Recall Mode",
+      "existing_key": "recallMode",
+      "proposed_key": "recallMode"
+    },
+    {
+      "file": "features\\flashcards\\presentation\\widgets\\modes\\speaking_mode.dart",
+      "line": 199,
+      "text": "Speaking Mode",
+      "existing_key": "speakingMode",
+      "proposed_key": "speakingMode"
+    },
+    {
+      "file": "features\\live_translate\\presentation\\screens\\shadowing_studio_screen.dart",
+      "line": 1018,
+      "text": "Practice Mode",
+      "existing_key": null,
+      "proposed_key": "practiceMode"
+    },
+    {
+      "file": "features\\live_translate\\presentation\\screens\\shadowing_studio_screen.dart",
+      "line": 1931,
+      "text": "$acc%",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\live_translate\\presentation\\screens\\travel_interpreter_screen.dart",
+      "line": 709,
+      "text": "Partner ($lang)",
+      "existing_key": null,
+      "proposed_key": "partner"
+    },
+    {
+      "file": "features\\live_translate\\presentation\\screens\\travel_interpreter_screen.dart",
+      "line": 743,
+      "text": "Partner speaking…",
+      "existing_key": "partnerSpeaking",
+      "proposed_key": "partnerSpeaking"
+    },
+    {
+      "file": "features\\live_translate\\presentation\\screens\\travel_interpreter_screen.dart",
+      "line": 878,
+      "text": "You ($lang)",
+      "existing_key": null,
+      "proposed_key": "you"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 125,
+      "text": "李子柒 Liziqi: 大蒜的一生",
+      "existing_key": null,
+      "proposed_key": "liziqi"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 126,
+      "text": "The Life of Garlic - Traditional Chinese Life",
+      "existing_key": null,
+      "proposed_key": "theLifeOfGarlicTraditional"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 126,
+      "text": "The Life of Garlic - Traditional Chinese Life",
+      "existing_key": null,
+      "proposed_key": "theLifeOfGarlicTraditional"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 133,
+      "text": "Grace Mandarin: 50 Phrases",
+      "existing_key": null,
+      "proposed_key": "graceMandarin50Phrases"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 134,
+      "text": "Essential Chinese Phrases for Beginners",
+      "existing_key": null,
+      "proposed_key": "essentialChinesePhrasesForBeginners"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 134,
+      "text": "Essential Chinese Phrases for Beginners",
+      "existing_key": null,
+      "proposed_key": "essentialChinesePhrasesForBeginners"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 140,
+      "text": "李子柒 Liziqi: 竹子家具",
+      "existing_key": null,
+      "proposed_key": "liziqi"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 141,
+      "text": "Making Bamboo Furniture",
+      "existing_key": null,
+      "proposed_key": "makingBambooFurniture"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 141,
+      "text": "Making Bamboo Furniture",
+      "existing_key": null,
+      "proposed_key": "makingBambooFurniture"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 147,
+      "text": "Peppa Pig Chinese: 泥坑",
+      "existing_key": null,
+      "proposed_key": "peppaPigChinese"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 148,
+      "text": "Muddy Puddles - Beginner Friendly",
+      "existing_key": null,
+      "proposed_key": "muddyPuddlesBeginnerFriendly"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 148,
+      "text": "Muddy Puddles - Beginner Friendly",
+      "existing_key": null,
+      "proposed_key": "muddyPuddlesBeginnerFriendly"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 155,
+      "text": "Mandarin Corner: 300 Verbs",
+      "existing_key": null,
+      "proposed_key": "mandarinCorner300Verbs"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 156,
+      "text": "Most Common Chinese Verbs",
+      "existing_key": null,
+      "proposed_key": "mostCommonChineseVerbs"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 156,
+      "text": "Most Common Chinese Verbs",
+      "existing_key": null,
+      "proposed_key": "mostCommonChineseVerbs"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 162,
+      "text": "Grace Mandarin: Order Food",
+      "existing_key": null,
+      "proposed_key": "graceMandarinOrderFood"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 163,
+      "text": "How to order food in a Chinese restaurant",
+      "existing_key": null,
+      "proposed_key": "howToOrderFoodIn"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 163,
+      "text": "How to order food in a Chinese restaurant",
+      "existing_key": null,
+      "proposed_key": "howToOrderFoodIn"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 169,
+      "text": "李子柒 Liziqi: 绢花",
+      "existing_key": null,
+      "proposed_key": "liziqi"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 170,
+      "text": "Silk Flowers - Traditional Craft",
+      "existing_key": null,
+      "proposed_key": "silkFlowersTraditionalCraft"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 170,
+      "text": "Silk Flowers - Traditional Craft",
+      "existing_key": null,
+      "proposed_key": "silkFlowersTraditionalCraft"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 176,
+      "text": "Mandarin Corner: 学中文 看病",
+      "existing_key": null,
+      "proposed_key": "mandarinCorner"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 177,
+      "text": "Going to the Doctor - Real Life Conversation",
+      "existing_key": null,
+      "proposed_key": "goingToTheDoctorReal"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 177,
+      "text": "Going to the Doctor - Real Life Conversation",
+      "existing_key": null,
+      "proposed_key": "goingToTheDoctorReal"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 183,
+      "text": "Peppa Pig Chinese: 躲猫猫",
+      "existing_key": null,
+      "proposed_key": "peppaPigChinese"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 184,
+      "text": "Hide and Seek - Beginner Friendly",
+      "existing_key": null,
+      "proposed_key": "hideAndSeekBeginnerFriendly"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 184,
+      "text": "Hide and Seek - Beginner Friendly",
+      "existing_key": null,
+      "proposed_key": "hideAndSeekBeginnerFriendly"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 190,
+      "text": "小Lin说: 为什么GDP增长6%",
+      "existing_key": null,
+      "proposed_key": "linGdp6"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 191,
+      "text": "Why 6% GDP Growth - Easy Chinese Economics",
+      "existing_key": null,
+      "proposed_key": "why6GdpGrowthEasy"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 191,
+      "text": "Why 6% GDP Growth - Easy Chinese Economics",
+      "existing_key": null,
+      "proposed_key": "why6GdpGrowthEasy"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 223,
+      "text": "BBC 中文 (World News)",
+      "existing_key": null,
+      "proposed_key": "bbcWorldNews"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 223,
+      "text": "BBC 中文 (World News)",
+      "existing_key": null,
+      "proposed_key": "bbcWorldNews"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 233,
+      "text": "BBC 中文网",
+      "existing_key": null,
+      "proposed_key": "bbc"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 234,
+      "text": "Current Events in Simplified Chinese",
+      "existing_key": null,
+      "proposed_key": "currentEventsInSimplifiedChinese"
+    },
+    {
+      "file": "features\\media\\data\\repositories\\daily_discovery_repository.dart",
+      "line": 234,
+      "text": "Current Events in Simplified Chinese",
+      "existing_key": null,
+      "proposed_key": "currentEventsInSimplifiedChinese"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\cultural_context_provider.dart",
+      "line": 22,
+      "text": "$subtitle",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\daily_discovery_provider.dart",
+      "line": 96,
+      "text": "BBC 中文网",
+      "existing_key": null,
+      "proposed_key": "bbc"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\daily_discovery_provider.dart",
+      "line": 97,
+      "text": "Current Events in Simplified Chinese",
+      "existing_key": null,
+      "proposed_key": "currentEventsInSimplifiedChinese"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\daily_discovery_provider.dart",
+      "line": 97,
+      "text": "Current Events in Simplified Chinese",
+      "existing_key": null,
+      "proposed_key": "currentEventsInSimplifiedChinese"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\daily_discovery_provider.dart",
+      "line": 106,
+      "text": "BBC 中文网",
+      "existing_key": null,
+      "proposed_key": "bbc"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\daily_discovery_provider.dart",
+      "line": 107,
+      "text": "Current Events in Simplified Chinese",
+      "existing_key": null,
+      "proposed_key": "currentEventsInSimplifiedChinese"
+    },
+    {
+      "file": "features\\media\\presentation\\providers\\daily_discovery_provider.dart",
+      "line": 107,
+      "text": "Current Events in Simplified Chinese",
+      "existing_key": null,
+      "proposed_key": "currentEventsInSimplifiedChinese"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\cultural_context_screen.dart",
+      "line": 361,
+      "text": "â€¢",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\media_hub_screen.dart",
+      "line": 83,
+      "text": "Baidu",
+      "existing_key": null,
+      "proposed_key": "baidu"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\media_hub_screen.dart",
+      "line": 114,
+      "text": "YOUTUBE DESK",
+      "existing_key": null,
+      "proposed_key": "youtubeDesk"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\media_hub_screen.dart",
+      "line": 115,
+      "text": "Interactive transcripts & shadowing",
+      "existing_key": null,
+      "proposed_key": "interactiveTranscriptsShadowing"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\media_hub_screen.dart",
+      "line": 115,
+      "text": "Interactive transcripts & shadowing",
+      "existing_key": null,
+      "proposed_key": "interactiveTranscriptsShadowing"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\media_hub_screen.dart",
+      "line": 131,
+      "text": "SHOWS & DRAMAS",
+      "existing_key": null,
+      "proposed_key": "showsDramas"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\media_search_screen.dart",
+      "line": 283,
+      "text": "Error: $_error",
+      "existing_key": null,
+      "proposed_key": "error"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\smart_media_desk_screen.dart",
+      "line": 368,
+      "text": "$level",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\smart_media_desk_screen.dart",
+      "line": 371,
+      "text": "HSK $level",
+      "existing_key": null,
+      "proposed_key": "hsk"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\story_library_screen.dart",
+      "line": 211,
+      "text": "æ–‡åŒ–ä¹¦æˆ¿ Library",
+      "existing_key": null,
+      "proposed_key": "library"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\story_library_screen.dart",
+      "line": 252,
+      "text": "ðŸ›ï¸",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\web_browser_screen.dart",
+      "line": 655,
+      "text": "Extract to Deck",
+      "existing_key": null,
+      "proposed_key": "extractToDeck"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\web_browser_screen.dart",
+      "line": 675,
+      "text": "Auto-Simplify",
+      "existing_key": null,
+      "proposed_key": "autoSimplify"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\web_browser_screen.dart",
+      "line": 676,
+      "text": "Rewrite this article to match your HSK level",
+      "existing_key": null,
+      "proposed_key": "rewriteThisArticleToMatch"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\web_browser_screen.dart",
+      "line": 676,
+      "text": "Rewrite this article to match your HSK level",
+      "existing_key": null,
+      "proposed_key": "rewriteThisArticleToMatch"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\web_browser_screen.dart",
+      "line": 2102,
+      "text": "Failed to save extracted words: $error",
+      "existing_key": null,
+      "proposed_key": "failedToSaveExtractedWords"
+    },
+    {
+      "file": "features\\media\\presentation\\screens\\web_browser_screen.dart",
+      "line": 2328,
+      "text": "Add to Deck",
+      "existing_key": null,
+      "proposed_key": "addToDeck"
+    },
+    {
+      "file": "features\\media\\presentation\\widgets\\premium_video_top_bar.dart",
+      "line": 179,
+      "text": "${playbackRate}x",
+      "existing_key": null,
+      "proposed_key": "x"
+    },
+    {
+      "file": "features\\media\\presentation\\widgets\\premium_video_top_bar.dart",
+      "line": 200,
+      "text": "${speed}x",
+      "existing_key": null,
+      "proposed_key": "x"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\notification_permission_screen.dart",
+      "line": 151,
+      "text": "Daily Discovery Drop",
+      "existing_key": null,
+      "proposed_key": "dailyDiscoveryDrop"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\notification_permission_screen.dart",
+      "line": 161,
+      "text": "Smart Spaced Repetition",
+      "existing_key": null,
+      "proposed_key": "smartSpacedRepetition"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\notification_permission_screen.dart",
+      "line": 171,
+      "text": "Trial Protection Alert",
+      "existing_key": null,
+      "proposed_key": "trialProtectionAlert"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\onboarding_screen.dart",
+      "line": 522,
+      "text": "Mastery Level",
+      "existing_key": null,
+      "proposed_key": "masteryLevel"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\onboarding_screen.dart",
+      "line": 530,
+      "text": "Target Objective",
+      "existing_key": null,
+      "proposed_key": "targetObjective"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\onboarding_screen.dart",
+      "line": 538,
+      "text": "Daily Practice",
+      "existing_key": null,
+      "proposed_key": "dailyPractice"
+    },
+    {
+      "file": "features\\onboarding\\presentation\\screens\\onboarding_screen.dart",
+      "line": 546,
+      "text": "AI Spaced Repetition",
+      "existing_key": null,
+      "proposed_key": "aiSpacedRepetition"
+    },
+    {
+      "file": "features\\premium\\presentation\\screens\\universal_scanner_screen.dart",
+      "line": 882,
+      "text": "I've granted access",
+      "existing_key": null,
+      "proposed_key": "iVeGrantedAccess"
+    },
+    {
+      "file": "features\\premium\\presentation\\screens\\universal_scanner_screen.dart",
+      "line": 1903,
+      "text": "Add to Deck (${_selectedWordIndices.length})",
+      "existing_key": null,
+      "proposed_key": "addToDeck"
+    },
+    {
+      "file": "features\\progression\\presentation\\screens\\dashboard_screen.dart",
+      "line": 206,
+      "text": "Scanner",
+      "existing_key": null,
+      "proposed_key": "scanner"
+    },
+    {
+      "file": "features\\progression\\presentation\\screens\\dashboard_screen.dart",
+      "line": 224,
+      "text": "Interpreter",
+      "existing_key": null,
+      "proposed_key": "interpreter"
+    },
+    {
+      "file": "features\\progression\\presentation\\screens\\dashboard_screen.dart",
+      "line": 750,
+      "text": "${entry.value} cards",
+      "existing_key": null,
+      "proposed_key": "cards"
+    },
+    {
+      "file": "features\\quiz\\presentation\\screens\\quiz_screen.dart",
+      "line": 105,
+      "text": "Question ${_currentIndex + 1}/${_questions.length}",
+      "existing_key": null,
+      "proposed_key": "question"
+    },
+    {
+      "file": "features\\quiz\\presentation\\screens\\quiz_screen.dart",
+      "line": 232,
+      "text": "Score: $_score / ${_questions.length}",
+      "existing_key": null,
+      "proposed_key": "score"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 107,
+      "text": "The Monkey King",
+      "existing_key": "theMonkeyKing",
+      "proposed_key": "theMonkeyKing"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 115,
+      "text": "Hua Mulan",
+      "existing_key": "huaMulan",
+      "proposed_key": "huaMulan"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 123,
+      "text": "Nüwa Mends the Heavens",
+      "existing_key": null,
+      "proposed_key": "nWaMendsTheHeavens"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 133,
+      "text": "Confucius",
+      "existing_key": "confuciusTitle",
+      "proposed_key": "confuciusTitle"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 141,
+      "text": "The Great Wall",
+      "existing_key": "theGreatWall",
+      "proposed_key": "theGreatWall"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 149,
+      "text": "Terracotta Army",
+      "existing_key": null,
+      "proposed_key": "terracottaArmy"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 157,
+      "text": "Forbidden City",
+      "existing_key": null,
+      "proposed_key": "forbiddenCity"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 167,
+      "text": "A Blessing in Disguise",
+      "existing_key": null,
+      "proposed_key": "aBlessingInDisguise"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 175,
+      "text": "Drawing a Snake",
+      "existing_key": null,
+      "proposed_key": "drawingASnake"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 185,
+      "text": "Taking the Bullet Train",
+      "existing_key": null,
+      "proposed_key": "takingTheBulletTrain"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 193,
+      "text": "Visiting the Doctor",
+      "existing_key": null,
+      "proposed_key": "visitingTheDoctor"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 201,
+      "text": "Ordering Dumplings",
+      "existing_key": null,
+      "proposed_key": "orderingDumplings"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 211,
+      "text": "The Tea Ceremony",
+      "existing_key": null,
+      "proposed_key": "theTeaCeremony"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 219,
+      "text": "Chinese Calligraphy",
+      "existing_key": null,
+      "proposed_key": "chineseCalligraphy"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 227,
+      "text": "The Giant Panda",
+      "existing_key": null,
+      "proposed_key": "theGiantPanda"
+    },
+    {
+      "file": "features\\reading\\presentation\\providers\\story_controller.dart",
+      "line": 436,
+      "text": "Simplified Text",
+      "existing_key": null,
+      "proposed_key": "simplifiedText"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\book_catalog_screen.dart",
+      "line": 153,
+      "text": "Novels (96)",
+      "existing_key": null,
+      "proposed_key": "novels96"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\book_catalog_screen.dart",
+      "line": 163,
+      "text": "Micro-Reads",
+      "existing_key": null,
+      "proposed_key": "microReads"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\book_catalog_screen.dart",
+      "line": 173,
+      "text": "Poetry",
+      "existing_key": null,
+      "proposed_key": "poetry"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\book_reader_screen.dart",
+      "line": 1123,
+      "text": "书签已移除 · Bookmark removed",
+      "existing_key": null,
+      "proposed_key": "bookmarkRemoved"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\book_reader_screen.dart",
+      "line": 1142,
+      "text": "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回",
+      "existing_key": null,
+      "proposed_key": "bookmarkAdded"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\reading_room_screen.dart",
+      "line": 138,
+      "text": "HSK $level",
+      "existing_key": null,
+      "proposed_key": "hsk"
+    },
+    {
+      "file": "features\\reading\\presentation\\screens\\reading_room_screen.dart",
+      "line": 574,
+      "text": "#$tag",
+      "existing_key": null,
+      "proposed_key": "unnamedKey"
+    },
+    {
+      "file": "features\\reading\\presentation\\widgets\\custom_story_creator_sheet.dart",
+      "line": 206,
+      "text": "HSK $level",
+      "existing_key": null,
+      "proposed_key": "hsk"
+    },
+    {
+      "file": "features\\settings\\presentation\\screens\\qa_screen.dart",
+      "line": 92,
+      "text": "Reading & Vocabulary",
+      "existing_key": null,
+      "proposed_key": "readingVocabulary"
+    }
+  ]
+}

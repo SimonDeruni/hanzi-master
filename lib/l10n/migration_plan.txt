@@ -1,0 +1,579 @@
+core/presentation/widgets/ai_progress_bar.dart|8|AI is thinking...|aiIsThinking
+core/presentation/widgets/hanzi_text_field.dart|27|Type Hanzi, Pinyin, or English...|typeHanziPinyinOrEnglish
+core/presentation/widgets/hanzi_text_field.dart|94|Clear|clear
+core/presentation/widgets/zen_search_bar.dart|23|Search...|searchHint
+core/presentation/widgets/zen_search_bar.dart|147|Clear|clear
+core/services/audio_service.dart|540|}:${cacheKey ??|cachekey
+features/auth/presentation/screens/auth_screen.dart|47|You must accept the Terms of Service and Privacy Policy to create an account.|youMustAccount
+features/auth/presentation/screens/auth_screen.dart|65|Firebase Auth not enabled. Please enable the required Sign-In method in your Firebase Console.|firebaseAuthConsole
+features/auth/presentation/screens/auth_screen.dart|107|Welcome Back|welcomeBack
+features/auth/presentation/screens/auth_screen.dart|107|Begin Your Journey|beginYourJourney
+features/auth/presentation/screens/auth_screen.dart|129|Name|nameLabel
+features/auth/presentation/screens/auth_screen.dart|137|Email|emailLabel
+features/auth/presentation/screens/auth_screen.dart|145|Password|passwordLabel
+features/auth/presentation/screens/auth_screen.dart|206|Don't have an account? Sign up|dontHaveAccountSignUp
+features/auth/presentation/screens/auth_screen.dart|208|Already have an account? Sign in|alreadyHaveAccountSignIn
+features/auth/presentation/screens/auth_screen.dart|293|Sign In|signIn
+features/auth/presentation/screens/auth_screen.dart|293|Create Account|createAccount
+features/chat/presentation/screens/ai_hub_screen.dart|57|Roleplay|roleplay
+features/chat/presentation/screens/ai_hub_screen.dart|67|Shadowing|shadowing
+features/course/presentation/screens/course_screen.dart|141|Initializing Library...|initializingLibrary
+features/course/presentation/screens/course_screen.dart|155|Unlock at least 4 characters to start a quiz!|unlockCharactersToQuiz
+features/course/presentation/screens/course_screen.dart|160|PRACTICE QUIZ|practiceQuiz
+features/course/presentation/screens/course_selection_screen.dart|30|CURRICULUM PATHS|curriculumPaths
+features/course/presentation/screens/course_selection_screen.dart|54|No decks found. Add some to your library!|noDecksFound
+features/course/presentation/screens/course_selection_screen.dart|70|A personalized path based on your deck.|personalizedPathBasedOnDeck
+features/course/presentation/screens/course_selection_screen.dart|71|CARDS|cardsTitle
+features/course/presentation/screens/course_selection_screen.dart|77|Add some cards to this deck first!|addCardsFirst
+features/course/presentation/screens/course_selection_screen.dart|102|The AI Scholar is drafting your path...|aiDraftingPath
+features/course/presentation/screens/course_selection_screen.dart|119|Your path for '${deck.localizedName(context)}' is ready!|your_path_for_is_ready
+features/course/presentation/screens/course_selection_screen.dart|128|Error generating path|errorGeneratingPath
+features/course/presentation/screens/lesson_screen.dart|57|WARM UP|warmUp
+features/course/presentation/screens/lesson_screen.dart|174|Lesson Complete! +10 Ink Points|lessonComplete
+features/course/presentation/screens/tome_manager_screen.dart|26|Foundation|foundation
+features/course/presentation/screens/tome_manager_screen.dart|27|Elementary|elementary
+features/course/presentation/screens/tome_manager_screen.dart|28|Intermediate|intermediate
+features/course/presentation/screens/tome_manager_screen.dart|29|Upper Int.|upperIntermediate
+features/course/presentation/screens/tome_manager_screen.dart|30|Advanced|advanced
+features/course/presentation/screens/tome_manager_screen.dart|31|Mastery|mastery
+features/course/presentation/screens/tome_manager_screen.dart|42|154 cards|hsk_154_cards
+features/course/presentation/screens/tome_manager_screen.dart|42|HSK 1: Foundation|hsk1Foundation
+features/course/presentation/screens/tome_manager_screen.dart|43|162 cards|hsk_162_cards
+features/course/presentation/screens/tome_manager_screen.dart|43|HSK 2: Elementary|hsk2Elementary
+features/course/presentation/screens/tome_manager_screen.dart|44|299 cards|hsk_299_cards
+features/course/presentation/screens/tome_manager_screen.dart|44|HSK 3: Intermediate|hsk3Intermediate
+features/course/presentation/screens/tome_manager_screen.dart|45|602 cards|hsk_602_cards
+features/course/presentation/screens/tome_manager_screen.dart|45|HSK 4: Upper Int.|hsk4UpperIntermediate
+features/course/presentation/screens/tome_manager_screen.dart|46|1300 cards|hsk_1300_cards
+features/course/presentation/screens/tome_manager_screen.dart|46|HSK 5: Advanced|hsk5Advanced
+features/course/presentation/screens/tome_manager_screen.dart|47|2500 cards|hsk_2500_cards
+features/course/presentation/screens/tome_manager_screen.dart|47|HSK 6: Mastery|hsk6Mastery
+features/course/presentation/screens/tome_manager_screen.dart|65|title|title
+features/course/presentation/screens/tome_manager_screen.dart|65|Installed|installed
+features/course/presentation/screens/tome_manager_screen.dart|74|Failed to download.|failed_to_download
+features/course/presentation/screens/tome_manager_screen.dart|85|title|title
+features/course/presentation/screens/tome_manager_screen.dart|85|Rescind|rescind
+features/course/presentation/screens/tome_manager_screen.dart|91|Cancel|cancelAction
+features/course/presentation/screens/tome_manager_screen.dart|94|Uninstall|uninstallButton
+features/course/presentation/screens/tome_manager_screen.dart|109|title|title
+features/course/presentation/screens/tome_manager_screen.dart|109|Removed|removed
+features/course/presentation/screens/tome_manager_screen.dart|132|Library|library
+features/course/presentation/screens/tome_manager_screen.dart|135|HSK vocabulary collections|hskVocabularyCollections
+features/course/presentation/screens/tome_manager_screen.dart|203|Couldn't load the library|couldNotLoadLibrary
+features/course/presentation/screens/tome_manager_screen.dart|211|Retry|retry
+features/course/presentation/screens/tome_manager_screen.dart|291|Install|install
+features/course/presentation/screens/tome_manager_screen.dart|291|Remove|remove
+features/course/presentation/widgets/radical_detail_sheet.dart|74|Radical|radical
+features/course/presentation/widgets/radical_detail_sheet.dart|75|A structural component.|aStructuralComponent
+features/course/presentation/widgets/radical_detail_sheet.dart|76|Master this to unlock its galaxy.|masterThisToUnlockItsGalaxy
+features/echo_hall/presentation/screens/conversation_screen.dart|77|Save this scenario|saveThisScenario
+features/echo_hall/presentation/screens/conversation_screen.dart|77|Remove from saved scenarios|removeFromSavedScenarios
+features/echo_hall/presentation/screens/conversation_screen.dart|82|Scenario saved! Find it in the Custom tab.|scenarioSavedFindInCustomTab
+features/echo_hall/presentation/screens/conversation_screen.dart|82|Scenario removed|scenarioRemoved
+features/echo_hall/presentation/screens/conversation_screen.dart|300|Listening...|listening
+features/echo_hall/presentation/screens/conversation_screen.dart|300|Type your message...|typeYourMessage
+features/echo_hall/presentation/screens/conversation_screen.dart|300|Thinking...|thinking
+features/echo_hall/presentation/screens/conversation_screen.dart|408|score|scoreText
+features/echo_hall/presentation/screens/conversation_screen.dart|591|Suggestion|suggestion
+features/echo_hall/presentation/screens/conversation_screen.dart|767|QUESTS|questsTitle
+features/echo_hall/presentation/screens/live_call_screen.dart|91|Analyzing your pronunciation...|analyzing_your_pronunciation
+features/echo_hall/presentation/screens/live_call_screen.dart|96|Analyzing your pronunciation...|analyzing_your_pronunciation
+features/echo_hall/presentation/screens/live_call_screen.dart|97|Reviewing your tones...|reviewingYourTones
+features/echo_hall/presentation/screens/live_call_screen.dart|98|Preparing your Scholar's Verdict...|preparing_your_scholars_verdict
+features/echo_hall/presentation/screens/live_call_screen.dart|1119|Pause|pause
+features/echo_hall/presentation/screens/live_call_screen.dart|1119|Resume|resume
+features/echo_hall/presentation/screens/live_call_screen.dart|1125|CC|cc
+features/echo_hall/presentation/screens/live_call_screen.dart|1125|ZH Only|zhOnly
+features/echo_hall/presentation/screens/live_call_screen.dart|1125|Hidden|hidden
+features/echo_hall/presentation/screens/live_call_screen.dart|1151|Speaker|speaker
+features/echo_hall/presentation/screens/live_call_screen.dart|1203|words|words
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|34|All|allLabel
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|41|All|allLabel
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|54|Custom|customLabel
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|175|Search scenarios...|searchScenariosHint
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|896|Delete Scenario|deleteScenario
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|897|Are you sure?|areYouSure
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|902|Cancel|cancelAction
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|906|Delete|deleteLabel
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|945|OBJECTIVES|objectivesTitle
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|999|Voice Call|voiceCall
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|1021|Text Chat|textChat
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|1035|Save Scenario|saveScenario
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|1035|Remove from Saved|removeFromSaved
+features/echo_hall/presentation/screens/scenario_selection_screen.dart|1136|Failed to generate scenario: $e|failed_to_generate_scenario
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|28|Tea Tasting in Chengdu|teaTastingInChengdu
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|30|Master Zhao (赵师傅), a patient and knowledgeable tea sommelier who loves explaining Gongfu tea brewing.|masterZhaoBrewing
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|34|Street Food Night Market in Xi'an|streetFoodNightMarketInXian
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|36|Auntie Ma (马阿姨), an energetic and loud stall owner who makes the crispiest Roujiamo and Liangpi in town.|auntieMaTown
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|40|Chongqing Spicy Hotpot Feast|chongqingSpicyHotpotFeast
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|42|Manager Yu (余店长), a fiery hotpot restaurant manager who recommends signature tripe, duck blood, and mild broth options.|managerYuOptions
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|46|Morning Dim Sum Cart in Guangzhou|morningDimSumCartInGuangzhou
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|48|Chef Chen (陈师傅), a cheerful Cantonese dim sum chef recommending fresh Har Gow shrimp dumplings and Shumai.|chefChenShumai
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|52|Ordering Hand-Drip Coffee in Shanghai|orderingHanddripCoffeeInShanghai
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|54|Barista Kevin (小凯), a passionate young coffee roaster who loves discussing Yunnan coffee beans and flavor notes.|baristaKevinNotes
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|58|Handmade Dumpling Feast in Harbin|handmadeDumplingFeastInHarbin
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|60|Grandma Liu (刘奶奶), a doting northern grandmother who teaches you how to pinch dumpling pleats and make pork-scallion filling.|grandmaLiuFilling
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|64|Midnight BBQ Skewers in Wuhan|midnightBbqSkewersInWuhan
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|66|Master Gao (高师傅), a charismatic charcoal BBQ master bantering with customers about spice levels and secret cumin rubs.|masterGaoRubs
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|70|Ordering Sugar-Coated Haws in Winter Beijing|orderingSugarcoatedHawsInWinterBeijing
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|395|).first})|first
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|464|Error creating scenario: $e|error_creating_scenario
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|617|e.g., Wedding Reception, Tech Interview...|egWeddingReceptionTechInterview
+features/echo_hall/presentation/widgets/custom_scenario_dialog.dart|767|Create Scenario|createScenario
+features/echo_hall/presentation/widgets/live_call_summary_screen.dart|48|CONVERSATION REVIEW|conversationReview
+features/echo_hall/presentation/widgets/live_call_summary_screen.dart|67|Complete Review|completeReview
+features/echo_hall/presentation/widgets/live_call_summary_screen.dart|181|Linguistic Analysis|linguisticAnalysis
+features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart|148|Play Reference Pronunciation|play_reference_pronunciation
+features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart|310|No|noLabel
+features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart|314|Yes, Re-Grade Me!|yesReGradeMe
+features/echo_hall/presentation/widgets/tone_comparison_sheet.dart|435|🗣️ You Said|you_said
+features/echo_hall/presentation/widgets/tone_comparison_sheet.dart|453|Does not exist in Chinese|doesNotExistInChinese
+features/echo_hall/presentation/widgets/tone_comparison_sheet.dart|467|This tone does not exist in standard Mandarin.|toneDoesNotExistInMandarin
+features/echo_hall/presentation/widgets/tone_comparison_sheet.dart|486|Play|play
+features/explore/presentation/screens/explore_screen.dart|60|Books|books
+features/explore/presentation/screens/explore_screen.dart|71|Web|web
+features/explore/presentation/screens/explore_screen.dart|72|Web|web
+features/explore/presentation/screens/explore_screen.dart|82|Shows|shows
+features/explore/presentation/screens/explore_screen.dart|93|Video|video
+features/flashcards/presentation/screens/character_detail_screen.dart|58|Words|words
+features/flashcards/presentation/screens/character_detail_screen.dart|58|Context|context
+features/flashcards/presentation/screens/character_detail_screen.dart|58|Notes|notes
+features/flashcards/presentation/screens/character_detail_screen.dart|58|Strokes|strokes
+features/flashcards/presentation/screens/character_detail_screen.dart|58|Anatomy|anatomy
+features/flashcards/presentation/screens/character_detail_screen.dart|246|name|nameLabel
+features/flashcards/presentation/screens/character_detail_screen.dart|247|meaning|meaning
+features/flashcards/presentation/screens/character_detail_screen.dart|438|Practice Modes|practiceModes
+features/flashcards/presentation/screens/character_detail_screen.dart|442|Shadowing Studio|shadowingStudio
+features/flashcards/presentation/screens/character_detail_screen.dart|443|Practice pronouncing this word with AI grading|practicePronouncingWithAiGrading
+features/flashcards/presentation/screens/character_detail_screen.dart|461|Calligraphy Trace|calligraphy_trace
+features/flashcards/presentation/screens/character_detail_screen.dart|462|Practice writing the strokes by hand|practice_writing_the_strokes_by_hand
+features/flashcards/presentation/screens/character_detail_screen.dart|475|Select Practice Mode|selectPracticeMode
+features/flashcards/presentation/screens/character_detail_screen.dart|928|char|char
+features/flashcards/presentation/screens/character_detail_screen.dart|945|radical|radical
+features/flashcards/presentation/screens/character_detail_screen.dart|952|name|nameLabel
+features/flashcards/presentation/screens/character_detail_screen.dart|995|Add your own mnemonics or notes here...|addPersonalNotes
+features/flashcards/presentation/screens/character_detail_screen.dart|1147|(${lookAlike.pinyin})|unknown_key
+features/flashcards/presentation/screens/deck_card_picker_screen.dart|39|Add to|addTo
+features/flashcards/presentation/screens/deck_card_picker_screen.dart|60|Search character, pinyin, or meaning...|searchDictionaryHint
+features/flashcards/presentation/screens/deck_detail_screen.dart|176|Erase Deck?|eraseDeckQuestion
+features/flashcards/presentation/screens/deck_detail_screen.dart|177|Are you sure you want to permanently erase "${widget.deck.name}"? This action cannot be undone and will delete all cards inside it.|are_you_sure_you_want_to
+features/flashcards/presentation/screens/deck_detail_screen.dart|181|Cancel|cancelAction
+features/flashcards/presentation/screens/deck_detail_screen.dart|185|Erase|erase
+features/flashcards/presentation/screens/deck_detail_screen.dart|320|Practice in Roleplay|practiceInRoleplay
+features/flashcards/presentation/screens/deck_detail_screen.dart|340|Cards|cardsTitle
+features/flashcards/presentation/screens/deck_detail_screen.dart|341|Statistics|statistics
+features/flashcards/presentation/screens/deck_detail_screen.dart|359|Search character, pinyin...|searchDeckHint
+features/flashcards/presentation/screens/deck_detail_screen.dart|425|Remove ${card.hanzi} from this deck?|remove_from_this_deck
+features/flashcards/presentation/screens/deck_detail_screen.dart|443|UNDO|undo
+features/flashcards/presentation/screens/deck_detail_screen.dart|565|To Be Reviewed|to_be_reviewed
+features/flashcards/presentation/screens/deck_detail_screen.dart|569|Mastered|masteredStatus
+features/flashcards/presentation/screens/deck_detail_screen.dart|574|Review in|reviewIn
+features/flashcards/presentation/screens/deck_detail_screen.dart|574|days|days
+features/flashcards/presentation/screens/deck_detail_screen.dart|574|Review Tomorrow|review_tomorrow
+features/flashcards/presentation/screens/main_navigation_screen.dart|29|AI Hub|aiHubTitle
+features/flashcards/presentation/screens/main_navigation_screen.dart|29|Library|library
+features/flashcards/presentation/screens/main_navigation_screen.dart|29|Dashboard|dashboardTitle
+features/flashcards/presentation/screens/main_navigation_screen.dart|29|Explore|explore
+features/flashcards/presentation/screens/main_navigation_screen.dart|47|Dashboard|dashboardTitle
+features/flashcards/presentation/screens/main_navigation_screen.dart|105|Explore|explore
+features/flashcards/presentation/screens/main_navigation_screen.dart|115|Library|library
+features/flashcards/presentation/screens/review_screen.dart|698|Swipe to Grade:|swipeToGrade
+features/flashcards/presentation/screens/review_screen.dart|707|⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard|againGoodEasyHard
+features/flashcards/presentation/screens/review_screen.dart|724|Good attempt|goodAttempt
+features/flashcards/presentation/screens/review_screen.dart|724|Keep practicing|keepPracticing
+features/flashcards/presentation/screens/review_screen.dart|724|Perfect!|perfect
+features/flashcards/presentation/screens/review_screen.dart|724|Great!|great
+features/flashcards/presentation/screens/settings_screen.dart|22|Settings|settingsTitle
+features/flashcards/presentation/screens/settings_screen.dart|34|Audio & Haptics|audio_haptics
+features/flashcards/presentation/screens/settings_screen.dart|42|Voice Speed|voiceSpeed
+features/flashcards/presentation/screens/settings_screen.dart|57|Haptic Feedback|hapticFeedback
+features/flashcards/presentation/screens/settings_screen.dart|58|Vibrations for interactions|vibrationsForInteractions
+features/flashcards/presentation/screens/settings_screen.dart|70|Audiobook Voice|audiobookVoice
+features/flashcards/presentation/screens/settings_screen.dart|79|Display & Content|display_content
+features/flashcards/presentation/screens/settings_screen.dart|117|Notification Settings|notification_settings
+features/flashcards/presentation/screens/settings_screen.dart|118|Manage Daily Drops and Review Reminders|manageDailyDropsAndReviewReminders
+features/flashcards/presentation/screens/settings_screen.dart|134|Reset All Data|resetAllData
+features/flashcards/presentation/screens/settings_screen.dart|135|Deletes all progress permanently|deletesAllProgressPermanently
+features/flashcards/presentation/screens/settings_screen.dart|140|Are you sure?|areYouSure
+features/flashcards/presentation/screens/settings_screen.dart|141|This cannot be undone.|this_cannot_be_undone
+features/flashcards/presentation/screens/settings_screen.dart|144|Cancel|cancelAction
+features/flashcards/presentation/screens/settings_screen.dart|148|DELETE EVERYTHING|deleteEverything
+features/flashcards/presentation/screens/settings_screen.dart|314|Choose Audiobook Voice|chooseAudiobookVoice
+features/flashcards/presentation/screens/settings_screen.dart|456|Request Permissions|requestPermissions
+features/flashcards/presentation/screens/settings_screen.dart|469|Done|done
+features/flashcards/presentation/screens/stats_screen.dart|55|Library Mastery|libraryMastery
+features/flashcards/presentation/screens/story_mode_screen.dart|92|Deck Story|deckStory
+features/flashcards/presentation/screens/story_mode_screen.dart|144|Generate New Story|generateNewStory
+features/flashcards/presentation/screens/story_mode_screen.dart|382|Failed to generate story:\n$e|failed_to_generate_story
+features/flashcards/presentation/screens/story_mode_screen.dart|410|Translate|translate
+features/flashcards/presentation/widgets/study_mode_selection_sheet.dart|28|How would you like to study?|howWouldYouLikeToStudy
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|54|HSK 1|hsk1
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|548|Skip|skip
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|570|Add Selected to Deck|addSelectedToDeck
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|606|Select a Deck|selectADeck
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|626|No decks found.|no_decks_found
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|632|Export to this deck|exportToThisDeck
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|649|Create New Deck|createNewDeck
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|652|Make a custom collection|makeACustomCollection
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|679|New Deck Name|newDeckName
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|685|E.g. Anime Vocab|egAnimeVocab
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|697|Cancel|cancelAction
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|719|Create|createAction
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|733|Saving ${wordsToAdd.length} words to ${deck.name}...|saving_words_to
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|785|Words saved and SRS scheduled!|wordsSavedAndSrsScheduled
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1029|Free Flow|freeFlow
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1036|Theme|theme
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1043|Deck|deck
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1050|Custom Word|customWord
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1062|Configuration|configuration
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1070|CHINESE CHARACTER|chinese_character
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1077|Search dictionary or type custom|searchDictionaryOrTypeCustom
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1153|HSK LEVEL|hsk_level
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1189|FLASHCARD DECK|flashcardDeckTitle
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1193|No decks found.|no_decks_found
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1233|Error loading decks|error_loading_decks
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1360|Retry|retry
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1374|Ready to start.|readyToStart
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1659|Tone Graph|toneGraph
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1857|phoneme|phoneme
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1898|Listen to this word|listenToThisWord
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1953|Compare 4 Tones|compare4Tones
+features/live_translate/presentation/screens/shadowing_studio_screen.dart|1985|Study Character|studyCharacter
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|25|Ready|ready
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|34|English|english
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|35|Mandarin|mandarin
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|80|Ready to interpret|readyToInterpret
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|92|Listening...|listening
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|92|Partner listening...|partnerListening
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|350|Type your message in $_sideBLanguage...|type_your_message_in
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|383|Send|send
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|556|You|youLabel
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|723|Partner speakingâ€¦|partnerSpeaking
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|895|You are speaking|youAreSpeaking
+features/live_translate/presentation/screens/travel_interpreter_screen.dart|1019|Type in $_sideALanguage...|type_in
+features/media/presentation/screens/media_hub_screen.dart|48|Quick Bookmarks|quickBookmarks
+features/media/presentation/screens/media_hub_screen.dart|67|BBC 中文|bbc
+features/media/presentation/screens/media_hub_screen.dart|74|Wikipedia|wikipedia
+features/media/presentation/screens/media_hub_screen.dart|175|No saved articles yet.|noSavedArticlesYet
+features/media/presentation/screens/media_hub_screen.dart|695|Failed to load daily content|failedToLoadDailyContent
+features/media/presentation/screens/media_search_screen.dart|22|Lifestyle & Vlog|lifestyleAndVlog
+features/media/presentation/screens/media_search_screen.dart|23|Gaming & Esports|gamingAndEsports
+features/media/presentation/screens/media_search_screen.dart|24|Food & Cooking|foodAndCooking
+features/media/presentation/screens/media_search_screen.dart|25|Tech & Gadgets|techAndGadgets
+features/media/presentation/screens/media_search_screen.dart|29|中国 日常 vlog|vlog
+features/media/presentation/screens/media_search_screen.dart|30|游戏 实况 王者荣耀 原神|unknown2
+features/media/presentation/screens/media_search_screen.dart|31|中国 美食 菜谱|unknown3
+features/media/presentation/screens/media_search_screen.dart|32|中国 科技 测评|unknown4
+features/media/presentation/screens/media_search_screen.dart|242|Search topics (e.g., Cooking, History)|searchTopicsEgCookingHistory
+features/media/presentation/screens/media_search_screen.dart|400|Tap to Retry|tapToRetry
+features/media/presentation/screens/show_catalog_screen.dart|51|Failed to load shows|failedToLoadShows
+features/media/presentation/screens/show_catalog_screen.dart|58|Retry|retry
+features/media/presentation/screens/show_catalog_screen.dart|76|No shows available|noShowsAvailable
+features/media/presentation/screens/show_catalog_screen.dart|105|Search by title or tag...|searchByTitleOrTag
+features/media/presentation/screens/show_catalog_screen.dart|372|TRAILER|trailer
+features/media/presentation/screens/show_catalog_screen.dart|372|HIGHLIGHT|highlight
+features/media/presentation/screens/show_catalog_screen.dart|418|episodes|episodes
+features/media/presentation/screens/simplified_article_reader_screen.dart|36|Serif|serif
+features/media/presentation/screens/simplified_article_reader_screen.dart|36|Simplified Article|simplifiedArticle
+features/media/presentation/screens/simplified_article_reader_screen.dart|46|Toggle Pinyin|togglePinyin
+features/media/presentation/screens/simplified_article_reader_screen.dart|58|Toggle Translation|toggleTranslation
+features/media/presentation/screens/simplified_article_reader_screen.dart|88|This article contains Traditional Chinese characters.|thisArticleCharacters
+features/media/presentation/screens/smart_media_desk_screen.dart|358|Select Target HSK Level|select_target_hsk_level
+features/media/presentation/screens/smart_media_desk_screen.dart|512|keyword|keyword
+features/media/presentation/screens/smart_media_desk_screen.dart|514|explanation|explanation
+features/media/presentation/screens/smart_media_desk_screen.dart|739|Briefing|briefing
+features/media/presentation/screens/smart_media_desk_screen.dart|741|Memes|memes
+features/media/presentation/screens/smart_media_desk_screen.dart|808|Open in YouTube|openInYoutube
+features/media/presentation/screens/smart_media_desk_screen.dart|880|Show Pinyin|showPinyin
+features/media/presentation/screens/smart_media_desk_screen.dart|891|Show Translation|showTranslation
+features/media/presentation/screens/smart_media_desk_screen.dart|903|HSK Simplify Subtitles|hskSimplifySubtitles
+features/media/presentation/screens/smart_media_desk_screen.dart|1033|Full|full
+features/media/presentation/screens/smart_media_desk_screen.dart|1097|Simplifying subtitles...|simplifyingSubtitles
+features/media/presentation/screens/story_library_screen.dart|40|AI Stories|ai_stories
+features/media/presentation/screens/story_library_screen.dart|40|Bookmarks|bookmarks
+features/media/presentation/screens/story_library_screen.dart|40|Contemporary|contemporary
+features/media/presentation/screens/story_library_screen.dart|40|All|allLabel
+features/media/presentation/screens/story_library_screen.dart|40|Chinese Poetry|chinesePoetry
+features/media/presentation/screens/story_library_screen.dart|78|Custom AI generated story.|custom_ai_generated_story
+features/media/presentation/screens/story_library_screen.dart|82|AI Generated|aiGenerated
+features/media/presentation/screens/story_library_screen.dart|279|Create Story|createStory
+features/media/presentation/screens/story_library_screen.dart|302|Search stories, idioms, news...|searchStoriesIdiomsNews
+features/media/presentation/screens/story_library_screen.dart|430|No stories found.|noStoriesFound
+features/media/presentation/screens/story_library_screen.dart|709|Native|native
+features/media/presentation/screens/story_summary_screen.dart|29|A classic Tang Dynasty poem|aClassicTangDynastyPoem
+features/media/presentation/screens/story_summary_screen.dart|30|A classic Tang Dynasty poem by|aClassicTangDynastyPoemBy
+features/media/presentation/screens/story_summary_screen.dart|425|Could not load vocabulary.|couldNotLoadVocabulary
+features/media/presentation/screens/story_summary_screen.dart|446|No key words found for this story.|noKeyWordsFoundForThisStory
+features/media/presentation/screens/web_browser_screen.dart|1006|Analysis Failed: $e|analysis_failed
+features/media/presentation/screens/web_browser_screen.dart|1006|Analysis Failed:|analysisFailed
+features/media/presentation/screens/web_browser_screen.dart|1043|No new words found!|noNewWordsFound
+features/media/presentation/screens/web_browser_screen.dart|1088|Extraction Failed: \$e|extraction_failed
+features/media/presentation/screens/web_browser_screen.dart|1118|Simplify Failed: $e|simplify_failed
+features/media/presentation/screens/web_browser_screen.dart|1208|Translation Failed: $e|translation_failed
+features/media/presentation/screens/web_browser_screen.dart|1242|Translating text...|translatingText
+features/media/presentation/screens/web_browser_screen.dart|1385|Extract & Simplify|extractAndSimplify
+features/media/presentation/screens/web_browser_screen.dart|1550|Simplify Failed: $e|simplify_failed
+features/media/presentation/screens/web_browser_screen.dart|1592|AI is thinking...|aiIsThinking
+features/media/presentation/screens/web_browser_screen.dart|1625|Back|back
+features/media/presentation/screens/web_browser_screen.dart|1643|Search or enter URL|searchOrEnterUrl
+features/media/presentation/screens/web_browser_screen.dart|1669|Refresh|refresh
+features/media/presentation/screens/web_browser_screen.dart|1669|Clear|clear
+features/media/presentation/screens/web_browser_screen.dart|1692|Back|back
+features/media/presentation/screens/web_browser_screen.dart|1696|Forward|forward
+features/media/presentation/screens/web_browser_screen.dart|1711|Translate|translate
+features/media/presentation/screens/web_browser_screen.dart|1780|Save|save
+features/media/presentation/screens/web_browser_screen.dart|1780|Saved|saved
+features/media/presentation/screens/web_browser_screen.dart|1785|Focus|focus
+features/media/presentation/screens/web_browser_screen.dart|1785|Exit Focus|exitFocus
+features/media/presentation/screens/web_browser_screen.dart|1809|Story bookmarked in Library!|storyBookmarkedInLibrary
+features/media/presentation/screens/web_browser_screen.dart|1828|Article saved to Media Hub!|articleSavedToMediaHub
+features/media/presentation/screens/web_browser_screen.dart|1968|Failed to create deck|failedToCreateDeck
+features/media/presentation/screens/web_browser_screen.dart|1989|No words selected|noWordsSelected
+features/media/presentation/screens/web_browser_screen.dart|2043|New Deck|newDeck
+features/media/presentation/screens/web_browser_screen.dart|2046|Deck Name|deckName
+features/media/presentation/screens/web_browser_screen.dart|2052|Cancel|cancelAction
+features/media/presentation/screens/web_browser_screen.dart|2055|Create|createAction
+features/media/presentation/screens/web_browser_screen.dart|2075|Review Extracted Deck|reviewExtractedDeck
+features/media/presentation/screens/web_browser_screen.dart|2140|Cancel|cancelAction
+features/media/presentation/screens/web_browser_screen.dart|2167|Create New Deck|createNewDeck
+features/onboarding/presentation/screens/notification_permission_screen.dart|79|Developer Backdoor Unlocked!|developerBackdoorUnlocked
+features/onboarding/presentation/screens/notification_permission_screen.dart|228|Continue|continueText
+features/onboarding/presentation/screens/notification_permission_screen.dart|247|Maybe Later|maybeLater
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|79|Opening the Origin Scroll...|openingTheOriginScroll
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|152|I UNDERSTAND|iUnderstand
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|200|CONTINUE|continueText
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|235|THE SCROLL OF ORIGIN|theScrollOfOrigin
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|249|I AM READY|iAmReady
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|294|YOU ARE A SCHOLAR|youAreAScholar
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|301|The Galaxy Map awaits.
+Master the Suns (Radicals) to unlock the Planets (Characters).|theGalaxyCharacters
+features/onboarding/presentation/screens/tutorial_lesson_screen.dart|314|ENTER THE SCROLL|enterTheScroll
+features/premium/presentation/screens/custom_paywall_screen.dart|194|Turn On|turnOn
+features/premium/presentation/screens/custom_paywall_screen.dart|213|No active subscription found.|noActiveSubscriptionFound
+features/premium/presentation/screens/custom_paywall_screen.dart|382|Restore|restore
+features/premium/presentation/screens/custom_paywall_screen.dart|387|Terms|terms
+features/premium/presentation/screens/custom_paywall_screen.dart|392|Privacy|privacy
+features/premium/presentation/screens/custom_paywall_screen.dart|484|Monthly|monthly
+features/premium/presentation/screens/custom_paywall_screen.dart|484|Yearly|yearly
+features/premium/presentation/screens/custom_paywall_screen.dart|532|Best Value|bestValue
+features/premium/presentation/screens/custom_paywall_screen.dart|558|Just \$|just
+features/premium/presentation/screens/custom_paywall_screen.dart|558|/mo|mo
+features/premium/presentation/screens/paywall_sheet.dart|33|RevenueCat Error: $e|revenuecat_error
+features/premium/presentation/screens/paywall_sheet.dart|33|RevenueCat Error:|revenuecatError
+features/premium/presentation/screens/universal_scanner_screen.dart|145|Settings|settingsTitle
+features/premium/presentation/screens/universal_scanner_screen.dart|240|Error fetching translation for $label: $e|error_fetching_translation_for
+features/premium/presentation/screens/universal_scanner_screen.dart|531|AI Analysis Failed|aiAnalysisFailed
+features/premium/presentation/screens/universal_scanner_screen.dart|699|Deep Analysis|deepAnalysis
+features/premium/presentation/screens/universal_scanner_screen.dart|778|AI Scene Analysis Failed|aiSceneAnalysisFailed
+features/premium/presentation/screens/universal_scanner_screen.dart|810|Open Settings|open_settings
+features/premium/presentation/screens/universal_scanner_screen.dart|822|I\|i
+features/premium/presentation/screens/universal_scanner_screen.dart|892|Results|results
+features/premium/presentation/screens/universal_scanner_screen.dart|895|Scan Another|scanAnother
+features/premium/presentation/screens/universal_scanner_screen.dart|961|View as List|viewAsList
+features/premium/presentation/screens/universal_scanner_screen.dart|1044|Point at Chinese text to translate|point_at_chinese_text_to_translate
+features/premium/presentation/screens/universal_scanner_screen.dart|1276|Extracted Text (Tap to lookup)|extracted_text_tap_to_lookup
+features/premium/presentation/screens/universal_scanner_screen.dart|1315|Full Translation|fullTranslation
+features/premium/presentation/screens/universal_scanner_screen.dart|1349|Save All|saveAll
+features/premium/presentation/screens/universal_scanner_screen.dart|1527|Smart Deck|smartDeck
+features/premium/presentation/screens/universal_scanner_screen.dart|1720|Created smart deck: "$_smartDeckName" with ${_matchedCharacters.length} words!|created_smart_deck_with_words
+features/progression/presentation/screens/dashboard_screen.dart|321|Done|done
+features/progression/presentation/screens/dashboard_screen.dart|430|Begin|begin
+features/progression/presentation/screens/dashboard_screen.dart|555|NotoSerifSC|notoserifsc
+features/progression/presentation/screens/dashboard_screen.dart|575|cards|cardsTitle
+features/progression/presentation/screens/dashboard_screen.dart|583|Done|done
+features/progression/presentation/widgets/today_insight_card.dart|77|TODAY'S WORD|todaysWord
+features/progression/presentation/widgets/today_insight_card.dart|169|chéng|chng
+features/progression/presentation/widgets/today_insight_card.dart|170|sincere; honest|sincereHonest
+features/quiz/presentation/screens/quiz_screen.dart|99|Question|question
+features/quiz/presentation/screens/quiz_screen.dart|127|Which character is:|whichCharacterIs
+features/quiz/presentation/screens/quiz_screen.dart|127|What does this mean?|whatDoesThisMean
+features/quiz/presentation/screens/quiz_screen.dart|199|Score:|score
+features/reading/presentation/screens/audiobook_player_screen.dart|290|Audio could not start. Check your connection and device voice settings.|audio_could_not_start_check_your
+features/reading/presentation/screens/audiobook_player_screen.dart|315|Voice:|voice
+features/reading/presentation/screens/audiobook_player_screen.dart|990|Hide English Translations|hideEnglishTranslations
+features/reading/presentation/screens/audiobook_player_screen.dart|990|Show English Translations|showEnglishTranslations
+features/reading/presentation/screens/audiobook_player_screen.dart|1029|Sentence|sentence
+features/reading/presentation/screens/audiobook_player_screen.dart|1389|Reading Mode|readingMode
+features/reading/presentation/screens/book_catalog_screen.dart|47|All|allLabel
+features/reading/presentation/screens/book_catalog_screen.dart|48|Chinese Epics|chineseEpics
+features/reading/presentation/screens/book_catalog_screen.dart|49|Ancient Philosophy|ancientPhilosophy
+features/reading/presentation/screens/book_catalog_screen.dart|50|Supernatural & Folklore|supernaturalAndFolklore
+features/reading/presentation/screens/book_catalog_screen.dart|51|Modern Chinese|modernChinese
+features/reading/presentation/screens/book_catalog_screen.dart|52|French Classics|frenchClassics
+features/reading/presentation/screens/book_catalog_screen.dart|53|German Classics|germanClassics
+features/reading/presentation/screens/book_catalog_screen.dart|54|Spanish & World|spanishAndWorld
+features/reading/presentation/screens/book_catalog_screen.dart|55|English & World|englishAndWorld
+features/reading/presentation/screens/book_catalog_screen.dart|91|Reading Room|readingRoom
+features/reading/presentation/screens/book_catalog_screen.dart|475|Error loading novels: $e|error_loading_novels
+features/reading/presentation/screens/book_catalog_screen.dart|560|Error loading micro-reads: $e|error_loading_microreads
+features/reading/presentation/screens/book_catalog_screen.dart|645|Error loading poetry: $e|error_loading_poetry
+features/reading/presentation/screens/book_catalog_screen.dart|1076|1-2 min|12Min
+features/reading/presentation/screens/book_detail_screen.dart|15|Wu Cheng'en (c. 1500–1582) was a Ming Dynasty novelist from Huai'an, Jiangsu. Drawing on decades of folklore, Buddhist allegory, and satirical wit, he wove the mythology of the Tang pilgrimage into Journey to the West — one of the most inventive and beloved works in world literature.|wuChengenLiterature
+features/reading/presentation/screens/book_detail_screen.dart|16|Luo Guanzhong (c. 1330–1400) was a Yuan-to-Ming transition era playwright and novelist, believed to have studied under Shi Nai'an. His Romance of the Three Kingdoms synthesised historical chronicles, oral tradition, and dramatic storytelling into the definitive Chinese historical epic.|luoGuanzhongEpic
+features/reading/presentation/screens/book_detail_screen.dart|17|Shi Nai'an (c. 1296–1372) was a Yuan Dynasty literatus who reportedly passed the imperial examination yet chose the life of a reclusive scholar. Water Margin, his masterwork of heroic outlaws and righteous rebellion, established the archetype of the Chinese martial epic.|shiNaianEpic
+features/reading/presentation/screens/book_detail_screen.dart|18|Cao Xueqin (c. 1715–1763) was a Qing Dynasty novelist born into a once-wealthy Bannerman family whose fortunes collapsed under Emperor Yongzheng. Dream of the Red Chamber, written in his poverty-stricken final years, is widely regarded as the pinnacle of Chinese fiction — a vast, psychologically rich taphos of aristocratic decline.|caoXueqinDecline
+features/reading/presentation/screens/book_detail_screen.dart|19|Xu Zhonglin (fl. 16th–17th century) was a Ming Dynasty author credited with compiling Investiture of the Gods (封神演义), a monumental work of mythological fiction blending Shang-Zhou history with Daoist cosmology, celestial bureaucracy, and heroic warfare.|xuZhonglinWarfare
+features/reading/presentation/screens/book_detail_screen.dart|20|Pu Songling (1640–1715) was a Qing Dynasty writer who spent decades compiling Strange Tales from a Chinese Studio after repeatedly failing the imperial examinations. His supernatural stories of fox spirits, ghosts, and scholars remain the gold standard of Chinese gothic literature.|puSonglingLiterature
+features/reading/presentation/screens/book_detail_screen.dart|21|Wu Jingzi (1701–1754) was a Qing Dynasty novelist from Anhui who abandoned his inherited fortune and spent his life writing The Scholars — a biting satirical novel exposing the vanity, corruption, and absurdity of the imperial examination system and the scholar-gentry class.|wuJingziClass
+features/reading/presentation/screens/book_detail_screen.dart|22|Liu E (1857–1909) was a late-Qing polymath — engineer, doctor, and novelist — whose sole novel The Travels of Lao Can is a lyrical yet politically charged travelogue of a wandering healer navigating a China in the throes of dynastic collapse and foreign encroachment.|liuEEncroachment
+features/reading/presentation/screens/book_detail_screen.dart|23|Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects.|liRuzhenSubjects
+features/reading/presentation/screens/book_detail_screen.dart|24|Lu Xun (1881–1936), pen name of Zhou Shuren, is the father of modern Chinese literature. A physician who switched to writing to heal the Chinese spirit, his short story collections — Diary of a Madman and The True Story of Ah Q — used vernacular|luXunVernacular
+features/reading/presentation/screens/book_detail_screen.dart|149|Book link copied to clipboard!|bookLinkCopiedToClipboard
+features/reading/presentation/screens/book_detail_screen.dart|504|Table of Contents · 目录 (|table_of_contents
+features/reading/presentation/screens/book_detail_screen.dart|504|Chapters)|chapters
+features/reading/presentation/screens/book_detail_screen.dart|605|Error loading chapters: $e|error_loading_chapters
+features/reading/presentation/screens/book_reader_screen.dart|541|Choose Voice|chooseVoice
+features/reading/presentation/screens/book_reader_screen.dart|1029|Sentence|sentence
+features/reading/presentation/screens/book_reader_screen.dart|1473|Audiobook Player|audiobookPlayer
+features/reading/presentation/screens/book_reader_screen.dart|1485|Bookmark Chapter|bookmarkChapter
+features/reading/presentation/screens/book_reader_screen.dart|1491|View Bookmarks|viewBookmarks
+features/reading/presentation/screens/book_reader_screen.dart|1499|Table of Contents|tableOfContents
+features/reading/presentation/screens/book_reader_screen.dart|1514|Toggle Pinyin|togglePinyin
+features/reading/presentation/screens/book_reader_screen.dart|1548|Adjust Font Size|adjustFontSize
+features/reading/presentation/screens/book_reader_screen.dart|1751|Listen in Audiobook Mode|listenInAudiobookMode
+features/reading/presentation/screens/book_reader_screen.dart|2003|Sleep Timer|sleepTimer
+features/reading/presentation/screens/book_reader_screen.dart|2039|Spotify-style Player|spotifyStylePlayer
+features/reading/presentation/screens/book_reader_screen.dart|2075|Previous|previous
+features/reading/presentation/screens/book_reader_screen.dart|2118|Next|next
+features/reading/presentation/screens/reading_room_screen.dart|35|Myths & Legends|mythsAndLegends
+features/reading/presentation/screens/reading_room_screen.dart|36|History & Culture|historyAndCulture
+features/reading/presentation/screens/reading_room_screen.dart|37|Idioms (成语)|idiomsTitle
+features/reading/presentation/screens/reading_room_screen.dart|45|The Monkey King|theMonkeyKing
+features/reading/presentation/screens/reading_room_screen.dart|46|Hua Mulan|huaMulan
+features/reading/presentation/screens/reading_room_screen.dart|47|Confucius|confuciusTitle
+features/reading/presentation/screens/reading_room_screen.dart|48|The Great Wall|theGreatWall
+features/reading/presentation/screens/reading_room_screen.dart|56|Sun Wukong (Journey to the West)|theMonkeyKingDesc
+features/reading/presentation/screens/reading_room_screen.dart|57|Hua Mulan joining the army instead of her father|huaMulanDesc
+features/reading/presentation/screens/reading_room_screen.dart|58|The life and teachings of Confucius|confuciusDesc
+features/reading/presentation/screens/reading_room_screen.dart|59|Building the Great Wall of China|theGreatWallDesc
+features/reading/presentation/screens/reading_room_screen.dart|340|Recent Bookmarks|recentBookmarks
+features/reading/presentation/screens/reading_room_screen.dart|348|See all|seeAll
+features/reading/presentation/screens/story_reader_screen.dart|48|Unrolling the scroll...|unrollingTheScroll
+features/reading/presentation/screens/story_reader_screen.dart|49|Analyzing classical characters...|analyzingClassicalCharacters
+features/reading/presentation/screens/story_reader_screen.dart|50|Loading translations...|loadingTranslations
+features/reading/presentation/screens/story_reader_screen.dart|51|Preparing reading interface...|preparingReadingInterface
+features/reading/presentation/screens/story_reader_screen.dart|52|Finalizing details...|finalizingDetails
+features/reading/presentation/screens/story_reader_screen.dart|56|Drafting story outline...|draftingStoryOutline
+features/reading/presentation/screens/story_reader_screen.dart|57|Selecting HSK vocabulary...|selectingHskVocabulary
+features/reading/presentation/screens/story_reader_screen.dart|58|Refining grammar...|refiningGrammar
+features/reading/presentation/screens/story_reader_screen.dart|59|Translating and adding Pinyin...|translatingAndAddingPinyin
+features/reading/presentation/screens/story_reader_screen.dart|60|Finalizing story details...|finalizingStoryDetails
+features/reading/presentation/screens/story_reader_screen.dart|492|HSK ${widget.hskLevel} vocabulary|hsk_vocabulary
+features/reading/presentation/screens/story_reader_screen.dart|757|Summary|summary
+features/reading/presentation/screens/story_reader_screen.dart|773|All Pinyin|allPinyin
+features/reading/presentation/screens/story_reader_screen.dart|774|Ghost Pinyin|ghostPinyin
+features/reading/presentation/screens/story_reader_screen.dart|775|No Pinyin|noPinyin
+features/reading/presentation/widgets/custom_story_creator_sheet.dart|134|Dynamic Flow State|dynamicFlowState
+features/reading/presentation/widgets/custom_story_creator_sheet.dart|146|Got it|gotItSimple
+features/reading/presentation/widgets/custom_story_creator_sheet.dart|165|Dynamic (Flow State)|dynamicFlowStateParenthetical
+features/reading/presentation/widgets/custom_story_creator_sheet.dart|239|Scan Text|scanText
+features/settings/presentation/screens/contact_screen.dart|22|Please enter a message before sending.|pleaseEnterMessageBeforeSending
+features/settings/presentation/screens/contact_screen.dart|46|Could not open email app.|couldNotOpenEmailApp
+features/settings/presentation/screens/contact_screen.dart|65|Bug Report|bugReport
+features/settings/presentation/screens/contact_screen.dart|66|General Feedback|generalFeedback
+features/settings/presentation/screens/contact_screen.dart|66|Feature Request|feature_request
+features/settings/presentation/screens/contact_screen.dart|87|We'd love to
+hear from you.|wedLoveToHearFromYou
+features/settings/presentation/screens/contact_screen.dart|171|Write your message here...|writeYourMessageHere
+features/settings/presentation/screens/contact_screen.dart|197|Send Message|sendMessage
+features/settings/presentation/screens/qa_screen.dart|22|Knowledge Base|knowledgeBase
+features/settings/presentation/screens/qa_screen.dart|42|Privacy & Audio|privacyAndAudio
+features/settings/presentation/screens/qa_screen.dart|49|Do you keep or store my voice recordings?|do_you_keep_or_store_my
+features/settings/presentation/screens/qa_screen.dart|50|No. When you use Echo Hall, Scholar's Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.|no_when_you_use_echo_hall
+features/settings/presentation/screens/qa_screen.dart|53|What happens to my chat history?|whatHappensToMyChatHistory
+features/settings/presentation/screens/qa_screen.dart|54|Your Echo Hall conversations are stored locally on your device so you can review them anytime. We do not use your personal conversations to train our AI models.|yourEchoModels
+features/settings/presentation/screens/qa_screen.dart|60|Speaking & Pronunciation|speaking_pronunciation
+features/settings/presentation/screens/qa_screen.dart|67|How is my pronunciation scored?|how_is_my_pronunciation_scored
+features/settings/presentation/screens/qa_screen.dart|68|The AI evaluates your speech across three dimensions:
+• Accuracy: Did you articulate the correct syllables?
+• Completeness: Did you skip or miss any words?
+• Fluency: Did you pause naturally and use the correct tones?
+It compares your audio against native models to generate a score out of 100.|the_ai_evaluates_your_speech_across
+features/settings/presentation/screens/qa_screen.dart|71|What if the AI mishears what I meant to say?|whatIfAiMishears
+features/settings/presentation/screens/qa_screen.dart|72|If the AI detects a mismatch, it will ask 'Did you mean to say...?'. You can tap the 'Yes, Re-Grade Me!' button to instantly re-evaluate your original audio against your true intention without having to speak again.|ifTheAgain
+features/settings/presentation/screens/qa_screen.dart|75|What is Shadowing Studio?|what_is_shadowing_studio
+features/settings/presentation/screens/qa_screen.dart|76|Shadowing Studio is a dedicated space to practice mimicking native|shadowing_studio_is_a_dedicated_space
+features/course/presentation/screens/radical_lesson_screen.dart|148|STEP 1: THE ORIGIN|stepOneOrigin
+features/course/presentation/screens/radical_lesson_screen.dart|150|Trace the Radical|traceRadical
+features/course/presentation/screens/radical_lesson_screen.dart|168|STEP 2: THE FORGE|stepTwoForge
+features/course/presentation/screens/radical_lesson_screen.dart|170|Choose the Essence|chooseEssence
+features/course/presentation/screens/radical_lesson_screen.dart|191|Wrong essence! Try again.|wrongEssence
+features/course/presentation/screens/radical_lesson_screen.dart|291|STEP 3: THE HUNT|stepThreeHunt
+features/course/presentation/screens/radical_lesson_screen.dart|293|Find characters with|findCharactersWith
+features/course/presentation/screens/radical_lesson_screen.dart|314|Not that one! Look closer.|notThatOne
+features/course/presentation/widgets/course_map_widgets.dart|56|UNIT INTRO|unitIntro
+features/course/presentation/widgets/course_map_widgets.dart|372|Constellation Cluster|constellationCluster
+features/course/presentation/widgets/course_map_widgets.dart|377|OK|ok
+features/course/presentation/widgets/course_map_widgets.dart|869|KEY RADICALS|keyRadicals
+features/course/presentation/widgets/course_map_widgets.dart|875|No radical data available.|noRadicalDataAvailable
+features/course/presentation/widgets/course_map_widgets.dart|889|char|char
+features/course/presentation/widgets/course_map_widgets.dart|895|name|nameLabel
+features/course/presentation/widgets/course_map_widgets.dart|896|meaning|meaning
+features/flashcards/presentation/screens/dictionary_screen.dart|113|Generate|generate
+features/flashcards/presentation/screens/dictionary_screen.dart|302|HSK Collections|hskCollections
+features/flashcards/presentation/screens/dictionary_screen.dart|394|Retry|retry
+features/flashcards/presentation/screens/dictionary_screen.dart|411|No results found for '$searchQuery'|no_results_found_for
+features/flashcards/presentation/screens/dictionary_screen.dart|465|Compare|compare
+features/flashcards/presentation/screens/dictionary_screen.dart|533|Retry|retry
+features/flashcards/presentation/screens/dictionary_screen.dart|743|Search Pinyin, Hanzi, or English...|searchPinyinHanziEnglish
+features/flashcards/presentation/screens/flashcard_form_screen.dart|84|New Card|newCard
+features/flashcards/presentation/screens/flashcard_form_screen.dart|84|Edit Card|editCard
+features/flashcards/presentation/screens/flashcard_form_screen.dart|95|Hanzi (Character)|hanziCharacter
+features/flashcards/presentation/screens/flashcard_form_screen.dart|104|Pinyin|pinyin
+features/flashcards/presentation/screens/flashcard_form_screen.dart|112|Definition|definition
+features/flashcards/presentation/screens/profile_screen.dart|42|Learning Stats|learning_stats
+features/flashcards/presentation/screens/profile_screen.dart|43|View your learning history and streaks|view_your_learning_history_and_streaks
+features/flashcards/presentation/screens/profile_screen.dart|55|SinoSpark Premium|sinospark_premium
+features/flashcards/presentation/screens/profile_screen.dart|71|Settings|settingsTitle
+features/flashcards/presentation/screens/profile_screen.dart|72|Preferences, Audio, and Display|preferences_audio_and_display
+features/flashcards/presentation/screens/profile_screen.dart|84|Help & Support|helpAndSupport
+features/flashcards/presentation/screens/profile_screen.dart|85|Contact us and report issues|contact_us_and_report_issues
+features/flashcards/presentation/screens/profile_screen.dart|97|Q&A / FAQ|qaFaq
+features/flashcards/presentation/screens/profile_screen.dart|98|Audio, privacy, and how things work|audioPrivacyAndHowThingsWork
+features/flashcards/presentation/screens/radical_detail_screen.dart|217|Search by pinyin or meaning...|searchByPinyinOrMeaning
+features/flashcards/presentation/screens/radical_library_screen.dart|112|Search radicals (e.g. Water, æ°µ)|search_radicals_eg_water
+features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart|104|New Deck|newDeck
+features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart|131|e.g., Ordering at a restaurant, Business vocab...|egOrderingAtARestaurantBusinessVocab
+features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart|189|e.g., Formal business language, slang for texting...|egFormalBusinessLanguageSlangForTexting
+features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart|261|Please select a deck to add cards to.|please_select_a_deck_to_add
+features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart|338|Added ${cards.length} cards to "$_selectedDeckName".|added_cards_to
+features/flashcards/presentation/widgets/ai_explainer_sheet.dart|410|Ask a follow-up question...|askFollowUpQuestion
+features/flashcards/presentation/widgets/character_chat_sheet.dart|517|Ask about ${widget.hanzi}...|ask_about
+features/flashcards/presentation/widgets/cross_reference_text.dart|68|Detail|detail
+features/flashcards/presentation/widgets/deck_selection_sheet.dart|163|New Deck|newDeck
+features/flashcards/presentation/widgets/deck_selection_sheet.dart|166|Deck Name|deckName
+features/flashcards/presentation/widgets/deck_selection_sheet.dart|170|Cancel|cancelAction
+features/flashcards/presentation/widgets/deck_selection_sheet.dart|171|Create|createAction
+features/flashcards/presentation/widgets/flashcard_edit_dialog.dart|100|Added '$hanzi' to your Library|added_to_your_library
+features/flashcards/presentation/widgets/flashcard_edit_dialog.dart|150|Character / Word|characterOrWord
+features/flashcards/presentation/widgets/flashcard_edit_dialog.dart|159|Pinyin|pinyin
+features/flashcards/presentation/widgets/flashcard_edit_dialog.dart|168|Definition|definition
+features/flashcards/presentation/widgets/modes/recall_mode.dart|132|View My Drawing|viewMyDrawing
+features/flashcards/presentation/widgets/modes/recall_mode.dart|132|View Answer|viewAnswer
+features/flashcards/presentation/widgets/modes/speaking_mode.dart|204|Show Pinyin|showPinyin
+features/flashcards/presentation/widgets/modes/speaking_mode.dart|204|Hide Pinyin|hidePinyin
+features/flashcards/presentation/widgets/modes/speaking_mode.dart|335|Analyzing pronunciation with Gemini AI...|analyzing_pronunciation_with_gemini_ai
+features/flashcards/presentation/widgets/word_detail_dialog.dart|103|Default Deck|defaultDeck
+features/flashcards/presentation/widgets/word_detail_dialog.dart|130|Added $char to Review Queue|added_to_review_queue
+features/flashcards/presentation/widgets/word_detail_dialog.dart|287|Etymology: $char|etymology
+features/media/presentation/screens/channel_videos_screen.dart|498|Tap to Retry|tapToRetry
+features/media/presentation/screens/cultural_context_screen.dart|159|Failed to load context: $err|failed_to_load_context
+features/media/presentation/screens/cultural_context_screen.dart|208|Unable to open this video. Please try again later.|unable_to_open_this_video_please
+features/media/presentation/screens/show_detail_screen.dart|217|Failed to load episodes|failedToLoadEpisodes
+features/media/presentation/screens/show_detail_screen.dart|224|Retry|retry
+features/media/presentation/screens/show_detail_screen.dart|237|No episodes found|noEpisodesFound
+features/media/presentation/screens/story_cultural_insight_screen.dart|198|Retry|retry
+features/media/presentation/widgets/premium_video_top_bar.dart|89|Show Hanzi|showHanzi
+features/media/presentation/widgets/premium_video_top_bar.dart|105|Show Pinyin|showPinyin
+features/media/presentation/widgets/premium_video_top_bar.dart|121|Show English|showEnglish
+features/media/presentation/widgets/premium_video_top_bar.dart|142|Subtitle Opacity|subtitleOpacity
+features/monetization/presentation/screens/paywall_screen.dart|86|No premium packages available at the moment.|noPremiumPackagesAvailable
+main.dart|161|SinoSpark|hanziMaster
+shared/widgets/nuance_compare_sheet.dart|295|Chat more|chatMore
+shared/widgets/nuance_compare_sheet.dart|438|Retry|retry
+shared/widgets/nuance_compare_sheet.dart|617|Ask a follow-up...|askAFollowUp
+shared/widgets/quick_look_sheet.dart|365|Shadow|shadow
+shared/widgets/quick_look_sheet.dart|433|Trace|traceLabel
+shared/widgets/quick_look_sheet.dart|447|Grammar|grammar
+shared/widgets/quick_look_sheet.dart|626|HSK $hskLevel|hsk
+shared/widgets/quick_look_sheet.dart|633|Traditional|traditional
