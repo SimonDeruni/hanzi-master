@@ -99,6 +99,7 @@ flutter:
     - assets/icon/
     - assets/data/dictionary.db
     - assets/data/
+    - assets/data/l10n/
     - assets/data/books/
     - assets/images/
     - assets/images/books/

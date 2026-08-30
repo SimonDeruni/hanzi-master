@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+290] - 2026-08-30
+- **Full 13-Language Content & Catalog Translation Matrix (Build #290)**:
+  - Translated all **86 Classical Novels & Books** (`assets/data/grand_library_catalog.json`) and **126 Show & Drama plot summaries** (`show_summaries.dart`) across all 13 supported languages (French, Spanish, German, Italian, Portuguese, Russian, Arabic, Hindi, Japanese, Korean, Vietnamese, Indonesian, Chinese).
+  - Saved 26 localized JSON datasets in `assets/data/l10n/` (`books_<lang>.json`, `shows_<lang>.json`).
+  - Added `- assets/data/l10n/` asset declaration in `pubspec.yaml`.
+
 ## [1.0.0+289] - 2026-08-30
 - **13-Language Multi-Target Batch Translation & Pipeline Guide (Build #289)**:
   - Created [`docs/LOCALIZATION_PIPELINE.md`](file:///c:/Users/simon/Documents/hanzi_master/docs/LOCALIZATION_PIPELINE.md) documenting the architecture, free API limits, extraction commands, and maintenance steps.
