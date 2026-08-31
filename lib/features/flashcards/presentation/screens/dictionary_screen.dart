@@ -663,6 +663,7 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
             const SizedBox(height: 4),
             TranslatedDefinition(
               definition: _definition,
+              hanzi: widget.card.hanzi,
               originalStyle: theme.textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -1044,6 +1045,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                   const SizedBox(height: 4),
                   TranslatedDefinition(
                     definition: _definition,
+                    hanzi: widget.card.hanzi,
                     originalStyle: TextStyle(
                       fontSize: 14,
                       color: isDark ? Colors.white : Colors.black,

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+300] - 2026-08-31
+- **Dynamic Offline-First Multilingual Dictionary Resolution with Fallback (Build #300)**:
+  - Updated [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to automatically extract target language definitions (`definition_fr`, `definition_de`, `definition_es`, `definition_ru`, `definition_vi`, `definition_ja`, `definition_ko`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_hi`) directly based on the user's active locale with canonical English fallback.
+  - Upgraded [`LocalTranslationService`](file:///c:/Users/simon/Documents/hanzi_master/lib/core/services/local_translation_service.dart) and [`TranslatedDefinition`](file:///c:/Users/simon/Documents/hanzi_master/lib/core/widgets/translated_definition.dart) with zero-latency offline SQLite dictionary checks before falling back to on-the-spot neural translation and Hive caching.
+  - Connected `masterSearchProvider`, `commonWordsProvider`, `quickLookProvider`, and study modes (`reading_mode.dart`, `listening_mode.dart`, `recall_mode.dart`, `speaking_mode.dart`) to dynamically resolve definitions in the user's selected language.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)** and all unit tests passing.
+
 ## [1.0.0+299] - 2026-08-31
 - **Direct FreeDict & WikDict Bilingual Dictionary Matrix Ingestion (Build #299)**:
   - Ingested the direct **Chinese-Indonesian TEI Dictionary (FreeDict + WikDict, 82,903 entries)** into SQLite `dictionary.db` (Indonesian offline count increased to **30,272 words**).

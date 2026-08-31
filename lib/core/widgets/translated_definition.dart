@@ -11,6 +11,7 @@ import '../services/local_translation_service.dart';
 /// source remains visible while loading and after any translation failure.
 class TranslatedDefinition extends ConsumerStatefulWidget {
   final String definition;
+  final String? hanzi;
   final TextStyle? originalStyle;
   final TextStyle? translationStyle;
   final TextAlign textAlign;
@@ -20,6 +21,7 @@ class TranslatedDefinition extends ConsumerStatefulWidget {
   const TranslatedDefinition({
     super.key,
     required this.definition,
+    this.hanzi,
     this.originalStyle,
     this.translationStyle,
     this.textAlign = TextAlign.start,
@@ -39,7 +41,7 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
 
   void _syncTranslation(String targetLanguage, bool useEnglishDefinitions) {
     final requestKey =
-        '$targetLanguage\u0000$useEnglishDefinitions\u0000${widget.definition}';
+        '$targetLanguage\u0000$useEnglishDefinitions\u0000${widget.hanzi}\u0000${widget.definition}';
     if (_requestKey == requestKey) return;
 
     _requestKey = requestKey;
@@ -56,7 +58,7 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
       try {
         final result = await ref
             .read(localTranslationServiceProvider)
-            .translateEnglishDefinition(widget.definition);
+            .translateEnglishDefinition(widget.definition, hanzi: widget.hanzi);
         if (!mounted || generation != _requestGeneration) return;
         setState(() {
           _translated = result == widget.definition ? null : result;

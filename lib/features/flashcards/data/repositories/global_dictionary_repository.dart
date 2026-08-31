@@ -35,7 +35,7 @@ class GlobalDictionaryRepository {
     _db = await databaseFactory.openDatabase(dbPath);
   }
 
-  Future<Either<String, List<Flashcard>>> search(String query) async {
+  Future<Either<String, List<Flashcard>>> search(String query, {String? targetLanguage}) async {
     if (_db == null) return const Left("Global Dictionary not initialized");
     if (query.trim().isEmpty) return const Right([]);
 
@@ -74,7 +74,7 @@ class GlobalDictionaryRepository {
         SELECT *,
           CASE 
             WHEN REPLACE(pinyin_no_tones, ' ', '') = ? THEN 1
-            WHEN definition = ? OR definition_fr = ? OR definition_de = ? OR definition_es = ? OR definition_ru = ? OR definition_vi = ? OR definition_ja = ? OR definition_it = ? OR definition_pt = ? OR definition_id = ? OR definition_ar = ? THEN 1
+            WHEN definition = ? OR definition_fr = ? OR definition_de = ? OR definition_es = ? OR definition_ru = ? OR definition_vi = ? OR definition_ja = ? OR definition_ko = ? OR definition_it = ? OR definition_pt = ? OR definition_id = ? OR definition_ar = ? OR definition_hi = ? THEN 1
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 2
             WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? THEN 2
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 3
@@ -82,19 +82,19 @@ class GlobalDictionaryRepository {
             ELSE 4
           END as rank
         FROM words
-        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? OR definition_ru LIKE ? OR definition_vi LIKE ? OR definition_ja LIKE ? OR definition_it LIKE ? OR definition_pt LIKE ? OR definition_id LIKE ? OR definition_ar LIKE ?
+        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? OR definition_ru LIKE ? OR definition_vi LIKE ? OR definition_ja LIKE ? OR definition_ko LIKE ? OR definition_it LIKE ? OR definition_pt LIKE ? OR definition_id LIKE ? OR definition_ar LIKE ? OR definition_hi LIKE ?
         ORDER BY rank ASC, LENGTH(simplified) ASC
         LIMIT 50
       ''';
       args = [
         cleanSearch,           // Pinyin exact
-        q, q, q, q, q, q, q, q, q, q, q, // Def exact (all langs)
+        q, q, q, q, q, q, q, q, q, q, q, q, q, // Def exact (all langs)
         '$cleanSearch %',      // Pinyin boundary
         '% $q %', '% $q %', '% $q %', '% $q %', // Def boundaries
         '$cleanSearch%',       // Pinyin prefix
         '$q%', '$q%', '$q%',   // Def prefix
         '%$cleanSearch%',      // Match condition Pinyin
-        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%' // Match condition Def
+        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%' // Match condition Def
       ];
     }
 
@@ -102,7 +102,7 @@ class GlobalDictionaryRepository {
       final results = await _db!.rawQuery(sqlQuery, args);
       
       final List<Flashcard> cards = results.map<Flashcard>((row) {
-        return _mapRowToCard(row);
+        return _mapRowToCard(row, targetLanguage);
       }).toList();
 
       return Right(cards);
@@ -111,48 +111,68 @@ class GlobalDictionaryRepository {
     }
   }
 
-  Flashcard _mapRowToCard(Map<String, dynamic> row) {
+  Flashcard _mapRowToCard(Map<String, dynamic> row, [String? targetLanguage]) {
     final rawPinyin = row['pinyin'] as String? ?? '';
-    final defFr = row['definition_fr'] as String?;
-    final defDe = row['definition_de'] as String?;
-    final defEs = row['definition_es'] as String?;
-    final defRu = row['definition_ru'] as String?;
-    final defVi = row['definition_vi'] as String?;
-    final defJa = row['definition_ja'] as String?;
-    final defKo = row['definition_ko'] as String?;
-    final defIt = row['definition_it'] as String?;
-    final defPt = row['definition_pt'] as String?;
-    final defId = row['definition_id'] as String?;
-    final defAr = row['definition_ar'] as String?;
-    final defHi = row['definition_hi'] as String?;
     final defEn = row['definition'] as String? ?? '';
     
-    // Choose primary definition if available
-    final chosenDef = (defFr != null && defFr.isNotEmpty)
-        ? defFr
-        : (defDe != null && defDe.isNotEmpty)
-            ? defDe
-            : (defEs != null && defEs.isNotEmpty)
-                ? defEs
-                : (defRu != null && defRu.isNotEmpty)
-                    ? defRu
-                    : (defVi != null && defVi.isNotEmpty)
-                        ? defVi
-                        : (defJa != null && defJa.isNotEmpty)
-                            ? defJa
-                            : (defKo != null && defKo.isNotEmpty)
-                                ? defKo
-                                : (defIt != null && defIt.isNotEmpty)
-                                    ? defIt
-                                    : (defPt != null && defPt.isNotEmpty)
-                                        ? defPt
-                                        : (defId != null && defId.isNotEmpty)
-                                            ? defId
-                                            : (defAr != null && defAr.isNotEmpty)
-                                                ? defAr
-                                                : (defHi != null && defHi.isNotEmpty)
-                                                    ? defHi
-                                                    : defEn;
+    String? localizedDef;
+    if (targetLanguage != null && targetLanguage.isNotEmpty) {
+      final lang = targetLanguage.toLowerCase().trim();
+      switch (lang) {
+        case 'fr':
+        case 'french':
+          localizedDef = row['definition_fr'] as String?;
+          break;
+        case 'de':
+        case 'german':
+          localizedDef = row['definition_de'] as String?;
+          break;
+        case 'es':
+        case 'spanish':
+          localizedDef = row['definition_es'] as String?;
+          break;
+        case 'ru':
+        case 'russian':
+          localizedDef = row['definition_ru'] as String?;
+          break;
+        case 'vi':
+        case 'vietnamese':
+          localizedDef = row['definition_vi'] as String?;
+          break;
+        case 'ja':
+        case 'japanese':
+          localizedDef = row['definition_ja'] as String?;
+          break;
+        case 'ko':
+        case 'korean':
+          localizedDef = row['definition_ko'] as String?;
+          break;
+        case 'it':
+        case 'italian':
+          localizedDef = row['definition_it'] as String?;
+          break;
+        case 'pt':
+        case 'portuguese':
+          localizedDef = row['definition_pt'] as String?;
+          break;
+        case 'id':
+        case 'indonesian':
+          localizedDef = row['definition_id'] as String?;
+          break;
+        case 'ar':
+        case 'arabic':
+          localizedDef = row['definition_ar'] as String?;
+          break;
+        case 'hi':
+        case 'hindi':
+          localizedDef = row['definition_hi'] as String?;
+          break;
+      }
+    }
+
+    final chosenDef = (localizedDef != null && localizedDef.trim().isNotEmpty)
+        ? localizedDef.trim()
+        : defEn;
 
     return Flashcard(
       id: 'global_${row['id']}',
@@ -165,7 +185,7 @@ class GlobalDictionaryRepository {
     );
   }
 
-  Future<Either<String, List<Flashcard>>> getWordsContaining(String character, {int limit = 6}) async {
+  Future<Either<String, List<Flashcard>>> getWordsContaining(String character, {int limit = 6, String? targetLanguage}) async {
     if (_db == null) return const Left("Global Dictionary not initialized");
     if (character.trim().isEmpty) return const Right([]);
 
@@ -185,7 +205,7 @@ class GlobalDictionaryRepository {
       final results = await _db!.rawQuery(sqlQuery, args);
       
       final List<Flashcard> cards = results.map<Flashcard>((row) {
-        return _mapRowToCard(row);
+        return _mapRowToCard(row, targetLanguage);
       }).toList();
 
       return Right(cards);
@@ -195,17 +215,23 @@ class GlobalDictionaryRepository {
   }
 
   /// Looks up a single character/word exactly. Fast single-row query.
-  Future<Flashcard?> getExact(String hanzi) async {
+  Future<Flashcard?> getExact(String hanzi, {String? targetLanguage}) async {
     if (_db == null || hanzi.trim().isEmpty) return null;
     try {
       final results = await _db!.rawQuery(
-        'SELECT * FROM words WHERE simplified = ? LIMIT 1',
-        [hanzi.trim()],
+        'SELECT * FROM words WHERE simplified = ? OR traditional = ? LIMIT 1',
+        [hanzi.trim(), hanzi.trim()],
       );
       if (results.isEmpty) return null;
-      return _mapRowToCard(results.first);
+      return _mapRowToCard(results.first, targetLanguage);
     } catch (e) {
       return null;
     }
+  }
+
+  /// Returns the exact definition for [hanzi] in [targetLanguage], or null if not found.
+  Future<String?> getExactDefinition(String hanzi, {String? targetLanguage}) async {
+    final card = await getExact(hanzi, targetLanguage: targetLanguage);
+    return card?.definition;
   }
 }

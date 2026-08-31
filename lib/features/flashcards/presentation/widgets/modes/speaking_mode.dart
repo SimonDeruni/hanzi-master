@@ -303,6 +303,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                                     child: SingleChildScrollView(
                                       child: TranslatedDefinition(
                                         definition: widget.card.definition,
+                                        hanzi: widget.card.hanzi,
                                         originalStyle:
                                             const TextStyle(fontSize: 20),
                                         textAlign: TextAlign.center,

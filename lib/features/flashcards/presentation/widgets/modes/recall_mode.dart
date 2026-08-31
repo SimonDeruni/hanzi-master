@@ -358,6 +358,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: TranslatedDefinition(
                 definition: widget.card.definition,
+                hanzi: widget.card.hanzi,
                 originalStyle: TextStyle(
                   fontSize: 22,
                   color: isDark ? Colors.white70 : Colors.black54,
@@ -469,6 +470,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 const SizedBox(height: 4),
                 TranslatedDefinition(
                   definition: widget.card.definition,
+                  hanzi: widget.card.hanzi,
                   originalStyle: TextStyle(
                     fontSize: 16,
                     color: isDark ? Colors.white38 : Colors.black38,

@@ -611,6 +611,7 @@ class _CharacterHero extends StatelessWidget {
                         if (definition.isNotEmpty)
                           TranslatedDefinition(
                             definition: definition,
+                            hanzi: hanzi,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             originalStyle: TextStyle(

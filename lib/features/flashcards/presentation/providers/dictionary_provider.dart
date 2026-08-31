@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
@@ -126,7 +127,8 @@ class MasterDictionary extends _$MasterDictionary {
 
 final masterSearchProvider = FutureProvider.family<List<Flashcard>, String>((ref, query) async {
   if (query.isEmpty) return [];
+  final targetLanguage = ref.watch(translationLanguageProvider);
   final repository = ref.read(globalDictionaryRepositoryProvider);
-  final result = await repository.search(query);
+  final result = await repository.search(query, targetLanguage: targetLanguage);
   return result.fold((l) => [], (r) => r);
 });

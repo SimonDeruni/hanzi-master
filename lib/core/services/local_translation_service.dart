@@ -9,14 +9,18 @@ import 'package:http/http.dart' as http;
 import 'api_key_pool.dart';
 import '../providers/translation_language_provider.dart';
 import '../../features/reading/domain/entities/poetry_story_id.dart';
+import '../../features/flashcards/data/repositories/global_dictionary_repository.dart';
+import '../providers.dart';
 
 final localTranslationServiceProvider =
     Provider<LocalTranslationService>((ref) {
   final targetLanguage = ref.watch(translationLanguageProvider);
   final apiKeyPool = ref.watch(apiKeyPoolProvider);
+  final dictionaryRepo = ref.watch(globalDictionaryRepositoryProvider);
   final service = LocalTranslationService(
     targetLanguage: targetLanguage,
     apiKeyPool: apiKeyPool,
+    dictionaryRepository: dictionaryRepo,
   );
   ref.onDispose(() => service.dispose());
   return service;
@@ -25,6 +29,7 @@ final localTranslationServiceProvider =
 class LocalTranslationService {
   final String targetLanguage;
   final ApiKeyPool? apiKeyPool;
+  final GlobalDictionaryRepository? dictionaryRepository;
   static const String _boxName = 'local_translations_cache_v5';
 
   OnDeviceTranslator? _translator;
@@ -34,6 +39,7 @@ class LocalTranslationService {
   LocalTranslationService({
     required this.targetLanguage,
     this.apiKeyPool,
+    this.dictionaryRepository,
   });
 
   static Future<void> init() async {
@@ -137,12 +143,29 @@ class LocalTranslationService {
 
   /// Translates a complete canonical English dictionary definition verbatim.
   ///
-  /// Unlike [translate], this method never cleans, splits, reformats, or
-  /// capitalizes its input. The exact English value is also the failure
-  /// fallback, while successful results are cached per target language.
-  Future<String> translateEnglishDefinition(String definition) async {
+  /// Unlike [translate], this method checks the offline SQLite dictionary first
+  /// for the user's active [targetLanguage]. If not present offline, it translates
+  /// on-the-fly and caches the result into Hive, with canonical English as fallback.
+  Future<String> translateEnglishDefinition(String definition, {String? hanzi}) async {
     if (definition.isEmpty || targetLanguage.toLowerCase() == 'english') {
       return definition;
+    }
+
+    // 1. Check Offline SQLite Dictionary first if hanzi is known
+    if (hanzi != null && hanzi.trim().isNotEmpty && dictionaryRepository != null) {
+      try {
+        final offlineDef = await dictionaryRepository!.getExactDefinition(
+          hanzi.trim(),
+          targetLanguage: targetLanguage,
+        );
+        if (offlineDef != null &&
+            offlineDef.trim().isNotEmpty &&
+            offlineDef.trim() != definition.trim()) {
+          return offlineDef.trim();
+        }
+      } catch (e) {
+        debugPrint('[LocalTranslationService] Offline dictionary check error: $e');
+      }
     }
 
     final cacheKey = 'definition:en:$targetLanguage:$definition';

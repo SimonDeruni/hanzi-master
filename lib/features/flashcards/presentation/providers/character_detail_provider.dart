@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -8,8 +9,9 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 final commonWordsProvider = FutureProvider.family<List<Flashcard>, String>((ref, character) async {
   if (character.isEmpty) return [];
   
+  final targetLanguage = ref.watch(translationLanguageProvider);
   final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
-  final result = await dictionaryRepo.getWordsContaining(character, limit: 6);
+  final result = await dictionaryRepo.getWordsContaining(character, limit: 6, targetLanguage: targetLanguage);
   
   return result.fold(
     (l) => [],
@@ -37,6 +39,7 @@ final quickLookProvider = FutureProvider.family<Flashcard?, String>((ref, hanzi)
   }
 
   // Fallback to global dictionary
+  final targetLanguage = ref.watch(translationLanguageProvider);
   final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
-  return dictionaryRepo.getExact(hanzi);
+  return dictionaryRepo.getExact(hanzi, targetLanguage: targetLanguage);
 });

@@ -16,7 +16,7 @@ class _FakeTranslationService extends LocalTranslationService {
   final translation = Completer<String>();
 
   @override
-  Future<String> translateEnglishDefinition(String definition) async {
+  Future<String> translateEnglishDefinition(String definition, {String? hanzi}) async {
     requests.add(definition);
     return translation.future;
   }

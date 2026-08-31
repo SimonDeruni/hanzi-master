@@ -233,6 +233,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                     child: SingleChildScrollView(
                                       child: TranslatedDefinition(
                                         definition: widget.card.definition,
+                                        hanzi: widget.card.hanzi,
                                         originalStyle:
                                             const TextStyle(fontSize: 18),
                                         textAlign: TextAlign.center,

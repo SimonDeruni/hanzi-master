@@ -71,9 +71,9 @@ class CharacterLookupService {
   /// Looks up a single character or word.
   ///
   /// Returns null if truly unknown (not in dictionary.db either).
-  Future<CharacterInfo?> lookup(String hanzi) async {
+  Future<CharacterInfo?> lookup(String hanzi, {String? targetLanguage}) async {
     if (!_initialized) await init();
-    final card = await _db.getExact(hanzi);
+    final card = await _db.getExact(hanzi, targetLanguage: targetLanguage);
     if (card == null) return null;
     return CharacterInfo(
       hanzi: card.hanzi,
@@ -85,14 +85,14 @@ class CharacterLookupService {
 
   /// Bulk-lookup a list of characters. Returns only those that were found.
   /// De-duplicates results by hanzi.
-  Future<List<CharacterInfo>> lookupAll(Iterable<String> chars) async {
+  Future<List<CharacterInfo>> lookupAll(Iterable<String> chars, {String? targetLanguage}) async {
     if (!_initialized) await init();
     final seen = <String>{};
     final results = <CharacterInfo>[];
     for (final c in chars) {
       if (seen.contains(c)) continue;
       seen.add(c);
-      final info = await lookup(c);
+      final info = await lookup(c, targetLanguage: targetLanguage);
       if (info != null) results.add(info);
     }
     return results;

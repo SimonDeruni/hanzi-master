@@ -427,6 +427,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           const SizedBox(height: 12),
           TranslatedDefinition(
             definition: currentCard.definition,
+            hanzi: currentCard.hanzi,
             originalStyle: TextStyle(
               fontSize: 18,
               color: isDark ? Colors.white70 : Colors.black87,

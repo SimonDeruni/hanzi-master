@@ -404,6 +404,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                                   fontWeight: FontWeight.w500)),
                         TranslatedDefinition(
                             definition: _currentCard.definition,
+                            hanzi: _currentCard.hanzi,
                             originalStyle: const TextStyle(
                                 fontSize: 14, color: Colors.white)),
                       ],
@@ -712,6 +713,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                                             TranslatedDefinition(
                                               definition:
                                                   _currentCard.definition,
+                                              hanzi: _currentCard.hanzi,
                                               originalStyle: TextStyle(
                                                   color: isDark
                                                       ? Colors.white70
