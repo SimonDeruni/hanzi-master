@@ -1352,10 +1352,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hsk1Foundation => 'HSK 1: Foundation';
 
   @override
-  String get hsk2Elementary => 'HSK 2: Elementary';
+  String get hsk2Elementary => 'HSK 2 (Elementary)';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: Intermediate';
+  String get hsk3Intermediate => 'HSK 3 (Intermediate)';
 
   @override
   String get inDeckCheck => 'In Deck ✓';
@@ -1812,7 +1812,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hsk4UpperIntermediate => 'HSK 4: Upper Int.';
 
   @override
-  String get hsk5Advanced => 'HSK 5: Advanced';
+  String get hsk5Advanced => 'HSK 5 (Advanced)';
 
   @override
   String get hsk6Mastery => 'HSK 6: Mastery';
@@ -6409,19 +6409,19 @@ class AppLocalizationsEn extends AppLocalizations {
       'Search classical poems, authors, verses...';
 
   @override
-  String get allLevelsVal => 'All Levels\', \'val';
+  String get allLevelsVal => 'All Levels';
 
   @override
-  String get hsk1BeginnerVal => 'HSK 1 (Beginner)\', \'val';
+  String get hsk1BeginnerVal => 'HSK 1 (Beginner)';
 
   @override
-  String get hsk2ElementaryVal => 'HSK 2 (Elementary)\', \'val';
+  String get hsk2ElementaryVal => 'HSK 2 (Elementary)';
 
   @override
-  String get hsk3IntermediateVal => 'HSK 3 (Intermediate)\', \'val';
+  String get hsk3IntermediateVal => 'HSK 3 (Intermediate)';
 
   @override
-  String get hsk4UpperIntVal => 'HSK 4 (Upper Int)\', \'val';
+  String get hsk4UpperIntVal => 'HSK 4 (Upper Int)';
 
   @override
   String get listenToAudiobook => 'Listen to Audiobook';
@@ -6549,4 +6549,180 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get newLabel => 'New';
+
+  @override
+  String get analyzingImage => 'Analyzing image...';
+
+  @override
+  String get extractingChineseText => 'Extracting Chinese text...';
+
+  @override
+  String get lookingUpVocabulary => 'Looking up vocabulary...';
+
+  @override
+  String get dreamOfTheRedChamber => 'Dream of the Red Chamber';
+
+  @override
+  String get journeyToTheWest => 'Journey to the West';
+
+  @override
+  String get romanceOfTheThreeKingdoms => 'Romance of the Three Kingdoms';
+
+  @override
+  String get mingDynasty => 'Ming Dynasty';
+
+  @override
+  String get wuChengEn => 'Wu Cheng\'en';
+
+  @override
+  String get hundredChapters => '100 Chapters';
+
+  @override
+  String get volume1 => 'Volume 1';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'Bookmarks ($count)';
+  }
+
+  @override
+  String get noBookmarksYet =>
+      'No bookmarks yet. Tap the bookmark icon to save a passage.';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark isn\'t responding';
+
+  @override
+  String get closeApp => 'Close app';
+
+  @override
+  String get wait => 'Wait';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: ${hours}h';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return 'Book $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return 'Ch. $number';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count Books & Audiobooks';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return 'Sentence $current of $total';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return 'Chapter $current of $total';
+  }
+
+  @override
+  String get allLevels => 'All Levels';
+
+  @override
+  String get searchGradedMicroStories =>
+      'Search graded micro-stories & fables...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count Graded Stories & Daily Micro-Reads';
+  }
+
+  @override
+  String get searchClassicalPoems =>
+      'Search classical poems, authors, verses...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count Classical Poems & Verse';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.';
+
+  @override
+  String get completed => 'COMPLETED';
+
+  @override
+  String get aiIsReading => 'AI is reading...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (Advanced)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (Beginner)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (Upper Int)';
+
+  @override
+  String get extractAllUnknownWords =>
+      'Extract all unknown words to a new flashcard deck';
+
+  @override
+  String get designCustomAiRoleplay =>
+      'Design custom AI roleplay & conversation';
+
+  @override
+  String get practiceFlashcardVocabulary =>
+      'Practice flashcard vocabulary in a live dialogue';
+
+  @override
+  String get surpriseMe => 'Surprise Me';
+
+  @override
+  String get rollCharacter => 'Roll Character';
+
+  @override
+  String get historicalCostume => 'Historical / Costume';
+
+  @override
+  String get modernYouth => 'Modern & Youth';
+
+  @override
+  String get fantasyMythology => 'Fantasy & Mythology';
+
+  @override
+  String get familyDrama => 'Family & Drama';
+
+  @override
+  String get fullVersion => 'Full Version';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count episodes';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'EP$number';
+  }
+
+  @override
+  String get translating => '[ Translating... ]';
+
+  @override
+  String get engSub => '[ENG SUB]';
+
+  @override
+  String get standardVocabulary => 'Standard Vocabulary';
+
+  @override
+  String get characters => 'characters';
 }

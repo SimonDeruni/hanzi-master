@@ -274,7 +274,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get gradedAiStories => 'Истории ИИ';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => 'Каллиграфия';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -304,7 +304,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => 'Аудио и тактильные ощущения';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -316,7 +316,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => 'Экран и содержимое';
 
   @override
   String get useEnglishDefinitions => 'Использовать определения на английском';
@@ -326,7 +326,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Определения на английском обычно точнее и подробнее';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => 'Скорость анимации';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -335,13 +335,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => 'Опасная зона';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => 'Сбросить все данные';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc =>
+      'Это навсегда удалит все ваши данные прогресса, статистику и настройки. Это действие нельзя отменить.';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -353,7 +354,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => 'Язык приложения';
 
   @override
   String get howDidYouDo => 'Как у вас получилось?';
@@ -2646,7 +2647,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get intermediate => 'Intermediate';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => 'Статистика обучения';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2665,7 +2666,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => 'Настройки уведомлений';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2696,7 +2697,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Preparing your Scholar\'s Verdict...';
 
   @override
-  String get previous => 'Previous';
+  String get previous => 'Назад';
 
   @override
   String get question => 'Вопрос (current)/(total)';
@@ -2779,7 +2780,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+      'Просмотрите свою историю обучения и серии';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -4875,10 +4876,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get reading => 'Чтение';
 
   @override
-  String get recall => 'Воспроизведение';
+  String get recall => 'Вспоминание';
 
   @override
-  String get speaking => 'Разговор';
+  String get speaking => 'Говорение';
 
   @override
   String get listening1 => 'Аудирование';
@@ -6601,4 +6602,180 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get newLabel => 'Новое';
+
+  @override
+  String get analyzingImage => 'Анализ изображения...';
+
+  @override
+  String get extractingChineseText => 'Извлечение китайского текста...';
+
+  @override
+  String get lookingUpVocabulary => 'Поиск словарных слов...';
+
+  @override
+  String get dreamOfTheRedChamber => 'Сон в красном тереме';
+
+  @override
+  String get journeyToTheWest => 'Путешествие на Запад';
+
+  @override
+  String get romanceOfTheThreeKingdoms => 'Троецарствие';
+
+  @override
+  String get mingDynasty => 'Династия Мин';
+
+  @override
+  String get wuChengEn => 'У Чэньэнь';
+
+  @override
+  String get hundredChapters => '100 глав';
+
+  @override
+  String get volume1 => 'Том 1';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'Закладки ($count)';
+  }
+
+  @override
+  String get noBookmarksYet =>
+      'Пока нет закладок. Нажмите значок закладки, чтобы сохранить отрывок.';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark не отвечает';
+
+  @override
+  String get closeApp => 'Закрыть приложение';
+
+  @override
+  String get wait => 'Подождите';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: $hoursч';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return 'Книга $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return 'Гл. $number';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count книг и аудиокниг';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return 'Предложение $current из $total';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return 'Глава $current из $total';
+  }
+
+  @override
+  String get allLevels => 'Все уровни';
+
+  @override
+  String get searchGradedMicroStories =>
+      'Поиск адаптированных микроисторий и басен...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count адаптированных историй и ежедневных микрочтений';
+  }
+
+  @override
+  String get searchClassicalPoems =>
+      'Поиск классических стихов, авторов, строф...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count классических стихов и поэм';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'Просматривайте любой китайский веб-сайт с косновенным словарем в реальном времени, аннотациями пиньинь и мгновенными переводами.';
+
+  @override
+  String get completed => 'ЗАВЕРШЕНО';
+
+  @override
+  String get aiIsReading => 'ИИ читает...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (Продвинутый)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (Начинающий)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (Выше среднего)';
+
+  @override
+  String get extractAllUnknownWords =>
+      'Извлечь все неизвестные слова в новую колоду карточек';
+
+  @override
+  String get designCustomAiRoleplay =>
+      'Создать свою ролевую игру и беседу с ИИ';
+
+  @override
+  String get practiceFlashcardVocabulary =>
+      'Практиковать лексику карточек в живом диалоге';
+
+  @override
+  String get surpriseMe => 'Удиви меня';
+
+  @override
+  String get rollCharacter => 'Выбрать персонажа';
+
+  @override
+  String get historicalCostume => 'Исторический / Костюмированный';
+
+  @override
+  String get modernYouth => 'Современное & Молодежное';
+
+  @override
+  String get fantasyMythology => 'Фэнтези & Мифология';
+
+  @override
+  String get familyDrama => 'Семейное & Драма';
+
+  @override
+  String get fullVersion => 'Полная версия';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count эпизодов';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'ЭП$number';
+  }
+
+  @override
+  String get translating => '[ Перевод... ]';
+
+  @override
+  String get engSub => '[СУБ РУС]';
+
+  @override
+  String get standardVocabulary => 'Стандартный словарь';
+
+  @override
+  String get characters => '汉字';
 }

@@ -273,7 +273,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get gradedAiStories => 'Historias IA';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => 'Caligrafía';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -303,7 +303,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => 'Audio y háptica';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -315,7 +315,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => 'Pantalla y contenido';
 
   @override
   String get useEnglishDefinitions => 'Usar definiciones en inglés';
@@ -325,7 +325,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Las definiciones en inglés suelen ser más precisas y detalladas';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => 'Velocidad de animación';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -334,13 +334,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => 'Zona de peligro';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => 'Restablecer todos los datos';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc =>
+      'Esto eliminará permanentemente todos tus datos de progreso, estadísticas y configuraciones. Esta acción no se puede deshacer.';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -352,7 +353,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => 'Idioma de la app';
 
   @override
   String get howDidYouDo => '¿Cómo te fue?';
@@ -1672,7 +1673,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'p. ej., Recepcion de boda, Entrevista tecnica...';
 
   @override
-  String get emailLabel => 'Correo electronico';
+  String get emailLabel => 'Correo electrónico';
 
   @override
   String get english => 'Ingles';
@@ -2646,7 +2647,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get intermediate => 'Intermediate';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => 'Estadísticas de aprendizaje';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2665,7 +2666,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => 'Configuración de notificaciones';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2696,7 +2697,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Preparing your Scholar\'s Verdict...';
 
   @override
-  String get previous => 'Previous';
+  String get previous => 'Anterior';
 
   @override
   String get question => 'Pregunta (current)/(total)';
@@ -2779,7 +2780,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+      'Ver tu historial de aprendizaje y rachas';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -3456,7 +3457,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get puckZhcnyunjianneural => 'Puck\': \'zh-CN-YunjianNeural';
 
   @override
-  String get kore => 'Kore';
+  String get kore => 'Kore (femenina, cálida)';
 
   @override
   String get xmicrosoftoutputformatAudio24khz48k =>
@@ -4105,7 +4106,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get assistant => 'Asistente';
 
   @override
-  String get puck => 'Puck';
+  String get puck => 'Puck (masculino, deportivo)';
 
   @override
   String get helloWelcomeWhatWouldYouLikeToOrder =>
@@ -4128,7 +4129,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get askForTheBill => 'Pedir la cuenta';
 
   @override
-  String get fenrir => 'Fenrir';
+  String get fenrir => 'Fenrir (masculino, enérgico)';
 
   @override
   String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
@@ -4148,7 +4149,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get complainAboutTheTraffic => 'Quejarse del tráfico';
 
   @override
-  String get charon => 'Caronte';
+  String get charon => 'Charon (masculino, estilo noticias)';
 
   @override
   String get thisClothingQualityIsEspeciallyGood =>
@@ -4190,7 +4191,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Preguntar si necesita tomar medicamentos';
 
   @override
-  String get aoede => 'Aede';
+  String get aoede => 'Aoede (femenina, alegre)';
 
   @override
   String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
@@ -4897,7 +4898,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get speaking => 'Habla';
 
   @override
-  String get listening1 => 'Escucha';
+  String get listening1 => 'Escuchar';
 
   @override
   String get practiceStrokeOrderWithVisualGuides =>
@@ -4928,7 +4929,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get koreFenrirCharonAoedePuckOrLocal =>
-      'Kore\', \'Fenrir\', \'Charon\', \'Aoede\', \'Puck\' o \'local';
+      'Kore, Fenrir, Charon, Aoede, Puck o local';
 
   @override
   String get manageDecks => 'Gestionar mazos';
@@ -6430,7 +6431,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get puckPuckMaleSporty => 'Puck\', \'Puck\', \'Masculina, deportiva';
 
   @override
-  String get localOndevice => 'Local\', \'En el dispositivo';
+  String get localOndevice => 'Local (voz del dispositivo)';
 
   @override
   String get localOndeviceTts => 'TTS local en el dispositivo';
@@ -6616,4 +6617,180 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get newLabel => 'Nuevo';
+
+  @override
+  String get analyzingImage => 'Analizando imagen...';
+
+  @override
+  String get extractingChineseText => 'Extrayendo texto chino...';
+
+  @override
+  String get lookingUpVocabulary => 'Buscando vocabulario...';
+
+  @override
+  String get dreamOfTheRedChamber => 'Sueño en el Pabellón Rojo';
+
+  @override
+  String get journeyToTheWest => 'Viaje al Oeste';
+
+  @override
+  String get romanceOfTheThreeKingdoms => 'Romance de los Tres Reinos';
+
+  @override
+  String get mingDynasty => 'Dinastía Ming';
+
+  @override
+  String get wuChengEn => 'Wu Cheng\'en';
+
+  @override
+  String get hundredChapters => '100 capítulos';
+
+  @override
+  String get volume1 => 'Volumen 1';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'Marcadores ($count)';
+  }
+
+  @override
+  String get noBookmarksYet =>
+      'Aún no hay marcadores. Toca el icono de marcador para guardar un pasaje.';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark no responde';
+
+  @override
+  String get closeApp => 'Cerrar app';
+
+  @override
+  String get wait => 'Esperar';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: ${hours}h';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return 'Libro $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return 'Cap. $number';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count libros y audiolibros';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return 'Frase $current de $total';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return 'Capítulo $current de $total';
+  }
+
+  @override
+  String get allLevels => 'Todos los niveles';
+
+  @override
+  String get searchGradedMicroStories =>
+      'Buscar microhistorias graduadas y fábulas...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count historias graduadas y microlecturas diarias';
+  }
+
+  @override
+  String get searchClassicalPoems =>
+      'Buscar poemas clásicos, autores, versos...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count poemas clásicos y versos';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'Navega por cualquier sitio web chino con diccionario táctil en tiempo real, anotaciones pinyin y traducciones instantáneas.';
+
+  @override
+  String get completed => 'COMPLETADO';
+
+  @override
+  String get aiIsReading => 'La IA está leyendo...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (Avanzado)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (Principiante)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (Intermedio alto)';
+
+  @override
+  String get extractAllUnknownWords =>
+      'Extraer todas las palabras desconocidas a un nuevo mazo de tarjetas';
+
+  @override
+  String get designCustomAiRoleplay =>
+      'Diseñar experiencia de rol y conversación con IA personalizada';
+
+  @override
+  String get practiceFlashcardVocabulary =>
+      'Practicar vocabulario de tarjetas en un diálogo en vivo';
+
+  @override
+  String get surpriseMe => 'Sorpréndeme';
+
+  @override
+  String get rollCharacter => 'Sortear personaje';
+
+  @override
+  String get historicalCostume => 'Histórico / Disfraces';
+
+  @override
+  String get modernYouth => 'Moderno & Juvenil';
+
+  @override
+  String get fantasyMythology => 'Fantasía & Mitología';
+
+  @override
+  String get familyDrama => 'Familiar & Drama';
+
+  @override
+  String get fullVersion => 'Versión completa';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count episodios';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'EP$number';
+  }
+
+  @override
+  String get translating => '[ Traduciendo... ]';
+
+  @override
+  String get engSub => '[SUB ESP]';
+
+  @override
+  String get standardVocabulary => 'Vocabulario estándar';
+
+  @override
+  String get characters => 'caracteres';
 }

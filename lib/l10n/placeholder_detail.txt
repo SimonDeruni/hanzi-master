@@ -1,0 +1,194 @@
+
+=== DE ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== ES ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== FR ===
+  14 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notifications: Notifications
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== IT ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== PT ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== RU ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== AR ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== HI ===
+  14 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notifications: Notifications
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== ID ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== JA ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== KO ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?
+
+=== VI ===
+  13 placeholders:
+    calligraphy: Calligraphy
+    audioAndHaptics: Audio And Haptics
+    displayAndContent: Display And Content
+    appLanguage: App Language
+    animationSpeed: Animation Speed
+    notification_settings: Notification Settings
+    dangerZone: Danger Zone
+    resetAllData: Reset All Data
+    resetDataDesc: Reset Data Desc
+    do_you_keep_or_store_my: Do you keep or store my voice recordings?
+    speaking_pronunciation: Speaking & Pronunciation
+    how_is_my_pronunciation_scored: How is my pronunciation scored?
+    what_is_shadowing_studio: What is Shadowing Studio?

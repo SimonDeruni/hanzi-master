@@ -448,7 +448,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         icon: Icon(
             inLibrary ? Icons.library_add_check : Icons.add_circle_outline),
         label: Text(inLibrary
-            ? "Manage Decks"
+            ? AppLocalizations.of(context)!.manageDecks
             : AppLocalizations.of(context)!.addToStudyDeck),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.indigo,

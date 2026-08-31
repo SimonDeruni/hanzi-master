@@ -109,7 +109,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                   _buildTab(
                                       0, AppLocalizations.of(context)!.newDeck),
                                   const SizedBox(width: 8),
-                                  _buildTab(1, "Add to Deck"),
+                                  _buildTab(1, AppLocalizations.of(context)!.addToDeck1),
                                 ],
                               ),
                             ],

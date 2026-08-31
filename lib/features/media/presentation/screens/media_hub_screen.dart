@@ -156,7 +156,7 @@ class MediaHubScreen extends ConsumerWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Text(
-                  "Saved Articles",
+                  AppLocalizations.of(context)!.savedArticles,
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

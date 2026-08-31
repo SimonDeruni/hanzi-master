@@ -1,0 +1,69 @@
+
+=== DE ===
+  OK  learning_stats: Lernstatistiken
+  OK  view_your_learning_history_and_streaks: Lernverlauf und Serien anzeigen
+  OK  premium: PREMIUM
+  All translations OK!
+
+=== ES ===
+  FAIL learning_stats: expected='Estadisticas de aprendizaje', got='Estadísticas de aprendizaje' (en='Learning Stats')
+  OK  view_your_learning_history_and_streaks: Ver tu historial de aprendizaje y rachas
+  OK  premium: PREMIUM
+
+=== FR ===
+  OK  learning_stats: Statistiques d'apprentissage
+  FAIL view_your_learning_history_and_streaks: expected='Consultez votre historique d'apprentissage et vos ', got='Consultez votre historique d'apprentissage et vos ' (en='View your learning history and streaks')
+  OK  premium: PREMIUM
+
+=== IT ===
+  OK  account: Account
+  OK  learning_stats: Statistiche di apprendimento
+  OK  view_your_learning_history_and_streaks: Visualizza la cronologia di apprendimento e le ser
+  OK  premium: PREMIUM
+  All translations OK!
+
+=== PT ===
+  FAIL learning_stats: expected='Estatisticas de aprendizado', got='Estatísticas de aprendizado' (en='Learning Stats')
+  FAIL view_your_learning_history_and_streaks: expected='Veja seu historico de aprendizado e sequencias', got='Veja seu histórico de aprendizado e sequências' (en='View your learning history and streaks')
+  OK  premium: PREMIUM
+
+=== RU ===
+  OK  learning_stats: Статистика обучения
+  OK  view_your_learning_history_and_streaks: Просмотрите свою историю обучения и серии
+  All translations OK!
+
+=== AR ===
+  OK  learning_stats: إحصائيات التعلم
+  OK  view_your_learning_history_and_streaks: عرض سجل التعلم والسلاسل الخاصة بك
+  All translations OK!
+
+=== HI ===
+  OK  learning_stats: सीखने के आँकड़े
+  OK  view_your_learning_history_and_streaks: अपना सीखने का इतिहास और स्ट्रीक्स देखें
+  All translations OK!
+
+=== ID ===
+  OK  learning_stats: Statistik Belajar
+  OK  view_your_learning_history_and_streaks: Lihat riwayat belajar dan streak Anda
+  OK  premium: PREMIUM
+  All translations OK!
+
+=== JA ===
+  OK  learning_stats: 学習統計
+  OK  view_your_learning_history_and_streaks: 学習履歴と連続記録を表示
+  All translations OK!
+
+=== KO ===
+  OK  learning_stats: 학습 통계
+  OK  view_your_learning_history_and_streaks: 학습 기록 및 연속 기록 보기
+  All translations OK!
+
+=== VI ===
+  OK  learning_stats: Thống kê học tập
+  OK  view_your_learning_history_and_streaks: Xem lịch sử học tập và chuỗi của bạn
+  OK  premium: PREMIUM
+  All translations OK!
+
+==================================================
+SOME FAILURES: Check details above.
+==================================================

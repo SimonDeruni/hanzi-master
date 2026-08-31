@@ -679,8 +679,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                                     const SizedBox(width: 4),
                                     Text(
                                       isExpanded
-                                          ? "Hide Translation"
-                                          : "Translate",
+                                          ? AppLocalizations.of(context)!.hideTranslation
+                                          : AppLocalizations.of(context)!.translate,
                                       style:
                                           theme.textTheme.labelSmall?.copyWith(
                                         color: theme.colorScheme.primary,

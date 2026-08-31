@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+296] - 2026-08-31
+- **Full-Scale Open-Source Multi-Language Dictionary Ingestion (Build #296)**:
+  - Ingested all **79,936 French headwords** from **CFDICT** and **262,548 German headwords** from **HanDeDict** directly into the offline SQLite database (`assets/data/dictionary.db`).
+  - Added dedicated `definition_fr` and `definition_de` database columns with optimized B-tree search indexes (`idx_words_def_fr`, `idx_words_def_de`).
+  - Upgraded [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to automatically match and return French and German definitions with 0ms search latency.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ## [1.0.0+295] - 2026-08-30
 - **Character Reference Screen Null String Crash Fix (Build #295)**:
   - Resolved `type 'Null' is not a subtype of type 'String'` red screen error in [`CharacterDetailScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/presentation/screens/character_detail_screen.dart).

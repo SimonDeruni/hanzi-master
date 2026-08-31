@@ -273,7 +273,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get gradedAiStories => 'AIの物語';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => '書道';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -303,7 +303,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => 'オーディオとハプティクス';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -315,7 +315,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => '表示とコンテンツ';
 
   @override
   String get useEnglishDefinitions => '英語の定義を使用する';
@@ -324,7 +324,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get useEnglishDefinitionsDesc => '英語の定義は一般に、より正確で詳しい内容です';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => 'アニメーション速度';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -333,13 +333,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => '危険ゾーン';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => '全データをリセット';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc => 'これにより、進行データ、統計、設定がすべて完全に削除されます。この操作は元に戻せません。';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -351,7 +351,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => 'アプリ言語';
 
   @override
   String get howDidYouDo => '学習結果はいかがでしたか？';
@@ -2570,7 +2570,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get intermediate => 'Intermediate';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => '学習統計';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2589,7 +2589,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => '通知設定';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2702,8 +2702,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'Unable to open this video. Please try again later.';
 
   @override
-  String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+  String get view_your_learning_history_and_streaks => '学習履歴と連続記録を表示';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -4672,7 +4671,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get recall => '想起';
 
   @override
-  String get speaking => '発音';
+  String get speaking => 'スピーキング';
 
   @override
   String get listening1 => 'リスニング';
@@ -4753,7 +4752,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get strokeAnimationSpeed => '筆順アニメーション速度';
 
   @override
-  String get notifications => 'Notificaciones';
+  String get notifications => '通知';
 
   @override
   String get deutsch => 'ドイツ語';
@@ -6296,4 +6295,174 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get newLabel => '新規';
+
+  @override
+  String get analyzingImage => '画像を解析中...';
+
+  @override
+  String get extractingChineseText => '中国語テキストを抽出中...';
+
+  @override
+  String get lookingUpVocabulary => '単語を調べ中...';
+
+  @override
+  String get dreamOfTheRedChamber => '紅楼夢';
+
+  @override
+  String get journeyToTheWest => '西遊記';
+
+  @override
+  String get romanceOfTheThreeKingdoms => '三国志演義';
+
+  @override
+  String get mingDynasty => '明代';
+
+  @override
+  String get wuChengEn => '吳承恩';
+
+  @override
+  String get hundredChapters => '100話';
+
+  @override
+  String get volume1 => '第1巻';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'しおり ($count)';
+  }
+
+  @override
+  String get noBookmarksYet => 'まだしおりがありません。しおりアイコンをタップして節を保存してください。';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSparkが応答していません';
+
+  @override
+  String get closeApp => 'アプリを閉じる';
+
+  @override
+  String get wait => '待つ';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: $hours時間';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return '本 $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return '第$number話';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count冊の本と音声書籍';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return '$current文目 / 全$total文目';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return '$current話 / 全$total話';
+  }
+
+  @override
+  String get allLevels => 'すべてのレベル';
+
+  @override
+  String get searchGradedMicroStories => 'レベル別マイクロストーリー・寓話を検索...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$countのレベル別ストーリーと毎日マイクロリーディング';
+  }
+
+  @override
+  String get searchClassicalPoems => '古典詩、著者、詩節を検索...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$countの古典詩と詩節';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'リアルタイムタップ辞書、ピンイン注釈、即時翻訳であらゆる中国語ウェブサイトをブラウズできます。';
+
+  @override
+  String get completed => '完了';
+
+  @override
+  String get aiIsReading => 'AIが読み取っています...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (上級)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (初心者)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (上中級)';
+
+  @override
+  String get extractAllUnknownWords => '未知の単語をすべて新しいフラッシュカードデッキに抽出する';
+
+  @override
+  String get designCustomAiRoleplay => 'カスタムAIロールプレイと会話体験を設計する';
+
+  @override
+  String get practiceFlashcardVocabulary => 'ライブ会話でフラッシュカードの語彙を練習する';
+
+  @override
+  String get surpriseMe => 'たまにはサプライズして';
+
+  @override
+  String get rollCharacter => 'キャラクターロール';
+
+  @override
+  String get historicalCostume => '歴史 / 時代衣装';
+
+  @override
+  String get modernYouth => 'モダン & 若者';
+
+  @override
+  String get fantasyMythology => 'ファンタジー & 神話';
+
+  @override
+  String get familyDrama => 'ファミリー & ドラマ';
+
+  @override
+  String get fullVersion => '完全版';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count 話';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return '第$number話';
+  }
+
+  @override
+  String get translating => '[ 翻訳中... ]';
+
+  @override
+  String get engSub => '[英語字幕]';
+
+  @override
+  String get standardVocabulary => '標準語彙';
+
+  @override
+  String get characters => '字';
 }

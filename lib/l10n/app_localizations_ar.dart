@@ -273,7 +273,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get gradedAiStories => 'قصص متدرجة';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => 'الخط';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -303,7 +303,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => 'الصوت واللمس';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -315,7 +315,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => 'الشاشة والمحتوى';
 
   @override
   String get useEnglishDefinitions => 'استخدام التعريفات الإنجليزية';
@@ -325,7 +325,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'التعريفات الإنجليزية أكثر دقة وتفصيلاً بشكل عام';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => 'سرعة الحركة';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -334,13 +334,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => 'منطقة الخطر';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => 'إعادة تعيين جميع البيانات';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc =>
+      'سيؤدي هذا إلى حذف جميع بيانات التقدم والإحصائيات والإعدادات بشكل دائم. لا يمكن التراجع عن هذا الإجراء.';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -352,7 +353,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => 'لغة التطبيق';
 
   @override
   String get howDidYouDo => 'كيف كان أداؤك؟';
@@ -2614,7 +2615,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get intermediate => 'Intermediate';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => 'إحصائيات التعلم';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2633,7 +2634,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => 'إعدادات الإشعارات';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2664,7 +2665,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'Preparing your Scholar\'s Verdict...';
 
   @override
-  String get previous => 'Previous';
+  String get previous => 'السابق';
 
   @override
   String get question => 'سؤال (current)/(total)';
@@ -2747,7 +2748,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+      'عرض سجل التعلم والسلاسل الخاصة بك';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -4803,7 +4804,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reading => 'القراءة';
 
   @override
-  String get recall => 'الاسترجاع';
+  String get recall => 'التذكر';
 
   @override
   String get speaking => 'التحدث';
@@ -6504,4 +6505,179 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get newLabel => 'جديد';
+
+  @override
+  String get analyzingImage => 'جارٍ تحليل الصورة...';
+
+  @override
+  String get extractingChineseText => 'جارٍ استخراج النص الصيني...';
+
+  @override
+  String get lookingUpVocabulary => 'جارٍ البحث في المفردات...';
+
+  @override
+  String get dreamOfTheRedChamber => 'حلم الغرفة الحمراء';
+
+  @override
+  String get journeyToTheWest => 'رحلة إلى الغرب';
+
+  @override
+  String get romanceOfTheThreeKingdoms => 'قصة الممالك الثلاث';
+
+  @override
+  String get mingDynasty => 'أسرة منغ';
+
+  @override
+  String get wuChengEn => 'وو تشنغ إن';
+
+  @override
+  String get hundredChapters => '100 فصل';
+
+  @override
+  String get volume1 => 'المجلد 1';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'العلامات ($count)';
+  }
+
+  @override
+  String get noBookmarksYet =>
+      'لا توجد علامات بعد. اضغط على أيقونة العلامة لحفظ مقطع.';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark لا يستجيب';
+
+  @override
+  String get closeApp => 'إغلاق التطبيق';
+
+  @override
+  String get wait => 'انتظار';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: $hoursس';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return 'الكتاب $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return 'فصل $number';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count كتب وكتب صوتية';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return 'جملة $current من $total';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return 'فصل $current من $total';
+  }
+
+  @override
+  String get allLevels => 'جميع المستويات';
+
+  @override
+  String get searchGradedMicroStories => 'ابحث عن القصص المصنفة والخرافيات...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count قصة مصنفة وقراءات يومية';
+  }
+
+  @override
+  String get searchClassicalPoems =>
+      'ابحث عن القصائد الكلاسيكية، الشعراء، الأبيات...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count قصيدة وأبيات كلاسيكية';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'تصفح أي موقع صيني مع قاموس لمسي في الوقت الحقيقي، تعليقات البنين وترجمات فورية.';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get aiIsReading => 'الذكاء الاصطناعي يقرأ...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (متقدم)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (مبتدئ)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (فوق المتوسط)';
+
+  @override
+  String get extractAllUnknownWords =>
+      'استخراج جميع الكلمات الغير معروفة إلى مجموعة بطاقات جديدة';
+
+  @override
+  String get designCustomAiRoleplay =>
+      'تصميم تجربة لعب أدوار ومحادثة مخصصة بالذكاء الاصطناعي';
+
+  @override
+  String get practiceFlashcardVocabulary =>
+      'تدريب مفردات البطاقات في حوار مباشر';
+
+  @override
+  String get surpriseMe => 'فاجئني';
+
+  @override
+  String get rollCharacter => 'اختيار شخصية';
+
+  @override
+  String get historicalCostume => 'تاريخي / أزياء تنكيدية';
+
+  @override
+  String get modernYouth => 'عصري & شبابي';
+
+  @override
+  String get fantasyMythology => 'خيالي & أسطوري';
+
+  @override
+  String get familyDrama => 'عائلي & دراما';
+
+  @override
+  String get fullVersion => 'النسخة الكاملة';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count حلقات';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'ح$number';
+  }
+
+  @override
+  String get translating => '[ جارٍ الترجمة... ]';
+
+  @override
+  String get engSub => '[ترجمة إنجليزية]';
+
+  @override
+  String get standardVocabulary => 'المفردات القياسية';
+
+  @override
+  String get characters => 'حروفًا';
 }

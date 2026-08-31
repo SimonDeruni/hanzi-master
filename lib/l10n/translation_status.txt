@@ -1,0 +1,216 @@
+
+============================================================
+  DE
+============================================================
+  [TRANSLATED]  guestScholar: Gastgelehrter
+  [TRANSLATED]  localAccount: Lokales Konto
+  [TRANSLATED]  createAccount: Konto erstellen
+  [TRANSLATED]  createAccountToSyncProgress: Konto erstellen, um den Fortschritt zu synchronisieren
+  [TRANSLATED]  account: Konto
+  [TRANSLATED]  learning_stats: Lernstatistiken
+  [TRANSLATED]  view_your_learning_history_and_streaks: Lernverlauf und Serien anzeigen
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Sie sind ein Premium-Mitglied
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: SinoSpark Premium freischalten
+  [TRANSLATED]  signInToSyncYourProgress: Melden Sie sich an, um Ihren Fortschritt zu synchronisieren.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Erstellen Sie ein Konto, um Ihre Statistiken zu speichern.
+  [PLACEHOLDER] hanziMaster: SinoSpark
+
+============================================================
+  ES
+============================================================
+  [TRANSLATED]  guestScholar: Estudiante invitado
+  [TRANSLATED]  localAccount: Cuenta local
+  [TRANSLATED]  createAccount: Crear cuenta
+  [TRANSLATED]  createAccountToSyncProgress: Crear cuenta para sincronizar progreso
+  [TRANSLATED]  account: Cuenta
+  [TRANSLATED]  learning_stats: Estadísticas de aprendizaje
+  [TRANSLATED]  view_your_learning_history_and_streaks: Ver tu historial de aprendizaje y rachas
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Eres miembro Premium
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: Desbloquear SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Iniciar sesión para sincronizar tu progreso.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Crear una cuenta para guardar tus estadísticas.
+  [PLACEHOLDER] hanziMaster: SinoSpark
+
+============================================================
+  FR
+============================================================
+  [TRANSLATED]  guestScholar: Érudit invité
+  [TRANSLATED]  localAccount: Compte local
+  [TRANSLATED]  createAccount: Creer un compte
+  [TRANSLATED]  createAccountToSyncProgress: Créer un compte pour synchroniser la progression
+  [TRANSLATED]  account: Compte
+  [TRANSLATED]  learning_stats: Statistiques d'apprentissage
+  [TRANSLATED]  view_your_learning_history_and_streaks: Consultez votre historique d'apprentissage et vos séries
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Vous êtes un membre Premium
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: Débloquez SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Connectez-vous pour synchroniser votre progression.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Créez un compte pour sauvegarder vos statistiques.
+  [TRANSLATED]  hanziMaster: Maître Hanzi
+
+============================================================
+  IT
+============================================================
+  [TRANSLATED]  guestScholar: Studente ospite
+  [TRANSLATED]  localAccount: Account locale
+  [TRANSLATED]  createAccount: Crea account
+  [TRANSLATED]  createAccountToSyncProgress: Crea account per sincronizzare i progressi
+  [PLACEHOLDER] account: Account
+  [TRANSLATED]  learning_stats: Statistiche di apprendimento
+  [TRANSLATED]  view_your_learning_history_and_streaks: Visualizza la cronologia di apprendimento e le serie
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Sei un membro Premium
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: Sblocca SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Accedi per sincronizzare i tuoi progressi.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Crea un account per salvare le tue statistiche.
+  [PLACEHOLDER] hanziMaster: SinoSpark
+
+============================================================
+  PT
+============================================================
+  [TRANSLATED]  guestScholar: Estudioso Convidado
+  [TRANSLATED]  localAccount: Conta Local
+  [TRANSLATED]  createAccount: Criar conta
+  [TRANSLATED]  createAccountToSyncProgress: Criar Conta para Sincronizar Progresso
+  [TRANSLATED]  account: Conta
+  [TRANSLATED]  learning_stats: Estatísticas de aprendizado
+  [TRANSLATED]  view_your_learning_history_and_streaks: Veja seu histórico de aprendizado e sequências
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Você é um membro Premium
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: Desbloquear SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Iniciar sessão para sincronizar o seu progresso.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Criar uma conta para guardar as suas estatísticas.
+  [PLACEHOLDER] hanziMaster: SinoSpark
+
+============================================================
+  RU
+============================================================
+  [TRANSLATED]  guestScholar: Гостевой ученый
+  [TRANSLATED]  localAccount: Локальный аккаунт
+  [TRANSLATED]  createAccount: Создать аккаунт
+  [TRANSLATED]  createAccountToSyncProgress: Создайте аккаунт для синхронизации прогресса
+  [TRANSLATED]  account: Аккаунт
+  [TRANSLATED]  learning_stats: Статистика обучения
+  [TRANSLATED]  view_your_learning_history_and_streaks: Просмотрите свою историю обучения и серии
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Вы являетесь Premium-пользователем
+  [TRANSLATED]  premium: ПРЕМИУМ
+  [TRANSLATED]  unlockSinosparkPremium: Разблокировать SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Войдите, чтобы синхронизировать свой прогресс.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Создайте аккаунт, чтобы сохранить свою статистику.
+  [PLACEHOLDER] hanziMaster: SinoSpark
+
+============================================================
+  AR
+============================================================
+  [TRANSLATED]  guestScholar: باحث ضيف
+  [TRANSLATED]  localAccount: حساب محلي
+  [TRANSLATED]  createAccount: إنشاء حساب
+  [TRANSLATED]  createAccountToSyncProgress: إنشاء حساب لمزامنة التقدم
+  [TRANSLATED]  account: الحساب
+  [TRANSLATED]  learning_stats: إحصائيات التعلم
+  [TRANSLATED]  view_your_learning_history_and_streaks: عرض سجل التعلم والسلاسل الخاصة بك
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: أنت عضو مميز
+  [TRANSLATED]  premium: مميز
+  [TRANSLATED]  unlockSinosparkPremium: افتح SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: سجّل الدخول لمزامنة تقدمك.
+  [TRANSLATED]  createAnAccountToSaveYourStats: أنشئ حسابًا لحفظ إحصائياتك.
+  [TRANSLATED]  hanziMaster: هانزي ماستر
+
+============================================================
+  HI
+============================================================
+  [TRANSLATED]  guestScholar: अतिथि विद्वान
+  [TRANSLATED]  localAccount: स्थानीय खाता
+  [TRANSLATED]  createAccount: खाता बनाएं
+  [TRANSLATED]  createAccountToSyncProgress: प्रगति सिंक करने के लिए खाता बनाएँ
+  [TRANSLATED]  account: खाता
+  [TRANSLATED]  learning_stats: सीखने के आँकड़े
+  [TRANSLATED]  view_your_learning_history_and_streaks: अपना सीखने का इतिहास और स्ट्रीक्स देखें
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: आप एक प्रीमियम सदस्य हैं
+  [TRANSLATED]  premium: प्रीमियम
+  [TRANSLATED]  unlockSinosparkPremium: सिनोस्पार्क प्रीमियम अनलॉक करें
+  [TRANSLATED]  signInToSyncYourProgress: अपनी प्रगति सिंक करने के लिए साइन इन करें।
+  [TRANSLATED]  createAnAccountToSaveYourStats: अपने आँकड़े सहेजने के लिए एक खाता बनाएँ।
+  [TRANSLATED]  hanziMaster: हंज़ी मास्टर
+
+============================================================
+  ID
+============================================================
+  [TRANSLATED]  guestScholar: Cendekiawan Tamu
+  [TRANSLATED]  localAccount: Akun Lokal
+  [TRANSLATED]  createAccount: Buat Akun
+  [TRANSLATED]  createAccountToSyncProgress: Buat Akun untuk Sinkronkan Progres
+  [TRANSLATED]  account: Akun
+  [TRANSLATED]  learning_stats: Statistik Belajar
+  [TRANSLATED]  view_your_learning_history_and_streaks: Lihat riwayat belajar dan streak Anda
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Anda adalah anggota Premium
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: Buka SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Masuk untuk menyinkronkan progres Anda.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Buat akun untuk menyimpan statistik Anda.
+  [TRANSLATED]  hanziMaster: Master Hanzi
+
+============================================================
+  JA
+============================================================
+  [TRANSLATED]  guestScholar: ゲスト学者
+  [TRANSLATED]  localAccount: ローカルアカウント
+  [TRANSLATED]  createAccount: アカウント作成
+  [TRANSLATED]  createAccountToSyncProgress: 進捗を同期するためにアカウントを作成
+  [TRANSLATED]  account: アカウント
+  [TRANSLATED]  learning_stats: 学習統計
+  [TRANSLATED]  view_your_learning_history_and_streaks: 学習履歴と連続記録を表示
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: あなたはプレミアム会員です
+  [TRANSLATED]  premium: プレミアム
+  [TRANSLATED]  unlockSinosparkPremium: SinoSparkプレミアムをアンロック
+  [TRANSLATED]  signInToSyncYourProgress: 進行状況を同期するためにサインインしてください。
+  [TRANSLATED]  createAnAccountToSaveYourStats: 統計を保存するためにアカウントを作成してください。
+  [TRANSLATED]  hanziMaster: 漢字マスター
+
+============================================================
+  KO
+============================================================
+  [TRANSLATED]  guestScholar: 게스트 학자
+  [TRANSLATED]  localAccount: 로컬 계정
+  [TRANSLATED]  createAccount: 계정 만들기
+  [TRANSLATED]  createAccountToSyncProgress: 진행 상황 동기화를 위해 계정을 만드세요
+  [TRANSLATED]  account: 계정
+  [TRANSLATED]  learning_stats: 학습 통계
+  [TRANSLATED]  view_your_learning_history_and_streaks: 학습 기록 및 연속 기록 보기
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: 프리미엄 회원입니다
+  [TRANSLATED]  premium: 프리미엄
+  [TRANSLATED]  unlockSinosparkPremium: SinoSpark 프리미엄 잠금 해제
+  [TRANSLATED]  signInToSyncYourProgress: 로그인하여 진행 상황을 동기화하세요.
+  [TRANSLATED]  createAnAccountToSaveYourStats: 계정을 생성하여 통계를 저장하세요.
+  [TRANSLATED]  hanziMaster: 한자 마스터
+
+============================================================
+  VI
+============================================================
+  [TRANSLATED]  guestScholar: Học giả khách
+  [TRANSLATED]  localAccount: Tài khoản cục bộ
+  [TRANSLATED]  createAccount: Tạo Tài khoản
+  [TRANSLATED]  createAccountToSyncProgress: Tạo tài khoản để đồng bộ tiến độ
+  [TRANSLATED]  account: Tài khoản
+  [TRANSLATED]  learning_stats: Thống kê học tập
+  [TRANSLATED]  view_your_learning_history_and_streaks: Xem lịch sử học tập và chuỗi của bạn
+  [PLACEHOLDER] sinospark_premium: SinoSpark Premium
+  [TRANSLATED]  youAreAPremiumMember: Bạn là thành viên Premium
+  [PLACEHOLDER] premium: PREMIUM
+  [TRANSLATED]  unlockSinosparkPremium: Mở khóa SinoSpark Premium
+  [TRANSLATED]  signInToSyncYourProgress: Đăng nhập để đồng bộ tiến độ của bạn.
+  [TRANSLATED]  createAnAccountToSaveYourStats: Tạo tài khoản để lưu thống kê của bạn.
+  [PLACEHOLDER] hanziMaster: SinoSpark

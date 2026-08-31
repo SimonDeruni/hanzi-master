@@ -66,8 +66,7 @@ class GlobalDictionaryRepository {
         '%$q%', '%$q%'         // Match condition
       ];
     } else {
-      // It's ascii, so it could be Pinyin or an English word (e.g. "switzerland").
-      // We will search BOTH columns and rank them.
+      // It's ascii or foreign text, so it could be Pinyin or a translated definition (EN, FR, DE).
       final pinyinSearch = q.replaceAll(RegExp(r'[0-9]'), ''); 
       final cleanSearch = pinyinSearch.replaceAll(' ', ''); 
 
@@ -75,27 +74,27 @@ class GlobalDictionaryRepository {
         SELECT *,
           CASE 
             WHEN REPLACE(pinyin_no_tones, ' ', '') = ? THEN 1
-            WHEN definition = ? THEN 1
+            WHEN definition = ? OR definition_fr = ? OR definition_de = ? THEN 1
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 2
-            WHEN definition LIKE ? OR definition LIKE ? OR definition LIKE ? OR definition LIKE ? THEN 2
+            WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? THEN 2
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 3
-            WHEN definition LIKE ? THEN 3
+            WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? THEN 3
             ELSE 4
           END as rank
         FROM words
-        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ?
+        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ?
         ORDER BY rank ASC, LENGTH(simplified) ASC
         LIMIT 50
       ''';
       args = [
         cleanSearch,           // Pinyin exact
-        q,                     // Def exact
+        q, q, q,               // Def exact (EN, FR, DE)
         '$cleanSearch %',      // Pinyin boundary
-        '$q %', '% $q %', '% $q', '%($q)%', // Def boundaries
+        '% $q %', '% $q %', '% $q %', // Def boundaries
         '$cleanSearch%',       // Pinyin prefix
-        '$q%',                 // Def prefix
+        '$q%', '$q%', '$q%',   // Def prefix
         '%$cleanSearch%',      // Match condition Pinyin
-        '%$q%'                 // Match condition Def
+        '%$q%', '%$q%', '%$q%' // Match condition Def
       ];
     }
 
@@ -103,22 +102,37 @@ class GlobalDictionaryRepository {
       final results = await _db!.rawQuery(sqlQuery, args);
       
       final List<Flashcard> cards = results.map<Flashcard>((row) {
-        final rawPinyin = row['pinyin'] as String? ?? '';
-        return Flashcard(
-          id: 'global_${row['id']}',
-          hanzi: row['simplified'] as String,
-          pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
-          definition: row['definition'] as String,
-          hskLevel: 0,
-          strokePaths: const [],
-          modeStats: const {},
-        );
+        return _mapRowToCard(row);
       }).toList();
 
       return Right(cards);
     } catch (e) {
       return Left("Search failed: $e");
     }
+  }
+
+  Flashcard _mapRowToCard(Map<String, dynamic> row) {
+    final rawPinyin = row['pinyin'] as String? ?? '';
+    final defFr = row['definition_fr'] as String?;
+    final defDe = row['definition_de'] as String?;
+    final defEn = row['definition'] as String? ?? '';
+    
+    // Choose primary definition if available
+    final chosenDef = (defFr != null && defFr.isNotEmpty)
+        ? defFr
+        : (defDe != null && defDe.isNotEmpty)
+            ? defDe
+            : defEn;
+
+    return Flashcard(
+      id: 'global_${row['id']}',
+      hanzi: row['simplified'] as String,
+      pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
+      definition: chosenDef,
+      hskLevel: 0,
+      strokePaths: const [],
+      modeStats: const {},
+    );
   }
 
   Future<Either<String, List<Flashcard>>> getWordsContaining(String character, {int limit = 6}) async {
@@ -141,16 +155,7 @@ class GlobalDictionaryRepository {
       final results = await _db!.rawQuery(sqlQuery, args);
       
       final List<Flashcard> cards = results.map<Flashcard>((row) {
-        final rawPinyin = row['pinyin'] as String? ?? '';
-        return Flashcard(
-          id: 'global_${row['id']}',
-          hanzi: row['simplified'] as String,
-          pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
-          definition: row['definition'] as String,
-          hskLevel: 0,
-          strokePaths: const [],
-          modeStats: const {},
-        );
+        return _mapRowToCard(row);
       }).toList();
 
       return Right(cards);
@@ -168,17 +173,7 @@ class GlobalDictionaryRepository {
         [hanzi.trim()],
       );
       if (results.isEmpty) return null;
-      final row = results.first;
-      final rawPinyin = row['pinyin'] as String? ?? '';
-      return Flashcard(
-        id: 'global_${row['id']}',
-        hanzi: row['simplified'] as String,
-        pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
-        definition: row['definition'] as String,
-        hskLevel: 0,
-        strokePaths: const [],
-        modeStats: const {},
-      );
+      return _mapRowToCard(results.first);
     } catch (e) {
       return null;
     }

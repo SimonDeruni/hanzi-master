@@ -117,8 +117,10 @@ class SettingsScreen extends ConsumerWidget {
                   backgroundColor: Colors.blue.withValues(alpha: 0.1),
                   child: const Icon(Icons.translate, color: Colors.blue),
                 ),
-                title: const Text("Translation Language",
-                    style: TextStyle(fontWeight: FontWeight.w600)),
+                title: Text(
+                    l10n?.translationLanguage ??
+                        AppLocalizations.of(context)!.translationLanguage,
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
                 subtitle: Text(ref.watch(translationLanguageProvider)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showTranslationLanguagePicker(context, ref),
@@ -139,8 +141,7 @@ class SettingsScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 24),
-          _buildSectionHeader("Notifications", theme,
-              color: Colors.amber.shade700),
+          _buildSectionHeader(l10n?.notifications ?? AppLocalizations.of(context)!.notifications, theme,color: Colors.amber.shade700),
           _buildSettingsCard(
             context: context,
             children: [
@@ -433,7 +434,7 @@ class SettingsScreen extends ConsumerWidget {
     showDialog<void>(
       context: context,
       builder: (dialogContext) => SimpleDialog(
-        title: Text(AppLocalizations.of(context)?.translationLanguage ?? "Translation Language"),
+        title: Text(AppLocalizations.of(context)!.translationLanguage),
         children: [
           RadioGroup<String>(
             groupValue: currentLanguage,

@@ -273,7 +273,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get gradedAiStories => 'AI कहानियाँ';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => 'सुलेख';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -303,7 +303,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => 'ऑडियो और हैप्टिक्स';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -315,7 +315,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => 'प्रदर्शन और सामग्री';
 
   @override
   String get useEnglishDefinitions => 'अंग्रेज़ी परिभाषाएँ उपयोग करें';
@@ -325,7 +325,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'अंग्रेज़ी परिभाषाएँ आम तौर पर अधिक सटीक और विस्तृत होती हैं';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => 'एनिमेशन गति';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -334,13 +334,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => 'खतरे का क्षेत्र';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => 'सभी डेटा रीसेट करें';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc =>
+      'यह आपके सभी प्रगति डेटा, आँकड़े और सेटिंग्स को स्थायी रूप से हटा देगा। यह क्रिया पूर्ववत नहीं की जा सकती।';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -352,7 +353,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => 'ऐप भाषा';
 
   @override
   String get howDidYouDo => 'आपने कैसा प्रदर्शन किया?';
@@ -2637,7 +2638,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get intermediate => 'Intermédiaire';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => 'सीखने के आँकड़े';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2656,7 +2657,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => 'सूचना सेटिंग्स';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2770,7 +2771,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+      'अपना सीखने का इतिहास और स्ट्रीक्स देखें';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -3385,7 +3386,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get spanish => 'स्पेनिश';
 
   @override
-  String get french => 'फ्रेंच';
+  String get french => 'फ़्रेंच';
 
   @override
   String get hindi => 'हिंदी';
@@ -4857,7 +4858,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get reading => 'पढ़ना';
 
   @override
-  String get recall => 'स्मरण';
+  String get recall => 'याद करना';
 
   @override
   String get speaking => 'बोलना';
@@ -4947,7 +4948,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get strokeAnimationSpeed => 'स्ट्रोक एनिमेशन गति';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'सूचनाएं';
 
   @override
   String get deutsch => 'जर्मन';
@@ -6577,4 +6578,180 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get newLabel => 'नया';
+
+  @override
+  String get analyzingImage => 'छवि का विश्लेषण किया जा रहा है...';
+
+  @override
+  String get extractingChineseText => 'चीनी पाठ निकाला जा रहा है...';
+
+  @override
+  String get lookingUpVocabulary => 'शब्दावली खोजी जा रही है...';
+
+  @override
+  String get dreamOfTheRedChamber => 'लाल हवेली का सपना';
+
+  @override
+  String get journeyToTheWest => 'पश्चिम की यात्रा';
+
+  @override
+  String get romanceOfTheThreeKingdoms => 'तीन राज्यों का रोमांस';
+
+  @override
+  String get mingDynasty => 'मिंग राजवंश';
+
+  @override
+  String get wuChengEn => 'वू चेंग एन';
+
+  @override
+  String get hundredChapters => '100 अध्याय';
+
+  @override
+  String get volume1 => 'खंड 1';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'बुकमार्क ($count)';
+  }
+
+  @override
+  String get noBookmarksYet =>
+      'अभी तक कोई बुकमार्क नहीं है। कोई अंश सहेजने के लिए बुकमार्क आइकन पर टाप करें।';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark जवाब नहीं दे रहा है';
+
+  @override
+  String get closeApp => 'ऐप बंद करें';
+
+  @override
+  String get wait => 'प्रतीक्षा करें';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: $hoursघंटा';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return 'पुस्तक $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return 'अध्याय $number';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count पुस्तकें और ऑडियोबुक';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return 'वाक्य $current कुल $total में से';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return 'अध्याय $current कुल $total में से';
+  }
+
+  @override
+  String get allLevels => 'सभी स्तर';
+
+  @override
+  String get searchGradedMicroStories =>
+      'स्तरीय लघु कहानियों और दस्तानों की खोज करें...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count स्तरीय कहानियाँ और दैनिक लघु पाठ';
+  }
+
+  @override
+  String get searchClassicalPoems =>
+      'शास्त्रीय कविताओं, लेखकों, छंदों की खोज करें...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count शास्त्रीय कविताएँ और छंद';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'रियल-टाइम टैप डिक्शनरी, पिनयिन एनोटेशन और तुरंत अनुवाद के साथ किसी भी चीनी वेबसाइट पर जाएँ।';
+
+  @override
+  String get completed => 'पूर्ण';
+
+  @override
+  String get aiIsReading => 'AI पढ़ रहा है...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (उन्नत)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (शुरुआती)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (ऊपरी मध्यम)';
+
+  @override
+  String get extractAllUnknownWords =>
+      'सभी अज्ञात शब्दों को एक नई फ्लैशकार्ड डेक में निकालें';
+
+  @override
+  String get designCustomAiRoleplay =>
+      'कस्टम AI रोलप्ले और वार्तालाप डिजाइन करें';
+
+  @override
+  String get practiceFlashcardVocabulary =>
+      'लाइव संवाद में फ्लैशकार्ड शब्दावली का अभ्यास करें';
+
+  @override
+  String get surpriseMe => 'मुझे चौका दो';
+
+  @override
+  String get rollCharacter => 'चरित्र चुनें';
+
+  @override
+  String get historicalCostume => 'ऐतिहासिक / पोशाक';
+
+  @override
+  String get modernYouth => 'आधुनिक & युवा';
+
+  @override
+  String get fantasyMythology => 'फैंटेसी & पुराणकथा';
+
+  @override
+  String get familyDrama => 'परिवार & ड्रामा';
+
+  @override
+  String get fullVersion => 'पूर्ण संस्करण';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count एपिसोड';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'EP$number';
+  }
+
+  @override
+  String get translating => '[ अनुवाद किया जा रहा है... ]';
+
+  @override
+  String get engSub => '[उपशीर्षक अंग्रेजी]';
+
+  @override
+  String get standardVocabulary => 'मानक शब्दावली';
+
+  @override
+  String get characters => 'अक्षर';
 }

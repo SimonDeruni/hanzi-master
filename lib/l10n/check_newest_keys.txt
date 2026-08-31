@@ -1,0 +1,46 @@
+EXISTS: alignChineseTextWithinFrame = Align Chinese text within frame
+MISSING: Analyzing image...
+MISSING: Extracting Chinese text...
+MISSING: Looking up vocabulary...
+EXISTS: continueReading = Continue Reading
+MISSING: Dream of the Red Chamber
+MISSING: Ch. 2
+MISSING: 86 Books & Audiobooks
+EXISTS: audiobook = Audiobook
+MISSING: The Journey to the West
+MISSING: Volume 1
+MISSING: Journey to the West
+EXISTS: audio = Audio
+MISSING: Romance of the Three Kingdoms
+EXISTS: audiobookIncluded = Audiobook Included
+EXISTS: chineseEpics = Chinese Epics
+MISSING: Ming Dynasty
+MISSING: 100 Chapters
+EXISTS: startReading = Start Reading
+EXISTS: listenToAudiobook = Listen to Audiobook
+MISSING: Wu Cheng'en
+EXISTS: tableOfContents = Table of Contents
+MISSING: Chapter 1
+MISSING: Chapter 2
+MISSING: Chapter 3
+MISSING: Chapter 4
+MISSING: Chapter 5
+MISSING: Chapter 6
+MISSING: Chapter 1 of 100
+MISSING: Sentence 1 of 338
+MISSING: Sentence 1
+MISSING: Sentence 2
+MISSING: Sentence 3
+EXISTS: previous = Previous
+MISSING: Bookmarks (0)
+MISSING: No bookmarks yet. Tap the bookmark icon to save a passage.
+EXISTS: alsoSeenIn = Also seen in
+EXISTS: addToDeck1 = Add to Deck
+EXISTS: read = Read
+MISSING: Sentence 1 / 320
+MISSING: Book 1%
+MISSING: SinoSpark isn't responding
+MISSING: Close app
+MISSING: Wait
+MISSING: Studio HD: 4.0h
+MISSING: Sentence 1 of 320

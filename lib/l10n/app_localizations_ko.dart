@@ -273,7 +273,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get gradedAiStories => 'AI 이야기';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => '서예';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -303,7 +303,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => '오디오 및 햅틱';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -315,7 +315,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => '디스플레이 및 콘텐츠';
 
   @override
   String get useEnglishDefinitions => '영어 정의 사용';
@@ -324,7 +324,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get useEnglishDefinitionsDesc => '영어 정의가 일반적으로 더 정확하고 자세합니다';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => '애니메이션 속도';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -333,13 +333,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => '위험 구역';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => '모든 데이터 재설정';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc =>
+      '이 작업은 진행 데이터, 통계 및 설정을 영구적으로 삭제합니다. 이 작업은 취소할 수 없습니다.';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -351,7 +352,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => '앱 언어';
 
   @override
   String get howDidYouDo => '어떠셨나요?';
@@ -2575,7 +2576,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get intermediate => 'Intermediate';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => '학습 통계';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2594,7 +2595,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => '알림 설정';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2625,7 +2626,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'Preparing your Scholar\'s Verdict...';
 
   @override
-  String get previous => 'Previous';
+  String get previous => '이전';
 
   @override
   String get question => '질문 (current)/(total)';
@@ -2707,8 +2708,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'Unable to open this video. Please try again later.';
 
   @override
-  String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+  String get view_your_learning_history_and_streaks => '학습 기록 및 연속 기록 보기';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -3352,7 +3352,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get puckZhcnyunjianneural => 'Puck\': \'zh-CN-YunjianNeural';
 
   @override
-  String get kore => 'Kore';
+  String get kore => 'Kore (여성, 따뜻함)';
 
   @override
   String get xmicrosoftoutputformatAudio24khz48k =>
@@ -6152,10 +6152,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get puckPuckMaleSporty => '퍽\', \'퍽\', \'남성, 스포티함';
 
   @override
-  String get localOndevice => '로컬\', \'기기 내';
+  String get localOndevice => '로컬 (기기 음성)';
 
   @override
-  String get localOndeviceTts => '기기 내 TTS';
+  String get localOndeviceTts => '로컬 기기 TTS';
 
   @override
   String get off => '끄기';
@@ -6327,4 +6327,174 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get newLabel => '신규';
+
+  @override
+  String get analyzingImage => '이미지 분석 중...';
+
+  @override
+  String get extractingChineseText => '중국어 텍스트 추출 중...';
+
+  @override
+  String get lookingUpVocabulary => '어휘 검색 중...';
+
+  @override
+  String get dreamOfTheRedChamber => '홍루뤹';
+
+  @override
+  String get journeyToTheWest => '서유기';
+
+  @override
+  String get romanceOfTheThreeKingdoms => '삼국지연의';
+
+  @override
+  String get mingDynasty => '명나라';
+
+  @override
+  String get wuChengEn => '오승은';
+
+  @override
+  String get hundredChapters => '100회';
+
+  @override
+  String get volume1 => '제1권';
+
+  @override
+  String bookmarksCount(Object count) {
+    return '보호표 ($count)';
+  }
+
+  @override
+  String get noBookmarksYet => '아직 보호표가 없습니다. 보호표 아이콘을 탭하여 구가브를 저장하세요.';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark가 응답하지 않습니다';
+
+  @override
+  String get closeApp => '앱 닫기';
+
+  @override
+  String get wait => '기다리기';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: $hours시간';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return '책 $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return '$number회';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count권 도서 및 오디오북';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return '문장 $current번째 / 총 $total개';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return '장 $current번째 / 총 $total장';
+  }
+
+  @override
+  String get allLevels => '모든 레벨';
+
+  @override
+  String get searchGradedMicroStories => '단계별 마이크로 스토리 및 우화 검색...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count개의 단계별 스토리 및 매일 마이크로 리딩';
+  }
+
+  @override
+  String get searchClassicalPoems => '고전 시, 저자, 구절 검색...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count개의 고전 시 및 운문';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      '실시간 탭 사전, 피닑 주석 및 즉시 번역으로 모든 중국 웹사이트를 탐색하세요.';
+
+  @override
+  String get completed => '완료';
+
+  @override
+  String get aiIsReading => 'AI가 읽는 중...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (고급)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (초급)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (중상급)';
+
+  @override
+  String get extractAllUnknownWords => '모든 알 수 없는 단어를 새 플래시카드 덱으로 추출';
+
+  @override
+  String get designCustomAiRoleplay => '커스텀 AI 롤플레이 및 대화 경험 설계';
+
+  @override
+  String get practiceFlashcardVocabulary => '라이브 대화에서 플래시카드 단어 연습';
+
+  @override
+  String get surpriseMe => '까봉치워주세요';
+
+  @override
+  String get rollCharacter => '캐릭터 구르기';
+
+  @override
+  String get historicalCostume => '역사 / 복장';
+
+  @override
+  String get modernYouth => '현대 & 청년';
+
+  @override
+  String get fantasyMythology => '판타지 & 신화';
+
+  @override
+  String get familyDrama => '가족 & 드라마';
+
+  @override
+  String get fullVersion => '완전판';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count화';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'EP$number';
+  }
+
+  @override
+  String get translating => '[ 번역 중... ]';
+
+  @override
+  String get engSub => '[영어 자막]';
+
+  @override
+  String get standardVocabulary => '표준 어휘';
+
+  @override
+  String get characters => '글자';
 }

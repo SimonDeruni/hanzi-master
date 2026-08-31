@@ -1,0 +1,30 @@
+
+=== DE ===
+
+=== ES ===
+
+=== FR ===
+  STILL_EN: notifications = Notifications
+
+=== IT ===
+  STILL_EN: emailLabel = Email
+
+=== PT ===
+
+=== RU ===
+
+=== AR ===
+
+=== HI ===
+
+=== ID ===
+  STILL_EN: emailLabel = Email
+
+=== JA ===
+
+=== KO ===
+
+=== VI ===
+  STILL_EN: emailLabel = Email
+
+Done checking 12 languages for 31 keys

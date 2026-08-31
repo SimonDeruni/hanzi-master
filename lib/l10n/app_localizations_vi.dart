@@ -273,7 +273,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get gradedAiStories => 'Câu Chuyện AI';
 
   @override
-  String get calligraphy => 'Calligraphy';
+  String get calligraphy => 'Thư pháp';
 
   @override
   String get theScrollOfOrigin => 'The Scroll Of Origin';
@@ -303,7 +303,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dailyGoal => 'Daily Goal';
 
   @override
-  String get audioAndHaptics => 'Audio And Haptics';
+  String get audioAndHaptics => 'Âm thanh và xúc giác';
 
   @override
   String get autoPlayAudio => 'Auto Play Audio';
@@ -315,7 +315,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get haptics => 'Haptics';
 
   @override
-  String get displayAndContent => 'Display And Content';
+  String get displayAndContent => 'Hiển thị và Nội dung';
 
   @override
   String get useEnglishDefinitions => 'Dùng định nghĩa tiếng Anh';
@@ -325,7 +325,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Định nghĩa tiếng Anh thường chính xác và chi tiết hơn';
 
   @override
-  String get animationSpeed => 'Animation Speed';
+  String get animationSpeed => 'Tốc độ hoạt ảnh';
 
   @override
   String get manageTomes => 'Manage Tomes';
@@ -334,13 +334,14 @@ class AppLocalizationsVi extends AppLocalizations {
   String get manageTomesDesc => 'Manage Tomes Desc';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => 'Vùng nguy hiểm';
 
   @override
-  String get resetAllData => 'Reset All Data';
+  String get resetAllData => 'Đặt lại tất cả dữ liệu';
 
   @override
-  String get resetDataDesc => 'Reset Data Desc';
+  String get resetDataDesc =>
+      'Thao tác này sẽ xóa vĩnh viễn tất cả dữ liệu tiến trình, thống kê và cài đặt của bạn. Hành động này không thể hoàn tác.';
 
   @override
   String get areYouSure => 'Are You Sure';
@@ -352,7 +353,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deleteEverything => 'Delete Everything';
 
   @override
-  String get appLanguage => 'App Language';
+  String get appLanguage => 'Ngôn ngữ ứng dụng';
 
   @override
   String get howDidYouDo => 'Bạn đã làm bài thế nào?';
@@ -2638,7 +2639,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get intermediate => 'Intermediate';
 
   @override
-  String get learning_stats => 'Learning Stats';
+  String get learning_stats => 'Thống kê học tập';
 
   @override
   String get mandarin => 'Mandarin';
@@ -2657,7 +2658,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
 
   @override
-  String get notification_settings => 'Notification Settings';
+  String get notification_settings => 'Cài đặt thông báo';
 
   @override
   String get open_settings => 'Open Settings';
@@ -2688,7 +2689,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Preparing your Scholar\'s Verdict...';
 
   @override
-  String get previous => 'Previous';
+  String get previous => 'Trước';
 
   @override
   String get question => 'Câu hỏi (current)/(total)';
@@ -2771,7 +2772,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get view_your_learning_history_and_streaks =>
-      'View your learning history and streaks';
+      'Xem lịch sử học tập và chuỗi của bạn';
 
   @override
   String get what_is_shadowing_studio => 'What is Shadowing Studio?';
@@ -2831,7 +2832,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Không thể tải phần này. Vui lòng thử lại.';
 
   @override
-  String get translationLanguage => 'Ngôn ngữ dịch';
+  String get translationLanguage => 'Ngôn ngữ dịch thuật';
 
   @override
   String get dailyDrops => 'Giọt hàng ngày';
@@ -3442,7 +3443,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get puckZhcnyunjianneural => 'Puck\': \'zh-CN-YunjianNeural';
 
   @override
-  String get kore => 'Kore';
+  String get kore => 'Kore (nữ, ấm áp)';
 
   @override
   String get xmicrosoftoutputformatAudio24khz48k =>
@@ -4085,7 +4086,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get assistant => 'Trợ lý';
 
   @override
-  String get puck => 'Puck';
+  String get puck => 'Puck (nam, thể thao)';
 
   @override
   String get helloWelcomeWhatWouldYouLikeToOrder =>
@@ -4108,7 +4109,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askForTheBill => 'Hỏi xin hóa đơn';
 
   @override
-  String get fenrir => 'Fenrir';
+  String get fenrir => 'Fenrir (nam, sôi nổi)';
 
   @override
   String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
@@ -4128,7 +4129,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get complainAboutTheTraffic => 'Phàn nàn về giao thông';
 
   @override
-  String get charon => 'Charon';
+  String get charon => 'Charon (nam, phong cách tin tức)';
 
   @override
   String get thisClothingQualityIsEspeciallyGood =>
@@ -4168,7 +4169,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askIfYouNeedToTakeMedicine => 'Hỏi xem có cần uống thuốc không';
 
   @override
-  String get aoede => 'Aoede';
+  String get aoede => 'Aoede (nữ, vui vẻ)';
 
   @override
   String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
@@ -4889,7 +4890,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get koreFenrirCharonAoedePuckOrLocal =>
-      'Kore\', \'Fenrir\', \'Charon\', \'Aoede\', \'Puck\', hoặc \'cục bộ';
+      'Kore, Fenrir, Charon, Aoede, Puck hoặc cục bộ';
 
   @override
   String get manageDecks => 'Quản lý bộ thẻ';
@@ -6384,7 +6385,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get puckPuckMaleSporty => 'Puck\', \'Puck\', \'Nam, năng động';
 
   @override
-  String get localOndevice => 'Cục bộ\', \'Trên thiết bị';
+  String get localOndevice => 'Cục bộ (giọng nói trên thiết bị)';
 
   @override
   String get localOndeviceTts => 'TTS cục bộ trên thiết bị';
@@ -6571,4 +6572,179 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get newLabel => 'Mới';
+
+  @override
+  String get analyzingImage => 'Đang phân tích hình ảnh...';
+
+  @override
+  String get extractingChineseText => 'Đang trích xuất văn bản tiếng Trung...';
+
+  @override
+  String get lookingUpVocabulary => 'Đang tra từ vựng...';
+
+  @override
+  String get dreamOfTheRedChamber => 'Hồng Lâu Mộng';
+
+  @override
+  String get journeyToTheWest => 'Tây Du Ký';
+
+  @override
+  String get romanceOfTheThreeKingdoms => 'Tam Quốc Diễn Nghĩa';
+
+  @override
+  String get mingDynasty => 'Nhà Minh';
+
+  @override
+  String get wuChengEn => 'Ngô Thừa Ân';
+
+  @override
+  String get hundredChapters => '100 hồi';
+
+  @override
+  String get volume1 => 'Tập 1';
+
+  @override
+  String bookmarksCount(Object count) {
+    return 'Dấu trang ($count)';
+  }
+
+  @override
+  String get noBookmarksYet =>
+      'Chưa có dấu trang nào. Nhấn vào biểu tượng dấu trang để lưu đoạn.';
+
+  @override
+  String get sinosparkIsNotResponding => 'SinoSpark không phản hồi';
+
+  @override
+  String get closeApp => 'Đóng ứng dụng';
+
+  @override
+  String get wait => 'Chờ';
+
+  @override
+  String studioHdAllowance(Object hours) {
+    return 'Studio HD: ${hours}giờ';
+  }
+
+  @override
+  String bookPercentRead(Object percent) {
+    return 'Sách $percent%';
+  }
+
+  @override
+  String chAbbreviation(Object number) {
+    return 'Hồi $number';
+  }
+
+  @override
+  String booksAndAudiobooks(Object count) {
+    return '$count Sách & Sách nói';
+  }
+
+  @override
+  String sentenceXOfY(Object current, Object total) {
+    return 'Câu $current / $total';
+  }
+
+  @override
+  String chapterXOfY(Object current, Object total) {
+    return 'Chương $current / $total';
+  }
+
+  @override
+  String get allLevels => 'Tất cả Cấp độ';
+
+  @override
+  String get searchGradedMicroStories =>
+      'Tìm truyện siêu ngắn & ngụ ngôn phân cấp...';
+
+  @override
+  String gradedStoriesAndMicroReads(Object count) {
+    return '$count Truyện phân cấp & Bài đọc siêu ngắn hàng ngày';
+  }
+
+  @override
+  String get searchClassicalPoems => 'Tìm thơ cổ điển, tác giả, câu thơ...';
+
+  @override
+  String classicalPoemsAndVerse(Object count) {
+    return '$count Bài thơ cổ điển & Câu thơ';
+  }
+
+  @override
+  String get browseAnyChineseWebsite =>
+      'Duyệt bất kỳ trang web Trung Quốc nào với từ điển chạm thời gian thực, chú thích pinyin và dịch ngay lập tức.';
+
+  @override
+  String get completed => 'ĐÃ HOÀN THÀNH';
+
+  @override
+  String get aiIsReading => 'AI đang đọc...';
+
+  @override
+  String get bbcVerify => 'BBC VERIFY';
+
+  @override
+  String get hsk5AdvancedVal => 'HSK 5 (Cao cấp)';
+
+  @override
+  String get hsk1Beginner => 'HSK 1 (Sơ cấp)';
+
+  @override
+  String get hsk4UpperInt => 'HSK 4 (Trung cao cấp)';
+
+  @override
+  String get extractAllUnknownWords =>
+      'Trích xuất tất cả từ không biết vào bộ thẻ ghi nhớ mới';
+
+  @override
+  String get designCustomAiRoleplay =>
+      'Thiết kế trải nghiệm nhập vai và hội thoại AI tùy chỉnh';
+
+  @override
+  String get practiceFlashcardVocabulary =>
+      'Luyện từ vựng thẻ ghi nhớ trong hội thoại trực tiếp';
+
+  @override
+  String get surpriseMe => 'Làm tôi bất ngờ';
+
+  @override
+  String get rollCharacter => 'Chọn nhân vật';
+
+  @override
+  String get historicalCostume => 'Lịch sử / Cổ trang';
+
+  @override
+  String get modernYouth => 'Hiện đại & Thanh xuân';
+
+  @override
+  String get fantasyMythology => 'Kỳ ảo & Thần thoại';
+
+  @override
+  String get familyDrama => 'Gia đình & Chính kịch';
+
+  @override
+  String get fullVersion => 'Phiên bản đầy đủ';
+
+  @override
+  String episodesCount(Object count) {
+    return '$count tập';
+  }
+
+  @override
+  String episodeLabel(Object number) {
+    return 'TẬP$number';
+  }
+
+  @override
+  String get translating => '[ Đang dịch... ]';
+
+  @override
+  String get engSub => '[PHỤ ĐỀ ANH]';
+
+  @override
+  String get standardVocabulary => 'Từ vựng tiêu chuẩn';
+
+  @override
+  String get characters => 'chữ';
 }

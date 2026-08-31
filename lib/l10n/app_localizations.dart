@@ -2721,13 +2721,13 @@ abstract class AppLocalizations {
   /// No description provided for @hsk2Elementary.
   ///
   /// In en, this message translates to:
-  /// **'HSK 2: Elementary'**
+  /// **'HSK 2 (Elementary)'**
   String get hsk2Elementary;
 
   /// No description provided for @hsk3Intermediate.
   ///
   /// In en, this message translates to:
-  /// **'HSK 3: Intermediate'**
+  /// **'HSK 3 (Intermediate)'**
   String get hsk3Intermediate;
 
   /// No description provided for @inDeckCheck.
@@ -3591,7 +3591,7 @@ abstract class AppLocalizations {
   /// No description provided for @hsk5Advanced.
   ///
   /// In en, this message translates to:
-  /// **'HSK 5: Advanced'**
+  /// **'HSK 5 (Advanced)'**
   String get hsk5Advanced;
 
   /// No description provided for @hsk6Mastery.
@@ -11943,31 +11943,31 @@ abstract class AppLocalizations {
   /// No description provided for @allLevelsVal.
   ///
   /// In en, this message translates to:
-  /// **'All Levels\', \'val'**
+  /// **'All Levels'**
   String get allLevelsVal;
 
   /// No description provided for @hsk1BeginnerVal.
   ///
   /// In en, this message translates to:
-  /// **'HSK 1 (Beginner)\', \'val'**
+  /// **'HSK 1 (Beginner)'**
   String get hsk1BeginnerVal;
 
   /// No description provided for @hsk2ElementaryVal.
   ///
   /// In en, this message translates to:
-  /// **'HSK 2 (Elementary)\', \'val'**
+  /// **'HSK 2 (Elementary)'**
   String get hsk2ElementaryVal;
 
   /// No description provided for @hsk3IntermediateVal.
   ///
   /// In en, this message translates to:
-  /// **'HSK 3 (Intermediate)\', \'val'**
+  /// **'HSK 3 (Intermediate)'**
   String get hsk3IntermediateVal;
 
   /// No description provided for @hsk4UpperIntVal.
   ///
   /// In en, this message translates to:
-  /// **'HSK 4 (Upper Int)\', \'val'**
+  /// **'HSK 4 (Upper Int)'**
   String get hsk4UpperIntVal;
 
   /// No description provided for @listenToAudiobook.
@@ -12203,6 +12203,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New'**
   String get newLabel;
+
+  /// No description provided for @analyzingImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing image...'**
+  String get analyzingImage;
+
+  /// No description provided for @extractingChineseText.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting Chinese text...'**
+  String get extractingChineseText;
+
+  /// No description provided for @lookingUpVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking up vocabulary...'**
+  String get lookingUpVocabulary;
+
+  /// No description provided for @dreamOfTheRedChamber.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream of the Red Chamber'**
+  String get dreamOfTheRedChamber;
+
+  /// No description provided for @journeyToTheWest.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey to the West'**
+  String get journeyToTheWest;
+
+  /// No description provided for @romanceOfTheThreeKingdoms.
+  ///
+  /// In en, this message translates to:
+  /// **'Romance of the Three Kingdoms'**
+  String get romanceOfTheThreeKingdoms;
+
+  /// No description provided for @mingDynasty.
+  ///
+  /// In en, this message translates to:
+  /// **'Ming Dynasty'**
+  String get mingDynasty;
+
+  /// No description provided for @wuChengEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Wu Cheng\'en'**
+  String get wuChengEn;
+
+  /// No description provided for @hundredChapters.
+  ///
+  /// In en, this message translates to:
+  /// **'100 Chapters'**
+  String get hundredChapters;
+
+  /// No description provided for @volume1.
+  ///
+  /// In en, this message translates to:
+  /// **'Volume 1'**
+  String get volume1;
+
+  /// No description provided for @bookmarksCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks ({count})'**
+  String bookmarksCount(Object count);
+
+  /// No description provided for @noBookmarksYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookmarks yet. Tap the bookmark icon to save a passage.'**
+  String get noBookmarksYet;
+
+  /// No description provided for @sinosparkIsNotResponding.
+  ///
+  /// In en, this message translates to:
+  /// **'SinoSpark isn\'t responding'**
+  String get sinosparkIsNotResponding;
+
+  /// No description provided for @closeApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Close app'**
+  String get closeApp;
+
+  /// No description provided for @wait.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait'**
+  String get wait;
+
+  /// No description provided for @studioHdAllowance.
+  ///
+  /// In en, this message translates to:
+  /// **'Studio HD: {hours}h'**
+  String studioHdAllowance(Object hours);
+
+  /// No description provided for @bookPercentRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Book {percent}%'**
+  String bookPercentRead(Object percent);
+
+  /// No description provided for @chAbbreviation.
+  ///
+  /// In en, this message translates to:
+  /// **'Ch. {number}'**
+  String chAbbreviation(Object number);
+
+  /// No description provided for @booksAndAudiobooks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Books & Audiobooks'**
+  String booksAndAudiobooks(Object count);
+
+  /// No description provided for @sentenceXOfY.
+  ///
+  /// In en, this message translates to:
+  /// **'Sentence {current} of {total}'**
+  String sentenceXOfY(Object current, Object total);
+
+  /// No description provided for @chapterXOfY.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter {current} of {total}'**
+  String chapterXOfY(Object current, Object total);
+
+  /// No description provided for @allLevels.
+  ///
+  /// In en, this message translates to:
+  /// **'All Levels'**
+  String get allLevels;
+
+  /// No description provided for @searchGradedMicroStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Search graded micro-stories & fables...'**
+  String get searchGradedMicroStories;
+
+  /// No description provided for @gradedStoriesAndMicroReads.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Graded Stories & Daily Micro-Reads'**
+  String gradedStoriesAndMicroReads(Object count);
+
+  /// No description provided for @searchClassicalPoems.
+  ///
+  /// In en, this message translates to:
+  /// **'Search classical poems, authors, verses...'**
+  String get searchClassicalPoems;
+
+  /// No description provided for @classicalPoemsAndVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Classical Poems & Verse'**
+  String classicalPoemsAndVerse(Object count);
+
+  /// No description provided for @browseAnyChineseWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.'**
+  String get browseAnyChineseWebsite;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'COMPLETED'**
+  String get completed;
+
+  /// No description provided for @aiIsReading.
+  ///
+  /// In en, this message translates to:
+  /// **'AI is reading...'**
+  String get aiIsReading;
+
+  /// No description provided for @bbcVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'BBC VERIFY'**
+  String get bbcVerify;
+
+  /// No description provided for @hsk5AdvancedVal.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 5 (Advanced)'**
+  String get hsk5AdvancedVal;
+
+  /// No description provided for @hsk1Beginner.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 1 (Beginner)'**
+  String get hsk1Beginner;
+
+  /// No description provided for @hsk4UpperInt.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 4 (Upper Int)'**
+  String get hsk4UpperInt;
+
+  /// No description provided for @extractAllUnknownWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract all unknown words to a new flashcard deck'**
+  String get extractAllUnknownWords;
+
+  /// No description provided for @designCustomAiRoleplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Design custom AI roleplay & conversation'**
+  String get designCustomAiRoleplay;
+
+  /// No description provided for @practiceFlashcardVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice flashcard vocabulary in a live dialogue'**
+  String get practiceFlashcardVocabulary;
+
+  /// No description provided for @surpriseMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Surprise Me'**
+  String get surpriseMe;
+
+  /// No description provided for @rollCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Roll Character'**
+  String get rollCharacter;
+
+  /// No description provided for @historicalCostume.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical / Costume'**
+  String get historicalCostume;
+
+  /// No description provided for @modernYouth.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern & Youth'**
+  String get modernYouth;
+
+  /// No description provided for @fantasyMythology.
+  ///
+  /// In en, this message translates to:
+  /// **'Fantasy & Mythology'**
+  String get fantasyMythology;
+
+  /// No description provided for @familyDrama.
+  ///
+  /// In en, this message translates to:
+  /// **'Family & Drama'**
+  String get familyDrama;
+
+  /// No description provided for @fullVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Version'**
+  String get fullVersion;
+
+  /// No description provided for @episodesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} episodes'**
+  String episodesCount(Object count);
+
+  /// No description provided for @episodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'EP{number}'**
+  String episodeLabel(Object number);
+
+  /// No description provided for @translating.
+  ///
+  /// In en, this message translates to:
+  /// **'[ Translating... ]'**
+  String get translating;
+
+  /// No description provided for @engSub.
+  ///
+  /// In en, this message translates to:
+  /// **'[ENG SUB]'**
+  String get engSub;
+
+  /// No description provided for @standardVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Vocabulary'**
+  String get standardVocabulary;
+
+  /// No description provided for @characters.
+  ///
+  /// In en, this message translates to:
+  /// **'characters'**
+  String get characters;
 }
 
 class _AppLocalizationsDelegate
