@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+299] - 2026-08-31
+- **Direct FreeDict & WikDict Bilingual Dictionary Matrix Ingestion (Build #299)**:
+  - Ingested the direct **Chinese-Indonesian TEI Dictionary (FreeDict + WikDict, 82,903 entries)** into SQLite `dictionary.db` (Indonesian offline count increased to **30,272 words**).
+  - Ingested the direct **Chinese-Italian (`zho-ita.tei`)** and **Chinese-Portuguese (`zho-por.tei`)** bilingual dictionaries from WikDict TEI into SQLite (Portuguese offline count increased to **16,265 words** and Italian to **15,670 words**).
+  - Verified Arabic WordNet + PanLex offline dictionary indexes.
+  - Rebuilt SQLite B-tree search indexes across all 12 localized definition columns and vacuumed database to **66.84 MB**.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ## [1.0.0+298] - 2026-08-31
 - **Full-Scale Multilingual Pleco & Big BKRS Matrix Ingestion (Build #298)**:
   - Ingested the complete **286,898-word Multilingual Pleco Database** and **300,000-word Big BKRS** into SQLite `dictionary.db`.
