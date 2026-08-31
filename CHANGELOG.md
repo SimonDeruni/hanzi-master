@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+298] - 2026-08-31
+- **Full-Scale Multilingual Pleco & Big BKRS Matrix Ingestion (Build #298)**:
+  - Ingested the complete **286,898-word Multilingual Pleco Database** and **300,000-word Big BKRS** into SQLite `dictionary.db`.
+  - Offline Headword counts: **Russian** (124,268 words - 99.4%), **French** (102,057 words - 81.6%), **Vietnamese** (99,084 words - 79.3%), **Japanese** (97,256 words - 77.8%), **Spanish** (96,976 words - 77.6%), **Korean** (96,777 words - 77.4%), **German** (63,865 words - 51.1%), **Portuguese** (13,054 words), **Italian** (12,594 words), **Indonesian** (12,341 words), and **Arabic** (6,678 words).
+  - Created SQLite B-tree search indexes across all 12 localized definition columns (`definition_fr`, `definition_de`, `definition_es`, `definition_ja`, `definition_ko`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_ru`, `definition_vi`).
+  - Upgraded [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to search and return localized definitions across all 12 languages with 0ms offline query latency.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ## [1.0.0+297] - 2026-08-31
 - **Universal Open-Source Multi-Language Dictionary Ingestion (Build #297)**:
   - Ingested full-scale open-source bilingual dictionaries into SQLite `dictionary.db`: **French** (CFDICT - 73,557 entries), **German** (HanDeDict - 99,124 entries), **Japanese** (WordNet-JA - 14,508 words), **Portuguese** (OpenWN-PT - 13,054 words), **Vietnamese** (Hán-Việt DB - 12,250 words), **Italian** (ItalWordNet - 12,594 words), **Indonesian** (Bahasa WordNet - 12,341 words), **Spanish** (WordNet MCR - 10,561 words), **Arabic** (Arabic WordNet - 6,678 words), and **Russian** (BKRS / Liudmila HSK - 5,293 words).

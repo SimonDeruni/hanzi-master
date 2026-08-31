@@ -119,10 +119,12 @@ class GlobalDictionaryRepository {
     final defRu = row['definition_ru'] as String?;
     final defVi = row['definition_vi'] as String?;
     final defJa = row['definition_ja'] as String?;
+    final defKo = row['definition_ko'] as String?;
     final defIt = row['definition_it'] as String?;
     final defPt = row['definition_pt'] as String?;
     final defId = row['definition_id'] as String?;
     final defAr = row['definition_ar'] as String?;
+    final defHi = row['definition_hi'] as String?;
     final defEn = row['definition'] as String? ?? '';
     
     // Choose primary definition if available
@@ -138,15 +140,19 @@ class GlobalDictionaryRepository {
                         ? defVi
                         : (defJa != null && defJa.isNotEmpty)
                             ? defJa
-                            : (defIt != null && defIt.isNotEmpty)
-                                ? defIt
-                                : (defPt != null && defPt.isNotEmpty)
-                                    ? defPt
-                                    : (defId != null && defId.isNotEmpty)
-                                        ? defId
-                                        : (defAr != null && defAr.isNotEmpty)
-                                            ? defAr
-                                            : defEn;
+                            : (defKo != null && defKo.isNotEmpty)
+                                ? defKo
+                                : (defIt != null && defIt.isNotEmpty)
+                                    ? defIt
+                                    : (defPt != null && defPt.isNotEmpty)
+                                        ? defPt
+                                        : (defId != null && defId.isNotEmpty)
+                                            ? defId
+                                            : (defAr != null && defAr.isNotEmpty)
+                                                ? defAr
+                                                : (defHi != null && defHi.isNotEmpty)
+                                                    ? defHi
+                                                    : defEn;
 
     return Flashcard(
       id: 'global_${row['id']}',
