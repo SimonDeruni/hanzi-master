@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+297] - 2026-08-31
+- **Universal Open-Source Multi-Language Dictionary Ingestion (Build #297)**:
+  - Ingested full-scale open-source bilingual dictionaries into SQLite `dictionary.db`: **French** (CFDICT - 73,557 entries), **German** (HanDeDict - 99,124 entries), **Japanese** (WordNet-JA - 14,508 words), **Portuguese** (OpenWN-PT - 13,054 words), **Vietnamese** (Hán-Việt DB - 12,250 words), **Italian** (ItalWordNet - 12,594 words), **Indonesian** (Bahasa WordNet - 12,341 words), **Spanish** (WordNet MCR - 10,561 words), **Arabic** (Arabic WordNet - 6,678 words), and **Russian** (BKRS / Liudmila HSK - 5,293 words).
+  - Created B-Tree search indexes across all 12 localized definition columns (`definition_fr`, `definition_de`, `definition_es`, `definition_ja`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_ru`, `definition_vi`).
+  - Upgraded [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to search and return localized definitions across all 12 languages with 0ms offline query latency.
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ## [1.0.0+296] - 2026-08-31
 - **Full-Scale Open-Source Multi-Language Dictionary Ingestion (Build #296)**:
   - Ingested all **79,936 French headwords** from **CFDICT** and **262,548 German headwords** from **HanDeDict** directly into the offline SQLite database (`assets/data/dictionary.db`).

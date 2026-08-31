@@ -66,7 +66,7 @@ class GlobalDictionaryRepository {
         '%$q%', '%$q%'         // Match condition
       ];
     } else {
-      // It's ascii or foreign text, so it could be Pinyin or a translated definition (EN, FR, DE).
+      // It's ascii or foreign text, so it could be Pinyin or a translated definition.
       final pinyinSearch = q.replaceAll(RegExp(r'[0-9]'), ''); 
       final cleanSearch = pinyinSearch.replaceAll(' ', ''); 
 
@@ -74,27 +74,27 @@ class GlobalDictionaryRepository {
         SELECT *,
           CASE 
             WHEN REPLACE(pinyin_no_tones, ' ', '') = ? THEN 1
-            WHEN definition = ? OR definition_fr = ? OR definition_de = ? THEN 1
+            WHEN definition = ? OR definition_fr = ? OR definition_de = ? OR definition_es = ? OR definition_ru = ? OR definition_vi = ? OR definition_ja = ? OR definition_it = ? OR definition_pt = ? OR definition_id = ? OR definition_ar = ? THEN 1
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 2
-            WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? THEN 2
+            WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? THEN 2
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 3
             WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? THEN 3
             ELSE 4
           END as rank
         FROM words
-        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ?
+        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? OR definition_ru LIKE ? OR definition_vi LIKE ? OR definition_ja LIKE ? OR definition_it LIKE ? OR definition_pt LIKE ? OR definition_id LIKE ? OR definition_ar LIKE ?
         ORDER BY rank ASC, LENGTH(simplified) ASC
         LIMIT 50
       ''';
       args = [
         cleanSearch,           // Pinyin exact
-        q, q, q,               // Def exact (EN, FR, DE)
+        q, q, q, q, q, q, q, q, q, q, q, // Def exact (all langs)
         '$cleanSearch %',      // Pinyin boundary
-        '% $q %', '% $q %', '% $q %', // Def boundaries
+        '% $q %', '% $q %', '% $q %', '% $q %', // Def boundaries
         '$cleanSearch%',       // Pinyin prefix
         '$q%', '$q%', '$q%',   // Def prefix
         '%$cleanSearch%',      // Match condition Pinyin
-        '%$q%', '%$q%', '%$q%' // Match condition Def
+        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%' // Match condition Def
       ];
     }
 
@@ -115,6 +115,14 @@ class GlobalDictionaryRepository {
     final rawPinyin = row['pinyin'] as String? ?? '';
     final defFr = row['definition_fr'] as String?;
     final defDe = row['definition_de'] as String?;
+    final defEs = row['definition_es'] as String?;
+    final defRu = row['definition_ru'] as String?;
+    final defVi = row['definition_vi'] as String?;
+    final defJa = row['definition_ja'] as String?;
+    final defIt = row['definition_it'] as String?;
+    final defPt = row['definition_pt'] as String?;
+    final defId = row['definition_id'] as String?;
+    final defAr = row['definition_ar'] as String?;
     final defEn = row['definition'] as String? ?? '';
     
     // Choose primary definition if available
@@ -122,7 +130,23 @@ class GlobalDictionaryRepository {
         ? defFr
         : (defDe != null && defDe.isNotEmpty)
             ? defDe
-            : defEn;
+            : (defEs != null && defEs.isNotEmpty)
+                ? defEs
+                : (defRu != null && defRu.isNotEmpty)
+                    ? defRu
+                    : (defVi != null && defVi.isNotEmpty)
+                        ? defVi
+                        : (defJa != null && defJa.isNotEmpty)
+                            ? defJa
+                            : (defIt != null && defIt.isNotEmpty)
+                                ? defIt
+                                : (defPt != null && defPt.isNotEmpty)
+                                    ? defPt
+                                    : (defId != null && defId.isNotEmpty)
+                                        ? defId
+                                        : (defAr != null && defAr.isNotEmpty)
+                                            ? defAr
+                                            : defEn;
 
     return Flashcard(
       id: 'global_${row['id']}',
