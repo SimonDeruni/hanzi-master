@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-08-31
+- Added in-app account deletion with provider reauthentication, Apple credential revocation support, clear local-data and subscription disclosures, localized copy, and widget tests.
+- Made the premium offer dismissible, added subscription/legal disclosures, and made its content scroll safely on smaller viewports.
+- Localized character-chat labels and errors through canonical ARB entries, improved French translations, and regenerated localization classes.
+- Updated onboarding/paywall navigation and target-language AI output behavior.
+- Verification: `flutter gen-l10n` is stable; 7 focused account/paywall widget tests pass; the full suite passes 50 tests with only the two previously documented `StrokeMatcher` failures remaining.
+
 ## [1.0.0+300] - 2026-08-31
 - **Dynamic Offline-First Multilingual Dictionary Resolution with Fallback (Build #300)**:
   - Updated [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to automatically extract target language definitions (`definition_fr`, `definition_de`, `definition_es`, `definition_ru`, `definition_vi`, `definition_ja`, `definition_ko`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_hi`) directly based on the user's active locale with canonical English fallback.

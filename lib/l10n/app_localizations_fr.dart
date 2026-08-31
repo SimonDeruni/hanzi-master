@@ -9,6 +9,168 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get originStoryChip => '📜 Origin story';
+
+  @override
+  String get ancientFormChip => '🏺 Ancient form';
+
+  @override
+  String get threeMoreWordsChip => '📖 3 more words';
+
+  @override
+  String get wordFamilyChip => '🔗 Word family';
+
+  @override
+  String get idiomChip => '🀄 Idiom';
+
+  @override
+  String get proverbChip => '💬 Proverb';
+
+  @override
+  String get strokeOrderChip => '✏️ Stroke order';
+
+  @override
+  String get calligraphyTipChip => '🎨 Calligraphy tip';
+
+  @override
+  String get grammarNoteChip => '📝 Grammar note';
+
+  @override
+  String get similarWordsChip => '🔄 Similar words';
+
+  @override
+  String get culturalNoteChip => '🏮 Cultural note';
+
+  @override
+  String get inMediaChip => '🀄 In media';
+
+  @override
+  String get radicalMeaningChip => '🧩 Radical meaning';
+
+  @override
+  String get componentBreakdownChip => '🔍 Component breakdown';
+
+  @override
+  String get toneTipChip => '🎵 Tone tip';
+
+  @override
+  String get homophonesChip => '👯 Homophones';
+
+  @override
+  String askMeAnythingAbout(String hanzi) {
+    return 'Ask me anything about $hanzi...';
+  }
+
+  @override
+  String aiTutorError(String error) {
+    return 'AI tutor error: $error';
+  }
+
+  @override
+  String get aiTutorRateLimit =>
+      'The AI tutor is busy right now. Please wait a moment and try again.';
+
+  @override
+  String get deleteAccount => 'Supprimer le compte';
+
+  @override
+  String get deleteAccountSubtitle => 'Supprimer définitivement votre compte';
+
+  @override
+  String get deleteAccountTitle => 'Supprimer définitivement votre compte ?';
+
+  @override
+  String get accountDataDeletedTitle =>
+      'Les données du compte seront supprimées';
+
+  @override
+  String get accountDataDeletedBody =>
+      'Votre compte de connexion et les informations détenues par SinoSpark seront définitivement supprimés. Cette action est irréversible.';
+
+  @override
+  String get localDataKeptTitle =>
+      'Les données de cet appareil seront conservées';
+
+  @override
+  String get localDataKeptBody =>
+      'La progression, les téléchargements et les préférences stockés uniquement sur cet appareil ne seront pas supprimés.';
+
+  @override
+  String get subscriptionNotCanceledTitle =>
+      'Les abonnements ne sont pas annulés';
+
+  @override
+  String get subscriptionNotCanceledBody =>
+      'Supprimer votre compte n\'annule pas un abonnement App Store. Il peut continuer à se renouveler jusqu\'à son annulation auprès d\'Apple.';
+
+  @override
+  String get manageSubscription => 'Gérer l\'abonnement App Store';
+
+  @override
+  String get subscriptionManagementFailed =>
+      'Impossible d\'ouvrir la gestion des abonnements Apple. Ouvrez Réglages, touchez votre nom, puis Abonnements.';
+
+  @override
+  String get confirmPassword => 'Mot de passe actuel';
+
+  @override
+  String get confirmPasswordToDelete =>
+      'Saisissez votre mot de passe pour confirmer votre identité.';
+
+  @override
+  String get deleteAccountPermanently => 'Supprimer définitivement le compte';
+
+  @override
+  String get deleteAccountFinalTitle => 'Confirmation finale';
+
+  @override
+  String get deleteAccountFinalWarning =>
+      'Votre compte sera définitivement supprimé. Cette action est irréversible. Les données stockées uniquement sur cet appareil resteront. Continuer ?';
+
+  @override
+  String get deletingAccount => 'Suppression du compte...';
+
+  @override
+  String get accountPasswordRequired =>
+      'Saisissez votre mot de passe actuel pour continuer.';
+
+  @override
+  String get accountPasswordIncorrect =>
+      'Le mot de passe est incorrect. Réessayez.';
+
+  @override
+  String get accountReauthenticationCanceled =>
+      'La confirmation d\'identité a été annulée. Votre compte n\'a pas été supprimé.';
+
+  @override
+  String get accountReauthenticationFailed =>
+      'Impossible de confirmer votre identité. Réessayez et terminez la connexion.';
+
+  @override
+  String get accountAlreadySignedOut =>
+      'Vous êtes déjà déconnecté. Aucun compte n\'a été supprimé.';
+
+  @override
+  String get accountProviderUnsupported =>
+      'Cette méthode de connexion ne peut pas être vérifiée dans l\'app. Contactez l\'assistance.';
+
+  @override
+  String get appleDeletionRequiresAppleDevice =>
+      'Pour des raisons de sécurité, un compte lié à Apple doit être supprimé sur un appareil Apple.';
+
+  @override
+  String get accountDeletionNetworkError =>
+      'Vérifiez votre connexion Internet et réessayez de supprimer le compte.';
+
+  @override
+  String get accountDeletionFailed =>
+      'Le compte n\'a pas pu être supprimé et reste actif. Réessayez.';
+
+  @override
+  String get accountDeletedSuccessfully =>
+      'Votre compte a été définitivement supprimé.';
+
+  @override
   String get globalMastery => 'MAÎTRISE GLOBALE';
 
   @override
@@ -229,46 +391,46 @@ class AppLocalizationsFr extends AppLocalizations {
   String get returnToMenu => 'Retour';
 
   @override
-  String get strokeAnalysis => 'Stroke Analysis';
+  String get strokeAnalysis => 'Analyse des traits';
 
   @override
-  String get excellentWork => 'Excellent work!';
+  String get excellentWork => 'Excellent travail !';
 
   @override
-  String get keepPracticing => 'Keep practicing!';
+  String get keepPracticing => 'Continuez à vous entraîner !';
 
   @override
-  String get drawingSubmitted => 'Drawing Submitted';
+  String get drawingSubmitted => 'Dessin soumis';
 
   @override
-  String get customPersonaHint => 'Define a custom persona...';
+  String get customPersonaHint => 'Définissez un persona personnalisé...';
 
   @override
-  String get stepOneOrigin => 'STEP 1: THE ORIGIN';
+  String get stepOneOrigin => 'ÉTAPE 1 : L\'ORIGINE';
 
   @override
-  String get stepTwoForge => 'STEP 2: THE FORGE';
+  String get stepTwoForge => 'ÉTAPE 2 : LA FORGE';
 
   @override
-  String get toForge => 'To forge';
+  String get toForge => 'Forger';
 
   @override
-  String get whatEssenceDoesNeed => 'what essence does';
+  String get whatEssenceDoesNeed => 'quelle essence';
 
   @override
-  String get need => 'need';
+  String get need => 'a besoin';
 
   @override
-  String get forged => 'FORGED';
+  String get forged => 'FORGÉ';
 
   @override
-  String get stepThreeHunt => 'STEP 3: THE HUNT';
+  String get stepThreeHunt => 'ÉTAPE 3 : LA CHASSE';
 
   @override
-  String get findCharactersWith => 'Find characters with';
+  String get findCharactersWith => 'Trouvez les caractères avec';
 
   @override
-  String get uninstallButton => 'UNINSTALL';
+  String get uninstallButton => 'DÉSINSTALLER';
 
   @override
   String get gradedAiStories => 'Histoires IA';
@@ -277,43 +439,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get calligraphy => 'Calligraphie';
 
   @override
-  String get theScrollOfOrigin => 'The Scroll Of Origin';
+  String get theScrollOfOrigin => 'Le Parchemin d\'Origine';
 
   @override
-  String get galaxyOf => 'Galaxy Of';
+  String get galaxyOf => 'Galaxie de';
 
   @override
-  String get constellationDescription => 'Constellation Description';
+  String get constellationDescription => 'Description de la constellation';
 
   @override
-  String get noRadicalDataAvailable => 'No Radical Data Available';
+  String get noRadicalDataAvailable => 'Aucune donnée radicale disponible';
 
   @override
-  String get learningPreferences => 'Learning Preferences';
+  String get learningPreferences => 'Préférences d\'apprentissage';
 
   @override
-  String get hardMode => 'Hard Mode';
+  String get hardMode => 'Mode difficile';
 
   @override
-  String get hardModeDesc => 'Hard Mode Desc';
+  String get hardModeDesc => 'Description du mode difficile';
 
   @override
-  String get adaptiveGuidance => 'Adaptive Guidance';
+  String get adaptiveGuidance => 'Guidage adaptatif';
 
   @override
-  String get dailyGoal => 'Daily Goal';
+  String get dailyGoal => 'Objectif quotidien';
 
   @override
   String get audioAndHaptics => 'Audio et haptique';
 
   @override
-  String get autoPlayAudio => 'Auto Play Audio';
+  String get autoPlayAudio => 'Lecture audio automatique';
 
   @override
-  String get autoPlayDesc => 'Auto Play Desc';
+  String get autoPlayDesc => 'Description de la lecture automatique';
 
   @override
-  String get haptics => 'Haptics';
+  String get haptics => 'Haptique';
 
   @override
   String get displayAndContent => 'Affichage et contenu';
@@ -329,10 +491,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get animationSpeed => 'Vitesse d\'animation';
 
   @override
-  String get manageTomes => 'Manage Tomes';
+  String get manageTomes => 'Gérer les tomes';
 
   @override
-  String get manageTomesDesc => 'Manage Tomes Desc';
+  String get manageTomesDesc => 'Description de la gestion des tomes';
 
   @override
   String get dangerZone => 'Zone dangereuse';
@@ -345,13 +507,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Cela supprimera définitivement toutes vos données de progression, statistiques et paramètres. Cette action est irréversible.';
 
   @override
-  String get areYouSure => 'Are You Sure';
+  String get areYouSure => 'Êtes-vous sûr ?';
 
   @override
-  String get cannotBeUndone => 'Cannot Be Undone';
+  String get cannotBeUndone => 'Ne peut pas être annulé';
 
   @override
-  String get deleteEverything => 'Delete Everything';
+  String get deleteEverything => 'Tout supprimer';
 
   @override
   String get appLanguage => 'Langue de l\'application';

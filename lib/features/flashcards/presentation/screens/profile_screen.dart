@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/settings_s
 import 'package:hanzi_master/features/settings/presentation/screens/qa_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
+import 'package:hanzi_master/features/auth/presentation/screens/delete_account_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -16,6 +17,7 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final user = ref.watch(currentUserProvider);
 
     return Scaffold(
       backgroundColor:
@@ -147,6 +149,55 @@ class ProfileScreen extends ConsumerWidget {
                 onTap: () => Navigator.push(context,
                     SwipeBackPageRoute(builder: (context) => const QAScreen())),
               ),
+              if (user != null) ...[
+                _buildDivider(),
+                ListTile(
+                  key: const Key('delete-account-tile'),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  leading: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.red.withValues(alpha: 0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.delete_forever_outlined,
+                        color: Colors.red),
+                  ),
+                  title: Text(
+                    AppLocalizations.of(context)!.deleteAccount,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: Colors.red,
+                    ),
+                  ),
+                  subtitle: Text(
+                    AppLocalizations.of(context)!.deleteAccountSubtitle,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  trailing: const Icon(Icons.chevron_right, color: Colors.red),
+                  onTap: () async {
+                    final controller = ref.read(authControllerProvider);
+                    final deleted = await Navigator.push<bool>(
+                      context,
+                      SwipeBackPageRoute(
+                        builder: (context) => DeleteAccountScreen(
+                          usesPassword: controller.currentUserUsesPassword,
+                        ),
+                      ),
+                    );
+                    if (deleted == true && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(AppLocalizations.of(context)!
+                              .accountDeletedSuccessfully),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
             ],
           ),
         ],

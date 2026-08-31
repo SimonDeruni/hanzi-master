@@ -30,66 +30,69 @@ class _FollowUpChip {
   const _FollowUpChip(this.label, this.prompt);
 }
 
-const _allChips = <_ChipGroup, List<_FollowUpChip>>{
-  _ChipGroup.history: [
-    _FollowUpChip('📜 Origin story',
-        'What is the oracle bone script origin of this character?'),
-    _FollowUpChip('🏺 Ancient form',
-        'How did the ancient form of this character evolve over time?'),
-  ],
-  _ChipGroup.words: [
-    _FollowUpChip('📖 3 more words',
-        'Give me 3 common words that contain this character.'),
-    _FollowUpChip(
-        '🔗 Word family', 'What other characters share the same radical?'),
-  ],
-  _ChipGroup.idioms: [
-    _FollowUpChip('🀄 Idiom',
-        'Is there a popular Chinese idiom (成语) using this character?'),
-    _FollowUpChip('💬 Proverb',
-        'Is there a Chinese proverb or saying featuring this character?'),
-  ],
-  _ChipGroup.stroke: [
-    _FollowUpChip('✏️ Stroke order',
-        'Explain the stroke order rules for this character.'),
-    _FollowUpChip('🎨 Calligraphy tip',
-        'Give me one calligraphy tip for writing this character beautifully.'),
-  ],
-  _ChipGroup.grammar: [
-    _FollowUpChip('📝 Grammar note',
-        'Is there anything tricky about using this grammatically?'),
-    _FollowUpChip('🔄 Similar words',
-        'What words are commonly confused with this one and why?'),
-  ],
-  _ChipGroup.culture: [
-    _FollowUpChip('🏮 Cultural note',
-        'Does this character carry cultural symbolism in China?'),
-    _FollowUpChip('🀄 In media',
-        'Is this character commonly seen in Chinese movies, songs, or texts?'),
-  ],
-  _ChipGroup.radicals: [
-    _FollowUpChip(
-        '🧩 Radical meaning', 'What does the radical of this character mean?'),
-    _FollowUpChip('🔍 Component breakdown',
-        'Break down every component and its meaning.'),
-  ],
-  _ChipGroup.tone: [
-    _FollowUpChip('🎵 Tone tip',
-        'Give me a trick to remember the correct tone for this character.'),
-    _FollowUpChip('👯 Homophones',
-        'Are there common homophones that are often confused with this?'),
-  ],
-};
+Map<_ChipGroup, List<_FollowUpChip>> _allChips(AppLocalizations l10n) {
+  return <_ChipGroup, List<_FollowUpChip>>{
+    _ChipGroup.history: [
+      _FollowUpChip(l10n.originStoryChip,
+          'What is the oracle bone script origin of this character?'),
+      _FollowUpChip(l10n.ancientFormChip,
+          'How did the ancient form of this character evolve over time?'),
+    ],
+    _ChipGroup.words: [
+      _FollowUpChip(l10n.threeMoreWordsChip,
+          'Give me 3 common words that contain this character.'),
+      _FollowUpChip(
+          l10n.wordFamilyChip, 'What other characters share the same radical?'),
+    ],
+    _ChipGroup.idioms: [
+      _FollowUpChip(l10n.idiomChip,
+          'Is there a popular Chinese idiom (成语) using this character?'),
+      _FollowUpChip(l10n.proverbChip,
+          'Is there a Chinese proverb or saying featuring this character?'),
+    ],
+    _ChipGroup.stroke: [
+      _FollowUpChip(l10n.strokeOrderChip,
+          'Explain the stroke order rules for this character.'),
+      _FollowUpChip(l10n.calligraphyTipChip,
+          'Give me one calligraphy tip for writing this character beautifully.'),
+    ],
+    _ChipGroup.grammar: [
+      _FollowUpChip(l10n.grammarNoteChip,
+          'Is there anything tricky about using this grammatically?'),
+      _FollowUpChip(l10n.similarWordsChip,
+          'What words are commonly confused with this one and why?'),
+    ],
+    _ChipGroup.culture: [
+      _FollowUpChip(l10n.culturalNoteChip,
+          'Does this character carry cultural symbolism in China?'),
+      _FollowUpChip(l10n.inMediaChip,
+          'Is this character commonly seen in Chinese movies, songs, or texts?'),
+    ],
+    _ChipGroup.radicals: [
+      _FollowUpChip(l10n.radicalMeaningChip,
+          'What does the radical of this character mean?'),
+      _FollowUpChip(l10n.componentBreakdownChip,
+          'Break down every component and its meaning.'),
+    ],
+    _ChipGroup.tone: [
+      _FollowUpChip(l10n.toneTipChip,
+          'Give me a trick to remember the correct tone for this character.'),
+      _FollowUpChip(l10n.homophonesChip,
+          'Are there common homophones that are often confused with this?'),
+    ],
+  };
+}
 
-List<_FollowUpChip> _chipsForIndex(int replyIndex) {
+List<_FollowUpChip> _chipsForIndex(int replyIndex, AppLocalizations l10n) {
   const groups = _ChipGroup.values;
   final group1 = groups[replyIndex % groups.length];
   final group2 = groups[(replyIndex + 1) % groups.length];
   final group3 = groups[(replyIndex + 3) % groups.length];
+  final chips = _allChips(l10n);
   return [
-    _allChips[group1]![0],
-    _allChips[group2]![0],
-    _allChips[group3]![0],
+    chips[group1]![0],
+    chips[group2]![0],
+    chips[group3]![0],
   ];
 }
 
@@ -206,12 +209,6 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
   @override
   void initState() {
     super.initState();
-    _messages.add(ChatMessage(
-      text:
-          'Ask me anything about **${widget.hanzi}** — history, usage, culture, or grammar.',
-      isUser: false,
-      chips: _chipsForIndex(0),
-    ));
   }
 
   @override
@@ -223,6 +220,13 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
           .read(geminiServiceProvider)
           .startCharacterChat(widget.hanzi, langCode);
       _isSessionInitialized = true;
+
+      final l10n = AppLocalizations.of(context)!;
+      _messages.add(ChatMessage(
+        text: l10n.askMeAnythingAbout(widget.hanzi),
+        isUser: false,
+        chips: _chipsForIndex(0, l10n),
+      ));
     }
   }
 
@@ -235,6 +239,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
 
   Future<void> _sendMessage(String text) async {
     if (text.trim().isEmpty) return;
+    final l10n = AppLocalizations.of(context)!;
     setState(() {
       _messages.add(ChatMessage(text: text, isUser: true));
       _isLoading = true;
@@ -263,18 +268,17 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
         _messages.add(ChatMessage(
           text: rawText,
           isUser: false,
-          chips: _chipsForIndex(_aiReplyCount),
+          chips: _chipsForIndex(_aiReplyCount, l10n),
         ));
         _isLoading = false;
       });
       _scrollToBottom();
     } catch (e) {
       final errorStr = e.toString();
-      String userMessage = 'Error reaching tutor: $errorStr';
+      String userMessage = l10n.aiTutorError(errorStr);
 
       if (errorStr.contains('Quota exceeded') || errorStr.contains('429')) {
-        userMessage =
-            '⏳ Whoa there! The AI tutor is taking a breather (Google API Free Tier limits). Please wait about 30 seconds before asking another question!';
+        userMessage = l10n.aiTutorRateLimit;
       }
 
       setState(() {
@@ -363,7 +367,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
           const Icon(Icons.auto_awesome, color: Colors.indigo, size: 18),
           const SizedBox(width: 8),
           Text(
-            "Scholar's Desk",
+            AppLocalizations.of(context)!.scholarsDesk,
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w700,

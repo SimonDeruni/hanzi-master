@@ -120,6 +120,282 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
+  /// No description provided for @originStoryChip.
+  ///
+  /// In en, this message translates to:
+  /// **'📜 Origin story'**
+  String get originStoryChip;
+
+  /// No description provided for @ancientFormChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🏺 Ancient form'**
+  String get ancientFormChip;
+
+  /// No description provided for @threeMoreWordsChip.
+  ///
+  /// In en, this message translates to:
+  /// **'📖 3 more words'**
+  String get threeMoreWordsChip;
+
+  /// No description provided for @wordFamilyChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🔗 Word family'**
+  String get wordFamilyChip;
+
+  /// No description provided for @idiomChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🀄 Idiom'**
+  String get idiomChip;
+
+  /// No description provided for @proverbChip.
+  ///
+  /// In en, this message translates to:
+  /// **'💬 Proverb'**
+  String get proverbChip;
+
+  /// No description provided for @strokeOrderChip.
+  ///
+  /// In en, this message translates to:
+  /// **'✏️ Stroke order'**
+  String get strokeOrderChip;
+
+  /// No description provided for @calligraphyTipChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🎨 Calligraphy tip'**
+  String get calligraphyTipChip;
+
+  /// No description provided for @grammarNoteChip.
+  ///
+  /// In en, this message translates to:
+  /// **'📝 Grammar note'**
+  String get grammarNoteChip;
+
+  /// No description provided for @similarWordsChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🔄 Similar words'**
+  String get similarWordsChip;
+
+  /// No description provided for @culturalNoteChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🏮 Cultural note'**
+  String get culturalNoteChip;
+
+  /// No description provided for @inMediaChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🀄 In media'**
+  String get inMediaChip;
+
+  /// No description provided for @radicalMeaningChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🧩 Radical meaning'**
+  String get radicalMeaningChip;
+
+  /// No description provided for @componentBreakdownChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🔍 Component breakdown'**
+  String get componentBreakdownChip;
+
+  /// No description provided for @toneTipChip.
+  ///
+  /// In en, this message translates to:
+  /// **'🎵 Tone tip'**
+  String get toneTipChip;
+
+  /// No description provided for @homophonesChip.
+  ///
+  /// In en, this message translates to:
+  /// **'👯 Homophones'**
+  String get homophonesChip;
+
+  /// No description provided for @askMeAnythingAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me anything about {hanzi}...'**
+  String askMeAnythingAbout(String hanzi);
+
+  /// No description provided for @aiTutorError.
+  ///
+  /// In en, this message translates to:
+  /// **'AI tutor error: {error}'**
+  String aiTutorError(String error);
+
+  /// No description provided for @aiTutorRateLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'The AI tutor is busy right now. Please wait a moment and try again.'**
+  String get aiTutorRateLimit;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Permanently delete your account'**
+  String get deleteAccountSubtitle;
+
+  /// No description provided for @deleteAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Permanently delete your account?'**
+  String get deleteAccountTitle;
+
+  /// No description provided for @accountDataDeletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Account data will be deleted'**
+  String get accountDataDeletedTitle;
+
+  /// No description provided for @accountDataDeletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your sign-in account and account information held by SinoSpark will be permanently deleted. This cannot be undone.'**
+  String get accountDataDeletedBody;
+
+  /// No description provided for @localDataKeptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data on this device will remain'**
+  String get localDataKeptTitle;
+
+  /// No description provided for @localDataKeptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Study progress, downloaded content, and preferences stored only on this device will not be removed.'**
+  String get localDataKeptBody;
+
+  /// No description provided for @subscriptionNotCanceledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions are not canceled'**
+  String get subscriptionNotCanceledTitle;
+
+  /// No description provided for @subscriptionNotCanceledBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting your account does not cancel an App Store subscription. It may continue to renew until you cancel it with Apple.'**
+  String get subscriptionNotCanceledBody;
+
+  /// No description provided for @manageSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage App Store Subscription'**
+  String get manageSubscription;
+
+  /// No description provided for @subscriptionManagementFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open Apple subscription management. Open Settings, tap your name, then tap Subscriptions.'**
+  String get subscriptionManagementFailed;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get confirmPassword;
+
+  /// No description provided for @confirmPasswordToDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password to confirm your identity.'**
+  String get confirmPasswordToDelete;
+
+  /// No description provided for @deleteAccountPermanently.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account Permanently'**
+  String get deleteAccountPermanently;
+
+  /// No description provided for @deleteAccountFinalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Final confirmation'**
+  String get deleteAccountFinalTitle;
+
+  /// No description provided for @deleteAccountFinalWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently deletes your account and cannot be undone. Data stored only on this device will remain. Continue?'**
+  String get deleteAccountFinalWarning;
+
+  /// No description provided for @deletingAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting account...'**
+  String get deletingAccount;
+
+  /// No description provided for @accountPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your current password to continue.'**
+  String get accountPasswordRequired;
+
+  /// No description provided for @accountPasswordIncorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'The password is incorrect. Please try again.'**
+  String get accountPasswordIncorrect;
+
+  /// No description provided for @accountReauthenticationCanceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity confirmation was canceled. Your account was not deleted.'**
+  String get accountReauthenticationCanceled;
+
+  /// No description provided for @accountReauthenticationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not confirm your identity. Please try again and complete the sign-in prompt.'**
+  String get accountReauthenticationFailed;
+
+  /// No description provided for @accountAlreadySignedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'You are already signed out. No signed-in account was deleted.'**
+  String get accountAlreadySignedOut;
+
+  /// No description provided for @accountProviderUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This sign-in method cannot be verified in the app. Contact support for help deleting the account.'**
+  String get accountProviderUnsupported;
+
+  /// No description provided for @appleDeletionRequiresAppleDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'For security, an account linked to Apple must be deleted on an Apple device.'**
+  String get appleDeletionRequiresAppleDevice;
+
+  /// No description provided for @accountDeletionNetworkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your internet connection and try deleting the account again.'**
+  String get accountDeletionNetworkError;
+
+  /// No description provided for @accountDeletionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The account could not be deleted. Your account remains active. Please try again.'**
+  String get accountDeletionFailed;
+
+  /// No description provided for @accountDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account was permanently deleted.'**
+  String get accountDeletedSuccessfully;
+
   /// No description provided for @globalMastery.
   ///
   /// In en, this message translates to:

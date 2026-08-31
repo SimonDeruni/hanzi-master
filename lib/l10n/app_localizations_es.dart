@@ -9,6 +9,166 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get originStoryChip => '📜 Origin story';
+
+  @override
+  String get ancientFormChip => '🏺 Ancient form';
+
+  @override
+  String get threeMoreWordsChip => '📖 3 more words';
+
+  @override
+  String get wordFamilyChip => '🔗 Word family';
+
+  @override
+  String get idiomChip => '🀄 Idiom';
+
+  @override
+  String get proverbChip => '💬 Proverb';
+
+  @override
+  String get strokeOrderChip => '✏️ Stroke order';
+
+  @override
+  String get calligraphyTipChip => '🎨 Calligraphy tip';
+
+  @override
+  String get grammarNoteChip => '📝 Grammar note';
+
+  @override
+  String get similarWordsChip => '🔄 Similar words';
+
+  @override
+  String get culturalNoteChip => '🏮 Cultural note';
+
+  @override
+  String get inMediaChip => '🀄 In media';
+
+  @override
+  String get radicalMeaningChip => '🧩 Radical meaning';
+
+  @override
+  String get componentBreakdownChip => '🔍 Component breakdown';
+
+  @override
+  String get toneTipChip => '🎵 Tone tip';
+
+  @override
+  String get homophonesChip => '👯 Homophones';
+
+  @override
+  String askMeAnythingAbout(String hanzi) {
+    return 'Ask me anything about $hanzi...';
+  }
+
+  @override
+  String aiTutorError(String error) {
+    return 'AI tutor error: $error';
+  }
+
+  @override
+  String get aiTutorRateLimit =>
+      'The AI tutor is busy right now. Please wait a moment and try again.';
+
+  @override
+  String get deleteAccount => 'Eliminar cuenta';
+
+  @override
+  String get deleteAccountSubtitle => 'Eliminar tu cuenta permanentemente';
+
+  @override
+  String get deleteAccountTitle => '¿Eliminar tu cuenta permanentemente?';
+
+  @override
+  String get accountDataDeletedTitle => 'Se eliminarán los datos de la cuenta';
+
+  @override
+  String get accountDataDeletedBody =>
+      'Tu cuenta de acceso y la información de cuenta que conserva SinoSpark se eliminarán permanentemente. Esto no se puede deshacer.';
+
+  @override
+  String get localDataKeptTitle =>
+      'Los datos de este dispositivo se conservarán';
+
+  @override
+  String get localDataKeptBody =>
+      'El progreso de estudio, las descargas y las preferencias almacenadas solo en este dispositivo no se eliminarán.';
+
+  @override
+  String get subscriptionNotCanceledTitle => 'Las suscripciones no se cancelan';
+
+  @override
+  String get subscriptionNotCanceledBody =>
+      'Eliminar tu cuenta no cancela una suscripción de App Store. Puede seguir renovándose hasta que la canceles con Apple.';
+
+  @override
+  String get manageSubscription => 'Gestionar suscripción de App Store';
+
+  @override
+  String get subscriptionManagementFailed =>
+      'No se pudo abrir la gestión de suscripciones de Apple. Abre Ajustes, toca tu nombre y luego Suscripciones.';
+
+  @override
+  String get confirmPassword => 'Contraseña actual';
+
+  @override
+  String get confirmPasswordToDelete =>
+      'Introduce tu contraseña para confirmar tu identidad.';
+
+  @override
+  String get deleteAccountPermanently => 'Eliminar cuenta permanentemente';
+
+  @override
+  String get deleteAccountFinalTitle => 'Confirmación final';
+
+  @override
+  String get deleteAccountFinalWarning =>
+      'Esto elimina tu cuenta permanentemente y no se puede deshacer. Los datos guardados solo en este dispositivo se conservarán. ¿Continuar?';
+
+  @override
+  String get deletingAccount => 'Eliminando cuenta...';
+
+  @override
+  String get accountPasswordRequired =>
+      'Introduce tu contraseña actual para continuar.';
+
+  @override
+  String get accountPasswordIncorrect =>
+      'La contraseña es incorrecta. Inténtalo de nuevo.';
+
+  @override
+  String get accountReauthenticationCanceled =>
+      'Se canceló la confirmación de identidad. Tu cuenta no se eliminó.';
+
+  @override
+  String get accountReauthenticationFailed =>
+      'No pudimos confirmar tu identidad. Inténtalo de nuevo y completa el inicio de sesión.';
+
+  @override
+  String get accountAlreadySignedOut =>
+      'Ya cerraste sesión. No se eliminó ninguna cuenta.';
+
+  @override
+  String get accountProviderUnsupported =>
+      'Este método de acceso no se puede verificar en la app. Contacta con soporte.';
+
+  @override
+  String get appleDeletionRequiresAppleDevice =>
+      'Por seguridad, una cuenta vinculada con Apple debe eliminarse en un dispositivo Apple.';
+
+  @override
+  String get accountDeletionNetworkError =>
+      'Comprueba tu conexión a internet e intenta eliminar la cuenta de nuevo.';
+
+  @override
+  String get accountDeletionFailed =>
+      'No se pudo eliminar la cuenta. Tu cuenta sigue activa. Inténtalo de nuevo.';
+
+  @override
+  String get accountDeletedSuccessfully =>
+      'Tu cuenta se eliminó permanentemente.';
+
+  @override
   String get globalMastery => 'DOMINIO GLOBAL';
 
   @override

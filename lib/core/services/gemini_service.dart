@@ -2783,7 +2783,7 @@ Output JSON matching this exact structure:
     return {
       'fullTranslation':
           json['fullTranslation'] as String? ?? 'No translation available.',
-      'deckName': json['deckName'] as String? ?? 'Scan Results',
+      'deckName': json['deckName'] as String? ?? '$targetLanguage Scan Results',
       'words': words,
     };
   }

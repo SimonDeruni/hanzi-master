@@ -9,6 +9,165 @@ class AppLocalizationsId extends AppLocalizations {
   AppLocalizationsId([String locale = 'id']) : super(locale);
 
   @override
+  String get originStoryChip => '📜 Origin story';
+
+  @override
+  String get ancientFormChip => '🏺 Ancient form';
+
+  @override
+  String get threeMoreWordsChip => '📖 3 more words';
+
+  @override
+  String get wordFamilyChip => '🔗 Word family';
+
+  @override
+  String get idiomChip => '🀄 Idiom';
+
+  @override
+  String get proverbChip => '💬 Proverb';
+
+  @override
+  String get strokeOrderChip => '✏️ Stroke order';
+
+  @override
+  String get calligraphyTipChip => '🎨 Calligraphy tip';
+
+  @override
+  String get grammarNoteChip => '📝 Grammar note';
+
+  @override
+  String get similarWordsChip => '🔄 Similar words';
+
+  @override
+  String get culturalNoteChip => '🏮 Cultural note';
+
+  @override
+  String get inMediaChip => '🀄 In media';
+
+  @override
+  String get radicalMeaningChip => '🧩 Radical meaning';
+
+  @override
+  String get componentBreakdownChip => '🔍 Component breakdown';
+
+  @override
+  String get toneTipChip => '🎵 Tone tip';
+
+  @override
+  String get homophonesChip => '👯 Homophones';
+
+  @override
+  String askMeAnythingAbout(String hanzi) {
+    return 'Ask me anything about $hanzi...';
+  }
+
+  @override
+  String aiTutorError(String error) {
+    return 'AI tutor error: $error';
+  }
+
+  @override
+  String get aiTutorRateLimit =>
+      'The AI tutor is busy right now. Please wait a moment and try again.';
+
+  @override
+  String get deleteAccount => 'Delete Account';
+
+  @override
+  String get deleteAccountSubtitle => 'Permanently delete your account';
+
+  @override
+  String get deleteAccountTitle => 'Permanently delete your account?';
+
+  @override
+  String get accountDataDeletedTitle => 'Account data will be deleted';
+
+  @override
+  String get accountDataDeletedBody =>
+      'Your sign-in account and account information held by SinoSpark will be permanently deleted. This cannot be undone.';
+
+  @override
+  String get localDataKeptTitle => 'Data on this device will remain';
+
+  @override
+  String get localDataKeptBody =>
+      'Study progress, downloaded content, and preferences stored only on this device will not be removed.';
+
+  @override
+  String get subscriptionNotCanceledTitle => 'Subscriptions are not canceled';
+
+  @override
+  String get subscriptionNotCanceledBody =>
+      'Deleting your account does not cancel an App Store subscription. It may continue to renew until you cancel it with Apple.';
+
+  @override
+  String get manageSubscription => 'Manage App Store Subscription';
+
+  @override
+  String get subscriptionManagementFailed =>
+      'Could not open Apple subscription management. Open Settings, tap your name, then tap Subscriptions.';
+
+  @override
+  String get confirmPassword => 'Current password';
+
+  @override
+  String get confirmPasswordToDelete =>
+      'Enter your password to confirm your identity.';
+
+  @override
+  String get deleteAccountPermanently => 'Delete Account Permanently';
+
+  @override
+  String get deleteAccountFinalTitle => 'Final confirmation';
+
+  @override
+  String get deleteAccountFinalWarning =>
+      'This permanently deletes your account and cannot be undone. Data stored only on this device will remain. Continue?';
+
+  @override
+  String get deletingAccount => 'Deleting account...';
+
+  @override
+  String get accountPasswordRequired =>
+      'Enter your current password to continue.';
+
+  @override
+  String get accountPasswordIncorrect =>
+      'The password is incorrect. Please try again.';
+
+  @override
+  String get accountReauthenticationCanceled =>
+      'Identity confirmation was canceled. Your account was not deleted.';
+
+  @override
+  String get accountReauthenticationFailed =>
+      'We could not confirm your identity. Please try again and complete the sign-in prompt.';
+
+  @override
+  String get accountAlreadySignedOut =>
+      'You are already signed out. No signed-in account was deleted.';
+
+  @override
+  String get accountProviderUnsupported =>
+      'This sign-in method cannot be verified in the app. Contact support for help deleting the account.';
+
+  @override
+  String get appleDeletionRequiresAppleDevice =>
+      'For security, an account linked to Apple must be deleted on an Apple device.';
+
+  @override
+  String get accountDeletionNetworkError =>
+      'Check your internet connection and try deleting the account again.';
+
+  @override
+  String get accountDeletionFailed =>
+      'The account could not be deleted. Your account remains active. Please try again.';
+
+  @override
+  String get accountDeletedSuccessfully =>
+      'Your account was permanently deleted.';
+
+  @override
   String get globalMastery => 'PENGUASAAN GLOBAL';
 
   @override

@@ -21,6 +21,8 @@ class AuthController {
 
   AuthController(this._repository);
 
+  bool get currentUserUsesPassword => _repository.currentUserUsesPassword;
+
   Future<void> signIn(String email, String password) async {
     await _repository.signIn(email, password);
   }
@@ -39,5 +41,9 @@ class AuthController {
 
   Future<void> signOut() async {
     await _repository.signOut();
+  }
+
+  Future<void> deleteAccount({String? password}) async {
+    await _repository.deleteAccount(password: password);
   }
 }

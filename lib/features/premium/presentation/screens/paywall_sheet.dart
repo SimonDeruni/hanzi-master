@@ -19,11 +19,13 @@ class PaywallSheet {
             "RevenueCat is missing a Current Offering or Packages. Please configure your Dashboard.");
       }
 
-      final paywallResult = isHardPaywall
-          ? await RevenueCatUI.presentPaywall(
-              offering: offerings.current, displayCloseButton: false)
-          : await RevenueCatUI.presentPaywall(
-              offering: offerings.current); // FORCE SHOW FOR TESTING
+      // Every purchase flow must have an obvious exit. In particular, do not
+      // hide RevenueCat's close button for gated features: users must always
+      // be able to decline an in-app purchase without being trapped.
+      final paywallResult = await RevenueCatUI.presentPaywall(
+        offering: offerings.current,
+        displayCloseButton: true,
+      );
 
       if (paywallResult == PaywallResult.purchased ||
           paywallResult == PaywallResult.restored) {

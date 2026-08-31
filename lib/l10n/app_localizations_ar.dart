@@ -9,6 +9,162 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get originStoryChip => '📜 Origin story';
+
+  @override
+  String get ancientFormChip => '🏺 Ancient form';
+
+  @override
+  String get threeMoreWordsChip => '📖 3 more words';
+
+  @override
+  String get wordFamilyChip => '🔗 Word family';
+
+  @override
+  String get idiomChip => '🀄 Idiom';
+
+  @override
+  String get proverbChip => '💬 Proverb';
+
+  @override
+  String get strokeOrderChip => '✏️ Stroke order';
+
+  @override
+  String get calligraphyTipChip => '🎨 Calligraphy tip';
+
+  @override
+  String get grammarNoteChip => '📝 Grammar note';
+
+  @override
+  String get similarWordsChip => '🔄 Similar words';
+
+  @override
+  String get culturalNoteChip => '🏮 Cultural note';
+
+  @override
+  String get inMediaChip => '🀄 In media';
+
+  @override
+  String get radicalMeaningChip => '🧩 Radical meaning';
+
+  @override
+  String get componentBreakdownChip => '🔍 Component breakdown';
+
+  @override
+  String get toneTipChip => '🎵 Tone tip';
+
+  @override
+  String get homophonesChip => '👯 Homophones';
+
+  @override
+  String askMeAnythingAbout(String hanzi) {
+    return 'Ask me anything about $hanzi...';
+  }
+
+  @override
+  String aiTutorError(String error) {
+    return 'AI tutor error: $error';
+  }
+
+  @override
+  String get aiTutorRateLimit =>
+      'The AI tutor is busy right now. Please wait a moment and try again.';
+
+  @override
+  String get deleteAccount => 'حذف الحساب';
+
+  @override
+  String get deleteAccountSubtitle => 'حذف حسابك نهائيًا';
+
+  @override
+  String get deleteAccountTitle => 'هل تريد حذف حسابك نهائيًا؟';
+
+  @override
+  String get accountDataDeletedTitle => 'سيتم حذف بيانات الحساب';
+
+  @override
+  String get accountDataDeletedBody =>
+      'سيتم حذف حساب تسجيل الدخول ومعلومات الحساب التي تحتفظ بها SinoSpark نهائيًا. لا يمكن التراجع عن ذلك.';
+
+  @override
+  String get localDataKeptTitle => 'ستبقى البيانات الموجودة على هذا الجهاز';
+
+  @override
+  String get localDataKeptBody =>
+      'لن تتم إزالة تقدم الدراسة والمحتوى المحمّل والتفضيلات المخزنة على هذا الجهاز فقط.';
+
+  @override
+  String get subscriptionNotCanceledTitle => 'لن يتم إلغاء الاشتراكات';
+
+  @override
+  String get subscriptionNotCanceledBody =>
+      'حذف حسابك لا يلغي اشتراك App Store، وقد يستمر في التجدد حتى تلغيه لدى Apple.';
+
+  @override
+  String get manageSubscription => 'إدارة اشتراك App Store';
+
+  @override
+  String get subscriptionManagementFailed =>
+      'تعذر فتح إدارة اشتراكات Apple. افتح الإعدادات، واضغط على اسمك، ثم الاشتراكات.';
+
+  @override
+  String get confirmPassword => 'كلمة المرور الحالية';
+
+  @override
+  String get confirmPasswordToDelete => 'أدخل كلمة المرور لتأكيد هويتك.';
+
+  @override
+  String get deleteAccountPermanently => 'حذف الحساب نهائيًا';
+
+  @override
+  String get deleteAccountFinalTitle => 'التأكيد النهائي';
+
+  @override
+  String get deleteAccountFinalWarning =>
+      'سيؤدي هذا إلى حذف حسابك نهائيًا ولا يمكن التراجع عنه. ستبقى البيانات المخزنة على هذا الجهاز فقط. هل تريد المتابعة؟';
+
+  @override
+  String get deletingAccount => 'جارٍ حذف الحساب...';
+
+  @override
+  String get accountPasswordRequired => 'أدخل كلمة المرور الحالية للمتابعة.';
+
+  @override
+  String get accountPasswordIncorrect =>
+      'كلمة المرور غير صحيحة. حاول مرة أخرى.';
+
+  @override
+  String get accountReauthenticationCanceled =>
+      'تم إلغاء تأكيد الهوية. لم يتم حذف حسابك.';
+
+  @override
+  String get accountReauthenticationFailed =>
+      'تعذر تأكيد هويتك. حاول مرة أخرى وأكمل مطالبة تسجيل الدخول.';
+
+  @override
+  String get accountAlreadySignedOut =>
+      'لقد سجلت الخروج بالفعل. لم يتم حذف أي حساب.';
+
+  @override
+  String get accountProviderUnsupported =>
+      'لا يمكن التحقق من طريقة تسجيل الدخول هذه داخل التطبيق. اتصل بالدعم للمساعدة.';
+
+  @override
+  String get appleDeletionRequiresAppleDevice =>
+      'لأسباب أمنية، يجب حذف الحساب المرتبط بـ Apple على جهاز Apple.';
+
+  @override
+  String get accountDeletionNetworkError =>
+      'تحقق من اتصال الإنترنت وحاول حذف الحساب مرة أخرى.';
+
+  @override
+  String get accountDeletionFailed =>
+      'تعذر حذف الحساب. لا يزال حسابك نشطًا. حاول مرة أخرى.';
+
+  @override
+  String get accountDeletedSuccessfully => 'تم حذف حسابك نهائيًا.';
+
+  @override
   String get globalMastery => 'الإتقان الشامل';
 
   @override

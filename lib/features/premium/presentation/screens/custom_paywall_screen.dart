@@ -10,7 +10,18 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/main_navig
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class CustomPaywallScreen extends ConsumerStatefulWidget {
-  const CustomPaywallScreen({super.key});
+  const CustomPaywallScreen({
+    super.key,
+    this.continueToFreeAppOnClose = false,
+    this.useMockOfferingsForTesting = false,
+  });
+
+  /// When shown at the end of onboarding, closing the offer must enter the
+  /// free app instead of returning to the preceding onboarding step.
+  final bool continueToFreeAppOnClose;
+
+  @visibleForTesting
+  final bool useMockOfferingsForTesting;
 
   @override
   ConsumerState<CustomPaywallScreen> createState() =>
@@ -24,9 +35,26 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Package? _selectedPackage;
   bool _usingMockFallback = false;
 
+  void _closePaywall() {
+    HapticFeedback.selectionClick();
+    if (widget.continueToFreeAppOnClose) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
+        (route) => false,
+      );
+      return;
+    }
+    Navigator.of(context).pop();
+  }
+
   @override
   void initState() {
     super.initState();
+    if (widget.useMockOfferingsForTesting) {
+      _isLoading = false;
+      _usingMockFallback = true;
+      return;
+    }
     _fetchOfferings();
   }
 
@@ -272,230 +300,264 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(
-        child: _isLoading
-            ? Center(child: CircularProgressIndicator(color: textColor))
-            : Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Spacer(flex: 1),
-                    Center(
-                      child: Image.asset(
-                        'assets/images/mascot.png',
-                        height: 120,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-
-                    Text(
-                      "Master Chinese with\nSinoSpark",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: 27,
-                        fontFamily: 'Serif',
-                        fontWeight: FontWeight.bold,
-                        height: 1.15,
-                      ),
-                    ),
-
-                    const Spacer(flex: 1),
-
-                    // 2-Column Features Grid
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 16),
-                      decoration: BoxDecoration(
-                        color: textColor.withValues(alpha: 0.03),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                            color: textColor.withValues(alpha: 0.06)),
-                      ),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: _isLoading
+                  ? Center(child: CircularProgressIndicator(color: textColor))
+                  : SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(20, 56, 20, 20),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: _buildCompactFeature(
-                                      Icons.gesture,
-                                      "Precision Strokes",
-                                      textColor,
-                                      accentColor)),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                  child: _buildCompactFeature(
-                                      Icons.document_scanner,
-                                      "Universal Scanner",
-                                      textColor,
-                                      accentColor)),
-                            ],
-                          ),
-                          const SizedBox(height: 14),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: _buildCompactFeature(
-                                      Icons.mic_none,
-                                      "AI Pronunciation",
-                                      textColor,
-                                      accentColor)),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                  child: _buildCompactFeature(
-                                      Icons.translate,
-                                      "Live Translation",
-                                      textColor,
-                                      accentColor)),
-                            ],
-                          ),
-                          const SizedBox(height: 14),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: _buildCompactFeature(
-                                      Icons.travel_explore,
-                                      "Smart News & Dict",
-                                      textColor,
-                                      accentColor)),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                  child: _buildCompactFeature(
-                                      Icons.menu_book,
-                                      "HSK 1-6 & AI Decks",
-                                      textColor,
-                                      accentColor)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 14),
-
-                    // Horizontal Blinkist Timeline
-                    _buildHorizontalTimeline(textColor, accentColor),
-
-                    const Spacer(flex: 2),
-
-                    // Packages
-                    if (_usingMockFallback)
-                      Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: _buildMockPackageCard(
-                                      AppLocalizations.of(context)!.monthly,
-                                      "\$9.99/mo",
-                                      false,
-                                      textColor,
-                                      accentColor,
-                                      null))),
-                          Expanded(
-                              child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: _buildMockPackageCard(
-                                      AppLocalizations.of(context)!.yearly,
-                                      "\$59.99/yr",
-                                      true,
-                                      textColor,
-                                      accentColor,
-                                      59.99))),
-                        ],
-                      )
-                    else if (_offerings?.current != null)
-                      Row(
-                        children: _offerings!.current!.availablePackages
-                            .map((package) {
-                          return Expanded(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: _buildPackageCard(
-                                  package, textColor, accentColor),
+                          const SizedBox(height: 8),
+                          Center(
+                            child: Image.asset(
+                              'assets/images/mascot.png',
+                              height: 120,
+                              fit: BoxFit.contain,
                             ),
-                          );
-                        }).toList(),
-                      ),
+                          ),
+                          const SizedBox(height: 12),
 
-                    const SizedBox(height: 16),
-
-                    GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: _isPurchasing ? null : _purchasePackage,
-                      child: Container(
-                        height: 54,
-                        decoration: BoxDecoration(
-                          color: btnBgColor,
-                          borderRadius: BorderRadius.circular(27),
-                          boxShadow: [
-                            BoxShadow(
-                              color: btnBgColor.withValues(alpha: 0.1),
-                              blurRadius: 16,
-                              offset: const Offset(0, 4),
+                          Text(
+                            "SinoSpark Premium",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 27,
+                              fontFamily: 'Serif',
+                              fontWeight: FontWeight.bold,
+                              height: 1.15,
                             ),
-                          ],
-                        ),
-                        child: Center(
-                          child: _isPurchasing
-                              ? CircularProgressIndicator(color: btnTextColor)
-                              : Text(
-                                  "Start 7-Day Free Trial",
-                                  style: TextStyle(
-                                    color: btnTextColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          // 2-Column Features Grid
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 16),
+                            decoration: BoxDecoration(
+                              color: textColor.withValues(alpha: 0.03),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                  color: textColor.withValues(alpha: 0.06)),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: _buildCompactFeature(
+                                            Icons.gesture,
+                                            "Precision Strokes",
+                                            textColor,
+                                            accentColor)),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                        child: _buildCompactFeature(
+                                            Icons.document_scanner,
+                                            "Universal Scanner",
+                                            textColor,
+                                            accentColor)),
+                                  ],
                                 ),
-                        ),
+                                const SizedBox(height: 14),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: _buildCompactFeature(
+                                            Icons.mic_none,
+                                            "AI Pronunciation",
+                                            textColor,
+                                            accentColor)),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                        child: _buildCompactFeature(
+                                            Icons.translate,
+                                            "Live Translation",
+                                            textColor,
+                                            accentColor)),
+                                  ],
+                                ),
+                                const SizedBox(height: 14),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: _buildCompactFeature(
+                                            Icons.travel_explore,
+                                            "Smart News & Dict",
+                                            textColor,
+                                            accentColor)),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                        child: _buildCompactFeature(
+                                            Icons.menu_book,
+                                            "HSK 1-6 & AI Decks",
+                                            textColor,
+                                            accentColor)),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(height: 14),
+
+                          // Horizontal Blinkist Timeline
+                          _buildHorizontalTimeline(textColor, accentColor),
+
+                          const SizedBox(height: 24),
+
+                          // Packages
+                          if (_usingMockFallback)
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: _buildMockPackageCard(
+                                            AppLocalizations.of(context)!
+                                                .monthly,
+                                            "\$9.99",
+                                            false,
+                                            textColor,
+                                            accentColor))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: _buildMockPackageCard(
+                                            AppLocalizations.of(context)!
+                                                .yearly,
+                                            "\$59.99",
+                                            true,
+                                            textColor,
+                                            accentColor))),
+                              ],
+                            )
+                          else if (_offerings?.current != null)
+                            Row(
+                              children: _offerings!.current!.availablePackages
+                                  .map((package) {
+                                return Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4.0),
+                                    child: _buildPackageCard(
+                                        package, textColor, accentColor),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+
+                          const SizedBox(height: 16),
+
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: _isPurchasing ? null : _purchasePackage,
+                            child: Container(
+                              height: 54,
+                              decoration: BoxDecoration(
+                                color: btnBgColor,
+                                borderRadius: BorderRadius.circular(27),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: btnBgColor.withValues(alpha: 0.1),
+                                    blurRadius: 16,
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: _isPurchasing
+                                    ? CircularProgressIndicator(
+                                        color: btnTextColor)
+                                    : Text(
+                                        "Continue",
+                                        style: TextStyle(
+                                          color: btnTextColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 10),
+
+                          Text(
+                            "Payment is charged to your App Store account. "
+                            "Subscriptions renew automatically unless canceled "
+                            "at least 24 hours before the end of the current period.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: textColor.withValues(alpha: 0.55),
+                              fontSize: 10,
+                              height: 1.3,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Wrap(
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              TextButton(
+                                onPressed: _restorePurchases,
+                                child: Text(
+                                    AppLocalizations.of(context)!.restore,
+                                    style: TextStyle(
+                                        color: textColor.withValues(alpha: 0.6),
+                                        fontSize: 12)),
+                              ),
+                              Text("•",
+                                  style: TextStyle(
+                                      color: textColor.withValues(alpha: 0.3))),
+                              TextButton(
+                                onPressed: () => _launchURL(
+                                    'https://sinospark.app/terms.html'),
+                                child: Text("Terms of Use (EULA)",
+                                    style: TextStyle(
+                                        color: textColor.withValues(alpha: 0.6),
+                                        fontSize: 12)),
+                              ),
+                              Text("•",
+                                  style: TextStyle(
+                                      color: textColor.withValues(alpha: 0.3))),
+                              TextButton(
+                                onPressed: () => _launchURL(
+                                    'https://sinospark.app/privacy.html'),
+                                child: Text("Privacy Policy",
+                                    style: TextStyle(
+                                        color: textColor.withValues(alpha: 0.6),
+                                        fontSize: 12)),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                        ],
                       ),
                     ),
-
-                    const SizedBox(height: 10),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: _restorePurchases,
-                          child: Text(AppLocalizations.of(context)!.restore,
-                              style: TextStyle(
-                                  color: textColor.withValues(alpha: 0.6),
-                                  fontSize: 12)),
-                        ),
-                        Text("•",
-                            style: TextStyle(
-                                color: textColor.withValues(alpha: 0.3))),
-                        TextButton(
-                          onPressed: () =>
-                              _launchURL('https://sinospark.app/terms.html'),
-                          child: Text(AppLocalizations.of(context)!.terms,
-                              style: TextStyle(
-                                  color: textColor.withValues(alpha: 0.6),
-                                  fontSize: 12)),
-                        ),
-                        Text("•",
-                            style: TextStyle(
-                                color: textColor.withValues(alpha: 0.3))),
-                        TextButton(
-                          onPressed: () =>
-                              _launchURL('https://sinospark.app/privacy.html'),
-                          child: Text(AppLocalizations.of(context)!.privacy,
-                              style: TextStyle(
-                                  color: textColor.withValues(alpha: 0.6),
-                                  fontSize: 12)),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                  ],
+            ),
+            Positioned(
+              top: 4,
+              right: 8,
+              child: IconButton(
+                key: const Key('paywall_close_button'),
+                tooltip: 'Close purchase offer',
+                onPressed: _isPurchasing ? null : _closePaywall,
+                icon: const Icon(Icons.close),
+                color: textColor,
+                style: IconButton.styleFrom(
+                  backgroundColor: bgColor.withValues(alpha: 0.9),
                 ),
               ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -577,10 +639,10 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }
 
   Widget _buildMockPackageCard(String title, String price, bool isAnnual,
-      Color textColor, Color accentColor, double? numericPrice) {
+      Color textColor, Color accentColor) {
     final isSelected = _mockSelectedPackage == title;
-    return _buildPackageCardUI(title, price, isAnnual, isSelected, textColor,
-        accentColor, numericPrice, () {
+    return _buildPackageCardUI(
+        title, price, isAnnual, isSelected, textColor, accentColor, () {
       HapticFeedback.selectionClick();
       setState(() => _mockSelectedPackage = title);
     });
@@ -593,28 +655,15 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     final title = isAnnual
         ? AppLocalizations.of(context)!.yearly
         : AppLocalizations.of(context)!.monthly;
-    return _buildPackageCardUI(
-        title,
-        package.storeProduct.priceString,
-        isAnnual,
-        isSelected,
-        textColor,
-        accentColor,
-        package.storeProduct.price, () {
+    return _buildPackageCardUI(title, package.storeProduct.priceString,
+        isAnnual, isSelected, textColor, accentColor, () {
       HapticFeedback.selectionClick();
       setState(() => _selectedPackage = package);
     });
   }
 
-  Widget _buildPackageCardUI(
-      String title,
-      String price,
-      bool isAnnual,
-      bool isSelected,
-      Color textColor,
-      Color accentColor,
-      double? numericPrice,
-      VoidCallback onTap) {
+  Widget _buildPackageCardUI(String title, String price, bool isAnnual,
+      bool isSelected, Color textColor, Color accentColor, VoidCallback onTap) {
     final isDark = textColor == const Color(0xFFFDFCF0);
     final cardBg = isSelected
         ? (isDark ? const Color(0xFF2E2E30) : Colors.white)
@@ -677,25 +726,14 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             ),
             const SizedBox(height: 6),
             Text(
-              price,
+              "$price / ${isAnnual ? 'year' : 'month'}",
               style: TextStyle(
                 color: textColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            if (isAnnual && numericPrice != null) ...[
-              const SizedBox(height: 3),
-              Text(
-                "Just \$${(numericPrice / 12).toStringAsFixed(2)}/mo",
-                style: TextStyle(
-                  color: textColor.withValues(alpha: 0.55),
-                  fontSize: 10,
-                ),
-              ),
-            ] else ...[
-              const SizedBox(height: 16),
-            ],
+            const SizedBox(height: 16),
           ],
         ),
       ),
