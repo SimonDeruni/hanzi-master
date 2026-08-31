@@ -14,16 +14,16 @@ class EchoHallService {
 
   EchoHallService(this._geminiService);
 
-  static const _jsonStructureHint = '''
+  String get _jsonStructureHint => '''
 You MUST respond ONLY in valid JSON format with this exact structure:
 {
   "chinese": "Your natural conversational reply in Chinese characters.",
-  "english": "The English translation of your reply.",
+  "english": "The ${_geminiService.targetLanguage} translation of your reply.",
   "pinyin": "The Pinyin with tone marks for your reply.",
   "suggestion": {
     "chinese": "A suggested response the user could say back to you.",
     "pinyin": "Pinyin for the suggestion.",
-    "english": "English translation for the suggestion."
+    "english": "${_geminiService.targetLanguage} translation for the suggestion."
   }
 }''';
 
@@ -81,12 +81,13 @@ You MUST respond ONLY in valid JSON format with this exact structure:
   }
 
   Future<String> getPronunciationFeedback(String character, String transcription, double confidence) async {
+    final targetLang = _geminiService.targetLanguage;
     final prompt = '''
 Act as a supportive but pedantic Chinese Calligraphy & Language Master.
 The user is practicing the character: "$character".
 The STT system recognized it as: "$transcription" (Confidence: ${(confidence * 100).toStringAsFixed(0)}%).
 
-Provide a short, 1-2 sentence "Scholar's Critique" in English. 
+Provide a short, 1-2 sentence "Scholar's Critique" in $targetLang. 
 - If the match is high (>80%), praise their clarity and mention a subtle detail about the character's radical.
 - If the match is medium (50-80%), provide a specific tip on tone or initial/final clarity.
 - If the match is low (<50%), encourage them and mention a common mistake for this specific character's pronunciation.

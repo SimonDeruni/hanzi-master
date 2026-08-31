@@ -20,9 +20,34 @@ class GlobalDictionaryRepository {
 
     final dbDir = await getApplicationSupportDirectory();
     final dbPath = join(dbDir.path, "dictionary.db");
+    final file = File(dbPath);
 
-    // Copy from assets if it doesn't exist
-    if (!await File(dbPath).exists()) {
+    bool needsRefresh = false;
+    if (!await file.exists()) {
+      needsRefresh = true;
+    } else {
+      try {
+        // Verify that the local database has the complete multilingual schema
+        final tempDb = await databaseFactory.openDatabase(dbPath);
+        final cols = await tempDb.rawQuery("PRAGMA table_info(words)");
+        final colNames = cols.map((c) => c['name'] as String).toSet();
+        await tempDb.close();
+
+        if (!colNames.contains('definition_fr') ||
+            !colNames.contains('definition_ru') ||
+            !colNames.contains('definition_vi') ||
+            !colNames.contains('definition_ja') ||
+            !colNames.contains('definition_es') ||
+            !colNames.contains('definition_ko') ||
+            !colNames.contains('definition_id')) {
+          needsRefresh = true;
+        }
+      } catch (_) {
+        needsRefresh = true;
+      }
+    }
+
+    if (needsRefresh) {
       try {
         final data = await rootBundle.load("assets/data/dictionary.db");
         final bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);

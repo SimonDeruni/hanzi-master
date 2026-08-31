@@ -659,8 +659,8 @@ CRITICAL: Place the $targetLanguage translation in the "english" JSON keys!
   }
 
   Future<GeminiContext> analyzeImage(List<int> bytes) async {
-    const prompt =
-        'Identify the main objects in this image. For each, provide mnemonic, sentences, and lookalikes in the standard JSON format described previously.';
+    final prompt =
+        'Identify the main objects in this image. For each, provide a mnemonic in $targetLanguage, sentences, and lookalikes in the standard JSON format described previously.';
     final base64Image = base64Encode(bytes);
 
     try {
@@ -2741,17 +2741,17 @@ ${text.substring(0, math.min(text.length, 3000))}
 """
 
 Your task is to:
-1. Check if the text is complete garbage (e.g. random English letters, OCR errors, no coherent Chinese meaning). If it is garbage, output "No coherent Chinese text found in the scan." as the fullTranslation and leave the words array empty.
-2. If it is valid Chinese, provide a smooth, full English translation of the entire scanned text so the user understands the full context.
+1. Check if the text is complete garbage (e.g. random English letters, OCR errors, no coherent Chinese meaning). If it is garbage, output "No coherent $targetLanguage text found in the scan." as the fullTranslation and leave the words array empty.
+2. If it is valid Chinese, provide a smooth, full $targetLanguage translation of the entire scanned text so the user understands the full context.
 3. Extract the most important Chinese vocabulary (words, phrases, idioms) from the text. 
    - Group them into logical words (e.g. don't split idioms into 4 separate characters).
-   - Provide the pinyin, english definition, and estimated HSK level (1-9).
+   - Provide the pinyin, $targetLanguage definition, and estimated HSK level (1-9).
    - Only include up to 20 of the most relevant/useful words.
 
 Output JSON matching this exact structure:
 {
-  "fullTranslation": "The full English translation of the scanned text... OR 'No coherent Chinese text found.'",
-  "deckName": "A short 2-4 word title for this scan (e.g. 'Restaurant Menu', 'Street Sign')",
+  "fullTranslation": "The full $targetLanguage translation of the scanned text... OR 'No coherent $targetLanguage text found.'",
+  "deckName": "A short 2-4 word title for this scan in $targetLanguage (e.g. if translating to French: 'Menu de Restaurant', 'Panneau de Rue')",
   "words": [
     {
       "hanzi": "中国",
