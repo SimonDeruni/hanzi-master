@@ -41,6 +41,8 @@ class GlobalDictionaryRepository {
             !colNames.contains('definition_ko') ||
             !colNames.contains('definition_id') ||
             !colNames.contains('definition_th') ||
+            !colNames.contains('definition_pt') ||
+            !colNames.contains('definition_it') ||
             !colNames.contains('definition_ar')) {
           needsRefresh = true;
         }
