@@ -40,7 +40,8 @@ class GlobalDictionaryRepository {
             !colNames.contains('definition_es') ||
             !colNames.contains('definition_ko') ||
             !colNames.contains('definition_id') ||
-            !colNames.contains('definition_th')) {
+            !colNames.contains('definition_th') ||
+            !colNames.contains('definition_ar')) {
           needsRefresh = true;
         }
       } catch (_) {
