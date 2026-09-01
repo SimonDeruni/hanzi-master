@@ -452,7 +452,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
               hasScrollBody: false,
               child: Center(
                   child: Text(
-                      AppLocalizations.of(context)!.no_results_found_for,
+                      AppLocalizations.of(context)!
+                          .no_results_found_for(_searchController.text),
                       style: const TextStyle(color: Colors.grey))),
             ),
           ];

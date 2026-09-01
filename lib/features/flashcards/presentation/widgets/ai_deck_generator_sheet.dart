@@ -312,6 +312,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                         ? "Intermediate (HSK 3-4)"
                                         : "Advanced (HSK 5-6)";
 
+                                final aiDescription =
+                                    AppLocalizations.of(context)!.generatedByAi;
                                 final cards =
                                     await geminiService.generateDeckCards(
                                   topic: topic,
@@ -325,7 +327,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                       ref.read(deckControllerProvider.notifier);
                                   final newDeck =
                                       await deckController.createDeck(topic,
-                                          description: AppLocalizations.of(context)!.generatedByAi);
+                                          description: aiDescription);
 
                                   if (newDeck != null) {
                                     for (final cardMap in cards) {

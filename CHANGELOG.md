@@ -9,6 +9,13 @@ All notable changes to this project will be documented in this file.
 - Updated onboarding/paywall navigation and target-language AI output behavior.
 - Verification: `flutter gen-l10n` is stable; 7 focused account/paywall widget tests pass; the full suite passes 50 tests with only the two previously documented `StrokeMatcher` failures remaining.
 
+## [1.0.0+301] - 2026-09-01
+- **Expanded Multi-Source Thai Dictionary Ingestion (Build #301)**:
+  - Combined Open Multilingual WordNet (Thai NECTEC), PanLex Thai concepts, and Facebook MUSE bilingual lexicon to expand offline Thai dictionary from 14,552 $\rightarrow$ **89,754 words** (71.8% coverage of all 125,009 Chinese words in the dictionary).
+  - Created SQLite B-tree search index `idx_words_def_th` on `definition_th` and compressed/vacuumed the database to 70.00 MB.
+  - Added full Thai localization support to [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) and [`translationLanguageProvider`](file:///c:/Users/simon/Documents/hanzi_master/lib/core/providers/translation_language_provider.dart).
+  - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)** and all unit tests passing.
+
 ## [1.0.0+300] - 2026-08-31
 - **Dynamic Offline-First Multilingual Dictionary Resolution with Fallback (Build #300)**:
   - Updated [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to automatically extract target language definitions (`definition_fr`, `definition_de`, `definition_es`, `definition_ru`, `definition_vi`, `definition_ja`, `definition_ko`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_hi`) directly based on the user's active locale with canonical English fallback.

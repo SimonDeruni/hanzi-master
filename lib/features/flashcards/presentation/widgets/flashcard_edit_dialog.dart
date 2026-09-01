@@ -103,7 +103,8 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-            content: Text(AppLocalizations.of(context)!.added_to_your_library)),
+            content: Text(AppLocalizations.of(context)!
+                .added_to_your_library(_hanziController.text))),
       );
     }
   }
