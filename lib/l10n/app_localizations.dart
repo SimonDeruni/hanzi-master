@@ -17,6 +17,7 @@ import 'app_localizations_ja.dart';
 import 'app_localizations_ko.dart';
 import 'app_localizations_pt.dart';
 import 'app_localizations_ru.dart';
+import 'app_localizations_th.dart';
 import 'app_localizations_vi.dart';
 
 // ignore_for_file: type=lint
@@ -73,8 +74,7 @@ import 'app_localizations_vi.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -82,8 +82,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -95,8 +94,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -117,6 +115,7 @@ abstract class AppLocalizations {
     Locale('ko'),
     Locale('pt'),
     Locale('ru'),
+    Locale('th'),
     Locale('vi')
   ];
 
@@ -1414,7 +1413,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'cards require attention.'**
-  String get cardsRequireAttention;
+  String cardsRequireAttention(Object count);
 
   /// No description provided for @begin.
   ///
@@ -1984,7 +1983,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Partner (中文)'**
-  String get partner;
+  String partner(Object lang);
 
   /// No description provided for @youEnglish.
   ///
@@ -2314,25 +2313,25 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Hide stroke guide at streak: (streak)'**
-  String get hideStrokeGuideStreak;
+  String hideStrokeGuideStreak(Object streak);
 
   /// No description provided for @inkPoints.
   ///
   /// In en, this message translates to:
   /// **'(points) Ink Points'**
-  String get inkPoints;
+  String inkPoints(Object points);
 
   /// No description provided for @speechRateMultiplier.
   ///
   /// In en, this message translates to:
   /// **'(rate)x'**
-  String get speechRateMultiplier;
+  String speechRateMultiplier(Object rate);
 
   /// No description provided for @animationSpeedMultiplier.
   ///
   /// In en, this message translates to:
   /// **'(rate)x'**
-  String get animationSpeedMultiplier;
+  String animationSpeedMultiplier(Object rate);
 
   /// No description provided for @supportAndFeedback.
   ///
@@ -2374,7 +2373,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Follow the blue guide to draw stroke (current) of (total)'**
-  String get followGuideStroke;
+  String followGuideStroke(Object current, Object total);
 
   /// No description provided for @skipCurrentStroke.
   ///
@@ -2392,19 +2391,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Added (hanzi) to (deckName)'**
-  String get addedToDeck;
+  String addedToDeck(Object deckName, Object hanzi);
 
   /// No description provided for @removedFromDeck.
   ///
   /// In en, this message translates to:
   /// **'Removed (hanzi) from deck'**
-  String get removedFromDeck;
+  String removedFromDeck(Object hanzi);
 
   /// No description provided for @skippedNoStrokeData.
   ///
   /// In en, this message translates to:
   /// **'Skipped \"(hanzi)\" - No stroke data available for this AI character.'**
-  String get skippedNoStrokeData;
+  String skippedNoStrokeData(Object hanzi);
 
   /// No description provided for @startingSession.
   ///
@@ -2470,7 +2469,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'(title) (HSK (level))'**
-  String get storyTitleHsk;
+  String storyTitleHsk(Object level, Object title);
 
   /// No description provided for @pleaseEnterTopic.
   ///
@@ -2482,13 +2481,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Created (name) with (count) cards!'**
-  String get createdDeckCards;
+  String createdDeckCards(Object count, Object name);
 
   /// No description provided for @gradeResult.
   ///
   /// In en, this message translates to:
   /// **'Grade: (grade)'**
-  String get gradeResult;
+  String gradeResult(Object grade);
 
   /// No description provided for @listeningMode.
   ///
@@ -2572,7 +2571,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Added (char) to Library'**
-  String get addedCharToLibrary;
+  String addedCharToLibrary(Object char);
 
   /// No description provided for @scoreText.
   ///
@@ -2680,7 +2679,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Added \'(hanzi)\' to your Library'**
-  String get addedToLibrary;
+  String addedToLibrary(Object hanzi);
 
   /// No description provided for @generateNewStory.
   ///
@@ -2692,7 +2691,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to generate story:\\n(error)'**
-  String get failedToGenerateStory;
+  String failedToGenerateStory(Object error);
 
   /// No description provided for @detail.
   ///
@@ -3124,7 +3123,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Add to'**
-  String get addTo;
+  String addTo(Object target);
 
   /// No description provided for @addedHanziToYourLibrary.
   ///
@@ -4264,7 +4263,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Play'**
-  String get play;
+  String play(Object pinyin);
 
   /// No description provided for @pleaseEnterMessageBeforeSending.
   ///
@@ -4504,7 +4503,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Score:'**
-  String get score;
+  String score(Object score, Object total);
 
   /// No description provided for @searchByPinyinOrMeaning.
   ///
@@ -5044,7 +5043,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'You'**
-  String get you;
+  String you(Object lang);
 
   /// No description provided for @youAreSpeaking.
   ///
@@ -5134,7 +5133,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Added \'\' to your Library'**
-  String get added_to_your_library;
+  String added_to_your_library(Object hanzi);
 
   /// No description provided for @advanced.
   ///
@@ -5152,7 +5151,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Analysis Failed: (error)'**
-  String get analysis_failed;
+  String analysis_failed(Object error);
 
   /// No description provided for @analyzing_pronunciation_with_gemini_ai.
   ///
@@ -5200,7 +5199,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Chapters)'**
-  String get chapters;
+  String chapters(Object count);
 
   /// No description provided for @char.
   ///
@@ -5254,19 +5253,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Error creating scenario: (error)'**
-  String get error_creating_scenario;
+  String error_creating_scenario(Object error);
 
   /// No description provided for @error_fetching_translation_for.
   ///
   /// In en, this message translates to:
   /// **'Error fetching translation for : (error)'**
-  String get error_fetching_translation_for;
+  String error_fetching_translation_for(Object error);
 
   /// No description provided for @error_loading_chapters.
   ///
   /// In en, this message translates to:
   /// **'Error loading chapters: (error)'**
-  String get error_loading_chapters;
+  String error_loading_chapters(Object error);
 
   /// No description provided for @error_loading_decks.
   ///
@@ -5278,19 +5277,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Error loading micro-reads: (error)'**
-  String get error_loading_microreads;
+  String error_loading_microreads(Object error);
 
   /// No description provided for @error_loading_novels.
   ///
   /// In en, this message translates to:
   /// **'Error loading novels: (error)'**
-  String get error_loading_novels;
+  String error_loading_novels(Object error);
 
   /// No description provided for @error_loading_poetry.
   ///
   /// In en, this message translates to:
   /// **'Error loading poetry: (error)'**
-  String get error_loading_poetry;
+  String error_loading_poetry(Object error);
 
   /// No description provided for @etymology.
   ///
@@ -5314,7 +5313,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Extraction Failed: \\(error)'**
-  String get extraction_failed;
+  String extraction_failed(Object error);
 
   /// No description provided for @failed_to_download.
   ///
@@ -5326,19 +5325,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to generate scenario: (error)'**
-  String get failed_to_generate_scenario;
+  String failed_to_generate_scenario(Object error);
 
   /// No description provided for @failed_to_generate_story.
   ///
   /// In en, this message translates to:
   /// **'Failed to generate story:\\n(error)'**
-  String get failed_to_generate_story;
+  String failed_to_generate_story(Object error);
 
   /// No description provided for @failed_to_load_context.
   ///
   /// In en, this message translates to:
   /// **'Failed to load context: (error)rr'**
-  String get failed_to_load_context;
+  String failed_to_load_context(Object error);
 
   /// No description provided for @feature_request.
   ///
@@ -5362,7 +5361,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'HSK '**
-  String get hsk;
+  String hsk(Object level);
 
   /// No description provided for @hsk_vocabulary.
   ///
@@ -5410,7 +5409,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'No results found for \'\''**
-  String get no_results_found_for;
+  String no_results_found_for(Object searchQuery);
 
   /// No description provided for @no_when_you_use_echo_hall.
   ///
@@ -5482,7 +5481,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Question'**
-  String get question;
+  String question(Object current, Object total);
 
   /// No description provided for @remove_from_this_deck.
   ///
@@ -5494,7 +5493,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'RevenueCat Error: (error)'**
-  String get revenuecat_error;
+  String revenuecat_error(Object error);
 
   /// No description provided for @review_tomorrow.
   ///
@@ -5542,7 +5541,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Simplify Failed: (error)'**
-  String get simplify_failed;
+  String simplify_failed(Object error);
 
   /// No description provided for @sinospark_premium.
   ///
@@ -5602,7 +5601,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Translation Failed: (error)'**
-  String get translation_failed;
+  String translation_failed(Object error);
 
   /// No description provided for @type_in.
   ///
@@ -5656,7 +5655,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Vocabulary Batch (index)'**
-  String get vocabularyBatch;
+  String vocabularyBatch(Object index);
 
   /// No description provided for @yourDailyDropIsHere.
   ///
@@ -5698,13 +5697,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'#(tag)'**
-  String get unnamedKey;
+  String unnamedKey(Object tag);
 
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
   /// **'Error: (error)'**
-  String get error;
+  String error(Object error);
 
   /// No description provided for @aiSmartContext.
   ///
@@ -5938,13 +5937,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to save extracted words: (error)'**
-  String get failedToSaveExtractedWords;
+  String failedToSaveExtractedWords(Object error);
 
   /// No description provided for @addToDeck.
   ///
   /// In en, this message translates to:
   /// **'Add to Deck ((count))'**
-  String get addToDeck;
+  String addToDeck(Object count);
 
   /// No description provided for @dailyDiscoveryDrop.
   ///
@@ -6010,7 +6009,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'(count) cards'**
-  String get cards;
+  String cards(Object count);
 
   /// No description provided for @nWaMendsTheHeavens.
   ///
@@ -6112,7 +6111,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'已添加书签 · Bookmark added: 第(chapter)回'**
-  String get bookmarkAdded;
+  String bookmarkAdded(Object chapter);
 
   /// No description provided for @readingVocabulary.
   ///
@@ -6124,7 +6123,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Vocabulary Batch \$(unitIndex + 1)'**
-  String get vocabularyBatchUnitindex1;
+  String vocabularyBatchUnitindex1(Object index);
 
   /// No description provided for @yourDailyDropIsHere1.
   ///
@@ -6172,25 +6171,25 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\"\$_transcription\"'**
-  String get ui__transcription;
+  String ui__transcription(Object transcription);
 
   /// No description provided for @playPinyinwithtone.
   ///
   /// In en, this message translates to:
   /// **'Play \$pinyinWithTone'**
-  String get playPinyinwithtone;
+  String playPinyinwithtone(Object pinyinWithTone);
 
   /// No description provided for @errorE.
   ///
   /// In en, this message translates to:
   /// **'Error: \$e'**
-  String get errorE;
+  String errorE(Object e);
 
   /// No description provided for @lookalikepinyin.
   ///
   /// In en, this message translates to:
   /// **'(\$(lookAlike.pinyin))'**
-  String get lookalikepinyin;
+  String lookalikepinyin(Object pinyin);
 
   /// No description provided for @aiSmartContext1.
   ///
@@ -6208,7 +6207,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Error: \$err'**
-  String get errorErr;
+  String errorErr(Object err, Object error);
 
   /// No description provided for @downloadOfficialHskCollections1.
   ///
@@ -6232,7 +6231,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\$(_currentStrokeIndex + 1)/\$totalStrokes'**
-  String get ui__currentstrokeindex1totalstrokes;
+  String ui__currentstrokeindex1totalstrokes(Object current, Object total);
 
   /// No description provided for @translationLanguage1.
   ///
@@ -6280,7 +6279,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\$(accuracy.toStringAsFixed(1))%'**
-  String get accuracytostringasfixed1;
+  String accuracytostringasfixed1(Object accuracy);
 
   /// No description provided for @upcomingReviewsNext7Days.
   ///
@@ -6298,7 +6297,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\$(entry.hanzi) [\$(entry.pinyin)]'**
-  String get entryhanziEntrypinyin;
+  String entryhanziEntrypinyin(Object hanzi, Object pinyin);
 
   /// No description provided for @dailyNewCards1.
   ///
@@ -6346,7 +6345,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\$acc%'**
-  String get acc;
+  String acc(Object acc);
 
   /// No description provided for @partner1.
   ///
@@ -6478,7 +6477,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Error: \$_error'**
-  String get error_error;
+  String error_error(Object error);
 
   /// No description provided for @extractToDeck1.
   ///
@@ -6508,13 +6507,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\$(playbackRate)x'**
-  String get playbackratex;
+  String playbackratex(Object playbackRate);
 
   /// No description provided for @speedx.
   ///
   /// In en, this message translates to:
   /// **'\$(speed)x'**
-  String get speedx;
+  String speedx(Object speed);
 
   /// No description provided for @dailyDiscoveryDrop1.
   ///
@@ -6568,7 +6567,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Add to Deck (\$(_selectedWordIndices.length))'**
-  String get addToDeck_selectedwordindiceslength;
+  String addToDeck_selectedwordindiceslength(Object count);
 
   /// No description provided for @scanner1.
   ///
@@ -6586,13 +6585,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'\$(entry.value) cards'**
-  String get entryvalueCards;
+  String entryvalueCards(Object count);
 
   /// No description provided for @score_score_questionslength.
   ///
   /// In en, this message translates to:
   /// **'Score: \$_score / \$(_questions.length)'**
-  String get score_score_questionslength;
+  String score_score_questionslength(Object score, Object total);
 
   /// No description provided for @theMonkeyKing1.
   ///
@@ -7744,7 +7743,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'GALAXY OF'**
-  String get galaxyOf1;
+  String galaxyOf1(Object name);
 
   /// No description provided for @also.
   ///
@@ -8002,7 +8001,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Diving into'**
-  String get divingInto1;
+  String divingInto1(Object topic);
 
   /// No description provided for @unitIntro1.
   ///
@@ -11962,7 +11961,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'In this chapter of'**
-  String get inThisChapterOf;
+  String inThisChapterOf(Object title);
 
   /// No description provided for @asTheNarrativeUnfoldsItIlluminatesT.
   ///
@@ -12775,8 +12774,7 @@ abstract class AppLocalizations {
   String get characters;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -12785,60 +12783,37 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) => <String>[
-        'ar',
-        'de',
-        'en',
-        'es',
-        'fr',
-        'hi',
-        'id',
-        'it',
-        'ja',
-        'ko',
-        'pt',
-        'ru',
-        'vi'
-      ].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'pt', 'ru', 'th', 'vi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar':
-      return AppLocalizationsAr();
-    case 'de':
-      return AppLocalizationsDe();
-    case 'en':
-      return AppLocalizationsEn();
-    case 'es':
-      return AppLocalizationsEs();
-    case 'fr':
-      return AppLocalizationsFr();
-    case 'hi':
-      return AppLocalizationsHi();
-    case 'id':
-      return AppLocalizationsId();
-    case 'it':
-      return AppLocalizationsIt();
-    case 'ja':
-      return AppLocalizationsJa();
-    case 'ko':
-      return AppLocalizationsKo();
-    case 'pt':
-      return AppLocalizationsPt();
-    case 'ru':
-      return AppLocalizationsRu();
-    case 'vi':
-      return AppLocalizationsVi();
+    case 'ar': return AppLocalizationsAr();
+    case 'de': return AppLocalizationsDe();
+    case 'en': return AppLocalizationsEn();
+    case 'es': return AppLocalizationsEs();
+    case 'fr': return AppLocalizationsFr();
+    case 'hi': return AppLocalizationsHi();
+    case 'id': return AppLocalizationsId();
+    case 'it': return AppLocalizationsIt();
+    case 'ja': return AppLocalizationsJa();
+    case 'ko': return AppLocalizationsKo();
+    case 'pt': return AppLocalizationsPt();
+    case 'ru': return AppLocalizationsRu();
+    case 'th': return AppLocalizationsTh();
+    case 'vi': return AppLocalizationsVi();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

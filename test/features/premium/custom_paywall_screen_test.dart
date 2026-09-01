@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
+import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 Widget _testApp({required Widget home}) {
@@ -21,7 +22,7 @@ Widget _testApp({required Widget home}) {
 }
 
 void main() {
-  testWidgets('purchase offer has a visible exit that dismisses it',
+  testWidgets('purchase offer close leads to subscription login gate',
       (tester) async {
     await tester.pumpWidget(
       _testApp(
@@ -52,7 +53,10 @@ void main() {
     await tester.tap(closeButton);
     await tester.pumpAndSettle();
 
-    expect(find.text('Open offer'), findsOneWidget);
+    expect(find.byType(AuthScreen), findsOneWidget);
+    expect(find.byKey(const Key('auth_restore_subscription')), findsOneWidget);
+    expect(
+        find.byKey(const Key('auth_view_subscription_plans')), findsOneWidget);
     expect(closeButton, findsNothing);
   });
 
@@ -78,5 +82,7 @@ void main() {
       find.textContaining('Subscriptions renew automatically'),
       findsOneWidget,
     );
+    expect(find.textContaining('Day 5'), findsNothing);
+    expect(find.textContaining('Day 7'), findsNothing);
   });
 }

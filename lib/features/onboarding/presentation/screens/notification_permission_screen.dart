@@ -32,7 +32,7 @@ class _NotificationPermissionScreenState
 
     if (mounted) {
       if (isPremium) {
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
@@ -42,16 +42,15 @@ class _NotificationPermissionScreenState
               return FadeTransition(opacity: animation, child: child);
             },
           ),
+          (route) => false,
         );
       } else {
-        _isNavigating = false;
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => const CustomPaywallScreen(
-              continueToFreeAppOnClose: true,
-            ),
+            builder: (context) => const CustomPaywallScreen(),
           ),
+          (route) => false,
         );
       }
     }

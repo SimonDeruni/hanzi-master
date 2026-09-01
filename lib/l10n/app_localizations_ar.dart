@@ -168,7 +168,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get globalMastery => 'الإتقان الشامل';
 
   @override
-  String get masteredCards => 'متقن';
+  String get masteredCards => 'مُتقَن';
 
   @override
   String get hsk1Candidate => 'مرشح HSK 1';
@@ -189,7 +189,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hsk6Candidate => 'مرشح HSK 6';
 
   @override
-  String get hsk6Master => 'سيد HSK 6';
+  String get hsk6Master => 'خبير HSK 6';
 
   @override
   String get currentRank => 'الرتبة الحالية';
@@ -198,7 +198,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next => 'التالي';
 
   @override
-  String get searchHanziOrPinyin => 'البحث...';
+  String get searchHanziOrPinyin => 'ابحث عن هانزي أو بينيين...';
 
   @override
   String get dailyReview => 'المراجعة اليومية';
@@ -216,10 +216,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next7Days => 'الأيام السبعة القادمة';
 
   @override
-  String get theScholarWay => 'طريق العالم';
+  String get theScholarWay => 'طريق العالِم';
 
   @override
-  String get beginJourney => 'ابدأ';
+  String get beginJourney => 'ابدأ الرحلة';
 
   @override
   String get settingsTitle => 'الإعدادات';
@@ -237,28 +237,29 @@ class AppLocalizationsAr extends AppLocalizations {
   String get artAndIntellect => 'الفن والفكر';
 
   @override
-  String get theDigitalScholar => 'العالم الرقمي';
+  String get theDigitalScholar => 'العالِم الرقمي';
 
   @override
-  String get refineBrushVoice => 'حسّن فرشاتك وصوتك مع الذكاء الاصطناعي.';
+  String get refineBrushVoice =>
+      'حسّن مهارات الفرشاة والصوت مع الذكاء الاصطناعي.';
 
   @override
   String get liveVoiceCall => 'مكالمة صوتية مباشرة';
 
   @override
-  String get immersiveRoleplay => 'لعب أدوار مع الذكاء الاصطناعي';
+  String get immersiveRoleplay => 'لعب أدوار غامر مع الذكاء الاصطناعي';
 
   @override
   String get readingRoom => 'غرفة القراءة';
 
   @override
-  String get shadowingStudio => 'استوديو التظليل';
+  String get shadowingStudio => 'استوديو المحاكاة الصوتية (Shadowing)';
 
   @override
   String get errorPrefix => 'خطأ: ';
 
   @override
-  String get initializingLibrary => 'جاري التهيئة...';
+  String get initializingLibrary => 'جارٍ التهيئة...';
 
   @override
   String get unlockCharactersToQuiz => 'افتح 4 رموز للاختبار!';
@@ -282,7 +283,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pathReady => 'مسارك جاهز!';
 
   @override
-  String get errorGeneratingPath => 'خطأ';
+  String get errorGeneratingPath => 'خطأ في إنشاء المسار';
 
   @override
   String get brushingCurriculum => 'إنشاء المسار...';
@@ -291,7 +292,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get warmUp => 'إحماء';
 
   @override
-  String get lessonComplete => 'اكتمل الدرس! +10 نقاط';
+  String get lessonComplete => 'اكتمل الدرس! +10 نقاط حبر';
 
   @override
   String get step1Origin => 'الخطوة 1: الأصل';
@@ -309,7 +310,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wrongEssence => 'خطأ! حاول مرة أخرى.';
 
   @override
-  String get step3Hunt => 'الخطوة 3: الصيد';
+  String get step3Hunt => 'الخطوة 3: البحث';
 
   @override
   String get findCharacters => 'ابحث عن الرموز';
@@ -327,7 +328,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get rescindTitle => 'إلغاء؟';
 
   @override
-  String get removeCharactersWarning => 'سيتم إزالة هذه الرموز.';
+  String get removeCharactersWarning => 'سيؤدي هذا إلى إزالة هذه الرموز.';
 
   @override
   String get cancel => 'إلغاء';
@@ -339,7 +340,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removedLibrary => 'تمت الإزالة:';
 
   @override
-  String get tomeLibrary => 'المكتبة';
+  String get tomeLibrary => 'مكتبة المجلدات';
 
   @override
   String get libraryError => 'خطأ في المكتبة';
@@ -351,13 +352,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unitIntro => 'مقدمة الوحدة';
 
   @override
-  String get constellationCluster => 'مجموعة الأبراج';
+  String get constellationCluster => 'عنقود الكوكبات';
 
   @override
-  String get ok => 'حسنا';
+  String get ok => 'حسناً';
 
   @override
-  String get divingInto => 'الغوص في...';
+  String get divingInto => 'الانتقال إلى...';
 
   @override
   String get keyRadicals => 'الجذور الرئيسية';
@@ -381,97 +382,97 @@ class AppLocalizationsAr extends AppLocalizations {
   String get geminiLiveCall => 'مكالمة مباشرة';
 
   @override
-  String get returnToMenu => 'عودة';
+  String get returnToMenu => 'عودة إلى القائمة';
 
   @override
-  String get strokeAnalysis => 'Stroke Analysis';
+  String get strokeAnalysis => 'تحليل ترتيب الخطوط';
 
   @override
-  String get excellentWork => 'Excellent work!';
+  String get excellentWork => 'عمل ممتاز!';
 
   @override
-  String get keepPracticing => 'Keep practicing!';
+  String get keepPracticing => 'واصل التدريب!';
 
   @override
-  String get drawingSubmitted => 'Drawing Submitted';
+  String get drawingSubmitted => 'تم إرسال الرسم';
 
   @override
-  String get customPersonaHint => 'Define a custom persona...';
+  String get customPersonaHint => 'حدد شخصية مخصصة...';
 
   @override
-  String get stepOneOrigin => 'STEP 1: THE ORIGIN';
+  String get stepOneOrigin => 'الخطوة 1: الأصل';
 
   @override
-  String get stepTwoForge => 'STEP 2: THE FORGE';
+  String get stepTwoForge => 'الخطوة 2: الصياغة';
 
   @override
-  String get toForge => 'To forge';
+  String get toForge => 'للصياغة';
 
   @override
-  String get whatEssenceDoesNeed => 'what essence does';
+  String get whatEssenceDoesNeed => 'ما هو الجوهر الذي';
 
   @override
-  String get need => 'need';
+  String get need => 'يحتاجه';
 
   @override
-  String get forged => 'FORGED';
+  String get forged => 'تمت الصياغة';
 
   @override
-  String get stepThreeHunt => 'STEP 3: THE HUNT';
+  String get stepThreeHunt => 'الخطوة 3: البحث';
 
   @override
-  String get findCharactersWith => 'Find characters with';
+  String get findCharactersWith => 'ابحث عن الرموز التي تحتوي على';
 
   @override
-  String get uninstallButton => 'UNINSTALL';
+  String get uninstallButton => 'إلغاء التثبيت';
 
   @override
-  String get gradedAiStories => 'قصص متدرجة';
+  String get gradedAiStories => 'قصص متدرجة بالذكاء الاصطناعي';
 
   @override
-  String get calligraphy => 'الخط';
+  String get calligraphy => 'فن الخط';
 
   @override
-  String get theScrollOfOrigin => 'The Scroll Of Origin';
+  String get theScrollOfOrigin => 'لفافة الأصل';
 
   @override
-  String get galaxyOf => 'Galaxy Of';
+  String get galaxyOf => 'مجرة';
 
   @override
-  String get constellationDescription => 'Constellation Description';
+  String get constellationDescription => 'وصف الكوكبة';
 
   @override
-  String get noRadicalDataAvailable => 'No Radical Data Available';
+  String get noRadicalDataAvailable => 'لا تتوفر بيانات عن الجذر';
 
   @override
-  String get learningPreferences => 'Learning Preferences';
+  String get learningPreferences => 'تفضيلات التعلم';
 
   @override
-  String get hardMode => 'Hard Mode';
+  String get hardMode => 'الوضع الصعب';
 
   @override
-  String get hardModeDesc => 'Hard Mode Desc';
+  String get hardModeDesc => 'وصف الوضع الصعب';
 
   @override
-  String get adaptiveGuidance => 'Adaptive Guidance';
+  String get adaptiveGuidance => 'التوجيه التكيفي';
 
   @override
-  String get dailyGoal => 'Daily Goal';
+  String get dailyGoal => 'الهدف اليومي';
 
   @override
-  String get audioAndHaptics => 'الصوت واللمس';
+  String get audioAndHaptics => 'الصوت والاستجابة اللمسية';
 
   @override
-  String get autoPlayAudio => 'Auto Play Audio';
+  String get autoPlayAudio => 'تشغيل الصوت تلقائيًا';
 
   @override
-  String get autoPlayDesc => 'Auto Play Desc';
+  String get autoPlayDesc => 'تشغيل النطق تلقائيًا عند عرض البطاقة';
 
   @override
-  String get haptics => 'Haptics';
+  String get haptics => 'الاستجابة اللمسية';
 
   @override
-  String get displayAndContent => 'الشاشة والمحتوى';
+  String get displayAndContent => 'العرض والمحتوى';
 
   @override
   String get useEnglishDefinitions => 'استخدام التعريفات الإنجليزية';
@@ -484,10 +485,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get animationSpeed => 'سرعة الحركة';
 
   @override
-  String get manageTomes => 'Manage Tomes';
+  String get manageTomes => 'إدارة المجلدات';
 
   @override
-  String get manageTomesDesc => 'Manage Tomes Desc';
+  String get manageTomesDesc => 'عرض وإدارة المجلدات المثبتة';
 
   @override
   String get dangerZone => 'منطقة الخطر';
@@ -500,13 +501,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'سيؤدي هذا إلى حذف جميع بيانات التقدم والإحصائيات والإعدادات بشكل دائم. لا يمكن التراجع عن هذا الإجراء.';
 
   @override
-  String get areYouSure => 'Are You Sure';
+  String get areYouSure => 'هل أنت متأكد؟';
 
   @override
-  String get cannotBeUndone => 'Cannot Be Undone';
+  String get cannotBeUndone => 'لا يمكن التراجع عن هذا الإجراء';
 
   @override
-  String get deleteEverything => 'Delete Everything';
+  String get deleteEverything => 'حذف كل شيء';
 
   @override
   String get appLanguage => 'لغة التطبيق';
@@ -518,10 +519,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get missedItEntirely => 'أخطأت كليًا';
 
   @override
-  String get gotItButStruggled => 'فهمتها ولكن مع بعض الصعوبة';
+  String get gotItButStruggled => 'تذكرت بصعوبة';
 
   @override
-  String get gotItClearly => 'فهمتها بوضوح';
+  String get gotItClearly => 'تذكرت بوضوح';
 
   @override
   String get perfectAndImmediate => 'مثالي وفوري';
@@ -548,7 +549,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get completelyForgot => 'نسيت تمامًا';
 
   @override
-  String get gotItWithDifficulty => 'تذكرتها بصعوبة';
+  String get gotItWithDifficulty => 'تذكرت بصعوبة';
 
   @override
   String get recalledCorrectly => 'تذكرت بشكل صحيح';
@@ -563,7 +564,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hideScratchpad => 'إخفاء لوح الرسم';
 
   @override
-  String get whatCharacterMeans => 'ماذا يعني هذا الحرف:';
+  String get whatCharacterMeans => 'معنى هذا الرمز:';
 
   @override
   String get tapCardToReveal => 'انقر على البطاقة للكشف';
@@ -572,7 +573,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ratePronunciationConfidence => 'قيّم ثقتك في النطق';
 
   @override
-  String get botchedIt => 'أخطأت بشدة';
+  String get botchedIt => 'أخطأت تمامًا';
 
   @override
   String get struggledWithTones => 'واجهت صعوبة في النغمات';
@@ -584,7 +585,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get perfectlyNatural => 'طبيعي تمامًا';
 
   @override
-  String get sessionComplete => 'الجلسة اكتملت!';
+  String get sessionComplete => 'اكتملت الجلسة!';
 
   @override
   String get accuracy => 'الدقة';
@@ -611,20 +612,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scholarlyPersonas => 'شخصيات علمية';
 
   @override
-  String get shadowing => 'التظليل';
+  String get shadowing => 'المحاكاة الصوتية (Shadowing)';
 
   @override
   String get liveTranslation => 'ترجمة فورية';
 
   @override
-  String get scholarsLibrary => 'مكتبة الباحث';
+  String get scholarsLibrary => 'مكتبة العالِم';
 
   @override
   String get generate => 'توليد';
 
   @override
   String get searchPinyinHanziEnglish =>
-      'ابحث عن البينيين أو الهانزي أو الإنجليزية...';
+      'ابحث عن البينيين أو الهانزي أو المعنى...';
 
   @override
   String get liveTranslate => 'ترجمة مباشرة';
@@ -634,14 +635,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get realTimeSplitScreen =>
-      'محادثة بشاشة مقسمة في الوقت الفعلي مع متحدث أصلي. يزيل حواجز اللغة فوراً.';
+      'محادثة بشاشة مقسمة في الوقت الفعلي مع متحدث أصلي لتجاوز حواجز اللغة فورًا.';
 
   @override
-  String get whisperEarpiece => 'سماعة الأذن اللاسلكية';
+  String get whisperEarpiece => 'سماعة الترجمة الفورية';
 
   @override
   String get listenToChineseAudio =>
-      'استمع إلى الصوت الصيني واحصل على ترجمة فورية باللغة الإنجليزية مباشرة على شاشتك.';
+      'استمع إلى الصوت الصيني واحصل على ترجمة فورية باللغة العربية مباشرة على شاشتك.';
 
   @override
   String get dashboardTitle => 'لوحة التحكم';
@@ -677,23 +678,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get generalVocabulary => 'مفردات عامة';
 
   @override
-  String get cardsRequireAttention => 'بطاقات تتطلب اهتمامًا.';
+  String cardsRequireAttention(Object count) {
+    return '$count بطاقات تتطلب المراجعة.';
+  }
 
   @override
   String get begin => 'ابدأ';
 
   @override
   String get poweredByAi =>
-      'مدعوم بالذكاء الاصطناعي المتقدم. ترجمة سلسة وفورية لأي سيناريو.';
+      'مدعوم بالذكاء الاصطناعي المتقدم لترجمة فورية وسلسة في جميع المواقف.';
 
   @override
-  String get downloadingModel => 'يتم تنزيل النموذج...';
+  String get downloadingModel => 'جارٍ تنزيل النموذج...';
 
   @override
   String get soon => 'قريباً';
 
   @override
-  String get installed => 'مثبت';
+  String get installed => 'مثبّت';
 
   @override
   String get premium => 'مميز';
@@ -705,13 +708,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get step6Context => 'الخطوة 6: السياق';
 
   @override
-  String get tapBuildingBlocksTo => 'انقر على الكتل الأساسية لاستكشاف أصلها.';
+  String get tapBuildingBlocksTo => 'انقر على اللبنات الأساسية لاستكشاف أصلها.';
 
   @override
-  String get initiateRadicalSequence => 'بدء تسلسل الجذر';
+  String get initiateRadicalSequence => 'بدء تسلسل الجذور';
 
   @override
-  String get holdToTalk => 'اضغط للتحدث';
+  String get holdToTalk => 'اضغط مع الاستمرار للتحدث';
 
   @override
   String get customScenario => 'سيناريو مخصص';
@@ -724,7 +727,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get selectAScenarioTo =>
-      'اختر سيناريو لممارسة لغتك الماندارينية المنطوقة. سيقوم العالم بتقييم نبرات صوتك ووضوحها.';
+      'اختر سيناريو لممارسة الماندارين المنطوقة. سيقوم العالِم بتقييم نبرات صوتك ووضوحها.';
 
   @override
   String get create => 'إنشاء';
@@ -736,7 +739,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get difficulty => 'الصعوبة';
 
   @override
-  String get scholarsVerdict => 'حكم العالم';
+  String get scholarsVerdict => 'تقييم العالِم';
 
   @override
   String get completeReview => 'مراجعة كاملة';
@@ -751,7 +754,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get examplesInHsk1 => 'أمثلة في HSK 1';
 
   @override
-  String get characterReference => 'مرجع الحرف';
+  String get characterReference => 'مرجع الرمز';
 
   @override
   String get askTutor => 'اسأل المعلم';
@@ -763,11 +766,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get startPractice => 'ابدأ التدريب';
 
   @override
-  String get noOtherHsk1 => 'لا توجد أحرف HSK 1 أخرى تستخدم هذا الجذر.';
+  String get noOtherHsk1 => 'لا توجد رموز أخرى في HSK 1 تستخدم هذا الجذر.';
 
   @override
   String get couldNotLoadAi =>
-      'تعذر تحميل سياق الذكاء الاصطناعي. (حد المعدل أو خطأ في الشبكة)\nانقر على زر التحديث أدناه للمحاولة مرة أخرى لاحقًا.';
+      'تعذر تحميل سياق الذكاء الاصطناعي. (حد الطلبات أو خطأ في الشبكة)\nانقر على زر التحديث أدناه للمحاولة مرة أخرى لاحقًا.';
 
   @override
   String get noAvailableCardsFound => 'لم يتم العثور على بطاقات متاحة.';
@@ -803,13 +806,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aiGenerated => 'تم إنشاؤه بواسطة الذكاء الاصطناعي';
 
   @override
-  String get allCardsCaughtUp => 'تم استعراض جميع البطاقات! عمل رائع.';
+  String get allCardsCaughtUp => 'تمت مراجعة جميع البطاقات! عمل رائع.';
 
   @override
   String get latestDiscoveries => 'أحدث الاكتشافات';
 
   @override
-  String get noCharactersInLexicon => 'لا توجد أحرف في المعجم حتى الآن.';
+  String get noCharactersInLexicon => 'لا توجد رموز في المعجم حتى الآن.';
 
   @override
   String get yourBookshelf => 'رف كتبك';
@@ -824,14 +827,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get saveCard => 'حفظ البطاقة';
 
   @override
-  String get noCharactersFound => 'لم يتم العثور على أحرف.';
+  String get noCharactersFound => 'لم يتم العثور على رموز.';
 
   @override
   String get radicalsIndex => 'فهرس الجذور';
 
   @override
   String get masteringRadicalsIsThe =>
-      'إتقان الجذور هو مفتاح فهم آلاف أحرف الهانزي. حدد جذرًا لرؤية جميع الأحرف التي تستخدمه.';
+      'إتقان الجذور هو المفتاح لفهم آلاف رموز الهانزي. حدد جذرًا لعرض جميع الرموز المرتبطة به.';
 
   @override
   String get noRadicalsFound => 'لم يتم العثور على جذور.';
@@ -840,16 +843,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get yourDrawing => 'رسمك';
 
   @override
-  String get reference => 'مرجع';
+  String get reference => 'المرجع';
 
   @override
-  String get rateYourRecall => 'قيم استدعاءك';
+  String get rateYourRecall => 'قيّم مدى تذكرك';
 
   @override
   String get contactUs => 'اتصل بنا';
 
   @override
-  String get reportBugsOrRequest => 'الإبلاغ عن الأخطاء أو طلب الميزات';
+  String get reportBugsOrRequest => 'الإبلاغ عن الأخطاء أو اقتراح ميزات';
 
   @override
   String get allDataHasBeen => 'تم مسح جميع البيانات.';
@@ -882,10 +885,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get fullTranslation => 'ترجمة كاملة';
 
   @override
-  String get geminiFlashIsStructuring => 'تقوم Gemini Flash ببناء قصتك...';
+  String get geminiFlashIsStructuring => 'يقوم Gemini Flash بصياغة قصتك...';
 
   @override
-  String get aiDeckGenerator => 'مولد مجموعة الذكاء الاصطناعي';
+  String get aiDeckGenerator => 'منشئ المجموعات بالذكاء الاصطناعي';
 
   @override
   String get whatDoYouWant => 'ماذا تريد أن تتعلم؟';
@@ -894,7 +897,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get targetDifficulty => 'الصعوبة المستهدفة';
 
   @override
-  String get focusArea => 'منطقة التركيز';
+  String get focusArea => 'مجال التركيز';
 
   @override
   String get specificContextOrTone => 'سياق أو نبرة محددة (اختياري)';
@@ -906,36 +909,35 @@ class AppLocalizationsAr extends AppLocalizations {
   String get generateDeck => 'إنشاء مجموعة';
 
   @override
-  String get aiGrammarExplanation => 'شرح قواعد اللغة بالذكاء الاصطناعي';
+  String get aiGrammarExplanation => 'شرح القواعد بالذكاء الاصطناعي';
 
   @override
-  String get scholarsDesk => 'مكتب العالم';
+  String get scholarsDesk => 'مكتب العالِم';
 
   @override
   String get chooseADeck => 'اختر مجموعة';
 
   @override
-  String get whereWouldYouLike => 'أين تود حفظ هذا الحرف؟';
+  String get whereWouldYouLike => 'أين تود حفظ هذا الرمز؟';
 
   @override
   String get addToDefaultStudy => 'أضف إلى مجموعة الدراسة الافتراضية';
 
   @override
-  String get ifOffItsOnly =>
-      'إذا كان غير مفعل، فسيتم حفظه في القاموس العام فقط';
+  String get ifOffItsOnly => 'إذا تم تعطيله، فسيتم حفظه في القاموس العام فقط';
 
   @override
   String get saveToLibrary => 'حفظ في المكتبة';
 
   @override
-  String get pleaseEnterValidChinese => 'الرجاء إدخال أحرف صينية صحيحة';
+  String get pleaseEnterValidChinese => 'يرجى إدخال رموز صينية صحيحة';
 
   @override
   String get reviewAiCard => 'مراجعة بطاقة الذكاء الاصطناعي';
 
   @override
   String get pleaseDoublecheckTheAis =>
-      'يرجى التحقق مرة أخرى من إخراج الذكاء الاصطناعي أدناه. لا تتردد في تعديل البينيين أو التعريف قبل حفظه في مكتبتك الدائمة.';
+      'يرجى مراجعة نتيجة الذكاء الاصطناعي أدناه. يمكنك تعديل البينيين أو التعريف قبل الحفظ في مكتبتك الدائمة.';
 
   @override
   String get alreadyInYourLibrary => 'موجود بالفعل في مكتبتك!';
@@ -944,17 +946,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get meaningInContext => 'المعنى في السياق';
 
   @override
-  String get explainGrammar => 'اشرح القواعد';
+  String get explainGrammar => 'شرح القواعد';
 
   @override
   String get addToLibrary => 'أضف إلى المكتبة';
 
   @override
   String get masterYourMandarinPronunciation =>
-      'أتقن نطقك للماندارينية من خلال محاكاة النطق الأصلي في الوقت الفعلي.';
+      'أتقن نطقك للماندارين من خلال محاكاة المتحدثين الأصليين في الوقت الفعلي.';
 
   @override
-  String get startSession => 'ابدأ الجلسة';
+  String get startSession => 'بدء الجلسة';
 
   @override
   String get sessionHistory => 'سجل الجلسات';
@@ -969,10 +971,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sessionDetails => 'تفاصيل الجلسة';
 
   @override
-  String get partner => 'الشريك ((lang))';
+  String partner(Object lang) {
+    return 'الشريك ($lang)';
+  }
 
   @override
-  String get youEnglish => 'أنت (إنجليزي)';
+  String get youEnglish => 'أنت (العربية)';
 
   @override
   String get noTranscriptToSave => 'لا يوجد نص لحفظه!';
@@ -982,7 +986,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get realtimeBidirectionalTranslationSpeak =>
-      'ترجمة ثنائية الاتجاه في الوقت الفعلي. تحدث الإنجليزية أو الماندارينية، وسيترجمها لك ولشريكك على الفور.';
+      'ترجمة ثنائية الاتجاه في الوقت الفعلي. تحدث بالعربية أو الماندارين، وسيترجم فورًا لك ولشريكك.';
 
   @override
   String get text_1782026184665 => 'تسجيل';
@@ -992,10 +996,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get yourSilentCompanionListen =>
-      'رفيقك الصامت. استمع إلى الماندارينية، واستمع إلى الترجمة الإنجليزية على الفور.';
+      'رفيقك الصامت. استمع إلى الماندارين، واحصل على الترجمة العربية على الفور.';
 
   @override
-  String get startListening => 'ابدا الاستماع';
+  String get startListening => 'بدء الاستماع';
 
   @override
   String get skip => 'تخطي';
@@ -1005,66 +1009,66 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notEveryCharacterHas =>
-      'ليس لكل حرف جذر أصلي. بعضها صور رمزية فريدة أو قائمة بذاتها.';
+      'لا يحتوي كل رمز على جذر أصلي. بعضها رموز بصرية فريدة أو قائمة بذاتها.';
 
   @override
   String get onTheMapWe =>
-      'على الخريطة، نقوم بتجميع هذه الأحرف المستقلة في مجموعات (✨).';
+      'على الخريطة، نجمع هذه الرموز المستقلة في كوكبات (✨).';
 
   @override
-  String get iUnderstand => 'أنا أفهم';
+  String get iUnderstand => 'أفهم ذلك';
 
   @override
   String get whatAreRadicals => 'ما هي الجذور؟';
 
   @override
   String get hanziAreBuiltFrom =>
-      'أحرف الهانزي مبنية من لبنات بناء تسمى الجذور.\n\nإنها تعطي الحرف معناه أو موضوعه الأساسي.';
+      'تتكون رموز الهانزي من لبنات بناء تسمى الجذور.\n\nتمنح الرمز معناه أو موضوعه الأساسي.';
 
   @override
   String get continueText => 'متابعة';
 
   @override
   String get hanziAreNotJust =>
-      'أحرف الهانزي ليست مجرد حروف. إنها صور مجمدة في الزمن.\n\nلإتقانها، يجب أن تتعلم تتبع تدفقها.';
+      'رموز الهانزي ليست مجرد حروف، بل هي صور مخلدة عبر الزمن.\n\nلإتقانها، يجب أن تتعلم مسار رسمها وتدفقها.';
 
   @override
-  String get iAmReady => 'أنا جاهز';
+  String get iAmReady => 'أنا مستعد';
 
   @override
-  String get youAreAScholar => 'أنت عالم';
+  String get youAreAScholar => 'أنت عالِم';
 
   @override
   String get theGalaxyMapAwaitsnmaster =>
-      'خريطة المجرة تنتظر.\nأتقن الشمس (الجذور) لفتح الكواكب (الأحرف).';
+      'خريطة المجرة في انتظارك.\nأتقن الشموس (الجذور) لفتح الكواكب (الرموز).';
 
   @override
   String get enterTheScroll => 'ادخل إلى اللفافة';
 
   @override
-  String get openingTheOriginScroll => 'جاري فتح لفافة الأصل...';
+  String get openingTheOriginScroll => 'جارٍ فتح لفافة الأصل...';
 
   @override
   String get text_1782026184670 => '+';
 
   @override
-  String get theScholarsEdition => 'نسخة العالم';
+  String get theScholarsEdition => 'نسخة العالِم';
 
   @override
-  String get weArePreparingThe => 'نحن نعد نسخة العالم للإطلاق.';
+  String get weArePreparingThe => 'نحن نجهز نسخة العالِم للإطلاق.';
 
   @override
-  String get devBypassUnlockNow => 'تجاوز المطور: افتح الآن';
+  String get devBypassUnlockNow => 'تجاوز المطور: فتح الآن';
 
   @override
   String get restorePurchases => 'استعادة المشتريات';
 
   @override
   String get welcomeScholarTheScroll =>
-      'مرحبًا أيها العالم، اللفافة مفتوحة بالكامل لك.';
+      'مرحبًا أيها العالِم، اللفافة مفتوحة لك بالكامل.';
 
   @override
-  String get purchasesRestoredSuccessfully => 'تم استعادة المشتريات بنجاح.';
+  String get purchasesRestoredSuccessfully => 'تمت استعادة المشتريات بنجاح.';
 
   @override
   String get noPreviousPurchasesFound =>
@@ -1072,24 +1076,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unlockTheFullPotential =>
-      'افتح الإمكانات الكاملة لرحلتك. شراء لمرة واحدة، ملكك إلى الأبد.';
+      'أطلق العنان للإمكانات الكاملة لرحلتك. شراء لمرة واحدة وامتلاك دائم.';
 
   @override
-  String get universalScanner => 'ماسح ضوئي عالمي';
+  String get universalScanner => 'الماسح الشامل';
 
   @override
   String get noChineseCharactersFound =>
-      'لم يتم العثور على أحرف صينية في الصورة.';
+      'لم يتم العثور على رموز صينية في الصورة.';
 
   @override
-  String get addedNewCharactersTo => 'تمت إضافة أحرف جديدة إلى مكتبتك!';
+  String get addedNewCharactersTo => 'تمت إضافة رموز جديدة إلى مكتبتك!';
 
   @override
-  String get extractingTextAndObjects => 'جاري استخراج النص والكائنات...';
+  String get extractingTextAndObjects => 'جارٍ استخراج النصوص والكائنات...';
 
   @override
   String get scanATextbookSign =>
-      'امسح كتابًا دراسيًا أو لافتة أو كائنًا لاستخراج الأحرف الصينية.';
+      'امسح كتابًا دراسيًا أو لافتة أو كائنًا لاستخراج الرموز الصينية.';
 
   @override
   String get extractedText => 'النص المستخرج';
@@ -1099,17 +1103,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noMatchingDictionaryEntries =>
-      'لم يتم العثور على إدخالات قاموس مطابقة.';
+      'لم يتم العثور على إدخالات مطابقة في القاموس.';
 
   @override
   String get quizComplete => 'اكتمل الاختبار!';
 
   @override
-  String get returnToCourse => 'العودة إلى الدورة';
+  String get returnToCourse => 'العودة إلى المسار';
 
   @override
   String get notEnoughCardsFor =>
-      'لا توجد بطاقات كافية للاختبار! تحتاج 4 على الأقل.';
+      'لا توجد بطاقات كافية للاختبار! يلزم توفر 4 بطاقات على الأقل.';
 
   @override
   String get creatorMode => 'وضع المنشئ';
@@ -1124,7 +1128,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get save => 'حفظ';
 
   @override
-  String get generatingStoryViaDeepseek => 'جاري إنشاء القصة عبر DeepSeek...';
+  String get generatingStoryViaDeepseek => 'جارٍ إنشاء القصة عبر DeepSeek...';
 
   @override
   String get storySavedToLibrary => 'تم حفظ القصة في المكتبة!';
@@ -1136,29 +1140,37 @@ class AppLocalizationsAr extends AppLocalizations {
   String get targetHskLevel => 'مستوى HSK المستهدف';
 
   @override
-  String get wedLoveToHear => 'نحن نحب أن نسمع منك!';
+  String get wedLoveToHear => 'يسعدنا سماع رأيك!';
 
   @override
   String get whetherYouveFoundA =>
-      'سواء وجدت خطأً، أو لديك طلب ميزة، أو أردت فقط أن تقول مرحبًا، فإن ملاحظاتك تساعدنا على تحسين SinoSpark.';
+      'سواء وجدت خطأً، أو كان لديك اقتراح لميزة، أو أردت فقط إلقاء التحية، فإن ملاحظاتك تساعدنا على تحسين SinoSpark.';
 
   @override
-  String get pointYourCameraAt => 'وجه الكاميرا نحو الأشياء';
+  String get pointYourCameraAt => 'وجّه الكاميرا نحو الكائنات';
 
   @override
   String get reviewAddToLibrary => 'مراجعة وإضافة إلى المكتبة';
 
   @override
-  String get hideStrokeGuideStreak => 'إخفاء دليل خطوط الحرف عند: (streak)';
+  String hideStrokeGuideStreak(Object streak) {
+    return 'إخفاء دليل مسار الخطوط عند السلسلة: $streak';
+  }
 
   @override
-  String get inkPoints => 'نقاط الحبر: (points)';
+  String inkPoints(Object points) {
+    return 'نقاط الحبر: $points';
+  }
 
   @override
-  String get speechRateMultiplier => '(rate)x';
+  String speechRateMultiplier(Object rate) {
+    return '${rate}x';
+  }
 
   @override
-  String get animationSpeedMultiplier => '(rate)x';
+  String animationSpeedMultiplier(Object rate) {
+    return '${rate}x';
+  }
 
   @override
   String get supportAndFeedback => 'الدعم والملاحظات';
@@ -1173,30 +1185,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get generalFeedback => 'ملاحظات عامة';
 
   @override
-  String get pleaseDrawSomethingFirst => 'الرجاء رسم شيء أولاً';
+  String get pleaseDrawSomethingFirst => 'يرجى رسم شيء أولاً';
 
   @override
-  String get drawThisCharacter => 'ارسم هذا الحرف:';
+  String get drawThisCharacter => 'ارسم هذا الرمز:';
 
   @override
-  String get followGuideStroke =>
-      'اتبع الدليل الأزرق لرسم المسار (current) من (total)';
+  String followGuideStroke(Object current, Object total) {
+    return 'اتبع الدليل الأزرق لرسم الخط $current من $total';
+  }
 
   @override
-  String get skipCurrentStroke => 'تخطي المسار الحالي';
+  String get skipCurrentStroke => 'تخطي الخط الحالي';
 
   @override
-  String get submitDrawing => 'إرسال الرسم';
+  String get submitDrawing => 'تأكيد الرسم';
 
   @override
-  String get addedToDeck => 'تمت إضافة (hanzi) إلى (deckName)';
+  String addedToDeck(Object deckName, Object hanzi) {
+    return 'تمت إضافة $hanzi إلى $deckName';
+  }
 
   @override
-  String get removedFromDeck => 'أزيلت (hanzi) من المجموعة';
+  String removedFromDeck(Object hanzi) {
+    return 'تمت إزالة $hanzi من المجموعة';
+  }
 
   @override
-  String get skippedNoStrokeData =>
-      'تم تخطي \"(hanzi)\" - لا توجد بيانات مسار متاحة لهذا الحرف.';
+  String skippedNoStrokeData(Object hanzi) {
+    return 'تم تخطي \"$hanzi\" - لا تتوفر بيانات مسار الخطوط لهذا الرمز.';
+  }
 
   @override
   String get startingSession => 'بدء الجلسة...';
@@ -1211,10 +1229,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newInk => 'حبر جديد';
 
   @override
-  String get learningStatus => 'يتعلم';
+  String get learningStatus => 'قيد التعلم';
 
   @override
-  String get masteredStatus => 'أتقن';
+  String get masteredStatus => 'مُتقَن';
 
   @override
   String get libraryMastery => 'إتقان المكتبة';
@@ -1229,16 +1247,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get culturalReadingRoom => 'غرفة المطالعة الثقافية (文化书房)';
 
   @override
-  String get storyTitleHsk => '(title) (مستوى HSK (level))';
+  String storyTitleHsk(Object level, Object title) {
+    return '$title (مستوى HSK $level)';
+  }
 
   @override
-  String get pleaseEnterTopic => 'الرجاء إدخال موضوع';
+  String get pleaseEnterTopic => 'يرجى إدخال موضوع';
 
   @override
-  String get createdDeckCards => 'تم إنشاء (name) بـ (count) بطاقة!';
+  String createdDeckCards(Object count, Object name) {
+    return 'تم إنشاء $name بـ $count بطاقات!';
+  }
 
   @override
-  String get gradeResult => 'الدرجة: (grade)';
+  String gradeResult(Object grade) {
+    return 'الدرجة: $grade';
+  }
 
   @override
   String get listeningMode => 'وضع الاستماع';
@@ -1247,19 +1271,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get readingMode => 'وضع القراءة';
 
   @override
-  String get recallMode => 'وضع التذكر';
+  String get recallMode => 'وضع الاستدعاء الذهني';
 
   @override
   String get speakingMode => 'وضع التحدث';
 
   @override
-  String get aiMemoryHook => 'خطاف الذاكرة بالذكاء الاصطناعي';
+  String get aiMemoryHook => 'الرابط الذهني بالذكاء الاصطناعي';
 
   @override
-  String get exampleSentences => 'جمل الأمثلة';
+  String get exampleSentences => 'جمل توضيحية';
 
   @override
-  String get ghostCharacters => 'الشخصيات الشبحية';
+  String get ghostCharacters => 'الرموز الإرشادية (الشبحية)';
 
   @override
   String get commonWords => 'الكلمات الشائعة';
@@ -1268,7 +1292,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get personalNotes => 'ملاحظات شخصية';
 
   @override
-  String get addPersonalNotes => 'أضف حِفظياتك أو ملاحظاتك هنا...';
+  String get addPersonalNotes => 'أضف روابطك الذهنية أو ملاحظاتك هنا...';
 
   @override
   String get takePhoto => 'التقاط صورة';
@@ -1277,19 +1301,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get gallery => 'المعرض';
 
   @override
-  String get arLens => 'عدسة الواقع المعزز';
+  String get arLens => 'عدسة الواقع المعزز (AR)';
 
   @override
-  String get addedCharToLibrary => 'تمت إضافة (char) إلى المكتبة';
+  String addedCharToLibrary(Object char) {
+    return 'تمت إضافة $char إلى المكتبة';
+  }
 
   @override
   String get scoreText => 'النقاط';
 
   @override
-  String get searchDictionaryHint => 'ابحث عن الحرف، البينيين، أو المعنى...';
+  String get searchDictionaryHint => 'ابحث عن الرمز أو البينيين أو المعنى...';
 
   @override
-  String get searchDeckHint => 'ابحث عن الحرف، البينيين...';
+  String get searchDeckHint => 'ابحث عن الرمز أو البينيين...';
 
   @override
   String get localRestaurant => 'مطعم محلي';
@@ -1304,7 +1330,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get medicalClinic => 'عيادة طبية';
 
   @override
-  String get meetingAFriend => 'مقابلة صديق';
+  String get meetingAFriend => 'لقاء صديق';
 
   @override
   String get jobInterview => 'مقابلة عمل';
@@ -1313,7 +1339,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchRadicalsHint => 'ابحث عن الجذور (مثل الماء، 氵)';
 
   @override
-  String get definition => 'تعريف';
+  String get definition => 'التعريف';
 
   @override
   String get undo => 'تراجع';
@@ -1322,7 +1348,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hanziMaster => 'هانزي ماستر';
 
   @override
-  String get unlockForever => 'فتح إلى الأبد - .99';
+  String get unlockForever => 'فتح دائم - \$9.99';
 
   @override
   String get clear => 'مسح';
@@ -1334,47 +1360,51 @@ class AppLocalizationsAr extends AppLocalizations {
   String get typeMessage => 'اكتب رسالتك...';
 
   @override
-  String get addedToLibrary => 'تمت إضافة \'(hanzi)\' إلى مكتبتك';
+  String addedToLibrary(Object hanzi) {
+    return 'تمت إضافة \'$hanzi\' إلى مكتبتك';
+  }
 
   @override
   String get generateNewStory => 'توليد قصة جديدة';
 
   @override
-  String get failedToGenerateStory => 'فشل توليد القصة:\\n(error)';
+  String failedToGenerateStory(Object error) {
+    return 'فشل إنشاء القصة:\n$error';
+  }
 
   @override
-  String get detail => 'تفصيل';
+  String get detail => 'التفاصيل';
 
   @override
-  String get scanText => 'مسح النص';
+  String get scanText => 'مسح ضوئي للنص';
 
   @override
   String get createMagic => 'ابتكار سحر';
 
   @override
-  String get learning => 'تعلم';
+  String get learning => 'قيد التعلم';
 
   @override
-  String get upcomingReviews7Days => 'المراجعات القادمة (الـ 7 أيام القادمة)';
+  String get upcomingReviews7Days => 'المراجعات القادمة (خلال 7 أيام)';
 
   @override
-  String get askFollowUpQuestion => 'اسأل سؤال متابعة...';
+  String get askFollowUpQuestion => 'اطرح سؤالاً إضافياً...';
 
   @override
-  String get pasteScanToSimplify => 'الصق أو امسح النص الصيني للتبسيط';
+  String get pasteScanToSimplify => 'الصق النص الصيني أو امسحه ضوئيًا لتبسيطه';
 
   @override
   String get searchStoriesHint =>
-      'ابحث في القصص حسب العنوان أو العلامات (مثل الأساطير، السفر)';
+      'ابحث في القصص حسب العنوان أو الوسوم (مثل: الأساطير، السفر)';
 
   @override
   String get importAll => 'استيراد الكل';
 
   @override
-  String get ascendAll => 'ارتقِ بالجميع';
+  String get ascendAll => 'ترقية الكل';
 
   @override
-  String get startAscension => 'بدء التعلم';
+  String get startAscension => 'بدء الارتقاء';
 
   @override
   String get scenarioLocalRestaurant => 'مطعم محلي';
@@ -1390,7 +1420,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scenarioTaxiAirportDesc => 'أخبر السائق وجهتك وناقش حركة المرور.';
 
   @override
-  String get scenarioSilkMarket => 'مساومة سوق الحرير';
+  String get scenarioSilkMarket => 'المساومة في سوق الحرير';
 
   @override
   String get scenarioSilkMarketDesc => 'حاول الحصول على سعر أفضل لتذكار.';
@@ -1403,7 +1433,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'اشرح الأعراض التي تعاني منها لطبيب تقليدي.';
 
   @override
-  String get scenarioMeetingFriend => 'مقابلة صديق';
+  String get scenarioMeetingFriend => 'لقاء صديق';
 
   @override
   String get scenarioMeetingFriendDesc => 'قدم نفسك وتحدث في مواضيع عامة.';
@@ -1443,7 +1473,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get historyAndCulture => 'التاريخ والثقافة';
 
   @override
-  String get idiomsTitle => 'مصطلحات (成语)';
+  String get idiomsTitle => 'تعبيرات اصطلاحية (成语)';
 
   @override
   String get theMonkeyKing => 'ملك القردة';
@@ -1479,14 +1509,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get topicHint => 'الموضوع (مثال: كائنات فضائية في بكين)';
 
   @override
-  String get tagsHint => 'العلامات (مفصولة بفاصلة، اختيارية)';
+  String get tagsHint => 'الوسوم (مفصولة بفواصل، اختياري)';
 
   @override
   String get speakWithMasterLin => 'تحدث مع المعلم لين';
 
   @override
   String get masterLinGreeting =>
-      'تحياتي، أيها الطالب. الحبر جاهز. أي شخصية أو عبارة سنفحصها اليوم؟';
+      'تحياتي، أيها المتعلّم. الحبر جاهز. أي رمز أو عبارة سنتناولها اليوم؟';
 
   @override
   String get typeYourMessage => 'اكتب رسالتك...';
@@ -1495,13 +1525,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theMainLibrary => 'المكتبة الرئيسية';
 
   @override
-  String get hsk1Foundation => 'HSK 1: أُسُس';
+  String get hsk1Foundation => 'HSK 1: الأساسيات';
 
   @override
-  String get hsk2Elementary => 'HSK 2: اِبتدائيّ';
+  String get hsk2Elementary => 'HSK 2: ابتدائي';
 
   @override
-  String get hsk3Intermediate => 'HSK 3: مُتوسِّط';
+  String get hsk3Intermediate => 'HSK 3: متوسط';
 
   @override
   String get inDeckCheck => 'موجود في المجموعة ✓';
@@ -1522,18 +1552,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get toneExpected => 'المتوقع';
 
   @override
-  String get toneYouSaid => 'قلت';
+  String get toneYouSaid => 'ما نطقته';
 
   @override
   String get gotIt => 'فهمت!';
 
   @override
   String foundNCharacters(int count) {
-    return '(count) حرف تم العثور عليه';
+    return 'تم العثور على $count رموز';
   }
 
   @override
-  String get lookingUpCharacters => 'جارٍ البحث عن الأحرف…';
+  String get lookingUpCharacters => 'جارٍ البحث عن الرموز…';
 
   @override
   String get practiceAll => 'التدرب على الكل';
@@ -1557,13 +1587,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aClassicTangDynastyPoemBy => 'قصيدة كلاسيكية من عهد تانغ بقلم';
 
   @override
-  String get aStructuralComponent => 'مكون بنائي.';
+  String get aStructuralComponent => 'عنصر تركيبي.';
 
   @override
-  String get addSelectedToDeck => 'إضافة المحدد إلى الحزمة';
+  String get addSelectedToDeck => 'إضافة المحدد إلى المجموعة';
 
   @override
-  String get addTo => 'أضف إلى ';
+  String addTo(Object target) {
+    return 'أضف إلى ';
+  }
 
   @override
   String addedHanziToYourLibrary(String hanzi) {
@@ -1580,7 +1612,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aiAnalysisFailed => 'فشل تحليل الذكاء الاصطناعي';
 
   @override
-  String get aiIsThinking => 'الذكاء الاصطناعي يفكر...';
+  String get aiIsThinking => 'جارٍ تفكير الذكاء الاصطناعي...';
 
   @override
   String get aiSceneAnalysisFailed => 'فشل تحليل المشهد بالذكاء الاصطناعي';
@@ -1589,7 +1621,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get allLabel => 'الكل';
 
   @override
-  String get allPinyin => 'كل البينيين';
+  String get allPinyin => 'جميع نغمات البينيين';
 
   @override
   String get alreadyHaveAccountSignIn => 'لديك حساب بالفعل؟ تسجيل الدخول';
@@ -1598,7 +1630,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get analysisFailed => 'فشل التحليل:';
 
   @override
-  String get analyzingClassicalCharacters => 'جارٍ تحليل الحروف الكلاسيكية...';
+  String get analyzingClassicalCharacters => 'جارٍ تحليل الرموز الكلاسيكية...';
 
   @override
   String get anatomy => 'التشريح';
@@ -1610,11 +1642,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get articleSavedToMediaHub => 'تم حفظ المقال في مكتبة الوسائط!';
 
   @override
-  String get askAFollowUp => 'اسأل سؤالاً متابعة...';
+  String get askAFollowUp => 'اطرح سؤالاً إضافياً...';
 
   @override
-  String get audioPrivacyAndHowThingsWork =>
-      'الصوت والخصوصية وكيفية عمل الأشياء';
+  String get audioPrivacyAndHowThingsWork => 'الصوت والخصوصية وآلية العمل';
 
   @override
   String get audiobookPlayer => 'مشغل الكتاب الصوتي';
@@ -1624,17 +1655,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get auntieMaTown =>
-      'العمة ما (马阿姨)، صاحبة كشك نشيطة وصاخبة تصنع أطعم روجيامو وليانغبي في المدينة.';
+      'العمة ما (马阿姨)، صاحبة كشك مفعمة بالحيوية تصنع أشهى روجيامو وليانغبي في المدينة.';
 
   @override
   String get back => 'رجوع';
 
   @override
   String get baristaKevinNotes =>
-      'باريستا كيفن (小凯)، محمّص قهوة شاب شغوف يحب مناقشة حبوب البن اليونانية ونكهاتها.';
+      'الباريستا كيفن (小凯)، محمّص قهوة شاب شغوف يحب الحديث عن حبوب بن يوننان وإيحاءاتها.';
 
   @override
-  String get bbc => 'موقع بي بي سي الصينية';
+  String get bbc => 'بي بي سي الصينية';
 
   @override
   String get beginYourJourney => 'ابدأ رحلتك';
@@ -1668,17 +1699,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cardsTitle => 'البطاقات';
 
   @override
-  String get cc => 'ترجمة';
+  String get cc => 'الترجمة التوضيحية (CC)';
 
   @override
-  String get characterOrWord => 'حرف / كلمة';
+  String get characterOrWord => 'رمز / كلمة';
 
   @override
-  String get chatMore => 'دردش أكثر';
+  String get chatMore => 'متابعة المحادثة';
 
   @override
   String get chefChenShumai =>
-      'الشيف تشن (陈师傅)، طاهٍ كانتوني مرح للدم سم يوصي بزلزاليات هار غاو الطازجة والشوماي.';
+      'الشيف تشن (陈师傅)، طاهي ديم سام كانتوني مرح يوصي بزلابية هار غاو الطازجة والشوماي.';
 
   @override
   String get chineseEpics => 'الملاحم الصينية';
@@ -1706,7 +1737,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get compare4Tones => 'مقارنة النغمات الأربع';
 
   @override
-  String get configuration => 'الإعدادات';
+  String get configuration => 'التهيئة';
 
   @override
   String get contemporary => 'معاصر';
@@ -1727,7 +1758,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createAccount => 'إنشاء حساب';
 
   @override
-  String get createNewDeck => 'إنشاء حزمة جديدة';
+  String get createNewDeck => 'إنشاء مجموعة جديدة';
 
   @override
   String get createScenario => 'إنشاء سيناريو';
@@ -1745,19 +1776,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get days => 'أيام';
 
   @override
-  String get deck => 'حزمة';
+  String get deck => 'مجموعة';
 
   @override
-  String get deckName => 'اسم الحزمة';
+  String get deckName => 'اسم المجموعة';
 
   @override
-  String get deckStory => 'قصة الحزمة';
+  String get deckStory => 'قصة المجموعة';
 
   @override
   String get deepAnalysis => 'تحليل عميق';
 
   @override
-  String get defaultDeck => 'الحزمة الافتراضية';
+  String get defaultDeck => 'المجموعة الافتراضية';
 
   @override
   String get deleteLabel => 'حذف';
@@ -1775,7 +1806,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get doesNotExistInChinese => 'غير موجود في اللغة الصينية';
 
   @override
-  String get dontHaveAccountSignUp => 'ليس لديك حساب؟ سجّل';
+  String get dontHaveAccountSignUp => 'ليس لديك حساب؟ إنشاء حساب';
 
   @override
   String get draftingStoryOutline => 'جارٍ صياغة مخطط القصة...';
@@ -1820,7 +1851,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get erase => 'مسح';
 
   @override
-  String get eraseDeckQuestion => 'مسح الحزمة؟';
+  String get eraseDeckQuestion => 'مسح المجموعة؟';
 
   @override
   String errorFetchingTranslationForLabelE(String label, String e) {
@@ -1843,19 +1874,19 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get exitFocus => 'الخروج من التركيز';
+  String get exitFocus => 'الخروج من وضع التركيز';
 
   @override
   String get explore => 'استكشف';
 
   @override
-  String get exportToThisDeck => 'تصدير إلى هذه الحزمة';
+  String get exportToThisDeck => 'تصدير إلى هذه المجموعة';
 
   @override
   String get extractAndSimplify => 'استخراج وتبسيط';
 
   @override
-  String get failedToCreateDeck => 'فشل إنشاء الحزمة';
+  String get failedToCreateDeck => 'فشل إنشاء المجموعة';
 
   @override
   String get failedToLoadDailyContent => 'فشل تحميل المحتوى اليومي';
@@ -1877,7 +1908,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'مصادقة Firebase غير مفعلة. يرجى تفعيل طريقة تسجيل الدخول المطلوبة في وحدة تحكم Firebase.';
 
   @override
-  String get flashcardDeckTitle => 'حزمة البطاقات التعليمية';
+  String get flashcardDeckTitle => 'مجموعة البطاقات التعليمية';
 
   @override
   String get focus => 'تركيز';
@@ -1886,7 +1917,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get foodAndCooking => 'الطعام والطبخ';
 
   @override
-  String get forward => 'تقديم';
+  String get forward => 'تقديم سريع';
 
   @override
   String get freeFlow => 'تدفق حر';
@@ -1904,7 +1935,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get germanClassics => 'الكلاسيكيات الألمانية';
 
   @override
-  String get ghostPinyin => 'بينيين شبح';
+  String get ghostPinyin => 'بينيين إرشادي (باهت)';
 
   @override
   String get goodAttempt => 'محاولة جيدة';
@@ -1917,7 +1948,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get grandmaLiuFilling =>
-      'الجدة ليو (刘奶奶)، جدة شمالية مدللة تعلمك كيفية طي عجينة الزلابية وصنع حشوة لحم الخنزير والبصل الأخضر.';
+      'الجدة ليو (刘奶奶)، جدة شمالية حنونة تعلمك كيفية طي عجينة الزلابية وصنع حشوة لحم الخنزير والبصل الأخضر.';
 
   @override
   String get great => 'ممتاز!';
@@ -1927,10 +1958,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'وليمة الزلابية اليدوية في هاربين';
 
   @override
-  String get hanziCharacter => 'هانزي (حرف)';
+  String get hanziCharacter => 'هانزي (رمز)';
 
   @override
-  String get hapticFeedback => 'الاهتزاز اللمسي';
+  String get hapticFeedback => 'الاستجابة اللمسية';
 
   @override
   String get helpAndSupport => 'المساعدة والدعم';
@@ -1939,13 +1970,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hidden => 'مخفي';
 
   @override
-  String get hideEnglishTranslations => 'إخفاء الترجمات الإنجليزية';
+  String get hideEnglishTranslations => 'إخفاء الترجمة';
 
   @override
   String get hidePinyin => 'إخفاء البينيين';
 
   @override
-  String get highlight => 'تسليط الضوء';
+  String get highlight => 'تمييز';
 
   @override
   String get howWouldYouLikeToStudy => 'كيف تفضل الدراسة؟';
@@ -1954,7 +1985,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hsk1 => 'HSK 1';
 
   @override
-  String get hsk4UpperIntermediate => 'HSK 4: فوق المتوسط';
+  String get hsk4UpperIntermediate => 'HSK 4: متوسط متقدم';
 
   @override
   String get hsk5Advanced => 'HSK 5: متقدم';
@@ -1971,13 +2002,13 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get hskSimplifySubtitles => 'تبسيط الترجمة بـ HSK';
+  String get hskSimplifySubtitles => 'تبسيط الترجمة حسب HSK';
 
   @override
   String get hskVocabularyCollections => 'مجموعات مفردات HSK';
 
   @override
-  String get i => 'أنا\\';
+  String get i => 'أنا';
 
   @override
   String get ifTheAgain =>
@@ -1987,7 +2018,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get install => 'تثبيت';
 
   @override
-  String get just => 'فقط \\\$';
+  String get just => 'فقط \$';
 
   @override
   String get keyword => 'كلمة مفتاحية';
@@ -2023,7 +2054,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get luXunVernacular =>
-      'لو شون (1881–1936)، الاسم المستعار لتشو شو رن، هو أبو الأدب الصيني الحديث. طبيب تحول إلى الكتابة لعلاج الروح الصينية، مجموعاته القصصية — يوميات مجنون والقصة الحقيقية لأه كيو — استخدمت اللغة العامية';
+      'لو شون (1881–1936)، الاسم المستعار لتشو شو رن، هو أبو الأدب الصيني الحديث. طبيب تحول إلى الكتابة لعلاج الروح الصينية، مجموعاته القصصية — يوميات مجنون والقصة الحقيقية لأه كيو — استخدمت اللغة العامية لنقد المجتمع التقليدي.';
 
   @override
   String get luoGuanzhongEpic =>
@@ -2034,11 +2065,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get manageDailyDropsAndReviewReminders =>
-      'إدارة الجرعات اليومية وتذكيرات المراجعة';
+      'إدارة الإضافات اليومية وتذكيرات المراجعة';
 
   @override
   String get managerYuOptions =>
-      'المدير يو (余店长)، مدير مطعم هوت بوت ناري يوصي بالكرشة المميزة ودم البط وخيارات المرق الخفيف.';
+      'المدير يو (余店长)، مدير مطعم هوت بوت مفعم بالحماس يوصي بالكرشة المميزة، ودم البط، وخيارات المرق غير الحار.';
 
   @override
   String get masterGaoRubs =>
@@ -2049,7 +2080,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get masterZhaoBrewing =>
-      'المعلم تشاو (赵师傅)، خبير شاي صبور ومثقف يحب شرح تخمير شاي الغونغفو.';
+      'المعلم تشاو (赵师傅)، خبير شاي صبور ومتمكن يحب شرح إعداد شاي الغونغفو.';
 
   @override
   String get mastery => 'إتقان';
@@ -2087,10 +2118,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newCard => 'بطاقة جديدة';
 
   @override
-  String get newDeck => 'حزمة جديدة';
+  String get newDeck => 'مجموعة جديدة';
 
   @override
-  String get newDeckName => 'اسم الحزمة الجديدة';
+  String get newDeckName => 'اسم المجموعة الجديدة';
 
   @override
   String get noActiveSubscriptionFound => 'لم يتم العثور على اشتراك نشط.';
@@ -2109,10 +2140,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noNewWordsFound => 'لم يتم العثور على كلمات جديدة!';
 
   @override
-  String get noPinyin => 'لا بينيين';
+  String get noPinyin => 'بدون بينيين';
 
   @override
-  String get noPremiumPackagesAvailable => 'لا توجد حزم متميزة متاحة حالياً.';
+  String get noPremiumPackagesAvailable => 'لا توجد باقات مميزة متاحة حالياً.';
 
   @override
   String noResultsFoundForSearchquery(String searchQuery) {
@@ -2144,11 +2175,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get openInYoutube => 'فتح في يوتيوب';
 
   @override
-  String get orderingHanddripCoffeeInShanghai => 'طلب القهوة اليدوية في شنغهاي';
+  String get orderingHanddripCoffeeInShanghai =>
+      'طلب القهوة المقطرة يدوياً في شنغهاي';
 
   @override
   String get orderingSugarcoatedHawsInWinterBeijing =>
-      'طلب الزعرور المغطى بالسكر في بكين شتاءً';
+      'طلب أسياخ التانغهولو (حلوى الزعرور) في بكين شتاءً';
 
   @override
   String partnerLang(String lang) {
@@ -2171,10 +2203,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get perfect => 'ممتاز!';
 
   @override
-  String get personalizedPathBasedOnDeck => 'مسار مخصص يعتمد على حزمتك.';
+  String get personalizedPathBasedOnDeck => 'مسار مخصص يعتمد على مجموعتك.';
 
   @override
-  String get play => 'تشغيل (pinyin)';
+  String play(Object pinyin) {
+    return 'استماع (بينيين)';
+  }
 
   @override
   String get pleaseEnterMessageBeforeSending => 'يرجى إدخال رسالة قبل الإرسال.';
@@ -2200,10 +2234,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get puSonglingLiterature =>
-      'بو سونغلينغ (1640–1715) كان كاتباً من عهد تشينغ أمضى عقوداً في جمع حكايات غريبة من الاستوديو الصيني بعد أن فشل مراراً في امتحانات الخدمة الإمبراطورية. قصصه الخارقة عن أرواح الثعالب والأشباح والعلماء لا تزال المعيار الذهبي للأدب القوطي الصيني.';
+      'بو سونغلينغ (1640–1715) كان كاتباً من عهد تشينغ أمضى عقوداً في جمع حكايات غريبة من استوديو الأديب بعد أن فشل مراراً في امتحانات الخدمة الإمبراطورية. قصصه الخارقة عن أرواح الثعالب والأشباح والأدباء لا تزال المعيار الذهبي للأدب الصيني الكلاسيكي الغرائبي.';
 
   @override
-  String get qaFaq => 'أسئلة وأجوبة / الأسئلة الشائعة';
+  String get qaFaq => 'الأسئلة الشائعة';
 
   @override
   String get questsTitle => 'المهام';
@@ -2218,7 +2252,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ready => 'جاهز';
 
   @override
-  String get readyToInterpret => 'جاهز للتفسير';
+  String get readyToInterpret => 'جاهز للترجمة الفورية';
 
   @override
   String get readyToStart => 'جاهز للبدء.';
@@ -2268,7 +2302,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get reviewExtractedDeck => 'مراجعة الحزمة المستخرجة';
+  String get reviewExtractedDeck => 'مراجعة المجموعة المستخرجة';
 
   @override
   String get reviewIn => 'مراجعة في';
@@ -2289,17 +2323,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get saved => 'تم الحفظ';
 
   @override
-  String get scanAnother => 'مسح آخر';
+  String get scanAnother => 'مسح ضوئي آخر';
 
   @override
   String get scenarioRemoved => 'تمت إزالة السيناريو';
 
   @override
   String get scenarioSavedFindInCustomTab =>
-      'تم حفظ السيناريو! جده في علامة التبويب المخصصة.';
+      'تم حفظ السيناريو! تجده في علامة التبويب المخصصة.';
 
   @override
-  String get score => 'النتيجة: (score) / (total)';
+  String score(Object score, Object total) {
+    return 'النتيجة: $score / $total';
+  }
 
   @override
   String get searchByPinyinOrMeaning => 'ابحث بالبينيين أو المعنى...';
@@ -2325,13 +2361,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchTopicsEgCookingHistory =>
-      'ابحث عن مواضيع (مثل الطبخ، التاريخ)';
+      'ابحث عن مواضيع (مثل: الطبخ، التاريخ)';
 
   @override
   String get seeAll => 'عرض الكل';
 
   @override
-  String get selectADeck => 'اختر حزمة';
+  String get selectADeck => 'اختر مجموعة';
 
   @override
   String get selectPracticeMode => 'اختر نمط التدريب';
@@ -2346,10 +2382,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sendMessage => 'إرسال رسالة';
 
   @override
-  String get serif => 'سيريف';
+  String get serif => 'خط مذيل (Serif)';
 
   @override
-  String get shadow => 'ظل';
+  String get shadow => 'المحاكاة الصوتية (Shadowing)';
 
   @override
   String get shiNaianEpic =>
@@ -2389,7 +2425,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sleepTimer => 'مؤقت النوم';
 
   @override
-  String get smartDeck => 'حزمة ذكية';
+  String get smartDeck => 'مجموعة ذكية';
 
   @override
   String get spanishAndWorld => 'الإسبانية والعالم';
@@ -2408,10 +2444,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get streetFoodNightMarketInXian => 'سوق طعام الشارع الليلي في شيآن';
 
   @override
-  String get strokes => 'الضربات';
+  String get strokes => 'الخطوط';
 
   @override
-  String get studyCharacter => 'دراسة الحرف';
+  String get studyCharacter => 'دراسة الرمز';
 
   @override
   String get subtitleOpacity => 'شفافية الترجمة';
@@ -2445,17 +2481,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get theGalaxyCharacters =>
-      'خريطة المجرة في انتظارك.\nأتقن الشموس (الجذور) لفتح الكواكب (الحروف).';
+      'خريطة المجرة في انتظارك.\nأتقن الشموس (الجذور) لفتح الكواكب (الرموز).';
 
   @override
-  String get theme => 'السمة';
+  String get theme => 'المظهر';
 
   @override
   String get thinking => 'جارٍ التفكير...';
 
   @override
   String get thisArticleCharacters =>
-      'هذا المقال يحتوي على حروف صينية تقليدية.';
+      'يحتوي هذا المقال على رموز صينية تقليدية.';
 
   @override
   String get todaysWord => 'كلمة اليوم';
@@ -2471,7 +2507,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'هذه النغمة غير موجودة في لغة الماندرين القياسية.';
 
   @override
-  String get toneGraph => 'رسم النغمات';
+  String get toneGraph => 'مخطط النغمات';
 
   @override
   String get traceLabel => 'تتبع';
@@ -2489,7 +2525,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get turnOn => 'تشغيل';
 
   @override
-  String get typeHanziPinyinOrEnglish => 'اكتب هانزي أو بينيين أو إنجليزية...';
+  String get typeHanziPinyinOrEnglish => 'اكتب هانزي أو بينيين أو ترجمة...';
 
   @override
   String get unknown2 => '游戏 实况 王者荣耀 原神';
@@ -2504,10 +2540,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unrollingTheScroll => 'جارٍ فتح اللفافة...';
 
   @override
-  String get upperIntermediate => 'فوق المتوسط';
+  String get upperIntermediate => 'متوسط متقدم';
 
   @override
-  String get vibrationsForInteractions => 'الاهتزازات للتفاعلات';
+  String get vibrationsForInteractions => 'الاهتزاز عند التفاعل';
 
   @override
   String get video => 'فيديو';
@@ -2550,13 +2586,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'ماذا لو أخطأ الذكاء الاصطناعي في فهم ما قصدت قوله؟';
 
   @override
-  String get whichCharacterIs => 'أي حرف هو:';
+  String get whichCharacterIs => 'أي رمز هو:';
 
   @override
   String get wikipedia => 'ويكيبيديا';
 
   @override
-  String get wordsSavedAndSrsScheduled => 'تم حفظ الكلمات وجدولة SRS!';
+  String get wordsSavedAndSrsScheduled =>
+      'تم حفظ الكلمات وجدولة المراجعة التكرارية!';
 
   @override
   String get writeYourMessageHere => 'اكتب رسالتك هنا...';
@@ -2580,7 +2617,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get yesReGradeMe => 'نعم، أعد تقييمي!';
 
   @override
-  String get you => 'أنت ((lang))';
+  String you(Object lang) {
+    return 'أنت ($lang)';
+  }
 
   @override
   String get youAreSpeaking => 'أنت تتحدث';
@@ -2605,332 +2644,370 @@ class AppLocalizationsAr extends AppLocalizations {
   String get zhOnly => 'الصينية فقط';
 
   @override
-  String get hsk_1300_cards => '1300 cards';
+  String get hsk_1300_cards => '1300 بطاقة';
 
   @override
-  String get hsk_154_cards => '154 cards';
+  String get hsk_154_cards => '154 بطاقة';
 
   @override
-  String get hsk_162_cards => '162 cards';
+  String get hsk_162_cards => '162 بطاقة';
 
   @override
-  String get hsk_2500_cards => '2500 cards';
+  String get hsk_2500_cards => '2500 بطاقة';
 
   @override
-  String get hsk_299_cards => '299 cards';
+  String get hsk_299_cards => '299 بطاقة';
 
   @override
-  String get hsk_602_cards => '602 cards';
+  String get hsk_602_cards => '602 بطاقة';
 
   @override
-  String get added_to_review_queue => 'Added  to Review Queue';
+  String get added_to_review_queue => 'تمت الإضافة إلى قائمة المراجعة';
 
   @override
   String added_cards_to(int cardCount, String deckName) {
-    return 'Added (cardCount) cards to \"(deckName)\".';
+    return 'تمت إضافة $cardCount بطاقات إلى «$deckName».';
   }
 
   @override
-  String get added_to_your_library => 'Added \'\' to your Library';
+  String added_to_your_library(Object hanzi) {
+    return 'تمت إضافة \'$hanzi\' إلى مكتبتك';
+  }
 
   @override
-  String get advanced => 'Advanced';
+  String get advanced => 'متقدم';
 
   @override
-  String get ai_stories => 'AI Stories';
+  String get ai_stories => 'قصص بالذكاء الاصطناعي';
 
   @override
-  String get analysis_failed => 'Analysis Failed: (error)';
+  String analysis_failed(Object error) {
+    return 'فشل التحليل: $error';
+  }
 
   @override
   String get analyzing_pronunciation_with_gemini_ai =>
-      'Analyzing pronunciation with Gemini AI...';
+      'جارٍ تحليل النطق باستخدام ذكاء Gemini الاصطناعي...';
 
   @override
-  String get analyzing_your_pronunciation => 'Analyzing your pronunciation...';
+  String get analyzing_your_pronunciation => 'جارٍ تحليل نطقك...';
 
   @override
   String are_you_sure_you_want_to(String deckName) {
-    return 'Are you sure you want to permanently erase \"(deckName)\"? This action cannot be undone and will delete all cards inside it.';
+    return 'هل أنت متأكد من رغبتك في حذف «$deckName» نهائيًا؟ لا يمكن التراجع عن هذا الإجراء وسيتم حذف جميع البطاقات بداخلها.';
   }
 
   @override
   String ask_about(String hanzi) {
-    return 'Ask about (hanzi)...';
+    return 'اسأل عن $hanzi...';
   }
 
   @override
-  String get audio_haptics => 'Audio & Haptics';
+  String get audio_haptics => 'الصوت والاستجابة اللمسية';
 
   @override
   String get audio_could_not_start_check_your =>
-      'Audio could not start. Check your connection and device voice settings.';
+      'تعذر تشغيل الصوت. تحقق من اتصالك وإعدادات الصوت في جهازك.';
 
   @override
-  String get calligraphy_trace => 'Calligraphy Trace';
+  String get calligraphy_trace => 'تتبع مسار الخط';
 
   @override
-  String get chapters => 'Chapters)';
+  String chapters(Object count) {
+    return '$count فصول';
+  }
 
   @override
-  String get char => 'char';
+  String get char => 'رمز';
 
   @override
-  String get chinese_character => 'CHINESE CHARACTER';
+  String get chinese_character => 'رمز صيني';
 
   @override
-  String get contact_us_and_report_issues => 'Contact us and report issues';
+  String get contact_us_and_report_issues => 'اتصل بنا وأبلغ عن المشكلات';
 
   @override
   String created_smart_deck_with_words(String deckName, int wordCount) {
-    return 'Created smart deck: \"(deckName)\" with (wordCount) words!';
+    return 'تم إنشاء مجموعة ذكية: «$deckName» تحتوي على $wordCount كلمة!';
   }
 
   @override
-  String get custom_ai_generated_story => 'Custom AI generated story.';
+  String get custom_ai_generated_story =>
+      'قصة مخصصة تم إنشاؤها بواسطة الذكاء الاصطناعي.';
 
   @override
-  String get display_content => 'Display & Content';
+  String get display_content => 'العرض والمحتوى';
 
   @override
   String get do_you_keep_or_store_my =>
-      'Do you keep or store my voice recordings?';
+      'هل تحتفظون بتسجيلاتي الصوتية أو تخزنونها؟';
 
   @override
-  String get elementary => 'Elementary';
+  String get elementary => 'ابتدائي';
 
   @override
-  String get error_creating_scenario => 'Error creating scenario: (error)';
-
-  @override
-  String get error_fetching_translation_for =>
-      'Error fetching translation for : (error)';
-
-  @override
-  String get error_loading_chapters => 'Error loading chapters: (error)';
-
-  @override
-  String get error_loading_decks => 'Error loading decks';
-
-  @override
-  String get error_loading_microreads => 'Error loading micro-reads: (error)';
-
-  @override
-  String get error_loading_novels => 'Error loading novels: (error)';
-
-  @override
-  String get error_loading_poetry => 'Error loading poetry: (error)';
-
-  @override
-  String get etymology => 'Etymology: ';
-
-  @override
-  String get explanation => 'explanation';
-
-  @override
-  String get extracted_text_tap_to_lookup => 'Extracted Text (Tap to lookup)';
-
-  @override
-  String get extraction_failed => 'Extraction Failed: \\(error)';
-
-  @override
-  String get failed_to_download => 'Failed to download.';
-
-  @override
-  String get failed_to_generate_scenario =>
-      'Failed to generate scenario: (error)';
-
-  @override
-  String get failed_to_generate_story => 'Failed to generate story:\\n(error)';
-
-  @override
-  String get failed_to_load_context => 'Failed to load context: (error)rr';
-
-  @override
-  String get feature_request => 'Feature Request';
-
-  @override
-  String get foundation => 'Foundation';
-
-  @override
-  String get how_is_my_pronunciation_scored =>
-      'How is my pronunciation scored?';
-
-  @override
-  String get hsk => 'HSK (level)';
-
-  @override
-  String hsk_vocabulary(int hskLevel) {
-    return 'HSK (hskLevel) vocabulary';
+  String error_creating_scenario(Object error) {
+    return 'خطأ في إنشاء السيناريو: $error';
   }
 
   @override
-  String get hsk_level => 'HSK LEVEL';
+  String error_fetching_translation_for(Object error) {
+    return 'خطأ في جلب الترجمة: $error';
+  }
 
   @override
-  String get intermediate => 'Intermediate';
+  String error_loading_chapters(Object error) {
+    return 'خطأ في تحميل الفصول: $error';
+  }
+
+  @override
+  String get error_loading_decks => 'خطأ في تحميل المجموعات';
+
+  @override
+  String error_loading_microreads(Object error) {
+    return 'خطأ في تحميل القراءات القصيرة: $error';
+  }
+
+  @override
+  String error_loading_novels(Object error) {
+    return 'خطأ في تحميل الروايات: $error';
+  }
+
+  @override
+  String error_loading_poetry(Object error) {
+    return 'خطأ في تحميل الشعر: $error';
+  }
+
+  @override
+  String get etymology => 'أصل الرمز (Etymology): ';
+
+  @override
+  String get explanation => 'الشرح';
+
+  @override
+  String get extracted_text_tap_to_lookup => 'النص المستخرج (انقر للبحث)';
+
+  @override
+  String extraction_failed(Object error) {
+    return 'فشل الاستخراج: $error';
+  }
+
+  @override
+  String get failed_to_download => 'فشل التنزيل.';
+
+  @override
+  String failed_to_generate_scenario(Object error) {
+    return 'فشل إنشاء السيناريو: $error';
+  }
+
+  @override
+  String failed_to_generate_story(Object error) {
+    return 'فشل إنشاء القصة:\n$error';
+  }
+
+  @override
+  String failed_to_load_context(Object error) {
+    return 'فشل تحميل السياق: $error';
+  }
+
+  @override
+  String get feature_request => 'طلب ميزة';
+
+  @override
+  String get foundation => 'الأساسيات';
+
+  @override
+  String get how_is_my_pronunciation_scored => 'كيف يتم تقييم نطقي؟';
+
+  @override
+  String hsk(Object level) {
+    return 'HSK $level';
+  }
+
+  @override
+  String hsk_vocabulary(int hskLevel) {
+    return 'مفردات HSK $hskLevel';
+  }
+
+  @override
+  String get hsk_level => 'مستوى HSK';
+
+  @override
+  String get intermediate => 'متوسط';
 
   @override
   String get learning_stats => 'إحصائيات التعلم';
 
   @override
-  String get mandarin => 'Mandarin';
+  String get mandarin => 'الماندارين';
 
   @override
-  String get meaning => 'meaning';
+  String get meaning => 'المعنى';
 
   @override
-  String get no_decks_found => 'No decks found.';
+  String get no_decks_found => 'لم يتم العثور على مجموعات.';
 
   @override
-  String get no_results_found_for => 'No results found for \'\'';
+  String no_results_found_for(Object searchQuery) {
+    return 'لم يتم العثور على نتائج لـ \'$searchQuery\'';
+  }
 
   @override
   String get no_when_you_use_echo_hall =>
-      'No. When you use Echo Hall, Scholar\'s Verdict, or Shadowing Studio, your audio is securely evaluated in real-time to generate a pronunciation score and then immediately discarded. We only store your numerical ratings to track your progress.';
+      'لا. عندما تستخدم قاعة الصدى، أو تقييم العالِم، أو استوديو المحاكاة الصوتية (Shadowing)، يتم تقييم تسجيلك الصوتي بشكل آمن في الوقت الفعلي لتحديد درجة النطق ثم حذفه فورًا. نحن نحتفظ فقط بالدرجات الرقمية لتتبع تقدمك.';
 
   @override
   String get notification_settings => 'إعدادات الإشعارات';
 
   @override
-  String get open_settings => 'Open Settings';
+  String get open_settings => 'فتح الإعدادات';
 
   @override
-  String get phoneme => 'phoneme';
+  String get phoneme => 'صوت لغوي (فونيم)';
 
   @override
-  String get play_reference_pronunciation => 'Play Reference Pronunciation';
+  String get play_reference_pronunciation => 'تشغيل النطق المرجعي';
 
   @override
   String get please_select_a_deck_to_add =>
-      'Please select a deck to add cards to.';
+      'يرجى اختيار مجموعة لإضافة البطاقات إليها.';
 
   @override
   String get point_at_chinese_text_to_translate =>
-      'Point at Chinese text to translate';
+      'وجّه الكاميرا نحو النص الصيني لترجمته';
 
   @override
   String get practice_writing_the_strokes_by_hand =>
-      'Practice writing the strokes by hand';
+      'تدرب على كتابة الخطوط يدويًا';
 
   @override
-  String get preferences_audio_and_display => 'Preferences, Audio, and Display';
+  String get preferences_audio_and_display => 'التفضيلات، الصوت، والعرض';
 
   @override
-  String get preparing_your_scholars_verdict =>
-      'Preparing your Scholar\'s Verdict...';
+  String get preparing_your_scholars_verdict => 'جارٍ تحضير تقييم العالِم...';
 
   @override
   String get previous => 'السابق';
 
   @override
-  String get question => 'سؤال (current)/(total)';
+  String question(Object current, Object total) {
+    return 'سؤال $current/$total';
+  }
 
   @override
   String remove_from_this_deck(String hanzi) {
-    return 'Remove (hanzi) from this deck?';
+    return 'إزالة $hanzi من هذه المجموعة؟';
   }
 
   @override
-  String get revenuecat_error => 'RevenueCat Error: (error)';
+  String revenuecat_error(Object error) {
+    return 'خطأ RevenueCat: $error';
+  }
 
   @override
-  String get review_tomorrow => 'Review Tomorrow';
+  String get review_tomorrow => 'مراجعة غدًا';
 
   @override
-  String get roleplay => 'Roleplay';
+  String get roleplay => 'لعب الأدوار';
 
   @override
   String saving_words_to(int wordCount, String deckName) {
-    return 'Saving (wordCount) words to (deckName)...';
+    return 'جارٍ حفظ $wordCount كلمة في $deckName...';
   }
 
   @override
-  String get search_radicals_eg_water => 'Search radicals (e.g. Water, 氵)';
+  String get search_radicals_eg_water => 'ابحث عن الجذور (مثل: الماء، 氵)';
 
   @override
-  String get select_target_hsk_level => 'Select Target HSK Level';
+  String get select_target_hsk_level => 'اختر مستوى HSK المستهدف';
 
   @override
-  String get sentence => 'Sentence';
+  String get sentence => 'جملة';
 
   @override
   String get shadowing_studio_is_a_dedicated_space =>
-      'Shadowing Studio is a dedicated space to practice mimicking native';
+      'استوديو المحاكاة الصوتية (Shadowing) هو مساحة مخصصة للتدرب على محاكاة المتحدثين الأصليين في الوقت الفعلي.';
 
   @override
-  String get simplify_failed => 'Simplify Failed: (error)';
-
-  @override
-  String get sinospark_premium => 'SinoSpark Premium';
-
-  @override
-  String get speaking_pronunciation => 'Speaking & Pronunciation';
-
-  @override
-  String get statistics => 'Statistics';
-
-  @override
-  String get table_of_contents => 'Table of Contents · 目录 (';
-
-  @override
-  String get the_ai_evaluates_your_speech_across =>
-      'The AI evaluates your speech across three dimensions:\n• Accuracy: Did you articulate the correct syllables?\n• Completeness: Did you skip or miss any words?\n• Fluency: Did you pause naturally and use the correct tones?\nIt compares your audio against native models to generate a score out of 100.';
-
-  @override
-  String get this_cannot_be_undone => 'This cannot be undone.';
-
-  @override
-  String get title => 'title';
-
-  @override
-  String get to_be_reviewed => 'To Be Reviewed';
-
-  @override
-  String get traditional => 'Traditional';
-
-  @override
-  String get translation_failed => 'Translation Failed: (error)';
-
-  @override
-  String get type_in => 'Type in ...';
-
-  @override
-  String get type_your_message_in => 'Type your message in ...';
-
-  @override
-  String get unable_to_open_this_video_please =>
-      'Unable to open this video. Please try again later.';
-
-  @override
-  String get view_your_learning_history_and_streaks =>
-      'عرض سجل التعلم والسلاسل الخاصة بك';
-
-  @override
-  String get what_is_shadowing_studio => 'What is Shadowing Studio?';
-
-  @override
-  String get words => 'words';
-
-  @override
-  String your_path_for_is_ready(String deckName) {
-    return 'Your path for \'(deckName)\' is ready!';
+  String simplify_failed(Object error) {
+    return 'فشل التبسيط: $error';
   }
 
   @override
-  String get you_said => '🗣️ You Said';
+  String get sinospark_premium => 'SinoSpark المميز';
 
   @override
-  String get vocabularyBatch => 'دفعة المفردات (index)';
+  String get speaking_pronunciation => 'التحدث والنطق';
 
   @override
-  String get yourDailyDropIsHere => 'قطرتك اليومية هنا! ✨';
+  String get statistics => 'الإحصائيات';
+
+  @override
+  String get table_of_contents => 'جدول المحتويات · 目录';
+
+  @override
+  String get the_ai_evaluates_your_speech_across =>
+      'يقيم الذكاء الاصطناعي نطقك عبر ثلاثة أبعاد:\n• الدقة: هل نطقت المقاطع الصوتية الصحيحة؟\n• الاكتمال: هل تخطيت أو نسيت أي كلمات؟\n• الطلاقة: هل توقفت بشكل طبيعي واستخدمت النغمات الصحيحة؟\nيقوم بمقارنة تسجيلك مع نماذج المتحدثين الأصليين لإعطاء درجة من 100.';
+
+  @override
+  String get this_cannot_be_undone => 'لا يمكن التراجع عن هذا الإجراء.';
+
+  @override
+  String get title => 'العنوان';
+
+  @override
+  String get to_be_reviewed => 'مستحقة للمراجعة';
+
+  @override
+  String get traditional => 'تقليدي';
+
+  @override
+  String translation_failed(Object error) {
+    return 'فشلت الترجمة: $error';
+  }
+
+  @override
+  String get type_in => 'اكتب...';
+
+  @override
+  String get type_your_message_in => 'اكتب رسالتك بـ...';
+
+  @override
+  String get unable_to_open_this_video_please =>
+      'تعذر فتح هذا الفيديو. يرجى المحاولة مرة أخرى لاحقًا.';
+
+  @override
+  String get view_your_learning_history_and_streaks =>
+      'عرض سجل التعلم وسلسلة إنجازاتك';
+
+  @override
+  String get what_is_shadowing_studio =>
+      'ما هو استوديو المحاكاة الصوتية (Shadowing)؟';
+
+  @override
+  String get words => 'كلمات';
+
+  @override
+  String your_path_for_is_ready(String deckName) {
+    return 'مسارك لـ «$deckName» جاهز!';
+  }
+
+  @override
+  String get you_said => '🗣️ ما نطقته';
+
+  @override
+  String vocabularyBatch(Object index) {
+    return 'دفعة المفردات $index';
+  }
+
+  @override
+  String get yourDailyDropIsHere => 'جرعتك اليومية هنا! ✨';
 
   @override
   String get timeToReview => 'حان وقت المراجعة! 📚';
 
   @override
-  String get neverMissAStroke => 'لا تفوت أي ضربة قلم! 🖌️';
+  String get neverMissAStroke => 'لا تفوت أي خط! 🖌️';
 
   @override
   String get yourTrialEndsTomorrow => 'تنتهي فترتك التجريبية غدًا! ⏳';
@@ -2943,10 +3020,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get failedToLoadCollections => 'فشل تحميل المجموعات.';
 
   @override
-  String get unnamedKey => '#(tag)';
+  String unnamedKey(Object tag) {
+    return '#$tag';
+  }
 
   @override
-  String get error => 'خطأ: (error)';
+  String error(Object error) {
+    return 'خطأ: $error';
+  }
 
   @override
   String get aiSmartContext => 'السياق الذكي بالذكاء الاصطناعي';
@@ -2965,7 +3046,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get translationLanguage => 'لغة الترجمة';
 
   @override
-  String get dailyDrops => 'القطرات اليومية';
+  String get dailyDrops => 'الجرعات اليومية';
 
   @override
   String get wordOfTheDayNews => 'كلمة اليوم والأخبار';
@@ -2974,7 +3055,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reviewReminders => 'تذكيرات المراجعة';
 
   @override
-  String get flashcardsDueForReview => 'البطاقات التعليمية المستحقة للمراجعة';
+  String get flashcardsDueForReview => 'البطاقات المستحقة للمراجعة';
 
   @override
   String get dailyNewCards => 'بطاقات جديدة يومية';
@@ -2986,14 +3067,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get practiceMode => 'وضع التدريب';
 
   @override
-  String get liziqi => 'لي زي تشي Liziqi: زهور الحرير';
+  String get liziqi => 'لي زي تشي (Liziqi): زهور الحرير';
 
   @override
   String get theLifeOfGarlicTraditional =>
       'حياة الثوم - الحياة الصينية التقليدية';
 
   @override
-  String get graceMandarin50Phrases => 'جريس ماندراين: 50 عبارة';
+  String get graceMandarin50Phrases => 'غريس ماندراين: 50 عبارة';
 
   @override
   String get essentialChinesePhrasesForBeginners =>
@@ -3003,19 +3084,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get makingBambooFurniture => 'صناعة أثاث الخيزران';
 
   @override
-  String get peppaPigChinese => 'بيبا بيج الصينية: الغميضة';
+  String get peppaPigChinese => 'بيبا بيغ بالصينية: الغميضة';
 
   @override
   String get muddyPuddlesBeginnerFriendly => 'برك موحلة - مناسب للمبتدئين';
 
   @override
-  String get mandarinCorner300Verbs => 'ماندراين كورنر: 300 فعل';
+  String get mandarinCorner300Verbs => 'ماندارين كورنر: 300 فعل';
 
   @override
   String get mostCommonChineseVerbs => 'الأفعال الصينية الأكثر شيوعًا';
 
   @override
-  String get graceMandarinOrderFood => 'جريس ماندراين: طلب الطعام';
+  String get graceMandarinOrderFood => 'غريس ماندراين: طلب الطعام';
 
   @override
   String get howToOrderFoodIn => 'كيف تطلب الطعام في مطعم صيني';
@@ -3024,7 +3105,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get silkFlowersTraditionalCraft => 'زهور الحرير - حرفة تقليدية';
 
   @override
-  String get mandarinCorner => 'ماندراين كورنر: تعلم الصينية زيارة الطبيب';
+  String get mandarinCorner => 'ماندارين كورنر: تعلم الصينية - زيارة الطبيب';
 
   @override
   String get goingToTheDoctorReal => 'الذهاب إلى الطبيب - محادثة واقعية';
@@ -3037,7 +3118,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get why6GdpGrowthEasy =>
-      'لماذا نمو الناتج المحلي الإجمالي 6% - اقتصاد صيني سهل';
+      'لماذا نمو الناتج المحلي الإجمالي 6% - اقتصاد صيني مبسط';
 
   @override
   String get bbcWorldNews => 'بي بي سي الصينية (أخبار العالم)';
@@ -3049,13 +3130,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get baidu => 'بايدو';
 
   @override
-  String get youtubeDesk => 'مكتب يوتيوب';
+  String get youtubeDesk => 'ركن يوتيوب';
 
   @override
-  String get interactiveTranscriptsShadowing => 'نصوص تفاعلية ومحاكاة';
+  String get interactiveTranscriptsShadowing => 'نصوص تفاعلية ومحاكاة صوتية';
 
   @override
-  String get showsDramas => 'عروض ودراما';
+  String get showsDramas => 'برامج ومسلسلات درامية';
 
   @override
   String get extractToDeck => 'استخراج إلى مجموعة';
@@ -3068,34 +3149,38 @@ class AppLocalizationsAr extends AppLocalizations {
       'أعد كتابة هذا المقال ليتناسب مع مستوى HSK الخاص بك';
 
   @override
-  String get failedToSaveExtractedWords => 'فشل حفظ الكلمات المستخرجة: (error)';
+  String failedToSaveExtractedWords(Object error) {
+    return 'فشل حفظ الكلمات المستخرجة: $error';
+  }
 
   @override
-  String get addToDeck => 'أضف إلى المجموعة ((count))';
+  String addToDeck(Object count) {
+    return 'أضف إلى المجموعة ($count)';
+  }
 
   @override
-  String get dailyDiscoveryDrop => 'قطرة الاكتشاف اليومية';
+  String get dailyDiscoveryDrop => 'جرعة الاكتشاف اليومية';
 
   @override
   String get smartSpacedRepetition => 'التكرار المتباعد الذكي';
 
   @override
-  String get trialProtectionAlert => 'تنبيه حماية التجربة';
+  String get trialProtectionAlert => 'تنبيه حماية الفترة التجريبية';
 
   @override
   String get masteryLevel => 'مستوى الإتقان';
 
   @override
-  String get targetObjective => 'الهدف المستهدف';
+  String get targetObjective => 'الهدف المنشود';
 
   @override
-  String get dailyPractice => 'الممارسة اليومية';
+  String get dailyPractice => 'التدريب اليومي';
 
   @override
   String get aiSpacedRepetition => 'التكرار المتباعد بالذكاء الاصطناعي';
 
   @override
-  String get iVeGrantedAccess => 'لقد منحت الوصول';
+  String get iVeGrantedAccess => 'لقد منحت الإذن';
 
   @override
   String get scanner => 'ماسح ضوئي';
@@ -3104,13 +3189,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get interpreter => 'مترجم فوري';
 
   @override
-  String get cards => '(count) بطاقة';
+  String cards(Object count) {
+    return '$count بطاقات';
+  }
 
   @override
-  String get nWaMendsTheHeavens => 'نُوى تصلح السماوات';
+  String get nWaMendsTheHeavens => 'نويوا تصلح السماء';
 
   @override
-  String get terracottaArmy => 'جيش الطين';
+  String get terracottaArmy => 'جيش الطين (التيراكوتا)';
 
   @override
   String get forbiddenCity => 'المدينة المحرمة';
@@ -3119,7 +3206,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aBlessingInDisguise => 'رب ضارة نافعة';
 
   @override
-  String get drawingASnake => 'رسم ثعبان';
+  String get drawingASnake => 'رسم أقدام للأفعى (تكلّف لا داعي له)';
 
   @override
   String get takingTheBulletTrain => 'ركوب القطار السريع';
@@ -3134,7 +3221,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theTeaCeremony => 'مراسم الشاي';
 
   @override
-  String get chineseCalligraphy => 'الخط الصيني';
+  String get chineseCalligraphy => 'فن الخط الصيني';
 
   @override
   String get theGiantPanda => 'الباندا العملاقة';
@@ -3146,22 +3233,26 @@ class AppLocalizationsAr extends AppLocalizations {
   String get novels96 => 'روايات (96)';
 
   @override
-  String get microReads => 'قراءات مصغرة';
+  String get microReads => 'قراءات قصيرة';
 
   @override
   String get poetry => 'شعر';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · تم إزالة الإشارة المرجعية';
+  String get bookmarkRemoved => '书签已移除 · تمت إزالة الإشارة المرجعية';
 
   @override
-  String get bookmarkAdded => '已添加书签 · تم إضافة إشارة مرجعية: الفصل (chapter)';
+  String bookmarkAdded(Object chapter) {
+    return '已添加书签 · تمت إضافة إشارة مرجعية: الفصل $chapter';
+  }
 
   @override
   String get readingVocabulary => 'القراءة والمفردات';
 
   @override
-  String get vocabularyBatchUnitindex1 => 'دفعة المفردات \$(unitIndex + 1)';
+  String vocabularyBatchUnitindex1(Object index) {
+    return 'دفعة المفردات $index';
+  }
 
   @override
   String get yourDailyDropIsHere1 => 'جرعتك اليومية هنا! ✨';
@@ -3170,7 +3261,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get timeToReview1 => 'حان وقت المراجعة! 📚';
 
   @override
-  String get neverMissAStroke1 => 'لا تفوت أي ضربة! 🖌️';
+  String get neverMissAStroke1 => 'لا تفوت أي خط! 🖌️';
 
   @override
   String get yourTrialEndsTomorrow1 => 'تنتهي فترتك التجريبية غدًا! ⏳';
@@ -3186,16 +3277,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get failedToLoadCollections1 => 'فشل تحميل المجموعات.';
 
   @override
-  String get ui__transcription => '\"\$_transcription\"';
+  String ui__transcription(Object transcription) {
+    return '\"$transcription\"';
+  }
 
   @override
-  String get playPinyinwithtone => 'تشغيل \$pinyinWithTone';
+  String playPinyinwithtone(Object pinyinWithTone) {
+    return 'استماع إلى $pinyinWithTone';
+  }
 
   @override
-  String get errorE => 'خطأ: \$e';
+  String errorE(Object e) {
+    return 'خطأ: $e';
+  }
 
   @override
-  String get lookalikepinyin => '(\$(lookAlike.pinyin))';
+  String lookalikepinyin(Object pinyin) {
+    return '($pinyin)';
+  }
 
   @override
   String get aiSmartContext1 => 'السياق الذكي بالذكاء الاصطناعي';
@@ -3204,7 +3303,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aiSmartContextError1 => 'خطأ في السياق الذكي بالذكاء الاصطناعي';
 
   @override
-  String get errorErr => 'خطأ: \$err';
+  String errorErr(Object err, Object error) {
+    return 'خطأ: $err';
+  }
 
   @override
   String get downloadOfficialHskCollections1 => 'تنزيل مجموعات HSK الرسمية';
@@ -3214,11 +3315,12 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعذر تحميل هذا القسم. يرجى المحاولة مرة أخرى.';
 
   @override
-  String get searchRadicalsEgWater => 'ابحث عن الجذور (مثل الماء، 氵)';
+  String get searchRadicalsEgWater => 'ابحث عن الجذور (مثل: الماء، 氵)';
 
   @override
-  String get ui__currentstrokeindex1totalstrokes =>
-      '\$(_currentStrokeIndex + 1)/\$totalStrokes';
+  String ui__currentstrokeindex1totalstrokes(Object current, Object total) {
+    return '$current/$total';
+  }
 
   @override
   String get translationLanguage1 => 'لغة الترجمة';
@@ -3236,23 +3338,26 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reviewReminders1 => 'تذكيرات المراجعة';
 
   @override
-  String get flashcardsDueForReview1 => 'بطاقات تعليمية مستحقة للمراجعة';
+  String get flashcardsDueForReview1 => 'بطاقات مستحقة للمراجعة';
 
   @override
   String get accuracyByMode1 => 'الدقة حسب الوضع';
 
   @override
-  String get accuracytostringasfixed1 => '\$(accuracy.toStringAsFixed(1))%';
+  String accuracytostringasfixed1(Object accuracy) {
+    return '$accuracy%';
+  }
 
   @override
-  String get upcomingReviewsNext7Days =>
-      'المراجعات القادمة (الأيام السبعة القادمة)';
+  String get upcomingReviewsNext7Days => 'المراجعات القادمة (خلال 7 أيام)';
 
   @override
-  String get explaining => 'شرح:';
+  String get explaining => 'الشرح:';
 
   @override
-  String get entryhanziEntrypinyin => '\$(entry.hanzi) [\$(entry.pinyin)]';
+  String entryhanziEntrypinyin(Object hanzi, Object pinyin) {
+    return '$hanzi [$pinyin]';
+  }
 
   @override
   String get dailyNewCards1 => 'بطاقات جديدة يومية';
@@ -3267,7 +3372,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get readingMode1 => 'وضع القراءة';
 
   @override
-  String get recallMode1 => 'وضع الاستدعاء';
+  String get recallMode1 => 'وضع الاستدعاء الذهني';
 
   @override
   String get speakingMode1 => 'وضع التحدث';
@@ -3276,10 +3381,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get practiceMode1 => 'وضع التدريب';
 
   @override
-  String get acc => '\$acc%';
+  String acc(Object acc) {
+    return '$acc%';
+  }
 
   @override
-  String get partner1 => 'شريك';
+  String get partner1 => 'الشريك';
 
   @override
   String get partnerSpeaking1 => 'الشريك يتحدث…';
@@ -3289,7 +3396,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'حياة الثوم - الحياة الصينية التقليدية';
 
   @override
-  String get graceMandarin50Phrases1 => 'جريس ماندراين: 50 عبارة';
+  String get graceMandarin50Phrases1 => 'غريس ماندراين: 50 عبارة';
 
   @override
   String get essentialChinesePhrasesForBeginners1 =>
@@ -3302,13 +3409,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get muddyPuddlesBeginnerFriendly1 => 'برك موحلة - مناسب للمبتدئين';
 
   @override
-  String get mandarinCorner300Verbs1 => 'ماندراين كورنر: 300 فعل';
+  String get mandarinCorner300Verbs1 => 'ماندارين كورنر: 300 فعل';
 
   @override
   String get mostCommonChineseVerbs1 => 'الأفعال الصينية الأكثر شيوعًا';
 
   @override
-  String get graceMandarinOrderFood1 => 'جريس ماندراين: طلب الطعام';
+  String get graceMandarinOrderFood1 => 'غريس ماندراين: طلب الطعام';
 
   @override
   String get howToOrderFoodInAChineseRestaurant =>
@@ -3339,16 +3446,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get baidu1 => 'بايدو';
 
   @override
-  String get youtubeDesk1 => 'مكتب يوتيوب';
+  String get youtubeDesk1 => 'ركن يوتيوب';
 
   @override
-  String get interactiveTranscriptsShadowing1 => 'نصوص تفاعلية ومحاكاة';
+  String get interactiveTranscriptsShadowing1 => 'نصوص تفاعلية ومحاكاة صوتية';
 
   @override
-  String get showsDramas1 => 'عروض ودراما';
+  String get showsDramas1 => 'برامج ومسلسلات درامية';
 
   @override
-  String get error_error => 'خطأ: \$_error';
+  String error_error(Object error) {
+    return 'خطأ: $error';
+  }
 
   @override
   String get extractToDeck1 => 'استخراج إلى مجموعة';
@@ -3358,19 +3467,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rewriteThisArticleToMatchYourHskLev =>
-      'أعد كتابة هذه المقالة لتناسب مستوى HSK الخاص بك';
+      'أعد كتابة هذا المقال ليتناسب مع مستوى HSK الخاص بك';
 
   @override
   String get addToDeck1 => 'إضافة إلى المجموعة';
 
   @override
-  String get playbackratex => '\$(playbackRate)x';
+  String playbackratex(Object playbackRate) {
+    return '${playbackRate}x';
+  }
 
   @override
-  String get speedx => '\$(speed)x';
+  String speedx(Object speed) {
+    return '${speed}x';
+  }
 
   @override
-  String get dailyDiscoveryDrop1 => 'قطرة الاكتشاف اليومية';
+  String get dailyDiscoveryDrop1 => 'جرعة الاكتشاف اليومية';
 
   @override
   String get smartSpacedRepetition1 => 'التكرار المتباعد الذكي';
@@ -3385,17 +3498,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get targetObjective1 => 'الهدف المنشود';
 
   @override
-  String get dailyPractice1 => 'الممارسة اليومية';
+  String get dailyPractice1 => 'التدريب اليومي';
 
   @override
   String get aiSpacedRepetition1 => 'التكرار المتباعد بالذكاء الاصطناعي';
 
   @override
-  String get iveGrantedAccess => 'لقد منحت الوصول';
+  String get iveGrantedAccess => 'لقد منحت الإذن';
 
   @override
-  String get addToDeck_selectedwordindiceslength =>
-      'إضافة إلى المجموعة (\$(_selectedWordIndices.length))';
+  String addToDeck_selectedwordindiceslength(Object count) {
+    return 'إضافة إلى المجموعة ($count)';
+  }
 
   @override
   String get scanner1 => 'ماسح ضوئي';
@@ -3404,11 +3518,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get interpreter1 => 'مترجم فوري';
 
   @override
-  String get entryvalueCards => '\$(entry.value) بطاقة';
+  String entryvalueCards(Object count) {
+    return '$count بطاقات';
+  }
 
   @override
-  String get score_score_questionslength =>
-      'النتيجة: \$_score / \$(_questions.length)';
+  String score_score_questionslength(Object score, Object total) {
+    return 'النتيجة: $score / $total';
+  }
 
   @override
   String get theMonkeyKing1 => 'ملك القردة';
@@ -3417,7 +3534,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get huaMulan1 => 'هوا مولان';
 
   @override
-  String get nwaMendsTheHeavens => 'نُوَى تصلح السماوات';
+  String get nwaMendsTheHeavens => 'نويوا تصلح السماء';
 
   @override
   String get confucius => 'كونفوشيوس';
@@ -3426,7 +3543,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theGreatWall1 => 'سور الصين العظيم';
 
   @override
-  String get terracottaArmy1 => 'جيش الطين';
+  String get terracottaArmy1 => 'جيش الطين (التيراكوتا)';
 
   @override
   String get forbiddenCity1 => 'المدينة المحرمة';
@@ -3435,7 +3552,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aBlessingInDisguise1 => 'رب ضارة نافعة';
 
   @override
-  String get drawingASnake1 => 'رسم ثعبان';
+  String get drawingASnake1 => 'رسم أقدام للأفعى';
 
   @override
   String get takingTheBulletTrain1 => 'ركوب القطار السريع';
@@ -3447,13 +3564,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orderingDumplings1 => 'طلب الزلابية';
 
   @override
-  String get theTeaCeremony1 => 'حفل الشاي';
+  String get theTeaCeremony1 => 'مراسم الشاي';
 
   @override
-  String get chineseCalligraphy1 => 'الخط الصيني';
+  String get chineseCalligraphy1 => 'فن الخط الصيني';
 
   @override
-  String get theGiantPanda1 => 'الباندا العملاق';
+  String get theGiantPanda1 => 'الباندا العملاقة';
 
   @override
   String get simplifiedText1 => 'نص مبسط';
@@ -3462,7 +3579,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get novels961 => 'روايات (96)';
 
   @override
-  String get microreads => 'قراءات مصغرة';
+  String get microreads => 'قراءات قصيرة';
 
   @override
   String get poetry1 => 'شعر';
@@ -3472,26 +3589,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get defaultfirebaseoptionsHaveNotBeenCo =>
-      'لم يتم تكوين DefaultFirebaseOptions لنظام linux -';
+      'لم يتم تكوين DefaultFirebaseOptions لنظام Linux.';
 
   @override
   String get defaultfirebaseoptionsAreNotSupport =>
-      'DefaultFirebaseOptions غير مدعومة لهذه المنصة.';
+      'DefaultFirebaseOptions غير مدعومة على هذه المنصة.';
 
   @override
   String get hanziMaster1 => 'هانزي ماستر';
 
   @override
-  String get strokesCannotBeEmpty => 'لا يمكن أن تكون الضربات فارغة.';
+  String get strokesCannotBeEmpty => 'لا يمكن أن تكون خطوط الحرف فارغة.';
 
   @override
-  String get wrongStartPoint => 'نقطة بداية خاطئة.';
+  String get wrongStartPoint => 'نقطة بداية غير صحيحة.';
 
   @override
-  String get rightShapeButWrongPlace => 'الشكل صحيح، لكن المكان خاطئ!';
+  String get rightShapeButWrongPlace => 'الشكل صحيح، لكن الموضع غير صحيح!';
 
   @override
-  String get goodFollowTheFlow => 'جيد!\') : \'اتبع التدفق.';
+  String get goodFollowTheFlow => 'جيد! اتبع مسار الخطوط.';
 
   @override
   String get aBitShaky => 'مهتز قليلاً!';
@@ -3500,7 +3617,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aBitHesitant => 'متردد قليلاً...';
 
   @override
-  String get shapeIsOff => 'الشكل خاطئ.';
+  String get shapeIsOff => 'الشكل غير دقيق.';
 
   @override
   String get arabic => 'العربية';
@@ -3545,114 +3662,115 @@ class AppLocalizationsAr extends AppLocalizations {
   String get offset => 'إزاحة';
 
   @override
-  String get audioserviceHasBeenDisposed => 'تم التخلص من AudioService';
+  String get audioserviceHasBeenDisposed => 'تم إيقاف خدمة الصوت AudioService';
 
   @override
-  String get fenrirZhcnyunxineural => 'Fenrir\': \'zh-CN-YunxiNeural';
+  String get fenrirZhcnyunxineural => 'فنرير (zh-CN-YunxiNeural)';
 
   @override
-  String get charonZhcnyunyangneural => 'Charon\': \'zh-CN-YunyangNeural';
+  String get charonZhcnyunyangneural => 'شارون (zh-CN-YunyangNeural)';
 
   @override
-  String get koreZhcnxiaoxiaoneural => 'Kore\': \'zh-CN-XiaoxiaoNeural';
+  String get koreZhcnxiaoxiaoneural => 'كوري (zh-CN-XiaoxiaoNeural)';
 
   @override
-  String get aoedeZhcnxiaoyineural => 'Aoede\': \'zh-CN-XiaoyiNeural';
+  String get aoedeZhcnxiaoyineural => 'أويدي (zh-CN-XiaoyiNeural)';
 
   @override
-  String get puckZhcnyunjianneural => 'Puck\': \'zh-CN-YunjianNeural';
+  String get puckZhcnyunjianneural => 'باك (zh-CN-YunjianNeural)';
 
   @override
-  String get kore => 'كوري';
+  String get kore => 'كوري (أنثوي، دافئ)';
 
   @override
   String get xmicrosoftoutputformatAudio24khz48k =>
-      'X-Microsoft-OutputFormat\': \'audio-24khz-48kbitrate-mono-mp3';
+      'audio-24khz-48kbitrate-mono-mp3';
 
   @override
-  String get useragentHanzimasterapp => 'User-Agent\': \'HanziMasterApp';
+  String get useragentHanzimasterapp => 'HanziMasterApp';
 
   @override
   String get anchorWord => 'كلمة مرجعية';
 
   @override
-  String get creativeThematicTitle => 'عنوان إبداعي وموضوعي';
+  String get creativeThematicTitle => 'عنوان موضوعي إبداعي';
 
   @override
-  String get briefPedagogicalOrSemanticRationale => 'شرح تربوي أو دلالي موجز';
+  String get briefPedagogicalOrSemanticRationale => 'مبرر تعليمي أو دلالي موجز';
 
   @override
   String get theSingleMostCentralCharacterFromTh =>
-      'الشخصية المركزية الأبرز من القائمة';
+      'الرمز الأكثر أهمية في القائمة';
 
   @override
   String get aBalancedSetOfCharactersFromYourLib =>
-      'مجموعة متوازنة من الأحرف من مكتبتك.';
+      'مجموعة متوازنة من الرموز من مكتبتك.';
 
   @override
   String get yourNaturalConversationalReplyInChi =>
-      'ردك الطبيعي في المحادثة بالأحرف الصينية.';
+      'ردك الطبيعي في المحادثة بالرموز الصينية.';
 
   @override
-  String get theEnglishTranslationOfYourReply => 'الترجمة الإنجليزية لردك.';
+  String get theEnglishTranslationOfYourReply => 'الترجمة العربية لردك.';
 
   @override
   String get thePinyinWithToneMarksForYourReply =>
-      'البينيين مع علامات النبرة لردك.';
+      'البينيين مع علامات النغمات لردك.';
 
   @override
   String get aSuggestedResponseTheUserCouldSayBa =>
-      'رد مقترح يمكن للمستخدم أن يقوله لك.';
+      'رد مقترح يمكن للمستخدم أن يقوله.';
 
   @override
-  String get pinyinForTheSuggestion => 'البينيين للاقتراح.';
+  String get pinyinForTheSuggestion => 'البينيين للرد المقترح.';
 
   @override
   String get englishTranslationForTheSuggestion =>
-      'الترجمة الإنجليزية للاقتراح.';
+      'الترجمة العربية للرد المقترح.';
 
   @override
-  String get scholarsCritique => 'نقد أكاديمي';
+  String get scholarsCritique => 'تقييم العالِم';
 
   @override
   String get theEchoHallRemainsSilentTryYourBrea =>
-      'قاعة الصدى لا تزال صامتة. حاول التنفس مرة أخرى.';
+      'قاعة الصدى لا تزال صامتة. خذ نفسًا وحاول مجددًا.';
 
   @override
-  String get xtitleHanziMaster => 'X-Title\': \'Hanzi Master';
+  String get xtitleHanziMaster => 'Hanzi Master';
 
   @override
-  String get noneYet => 'لا يوجد بعد.';
+  String get noneYet => 'لا يوجد حتى الآن.';
 
   @override
-  String get exactSentence => 'الجملة بالضبط:';
+  String get exactSentence => 'الجملة تمامًا:';
 
   @override
-  String get englishTranslation => 'الترجمة الإنجليزية';
+  String get englishTranslation => 'الترجمة';
 
   @override
-  String get previouslyGeneratedPhrases => 'العبارات التي تم إنشاؤها مسبقًا';
+  String get previouslyGeneratedPhrases => 'العبارات المنشأة مسبقًا';
 
   @override
   String get iLikeDrinkingAppleJuice => 'أحب شرب عصير التفاح.';
 
   @override
-  String get theEnglishMeaningHere => 'المعنى الإنجليزي هنا...';
+  String get theEnglishMeaningHere => 'المعنى هنا...';
 
   @override
-  String get failedToFetchDefinition => 'فشل في جلب التعريف.';
+  String get failedToFetchDefinition => 'فشل جلب التعريف.';
 
   @override
-  String get failedToLoadExplanation => 'فشل في تحميل الشرح.';
+  String get failedToLoadExplanation => 'فشل تحميل الشرح.';
 
   @override
-  String get failedToLoadComparison => 'فشل في تحميل المقارنة.';
+  String get failedToLoadComparison => 'فشل تحميل المقارنة.';
 
   @override
   String get emptyResponseFromOpenrouter => 'استجابة فارغة من OpenRouter';
 
   @override
-  String get emptyResponseFromVisionModel => 'استجابة فارغة من نموذج Vision';
+  String get emptyResponseFromVisionModel =>
+      'استجابة فارغة من نموذج الرؤية (Vision)';
 
   @override
   String get standard => 'قياسي';
@@ -3661,31 +3779,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theFullSentenceInChinese => 'الجملة الكاملة بالصينية...';
 
   @override
-  String get theWordOrCharacterInChinese => 'الكلمة أو الحرف بالصينية';
+  String get theWordOrCharacterInChinese => 'الكلمة أو الرمز بالصينية';
 
   @override
   String get thePinyinForThisSpecificWord => 'البينيين لهذه الكلمة المحددة';
 
   @override
-  String get emptyResponseFromDeepseekApi => 'استجابة فارغة من DeepSeek API';
+  String get emptyResponseFromDeepseekApi => 'استجابة فارغة من واجهة DeepSeek';
 
   @override
   String get criticalPutTheEnglishTranslationInT =>
-      'هام: ضع الترجمة الإنجليزية في';
+      'هام: ضع الترجمة العربية في';
 
   @override
   String get englishTranslationOfTheEntireSenten =>
-      'الترجمة الإنجليزية للجملة بأكملها';
+      'الترجمة العربية للجملة كاملة';
 
   @override
-  String get hanziWord => 'كلمة هانزي';
+  String get hanziWord => 'رمز/كلمة هانزي';
 
   @override
   String get theFullSimplifiedSentenceInChinese =>
       'الجملة المبسطة الكاملة بالصينية...';
 
   @override
-  String get lyingFlatACulturalMovement => 'الاستلقاء: حركة ثقافية...';
+  String get lyingFlatACulturalMovement =>
+      'الاستلقاء المسطح (Tang Ping): حركة ثقافية...';
 
   @override
   String get theUserYouAreSpeakingToIsNamed => 'المستخدم الذي تتحدث إليه اسمه';
@@ -3696,57 +3815,59 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get youAreAConciseChineseCalligraphyAnd =>
-      'أنت مدرس موجز للخط الصيني وعلم أصول الكلمات داخل تطبيق بطاقات تعليمية للهاتف المحمول.';
+      'أنت معلم موجز للخط الصيني وأصول الرموز في تطبيق بطاقات تعليمية.';
 
   @override
-  String get theStudentIsStudyingTheCharacter => 'الطالب يدرس الحرف';
+  String get theStudentIsStudyingTheCharacter => 'المتعلم يدرس الرمز';
 
   @override
   String get neverWriteIntroductionsSignoffsOrFi =>
       'لا تكتب أبدًا مقدمات أو خاتمات أو عبارات حشو مثل';
 
   @override
-  String get beDirectAndInformative => 'كن مباشرًا ومفيدًا.';
+  String get beDirectAndInformative => 'كن مباشرًا وغنيًا بالمعلومات.';
 
   @override
   String get criticalRuleYouMustRespondEntirelyI =>
-      'قاعدة حاسمة: يجب أن تستجيب بالكامل باللغة المطابقة لرمز ISO 639-1';
+      'قاعدة حاسمة: يجب أن تجيب بالكامل باللغة المطابقة لرمز ISO 639-1';
 
   @override
   String get youAreAConciseChineseGrammarTutorIn =>
-      'أنت مدرس موجز لقواعد اللغة الصينية داخل تطبيق للهاتف المحمول.';
+      'أنت معلم موجز لقواعد اللغة الصينية داخل تطبيق هاتف.';
 
   @override
-  String get theStudentIsConfusedAboutTheWord => 'الطالب مشوش بشأن الكلمة';
+  String get theStudentIsConfusedAboutTheWord =>
+      'المتعلم لديه التباس بشأن الكلمة';
 
   @override
   String get neverWriteIntroductionsSignoffsOrFi1 =>
       'لا تكتب أبدًا مقدمات أو خاتمات أو عبارات حشو.';
 
   @override
-  String get azureSpeechApiKeysAreMissing => 'مفاتيح Azure Speech API مفقودة.';
+  String get azureSpeechApiKeysAreMissing =>
+      'مفاتيح واجهة Azure Speech مفقودة.';
 
   @override
-  String get success => 'نجاح';
+  String get success => 'تم بنجاح';
 
   @override
-  String get granularity => 'دقة التفاصيل';
+  String get granularity => 'مستوى التفصيل';
 
   @override
-  String get phoneme1 => 'صوت';
+  String get phoneme1 => 'صوت لغوي (فونيم)';
 
   @override
-  String get dimension => 'بعد';
+  String get dimension => 'بُعد';
 
   @override
   String get comprehensive => 'شامل';
 
   @override
   String get weCouldntHearYouClearlyPleaseTryAga =>
-      'لم نتمكن من سماعك بوضوح. الرجاء المحاولة مرة أخرى.';
+      'لم نتمكن من سماعك بوضوح. يرجى المحاولة مرة أخرى.';
 
   @override
-  String get noNbestResultFound => 'لم يتم العثور على نتيجة NBest.';
+  String get noNbestResultFound => 'لم يتم العثور على نتائج NBest.';
 
   @override
   String get words1 => 'كلمات';
@@ -3755,13 +3876,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get word => 'كلمة';
 
   @override
-  String get phonemes => 'أصوات';
+  String get phonemes => 'أصوات لغوية';
 
   @override
-  String get syllables => 'مقاطع لفظية';
+  String get syllables => 'مقاطع صوتية';
 
   @override
-  String get syllable => 'مقطع لفظي';
+  String get syllable => 'مقطع صوتي';
 
   @override
   String get omission => 'حذف';
@@ -3773,62 +3894,62 @@ class AppLocalizationsAr extends AppLocalizations {
   String get youMissedThisWord => 'لقد فاتتك هذه الكلمة.';
 
   @override
-  String get extraWordAddedHere => 'تمت إضافة كلمة إضافية هنا.';
+  String get extraWordAddedHere => 'تمت إضافة كلمة زائدة هنا.';
 
   @override
-  String get mispronunciation => 'نطق خاطئ';
+  String get mispronunciation => 'نطق غير صحيح';
 
   @override
   String get pronunciationWasInaccurate => 'كان النطق غير دقيق.';
 
   @override
-  String get goodEffortKeepPracticing => 'جهد جيد! استمر في التدرب.';
+  String get goodEffortKeepPracticing => 'محاولة جيدة! واصل التدريب.';
 
   @override
   String get perfectPronunciationSoundsLikeANati =>
-      'نطق مثالي! يبدو وكأنه متحدث أصلي.';
+      'نطق مثالي! يبدو كنطق متحدث أصلي.';
 
   @override
   String get greatJobAFewMinorToneInaccuracies =>
-      'عمل رائع! بعض الأخطاء الطفيفة في النبرة.';
+      'عمل رائع! توجد بعض الأخطاء البسيطة في النغمات.';
 
   @override
   String get notBadButYourTonesNeedSomeWork =>
-      'ليس سيئًا، لكن نبراتك تحتاج إلى بعض العمل.';
+      'ليس سيئًا، لكن نغماتك تحتاج إلى بعض التدريب.';
 
   @override
   String get keepPracticingListenToTheNativeAudi =>
-      'استمر في التدرب! استمع إلى الصوت الأصلي وحاول مرة أخرى.';
+      'واصل التدريب! استمع إلى التسجيل الأصلي وحاول مجددًا.';
 
   @override
   String get lexical => 'معجمي';
 
   @override
-  String get chineseHanziHere => 'هانزي صيني هنا';
+  String get chineseHanziHere => 'رمز هانزي الصيني هنا';
 
   @override
-  String get aShortSummaryInEnglish => 'ملخص قصير باللغة الإنجليزية';
+  String get aShortSummaryInEnglish => 'ملخص موجز بالعربية';
 
   @override
   String get noCoherentChineseTextFoundInTheScan =>
-      'لم يتم العثور على نص صيني متماسك في المسح الضوئي.';
+      'لم يتم العثور على نص صيني واضح في المسح الضوئي.';
 
   @override
   String get theFullEnglishTranslationOfTheScann =>
-      'الترجمة الإنجليزية الكاملة للنص الممسوح ضوئيًا... أو \'لم يتم العثور على نص صيني متماسك.\'';
+      'الترجمة العربية الكاملة للنص الممسوح ضوئيًا... أو \'لم يتم العثور على نص صيني واضح.\'';
 
   @override
   String get aShort24WordTitleForThisScanEgResta =>
-      'عنوان قصير من 2-4 كلمات لهذا المسح (مثل \'قائمة مطعم\'، \'لافتة شارع\')';
+      'عنوان قصير من 2-4 كلمات لهذا المسح (مثل: \'قائمة مطعم\'، \'لافتة شارع\')';
 
   @override
   String get china => 'الصين';
 
   @override
-  String get noTranslationAvailable => 'لا توجد ترجمة متاحة.';
+  String get noTranslationAvailable => 'لا تتوفر ترجمة.';
 
   @override
-  String get scanResults => 'نتائج المسح';
+  String get scanResults => 'نتائج المسح الضوئي';
 
   @override
   String get whenWasItWrittenAndWhatWasHappening =>
@@ -3836,25 +3957,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get whyIsThisPieceFamousWhatPhilosophic =>
-      'لماذا هذه القطعة مشهورة؟ ما هي المواضيع الفلسفية أو الثقافية التي تستكشفها؟';
+      'لماذا هذا العمل مشهور؟ وما هي الموضوعات الفلسفية أو الثقافية التي يتناولها؟';
 
   @override
-  String get aBriefBioOfTheAuthor => 'سيرة ذاتية موجزة للمؤلف.';
+  String get aBriefBioOfTheAuthor => 'نبذة موجزة عن المؤلف.';
 
   @override
-  String get informationUnavailable => 'المعلومات غير متاحة.';
+  String get informationUnavailable => 'المعلومات غير متوفرة.';
 
   @override
-  String get noSummaryAvailable => 'لا يوجد ملخص متاح.';
+  String get noSummaryAvailable => 'لا يتوفر ملخص.';
 
   @override
-  String get hanziAiPro => 'هانزي AI برو';
+  String get hanziAiPro => 'SinoSpark AI Pro';
 
   @override
-  String get trialNormalIntro => 'تجريبي\', \'عادي\', \'مقدمة\'';
+  String get trialNormalIntro => 'تجريبي، عادي، مقدمة';
 
   @override
-  String get dailyDrop => 'القطرة اليومية';
+  String get dailyDrop => 'الجرعة اليومية';
 
   @override
   String get dailyNotificationsForWordOfTheDayAn =>
@@ -3869,74 +3990,74 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get remindersForFlashcardsDueForReview =>
-      'تذكيرات للبطاقات التعليمية المستحقة للمراجعة';
+      'تنبيهات للبطاقات المستحقة للمراجعة';
 
   @override
-  String get engagementReminders => 'تذكيرات المشاركة';
+  String get engagementReminders => 'تذكيرات التفاعل';
 
   @override
-  String get trialReminders => 'تذكيرات التجربة';
+  String get trialReminders => 'تنبيهات الفترة التجريبية';
 
   @override
-  String get notificationsForYourTrialStatus => 'إشعارات حول حالة تجربتك';
+  String get notificationsForYourTrialStatus =>
+      'إشعارات حول حالة فترتك التجريبية';
 
   @override
   String get comeReviewYourHanziAndTryALiveCallB =>
-      'تعال وراجع الهانزي الخاص بك وجرب مكالمة مباشرة قبل انتهاء وصولك المجاني!';
+      'راجع رموز الهانزي وجرّب مكالمة مباشرة قبل انتهاء فترتك التجريبية المجانية!';
 
   @override
-  String get scholarsEye => 'عين الباحث';
+  String get scholarsEye => 'عين العالِم';
 
   @override
-  String get clMeasureWord => 'CL:\', \'كلمة قياس:';
+  String get clMeasureWord => 'كلمة كمية / مصنف (CL):';
 
   @override
-  String get surnameShi => 'لقب شي';
+  String get surnameShi => 'اسم العائلة شي';
 
   @override
   String get chineseFamilyNameShi => 'اسم العائلة الصيني (شي)';
 
   @override
-  String get neutralToneLight => 'نبرة محايدة (خفيفة)';
+  String get neutralToneLight => 'نغمة محايدة (خفيفة)';
 
   @override
   String get keepYourPitchHighAndSteadyLikeSingi =>
-      'حافظ على نبرة صوتك عالية وثابتة مثل غناء نغمة.';
+      'حافظ على طبقة صوتك عالية وثابتة كما لو كنت تغني نغمة موسيقية.';
 
   @override
   String get startInTheMiddleAndSlideYourPitchUp =>
-      'ابدأ من المنتصف وحرك نبرة صوتك للأعلى مثل سؤال \'ماذا؟\'';
+      'ابدأ من طبقة متوسطة وارفع صوتك للأعلى كما لو كنت تسأل باستهجان \'ماذا؟\'';
 
   @override
   String get dipYourVoiceDownLowThenRiseGentlyBa =>
-      'اخفض صوتك إلى مستوى منخفض، ثم ارفعه بلطف مرة أخرى.';
+      'اخفض صوتك إلى طبقة منخفضة ثم ارفعه بلطف مجددًا.';
 
   @override
   String get dropYourPitchSharplyAndDecisivelyLi =>
-      'اخفض نبرة صوتك بحدة وحسم مثل قول \'لا!\' بحزم.';
+      'اخفض طبقة صوتك بحدة وحسم كأنك تقول \'لا!\' بحزم.';
 
   @override
   String get pronounceSoftlyBrieflyAndWithoutEmp =>
-      'انطق بهدوء، بإيجاز، ودون تشديد.';
+      'انطق بخفة وإيجاز ودون تشديد.';
 
   @override
   String get spotOnPitchWasHighFlatAndSteady =>
-      'في الصميم! كانت النبرة عالية، مسطحة، وثابتة.';
+      'ممتاز! كانت النغمة عالية ومستقرة وثابتة.';
 
   @override
-  String get spotOnUpwardPitchRiseWasClear =>
-      'في الصميم! كان ارتفاع النبرة للأعلى واضحًا.';
+  String get spotOnUpwardPitchRiseWasClear => 'ممتاز! كان تصاعد النغمة واضحًا.';
 
   @override
   String get spotOnLowDippingCurveWasAccurate =>
-      'في الصميم! كان المنحنى المنخفض الدائري دقيقًا.';
+      'ممتاز! كان انخفاض النغمة وصعودها دقيقًا.';
 
   @override
   String get spotOnSharpFallingDropWasDecisive =>
-      'أصبت! الانخفاض الحاد كان حاسمًا.';
+      'ممتاز! كان هبوط النغمة حاسمًا ودقيقًا.';
 
   @override
-  String get spotOnToneWasPronouncedAccurately => 'أصبت! النبرة نُطقت بدقة.';
+  String get spotOnToneWasPronouncedAccurately => 'ممتاز! تم نطق النغمة بدقة.';
 
   @override
   String get iAgreeToTheTermsOfServiceAndPrivacy =>
@@ -3953,7 +4074,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createAnAccountToSaveYourStats => 'أنشئ حسابًا لحفظ إحصائياتك.';
 
   @override
-  String get smartSpiral => 'اللولب الذكي';
+  String get smartSpiral => 'المسار الحلزوني الذكي';
 
   @override
   String get origin => 'الأصل';
@@ -3962,7 +4083,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get elements => 'العناصر';
 
   @override
-  String get humanity => 'الإنسانية';
+  String get humanity => 'الإنسان والمجتمع';
 
   @override
   String get village => 'القرية';
@@ -3975,27 +4096,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get originTheSimplestShapesTheBeginning =>
-      'الأصل\': \'أبسط الأشكال. بداية كل شيء.';
+      'أبسط الأشكال. بداية كل شيء.';
 
   @override
   String get elementsSunMoonWaterAndFireTheNatur =>
-      'العناصر\': \'الشمس، القمر، الماء، والنار. العالم الطبيعي.';
+      'الشمس، القمر، الماء، والنار. العالم الطبيعي.';
 
   @override
-  String get humanityTheBodyTheHeartAndTheFamily =>
-      'الإنسانية\': \'الجسد، القلب، والعائلة.';
+  String get humanityTheBodyTheHeartAndTheFamily => 'الجسد، القلب، والعائلة.';
 
   @override
   String get villageFieldsRoofsAndToolsTheFounda =>
-      'القرية\': \'الحقول، الأسقف، والأدوات. أسس المجتمع.';
+      'الحقول، الأسقف، والأدوات. أسس المجتمع.';
 
   @override
-  String get journeyMovementSpeechAndSustenance =>
-      'الرحلة\': \'الحركة، الكلام، والقوت.';
+  String get journeyMovementSpeechAndSustenance => 'الحركة، الكلام، والمعيشة.';
 
   @override
   String get cityCommerceClothingAndComplexArtif =>
-      'المدينة\': \'التجارة، الملابس، والتحف المعقدة.';
+      'التجارة، الملابس، والتحف المعقدة.';
 
   @override
   String get equilibriumAlgorithm => 'خوارزمية التوازن';
@@ -4004,16 +4123,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get misc => 'متفرقات';
 
   @override
-  String get cityOrOriginAs => 'المدينة\' أو \'الأصل\' كـ';
+  String get cityOrOriginAs => '«المدينة» أو «الأصل» كـ';
 
   @override
-  String get miscToOrigin => 'متفرقات\' إلى \'الأصل';
+  String get miscToOrigin => '«متفرقات» إلى «الأصل»';
 
   @override
   String get constellation => 'كوكبة';
 
   @override
-  String get whichOneIsWater => 'أيٌّ منها هو \'الماء\'؟';
+  String get whichOneIsWater => 'أيٌّ منها يمثل «الماء»؟';
 
   @override
   String get whatIsThePinyin => 'ما هو البينيين؟';
@@ -4031,10 +4150,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get active => 'نشط';
 
   @override
-  String get theScrollOfOrigin1 => 'لفيفة الأصل';
+  String get theScrollOfOrigin1 => 'لفافة الأصل';
 
   @override
-  String get galaxyOf1 => 'مجرة';
+  String galaxyOf1(Object name) {
+    return 'مجرة $name';
+  }
 
   @override
   String get also => 'أيضًا';
@@ -4046,7 +4167,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cloud => 'سحابة';
 
   @override
-  String get youArchaic => 'أنت (بصيغة قديمة)';
+  String get youArchaic => 'أنت (بصيغة كلاسيكية)';
 
   @override
   String get suddenly => 'فجأة';
@@ -4091,7 +4212,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get shorttailedBird => 'طائر قصير الذيل';
 
   @override
-  String get shoot => 'يطلق';
+  String get shoot => 'برعم / نبتة';
 
   @override
   String get small => 'صغير';
@@ -4154,16 +4275,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get talent => 'موهبة';
 
   @override
-  String get follow => 'متابعة';
+  String get follow => 'يتبع';
 
   @override
   String get desert => 'صحراء';
 
   @override
-  String get component => 'مكون';
+  String get component => 'عنصر تركيبي';
 
   @override
-  String get divingInto1 => 'الغوص في';
+  String divingInto1(Object topic) {
+    return 'الانتقال إلى $topic';
+  }
 
   @override
   String get unitIntro1 => 'مقدمة الوحدة';
@@ -4178,28 +4301,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theGalaxy => 'المجرة';
 
   @override
-  String get theScholarListens => 'العالم يستمع...';
+  String get theScholarListens => 'العالِم يستمع...';
 
   @override
-  String get consultingTheScrolls => 'استشارة المخطوطات...';
+  String get consultingTheScrolls => 'مراجعة اللفافات القديمة...';
 
   @override
   String get traceWithTheGuide => 'تتبع مع الدليل';
 
   @override
-  String get traceTheGhost => 'تتبع الشبح';
+  String get traceTheGhost => 'تتبع الخط الإرشادي';
 
   @override
-  String get connectTheDots => 'وصل النقاط';
+  String get connectTheDots => 'صل النقاط';
 
   @override
   String get drawFromMemory => 'ارسم من الذاكرة';
 
   @override
-  String get assistant => 'مساعد';
+  String get assistant => 'المساعد';
 
   @override
-  String get puck => 'باك';
+  String get puck => 'باك (رياضي)';
 
   @override
   String get helloWelcomeWhatWouldYouLikeToOrder =>
@@ -4207,7 +4330,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ni3Hao3Huan1ying2Guang1lin2Qing3wen =>
-      'ني هاو! هوان يينغ غوانغ لين. تشينغ ون ني ياو ديان شين مه؟';
+      'Nǐ hǎo! Huānyíng guānglín. Qǐngwèn nǐ yào diǎn shénme?';
 
   @override
   String get waiterLi => 'النادل لي';
@@ -4219,38 +4342,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orderOneDishAndOneDrink => 'اطلب طبقاً واحداً ومشروباً واحداً';
 
   @override
-  String get askForTheBill => 'اطلب الفاتورة';
+  String get askForTheBill => 'اطلب الحساب';
 
   @override
-  String get fenrir => 'فنرير';
+  String get fenrir => 'فنرير (حيوي)';
 
   @override
   String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
-      'ني تشو نا أر آ؟ جي تشانغ ما؟ تينغ يوان ده!';
+      'Nǐ qù nǎr a? Jīchǎng ma? Tǐng yuǎn de!';
 
   @override
   String get driverWang => 'السائق وانغ';
 
   @override
   String get tellTheDriverYouAreGoingToTheAirpor =>
-      'أخبر السائق أنك ذاهب إلى المطار';
+      'أخبر السائق أنك متوجه إلى المطار';
 
   @override
   String get askHowLongTheTripWillTake => 'اسأل عن مدة الرحلة';
 
   @override
-  String get complainAboutTheTraffic => 'اشتكي من الازدحام المروري';
+  String get complainAboutTheTraffic => 'تذمّر من الازدحام المروري';
 
   @override
-  String get charon => 'شارون';
+  String get charon => 'شارون (إخباري)';
 
   @override
   String get thisClothingQualityIsEspeciallyGood =>
-      'جودة هذه الملابس جيدة بشكل خاص، 200 يوان فقط.';
+      'جودة هذه الملابس ممتازة حقًا، بـ 200 كواي فقط.';
 
   @override
   String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 =>
-      'جيه جيان يي فو تشي ليانغ تيه بيه هاو، تشي ياو ليانغ باي كواي.';
+      'Zhè jiàn yīfu zhìliàng tèbié hǎo, zhǐyào liǎng bǎi kuài.';
 
   @override
   String get auntieChen => 'العمة تشن';
@@ -4262,12 +4385,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sayItIsTooExpensive => 'قل إنه باهظ الثمن جداً';
 
   @override
-  String get bargainThePriceDownTo100Rmb =>
-      'ساوم على السعر لتخفيضه إلى 100 يوان';
+  String get bargainThePriceDownTo100Rmb => 'ساوم على تخفيض السعر إلى 100 يوان';
 
   @override
   String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa =>
-      'ني نا لي بو شو فو؟ فا شاو له ما؟';
+      'Nǐ nǎlǐ bù shūfu? Fāshāo le ma?';
 
   @override
   String get drZhang => 'الدكتور تشانغ';
@@ -4280,10 +4402,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sayYouHaveASlightFever => 'قل إن لديك حمى خفيفة';
 
   @override
-  String get askIfYouNeedToTakeMedicine => 'اسأل إذا كنت بحاجة لتناول الدواء';
+  String get askIfYouNeedToTakeMedicine =>
+      'اسأل عما إذا كنت بحاجة لتناول الدواء';
 
   @override
-  String get aoede => 'أويدي';
+  String get aoede => 'أويدي (أنثوي، مبهج)';
 
   @override
   String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
@@ -4291,7 +4414,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z =>
-      'ني هاو! هاو جيو بو جيان، ني زوي جين تشن مه يانغ؟';
+      'Nǐ hǎo! Hǎojiǔ bùjiàn, nǐ zuìjìn zěnmeyàng?';
 
   @override
   String get pleaseIntroduceYourselfWhyDoYouWant =>
@@ -4299,7 +4422,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 =>
-      'تشينغ شيان تسي وو جيه شاو يي شيا. ني وي شين مه شيانغ لاي وو من غونغ سي غونغ تسو؟';
+      'Qǐng xiān zìwǒ jièshào yíxià. Nǐ wèishénme xiǎng lái wǒmen gōngsī gōngzuò?';
 
   @override
   String get managerLiu => 'المدير ليو';
@@ -4318,19 +4441,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get microphoneAccessIsRequiredPleaseEna =>
-      'مطلوب الوصول إلى الميكروفون. يرجى تمكينه من إعدادات جهازك.';
+      'مطلوب الإذن بالوصول إلى الميكروفون. يرجى تمكينه من إعدادات جهازك.';
 
   @override
   String get couldNotStartMicrophonePleaseCheckY =>
-      'تعذر بدء تشغيل الميكروفون. يرجى التحقق من إعدادات الصوت والمحاولة مرة أخرى.';
+      'تعذر تشغيل الميكروفون. يرجى التحقق من إعدادات الصوت والمحاولة مرة أخرى.';
 
   @override
   String get weDidntQuiteCatchThatPleaseHoldTheM =>
-      'لم نتمكن من فهم ذلك تماماً. يرجى الإمساك بالميكروفون والمحاولة مرة أخرى!';
+      'لم نتمكن من سماع ذلك بوضوح. يرجى الضغط مطولاً على الميكروفون والمحاولة مجددًا!';
 
   @override
   String get recordingWasTooShortHoldTheMicAndSp =>
-      'التسجيل كان قصيراً جداً. أمسك الميكروفون وتحدث بوضوح.';
+      'كان التسجيل قصيرًا جدًا. اضغط مع الاستمرار على الميكروفون وتحدث بوضوح.';
 
   @override
   String get audioBufferWasEmptyPleaseCheckYourM =>
@@ -4338,23 +4461,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get audioFileIsSilentPleaseSpeakIntoThe =>
-      'ملف الصوت صامت. يرجى التحدث في الميكروفون.';
+      'الملف الصوتي صامت. يرجى التحدث في الميكروفون.';
 
   @override
   String get weCouldntUnderstandYourPronunciatio =>
-      'لم نتمكن من فهم نطقك. يرجى التحدث بوضوح والمحاولة مرة أخرى.';
+      'لم نتمكن من التعرف على نطقك. يرجى التحدث بوضوح والمحاولة مرة أخرى.';
 
   @override
   String get theServerIsTakingTooLongToRespondPl =>
-      'يستغرق الخادم وقتاً طويلاً جداً للاستجابة. يرجى المحاولة مرة أخرى.';
+      'استغرق الخادم وقتًا طويلاً للاستجابة. يرجى المحاولة مرة أخرى.';
 
   @override
   String get noInternetConnectionPleaseCheckYour =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get audioProcessingFailedPleaseTryAgain =>
-      'فشل معالجة الصوت. يرجى المحاولة مرة أخرى.';
+      'فشلت معالجة الصوت. يرجى المحاولة مرة أخرى.';
 
   @override
   String get permission => 'إذن';
@@ -4367,38 +4490,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get user => 'المستخدم';
 
   @override
-  String get scholar => 'العالم';
+  String get scholar => 'العالِم';
 
   @override
   String get ourAiTutorsAreCurrentlyOfflinePleas =>
-      'مدرسونا المدعومون بالذكاء الاصطناعي غير متصلين حالياً، يرجى المحاولة لاحقاً.';
+      'معلمو الذكاء الاصطناعي غير متصلين حالياً، يرجى المحاولة لاحقاً.';
 
   @override
   String get hideTranslation => 'إخفاء الترجمة';
 
   @override
-  String get azureAssessment => 'تقييم أزور...';
+  String get azureAssessment => 'جارٍ تقييم Azure...';
 
   @override
-  String get microphonePermissionRequired => 'مطلوب إذن الميكروفون';
+  String get microphonePermissionRequired => 'إذن الميكروفون مطلوب';
 
   @override
-  String get connectedSpeakNow => 'متصل! تحدث الآن.';
+  String get connectedSpeakNow => 'تم الاتصال! تحدث الآن.';
 
   @override
   String get initializationErrorCheckPermissions =>
-      'خطأ في التهيئة. تحقق من الأذونات.';
+      'خطأ في التهيئة. يرجى التحقق من الأذونات.';
 
   @override
   String get microphoneErrorTapToRetry =>
-      'خطأ في الميكروفون. اضغط للمحاولة مرة أخرى.';
+      'خطأ في الميكروفون. انقر لإعادة المحاولة.';
 
   @override
-  String get theTutorReturnedAnEmptyResponse => 'عاد المدرس برد فارغ';
+  String get theTutorReturnedAnEmptyResponse => 'أرجع المعلم استجابة فارغة.';
 
   @override
   String get connectionInterruptedPleaseSpeakAga =>
-      'انقطع الاتصال. يرجى التحدث مرة أخرى.';
+      'انقطع الاتصال. يرجى التحدث مجددًا.';
 
   @override
   String get callPausedReviewingTones =>
@@ -4408,52 +4531,52 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pausedTakeABreak => 'متوقف مؤقتًا - خذ استراحة';
 
   @override
-  String get goodStartPracticing => 'بداية جيدة في التدريب';
+  String get goodStartPracticing => 'بداية جيدة للتدريب';
 
   @override
-  String get studentCoach => 'طالب\' : \'مدرب';
+  String get studentCoach => 'طالب / مدرب';
 
   @override
   String get keepYour1stToneHighAndSteadyOn =>
-      'حافظ على نبرتك الأولى عالية وثابتة على';
+      'حافظ على نبرتك الأولى عالية وثابتة عند';
 
   @override
   String get noScenariosFound => 'لم يتم العثور على سيناريوهات.';
 
   @override
   String get designYourOwnAiRoleplayExperience =>
-      'صمم تجربة لعب الأدوار بالذكاء الاصطناعي الخاصة بك';
+      'صمم تجربة لعب الأدوار الخاصة بك بالذكاء الاصطناعي';
 
   @override
   String get generateFromDeck => 'إنشاء من المجموعة';
 
   @override
   String get practiceFlashcardVocabularyInALiveD =>
-      'تدرب على مفردات البطاقات التعليمية في حوار مباشر';
+      'تدرب على مفردات البطاقات التعليمية في محادثة مباشرة';
 
   @override
-  String get tapToRoleplay => 'اضغط للعب الأدوار';
+  String get tapToRoleplay => 'انقر لبدء لعب الأدوار';
 
   @override
-  String get hsk2 => 'مستوى HSK 2';
+  String get hsk2 => 'HSK 2';
 
   @override
-  String get hsk3 => 'مستوى HSK 3';
+  String get hsk3 => 'HSK 3';
 
   @override
-  String get hsk4 => 'مستوى HSK 4';
+  String get hsk4 => 'HSK 4';
 
   @override
-  String get hsk5 => 'مستوى HSK 5';
+  String get hsk5 => 'HSK 5';
 
   @override
-  String get hsk6 => 'مستوى HSK 6';
+  String get hsk6 => 'HSK 6';
 
   @override
   String get dinnerWithDad => 'عشاء مع أبي';
 
   @override
-  String get orderingAtAChengduTeahouse => 'الطلب في مقهى شاي تشنغدو';
+  String get orderingAtAChengduTeahouse => 'الطلب في دار شاي بتشنغدو';
 
   @override
   String get buyingTeaAtTheMarket => 'شراء الشاي من السوق';
@@ -4471,13 +4594,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get areYouReady => 'هل أنت مستعد؟';
 
   @override
-  String get discussWhatToHaveForDinner => 'ناقش ماذا ستتناول على العشاء';
+  String get discussWhatToHaveForDinner => 'مناقشة ما ستتناولانه على العشاء';
 
   @override
-  String get suggestWatchingAMovieAfterwards => 'اقترح مشاهدة فيلم بعد ذلك';
+  String get suggestWatchingAMovieAfterwards => 'اقتراح مشاهدة فيلم بعد ذلك';
 
   @override
-  String get askIfTheyWouldLikeTea => 'اسأل إذا كانوا يرغبون في الشاي';
+  String get askIfTheyWouldLikeTea =>
+      'السؤال عما إذا كانوا يرغبون في تناول الشاي';
 
   @override
   String get helloVeryNiceToMeetYou => 'مرحباً! سررت جداً بلقائك.';
@@ -4491,7 +4615,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get designCustomAiRoleplayConversation =>
-      'صمم محادثة ولعب أدوار مخصصين بالذكاء الاصطناعي';
+      'صمم محادثة مخصصة ولعب أدوار بالذكاء الاصطناعي';
 
   @override
   String get random => 'عشوائي';
@@ -4500,60 +4624,59 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scenarioTopic => 'موضوع السيناريو';
 
   @override
-  String get contextSettingOptional => 'السياق والإعداد (اختياري)';
+  String get contextSettingOptional => 'السياق والمكان (اختياري)';
 
   @override
-  String get aiCharacterPersonaOptional =>
-      'شخصية الذكاء الاصطناعي / الكيان (اختياري)';
+  String get aiCharacterPersonaOptional => 'شخصية الذكاء الاصطناعي (اختياري)';
 
   @override
   String get aQuietBambooCourtyardTeahouseInChen =>
-      'مقهى شاي هادئ بفناء من الخيزران في تشنغدو مع عزف موسيقى الجوزينغ الهادئة.';
+      'دار شاي هادئة بفناء من الخيزران في تشنغدو مع أنغام آلة الغوتشنغ الهادئة.';
 
   @override
   String get aBustlingSmokyNightMarketFilledWith =>
-      'سوق ليلي صاخب ومليء بالدخان، يضم أسياخ الشواء والخبز المطهو على البخار وأكشاك طعام الشارع.';
+      'سوق ليلي صاخب يملؤه الدخان مع أسياخ الشواء، والخبز المطهو على البخار، وأكشاك طعام الشارع.';
 
   @override
   String get aLivelyHotpotRestaurantInChongqingW =>
-      'مطعم هوت بوت حيوي في تشونغتشينغ بمرق قرمزي يغلي ورائحة الفلفل الحار العطرة.';
+      'مطعم هوت بوت حيوي في تشونغتشينغ مع مرق قرمزي يغلي ونكهة فلفل حار فواحة.';
 
   @override
   String get aBustlingTraditionalCantoneseTeahou =>
-      'مقهى شاي كانتوني تقليدي صاخب في قوانغتشو مليء بسلال الخيزران البخارية.';
+      'دار شاي كانتونية تقليدية صاخبة في غوانغتشو مليئة بسلال الخيزران البخارية.';
 
   @override
   String get aChicMinimalistCafeInTheFrenchConce =>
-      'مقهى أنيق وبسيط في الامتياز الفرنسي بعد ظهر يوم أحد ممطر.';
+      'مقهى أنيق وبسيط في منطقة الامتياز الفرنسي في فترة ما بعد ظهر يوم أحد ممطر.';
 
   @override
   String get aWarmNorthernHomeKitchenDuringWinte =>
-      'مطبخ منزلي شمالي دافئ خلال الشتاء مع دقيق على الطاولة وقدور زلابية بخارية.';
+      'مطبخ منزلي دافئ في شمال الصين خلال الشتاء مع طحين على الطاولة وقدور زلابية يتصاعد منها البخار.';
 
   @override
   String get anOpenairNightStreetFoodAlleyWithSi =>
-      'زقاق طعام شارع ليلي في الهواء الطلق مع أسياخ لحم الضأن المشوية، والباذنجان المشوي، والبيرة الباردة.';
+      'زقاق مفتوح لأطعمة الشارع ليلاً مع أسياخ لحم ضأن مشوية، وباذنجان محمص، ومشروبات باردة.';
 
   @override
   String get aSnowyStreetCornerOutsideTheLamaTem =>
-      'زاوية شارع ثلجية خارج معبد لاما مع أسياخ الزعرور المحلى المتوهجة باللون الأحمر على الجليد.';
+      'زاوية شارع مغطاة بالثلوج أمام معبد لاما مع أسياخ التانغهولو (حلوى الزعرور) الحمراء اللامعة على الجليد.';
 
   @override
-  String get craftBeerBreweryInQingdao => 'مصنع جعة حرفية في تشينغداو';
+  String get craftBeerBreweryInQingdao => 'مصنع مشروبات حرفية في تشينغداو';
 
   @override
   String get aLivelyCoastalTaproomWithWoodenBarr =>
-      'حانة ساحلية حيوية ببراميل خشبية، ونسيم المحيط، وحنفيات جعة القمح الطازجة.';
+      'حانة ساحلية حيوية ببراميل خشبية، ونسيم البحر، وصنابير مشروبات القمح الطازجة.';
 
   @override
-  String get sichuanCookingMasterclass => 'دورة طبخ سيتشوان الاحترافية';
+  String get sichuanCookingMasterclass => 'دورة متقدمة في فنون طهي سيتشوان';
 
   @override
   String get aVibrantOpenKitchenWithWoksBlazingC =>
-      'مطبخ مفتوح نابض بالحياة مع مقالي الووك المشتعلة، وزيت الفلفل الحار الذي يغلي ببطء، وحبوب الفلفل الطازجة.';
+      'مطبخ مفتوح نابض بالحياة مع مقالي الووك المشتعلة، وزيت الفلفل الحار الفوار، وحبات فلفل سيتشوان الطازجة.';
 
   @override
-  String get highspeedRailSeatMixup => 'اختلاط مقاعد قطار فائق السرعة';
+  String get highspeedRailSeatMixup => 'التباس في مقاعد القطار فائق السرعة';
 
   @override
   String get greatWallSunriseTrekInMutianyu =>
@@ -4565,62 +4688,62 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get bambooRaftDriftOnGuilinLiRiver =>
-      'الانجراف بقارب الخيزران على نهر لي في قويلين';
+      'جولة بطوافة الخيزران على نهر لي في غويلين';
 
   @override
   String get glidingAlongEmeraldKarstWatersBetwe =>
-      'الانزلاق على طول مياه الكارست الزمردية بين قمم الحجر الجيري الضبابية الدرامية بالقرب من يانغشوو.';
+      'الإبحار على طول مياه الكارست الزمردية بين قمم الحجر الجيري الضبابية بالقرب من يانغشوو.';
 
   @override
   String get silkRoadCamelTrekInDunhuang =>
-      'رحلة الجمال على طريق الحرير في دونهوانغ';
+      'رحلة على ظهور الجمال على طريق الحرير في دونهوانغ';
 
   @override
   String get theRollingGoldenSandDunesOfMingshaM =>
-      'الكثبان الرملية الذهبية المتدحرجة لجبل مينغشا بجوار واحة بحيرة الهلال.';
+      'الكثبان الرملية الذهبية لجبل مينغشا بجوار واحة بحيرة الهلال.';
 
   @override
   String get bookingACourtyardHomestayInDali =>
-      'حجز إقامة منزلية بفناء في دالي';
+      'حجز إقامة في نُزُل تقليدي بفناء في دالي';
 
   @override
   String get aSereneBaistyleBoutiqueCourtyardHot =>
-      'فندق بوتيكي هادئ على طراز باي بفناء يطل على بحيرة إرهاي في يونان.';
+      'فندق بوتيكي هادئ على طراز قومية باي مع فناء يطل على بحيرة إرهاي في يونان.';
 
   @override
-  String get potalaPalacePilgrimageInLhasa => 'حج قصر بوتالا في لاسا';
+  String get potalaPalacePilgrimageInLhasa => 'زيارة قصر بوتالا في لاسا';
 
   @override
   String get theMajesticSundrenchedStoneStepsOut =>
-      'الدرجات الحجرية المهيبة المغمورة بأشعة الشمس خارج قصر بوتالا مع عجلات الصلاة الدوارة.';
+      'الدرجات الحجرية المهيبة المغمورة بأشعة الشمس أمام قصر بوتالا مع عجلات الصلاة الدوارة.';
 
   @override
   String get aSubzeroWonderlandOfIlluminatedCrys =>
-      'عالم عجائب تحت الصفر من قصور الجليد الكريستالية المضاءة ومنحوتات الثلج الشاهقة.';
+      'أرض عجائب جليدية تحت الصفر تضم قصورًا بلورية مضاءة ومنحوتات ثلجية شاهقة.';
 
   @override
   String get zhangjiajieAvatarMountainCableCar =>
-      'تلفريك جبل أفاتار تشانغجياجيه';
+      'تلفريك جبل أفاتار في تشانغجياجيه';
 
   @override
   String get suspendedHighInAGlassCableCarSoarin =>
-      'معلق عالياً في تلفريك زجاجي يحلق فوق آلاف قمم الأعمدة الرملية.';
+      'معلق عاليًا في مقصورة تلفريك زجاجية تحلق فوق آلاف الأعمدة الرملية الشاهقة.';
 
   @override
   String get gobiDesertStargazingCampInGansu =>
-      'مخيم رصد النجوم في صحراء جوبي في قانسو';
+      'مخيم لرصد النجوم في صحراء غوبي في قانسو';
 
   @override
   String get aLuxuryYurtCampUnderACrystalclearMi =>
-      'مخيم يورت فاخر تحت سماء درب التبانة الصافية في الصحراء خارج جيايوجوان.';
+      'مخيم خيام يورت فاخر تحت سماء درب التبانة الصافية في الصحراء بالقرب من جيايوجوان.';
 
   @override
   String get yangtzeRiverThreeGorgesCruise =>
-      'رحلة بحرية في مضائق الأنهار الثلاثة بنهر اليانغتسي';
+      'رحلة بحرية عبر الخوانق الثلاثة لنهر اليانغتسي';
 
   @override
   String get onTheSunDeckOfARiverCruiseShipPassi =>
-      'على سطح الشمس لسفينة سياحية نهرية تمر عبر مضيق تشوتانغ الشاهق والمثير.';
+      'على السطح الشمسي لسفينة سياحية نهرية تعبر مضيق تشوتانغ المهيب والخلاب.';
 
   @override
   String get buyingAntiquesInBeijingPanjiayuan =>
@@ -4628,163 +4751,165 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aHistoricPotteryKilnFilledWithDelic =>
-      'فرن فخار تاريخي مليء بمزهريات البورسلين الرقيقة غير المحروقة والطلاء الأزرق الكوبالت.';
+      'فرن فخار تاريخي مليء بمزهريات الخزف الدقيقة غير المحروقة وطلاء الكوبالت الأزرق.';
 
   @override
   String get suzhouSilkEmbroideryStudio => 'استوديو تطريز الحرير في سوتشو';
 
   @override
   String get aPeacefulCanalsideGardenStudioInSuz =>
-      'استوديو حديقة هادئ على ضفة قناة في سوتشو بخيوط حريرية رفيعة وإطارات تطريز خشبية.';
+      'استوديو حديقة هادئ على ضفة القناة في سوتشو بخيوط حريرية رفيعة وإطارات تطريز خشبية.';
 
   @override
   String get backstageAtATraditionalBeijingOpera =>
-      'كواليس مسرح أوبرا بكين التقليدية بأزياء ملونة ومرايا وقبعات رأس.';
+      'خلف كواليس مسرح أوبرا بكين التقليدية مع أزياء ملونة ومرايا وأغطية رأس متقنة.';
 
   @override
   String get traditionalChineseMedicineConsultat =>
-      'استشارة الطب الصيني التقليدي';
+      'استشارة في الطب الصيني التقليدي';
 
   @override
   String get morningTaiChiInTempleOfHeavenPark =>
-      'تاي تشي صباحي في حديقة معبد السماء';
+      'ممارسة التاي تشي صباحًا في حديقة معبد السماء';
 
   @override
   String get beneathAncientCypressTreesAtDawnWit =>
-      'تحت أشجار السرو العتيقة عند الفجر مع طيور الحديقة وكبار السن يمارسون حركات متزامنة.';
+      'تحت أشجار السرو العتيقة عند الفجر مع أصوات الطيور وكبار السن يمارسون حركات متزامنة.';
 
   @override
-  String get rentingAHanfuForAPhotoShoot => 'استئجار زي الهانفو لجلسة تصوير';
+  String get rentingAHanfuForAPhotoShoot => 'استئجار زي هانفو لجلسة تصوير';
 
   @override
   String get aTraditionalCostumeBoutiqueNearTheW =>
-      'بوتيك أزياء تقليدية بالقرب من البحيرة الغربية مع رفوف من أثواب سلالتي تانغ وسونغ.';
+      'متجر أزياء تقليدية بالقرب من البحيرة الغربية مع صفوف من أثواب أسرتي تانغ وسونغ.';
 
   @override
   String get guqinAncientZitherInstrumentWorksho =>
-      'ورشة عمل آلة الغوتشين (القيثارة القديمة)';
+      'ورشة آلة الغوتشين (القيثارة الصينية القديمة)';
 
   @override
   String get aQuietPinewoodStudioInHangzhouFille =>
-      'استوديو هادئ من خشب الصنوبر في هانغتشو مليء بآلات من خشب الباولونيا العتيق وأوتار الحرير.';
+      'استوديو هادئ من خشب الصنوبر في هانغتشو مليء بآلات من خشب البولونيا المعتق وأوتار الحرير.';
 
   @override
-  String get shaanxiShadowPuppetTheater => 'مسرح ظلال الدمى في شنشي';
+  String get shaanxiShadowPuppetTheater => 'مسرح خيال الظل في شنشي';
 
   @override
   String get behindAnIlluminatedWhiteSilkScreenW =>
-      'خلف شاشة حرير بيضاء مضاءة مع شخصيات ظلال جلدية شفافة ورقيقة.';
+      'خلف شاشة حريرية بيضاء مضاءة مع دمى جلدية رقيقة لخيالات الظل.';
 
   @override
-  String get chineseCalligraphyWorkshop => 'ورشة عمل الخط الصيني';
+  String get chineseCalligraphyWorkshop => 'ورشة فن الخط الصيني';
 
   @override
   String get aTranquilStudioScentedWithPineSootI =>
-      'استوديو هادئ تفوح منه رائحة حبر سخام الصنوبر ولفائف ورق الأرز وعطور الشاي الناعمة.';
+      'استوديو هادئ تفوح منه رائحة حبر سخام الصنوبر ولفائف ورق الأرز وعبير الشاي.';
 
   @override
-  String get adoptingACatAtAnAnimalShelter => 'تبني قطة في ملجأ للحيوانات';
+  String get adoptingACatAtAnAnimalShelter => 'تبني قطة من ملجأ للحيوانات';
 
   @override
   String get aCozyPetRescueCenterInHangzhouWithE =>
-      'مركز دافئ لإنقاذ الحيوانات الأليفة في هانغتشو مع قطط إنقاذ نشيطة وشاي للزوار.';
+      'مركز دافئ لإنقاذ الحيوانات الأليفة في هانغتشو مع قطط نشيطة وشاي للزوار.';
 
   @override
   String get scriptMurderMysteryJubenshaGame =>
-      'لعبة لغز جريمة قتل نصية (جوبينشا)';
+      'لعبة حل ألغاز الجرائم النصية (جوبينشا / Jubensha)';
 
   @override
   String get aThemedDetectiveLoungeInShanghaiWit =>
-      'صالة تحريات ذات طابع خاص في شنغهاي مع لاعبين يرتدون أزياء خاصة وضوء الشموع.';
+      'صالة تحريات ذات طابع خاص في شنغهاي مع لاعبين بأزياء تنكرية وأضواء الشموع.';
 
   @override
   String get vintageVinylRecordShopInShanghai =>
-      'متجر أسطوانات فينيل عتيقة في شنغهاي';
+      'متجر أسطوانات فينيل كلاسيكية في شنغهاي';
 
   @override
   String get aHiddenVinylStoreInAnOldLaneHousePa =>
-      'متجر فينيل مخفي في منزل قديم في زقاق مليء بأسطوانات الكانتوبوب والجاز الكلاسيكية من الثمانينات.';
+      'متجر أسطوانات مخفي في منزل أزقة قديم (Shikumen) مليء بأسطوانات الكانتوبوب والجاز من الثمانينيات.';
 
   @override
   String get ktvKaraokePartyWithFriends => 'حفلة كاريوكي KTV مع الأصدقاء';
 
   @override
   String get joiningACityBikeCyclingClub =>
-      'الانضمام إلى نادي ركوب الدراجات الهوائية في المدينة';
+      'الانضمام إلى نادٍ لركوب الدراجات في المدينة';
 
   @override
   String get aGatheringOfCyclistsByTheRiverfront =>
-      'تجمع لراكبي الدراجات على ضفاف النهر يستعدون لركوب مسائي حول أفق المدينة.';
+      'تجمع لراكبي الدراجات على ضفة النهر للاستعداد لجولة ليلية حول أفق المدينة.';
 
   @override
-  String get blindBoxToyTradingMeetup => 'لقاء تبادل ألعاب الصناديق الغامضة';
+  String get blindBoxToyTradingMeetup =>
+      'لقاء لتبادل دمى الصناديق الغامضة (Blind Box)';
 
   @override
   String get aColorfulPopcultureToyStoreInChaoya =>
-      'متجر ألعاب ثقافة البوب الملون في تشاويانغ مع أرفف عرض وصناديق مقتنيات غير مفتوحة.';
+      'متجر ألعاب ثقافة البوب الملون في تشاويانغ مع أرفف عرض وصناديق مقتنيات جديدة.';
 
   @override
   String get droneSkylineVideographyAtTheBund =>
-      'تصوير جوي لأفق المدينة بالطائرة بدون طيار في البوند';
+      'تصوير أفق المدينة بالطائرة المسيرة (الدرون) في منطقة البوند';
 
   @override
   String get theBundPromenadeAtDuskOverlookingTh =>
-      'كورنيش البوند عند الغسق يطل على ناطحات سحاب بودونغ المستقبلية المضاءة.';
+      'ممشى البوند عند الغسق المطل على ناطحات السحاب المستقبلية المضاءة في بودونغ.';
 
   @override
-  String get goldenRetrieverCafeInNanjing => 'مقهى جولدن ريتريفر في نانجينغ';
+  String get goldenRetrieverCafeInNanjing => 'مقهى غولدن ريتريفر في نانجينغ';
 
   @override
   String get aSunnyCheerfulPetCafeWithDozensOfFr =>
-      'مقهى حيوانات أليفة مشمس ومبهج مع عشرات الكلاب الودودة والمنفوشة تستقبل الزوار.';
+      'مقهى حيوانات أليفة مشمس ومبهج مع عشرات الكلاب الودودة تستقبل الزوار.';
 
   @override
-  String get boulderingClimbingGymInChengdu => 'صالة تسلق بولدرينغ في تشنغدو';
+  String get boulderingClimbingGymInChengdu =>
+      'صالة تسلق الجدران (بولدرينغ) في تشنغدو';
 
   @override
   String get aModernIndoorClimbingGymWithVibrant =>
-      'صالة تسلق داخلية حديثة مع مسارات تسلق ملونة نابضة بالحياة وموسيقى حيوية.';
+      'صالة تسلق داخلية حديثة مع مسارات ملونة وموسيقى حيوية.';
 
   @override
   String get aMassiveConventionHallFilledWithCol =>
-      'قاعة مؤتمرات ضخمة مليئة بأكشاك ألعاب ملونة وجدران صور ومبدعين يرتدون أزياء خاصة.';
+      'قاعة مؤتمرات ضخمة مليئة بأجنحة ألعاب ملونة، وخلفيات للتصوير، وصناع محتوى بأزياء كوزبلاي.';
 
   @override
   String get askingForDirectionsInABeijingHutong =>
-      'طلب الاتجاهات في هوتونغ بكين';
+      'السؤال عن الاتجاهات في أحد أزقة الهوتونغ ببكين';
 
   @override
   String get aMazeOfHistoricGreybrickAlleysWithB =>
-      'متاهة من الأزقة التاريخية المبنية بالطوب الرمادي مع دراجات هوائية وساحات داخلية وأشجار رمان.';
+      'متاهة من الأزقة التاريخية المبنية بالطوب الرمادي مع دراجات، وأفنية تقليدية، وأشجار رمان.';
 
   @override
-  String get buyingFreshFruitAtAWetMarket => 'شراء الفاكهة الطازجة من سوق رطب';
+  String get buyingFreshFruitAtAWetMarket => 'شراء فواكه طازجة من السوق الشعبي';
 
   @override
   String get aLivelyMorningNeighborhoodMarketWit =>
-      'سوق حي صباحي حيوي مع أكوام من الليتشي والمانجو وفاكهة التنين الطازجة.';
+      'سوق حي صباحي نابض بالحياة يضم أكوامًا من الليتشي والمانجو وفاكهة التنين الطازجة.';
 
   @override
   String get flowerMarketBouquetInKunming => 'باقة من سوق الزهور في كونمينغ';
 
   @override
   String get theFamousDounanFlowerMarketSurround =>
-      'سوق دونان للزهور الشهير محاط بآلاف الورود الطازجة والزنابق وسيقان الأوكالبتوس.';
+      'سوق دونان للزهور الشهير المحاط بآلاف الورود الطازجة والزنابق وأغصان الكافور.';
 
   @override
   String get tailorAlterationsInAnOldLaneHouse =>
-      'تعديلات خياط في منزل قديم في زقاق';
+      'تعديل الملابس عند خياط في منزل أزقة قديم';
 
   @override
   String get aTraditionalTailorShopFilledWithSew =>
       'محل خياطة تقليدي مليء بآلات الخياطة والأقمشة وأشرطة القياس.';
 
   @override
-  String get expressParcelLockerRetrieval => 'استلام طرد سريع من خزانة';
+  String get expressParcelLockerRetrieval => 'استلام طرد من الخزائن الذكية';
 
   @override
   String get downstairsAtAResidentialApartmentGa =>
-      'في الطابق السفلي عند بوابة شقة سكنية بجوار نظام خزانة Hive الذكي.';
+      'عند مدخل مبنى سكني بجوار نظام خزائن Hive الذكية.';
 
   @override
   String get bicycleFlatTireRepairAtCampusGate =>
@@ -4792,14 +4917,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aSmallOutdoorRoadsideToolkitStandUn =>
-      'كشك أدوات صغير على جانب الطريق في الهواء الطلق تحت شجرة بانيان كبيرة مورقة.';
+      'كشك أدوات صغير على جانب الطريق في الهواء الطلق تحت شجرة بانيان مورقة.';
 
   @override
-  String get techCompanyProductDemo => 'عرض منتج شركة تقنية';
+  String get techCompanyProductDemo => 'عرض توضيحي لمنتج شركة تقنية';
 
   @override
   String get aFuturisticTechConferenceBoothInShe =>
-      'كشك مؤتمر تقني مستقبلي في شنتشن يعرض أجهزة الذكاء الاصطناعي المتطورة.';
+      'جناح مؤتمر تقني مستقبلي في شنتشن يعرض أحدث أجهزة الذكاء الاصطناعي.';
 
   @override
   String get ecommerceLivestreamStudio =>
@@ -4807,52 +4932,53 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aHighenergyBroadcastStudioWithRingL =>
-      'استوديو بث عالي الطاقة مع أضواء حلقية ورفوف عرض المنتجات وشاشات تعليقات مباشرة.';
+      'استوديو بث مفعم بالطاقة مع أضواء حلقية، وأرفف لعرض المنتجات، وشاشات للتعليقات المباشرة.';
 
   @override
-  String get yiwuInternationalTradeMarket => 'سوق ييوو التجاري الدولي';
+  String get yiwuInternationalTradeMarket => 'سوق ييوو للتجارة الدولية';
 
   @override
   String get aVastMultistoryCommercialExhibition =>
-      'مركز تجاري ضخم متعدد الطوابق للمعارض مليء بملايين السلع الحرفية والتجارية بالجملة.';
+      'مركز معارض تجاري ضخم متعدد الطوابق يضم ملايين المنتجات بالجملة والأعمال الحرفية.';
 
   @override
-  String get universityCampusExchangeProgram => 'برنامج تبادل في الحرم الجامعي';
+  String get universityCampusExchangeProgram =>
+      'برنامج تبادل طلابي في الحرم الجامعي';
 
   @override
   String get aSunnyLawnOutsideTheUniversityLibra =>
       'حديقة مشمسة خارج مكتبة الجامعة مع طلاب يدرسون ويشربون شاي الحليب.';
 
   @override
-  String get pleaseEnterAScenarioTopic => 'الرجاء إدخال موضوع للسيناريو.';
+  String get pleaseEnterAScenarioTopic => 'يرجى إدخال موضوع السيناريو.';
 
   @override
-  String get nameTitle => 'الاسم (اللقب)';
+  String get nameTitle => 'الاسم (العنوان)';
 
   @override
   String get aiCharacter => 'شخصية الذكاء الاصطناعي';
 
   @override
   String get helloWelcomeHereWhatShallWeChatAbou =>
-      'مرحباً! أهلاً بك هنا، عمَّ سنتحدث اليوم؟';
+      'مرحبًا! أهلاً بك، عمَّ سنتحدث اليوم؟';
 
   @override
-  String get greetYourConversationPartner => 'رحّب بشريك محادثتك';
+  String get greetYourConversationPartner => 'رحّب بشريك المحادثة';
 
   @override
-  String get askAQuestionInChinese => 'اطرح سؤالاً بالصينية';
+  String get askAQuestionInChinese => 'اطرح سؤالاً باللغة الصينية';
 
   @override
   String get pinyinWithToneMarks => 'بينيين مع علامات النغمات';
 
   @override
-  String get goal1InEnglish => 'الهدف 1 بالإنجليزية';
+  String get goal1InEnglish => 'الهدف 1 بالعربية';
 
   @override
-  String get goal2InEnglish => 'الهدف 2 بالإنجليزية';
+  String get goal2InEnglish => 'الهدف 2 بالعربية';
 
   @override
-  String get goal3InEnglish => 'الهدف 3 بالإنجليزية';
+  String get goal3InEnglish => 'الهدف 3 بالعربية';
 
   @override
   String get beginner => 'مبتدئ';
@@ -4870,13 +4996,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get master => 'متقن';
 
   @override
-  String get azurePronunciationAssessment => 'تقييم النطق من AZURE';
+  String get azurePronunciationAssessment => 'تقييم النطق من Azure';
 
   @override
-  String get tapToReview => 'اضغط للمراجعة';
+  String get tapToReview => 'انقر للمراجعة';
 
   @override
-  String get overallScore => 'النتيجة الإجمالية';
+  String get overallScore => 'الدرجة الإجمالية';
 
   @override
   String get toneAccuracy => 'دقة النغمات';
@@ -4888,14 +5014,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get report => 'تقرير';
 
   @override
-  String get goodPronunciationButCanBeBetter =>
-      'نطق جيد، ولكن يمكن أن يكون أفضل!';
+  String get goodPronunciationButCanBeBetter => 'نطق جيد، ولكن يمكن تحسينه!';
 
   @override
   String get didYouMeanToSay => 'هل كنت تقصد أن تقول...؟';
 
   @override
-  String get greatKeepTrying => 'رائع!\' : \'استمر في المحاولة!';
+  String get greatKeepTrying => 'رائع! واصل المحاولة!';
 
   @override
   String get completeness => 'الاكتمال';
@@ -4908,13 +5033,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'مقارنة النغمات الأربع (انقر للاستماع):';
 
   @override
-  String get youSpokeMatch => 'لقد نطقت (مطابقة!)';
+  String get youSpokeMatch => 'ما نطقته (مطابق!)';
 
   @override
-  String get youSpoke => 'لقد نطقت';
+  String get youSpoke => 'ما نطقته';
 
   @override
-  String get yourPrimaryCollectionOfCharacters => 'مجموعتك الأساسية من الأحرف.';
+  String get yourPrimaryCollectionOfCharacters => 'مجموعتك الأساسية من الرموز.';
 
   @override
   String get deckNotFound => 'المجموعة غير موجودة';
@@ -4923,10 +5048,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cannotDeleteTheDefaultDeck => 'لا يمكن حذف المجموعة الافتراضية';
 
   @override
-  String get hsk4UpperIntermediate1 => 'HSK 4: فوق المتوسط';
+  String get hsk4UpperIntermediate1 => 'HSK 4: متوسط متقدم';
 
   @override
-  String get theFirst150CharactersToStartYourJou => 'أول 150 حرفًا لبدء رحلتك.';
+  String get theFirst150CharactersToStartYourJou => 'أول 150 رمزًا لبدء رحلتك.';
 
   @override
   String get buildYourVocabularyTo300EssentialWo =>
@@ -4945,13 +5070,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'اقرأ الصحف وشاهد الأفلام بـ 2500 كلمة.';
 
   @override
-  String get databaseBoxNotOpen => 'صندوق قاعدة البيانات غير مفتوح';
+  String get databaseBoxNotOpen => 'قاعدة البيانات غير مفتوحة';
 
   @override
-  String get hsk1DataFileIsEmpty => 'ملف بيانات HSK1 فارغ';
+  String get hsk1DataFileIsEmpty => 'ملف بيانات HSK 1 فارغ';
 
   @override
-  String get gold => 'الذهب';
+  String get gold => 'ذهب';
 
   @override
   String get globalDictionaryNotInitialized => 'القاموس العام غير مهيأ';
@@ -4960,7 +5085,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reading => 'القراءة';
 
   @override
-  String get recall => 'التذكر';
+  String get recall => 'الاستدعاء الذهني';
 
   @override
   String get speaking => 'التحدث';
@@ -4970,15 +5095,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get practiceStrokeOrderWithVisualGuides =>
-      'تدرب على ترتيب الخطوط مع أدلة مرئية.';
+      'تدرب على ترتيب الخطوط مع أدلة بصرية.';
 
   @override
   String get seeTheCharacterRecallThePinyinAndMe =>
-      'شاهد الحرف، استرجع البينيين والمعنى.';
+      'شاهد الرمز، واسترجع البينيين والمعنى.';
 
   @override
   String get seeTheMeaningDrawTheCharacterFromMe =>
-      'شاهد المعنى، ارسم الحرف من الذاكرة.';
+      'شاهد المعنى، وارسم الرمز من الذاكرة.';
 
   @override
   String get readOutLoudToTestYourPronunciationT =>
@@ -4986,18 +5111,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get listenToTheAudioAndIdentifyTheChara =>
-      'استمع إلى الصوت وحدد الحرف.';
+      'استمع إلى الصوت وتعرف على الرمز.';
 
   @override
   String get contract => 'عقد';
 
   @override
   String get whoeverImplementsMeMustBeAbleToDoTh =>
-      'يجب على من ينفذني أن يكون قادرًا على فعل هذه الأشياء.';
+      'يجب على من يطبق هذه الواجهة أن يكون قادرًا على تنفيذ هذه المهام.';
 
   @override
   String get koreFenrirCharonAoedePuckOrLocal =>
-      '\'كوري\'، \'فنرير\'، \'شارون\'، \'أويدي\'، \'باك\'، أو \'محلي\'';
+      'كوري، فنرير، شارون، أويدي، باك، أو محلي';
 
   @override
   String get manageDecks => 'إدارة المجموعات';
@@ -5007,7 +5132,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'واجهنا مشكلة في تحميل المكتبة. يرجى المحاولة مرة أخرى.';
 
   @override
-  String get noCharactersInLexicon1 => 'لا توجد أحرف في المعجم';
+  String get noCharactersInLexicon1 => 'لا توجد رموز في المعجم';
 
   @override
   String get masterTheBuildingBlocks => 'أتقن اللبنات الأساسية';
@@ -5022,7 +5147,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get library1 => 'المكتبة';
 
   @override
-  String get youAreAPremiumMember => 'أنت عضو مميز';
+  String get youAreAPremiumMember => 'أنت عضو في SinoSpark Premium';
 
   @override
   String get createAccountToSyncProgress => 'إنشاء حساب لمزامنة التقدم';
@@ -5034,7 +5159,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get account => 'الحساب';
 
   @override
-  String get guestScholar => 'باحث ضيف';
+  String get guestScholar => 'عالِم ضيف';
 
   @override
   String get localAccount => 'حساب محلي';
@@ -5043,10 +5168,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unknownRadical => 'جذر غير معروف';
 
   @override
-  String get followTheGuideStroke => 'اتبع خط الدليل';
+  String get followTheGuideStroke => 'اتبع الخط الإرشادي';
 
   @override
-  String get strokeAnimationSpeed => 'سرعة حركة الخط';
+  String get strokeAnimationSpeed => 'سرعة حركة رسم الخطوط';
 
   @override
   String get notifications => 'الإشعارات';
@@ -5062,7 +5187,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get today1d2d3d4d5d6d =>
-      '\'اليوم\'، \'يوم واحد\'، \'يومان\'، \'3 أيام\'، \'4 أيام\'، \'5 أيام\'، \'6 أيام\'';
+      'اليوم، يوم واحد، يومان، 3 أيام، 4 أيام، 5 أيام، 6 أيام';
 
   @override
   String get targetDeck => 'المجموعة المستهدفة';
@@ -5080,7 +5205,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get verbsOnly => 'أفعال فقط';
 
   @override
-  String get idiomsChengyu => 'مصطلحات (تشنغيو)';
+  String get idiomsChengyu => 'تعبيرات اصطلاحية (تشنغيو)';
 
   @override
   String get fullSentences => 'جمل كاملة';
@@ -5099,15 +5224,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get canYouGiveMeTwoMoreExamplesUsingThi =>
-      'هل يمكنك إعطائي مثالين آخرين باستخدام هذه الكلمة؟';
+      'هل يمكنك إعطائي مثالين إضافيين باستخدام هذه الكلمة؟';
 
   @override
   String get whatAreSomeSimilarWordsAndHowDoThey =>
-      'ما هي بعض الكلمات المتشابهة وكيف تختلف؟';
+      'ما هي بعض الكلمات المشابهة وما الفرق بينها؟';
 
   @override
   String get isThisWordUsedInSpokenOrWrittenChin =>
-      'هل تستخدم هذه الكلمة في اللغة الصينية المنطوقة أم المكتوبة أكثر؟';
+      'هل تُستخدم هذه الكلمة في الصينية المنطوقة أم المكتوبة أكثر؟';
 
   @override
   String get areThereOtherWaysToTranslateThisWor =>
@@ -5115,7 +5240,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get whatAreCommonWordsThatGoTogetherWit =>
-      'ما هي الكلمات الشائعة التي تتوافق مع هذه الكلمة؟';
+      'ما هي الكلمات الشائعة التي تقترن بهذه الكلمة؟';
 
   @override
   String get whatAreCommonMistakesLearnersMakeWi =>
@@ -5126,15 +5251,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get whatIsTheOracleBoneScriptOriginOfTh =>
-      'ما هو أصل نقش عظام أوراكل لهذه الرمز؟';
+      'ما هو أصل هذا الرمز في نقوش عظام العرافة (أوراكل)؟';
 
   @override
   String get howDidTheAncientFormOfThisCharacter =>
-      'كيف تطور الشكل القديم لهذه الرمز بمرور الوقت؟';
+      'كيف تطور الشكل القديم لهذا الرمز عبر التاريخ؟';
 
   @override
   String get giveMe3CommonWordsThatContainThisCh =>
-      'أعطني 3 كلمات شائعة تحتوي على هذه الرمز.';
+      'أعطني 3 كلمات شائعة تحتوي على هذا الرمز.';
 
   @override
   String get whatOtherCharactersShareTheSameRadi =>
@@ -5142,48 +5267,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get isThereAChineseProverbOrSayingFeatu =>
-      'هل هناك مثل أو قول صيني يضم هذه الرمز؟';
+      'هل هناك مثل صيني أو حكمة تتضمن هذا الرمز؟';
 
   @override
   String get explainTheStrokeOrderRulesForThisCh =>
-      'اشرح قواعد ترتيب ضربات هذه الرمز.';
+      'اشرح قواعد ترتيب خطوط هذا الرمز.';
 
   @override
   String get giveMeOneCalligraphyTipForWritingTh =>
-      'أعطني نصيحة واحدة في الخط لكتابة هذه الرمز بشكل جميل.';
+      'أعطني نصيحة واحدة في فن الخط لكتابة هذا الرمز بجمالية.';
 
   @override
   String get isThereAnythingTrickyAboutUsingThis =>
-      'هل هناك أي شيء صعب أو معقد في استخدام هذه الرمز نحويًا؟';
+      'هل هناك أي خصوصية نحوية معقدة في استخدام هذا الرمز؟';
 
   @override
   String get whatWordsAreCommonlyConfusedWithThi =>
-      'ما هي الكلمات التي غالبًا ما يتم الخلط بينها وبين هذه الكلمة ولماذا؟';
+      'ما هي الكلمات التي غالبًا ما يُخلط بينها وبين هذه الكلمة ولماذا؟';
 
   @override
   String get doesThisCharacterCarryCulturalSymbo =>
-      'هل تحمل هذه الرمز رمزية ثقافية في الصين؟';
+      'هل يحمل هذا الرمز دلالة رمزية أو ثقافية في الصين؟';
 
   @override
   String get isThisCharacterCommonlySeenInChines =>
-      'هل تُرى هذه الرمز بشكل شائع في الأفلام أو الأغاني أو النصوص الصينية؟';
+      'هل يظهر هذا الرمز بشكل شائع في الأفلام أو الأغاني أو النصوص الصينية؟';
 
   @override
-  String get whatDoesTheRadicalOfThisCharacterMe => 'ماذا يعني جذر هذه الرمز؟';
+  String get whatDoesTheRadicalOfThisCharacterMe => 'ماذا يعني جذر هذا الرمز؟';
 
   @override
-  String get breakDownEveryComponentAndItsMeanin => 'حلل كل مكون ومعناه.';
+  String get breakDownEveryComponentAndItsMeanin =>
+      'فكك كل مكون ومعناه بالتفصيل.';
 
   @override
   String get giveMeATrickToRememberTheCorrectTon =>
-      'أعطني حيلة لتذكر النغمة الصحيحة لهذه الرمز.';
+      'أعطني وسيلة لتذكر النغمة الصحيحة لهذا الرمز.';
 
   @override
   String get areThereCommonHomophonesThatAreOfte =>
-      'هل هناك متجانسات صوتية شائعة غالبًا ما يتم الخلط بينها وبين هذه الرمز؟';
+      'هل هناك كلمات متجانسة صوتيًا يُخلط بينها وبين هذا الرمز؟';
 
   @override
-  String get quotaExceeded => 'تم تجاوز الحصة';
+  String get quotaExceeded => 'تم تجاوز الحد المسموح';
 
   @override
   String get mustProvideEitherCardOrCards => 'يجب توفير بطاقة أو بطاقات';
@@ -5198,7 +5324,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sealRed => 'ختم أحمر';
 
   @override
-  String get sealScript => 'خط الختم';
+  String get sealScript => 'خط الختم الصيني (Seal Script)';
 
   @override
   String get startYourStreak => 'ابدأ سلسلتك';
@@ -5210,7 +5336,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get inQueue => 'في قائمة الانتظار';
 
   @override
-  String get tapToListenAgain => 'انقر للاستماع مرة أخرى';
+  String get tapToListenAgain => 'انقر للاستماع مجددًا';
 
   @override
   String get contextClue => 'دليل سياقي';
@@ -5219,14 +5345,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get microphonePermissionRequired1 => 'إذن الميكروفون مطلوب.';
 
   @override
-  String get recordingFailedNoFile => 'فشل التسجيل (لا يوجد ملف).';
+  String get recordingFailedNoFile => 'فشل التسجيل (لم يتم إنشاء ملف).';
 
   @override
   String get holdToSpeakOptional => 'اضغط للتحدث (اختياري)';
 
   @override
   String get microphonePermissionDeniedEnableItI =>
-      'تم رفض إذن الميكروفون. قم بتمكينه في الإعدادات لاستخدام استوديو التقليد.';
+      'تم رفض إذن الميكروفون. يرجى تفعيله من الإعدادات لاستخدام استوديو المحاكاة الصوتية (Shadowing).';
 
   @override
   String get sessionSummary => 'ملخص الجلسة';
@@ -5237,30 +5363,29 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get applySessionGradesToSpacedRepetitio =>
-      'تطبيق درجات الجلسة على التكرار المتباعد (وضع التحدث)';
+      'تطبيق تقييمات الجلسة على التكرار المتباعد (وضع التحدث)';
 
   @override
   String get masterYourMandarinPronunciationnbyM =>
-      'أتقن نطقك للغة الماندرين\\nعبر محاكاة النطق الأصلي.';
+      'أتقن نطقك للغة الماندرين\nمن خلال محاكاة النطق الأصلي.';
 
   @override
-  String get aiIsGradingYourPronunciation =>
-      'الذكاء الاصطناعي يقوم بتقييم نطقك...';
+  String get aiIsGradingYourPronunciation => 'الذكاء الاصطناعي يقيم نطقك...';
 
   @override
   String get holdMicToRecordReleaseToGrade =>
-      'اضغط على الميكروفون للتسجيل. حرر للتقييم.';
+      'اضغط مطولاً على الميكروفون للتسجيل، ثم اتركه للتقييم.';
 
   @override
   String get tapAnySyllableToAuditionAll4Tones =>
-      'انقر على أي مقطع صوتي لتجربة جميع النغمات الأربع:';
+      'انقر على أي مقطع صوتي للاستماع إلى النغمات الأربع:';
 
   @override
-  String get freeFlowConversationalPractice => 'ممارسة المحادثة الحرة.';
+  String get freeFlowConversationalPractice => 'تدريب محادثة حرة.';
 
   @override
   String get failedToGeneratePhrasePleaseTryAgai =>
-      'فشل في إنشاء العبارة. يرجى المحاولة مرة أخرى.';
+      'فشل إنشاء العبارة. يرجى المحاولة مرة أخرى.';
 
   @override
   String get recordingTooShortHoldTheMicButtonLo =>
@@ -5276,7 +5401,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get recordedAudioIsEmptyPleaseTryAgainA =>
-      'الصوت المسجل فارغ. يرجى المحاولة مرة أخرى والتحدث بوضوح.';
+      'التسجيل الصوتي فارغ. يرجى المحاولة مرة أخرى والتحدث بوضوح.';
 
   @override
   String get azureSpeechApiKeysAreMissing1 => 'مفاتيح Azure Speech API مفقودة';
@@ -5286,31 +5411,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get azureAuthenticationFailedCheckYourS =>
-      'فشل مصادقة Azure. تحقق من مفتاح Speech API والمنطقة في .env';
+      'فشلت مصادقة Azure. تحقق من مفتاح Speech API والمنطقة في .env';
 
   @override
   String get azureError429 => 'خطأ Azure 429';
 
   @override
   String get azureQuotaExceededTryAgainLater =>
-      'تم تجاوز حصة Azure. حاول مرة أخرى لاحقًا.';
+      'تم تجاوز حصة Azure. يرجى المحاولة لاحقًا.';
 
   @override
   String get azureGradingTimedOutCheckYourIntern =>
       'انتهت مهلة تقييم Azure. تحقق من اتصالك بالإنترنت.';
 
   @override
-  String get recognitionFailedNull => 'فشل التعرف: null';
+  String get recognitionFailedNull => 'فشل التعرف: قيمة فارغة';
 
   @override
   String get couldNotHearYouClearlyPleaseTryAgai =>
       'لم نتمكن من سماعك بوضوح. يرجى المحاولة مرة أخرى.';
 
   @override
-  String get singlePhrasePractice => 'ممارسة عبارة واحدة';
+  String get singlePhrasePractice => 'تدريب على عبارة واحدة';
 
   @override
-  String get failedToGeneratePhrase => 'فشل في إنشاء العبارة';
+  String get failedToGeneratePhrase => 'فشل إنشاء العبارة';
 
   @override
   String get omitted => 'محذوف';
@@ -5319,50 +5444,50 @@ class AppLocalizationsAr extends AppLocalizations {
   String get partial => 'جزئي';
 
   @override
-  String get mispronounced => 'نطق خاطئ';
+  String get mispronounced => 'نطق غير دقيق';
 
   @override
   String get startSession1 => 'بدء الجلسة';
 
   @override
-  String get chinese => 'صيني';
+  String get chinese => 'الصينية';
 
   @override
   String get paused => 'متوقف مؤقتًا';
 
   @override
-  String get translationFailed => 'فشل الترجمة';
+  String get translationFailed => 'فشلت الترجمة';
 
   @override
   String get engagingMacroeconomicAndBusinessBre =>
-      'تحليلات اقتصادية كلية وتجارية شيقة مشروحة من خلال سرد قصصي حيوي.';
+      'تحليلات اقتصادية كلية وتجارية شيقة تُقدم بأسلوب سردي ممتع.';
 
   @override
   String get exploresWorldEconomiesBankingHistor =>
-      'يستكشف اقتصادات العالم، وتواريخ البنوك، وديناميكيات الصناعة العالمية.';
+      'استكشاف اقتصادات العالم وتاريخ البنوك وديناميكيات الصناعة العالمية.';
 
   @override
   String get clearArticulateMandarinPerfectForIn =>
-      'لغة الماندرين واضحة ومفصلة، مثالية للمتعلمين المتوسطين والمتقدمين.';
+      'لغة ماندرين واضحة ومتقنة، مثالية للمتعلمين في المستويين المتوسط والمتقدم.';
 
   @override
   String get chefWang => 'الشيف وانغ';
 
   @override
   String get masterSichuanCulinaryTechniquesTaug =>
-      'أتقن تقنيات الطهي السيشوانية التي يدرسها مباشرة رئيس طهاة محترف.';
+      'أتقن فنون طهي سيتشوان مباشرة من رئيس طهاة محترف.';
 
   @override
   String get stepbystepAuthenticChineseRecipesWi =>
-      'وصفات صينية أصيلة خطوة بخطوة مع التحكم في مقلاة الووك واستخدام السكين.';
+      'وصفات صينية أصيلة خطوة بخطوة مع إتقان استخدام مقلاة الووك والسكين.';
 
   @override
   String get conciseCulinaryVocabularyAndClearIn =>
-      'مفردات طهي موجزة وتعليمات واضحة بلغة الماندرين الطبيعية.';
+      'مفردات طهي موجزة وتعليمات واضحة بلغة ماندرين طبيعية.';
 
   @override
   String get cinematographyCuttingedgeCameraTech =>
-      'تصوير سينمائي، تقنيات كاميرا متطورة، وتقييمات عميقة للإعلام الرقمي.';
+      'تصوير سينمائي، وتقنيات كاميرا متطورة، ومراجعات متعمقة للإعلام الرقمي.';
 
   @override
   String get highproductionDocumentaryStyleExplo =>
@@ -5370,118 +5495,118 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get richTechnicalMandarinWithCrystalcle =>
-      'لغة الماندرين التقنية الغنية بنطق واضح تمامًا وشروحات مرئية.';
+      'لغة ماندرين تقنية غنية بنطق واضح وترجمات مرئية.';
 
   @override
   String get indepthInvestigativeJournalismAndCu =>
-      'صحافة استقصائية متعمقة وتعليق على الشؤون الجارية.';
+      'صحافة استقصائية متعمقة وتحليلات للشؤون الجارية.';
 
   @override
   String get criticalPerspectivesOnSocialPhenome =>
-      'منظورات نقدية حول الظواهر الاجتماعية، الأخبار العالمية، والتاريخ.';
+      'رؤى نقدية حول الظواهر الاجتماعية والأخبار العالمية والتاريخ.';
 
   @override
   String get formalInvestigativeDiscourseIdealFo =>
-      'خطاب استقصائي رسمي مثالي لفهم الاستماع المتقدم.';
+      'خطاب استقصائي رسمي مثالي لتطوير مهارة الاستماع المتقدم.';
 
   @override
   String get bitesizedAnimatedScienceDocumentari =>
-      'أفلام وثائقية علمية متحركة قصيرة تجيب على أسئلة الحياة اليومية.';
+      'أفلام وثائقية علمية متحركة وموجزة تجيب عن تساؤلات الحياة اليومية.';
 
   @override
   String get exploresPhysicsBiologyAndEverydayCu =>
-      'يستكشف الفيزياء، البيولوجيا، والفضول اليومي برسوم بيانية ممتعة.';
+      'استكشاف الفيزياء والأحياء والفضول اليومي برسوم بيانية ممتعة.';
 
   @override
   String get standardBeijingMandarinWithWellpace =>
-      'لغة الماندرين القياسية لبكين بسرد متوازن وترجمات واضحة.';
+      'لغة ماندرين قياسية بلهجة بكين مع سرد منتظم وترجمات واضحة.';
 
   @override
   String get heartwarmingStreetFoodAdventuresAnd =>
-      'مغامرات طعام الشارع الدافئة ومحادثات حقيقية عبر الصين.';
+      'مغامرات طعام الشارع الممتعة ومحادثات أصيلة من مختلف أنحاء الصين.';
 
   @override
   String get exploresRegionalHumanStoriesFamilyT =>
-      'يستكشف قصصًا إنسانية إقليمية، تقاليد عائلية، وأطباق محلية شهية.';
+      'استكشاف القصص الإنسانية المحلية، والتقاليد العائلية، والأكلات الإقليمية.';
 
   @override
   String get naturalConversationalMandarinWithDa =>
-      'لغة الماندرين الطبيعية المحادثة مع عامية يومية ودفء عاطفي.';
+      'لغة ماندرين حوارية طبيعية مع تعبيرات دارجة ودفء إنساني.';
 
   @override
   String get humorousAndHonestConsumerElectronic =>
-      'مراجعات فكاهية وصادقة للإلكترونيات الاستهلاكية من تجربة واقعية.';
+      'مراجعات فكاهية وصادقة للإلكترونيات الاستهلاكية من واقع التجربة الفعلية.';
 
   @override
   String get testingSmartphonesSmartHomeGadgetsA =>
-      'اختبار الهواتف الذكية، أجهزة المنزل الذكي، ومعدات نمط الحياة التقني.';
+      'اختبار الهواتف الذكية وأجهزة المنزل الذكي وأحدث التقنيات اليومية.';
 
   @override
   String get relaxedHumorousConversationalDialog =>
-      'حوار محادثة مريح وفكاهي بعبارات عامية حديثة.';
+      'حوارات عفوية وممتعة مليئة بالعبارات الشائعة الحديثة.';
 
   @override
   String get seanKitchen => 'مطبخ شون';
 
   @override
   String get deliciousHomecookedChineseDishesAnd =>
-      'أطباق صينية منزلية شهية وإعادة إعداد وجبات خفيفة من الشارع.';
+      'أطباق صينية منزلية شهية وإعادة إعداد أشهر وجبات الشارع.';
 
   @override
   String get easytofollowKitchenTipsForCookingAu =>
-      'نصائح مطبخ سهلة الاتباع لطهي أطعمة آسيوية أصيلة ومريحة.';
+      'نصائح مطبخ سهلة التطبيق لطهي أطباق آسيوية أصيلة ومريحة.';
 
   @override
   String get warmInvitingCommentaryWithPractical =>
-      'تعليق دافئ وجذاب مع مفردات مطبخ عملية.';
+      'تعليق دافئ وممتع مع مفردات مطبخ عملية.';
 
   @override
   String get chineseChannel => 'القناة الصينية';
 
   @override
   String get structuredChineseLanguageLessonsAnd =>
-      'دروس لغة صينية منظمة ودروس تعليمية لاكتشاف الثقافة.';
+      'دروس لغة صينية منظمة وبرامج لاكتشاف الثقافة.';
 
   @override
   String get grammarPointsHskVocabularyBuildingA =>
-      'نقاط نحوية، بناء مفردات HSK، وأنماط محادثة.';
+      'قواعد لغوية، وبناء مفردات HSK، وتراكيب للمحادثة.';
 
   @override
   String get clearEducationalPacingTailoredSpeci =>
-      'وتيرة تعليمية واضحة مصممة خصيصًا لمتعلمي اللغة الصينية.';
+      'وتيرة تعليمية واضحة ومصممة خصيصًا لمتعلمي اللغة الصينية.';
 
   @override
   String get oneInABillion => 'واحد من مليار';
 
   @override
   String get intimatePortraitsAndStoriesOfUnique =>
-      'صور وقصص حميمية لأفراد فريدين في الصين المعاصرة.';
+      'قصص ملهمة ولمحات شخصية لأفراد مميزين في الصين المعاصرة.';
 
   @override
   String get exploresDiverseLifeChoicesYouthCult =>
-      'يستكشف خيارات الحياة المتنوعة، ثقافة الشباب، والتحولات الاجتماعية الحديثة.';
+      'استكشاف اختيارات الحياة المتنوعة، وثقافة الشباب، والتحولات الاجتماعية الحديثة.';
 
   @override
   String get deepNarrativeStorytellingWithRichVo =>
       'سرد قصصي عميق بمفردات غنية وأصوات أصيلة.';
 
   @override
-  String get vickySoup => 'حساء فيكي';
+  String get vickySoup => 'فيكي سوب';
 
   @override
   String get aestheticLifestyleVlogsFashionStyli =>
-      'مدونات فيديو لنمط حياة جمالي، تنسيق أزياء، وروتين يومي.';
+      'يوميات أسلوب حياة أنيق، وتنسيق أزياء، وروتين يومي.';
 
   @override
   String get travelDiariesAndCozyLifeMomentsDocu =>
-      'يوميات سفر ولحظات حياة مريحة موثقة بدفء سينمائي.';
+      'يوميات سفر ولحظات دافئة موثقة بأسلوب سينمائي.';
 
   @override
   String get naturalCasualMandarinSpokenAtAComfo =>
-      'لغة الماندرين الطبيعية العفوية المنطوقة بوتيرة مريحة ومعبرة.';
+      'لغة ماندرين عفوية وطبيعية منطوقة بوتيرة مريحة ومعبرة.';
 
   @override
-  String get tededMandarin => 'تيد-إد ماندرين';
+  String get tededMandarin => 'تيد-إد بالماندارين';
 
   @override
   String get highqualityAnimatedEducationalLesso =>
@@ -5489,44 +5614,44 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get thoughtprovokingRiddlesClassicLiter =>
-      'ألغاز محفزة للتفكير، أدب كلاسيكي، وأسرار علم النفس.';
+      'ألغاز محفزة للتفكير، وأدب كلاسيكي، وأسرار علم النفس.';
 
   @override
   String get impeccableVoiceoverMandarinWithSync =>
-      'تعليق صوتي لا تشوبه شائبة بالماندرين مع ترجمات ثنائية اللغة متزامنة.';
+      'أداء صوتي متقن بالماندارين مع ترجمة ثنائية اللغة متزامنة.';
 
   @override
   String get channel => 'قناة';
 
   @override
   String get curatedCulturalDocumentariesAndChin =>
-      'أفلام وثائقية ثقافية منسقة وأبرز ملامح نمط الحياة الصيني.';
+      'أفلام وثائقية ثقافية مختارة وأبرز معالم نمط الحياة الصيني.';
 
   @override
   String get exploringTraditionalArtsHeritageCra =>
-      'استكشاف الفنون التقليدية، الحرف اليدوية التراثية، والاتجاهات الحديثة.';
+      'استكشاف الفنون التقليدية، والحرف التراثية، والاتجاهات الحديثة.';
 
   @override
   String get highQualityAudioWithSynchronizedChi =>
-      'صوت عالي الجودة مع تسميات توضيحية صينية متزامنة.';
+      'صوت عالي الجودة مع نصوص صينية متزامنة.';
 
   @override
   String get interestingStoriesAndCreativeVideoP =>
-      'قصص شيقة ومشاريع فيديو إبداعية عبر الويب الصيني.';
+      'قصص شيقة ومشاريع فيديو إبداعية من الويب الصيني.';
 
   @override
   String get engagingInterviewsStorytellingAndVi =>
-      'مقابلات جذابة، سرد قصصي، واستكشافات بصرية.';
+      'مقابلات جذابة وسرد قصصي واستكشافات بصرية.';
 
   @override
   String get greatListeningMaterialWithStandardP =>
-      'مادة استماع رائعة بنطق قياسي.';
+      'محتوى استماع ممتاز بنطق قياسي.';
 
   @override
   String get xVsY => 'X مقابل Y';
 
   @override
-  String get untitled => 'بلا عنوان';
+  String get untitled => 'بدون عنوان';
 
   @override
   String get contemporaryStories => 'قصص معاصرة';
@@ -5544,7 +5669,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get beginnerReading => 'قراءة للمبتدئين';
 
   @override
-  String get mandarinBean => 'ماندرين بين';
+  String get mandarinBean => 'ماندارين بين';
 
   @override
   String get unknown => 'غير معروف';
@@ -5566,39 +5691,38 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ucj10r97lkwgdtqbt6xzv8gLearnMandari =>
-      'UCJ10R97LkwGdTqBT6xz-v8g\': \'تعلم الماندرين مع تايوان بلس';
+      'تعلم الماندارين مع TaiwanPlus';
 
   @override
-  String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi =>
-      'UCSXriUqkzZmAQklQ0N9XFVw\': \'الصينية اليومية';
+  String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi => 'الصينية في الحياة اليومية';
 
   @override
   String get graceMandarinChinese => 'غريس ماندرين الصينية';
 
   @override
   String get ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi =>
-      'UCOLBhVvL5dcJLMZeQBUu1Vw\': \'تينغ - الحياة اليومية في الصين';
+      'تينغ - الحياة اليومية في الصين';
 
   @override
   String get xinxin => 'شينشين';
 
   @override
-  String get sweetFamilyDailyLife => 'الحياة اليومية العائلية الجميلة';
+  String get sweetFamilyDailyLife => 'يوميات عائلية دافئة';
 
   @override
-  String get chinsunDailyLife => 'الحياة اليومية لتشين-صن';
+  String get chinsunDailyLife => 'يوميات تشين-سن';
 
   @override
   String get tasteChina => 'تذوق الصين';
 
   @override
-  String get dawenFoodQuest => 'مغامرات داون الغذائية';
+  String get dawenFoodQuest => 'مغامرات داوين في عالم الطعام';
 
   @override
-  String get chinaTravelWithCangbao => 'السفر في الصين مع كانغباو';
+  String get chinaTravelWithCangbao => 'السياحة في الصين مع تسانغباو';
 
   @override
-  String get alinFoodWalk => 'جولة ألين الغذائية';
+  String get alinFoodWalk => 'جولة ألين لتذوق أطعمة الشارع';
 
   @override
   String get videoOfTheDay => 'فيديو اليوم';
@@ -5622,25 +5746,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get realWorld => 'العالم الواقعي';
 
   @override
-  String get articleOfTheDay => 'مقالة اليوم';
+  String get articleOfTheDay => 'مقال اليوم';
 
   @override
-  String get failedToLoadOrParseRssFeed => 'فشل تحميل أو تحليل موجز RSS.';
+  String get failedToLoadOrParseRssFeed => 'فشل تحميل موجز RSS أو تحليله.';
 
   @override
   String get drama => 'دراما';
 
   @override
-  String get youkugetAppNow => 'YOUKU-احصل على التطبيق الآن';
+  String get youkugetAppNow => 'YOUKU - حمل التطبيق الآن';
 
   @override
-  String get romanceTrailer => 'رومانسي\', \'مقطع دعائي';
+  String get romanceTrailer => 'رومانسي / إعلان تشويقي';
 
   @override
   String get romance => 'رومانسي';
 
   @override
-  String get action => 'أكشن';
+  String get action => 'حركة (أكشن)';
 
   @override
   String get mystery => 'غموض';
@@ -5649,22 +5773,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get historical => 'تاريخي';
 
   @override
-  String get historicalAction => 'تاريخي\', \'أكشن';
+  String get historicalAction => 'تاريخي / حركة';
 
   @override
-  String get historicalRomance => 'تاريخي\', \'رومانسي';
+  String get historicalRomance => 'تاريخي / رومانسي';
 
   @override
   String get anYouth => 'شباب';
 
   @override
-  String get historicalSliceOfLife => 'تاريخي\', \'شريحة من الحياة';
+  String get historicalSliceOfLife => 'تاريخي / شريحة من الحياة';
 
   @override
-  String get historicalHighlight => 'تاريخي\', \'أبرز اللقطات';
+  String get historicalHighlight => 'تاريخي / لقطات مميزة';
 
   @override
-  String get youkuEnglishgetAppNow => 'YOUKU English-احصل على التطبيق الآن';
+  String get youkuEnglishgetAppNow => 'YOUKU English - حمل التطبيق الآن';
 
   @override
   String get theDouble => 'المزدوج';
@@ -5676,7 +5800,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get backFromTheBrink => 'العودة من حافة الهاوية';
 
   @override
-  String get fallingIntoYourSmile => 'الوقوع في ابتسامتك';
+  String get fallingIntoYourSmile => 'الوقوع في سحر ابتسامتك';
 
   @override
   String get everyoneLovesMe => 'الجميع يحبني';
@@ -5694,11 +5818,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashingYouth => 'الشباب المتألق';
 
   @override
-  String get rebornChineseDramaEngSub =>
-      'دراما صينية مترجمة إنجليزي: ولادة جديدة';
+  String get rebornChineseDramaEngSub => 'دراما صينية ولادة جديدة (مترجمة)';
 
   @override
-  String get ijenwaBenita => 'إيجينوا بنيتا';
+  String get ijenwaBenita => 'إيجينوا بينيتا';
 
   @override
   String get whenIFlyTowardsYou => 'عندما أحلق نحوك';
@@ -5713,131 +5836,130 @@ class AppLocalizationsAr extends AppLocalizations {
   String get comedy => 'كوميديا';
 
   @override
-  String get backFromTheBrink1 => 'العودة من حافة الهاوية\':';
+  String get backFromTheBrink1 => 'العودة من حافة الهاوية';
 
   @override
-  String get dashingYouth1 => 'الشباب المتألق\':';
+  String get dashingYouth1 => 'الشباب المتألق';
 
   @override
-  String get beReborn => 'تجدد';
+  String get beReborn => 'ولادة جديدة';
 
   @override
   String get beautyStrategy => 'استراتيجية الجمال';
 
   @override
-  String get myDivineEmissary => 'رسولي الإلهي';
+  String get myDivineEmissary => 'مبعوثي الإلهي';
 
   @override
   String get theHope => 'الأمل';
 
   @override
-  String get ep16In => 'الحلقة 16\': \'في';
+  String get ep16In => 'الحلقة 16';
 
   @override
-  String get everyoneLovesMe1 => 'الجميع يحبني\': \'';
+  String get everyoneLovesMe1 => 'الجميع يحبني';
 
   @override
-  String get fallingIntoYourSmile1 => 'الوقوع في ابتسامتك\':';
+  String get fallingIntoYourSmile1 => 'الوقوع في سحر ابتسامتك';
 
   @override
-  String get hiddenLove => 'حب خفي\':';
+  String get hiddenLove => 'حب خفي';
 
   @override
-  String get loveBetweenFairyAndDevil => 'الحب بين الجنية والشيطان\':';
+  String get loveBetweenFairyAndDevil => 'الحب بين الجنية والشيطان';
 
   @override
-  String get loveLikeTheGalaxy => 'حب كالمجرة\':';
+  String get loveLikeTheGalaxy => 'حب كالمجرة';
 
   @override
-  String get membersPremiere => 'عرض الأعضاء الأول';
+  String get membersPremiere => 'عرض أول للأعضاء';
 
   @override
   String get moonlight => 'ضوء القمر';
 
   @override
-  String get myJourneyToYou => 'رحلتي إليك\':';
+  String get myJourneyToYou => 'رحلتي إليك';
 
   @override
-  String get mysteriousLotusCasebook => 'كتاب قضايا اللوتس الغامض\':';
+  String get mysteriousLotusCasebook => 'سجلات اللوتس الغامضة';
 
   @override
-  String get rebornChineseDramaEngSub1 =>
-      'دراما صينية مترجمة إنجليزي: ولادة جديدة\': \'';
+  String get rebornChineseDramaEngSub1 => 'دراما صينية ولادة جديدة (مترجمة)';
 
   @override
   String get reborn => 'ولادة جديدة';
 
   @override
-  String get theBestDayOfMyLife1 => 'أفضل يوم في حياتي\': \'';
+  String get theBestDayOfMyLife1 => 'أفضل يوم في حياتي';
 
   @override
-  String get theDouble1 => 'المزدوج\':';
+  String get theDouble1 => 'المزدوج';
 
   @override
-  String get theLongBallad => 'القصيدة الطويلة\':';
+  String get theLongBallad => 'القصيدة الطويلة';
 
   @override
-  String get theStarryLove1 => 'الحب المرصع بالنجوم\':';
+  String get theStarryLove1 => 'الحب المرصع بالنجوم';
 
   @override
-  String get theUntamed => 'الجامح\':';
+  String get theUntamed => 'الجامح (The Untamed)';
 
   @override
-  String get tillTheEndOfTheMoon1 => 'حتى نهاية القمر\':';
+  String get tillTheEndOfTheMoon1 => 'حتى نهاية القمر';
 
   @override
-  String get whenIFlyTowardsYou1 => 'عندما أحلق نحوك\':';
+  String get whenIFlyTowardsYou1 => 'عندما أحلق نحوك';
 
   @override
-  String get wordOfHonor => 'كلمة شرف\':';
+  String get wordOfHonor => 'كلمة شرف';
 
   @override
-  String get blossom => 'تفتح';
+  String get blossom => 'إزهار';
 
   @override
-  String get gemini => 'الجوزاء';
+  String get gemini => 'Gemini';
 
   @override
   String get generationToGeneration => 'جيل بعد جيل';
 
   @override
-  String get brocadeOdyssey => 'ملحمة البروكار';
+  String get brocadeOdyssey => 'ملحمة الديباج';
 
   @override
   String get circleOfLove => 'دائرة الحب';
 
   @override
-  String get dawnIsBreaking => 'الفجر ينبلج';
+  String get dawnIsBreaking => 'بزوغ الفجر';
 
   @override
   String get firstRomance => 'الرومانسية الأولى';
 
   @override
-  String get loveInTheClouds => 'حب في الغيوم';
+  String get loveInTheClouds => 'حب بين الغيوم';
 
   @override
-  String get secondChanceRomance => 'رومانسية الفرصة الثانية';
+  String get secondChanceRomance => 'فرصة ثانية للحب';
 
   @override
-  String get mrBad => 'السيد سيء';
+  String get mrBad => 'السيد الشرير (Mr. Bad)';
 
   @override
-  String get pursuitOfJade => 'سعي اليشم';
+  String get pursuitOfJade => 'السعي وراء اليشم';
 
   @override
-  String get fatedHearts => 'قلوب مقدرة';
+  String get fatedHearts => 'قلوب جمعها القدر';
 
   @override
-  String get roadHome => 'طريق العودة';
+  String get roadHome => 'طريق العودة للديار';
 
   @override
   String get myDearGuardian => 'حارسي العزيز';
 
   @override
-  String get brightEyesInTheDark => 'عيون مشرقة في الظلام';
+  String get brightEyesInTheDark => 'عيون متقدة في الظلام';
 
   @override
-  String get theIngeniousOne => 'العبقري';
+  String get theIngeniousOne => 'الداهية';
 
   @override
   String get herPhoenixMajesty => 'جلالة العنقاء';
@@ -5846,10 +5968,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dreamsNeverEnd => 'الأحلام لا تنتهي';
 
   @override
-  String get theUltimateVowUnknownToYou => 'العهد الأسمى، المجهول لك';
+  String get theUltimateVowUnknownToYou => 'العهد الأسمى المجهول لك';
 
   @override
-  String get the300LoyalGhosts => 'الأشباح الـ 300 المخلصون';
+  String get the300LoyalGhosts => 'الأرواح الـ 300 المخلصة';
 
   @override
   String get homelandGuardian => 'حارس الوطن';
@@ -5867,13 +5989,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aGirlLikeMe => 'فتاة مثلي';
 
   @override
-  String get iAmNobody => 'أنا لا أحد';
+  String get iAmNobody => 'أنا لست نكرة';
 
   @override
-  String get myMamaGo => 'أمي اذهبي!';
+  String get myMamaGo => 'انطلقي يا أمي!';
 
   @override
-  String get myWesternRegionPrincess => 'أميرة منطقتي الغربية';
+  String get myWesternRegionPrincess => 'أميرة المناطق الغربية';
 
   @override
   String get aFlowerOnTheContinent => 'زهرة في القارة';
@@ -5882,13 +6004,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get thePrincess => 'الأميرة';
 
   @override
-  String get sweetLoveVersion => 'إصدار الحب العذب';
+  String get sweetLoveVersion => 'نسخة الحب الحلو';
 
   @override
   String get hilariousFamily2 => 'عائلة مرحة 2';
 
   @override
-  String get guYuanMountainHasASchool => 'جبل غو يوان فيه مدرسة';
+  String get guYuanMountainHasASchool => 'مدرسة جبل غو يوان';
 
   @override
   String get foreverYoung => 'شباب دائم';
@@ -5903,7 +6025,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sideStoryOfFoxVolant => 'قصة جانبية للثعلب الطائر';
 
   @override
-  String get loveOfTheDivineTree => 'حب الشجرة الإلهية';
+  String get loveOfTheDivineTree => 'حب الشجرة المقدسة';
 
   @override
   String get rebirth => 'ولادة جديدة';
@@ -5913,22 +6035,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get videoCountsCannotBeNegative =>
-      'عدد مقاطع الفيديو لا يمكن أن يكون سالبًا.';
+      'لا يمكن أن يكون عدد مقاطع الفيديو سالبًا.';
 
   @override
-  String get publicDomainClassic => 'كلاسيكية الملكية العامة';
+  String get publicDomainClassic => 'عمل كلاسيكي من الملكية العامة';
 
   @override
-  String get idioms => 'مصطلحات';
+  String get idioms => 'تعبيرات اصطلاحية';
 
   @override
   String get news => 'أخبار';
 
   @override
-  String get fairyTales => 'قصص خرافية';
+  String get fairyTales => 'قصص خيالية';
 
   @override
-  String get hereIsAFascinatingCulturalExplanati => 'إليك شرح ثقافي رائع';
+  String get hereIsAFascinatingCulturalExplanati => 'إليك شرح ثقافي شيق';
 
   @override
   String get videoFetchTimedOut => 'انتهت مهلة جلب الفيديو';
@@ -5944,125 +6066,125 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get highqualityCuratedMandarinContentWi =>
-      'محتوى صيني (ماندرين) منسق وعالي الجودة بمفردات طبيعية.';
+      'محتوى لغة صينية (ماندارين) منتقى وعالي الجودة بمفردات طبيعية.';
 
   @override
   String get authenticSpokenChineseAcrossRealwor =>
-      'لغة صينية منطوقة أصيلة تغطي مواضيع وقضايا واقعية.';
+      'لغة صينية منطوقة أصيلة تغطي مواضيع ووقائع من الحياة الحقيقية.';
 
   @override
   String get engagingVideoMaterialWithInteractiv =>
-      'مواد فيديو جذابة مع ترجمات متزامنة تفاعلية.';
+      'مقاطع فيديو تعليمية جذابة مع نصوص متزامنة وتفاعلية.';
 
   @override
-  String get watchVideo => 'شاهد الفيديو';
+  String get watchVideo => 'مشاهدة الفيديو';
 
   @override
-  String get culturalInsight => 'رؤية ثقافية';
+  String get culturalInsight => 'إضاءة ثقافية';
 
   @override
   String get aiIsAnalyzingCulturalContext =>
       'الذكاء الاصطناعي يحلل السياق الثقافي...';
 
   @override
-  String get diveIntoFullContent => 'اكتشف المحتوى الكامل';
+  String get diveIntoFullContent => 'استكشف المحتوى بالكامل';
 
   @override
-  String get savedArticles => 'مقالات محفوظة';
+  String get savedArticles => 'المقالات المحفوظة';
 
   @override
-  String get liveOverlay => 'تراكب مباشر';
+  String get liveOverlay => 'شاشة العرض المباشر';
 
   @override
   String get webExplorer => 'مستكشف الويب';
 
   @override
   String get browseAnyChineseWebsiteWithRealtime =>
-      'تصفح أي موقع صيني مع قاموس النقر الفوري، وشروحات البينيين، والترجمات الفورية.';
+      'تصفح أي موقع صيني مع قاموس فوري باللمس، وشروحات البينيين، والترجمة المباشرة.';
 
   @override
   String get startExploring => 'ابدأ الاستكشاف';
 
   @override
   String get chineseTvSeriesWithInteractiveSubti =>
-      'مسلسلات تلفزيونية صينية مع ترجمات تفاعلية';
+      'مسلسلات تلفزيونية صينية مع ترجمة تفاعلية';
 
   @override
   String get failedToLoadContent => 'فشل تحميل المحتوى';
 
   @override
-  String get searchingYoutube => 'البحث في يوتيوب...';
+  String get searchingYoutube => 'جارٍ البحث في YouTube...';
 
   @override
   String get noVideosFoundTryADifferentSearchTer =>
-      'لم يتم العثور على مقاطع فيديو. جرب مصطلح بحث مختلف.';
+      'لم يتم العثور على مقاطع فيديو. جرب عبارة بحث أخرى.';
 
   @override
-  String get searching => 'جاري البحث';
+  String get searching => 'جارٍ البحث';
 
   @override
   String get noShowsFound => 'لم يتم العثور على عروض';
 
   @override
-  String get bookmarked => 'مُفضّل';
+  String get bookmarked => 'مضاف للمفضلة';
 
   @override
-  String get trailer1 => 'مقطع دعائي';
+  String get trailer1 => 'إعلان تشويقي';
 
   @override
   String get highlight1 => 'لقطة مميزة';
 
   @override
-  String get noCaptionsAvailable => 'لا توجد تسميات توضيحية متاحة';
+  String get noCaptionsAvailable => 'لا توجد ترجمة متاحة';
 
   @override
-  String get fetchingSubtitles => 'جاري جلب الترجمات...';
+  String get fetchingSubtitles => 'جارٍ جلب الترجمة...';
 
   @override
-  String get generatingAiBriefing => 'جاري إنشاء ملخص الذكاء الاصطناعي...';
+  String get generatingAiBriefing => 'جارٍ إنشاء ملخص بالذكاء الاصطناعي...';
 
   @override
   String get noClosedCaptionsCcFoundForThisVideo =>
-      'لم يتم العثور على تسميات توضيحية مغلقة (CC) لهذا الفيديو.';
+      'لم يتم العثور على ترجمة نصية رقمية (CC) لهذا الفيديو.';
 
   @override
   String get videosWithHardcodedOrBurnedinSubtit =>
-      'مقاطع الفيديو ذات الترجمات المضمنة أو المحروقة لا تحتوي على مسارات نصية رقمية متاحة على يوتيوب.';
+      'مقاطع الفيديو ذات الترجمات المدمجة مسبقًا في الصورة لا تحتوي على مسار نصي على YouTube.';
 
   @override
-  String get translatingSubtitles => 'جاري ترجمة الترجمات...';
+  String get translatingSubtitles => 'جارٍ ترجمة النصوص...';
 
   @override
-  String get processingYourPronunciation => 'جاري معالجة نطقك...';
+  String get processingYourPronunciation => 'جارٍ معالجة نطقك...';
 
   @override
-  String get couldntIdentifyLine => 'تعذر تحديد السطر.';
+  String get couldntIdentifyLine => 'تعذر التعرف على السطر.';
 
   @override
-  String get listeningSpeakNow => 'جاري الاستماع... تحدث الآن.';
+  String get listeningSpeakNow => 'جارٍ الاستماع... تحدث الآن.';
 
   @override
   String get thisVideoDoesNotHaveADigitalClosedC =>
-      'لا يحتوي هذا الفيديو على مسار ترجمة رقمية (CC) على YouTube.';
+      'لا يحتوي هذا الفيديو على ترجمة نصية رقمية (CC) على YouTube.';
 
   @override
   String get perfect1 => 'مثالي';
 
   @override
   String get thisVideoHasBeenRemovedOrIsNoLonger =>
-      'تمت إزالة هذا الفيديو أو لم يعد متاحًا.';
+      'تمت إزالة هذا الفيديو أو لم يعد متوفرًا.';
 
   @override
   String get thisVideoCannotBePlayedInTheAppYouC =>
-      'لا يمكن تشغيل هذا الفيديو في التطبيق. لا يزال بإمكانك مشاهدته على YouTube.';
+      'لا يمكن تشغيل هذا الفيديو داخل التطبيق. يمكنك مشاهدته مباشرة على YouTube.';
 
   @override
   String get yourDeviceCannotPlayThisVideoPlease =>
-      'لا يمكن لجهازك تشغيل هذا الفيديو. يرجى تجربة فيديو آخر.';
+      'تعذر تشغيل هذا الفيديو على جهازك. يرجى تجربة فيديو آخر.';
 
   @override
   String get invalidVideoReferencePleaseTryAgain =>
-      'مرجع الفيديو غير صالح. يرجى المحاولة مرة أخرى.';
+      'رابط الفيديو غير صالح. يرجى المحاولة مرة أخرى.';
 
   @override
   String get unableToLoadThisVideoPleaseTryAnoth =>
@@ -6072,10 +6194,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get startReading => 'ابدأ القراءة';
 
   @override
-  String get analyzingCulturalContext => 'تحليل السياق الثقافي...';
+  String get analyzingCulturalContext => 'جارٍ تحليل السياق الثقافي...';
 
   @override
-  String get failedToLoadCulturalInsight => 'فشل تحميل الرؤية الثقافية.';
+  String get failedToLoadCulturalInsight => 'فشل تحميل الإضاءة الثقافية.';
 
   @override
   String get historicalContext => 'السياق التاريخي';
@@ -6084,11 +6206,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get culturalSignificance => 'الأهمية الثقافية';
 
   @override
-  String get authorBackground => 'خلفية المؤلف';
+  String get authorBackground => 'نبذة عن المؤلف';
 
   @override
   String get k80CompleteClassicNovelsWorldEpics =>
-      'أكثر من 80 رواية كلاسيكية وملحمة عالمية كاملة';
+      'أكثر من 80 رواية وملحمة كلاسيكية عالمية كاملة';
 
   @override
   String get storyOfTheDay => 'قصة اليوم';
@@ -6097,13 +6219,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tangDynasty => 'أسرة تانغ';
 
   @override
-  String get poetryClassicalVerse => 'شعر\', \'كلاسيكي\', \'نثر';
+  String get poetryClassicalVerse => 'شعر كلاسيكي ونثر';
 
   @override
   String get allHsk => 'جميع مستويات HSK';
 
   @override
-  String get allStories => 'جميع القصص :';
+  String get allStories => 'جميع القصص';
 
   @override
   String get keyWords => 'الكلمات المفتاحية';
@@ -6116,7 +6238,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enhanceYourReadingWithAipoweredTool =>
-      'عزز قراءتك بأدوات مدعومة بالذكاء الاصطناعي';
+      'عزز تجربة قراءتك بأدوات مدعومة بالذكاء الاصطناعي';
 
   @override
   String get chooseTheTargetDifficultyForSimplif =>
@@ -6127,7 +6249,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get extractAllUnknownWordsToANewFlashca =>
-      'استخرج جميع الكلمات غير المعروفة إلى مجموعة بطاقات تعليمية جديدة';
+      'استخراج جميع الكلمات غير المعروفة إلى مجموعة بطاقات جديدة';
 
   @override
   String get length => 'المدة';
@@ -6148,7 +6270,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get stop => 'إيقاف';
 
   @override
-  String get keepPracticing1 => 'استمر في التدريب';
+  String get keepPracticing1 => 'واصل التدريب';
 
   @override
   String get aiPrepRoom => 'غرفة التحضير بالذكاء الاصطناعي';
@@ -6157,127 +6279,130 @@ class AppLocalizationsAr extends AppLocalizations {
   String get lessonSummary => 'ملخص الدرس';
 
   @override
-  String get unlockSinosparkPremium => 'افتح SinoSpark Premium';
+  String get unlockSinosparkPremium => 'الترقية إلى SinoSpark Premium';
 
   @override
-  String get monthYear => 'شهر\' : \'سنة';
+  String get monthYear => 'شهر / سنة';
 
   @override
   String get enableNotifications => 'تفعيل الإشعارات';
 
   @override
-  String get notificationsConfigured => 'تم إعداد الإشعارات';
+  String get notificationsConfigured => 'تم ضبط الإشعارات';
 
   @override
-  String get neverMissAStroke2 => 'لا تفوت أي تقدم';
+  String get neverMissAStroke2 => 'لا تفوت أي خطوة في التعلم';
 
   @override
   String get yourDailyDropAndStreakAlertsArePrim =>
-      'تنبيهاتك اليومية للدروس وسلسلة التقدم جاهزة.';
+      'تنبيهات جرعتك اليومية وسلسلة إنجازك جاهزة.';
 
   @override
   String get stayConsistentWithDailyRitualDropsA =>
-      'حافظ على الاتساق مع جرعات التعلم اليومية وتذكيرات التجربة في الوقت المناسب.';
+      'حافظ على استمرارية التعلم مع الجرعات اليومية وتنبيهات الفترة التجريبية.';
 
   @override
   String get aNewWordAndStoryWaitingForYourDaily =>
-      'كلمة وقصة جديدتان بانتظار طقسك اليومي.';
+      'كلمة وقصة جديدة بانتظارك في روتينك اليومي.';
 
   @override
   String get gentlePromptsBeforeCharactersFadeFr =>
-      'تذكيرات لطيفة قبل أن تتلاشى الأحرف من ذاكرتك.';
+      'تنبيهات لطيفة قبل أن تتلاشى الرموز من ذاكرتك.';
 
   @override
   String get receiveAReminder2DaysBeforeYourFree =>
-      'تلقَّ تذكيرًا قبل يومين من انتهاء تجربتك المجانية.';
+      'احصل على تذكير قبل يومين من انتهاء فترتك التجريبية المجانية.';
 
   @override
-  String get yourPathTonchineseFluency => 'مسارك نحو\\nإتقان اللغة الصينية';
+  String get yourPathTonchineseFluency => 'طريقك نحو\nإتقان اللغة الصينية';
 
   @override
   String get answer3QuickQuestionsSoOurAiCanCraf =>
-      'أجب عن 3 أسئلة سريعة ليتمكن ذكاؤنا الاصطناعي من صياغة\\nمنهج يناسب حياتك.';
+      'أجب عن 3 أسئلة سريعة ليصمم ذكاؤنا الاصطناعي\nمنهجًا مخصصًا لأسلوب حياتك.';
 
   @override
-  String get whatIsYourLevelnwithChinese => 'ما هو مستواك\\nفي اللغة الصينية؟';
+  String get whatIsYourLevelnwithChinese => 'ما هو مستواك\nفي اللغة الصينية؟';
 
   @override
   String get chooseThePathThatFitsYourDepth =>
-      'اختر المسار الذي يناسب عمق معرفتك.';
+      'اختر المسار الذي يناسب مستواك الحالي.';
 
   @override
-  String get whatDrivesYourStudy => 'ما الذي يدفعك للدراسة؟';
+  String get whatDrivesYourStudy => 'ما هو دافعك للتعلم؟';
 
   @override
-  String get purposeFuelsTheBrush => 'الهدف يغذي الفرشاة';
+  String get purposeFuelsTheBrush => 'الغاية توجه ريشة الخط';
 
   @override
-  String get setYourDailyRitual => 'حدد طقسك اليومي.';
+  String get setYourDailyRitual => 'حدد روتينك اليومي.';
 
   @override
-  String get youCanAdjustYourRitualAnyTime => 'يمكنك تعديل طقسك في أي وقت.';
+  String get youCanAdjustYourRitualAnyTime =>
+      'يمكنك تعديل روتينك اليومي في أي وقت.';
 
   @override
   String get letsBegin => 'لنبدأ';
 
   @override
-  String get brandNew => 'جديد تمامًا';
+  String get brandNew => 'مبتدئ تمامًا';
 
   @override
   String get iveNeverStudiedChineseBefore => 'لم أدرس اللغة الصينية من قبل.';
 
   @override
   String get iKnowBasicCharactersAndPhrases =>
-      'أعرف الأحرف والعبارات الأساسية.';
+      'أعرف الرموز والعبارات الأساسية.';
 
   @override
-  String get iCanHoldConversationsAndRead => 'يمكنني إجراء محادثات والقراءة.';
+  String get iCanHoldConversationsAndRead =>
+      'يمكنني إجراء محادثات وقراءة نصوص بسيطة.';
 
   @override
-  String get iWantToRefineAndPerfectMySkills => 'أرغب في صقل مهاراتي وإتقانها.';
+  String get iWantToRefineAndPerfectMySkills =>
+      'أرغب في صقل مهاراتي والوصول إلى الإتقان.';
 
   @override
   String get confirmSelection => 'تأكيد الاختيار';
 
   @override
-  String get purposeFuelsTheBrushsMotion => 'الهدف يغذي حركة الفرشاة.';
+  String get purposeFuelsTheBrushsMotion => 'الغاية تمنح ريشة الخط حركتها.';
 
   @override
-  String get buildMyPath => 'ابنِ مساري';
+  String get buildMyPath => 'صمم مساري';
 
   @override
-  String get hskCertification => 'شهادة HSK';
+  String get hskCertification => 'شهادة اختبار HSK';
 
   @override
-  String get culturalAppreciation => 'تقدير الثقافة';
+  String get culturalAppreciation => 'التعرف على الثقافة الصينية';
 
   @override
-  String get yourPlanIsReady => 'خطتك جاهزة';
+  String get yourPlanIsReady => 'خطتك التعليمية جاهزة';
 
   @override
-  String get craftingYourCurriculum => 'صياغة منهجك الدراسي';
+  String get craftingYourCurriculum => 'جارٍ إعداد خطتك التعليمية...';
 
   @override
-  String get personalizedPathInitialized => 'تم تهيئة المسار المخصص';
+  String get personalizedPathInitialized => 'تم إعداد المسار المخصص';
 
   @override
   String get calibratingAiNeuralMasters =>
-      'معايرة أساتذة الذكاء الاصطناعي العصبي...';
+      'جارٍ ضبط نماذج المعلمين بالذكاء الاصطناعي...';
 
   @override
-  String get calibrationComplete => 'اكتملت المعايرة';
+  String get calibrationComplete => 'اكتمل الضبط';
 
   @override
-  String get synthesizingModules => 'تجميع الوحدات...';
+  String get synthesizingModules => 'جارٍ تجميع الوحدات التعليمية...';
 
   @override
-  String get oneAndWater => '\'واحد\' و \'ماء\'';
+  String get oneAndWater => '«واحد» و«ماء»';
 
   @override
-  String get theHorizontalStroke => 'الخَطّ الأفقي';
+  String get theHorizontalStroke => 'الخط الأفقي (Héng)';
 
   @override
-  String get theRadical => 'الجذر';
+  String get theRadical => 'الجذر (Radical)';
 
   @override
   String get water => 'ماء';
@@ -6290,22 +6415,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wePromisedToAlertYou2DaysBeforeYour =>
-      'لقد وعدنا بتنبيهك قبل يومين من انتهاء نسختك التجريبية حتى تتمكن';
+      'لقد وعدنا بتنبيهك قبل يومين من انتهاء فترتك التجريبية لتتمكن من اتخاذ قرارك براحة.';
 
   @override
   String get continueWithoutReminder => 'المتابعة بدون تذكير';
 
   @override
-  String get masterChineseWithnsinospark => 'أتقن الصينية مع\\nSinoSpark';
+  String get masterChineseWithnsinospark => 'أتقن الصينية مع\nSinoSpark';
 
   @override
   String get start7dayFreeTrial => 'ابدأ تجربة مجانية لمدة 7 أيام';
 
   @override
-  String get precisionStrokes => 'ضربات دقيقة';
+  String get precisionStrokes => 'دقة في رسم الخطوط';
 
   @override
-  String get aiPronunciation => 'نطق بالذكاء الاصطناعي';
+  String get aiPronunciation => 'نطق مدعوم بالذكاء الاصطناعي';
 
   @override
   String get today => 'اليوم';
@@ -6314,34 +6439,35 @@ class AppLocalizationsAr extends AppLocalizations {
   String get fullAccess => 'وصول كامل';
 
   @override
-  String get day5 => 'اليوم الخامس';
+  String get day5 => 'اليوم 5';
 
   @override
   String get reminder => 'تذكير';
 
   @override
-  String get day7 => 'اليوم السابع';
+  String get day7 => 'اليوم 7';
 
   @override
-  String get trialBegins => 'تبدأ التجربة';
+  String get trialBegins => 'بدء الفترة التجريبية';
 
   @override
   String get revenuecatIsMissingACurrentOffering =>
-      'RevenueCat يفتقر إلى عرض حالي أو باقات. يرجى تهيئة لوحة التحكم الخاصة بك.';
+      'لا تتوفر باقات اشتراك حالية في RevenueCat. يرجى تهيئة لوحة التحكم.';
 
   @override
   String get cameraPermissionRequiredForLiveScan =>
-      'إذن الكاميرا مطلوب للمسح المباشر.';
+      'إذن الكاميرا مطلوب للمسح الضوئي المباشر.';
 
   @override
-  String get cameraAccessRequired => 'مطلوب الوصول إلى الكاميرا';
+  String get cameraAccessRequired => 'مطلوب الإذن باستخدام الكاميرا';
 
   @override
   String get pleaseEnableCameraAccessInYourDevic =>
-      'يرجى تمكين الوصول إلى الكاميرا في إعدادات جهازك لاستخدام هذه الميزة.';
+      'يرجى تمكين إذن الكاميرا من إعدادات جهازك لاستخدام هذه الميزة.';
 
   @override
-  String get alignChineseTextWithinFrame => 'محاذاة النص الصيني داخل الإطار';
+  String get alignChineseTextWithinFrame =>
+      'قم بمحاذاة النص الصيني داخل الإطار';
 
   @override
   String get inLibrary => 'في المكتبة';
@@ -6356,7 +6482,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get artisan => 'حرفي';
 
   @override
-  String get grandmaster => 'أستاذ كبير';
+  String get grandmaster => 'أستاذ خبير';
 
   @override
   String get poem => 'قصيدة';
@@ -6365,7 +6491,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get theNarrative => 'السرد';
 
   @override
-  String get classicMasterpiece => 'تحفة كلاسيكية';
+  String get classicMasterpiece => 'شاهقة كلاسيكية';
 
   @override
   String get classicAuthor => 'مؤلف كلاسيكي';
@@ -6374,14 +6500,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get classical => 'كلاسيكي';
 
   @override
-  String get classicLiterature => 'كلاسيكي\', \'أدب';
+  String get classicLiterature => 'أدب كلاسيكي';
 
   @override
-  String get inThisChapterOf => 'في هذا الفصل من';
+  String inThisChapterOf(Object title) {
+    return 'في هذا الفصل من $title';
+  }
 
   @override
   String get asTheNarrativeUnfoldsItIlluminatesT =>
-      'مع تطور السرد، فإنه يضيء الحكمة الأساسية للحياة والإلهام الدائم.';
+      'مع تتابع أحداث القصة، تتجلى حكمة الحياة وتلهم القارئ.';
 
   @override
   String get general => 'عام';
@@ -6393,16 +6521,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dailyLife => 'الحياة اليومية';
 
   @override
-  String get tangPoetry => 'شعر تانغ';
+  String get tangPoetry => 'شعر أسرة تانغ';
 
   @override
   String get classicalLiterature => 'الأدب الكلاسيكي';
 
   @override
-  String get justNow => 'الآن للتو';
+  String get justNow => 'الآن';
 
   @override
-  String get theTerracottaArmyOfQinShiHuang => 'جيش الطين لـ تشين شي هوانغ';
+  String get theTerracottaArmyOfQinShiHuang =>
+      'جيش الطين للإمبراطور تشين شي هوانغ';
 
   @override
   String get lifeInsideTheForbiddenCity => 'الحياة داخل المدينة المحرمة';
@@ -6417,18 +6546,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get goingToALocalRestaurantToOrderJiaoz =>
-      'الذهاب إلى مطعم محلي لطلب الجياوزي (الزلابية)';
+      'الذهاب إلى مطعم محلي لطلب زلابية الجياوزي';
 
   @override
-  String get theTraditionalGongfuTeaCeremony => 'حفل شاي الكونغ فو التقليدي';
+  String get theTraditionalGongfuTeaCeremony => 'مراسم شاي الغونغفو التقليدي';
 
   @override
   String get theArtOfWritingChineseCharactersWit =>
-      'فن كتابة الحروف الصينية بالفرشاة';
+      'فن كتابة الرموز الصينية بالفرشاة';
 
   @override
   String get theLifeAndConservationOfGiantPandas =>
-      'حياة الباندا العملاقة والحفاظ عليها';
+      'حياة الباندا العملاقة وحمايتها من الانقراض';
 
   @override
   String get storyNotFoundInDatabase => 'القصة غير موجودة في قاعدة البيانات';
@@ -6440,46 +6569,45 @@ class AppLocalizationsAr extends AppLocalizations {
   String get myCustomStories => 'قصصي المخصصة';
 
   @override
-  String get userProvidedText => 'نص مقدم من المستخدم';
+  String get userProvidedText => 'نص مخصص من المستخدم';
 
   @override
   String get local => 'محلي';
 
   @override
-  String get voiceEngineAllowance => 'محرك الصوت والمخصصات';
+  String get voiceEngineAllowance => 'رصيد محرك الصوت';
 
   @override
   String get studioHdVsUnlimitedStandardVoice =>
-      'Studio HD مقابل الصوت القياسي غير المحدود';
+      'أصوات Studio HD الفائقة مقابل الصوت القياسي غير المحدود';
 
   @override
   String get standardVoiceIs100UnlimitedFree =>
-      'الصوت القياسي غير محدود ومجاني 100%';
+      'الصوت القياسي مجاني وغير محدود بنسبة 100%';
 
   @override
   String get read => 'قراءة';
 
   @override
-  String get koreKoreFemaleWarm => 'كوري\', \'كوري\', \'أنثى، دافئ';
+  String get koreKoreFemaleWarm => 'كوري (أنثوي، دافئ)';
 
   @override
-  String get aoedeAoedeFemaleCheerful => 'أويدي\', \'أويدي\', \'أنثى، مبتهج';
+  String get aoedeAoedeFemaleCheerful => 'أويدي (أنثوي، مبهج)';
 
   @override
-  String get fenrirFenrirMaleUpbeat => 'فنرير\', \'فنرير\', \'ذكر، متفائل';
+  String get fenrirFenrirMaleUpbeat => 'فنرير (ذكوري، حيوي)';
 
   @override
-  String get charonCharonMaleNewsstyle =>
-      'شارون\', \'شارون\', \'ذكر، بأسلوب إخباري';
+  String get charonCharonMaleNewsstyle => 'شارون (ذكوري، أسلوب إخباري)';
 
   @override
-  String get puckPuckMaleSporty => 'باك\', \'باك\', \'ذكر، رياضي';
+  String get puckPuckMaleSporty => 'باك (ذكوري، رياضي)';
 
   @override
-  String get localOndevice => 'محلي\', \'على الجهاز';
+  String get localOndevice => 'صوت مدمج بالجهاز';
 
   @override
-  String get localOndeviceTts => 'TTS محلي على الجهاز';
+  String get localOndeviceTts => 'تحويل النص إلى كلام مدمج بالجهاز';
 
   @override
   String get off => 'إيقاف';
@@ -6492,15 +6620,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noNovelsFoundMatchingYourFilter =>
-      'لم يتم العثور على روايات مطابقة لفلترك.';
+      'لم يتم العثور على روايات تطابق خيارات التصفية.';
 
   @override
   String get noMicroreadsFoundMatchingYourFilter =>
-      'لم يتم العثور على قراءات مصغرة مطابقة لفلترك.';
+      'لم يتم العثور على قراءات قصيرة تطابق خيارات التصفية.';
 
   @override
   String get noPoemsFoundMatchingYourFilter =>
-      'لم يتم العثور على قصائد مطابقة لفلترك.';
+      'لم يتم العثور على قصائد تطابق خيارات التصفية.';
 
   @override
   String get audiobook => 'كتاب صوتي';
@@ -6513,81 +6641,80 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get search96FullNovelsAuthorsEpics =>
-      'ابحث في 96 رواية كاملة، مؤلفين، ملاحم...';
+      'ابحث في 96 رواية كاملة، ومؤلفين، وملاحم...';
 
   @override
   String get searchClassicalPoemsAuthorsVerses =>
-      'ابحث في القصائد الكلاسيكية، المؤلفين، الأبيات...';
+      'ابحث في القصائد الكلاسيكية، والشعراء، والأبيات...';
 
   @override
-  String get allLevelsVal => 'جميع المستويات\', \'val';
+  String get allLevelsVal => 'جميع المستويات';
 
   @override
-  String get hsk1BeginnerVal => 'HSK 1 (مبتدئ)\', \'val';
+  String get hsk1BeginnerVal => 'HSK 1 (مبتدئ)';
 
   @override
-  String get hsk2ElementaryVal => 'HSK 2 (ابتدائي)\', \'val';
+  String get hsk2ElementaryVal => 'HSK 2 (ابتدائي)';
 
   @override
-  String get hsk3IntermediateVal => 'HSK 3 (متوسط)\', \'val';
+  String get hsk3IntermediateVal => 'HSK 3 (متوسط)';
 
   @override
-  String get hsk4UpperIntVal => 'HSK 4 (متوسط علوي)\', \'val';
+  String get hsk4UpperIntVal => 'HSK 4 (متوسط متقدم)';
 
   @override
   String get listenToAudiobook => 'استمع إلى الكتاب الصوتي';
 
   @override
-  String get synopsis => 'ملخص';
+  String get synopsis => 'ملخص العمل';
 
   @override
-  String get peoplesArtist => 'فنان الشعب\'.';
+  String get peoplesArtist => 'فنان الشعب';
 
   @override
   String get kafkaesqueForBureaucraticAbsurdityA =>
-      'كافكاوية\' للسخافة البيروقراطية، الاغتراب، والقلق الوجودي.';
+      '«كافكاوي» للإشارة إلى العبثية البيروقراطية والاغتراب والقلق الوجودي.';
 
   @override
-  String get bigBrotherAndNewspeak => 'الأخ الأكبر\'، و\'اللغة الجديدة\'.';
+  String get bigBrotherAndNewspeak => '«الأخ الأكبر» و«لغة النيوسبيك».';
 
   @override
-  String get audiobookIncluded => 'الكتاب الصوتي متضمن';
+  String get audiobookIncluded => 'يتضمن كتابًا صوتيًا';
 
   @override
-  String get readPoem => 'اقرأ القصيدة';
+  String get readPoem => 'قراءة القصيدة';
 
   @override
-  String get studioVoiceAllowance => 'رصيد الصوت الاحترافي';
+  String get studioVoiceAllowance => 'رصيد أصوات الاستوديو (Studio)';
 
   @override
   String get weeklyHighdefinitionAiRecitation =>
       'تلاوة أسبوعية عالية الدقة بالذكاء الاصطناعي';
 
   @override
-  String get resetsEveryMondayAt0000 =>
-      'يُعاد تعيينه كل يوم اثنين في الساعة 00:00';
+  String get resetsEveryMondayAt0000 => 'يتجدد كل يوم اثنين الساعة 00:00';
 
   @override
   String get whenYourWeekly4hourStudioAllowanceI =>
-      'عند استهلاك رصيدك الأسبوعي البالغ 4 ساعات من الصوت الاحترافي، يتحول التطبيق تلقائيًا إلى الصوت المحلي للجهاز للاستماع غير المحدود والمجاني دون انقطاع.';
+      'عند استهلاك رصيدك الأسبوعي البالغ 4 ساعات لأصوات الاستوديو، ينتقل التطبيق تلقائيًا إلى الصوت المدمج بالجهاز للاستماع مجانًا وبلا حدود دون انقطاع.';
 
   @override
-  String get localDeviceVoice => 'صوت الجهاز المحلي\' :';
+  String get localDeviceVoice => 'صوت الجهاز المدمج';
 
   @override
-  String get classicalVerse => 'بيت شعري كلاسيكي';
+  String get classicalVerse => 'شعر كلاسيكي';
 
   @override
   String get ondeviceVoice4hWeeklyUsed =>
-      'صوت الجهاز المحلي (استُخدم 4 ساعات أسبوعيًا)';
+      'صوت الجهاز (تم استخدام رصيد 4 ساعات الأسبوعي)';
 
   @override
   String get generateACustomAiStoryBasedOnYourIn =>
-      'أنشئ قصة مخصصة بالذكاء الاصطناعي بناءً على اهتماماتك';
+      'إنشاء قصة مخصصة بالذكاء الاصطناعي بناءً على اهتماماتك';
 
   @override
   String get insteadOfAFixedHskLevelTheFlowState =>
-      'بدلاً من مستوى HSK ثابت، تقوم محرك حالة التدفق بتحليل مكتبة بطاقاتك التعليمية.\n\n';
+      'بدلاً من التقيد بمستوى HSK ثابت، يحلل محرك التدفق (Flow State) مكتبة بطاقاتك التعليمية.';
 
   @override
   String get we => 'نحن';
@@ -6597,16 +6724,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get everythingYouNeedToKnowAboutHanziMa =>
-      'كل ما تحتاج لمعرفته حول Hanzi Master، ميزاته، وخصوصيتك.';
+      'كل ما تحتاج لمعرفته حول SinoSpark، وميزاته، وخصوصيتك.';
 
   @override
-  String get whoAreTheVoicesSpeakingInTheApp => 'من هم المتحدثون في التطبيق؟';
+  String get whoAreTheVoicesSpeakingInTheApp =>
+      'من هم أصحاب الأصوات في التطبيق؟';
 
   @override
   String get howDoesTheWebExplorerWork => 'كيف يعمل مستكشف الويب؟';
 
   @override
-  String get whatIsZenMode => 'ما هو وضع Zen؟';
+  String get whatIsZenMode => 'ما هو وضع الهدوء (Zen Mode)؟';
 
   @override
   String get howDoesTheFlashcardSpacedrepetition =>
@@ -6616,45 +6744,46 @@ class AppLocalizationsAr extends AppLocalizations {
   String get traceComplete => 'اكتمل التتبع!';
 
   @override
-  String get traceCharacter => 'تتبع الحرف';
+  String get traceCharacter => 'تتبع رسم الرمز';
 
   @override
-  String get analyzingWordRelationships => 'تحليل العلاقات بين الكلمات...';
+  String get analyzingWordRelationships => 'جارٍ تحليل العلاقات بين الكلمات...';
 
   @override
-  String get identifyingUsageContexts => 'تحديد سياقات الاستخدام...';
+  String get identifyingUsageContexts => 'جارٍ تحديد سياقات الاستخدام...';
 
   @override
-  String get comparingFormalityLevels => 'مقارنة مستويات الرسمية...';
+  String get comparingFormalityLevels => 'جارٍ مقارنة مستويات الرسمية...';
 
   @override
-  String get findingCommonCollocations => 'إيجاد المتلازمات اللفظية الشائعة...';
+  String get findingCommonCollocations =>
+      'جارٍ البحث عن المتلازمات اللفظية الشائعة...';
 
   @override
-  String get generatingComparison => 'إنشاء مقارنة...';
+  String get generatingComparison => 'جارٍ إنشاء المقارنة...';
 
   @override
   String get generationIsTakingLongerThanExpecte =>
-      'يستغرق الإنشاء وقتًا أطول من المتوقع. قد يكون الذكاء الاصطناعي محملاً فوق طاقته.';
+      'يستغرق الإنشاء وقتًا أطول من المتوقع نتيجة الضغط على خوادم الذكاء الاصطناعي.';
 
   @override
   String get generationInterruptedShowingPartial =>
-      'تمت مقاطعة الإنشاء. عرض نتيجة جزئية.';
+      'تمت مقاطعة الإنشاء. يتم عرض نتيجة جزئية.';
 
   @override
-  String get sorrySomethingWentWrong => 'عذرًا، حدث خطأ ما.';
+  String get sorrySomethingWentWrong => 'عذرًا، حدث خطأ غير متوقع.';
 
   @override
-  String get usage => 'الاستخدام:\', \'';
+  String get usage => 'الاستخدام:';
 
   @override
-  String get alsoSeenIn => 'شوهد أيضًا في';
+  String get alsoSeenIn => 'يظهر أيضًا في';
 
   @override
   String get quickLook => 'نظرة سريعة';
 
   @override
-  String get notFound => 'لم يتم العثور عليه';
+  String get notFound => 'غير موجود';
 
   @override
   String get errorLoadingFromAi => 'خطأ في التحميل من الذكاء الاصطناعي.';
@@ -6669,7 +6798,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get extractingChineseText => 'جارٍ استخراج النص الصيني...';
 
   @override
-  String get lookingUpVocabulary => 'جارٍ البحث في المفردات...';
+  String get lookingUpVocabulary => 'جارٍ البحث عن المفردات...';
 
   @override
   String get dreamOfTheRedChamber => 'حلم الغرفة الحمراء';
@@ -6678,10 +6807,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get journeyToTheWest => 'رحلة إلى الغرب';
 
   @override
-  String get romanceOfTheThreeKingdoms => 'قصة الممالك الثلاث';
+  String get romanceOfTheThreeKingdoms => 'رومانسية الممالك الثلاث';
 
   @override
-  String get mingDynasty => 'أسرة منغ';
+  String get mingDynasty => 'أسرة مينغ';
 
   @override
   String get wuChengEn => 'وو تشنغ إن';
@@ -6694,12 +6823,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String bookmarksCount(Object count) {
-    return 'العلامات ($count)';
+    return 'العلامات المرجعية ($count)';
   }
 
   @override
   String get noBookmarksYet =>
-      'لا توجد علامات بعد. اضغط على أيقونة العلامة لحفظ مقطع.';
+      'لا توجد علامات مرجعية حتى الآن. انقر على أيقونة الإشارة المرجعية لحفظ نص.';
 
   @override
   String get sinosparkIsNotResponding => 'SinoSpark لا يستجيب';
@@ -6712,12 +6841,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String studioHdAllowance(Object hours) {
-    return 'Studio HD: $hoursس';
+    return 'رصيد Studio HD: $hours ساعة';
   }
 
   @override
   String bookPercentRead(Object percent) {
-    return 'الكتاب $percent%';
+    return 'تمت قراءة $percent%';
   }
 
   @override
@@ -6744,25 +6873,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get allLevels => 'جميع المستويات';
 
   @override
-  String get searchGradedMicroStories => 'ابحث عن القصص المصنفة والخرافيات...';
+  String get searchGradedMicroStories => 'ابحث في القصص المتدرجة والحكايات...';
 
   @override
   String gradedStoriesAndMicroReads(Object count) {
-    return '$count قصة مصنفة وقراءات يومية';
+    return '$count قصة متدرجة وقراءات يومية';
   }
 
   @override
   String get searchClassicalPoems =>
-      'ابحث عن القصائد الكلاسيكية، الشعراء، الأبيات...';
+      'ابحث في القصائد الكلاسيكية، والشعراء، والأبيات...';
 
   @override
   String classicalPoemsAndVerse(Object count) {
-    return '$count قصيدة وأبيات كلاسيكية';
+    return '$count قصيدة كلاسيكية وأبيات شعرية';
   }
 
   @override
   String get browseAnyChineseWebsite =>
-      'تصفح أي موقع صيني مع قاموس لمسي في الوقت الحقيقي، تعليقات البنين وترجمات فورية.';
+      'تصفح أي موقع صيني مع قاموس فوري باللمس، وتدوين البينيين، وترجمة فورية.';
 
   @override
   String get completed => 'مكتمل';
@@ -6771,7 +6900,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aiIsReading => 'الذكاء الاصطناعي يقرأ...';
 
   @override
-  String get bbcVerify => 'BBC VERIFY';
+  String get bbcVerify => 'BBC Verify';
 
   @override
   String get hsk5AdvancedVal => 'HSK 5 (متقدم)';
@@ -6780,37 +6909,37 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hsk1Beginner => 'HSK 1 (مبتدئ)';
 
   @override
-  String get hsk4UpperInt => 'HSK 4 (فوق المتوسط)';
+  String get hsk4UpperInt => 'HSK 4 (متوسط متقدم)';
 
   @override
   String get extractAllUnknownWords =>
-      'استخراج جميع الكلمات الغير معروفة إلى مجموعة بطاقات جديدة';
+      'استخراج جميع الكلمات غير المعروفة إلى مجموعة بطاقات جديدة';
 
   @override
   String get designCustomAiRoleplay =>
-      'تصميم تجربة لعب أدوار ومحادثة مخصصة بالذكاء الاصطناعي';
+      'تصميم تجربة محادثة ولعب أدوار مخصصة بالذكاء الاصطناعي';
 
   @override
   String get practiceFlashcardVocabulary =>
-      'تدريب مفردات البطاقات في حوار مباشر';
+      'تدريب على مفردات البطاقات في محادثة مباشرة';
 
   @override
-  String get surpriseMe => 'فاجئني';
+  String get surpriseMe => 'اختر لي عشوائيًا';
 
   @override
-  String get rollCharacter => 'اختيار شخصية';
+  String get rollCharacter => 'توليد شخصية';
 
   @override
-  String get historicalCostume => 'تاريخي / أزياء تنكيدية';
+  String get historicalCostume => 'تاريخي / أزياء تنكرية';
 
   @override
-  String get modernYouth => 'عصري & شبابي';
+  String get modernYouth => 'عصري وشبابي';
 
   @override
-  String get fantasyMythology => 'خيالي & أسطوري';
+  String get fantasyMythology => 'خيالي وأسطوري';
 
   @override
-  String get familyDrama => 'عائلي & دراما';
+  String get familyDrama => 'دراما عائلية';
 
   @override
   String get fullVersion => 'النسخة الكاملة';
@@ -6822,18 +6951,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String episodeLabel(Object number) {
-    return 'ح$number';
+    return 'حلقة $number';
   }
 
   @override
   String get translating => '[ جارٍ الترجمة... ]';
 
   @override
-  String get engSub => '[ترجمة إنجليزية]';
+  String get engSub => '[ترجمة عربية]';
 
   @override
   String get standardVocabulary => 'المفردات القياسية';
 
   @override
-  String get characters => 'حروفًا';
+  String get characters => 'رموزًا';
 }

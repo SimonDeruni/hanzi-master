@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
+import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
@@ -50,6 +52,7 @@ class AuthRepository {
       }
     } catch (_) {}
     await GoogleSignIn.instance.signOut();
+    await MonetizationService.clearUserIdentity();
     await _auth.signOut();
   }
 
@@ -82,7 +85,17 @@ class AuthRepository {
       throw const AccountDeletionException('unsupported-provider');
     }
 
-    await user.delete();
+    // Refresh after reauthentication so the callable can verify auth_time.
+    await user.getIdToken(true);
+    final callable = FirebaseFunctions.instance.httpsCallable(
+      'deleteAccountV1',
+      options: HttpsCallableOptions(
+        timeout: const Duration(seconds: 120),
+      ),
+    );
+    await callable.call<void>();
+
+    await MonetizationService.clearUserIdentity();
 
     if (providerIds.contains('google.com')) {
       try {

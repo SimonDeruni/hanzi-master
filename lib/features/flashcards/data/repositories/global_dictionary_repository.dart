@@ -39,7 +39,8 @@ class GlobalDictionaryRepository {
             !colNames.contains('definition_ja') ||
             !colNames.contains('definition_es') ||
             !colNames.contains('definition_ko') ||
-            !colNames.contains('definition_id')) {
+            !colNames.contains('definition_id') ||
+            !colNames.contains('definition_th')) {
           needsRefresh = true;
         }
       } catch (_) {
@@ -99,7 +100,7 @@ class GlobalDictionaryRepository {
         SELECT *,
           CASE 
             WHEN REPLACE(pinyin_no_tones, ' ', '') = ? THEN 1
-            WHEN definition = ? OR definition_fr = ? OR definition_de = ? OR definition_es = ? OR definition_ru = ? OR definition_vi = ? OR definition_ja = ? OR definition_ko = ? OR definition_it = ? OR definition_pt = ? OR definition_id = ? OR definition_ar = ? OR definition_hi = ? THEN 1
+            WHEN definition = ? OR definition_fr = ? OR definition_de = ? OR definition_es = ? OR definition_ru = ? OR definition_vi = ? OR definition_ja = ? OR definition_ko = ? OR definition_it = ? OR definition_pt = ? OR definition_id = ? OR definition_th = ? OR definition_ar = ? OR definition_hi = ? THEN 1
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 2
             WHEN definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? THEN 2
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 3
@@ -107,19 +108,19 @@ class GlobalDictionaryRepository {
             ELSE 4
           END as rank
         FROM words
-        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? OR definition_ru LIKE ? OR definition_vi LIKE ? OR definition_ja LIKE ? OR definition_ko LIKE ? OR definition_it LIKE ? OR definition_pt LIKE ? OR definition_id LIKE ? OR definition_ar LIKE ? OR definition_hi LIKE ?
+        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR definition LIKE ? OR definition_fr LIKE ? OR definition_de LIKE ? OR definition_es LIKE ? OR definition_ru LIKE ? OR definition_vi LIKE ? OR definition_ja LIKE ? OR definition_ko LIKE ? OR definition_it LIKE ? OR definition_pt LIKE ? OR definition_id LIKE ? OR definition_th LIKE ? OR definition_ar LIKE ? OR definition_hi LIKE ?
         ORDER BY rank ASC, LENGTH(simplified) ASC
         LIMIT 50
       ''';
       args = [
         cleanSearch,           // Pinyin exact
-        q, q, q, q, q, q, q, q, q, q, q, q, q, // Def exact (all langs)
+        q, q, q, q, q, q, q, q, q, q, q, q, q, q, // Def exact (all langs)
         '$cleanSearch %',      // Pinyin boundary
         '% $q %', '% $q %', '% $q %', '% $q %', // Def boundaries
         '$cleanSearch%',       // Pinyin prefix
         '$q%', '$q%', '$q%',   // Def prefix
         '%$cleanSearch%',      // Match condition Pinyin
-        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%' // Match condition Def
+        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%' // Match condition Def
       ];
     }
 
@@ -183,6 +184,10 @@ class GlobalDictionaryRepository {
         case 'id':
         case 'indonesian':
           localizedDef = row['definition_id'] as String?;
+          break;
+        case 'th':
+        case 'thai':
+          localizedDef = row['definition_th'] as String?;
           break;
         case 'ar':
         case 'arabic':

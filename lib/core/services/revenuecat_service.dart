@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'api_key_pool.dart';
 
 part 'revenuecat_service.g.dart';
 
@@ -11,25 +9,12 @@ class RevenueCatService extends _$RevenueCatService {
   @override
   bool build() {
     // Initial state is free tier
-    _initRevenueCat();
+    _refreshRevenueCat();
     return false; // returns true if user is premium
   }
 
-  Future<void> _initRevenueCat() async {
+  Future<void> _refreshRevenueCat() async {
     try {
-      if (kDebugMode) {
-        await Purchases.setLogLevel(LogLevel.debug);
-      }
-      
-      late PurchasesConfiguration configuration;
-      if (Platform.isAndroid) {
-        configuration = PurchasesConfiguration(ApiKeyPool().revenueCatAndroidKey);
-      } else if (Platform.isIOS) {
-        configuration = PurchasesConfiguration(ApiKeyPool().revenueCatAppleKey);
-      }
-      
-      await Purchases.configure(configuration);
-      
       CustomerInfo customerInfo = await Purchases.getCustomerInfo();
       _checkEntitlements(customerInfo);
 
@@ -75,7 +60,8 @@ class RevenueCatService extends _$RevenueCatService {
   Future<List<Offering>> getOfferings() async {
     try {
       Offerings offerings = await Purchases.getOfferings();
-      if (offerings.current != null && offerings.current!.availablePackages.isNotEmpty) {
+      if (offerings.current != null &&
+          offerings.current!.availablePackages.isNotEmpty) {
         return [offerings.current!];
       }
       return [];

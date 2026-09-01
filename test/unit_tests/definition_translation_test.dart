@@ -29,6 +29,7 @@ void main() {
       expect(translationLanguageForLocale('fr-FR'), 'French');
       expect(translationLanguageForLocale('pt_BR'), 'Portuguese');
       expect(translationLanguageForLocale('ja'), 'Japanese');
+      expect(translationLanguageForLocale('th'), 'Thai');
       expect(translationLanguageForLocale('unknown'), 'English');
     });
 

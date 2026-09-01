@@ -6,7 +6,6 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/cultural_context_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
-import 'package:hanzi_master/features/media/presentation/screens/show_catalog_screen.dart';
 import 'package:hanzi_master/features/media/data/repositories/show_repository.dart';
 import 'package:hanzi_master/features/media/presentation/screens/show_detail_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -102,7 +101,7 @@ class MediaHubScreen extends ConsumerWidget {
 
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
-            // Additional Core Tools (YouTube Desk, Shows)
+            // Additional Core Tools
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -111,8 +110,11 @@ class MediaHubScreen extends ConsumerWidget {
                     if (AppFeatures.youtubeMedia) ...[
                       _buildThematicCard(
                         context: context,
-                        title: AppLocalizations.of(context)?.youtubeDesk ?? "YOUTUBE DESK",
-                        subtitle: AppLocalizations.of(context)?.interactiveTranscriptsShadowing ?? "Interactive transcripts & shadowing",
+                        title: AppLocalizations.of(context)?.youtubeDesk ??
+                            "YOUTUBE DESK",
+                        subtitle: AppLocalizations.of(context)
+                                ?.interactiveTranscriptsShadowing ??
+                            "Interactive transcripts & shadowing",
                         icon: Icons.smart_display,
                         brandColor: const Color(0xFFFF0000),
                         onTap: () {
@@ -124,24 +126,6 @@ class MediaHubScreen extends ConsumerWidget {
                         },
                       ),
                       const SizedBox(height: 16),
-                    ],
-                    if (AppFeatures.youtubeMedia) ...[
-                      _buildThematicCard(
-                        context: context,
-                        title: "SHOWS & DRAMAS",
-                        subtitle:
-                            "Chinese TV series with interactive subtitles",
-                        icon: Icons.live_tv,
-                        brandColor: const Color(0xFFFFA000),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            SwipeBackPageRoute(
-                              builder: (_) => const ShowCatalogScreen(),
-                            ),
-                          );
-                        },
-                      ),
                     ],
                   ],
                 ),
@@ -646,9 +630,6 @@ class _DailyDiscoveryCarouselState
   Widget build(BuildContext context) {
     final dailyState = ref.watch(dailyDiscoveryProvider);
     final completedItems = ref.watch(completedDailyMediaProvider);
-    final showOfTheDay = AppFeatures.youtubeMedia
-        ? ref.watch(dailyShowProvider)
-        : const AsyncValue<Show?>.data(null);
 
     return SizedBox(
       height: 240,
@@ -657,20 +638,11 @@ class _DailyDiscoveryCarouselState
           final visibleItems = AppFeatures.youtubeMedia
               ? items
               : items.where((i) => i.tag != 'VIDEO OF THE DAY').toList();
-          // Calculate total page count: non-video items + optional show of the day
-          final showItem = showOfTheDay.valueOrNull;
-          final totalItems = visibleItems.length + (showItem != null ? 1 : 0);
-
           return PageView.builder(
             controller: _pageController,
             physics: const BouncingScrollPhysics(),
-            itemCount: totalItems,
+            itemCount: visibleItems.length,
             itemBuilder: (context, index) {
-              // Show of the day is always the last page
-              if (showItem != null && index == visibleItems.length) {
-                return _buildDailyShowCard(context, showItem);
-              }
-
               final item = visibleItems[index];
               final isCompleted = completedItems.contains(item.url);
               return _buildDiscoveryCard(
@@ -692,24 +664,10 @@ class _DailyDiscoveryCarouselState
             },
           );
         },
-        loading: () {
-          // Show show of the day even while daily items are loading
-          final showItem = showOfTheDay.valueOrNull;
-          if (showItem != null) {
-            return _buildDailyShowCard(context, showItem);
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-        error: (err, stack) {
-          // Show show of the day even when daily items fail
-          final showItem = showOfTheDay.valueOrNull;
-          if (showItem != null) {
-            return _buildDailyShowCard(context, showItem);
-          }
-          return Center(
-              child:
-                  Text(AppLocalizations.of(context)!.failedToLoadDailyContent));
-        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(
+          child: Text(AppLocalizations.of(context)!.failedToLoadDailyContent),
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,10 +10,7 @@ import '../../domain/models/video_transcript.dart';
 import '../../domain/models/media_briefing.dart';
 import '../../domain/models/youtube_video.dart';
 import '../../../../core/services/gemini_service.dart';
-import '../../../../core/services/audio_recording_service.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/features/media/presentation/widgets/fullscreen_media_overlay.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
@@ -191,7 +187,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<GlobalKey> _lineKeys = [];
   StreamSubscription? _positionSubscription;
-  bool _showHanzi = true;
   bool _showPinyin = true;
   bool _showEnglish = true;
   bool _isAdPlaying = false;
@@ -199,17 +194,10 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   DateTime _lastSyncUpdate = DateTime.fromMillisecondsSinceEpoch(0);
   static const _syncInterval = Duration(milliseconds: 250);
 
-  bool _isFullscreen = false;
-  double _playbackRate = 1.0;
-
   List<Map<String, dynamic>> _culturalMemes = [];
   bool _isHskSimplified = false;
   int _hskLevel = 2;
   Map<int, String> _simplifiedTranscript = {};
-  final bool _isShadowingMode = false;
-  bool _isRecording = false;
-  int? _recordingLineIndex;
-  String _shadowFeedback = '';
   Map<String, dynamic>? _activeMeme;
   bool _isSimplifyingAi = false;
 
@@ -237,12 +225,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     _loadData();
     _startSyncEngine();
 
-    // Allow landscape orientation so we can auto-trigger fullscreen when phone is rotated
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
+    // Keep the learning desk inline; fullscreen and landscape playback are disabled.
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   Future<void> _loadData() async {
@@ -545,123 +529,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     return (progress * line.text.length).floor();
   }
 
-  Future<void> _toggleShadowRecording([int? index]) async {
-    final audioService = ref.read(audioRecordingServiceProvider);
-
-    if (_isRecording) {
-      if (index != null &&
-          _recordingLineIndex != null &&
-          index != _recordingLineIndex) {
-        await audioService.stopRecording();
-      } else {
-        setState(() {
-          _isRecording = false;
-          _shadowFeedback = "Processing your pronunciation...";
-        });
-
-        final path = await audioService.stopRecording();
-        if (path != null && _transcript != null) {
-          try {
-            final file = File(path);
-            final byteData = await file.readAsBytes();
-
-            // Determine the line we were shadowing
-            final targetIndex = _recordingLineIndex ?? _currentIndex;
-            if (targetIndex >= 0 && targetIndex < _transcript!.lines.length) {
-              final line = _transcript!.lines[targetIndex];
-              final raw = line.pinyin?.trim();
-              final translation = line.translation?.trim().toLowerCase();
-              String effectivePinyin = '';
-              if (raw != null &&
-                  raw.isNotEmpty &&
-                  (translation == null || raw.toLowerCase() != translation)) {
-                effectivePinyin = raw;
-              } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
-                effectivePinyin = PinyinHelper.getPinyinE(line.text,
-                    separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
-              }
-
-              final gemini = ref.read(geminiServiceProvider);
-              final result =
-                  await gemini.gradeAudio(byteData, line.text, effectivePinyin);
-              final score = result['score'] ?? 0;
-
-              setState(() {
-                _shadowFeedback = "Score: $score/100. Resuming video...";
-                _recordingLineIndex = null;
-              });
-
-              Future.delayed(const Duration(seconds: 3), () {
-                if (mounted) {
-                  setState(() => _shadowFeedback = "");
-                  _playerController.playVideo();
-                }
-              });
-            } else {
-              setState(() {
-                _shadowFeedback = "Couldn't identify line.";
-                _recordingLineIndex = null;
-              });
-              _playerController.playVideo();
-            }
-          } catch (e) {
-            setState(() {
-              _shadowFeedback = "Error: $e";
-              _recordingLineIndex = null;
-            });
-            _playerController.playVideo();
-          }
-        } else {
-          _playerController.playVideo();
-        }
-        return;
-      }
-    }
-
-    final hasPerm = await audioService.requestPermission();
-    if (!hasPerm) return;
-
-    // Pause video while recording!
-    _playerController.pauseVideo();
-
-    setState(() {
-      _isRecording = true;
-      _recordingLineIndex = index;
-      _shadowFeedback = "Listening... speak now.";
-    });
-    await audioService.startRecording('youtube_shadowing');
-  }
-
-  void _enterFullscreen() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    if (!_isFullscreen && mounted) {
-      setState(() => _isFullscreen = true);
-    }
-  }
-
-  void _exitFullscreen() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    if (_isFullscreen && mounted) {
-      setState(() => _isFullscreen = false);
-    }
-  }
-
-  void _changeSpeed(double speed) {
-    setState(() {
-      _playbackRate = speed;
-      _playerController.setPlaybackRate(speed);
-    });
-  }
-
   /// Portrait-mode video controls placed below the video, above the transcript.
   /// Shows scrubber with time labels, play/pause, rewind 10s, forward 10s.
   Widget _buildPortraitControls() {
@@ -848,10 +715,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     return Scaffold(
       backgroundColor:
           isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-      // Hide AppBar when in fullscreen
-      appBar: _isFullscreen
-          ? null
-          : AppBar(
+      appBar: AppBar(
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -932,67 +796,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             ),
 
       body: OrientationBuilder(
-        builder: (context, orientation) {
-          final isLandscape = orientation == Orientation.landscape;
-
-          // Automatically sync the player fullscreen state with the device orientation
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            if (isLandscape && !_isFullscreen) {
-              _enterFullscreen();
-            } else if (!isLandscape && _isFullscreen) {
-              _exitFullscreen();
-            }
-          });
-
-          // â”€â”€ LANDSCAPE / FULLSCREEN MODE â”€â”€
-          // When in landscape, cancel the native YouTube player UI and let our custom FullscreenMediaOverlay
-          // take over 100% of the screen with touch isolation, custom top/bottom bars, karaoke subtitles, and speed controls.
-          if (_isFullscreen || isLandscape) {
-            final screenSize = MediaQuery.of(context).size;
-            final double landscapeRatio =
-                (screenSize.height > 0 && screenSize.width > 0)
-                    ? screenSize.width / screenSize.height
-                    : (16 / 9);
-
-            return Container(
-              width: double.infinity,
-              height: double.infinity,
-              color: Colors.black,
-              child: YoutubePlayer(
-                controller: _playerController,
-                aspectRatio: landscapeRatio,
-                controlsBuilder: (context, _) {
-                  return FullscreenMediaOverlay(
-                    controller: _playerController,
-                    transcript: _transcript ??
-                        VideoTranscript(
-                            videoId: widget.video.id, lines: const []),
-                    currentIndex: _currentIndex,
-                    currentPosition: _currentPosition,
-                    onWordTapped: _onWordTapped,
-                    videoTitle: widget.video.title,
-                    onExitFullscreen: _exitFullscreen,
-                    playbackRate: _playbackRate,
-                    onSpeedChanged: _changeSpeed,
-                    isShadowingMode: _isShadowingMode,
-                    isRecording: _isRecording,
-                    shadowFeedback: _shadowFeedback,
-                    onToggleRecord: () => _toggleShadowRecording(null),
-                    isAdPlaying: _isAdPlaying,
-                    showHanzi: _showHanzi,
-                    showPinyin: _showPinyin,
-                    showEnglish: _showEnglish,
-                    onToggleHanzi: (v) => setState(() => _showHanzi = v),
-                    onTogglePinyin: (v) => setState(() => _showPinyin = v),
-                    onToggleEnglish: (v) => setState(() => _showEnglish = v),
-                  );
-                },
-              ),
-            );
-          }
-
-          // â”€â”€ PORTRAIT MODE â”€â”€
+        builder: (context, _) {
           return Column(
             children: [
               ClipRect(
@@ -1025,38 +829,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                 ),
                               ),
                             ),
-                            // The Fullscreen Button
-                            Positioned(
-                              bottom: 8,
-                              right: 8,
-                              child: GestureDetector(
-                                onTap: () {
-                                  HapticsManager.light();
-                                  _enterFullscreen();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withValues(alpha: 0.6),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Icon(Icons.fullscreen,
-                                          color: Colors.white, size: 20),
-                                      const SizedBox(width: 4),
-                                      Text(AppLocalizations.of(context)!.full,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.w600)),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       );
@@ -1073,40 +845,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                         ? _buildErrorState()
                         : Column(
                             children: [
-                              if (_shadowFeedback.isNotEmpty)
-                                Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8, horizontal: 16),
-                                  color: _shadowFeedback.contains("Perfect")
-                                      ? Colors.green.withValues(alpha: 0.1)
-                                      : Colors.red.withValues(alpha: 0.1),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                          _shadowFeedback.contains("Perfect")
-                                              ? Icons.check_circle
-                                              : Icons.mic,
-                                          color: _shadowFeedback
-                                                  .contains("Perfect")
-                                              ? Colors.green
-                                              : Colors.red,
-                                          size: 20),
-                                      const SizedBox(width: 8),
-                                      Expanded(
-                                        child: Text(_shadowFeedback,
-                                            style: TextStyle(
-                                              color: _shadowFeedback
-                                                      .contains("Perfect")
-                                                  ? Colors.green
-                                                  : Colors.red,
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               if (_isSimplifyingAi)
                                 Padding(
                                   padding: const EdgeInsets.all(16.0),

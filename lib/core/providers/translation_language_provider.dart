@@ -59,6 +59,8 @@ String translationLanguageForLocale(String locale) {
       return 'Russian';
     case 'vi':
       return 'Vietnamese';
+    case 'th':
+      return 'Thai';
     default:
       return 'English';
   }
@@ -78,6 +80,7 @@ const List<String> supportedTranslationLanguages = [
   'Arabic',
   'Indonesian',
   'Vietnamese',
+  'Thai',
 ];
 
 /// Partner language is locked to Mandarin/Chinese — the app's target language.

@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/data/models/review_stats_model.
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 
@@ -42,23 +43,23 @@ void main() async {
     systemNavigationBarIconBrightness: Brightness.dark,
     systemNavigationBarDividerColor: Colors.transparent,
   ));
-  
+
   // Force Portrait Mode globally
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  
+
   // 1. Initialize SharedPreferences
   final prefs = await SharedPreferences.getInstance();
-  
+
   // 2. Initialize Hive & DB
   await Hive.initFlutter();
   Hive.registerAdapter(FlashcardModelAdapter());
   Hive.registerAdapter(ReviewStatsModelAdapter());
   Hive.registerAdapter(DeckModelAdapter());
   Hive.registerAdapter(SavedArticleAdapter());
-  
+
   await LocalTranslationService.init();
 
   // --- SECURITY: Hive Encryption ---
@@ -101,9 +102,6 @@ void main() async {
   await safeOpenBox<String>('curriculum_cache_box', cipher: cipher);
   await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
 
-  // Initialize RevenueCat
-  await MonetizationService.init();
-
   // 3. Create Container for pre-warming providers
   final container = ProviderContainer(
     overrides: [
@@ -116,13 +114,13 @@ void main() async {
   // 4. Pre-warm Repository (Heavy JSON parsing)
   await container.read(flashcardRepositoryProvider).init();
   await container.read(globalDictionaryRepositoryProvider).init();
-  
+
   // Also initialize stories repository to populate defaults
   await container.read(storyRepositoryProvider).init();
-  
+
   // 5. Ensure Library is populated
   await container.read(flashcardControllerProvider.notifier).init();
-  
+
   // 6. Initialize Analytics & Auth
   try {
     await Firebase.initializeApp(
@@ -131,6 +129,9 @@ void main() async {
   } catch (e) {
     debugPrint('Firebase initialization failed: $e');
   }
+  // RevenueCat is initialized after Firebase so authenticated identities can
+  // safely be associated with subscriptions.
+  await MonetizationService.init();
   await container.read(analyticsServiceProvider).init();
 
   runApp(
@@ -148,17 +149,19 @@ class HanziMasterApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 4. Watch settings to apply theme mode dynamically
     final settings = ref.watch(settingsProvider);
-    
+
     return GestureDetector(
       onTap: () {
         // Global Keyboard Dismissal Mandate
         final FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
           FocusManager.instance.primaryFocus?.unfocus();
         }
       },
       child: MaterialApp(
-        onGenerateTitle: (context) => AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master',
+        onGenerateTitle: (context) =>
+            AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -171,20 +174,32 @@ class HanziMasterApp extends ConsumerWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: const [
-          Locale('en'), Locale('zh'), Locale('es'), Locale('fr'),
-          Locale('de'), Locale('ja'), Locale('ko'), Locale('ru'),
-          Locale('ar'), Locale('hi'), Locale('pt'), Locale('it'),
-          Locale('tr'), Locale('vi'), Locale('id'),
+          Locale('en'),
+          Locale('zh'),
+          Locale('es'),
+          Locale('fr'),
+          Locale('de'),
+          Locale('ja'),
+          Locale('ko'),
+          Locale('ru'),
+          Locale('ar'),
+          Locale('hi'),
+          Locale('pt'),
+          Locale('it'),
+          Locale('tr'),
+          Locale('vi'),
+          Locale('id'),
         ],
         home: Consumer(
           builder: (context, ref, child) {
             final prefs = ref.watch(sharedPreferencesProvider);
-            final hasSeenOnboarding = prefs.getBool('has_seen_onboarding') ?? false;
-            
+            final hasSeenOnboarding =
+                prefs.getBool('has_seen_onboarding') ?? false;
+
             if (!hasSeenOnboarding) {
               return const OnboardingScreen();
             }
-            return const MainNavigationScreen();
+            return const _SubscriptionGate();
           },
         ),
       ),
@@ -192,3 +207,31 @@ class HanziMasterApp extends ConsumerWidget {
   }
 }
 
+class _SubscriptionGate extends StatefulWidget {
+  const _SubscriptionGate();
+
+  @override
+  State<_SubscriptionGate> createState() => _SubscriptionGateState();
+}
+
+class _SubscriptionGateState extends State<_SubscriptionGate> {
+  late final Future<bool> _premiumStatus =
+      MonetizationService.checkPremiumStatus();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: _premiumStatus,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+        return snapshot.data == true
+            ? const MainNavigationScreen()
+            : const CustomPaywallScreen();
+      },
+    );
+  }
+}

@@ -61,6 +61,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   Timer? _searchDebounce;
 
   bool _isLoadingNextPhrase = false;
+  bool _isStartingSession = false;
   int _sentenceCount = 0;
   Map<String, String>? _currentPhrase;
   bool _isRecording = false;
@@ -194,12 +195,20 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   Future<void> _startSession() async {
+    if (_isStartingSession) return;
     setState(() {
-      _isSessionStarted = true;
+      _isStartingSession = true;
       _errorMessage = null;
     });
-    if (_currentPhrase == null) {
-      await _fetchNextPhrase();
+    try {
+      if (_currentPhrase == null) {
+        await _fetchNextPhrase();
+      }
+      if (mounted && _currentPhrase != null) {
+        setState(() => _isSessionStarted = true);
+      }
+    } finally {
+      if (mounted) setState(() => _isStartingSession = false);
     }
   }
 
@@ -549,8 +558,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             _exitSession();
                           },
                           child: Text(AppLocalizations.of(context)!.skip,
-                              style:
-                                  const TextStyle(color: Colors.grey, fontSize: 16)),
+                              style: const TextStyle(
+                                  color: Colors.grey, fontSize: 16)),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -1266,11 +1275,17 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
               child: FilledButton.icon(
-                onPressed: _startSession,
-                icon: const Icon(Icons.mic, size: 24),
-                label: const Text(
-                  'START SESSION',
-                  style: TextStyle(
+                key: const Key('shadowing_start_session'),
+                onPressed: _isStartingSession ? null : _startSession,
+                icon: _isStartingSession
+                    ? const SizedBox.square(
+                        dimension: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.mic, size: 24),
+                label: Text(
+                  _isStartingSession ? 'STARTING…' : 'START SESSION',
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 1.2,
@@ -1864,9 +1879,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             ? Colors.green
                             : (acc >= 60 ? Colors.orange : Colors.red);
                         final phonemeStr =
-                            (p['phoneme'] ?? '')
-                                .toString()
-                                .trim();
+                            (p['phoneme'] ?? '').toString().trim();
 
                         int tone = 1;
                         String pinyinBase = phonemeStr;
@@ -1915,8 +1928,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                        p['phoneme']?.toString() ?? '',
+                                    Text(p['phoneme']?.toString() ?? '',
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,

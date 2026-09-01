@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_hub_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
-import 'package:hanzi_master/features/media/presentation/screens/show_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -75,24 +74,13 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       ),
                     ),
                     const SizedBox(width: 2),
-                    // TAB 2: SHOWS
+                    // TAB 2: VIDEO
                     Expanded(
                       child: _buildSegmentTab(
                         index: 2,
-                        icon: Icons.live_tv_rounded,
-                        label: AppLocalizations.of(context)!.shows,
-                        isSelected: _selectedTab == 2,
-                        isDark: isDark,
-                      ),
-                    ),
-                    const SizedBox(width: 2),
-                    // TAB 3: VIDEO
-                    Expanded(
-                      child: _buildSegmentTab(
-                        index: 3,
                         icon: Icons.smart_display_rounded,
                         label: AppLocalizations.of(context)!.video,
-                        isSelected: _selectedTab == 3,
+                        isSelected: _selectedTab == 2,
                         isDark: isDark,
                       ),
                     ),
@@ -108,7 +96,6 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                 children: const [
                   BookCatalogScreen(showBackButton: false),
                   MediaHubScreen(showBackButton: false),
-                  ShowCatalogScreen(),
                   MediaSearchScreen(),
                 ],
               ),
@@ -164,7 +151,9 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
               label,
               style: TextStyle(
                 color: isSelected
-                    ? (isDark ? const Color(0xFFFFD54F) : const Color(0xFF1A1A1B))
+                    ? (isDark
+                        ? const Color(0xFFFFD54F)
+                        : const Color(0xFF1A1A1B))
                     : (isDark ? Colors.white54 : Colors.black38),
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 fontSize: 13,

@@ -682,7 +682,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get generalVocabulary => 'General Vocabulary';
 
   @override
-  String get cardsRequireAttention => 'cards require attention.';
+  String cardsRequireAttention(Object count) {
+    return 'cards require attention.';
+  }
 
   @override
   String get begin => 'Begin';
@@ -976,7 +978,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sessionDetails => 'Session Details';
 
   @override
-  String get partner => 'Partner (中文)';
+  String partner(Object lang) {
+    return 'Partner (中文)';
+  }
 
   @override
   String get youEnglish => 'You (English)';
@@ -1158,16 +1162,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviewAddToLibrary => 'Review & Add to Library';
 
   @override
-  String get hideStrokeGuideStreak => 'Hide stroke guide at streak: (streak)';
+  String hideStrokeGuideStreak(Object streak) {
+    return 'Hide stroke guide at streak: (streak)';
+  }
 
   @override
-  String get inkPoints => '(points) Ink Points';
+  String inkPoints(Object points) {
+    return '(points) Ink Points';
+  }
 
   @override
-  String get speechRateMultiplier => '(rate)x';
+  String speechRateMultiplier(Object rate) {
+    return '(rate)x';
+  }
 
   @override
-  String get animationSpeedMultiplier => '(rate)x';
+  String animationSpeedMultiplier(Object rate) {
+    return '(rate)x';
+  }
 
   @override
   String get supportAndFeedback => 'Support & Feedback';
@@ -1188,8 +1200,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawThisCharacter => 'Draw this character:';
 
   @override
-  String get followGuideStroke =>
-      'Follow the blue guide to draw stroke (current) of (total)';
+  String followGuideStroke(Object current, Object total) {
+    return 'Follow the blue guide to draw stroke (current) of (total)';
+  }
 
   @override
   String get skipCurrentStroke => 'Skip Current Stroke';
@@ -1198,14 +1211,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get submitDrawing => 'Submit Drawing';
 
   @override
-  String get addedToDeck => 'Added (hanzi) to (deckName)';
+  String addedToDeck(Object deckName, Object hanzi) {
+    return 'Added (hanzi) to (deckName)';
+  }
 
   @override
-  String get removedFromDeck => 'Removed (hanzi) from deck';
+  String removedFromDeck(Object hanzi) {
+    return 'Removed (hanzi) from deck';
+  }
 
   @override
-  String get skippedNoStrokeData =>
-      'Skipped \"(hanzi)\" - No stroke data available for this AI character.';
+  String skippedNoStrokeData(Object hanzi) {
+    return 'Skipped \"(hanzi)\" - No stroke data available for this AI character.';
+  }
 
   @override
   String get startingSession => 'Starting session...';
@@ -1238,16 +1256,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get culturalReadingRoom => '文化书房 (Cultural Reading Room)';
 
   @override
-  String get storyTitleHsk => '(title) (HSK (level))';
+  String storyTitleHsk(Object level, Object title) {
+    return '(title) (HSK (level))';
+  }
 
   @override
   String get pleaseEnterTopic => 'Please enter a topic';
 
   @override
-  String get createdDeckCards => 'Created (name) with (count) cards!';
+  String createdDeckCards(Object count, Object name) {
+    return 'Created (name) with (count) cards!';
+  }
 
   @override
-  String get gradeResult => 'Grade: (grade)';
+  String gradeResult(Object grade) {
+    return 'Grade: (grade)';
+  }
 
   @override
   String get listeningMode => 'Listening Mode';
@@ -1289,7 +1313,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get arLens => 'AR Lens';
 
   @override
-  String get addedCharToLibrary => 'Added (char) to Library';
+  String addedCharToLibrary(Object char) {
+    return 'Added (char) to Library';
+  }
 
   @override
   String get scoreText => 'score';
@@ -1343,13 +1369,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get typeMessage => 'Type your message...';
 
   @override
-  String get addedToLibrary => 'Added \'(hanzi)\' to your Library';
+  String addedToLibrary(Object hanzi) {
+    return 'Added \'(hanzi)\' to your Library';
+  }
 
   @override
   String get generateNewStory => 'Generate New Story';
 
   @override
-  String get failedToGenerateStory => 'Failed to generate story:\\n(error)';
+  String failedToGenerateStory(Object error) {
+    return 'Failed to generate story:\\n(error)';
+  }
 
   @override
   String get detail => 'Detail';
@@ -1576,7 +1606,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addSelectedToDeck => 'Add Selected to Deck';
 
   @override
-  String get addTo => 'Add to';
+  String addTo(Object target) {
+    return 'Add to';
+  }
 
   @override
   String addedHanziToYourLibrary(String hanzi) {
@@ -2190,7 +2222,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'A personalized path based on your deck.';
 
   @override
-  String get play => 'Play';
+  String play(Object pinyin) {
+    return 'Play';
+  }
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2316,7 +2350,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Scenario saved! Find it in the Custom tab.';
 
   @override
-  String get score => 'Score:';
+  String score(Object score, Object total) {
+    return 'Score:';
+  }
 
   @override
   String get searchByPinyinOrMeaning => 'Search by pinyin or meaning...';
@@ -2595,7 +2631,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yesReGradeMe => 'Yes, Re-Grade Me!';
 
   @override
-  String get you => 'You';
+  String you(Object lang) {
+    return 'You';
+  }
 
   @override
   String get youAreSpeaking => 'You are speaking';
@@ -2646,7 +2684,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get added_to_your_library => 'Added \'\' to your Library';
+  String added_to_your_library(Object hanzi) {
+    return 'Added \'\' to your Library';
+  }
 
   @override
   String get advanced => 'Advanced';
@@ -2655,7 +2695,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ai_stories => 'AI Stories';
 
   @override
-  String get analysis_failed => 'Analysis Failed: (error)';
+  String analysis_failed(Object error) {
+    return 'Analysis Failed: (error)';
+  }
 
   @override
   String get analyzing_pronunciation_with_gemini_ai =>
@@ -2685,7 +2727,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calligraphy_trace => 'Calligraphy Trace';
 
   @override
-  String get chapters => 'Chapters)';
+  String chapters(Object count) {
+    return 'Chapters)';
+  }
 
   @override
   String get char => 'char';
@@ -2715,26 +2759,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get elementary => 'Elementary';
 
   @override
-  String get error_creating_scenario => 'Error creating scenario: (error)';
+  String error_creating_scenario(Object error) {
+    return 'Error creating scenario: (error)';
+  }
 
   @override
-  String get error_fetching_translation_for =>
-      'Error fetching translation for : (error)';
+  String error_fetching_translation_for(Object error) {
+    return 'Error fetching translation for : (error)';
+  }
 
   @override
-  String get error_loading_chapters => 'Error loading chapters: (error)';
+  String error_loading_chapters(Object error) {
+    return 'Error loading chapters: (error)';
+  }
 
   @override
   String get error_loading_decks => 'Error loading decks';
 
   @override
-  String get error_loading_microreads => 'Error loading micro-reads: (error)';
+  String error_loading_microreads(Object error) {
+    return 'Error loading micro-reads: (error)';
+  }
 
   @override
-  String get error_loading_novels => 'Error loading novels: (error)';
+  String error_loading_novels(Object error) {
+    return 'Error loading novels: (error)';
+  }
 
   @override
-  String get error_loading_poetry => 'Error loading poetry: (error)';
+  String error_loading_poetry(Object error) {
+    return 'Error loading poetry: (error)';
+  }
 
   @override
   String get etymology => 'Etymology: ';
@@ -2746,20 +2801,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get extracted_text_tap_to_lookup => 'Extracted Text (Tap to lookup)';
 
   @override
-  String get extraction_failed => 'Extraction Failed: \\(error)';
+  String extraction_failed(Object error) {
+    return 'Extraction Failed: \\(error)';
+  }
 
   @override
   String get failed_to_download => 'Failed to download.';
 
   @override
-  String get failed_to_generate_scenario =>
-      'Failed to generate scenario: (error)';
+  String failed_to_generate_scenario(Object error) {
+    return 'Failed to generate scenario: (error)';
+  }
 
   @override
-  String get failed_to_generate_story => 'Failed to generate story:\\n(error)';
+  String failed_to_generate_story(Object error) {
+    return 'Failed to generate story:\\n(error)';
+  }
 
   @override
-  String get failed_to_load_context => 'Failed to load context: (error)rr';
+  String failed_to_load_context(Object error) {
+    return 'Failed to load context: (error)rr';
+  }
 
   @override
   String get feature_request => 'Feature Request';
@@ -2772,7 +2834,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'How is my pronunciation scored?';
 
   @override
-  String get hsk => 'HSK ';
+  String hsk(Object level) {
+    return 'HSK ';
+  }
 
   @override
   String hsk_vocabulary(int hskLevel) {
@@ -2798,7 +2862,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_decks_found => 'No decks found.';
 
   @override
-  String get no_results_found_for => 'No results found for \'\'';
+  String no_results_found_for(Object searchQuery) {
+    return 'No results found for \'\'';
+  }
 
   @override
   String get no_when_you_use_echo_hall =>
@@ -2839,7 +2905,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get previous => 'Previous';
 
   @override
-  String get question => 'Question';
+  String question(Object current, Object total) {
+    return 'Question';
+  }
 
   @override
   String remove_from_this_deck(String hanzi) {
@@ -2847,7 +2915,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get revenuecat_error => 'RevenueCat Error: (error)';
+  String revenuecat_error(Object error) {
+    return 'RevenueCat Error: (error)';
+  }
 
   @override
   String get review_tomorrow => 'Review Tomorrow';
@@ -2874,7 +2944,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Shadowing Studio is a dedicated space to practice mimicking native';
 
   @override
-  String get simplify_failed => 'Simplify Failed: (error)';
+  String simplify_failed(Object error) {
+    return 'Simplify Failed: (error)';
+  }
 
   @override
   String get sinospark_premium => 'SinoSpark Premium';
@@ -2905,7 +2977,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get traditional => 'Traditional';
 
   @override
-  String get translation_failed => 'Translation Failed: (error)';
+  String translation_failed(Object error) {
+    return 'Translation Failed: (error)';
+  }
 
   @override
   String get type_in => 'Type in ...';
@@ -2936,7 +3010,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get you_said => '🗣️ You Said';
 
   @override
-  String get vocabularyBatch => 'Vocabulary Batch (index)';
+  String vocabularyBatch(Object index) {
+    return 'Vocabulary Batch (index)';
+  }
 
   @override
   String get yourDailyDropIsHere => 'Your Daily Drop is here! ✨';
@@ -2958,10 +3034,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToLoadCollections => 'Failed to load collections.';
 
   @override
-  String get unnamedKey => '#(tag)';
+  String unnamedKey(Object tag) {
+    return '#(tag)';
+  }
 
   @override
-  String get error => 'Error: (error)';
+  String error(Object error) {
+    return 'Error: (error)';
+  }
 
   @override
   String get aiSmartContext => 'AI Smart Context';
@@ -3087,11 +3167,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rewrite this article to match your HSK level';
 
   @override
-  String get failedToSaveExtractedWords =>
-      'Failed to save extracted words: (error)';
+  String failedToSaveExtractedWords(Object error) {
+    return 'Failed to save extracted words: (error)';
+  }
 
   @override
-  String get addToDeck => 'Add to Deck ((count))';
+  String addToDeck(Object count) {
+    return 'Add to Deck ((count))';
+  }
 
   @override
   String get dailyDiscoveryDrop => 'Daily Discovery Drop';
@@ -3124,7 +3207,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get interpreter => 'Interpreter';
 
   @override
-  String get cards => '(count) cards';
+  String cards(Object count) {
+    return '(count) cards';
+  }
 
   @override
   String get nWaMendsTheHeavens => 'Nüwa Mends the Heavens';
@@ -3175,13 +3260,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bookmarkRemoved => '书签已移除 · Bookmark removed';
 
   @override
-  String get bookmarkAdded => '已添加书签 · Bookmark added: 第(chapter)回';
+  String bookmarkAdded(Object chapter) {
+    return '已添加书签 · Bookmark added: 第(chapter)回';
+  }
 
   @override
   String get readingVocabulary => 'Reading & Vocabulary';
 
   @override
-  String get vocabularyBatchUnitindex1 => 'Vocabulary Batch \$(unitIndex + 1)';
+  String vocabularyBatchUnitindex1(Object index) {
+    return 'Vocabulary Batch \$(unitIndex + 1)';
+  }
 
   @override
   String get yourDailyDropIsHere1 => 'Your Daily Drop is here! ✨';
@@ -3206,16 +3295,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToLoadCollections1 => 'Failed to load collections.';
 
   @override
-  String get ui__transcription => '\"\$_transcription\"';
+  String ui__transcription(Object transcription) {
+    return '\"\$_transcription\"';
+  }
 
   @override
-  String get playPinyinwithtone => 'Play \$pinyinWithTone';
+  String playPinyinwithtone(Object pinyinWithTone) {
+    return 'Play \$pinyinWithTone';
+  }
 
   @override
-  String get errorE => 'Error: \$e';
+  String errorE(Object e) {
+    return 'Error: \$e';
+  }
 
   @override
-  String get lookalikepinyin => '(\$(lookAlike.pinyin))';
+  String lookalikepinyin(Object pinyin) {
+    return '(\$(lookAlike.pinyin))';
+  }
 
   @override
   String get aiSmartContext1 => 'AI Smart Context';
@@ -3224,7 +3321,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aiSmartContextError1 => 'AI Smart Context Error';
 
   @override
-  String get errorErr => 'Error: \$err';
+  String errorErr(Object err, Object error) {
+    return 'Error: \$err';
+  }
 
   @override
   String get downloadOfficialHskCollections1 =>
@@ -3238,8 +3337,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchRadicalsEgWater => 'Search radicals (e.g. Water, 氵)';
 
   @override
-  String get ui__currentstrokeindex1totalstrokes =>
-      '\$(_currentStrokeIndex + 1)/\$totalStrokes';
+  String ui__currentstrokeindex1totalstrokes(Object current, Object total) {
+    return '\$(_currentStrokeIndex + 1)/\$totalStrokes';
+  }
 
   @override
   String get translationLanguage1 => 'Translation Language';
@@ -3263,7 +3363,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accuracyByMode1 => 'Accuracy by Mode';
 
   @override
-  String get accuracytostringasfixed1 => '\$(accuracy.toStringAsFixed(1))%';
+  String accuracytostringasfixed1(Object accuracy) {
+    return '\$(accuracy.toStringAsFixed(1))%';
+  }
 
   @override
   String get upcomingReviewsNext7Days => 'Upcoming Reviews (Next 7 Days)';
@@ -3272,7 +3374,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get explaining => 'Explaining:';
 
   @override
-  String get entryhanziEntrypinyin => '\$(entry.hanzi) [\$(entry.pinyin)]';
+  String entryhanziEntrypinyin(Object hanzi, Object pinyin) {
+    return '\$(entry.hanzi) [\$(entry.pinyin)]';
+  }
 
   @override
   String get dailyNewCards1 => 'Daily New Cards';
@@ -3296,7 +3400,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get practiceMode1 => 'Practice Mode';
 
   @override
-  String get acc => '\$acc%';
+  String acc(Object acc) {
+    return '\$acc%';
+  }
 
   @override
   String get partner1 => 'Partner';
@@ -3371,7 +3477,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get showsDramas1 => 'SHOWS & DRAMAS';
 
   @override
-  String get error_error => 'Error: \$_error';
+  String error_error(Object error) {
+    return 'Error: \$_error';
+  }
 
   @override
   String get extractToDeck1 => 'Extract to Deck';
@@ -3387,10 +3495,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addToDeck1 => 'Add to Deck';
 
   @override
-  String get playbackratex => '\$(playbackRate)x';
+  String playbackratex(Object playbackRate) {
+    return '\$(playbackRate)x';
+  }
 
   @override
-  String get speedx => '\$(speed)x';
+  String speedx(Object speed) {
+    return '\$(speed)x';
+  }
 
   @override
   String get dailyDiscoveryDrop1 => 'Daily Discovery Drop';
@@ -3417,8 +3529,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get iveGrantedAccess => 'I\'ve granted access';
 
   @override
-  String get addToDeck_selectedwordindiceslength =>
-      'Add to Deck (\$(_selectedWordIndices.length))';
+  String addToDeck_selectedwordindiceslength(Object count) {
+    return 'Add to Deck (\$(_selectedWordIndices.length))';
+  }
 
   @override
   String get scanner1 => 'Scanner';
@@ -3427,11 +3540,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get interpreter1 => 'Interpreter';
 
   @override
-  String get entryvalueCards => '\$(entry.value) cards';
+  String entryvalueCards(Object count) {
+    return '\$(entry.value) cards';
+  }
 
   @override
-  String get score_score_questionslength =>
-      'Score: \$_score / \$(_questions.length)';
+  String score_score_questionslength(Object score, Object total) {
+    return 'Score: \$_score / \$(_questions.length)';
+  }
 
   @override
   String get theMonkeyKing1 => 'The Monkey King';
@@ -4067,7 +4183,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get theScrollOfOrigin1 => 'THE SCROLL OF ORIGIN';
 
   @override
-  String get galaxyOf1 => 'GALAXY OF';
+  String galaxyOf1(Object name) {
+    return 'GALAXY OF';
+  }
 
   @override
   String get also => 'Also';
@@ -4196,7 +4314,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get component => 'Component';
 
   @override
-  String get divingInto1 => 'Diving into';
+  String divingInto1(Object topic) {
+    return 'Diving into';
+  }
 
   @override
   String get unitIntro1 => 'Unit Intro';
@@ -6422,7 +6542,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get classicLiterature => 'Classic\', \'Literature';
 
   @override
-  String get inThisChapterOf => 'In this chapter of';
+  String inThisChapterOf(Object title) {
+    return 'In this chapter of';
+  }
 
   @override
   String get asTheNarrativeUnfoldsItIlluminatesT =>
