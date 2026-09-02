@@ -37,14 +37,51 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   ReadingRoomSection _activeSection = ReadingRoomSection.novels;
 
   // Novel filters
-  String _selectedNovelCategory = 'All';
+  String _selectedNovelCategory = 'ALL';
 
   // Micro-read filters
   int _selectedHsk = -1; // -1 = All
 
   final TextEditingController _searchController = TextEditingController();
 
-  List<String> _novelCategories = const ['All'];
+  static const List<String> _novelCategoryKeys = [
+    'ALL',
+    'Chinese Epics',
+    'Ancient Philosophy',
+    'Supernatural & Folklore',
+    'Modern Chinese',
+    'French Classics',
+    'German Classics',
+    'Spanish & World',
+    'English & World',
+  ];
+
+  String _getNovelCategoryLabel(BuildContext context, String key) {
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) return key;
+    switch (key) {
+      case 'ALL':
+        return l10n.allLabel;
+      case 'Chinese Epics':
+        return l10n.chineseEpics;
+      case 'Ancient Philosophy':
+        return l10n.ancientPhilosophy;
+      case 'Supernatural & Folklore':
+        return l10n.supernaturalAndFolklore;
+      case 'Modern Chinese':
+        return l10n.modernChinese;
+      case 'French Classics':
+        return l10n.frenchClassics;
+      case 'German Classics':
+        return l10n.germanClassics;
+      case 'Spanish & World':
+        return l10n.spanishAndWorld;
+      case 'English & World':
+        return l10n.englishAndWorld;
+      default:
+        return key;
+    }
+  }
 
   @override
   void initState() {
@@ -52,28 +89,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     _activeSection = widget.initialSection;
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context);
-    if (l10n != null) {
-      final all = l10n.allLabel;
-      if (_selectedNovelCategory == 'All') {
-        _selectedNovelCategory = all;
-      }
-      _novelCategories = [
-        all,
-        l10n.chineseEpics,
-        l10n.ancientPhilosophy,
-        l10n.supernaturalAndFolklore,
-        l10n.modernChinese,
-        l10n.frenchClassics,
-        l10n.germanClassics,
-        l10n.spanishAndWorld,
-        l10n.englishAndWorld,
-      ];
-    }
-  }
 
   @override
   void dispose() {
@@ -285,15 +300,16 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           physics: const BouncingScrollPhysics(),
-          itemCount: _novelCategories.length,
+          itemCount: _novelCategoryKeys.length,
           separatorBuilder: (_, __) => const SizedBox(width: 8),
           itemBuilder: (context, index) {
-            final cat = _novelCategories[index];
-            final isSelected = _selectedNovelCategory == cat;
+            final catKey = _novelCategoryKeys[index];
+            final isSelected = _selectedNovelCategory == catKey;
+            final label = _getNovelCategoryLabel(context, catKey);
             return GestureDetector(
               onTap: () {
                 HapticsManager.light();
-                setState(() => _selectedNovelCategory = cat);
+                setState(() => _selectedNovelCategory = catKey);
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
@@ -314,7 +330,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 ),
                 child: Center(
                   child: Text(
-                    cat,
+                    label,
                     style: TextStyle(
                       color: isSelected
                           ? Colors.white
@@ -330,6 +346,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           },
         ),
       );
+
     } else if (_activeSection == ReadingRoomSection.microReads) {
       final hskFilters = [
         {'label': 'All Levels', 'val': -1},
@@ -408,8 +425,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       data: (books) {
         final query = _searchController.text.trim().toLowerCase();
         final filtered = books.where((b) {
-          final matchesCat = _selectedNovelCategory ==
-                  AppLocalizations.of(context)!.allLabel ||
+          final matchesCat = _selectedNovelCategory == 'ALL' ||
               b.category == _selectedNovelCategory;
           final matchesSearch = query.isEmpty ||
               b.title.toLowerCase().contains(query) ||
@@ -425,11 +441,12 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           // Continue Reading Shelf
           if (inProgressItems.isNotEmpty &&
               query.isEmpty &&
-              _selectedNovelCategory == AppLocalizations.of(context)!.allLabel)
+              _selectedNovelCategory == 'ALL')
             SliverToBoxAdapter(
               child: _buildContinueReadingShelf(
                   context, inProgressItems, isDark, cardBg, primaryText),
             ),
+
 
           // Count indicator
           SliverToBoxAdapter(

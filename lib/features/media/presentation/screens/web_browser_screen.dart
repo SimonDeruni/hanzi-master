@@ -1194,7 +1194,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         }
       }
     } catch (_) {
-      // Silently ignore â€” if we can't check, just assume not saved
+      // Silently ignore — if we can't check, just assume not saved
     }
   }
 
@@ -1210,7 +1210,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       final cleanSentence = sentence
           .replaceAll(
               RegExp(
-                  r'[a-zA-ZÄÃ¡ÇŽÃ Ä“Ã©Ä›Ã¨Ä«Ã­ÇÃ¬ÅÃ³Ç’Ã²Å«ÃºÇ”Ã¹Ç–Ç˜ÇšÇœÃ¼]+'),
+                  r'[a-zA-ZÄÃ¡ÇŽÃ Ä“éÄ›èÄ«Ã­ÇÃ¬ÅÃ³Ç’Ã²Å«ÃºÇ”ùÇ–Ç˜ÇšÇœÃ¼]+'),
               '')
           .replaceAll(RegExp(r'\s+'), ' ')
           .trim();
@@ -1878,7 +1878,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 ),
                               const SizedBox(width: 6),
                               Text(
-                                _isProcessingAi ? 'Processingâ€¦' : 'AI Tools',
+                                _isProcessingAi ? 'Processing…' : 'AI Tools',
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -2294,7 +2294,7 @@ class _ExtractedWordsReviewSheetState
                 ),
               ),
               const SizedBox(width: 12),
-              // AppLocalizations.of(context)!.createNewDeck â€” direct creation
+              // AppLocalizations.of(context)!.createNewDeck — direct creation
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -2317,7 +2317,7 @@ class _ExtractedWordsReviewSheetState
                 ),
               ),
               const SizedBox(width: 12),
-              // "Add to Deck" â€” returns selected words to caller
+              // "Add to Deck" — returns selected words to caller
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(

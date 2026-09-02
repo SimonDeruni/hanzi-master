@@ -1,4 +1,4 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -175,7 +175,16 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
         // 1. Map master results, replacing with library versions if they exist to keep streak data
         final List<Flashcard> unifiedResults = masterResults.map((masterCard) {
-          return libraryMap[masterCard.hanzi] ?? masterCard;
+          final libraryCard = libraryMap[masterCard.hanzi];
+          if (libraryCard == null) return masterCard;
+
+          // Keep the saved card's identity and study progress, but display the
+          // current dictionary's complete definition in the selected language.
+          return libraryCard.copyWith(
+            pinyin: masterCard.pinyin,
+            definition: masterCard.definition,
+            definitionLanguage: masterCard.definitionLanguage,
+          );
         }).toList();
 
         // 2. Find local-only cards that match the query but weren't in masterResults (e.g. custom user cards)
@@ -664,6 +673,7 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
             const SizedBox(height: 4),
             TranslatedDefinition(
               definition: _definition,
+              definitionLanguage: widget.card.definitionLanguage,
               hanzi: widget.card.hanzi,
               originalStyle: theme.textTheme.bodySmall,
               maxLines: 1,
@@ -872,7 +882,7 @@ class _RadicalCard extends ConsumerWidget {
         // 3. Open Detail Sheet
         showModalBottomSheet(
           context: context,
-      useRootNavigator: true,
+          useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
           builder: (context) => RadicalDetailSheet(
@@ -1047,6 +1057,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                   const SizedBox(height: 4),
                   TranslatedDefinition(
                     definition: _definition,
+                    definitionLanguage: widget.card.definitionLanguage,
                     hanzi: widget.card.hanzi,
                     originalStyle: TextStyle(
                       fontSize: 14,

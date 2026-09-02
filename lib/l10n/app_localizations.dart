@@ -21685,6 +21685,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Usage:'**
   String get usage3;
+
+  /// No description provided for @tutorialOneExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'This is ONE (Yī). Always draw from Left to Right.'**
+  String get tutorialOneExplanation;
+
+  /// No description provided for @tutorialWaterExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the full character WATER (Shuǐ). When used as a left-side component, it shapeshifts into \'氵\' (Three Drops)!'**
+  String get tutorialWaterExplanation;
+
+  /// No description provided for @tutorialRadicalsExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi are built from building blocks called RADICALS. They give the character its core meaning or theme.'**
+  String get tutorialRadicalsExplanation;
+
+  /// No description provided for @tutorialLettersExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi are not just letters. They are pictures frozen in time. To master them, you must learn to trace their flow.'**
+  String get tutorialLettersExplanation;
+
+  /// No description provided for @tutorialGalaxyExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'The Galaxy Map awaits. Master the Suns (Radicals) to unlock the Planets (Characters).'**
+  String get tutorialGalaxyExplanation;
+
+  /// No description provided for @onboardingDailyLifeTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Life & Travel'**
+  String get onboardingDailyLifeTravel;
+
+  /// No description provided for @onboardingPhilosophyIdioms.
+  ///
+  /// In en, this message translates to:
+  /// **'Philosophy & Idioms'**
+  String get onboardingPhilosophyIdioms;
+
+  /// No description provided for @onboardingBusinessCareerMulti.
+  ///
+  /// In en, this message translates to:
+  /// **'Business &\nCareer'**
+  String get onboardingBusinessCareerMulti;
+
+  /// No description provided for @onboardingTravelSurvivalMulti.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel &\nSurvival'**
+  String get onboardingTravelSurvivalMulti;
+
+  /// No description provided for @onboardingHskCertificationMulti.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK\nCertification'**
+  String get onboardingHskCertificationMulti;
+
+  /// No description provided for @onboardingCulturalAppreciationMulti.
+  ///
+  /// In en, this message translates to:
+  /// **'Cultural\nAppreciation'**
+  String get onboardingCulturalAppreciationMulti;
 }
 
 class _AppLocalizationsDelegate

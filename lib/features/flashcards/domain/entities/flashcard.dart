@@ -10,6 +10,13 @@ class Flashcard extends Equatable {
   final String hanzi;
   final String pinyin;
   final String definition;
+
+  /// Language of [definition] when it is known by the data source.
+  ///
+  /// Saved/custom flashcards leave this null and continue through the normal
+  /// translation fallback. Global dictionary results set it so already
+  /// localized definitions are not translated a second time.
+  final String? definitionLanguage;
   final int hskLevel;
   final List<String> strokePaths;
   final List<List<Offset>> medianPaths;
@@ -31,6 +38,7 @@ class Flashcard extends Equatable {
     required this.hanzi,
     required this.pinyin,
     required this.definition,
+    this.definitionLanguage,
     required this.hskLevel,
     required this.strokePaths,
     this.medianPaths = const [],
@@ -48,6 +56,7 @@ class Flashcard extends Equatable {
         hanzi,
         pinyin,
         definition,
+        definitionLanguage,
         hskLevel,
         strokePaths,
         medianPaths,
@@ -106,6 +115,7 @@ class Flashcard extends Equatable {
     String? hanzi,
     String? pinyin,
     String? definition,
+    String? definitionLanguage,
     int? hskLevel,
     List<String>? strokePaths,
     List<List<Offset>>? medianPaths,
@@ -121,6 +131,7 @@ class Flashcard extends Equatable {
       hanzi: hanzi ?? this.hanzi,
       pinyin: pinyin ?? this.pinyin,
       definition: definition ?? this.definition,
+      definitionLanguage: definitionLanguage ?? this.definitionLanguage,
       hskLevel: hskLevel ?? this.hskLevel,
       strokePaths: strokePaths ?? this.strokePaths,
       medianPaths: medianPaths ?? this.medianPaths,

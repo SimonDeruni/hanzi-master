@@ -136,14 +136,15 @@ flutter_icons:
   adaptive_icon_foreground: "assets/icon/icon_foreground.png"
 
 flutter_native_splash:
-  color: "#FDFCF0"
-  color_dark: "#1A1A1B"
-  image: "assets/icon/icon_circle.png"
-  image_dark: "assets/icon/icon_circle.png"
+  color: "#FCBC03"
+  color_dark: "#FCBC03"
+  image: "assets/icon/icon.png"
+  image_dark: "assets/icon/icon.png"
   android: true
   ios: true
   android_12:
-    image: "assets/icon/icon_circle.png"
-    image_dark: "assets/icon/icon_circle.png"
-    color: "#FDFCF0"
-    color_dark: "#1A1A1B"
+    image: "assets/icon/icon.png"
+    image_dark: "assets/icon/icon.png"
+    color: "#FCBC03"
+    color_dark: "#FCBC03"
+

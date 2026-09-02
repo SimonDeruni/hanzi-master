@@ -499,7 +499,7 @@
   "aClassicTangDynastyPoemBy": "~의 당나라 고전 명시",
   "aStructuralComponent": "한자의 구조적 구성 요소입니다.",
   "addSelectedToDeck": "선택 항목을 덱에 추가",
- "addTo": " 에 추가",
+  "addTo": " 에 추가",
   "addedHanziToYourLibrary": "「{hanzi}」을(를) 라이브러리에 추가했습니다",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -1498,7 +1498,7 @@
   "craftBeerBreweryInQingdao": "칭다오 수제 맥주 브루어리",
   "aLivelyCoastalTaproomWithWoodenBarr": "오크통과 시원한 바닷바람, 신선한 밀맥주가 있는 해변가 펍.",
   "sichuanCookingMasterclass": "정통 사천요리 마스터클래스",
- "aVibrantOpenKitchenWithWoksBlazingC": "웍에서 불길이 솟구치고 고추기름이 끓어오르며 신선한 화자오 향이 가득한 활기찬 오픈 키친.",
+  "aVibrantOpenKitchenWithWoksBlazingC": "웍에서 불길이 솟구치고 고추기름이 끓어오르며 신선한 화자오 향이 가득한 활기찬 오픈 키친.",
   "highspeedRailSeatMixup": "고속열차 좌석 혼동",
   "greatWallSunriseTrekInMutianyu": "무톈위 만리장성 일출 트레킹",
   "theAncientStoneRampartsOfTheGreatWa": "안개 낀 푸른 산세에 둘러싸여 새벽빛을 머금은 만리장성의 고대 석조 성벽.",
@@ -1919,7 +1919,7 @@
   "aiIsAnalyzingCulturalContext": "AI가 문화적 배경을 분석하는 중입니다...",
   "diveIntoFullContent": "콘텐츠 전문 확인하기",
   "savedArticles": "저장된 아티클",
-  "liveOverlay": "라이브 오버레이",
+  "liveOverlay": "실시간 번역 오버레이",
   "webExplorer": "웹 탐색기",
   "browseAnyChineseWebsiteWithRealtime": "단어 탭 사전, 병음 주석, 실시간 번역으로 중국어 웹사이트를 자유롭게 서핑하세요.",
   "startExploring": "탐색 시작하기",

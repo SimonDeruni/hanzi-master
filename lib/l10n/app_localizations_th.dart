@@ -6234,7 +6234,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get savedArticles => 'บทความที่บันทึกไว้';
 
   @override
-  String get liveOverlay => 'โอเวอร์เลย์สด (LIVE OVERLAY)';
+  String get liveOverlay => 'ผู้ช่วยอ่านแบบเรียลไทม์';
 
   @override
   String get webExplorer => 'ตัวสำรวจเว็บ (WEB EXPLORER)';
@@ -11685,4 +11685,42 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get usage3 => 'Usage:';
+
+  @override
+  String get tutorialOneExplanation =>
+      'This is ONE (Yī). Always draw from Left to Right.';
+
+  @override
+  String get tutorialWaterExplanation =>
+      'This is the full character WATER (Shuǐ). When used as a left-side component, it shapeshifts into \'氵\' (Three Drops)!';
+
+  @override
+  String get tutorialRadicalsExplanation =>
+      'Hanzi are built from building blocks called RADICALS. They give the character its core meaning or theme.';
+
+  @override
+  String get tutorialLettersExplanation =>
+      'Hanzi are not just letters. They are pictures frozen in time. To master them, you must learn to trace their flow.';
+
+  @override
+  String get tutorialGalaxyExplanation =>
+      'The Galaxy Map awaits. Master the Suns (Radicals) to unlock the Planets (Characters).';
+
+  @override
+  String get onboardingDailyLifeTravel => 'Daily Life & Travel';
+
+  @override
+  String get onboardingPhilosophyIdioms => 'Philosophy & Idioms';
+
+  @override
+  String get onboardingBusinessCareerMulti => 'Business &\nCareer';
+
+  @override
+  String get onboardingTravelSurvivalMulti => 'Travel &\nSurvival';
+
+  @override
+  String get onboardingHskCertificationMulti => 'HSK\nCertification';
+
+  @override
+  String get onboardingCulturalAppreciationMulti => 'Cultural\nAppreciation';
 }

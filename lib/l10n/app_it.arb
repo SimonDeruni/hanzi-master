@@ -1,5 +1,5 @@
 {
- "@locale": "it",
+  "@locale": "it",
   "deleteAccount": "Elimina account",
   "deleteAccountSubtitle": "Elimina definitivamente il tuo account",
   "deleteAccountTitle": "Eliminare definitivamente il tuo account?",
@@ -498,7 +498,7 @@
   "aClassicTangDynastyPoem": "Una poesia classica della dinastia Tang",
   "aClassicTangDynastyPoemBy": "Una poesia classica della dinastia Tang di",
   "aStructuralComponent": "Un componente strutturale.",
- "addSelectedToDeck": "Aggiungi selezionati al mazzo",
+  "addSelectedToDeck": "Aggiungi selezionati al mazzo",
   "addTo": "Aggiungi a ",
   "addedHanziToYourLibrary": "«{hanzi}» è stato aggiunto alla tua biblioteca",
   "@addedHanziToYourLibrary": {
@@ -998,7 +998,7 @@
   "yourDailyDropIsHere": "La tua Uscita Giornaliera è pronta! ✨",
   "timeToReview": "È ora di ripassare! 📚",
   "neverMissAStroke": "Non perdere neanche un tratto! 🖌️",
- "yourTrialEndsTomorrow": "La tua prova gratuita termina domani! ⏳",
+  "yourTrialEndsTomorrow": "La tua prova gratuita termina domani! ⏳",
   "officialStandardVocabularyTiers": "Livelli ufficiali del vocabolario standard",
   "failedToLoadCollections": "Impossibile caricare le collezioni.",
   "unnamedKey": "#{tag}",
@@ -1919,7 +1919,7 @@
   "aiIsAnalyzingCulturalContext": "L'IA sta analizzando il contesto culturale...",
   "diveIntoFullContent": "Esplora il contenuto completo",
   "savedArticles": "Articoli salvati",
-  "liveOverlay": "SCHERMATA LIVE",
+  "liveOverlay": "LETTURA INTERATTIVA",
   "webExplorer": "ESPLORATORE WEB",
   "browseAnyChineseWebsiteWithRealtime": "Naviga su qualsiasi sito web cinese con dizionario istantaneo al tocco, annotazioni pinyin e traduzione in tempo reale.",
   "startExploring": "INIZIA A ESPLORARE",

@@ -11,6 +11,7 @@ import '../services/local_translation_service.dart';
 /// source remains visible while loading and after any translation failure.
 class TranslatedDefinition extends ConsumerStatefulWidget {
   final String definition;
+  final String? definitionLanguage;
   final String? hanzi;
   final TextStyle? originalStyle;
   final TextStyle? translationStyle;
@@ -21,6 +22,7 @@ class TranslatedDefinition extends ConsumerStatefulWidget {
   const TranslatedDefinition({
     super.key,
     required this.definition,
+    this.definitionLanguage,
     this.hanzi,
     this.originalStyle,
     this.translationStyle,
@@ -41,7 +43,7 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
 
   void _syncTranslation(String targetLanguage, bool useEnglishDefinitions) {
     final requestKey =
-        '$targetLanguage\u0000$useEnglishDefinitions\u0000${widget.hanzi}\u0000${widget.definition}';
+        '$targetLanguage\u0000$useEnglishDefinitions\u0000${widget.definitionLanguage}\u0000${widget.hanzi}\u0000${widget.definition}';
     if (_requestKey == requestKey) return;
 
     _requestKey = requestKey;
@@ -50,6 +52,7 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
 
     if (useEnglishDefinitions ||
         targetLanguage.toLowerCase() == 'english' ||
+        _sameLanguage(widget.definitionLanguage, targetLanguage) ||
         widget.definition.isEmpty) {
       return;
     }
@@ -67,6 +70,11 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
         // Keep displaying the canonical English definition on failure.
       }
     });
+  }
+
+  bool _sameLanguage(String? source, String target) {
+    if (source == null || source.trim().isEmpty) return false;
+    return source.trim().toLowerCase() == target.trim().toLowerCase();
   }
 
   @override

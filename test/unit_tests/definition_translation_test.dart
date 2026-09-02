@@ -16,7 +16,8 @@ class _FakeTranslationService extends LocalTranslationService {
   final translation = Completer<String>();
 
   @override
-  Future<String> translateEnglishDefinition(String definition, {String? hanzi}) async {
+  Future<String> translateEnglishDefinition(String definition,
+      {String? hanzi}) async {
     requests.add(definition);
     return translation.future;
   }
@@ -107,4 +108,43 @@ void main() {
     expect(find.text(definition), findsOneWidget);
     expect(find.text('Traduction complète'), findsNothing);
   });
+
+  for (final languageCase in <({String locale, String language, String text})>[
+    (locale: 'fr', language: 'French', text: 'Définition française complète'),
+    (locale: 'ja', language: 'Japanese', text: '完全な日本語の定義'),
+  ]) {
+    testWidgets(
+        'does not retranslate an already localized ${languageCase.language} definition',
+        (tester) async {
+      SharedPreferences.setMockInitialValues(
+          {'app_locale': languageCase.locale});
+      final prefs = await SharedPreferences.getInstance();
+      final service = _FakeTranslationService();
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          localTranslationServiceProvider.overrideWithValue(service),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: MaterialApp(
+            home: Scaffold(
+              body: TranslatedDefinition(
+                definition: languageCase.text,
+                definitionLanguage: languageCase.language,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.text(languageCase.text), findsOneWidget);
+      expect(service.requests, isEmpty);
+    });
+  }
 }

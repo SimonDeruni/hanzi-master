@@ -14,6 +14,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
@@ -943,13 +944,20 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                           color: isCurrent ? accent : primaryText,
                         ),
                       ),
-                      subtitle: Text(
-                        ch.titleEn,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: isDark ? Colors.white54 : Colors.black45,
+                      subtitle: FutureBuilder<String>(
+                        future: LocalizedCatalogService.getChapterTitle(
+                          titleEn: ch.titleEn,
+                          localeCode:
+                              Localizations.localeOf(context).languageCode,
+                        ),
+                        builder: (context, snap) => Text(
+                          snap.data ?? ch.titleEn,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: isDark ? Colors.white54 : Colors.black45,
+                          ),
                         ),
                       ),
                       onTap: () async {

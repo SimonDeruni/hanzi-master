@@ -287,7 +287,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
         _translateIncrementally(transcript, gemini);
       } else {
-        // Captions failed â€” fall back to YouTube native captions via the player
+        // Captions failed — fall back to YouTube native captions via the player
         if (mounted) {
           setState(() {
             _error = 'No Closed Captions (CC) found for this video. '
@@ -433,7 +433,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         setState(() => _isAdPlaying = isAd);
       }
 
-      // Don't force-disable captions â€” let users toggle YouTube native CC
+      // Don't force-disable captions — let users toggle YouTube native CC
       // _captionsDisabled flag is now kept for tracking but no JS override
 
       final position = state.position;
@@ -579,7 +579,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   // (inline private widget for the embedded control bar below the video)
 
   /// Skeleton transcript list + step indicator shown while data loads.
-  /// The video player is already visible above â€” we don't block it.
+  /// The video player is already visible above — we don't block it.
   Widget _buildLoadingState() {
     return Column(
       children: [

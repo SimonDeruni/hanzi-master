@@ -383,7 +383,7 @@ class MediaHubScreen extends ConsumerWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          'ç½‘é¡µæŽ¢ç´¢',
+                          '网页探索',
                           style: TextStyle(
                             color:
                                 const Color(0xFFFFD54F).withValues(alpha: 0.8),

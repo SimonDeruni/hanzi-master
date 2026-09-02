@@ -579,38 +579,38 @@
   "eraseDeckQuestion": "Effacer le deck ?",
   "errorFetchingTranslationForLabelE": "Erreur lors de la récupération de la traduction pour {label} : {e}",
   "@errorFetchingTranslationForLabelE": {
-  "placeholders": {
-  "label": {
-  "type": "String"
-  },
-  "e": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "e": {
+        "type": "String"
+      }
+    }
   },
   "errorLoadingMicroreadsE": "Erreur lors du chargement des micro-lectures : {e}",
   "@errorLoadingMicroreadsE": {
-  "placeholders": {
-  "e": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
   },
   "errorLoadingNovelsE": "Erreur lors du chargement des romans : {e}",
   "@errorLoadingNovelsE": {
-  "placeholders": {
-  "e": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
   },
   "errorLoadingPoetryE": "Erreur lors du chargement de la poésie : {e}",
   "@errorLoadingPoetryE": {
-  "placeholders": {
-  "e": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
   },
   "exitFocus": "Quitter le mode concentration",
   "explore": "Explorer",
@@ -654,11 +654,11 @@
   "hskCollections": "Collections HSK",
   "hskLevel": "HSK {level}",
   "@hskLevel": {
-  "placeholders": {
-  "level": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
   },
   "hskSimplifySubtitles": "Simplification des sous-titres (HSK)",
   "hskVocabularyCollections": "Collections de vocabulaire HSK",
@@ -706,11 +706,11 @@
   "noPremiumPackagesAvailable": "Aucun forfait premium disponible pour le moment.",
   "noResultsFoundForSearchquery": "Aucun résultat trouvé pour '{searchQuery}'",
   "@noResultsFoundForSearchquery": {
-  "placeholders": {
-  "searchQuery": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "searchQuery": {
+        "type": "String"
+      }
+    }
   },
   "noSavedArticlesYet": "Aucun article enregistré pour l'instant.",
   "noShowsAvailable": "Aucune émission disponible",
@@ -724,11 +724,11 @@
   "orderingSugarcoatedHawsInWinterBeijing": "Commander des brochettes de Tanghulu (baies d'aubépine confites) à Pékin en hiver",
   "partnerLang": "Partenaire ({lang})",
   "@partnerLang": {
-  "placeholders": {
-  "lang": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
   },
   "partnerListening": "Partenaire écoute...",
   "partnerSpeaking": "Partenaire parle...",
@@ -767,11 +767,11 @@
   "revenuecatError": "Erreur RevenueCat :",
   "revenuecatErrorE": "Erreur RevenueCat : {e}",
   "@revenuecatErrorE": {
-  "placeholders": {
-  "e": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "e": {
+        "type": "String"
+      }
+    }
   },
   "reviewExtractedDeck": "Réviser le deck extrait",
   "reviewIn": "Réviser dans",
@@ -878,11 +878,11 @@
   "youLabel": "Vous",
   "youLang": "Vous ({lang})",
   "@youLang": {
-  "placeholders": {
-  "lang": {
-  "type": "String"
-  }
-  }
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
   },
   "youMustAccount": "Vous devez accepter les Conditions d'utilisation et la Politique de confidentialité pour créer un compte.",
   "yourEchoModels": "Vos conversations Echo Hall sont stockées localement sur votre appareil afin que vous puissiez les consulter à tout moment. Nous n'utilisons pas vos conversations personnelles pour entraîner nos modèles d'IA.",
@@ -1907,7 +1907,7 @@
   "aiIsAnalyzingCulturalContext": "L'IA analyse le contexte culturel...",
   "diveIntoFullContent": "Plonger dans le Contenu Complet",
   "savedArticles": "Articles Enregistrés",
-  "liveOverlay": "SUPERPOSITION EN DIRECT",
+  "liveOverlay": "LECTURE AUGMENTÉE",
   "webExplorer": "EXPLORATEUR WEB",
   "browseAnyChineseWebsiteWithRealtime": "Naviguez sur n'importe quel site web chinois avec dictionnaire instantané, annotations pinyin et traductions en temps réel.",
   "startExploring": "COMMENCER L'EXPLORATION",

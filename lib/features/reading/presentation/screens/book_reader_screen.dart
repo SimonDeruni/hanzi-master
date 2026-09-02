@@ -1,4 +1,4 @@
-﻿import 'package:lpinyin/lpinyin.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,9 +10,10 @@ import 'package:hanzi_master/features/reading/presentation/providers/book_provid
 import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+
 
 enum BookPinyinMode { all, ghost, none }
 
@@ -1423,19 +1424,27 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 color: primaryText,
                               ),
                             ),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.only(top: 2),
-                              child: Text(
-                                ch.titleEn,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontStyle: FontStyle.italic,
-                                  color: isDark
-                                      ? Colors.amber.shade300
-                                      : const Color(0xFF8B0000),
+                            subtitle: FutureBuilder<String>(
+                              future: LocalizedCatalogService.getChapterTitle(
+                                titleEn: ch.titleEn,
+                                localeCode:
+                                    Localizations.localeOf(context).languageCode,
+                              ),
+                              builder: (context, snap) => Padding(
+                                padding: const EdgeInsets.only(top: 2),
+                                child: Text(
+                                  snap.data ?? ch.titleEn,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontStyle: FontStyle.italic,
+                                    color: isDark
+                                        ? Colors.amber.shade300
+                                        : const Color(0xFF8B0000),
+                                  ),
                                 ),
                               ),
                             ),
+
                             trailing: Text(
                               '${ch.sentences.length}句',
                               style: TextStyle(
@@ -1713,16 +1722,24 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                         ),
                         if (chapter.titleEn.isNotEmpty) ...[
                           const SizedBox(height: 6),
-                          Text(
-                            chapter.titleEn,
-                            style: TextStyle(
-                              fontSize: 13.5,
-                              color: isDark ? Colors.white70 : Colors.black87,
-                              fontStyle: FontStyle.italic,
+                          FutureBuilder<String>(
+                            future: LocalizedCatalogService.getChapterTitle(
+                              titleEn: chapter.titleEn,
+                              localeCode:
+                                  Localizations.localeOf(context).languageCode,
                             ),
-                            textAlign: TextAlign.center,
+                            builder: (context, snap) => Text(
+                              snap.data ?? chapter.titleEn,
+                              style: TextStyle(
+                                fontSize: 13.5,
+                                color: isDark ? Colors.white70 : Colors.black87,
+                                fontStyle: FontStyle.italic,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
+
                       ],
                     ),
                   ),

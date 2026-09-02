@@ -450,7 +450,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                             ),
                             const SizedBox(height: 12),
 
-                            // English bio (unique per author)
+                            // English/Localized bio (unique per author)
                             Text(
                               _authorBioEn(context, book),
                               style: TextStyle(
@@ -461,46 +461,10 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                                     : const Color(0xFF2C2C2E),
                               ),
                             ),
-
-                            // Chinese dropdown toggle
-                            _buildChineseToggle(
-                              label: '查看中文简介',
-                              isOpen: _showChineseAuthor,
-                              accentColor: accentColor,
-                              onTap: () {
-                                HapticsManager.light();
-                                setState(() =>
-                                    _showChineseAuthor = !_showChineseAuthor);
-                              },
-                            ),
-                            if (_showChineseAuthor) ...[
-                              const SizedBox(height: 8),
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: accentColor.withValues(
-                                      alpha: isDark ? 0.08 : 0.05),
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color:
-                                          accentColor.withValues(alpha: 0.2)),
-                                ),
-                                child: Text(
-                                  _authorBioZh(book),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    height: 1.55,
-                                    color: isDark
-                                        ? Colors.white60
-                                        : Colors.black54,
-                                  ),
-                                ),
-                              ),
-                            ],
                           ],
                         ),
                       ),
+
                       const SizedBox(height: 16),
 
                       // ── Synopsis Card ───────────────────────────────────
@@ -548,80 +512,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                                 );
                               },
                             ),
-
-                            // Chinese synopsis dropdown
-                            _buildChineseToggle(
-                              label: '查看中文概述',
-                              isOpen: _showChineseSynopsis,
-                              accentColor: accentColor,
-                              onTap: () {
-                                HapticsManager.light();
-                                setState(() => _showChineseSynopsis =
-                                    !_showChineseSynopsis);
-                              },
-                            ),
-                            if (_showChineseSynopsis) ...[
-                              const SizedBox(height: 8),
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: accentColor.withValues(
-                                      alpha: isDark ? 0.08 : 0.05),
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color:
-                                          accentColor.withValues(alpha: 0.2)),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      book.description,
-                                      style: TextStyle(
-                                        fontSize: 14.5,
-                                        height: 1.6,
-                                        color: isDark
-                                            ? Colors.white60
-                                            : Colors.black54,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 12),
-                                    Divider(
-                                        color: isDark
-                                            ? Colors.white12
-                                            : Colors.black12),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.psychology_outlined,
-                                            size: 14, color: accentColor),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          '核心思想与阅读价值',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: accentColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      '全篇通过跌宕起伏的叙事艺术，探讨了人性抉择、道德伦理与精神追求，是语言学习与人文修养的必读典范。',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        height: 1.4,
-                                        color: isDark
-                                            ? Colors.white54
-                                            : Colors.black54,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
                           ],
                         ),
                       ),
@@ -631,7 +521,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Table of Contents · 目录 (${chapters.length} Chapters)',
+                          '${AppLocalizations.of(context)?.tableOfContents ?? "Table of Contents"} (${chapters.length})',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -716,14 +606,41 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                               ),
                             ),
                           ),
-                          title: Text(
-                            ch.titleEn,
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: primaryTextLocal,
+                          title: FutureBuilder<String>(
+                            future: LocalizedCatalogService.getChapterTitle(
+                              titleEn: ch.titleEn,
+                              localeCode:
+                                  Localizations.localeOf(context).languageCode,
+                            ),
+                            builder: (context, snap) => Text(
+                              snap.data ?? ch.titleEn,
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: primaryTextLocal,
+                              ),
                             ),
                           ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 2),
+                            child: Text(
+                              ch.title,
+                              style: TextStyle(
+                                fontSize: 12.5,
+                                color: isDarkLocal
+                                    ? Colors.amber.shade300
+                                    : const Color(0xFF8B0000),
+                                fontStyle: FontStyle.italic,
+                                height: 1.3,
+                              ),
+                            ),
+                          ),
+                          trailing:
+                              const Icon(Icons.arrow_forward_ios, size: 14),
+                        ),
+                      );
+                    },
+
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 2),
                             child: Text(

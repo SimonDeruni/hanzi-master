@@ -70,7 +70,11 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     MonetizationService.grantTemporaryPremiumAccess();
     ref.read(premiumControllerProvider.notifier).grantTemporaryAccess();
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
+      PageRouteBuilder<void>(
+        pageBuilder: (_, __, ___) => const MainNavigationScreen(),
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+      ),
       (route) => false,
     );
   }
@@ -388,166 +392,33 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       child: Scaffold(
         backgroundColor: bgColor,
         body: SafeArea(
+          bottom: false,
           child: Stack(
             children: [
               Positioned.fill(
                 child: _isLoading
                     ? Center(child: CircularProgressIndicator(color: textColor))
                     : SingleChildScrollView(
-                        padding: const EdgeInsets.fromLTRB(20, 56, 20, 20),
+                        padding: const EdgeInsets.fromLTRB(20, 54, 20, 36),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            const SizedBox(height: 8),
-                            Center(
-                              child: Image.asset(
-                                'assets/images/mascot.png',
-                                height: 120,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-
-                            Text(
-                              "SinoSpark Premium",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: textColor,
-                                fontSize: 27,
-                                fontFamily: 'Serif',
-                                fontWeight: FontWeight.bold,
-                                height: 1.15,
-                              ),
-                            ),
-
-                            const SizedBox(height: 20),
-
-                            // 2-Column Features Grid
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 16),
-                              decoration: BoxDecoration(
-                                color: textColor.withValues(alpha: 0.03),
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                    color: textColor.withValues(alpha: 0.06)),
-                              ),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                          child: _buildCompactFeature(
-                                              Icons.gesture,
-                                              "Precision Strokes",
-                                              textColor,
-                                              accentColor)),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                          child: _buildCompactFeature(
-                                              Icons.document_scanner,
-                                              "Universal Scanner",
-                                              textColor,
-                                              accentColor)),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 14),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                          child: _buildCompactFeature(
-                                              Icons.mic_none,
-                                              "AI Pronunciation",
-                                              textColor,
-                                              accentColor)),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                          child: _buildCompactFeature(
-                                              Icons.translate,
-                                              "Live Translation",
-                                              textColor,
-                                              accentColor)),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 14),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                          child: _buildCompactFeature(
-                                              Icons.travel_explore,
-                                              "Smart News & Dict",
-                                              textColor,
-                                              accentColor)),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                          child: _buildCompactFeature(
-                                              Icons.menu_book,
-                                              "HSK 1-6 & AI Decks",
-                                              textColor,
-                                              accentColor)),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            const SizedBox(height: 14),
-
-                            if (_selectedHasEligibleTrial)
-                              _buildTrialNotice(textColor, accentColor),
-
+                            _buildHero(textColor),
                             const SizedBox(height: 24),
-
-                            // Packages
-                            if (_usingTestOfferings)
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 4.0),
-                                          child: _buildMockPackageCard(
-                                              AppLocalizations.of(context)!
-                                                  .monthly,
-                                              "\$9.99",
-                                              false,
-                                              textColor,
-                                              accentColor))),
-                                  Expanded(
-                                      child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 4.0),
-                                          child: _buildMockPackageCard(
-                                              AppLocalizations.of(context)!
-                                                  .yearly,
-                                              "\$59.99",
-                                              true,
-                                              textColor,
-                                              accentColor))),
-                                ],
-                              )
-                            else if (_offerings?.current != null)
-                              Row(
-                                children: _offerings!.current!.availablePackages
-                                    .map((package) {
-                                  return Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 4.0),
-                                      child: _buildPackageCard(
-                                          package, textColor, accentColor),
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
-
+                            _buildPackages(textColor, accentColor),
+                            if (_selectedHasEligibleTrial) ...[
+                              const SizedBox(height: 12),
+                              _buildTrialNotice(textColor, accentColor),
+                            ],
                             if (_offeringsError != null) ...[
+                              const SizedBox(height: 16),
                               Text(
                                 _offeringsError!,
                                 key: const Key('paywall_offerings_error'),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Theme.of(context).colorScheme.error),
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
                               ),
                               TextButton(
                                 onPressed: _fetchOfferings,
@@ -561,103 +432,60 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                                     'Continue with temporary Premium'),
                               ),
                             ],
-
-                            const SizedBox(height: 16),
-
-                            GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: _isPurchasing ||
-                                      (!_usingTestOfferings &&
-                                          _selectedPackage == null)
-                                  ? null
-                                  : _purchasePackage,
-                              child: Container(
-                                height: 54,
-                                decoration: BoxDecoration(
-                                  color: btnBgColor,
-                                  borderRadius: BorderRadius.circular(27),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: btnBgColor.withValues(alpha: 0.1),
-                                      blurRadius: 16,
-                                      offset: const Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: Center(
-                                  child: _isPurchasing
-                                      ? CircularProgressIndicator(
-                                          color: btnTextColor)
-                                      : Text(
-                                          _usingTestOfferings
-                                              ? 'Test product unavailable'
-                                              : _purchaseButtonLabel,
-                                          style: TextStyle(
-                                            color: btnTextColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                ),
+                            if (_offeringsError == null) ...[
+                              const SizedBox(height: 36),
+                              _buildExploreHeading(textColor),
+                              const SizedBox(height: 24),
+                              _buildFeatureStory(
+                                category: 'WATCH',
+                                title: 'Learn through real videos',
+                                description:
+                                    'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.',
+                                icon: Icons.play_circle_outline,
+                                placeholderLabel: 'Video learning screenshot',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 0,
                               ),
-                            ),
-
-                            const SizedBox(height: 10),
-
-                            Text(
-                              "Payment is charged to your App Store account. "
-                              "Subscriptions renew automatically unless canceled "
-                              "at least 24 hours before the end of the current period.",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: textColor.withValues(alpha: 0.55),
-                                fontSize: 10,
-                                height: 1.3,
+                              _buildFeatureStory(
+                                category: 'READ',
+                                title: 'Turn any book into a lesson',
+                                description:
+                                    'Read naturally with pronunciation, definitions, and translation available whenever you need them.',
+                                icon: Icons.auto_stories_outlined,
+                                placeholderLabel: 'Book reader screenshot',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 1,
                               ),
-                            ),
-                            const SizedBox(height: 2),
-                            Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: [
-                                TextButton(
-                                  onPressed: _restorePurchases,
-                                  child: Text(
-                                      AppLocalizations.of(context)!.restore,
-                                      style: TextStyle(
-                                          color:
-                                              textColor.withValues(alpha: 0.6),
-                                          fontSize: 12)),
-                                ),
-                                Text("•",
-                                    style: TextStyle(
-                                        color:
-                                            textColor.withValues(alpha: 0.3))),
-                                TextButton(
-                                  onPressed: () => _launchURL(
-                                      'https://sinospark.app/terms.html'),
-                                  child: Text("Terms of Use (EULA)",
-                                      style: TextStyle(
-                                          color:
-                                              textColor.withValues(alpha: 0.6),
-                                          fontSize: 12)),
-                                ),
-                                Text("•",
-                                    style: TextStyle(
-                                        color:
-                                            textColor.withValues(alpha: 0.3))),
-                                TextButton(
-                                  onPressed: () => _launchURL(
-                                      'https://sinospark.app/privacy.html'),
-                                  child: Text("Privacy Policy",
-                                      style: TextStyle(
-                                          color:
-                                              textColor.withValues(alpha: 0.6),
-                                          fontSize: 12)),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
+                              _buildFeatureStory(
+                                category: 'SPEAK',
+                                title: 'Speak with the right rhythm',
+                                description:
+                                    'Shadow native audio and visualize all four tones as your pronunciation improves.',
+                                icon: Icons.graphic_eq,
+                                placeholderLabel:
+                                    'Shadowing and tones screenshot',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 2,
+                              ),
+                              _buildFeatureStory(
+                                category: 'EXPLORE',
+                                title: 'Understand every character',
+                                description:
+                                    'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.',
+                                icon: Icons.search,
+                                placeholderLabel:
+                                    'Character dictionary screenshot',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 3,
+                              ),
+                              _buildEverythingIncluded(textColor, accentColor),
+                              const SizedBox(height: 18),
+                              _buildLegalLinks(textColor),
+                            ],
                           ],
                         ),
                       ),
@@ -672,36 +500,531 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                   icon: const Icon(Icons.close),
                   color: textColor,
                   style: IconButton.styleFrom(
-                    backgroundColor: bgColor.withValues(alpha: 0.9),
+                    backgroundColor: bgColor.withValues(alpha: 0.92),
                   ),
                 ),
               ),
             ],
           ),
         ),
+        bottomNavigationBar:
+            _isLoading || (!_usingTestOfferings && _selectedPackage == null)
+                ? null
+                : _buildStickyPurchasePanel(
+                    bgColor,
+                    textColor,
+                    btnBgColor,
+                    btnTextColor,
+                  ),
       ),
     );
   }
 
-  Widget _buildCompactFeature(
-      IconData icon, String text, Color textColor, Color accentColor) {
-    return Row(
+  Widget _buildHero(Color textColor) {
+    return Column(
       children: [
-        Icon(icon, color: accentColor, size: 21),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Text(
-            text,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+        Container(
+          width: 112,
+          height: 112,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: textColor.withValues(alpha: 0.035),
+          ),
+          child: Image.asset('assets/images/mascot.png', fit: BoxFit.contain),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          'SinoSpark Premium',
+          style: TextStyle(
+            color: Color(0xFF8B2E2E),
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.8,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Learn Chinese without limits',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 29,
+            fontFamily: 'Serif',
+            fontWeight: FontWeight.bold,
+            height: 1.12,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          'Watch, read, speak, and understand Chinese with one complete learning companion.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor.withValues(alpha: 0.65),
+            fontSize: 14,
+            height: 1.45,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPackages(Color textColor, Color accentColor) {
+    if (_usingTestOfferings) {
+      return Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: _buildMockPackageCard(
+                AppLocalizations.of(context)!.monthly,
+                '\$9.99',
+                false,
+                textColor,
+                accentColor,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: _buildMockPackageCard(
+                AppLocalizations.of(context)!.yearly,
+                '\$59.99',
+                true,
+                textColor,
+                accentColor,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    if (_offerings?.current == null) return const SizedBox.shrink();
+    return Row(
+      children: _offerings!.current!.availablePackages.map((package) {
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: _buildPackageCard(package, textColor, accentColor),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildExploreHeading(Color textColor) {
+    return Column(
+      children: [
+        Text(
+          'See what Premium unlocks',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor,
+            fontFamily: 'Serif',
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Scroll to explore the complete learning experience',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor.withValues(alpha: 0.55),
+            fontSize: 13,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Icon(Icons.keyboard_arrow_down,
+            color: textColor.withValues(alpha: 0.4)),
+      ],
+    );
+  }
+
+  Widget _buildFeatureStory({
+    required String category,
+    required String title,
+    required String description,
+    required IconData icon,
+    required String placeholderLabel,
+    required Color textColor,
+    required Color accentColor,
+    required int index,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 38),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildScreenshotPlaceholder(
+            icon: icon,
+            label: placeholderLabel,
+            textColor: textColor,
+            accentColor: accentColor,
+            index: index,
+          ),
+          const SizedBox(height: 18),
+          Text(
+            category,
+            style: const TextStyle(
+              color: Color(0xFF8B2E2E),
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.8,
+            ),
+          ),
+          const SizedBox(height: 7),
+          Text(
+            title,
             style: TextStyle(
-              color: textColor.withValues(alpha: 0.95),
-              fontSize: 14.5,
-              fontWeight: FontWeight.w600,
+              color: textColor,
+              fontFamily: 'Serif',
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              height: 1.2,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            description,
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.65),
+              fontSize: 14,
+              height: 1.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScreenshotPlaceholder({
+    required IconData icon,
+    required String label,
+    required Color textColor,
+    required Color accentColor,
+    required int index,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? const Color(0xFF252526) : Colors.white;
+    final previewColor =
+        index.isEven ? const Color(0xFF8B2E2E) : const Color(0xFF4C6673);
+
+    return AspectRatio(
+      aspectRatio: 1.45,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: surface,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: textColor.withValues(alpha: 0.09)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.26 : 0.08),
+              blurRadius: 24,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      previewColor.withValues(alpha: isDark ? 0.30 : 0.13),
+                      surface,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 18,
+              right: 18,
+              top: 16,
+              child: Row(
+                children: [
+                  ...List.generate(
+                    3,
+                    (dot) => Container(
+                      width: 7,
+                      height: 7,
+                      margin: const EdgeInsets.only(right: 6),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: textColor.withValues(alpha: 0.16 + dot * 0.05),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                    width: 72,
+                    height: 7,
+                    decoration: BoxDecoration(
+                      color: textColor.withValues(alpha: 0.08),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Center(
+              child: Container(
+                width: 78,
+                height: 78,
+                decoration: BoxDecoration(
+                  color: previewColor.withValues(alpha: isDark ? 0.34 : 0.16),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: previewColor.withValues(alpha: 0.35),
+                  ),
+                ),
+                child: Icon(icon, color: accentColor, size: 38),
+              ),
+            ),
+            Positioned(
+              left: 18,
+              right: 18,
+              bottom: 16,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  color: surface.withValues(alpha: 0.88),
+                  borderRadius: BorderRadius.circular(13),
+                  border: Border.all(
+                    color: textColor.withValues(alpha: 0.07),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.image_outlined,
+                        color: textColor.withValues(alpha: 0.45), size: 18),
+                    const SizedBox(width: 9),
+                    Expanded(
+                      child: Text(
+                        label,
+                        style: TextStyle(
+                          color: textColor.withValues(alpha: 0.6),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'COMING SOON',
+                      style: TextStyle(
+                        color: textColor.withValues(alpha: 0.38),
+                        fontSize: 8,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.8,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEverythingIncluded(Color textColor, Color accentColor) {
+    const features = [
+      (Icons.gesture, 'Guided handwriting practice'),
+      (Icons.document_scanner_outlined, 'Scanner and live translation'),
+      (Icons.school_outlined, 'HSK 1–6 and AI decks'),
+      (Icons.psychology_outlined, 'Smart spaced repetition'),
+      (Icons.insights_outlined, 'Progress and streak tracking'),
+      (Icons.download_for_offline_outlined, 'Learning tools in one place'),
+    ];
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF252526) : Colors.white,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: textColor.withValues(alpha: 0.08)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Everything included',
+            style: TextStyle(
+              color: textColor,
+              fontFamily: 'Serif',
+              fontSize: 21,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          ...features.map(
+            (feature) => Padding(
+              padding: const EdgeInsets.only(bottom: 13),
+              child: Row(
+                children: [
+                  Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      color: accentColor.withValues(alpha: 0.13),
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    child: Icon(feature.$1, color: accentColor, size: 17),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      feature.$2,
+                      style: TextStyle(
+                        color: textColor.withValues(alpha: 0.82),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.check, color: accentColor, size: 18),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLegalLinks(Color textColor) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        TextButton(
+          onPressed: _restorePurchases,
+          child: Text(
+            AppLocalizations.of(context)!.restore,
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.62),
+              fontSize: 12,
+            ),
+          ),
+        ),
+        Text('•', style: TextStyle(color: textColor.withValues(alpha: 0.3))),
+        TextButton(
+          onPressed: () => _launchURL('https://sinospark.app/terms.html'),
+          child: Text(
+            'Terms of Use (EULA)',
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.62),
+              fontSize: 12,
+            ),
+          ),
+        ),
+        Text('•', style: TextStyle(color: textColor.withValues(alpha: 0.3))),
+        TextButton(
+          onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
+          child: Text(
+            'Privacy Policy',
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.62),
+              fontSize: 12,
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildStickyPurchasePanel(
+    Color bgColor,
+    Color textColor,
+    Color btnBgColor,
+    Color btnTextColor,
+  ) {
+    final canPurchase =
+        !_isPurchasing && (_usingTestOfferings || _selectedPackage != null);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: bgColor,
+        border: Border(
+          top: BorderSide(color: textColor.withValues(alpha: 0.09)),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.10),
+            blurRadius: 20,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
+      padding: EdgeInsets.fromLTRB(
+        20,
+        12,
+        20,
+        10 + MediaQuery.paddingOf(context).bottom,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: canPurchase ? _purchasePackage : null,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 180),
+              opacity: canPurchase ? 1 : 0.55,
+              child: Container(
+                height: 54,
+                decoration: BoxDecoration(
+                  color: btnBgColor,
+                  borderRadius: BorderRadius.circular(27),
+                  boxShadow: [
+                    BoxShadow(
+                      color: btnBgColor.withValues(alpha: 0.12),
+                      blurRadius: 16,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: _isPurchasing
+                      ? CircularProgressIndicator(color: btnTextColor)
+                      : Text(
+                          _usingTestOfferings
+                              ? 'Test product unavailable'
+                              : _purchaseButtonLabel,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: btnTextColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 7),
+          Text(
+            'Payment is charged to your App Store account. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.',
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: textColor.withValues(alpha: 0.52),
+              fontSize: 10.5,
+              height: 1.25,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

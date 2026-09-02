@@ -96,4 +96,34 @@ class LocalizedCatalogService {
     }
     return fallbackPoints;
   }
+
+  static final Map<String, Map<String, String>> _chapterTitleCache = {};
+
+  /// Loads and returns the localized chapter title for [titleEn] and [localeCode].
+  /// E.g. 'Chapter 1' -> 'Chapitre 1' in French.
+  static Future<String> getChapterTitle({
+    required String titleEn,
+    required String localeCode,
+  }) async {
+    if (localeCode == 'en' || localeCode.isEmpty) {
+      return titleEn;
+    }
+
+    if (!_chapterTitleCache.containsKey(localeCode)) {
+      try {
+        final jsonStr = await rootBundle.loadString('assets/data/l10n/chapter_titles_$localeCode.json');
+        final Map<String, dynamic> raw = json.decode(jsonStr);
+        _chapterTitleCache[localeCode] = raw.map((k, v) => MapEntry(k, v.toString()));
+      } catch (_) {
+        _chapterTitleCache[localeCode] = {};
+      }
+    }
+
+    final localized = _chapterTitleCache[localeCode]?[titleEn];
+    if (localized != null && localized.isNotEmpty) {
+      return localized;
+    }
+    return titleEn;
+  }
 }
+

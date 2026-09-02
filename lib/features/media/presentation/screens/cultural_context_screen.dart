@@ -360,7 +360,7 @@ class CulturalContextScreen extends ConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 2, right: 8),
-                child: Text('â€¢', style: baseStyle),
+                child: Text('•', style: baseStyle),
               ),
               Expanded(child: RichText(text: TextSpan(children: spans))),
             ],
@@ -452,7 +452,7 @@ class CulturalContextScreen extends ConsumerWidget {
     return spans;
   }
 
-  /// Legacy renderer â€” kept for backward compatibility with non-structured text.
+  /// Legacy renderer — kept for backward compatibility with non-structured text.
   Widget _buildClickableContext(
       BuildContext context, String text, ThemeData theme,
       {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
