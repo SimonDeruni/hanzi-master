@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
@@ -603,7 +603,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
     showModalBottomSheet(
         context: context,
-      useRootNavigator: true,
+        useRootNavigator: true,
         backgroundColor: bgColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
@@ -628,7 +628,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "AI Reading Tools",
+                    AppLocalizations.of(context)!.aiReadingTools,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -639,7 +639,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Enhance your reading with AI-powered tools",
+                    AppLocalizations.of(context)!
+                        .enhanceYourReadingWithAipoweredTool,
                     style: TextStyle(
                       fontSize: 13,
                       color: isDark ? Colors.white54 : Colors.black38,
@@ -653,7 +654,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     iconColor: const Color(0xFF4A90D9),
                     iconBgColor:
                         const Color(0xFF4A90D9).withValues(alpha: 0.12),
-                    title: AppLocalizations.of(context)?.extractToDeck ?? 'Extract to Deck',
+                    title: AppLocalizations.of(context)?.extractToDeck ??
+                        'Extract to Deck',
                     subtitle:
                         'Extract all unknown words to a new flashcard deck',
                     isDark: isDark,
@@ -673,7 +675,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     iconColor: const Color(0xFFFFB300),
                     iconBgColor:
                         const Color(0xFFFFB300).withValues(alpha: 0.12),
-                    title: AppLocalizations.of(context)?.autoSimplify ?? 'Auto-Simplify',
+                    title: AppLocalizations.of(context)?.autoSimplify ??
+                        'Auto-Simplify',
                     subtitle: 'Rewrite this article to match your HSK level',
                     isDark: isDark,
                     cardBg: cardBg,
@@ -701,7 +704,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
     showModalBottomSheet(
         context: context,
-      useRootNavigator: true,
+        useRootNavigator: true,
         backgroundColor: bgColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
@@ -741,7 +744,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Select HSK Level",
+                            AppLocalizations.of(context)!
+                                .select_target_hsk_level,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -751,7 +755,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            "Choose the target difficulty for simplification",
+                            AppLocalizations.of(context)!
+                                .chooseTheTargetDifficultyForSimplif,
                             style: TextStyle(
                               fontSize: 12,
                               color: isDark ? Colors.white54 : Colors.black38,
@@ -1016,8 +1021,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Analysis failed: $e")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Analysis failed: $e")));
       }
     } finally {
       if (mounted) {
@@ -1098,8 +1103,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Extraction failed: $e")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Extraction failed: $e")));
       }
     } finally {
       if (mounted) {
@@ -1128,8 +1133,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       );
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Simplify failed: $e")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Simplify failed: $e")));
       }
     } finally {
       if (mounted) {
@@ -1223,8 +1228,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         setState(() {
           _isTranslating = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Translation failed: $e")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Translation failed: $e")));
       }
     }
   }
@@ -1430,7 +1435,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                               final selectedLevel =
                                   await showModalBottomSheet<int>(
                                 context: context,
-      useRootNavigator: true,
+                                useRootNavigator: true,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.vertical(
                                         top: Radius.circular(20))),
@@ -1494,7 +1499,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Select Target HSK Level',
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .select_target_hsk_level,
                                                       style: TextStyle(
                                                         fontSize: 20,
                                                         fontWeight:
@@ -1507,7 +1514,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                                     ),
                                                     const SizedBox(height: 2),
                                                     Text(
-                                                      'Choose difficulty for simplification',
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .chooseDifficultyForSimplification,
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: isDark
@@ -1632,7 +1641,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 if (mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text("Simplify failed: $e")));
+                                          content:
+                                              Text("Simplify failed: $e")));
                                 }
                               } finally {
                                 if (mounted) {
@@ -2328,9 +2338,9 @@ class _ExtractedWordsReviewSheetState
                           }
                           Navigator.pop(context, selectedWords);
                         },
-                  child: const Text("Add to Deck",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: Text(AppLocalizations.of(context)!.addToDeck1,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],

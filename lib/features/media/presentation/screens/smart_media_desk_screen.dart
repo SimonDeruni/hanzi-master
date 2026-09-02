@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -342,8 +342,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                     AppLocalizations.of(context)!.select_target_hsk_level,
-                    style:
-                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold)),
               ),
               ...List.generate(6, (index) {
                 final level = index + 1;
@@ -495,8 +495,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                    "Cultural Note: ${meme['keyword'] ?? ''}",
+                Text("Cultural Note: ${meme['keyword'] ?? ''}",
                     style: const TextStyle(fontWeight: FontWeight.bold)),
                 Text("${meme['explanation'] ?? ''}"),
               ],
@@ -654,7 +653,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'No Captions Available',
+              AppLocalizations.of(context)!.noCaptionsAvailable,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
@@ -665,8 +664,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             const SizedBox(height: 8),
             Text(
               _error ??
-                  'This video does not have a digital Closed Captions (CC) track on YouTube. '
-                      'Many gameplay and vlog videos feature burned-in subtitles on the video pixels rather than selectable caption data.',
+                  '${AppLocalizations.of(context)!.thisVideoDoesNotHaveADigitalClosedC} '
+                      '${AppLocalizations.of(context)!.videosWithHardcodedOrBurnedinSubtit}',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 13,
@@ -717,85 +716,84 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       backgroundColor:
           isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    widget.video.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: isDark ? Colors.white : const Color(0xFF1C2541),
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  if (widget.video.channelTitle.isNotEmpty)
-                    Text(
-                      widget.video.channelTitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: isDark ? Colors.white60 : Colors.black54,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                ],
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.video.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: isDark ? Colors.white : const Color(0xFF1C2541),
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
               ),
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              iconTheme: IconThemeData(
-                  color: isDark ? Colors.white : const Color(0xFF1C2541)),
-              actions: [
-                PopupMenuButton<String>(
-                  icon: const Icon(Icons.closed_caption, color: Colors.indigo),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                        child: StatefulBuilder(
-                            builder: (ctx, set) => SwitchListTile(
-                                  title: Text(
-                                      AppLocalizations.of(context)!.showPinyin),
-                                  value: _showPinyin,
-                                  activeThumbColor: Colors.indigo,
-                                  onChanged: (v) {
-                                    set(() {});
-                                    setState(() => _showPinyin = v);
-                                  },
-                                ))),
-                    PopupMenuItem(
-                        child: StatefulBuilder(
-                            builder: (ctx, set) => SwitchListTile(
-                                  title: Text(AppLocalizations.of(context)!
-                                      .showTranslation),
-                                  value: _showEnglish,
-                                  activeThumbColor: Colors.indigo,
-                                  onChanged: (v) {
-                                    set(() {});
-                                    setState(() => _showEnglish = v);
-                                  },
-                                ))),
-                    const PopupMenuDivider(),
-                    PopupMenuItem(
-                        child: StatefulBuilder(
-                            builder: (ctx, set) => SwitchListTile(
-                                  title: Text(AppLocalizations.of(context)!
-                                      .hskSimplifySubtitles),
-                                  value: _isHskSimplified,
-                                  activeThumbColor: Colors.orange,
-                                  onChanged: (v) {
-                                    set(() {});
-                                    _toggleHskSimplified(v);
-                                  },
-                                ))),
-                  ],
-                ),
-              ],
             ),
-
+            if (widget.video.channelTitle.isNotEmpty)
+              Text(
+                widget.video.channelTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: isDark ? Colors.white60 : Colors.black54,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+            color: isDark ? Colors.white : const Color(0xFF1C2541)),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.closed_caption, color: Colors.indigo),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                  child: StatefulBuilder(
+                      builder: (ctx, set) => SwitchListTile(
+                            title:
+                                Text(AppLocalizations.of(context)!.showPinyin),
+                            value: _showPinyin,
+                            activeThumbColor: Colors.indigo,
+                            onChanged: (v) {
+                              set(() {});
+                              setState(() => _showPinyin = v);
+                            },
+                          ))),
+              PopupMenuItem(
+                  child: StatefulBuilder(
+                      builder: (ctx, set) => SwitchListTile(
+                            title: Text(
+                                AppLocalizations.of(context)!.showTranslation),
+                            value: _showEnglish,
+                            activeThumbColor: Colors.indigo,
+                            onChanged: (v) {
+                              set(() {});
+                              setState(() => _showEnglish = v);
+                            },
+                          ))),
+              const PopupMenuDivider(),
+              PopupMenuItem(
+                  child: StatefulBuilder(
+                      builder: (ctx, set) => SwitchListTile(
+                            title: Text(AppLocalizations.of(context)!
+                                .hskSimplifySubtitles),
+                            value: _isHskSimplified,
+                            activeThumbColor: Colors.orange,
+                            onChanged: (v) {
+                              set(() {});
+                              _toggleHskSimplified(v);
+                            },
+                          ))),
+            ],
+          ),
+        ],
+      ),
       body: OrientationBuilder(
         builder: (context, _) {
           return Column(

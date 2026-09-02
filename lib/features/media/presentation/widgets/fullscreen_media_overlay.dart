@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import '../../domain/models/video_transcript.dart';
 
 import 'premium_video_top_bar.dart';
@@ -17,7 +18,7 @@ class FullscreenMediaOverlay extends StatefulWidget {
   final VoidCallback onExitFullscreen;
   final double playbackRate;
   final ValueChanged<double> onSpeedChanged;
-  
+
   final bool isShadowingMode;
   final bool isRecording;
   final String shadowFeedback;
@@ -158,214 +159,214 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
         onLongPress: () {
           // Swallow long press so it doesn't bleed to the native YouTube player
         },
-      child: Stack(
-        children: [
-          // ── Top gradient scrim ─────────────────────────────────────────
-          if (_controlsVisible)
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 100,
-              child: IgnorePointer(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.black.withValues(alpha: 0.65),
-                        Colors.transparent,
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-          // ── Bottom gradient scrim ──────────────────────────────────────
-          if (_controlsVisible)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 130,
-              child: IgnorePointer(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Colors.black.withValues(alpha: 0.75),
-                        Colors.transparent,
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-          // ── Top bar ───────────────────────────────────────────────────
-          if (_controlsVisible)
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: SafeArea(
-                child: PremiumVideoTopBar(
-                  title: widget.videoTitle,
-                  onExitFullscreen: widget.onExitFullscreen,
-                  showHanzi: widget.showHanzi,
-                  showPinyin: widget.showPinyin,
-                  showEnglish: widget.showEnglish,
-                  onToggleHanzi: (v) {
-                    _onUserInteraction();
-                    widget.onToggleHanzi(v);
-                  },
-                  onTogglePinyin: (v) {
-                    _onUserInteraction();
-                    widget.onTogglePinyin(v);
-                  },
-                  onToggleEnglish: (v) {
-                    _onUserInteraction();
-                    widget.onToggleEnglish(v);
-                  },
-                  playbackRate: widget.playbackRate,
-                  onSpeedChanged: widget.onSpeedChanged,
-                  subtitleBgOpacity: _subtitleBgOpacity,
-                  onOpacityChanged: (v) {
-                    _onUserInteraction();
-                    setState(() => _subtitleBgOpacity = v);
-                  },
-                ),
-              ),
-            ),
-
-          // ── Center play/pause tap zone (when controls hidden) ─────────
-          // This handles tapping the center to toggle play/pause visually
-          if (!_controlsVisible)
-            Positioned.fill(
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: _onUserInteraction,
-              ),
-            ),
-
-          // ── Subtitles — sit just above the bottom bar ─────────────────
-          Positioned(
-            left: 48,
-            right: widget.isShadowingMode ? 80 : 48,
-            bottom: _controlsVisible ? 100 : 20,
-            child: PremiumSubtitlesOverlay(
-              transcript: widget.transcript,
-              currentIndex: widget.currentIndex,
-              currentPosition: widget.currentPosition,
-              onWordTapped: (word) {
-                _onUserInteraction();
-                widget.onWordTapped(word);
-              },
-              showHanzi: widget.showHanzi,
-              showPinyin: widget.showPinyin,
-              showEnglish: widget.showEnglish,
-              bgOpacity: _subtitleBgOpacity,
-            ),
-          ),
-
-          // ── Bottom bar (YouTube-style controls) ───────────────────────
-          if (_controlsVisible)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: SafeArea(
-                child: PremiumVideoBottomBar(
-                  controller: widget.controller,
-                  transcript: widget.transcript,
-                  currentIndex: widget.currentIndex,
-                  currentPosition: widget.currentPosition,
-                  onWordTapped: widget.onWordTapped,
-                  onInteraction: _onUserInteraction,
-                ),
-              ),
-            ),
-
-          // ── Shadow mic pill (small, bottom-right corner) ──────────────
-          if (widget.isShadowingMode)
-            Positioned(
-              bottom: _controlsVisible ? 90 : 20,
-              right: 20,
-              child: GestureDetector(
-                onTap: () {
-                  _onUserInteraction();
-                  widget.onToggleRecord();
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 14, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: widget.isRecording
-                        ? Colors.red
-                        : Colors.black.withValues(alpha: 0.7),
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: widget.isRecording
-                          ? Colors.redAccent
-                          : Colors.white38,
-                      width: 1.5,
-                    ),
-                    boxShadow: [
-                      if (widget.isRecording)
-                        BoxShadow(
-                          color: Colors.red.withValues(alpha: 0.4),
-                          blurRadius: 12,
-                          spreadRadius: 2,
-                        ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        widget.isRecording ? Icons.stop_rounded : Icons.mic,
-                        color: Colors.white,
-                        size: 18,
+        child: Stack(
+          children: [
+            // ── Top gradient scrim ─────────────────────────────────────────
+            if (_controlsVisible)
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 100,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black.withValues(alpha: 0.65),
+                          Colors.transparent,
+                        ],
                       ),
-                      if (widget.isRecording) ...[
-                        const SizedBox(width: 6),
-                        const Text(
-                          'Stop',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ],
+                    ),
                   ),
                 ),
+              ),
+
+            // ── Bottom gradient scrim ──────────────────────────────────────
+            if (_controlsVisible)
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 130,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black.withValues(alpha: 0.75),
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+            // ── Top bar ───────────────────────────────────────────────────
+            if (_controlsVisible)
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: SafeArea(
+                  child: PremiumVideoTopBar(
+                    title: widget.videoTitle,
+                    onExitFullscreen: widget.onExitFullscreen,
+                    showHanzi: widget.showHanzi,
+                    showPinyin: widget.showPinyin,
+                    showEnglish: widget.showEnglish,
+                    onToggleHanzi: (v) {
+                      _onUserInteraction();
+                      widget.onToggleHanzi(v);
+                    },
+                    onTogglePinyin: (v) {
+                      _onUserInteraction();
+                      widget.onTogglePinyin(v);
+                    },
+                    onToggleEnglish: (v) {
+                      _onUserInteraction();
+                      widget.onToggleEnglish(v);
+                    },
+                    playbackRate: widget.playbackRate,
+                    onSpeedChanged: widget.onSpeedChanged,
+                    subtitleBgOpacity: _subtitleBgOpacity,
+                    onOpacityChanged: (v) {
+                      _onUserInteraction();
+                      setState(() => _subtitleBgOpacity = v);
+                    },
+                  ),
+                ),
+              ),
+
+            // ── Center play/pause tap zone (when controls hidden) ─────────
+            // This handles tapping the center to toggle play/pause visually
+            if (!_controlsVisible)
+              Positioned.fill(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: _onUserInteraction,
+                ),
+              ),
+
+            // ── Subtitles — sit just above the bottom bar ─────────────────
+            Positioned(
+              left: 48,
+              right: widget.isShadowingMode ? 80 : 48,
+              bottom: _controlsVisible ? 100 : 20,
+              child: PremiumSubtitlesOverlay(
+                transcript: widget.transcript,
+                currentIndex: widget.currentIndex,
+                currentPosition: widget.currentPosition,
+                onWordTapped: (word) {
+                  _onUserInteraction();
+                  widget.onWordTapped(word);
+                },
+                showHanzi: widget.showHanzi,
+                showPinyin: widget.showPinyin,
+                showEnglish: widget.showEnglish,
+                bgOpacity: _subtitleBgOpacity,
               ),
             ),
 
-          // ── Sparkline feedback pill (slides in from top) ───────────────
-          if (_lastFeedback.isNotEmpty)
-            Positioned(
-              top: 70,
-              left: 0,
-              right: 0,
-              child: SlideTransition(
-                position: _feedbackSlide,
-                child: Center(
-                  child: _SparklinePill(
-                    feedback: _lastFeedback,
-                    isGood: _isGoodScore(_lastFeedback),
+            // ── Bottom bar (YouTube-style controls) ───────────────────────
+            if (_controlsVisible)
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: SafeArea(
+                  child: PremiumVideoBottomBar(
+                    controller: widget.controller,
+                    transcript: widget.transcript,
+                    currentIndex: widget.currentIndex,
+                    currentPosition: widget.currentPosition,
+                    onWordTapped: widget.onWordTapped,
+                    onInteraction: _onUserInteraction,
                   ),
                 ),
               ),
-            ),
-        ],
-      ),
+
+            // ── Shadow mic pill (small, bottom-right corner) ──────────────
+            if (widget.isShadowingMode)
+              Positioned(
+                bottom: _controlsVisible ? 90 : 20,
+                right: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    _onUserInteraction();
+                    widget.onToggleRecord();
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: widget.isRecording
+                          ? Colors.red
+                          : Colors.black.withValues(alpha: 0.7),
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(
+                        color: widget.isRecording
+                            ? Colors.redAccent
+                            : Colors.white38,
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        if (widget.isRecording)
+                          BoxShadow(
+                            color: Colors.red.withValues(alpha: 0.4),
+                            blurRadius: 12,
+                            spreadRadius: 2,
+                          ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          widget.isRecording ? Icons.stop_rounded : Icons.mic,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        if (widget.isRecording) ...[
+                          const SizedBox(width: 6),
+                          Text(
+                            AppLocalizations.of(context)!.stop,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+            // ── Sparkline feedback pill (slides in from top) ───────────────
+            if (_lastFeedback.isNotEmpty)
+              Positioned(
+                top: 70,
+                left: 0,
+                right: 0,
+                child: SlideTransition(
+                  position: _feedbackSlide,
+                  child: Center(
+                    child: _SparklinePill(
+                      feedback: _lastFeedback,
+                      isGood: _isGoodScore(_lastFeedback),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -460,9 +461,7 @@ class _MiniScoreBar extends StatelessWidget {
           height: i < segments - 1 ? 10 + (i * 3).toDouble() : 22,
           margin: const EdgeInsets.symmetric(horizontal: 1.5),
           decoration: BoxDecoration(
-            color: i < filled
-                ? color
-                : Colors.white.withValues(alpha: 0.2),
+            color: i < filled ? color : Colors.white.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(2),
           ),
         );

@@ -280,7 +280,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
             if (_error != null)
               Expanded(
                   child: Center(
-                      child: Text('Error: $_error',
+                      child: Text(
+                          _error ??
+                              AppLocalizations.of(context)!.failedToLoadContent,
                           style: const TextStyle(color: Colors.red))))
             else if (_isSearching)
               Expanded(
@@ -392,12 +394,12 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       case _CategoryLoadState.loading:
         return _buildSkeletonRow();
       case _CategoryLoadState.empty:
-        return const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
             child: Text(
-              'No videos found',
-              style: TextStyle(color: Colors.black38, fontSize: 14),
+              AppLocalizations.of(context)!.noVideosFound,
+              style: const TextStyle(color: Colors.black38, fontSize: 14),
             ),
           ),
         );
@@ -408,9 +410,12 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Failed to load content',
-                  style: TextStyle(color: Colors.redAccent, fontSize: 14),
+                Text(
+                  AppLocalizations.of(context)!.failedToLoadContent,
+                  style: const TextStyle(
+                    color: Colors.redAccent,
+                    fontSize: 14,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton.icon(

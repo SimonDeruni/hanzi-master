@@ -13039,6 +13039,8652 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cards'**
   String get uniqueCardsStudied;
+
+  /// No description provided for @dartConvert.
+  ///
+  /// In en, this message translates to:
+  /// **'dart:convert'**
+  String get dartConvert;
+
+  /// No description provided for @env.
+  ///
+  /// In en, this message translates to:
+  /// **'.env'**
+  String get env;
+
+  /// No description provided for @dartUi.
+  ///
+  /// In en, this message translates to:
+  /// **'dart:ui'**
+  String get dartUi;
+
+  /// No description provided for @dartMath.
+  ///
+  /// In en, this message translates to:
+  /// **'dart:math'**
+  String get dartMath;
+
+  /// No description provided for @drawInTheOtherDirection.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw in the other direction ➔'**
+  String get drawInTheOtherDirection;
+
+  /// No description provided for @fastClean.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast & Clean!'**
+  String get fastClean;
+
+  /// No description provided for @good2.
+  ///
+  /// In en, this message translates to:
+  /// **'Good!'**
+  String get good2;
+
+  /// No description provided for @followTheFlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the flow.'**
+  String get followTheFlow;
+
+  /// No description provided for @masterful.
+  ///
+  /// In en, this message translates to:
+  /// **'Masterful!'**
+  String get masterful;
+
+  /// No description provided for @missingTheHookEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing the hook/end.'**
+  String get missingTheHookEnd;
+
+  /// No description provided for @thai.
+  ///
+  /// In en, this message translates to:
+  /// **'Thai'**
+  String get thai;
+
+  /// No description provided for @dartIo.
+  ///
+  /// In en, this message translates to:
+  /// **'dart:io'**
+  String get dartIo;
+
+  /// No description provided for @dartAsync.
+  ///
+  /// In en, this message translates to:
+  /// **'dart:async'**
+  String get dartAsync;
+
+  /// No description provided for @asset.
+  ///
+  /// In en, this message translates to:
+  /// **'asset:'**
+  String get asset;
+
+  /// No description provided for @ocpApimSubscriptionKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocp-Apim-Subscription-Key'**
+  String get ocpApimSubscriptionKey;
+
+  /// No description provided for @xMicrosoftOutputFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'X-Microsoft-OutputFormat'**
+  String get xMicrosoftOutputFormat;
+
+  /// No description provided for @audio24khz48kbitrateMonoMp3.
+  ///
+  /// In en, this message translates to:
+  /// **'audio-24khz-48kbitrate-mono-mp3'**
+  String get audio24khz48kbitrateMonoMp3;
+
+  /// No description provided for @googleGemini25Flash.
+  ///
+  /// In en, this message translates to:
+  /// **'google/gemini-2.5-flash'**
+  String get googleGemini25Flash;
+
+  /// No description provided for @ink.
+  ///
+  /// In en, this message translates to:
+  /// **'ink,'**
+  String get ink;
+
+  /// No description provided for @stroke.
+  ///
+  /// In en, this message translates to:
+  /// **'stroke,'**
+  String get stroke;
+
+  /// No description provided for @breath.
+  ///
+  /// In en, this message translates to:
+  /// **'breath.'**
+  String get breath;
+
+  /// No description provided for @deepseekDeepseekChat.
+  ///
+  /// In en, this message translates to:
+  /// **'deepseek/deepseek-chat'**
+  String get deepseekDeepseekChat;
+
+  /// No description provided for @hTTPReferer.
+  ///
+  /// In en, this message translates to:
+  /// **'HTTP-Referer'**
+  String get hTTPReferer;
+
+  /// No description provided for @xTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'X-Title'**
+  String get xTitle;
+
+  /// No description provided for @data.
+  ///
+  /// In en, this message translates to:
+  /// **'data:'**
+  String get data;
+
+  /// No description provided for @shadowingModeCustomSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'ShadowingMode.customSentence'**
+  String get shadowingModeCustomSentence;
+
+  /// No description provided for @theExactSentenceProvided.
+  ///
+  /// In en, this message translates to:
+  /// **'the exact sentence provided'**
+  String get theExactSentenceProvided;
+
+  /// No description provided for @pinyinWithToneMarks2.
+  ///
+  /// In en, this message translates to:
+  /// **'pinyin with tone marks'**
+  String get pinyinWithToneMarks2;
+
+  /// No description provided for @wXHuNH.
+  ///
+  /// In en, this message translates to:
+  /// **'Wǒ xǐhuān hē píngguǒzhī.'**
+  String get wXHuNH;
+
+  /// No description provided for @extractAllChineseCharactersFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract all Chinese characters from this image. Return ONLY the extracted text — no commentary, no formatting, no translations. Preserve line breaks. If there are no Chinese characters, return an empty string.'**
+  String get extractAllChineseCharactersFrom;
+
+  /// No description provided for @householdObject.
+  ///
+  /// In en, this message translates to:
+  /// **'household object'**
+  String get householdObject;
+
+  /// No description provided for @genericLabelFromTheList.
+  ///
+  /// In en, this message translates to:
+  /// **'generic label from the list'**
+  String get genericLabelFromTheList;
+
+  /// No description provided for @gNgS.
+  ///
+  /// In en, this message translates to:
+  /// **'gōng sī'**
+  String get gNgS;
+
+  /// No description provided for @measureWord.
+  ///
+  /// In en, this message translates to:
+  /// **'measure word'**
+  String get measureWord;
+
+  /// No description provided for @zenInk.
+  ///
+  /// In en, this message translates to:
+  /// **'Zen & Ink'**
+  String get zenInk;
+
+  /// No description provided for @cRITICALPutTheEnglishTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'CRITICAL: Put the English translation in the \"english\" JSON key!'**
+  String get cRITICALPutTheEnglishTranslation;
+
+  /// No description provided for @definitionInEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'definition in English'**
+  String get definitionInEnglish;
+
+  /// No description provided for @simplifiedLine0.
+  ///
+  /// In en, this message translates to:
+  /// **'simplified line 0'**
+  String get simplifiedLine0;
+
+  /// No description provided for @simplifiedLine1.
+  ///
+  /// In en, this message translates to:
+  /// **'simplified line 1'**
+  String get simplifiedLine1;
+
+  /// No description provided for @iMPORTANTRULEDoNotAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'IMPORTANT RULE: Do not address the user by any name. Never use placeholder names like \"John\". Speak directly to them without using a name.'**
+  String get iMPORTANTRULEDoNotAddress;
+
+  /// No description provided for @rULESAnswerIn23.
+  ///
+  /// In en, this message translates to:
+  /// **'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists.'**
+  String get rULESAnswerIn23;
+
+  /// No description provided for @neverWriteIntroductionsSignOffs.
+  ///
+  /// In en, this message translates to:
+  /// **'Never write introductions, sign-offs, or filler phrases like \"Great question!\" or \"Certainly!\".'**
+  String get neverWriteIntroductionsSignOffs;
+
+  /// No description provided for @useBoldForChineseCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Use **bold** for Chinese characters and key terms.'**
+  String get useBoldForChineseCharacters;
+
+  /// No description provided for @rULESAnswerIn232.
+  ///
+  /// In en, this message translates to:
+  /// **'RULES: Answer in 2–3 sentences max.'**
+  String get rULESAnswerIn232;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @pronunciationAssessment.
+  ///
+  /// In en, this message translates to:
+  /// **'Pronunciation-Assessment'**
+  String get pronunciationAssessment;
+
+  /// No description provided for @nBest.
+  ///
+  /// In en, this message translates to:
+  /// **'NBest'**
+  String get nBest;
+
+  /// No description provided for @none.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get none;
+
+  /// No description provided for @theCorrectedChineseText.
+  ///
+  /// In en, this message translates to:
+  /// **'the corrected Chinese text'**
+  String get theCorrectedChineseText;
+
+  /// No description provided for @thePinyinForTheCorrected.
+  ///
+  /// In en, this message translates to:
+  /// **'the pinyin for the corrected text'**
+  String get thePinyinForTheCorrected;
+
+  /// No description provided for @theEnglishMeaningOfThe.
+  ///
+  /// In en, this message translates to:
+  /// **'the english meaning of the corrected text'**
+  String get theEnglishMeaningOfThe;
+
+  /// No description provided for @pNyNWithTone.
+  ///
+  /// In en, this message translates to:
+  /// **'pīnyīn with tone marks'**
+  String get pNyNWithTone;
+
+  /// No description provided for @englishTranslation2.
+  ///
+  /// In en, this message translates to:
+  /// **'english translation'**
+  String get englishTranslation2;
+
+  /// No description provided for @zhNggu.
+  ///
+  /// In en, this message translates to:
+  /// **'Zhōngguó'**
+  String get zhNggu;
+
+  /// No description provided for @youAreAChineseClassical.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a Chinese classical literature expert providing detailed accessible summaries of classical Chinese poetry.'**
+  String get youAreAChineseClassical;
+
+  /// No description provided for @youAreAChineseCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a Chinese culture and literature expert. Provide highly engaging, beautifully written cultural insights.'**
+  String get youAreAChineseCulture;
+
+  /// No description provided for @english2.
+  ///
+  /// In en, this message translates to:
+  /// **'English:'**
+  String get english2;
+
+  /// No description provided for @remindersWhenYouHavenT.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders when you haven\'t used the app for a few days'**
+  String get remindersWhenYouHavenT;
+
+  /// No description provided for @itSBeenAFew.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s been a few days! Take 5 minutes to learn a new Hanzi today.'**
+  String get itSBeenAFew;
+
+  /// No description provided for @abbreviationFor.
+  ///
+  /// In en, this message translates to:
+  /// **'abbreviation for'**
+  String get abbreviationFor;
+
+  /// No description provided for @cL.
+  ///
+  /// In en, this message translates to:
+  /// **'CL:'**
+  String get cL;
+
+  /// No description provided for @measureWord2.
+  ///
+  /// In en, this message translates to:
+  /// **'Measure word:'**
+  String get measureWord2;
+
+  /// No description provided for @lu.
+  ///
+  /// In en, this message translates to:
+  /// **'lu:'**
+  String get lu;
+
+  /// No description provided for @luE.
+  ///
+  /// In en, this message translates to:
+  /// **'lu:e'**
+  String get luE;
+
+  /// No description provided for @nu.
+  ///
+  /// In en, this message translates to:
+  /// **'nu:'**
+  String get nu;
+
+  /// No description provided for @nuE.
+  ///
+  /// In en, this message translates to:
+  /// **'nu:e'**
+  String get nuE;
+
+  /// No description provided for @noUser.
+  ///
+  /// In en, this message translates to:
+  /// **'no-user'**
+  String get noUser;
+
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'password-required'**
+  String get passwordRequired;
+
+  /// No description provided for @unsupportedProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'unsupported-provider'**
+  String get unsupportedProvider;
+
+  /// No description provided for @appleRevocationUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'apple-revocation-unavailable'**
+  String get appleRevocationUnavailable;
+
+  /// No description provided for @appleCredentialMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'apple-credential-missing'**
+  String get appleCredentialMissing;
+
+  /// No description provided for @authenticationDidNotReturnA.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication did not return a user.'**
+  String get authenticationDidNotReturnA;
+
+  /// No description provided for @viewSubscriptionPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'View subscription plans'**
+  String get viewSubscriptionPlans;
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'wrong-password'**
+  String get wrongPassword;
+
+  /// No description provided for @invalidCredential.
+  ///
+  /// In en, this message translates to:
+  /// **'invalid-credential'**
+  String get invalidCredential;
+
+  /// No description provided for @networkRequestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'network-request-failed'**
+  String get networkRequestFailed;
+
+  /// No description provided for @requiresRecentLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'requires-recent-login'**
+  String get requiresRecentLogin;
+
+  /// No description provided for @userMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'user-mismatch'**
+  String get userMismatch;
+
+  /// No description provided for @deleteAccountPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'delete-account-password'**
+  String get deleteAccountPassword;
+
+  /// No description provided for @deleteAccountError.
+  ///
+  /// In en, this message translates to:
+  /// **'delete-account-error'**
+  String get deleteAccountError;
+
+  /// No description provided for @deleteAccountSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'delete-account-submit'**
+  String get deleteAccountSubmit;
+
+  /// No description provided for @theSimplestShapesTheBeginning.
+  ///
+  /// In en, this message translates to:
+  /// **'The simplest shapes. The beginning of all things.'**
+  String get theSimplestShapesTheBeginning;
+
+  /// No description provided for @sunMoonWaterAndFire.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun, Moon, Water, and Fire. The natural world.'**
+  String get sunMoonWaterAndFire;
+
+  /// No description provided for @theBodyTheHeartAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'The body, the heart, and the family.'**
+  String get theBodyTheHeartAnd;
+
+  /// No description provided for @fieldsRoofsAndToolsThe.
+  ///
+  /// In en, this message translates to:
+  /// **'Fields, roofs, and tools. The foundations of society.'**
+  String get fieldsRoofsAndToolsThe;
+
+  /// No description provided for @movementSpeechAndSustenance.
+  ///
+  /// In en, this message translates to:
+  /// **'Movement, speech, and sustenance.'**
+  String get movementSpeechAndSustenance;
+
+  /// No description provided for @commerceClothingAndComplexArtifacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Commerce, clothing, and complex artifacts.'**
+  String get commerceClothingAndComplexArtifacts;
+
+  /// No description provided for @fastTrackSimpleCharacterMastered.
+  ///
+  /// In en, this message translates to:
+  /// **'🚀 Fast Track! Simple character mastered.'**
+  String get fastTrackSimpleCharacterMastered;
+
+  /// No description provided for @excellentPrecisionGhostTraceSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'⚡ Excellent precision! Ghost trace skipped.'**
+  String get excellentPrecisionGhostTraceSkipped;
+
+  /// No description provided for @sample.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample:'**
+  String get sample;
+
+  /// No description provided for @itsThat.
+  ///
+  /// In en, this message translates to:
+  /// **'Its/That'**
+  String get itsThat;
+
+  /// No description provided for @iMe.
+  ///
+  /// In en, this message translates to:
+  /// **'I/Me'**
+  String get iMe;
+
+  /// No description provided for @stillTough.
+  ///
+  /// In en, this message translates to:
+  /// **'Still/Tough'**
+  String get stillTough;
+
+  /// No description provided for @partDecide.
+  ///
+  /// In en, this message translates to:
+  /// **'Part/Decide'**
+  String get partDecide;
+
+  /// No description provided for @selectTheCharacterFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the character for:'**
+  String get selectTheCharacterFor;
+
+  /// No description provided for @selectThePinyinFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the Pinyin for:'**
+  String get selectThePinyinFor;
+
+  /// No description provided for @whereAreYouGoingThe.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you going? The airport? It is quite a trip!'**
+  String get whereAreYouGoingThe;
+
+  /// No description provided for @youAreAuntieChenA.
+  ///
+  /// In en, this message translates to:
+  /// **'You are Auntie Chen, a shrewd market vendor selling silk and fabrics. Your ONLY role is a market vendor. Negotiate prices firmly but fairly in Mandarin. NEVER break character or introduce yourself as anything other than a vendor. Start with high prices and be willing to bargain down.'**
+  String get youAreAuntieChenA;
+
+  /// No description provided for @youAreDrZhangA.
+  ///
+  /// In en, this message translates to:
+  /// **'You are Dr. Zhang, a calm and professional doctor at a medical clinic. Your ONLY role is a doctor. Ask about health symptoms and provide medical advice in Mandarin. NEVER break character or introduce yourself as anything other than a doctor. Be reassuring but thorough.'**
+  String get youAreDrZhangA;
+
+  /// No description provided for @whereDoYouFeelUncomfortable.
+  ///
+  /// In en, this message translates to:
+  /// **'Where do you feel uncomfortable? Do you have a fever?'**
+  String get whereDoYouFeelUncomfortable;
+
+  /// No description provided for @youAreACloseFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a close friend catching up after a long time. Your ONLY role is a friend. Keep responses casual, warm, and short in Mandarin. NEVER break character or introduce yourself as anything other than a friend. Use informal speech patterns appropriate for close friends.'**
+  String get youAreACloseFriend;
+
+  /// No description provided for @noNbest.
+  ///
+  /// In en, this message translates to:
+  /// **'no nbest'**
+  String get noNbest;
+
+  /// No description provided for @timedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'timed out'**
+  String get timedOut;
+
+  /// No description provided for @grading.
+  ///
+  /// In en, this message translates to:
+  /// **'Grading...'**
+  String get grading;
+
+  /// No description provided for @label1st.
+  ///
+  /// In en, this message translates to:
+  /// **'1st ˉ'**
+  String get label1st;
+
+  /// No description provided for @label2nd.
+  ///
+  /// In en, this message translates to:
+  /// **'2nd ˊ'**
+  String get label2nd;
+
+  /// No description provided for @label3rd.
+  ///
+  /// In en, this message translates to:
+  /// **'3rd ˇ'**
+  String get label3rd;
+
+  /// No description provided for @label4th.
+  ///
+  /// In en, this message translates to:
+  /// **'4th ˋ'**
+  String get label4th;
+
+  /// No description provided for @speaking2.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaking...'**
+  String get speaking2;
+
+  /// No description provided for @sessionCompletedInYourNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.'**
+  String get sessionCompletedInYourNext;
+
+  /// No description provided for @craneSoaring.
+  ///
+  /// In en, this message translates to:
+  /// **'crane soaring'**
+  String get craneSoaring;
+
+  /// No description provided for @gentleStream.
+  ///
+  /// In en, this message translates to:
+  /// **'gentle stream'**
+  String get gentleStream;
+
+  /// No description provided for @brushAndInk.
+  ///
+  /// In en, this message translates to:
+  /// **'brush and ink'**
+  String get brushAndInk;
+
+  /// No description provided for @myStudent.
+  ///
+  /// In en, this message translates to:
+  /// **'my student'**
+  String get myStudent;
+
+  /// No description provided for @honoredDisciple.
+  ///
+  /// In en, this message translates to:
+  /// **'honored disciple'**
+  String get honoredDisciple;
+
+  /// No description provided for @notEnoughInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'not enough information'**
+  String get notEnoughInformation;
+
+  /// No description provided for @asAnAi.
+  ///
+  /// In en, this message translates to:
+  /// **'as an ai'**
+  String get asAnAi;
+
+  /// No description provided for @goodPracticeSessionContinueFocusing.
+  ///
+  /// In en, this message translates to:
+  /// **'Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.'**
+  String get goodPracticeSessionContinueFocusing;
+
+  /// No description provided for @insideASleekFuxingBullet.
+  ///
+  /// In en, this message translates to:
+  /// **'Inside a sleek Fuxing bullet train traveling at 350 km/h from Beijing to Shanghai.'**
+  String get insideASleekFuxingBullet;
+
+  /// No description provided for @harbinIceSnowWorldWonder.
+  ///
+  /// In en, this message translates to:
+  /// **'Harbin Ice & Snow World Wonder'**
+  String get harbinIceSnowWorldWonder;
+
+  /// No description provided for @theFamousPanjiayuanWeekendFlea.
+  ///
+  /// In en, this message translates to:
+  /// **'The famous Panjiayuan weekend flea market crowded with calligraphy scrolls, jade, and vintage trinkets.'**
+  String get theFamousPanjiayuanWeekendFlea;
+
+  /// No description provided for @jingdezhenBlueWhitePorcelainStudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Jingdezhen Blue & White Porcelain Studio'**
+  String get jingdezhenBlueWhitePorcelainStudio;
+
+  /// No description provided for @pekingOperaDressingRoomMakeup.
+  ///
+  /// In en, this message translates to:
+  /// **'Peking Opera Dressing Room & Makeup'**
+  String get pekingOperaDressingRoomMakeup;
+
+  /// No description provided for @aHistoricTongrentangApothecaryScented.
+  ///
+  /// In en, this message translates to:
+  /// **'A historic Tongrentang apothecary scented with ginseng, wolfberry, and hundreds of wooden herbal drawers.'**
+  String get aHistoricTongrentangApothecaryScented;
+
+  /// No description provided for @aVibrantPrivateNeonLit.
+  ///
+  /// In en, this message translates to:
+  /// **'A vibrant private neon-lit karaoke room in Shenzhen with microphones, fruit platters, and screen controls.'**
+  String get aVibrantPrivateNeonLit;
+
+  /// No description provided for @animeCosplayExpoInGuangzhou.
+  ///
+  /// In en, this message translates to:
+  /// **'Anime & Cosplay Expo in Guangzhou'**
+  String get animeCosplayExpoInGuangzhou;
+
+  /// No description provided for @nHOHuNy.
+  ///
+  /// In en, this message translates to:
+  /// **'Nǐ hǎo! Huānyíng lái dào zhèlǐ, jīntiān wǒmen liáo xiē shénme ne?'**
+  String get nHOHuNy;
+
+  /// No description provided for @surpriseMe2.
+  ///
+  /// In en, this message translates to:
+  /// **'🎲 Surprise Me'**
+  String get surpriseMe2;
+
+  /// No description provided for @eGALivelyBanquet.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., A lively banquet celebrating in Shanghai...'**
+  String get eGALivelyBanquet;
+
+  /// No description provided for @rollCharacter2.
+  ///
+  /// In en, this message translates to:
+  /// **'🎲 Roll Character'**
+  String get rollCharacter2;
+
+  /// No description provided for @eGACuriousCousin.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., A curious cousin asking about your career...'**
+  String get eGACuriousCousin;
+
+  /// No description provided for @keepTrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep trying!'**
+  String get keepTrying;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending...'**
+  String get pending;
+
+  /// No description provided for @expected.
+  ///
+  /// In en, this message translates to:
+  /// **'🎯 Expected'**
+  String get expected;
+
+  /// No description provided for @hSK2Elementary.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 2: Elementary'**
+  String get hSK2Elementary;
+
+  /// No description provided for @hSK3Intermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 3: Intermediate'**
+  String get hSK3Intermediate;
+
+  /// No description provided for @hSK5Advanced.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 5: Advanced'**
+  String get hSK5Advanced;
+
+  /// No description provided for @expressYourselfFullyWith5000.
+  ///
+  /// In en, this message translates to:
+  /// **'Express yourself fully with 5000+ words.'**
+  String get expressYourselfFullyWith5000;
+
+  /// No description provided for @hanziWriter.
+  ///
+  /// In en, this message translates to:
+  /// **'hanzi-writer'**
+  String get hanziWriter;
+
+  /// No description provided for @hvg.
+  ///
+  /// In en, this message translates to:
+  /// **'hvg:'**
+  String get hvg;
+
+  /// No description provided for @unlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited'**
+  String get unlimited;
+
+  /// No description provided for @dueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Due today'**
+  String get dueToday;
+
+  /// No description provided for @newAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'New available'**
+  String get newAvailable;
+
+  /// No description provided for @deleteAccountTile.
+  ///
+  /// In en, this message translates to:
+  /// **'delete-account-tile'**
+  String get deleteAccountTile;
+
+  /// No description provided for @giveASingleShortPractical.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a single, short, practical tip on how to improve the shape, position, or length of the poorly drawn strokes. Be direct and helpful, do not be overly poetic or metaphorical. Do not use markdown.'**
+  String get giveASingleShortPractical;
+
+  /// No description provided for @localOnDeviceTTS.
+  ///
+  /// In en, this message translates to:
+  /// **'Local — On-device TTS'**
+  String get localOnDeviceTTS;
+
+  /// No description provided for @espaOl.
+  ///
+  /// In en, this message translates to:
+  /// **'Español'**
+  String get espaOl;
+
+  /// No description provided for @franAis.
+  ///
+  /// In en, this message translates to:
+  /// **'Français'**
+  String get franAis;
+
+  /// No description provided for @portuguS.
+  ///
+  /// In en, this message translates to:
+  /// **'Português'**
+  String get portuguS;
+
+  /// No description provided for @tiNgViT.
+  ///
+  /// In en, this message translates to:
+  /// **'Tiếng Việt'**
+  String get tiNgViT;
+
+  /// No description provided for @koreFemaleWarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Kore — Female, warm'**
+  String get koreFemaleWarm;
+
+  /// No description provided for @aoedeFemaleCheerful.
+  ///
+  /// In en, this message translates to:
+  /// **'Aoede — Female, cheerful'**
+  String get aoedeFemaleCheerful;
+
+  /// No description provided for @fenrirMaleUpbeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Fenrir — Male, upbeat'**
+  String get fenrirMaleUpbeat;
+
+  /// No description provided for @charonMaleNewsStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Charon — Male, news-style'**
+  String get charonMaleNewsStyle;
+
+  /// No description provided for @puckMaleSporty.
+  ///
+  /// In en, this message translates to:
+  /// **'Puck — Male, sporty'**
+  String get puckMaleSporty;
+
+  /// No description provided for @systemVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'System voice'**
+  String get systemVoice;
+
+  /// No description provided for @generateAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate & Add'**
+  String get generateAdd;
+
+  /// No description provided for @moreExamples.
+  ///
+  /// In en, this message translates to:
+  /// **'📝 More examples'**
+  String get moreExamples;
+
+  /// No description provided for @usage2.
+  ///
+  /// In en, this message translates to:
+  /// **'❓ Usage'**
+  String get usage2;
+
+  /// No description provided for @translation.
+  ///
+  /// In en, this message translates to:
+  /// **'💬 Translation'**
+  String get translation;
+
+  /// No description provided for @collocations.
+  ///
+  /// In en, this message translates to:
+  /// **'📚 Collocations'**
+  String get collocations;
+
+  /// No description provided for @mistakes.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ Mistakes'**
+  String get mistakes;
+
+  /// No description provided for @decrease.
+  ///
+  /// In en, this message translates to:
+  /// **'Decrease'**
+  String get decrease;
+
+  /// No description provided for @increase.
+  ///
+  /// In en, this message translates to:
+  /// **'Increase'**
+  String get increase;
+
+  /// No description provided for @label0MeansThisCardType.
+  ///
+  /// In en, this message translates to:
+  /// **'0 means this card type is disabled.'**
+  String get label0MeansThisCardType;
+
+  /// No description provided for @tapTheValueToEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the value to enter an exact limit.'**
+  String get tapTheValueToEnter;
+
+  /// No description provided for @exactDailyLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact daily limit'**
+  String get exactDailyLimit;
+
+  /// No description provided for @enter0ToDisable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 0 to disable.'**
+  String get enter0ToDisable;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// No description provided for @selectDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Deck'**
+  String get selectDeck;
+
+  /// No description provided for @azureSpeechKeysNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Azure Speech keys not configured. Add AZURE_SPEECH_KEY and AZURE_SPEECH_REGION to .env'**
+  String get azureSpeechKeysNotConfigured;
+
+  /// No description provided for @sTARTING.
+  ///
+  /// In en, this message translates to:
+  /// **'STARTING…'**
+  String get sTARTING;
+
+  /// No description provided for @sTARTSESSION.
+  ///
+  /// In en, this message translates to:
+  /// **'START SESSION'**
+  String get sTARTSESSION;
+
+  /// No description provided for @translating2.
+  ///
+  /// In en, this message translates to:
+  /// **'Translating...'**
+  String get translating2;
+
+  /// No description provided for @chai.
+  ///
+  /// In en, this message translates to:
+  /// **'柴知道Chai...'**
+  String get chai;
+
+  /// No description provided for @oneInABillion2.
+  ///
+  /// In en, this message translates to:
+  /// **'@One-In-a-Billion'**
+  String get oneInABillion2;
+
+  /// No description provided for @businessEconomics.
+  ///
+  /// In en, this message translates to:
+  /// **'business & economics'**
+  String get businessEconomics;
+
+  /// No description provided for @hskPreparation.
+  ///
+  /// In en, this message translates to:
+  /// **'hsk preparation'**
+  String get hskPreparation;
+
+  /// No description provided for @liveInChina.
+  ///
+  /// In en, this message translates to:
+  /// **'live in china'**
+  String get liveInChina;
+
+  /// No description provided for @comprehensiveExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'comprehensive exercise'**
+  String get comprehensiveExercise;
+
+  /// No description provided for @howToUse.
+  ///
+  /// In en, this message translates to:
+  /// **'how to use'**
+  String get howToUse;
+
+  /// No description provided for @usesOf.
+  ///
+  /// In en, this message translates to:
+  /// **'uses of'**
+  String get usesOf;
+
+  /// No description provided for @appearedFirstOnMandarinBean.
+  ///
+  /// In en, this message translates to:
+  /// **'appeared first on Mandarin Bean'**
+  String get appearedFirstOnMandarinBean;
+
+  /// No description provided for @news2.
+  ///
+  /// In en, this message translates to:
+  /// **'news:'**
+  String get news2;
+
+  /// No description provided for @joke.
+  ///
+  /// In en, this message translates to:
+  /// **'joke:'**
+  String get joke;
+
+  /// No description provided for @jokes.
+  ///
+  /// In en, this message translates to:
+  /// **'jokes:'**
+  String get jokes;
+
+  /// No description provided for @academicScience.
+  ///
+  /// In en, this message translates to:
+  /// **'academic / science'**
+  String get academicScience;
+
+  /// No description provided for @politicsCommunism.
+  ///
+  /// In en, this message translates to:
+  /// **'politics & communism'**
+  String get politicsCommunism;
+
+  /// No description provided for @foodDining.
+  ///
+  /// In en, this message translates to:
+  /// **'Food & Dining'**
+  String get foodDining;
+
+  /// No description provided for @sciFi.
+  ///
+  /// In en, this message translates to:
+  /// **'sci-fi'**
+  String get sciFi;
+
+  /// No description provided for @scienceFictionTech.
+  ///
+  /// In en, this message translates to:
+  /// **'Science Fiction & Tech'**
+  String get scienceFictionTech;
+
+  /// No description provided for @travelPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel & Places'**
+  String get travelPlaces;
+
+  /// No description provided for @mythologyFantasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Mythology & Fantasy'**
+  String get mythologyFantasy;
+
+  /// No description provided for @cultureTraditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Culture & Traditions'**
+  String get cultureTraditions;
+
+  /// No description provided for @businessEconomy.
+  ///
+  /// In en, this message translates to:
+  /// **'Business & Economy'**
+  String get businessEconomy;
+
+  /// No description provided for @natureAnimals.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature & Animals'**
+  String get natureAnimals;
+
+  /// No description provided for @articleImg.
+  ///
+  /// In en, this message translates to:
+  /// **'article img'**
+  String get articleImg;
+
+  /// No description provided for @entryContentImg.
+  ///
+  /// In en, this message translates to:
+  /// **'.entry-content img'**
+  String get entryContentImg;
+
+  /// No description provided for @zhHans.
+  ///
+  /// In en, this message translates to:
+  /// **'zh-Hans'**
+  String get zhHans;
+
+  /// No description provided for @zhHant.
+  ///
+  /// In en, this message translates to:
+  /// **'zh-Hant'**
+  String get zhHant;
+
+  /// No description provided for @pLDpUVcjhvJisQCVw4YJVNTxTDrVQUgbr.
+  ///
+  /// In en, this message translates to:
+  /// **'PLDpUVcjhvJisQCVw4YJVNTxT-DrVQUgbr'**
+  String get pLDpUVcjhvJisQCVw4YJVNTxTDrVQUgbr;
+
+  /// No description provided for @siJin.
+  ///
+  /// In en, this message translates to:
+  /// **'【似锦 Si Jin】正片 | #张晚意 #景甜'**
+  String get siJin;
+
+  /// No description provided for @xiXiPicturesOfficialChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'西嘻影业官方频道 XiXi Pictures Official Channel'**
+  String get xiXiPicturesOfficialChannel;
+
+  /// No description provided for @pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2.
+  ///
+  /// In en, this message translates to:
+  /// **'PLDpUVcjhvJitpknWzhJb-wevf7VSVWXk2'**
+  String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2;
+
+  /// No description provided for @sIXSISTERS.
+  ///
+  /// In en, this message translates to:
+  /// **'【六姊妹 SIX SISTERS】正片 | #梅婷 #陆毅 #邬君梅 #奚美娟'**
+  String get sIXSISTERS;
+
+  /// No description provided for @shineOnMeENGSUB.
+  ///
+  /// In en, this message translates to:
+  /// **'【骄阳似我 Shine On Me】ENG SUB | #宋威龙 #赵今麦'**
+  String get shineOnMeENGSUB;
+
+  /// No description provided for @eNGSUBThoseDays.
+  ///
+  /// In en, this message translates to:
+  /// **'ENG SUB【四喜 Those Days】| 童瑶 蒋欣 黄明昊 许娣'**
+  String get eNGSUBThoseDays;
+
+  /// No description provided for @getTheWeTVAPP.
+  ///
+  /// In en, this message translates to:
+  /// **'腾讯视频 - Get the WeTV APP'**
+  String get getTheWeTVAPP;
+
+  /// No description provided for @liziqi2.
+  ///
+  /// In en, this message translates to:
+  /// **'李子柒 Liziqi'**
+  String get liziqi2;
+
+  /// No description provided for @uCQRJN2yW42jqXIGK2VKIPw.
+  ///
+  /// In en, this message translates to:
+  /// **'UCQ_RJN2yW42jqXIGK2VKIPw'**
+  String get uCQRJN2yW42jqXIGK2VKIPw;
+
+  /// No description provided for @uCt4t3iY8hL5sF5pV6qW2xRg.
+  ///
+  /// In en, this message translates to:
+  /// **'UCt4t3iY8hL5sF5pV6qW2xRg'**
+  String get uCt4t3iY8hL5sF5pV6qW2xRg;
+
+  /// No description provided for @uCp8q9rL2jG5hV7xW3mR5bNQ.
+  ///
+  /// In en, this message translates to:
+  /// **'UCp8q9rL2jG5hV7xW3mR5bNQ'**
+  String get uCp8q9rL2jG5hV7xW3mR5bNQ;
+
+  /// No description provided for @uCvZ9W7u3T6a5YJS0VT28oA.
+  ///
+  /// In en, this message translates to:
+  /// **'UCvZ9W7u3T6a5YJS0VT-28oA'**
+  String get uCvZ9W7u3T6a5YJS0VT28oA;
+
+  /// No description provided for @uCm7yM8rL5jG5pV6qW3xR2bQ.
+  ///
+  /// In en, this message translates to:
+  /// **'UCm7yM8rL5jG5pV6qW3xR2bQ'**
+  String get uCm7yM8rL5jG5pV6qW3xR2bQ;
+
+  /// No description provided for @uCJ10R97LkwGdTqBT6xzV8g.
+  ///
+  /// In en, this message translates to:
+  /// **'UCJ10R97LkwGdTqBT6xz-v8g'**
+  String get uCJ10R97LkwGdTqBT6xzV8g;
+
+  /// No description provided for @learnMandarinWithTaiwanPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Mandarin with TaiwanPlus'**
+  String get learnMandarinWithTaiwanPlus;
+
+  /// No description provided for @everydayChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyday Chinese'**
+  String get everydayChinese;
+
+  /// No description provided for @uCCFdR7zZ5SUXuOrEdKw.
+  ///
+  /// In en, this message translates to:
+  /// **'UCC_fdR7zZ_5SU--xuOrEdKw'**
+  String get uCCFdR7zZ5SUXuOrEdKw;
+
+  /// No description provided for @tingDailyLifeInChina.
+  ///
+  /// In en, this message translates to:
+  /// **'Ting-Daily life in China'**
+  String get tingDailyLifeInChina;
+
+  /// No description provided for @tFTFOODTRAVEL.
+  ///
+  /// In en, this message translates to:
+  /// **'TFT - FOOD & TRAVEL'**
+  String get tFTFOODTRAVEL;
+
+  /// No description provided for @uCsHMiBJ9r87fRH7VAWZw.
+  ///
+  /// In en, this message translates to:
+  /// **'UCs_h_miBJ9r8-7fRH7VAWZw'**
+  String get uCsHMiBJ9r87fRH7VAWZw;
+
+  /// No description provided for @liziqi3.
+  ///
+  /// In en, this message translates to:
+  /// **'李子柒 Liziqi: 大蒜的一生'**
+  String get liziqi3;
+
+  /// No description provided for @label2MINCULTURALCONTEXT.
+  ///
+  /// In en, this message translates to:
+  /// **'2 MIN CULTURAL CONTEXT'**
+  String get label2MINCULTURALCONTEXT;
+
+  /// No description provided for @liziqi4.
+  ///
+  /// In en, this message translates to:
+  /// **'李子柒 Liziqi: 竹子家具'**
+  String get liziqi4;
+
+  /// No description provided for @peppaPigChinese2.
+  ///
+  /// In en, this message translates to:
+  /// **'Peppa Pig Chinese: 泥坑'**
+  String get peppaPigChinese2;
+
+  /// No description provided for @noBBCLeadArticleIs.
+  ///
+  /// In en, this message translates to:
+  /// **'No BBC lead article is currently available.'**
+  String get noBBCLeadArticleIs;
+
+  /// No description provided for @mediaThumbnail.
+  ///
+  /// In en, this message translates to:
+  /// **'media:thumbnail'**
+  String get mediaThumbnail;
+
+  /// No description provided for @bBC.
+  ///
+  /// In en, this message translates to:
+  /// **'BBC 中文'**
+  String get bBC;
+
+  /// No description provided for @siJin2.
+  ///
+  /// In en, this message translates to:
+  /// **'似锦 Si Jin'**
+  String get siJin2;
+
+  /// No description provided for @n9Yh6jSqjg.
+  ///
+  /// In en, this message translates to:
+  /// **'n9Yh-6jSqjg'**
+  String get n9Yh6jSqjg;
+
+  /// No description provided for @eV4j0RDXDVU.
+  ///
+  /// In en, this message translates to:
+  /// **'EV4j0RDXDVU'**
+  String get eV4j0RDXDVU;
+
+  /// No description provided for @eY3hnHAmSg.
+  ///
+  /// In en, this message translates to:
+  /// **'e-Y3hnHAmSg'**
+  String get eY3hnHAmSg;
+
+  /// No description provided for @cD0Q81FnaY.
+  ///
+  /// In en, this message translates to:
+  /// **'CD0Q81-fnaY'**
+  String get cD0Q81FnaY;
+
+  /// No description provided for @label0UEwtWyW5s.
+  ///
+  /// In en, this message translates to:
+  /// **'0UEwtWy-W5s'**
+  String get label0UEwtWyW5s;
+
+  /// No description provided for @label8PNkm5Mxxk.
+  ///
+  /// In en, this message translates to:
+  /// **'8PNkm5-Mxxk'**
+  String get label8PNkm5Mxxk;
+
+  /// No description provided for @iWNYkjEle8.
+  ///
+  /// In en, this message translates to:
+  /// **'IWNYkj-ele8'**
+  String get iWNYkjEle8;
+
+  /// No description provided for @rGrzq5WtBE.
+  ///
+  /// In en, this message translates to:
+  /// **'r-grzq5WtBE'**
+  String get rGrzq5WtBE;
+
+  /// No description provided for @tBo7q3wafw.
+  ///
+  /// In en, this message translates to:
+  /// **'t-bo7q3wafw'**
+  String get tBo7q3wafw;
+
+  /// No description provided for @iJkbO5H6E.
+  ///
+  /// In en, this message translates to:
+  /// **'I_jkbO5-h6E'**
+  String get iJkbO5H6E;
+
+  /// No description provided for @oMM5UD0T2w.
+  ///
+  /// In en, this message translates to:
+  /// **'OMM5_UD0T2w'**
+  String get oMM5UD0T2w;
+
+  /// No description provided for @sIXSISTERS2.
+  ///
+  /// In en, this message translates to:
+  /// **'六姊妹 SIX SISTERS'**
+  String get sIXSISTERS2;
+
+  /// No description provided for @cNylns5HiA.
+  ///
+  /// In en, this message translates to:
+  /// **'c-nylns5HiA'**
+  String get cNylns5HiA;
+
+  /// No description provided for @mEUH5U8EZa4.
+  ///
+  /// In en, this message translates to:
+  /// **'MEUH5U8EZa4'**
+  String get mEUH5U8EZa4;
+
+  /// No description provided for @label3Wx8JnjWZc.
+  ///
+  /// In en, this message translates to:
+  /// **'3Wx8JnjW-Zc'**
+  String get label3Wx8JnjWZc;
+
+  /// No description provided for @qj17RJVE5B0.
+  ///
+  /// In en, this message translates to:
+  /// **'Qj17RJVE5B0'**
+  String get qj17RJVE5B0;
+
+  /// No description provided for @vO4nggZ6Grs.
+  ///
+  /// In en, this message translates to:
+  /// **'VO4nggZ6Grs'**
+  String get vO4nggZ6Grs;
+
+  /// No description provided for @zNR4WLEcJ4.
+  ///
+  /// In en, this message translates to:
+  /// **'Z-NR4WLEcJ4'**
+  String get zNR4WLEcJ4;
+
+  /// No description provided for @mA08u68O7Q.
+  ///
+  /// In en, this message translates to:
+  /// **'MA08u68O7_Q'**
+  String get mA08u68O7Q;
+
+  /// No description provided for @ig8tnI0c9xM.
+  ///
+  /// In en, this message translates to:
+  /// **'Ig8tnI0c9xM'**
+  String get ig8tnI0c9xM;
+
+  /// No description provided for @gIBYzq4lFtw.
+  ///
+  /// In en, this message translates to:
+  /// **'GIBYzq4lFtw'**
+  String get gIBYzq4lFtw;
+
+  /// No description provided for @qDOf4OCZgd0.
+  ///
+  /// In en, this message translates to:
+  /// **'QDOf4OCZgd0'**
+  String get qDOf4OCZgd0;
+
+  /// No description provided for @shineOnMe.
+  ///
+  /// In en, this message translates to:
+  /// **'骄阳似我 Shine on Me'**
+  String get shineOnMe;
+
+  /// No description provided for @zx7pUK2J1Uc.
+  ///
+  /// In en, this message translates to:
+  /// **'Zx7pUK2J1Uc'**
+  String get zx7pUK2J1Uc;
+
+  /// No description provided for @zdgymrBo9Y.
+  ///
+  /// In en, this message translates to:
+  /// **'zdgymr-bo9Y'**
+  String get zdgymrBo9Y;
+
+  /// No description provided for @label7yMAZEUBs.
+  ///
+  /// In en, this message translates to:
+  /// **'7yMAZ_e-uBs'**
+  String get label7yMAZEUBs;
+
+  /// No description provided for @l9AqUHU14.
+  ///
+  /// In en, this message translates to:
+  /// **'_l9AqU-hU14'**
+  String get l9AqUHU14;
+
+  /// No description provided for @label1elnMxr0A0.
+  ///
+  /// In en, this message translates to:
+  /// **'1elnMxr0-A0'**
+  String get label1elnMxr0A0;
+
+  /// No description provided for @ozsUxgd7sk.
+  ///
+  /// In en, this message translates to:
+  /// **'OzsUxgd-7sk'**
+  String get ozsUxgd7sk;
+
+  /// No description provided for @label4czDUfmwv8.
+  ///
+  /// In en, this message translates to:
+  /// **'4cz-dUfmwv8'**
+  String get label4czDUfmwv8;
+
+  /// No description provided for @iuiTM37MII.
+  ///
+  /// In en, this message translates to:
+  /// **'iuiTM37M-II'**
+  String get iuiTM37MII;
+
+  /// No description provided for @xgXf9j96yM.
+  ///
+  /// In en, this message translates to:
+  /// **'XgXf-9j96yM'**
+  String get xgXf9j96yM;
+
+  /// No description provided for @thoseDays.
+  ///
+  /// In en, this message translates to:
+  /// **'四喜 Those days'**
+  String get thoseDays;
+
+  /// No description provided for @a5nhDbkkCU.
+  ///
+  /// In en, this message translates to:
+  /// **'a5nhDbkkC-U'**
+  String get a5nhDbkkCU;
+
+  /// No description provided for @jb8unABN00.
+  ///
+  /// In en, this message translates to:
+  /// **'-jb8unABN00'**
+  String get jb8unABN00;
+
+  /// No description provided for @label78OX9HXqKA.
+  ///
+  /// In en, this message translates to:
+  /// **'78OX-9HXqKA'**
+  String get label78OX9HXqKA;
+
+  /// No description provided for @oDw77ocPGXg.
+  ///
+  /// In en, this message translates to:
+  /// **'ODw77ocPGXg'**
+  String get oDw77ocPGXg;
+
+  /// No description provided for @tt28uayZ7U.
+  ///
+  /// In en, this message translates to:
+  /// **'-tt28uayZ7U'**
+  String get tt28uayZ7U;
+
+  /// No description provided for @sOl3U7rPEPc.
+  ///
+  /// In en, this message translates to:
+  /// **'SOl3U7rPEPc'**
+  String get sOl3U7rPEPc;
+
+  /// No description provided for @sffGZZpJ48.
+  ///
+  /// In en, this message translates to:
+  /// **'sffGZZp-j48'**
+  String get sffGZZpJ48;
+
+  /// No description provided for @v2UNvBajdY.
+  ///
+  /// In en, this message translates to:
+  /// **'v2UNv-BajdY'**
+  String get v2UNvBajdY;
+
+  /// No description provided for @noFunnyNoMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'不好笑就露宿街头No Funny No Money'**
+  String get noFunnyNoMoney;
+
+  /// No description provided for @dob3yGGLHIg.
+  ///
+  /// In en, this message translates to:
+  /// **'Dob3yGGLHIg'**
+  String get dob3yGGLHIg;
+
+  /// No description provided for @q5vqCQ6P9Pk.
+  ///
+  /// In en, this message translates to:
+  /// **'Q5vqCQ6P9Pk'**
+  String get q5vqCQ6P9Pk;
+
+  /// No description provided for @label9Nc40rZ3b8.
+  ///
+  /// In en, this message translates to:
+  /// **'-9Nc40rZ3b8'**
+  String get label9Nc40rZ3b8;
+
+  /// No description provided for @d3zEt3pV8.
+  ///
+  /// In en, this message translates to:
+  /// **'_D3z-Et3pV8'**
+  String get d3zEt3pV8;
+
+  /// No description provided for @label5S3yHQ10.
+  ///
+  /// In en, this message translates to:
+  /// **'5_S3yHQ--10'**
+  String get label5S3yHQ10;
+
+  /// No description provided for @jQbyRRCa5U.
+  ///
+  /// In en, this message translates to:
+  /// **'JQbyR-rCa5U'**
+  String get jQbyRRCa5U;
+
+  /// No description provided for @x5WFTXq2FW0.
+  ///
+  /// In en, this message translates to:
+  /// **'X5WFTXq2FW0'**
+  String get x5WFTXq2FW0;
+
+  /// No description provided for @getTheWeTVAPP2.
+  ///
+  /// In en, this message translates to:
+  /// **'腾讯视频 - 动漫 - Get the WeTV APP'**
+  String get getTheWeTVAPP2;
+
+  /// No description provided for @y4TWL0m2i4c.
+  ///
+  /// In en, this message translates to:
+  /// **'Y4TWL0m2i4c'**
+  String get y4TWL0m2i4c;
+
+  /// No description provided for @uVZdKZcAXU.
+  ///
+  /// In en, this message translates to:
+  /// **'UV-ZdKZcAXU'**
+  String get uVZdKZcAXU;
+
+  /// No description provided for @mR8VUhHc.
+  ///
+  /// In en, this message translates to:
+  /// **'-__MR8VUhHc'**
+  String get mR8VUhHc;
+
+  /// No description provided for @jrTInzf1Kc.
+  ///
+  /// In en, this message translates to:
+  /// **'Jr_tInzf1Kc'**
+  String get jrTInzf1Kc;
+
+  /// No description provided for @xfjz857p3w.
+  ///
+  /// In en, this message translates to:
+  /// **'Xfjz_857p3w'**
+  String get xfjz857p3w;
+
+  /// No description provided for @mI1Wl3V5WBE.
+  ///
+  /// In en, this message translates to:
+  /// **'MI1Wl3V5WBE'**
+  String get mI1Wl3V5WBE;
+
+  /// No description provided for @lordOfMysteriesVlog.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 乌贼配音vlog终版 腾讯视频 - 动漫'**
+  String get lordOfMysteriesVlog;
+
+  /// No description provided for @lordOfMysteries.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第八期 腾讯视频 - 动漫'**
+  String get lordOfMysteries;
+
+  /// No description provided for @lordOfMysteries2.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第七期 腾讯视频 - 动漫'**
+  String get lordOfMysteries2;
+
+  /// No description provided for @lordOfMysteries3.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第六期 腾讯视频 - 动漫'**
+  String get lordOfMysteries3;
+
+  /// No description provided for @lordOfMysteries4.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第五期 腾讯视频 - 动漫'**
+  String get lordOfMysteries4;
+
+  /// No description provided for @lordOfMysteries5.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第四期 腾讯视频 - 动漫'**
+  String get lordOfMysteries5;
+
+  /// No description provided for @lordOfMysteries6.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第三期 腾讯视频 - 动漫'**
+  String get lordOfMysteries6;
+
+  /// No description provided for @pakhctn6g6A.
+  ///
+  /// In en, this message translates to:
+  /// **'Pakhctn6g6A'**
+  String get pakhctn6g6A;
+
+  /// No description provided for @lordOfMysteries7.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第二期 腾讯视频 - 动漫'**
+  String get lordOfMysteries7;
+
+  /// No description provided for @lordOfMysteries8.
+  ///
+  /// In en, this message translates to:
+  /// **'《诡秘之主》Lord of Mysteries 神秘学课堂第一期 腾讯视频 - 动漫'**
+  String get lordOfMysteries8;
+
+  /// No description provided for @g5fLWO98axs.
+  ///
+  /// In en, this message translates to:
+  /// **'G5fLWO98axs'**
+  String get g5fLWO98axs;
+
+  /// No description provided for @gK0eOTF2s4c.
+  ///
+  /// In en, this message translates to:
+  /// **'GK0eOTF2s4c'**
+  String get gK0eOTF2s4c;
+
+  /// No description provided for @oSTLordOfMysteries.
+  ///
+  /// In en, this message translates to:
+  /// **'【OST】《诡秘之主》Lord of Mysteries 终幕曲《勿忘我》 腾讯视频 - 动漫'**
+  String get oSTLordOfMysteries;
+
+  /// No description provided for @membersPremiere2.
+  ///
+  /// In en, this message translates to:
+  /// **'Members Premiere 会员抢先看'**
+  String get membersPremiere2;
+
+  /// No description provided for @dOtFXu1Vw.
+  ///
+  /// In en, this message translates to:
+  /// **'_dOt-fXu1Vw'**
+  String get dOtFXu1Vw;
+
+  /// No description provided for @eA13aHY8jw.
+  ///
+  /// In en, this message translates to:
+  /// **'EA13aH_Y8jw'**
+  String get eA13aHY8jw;
+
+  /// No description provided for @jVfwogmt8JM.
+  ///
+  /// In en, this message translates to:
+  /// **'JVfwogmt8JM'**
+  String get jVfwogmt8JM;
+
+  /// No description provided for @sfj9727Xu4.
+  ///
+  /// In en, this message translates to:
+  /// **'Sfj9727-Xu4'**
+  String get sfj9727Xu4;
+
+  /// No description provided for @tnv6Me0FI4s.
+  ///
+  /// In en, this message translates to:
+  /// **'Tnv6Me0FI4s'**
+  String get tnv6Me0FI4s;
+
+  /// No description provided for @wEY80ZpZ8.
+  ///
+  /// In en, this message translates to:
+  /// **'wEY80-_ZpZ8'**
+  String get wEY80ZpZ8;
+
+  /// No description provided for @pNRv9ncKDq4.
+  ///
+  /// In en, this message translates to:
+  /// **'PNRv9ncKDq4'**
+  String get pNRv9ncKDq4;
+
+  /// No description provided for @yZI6rr4wR1I.
+  ///
+  /// In en, this message translates to:
+  /// **'YZI6rr4wR1I'**
+  String get yZI6rr4wR1I;
+
+  /// No description provided for @bDzKpcxWto.
+  ///
+  /// In en, this message translates to:
+  /// **'B-DzKpcxWto'**
+  String get bDzKpcxWto;
+
+  /// No description provided for @dy9QDPpZBk.
+  ///
+  /// In en, this message translates to:
+  /// **'dy9QDPpZ-bk'**
+  String get dy9QDPpZBk;
+
+  /// No description provided for @tZ53akmpvyc.
+  ///
+  /// In en, this message translates to:
+  /// **'TZ53akmpvyc'**
+  String get tZ53akmpvyc;
+
+  /// No description provided for @label4Ip1rJO4gE.
+  ///
+  /// In en, this message translates to:
+  /// **'4-Ip1rJO4gE'**
+  String get label4Ip1rJO4gE;
+
+  /// No description provided for @label5VKww8pjFA.
+  ///
+  /// In en, this message translates to:
+  /// **'5-vKww8pjFA'**
+  String get label5VKww8pjFA;
+
+  /// No description provided for @label60SpwYfgUU.
+  ///
+  /// In en, this message translates to:
+  /// **'60Spw-yfgUU'**
+  String get label60SpwYfgUU;
+
+  /// No description provided for @v8AG9HnmFA.
+  ///
+  /// In en, this message translates to:
+  /// **'V8AG9_hnmFA'**
+  String get v8AG9HnmFA;
+
+  /// No description provided for @vY6ao4ktdo.
+  ///
+  /// In en, this message translates to:
+  /// **'-vY6ao4ktdo'**
+  String get vY6ao4ktdo;
+
+  /// No description provided for @htxVeakvE.
+  ///
+  /// In en, this message translates to:
+  /// **'-htx-veakvE'**
+  String get htxVeakvE;
+
+  /// No description provided for @fO7muIAr9dA.
+  ///
+  /// In en, this message translates to:
+  /// **'FO7muIAr9dA'**
+  String get fO7muIAr9dA;
+
+  /// No description provided for @s4O9Nk3Q4.
+  ///
+  /// In en, this message translates to:
+  /// **'S4_O9Nk-3Q4'**
+  String get s4O9Nk3Q4;
+
+  /// No description provided for @lMDHc55prI.
+  ///
+  /// In en, this message translates to:
+  /// **'LM_dHc55prI'**
+  String get lMDHc55prI;
+
+  /// No description provided for @lGpl7G7850.
+  ///
+  /// In en, this message translates to:
+  /// **'-LGpl7G7850'**
+  String get lGpl7G7850;
+
+  /// No description provided for @xJ2dwZ2xCw0.
+  ///
+  /// In en, this message translates to:
+  /// **'XJ2dwZ2xCw0'**
+  String get xJ2dwZ2xCw0;
+
+  /// No description provided for @qo47iejJOQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Qo_47iejJOQ'**
+  String get qo47iejJOQ;
+
+  /// No description provided for @gbnoj9WUP5Y.
+  ///
+  /// In en, this message translates to:
+  /// **'Gbnoj9WUP5Y'**
+  String get gbnoj9WUP5Y;
+
+  /// No description provided for @qCHKUuwF0.
+  ///
+  /// In en, this message translates to:
+  /// **'QCHKUuw_f_0'**
+  String get qCHKUuwF0;
+
+  /// No description provided for @qyh4kU263OA.
+  ///
+  /// In en, this message translates to:
+  /// **'Qyh4kU263OA'**
+  String get qyh4kU263OA;
+
+  /// No description provided for @vnTQZY6QM.
+  ///
+  /// In en, this message translates to:
+  /// **'Vn-TQZ_Y6QM'**
+  String get vnTQZY6QM;
+
+  /// No description provided for @vwk9yx7WL0c.
+  ///
+  /// In en, this message translates to:
+  /// **'Vwk9yx7WL0c'**
+  String get vwk9yx7WL0c;
+
+  /// No description provided for @uLa6Qw2aL0.
+  ///
+  /// In en, this message translates to:
+  /// **'u-La6Qw2aL0'**
+  String get uLa6Qw2aL0;
+
+  /// No description provided for @kQJ5gjZwU0.
+  ///
+  /// In en, this message translates to:
+  /// **'k-QJ5gjZwU0'**
+  String get kQJ5gjZwU0;
+
+  /// No description provided for @mQH5jhyqPHc.
+  ///
+  /// In en, this message translates to:
+  /// **'MQH5jhyqPHc'**
+  String get mQH5jhyqPHc;
+
+  /// No description provided for @h6rjzyquxA.
+  ///
+  /// In en, this message translates to:
+  /// **'h6rjzyqux-A'**
+  String get h6rjzyquxA;
+
+  /// No description provided for @pLMX26aiIvX5phl8n87NqTbaeXK2HHm.
+  ///
+  /// In en, this message translates to:
+  /// **'PLMX26aiIvX5phl8n8-7-nqTbaeXK2HHm-'**
+  String get pLMX26aiIvX5phl8n87NqTbaeXK2HHm;
+
+  /// No description provided for @eightHundred.
+  ///
+  /// In en, this message translates to:
+  /// **'方圆八百米 Eight Hundred'**
+  String get eightHundred;
+
+  /// No description provided for @l1Xmsbo6RE.
+  ///
+  /// In en, this message translates to:
+  /// **'L1Xmsbo6_rE'**
+  String get l1Xmsbo6RE;
+
+  /// No description provided for @dq1IgosbLQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Dq1Igosb_lQ'**
+  String get dq1IgosbLQ;
+
+  /// No description provided for @i8e9E1bZR7I.
+  ///
+  /// In en, this message translates to:
+  /// **'I8e9E1bZR7I'**
+  String get i8e9E1bZR7I;
+
+  /// No description provided for @iqRK2KUN0I.
+  ///
+  /// In en, this message translates to:
+  /// **'IqRK2KUN-0I'**
+  String get iqRK2KUN0I;
+
+  /// No description provided for @c3wWSQPFc0.
+  ///
+  /// In en, this message translates to:
+  /// **'C3w-WSQPFc0'**
+  String get c3wWSQPFc0;
+
+  /// No description provided for @loveBeyondTheGrave.
+  ///
+  /// In en, this message translates to:
+  /// **'白日提灯 Love Beyond the Grave'**
+  String get loveBeyondTheGrave;
+
+  /// No description provided for @rPWA2OHxlaw.
+  ///
+  /// In en, this message translates to:
+  /// **'RPWA2OHxlaw'**
+  String get rPWA2OHxlaw;
+
+  /// No description provided for @label8NShMGCGZk.
+  ///
+  /// In en, this message translates to:
+  /// **'8NShMG-cGZk'**
+  String get label8NShMGCGZk;
+
+  /// No description provided for @q2TPc3EOYl4.
+  ///
+  /// In en, this message translates to:
+  /// **'Q2TPc3EOYl4'**
+  String get q2TPc3EOYl4;
+
+  /// No description provided for @pmPPM7YT5M.
+  ///
+  /// In en, this message translates to:
+  /// **'PmPP-M7YT5M'**
+  String get pmPPM7YT5M;
+
+  /// No description provided for @azFL5ujNQ0.
+  ///
+  /// In en, this message translates to:
+  /// **'-AzFL5ujNQ0'**
+  String get azFL5ujNQ0;
+
+  /// No description provided for @kpD2a0Z9yE.
+  ///
+  /// In en, this message translates to:
+  /// **'kpD-2a0Z9yE'**
+  String get kpD2a0Z9yE;
+
+  /// No description provided for @dMAm1i8Ylb8.
+  ///
+  /// In en, this message translates to:
+  /// **'DMAm1i8Ylb8'**
+  String get dMAm1i8Ylb8;
+
+  /// No description provided for @ppk0MGKF8Y.
+  ///
+  /// In en, this message translates to:
+  /// **'Ppk_0MGKF8Y'**
+  String get ppk0MGKF8Y;
+
+  /// No description provided for @label1ZEKWcipU.
+  ///
+  /// In en, this message translates to:
+  /// **'1_zEK-WcipU'**
+  String get label1ZEKWcipU;
+
+  /// No description provided for @dcOLJI4L5A.
+  ///
+  /// In en, this message translates to:
+  /// **'dcO-LJI4L5A'**
+  String get dcOLJI4L5A;
+
+  /// No description provided for @loveBeyondTheGrave2.
+  ///
+  /// In en, this message translates to:
+  /// **'片场彩蛋：贺思慕段胥本名难觅花名纷至【白日提灯 Love Beyond the Grave】'**
+  String get loveBeyondTheGrave2;
+
+  /// No description provided for @label5MVET41ATY.
+  ///
+  /// In en, this message translates to:
+  /// **'5MVET41A-tY'**
+  String get label5MVET41ATY;
+
+  /// No description provided for @bTSLoveBeyondTheGrave.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜【鹅剧派对】迪丽热巴陈飞宇携众主创默契五感五连拍！【白日提灯 Love Beyond the Grave】'**
+  String get bTSLoveBeyondTheGrave;
+
+  /// No description provided for @bTSLoveBeyondTheGrave2.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜【鹅剧派对】迪丽热巴陈飞宇亮相，眼神杀直接封神！【白日提灯 Love Beyond the Grave】'**
+  String get bTSLoveBeyondTheGrave2;
+
+  /// No description provided for @herBlaze.
+  ///
+  /// In en, this message translates to:
+  /// **'她的盛焰 Her Blaze'**
+  String get herBlaze;
+
+  /// No description provided for @opOIDzw8Vo.
+  ///
+  /// In en, this message translates to:
+  /// **'Op_OIDzw8Vo'**
+  String get opOIDzw8Vo;
+
+  /// No description provided for @rv9nnIn4wxQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Rv9nnIn4wxQ'**
+  String get rv9nnIn4wxQ;
+
+  /// No description provided for @c5e9V1GRnn8.
+  ///
+  /// In en, this message translates to:
+  /// **'C5e9V1GRnn8'**
+  String get c5e9V1GRnn8;
+
+  /// No description provided for @xAjvi1fmrrQ.
+  ///
+  /// In en, this message translates to:
+  /// **'XAjvi1fmrrQ'**
+  String get xAjvi1fmrrQ;
+
+  /// No description provided for @yIkxweh5A0.
+  ///
+  /// In en, this message translates to:
+  /// **'yIkxweh5-A0'**
+  String get yIkxweh5A0;
+
+  /// No description provided for @label9CM48di86g.
+  ///
+  /// In en, this message translates to:
+  /// **'9-CM48di86g'**
+  String get label9CM48di86g;
+
+  /// No description provided for @dAwbSEDikg.
+  ///
+  /// In en, this message translates to:
+  /// **'D-AwbSEDikg'**
+  String get dAwbSEDikg;
+
+  /// No description provided for @ecXCXc5EUg.
+  ///
+  /// In en, this message translates to:
+  /// **'Ec_xCXc5EUg'**
+  String get ecXCXc5EUg;
+
+  /// No description provided for @lKBf8Y0Qfqg.
+  ///
+  /// In en, this message translates to:
+  /// **'LKBf8Y0Qfqg'**
+  String get lKBf8Y0Qfqg;
+
+  /// No description provided for @qnc5caQJITA.
+  ///
+  /// In en, this message translates to:
+  /// **'Qnc5caQJITA'**
+  String get qnc5caQJITA;
+
+  /// No description provided for @xmLEreDeoU.
+  ///
+  /// In en, this message translates to:
+  /// **'xmLEreDeo-U'**
+  String get xmLEreDeoU;
+
+  /// No description provided for @aboutLove.
+  ///
+  /// In en, this message translates to:
+  /// **'玫瑰丛生 About Love'**
+  String get aboutLove;
+
+  /// No description provided for @i4cZFlj8Fw.
+  ///
+  /// In en, this message translates to:
+  /// **'I4cZ-Flj8Fw'**
+  String get i4cZFlj8Fw;
+
+  /// No description provided for @v8m00Hcam0.
+  ///
+  /// In en, this message translates to:
+  /// **'V8m0-0Hcam0'**
+  String get v8m00Hcam0;
+
+  /// No description provided for @aVPsfT4c4.
+  ///
+  /// In en, this message translates to:
+  /// **'a-_vPsfT4c4'**
+  String get aVPsfT4c4;
+
+  /// No description provided for @cJ9KNnY2cc.
+  ///
+  /// In en, this message translates to:
+  /// **'CJ9K-NnY2cc'**
+  String get cJ9KNnY2cc;
+
+  /// No description provided for @j078HAJbI.
+  ///
+  /// In en, this message translates to:
+  /// **'J-078H-aJbI'**
+  String get j078HAJbI;
+
+  /// No description provided for @byLJulMrNs.
+  ///
+  /// In en, this message translates to:
+  /// **'by-lJulMrNs'**
+  String get byLJulMrNs;
+
+  /// No description provided for @hj663skfypU.
+  ///
+  /// In en, this message translates to:
+  /// **'Hj663skfypU'**
+  String get hj663skfypU;
+
+  /// No description provided for @lVOj0dkxDQ.
+  ///
+  /// In en, this message translates to:
+  /// **'LVOj0dkx-DQ'**
+  String get lVOj0dkxDQ;
+
+  /// No description provided for @hKCVYT0J0.
+  ///
+  /// In en, this message translates to:
+  /// **'hK-CVYT0J_0'**
+  String get hKCVYT0J0;
+
+  /// No description provided for @v9czXRh5oUc.
+  ///
+  /// In en, this message translates to:
+  /// **'V9czXRh5oUc'**
+  String get v9czXRh5oUc;
+
+  /// No description provided for @af4fVhhPVg.
+  ///
+  /// In en, this message translates to:
+  /// **'af4fVhhP-Vg'**
+  String get af4fVhhPVg;
+
+  /// No description provided for @tA.
+  ///
+  /// In en, this message translates to:
+  /// **'《玫瑰丛生》全员陷入爱情迷雾，TA会如何破局？ ｜主演：王子文、刘宇宁'**
+  String get tA;
+
+  /// No description provided for @pLMX26aiIvX5rSLe74r7sARps4oOqaBWD.
+  ///
+  /// In en, this message translates to:
+  /// **'PLMX26aiIvX5rSLe74r7sA-Rps4oOqaBWD'**
+  String get pLMX26aiIvX5rSLe74r7sARps4oOqaBWD;
+
+  /// No description provided for @generationToGeneration2.
+  ///
+  /// In en, this message translates to:
+  /// **'江湖夜雨十年灯 Generation to Generation'**
+  String get generationToGeneration2;
+
+  /// No description provided for @wCfp3YN9mPs.
+  ///
+  /// In en, this message translates to:
+  /// **'WCfp3YN9mPs'**
+  String get wCfp3YN9mPs;
+
+  /// No description provided for @label0Sus6s0HWM.
+  ///
+  /// In en, this message translates to:
+  /// **'0Sus6s0-hWM'**
+  String get label0Sus6s0HWM;
+
+  /// No description provided for @zjcGjE54zU.
+  ///
+  /// In en, this message translates to:
+  /// **'Zjc-GjE54zU'**
+  String get zjcGjE54zU;
+
+  /// No description provided for @g1q8I4lZ5mU.
+  ///
+  /// In en, this message translates to:
+  /// **'G1q8I4lZ5mU'**
+  String get g1q8I4lZ5mU;
+
+  /// No description provided for @y2IWPq6jFCE.
+  ///
+  /// In en, this message translates to:
+  /// **'Y2IWPq6jFCE'**
+  String get y2IWPq6jFCE;
+
+  /// No description provided for @wz9oy74X8.
+  ///
+  /// In en, this message translates to:
+  /// **'Wz9oy_74_x8'**
+  String get wz9oy74X8;
+
+  /// No description provided for @ztz3CXfrQE.
+  ///
+  /// In en, this message translates to:
+  /// **'-ztz3CXfrQE'**
+  String get ztz3CXfrQE;
+
+  /// No description provided for @loveStoryInThe1970s.
+  ///
+  /// In en, this message translates to:
+  /// **'纯真年代的爱情 Love Story in the 1970s'**
+  String get loveStoryInThe1970s;
+
+  /// No description provided for @eGYAJh8Z8Pc.
+  ///
+  /// In en, this message translates to:
+  /// **'EGYAJh8Z8Pc'**
+  String get eGYAJh8Z8Pc;
+
+  /// No description provided for @aBXZma9Mqc.
+  ///
+  /// In en, this message translates to:
+  /// **'A-bXZma9Mqc'**
+  String get aBXZma9Mqc;
+
+  /// No description provided for @wSHZC7Yb5s.
+  ///
+  /// In en, this message translates to:
+  /// **'WSHZC_7Yb5s'**
+  String get wSHZC7Yb5s;
+
+  /// No description provided for @aK8Fl3m9W7I.
+  ///
+  /// In en, this message translates to:
+  /// **'AK8Fl3m9W7I'**
+  String get aK8Fl3m9W7I;
+
+  /// No description provided for @label0jw5TGzM0s.
+  ///
+  /// In en, this message translates to:
+  /// **'0jw5T-gzM0s'**
+  String get label0jw5TGzM0s;
+
+  /// No description provided for @xIbV4LmjNk.
+  ///
+  /// In en, this message translates to:
+  /// **'XIbV4-lmjNk'**
+  String get xIbV4LmjNk;
+
+  /// No description provided for @hkpSEzLKLg.
+  ///
+  /// In en, this message translates to:
+  /// **'HkpSEzLK-Lg'**
+  String get hkpSEzLKLg;
+
+  /// No description provided for @pLMX26aiIvX5q5kRTszb0kZqKc2TJWnf.
+  ///
+  /// In en, this message translates to:
+  /// **'PLMX26aiIvX5q5kR_Tszb0kZqKc2T-JWnf'**
+  String get pLMX26aiIvX5q5kRTszb0kZqKc2TJWnf;
+
+  /// No description provided for @whyIsHeStillSingle.
+  ///
+  /// In en, this message translates to:
+  /// **'他为什么依然单身 Why Is He Still Single'**
+  String get whyIsHeStillSingle;
+
+  /// No description provided for @okB86OjCI.
+  ///
+  /// In en, this message translates to:
+  /// **'okB_86OjC-I'**
+  String get okB86OjCI;
+
+  /// No description provided for @m8eZwl6rA4.
+  ///
+  /// In en, this message translates to:
+  /// **'m8eZwl6rA-4'**
+  String get m8eZwl6rA4;
+
+  /// No description provided for @label3ub1XXXYI.
+  ///
+  /// In en, this message translates to:
+  /// **'3ub-1-xXXYI'**
+  String get label3ub1XXXYI;
+
+  /// No description provided for @label4dW228WSVk.
+  ///
+  /// In en, this message translates to:
+  /// **'4dW228-wSVk'**
+  String get label4dW228WSVk;
+
+  /// No description provided for @wCAK3UFi5M.
+  ///
+  /// In en, this message translates to:
+  /// **'WCAK3_uFi5M'**
+  String get wCAK3UFi5M;
+
+  /// No description provided for @eZzak3C73nI.
+  ///
+  /// In en, this message translates to:
+  /// **'EZzak3C73nI'**
+  String get eZzak3C73nI;
+
+  /// No description provided for @theGlamorousNight.
+  ///
+  /// In en, this message translates to:
+  /// **'夜色正浓 The Glamorous Night'**
+  String get theGlamorousNight;
+
+  /// No description provided for @theGlamorousNightE03.
+  ///
+  /// In en, this message translates to:
+  /// **'【夜色正浓 The Glamorous Night】E03 霸气出招！赵玫绝地反击（江疏影，佟大为）'**
+  String get theGlamorousNightE03;
+
+  /// No description provided for @zaalDLrc.
+  ///
+  /// In en, this message translates to:
+  /// **'--Zaal-DLrc'**
+  String get zaalDLrc;
+
+  /// No description provided for @label26Lkp84WD0.
+  ///
+  /// In en, this message translates to:
+  /// **'2-6Lkp84WD0'**
+  String get label26Lkp84WD0;
+
+  /// No description provided for @jD9iPkDDqC.
+  ///
+  /// In en, this message translates to:
+  /// **'jD9iPkDDq-c'**
+  String get jD9iPkDDqC;
+
+  /// No description provided for @jIyk18uXB7Q.
+  ///
+  /// In en, this message translates to:
+  /// **'JIyk18uXB7Q'**
+  String get jIyk18uXB7Q;
+
+  /// No description provided for @h3XEsv0mgA.
+  ///
+  /// In en, this message translates to:
+  /// **'h3-xEsv0mgA'**
+  String get h3XEsv0mgA;
+
+  /// No description provided for @vClRnlEUTQ.
+  ///
+  /// In en, this message translates to:
+  /// **'VClRnlEUT-Q'**
+  String get vClRnlEUTQ;
+
+  /// No description provided for @myPageInThe90s.
+  ///
+  /// In en, this message translates to:
+  /// **'突然的喜欢 My Page in the 90s'**
+  String get myPageInThe90s;
+
+  /// No description provided for @m7XBiuw1TU.
+  ///
+  /// In en, this message translates to:
+  /// **'m7XBiuw1-tU'**
+  String get m7XBiuw1TU;
+
+  /// No description provided for @a25pD4FCQio.
+  ///
+  /// In en, this message translates to:
+  /// **'A25pD4FCQio'**
+  String get a25pD4FCQio;
+
+  /// No description provided for @muCj0GdNdw.
+  ///
+  /// In en, this message translates to:
+  /// **'muCj-0GdNdw'**
+  String get muCj0GdNdw;
+
+  /// No description provided for @aQ4hlmkOv3A.
+  ///
+  /// In en, this message translates to:
+  /// **'AQ4hlmkOv3A'**
+  String get aQ4hlmkOv3A;
+
+  /// No description provided for @nEiRnIHDg.
+  ///
+  /// In en, this message translates to:
+  /// **'NEiRn_IH-Dg'**
+  String get nEiRnIHDg;
+
+  /// No description provided for @label04MyPageInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段04 : 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！【突然的喜欢 My Page in the 90s】'**
+  String get label04MyPageInThe;
+
+  /// No description provided for @label03MyPageInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段03 : 替闺蜜去相亲，结果相到了男主本尊？【突然的喜欢 My Page in the 90s】'**
+  String get label03MyPageInThe;
+
+  /// No description provided for @bTSXXMyPage.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜「出戏 X 陈星旭 X 王玉雯」高总和欢儿的抽象究竟谁更甚一筹？【突然的喜欢 My Page in the 90s】'**
+  String get bTSXXMyPage;
+
+  /// No description provided for @label02MyPageInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段 02：本想攻略男主，结果竟然认错人？【突然的喜欢 My Page in the 90s】'**
+  String get label02MyPageInThe;
+
+  /// No description provided for @label01MyPageInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段01 : 离谱！突然就穿书了？这剧情我该怎么演?【突然的喜欢 My Page in the 90s】'**
+  String get label01MyPageInThe;
+
+  /// No description provided for @bTSMyPageInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜陈星旭王玉雯溜冰撞了个满怀【突然的喜欢 My Page in the 90s】'**
+  String get bTSMyPageInThe;
+
+  /// No description provided for @bTSMyPageInThe2.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜陈星旭王玉雯甜蜜跨年【突然的喜欢 My Page in the 90s】'**
+  String get bTSMyPageInThe2;
+
+  /// No description provided for @bTSMyPageInThe3.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜陈星旭王玉雯七夕定格甜蜜瞬间【突然的喜欢 My Page in the 90s】'**
+  String get bTSMyPageInThe3;
+
+  /// No description provided for @bTSMyPageInThe4.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜陈星旭王玉雯欢乐游乐场【突然的喜欢 My Page in the 90s】'**
+  String get bTSMyPageInThe4;
+
+  /// No description provided for @myPageInThe90s2.
+  ///
+  /// In en, this message translates to:
+  /// **'《突然的喜欢 My Page in the 90s》今日开播，陈星旭王玉雯玩转系统甜蜜热恋'**
+  String get myPageInThe90s2;
+
+  /// No description provided for @myPageInThe90s3.
+  ///
+  /// In en, this message translates to:
+  /// **'《突然的喜欢 My Page in the 90s》1月22日甜蜜开播，陈星旭王玉雯反套路恋爱'**
+  String get myPageInThe90s3;
+
+  /// No description provided for @myPageInThe90s4.
+  ///
+  /// In en, this message translates to:
+  /// **'《突然的喜欢 My Page in the 90s》定档0122！陈星旭王玉雯跨时代热恋'**
+  String get myPageInThe90s4;
+
+  /// No description provided for @pLMX26aiIvX5qxr2ZxGgBQKRNVGydd.
+  ///
+  /// In en, this message translates to:
+  /// **'PLMX26aiIvX5qxr2ZxGgBQKR-n-V_Gydd-'**
+  String get pLMX26aiIvX5qxr2ZxGgBQKRNVGydd;
+
+  /// No description provided for @uDFuWJvE1M.
+  ///
+  /// In en, this message translates to:
+  /// **'uDFuWJv-e1M'**
+  String get uDFuWJvE1M;
+
+  /// No description provided for @bNKH0V8G.
+  ///
+  /// In en, this message translates to:
+  /// **'bN-kH-0V8-g'**
+  String get bNKH0V8G;
+
+  /// No description provided for @l4tkACioRc.
+  ///
+  /// In en, this message translates to:
+  /// **'L4tkACio-Rc'**
+  String get l4tkACioRc;
+
+  /// No description provided for @label2TheImperialCoronerS2.
+  ///
+  /// In en, this message translates to:
+  /// **'御赐小仵作2 The Imperial Coroner S2'**
+  String get label2TheImperialCoronerS2;
+
+  /// No description provided for @hNa1FW55Q5s.
+  ///
+  /// In en, this message translates to:
+  /// **'HNa1FW55Q5s'**
+  String get hNa1FW55Q5s;
+
+  /// No description provided for @yyn06Ql7ADg.
+  ///
+  /// In en, this message translates to:
+  /// **'Yyn06Ql7ADg'**
+  String get yyn06Ql7ADg;
+
+  /// No description provided for @h0LBmMzQBc.
+  ///
+  /// In en, this message translates to:
+  /// **'h0LBmMz-qBc'**
+  String get h0LBmMzQBc;
+
+  /// No description provided for @label25FI49I6Sk.
+  ///
+  /// In en, this message translates to:
+  /// **'25FI49I6-Sk'**
+  String get label25FI49I6Sk;
+
+  /// No description provided for @aAY7eaH3jw.
+  ///
+  /// In en, this message translates to:
+  /// **'aAY7ea-H3jw'**
+  String get aAY7eaH3jw;
+
+  /// No description provided for @ukcZXSZhOc.
+  ///
+  /// In en, this message translates to:
+  /// **'UkcZX-SZhOc'**
+  String get ukcZXSZhOc;
+
+  /// No description provided for @pLMX26aiIvX5o7sdz290MeDHgSqCHsIS.
+  ///
+  /// In en, this message translates to:
+  /// **'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s'**
+  String get pLMX26aiIvX5o7sdz290MeDHgSqCHsIS;
+
+  /// No description provided for @theDreamMaker.
+  ///
+  /// In en, this message translates to:
+  /// **'小城大事 The Dream Maker'**
+  String get theDreamMaker;
+
+  /// No description provided for @fLcyGh4lXM.
+  ///
+  /// In en, this message translates to:
+  /// **'FLcy_gh4lXM'**
+  String get fLcyGh4lXM;
+
+  /// No description provided for @zvaRoKDtG0.
+  ///
+  /// In en, this message translates to:
+  /// **'ZvaRoKDtG-0'**
+  String get zvaRoKDtG0;
+
+  /// No description provided for @x1CkUlPzUc.
+  ///
+  /// In en, this message translates to:
+  /// **'x1CkUl-pzUc'**
+  String get x1CkUlPzUc;
+
+  /// No description provided for @axn5uV9sXSw.
+  ///
+  /// In en, this message translates to:
+  /// **'Axn5uV9sXSw'**
+  String get axn5uV9sXSw;
+
+  /// No description provided for @hj11XBTF4hQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Hj11XBTF4hQ'**
+  String get hj11XBTF4hQ;
+
+  /// No description provided for @kzB7eE7CFc.
+  ///
+  /// In en, this message translates to:
+  /// **'Kz_B7eE7CFc'**
+  String get kzB7eE7CFc;
+
+  /// No description provided for @m5bbHdJrE.
+  ///
+  /// In en, this message translates to:
+  /// **'-m5bb_HdJrE'**
+  String get m5bbHdJrE;
+
+  /// No description provided for @vl9SPb3Hs.
+  ///
+  /// In en, this message translates to:
+  /// **'Vl9_s-Pb3Hs'**
+  String get vl9SPb3Hs;
+
+  /// No description provided for @y1y6xz0xM2I.
+  ///
+  /// In en, this message translates to:
+  /// **'Y1y6xz0xM2I'**
+  String get y1y6xz0xM2I;
+
+  /// No description provided for @label8HxijD19OI.
+  ///
+  /// In en, this message translates to:
+  /// **'8HxijD19O-I'**
+  String get label8HxijD19OI;
+
+  /// No description provided for @nj33Wy40VXU.
+  ///
+  /// In en, this message translates to:
+  /// **'Nj33Wy40VXU'**
+  String get nj33Wy40VXU;
+
+  /// No description provided for @eDGFBue80s.
+  ///
+  /// In en, this message translates to:
+  /// **'EDGF_Bue80s'**
+  String get eDGFBue80s;
+
+  /// No description provided for @label19zBynsjTk.
+  ///
+  /// In en, this message translates to:
+  /// **'19z-BynsjTk'**
+  String get label19zBynsjTk;
+
+  /// No description provided for @oJmIfnNd8s.
+  ///
+  /// In en, this message translates to:
+  /// **'oJmIfnNd-8s'**
+  String get oJmIfnNd8s;
+
+  /// No description provided for @yVp1Ms3ZE8.
+  ///
+  /// In en, this message translates to:
+  /// **'YVp1_Ms3ZE8'**
+  String get yVp1Ms3ZE8;
+
+  /// No description provided for @foreverYoungE23.
+  ///
+  /// In en, this message translates to:
+  /// **'【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）'**
+  String get foreverYoungE23;
+
+  /// No description provided for @foreverYoungE25.
+  ///
+  /// In en, this message translates to:
+  /// **'【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）'**
+  String get foreverYoungE25;
+
+  /// No description provided for @foreverYoungE24.
+  ///
+  /// In en, this message translates to:
+  /// **'【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）'**
+  String get foreverYoungE24;
+
+  /// No description provided for @fEYoHxyxzQ.
+  ///
+  /// In en, this message translates to:
+  /// **'FEYo_hxyxzQ'**
+  String get fEYoHxyxzQ;
+
+  /// No description provided for @zF8OR9onddY.
+  ///
+  /// In en, this message translates to:
+  /// **'ZF8OR9onddY'**
+  String get zF8OR9onddY;
+
+  /// No description provided for @b1FJGDAKV8.
+  ///
+  /// In en, this message translates to:
+  /// **'B1FJ-GDAKV8'**
+  String get b1FJGDAKV8;
+
+  /// No description provided for @pLL3q9saUp1GZjNkX3Zxfr4y8rZhaZ0jV.
+  ///
+  /// In en, this message translates to:
+  /// **'PLL3q9saUp1GZj-nkX3Zxfr4y8rZhaZ0jV'**
+  String get pLL3q9saUp1GZjNkX3Zxfr4y8rZhaZ0jV;
+
+  /// No description provided for @hOMELANDGUARDIAN.
+  ///
+  /// In en, this message translates to:
+  /// **'守诚者|HOMELAND GUARDIAN🚔'**
+  String get hOMELANDGUARDIAN;
+
+  /// No description provided for @iQIYIGetTheIQIYIAPP.
+  ///
+  /// In en, this message translates to:
+  /// **'iQIYI 悬疑社 - Get the iQIYI APP'**
+  String get iQIYIGetTheIQIYIAPP;
+
+  /// No description provided for @label8QBlaWEtbw.
+  ///
+  /// In en, this message translates to:
+  /// **'8Q-blaWEtbw'**
+  String get label8QBlaWEtbw;
+
+  /// No description provided for @label0XrMBoHTsY.
+  ///
+  /// In en, this message translates to:
+  /// **'0XrMBoH-TsY'**
+  String get label0XrMBoHTsY;
+
+  /// No description provided for @zBzbg0Nu84.
+  ///
+  /// In en, this message translates to:
+  /// **'zBzbg0-Nu84'**
+  String get zBzbg0Nu84;
+
+  /// No description provided for @label7ItX7Vt8Qc.
+  ///
+  /// In en, this message translates to:
+  /// **'7ItX7Vt8-qc'**
+  String get label7ItX7Vt8Qc;
+
+  /// No description provided for @zx5XvNKhXo.
+  ///
+  /// In en, this message translates to:
+  /// **'zx5Xv-NKhXo'**
+  String get zx5XvNKhXo;
+
+  /// No description provided for @nigVK5Ing.
+  ///
+  /// In en, this message translates to:
+  /// **'-Nig_vK5Ing'**
+  String get nigVK5Ing;
+
+  /// No description provided for @loveHasFireworks.
+  ///
+  /// In en, this message translates to:
+  /// **'爱情有烟火 Love Has Fireworks'**
+  String get loveHasFireworks;
+
+  /// No description provided for @getTheWeTVAPP3.
+  ///
+  /// In en, this message translates to:
+  /// **'腾讯视频 - 青春剧场 - Get the WeTV APP'**
+  String get getTheWeTVAPP3;
+
+  /// No description provided for @oMOcpoXhYw.
+  ///
+  /// In en, this message translates to:
+  /// **'OMOcpoXh-yw'**
+  String get oMOcpoXhYw;
+
+  /// No description provided for @xwTcCP8TsU.
+  ///
+  /// In en, this message translates to:
+  /// **'XwTc-CP8TsU'**
+  String get xwTcCP8TsU;
+
+  /// No description provided for @t4dBHQH9F0I.
+  ///
+  /// In en, this message translates to:
+  /// **'T4dBHQH9F0I'**
+  String get t4dBHQH9F0I;
+
+  /// No description provided for @jZP3R3khZMk.
+  ///
+  /// In en, this message translates to:
+  /// **'JZP3R3khZMk'**
+  String get jZP3R3khZMk;
+
+  /// No description provided for @cLBYyAU0AU.
+  ///
+  /// In en, this message translates to:
+  /// **'-CLBYyAU0AU'**
+  String get cLBYyAU0AU;
+
+  /// No description provided for @x1F7qp1cZo.
+  ///
+  /// In en, this message translates to:
+  /// **'X-1F7qp1cZo'**
+  String get x1F7qp1cZo;
+
+  /// No description provided for @jJ5X6yEpiI.
+  ///
+  /// In en, this message translates to:
+  /// **'J-j5X6yEpiI'**
+  String get jJ5X6yEpiI;
+
+  /// No description provided for @label8JmxrnwT0.
+  ///
+  /// In en, this message translates to:
+  /// **'8-jmxrnwT-0'**
+  String get label8JmxrnwT0;
+
+  /// No description provided for @gWvOJODRXU.
+  ///
+  /// In en, this message translates to:
+  /// **'gWvOJO-dRXU'**
+  String get gWvOJODRXU;
+
+  /// No description provided for @t1VyWJTB2A.
+  ///
+  /// In en, this message translates to:
+  /// **'t1VyWJT-b2A'**
+  String get t1VyWJTB2A;
+
+  /// No description provided for @e00xfXWql4Q.
+  ///
+  /// In en, this message translates to:
+  /// **'E00xfXWql4Q'**
+  String get e00xfXWql4Q;
+
+  /// No description provided for @theHiddenHeirYeChen2.
+  ///
+  /// In en, this message translates to:
+  /// **'进击的叶辰 The Hidden Heir Ye Chen'**
+  String get theHiddenHeirYeChen2;
+
+  /// No description provided for @xtTr8ZBDpG.
+  ///
+  /// In en, this message translates to:
+  /// **'XtTr8ZBDp-g'**
+  String get xtTr8ZBDpG;
+
+  /// No description provided for @dresmsNeverEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'去听旷野的风 Dresms Never End'**
+  String get dresmsNeverEnd;
+
+  /// No description provided for @mamaGo.
+  ///
+  /// In en, this message translates to:
+  /// **'我的妈妈是校花 Mama Go!'**
+  String get mamaGo;
+
+  /// No description provided for @o4rwrV9yv0.
+  ///
+  /// In en, this message translates to:
+  /// **'O4rwr_v9yv0'**
+  String get o4rwrV9yv0;
+
+  /// No description provided for @x5Cm37j3g0.
+  ///
+  /// In en, this message translates to:
+  /// **'X5Cm37j_3g0'**
+  String get x5Cm37j3g0;
+
+  /// No description provided for @jTqQ3t6gg.
+  ///
+  /// In en, this message translates to:
+  /// **'_jTqQ3t-6gg'**
+  String get jTqQ3t6gg;
+
+  /// No description provided for @cNIRYF7Ig4.
+  ///
+  /// In en, this message translates to:
+  /// **'cNIR-yF7Ig4'**
+  String get cNIRYF7Ig4;
+
+  /// No description provided for @hr2GfDJNGg.
+  ///
+  /// In en, this message translates to:
+  /// **'Hr2GfD-JNGg'**
+  String get hr2GfDJNGg;
+
+  /// No description provided for @yXXjFZcZw.
+  ///
+  /// In en, this message translates to:
+  /// **'Y-X-xjFZcZw'**
+  String get yXXjFZcZw;
+
+  /// No description provided for @xrBNQazEsk.
+  ///
+  /// In en, this message translates to:
+  /// **'xrBN-qazEsk'**
+  String get xrBNQazEsk;
+
+  /// No description provided for @fJDN8r3rcRw.
+  ///
+  /// In en, this message translates to:
+  /// **'FJDN8r3rcRw'**
+  String get fJDN8r3rcRw;
+
+  /// No description provided for @jEXB1NMkHs.
+  ///
+  /// In en, this message translates to:
+  /// **'JEXB1N-MkHs'**
+  String get jEXB1NMkHs;
+
+  /// No description provided for @d3dl69d81pQ.
+  ///
+  /// In en, this message translates to:
+  /// **'D3dl69d81pQ'**
+  String get d3dl69d81pQ;
+
+  /// No description provided for @xGZPKLBH8Q.
+  ///
+  /// In en, this message translates to:
+  /// **'XGZPK-LBH8Q'**
+  String get xGZPKLBH8Q;
+
+  /// No description provided for @x59A8sSoGs.
+  ///
+  /// In en, this message translates to:
+  /// **'x59A8s-SoGs'**
+  String get x59A8sSoGs;
+
+  /// No description provided for @lo6iApMzI.
+  ///
+  /// In en, this message translates to:
+  /// **'_lo6iAp-mzI'**
+  String get lo6iApMzI;
+
+  /// No description provided for @d4a9aQ7h18.
+  ///
+  /// In en, this message translates to:
+  /// **'D4a9aQ7h1_8'**
+  String get d4a9aQ7h18;
+
+  /// No description provided for @zCt0on2nA9s.
+  ///
+  /// In en, this message translates to:
+  /// **'ZCt0on2nA9s'**
+  String get zCt0on2nA9s;
+
+  /// No description provided for @b6BykN3fT4.
+  ///
+  /// In en, this message translates to:
+  /// **'b6BykN3f-t4'**
+  String get b6BykN3fT4;
+
+  /// No description provided for @eMZrxHTajM.
+  ///
+  /// In en, this message translates to:
+  /// **'EM-zrxHTajM'**
+  String get eMZrxHTajM;
+
+  /// No description provided for @t1RJnvl2RA.
+  ///
+  /// In en, this message translates to:
+  /// **'T1RJnvl2R_A'**
+  String get t1RJnvl2RA;
+
+  /// No description provided for @hOE347NBAc.
+  ///
+  /// In en, this message translates to:
+  /// **'hOE-347NBAc'**
+  String get hOE347NBAc;
+
+  /// No description provided for @loveStoryInThe1970s2.
+  ///
+  /// In en, this message translates to:
+  /// **'《纯真年代的爱情 Love Story in the 1970s》双线编年史短片温暖来袭~'**
+  String get loveStoryInThe1970s2;
+
+  /// No description provided for @loveStoryInThe1970s3.
+  ///
+  /// In en, this message translates to:
+  /// **'《纯真年代的爱情 Love Story in the 1970s》双人短片正式发布~让我们用感官书写一封情书'**
+  String get loveStoryInThe1970s3;
+
+  /// No description provided for @bTSLoveStoryInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜全员杀青，期待下一次重逢【纯真年代的爱情 Love Story in the 1970s】'**
+  String get bTSLoveStoryInThe;
+
+  /// No description provided for @loveStoryInThe1970s4.
+  ///
+  /// In en, this message translates to:
+  /// **'《纯真年代的爱情 Love Story in the 1970s》爱是藏在烟火里的诗～'**
+  String get loveStoryInThe1970s4;
+
+  /// No description provided for @sGX3zNIuzM.
+  ///
+  /// In en, this message translates to:
+  /// **'SGX-3zNIuzM'**
+  String get sGX3zNIuzM;
+
+  /// No description provided for @loveStoryInThe1970s5.
+  ///
+  /// In en, this message translates to:
+  /// **'《纯真年代的爱情 Love Story in the 1970s》正式定档2月21日播出啦~'**
+  String get loveStoryInThe1970s5;
+
+  /// No description provided for @dEZKlJqTo.
+  ///
+  /// In en, this message translates to:
+  /// **'DE_ZKl_jqTo'**
+  String get dEZKlJqTo;
+
+  /// No description provided for @sc8aQLBntwk.
+  ///
+  /// In en, this message translates to:
+  /// **'Sc8aQLBntwk'**
+  String get sc8aQLBntwk;
+
+  /// No description provided for @aDa3c9hGZA.
+  ///
+  /// In en, this message translates to:
+  /// **'ADa_3c9hGZA'**
+  String get aDa3c9hGZA;
+
+  /// No description provided for @yj9xkfkxmpQ.
+  ///
+  /// In en, this message translates to:
+  /// **'Yj9xkfkxmpQ'**
+  String get yj9xkfkxmpQ;
+
+  /// No description provided for @idjCqdRyYG.
+  ///
+  /// In en, this message translates to:
+  /// **'idjCqdRyY-g'**
+  String get idjCqdRyYG;
+
+  /// No description provided for @sqwEl8o75U.
+  ///
+  /// In en, this message translates to:
+  /// **'Sqw-El8o75U'**
+  String get sqwEl8o75U;
+
+  /// No description provided for @wbF6Wgzai4.
+  ///
+  /// In en, this message translates to:
+  /// **'WbF-6Wgzai4'**
+  String get wbF6Wgzai4;
+
+  /// No description provided for @pLyX50Z72L2xpkH5SEO0XjQxJPO1sC.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2xpk_h5SEO0Xj_qx-jPO1sC'**
+  String get pLyX50Z72L2xpkH5SEO0XjQxJPO1sC;
+
+  /// No description provided for @theTruth.
+  ///
+  /// In en, this message translates to:
+  /// **'风过留痕 The Truth'**
+  String get theTruth;
+
+  /// No description provided for @q4im6PPfcw.
+  ///
+  /// In en, this message translates to:
+  /// **'Q4im6P_Pfcw'**
+  String get q4im6PPfcw;
+
+  /// No description provided for @tsyfcT6RG8.
+  ///
+  /// In en, this message translates to:
+  /// **'Tsyfc-t6RG8'**
+  String get tsyfcT6RG8;
+
+  /// No description provided for @pHOAi3EJ6Cg.
+  ///
+  /// In en, this message translates to:
+  /// **'PHOAi3EJ6Cg'**
+  String get pHOAi3EJ6Cg;
+
+  /// No description provided for @l2EHE50Bhlw.
+  ///
+  /// In en, this message translates to:
+  /// **'L2EHE50Bhlw'**
+  String get l2EHE50Bhlw;
+
+  /// No description provided for @pVgnsUnNXw.
+  ///
+  /// In en, this message translates to:
+  /// **'PVgnsUnN-Xw'**
+  String get pVgnsUnNXw;
+
+  /// No description provided for @pLyX50Z72L2wsEVLZsclrIke3z7FY8n.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2wsEVL-zsclrIke3z7F-Y8n'**
+  String get pLyX50Z72L2wsEVLZsclrIke3z7FY8n;
+
+  /// No description provided for @ugNrNd0OM8.
+  ///
+  /// In en, this message translates to:
+  /// **'Ug_nrNd0OM8'**
+  String get ugNrNd0OM8;
+
+  /// No description provided for @b4hADbXtGo.
+  ///
+  /// In en, this message translates to:
+  /// **'b4hADb-xtGo'**
+  String get b4hADbXtGo;
+
+  /// No description provided for @rQXFQTj6XY.
+  ///
+  /// In en, this message translates to:
+  /// **'RQ_XFQTj6XY'**
+  String get rQXFQTj6XY;
+
+  /// No description provided for @a6TSVxp9x0.
+  ///
+  /// In en, this message translates to:
+  /// **'A6TS_Vxp9x0'**
+  String get a6TSVxp9x0;
+
+  /// No description provided for @gwt9Y2ESIOA.
+  ///
+  /// In en, this message translates to:
+  /// **'Gwt9Y2ESIOA'**
+  String get gwt9Y2ESIOA;
+
+  /// No description provided for @c2tVD8rhVMM.
+  ///
+  /// In en, this message translates to:
+  /// **'C2tVD8rhVMM'**
+  String get c2tVD8rhVMM;
+
+  /// No description provided for @pLyX50Z72L2wshCDZ4cWBwWHjigU7av.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2wshCDZ4cW-BwWHjigU7av-'**
+  String get pLyX50Z72L2wshCDZ4cWBwWHjigU7av;
+
+  /// No description provided for @tW5f69bxL0.
+  ///
+  /// In en, this message translates to:
+  /// **'TW_5f69bxL0'**
+  String get tW5f69bxL0;
+
+  /// No description provided for @l8T7Lz5VN44.
+  ///
+  /// In en, this message translates to:
+  /// **'L8T7Lz5VN44'**
+  String get l8T7Lz5VN44;
+
+  /// No description provided for @cVLZ3AmkTE.
+  ///
+  /// In en, this message translates to:
+  /// **'-cVLZ3AmkTE'**
+  String get cVLZ3AmkTE;
+
+  /// No description provided for @t4E2lf096yM.
+  ///
+  /// In en, this message translates to:
+  /// **'T4E2lf096yM'**
+  String get t4E2lf096yM;
+
+  /// No description provided for @wHENTJCl9M.
+  ///
+  /// In en, this message translates to:
+  /// **'WHENTJCl9-M'**
+  String get wHENTJCl9M;
+
+  /// No description provided for @bTSOutOfCharacterDuo.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜「Out of Character Duo Interview 」出戏双彩—高总和欢儿的抽象究竟谁更甚一筹？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场'**
+  String get bTSOutOfCharacterDuo;
+
+  /// No description provided for @rEk9xALNODE.
+  ///
+  /// In en, this message translates to:
+  /// **'REk9xALNODE'**
+  String get rEk9xALNODE;
+
+  /// No description provided for @label04MyPageInThe2.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段04 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场'**
+  String get label04MyPageInThe2;
+
+  /// No description provided for @label03MyPageInThe2.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段03 替闺蜜去相亲，结果相到了男主本尊？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场'**
+  String get label03MyPageInThe2;
+
+  /// No description provided for @xsb7BJppy0.
+  ///
+  /// In en, this message translates to:
+  /// **'Xsb7B-Jppy0'**
+  String get xsb7BJppy0;
+
+  /// No description provided for @label02MyPageInThe2.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段02 本想攻略男主，结果竟然认错人？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场'**
+  String get label02MyPageInThe2;
+
+  /// No description provided for @label01MyPageInThe2.
+  ///
+  /// In en, this message translates to:
+  /// **'精彩片段01 离谱！突然就穿书了？这剧情我该怎么演? 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场'**
+  String get label01MyPageInThe2;
+
+  /// No description provided for @zSpXoH9ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Z_SpXo-H9ok'**
+  String get zSpXoH9ok;
+
+  /// No description provided for @myPageInThe90s5.
+  ///
+  /// In en, this message translates to:
+  /// **'《突然的喜欢 My Page in the 90s》BTS｜陈星旭王玉雯溜冰撞了个满'**
+  String get myPageInThe90s5;
+
+  /// No description provided for @myPageInThe90s6.
+  ///
+  /// In en, this message translates to:
+  /// **'《突然的喜欢 My Page in the 90s》今日开播！陈星旭王玉雯玩转系统甜蜜热恋'**
+  String get myPageInThe90s6;
+
+  /// No description provided for @bTSMyPageInThe5.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS｜陈星旭王玉雯搞怪互动暧昧超标【突然的喜欢 My Page in the 90s】'**
+  String get bTSMyPageInThe5;
+
+  /// No description provided for @aYyrt0eGYw.
+  ///
+  /// In en, this message translates to:
+  /// **'AYyrt0e-gYw'**
+  String get aYyrt0eGYw;
+
+  /// No description provided for @qM5S5tiCI0.
+  ///
+  /// In en, this message translates to:
+  /// **'QM_5S5tiCI0'**
+  String get qM5S5tiCI0;
+
+  /// No description provided for @w1mYTU1AGkg.
+  ///
+  /// In en, this message translates to:
+  /// **'W1mYTU1AGkg'**
+  String get w1mYTU1AGkg;
+
+  /// No description provided for @pLyX50Z72L2zuddUfGdIXCxO1jAzTlPd.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2zudd-ufGdIXCxO1jAzTlPd'**
+  String get pLyX50Z72L2zuddUfGdIXCxO1jAzTlPd;
+
+  /// No description provided for @jWEK0M59Ysk.
+  ///
+  /// In en, this message translates to:
+  /// **'JWEK0M59Ysk'**
+  String get jWEK0M59Ysk;
+
+  /// No description provided for @p6l7C0ovRFM.
+  ///
+  /// In en, this message translates to:
+  /// **'P6l7C0ovRFM'**
+  String get p6l7C0ovRFM;
+
+  /// No description provided for @vRYp5JmLwc.
+  ///
+  /// In en, this message translates to:
+  /// **'-vRYp5JmLwc'**
+  String get vRYp5JmLwc;
+
+  /// No description provided for @dearSecretary.
+  ///
+  /// In en, this message translates to:
+  /// **'我亲爱的秘书 Dear Secretary'**
+  String get dearSecretary;
+
+  /// No description provided for @pAoESWUjrI.
+  ///
+  /// In en, this message translates to:
+  /// **'PAoES-wUjrI'**
+  String get pAoESWUjrI;
+
+  /// No description provided for @pLyX50Z72L2yOG39wBXIFJlA2GtbWheA.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2yOG39wBXIFJlA-2GtbWheA'**
+  String get pLyX50Z72L2yOG39wBXIFJlA2GtbWheA;
+
+  /// No description provided for @label0JQ43Tt8D4.
+  ///
+  /// In en, this message translates to:
+  /// **'0J-q43Tt8D4'**
+  String get label0JQ43Tt8D4;
+
+  /// No description provided for @lIJJXYywPM.
+  ///
+  /// In en, this message translates to:
+  /// **'LIJ-jXYywPM'**
+  String get lIJJXYywPM;
+
+  /// No description provided for @xLc3qBC5k.
+  ///
+  /// In en, this message translates to:
+  /// **'XLc3qB_c-5k'**
+  String get xLc3qBC5k;
+
+  /// No description provided for @mKLZpubV04.
+  ///
+  /// In en, this message translates to:
+  /// **'MKL_zpubV04'**
+  String get mKLZpubV04;
+
+  /// No description provided for @wXevXICxAQ.
+  ///
+  /// In en, this message translates to:
+  /// **'wXevXICx-AQ'**
+  String get wXevXICxAQ;
+
+  /// No description provided for @xRRUT4fbgQ.
+  ///
+  /// In en, this message translates to:
+  /// **'xRR-uT4fbgQ'**
+  String get xRRUT4fbgQ;
+
+  /// No description provided for @q5WMmVzsGQ.
+  ///
+  /// In en, this message translates to:
+  /// **'q5-wMmVzsGQ'**
+  String get q5WMmVzsGQ;
+
+  /// No description provided for @dOFDys0lAJ0.
+  ///
+  /// In en, this message translates to:
+  /// **'DOFDys0lAJ0'**
+  String get dOFDys0lAJ0;
+
+  /// No description provided for @wadaICY1qo.
+  ///
+  /// In en, this message translates to:
+  /// **'WadaIC-Y1qo'**
+  String get wadaICY1qo;
+
+  /// No description provided for @label44PA4p4dXY.
+  ///
+  /// In en, this message translates to:
+  /// **'44P-a4p4dXY'**
+  String get label44PA4p4dXY;
+
+  /// No description provided for @pLyX50Z72L2xbAikt1CHmEyvZrQv1XJu.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2xbAikt1CHmEyvZrQv1X-ju'**
+  String get pLyX50Z72L2xbAikt1CHmEyvZrQv1XJu;
+
+  /// No description provided for @foreverYoung2.
+  ///
+  /// In en, this message translates to:
+  /// **'轻年 Forever Young'**
+  String get foreverYoung2;
+
+  /// No description provided for @omVSnG9O8g.
+  ///
+  /// In en, this message translates to:
+  /// **'omVSn-G9O8g'**
+  String get omVSnG9O8g;
+
+  /// No description provided for @label2qKWcz2zU0.
+  ///
+  /// In en, this message translates to:
+  /// **'2qKWcz2z-u0'**
+  String get label2qKWcz2zU0;
+
+  /// No description provided for @label1WMYcdS8oE.
+  ///
+  /// In en, this message translates to:
+  /// **'1WMYcdS8o-E'**
+  String get label1WMYcdS8oE;
+
+  /// No description provided for @u0fCO4W9LHg.
+  ///
+  /// In en, this message translates to:
+  /// **'U0fCO4W9LHg'**
+  String get u0fCO4W9LHg;
+
+  /// No description provided for @m9xLRZlwO.
+  ///
+  /// In en, this message translates to:
+  /// **'M9xL-rZlw-o'**
+  String get m9xLRZlwO;
+
+  /// No description provided for @vo5jCUWPNAo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vo5jCUWPNAo'**
+  String get vo5jCUWPNAo;
+
+  /// No description provided for @vb1N5r3zZFo.
+  ///
+  /// In en, this message translates to:
+  /// **'Vb1N5r3zZFo'**
+  String get vb1N5r3zZFo;
+
+  /// No description provided for @lightOfDawn.
+  ///
+  /// In en, this message translates to:
+  /// **'人之初 Light of Dawn​'**
+  String get lightOfDawn;
+
+  /// No description provided for @teDx70IJcw.
+  ///
+  /// In en, this message translates to:
+  /// **'Te_dx70IJcw'**
+  String get teDx70IJcw;
+
+  /// No description provided for @mF2299T610.
+  ///
+  /// In en, this message translates to:
+  /// **'mF2299T-610'**
+  String get mF2299T610;
+
+  /// No description provided for @yLNGIsWlU.
+  ///
+  /// In en, this message translates to:
+  /// **'YL_-NGIsWlU'**
+  String get yLNGIsWlU;
+
+  /// No description provided for @mUZMDrFnNw.
+  ///
+  /// In en, this message translates to:
+  /// **'MUZMDrFn-Nw'**
+  String get mUZMDrFnNw;
+
+  /// No description provided for @pi2b8VYkM8.
+  ///
+  /// In en, this message translates to:
+  /// **'Pi2b8VYk-m8'**
+  String get pi2b8VYkM8;
+
+  /// No description provided for @pLyX50Z72L2xDQ9d02geVDYSbkol6u9Z.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2xDQ9d02geVDYSbkol-6u9Z'**
+  String get pLyX50Z72L2xDQ9d02geVDYSbkol6u9Z;
+
+  /// No description provided for @wWy3IO1E9cw.
+  ///
+  /// In en, this message translates to:
+  /// **'WWy3IO1E9cw'**
+  String get wWy3IO1E9cw;
+
+  /// No description provided for @wW9DI00Rx3w.
+  ///
+  /// In en, this message translates to:
+  /// **'WW9DI00Rx3w'**
+  String get wW9DI00Rx3w;
+
+  /// No description provided for @a6Y3wzD0I.
+  ///
+  /// In en, this message translates to:
+  /// **'A_6Y3wzD-0I'**
+  String get a6Y3wzD0I;
+
+  /// No description provided for @wXEkwsviSA.
+  ///
+  /// In en, this message translates to:
+  /// **'-WXEkwsviSA'**
+  String get wXEkwsviSA;
+
+  /// No description provided for @uq15J34lYB0.
+  ///
+  /// In en, this message translates to:
+  /// **'Uq15J34lYB0'**
+  String get uq15J34lYB0;
+
+  /// No description provided for @sc7Fg23kmUM.
+  ///
+  /// In en, this message translates to:
+  /// **'Sc7Fg23kmUM'**
+  String get sc7Fg23kmUM;
+
+  /// No description provided for @kaJ2rw9Aqk.
+  ///
+  /// In en, this message translates to:
+  /// **'ka-j2rw9Aqk'**
+  String get kaJ2rw9Aqk;
+
+  /// No description provided for @uLnBQ3TFuc.
+  ///
+  /// In en, this message translates to:
+  /// **'ULnBQ3-TFuc'**
+  String get uLnBQ3TFuc;
+
+  /// No description provided for @t2Iwb6RA1A.
+  ///
+  /// In en, this message translates to:
+  /// **'T2Iwb6-RA1A'**
+  String get t2Iwb6RA1A;
+
+  /// No description provided for @mug6zYTLTlc.
+  ///
+  /// In en, this message translates to:
+  /// **'Mug6zYTLTlc'**
+  String get mug6zYTLTlc;
+
+  /// No description provided for @n2FDS8D8uu4.
+  ///
+  /// In en, this message translates to:
+  /// **'N2FDS8D8uu4'**
+  String get n2FDS8D8uu4;
+
+  /// No description provided for @s8lCa09LCr8.
+  ///
+  /// In en, this message translates to:
+  /// **'S8lCa09LCr8'**
+  String get s8lCa09LCr8;
+
+  /// No description provided for @cU6u6WUM.
+  ///
+  /// In en, this message translates to:
+  /// **'C-u6u_6-WUM'**
+  String get cU6u6WUM;
+
+  /// No description provided for @oNNJqZYydM.
+  ///
+  /// In en, this message translates to:
+  /// **'ONN-JqZYydM'**
+  String get oNNJqZYydM;
+
+  /// No description provided for @sniperButterfly.
+  ///
+  /// In en, this message translates to:
+  /// **'狙击蝴蝶 Sniper Butterfly'**
+  String get sniperButterfly;
+
+  /// No description provided for @zExesh1IRe4.
+  ///
+  /// In en, this message translates to:
+  /// **'ZExesh1IRe4'**
+  String get zExesh1IRe4;
+
+  /// No description provided for @ygyiJvBu0.
+  ///
+  /// In en, this message translates to:
+  /// **'ygyi-JvBu-0'**
+  String get ygyiJvBu0;
+
+  /// No description provided for @label8lAlJTtlQw.
+  ///
+  /// In en, this message translates to:
+  /// **'8lAlJ-ttlQw'**
+  String get label8lAlJTtlQw;
+
+  /// No description provided for @oi4cSib0SMU.
+  ///
+  /// In en, this message translates to:
+  /// **'Oi4cSib0SMU'**
+  String get oi4cSib0SMU;
+
+  /// No description provided for @gBZIZ1syhRw.
+  ///
+  /// In en, this message translates to:
+  /// **'GBZIZ1syhRw'**
+  String get gBZIZ1syhRw;
+
+  /// No description provided for @yOIsab02PVs.
+  ///
+  /// In en, this message translates to:
+  /// **'YOIsab02PVs'**
+  String get yOIsab02PVs;
+
+  /// No description provided for @y3OhRM7dJg.
+  ///
+  /// In en, this message translates to:
+  /// **'Y3Oh_RM7dJg'**
+  String get y3OhRM7dJg;
+
+  /// No description provided for @bqvORbC4cY.
+  ///
+  /// In en, this message translates to:
+  /// **'BqvORbC4c-Y'**
+  String get bqvORbC4cY;
+
+  /// No description provided for @iE8MjgoaPY.
+  ///
+  /// In en, this message translates to:
+  /// **'IE8Mjgoa-pY'**
+  String get iE8MjgoaPY;
+
+  /// No description provided for @sniperButterfly1204.
+  ///
+  /// In en, this message translates to:
+  /// **'《狙击蝴蝶 Sniper Butterfly》定档1204！ 为爱越界'**
+  String get sniperButterfly1204;
+
+  /// No description provided for @sniperButterflyFullVersion1.
+  ///
+  /// In en, this message translates to:
+  /// **'《狙击蝴蝶 Sniper Butterfly》Full Version 1-15｜主演：陈妍希，周柯宇 腾讯视频-青春剧场'**
+  String get sniperButterflyFullVersion1;
+
+  /// No description provided for @sniperButterflyFullVersion16.
+  ///
+  /// In en, this message translates to:
+  /// **'《狙击蝴蝶 Sniper Butterfly》Full Version 16-30｜主演：陈妍希，周柯宇 腾讯视频-青春剧场'**
+  String get sniperButterflyFullVersion16;
+
+  /// No description provided for @imr0DFA4mNA.
+  ///
+  /// In en, this message translates to:
+  /// **'Imr0DFA4mNA'**
+  String get imr0DFA4mNA;
+
+  /// No description provided for @iVGn2RlvnG.
+  ///
+  /// In en, this message translates to:
+  /// **'IVGn2Rlvn_g'**
+  String get iVGn2RlvnG;
+
+  /// No description provided for @dIhValICo.
+  ///
+  /// In en, this message translates to:
+  /// **'dIh-Val_ICo'**
+  String get dIhValICo;
+
+  /// No description provided for @u3CEzhnlaM.
+  ///
+  /// In en, this message translates to:
+  /// **'U3C-EzhnlaM'**
+  String get u3CEzhnlaM;
+
+  /// No description provided for @bJ3HUIXyu04.
+  ///
+  /// In en, this message translates to:
+  /// **'BJ3HUIXyu04'**
+  String get bJ3HUIXyu04;
+
+  /// No description provided for @g9lIyw6LKr8.
+  ///
+  /// In en, this message translates to:
+  /// **'G9lIyw6LKr8'**
+  String get g9lIyw6LKr8;
+
+  /// No description provided for @xQhtl58Mg0.
+  ///
+  /// In en, this message translates to:
+  /// **'x-qhtl58Mg0'**
+  String get xQhtl58Mg0;
+
+  /// No description provided for @emRj53N7q0.
+  ///
+  /// In en, this message translates to:
+  /// **'emRj53N7q-0'**
+  String get emRj53N7q0;
+
+  /// No description provided for @g4LSe3sjJ1I.
+  ///
+  /// In en, this message translates to:
+  /// **'G4LSe3sjJ1I'**
+  String get g4LSe3sjJ1I;
+
+  /// No description provided for @label7PpYIVmyaU.
+  ///
+  /// In en, this message translates to:
+  /// **'7PpYI-vmyaU'**
+  String get label7PpYIVmyaU;
+
+  /// No description provided for @allRise.
+  ///
+  /// In en, this message translates to:
+  /// **'即刻上场 All Rise'**
+  String get allRise;
+
+  /// No description provided for @label9AaKDIWNK8.
+  ///
+  /// In en, this message translates to:
+  /// **'-9AaKDIWNK8'**
+  String get label9AaKDIWNK8;
+
+  /// No description provided for @cIY8AALMGA.
+  ///
+  /// In en, this message translates to:
+  /// **'cIY8AAL-MGA'**
+  String get cIY8AALMGA;
+
+  /// No description provided for @mwHNJlgj0M.
+  ///
+  /// In en, this message translates to:
+  /// **'-MwHNJlgj0M'**
+  String get mwHNJlgj0M;
+
+  /// No description provided for @lM6Siyziyfg.
+  ///
+  /// In en, this message translates to:
+  /// **'LM6Siyziyfg'**
+  String get lM6Siyziyfg;
+
+  /// No description provided for @yUgNvqLkHo.
+  ///
+  /// In en, this message translates to:
+  /// **'Y-ugNvqLkHo'**
+  String get yUgNvqLkHo;
+
+  /// No description provided for @loveIsAlwaysOnline2.
+  ///
+  /// In en, this message translates to:
+  /// **'对的时间对的人 Love is Always Online'**
+  String get loveIsAlwaysOnline2;
+
+  /// No description provided for @bbu8Ct33WGY.
+  ///
+  /// In en, this message translates to:
+  /// **'Bbu8Ct33WGY'**
+  String get bbu8Ct33WGY;
+
+  /// No description provided for @iW8gQdPQE.
+  ///
+  /// In en, this message translates to:
+  /// **'iW-8g-qdPQE'**
+  String get iW8gQdPQE;
+
+  /// No description provided for @zKjqrbqqc74.
+  ///
+  /// In en, this message translates to:
+  /// **'ZKjqrbqqc74'**
+  String get zKjqrbqqc74;
+
+  /// No description provided for @label1UbEkGEXNs.
+  ///
+  /// In en, this message translates to:
+  /// **'1UbEkGE-xNs'**
+  String get label1UbEkGEXNs;
+
+  /// No description provided for @w8eDA1UJ5OY.
+  ///
+  /// In en, this message translates to:
+  /// **'W8eDA1UJ5OY'**
+  String get w8eDA1UJ5OY;
+
+  /// No description provided for @hydT2kHzno.
+  ///
+  /// In en, this message translates to:
+  /// **'-hydT2kHzno'**
+  String get hydT2kHzno;
+
+  /// No description provided for @fONOKBq7bLo.
+  ///
+  /// In en, this message translates to:
+  /// **'FONOKBq7bLo'**
+  String get fONOKBq7bLo;
+
+  /// No description provided for @s4zCx2IlFE.
+  ///
+  /// In en, this message translates to:
+  /// **'s4zCx2Il-fE'**
+  String get s4zCx2IlFE;
+
+  /// No description provided for @bA13fouCls.
+  ///
+  /// In en, this message translates to:
+  /// **'BA_13fouCls'**
+  String get bA13fouCls;
+
+  /// No description provided for @pLyX50Z72L2xw1E6HhmF968YkX7BlZ9.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2xw1-e6HhmF968YkX7Bl_Z9'**
+  String get pLyX50Z72L2xw1E6HhmF968YkX7BlZ9;
+
+  /// No description provided for @loveOnTheTurquoiseLand.
+  ///
+  /// In en, this message translates to:
+  /// **'枭起青壤 Love on the Turquoise Land'**
+  String get loveOnTheTurquoiseLand;
+
+  /// No description provided for @we5ry5kxdHE.
+  ///
+  /// In en, this message translates to:
+  /// **'We5ry5kxdHE'**
+  String get we5ry5kxdHE;
+
+  /// No description provided for @emIUEma8Hg.
+  ///
+  /// In en, this message translates to:
+  /// **'EmIUEma-8Hg'**
+  String get emIUEma8Hg;
+
+  /// No description provided for @wu6k5Xa3MM.
+  ///
+  /// In en, this message translates to:
+  /// **'Wu-6k5Xa3MM'**
+  String get wu6k5Xa3MM;
+
+  /// No description provided for @label80SA571cW0.
+  ///
+  /// In en, this message translates to:
+  /// **'80-SA571cW0'**
+  String get label80SA571cW0;
+
+  /// No description provided for @label4PdR5JPhcY.
+  ///
+  /// In en, this message translates to:
+  /// **'4Pd-R5JPhcY'**
+  String get label4PdR5JPhcY;
+
+  /// No description provided for @fyB12Rr0V8.
+  ///
+  /// In en, this message translates to:
+  /// **'fyB12-Rr0V8'**
+  String get fyB12Rr0V8;
+
+  /// No description provided for @ldKl7dOoRs.
+  ///
+  /// In en, this message translates to:
+  /// **'ld-Kl7dOoRs'**
+  String get ldKl7dOoRs;
+
+  /// No description provided for @label3xjBMrz6iC.
+  ///
+  /// In en, this message translates to:
+  /// **'3xjBMrz6i-c'**
+  String get label3xjBMrz6iC;
+
+  /// No description provided for @vt0403FhEU.
+  ///
+  /// In en, this message translates to:
+  /// **'Vt0403Fh-eU'**
+  String get vt0403FhEU;
+
+  /// No description provided for @eCcqo2QsOI.
+  ///
+  /// In en, this message translates to:
+  /// **'ECcqo2Qs-OI'**
+  String get eCcqo2QsOI;
+
+  /// No description provided for @syI7F7W2c8.
+  ///
+  /// In en, this message translates to:
+  /// **'Sy-i7F7W2c8'**
+  String get syI7F7W2c8;
+
+  /// No description provided for @vxTWyvL1Ms.
+  ///
+  /// In en, this message translates to:
+  /// **'VxTWyvL-1Ms'**
+  String get vxTWyvL1Ms;
+
+  /// No description provided for @yw8QK3SuW.
+  ///
+  /// In en, this message translates to:
+  /// **'yw8QK-3Su-w'**
+  String get yw8QK3SuW;
+
+  /// No description provided for @o16uHD0kTS.
+  ///
+  /// In en, this message translates to:
+  /// **'O16uHD0kT-s'**
+  String get o16uHD0kTS;
+
+  /// No description provided for @nHx9DZl4Q.
+  ///
+  /// In en, this message translates to:
+  /// **'nHx9-D-Zl4Q'**
+  String get nHx9DZl4Q;
+
+  /// No description provided for @wMJrWKUN7w.
+  ///
+  /// In en, this message translates to:
+  /// **'-WMJrWKUN7w'**
+  String get wMJrWKUN7w;
+
+  /// No description provided for @s9JU0L2RS4o.
+  ///
+  /// In en, this message translates to:
+  /// **'S9JU0L2RS4o'**
+  String get s9JU0L2RS4o;
+
+  /// No description provided for @uJC6xna2PBM.
+  ///
+  /// In en, this message translates to:
+  /// **'UJC6xna2PBM'**
+  String get uJC6xna2PBM;
+
+  /// No description provided for @rbvdnADd18.
+  ///
+  /// In en, this message translates to:
+  /// **'Rbvdn-ADd18'**
+  String get rbvdnADd18;
+
+  /// No description provided for @iHHlxN0Swo.
+  ///
+  /// In en, this message translates to:
+  /// **'i-HHlxN0Swo'**
+  String get iHHlxN0Swo;
+
+  /// No description provided for @zd8EBbfqs.
+  ///
+  /// In en, this message translates to:
+  /// **'Zd8_-EBbfqs'**
+  String get zd8EBbfqs;
+
+  /// No description provided for @xUG53k1B4.
+  ///
+  /// In en, this message translates to:
+  /// **'XUG_53k1-b4'**
+  String get xUG53k1B4;
+
+  /// No description provided for @whyIsHeStillSingle2.
+  ///
+  /// In en, this message translates to:
+  /// **'《他为什么依然单身 Why Is He Still Single》定档1116！霍建华朱珠熟龄男女的爱情童话有！'**
+  String get whyIsHeStillSingle2;
+
+  /// No description provided for @whyIsHeStillSingle3.
+  ///
+  /// In en, this message translates to:
+  /// **'《他为什么依然单身 Why Is He Still Single》Full Version｜主演：霍建华，朱珠 腾讯视频-青春剧场'**
+  String get whyIsHeStillSingle3;
+
+  /// No description provided for @ijgFlHRPHw.
+  ///
+  /// In en, this message translates to:
+  /// **'Ijg-FlHRPHw'**
+  String get ijgFlHRPHw;
+
+  /// No description provided for @whyIsHeStillSingle4.
+  ///
+  /// In en, this message translates to:
+  /// **'《他为什么依然单身 Why Is He Still Single》Full Version 1｜主演：霍建华，朱珠 腾讯视频-青春剧场'**
+  String get whyIsHeStillSingle4;
+
+  /// No description provided for @whyIsHeStillSingle5.
+  ///
+  /// In en, this message translates to:
+  /// **'《他为什么依然单身 Why Is He Still Single》Full Version 2｜主演：霍建华，朱珠 腾讯视频-青春剧场'**
+  String get whyIsHeStillSingle5;
+
+  /// No description provided for @yVGKe9xonY.
+  ///
+  /// In en, this message translates to:
+  /// **'YV-GKe9xonY'**
+  String get yVGKe9xonY;
+
+  /// No description provided for @qKftsk37mXo.
+  ///
+  /// In en, this message translates to:
+  /// **'QKftsk37mXo'**
+  String get qKftsk37mXo;
+
+  /// No description provided for @ccxy931pac.
+  ///
+  /// In en, this message translates to:
+  /// **'ccxy9-31pac'**
+  String get ccxy931pac;
+
+  /// No description provided for @uc5hawjBFU.
+  ///
+  /// In en, this message translates to:
+  /// **'Uc5hawj_bFU'**
+  String get uc5hawjBFU;
+
+  /// No description provided for @fightForLove.
+  ///
+  /// In en, this message translates to:
+  /// **'山河枕 Fight for Love'**
+  String get fightForLove;
+
+  /// No description provided for @lGP6TCHM.
+  ///
+  /// In en, this message translates to:
+  /// **'l_g-p6TC_hM'**
+  String get lGP6TCHM;
+
+  /// No description provided for @wXKMI7kmY3Y.
+  ///
+  /// In en, this message translates to:
+  /// **'WXKMI7kmY3Y'**
+  String get wXKMI7kmY3Y;
+
+  /// No description provided for @v0wqy1HUJJE.
+  ///
+  /// In en, this message translates to:
+  /// **'V0wqy1HUJJE'**
+  String get v0wqy1HUJJE;
+
+  /// No description provided for @j24dJWDtyps.
+  ///
+  /// In en, this message translates to:
+  /// **'J24dJWDtyps'**
+  String get j24dJWDtyps;
+
+  /// No description provided for @v937gFLg7QU.
+  ///
+  /// In en, this message translates to:
+  /// **'V937gFLg7QU'**
+  String get v937gFLg7QU;
+
+  /// No description provided for @x4R4W9wwzY.
+  ///
+  /// In en, this message translates to:
+  /// **'x4R-4W9wwzY'**
+  String get x4R4W9wwzY;
+
+  /// No description provided for @jV9KYnyvsg.
+  ///
+  /// In en, this message translates to:
+  /// **'jV9-kYnyvsg'**
+  String get jV9KYnyvsg;
+
+  /// No description provided for @hQPFMP7zQO0.
+  ///
+  /// In en, this message translates to:
+  /// **'HQPFMP7zQO0'**
+  String get hQPFMP7zQO0;
+
+  /// No description provided for @pLyX50Z72L2wHtPGkazV4LCGl20kRY4.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2w_HtPGkazV4-lCGl20kRY4'**
+  String get pLyX50Z72L2wHtPGkazV4LCGl20kRY4;
+
+  /// No description provided for @iMNobody.
+  ///
+  /// In en, this message translates to:
+  /// **'我本无名  I\'m Nobody'**
+  String get iMNobody;
+
+  /// No description provided for @persona.
+  ///
+  /// In en, this message translates to:
+  /// **'重影 Persona'**
+  String get persona;
+
+  /// No description provided for @d5CPVc0EIY.
+  ///
+  /// In en, this message translates to:
+  /// **'D5CPVc0E-IY'**
+  String get d5CPVc0EIY;
+
+  /// No description provided for @pJsHXm9ZsC.
+  ///
+  /// In en, this message translates to:
+  /// **'pJsHXm9Zs-c'**
+  String get pJsHXm9ZsC;
+
+  /// No description provided for @vYRvNE7Yk.
+  ///
+  /// In en, this message translates to:
+  /// **'-VYRvNE-7Yk'**
+  String get vYRvNE7Yk;
+
+  /// No description provided for @lightBeyondTheReed.
+  ///
+  /// In en, this message translates to:
+  /// **'余生有涯 Light Beyond the Reed'**
+  String get lightBeyondTheReed;
+
+  /// No description provided for @kqfhRrmmG.
+  ///
+  /// In en, this message translates to:
+  /// **'Kqfh_Rrmm_g'**
+  String get kqfhRrmmG;
+
+  /// No description provided for @iKEYUsv14.
+  ///
+  /// In en, this message translates to:
+  /// **'I-kE-YUsv14'**
+  String get iKEYUsv14;
+
+  /// No description provided for @hOC9mu9HVs.
+  ///
+  /// In en, this message translates to:
+  /// **'HOC9mu_9HVs'**
+  String get hOC9mu9HVs;
+
+  /// No description provided for @x8jqt87WIuo.
+  ///
+  /// In en, this message translates to:
+  /// **'X8jqt87WIuo'**
+  String get x8jqt87WIuo;
+
+  /// No description provided for @gb0Bk564EQ.
+  ///
+  /// In en, this message translates to:
+  /// **'gb0Bk564-EQ'**
+  String get gb0Bk564EQ;
+
+  /// No description provided for @thePrisonerOfBeauty.
+  ///
+  /// In en, this message translates to:
+  /// **'折腰精简版 The Prisoner of Beauty'**
+  String get thePrisonerOfBeauty;
+
+  /// No description provided for @wsGeYBRO.
+  ///
+  /// In en, this message translates to:
+  /// **'wsGeYB_-r_o'**
+  String get wsGeYBRO;
+
+  /// No description provided for @thePrisonerOfBeauty2.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》小乔替姐嫁世仇，新婚头天就和夫君杠上了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty2;
+
+  /// No description provided for @thePrisonerOfBeauty3.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》小乔破刘琰炸渠阴谋，和魏劭从死磕变互相护着｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty3;
+
+  /// No description provided for @thePrisonerOfBeauty4.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》小乔装病争主院，魏劭当众护妻拒纳妾｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty4;
+
+  /// No description provided for @thePrisonerOfBeauty5.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》小乔破了木匣栽赃局，魏劭认她是自家女君了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty5;
+
+  /// No description provided for @thePrisonerOfBeauty6.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》小乔智破嫁祸局，魏劭认妻护妻婆媳掀桌｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty6;
+
+  /// No description provided for @thePrisonerOfBeauty7.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏俨挑事传假信，小乔魏劭因玉坠闹信任危机｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty7;
+
+  /// No description provided for @thePrisonerOfBeauty8.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》苏娥皇用熟麦坑小乔，魏劭护妻破案俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty8;
+
+  /// No description provided for @thePrisonerOfBeauty9.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》小乔魏劭遇刺中毒，小乔智破阴谋救夫更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty9;
+
+  /// No description provided for @rNYFWNcb8o.
+  ///
+  /// In en, this message translates to:
+  /// **'RNYFW-Ncb8o'**
+  String get rNYFWNcb8o;
+
+  /// No description provided for @thePrisonerOfBeauty10.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏劭送战马后补发簪，护妻失踪急得抓耳挠腮｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty10;
+
+  /// No description provided for @thePrisonerOfBeauty11.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏劭怕小乔跑了吃醋护妻，搬出又后悔想她｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty11;
+
+  /// No description provided for @thePrisonerOfBeauty12.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏劭吃醋背小乔，解木匣疑云俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty12;
+
+  /// No description provided for @thePrisonerOfBeauty13.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》乔慈探姐引魏劭吃醋，小乔俩口子掏心定终身｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty13;
+
+  /// No description provided for @thePrisonerOfBeauty14.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏俨为小乔离乡，劭乔吵架后和好｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty14;
+
+  /// No description provided for @ry1BWClaV0.
+  ///
+  /// In en, this message translates to:
+  /// **'ry1BWCla-V0'**
+  String get ry1BWClaV0;
+
+  /// No description provided for @thePrisonerOfBeauty15.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》新婚夜兵变姐妹反目，小乔智退敌魏劭认错｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty15;
+
+  /// No description provided for @o8nFcvzyvM.
+  ///
+  /// In en, this message translates to:
+  /// **'O8n-FcvzyvM'**
+  String get o8nFcvzyvM;
+
+  /// No description provided for @thePrisonerOfBeauty16.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏劭陪小乔回康郡解心结，乔父认婿俩口子圆房｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty16;
+
+  /// No description provided for @krsrk6wSAy8.
+  ///
+  /// In en, this message translates to:
+  /// **'Krsrk6wSAy8'**
+  String get krsrk6wSAy8;
+
+  /// No description provided for @thePrisonerOfBeauty17.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》乔越叛变魏梁丧命，大乔被劫比彘拼命反杀｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty17;
+
+  /// No description provided for @v26fn6w270.
+  ///
+  /// In en, this message translates to:
+  /// **'V-26fn6w270'**
+  String get v26fn6w270;
+
+  /// No description provided for @thePrisonerOfBeauty18.
+  ///
+  /// In en, this message translates to:
+  /// **'《折腰精简版 The Prisoner of Beauty》魏梁战死魏渠断臂，大乔坠楼刘琰覆灭｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场'**
+  String get thePrisonerOfBeauty18;
+
+  /// No description provided for @pLyX50Z72L2zD8aIumtBOoc0OWrwUUSe.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyX_50Z72L2zD-8aIumtBOoc0OWrwUUSe'**
+  String get pLyX50Z72L2zD8aIumtBOoc0OWrwUUSe;
+
+  /// No description provided for @ahjr3KPEXv4.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahjr3KPEXv4'**
+  String get ahjr3KPEXv4;
+
+  /// No description provided for @igijfp2Q8BY.
+  ///
+  /// In en, this message translates to:
+  /// **'Igijfp2Q8BY'**
+  String get igijfp2Q8BY;
+
+  /// No description provided for @kIy3O9LyJQ.
+  ///
+  /// In en, this message translates to:
+  /// **'kIy3-o9LyJQ'**
+  String get kIy3O9LyJQ;
+
+  /// No description provided for @g40pz8IOI.
+  ///
+  /// In en, this message translates to:
+  /// **'G-40pz8I_oI'**
+  String get g40pz8IOI;
+
+  /// No description provided for @label4LTdKzOI54.
+  ///
+  /// In en, this message translates to:
+  /// **'4LTdKzO-I54'**
+  String get label4LTdKzOI54;
+
+  /// No description provided for @pPT.
+  ///
+  /// In en, this message translates to:
+  /// **'小组作业嫌我慢？霸总半夜爬窗送PPT，保安追着他跑 腾讯视频-青春剧场'**
+  String get pPT;
+
+  /// No description provided for @zPBZ1KRQ3hY.
+  ///
+  /// In en, this message translates to:
+  /// **'ZPBZ1KRQ3hY'**
+  String get zPBZ1KRQ3hY;
+
+  /// No description provided for @aThousandMilesToYour.
+  ///
+  /// In en, this message translates to:
+  /// **'过遍千城才识君 A Thousand Miles to Your Heart'**
+  String get aThousandMilesToYour;
+
+  /// No description provided for @getTheWeTVAPP4.
+  ///
+  /// In en, this message translates to:
+  /// **'腾讯视频 - 古装剧场 - Get the WeTV APP'**
+  String get getTheWeTVAPP4;
+
+  /// No description provided for @jnz1S8Qb5xE.
+  ///
+  /// In en, this message translates to:
+  /// **'Jnz1S8Qb5xE'**
+  String get jnz1S8Qb5xE;
+
+  /// No description provided for @nf5tvYU1W5A.
+  ///
+  /// In en, this message translates to:
+  /// **'Nf5tvYU1W5A'**
+  String get nf5tvYU1W5A;
+
+  /// No description provided for @jRzsIK84C0.
+  ///
+  /// In en, this message translates to:
+  /// **'jRzsIK84C-0'**
+  String get jRzsIK84C0;
+
+  /// No description provided for @label9TcXQyaUAC.
+  ///
+  /// In en, this message translates to:
+  /// **'9TcXQyaUA-c'**
+  String get label9TcXQyaUAC;
+
+  /// No description provided for @mG6d7wN6fg.
+  ///
+  /// In en, this message translates to:
+  /// **'M-g6d7wN6fg'**
+  String get mG6d7wN6fg;
+
+  /// No description provided for @theInescapable.
+  ///
+  /// In en, this message translates to:
+  /// **'锁簪 The Inescapable'**
+  String get theInescapable;
+
+  /// No description provided for @label2TF7nb09WM.
+  ///
+  /// In en, this message translates to:
+  /// **'2TF7nb09W-M'**
+  String get label2TF7nb09WM;
+
+  /// No description provided for @xG7qBdDRn0.
+  ///
+  /// In en, this message translates to:
+  /// **'-XG7qBdDRn0'**
+  String get xG7qBdDRn0;
+
+  /// No description provided for @zeFO2XDbA4.
+  ///
+  /// In en, this message translates to:
+  /// **'zeFO2XDb-A4'**
+  String get zeFO2XDbA4;
+
+  /// No description provided for @pLs3DOuT3JlGR2nMcuGW2139rVVeHcWIs.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGR2nMcuGW2139rV-veHcWIs'**
+  String get pLs3DOuT3JlGR2nMcuGW2139rVVeHcWIs;
+
+  /// No description provided for @pursuitOfJade2.
+  ///
+  /// In en, this message translates to:
+  /// **'逐玉 Pursuit of Jade'**
+  String get pursuitOfJade2;
+
+  /// No description provided for @tBj7OHjb2tI.
+  ///
+  /// In en, this message translates to:
+  /// **'TBj7OHjb2tI'**
+  String get tBj7OHjb2tI;
+
+  /// No description provided for @vWOECNVUlQ.
+  ///
+  /// In en, this message translates to:
+  /// **'VWOE-cNVUlQ'**
+  String get vWOECNVUlQ;
+
+  /// No description provided for @label5NKgOE5DPQ.
+  ///
+  /// In en, this message translates to:
+  /// **'5NKgOE5D-pQ'**
+  String get label5NKgOE5DPQ;
+
+  /// No description provided for @ipim7l2LZg.
+  ///
+  /// In en, this message translates to:
+  /// **'ipim7l2L-Zg'**
+  String get ipim7l2LZg;
+
+  /// No description provided for @vmuf05J8Vc.
+  ///
+  /// In en, this message translates to:
+  /// **'-Vmuf05J8Vc'**
+  String get vmuf05J8Vc;
+
+  /// No description provided for @label2M3Ls74gZY.
+  ///
+  /// In en, this message translates to:
+  /// **'2M3Ls74gZ-Y'**
+  String get label2M3Ls74gZY;
+
+  /// No description provided for @p8DW4Gef70o.
+  ///
+  /// In en, this message translates to:
+  /// **'P8DW4Gef70o'**
+  String get p8DW4Gef70o;
+
+  /// No description provided for @d4duxTP0FDE.
+  ///
+  /// In en, this message translates to:
+  /// **'D4duxTP0FDE'**
+  String get d4duxTP0FDE;
+
+  /// No description provided for @b1T03rs9WGI.
+  ///
+  /// In en, this message translates to:
+  /// **'B1T03rs9WGI'**
+  String get b1T03rs9WGI;
+
+  /// No description provided for @ruBRX68XPg.
+  ///
+  /// In en, this message translates to:
+  /// **'Ru-BRX68XPg'**
+  String get ruBRX68XPg;
+
+  /// No description provided for @aX5eShfmFk.
+  ///
+  /// In en, this message translates to:
+  /// **'AX5eShfm_fk'**
+  String get aX5eShfmFk;
+
+  /// No description provided for @fCsjHXbBlE.
+  ///
+  /// In en, this message translates to:
+  /// **'f-CsjHXbBlE'**
+  String get fCsjHXbBlE;
+
+  /// No description provided for @m9xKlm95oc.
+  ///
+  /// In en, this message translates to:
+  /// **'M9xKlm-95oc'**
+  String get m9xKlm95oc;
+
+  /// No description provided for @xh0z4YV9v2s.
+  ///
+  /// In en, this message translates to:
+  /// **'Xh0z4YV9v2s'**
+  String get xh0z4YV9v2s;
+
+  /// No description provided for @iufzj2MLPs.
+  ///
+  /// In en, this message translates to:
+  /// **'iufzj2M-LPs'**
+  String get iufzj2MLPs;
+
+  /// No description provided for @x6uXEQgWuM.
+  ///
+  /// In en, this message translates to:
+  /// **'-X6uXEQgWuM'**
+  String get x6uXEQgWuM;
+
+  /// No description provided for @wlz3IhZptM.
+  ///
+  /// In en, this message translates to:
+  /// **'Wlz3Ih-ZptM'**
+  String get wlz3IhZptM;
+
+  /// No description provided for @p10GCq30oNI.
+  ///
+  /// In en, this message translates to:
+  /// **'P10GCq30oNI'**
+  String get p10GCq30oNI;
+
+  /// No description provided for @b65UYuRtpE.
+  ///
+  /// In en, this message translates to:
+  /// **'B65-uYuRtpE'**
+  String get b65UYuRtpE;
+
+  /// No description provided for @generationToGeneration222.
+  ///
+  /// In en, this message translates to:
+  /// **'《江湖夜雨十年灯 Generation to Generation》定档2月22日！看江湖最强新生代慕慕昭昭一起闯江湖'**
+  String get generationToGeneration222;
+
+  /// No description provided for @label6yOPycBAyU.
+  ///
+  /// In en, this message translates to:
+  /// **'6y-oPycBAyU'**
+  String get label6yOPycBAyU;
+
+  /// No description provided for @lIAUBGNQM.
+  ///
+  /// In en, this message translates to:
+  /// **'LI-AUBGN-QM'**
+  String get lIAUBGNQM;
+
+  /// No description provided for @sU12uaTtBg.
+  ///
+  /// In en, this message translates to:
+  /// **'SU-12uaTtBg'**
+  String get sU12uaTtBg;
+
+  /// No description provided for @label05nLbIKPkQ.
+  ///
+  /// In en, this message translates to:
+  /// **'05nLb-iKPkQ'**
+  String get label05nLbIKPkQ;
+
+  /// No description provided for @rKGFPIzgpO.
+  ///
+  /// In en, this message translates to:
+  /// **'rKGFPIzgp-o'**
+  String get rKGFPIzgpO;
+
+  /// No description provided for @shO2wXA6U.
+  ///
+  /// In en, this message translates to:
+  /// **'Sh-o2w-xA6U'**
+  String get shO2wXA6U;
+
+  /// No description provided for @dNsDNXcJgM.
+  ///
+  /// In en, this message translates to:
+  /// **'d-nsDNXcJgM'**
+  String get dNsDNXcJgM;
+
+  /// No description provided for @w0NMLE9Hw.
+  ///
+  /// In en, this message translates to:
+  /// **'W_0N-mLE9Hw'**
+  String get w0NMLE9Hw;
+
+  /// No description provided for @lTtwLNkDHY.
+  ///
+  /// In en, this message translates to:
+  /// **'LTtwLNkD-HY'**
+  String get lTtwLNkDHY;
+
+  /// No description provided for @the300LoyalGhosts2.
+  ///
+  /// In en, this message translates to:
+  /// **'大明暗影三百忠魂 The 300 Loyal Ghosts'**
+  String get the300LoyalGhosts2;
+
+  /// No description provided for @zj1Mh0bRE.
+  ///
+  /// In en, this message translates to:
+  /// **'zj1Mh_0b-rE'**
+  String get zj1Mh0bRE;
+
+  /// No description provided for @kj6122rOzW.
+  ///
+  /// In en, this message translates to:
+  /// **'kj6122rOz-w'**
+  String get kj6122rOzW;
+
+  /// No description provided for @ftgF1Hu9Ko.
+  ///
+  /// In en, this message translates to:
+  /// **'Ftg-f1Hu9Ko'**
+  String get ftgF1Hu9Ko;
+
+  /// No description provided for @cnFIQ9QT4M.
+  ///
+  /// In en, this message translates to:
+  /// **'-CnFIQ9QT4M'**
+  String get cnFIQ9QT4M;
+
+  /// No description provided for @ajdFKQ4uq8.
+  ///
+  /// In en, this message translates to:
+  /// **'AjdF-kQ4uq8'**
+  String get ajdFKQ4uq8;
+
+  /// No description provided for @danceOfThePhoenix.
+  ///
+  /// In en, this message translates to:
+  /// **'且听凤鸣 Dance of The Phoenix'**
+  String get danceOfThePhoenix;
+
+  /// No description provided for @f0uIRYSOwo.
+  ///
+  /// In en, this message translates to:
+  /// **'F0uIRY_SOwo'**
+  String get f0uIRYSOwo;
+
+  /// No description provided for @extraordinary2.
+  ///
+  /// In en, this message translates to:
+  /// **'非凡 Extraordinary'**
+  String get extraordinary2;
+
+  /// No description provided for @mIOS6JeeMU.
+  ///
+  /// In en, this message translates to:
+  /// **'mIOS6Jee-mU'**
+  String get mIOS6JeeMU;
+
+  /// No description provided for @d8CsUqEy4.
+  ///
+  /// In en, this message translates to:
+  /// **'d8CsUq-ey_4'**
+  String get d8CsUqEy4;
+
+  /// No description provided for @oZpINX3A.
+  ///
+  /// In en, this message translates to:
+  /// **'-o_zpI-NX3A'**
+  String get oZpINX3A;
+
+  /// No description provided for @hyKy6aEDmo.
+  ///
+  /// In en, this message translates to:
+  /// **'HyKy6aE-Dmo'**
+  String get hyKy6aEDmo;
+
+  /// No description provided for @nkAYc4ZSW8.
+  ///
+  /// In en, this message translates to:
+  /// **'NkAYc4Z-sW8'**
+  String get nkAYc4ZSW8;
+
+  /// No description provided for @ovTXZjh2M.
+  ///
+  /// In en, this message translates to:
+  /// **'ov-T_XZjh2M'**
+  String get ovTXZjh2M;
+
+  /// No description provided for @label2TheImperialCoronerS22.
+  ///
+  /// In en, this message translates to:
+  /// **'《御赐小仵作2 The Imperial Coroner S2》定档0115，楚瑜夫妇暖心回归！'**
+  String get label2TheImperialCoronerS22;
+
+  /// No description provided for @kvFDYYmg.
+  ///
+  /// In en, this message translates to:
+  /// **'KvF__d-YYmg'**
+  String get kvFDYYmg;
+
+  /// No description provided for @llaTO7muek.
+  ///
+  /// In en, this message translates to:
+  /// **'llaT-O7muek'**
+  String get llaTO7muek;
+
+  /// No description provided for @label3r4Qw60AhM.
+  ///
+  /// In en, this message translates to:
+  /// **'3r4Qw60Ah-M'**
+  String get label3r4Qw60AhM;
+
+  /// No description provided for @nwb6rTXjAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Nwb6rTXj-As'**
+  String get nwb6rTXjAs;
+
+  /// No description provided for @label87A7F8yq94.
+  ///
+  /// In en, this message translates to:
+  /// **'87A7F-8yq94'**
+  String get label87A7F8yq94;
+
+  /// No description provided for @yJPJ6RWgyg.
+  ///
+  /// In en, this message translates to:
+  /// **'yJP-j6RWgyg'**
+  String get yJPJ6RWgyg;
+
+  /// No description provided for @rebirthForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'嘉南传 Rebirth For You'**
+  String get rebirthForYou;
+
+  /// No description provided for @f9eLAZQDUds.
+  ///
+  /// In en, this message translates to:
+  /// **'F9eLAZQDUds'**
+  String get f9eLAZQDUds;
+
+  /// No description provided for @aVowInTheDark2.
+  ///
+  /// In en, this message translates to:
+  /// **'恋恋风陵渡 A Vow in the Dark'**
+  String get aVowInTheDark2;
+
+  /// No description provided for @theUltimateVowUnknownTo.
+  ///
+  /// In en, this message translates to:
+  /// **'君不知 The Ultimate Vow, Unknown to You'**
+  String get theUltimateVowUnknownTo;
+
+  /// No description provided for @duMRGzTeKs.
+  ///
+  /// In en, this message translates to:
+  /// **'DuM-rGzTeKs'**
+  String get duMRGzTeKs;
+
+  /// No description provided for @pLs3DOuT3JlGTynSBKz3Z5DcDzwwmqSOf.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGTynSBKz3-z5DcDzwwmqSOf'**
+  String get pLs3DOuT3JlGTynSBKz3Z5DcDzwwmqSOf;
+
+  /// No description provided for @theChangAnYouth.
+  ///
+  /// In en, this message translates to:
+  /// **'长安少年行 The Chang\'An Youth'**
+  String get theChangAnYouth;
+
+  /// No description provided for @jg0aX6eEK4.
+  ///
+  /// In en, this message translates to:
+  /// **'Jg0aX6e_EK4'**
+  String get jg0aX6eEK4;
+
+  /// No description provided for @adbjo5emA.
+  ///
+  /// In en, this message translates to:
+  /// **'Adbjo5em__A'**
+  String get adbjo5emA;
+
+  /// No description provided for @label2QO1c7aWBE.
+  ///
+  /// In en, this message translates to:
+  /// **'2QO1c7aW-bE'**
+  String get label2QO1c7aWBE;
+
+  /// No description provided for @x75eul0gjYM.
+  ///
+  /// In en, this message translates to:
+  /// **'X75eul0gjYM'**
+  String get x75eul0gjYM;
+
+  /// No description provided for @dN6c2uB2cF4.
+  ///
+  /// In en, this message translates to:
+  /// **'DN6c2uB2cF4'**
+  String get dN6c2uB2cF4;
+
+  /// No description provided for @label1xqkI5jRsc.
+  ///
+  /// In en, this message translates to:
+  /// **'1xqkI5j-rsc'**
+  String get label1xqkI5jRsc;
+
+  /// No description provided for @jRRXVJblrk.
+  ///
+  /// In en, this message translates to:
+  /// **'JRR-XVJblrk'**
+  String get jRRXVJblrk;
+
+  /// No description provided for @thePrincessDecree2.
+  ///
+  /// In en, this message translates to:
+  /// **'平凝有令 The Princess Decree'**
+  String get thePrincessDecree2;
+
+  /// No description provided for @ppiNYsUwOA.
+  ///
+  /// In en, this message translates to:
+  /// **'PpiNYs-uwOA'**
+  String get ppiNYsUwOA;
+
+  /// No description provided for @label83tIjIiqM.
+  ///
+  /// In en, this message translates to:
+  /// **'-_83tIjIiqM'**
+  String get label83tIjIiqM;
+
+  /// No description provided for @p4cKjzSHFw.
+  ///
+  /// In en, this message translates to:
+  /// **'P4cKjz-sHFw'**
+  String get p4cKjzSHFw;
+
+  /// No description provided for @babysitter.
+  ///
+  /// In en, this message translates to:
+  /// **'我在冷宫做月嫂 Babysitter'**
+  String get babysitter;
+
+  /// No description provided for @label0MjfIXHKOM.
+  ///
+  /// In en, this message translates to:
+  /// **'0MjfIXHKO-M'**
+  String get label0MjfIXHKOM;
+
+  /// No description provided for @zEOhv9GVlao.
+  ///
+  /// In en, this message translates to:
+  /// **'ZEOhv9GVlao'**
+  String get zEOhv9GVlao;
+
+  /// No description provided for @pLs3DOuT3JlGRa8QmAVS9qfbbZS7afa0x.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGRa8Qm-AVS9qfbbZS7afa0x'**
+  String get pLs3DOuT3JlGRa8QmAVS9qfbbZS7afa0x;
+
+  /// No description provided for @xUjdpB74DU.
+  ///
+  /// In en, this message translates to:
+  /// **'XUjdp_B74DU'**
+  String get xUjdpB74DU;
+
+  /// No description provided for @ddcGbI27AE.
+  ///
+  /// In en, this message translates to:
+  /// **'DdcGbI-27AE'**
+  String get ddcGbI27AE;
+
+  /// No description provided for @herPhoenixMajesty2.
+  ///
+  /// In en, this message translates to:
+  /// **'凤皇传 Her Phoenix Majesty'**
+  String get herPhoenixMajesty2;
+
+  /// No description provided for @pzXvIZTfw.
+  ///
+  /// In en, this message translates to:
+  /// **'Pz_xvIZ-Tfw'**
+  String get pzXvIZTfw;
+
+  /// No description provided for @lXojyPTBzS.
+  ///
+  /// In en, this message translates to:
+  /// **'lXojyPTBz-s'**
+  String get lXojyPTBzS;
+
+  /// No description provided for @pLs3DOuT3JlGQtL9S4u2QaRJty8BDrUk6.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGQtL9S4u2QaRJty8BDrUk6-'**
+  String get pLs3DOuT3JlGQtL9S4u2QaRJty8BDrUk6;
+
+  /// No description provided for @ntuwtDMChw.
+  ///
+  /// In en, this message translates to:
+  /// **'ntuwtD-MChw'**
+  String get ntuwtDMChw;
+
+  /// No description provided for @bGXUzqodupo.
+  ///
+  /// In en, this message translates to:
+  /// **'BGXUzqodupo'**
+  String get bGXUzqodupo;
+
+  /// No description provided for @plePvm344k.
+  ///
+  /// In en, this message translates to:
+  /// **'plePvm-344k'**
+  String get plePvm344k;
+
+  /// No description provided for @f0OIk6BUbo.
+  ///
+  /// In en, this message translates to:
+  /// **'F0OIk6-BUbo'**
+  String get f0OIk6BUbo;
+
+  /// No description provided for @kZZnmxJGHw.
+  ///
+  /// In en, this message translates to:
+  /// **'KZZnmx_jGHw'**
+  String get kZZnmxJGHw;
+
+  /// No description provided for @eIuk7EPq2hg.
+  ///
+  /// In en, this message translates to:
+  /// **'EIuk7EPq2hg'**
+  String get eIuk7EPq2hg;
+
+  /// No description provided for @label2H0pqyiPdk.
+  ///
+  /// In en, this message translates to:
+  /// **'2H0pqyi-Pdk'**
+  String get label2H0pqyiPdk;
+
+  /// No description provided for @j6Xs9w4Elw.
+  ///
+  /// In en, this message translates to:
+  /// **'J6_Xs9w4Elw'**
+  String get j6Xs9w4Elw;
+
+  /// No description provided for @xMtNosSw0.
+  ///
+  /// In en, this message translates to:
+  /// **'X_-mtNosSw0'**
+  String get xMtNosSw0;
+
+  /// No description provided for @bienjpo0UFM.
+  ///
+  /// In en, this message translates to:
+  /// **'Bienjpo0UFM'**
+  String get bienjpo0UFM;
+
+  /// No description provided for @oJOso5tVBek.
+  ///
+  /// In en, this message translates to:
+  /// **'OJOso5tVBek'**
+  String get oJOso5tVBek;
+
+  /// No description provided for @eRxWzG9p7U.
+  ///
+  /// In en, this message translates to:
+  /// **'eRxWzG9p7-U'**
+  String get eRxWzG9p7U;
+
+  /// No description provided for @iusgk4UlU.
+  ///
+  /// In en, this message translates to:
+  /// **'iusgk-4Ul-U'**
+  String get iusgk4UlU;
+
+  /// No description provided for @pUV3TRgebig.
+  ///
+  /// In en, this message translates to:
+  /// **'PUV3TRgebig'**
+  String get pUV3TRgebig;
+
+  /// No description provided for @lr4EpeONCw.
+  ///
+  /// In en, this message translates to:
+  /// **'Lr4Epe-oNCw'**
+  String get lr4EpeONCw;
+
+  /// No description provided for @o3jzt2IlGU.
+  ///
+  /// In en, this message translates to:
+  /// **'o3jzt2IlG-U'**
+  String get o3jzt2IlGU;
+
+  /// No description provided for @kKJPm6qb54A.
+  ///
+  /// In en, this message translates to:
+  /// **'KKJPm6qb54A'**
+  String get kKJPm6qb54A;
+
+  /// No description provided for @qlWNAIqlvw.
+  ///
+  /// In en, this message translates to:
+  /// **'Ql_WNAIqlvw'**
+  String get qlWNAIqlvw;
+
+  /// No description provided for @label0miWUBl3ZA.
+  ///
+  /// In en, this message translates to:
+  /// **'0miWUBl3-zA'**
+  String get label0miWUBl3ZA;
+
+  /// No description provided for @jQMZbtl7b2w.
+  ///
+  /// In en, this message translates to:
+  /// **'JQMZbtl7b2w'**
+  String get jQMZbtl7b2w;
+
+  /// No description provided for @qAw54adzTQ.
+  ///
+  /// In en, this message translates to:
+  /// **'QAw5_4adzTQ'**
+  String get qAw54adzTQ;
+
+  /// No description provided for @eSL64O0EfI.
+  ///
+  /// In en, this message translates to:
+  /// **'eSL-64O0EfI'**
+  String get eSL64O0EfI;
+
+  /// No description provided for @eYC4j7ky8pg.
+  ///
+  /// In en, this message translates to:
+  /// **'EYC4j7ky8pg'**
+  String get eYC4j7ky8pg;
+
+  /// No description provided for @hGDl1nDeqE.
+  ///
+  /// In en, this message translates to:
+  /// **'h-gDl1nDeqE'**
+  String get hGDl1nDeqE;
+
+  /// No description provided for @oAHE5vyYQg.
+  ///
+  /// In en, this message translates to:
+  /// **'-oAHE5vyYQg'**
+  String get oAHE5vyYQg;
+
+  /// No description provided for @gbFQy8CqEo.
+  ///
+  /// In en, this message translates to:
+  /// **'GbFQy8Cq-Eo'**
+  String get gbFQy8CqEo;
+
+  /// No description provided for @izi1KFUxPk.
+  ///
+  /// In en, this message translates to:
+  /// **'Izi1KFUx-Pk'**
+  String get izi1KFUxPk;
+
+  /// No description provided for @i3qxA2cr8kA.
+  ///
+  /// In en, this message translates to:
+  /// **'I3qxA2cr8kA'**
+  String get i3qxA2cr8kA;
+
+  /// No description provided for @oFI5pek3lvY.
+  ///
+  /// In en, this message translates to:
+  /// **'OFI5pek3lvY'**
+  String get oFI5pek3lvY;
+
+  /// No description provided for @obuu6ZaIA8.
+  ///
+  /// In en, this message translates to:
+  /// **'obuu6ZaIA-8'**
+  String get obuu6ZaIA8;
+
+  /// No description provided for @xIf4aL45npQ.
+  ///
+  /// In en, this message translates to:
+  /// **'XIf4aL45npQ'**
+  String get xIf4aL45npQ;
+
+  /// No description provided for @aGirlLikeMe2.
+  ///
+  /// In en, this message translates to:
+  /// **'我就是这般女子 A Girl Like Me'**
+  String get aGirlLikeMe2;
+
+  /// No description provided for @p4YsJ5WtBw.
+  ///
+  /// In en, this message translates to:
+  /// **'p4YsJ5Wt-bw'**
+  String get p4YsJ5WtBw;
+
+  /// No description provided for @pIg2oXFWS8.
+  ///
+  /// In en, this message translates to:
+  /// **'pIg2oXFWS-8'**
+  String get pIg2oXFWS8;
+
+  /// No description provided for @hrJz2C0Fxs.
+  ///
+  /// In en, this message translates to:
+  /// **'hrJz-2C0Fxs'**
+  String get hrJz2C0Fxs;
+
+  /// No description provided for @mL0phSCWJY.
+  ///
+  /// In en, this message translates to:
+  /// **'mL0phSC-wJY'**
+  String get mL0phSCWJY;
+
+  /// No description provided for @sideStoryOfFoxVolant2.
+  ///
+  /// In en, this message translates to:
+  /// **'飞狐外传 Side Story of Fox Volant'**
+  String get sideStoryOfFoxVolant2;
+
+  /// No description provided for @pLs3DOuT3JlGQCkd77fhalA8WxMD3OT4Q.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGQCkd77fhalA8Wx-mD3OT4Q'**
+  String get pLs3DOuT3JlGQCkd77fhalA8WxMD3OT4Q;
+
+  /// No description provided for @aFlowerOnTheContinent2.
+  ///
+  /// In en, this message translates to:
+  /// **'有花在洲 A Flower On The Continent'**
+  String get aFlowerOnTheContinent2;
+
+  /// No description provided for @aFlowerOnTheContinent3.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 小王爷当质子被花姑娘硬当公主，还挤一块住'**
+  String get aFlowerOnTheContinent3;
+
+  /// No description provided for @aFlowerOnTheContinent4.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 花姑娘女装露馅，小王爷舍命护她还反被诬陷'**
+  String get aFlowerOnTheContinent4;
+
+  /// No description provided for @aFlowerOnTheContinent5.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 花惜玉发现杀父仇人是宁玄洲的爹当场翻脸'**
+  String get aFlowerOnTheContinent5;
+
+  /// No description provided for @aFlowerOnTheContinent6.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 花惜玉穿嫁衣闯敌营，拼了命救宁玄洲差点没命'**
+  String get aFlowerOnTheContinent6;
+
+  /// No description provided for @aFlowerOnTheContinent7.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 两国签和约，宁玄洲撕诏书非要娶花惜玉'**
+  String get aFlowerOnTheContinent7;
+
+  /// No description provided for @aFlowerOnTheContinent8.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 花惜玉割腕放血制药，宁玄洲告发父皇杀了她爹'**
+  String get aFlowerOnTheContinent8;
+
+  /// No description provided for @aFlowerOnTheContinent9.
+  ///
+  /// In en, this message translates to:
+  /// **'【有花在洲 A Flower On The Continent】 花惜玉知道爹是宁玄洲爹杀的，在花海砍断定情树枝'**
+  String get aFlowerOnTheContinent9;
+
+  /// No description provided for @pLs3DOuT3JlGS2bplCB41Z0150Kb9oQdn.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGS2bplCB41Z0150-Kb9oQdn'**
+  String get pLs3DOuT3JlGS2bplCB41Z0150Kb9oQdn;
+
+  /// No description provided for @t1D3w33qTG8.
+  ///
+  /// In en, this message translates to:
+  /// **'T1D3w33qTG8'**
+  String get t1D3w33qTG8;
+
+  /// No description provided for @fLoEBicAD0.
+  ///
+  /// In en, this message translates to:
+  /// **'fLoEBicA-D0'**
+  String get fLoEBicAD0;
+
+  /// No description provided for @pLs3DOuT3JlGTeaxmA97G31cUKERfzNgN.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGTeaxmA97G31cUK-eRfzNgN'**
+  String get pLs3DOuT3JlGTeaxmA97G31cUKERfzNgN;
+
+  /// No description provided for @d3UOh8aqKE.
+  ///
+  /// In en, this message translates to:
+  /// **'D3UOh_8aqKE'**
+  String get d3UOh8aqKE;
+
+  /// No description provided for @hcEA13KgnE.
+  ///
+  /// In en, this message translates to:
+  /// **'hcEA13Kgn-E'**
+  String get hcEA13KgnE;
+
+  /// No description provided for @pbC7hP30zU.
+  ///
+  /// In en, this message translates to:
+  /// **'PbC7h-P30zU'**
+  String get pbC7hP30zU;
+
+  /// No description provided for @hilariousFamily22.
+  ///
+  /// In en, this message translates to:
+  /// **'芬芳喜事 Hilarious Family 2'**
+  String get hilariousFamily22;
+
+  /// No description provided for @sliceOfLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Slice of Life'**
+  String get sliceOfLife;
+
+  /// No description provided for @p6Og4b7SEiw.
+  ///
+  /// In en, this message translates to:
+  /// **'P6Og4b7SEiw'**
+  String get p6Og4b7SEiw;
+
+  /// No description provided for @label6TOkoVJcus.
+  ///
+  /// In en, this message translates to:
+  /// **'6-tOkoVJcus'**
+  String get label6TOkoVJcus;
+
+  /// No description provided for @xKUz23x2pOo.
+  ///
+  /// In en, this message translates to:
+  /// **'XKUz23x2pOo'**
+  String get xKUz23x2pOo;
+
+  /// No description provided for @fTuSIxeFUY.
+  ///
+  /// In en, this message translates to:
+  /// **'FTuSIxe-fUY'**
+  String get fTuSIxeFUY;
+
+  /// No description provided for @kdow9dKN0.
+  ///
+  /// In en, this message translates to:
+  /// **'_Kdow9dKN-0'**
+  String get kdow9dKN0;
+
+  /// No description provided for @y4eB2fuCNs.
+  ///
+  /// In en, this message translates to:
+  /// **'Y4e_b2fuCNs'**
+  String get y4eB2fuCNs;
+
+  /// No description provided for @sVClNTSRcQ.
+  ///
+  /// In en, this message translates to:
+  /// **'SV-clNTSRcQ'**
+  String get sVClNTSRcQ;
+
+  /// No description provided for @xQtiANGe8.
+  ///
+  /// In en, this message translates to:
+  /// **'x-qtiA-NGe8'**
+  String get xQtiANGe8;
+
+  /// No description provided for @obESRYh3NU.
+  ///
+  /// In en, this message translates to:
+  /// **'obESRYh3-NU'**
+  String get obESRYh3NU;
+
+  /// No description provided for @pLs3DOuT3JlGShdDzo52tfDOSU1UkUcHX.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGShdDzo52tfDOSU1UkUc-hX'**
+  String get pLs3DOuT3JlGShdDzo52tfDOSU1UkUcHX;
+
+  /// No description provided for @legendOfTheFemaleGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'锦月如歌 Legend of The Female General'**
+  String get legendOfTheFemaleGeneral;
+
+  /// No description provided for @highlightLegendOfTheFemale.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight高光合集 【锦月如歌 Legend of The Female General】'**
+  String get highlightLegendOfTheFemale;
+
+  /// No description provided for @a40F2TEZrms.
+  ///
+  /// In en, this message translates to:
+  /// **'A40F2TEZrms'**
+  String get a40F2TEZrms;
+
+  /// No description provided for @lYQ5iND4.
+  ///
+  /// In en, this message translates to:
+  /// **'lYQ5iN-d-_4'**
+  String get lYQ5iND4;
+
+  /// No description provided for @bTSLegendOfTheFemale.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS 周也的生日大放送 🎂！【锦月如歌 Legend of The Female General】'**
+  String get bTSLegendOfTheFemale;
+
+  /// No description provided for @bTSLegendOfTheFemale2.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS 肖都督丞磊生日大放送 🎂！【锦月如歌 Legend of The Female General】'**
+  String get bTSLegendOfTheFemale2;
+
+  /// No description provided for @bTSLegendOfTheFemale3.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS 战场上帅气合体打斗，没人能拒绝飒感拉满的大魏双星【锦月如歌 Legend of The Female General】'**
+  String get bTSLegendOfTheFemale3;
+
+  /// No description provided for @bTS520LegendOfThe.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS 喜肖晏开的520约会方案【锦月如歌 Legend of The Female General】'**
+  String get bTS520LegendOfThe;
+
+  /// No description provided for @bTSLegendOfTheFemale4.
+  ///
+  /// In en, this message translates to:
+  /// **'BTS 醉酒的周也可爱到犯规~舞剑反差萌拉满~一旁的丞磊嘴角笑意真藏不住一点！【锦月如歌 Legend of The Female General】'**
+  String get bTSLegendOfTheFemale4;
+
+  /// No description provided for @pLs3DOuT3JlGRucYIZLqmT7FO5IWDWrP.
+  ///
+  /// In en, this message translates to:
+  /// **'PLs3DOuT3JlGRuc_yIZLqmT7FO5IWD-WrP'**
+  String get pLs3DOuT3JlGRucYIZLqmT7FO5IWDWrP;
+
+  /// No description provided for @thePrincessSGambit.
+  ///
+  /// In en, this message translates to:
+  /// **'桃花映江山 The Princess\'s Gambit'**
+  String get thePrincessSGambit;
+
+  /// No description provided for @highlightThePrincessSGambit.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight高光合集 【桃花映江山 The Princess\'s Gambit】'**
+  String get highlightThePrincessSGambit;
+
+  /// No description provided for @qJRbuw2hJ3s.
+  ///
+  /// In en, this message translates to:
+  /// **'QJRbuw2hJ3s'**
+  String get qJRbuw2hJ3s;
+
+  /// No description provided for @cGtKgr7X4o.
+  ///
+  /// In en, this message translates to:
+  /// **'cGt-Kgr7X4o'**
+  String get cGtKgr7X4o;
+
+  /// No description provided for @iZe4HBUZQ.
+  ///
+  /// In en, this message translates to:
+  /// **'IZe4_HBU_ZQ'**
+  String get iZe4HBUZQ;
+
+  /// No description provided for @zGgyp0sbyDM.
+  ///
+  /// In en, this message translates to:
+  /// **'ZGgyp0sbyDM'**
+  String get zGgyp0sbyDM;
+
+  /// No description provided for @label2BI4oU8Rwo.
+  ///
+  /// In en, this message translates to:
+  /// **'2BI4o-u8Rwo'**
+  String get label2BI4oU8Rwo;
+
+  /// No description provided for @zNZAQZZQ.
+  ///
+  /// In en, this message translates to:
+  /// **'-ZN-zAQZZ-Q'**
+  String get zNZAQZZQ;
+
+  /// No description provided for @uma3ppi4wiM.
+  ///
+  /// In en, this message translates to:
+  /// **'Uma3ppi4wiM'**
+  String get uma3ppi4wiM;
+
+  /// No description provided for @clipThePrincessSGambit.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 一袭红衣染白雪！姜桃花为保护幼弟诀别故土远嫁祈国【桃花映江山 The Princess\'s Gambit】'**
+  String get clipThePrincessSGambit;
+
+  /// No description provided for @clipThePrincessSGambit2.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 新婚日沈府妻妾集体作妖？桃花以退为进淡定接招【桃花映江山 The Princess\'s Gambit】'**
+  String get clipThePrincessSGambit2;
+
+  /// No description provided for @clipThePrincessSGambit3.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 桃花自缢装晕被拆穿，沈在野一针扎醒：演，接着演！【桃花映江山 The Princess\'s Gambit】'**
+  String get clipThePrincessSGambit3;
+
+  /// No description provided for @clipThePrincessSGambit4.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 沈相办案好狠的心！雷霆手段彻查恶钱案，贪官们瑟瑟发抖【桃花映江山 The Princess\'s Gambit】'**
+  String get clipThePrincessSGambit4;
+
+  /// No description provided for @eDrJjtCRF0.
+  ///
+  /// In en, this message translates to:
+  /// **'eDr-jjtCRF0'**
+  String get eDrJjtCRF0;
+
+  /// No description provided for @clipThePrincessSGambit5.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 面具刺客完美伪装难逃制裁，神探桃花：你的脚出卖了你！【桃花映江山 The Princess\'s Gambit】'**
+  String get clipThePrincessSGambit5;
+
+  /// No description provided for @clipPlayThePrincessS.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 发簪审讯play！沈在野执簪挑起桃花下巴冷声逼问【桃花映江山 The Princess\'s Gambit】'**
+  String get clipPlayThePrincessS;
+
+  /// No description provided for @label58K8GxhXlQ.
+  ///
+  /// In en, this message translates to:
+  /// **'58K8-gxhXlQ'**
+  String get label58K8GxhXlQ;
+
+  /// No description provided for @clipThePrincessSGambit6.
+  ///
+  /// In en, this message translates to:
+  /// **'Clip 初次相见就玩这么大！沈在野桃花身中合欢散四目相对【桃花映江山 The Princess\'s Gambit】'**
+  String get clipThePrincessSGambit6;
+
+  /// No description provided for @pLIPiKkSFpK8B6r2izKyYYiYdbkYSBbd.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8B6r2izKyY-yiYdbkYSBbd'**
+  String get pLIPiKkSFpK8B6r2izKyYYiYdbkYSBbd;
+
+  /// No description provided for @reqdatIdS.
+  ///
+  /// In en, this message translates to:
+  /// **'Reqdat_id-s'**
+  String get reqdatIdS;
+
+  /// No description provided for @label72zyHSuRDM.
+  ///
+  /// In en, this message translates to:
+  /// **'72zyHSuR-dM'**
+  String get label72zyHSuRDM;
+
+  /// No description provided for @zQDc6PfC0.
+  ///
+  /// In en, this message translates to:
+  /// **'z-q_Dc6PfC0'**
+  String get zQDc6PfC0;
+
+  /// No description provided for @hfcLvnUQqA.
+  ///
+  /// In en, this message translates to:
+  /// **'-hfcLvnUQqA'**
+  String get hfcLvnUQqA;
+
+  /// No description provided for @y5CHMfB8dw.
+  ///
+  /// In en, this message translates to:
+  /// **'Y5C-HMfB8dw'**
+  String get y5CHMfB8dw;
+
+  /// No description provided for @p28HP1H4Vc.
+  ///
+  /// In en, this message translates to:
+  /// **'P28HP_1H4Vc'**
+  String get p28HP1H4Vc;
+
+  /// No description provided for @yBclY6CaTw.
+  ///
+  /// In en, this message translates to:
+  /// **'yBclY6-caTw'**
+  String get yBclY6CaTw;
+
+  /// No description provided for @bGIAtDEdlk.
+  ///
+  /// In en, this message translates to:
+  /// **'B-gIAtDEdlk'**
+  String get bGIAtDEdlk;
+
+  /// No description provided for @mWKB6zDZwc.
+  ///
+  /// In en, this message translates to:
+  /// **'mWKB6zD-zwc'**
+  String get mWKB6zDZwc;
+
+  /// No description provided for @q8N3LJ0A9Bk.
+  ///
+  /// In en, this message translates to:
+  /// **'Q8N3LJ0A9Bk'**
+  String get q8N3LJ0A9Bk;
+
+  /// No description provided for @yR6T2qwwRJ0.
+  ///
+  /// In en, this message translates to:
+  /// **'YR6T2qwwRJ0'**
+  String get yR6T2qwwRJ0;
+
+  /// No description provided for @oOgqhGuLE.
+  ///
+  /// In en, this message translates to:
+  /// **'-o_ogqhGuLE'**
+  String get oOgqhGuLE;
+
+  /// No description provided for @sk2MR0LGf0E.
+  ///
+  /// In en, this message translates to:
+  /// **'Sk2MR0LGf0E'**
+  String get sk2MR0LGf0E;
+
+  /// No description provided for @rodBx023QQ.
+  ///
+  /// In en, this message translates to:
+  /// **'rodBx023-qQ'**
+  String get rodBx023QQ;
+
+  /// No description provided for @zPVcOAzByY.
+  ///
+  /// In en, this message translates to:
+  /// **'z-pVcOAzByY'**
+  String get zPVcOAzByY;
+
+  /// No description provided for @nWM1Ceq5oyE.
+  ///
+  /// In en, this message translates to:
+  /// **'NWM1Ceq5oyE'**
+  String get nWM1Ceq5oyE;
+
+  /// No description provided for @pLIPiKkSFpKIRCE5jKV6WuMHd3ba79JP.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK_IRCE5jKV6WuMHd3ba79JP'**
+  String get pLIPiKkSFpKIRCE5jKV6WuMHd3ba79JP;
+
+  /// No description provided for @label7yLGOh2ABg.
+  ///
+  /// In en, this message translates to:
+  /// **'7y-lGOh2ABg'**
+  String get label7yLGOh2ABg;
+
+  /// No description provided for @yr5pUONS3c.
+  ///
+  /// In en, this message translates to:
+  /// **'-Yr5pUONS3c'**
+  String get yr5pUONS3c;
+
+  /// No description provided for @svE0DPJGYA.
+  ///
+  /// In en, this message translates to:
+  /// **'SvE0DPJ-gYA'**
+  String get svE0DPJGYA;
+
+  /// No description provided for @i709WD0cVs.
+  ///
+  /// In en, this message translates to:
+  /// **'I_709WD0cVs'**
+  String get i709WD0cVs;
+
+  /// No description provided for @mgWNgw9MQ.
+  ///
+  /// In en, this message translates to:
+  /// **'MgWNgw_9-MQ'**
+  String get mgWNgw9MQ;
+
+  /// No description provided for @xs2k2nlJYYc.
+  ///
+  /// In en, this message translates to:
+  /// **'Xs2k2nlJYYc'**
+  String get xs2k2nlJYYc;
+
+  /// No description provided for @fdXXdYB6Vo.
+  ///
+  /// In en, this message translates to:
+  /// **'FdXXd-YB6Vo'**
+  String get fdXXdYB6Vo;
+
+  /// No description provided for @pKG6QKF6Og.
+  ///
+  /// In en, this message translates to:
+  /// **'p-KG6QKF6Og'**
+  String get pKG6QKF6Og;
+
+  /// No description provided for @limitedFULLTheIngeniousOne.
+  ///
+  /// In en, this message translates to:
+  /// **'【Limited FULL】云襄传 | The Ingenious One | iQIYI 👑Join the Membership and enjoy full episodes now!'**
+  String get limitedFULLTheIngeniousOne;
+
+  /// No description provided for @iQIYIGetTheIQIYIAPP2.
+  ///
+  /// In en, this message translates to:
+  /// **'iQIYI 爱奇艺 - Get the iQIYI APP'**
+  String get iQIYIGetTheIQIYIAPP2;
+
+  /// No description provided for @aky3021PW.
+  ///
+  /// In en, this message translates to:
+  /// **'_Aky3021P-w'**
+  String get aky3021PW;
+
+  /// No description provided for @hMaBvO3nkM.
+  ///
+  /// In en, this message translates to:
+  /// **'hMaBv-O3nkM'**
+  String get hMaBvO3nkM;
+
+  /// No description provided for @r2YEAXZFxp4.
+  ///
+  /// In en, this message translates to:
+  /// **'R2YEAXZFxp4'**
+  String get r2YEAXZFxp4;
+
+  /// No description provided for @iTLYG63GDc.
+  ///
+  /// In en, this message translates to:
+  /// **'ITLYG-63GDc'**
+  String get iTLYG63GDc;
+
+  /// No description provided for @label1TyTz8z1vK.
+  ///
+  /// In en, this message translates to:
+  /// **'1TyTz8z1v-k'**
+  String get label1TyTz8z1vK;
+
+  /// No description provided for @jIq5a7yEd8c.
+  ///
+  /// In en, this message translates to:
+  /// **'JIq5a7yEd8c'**
+  String get jIq5a7yEd8c;
+
+  /// No description provided for @tDMpSBCf5k.
+  ///
+  /// In en, this message translates to:
+  /// **'tDMp-sBCf5k'**
+  String get tDMpSBCf5k;
+
+  /// No description provided for @iPWSYbG6s4.
+  ///
+  /// In en, this message translates to:
+  /// **'IPW-sYbG6s4'**
+  String get iPWSYbG6s4;
+
+  /// No description provided for @label6GjFP04aw.
+  ///
+  /// In en, this message translates to:
+  /// **'6Gj-FP-04aw'**
+  String get label6GjFP04aw;
+
+  /// No description provided for @pL6xVgUZ4UP2Ps7N0b2CUMkQ49aAX3xlw.
+  ///
+  /// In en, this message translates to:
+  /// **'PL6xVgUZ4UP2Ps7N0b2-cUMkQ49aAX3xlw'**
+  String get pL6xVgUZ4UP2Ps7N0b2CUMkQ49aAX3xlw;
+
+  /// No description provided for @f8ilmFb30.
+  ///
+  /// In en, this message translates to:
+  /// **'f8ilm_Fb-30'**
+  String get f8ilmFb30;
+
+  /// No description provided for @dQt4Zorb4gE.
+  ///
+  /// In en, this message translates to:
+  /// **'DQt4Zorb4gE'**
+  String get dQt4Zorb4gE;
+
+  /// No description provided for @t9XDOuWLc.
+  ///
+  /// In en, this message translates to:
+  /// **'t9XD-OuW-Lc'**
+  String get t9XDOuWLc;
+
+  /// No description provided for @vcEgRd08.
+  ///
+  /// In en, this message translates to:
+  /// **'-vc_egRd_08'**
+  String get vcEgRd08;
+
+  /// No description provided for @b0b1dFL9Nc.
+  ///
+  /// In en, this message translates to:
+  /// **'B0b1dF-l9Nc'**
+  String get b0b1dFL9Nc;
+
+  /// No description provided for @pLIPiKkSFpK8VhfSNo7Vsx4lCMTKbcOm.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8_VhfSNo7Vsx4lCMTKbcOm'**
+  String get pLIPiKkSFpK8VhfSNo7Vsx4lCMTKbcOm;
+
+  /// No description provided for @aMeUFNq1m8.
+  ///
+  /// In en, this message translates to:
+  /// **'AMe-uFNq1m8'**
+  String get aMeUFNq1m8;
+
+  /// No description provided for @dJUpKoPRtg.
+  ///
+  /// In en, this message translates to:
+  /// **'DJ-UpKoPRtg'**
+  String get dJUpKoPRtg;
+
+  /// No description provided for @oQMLDVlb7g.
+  ///
+  /// In en, this message translates to:
+  /// **'OQML_DVlb7g'**
+  String get oQMLDVlb7g;
+
+  /// No description provided for @aUeypfRL24.
+  ///
+  /// In en, this message translates to:
+  /// **'aUeypfRL-24'**
+  String get aUeypfRL24;
+
+  /// No description provided for @uB9ycPhk1mg.
+  ///
+  /// In en, this message translates to:
+  /// **'UB9ycPhk1mg'**
+  String get uB9ycPhk1mg;
+
+  /// No description provided for @pLIPiKkSFpK8Pesmyu9gzK2jXpplqUn9d.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8Pesmyu9gzK2jXpplqUn9d'**
+  String get pLIPiKkSFpK8Pesmyu9gzK2jXpplqUn9d;
+
+  /// No description provided for @i5TQ4zJDUs.
+  ///
+  /// In en, this message translates to:
+  /// **'I5TQ4z_jDUs'**
+  String get i5TQ4zJDUs;
+
+  /// No description provided for @goft2N911yE.
+  ///
+  /// In en, this message translates to:
+  /// **'Goft2N911yE'**
+  String get goft2N911yE;
+
+  /// No description provided for @sraEP5hG98.
+  ///
+  /// In en, this message translates to:
+  /// **'sraEP5hG-98'**
+  String get sraEP5hG98;
+
+  /// No description provided for @axhDRyKII.
+  ///
+  /// In en, this message translates to:
+  /// **'_AxhDRy-kII'**
+  String get axhDRyKII;
+
+  /// No description provided for @j1z4azTG40.
+  ///
+  /// In en, this message translates to:
+  /// **'J-1z4azTG40'**
+  String get j1z4azTG40;
+
+  /// No description provided for @m87V7kOvg.
+  ///
+  /// In en, this message translates to:
+  /// **'-m_87V7kOvg'**
+  String get m87V7kOvg;
+
+  /// No description provided for @g2ASv4fOuc.
+  ///
+  /// In en, this message translates to:
+  /// **'G2-aSv4fOuc'**
+  String get g2ASv4fOuc;
+
+  /// No description provided for @tONKwUFYQ.
+  ///
+  /// In en, this message translates to:
+  /// **'-TONKwU_FYQ'**
+  String get tONKwUFYQ;
+
+  /// No description provided for @mw7OlvkWDg.
+  ///
+  /// In en, this message translates to:
+  /// **'-Mw7OlvkWDg'**
+  String get mw7OlvkWDg;
+
+  /// No description provided for @pLIPiKkSFpK8KCCeSQTpodI0VqMejybr9.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8KCCeSQTpodI0VqMejybr9'**
+  String get pLIPiKkSFpK8KCCeSQTpodI0VqMejybr9;
+
+  /// No description provided for @label4GJqLnsV6c.
+  ///
+  /// In en, this message translates to:
+  /// **'4G-jqLnsV6c'**
+  String get label4GJqLnsV6c;
+
+  /// No description provided for @b36gveSPqI.
+  ///
+  /// In en, this message translates to:
+  /// **'B36gveS-pqI'**
+  String get b36gveSPqI;
+
+  /// No description provided for @da6GLS11sDg.
+  ///
+  /// In en, this message translates to:
+  /// **'Da6GLS11sDg'**
+  String get da6GLS11sDg;
+
+  /// No description provided for @r7Jzgv6XuM.
+  ///
+  /// In en, this message translates to:
+  /// **'-r7Jzgv6XuM'**
+  String get r7Jzgv6XuM;
+
+  /// No description provided for @fULLROADHOMEBoranJingSeven.
+  ///
+  /// In en, this message translates to:
+  /// **'【FULL】👮ROAD HOME💕 | BoranJing, Seven Tan | iQIYI Philippines'**
+  String get fULLROADHOMEBoranJingSeven;
+
+  /// No description provided for @iQIYIPhilippinesGetTheIQIYI.
+  ///
+  /// In en, this message translates to:
+  /// **'iQIYI Philippines - Get the iQIYI APP'**
+  String get iQIYIPhilippinesGetTheIQIYI;
+
+  /// No description provided for @lKuff6Nfwp8.
+  ///
+  /// In en, this message translates to:
+  /// **'LKuff6Nfwp8'**
+  String get lKuff6Nfwp8;
+
+  /// No description provided for @n3oPG8EusI.
+  ///
+  /// In en, this message translates to:
+  /// **'N3oPG8Eus-I'**
+  String get n3oPG8EusI;
+
+  /// No description provided for @jEq6lPG1rus.
+  ///
+  /// In en, this message translates to:
+  /// **'JEq6lPG1rus'**
+  String get jEq6lPG1rus;
+
+  /// No description provided for @uwhhmc98HX8.
+  ///
+  /// In en, this message translates to:
+  /// **'Uwhhmc98HX8'**
+  String get uwhhmc98HX8;
+
+  /// No description provided for @k3KVVNRjgw.
+  ///
+  /// In en, this message translates to:
+  /// **'K3KVV-NRjgw'**
+  String get k3KVVNRjgw;
+
+  /// No description provided for @aIEnglishDubMrBAD.
+  ///
+  /// In en, this message translates to:
+  /// **'【AI English Dub】Mr. BAD | Chen Zheyuan, Yue Shen | iQIYI Philippines'**
+  String get aIEnglishDubMrBAD;
+
+  /// No description provided for @h7d38oiW4.
+  ///
+  /// In en, this message translates to:
+  /// **'-h7d38oi_w4'**
+  String get h7d38oiW4;
+
+  /// No description provided for @tIjEEDlLPY.
+  ///
+  /// In en, this message translates to:
+  /// **'-TIjEEDlLPY'**
+  String get tIjEEDlLPY;
+
+  /// No description provided for @label6P746xQE1E.
+  ///
+  /// In en, this message translates to:
+  /// **'6P746xQE1-E'**
+  String get label6P746xQE1E;
+
+  /// No description provided for @wJo20fh1ovU.
+  ///
+  /// In en, this message translates to:
+  /// **'WJo20fh1ovU'**
+  String get wJo20fh1ovU;
+
+  /// No description provided for @aUci4B6qoIY.
+  ///
+  /// In en, this message translates to:
+  /// **'AUci4B6qoIY'**
+  String get aUci4B6qoIY;
+
+  /// No description provided for @loveOfTheDivineTree2.
+  ///
+  /// In en, this message translates to:
+  /// **'🌸【奇幻仙侠】🎋Love of the Divine Tree 仙台有树 | Deng Wei × Xiang Hanzhi | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!'**
+  String get loveOfTheDivineTree2;
+
+  /// No description provided for @uFSyFzIASM.
+  ///
+  /// In en, this message translates to:
+  /// **'UFSyFzIA-sM'**
+  String get uFSyFzIASM;
+
+  /// No description provided for @c8THRSSU6M.
+  ///
+  /// In en, this message translates to:
+  /// **'c8-tHRSSU6M'**
+  String get c8THRSSU6M;
+
+  /// No description provided for @cxx0rl8JJnc.
+  ///
+  /// In en, this message translates to:
+  /// **'Cxx0rl8JJnc'**
+  String get cxx0rl8JJnc;
+
+  /// No description provided for @o5Mn9URF3uE.
+  ///
+  /// In en, this message translates to:
+  /// **'O5Mn9URF3uE'**
+  String get o5Mn9URF3uE;
+
+  /// No description provided for @eE1jl4dzrg8.
+  ///
+  /// In en, this message translates to:
+  /// **'EE1jl4dzrg8'**
+  String get eE1jl4dzrg8;
+
+  /// No description provided for @label6GeLMiukHC.
+  ///
+  /// In en, this message translates to:
+  /// **'6GeLMiukH-c'**
+  String get label6GeLMiukHC;
+
+  /// No description provided for @eAhVaQ2RA.
+  ///
+  /// In en, this message translates to:
+  /// **'e_ahVaQ2-rA'**
+  String get eAhVaQ2RA;
+
+  /// No description provided for @h9VQfSPUzs.
+  ///
+  /// In en, this message translates to:
+  /// **'H9VQfS-pUzs'**
+  String get h9VQfSPUzs;
+
+  /// No description provided for @pLIPiKkSFpKUBrffjChZ310g2OtsQfLf.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK-uBrffjChZ310g2OtsQfLf'**
+  String get pLIPiKkSFpKUBrffjChZ310g2OtsQfLf;
+
+  /// No description provided for @k8DtfAAU4U.
+  ///
+  /// In en, this message translates to:
+  /// **'K8-DtfAAU4U'**
+  String get k8DtfAAU4U;
+
+  /// No description provided for @pLIPiKkSFpK9TcBapXhwwF9nCt2DZu9k.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK9-TcBapXhwwF9nCt2DZu9k'**
+  String get pLIPiKkSFpK9TcBapXhwwF9nCt2DZu9k;
+
+  /// No description provided for @vP12XNOv5eM.
+  ///
+  /// In en, this message translates to:
+  /// **'VP12XNOv5eM'**
+  String get vP12XNOv5eM;
+
+  /// No description provided for @yTp22S1oA5Q.
+  ///
+  /// In en, this message translates to:
+  /// **'YTp22S1oA5Q'**
+  String get yTp22S1oA5Q;
+
+  /// No description provided for @rxgy49XHTbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Rxgy49XHTbs'**
+  String get rxgy49XHTbs;
+
+  /// No description provided for @hHw9RaWByc.
+  ///
+  /// In en, this message translates to:
+  /// **'hHw9-RaWByc'**
+  String get hHw9RaWByc;
+
+  /// No description provided for @wwoz6JPu2Yg.
+  ///
+  /// In en, this message translates to:
+  /// **'Wwoz6JPu2Yg'**
+  String get wwoz6JPu2Yg;
+
+  /// No description provided for @lW32xQCoqs.
+  ///
+  /// In en, this message translates to:
+  /// **'LW32x_QCoqs'**
+  String get lW32xQCoqs;
+
+  /// No description provided for @gb414C2O3w.
+  ///
+  /// In en, this message translates to:
+  /// **'Gb414C2_O3w'**
+  String get gb414C2O3w;
+
+  /// No description provided for @k7iTvKzZyQ.
+  ///
+  /// In en, this message translates to:
+  /// **'K7iTv-KzZyQ'**
+  String get k7iTvKzZyQ;
+
+  /// No description provided for @npbhgWJePE.
+  ///
+  /// In en, this message translates to:
+  /// **'npbhgWJe-PE'**
+  String get npbhgWJePE;
+
+  /// No description provided for @knWpROE9xU.
+  ///
+  /// In en, this message translates to:
+  /// **'kn-WpROE9xU'**
+  String get knWpROE9xU;
+
+  /// No description provided for @eT8okyktVok.
+  ///
+  /// In en, this message translates to:
+  /// **'ET8okyktVok'**
+  String get eT8okyktVok;
+
+  /// No description provided for @pLIPiKkSFpK8Q5DyWQXPpAdGsyH8BPUYA.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8Q5DyWQXPpAdGsyH8BPUYA'**
+  String get pLIPiKkSFpK8Q5DyWQXPpAdGsyH8BPUYA;
+
+  /// No description provided for @rD40VQSYnjo.
+  ///
+  /// In en, this message translates to:
+  /// **'RD40VQSYnjo'**
+  String get rD40VQSYnjo;
+
+  /// No description provided for @bmdZBo8HoE.
+  ///
+  /// In en, this message translates to:
+  /// **'BmdZ-Bo8HoE'**
+  String get bmdZBo8HoE;
+
+  /// No description provided for @pLIPiKkSFpK9MiE3quPZjNnu7RgviYDy.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK9MiE3quPZjNnu7-RgviYDy'**
+  String get pLIPiKkSFpK9MiE3quPZjNnu7RgviYDy;
+
+  /// No description provided for @fYFcg3qNJE.
+  ///
+  /// In en, this message translates to:
+  /// **'fYFcg3qN-jE'**
+  String get fYFcg3qNJE;
+
+  /// No description provided for @uWRVG89Kn8M.
+  ///
+  /// In en, this message translates to:
+  /// **'UWRVG89Kn8M'**
+  String get uWRVG89Kn8M;
+
+  /// No description provided for @iBUh0B2XAMQ.
+  ///
+  /// In en, this message translates to:
+  /// **'IBUh0B2XAMQ'**
+  String get iBUh0B2XAMQ;
+
+  /// No description provided for @wQlTnSp5s.
+  ///
+  /// In en, this message translates to:
+  /// **'W-ql-tnSp5s'**
+  String get wQlTnSp5s;
+
+  /// No description provided for @edAqyr6ieU.
+  ///
+  /// In en, this message translates to:
+  /// **'-EdAqyr6ieU'**
+  String get edAqyr6ieU;
+
+  /// No description provided for @pLIPiKkSFpK8wb8Yzzh4eptkOEn2LPtDf.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8wb8Yzzh4eptkOEn2LPtDf'**
+  String get pLIPiKkSFpK8wb8Yzzh4eptkOEn2LPtDf;
+
+  /// No description provided for @label93ckJe0R6c.
+  ///
+  /// In en, this message translates to:
+  /// **'-93ckJe0R6c'**
+  String get label93ckJe0R6c;
+
+  /// No description provided for @vzb1BHRshM.
+  ///
+  /// In en, this message translates to:
+  /// **'Vzb1B-hRshM'**
+  String get vzb1BHRshM;
+
+  /// No description provided for @yC69yjVyOo.
+  ///
+  /// In en, this message translates to:
+  /// **'y-C69yjVyOo'**
+  String get yC69yjVyOo;
+
+  /// No description provided for @pLIPiKkSFpK8MdPQg72ceDNUGjf0mhENz.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8MdPQg72ceDNUGjf0mhENz'**
+  String get pLIPiKkSFpK8MdPQg72ceDNUGjf0mhENz;
+
+  /// No description provided for @iEC4DBbzBI.
+  ///
+  /// In en, this message translates to:
+  /// **'iEC4DBbzB-I'**
+  String get iEC4DBbzBI;
+
+  /// No description provided for @yf7VWSAbOU.
+  ///
+  /// In en, this message translates to:
+  /// **'yf7VW-sAbOU'**
+  String get yf7VWSAbOU;
+
+  /// No description provided for @sF0QfbuHtQ.
+  ///
+  /// In en, this message translates to:
+  /// **'S-F0QfbuHtQ'**
+  String get sF0QfbuHtQ;
+
+  /// No description provided for @yPcsflr52s.
+  ///
+  /// In en, this message translates to:
+  /// **'yPcsflr-52s'**
+  String get yPcsflr52s;
+
+  /// No description provided for @md04meyJlA.
+  ///
+  /// In en, this message translates to:
+  /// **'md0-4meyJlA'**
+  String get md04meyJlA;
+
+  /// No description provided for @iof4jeN6LG4.
+  ///
+  /// In en, this message translates to:
+  /// **'Iof4jeN6LG4'**
+  String get iof4jeN6LG4;
+
+  /// No description provided for @label8FjmZttLM.
+  ///
+  /// In en, this message translates to:
+  /// **'-8_fjmZttLM'**
+  String get label8FjmZttLM;
+
+  /// No description provided for @cCnli0HQ3IE.
+  ///
+  /// In en, this message translates to:
+  /// **'CCnli0HQ3IE'**
+  String get cCnli0HQ3IE;
+
+  /// No description provided for @label8EXPB74Dyc.
+  ///
+  /// In en, this message translates to:
+  /// **'8-EXPB74Dyc'**
+  String get label8EXPB74Dyc;
+
+  /// No description provided for @fULLMyDearGuardianJohnny.
+  ///
+  /// In en, this message translates to:
+  /// **'【FULL】🕊️My Dear Guardian |  Johnny Huang, Li Qin | iQIYI Philippines'**
+  String get fULLMyDearGuardianJohnny;
+
+  /// No description provided for @fN0lxPL4Qa0.
+  ///
+  /// In en, this message translates to:
+  /// **'FN0lxPL4Qa0'**
+  String get fN0lxPL4Qa0;
+
+  /// No description provided for @bjlqxe76Cc.
+  ///
+  /// In en, this message translates to:
+  /// **'bjlqxe76-cc'**
+  String get bjlqxe76Cc;
+
+  /// No description provided for @pLIPiKkSFpKHKjDQgjOj98MaZq0gm.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK-_h-KjD_qgjOj98MaZq0gm'**
+  String get pLIPiKkSFpKHKjDQgjOj98MaZq0gm;
+
+  /// No description provided for @tcWqflGCUY.
+  ///
+  /// In en, this message translates to:
+  /// **'TcWqflG-CUY'**
+  String get tcWqflGCUY;
+
+  /// No description provided for @rZfxh4rSg.
+  ///
+  /// In en, this message translates to:
+  /// **'--rZfxh4rSg'**
+  String get rZfxh4rSg;
+
+  /// No description provided for @label1ORyfeHBGG.
+  ///
+  /// In en, this message translates to:
+  /// **'1ORyfeHBG-g'**
+  String get label1ORyfeHBGG;
+
+  /// No description provided for @pLIPiKkSFpK9cwfQqamjvymbElQlrV6do.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK9cwfQqamjvymbElQlrV6do'**
+  String get pLIPiKkSFpK9cwfQqamjvymbElQlrV6do;
+
+  /// No description provided for @vKvu1urDSps.
+  ///
+  /// In en, this message translates to:
+  /// **'VKvu1urDSps'**
+  String get vKvu1urDSps;
+
+  /// No description provided for @dB2fAHAIw30.
+  ///
+  /// In en, this message translates to:
+  /// **'DB2fAHAIw30'**
+  String get dB2fAHAIw30;
+
+  /// No description provided for @pLlCrV9TCfzMYJebfwvzDDQzDFbY9XqvE.
+  ///
+  /// In en, this message translates to:
+  /// **'PLlCrV9TCfzMYJebfwvzDDQzDFbY-9XqvE'**
+  String get pLlCrV9TCfzMYJebfwvzDDQzDFbY9XqvE;
+
+  /// No description provided for @theBestThingZhangLinghe.
+  ///
+  /// In en, this message translates to:
+  /// **'🌸【治愈爱情】🎋The Best Thing 爱你 | Zhang Linghe × Xu Ruohan | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!'**
+  String get theBestThingZhangLinghe;
+
+  /// No description provided for @h22R4lYT0QQ.
+  ///
+  /// In en, this message translates to:
+  /// **'H22R4lYT0QQ'**
+  String get h22R4lYT0QQ;
+
+  /// No description provided for @a4CMqC9Hg.
+  ///
+  /// In en, this message translates to:
+  /// **'A-4C-mqC9Hg'**
+  String get a4CMqC9Hg;
+
+  /// No description provided for @jJvSIEUsWY.
+  ///
+  /// In en, this message translates to:
+  /// **'jJvSI-EUsWY'**
+  String get jJvSIEUsWY;
+
+  /// No description provided for @label94M1y8ivG.
+  ///
+  /// In en, this message translates to:
+  /// **'94M1y8iv--g'**
+  String get label94M1y8ivG;
+
+  /// No description provided for @k50lO8uGHM.
+  ///
+  /// In en, this message translates to:
+  /// **'K_50lO8uGHM'**
+  String get k50lO8uGHM;
+
+  /// No description provided for @eP012026RebirthChineseDrama.
+  ///
+  /// In en, this message translates to:
+  /// **'📽️【EP01 2026】Rebirth Chinese Drama  ENGSUB | Li Yunrui / Huangyang Tiantian /Zhang Kangle ⛵😍 Historical Drama 2026 #冰湖重生'**
+  String get eP012026RebirthChineseDrama;
+
+  /// No description provided for @soRNQqVHiE.
+  ///
+  /// In en, this message translates to:
+  /// **'SoRN-qqVHiE'**
+  String get soRNQqVHiE;
+
+  /// No description provided for @label0WKj11GO1k.
+  ///
+  /// In en, this message translates to:
+  /// **'0WKj11G-O1k'**
+  String get label0WKj11GO1k;
+
+  /// No description provided for @mckn8scIT9M.
+  ///
+  /// In en, this message translates to:
+  /// **'Mckn8scIT9M'**
+  String get mckn8scIT9M;
+
+  /// No description provided for @label3ouJb1XcvO.
+  ///
+  /// In en, this message translates to:
+  /// **'3ouJb1Xcv-o'**
+  String get label3ouJb1XcvO;
+
+  /// No description provided for @oGOi5zR5GE.
+  ///
+  /// In en, this message translates to:
+  /// **'OGOi5z-R5GE'**
+  String get oGOi5zR5GE;
+
+  /// No description provided for @oSCmrPPTm8.
+  ///
+  /// In en, this message translates to:
+  /// **'oSCmrPPTm-8'**
+  String get oSCmrPPTm8;
+
+  /// No description provided for @fSBy5hig8pk.
+  ///
+  /// In en, this message translates to:
+  /// **'FSBy5hig8pk'**
+  String get fSBy5hig8pk;
+
+  /// No description provided for @sC1tGve5Nr0.
+  ///
+  /// In en, this message translates to:
+  /// **'SC1tGve5Nr0'**
+  String get sC1tGve5Nr0;
+
+  /// No description provided for @lYWUkqJk2E.
+  ///
+  /// In en, this message translates to:
+  /// **'LYW-ukqJk2E'**
+  String get lYWUkqJk2E;
+
+  /// No description provided for @iXwhs66r7C.
+  ///
+  /// In en, this message translates to:
+  /// **'IXwhs66r7_c'**
+  String get iXwhs66r7C;
+
+  /// No description provided for @hJ1qGBGVF14.
+  ///
+  /// In en, this message translates to:
+  /// **'HJ1qGBGVF14'**
+  String get hJ1qGBGVF14;
+
+  /// No description provided for @xz1ZaLRTo.
+  ///
+  /// In en, this message translates to:
+  /// **'xz1-Za_LRTo'**
+  String get xz1ZaLRTo;
+
+  /// No description provided for @pL6xVgUZ4UP2OaE8yjLqTIxq2XKePI7m7.
+  ///
+  /// In en, this message translates to:
+  /// **'PL6xVgUZ4UP2OaE8yjLqTIxq2XKe-PI7m7'**
+  String get pL6xVgUZ4UP2OaE8yjLqTIxq2XKePI7m7;
+
+  /// No description provided for @xi7IXdkzYg.
+  ///
+  /// In en, this message translates to:
+  /// **'Xi7IXdkz-yg'**
+  String get xi7IXdkzYg;
+
+  /// No description provided for @xMUzyFFGBS.
+  ///
+  /// In en, this message translates to:
+  /// **'xMUzyFFGB-s'**
+  String get xMUzyFFGBS;
+
+  /// No description provided for @cAPUf0NVjfg.
+  ///
+  /// In en, this message translates to:
+  /// **'CAPUf0NVjfg'**
+  String get cAPUf0NVjfg;
+
+  /// No description provided for @jObgd77gRVI.
+  ///
+  /// In en, this message translates to:
+  /// **'JObgd77gRVI'**
+  String get jObgd77gRVI;
+
+  /// No description provided for @zAh5l4TSL44.
+  ///
+  /// In en, this message translates to:
+  /// **'ZAh5l4TSL44'**
+  String get zAh5l4TSL44;
+
+  /// No description provided for @iH5Dhymb50.
+  ///
+  /// In en, this message translates to:
+  /// **'IH-5Dhymb50'**
+  String get iH5Dhymb50;
+
+  /// No description provided for @pLIPiKkSFpKBxGpxeLaoE3RK1B27J2K.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK-BxGpxeLaoE3RK1-B27J2K'**
+  String get pLIPiKkSFpKBxGpxeLaoE3RK1B27J2K;
+
+  /// No description provided for @label5iTVfTFX1c.
+  ///
+  /// In en, this message translates to:
+  /// **'5i-tVfTFX1c'**
+  String get label5iTVfTFX1c;
+
+  /// No description provided for @label2jKJSKqQlI.
+  ///
+  /// In en, this message translates to:
+  /// **'2jKJSKq-qlI'**
+  String get label2jKJSKqQlI;
+
+  /// No description provided for @xTqeH63puw.
+  ///
+  /// In en, this message translates to:
+  /// **'xTqe-h63puw'**
+  String get xTqeH63puw;
+
+  /// No description provided for @oazvgr9cyow.
+  ///
+  /// In en, this message translates to:
+  /// **'Oazvgr9cyow'**
+  String get oazvgr9cyow;
+
+  /// No description provided for @fULLFatedHeartsLiQin.
+  ///
+  /// In en, this message translates to:
+  /// **'【FULL】🏹Fated Hearts | Li Qin, Chen Zheyuan | iQIYI Philippines'**
+  String get fULLFatedHeartsLiQin;
+
+  /// No description provided for @kCYYUs6wGOY.
+  ///
+  /// In en, this message translates to:
+  /// **'KCYYUs6wGOY'**
+  String get kCYYUs6wGOY;
+
+  /// No description provided for @tm2SyrqoQg.
+  ///
+  /// In en, this message translates to:
+  /// **'tm2-SyrqoQg'**
+  String get tm2SyrqoQg;
+
+  /// No description provided for @qZ5uUGk9gmg.
+  ///
+  /// In en, this message translates to:
+  /// **'QZ5uUGk9gmg'**
+  String get qZ5uUGk9gmg;
+
+  /// No description provided for @xETV6qEPY.
+  ///
+  /// In en, this message translates to:
+  /// **'XETV6qE-P_Y'**
+  String get xETV6qEPY;
+
+  /// No description provided for @label8rWW83nQVE.
+  ///
+  /// In en, this message translates to:
+  /// **'-8rWW83nQVE'**
+  String get label8rWW83nQVE;
+
+  /// No description provided for @zd4MuxKNDE.
+  ///
+  /// In en, this message translates to:
+  /// **'zd-4MuxKNDE'**
+  String get zd4MuxKNDE;
+
+  /// No description provided for @s2pk7pn3go4.
+  ///
+  /// In en, this message translates to:
+  /// **'S2pk7pn3go4'**
+  String get s2pk7pn3go4;
+
+  /// No description provided for @hQvrj4X9Frg.
+  ///
+  /// In en, this message translates to:
+  /// **'HQvrj4X9Frg'**
+  String get hQvrj4X9Frg;
+
+  /// No description provided for @fc8AWtgpGY.
+  ///
+  /// In en, this message translates to:
+  /// **'fc-8AWtgpGY'**
+  String get fc8AWtgpGY;
+
+  /// No description provided for @zPgeg1zFU1s.
+  ///
+  /// In en, this message translates to:
+  /// **'ZPgeg1zFU1s'**
+  String get zPgeg1zFU1s;
+
+  /// No description provided for @iYjOKBPzxE.
+  ///
+  /// In en, this message translates to:
+  /// **'iYjOK-bPzxE'**
+  String get iYjOKBPzxE;
+
+  /// No description provided for @label6DmBfkWs4I.
+  ///
+  /// In en, this message translates to:
+  /// **'-6DmBfkWs4I'**
+  String get label6DmBfkWs4I;
+
+  /// No description provided for @label3JUCW6WIY.
+  ///
+  /// In en, this message translates to:
+  /// **'-3JUC-w6WIY'**
+  String get label3JUCW6WIY;
+
+  /// No description provided for @sJ22yMn4qfY.
+  ///
+  /// In en, this message translates to:
+  /// **'SJ22yMn4qfY'**
+  String get sJ22yMn4qfY;
+
+  /// No description provided for @ono7fMWcfcg.
+  ///
+  /// In en, this message translates to:
+  /// **'Ono7fMWcfcg'**
+  String get ono7fMWcfcg;
+
+  /// No description provided for @txW0Ss7D50.
+  ///
+  /// In en, this message translates to:
+  /// **'txW-0Ss7D50'**
+  String get txW0Ss7D50;
+
+  /// No description provided for @pLIPiKkSFpK9dJRiyjRahGpG8woGS9Sl2.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK9dJRiyjRahGpG8woGS9Sl2'**
+  String get pLIPiKkSFpK9dJRiyjRahGpG8woGS9Sl2;
+
+  /// No description provided for @mVab12IKYMA.
+  ///
+  /// In en, this message translates to:
+  /// **'MVab12IKYMA'**
+  String get mVab12IKYMA;
+
+  /// No description provided for @zLABLPu8ik.
+  ///
+  /// In en, this message translates to:
+  /// **'Z-lABLPu8ik'**
+  String get zLABLPu8ik;
+
+  /// No description provided for @hCoJMcrjQ.
+  ///
+  /// In en, this message translates to:
+  /// **'hCoJ_-McrjQ'**
+  String get hCoJMcrjQ;
+
+  /// No description provided for @eRyFDWPR4.
+  ///
+  /// In en, this message translates to:
+  /// **'e_ry-fDWPR4'**
+  String get eRyFDWPR4;
+
+  /// No description provided for @mAvoRUd3wU.
+  ///
+  /// In en, this message translates to:
+  /// **'MAvoRUd-3wU'**
+  String get mAvoRUd3wU;
+
+  /// No description provided for @dWExvMyVU.
+  ///
+  /// In en, this message translates to:
+  /// **'dW-ExvMyV-U'**
+  String get dWExvMyVU;
+
+  /// No description provided for @bPKuepfUA.
+  ///
+  /// In en, this message translates to:
+  /// **'-bPKuepf_UA'**
+  String get bPKuepfUA;
+
+  /// No description provided for @fBj8DL4EF0.
+  ///
+  /// In en, this message translates to:
+  /// **'fBj8D-L4EF0'**
+  String get fBj8DL4EF0;
+
+  /// No description provided for @pLIPiKkSFpK87slgXbMjH686D5Y9P0EuG.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK87slgXbMjH686D5Y9P0EuG'**
+  String get pLIPiKkSFpK87slgXbMjH686D5Y9P0EuG;
+
+  /// No description provided for @k0Gl3FEW4s.
+  ///
+  /// In en, this message translates to:
+  /// **'K0Gl-3FEW4s'**
+  String get k0Gl3FEW4s;
+
+  /// No description provided for @shHZmbjrqI.
+  ///
+  /// In en, this message translates to:
+  /// **'-shHZmbjrqI'**
+  String get shHZmbjrqI;
+
+  /// No description provided for @label7X5IzmrLCw.
+  ///
+  /// In en, this message translates to:
+  /// **'7-X5IzmrLCw'**
+  String get label7X5IzmrLCw;
+
+  /// No description provided for @nI1kp3v97O.
+  ///
+  /// In en, this message translates to:
+  /// **'nI1kp3v97-o'**
+  String get nI1kp3v97O;
+
+  /// No description provided for @ea8enhWKTo0.
+  ///
+  /// In en, this message translates to:
+  /// **'Ea8enhWKTo0'**
+  String get ea8enhWKTo0;
+
+  /// No description provided for @yL0RBWIo2iw.
+  ///
+  /// In en, this message translates to:
+  /// **'YL0RBWIo2iw'**
+  String get yL0RBWIo2iw;
+
+  /// No description provided for @hX1u0R19FY.
+  ///
+  /// In en, this message translates to:
+  /// **'H_x1u0R19FY'**
+  String get hX1u0R19FY;
+
+  /// No description provided for @cEGtoc5chDc.
+  ///
+  /// In en, this message translates to:
+  /// **'CEGtoc5chDc'**
+  String get cEGtoc5chDc;
+
+  /// No description provided for @qXKk36teGLc.
+  ///
+  /// In en, this message translates to:
+  /// **'QXKk36teGLc'**
+  String get qXKk36teGLc;
+
+  /// No description provided for @pLIPiKkSFpKZTWsxZO5xUAlAsUEFOl3K.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK-zTWsxZO5xUAlAsUEFOl3K'**
+  String get pLIPiKkSFpKZTWsxZO5xUAlAsUEFOl3K;
+
+  /// No description provided for @mtO6K9Y59Q.
+  ///
+  /// In en, this message translates to:
+  /// **'Mt_o6K9Y59Q'**
+  String get mtO6K9Y59Q;
+
+  /// No description provided for @kVop5QZCM.
+  ///
+  /// In en, this message translates to:
+  /// **'kVop_5QZ-cM'**
+  String get kVop5QZCM;
+
+  /// No description provided for @lX8cA1yLAg.
+  ///
+  /// In en, this message translates to:
+  /// **'l-X8cA1yLAg'**
+  String get lX8cA1yLAg;
+
+  /// No description provided for @v7m8WNX1gxE.
+  ///
+  /// In en, this message translates to:
+  /// **'V7m8WNX1gxE'**
+  String get v7m8WNX1gxE;
+
+  /// No description provided for @bGf1clBUq0.
+  ///
+  /// In en, this message translates to:
+  /// **'BGf1clB_uq0'**
+  String get bGf1clBUq0;
+
+  /// No description provided for @lPA6cWd9vqA.
+  ///
+  /// In en, this message translates to:
+  /// **'LPA6cWd9vqA'**
+  String get lPA6cWd9vqA;
+
+  /// No description provided for @pfckLVY64.
+  ///
+  /// In en, this message translates to:
+  /// **'-Pfck_LVY64'**
+  String get pfckLVY64;
+
+  /// No description provided for @pLIPiKkSFpKN3T51FbkSIbF5IQ0RxhVm.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK_n3T51FbkSIbF5IQ0RxhVm'**
+  String get pLIPiKkSFpKN3T51FbkSIbF5IQ0RxhVm;
+
+  /// No description provided for @aH80GizsvY.
+  ///
+  /// In en, this message translates to:
+  /// **'AH8-0GizsvY'**
+  String get aH80GizsvY;
+
+  /// No description provided for @jI2ISWehQ.
+  ///
+  /// In en, this message translates to:
+  /// **'jI2IS-Weh_Q'**
+  String get jI2ISWehQ;
+
+  /// No description provided for @label7rwGdyAl0g.
+  ///
+  /// In en, this message translates to:
+  /// **'7rw-gdyAl0g'**
+  String get label7rwGdyAl0g;
+
+  /// No description provided for @kF4rfnm9qdo.
+  ///
+  /// In en, this message translates to:
+  /// **'KF4rfnm9qdo'**
+  String get kF4rfnm9qdo;
+
+  /// No description provided for @v1ae2rgrl70.
+  ///
+  /// In en, this message translates to:
+  /// **'V1ae2rgrl70'**
+  String get v1ae2rgrl70;
+
+  /// No description provided for @c9D8kCt3k.
+  ///
+  /// In en, this message translates to:
+  /// **'C9D8k_-Ct3k'**
+  String get c9D8kCt3k;
+
+  /// No description provided for @zY4ALWb5lw.
+  ///
+  /// In en, this message translates to:
+  /// **'ZY4AL-wb5lw'**
+  String get zY4ALWb5lw;
+
+  /// No description provided for @qUvwUdI73Y.
+  ///
+  /// In en, this message translates to:
+  /// **'q-UvwUdI73Y'**
+  String get qUvwUdI73Y;
+
+  /// No description provided for @iT670fTpFQ.
+  ///
+  /// In en, this message translates to:
+  /// **'iT-670fTpFQ'**
+  String get iT670fTpFQ;
+
+  /// No description provided for @b6t7LGBPK.
+  ///
+  /// In en, this message translates to:
+  /// **'b6t_7LGBP-k'**
+  String get b6t7LGBPK;
+
+  /// No description provided for @w9QYDN3nxTc.
+  ///
+  /// In en, this message translates to:
+  /// **'W9QYDN3nxTc'**
+  String get w9QYDN3nxTc;
+
+  /// No description provided for @w9NPQe4Z5kE.
+  ///
+  /// In en, this message translates to:
+  /// **'W9NPQe4Z5kE'**
+  String get w9NPQe4Z5kE;
+
+  /// No description provided for @tQSHAlsaxqw.
+  ///
+  /// In en, this message translates to:
+  /// **'TQSHAlsaxqw'**
+  String get tQSHAlsaxqw;
+
+  /// No description provided for @tN0ATkrc2zw.
+  ///
+  /// In en, this message translates to:
+  /// **'TN0ATkrc2zw'**
+  String get tN0ATkrc2zw;
+
+  /// No description provided for @label7tsZeZfLtI.
+  ///
+  /// In en, this message translates to:
+  /// **'7tsZeZfLt-I'**
+  String get label7tsZeZfLtI;
+
+  /// No description provided for @w59SaAa6Ck.
+  ///
+  /// In en, this message translates to:
+  /// **'W59Sa_Aa6Ck'**
+  String get w59SaAa6Ck;
+
+  /// No description provided for @lSBiko45p8U.
+  ///
+  /// In en, this message translates to:
+  /// **'LSBiko45p8U'**
+  String get lSBiko45p8U;
+
+  /// No description provided for @t2PwfV1JIE.
+  ///
+  /// In en, this message translates to:
+  /// **'T2PwfV1J-iE'**
+  String get t2PwfV1JIE;
+
+  /// No description provided for @bz75CXZ3c.
+  ///
+  /// In en, this message translates to:
+  /// **'Bz75CX-z_3c'**
+  String get bz75CXZ3c;
+
+  /// No description provided for @nEEt9D9uR4g.
+  ///
+  /// In en, this message translates to:
+  /// **'NEEt9D9uR4g'**
+  String get nEEt9D9uR4g;
+
+  /// No description provided for @dFv86C0wEg8.
+  ///
+  /// In en, this message translates to:
+  /// **'DFv86C0wEg8'**
+  String get dFv86C0wEg8;
+
+  /// No description provided for @nWijSsYBUI.
+  ///
+  /// In en, this message translates to:
+  /// **'nWijSsYBU-I'**
+  String get nWijSsYBUI;
+
+  /// No description provided for @ui2O9fffvWM.
+  ///
+  /// In en, this message translates to:
+  /// **'Ui2O9fffvWM'**
+  String get ui2O9fffvWM;
+
+  /// No description provided for @kMK9ZIL5vIE.
+  ///
+  /// In en, this message translates to:
+  /// **'KMK9ZIL5vIE'**
+  String get kMK9ZIL5vIE;
+
+  /// No description provided for @pZxPXGSNk.
+  ///
+  /// In en, this message translates to:
+  /// **'pZx_pXG-sNk'**
+  String get pZxPXGSNk;
+
+  /// No description provided for @lGe1BEo7wL8.
+  ///
+  /// In en, this message translates to:
+  /// **'LGe1BEo7wL8'**
+  String get lGe1BEo7wL8;
+
+  /// No description provided for @wtVVEt4NxI.
+  ///
+  /// In en, this message translates to:
+  /// **'WtVVEt4Nx-I'**
+  String get wtVVEt4NxI;
+
+  /// No description provided for @ggXL7dEPA.
+  ///
+  /// In en, this message translates to:
+  /// **'Gg-xL7d-ePA'**
+  String get ggXL7dEPA;
+
+  /// No description provided for @mPO0drxj4XI.
+  ///
+  /// In en, this message translates to:
+  /// **'MPO0drxj4XI'**
+  String get mPO0drxj4XI;
+
+  /// No description provided for @qYkUzAJo.
+  ///
+  /// In en, this message translates to:
+  /// **'--q_ykUzAJo'**
+  String get qYkUzAJo;
+
+  /// No description provided for @mU4PJGdOxg.
+  ///
+  /// In en, this message translates to:
+  /// **'mU4PJGd-oxg'**
+  String get mU4PJGdOxg;
+
+  /// No description provided for @hOWSRDXSjb4.
+  ///
+  /// In en, this message translates to:
+  /// **'HOWSRDXSjb4'**
+  String get hOWSRDXSjb4;
+
+  /// No description provided for @nttqxJL3ES.
+  ///
+  /// In en, this message translates to:
+  /// **'nttqxJL3E-s'**
+  String get nttqxJL3ES;
+
+  /// No description provided for @tJCmewUT4O.
+  ///
+  /// In en, this message translates to:
+  /// **'tJCmewUT4-o'**
+  String get tJCmewUT4O;
+
+  /// No description provided for @sp7QFdPm3o.
+  ///
+  /// In en, this message translates to:
+  /// **'Sp7Q-FdPm3o'**
+  String get sp7QFdPm3o;
+
+  /// No description provided for @qI7c50Jcxbk.
+  ///
+  /// In en, this message translates to:
+  /// **'QI7c50Jcxbk'**
+  String get qI7c50Jcxbk;
+
+  /// No description provided for @tM0RxsWCms.
+  ///
+  /// In en, this message translates to:
+  /// **'tM0Rxs-wCms'**
+  String get tM0RxsWCms;
+
+  /// No description provided for @pLIPiKkSFpK6Iyv3Gsa1hZqwSLQ4z34u.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK_6Iyv3Gsa1hZqwSLQ4z34u'**
+  String get pLIPiKkSFpK6Iyv3Gsa1hZqwSLQ4z34u;
+
+  /// No description provided for @p1c9AW9VNY.
+  ///
+  /// In en, this message translates to:
+  /// **'p1c9-aW9VNY'**
+  String get p1c9AW9VNY;
+
+  /// No description provided for @eTwGAe5RiM.
+  ///
+  /// In en, this message translates to:
+  /// **'e-TwGAe5RiM'**
+  String get eTwGAe5RiM;
+
+  /// No description provided for @vSDFc4ivKU.
+  ///
+  /// In en, this message translates to:
+  /// **'VSD-Fc4ivKU'**
+  String get vSDFc4ivKU;
+
+  /// No description provided for @label2UNAa30mF0.
+  ///
+  /// In en, this message translates to:
+  /// **'2U-nAa30mF0'**
+  String get label2UNAa30mF0;
+
+  /// No description provided for @iLP6X3nSYE.
+  ///
+  /// In en, this message translates to:
+  /// **'I-LP6X3nSYE'**
+  String get iLP6X3nSYE;
+
+  /// No description provided for @mo4kd8rg3yU.
+  ///
+  /// In en, this message translates to:
+  /// **'Mo4kd8rg3yU'**
+  String get mo4kd8rg3yU;
+
+  /// No description provided for @xt8m39rI9o.
+  ///
+  /// In en, this message translates to:
+  /// **'Xt8m_39rI9o'**
+  String get xt8m39rI9o;
+
+  /// No description provided for @oFLWTHOJJo.
+  ///
+  /// In en, this message translates to:
+  /// **'OFLWTHO-jJo'**
+  String get oFLWTHOJJo;
+
+  /// No description provided for @pLlRMBKO6RkY69nj6AJ051lj7vSGrkNxZ.
+  ///
+  /// In en, this message translates to:
+  /// **'PLlRMBK-O6RkY69nj6AJ051lj7vSGrkNxZ'**
+  String get pLlRMBKO6RkY69nj6AJ051lj7vSGrkNxZ;
+
+  /// No description provided for @label3gTpyQenT0.
+  ///
+  /// In en, this message translates to:
+  /// **'3gTpy-qenT0'**
+  String get label3gTpyQenT0;
+
+  /// No description provided for @nM3BDMI4YS.
+  ///
+  /// In en, this message translates to:
+  /// **'nM3BDMI4Y-s'**
+  String get nM3BDMI4YS;
+
+  /// No description provided for @hudgy0oFTz4.
+  ///
+  /// In en, this message translates to:
+  /// **'Hudgy0oFTz4'**
+  String get hudgy0oFTz4;
+
+  /// No description provided for @lVc0U1sJIBU.
+  ///
+  /// In en, this message translates to:
+  /// **'LVc0U1sJIBU'**
+  String get lVc0U1sJIBU;
+
+  /// No description provided for @gBTqOwTPTU.
+  ///
+  /// In en, this message translates to:
+  /// **'G-BTqOwTPTU'**
+  String get gBTqOwTPTU;
+
+  /// No description provided for @tN0iGRSk.
+  ///
+  /// In en, this message translates to:
+  /// **'_T-N-0iGRSk'**
+  String get tN0iGRSk;
+
+  /// No description provided for @gkEBMyB9TM.
+  ///
+  /// In en, this message translates to:
+  /// **'gkEBMy-B9TM'**
+  String get gkEBMyB9TM;
+
+  /// No description provided for @bw3XWYzoI.
+  ///
+  /// In en, this message translates to:
+  /// **'-bw3XWYzo-I'**
+  String get bw3XWYzoI;
+
+  /// No description provided for @fullBrightEyesInThe.
+  ///
+  /// In en, this message translates to:
+  /// **'【Full】Bright Eyes in the Dark | Johnny Huang, Zhang Jing Yi | iQIYI Philippines'**
+  String get fullBrightEyesInThe;
+
+  /// No description provided for @jalmOqeImY.
+  ///
+  /// In en, this message translates to:
+  /// **'JalmOqeIm-Y'**
+  String get jalmOqeImY;
+
+  /// No description provided for @vUuzPUBkas.
+  ///
+  /// In en, this message translates to:
+  /// **'V-UuzPUBkas'**
+  String get vUuzPUBkas;
+
+  /// No description provided for @ni1jN2ECMY.
+  ///
+  /// In en, this message translates to:
+  /// **'Ni1j-N2ECMY'**
+  String get ni1jN2ECMY;
+
+  /// No description provided for @v5qeq2caORg.
+  ///
+  /// In en, this message translates to:
+  /// **'V5qeq2caORg'**
+  String get v5qeq2caORg;
+
+  /// No description provided for @cB64rYJ2tX4.
+  ///
+  /// In en, this message translates to:
+  /// **'CB64rYJ2tX4'**
+  String get cB64rYJ2tX4;
+
+  /// No description provided for @qwyz2k6oymc.
+  ///
+  /// In en, this message translates to:
+  /// **'Qwyz2k6oymc'**
+  String get qwyz2k6oymc;
+
+  /// No description provided for @gQYaqUf4.
+  ///
+  /// In en, this message translates to:
+  /// **'GQ_-_YaqUf4'**
+  String get gQYaqUf4;
+
+  /// No description provided for @tqHC6KtyoI.
+  ///
+  /// In en, this message translates to:
+  /// **'tqHC6-ktyoI'**
+  String get tqHC6KtyoI;
+
+  /// No description provided for @hvsJOV10Q.
+  ///
+  /// In en, this message translates to:
+  /// **'hvsJOV-_10Q'**
+  String get hvsJOV10Q;
+
+  /// No description provided for @label9LFPEXffyQ.
+  ///
+  /// In en, this message translates to:
+  /// **'-9LFPEXffyQ'**
+  String get label9LFPEXffyQ;
+
+  /// No description provided for @bMbhR77eps.
+  ///
+  /// In en, this message translates to:
+  /// **'b-MbhR77eps'**
+  String get bMbhR77eps;
+
+  /// No description provided for @olkxX4m0m4.
+  ///
+  /// In en, this message translates to:
+  /// **'OlkxX-4m0m4'**
+  String get olkxX4m0m4;
+
+  /// No description provided for @vE8nY1UC2zo.
+  ///
+  /// In en, this message translates to:
+  /// **'VE8nY1UC2zo'**
+  String get vE8nY1UC2zo;
+
+  /// No description provided for @pLIPiKkSFpKZjc5dsVYfFD44oWYA1YZ.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK-Zjc5dsVYfFD44oWYA-1YZ'**
+  String get pLIPiKkSFpKZjc5dsVYfFD44oWYA1YZ;
+
+  /// No description provided for @gZDlH6PN3M.
+  ///
+  /// In en, this message translates to:
+  /// **'gZDlH6P-n3M'**
+  String get gZDlH6PN3M;
+
+  /// No description provided for @iw4jJBB5z7A.
+  ///
+  /// In en, this message translates to:
+  /// **'Iw4jJBB5z7A'**
+  String get iw4jJBB5z7A;
+
+  /// No description provided for @hOTu6yklewA.
+  ///
+  /// In en, this message translates to:
+  /// **'HOTu6yklewA'**
+  String get hOTu6yklewA;
+
+  /// No description provided for @vJqSl1U6CE.
+  ///
+  /// In en, this message translates to:
+  /// **'-VJqSl1U6CE'**
+  String get vJqSl1U6CE;
+
+  /// No description provided for @yF3ZBEnNaA.
+  ///
+  /// In en, this message translates to:
+  /// **'YF-3ZBEnNaA'**
+  String get yF3ZBEnNaA;
+
+  /// No description provided for @at8v7Xp7XX4.
+  ///
+  /// In en, this message translates to:
+  /// **'At8v7Xp7XX4'**
+  String get at8v7Xp7XX4;
+
+  /// No description provided for @ctXWz6p3RI.
+  ///
+  /// In en, this message translates to:
+  /// **'-CtXWz6p3RI'**
+  String get ctXWz6p3RI;
+
+  /// No description provided for @gsuEr3Rwo.
+  ///
+  /// In en, this message translates to:
+  /// **'GsuEr3--Rwo'**
+  String get gsuEr3Rwo;
+
+  /// No description provided for @cvkAplxMt0.
+  ///
+  /// In en, this message translates to:
+  /// **'-CvkAplxMt0'**
+  String get cvkAplxMt0;
+
+  /// No description provided for @ssQiWv0MEA.
+  ///
+  /// In en, this message translates to:
+  /// **'SsQiWv0M-eA'**
+  String get ssQiWv0MEA;
+
+  /// No description provided for @aaDlYQswEc.
+  ///
+  /// In en, this message translates to:
+  /// **'aaDl-YQswEc'**
+  String get aaDlYQswEc;
+
+  /// No description provided for @oaDLF7MQF0.
+  ///
+  /// In en, this message translates to:
+  /// **'Oa_DLF7MQF0'**
+  String get oaDLF7MQF0;
+
+  /// No description provided for @pLIPiKkSFpK9jSaLiXXKZUvwfh7ROuLy.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK9jSaLiXX_KZUvwfh7ROuLy'**
+  String get pLIPiKkSFpK9jSaLiXXKZUvwfh7ROuLy;
+
+  /// No description provided for @g0nqbugnDI.
+  ///
+  /// In en, this message translates to:
+  /// **'G_0nqbugnDI'**
+  String get g0nqbugnDI;
+
+  /// No description provided for @tnHgUzjPNQ.
+  ///
+  /// In en, this message translates to:
+  /// **'TnHgUzj-pNQ'**
+  String get tnHgUzjPNQ;
+
+  /// No description provided for @nM7ZeWM1g.
+  ///
+  /// In en, this message translates to:
+  /// **'n-m7ZeW-m1g'**
+  String get nM7ZeWM1g;
+
+  /// No description provided for @sUqbEIap2M.
+  ///
+  /// In en, this message translates to:
+  /// **'-sUqbEIap2M'**
+  String get sUqbEIap2M;
+
+  /// No description provided for @x0qW6MwABw.
+  ///
+  /// In en, this message translates to:
+  /// **'X0qW6Mw-ABw'**
+  String get x0qW6MwABw;
+
+  /// No description provided for @lANXfM0Hmc.
+  ///
+  /// In en, this message translates to:
+  /// **'L-aNXfM0Hmc'**
+  String get lANXfM0Hmc;
+
+  /// No description provided for @y84UUFKMZf4.
+  ///
+  /// In en, this message translates to:
+  /// **'Y84UUFKMZf4'**
+  String get y84UUFKMZf4;
+
+  /// No description provided for @mGPFI2bfKPE.
+  ///
+  /// In en, this message translates to:
+  /// **'MGPFI2bfKPE'**
+  String get mGPFI2bfKPE;
+
+  /// No description provided for @f3wSwhf0z8.
+  ///
+  /// In en, this message translates to:
+  /// **'F3w_swhf0z8'**
+  String get f3wSwhf0z8;
+
+  /// No description provided for @qFITVBXVj2g.
+  ///
+  /// In en, this message translates to:
+  /// **'QFITVBXVj2g'**
+  String get qFITVBXVj2g;
+
+  /// No description provided for @pLyT8L9yeLXCR7t2xuK0L7L4qIRBTnA2n.
+  ///
+  /// In en, this message translates to:
+  /// **'PLyT8L9yeLXCR7t2xuK0-L7L4qIRBTnA2n'**
+  String get pLyT8L9yeLXCR7t2xuK0L7L4qIRBTnA2n;
+
+  /// No description provided for @aY1Wv805lUw.
+  ///
+  /// In en, this message translates to:
+  /// **'AY1Wv805lUw'**
+  String get aY1Wv805lUw;
+
+  /// No description provided for @w44Q3K2QJY.
+  ///
+  /// In en, this message translates to:
+  /// **'W44-q3K2QJY'**
+  String get w44Q3K2QJY;
+
+  /// No description provided for @kJn1gifAmok.
+  ///
+  /// In en, this message translates to:
+  /// **'KJn1gifAmok'**
+  String get kJn1gifAmok;
+
+  /// No description provided for @xwEsWU6WI.
+  ///
+  /// In en, this message translates to:
+  /// **'xwEs-WU6_wI'**
+  String get xwEsWU6WI;
+
+  /// No description provided for @gt93TaUaco.
+  ///
+  /// In en, this message translates to:
+  /// **'gt9-3TaUaco'**
+  String get gt93TaUaco;
+
+  /// No description provided for @label0C62qBO6o.
+  ///
+  /// In en, this message translates to:
+  /// **'0_c62q-bO6o'**
+  String get label0C62qBO6o;
+
+  /// No description provided for @label7DqIz7YqcA.
+  ///
+  /// In en, this message translates to:
+  /// **'7Dq-iz7YqcA'**
+  String get label7DqIz7YqcA;
+
+  /// No description provided for @xh5K9iCMoo.
+  ///
+  /// In en, this message translates to:
+  /// **'xh5K9iC-Moo'**
+  String get xh5K9iCMoo;
+
+  /// No description provided for @aKGp1lOCRTI.
+  ///
+  /// In en, this message translates to:
+  /// **'AKGp1lOCRTI'**
+  String get aKGp1lOCRTI;
+
+  /// No description provided for @jWYI2dtDE0.
+  ///
+  /// In en, this message translates to:
+  /// **'JWY_i2dtDE0'**
+  String get jWYI2dtDE0;
+
+  /// No description provided for @yWHZCsskuvo.
+  ///
+  /// In en, this message translates to:
+  /// **'YWHZCsskuvo'**
+  String get yWHZCsskuvo;
+
+  /// No description provided for @label76Z43cwXKQ.
+  ///
+  /// In en, this message translates to:
+  /// **'76Z43cw-xKQ'**
+  String get label76Z43cwXKQ;
+
+  /// No description provided for @cINtsiKIx4.
+  ///
+  /// In en, this message translates to:
+  /// **'CINtsi-kIx4'**
+  String get cINtsiKIx4;
+
+  /// No description provided for @eNGSUBChineseFantasyMovie.
+  ///
+  /// In en, this message translates to:
+  /// **'🎥✨【ENG SUB】Chinese Fantasy Movie | Fantasy、Adventure【 iQIYI MOVIE THEATER-Welcome to subscribe】'**
+  String get eNGSUBChineseFantasyMovie;
+
+  /// No description provided for @iQIYIMOVIETHEATERGetThe.
+  ///
+  /// In en, this message translates to:
+  /// **'爱奇艺大电影 iQIYI MOVIE THEATER - Get the iQIYI APP'**
+  String get iQIYIMOVIETHEATERGetThe;
+
+  /// No description provided for @oNi1Mh97lYo.
+  ///
+  /// In en, this message translates to:
+  /// **'ONi1Mh97lYo'**
+  String get oNi1Mh97lYo;
+
+  /// No description provided for @sF74vcQwZE.
+  ///
+  /// In en, this message translates to:
+  /// **'sF74vc-qwZE'**
+  String get sF74vcQwZE;
+
+  /// No description provided for @qBQ1xvkvQHw.
+  ///
+  /// In en, this message translates to:
+  /// **'QBQ1xvkvQHw'**
+  String get qBQ1xvkvQHw;
+
+  /// No description provided for @s2HdHtZAU.
+  ///
+  /// In en, this message translates to:
+  /// **'S2HdHtZ_A-U'**
+  String get s2HdHtZAU;
+
+  /// No description provided for @pyt8OISpH0.
+  ///
+  /// In en, this message translates to:
+  /// **'Pyt8O-ISpH0'**
+  String get pyt8OISpH0;
+
+  /// No description provided for @x5oUtpXWQ.
+  ///
+  /// In en, this message translates to:
+  /// **'X5oUtp_X_wQ'**
+  String get x5oUtpXWQ;
+
+  /// No description provided for @miniDramaENGSUBFull.
+  ///
+  /// In en, this message translates to:
+  /// **'🎀【微短剧 Mini Drama】ENG SUB | Full Version Collection | Download WeTV / Tencent Video APP to Watch More'**
+  String get miniDramaENGSUBFull;
+
+  /// No description provided for @vZysxG7Jdg.
+  ///
+  /// In en, this message translates to:
+  /// **'V-zysxG7Jdg'**
+  String get vZysxG7Jdg;
+
+  /// No description provided for @aLCm1V4uj8.
+  ///
+  /// In en, this message translates to:
+  /// **'aL-Cm1V4uj8'**
+  String get aLCm1V4uj8;
+
+  /// No description provided for @xk8guI5XC7I.
+  ///
+  /// In en, this message translates to:
+  /// **'Xk8guI5XC7I'**
+  String get xk8guI5XC7I;
+
+  /// No description provided for @woIZMiblY.
+  ///
+  /// In en, this message translates to:
+  /// **'Wo--IZMiblY'**
+  String get woIZMiblY;
+
+  /// No description provided for @e0Z1n9lVyg.
+  ///
+  /// In en, this message translates to:
+  /// **'E0Z1n-9lVyg'**
+  String get e0Z1n9lVyg;
+
+  /// No description provided for @rakZAuY6Xc.
+  ///
+  /// In en, this message translates to:
+  /// **'RakZ-auY6Xc'**
+  String get rakZAuY6Xc;
+
+  /// No description provided for @rW5f3p84.
+  ///
+  /// In en, this message translates to:
+  /// **'RW_5f-_3p84'**
+  String get rW5f3p84;
+
+  /// No description provided for @wMtyXWrQRY.
+  ///
+  /// In en, this message translates to:
+  /// **'wMtyXWrQ-rY'**
+  String get wMtyXWrQRY;
+
+  /// No description provided for @bQj9Q1GRnrk.
+  ///
+  /// In en, this message translates to:
+  /// **'BQj9Q1GRnrk'**
+  String get bQj9Q1GRnrk;
+
+  /// No description provided for @ezD9rGwMk.
+  ///
+  /// In en, this message translates to:
+  /// **'-EzD9r_GwMk'**
+  String get ezD9rGwMk;
+
+  /// No description provided for @pLIPiKkSFpK8hfRCOdc3tpxnj6JmGAZoc.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8hfRCOdc3tpxnj6JmGAZoc'**
+  String get pLIPiKkSFpK8hfRCOdc3tpxnj6JmGAZoc;
+
+  /// No description provided for @bSt0NgJemE.
+  ///
+  /// In en, this message translates to:
+  /// **'-bSt0NgJemE'**
+  String get bSt0NgJemE;
+
+  /// No description provided for @zwSSFibKM.
+  ///
+  /// In en, this message translates to:
+  /// **'zwSSFib-_kM'**
+  String get zwSSFibKM;
+
+  /// No description provided for @rFPkjQgdwQ.
+  ///
+  /// In en, this message translates to:
+  /// **'rFPkjQgdw-Q'**
+  String get rFPkjQgdwQ;
+
+  /// No description provided for @label0BgIjnISU.
+  ///
+  /// In en, this message translates to:
+  /// **'0BgIjnIS-_U'**
+  String get label0BgIjnISU;
+
+  /// No description provided for @o1mRObiOog.
+  ///
+  /// In en, this message translates to:
+  /// **'O-1mRObiOog'**
+  String get o1mRObiOog;
+
+  /// No description provided for @yHkKXeRbbk.
+  ///
+  /// In en, this message translates to:
+  /// **'YHk-KXeRbbk'**
+  String get yHkKXeRbbk;
+
+  /// No description provided for @label0E4CVmwEv0.
+  ///
+  /// In en, this message translates to:
+  /// **'0E4-CVmwEv0'**
+  String get label0E4CVmwEv0;
+
+  /// No description provided for @n220nwxfsgY.
+  ///
+  /// In en, this message translates to:
+  /// **'N220nwxfsgY'**
+  String get n220nwxfsgY;
+
+  /// No description provided for @rZQc0wk8Y4c.
+  ///
+  /// In en, this message translates to:
+  /// **'RZQc0wk8Y4c'**
+  String get rZQc0wk8Y4c;
+
+  /// No description provided for @uIV6jneTw.
+  ///
+  /// In en, this message translates to:
+  /// **'U_i-v6jneTw'**
+  String get uIV6jneTw;
+
+  /// No description provided for @fullBeautyOfResilienceJu.
+  ///
+  /// In en, this message translates to:
+  /// **'【Full】Beauty of Resilience | Ju Jing Yi, Fiction | iQIYI Philippines'**
+  String get fullBeautyOfResilienceJu;
+
+  /// No description provided for @tT8V4eOewkc.
+  ///
+  /// In en, this message translates to:
+  /// **'TT8V4eOewkc'**
+  String get tT8V4eOewkc;
+
+  /// No description provided for @a6D40BKYc9Y.
+  ///
+  /// In en, this message translates to:
+  /// **'A6D40BKYc9Y'**
+  String get a6D40BKYc9Y;
+
+  /// No description provided for @gd5lvL1Y3UI.
+  ///
+  /// In en, this message translates to:
+  /// **'Gd5lvL1Y3UI'**
+  String get gd5lvL1Y3UI;
+
+  /// No description provided for @bhrmf6kUnc.
+  ///
+  /// In en, this message translates to:
+  /// **'Bhrmf6k_Unc'**
+  String get bhrmf6kUnc;
+
+  /// No description provided for @zajsQ18HyM.
+  ///
+  /// In en, this message translates to:
+  /// **'Zajs-Q18HyM'**
+  String get zajsQ18HyM;
+
+  /// No description provided for @za9iO7xrdhU.
+  ///
+  /// In en, this message translates to:
+  /// **'Za9iO7xrdhU'**
+  String get za9iO7xrdhU;
+
+  /// No description provided for @cCi69c44BTY.
+  ///
+  /// In en, this message translates to:
+  /// **'CCi69c44BTY'**
+  String get cCi69c44BTY;
+
+  /// No description provided for @c5Lnqm4FI5s.
+  ///
+  /// In en, this message translates to:
+  /// **'C5Lnqm4FI5s'**
+  String get c5Lnqm4FI5s;
+
+  /// No description provided for @bXr6Zu7EH3g.
+  ///
+  /// In en, this message translates to:
+  /// **'BXr6Zu7EH3g'**
+  String get bXr6Zu7EH3g;
+
+  /// No description provided for @pLIPiKkSFpK85Ldm2HSl0Xwj2hN7T59g.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK85Ldm2HSl-0Xwj2hN7T59g'**
+  String get pLIPiKkSFpK85Ldm2HSl0Xwj2hN7T59g;
+
+  /// No description provided for @pLWIh6wofY4.
+  ///
+  /// In en, this message translates to:
+  /// **'PLWIh6wofY4'**
+  String get pLWIh6wofY4;
+
+  /// No description provided for @label3YVDQD5Onc.
+  ///
+  /// In en, this message translates to:
+  /// **'3-yVDQD5Onc'**
+  String get label3YVDQD5Onc;
+
+  /// No description provided for @iPxGP1UGnM.
+  ///
+  /// In en, this message translates to:
+  /// **'IPx-GP1UGnM'**
+  String get iPxGP1UGnM;
+
+  /// No description provided for @hotTrendingMoonlitReunionFull.
+  ///
+  /// In en, this message translates to:
+  /// **'🔥Hot Trending【子夜归 Moonlit Reunion】Full EPS | Human and Demon fall in love while solving mysteries | Xu Kai, Tian Xiwei | ENG SUB'**
+  String get hotTrendingMoonlitReunionFull;
+
+  /// No description provided for @v7niIXnWWM.
+  ///
+  /// In en, this message translates to:
+  /// **'v7ni-iXnWWM'**
+  String get v7niIXnWWM;
+
+  /// No description provided for @vQ5PKKJSVHc.
+  ///
+  /// In en, this message translates to:
+  /// **'VQ5PKKJSVHc'**
+  String get vQ5PKKJSVHc;
+
+  /// No description provided for @hWuKG1vJe0.
+  ///
+  /// In en, this message translates to:
+  /// **'hWu-kG1vJe0'**
+  String get hWuKG1vJe0;
+
+  /// No description provided for @ydHHEma2Q.
+  ///
+  /// In en, this message translates to:
+  /// **'-ydHH-ema2Q'**
+  String get ydHHEma2Q;
+
+  /// No description provided for @w6SB0R7W1U.
+  ///
+  /// In en, this message translates to:
+  /// **'W6-SB0R7W1U'**
+  String get w6SB0R7W1U;
+
+  /// No description provided for @kwjhz1XOLhs.
+  ///
+  /// In en, this message translates to:
+  /// **'Kwjhz1XOLhs'**
+  String get kwjhz1XOLhs;
+
+  /// No description provided for @cmyjS5zTQ.
+  ///
+  /// In en, this message translates to:
+  /// **'-cmyjS-5zTQ'**
+  String get cmyjS5zTQ;
+
+  /// No description provided for @label8DzphxFJPI.
+  ///
+  /// In en, this message translates to:
+  /// **'8-DzphxFJPI'**
+  String get label8DzphxFJPI;
+
+  /// No description provided for @gzjc1eGV22g.
+  ///
+  /// In en, this message translates to:
+  /// **'Gzjc1eGV22g'**
+  String get gzjc1eGV22g;
+
+  /// No description provided for @y9ZHRA9lxcg.
+  ///
+  /// In en, this message translates to:
+  /// **'Y9ZHRA9lxcg'**
+  String get y9ZHRA9lxcg;
+
+  /// No description provided for @mnfa5S7KO8.
+  ///
+  /// In en, this message translates to:
+  /// **'Mnfa5_S7KO8'**
+  String get mnfa5S7KO8;
+
+  /// No description provided for @gNiRWpeMws.
+  ///
+  /// In en, this message translates to:
+  /// **'gNiRWpe-mws'**
+  String get gNiRWpeMws;
+
+  /// No description provided for @cVO0hA3P8O.
+  ///
+  /// In en, this message translates to:
+  /// **'CVO0hA3P8-o'**
+  String get cVO0hA3P8O;
+
+  /// No description provided for @label9afZnkZaPs.
+  ///
+  /// In en, this message translates to:
+  /// **'9afZnk-zaPs'**
+  String get label9afZnkZaPs;
+
+  /// No description provided for @pLIPiKkSFpK9cUoS9l5spDGFvN2Crmdn.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK9cUoS9l_5spDGFvN2Crmdn'**
+  String get pLIPiKkSFpK9cUoS9l5spDGFvN2Crmdn;
+
+  /// No description provided for @nLMKI6PT3o.
+  ///
+  /// In en, this message translates to:
+  /// **'NL_MKI6PT3o'**
+  String get nLMKI6PT3o;
+
+  /// No description provided for @zR7i5LASYI.
+  ///
+  /// In en, this message translates to:
+  /// **'ZR7i5_lASYI'**
+  String get zR7i5LASYI;
+
+  /// No description provided for @keKMrR1Yss.
+  ///
+  /// In en, this message translates to:
+  /// **'KeK-mrR1Yss'**
+  String get keKMrR1Yss;
+
+  /// No description provided for @juRTPVpVXA.
+  ///
+  /// In en, this message translates to:
+  /// **'juRTPVp-VXA'**
+  String get juRTPVpVXA;
+
+  /// No description provided for @yzSy3klEQU.
+  ///
+  /// In en, this message translates to:
+  /// **'yzSy3kl-eQU'**
+  String get yzSy3klEQU;
+
+  /// No description provided for @label8A7WTDaaGs.
+  ///
+  /// In en, this message translates to:
+  /// **'8A7W-tDaaGs'**
+  String get label8A7WTDaaGs;
+
+  /// No description provided for @pLIPiKkSFpK8hIu32ZhKKsO2wlADWaCBU.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK8hIu32ZhKKsO2wlADWaCBU'**
+  String get pLIPiKkSFpK8hIu32ZhKKsO2wlADWaCBU;
+
+  /// No description provided for @oVN1y6LPWD4.
+  ///
+  /// In en, this message translates to:
+  /// **'OVN1y6LPWD4'**
+  String get oVN1y6LPWD4;
+
+  /// No description provided for @qU7t6C4Gc.
+  ///
+  /// In en, this message translates to:
+  /// **'qU7t6-c4_gc'**
+  String get qU7t6C4Gc;
+
+  /// No description provided for @fk9JXDCOG4.
+  ///
+  /// In en, this message translates to:
+  /// **'Fk9_JXDCOG4'**
+  String get fk9JXDCOG4;
+
+  /// No description provided for @uC7Mnd3qJc.
+  ///
+  /// In en, this message translates to:
+  /// **'UC7Mnd3q_Jc'**
+  String get uC7Mnd3qJc;
+
+  /// No description provided for @glHm8Zs8Ac.
+  ///
+  /// In en, this message translates to:
+  /// **'glHm8Zs8-Ac'**
+  String get glHm8Zs8Ac;
+
+  /// No description provided for @l2w4TUDxmsg.
+  ///
+  /// In en, this message translates to:
+  /// **'L2w4TUDxmsg'**
+  String get l2w4TUDxmsg;
+
+  /// No description provided for @cPLU864rP14.
+  ///
+  /// In en, this message translates to:
+  /// **'CPLU864rP14'**
+  String get cPLU864rP14;
+
+  /// No description provided for @a4mUs48UAU.
+  ///
+  /// In en, this message translates to:
+  /// **'a4mUs4-8UAU'**
+  String get a4mUs48UAU;
+
+  /// No description provided for @bVmda5m2mN4.
+  ///
+  /// In en, this message translates to:
+  /// **'BVmda5m2mN4'**
+  String get bVmda5m2mN4;
+
+  /// No description provided for @mZUf8J2gZA4.
+  ///
+  /// In en, this message translates to:
+  /// **'MZUf8J2gZA4'**
+  String get mZUf8J2gZA4;
+
+  /// No description provided for @tQiZtftwY.
+  ///
+  /// In en, this message translates to:
+  /// **'TQi--ZtftwY'**
+  String get tQiZtftwY;
+
+  /// No description provided for @bR38d9KJoos.
+  ///
+  /// In en, this message translates to:
+  /// **'BR38d9KJoos'**
+  String get bR38d9KJoos;
+
+  /// No description provided for @pLIPiKkSFpKOHffjOp4RqWHtE2OYq.
+  ///
+  /// In en, this message translates to:
+  /// **'PLIPiKkS-FpK-oHffjOp4-rq__WHtE2OYq'**
+  String get pLIPiKkSFpKOHffjOp4RqWHtE2OYq;
+
+  /// No description provided for @fyuHVqsXMI.
+  ///
+  /// In en, this message translates to:
+  /// **'fyuHVqs-XMI'**
+  String get fyuHVqsXMI;
+
+  /// No description provided for @yJB0nFJNw0.
+  ///
+  /// In en, this message translates to:
+  /// **'YJB0nFJNw_0'**
+  String get yJB0nFJNw0;
+
+  /// No description provided for @label21RxwDPr8k.
+  ///
+  /// In en, this message translates to:
+  /// **'21Rxw-DPr8k'**
+  String get label21RxwDPr8k;
+
+  /// No description provided for @zZTZ149pQ.
+  ///
+  /// In en, this message translates to:
+  /// **'ZZ-_tZ149pQ'**
+  String get zZTZ149pQ;
+
+  /// No description provided for @o5qvwYEyQ0.
+  ///
+  /// In en, this message translates to:
+  /// **'o5qvwY-EyQ0'**
+  String get o5qvwYEyQ0;
+
+  /// No description provided for @bGGDIBw4TIw.
+  ///
+  /// In en, this message translates to:
+  /// **'BGGDIBw4TIw'**
+  String get bGGDIBw4TIw;
+
+  /// No description provided for @gU0lbFUBwg8.
+  ///
+  /// In en, this message translates to:
+  /// **'GU0lbFUBwg8'**
+  String get gU0lbFUBwg8;
+
+  /// No description provided for @yTfshUkXmG.
+  ///
+  /// In en, this message translates to:
+  /// **'yTfshUkXm-g'**
+  String get yTfshUkXmG;
+
+  /// No description provided for @yOUTUBEAPIKEY.
+  ///
+  /// In en, this message translates to:
+  /// **'YOUTUBE_API_KEY='**
+  String get yOUTUBEAPIKEY;
+
+  /// No description provided for @partContentDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'?part=contentDetails'**
+  String get partContentDetails;
+
+  /// No description provided for @fallInLove.
+  ///
+  /// In en, this message translates to:
+  /// **'fall in love'**
+  String get fallInLove;
+
+  /// No description provided for @myGirl.
+  ///
+  /// In en, this message translates to:
+  /// **'my girl'**
+  String get myGirl;
+
+  /// No description provided for @firstRomance2.
+  ///
+  /// In en, this message translates to:
+  /// **'first romance'**
+  String get firstRomance2;
+
+  /// No description provided for @fallFor.
+  ///
+  /// In en, this message translates to:
+  /// **'fall for'**
+  String get fallFor;
+
+  /// No description provided for @uCD83JhUFQXRDwC6S8caCQ.
+  ///
+  /// In en, this message translates to:
+  /// **'UCD_83Jh-UFQXRDwC6S8caCQ'**
+  String get uCD83JhUFQXRDwC6S8caCQ;
+
+  /// No description provided for @uCFh5x5AZHQQ6FaGKnGQXDA.
+  ///
+  /// In en, this message translates to:
+  /// **'UCFh5x5AZHQQ6FaGKnG-QXDA'**
+  String get uCFh5x5AZHQQ6FaGKnGQXDA;
+
+  /// No description provided for @uCRABdhiBHX4BieJfPCd2pg.
+  ///
+  /// In en, this message translates to:
+  /// **'UCRABdhiBHX4Bie-jfPCd2pg'**
+  String get uCRABdhiBHX4BieJfPCd2pg;
+
+  /// No description provided for @hiddenLove2.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden Love'**
+  String get hiddenLove2;
+
+  /// No description provided for @loveBetweenFairyAndDevil2.
+  ///
+  /// In en, this message translates to:
+  /// **'Love Between Fairy and Devil'**
+  String get loveBetweenFairyAndDevil2;
+
+  /// No description provided for @loveLikeTheGalaxy2.
+  ///
+  /// In en, this message translates to:
+  /// **'Love Like The Galaxy'**
+  String get loveLikeTheGalaxy2;
+
+  /// No description provided for @myJourneyToYou2.
+  ///
+  /// In en, this message translates to:
+  /// **'My Journey to You'**
+  String get myJourneyToYou2;
+
+  /// No description provided for @mysteriousLotusCasebook2.
+  ///
+  /// In en, this message translates to:
+  /// **'Mysterious Lotus Casebook'**
+  String get mysteriousLotusCasebook2;
+
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
+  /// No description provided for @theLongBallad2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Long Ballad'**
+  String get theLongBallad2;
+
+  /// No description provided for @theUntamed2.
+  ///
+  /// In en, this message translates to:
+  /// **'The Untamed'**
+  String get theUntamed2;
+
+  /// No description provided for @wordOfHonor2.
+  ///
+  /// In en, this message translates to:
+  /// **'Word of Honor'**
+  String get wordOfHonor2;
+
+  /// No description provided for @lightOfDawn2.
+  ///
+  /// In en, this message translates to:
+  /// **'人之初 Light of Dawn'**
+  String get lightOfDawn2;
+
+  /// No description provided for @hOMELANDGUARDIAN2.
+  ///
+  /// In en, this message translates to:
+  /// **'守诚者|HOMELAND GUARDIAN'**
+  String get hOMELANDGUARDIAN2;
+
+  /// No description provided for @searching2.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching...'**
+  String get searching2;
+
+  /// No description provided for @verse.
+  ///
+  /// In en, this message translates to:
+  /// **'Verse'**
+  String get verse;
+
+  /// No description provided for @allStories2.
+  ///
+  /// In en, this message translates to:
+  /// **'All Stories'**
+  String get allStories2;
+
+  /// No description provided for @bbcComZhongwenTrad.
+  ///
+  /// In en, this message translates to:
+  /// **'bbc.com/zhongwen/trad'**
+  String get bbcComZhongwenTrad;
+
+  /// No description provided for @hanziClickable.
+  ///
+  /// In en, this message translates to:
+  /// **'.hanzi-clickable'**
+  String get hanziClickable;
+
+  /// No description provided for @sentenceText.
+  ///
+  /// In en, this message translates to:
+  /// **'sentence-text'**
+  String get sentenceText;
+
+  /// No description provided for @sentenceWrapper.
+  ///
+  /// In en, this message translates to:
+  /// **'sentence-wrapper'**
+  String get sentenceWrapper;
+
+  /// No description provided for @hanziClickable2.
+  ///
+  /// In en, this message translates to:
+  /// **'hanzi-clickable'**
+  String get hanziClickable2;
+
+  /// No description provided for @char2.
+  ///
+  /// In en, this message translates to:
+  /// **'+ char +'**
+  String get char2;
+
+  /// No description provided for @sentenceText2.
+  ///
+  /// In en, this message translates to:
+  /// **'.sentence-text'**
+  String get sentenceText2;
+
+  /// No description provided for @ttsBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'tts-btn'**
+  String get ttsBtn;
+
+  /// No description provided for @hanziTranslateBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'hanzi-translate-btn'**
+  String get hanziTranslateBtn;
+
+  /// No description provided for @label10px16px.
+  ///
+  /// In en, this message translates to:
+  /// **'10px 16px'**
+  String get label10px16px;
+
+  /// No description provided for @articleArticlePostContentMain.
+  ///
+  /// In en, this message translates to:
+  /// **'article, .article, .post, .content, main'**
+  String get articleArticlePostContentMain;
+
+  /// No description provided for @ttsActiveWord.
+  ///
+  /// In en, this message translates to:
+  /// **'.tts-active-word'**
+  String get ttsActiveWord;
+
+  /// No description provided for @ttsActiveWord2.
+  ///
+  /// In en, this message translates to:
+  /// **'tts-active-word'**
+  String get ttsActiveWord2;
+
+  /// No description provided for @upperIntermediate2.
+  ///
+  /// In en, this message translates to:
+  /// **'Upper-Intermediate'**
+  String get upperIntermediate2;
+
+  /// No description provided for @hanziDarkModeStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'hanzi-dark-mode-style'**
+  String get hanziDarkModeStyle;
+
+  /// No description provided for @sharedaddyJpPostFlairEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'.sharedaddy, #jp-post-flair, .entry-meta, .wpcnt, .author-info, #comments, .comments, .post-footer, footer, .related-posts, .share-buttons'**
+  String get sharedaddyJpPostFlairEntry;
+
+  /// No description provided for @aiInsightBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'ai-insight-banner'**
+  String get aiInsightBanner;
+
+  /// No description provided for @summaryToggleBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'summary-toggle-btn'**
+  String get summaryToggleBtn;
+
+  /// No description provided for @toggleChevron.
+  ///
+  /// In en, this message translates to:
+  /// **'toggle-chevron'**
+  String get toggleChevron;
+
+  /// No description provided for @summaryText.
+  ///
+  /// In en, this message translates to:
+  /// **'summary-text'**
+  String get summaryText;
+
+  /// No description provided for @documentBodyInnerText.
+  ///
+  /// In en, this message translates to:
+  /// **'document.body.innerText'**
+  String get documentBodyInnerText;
+
+  /// No description provided for @documentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'document.title'**
+  String get documentTitle;
+
+  /// No description provided for @processing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processingâ€¦'**
+  String get processing;
+
+  /// No description provided for @keepItUp.
+  ///
+  /// In en, this message translates to:
+  /// **'好！Keep it up'**
+  String get keepItUp;
+
+  /// No description provided for @minutesDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes / Day'**
+  String get minutesDay;
+
+  /// No description provided for @consistencyIsTheInkThat.
+  ///
+  /// In en, this message translates to:
+  /// **'\"Consistency is the ink that builds the character.\"'**
+  String get consistencyIsTheInkThat;
+
+  /// No description provided for @businessCareer.
+  ///
+  /// In en, this message translates to:
+  /// **'Business & Career'**
+  String get businessCareer;
+
+  /// No description provided for @travelSurvival.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel & Survival'**
+  String get travelSurvival;
+
+  /// No description provided for @label05MinDay.
+  ///
+  /// In en, this message translates to:
+  /// **'05 Min / Day'**
+  String get label05MinDay;
+
+  /// No description provided for @label10MinDay.
+  ///
+  /// In en, this message translates to:
+  /// **'10 Min / Day'**
+  String get label10MinDay;
+
+  /// No description provided for @label20MinDay.
+  ///
+  /// In en, this message translates to:
+  /// **'20 Min / Day'**
+  String get label20MinDay;
+
+  /// No description provided for @label30MinDay.
+  ///
+  /// In en, this message translates to:
+  /// **'30 Min / Day'**
+  String get label30MinDay;
+
+  /// No description provided for @dynamicDecksStrokeAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic Decks & Stroke Analysis'**
+  String get dynamicDecksStrokeAnalysis;
+
+  /// No description provided for @subscriptionsAreTemporarilyUnavailablePl.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions are temporarily unavailable. Please try again.'**
+  String get subscriptionsAreTemporarilyUnavailablePl;
+
+  /// No description provided for @trialReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Reminder'**
+  String get trialReminder;
+
+  /// No description provided for @turnOnNotificationsIfYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on notifications if you would like a reminder before your eligible trial expires. Your App Store subscription settings remain the source of truth.'**
+  String get turnOnNotificationsIfYou;
+
+  /// No description provided for @label2Months.
+  ///
+  /// In en, this message translates to:
+  /// **'2 months'**
+  String get label2Months;
+
+  /// No description provided for @label3Months.
+  ///
+  /// In en, this message translates to:
+  /// **'3 months'**
+  String get label3Months;
+
+  /// No description provided for @label6Months.
+  ///
+  /// In en, this message translates to:
+  /// **'6 months'**
+  String get label6Months;
+
+  /// No description provided for @billingPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'billing period'**
+  String get billingPeriod;
+
+  /// No description provided for @chooseASubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a subscription'**
+  String get chooseASubscription;
+
+  /// No description provided for @startFreeTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Start free trial'**
+  String get startFreeTrial;
+
+  /// No description provided for @smartNewsDict.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart News & Dict'**
+  String get smartNewsDict;
+
+  /// No description provided for @hSK16AIDecks.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 1-6 & AI Decks'**
+  String get hSK16AIDecks;
+
+  /// No description provided for @continueWithTemporaryPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with temporary Premium'**
+  String get continueWithTemporaryPremium;
+
+  /// No description provided for @testProductUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Test product unavailable'**
+  String get testProductUnavailable;
+
+  /// No description provided for @paymentIsChargedToYour.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment is charged to your App Store account.'**
+  String get paymentIsChargedToYour;
+
+  /// No description provided for @subscriptionsRenewAutomaticallyUnlessCan.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions renew automatically unless canceled'**
+  String get subscriptionsRenewAutomaticallyUnlessCan;
+
+  /// No description provided for @atLeast24HoursBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'at least 24 hours before the end of the current period.'**
+  String get atLeast24HoursBefore;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @closePurchaseOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'Close purchase offer'**
+  String get closePurchaseOffer;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @analyzingImage2.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzing image…'**
+  String get analyzingImage2;
+
+  /// No description provided for @extractingChineseText2.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting Chinese text…'**
+  String get extractingChineseText2;
+
+  /// No description provided for @lookingUpVocabulary2.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking up vocabulary…'**
+  String get lookingUpVocabulary2;
+
+  /// No description provided for @deselectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Deselect All'**
+  String get deselectAll;
+
+  /// No description provided for @selectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select All'**
+  String get selectAll;
+
+  /// No description provided for @worldChineseLiteraryMasterpiece.
+  ///
+  /// In en, this message translates to:
+  /// **'World & Chinese literary masterpiece.'**
+  String get worldChineseLiteraryMasterpiece;
+
+  /// No description provided for @classic.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic'**
+  String get classic;
+
+  /// No description provided for @literature.
+  ///
+  /// In en, this message translates to:
+  /// **'Literature'**
+  String get literature;
+
+  /// No description provided for @theOriginAwakening.
+  ///
+  /// In en, this message translates to:
+  /// **'The Origin & Awakening'**
+  String get theOriginAwakening;
+
+  /// No description provided for @turbulentHorizonsTheJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Turbulent Horizons & The Journey'**
+  String get turbulentHorizonsTheJourney;
+
+  /// No description provided for @trialsTribulationsDevotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Trials, Tribulations & Devotion'**
+  String get trialsTribulationsDevotion;
+
+  /// No description provided for @theClashOfWitsBravery.
+  ///
+  /// In en, this message translates to:
+  /// **'The Clash of Wits & Bravery'**
+  String get theClashOfWitsBravery;
+
+  /// No description provided for @theGrandClimaxResolution.
+  ///
+  /// In en, this message translates to:
+  /// **'The Grand Climax & Resolution'**
+  String get theGrandClimaxResolution;
+
+  /// No description provided for @everlastingLegacyEpilogue.
+  ///
+  /// In en, this message translates to:
+  /// **'Everlasting Legacy & Epilogue'**
+  String get everlastingLegacyEpilogue;
+
+  /// No description provided for @acrossTheVastExpanseOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Across the vast expanse of heaven and earth, characters pursue their destiny and convictions through profound trials.'**
+  String get acrossTheVastExpanseOf;
+
+  /// No description provided for @everyDialogueAndEncounterWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'Every dialogue and encounter within the tale carries the brilliance of the human spirit and the imprint of its era.'**
+  String get everyDialogueAndEncounterWithin;
+
+  /// No description provided for @followingTheFlowOfProse.
+  ///
+  /// In en, this message translates to:
+  /// **'Following the flow of prose, readers traverse centuries of time to share in the triumphs and sorrows of legendary figures.'**
+  String get followingTheFlowOfProse;
+
+  /// No description provided for @preQin.
+  ///
+  /// In en, this message translates to:
+  /// **'pre-qin'**
+  String get preQin;
+
+  /// No description provided for @theGoddessNWaRepairing.
+  ///
+  /// In en, this message translates to:
+  /// **'The goddess Nüwa repairing the sky'**
+  String get theGoddessNWaRepairing;
+
+  /// No description provided for @artsTraditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Arts & Traditions'**
+  String get artsTraditions;
+
+  /// No description provided for @femaleWarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Female, warm'**
+  String get femaleWarm;
+
+  /// No description provided for @femaleCheerful.
+  ///
+  /// In en, this message translates to:
+  /// **'Female, cheerful'**
+  String get femaleCheerful;
+
+  /// No description provided for @maleUpbeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Male, upbeat'**
+  String get maleUpbeat;
+
+  /// No description provided for @maleNewsStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Male, news-style'**
+  String get maleNewsStyle;
+
+  /// No description provided for @maleSporty.
+  ///
+  /// In en, this message translates to:
+  /// **'Male, sporty'**
+  String get maleSporty;
+
+  /// No description provided for @onDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'On-device'**
+  String get onDevice;
+
+  /// No description provided for @label15Minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'15 Minutes'**
+  String get label15Minutes;
+
+  /// No description provided for @label30Minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'30 Minutes'**
+  String get label30Minutes;
+
+  /// No description provided for @label45Minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'45 Minutes'**
+  String get label45Minutes;
+
+  /// No description provided for @selectChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Chapter'**
+  String get selectChapter;
+
+  /// No description provided for @andContinuesToBeStudied.
+  ///
+  /// In en, this message translates to:
+  /// **'and continues to be studied and celebrated by readers across generations.'**
+  String get andContinuesToBeStudied;
+
+  /// No description provided for @label1Poem.
+  ///
+  /// In en, this message translates to:
+  /// **'1 Poem'**
+  String get label1Poem;
+
+  /// No description provided for @label1Chapter.
+  ///
+  /// In en, this message translates to:
+  /// **'1 Chapter'**
+  String get label1Chapter;
+
+  /// No description provided for @localDeviceVoice2.
+  ///
+  /// In en, this message translates to:
+  /// **'Local device voice'**
+  String get localDeviceVoice2;
+
+  /// No description provided for @weeklyAzureQuotaReachedSwitching.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Azure quota reached — switching to local voice'**
+  String get weeklyAzureQuotaReachedSwitching;
+
+  /// No description provided for @sleepTimer2.
+  ///
+  /// In en, this message translates to:
+  /// **'定时关闭 · Sleep Timer'**
+  String get sleepTimer2;
+
+  /// No description provided for @tableOfContents2.
+  ///
+  /// In en, this message translates to:
+  /// **'目录 · Table of Contents'**
+  String get tableOfContents2;
+
+  /// No description provided for @hanziMaster10.
+  ///
+  /// In en, this message translates to:
+  /// **'HanziMaster/1.0'**
+  String get hanziMaster10;
+
+  /// No description provided for @spanishItalianRussianClassics.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish, Italian & Russian Classics'**
+  String get spanishItalianRussianClassics;
+
+  /// No description provided for @englishAmericanGlobalClassics.
+  ///
+  /// In en, this message translates to:
+  /// **'English, American & Global Classics'**
+  String get englishAmericanGlobalClassics;
+
+  /// No description provided for @whileStrategicallyEmbeddingWordsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'while strategically embedding words you are currently struggling with so you can learn them in context.'**
+  String get whileStrategicallyEmbeddingWordsYou;
+
+  /// No description provided for @poetryPainting.
+  ///
+  /// In en, this message translates to:
+  /// **'poetry-painting'**
+  String get poetryPainting;
+
+  /// No description provided for @contactSinosparkCom.
+  ///
+  /// In en, this message translates to:
+  /// **'contact@sinospark.com'**
+  String get contactSinosparkCom;
+
+  /// No description provided for @shadowingStudioIsADedicated.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowing Studio is a dedicated space to practice mimicking native speakers. You listen to a phrase, record yourself repeating it, and compare the waveforms and pronunciation scores to refine your accent.'**
+  String get shadowingStudioIsADedicated;
+
+  /// No description provided for @theVoicesInAIStories.
+  ///
+  /// In en, this message translates to:
+  /// **'The voices in AI Stories and Echo Hall are powered by advanced Neural Text-to-Speech models. They are specifically tuned to provide authentic native Chinese accents, appropriate emotional inflection, and natural pacing.'**
+  String get theVoicesInAIStories;
+
+  /// No description provided for @theWebExplorerAllowsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'The Web Explorer allows you to browse any Chinese website. When you encounter a difficult word, simply tap it to open the Quick Look card, which provides instant pinyin, translation, and HSK level.'**
+  String get theWebExplorerAllowsYou;
+
+  /// No description provided for @zenModeStripsAwayDistracting.
+  ///
+  /// In en, this message translates to:
+  /// **'Zen Mode strips away distracting web elements, ads, and complex layouts from articles, presenting you with a clean, calligraphic reading environment focused purely on the text.'**
+  String get zenModeStripsAwayDistracting;
+
+  /// No description provided for @weUseAnIntelligentAlgorithm.
+  ///
+  /// In en, this message translates to:
+  /// **'We use an intelligent algorithm that predicts when you are about to forget a word. Words you struggle with will appear more frequently, while words you know well will be scheduled further into the future.'**
+  String get weUseAnIntelligentAlgorithm;
+
+  /// No description provided for @usage3.
+  ///
+  /// In en, this message translates to:
+  /// **'Usage:'**
+  String get usage3;
 }
 
 class _AppLocalizationsDelegate

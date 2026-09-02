@@ -163,9 +163,12 @@ class _StoryCulturalInsightScreenState
                 ),
               );
             },
-            child: const Text(
-              'Start Reading',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            child: Text(
+              AppLocalizations.of(context)!.startReading,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -183,7 +186,7 @@ class _StoryCulturalInsightScreenState
         const SizedBox(height: 24),
         Center(
           child: Text(
-            'Analyzing cultural context...',
+            AppLocalizations.of(context)!.analyzingCulturalContext,
             style: TextStyle(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.6)),
           ),
@@ -200,7 +203,7 @@ class _StoryCulturalInsightScreenState
           const Icon(Icons.error_outline, size: 48, color: Colors.red),
           const SizedBox(height: 16),
           Text(
-            'Failed to load cultural insight.',
+            AppLocalizations.of(context)!.failedToLoadCulturalInsight,
             style: TextStyle(color: theme.colorScheme.onSurface),
           ),
           const SizedBox(height: 16),

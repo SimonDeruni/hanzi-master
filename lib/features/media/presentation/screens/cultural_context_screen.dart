@@ -133,7 +133,7 @@ class CulturalContextScreen extends ConsumerWidget {
                                 color: theme.colorScheme.primary, size: 24),
                             const SizedBox(width: 12),
                             Text(
-                              "Cultural Insight",
+                              AppLocalizations.of(context)!.culturalInsight,
                               style: theme.textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: -0.5,
@@ -158,7 +158,8 @@ class CulturalContextScreen extends ConsumerWidget {
                                 const SizedBox(height: 24),
                                 Center(
                                   child: Text(
-                                    "AI is analyzing cultural context...",
+                                    AppLocalizations.of(context)!
+                                        .aiIsAnalyzingCulturalContext,
                                     style: TextStyle(
                                       color: theme.colorScheme.onSurface
                                           .withValues(alpha: 0.5),
@@ -169,7 +170,10 @@ class CulturalContextScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
-                          error: (err, stack) => Text("Failed to load context: $err"),
+                          error: (err, stack) => Text(
+                            AppLocalizations.of(context)!
+                                .failedToLoadCulturalInsight,
+                          ),
                         ),
                       ],
                     ),
@@ -256,7 +260,7 @@ class CulturalContextScreen extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Dive into Full Content",
+                      AppLocalizations.of(context)!.diveIntoFullContent,
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: theme.colorScheme.onPrimary,
                         fontWeight: FontWeight.bold,

@@ -227,7 +227,8 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
             'Engaging video material with interactive synchronized subtitles.',
           ];
 
-    final channelKey = match.handle.isNotEmpty ? match.handle : match.displayName;
+    final channelKey =
+        match.handle.isNotEmpty ? match.handle : match.displayName;
     final localeCode = Localizations.localeOf(context).languageCode;
 
     return FutureBuilder<List<String>>(
@@ -268,15 +269,15 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                 Row(
                   children: [
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 7, vertical: 2),
                       decoration: BoxDecoration(
                         color: const Color(0xFF3F51B5).withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      child: const Text(
-                        'ABOUT CHANNEL',
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.aboutChannel,
+                        style: const TextStyle(
                           color: Color(0xFF3F51B5),
                           fontSize: 10,
                           fontWeight: FontWeight.w800,
@@ -299,8 +300,9 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                             width: 5,
                             height: 5,
                             decoration: BoxDecoration(
-                              color:
-                                  isDark ? Colors.amber : const Color(0xFF3F51B5),
+                              color: isDark
+                                  ? Colors.amber
+                                  : const Color(0xFF3F51B5),
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -311,8 +313,9 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                             style: TextStyle(
                               fontSize: 12,
                               height: 1.35,
-                              color:
-                                  isDark ? Colors.white70 : const Color(0xFF2C2C2E),
+                              color: isDark
+                                  ? Colors.white70
+                                  : const Color(0xFF2C2C2E),
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -427,10 +430,10 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
     if (_isLoading) return _buildLoadingGrid();
     if (_error != null) return _buildErrorState();
     if (_videos.isEmpty) {
-      return const Center(
+      return Center(
         child: Text(
-          'No videos found',
-          style: TextStyle(color: Colors.black54, fontSize: 16),
+          AppLocalizations.of(context)!.noVideosFound,
+          style: const TextStyle(color: Colors.black54, fontSize: 16),
         ),
       );
     }
@@ -508,9 +511,9 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
           children: [
             const Icon(Icons.error_outline, size: 48, color: Colors.redAccent),
             const SizedBox(height: 16),
-            const Text(
-              'Failed to load videos',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.failedToLoadVideos,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.redAccent,

@@ -6909,4 +6909,4532 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get uniqueCardsStudied => 'Cards';
+
+  @override
+  String get dartConvert => 'dart:convert';
+
+  @override
+  String get env => '.env';
+
+  @override
+  String get dartUi => 'dart:ui';
+
+  @override
+  String get dartMath => 'dart:math';
+
+  @override
+  String get drawInTheOtherDirection => 'Draw in the other direction ➔';
+
+  @override
+  String get fastClean => 'Fast & Clean!';
+
+  @override
+  String get good2 => 'Good!';
+
+  @override
+  String get followTheFlow => 'Follow the flow.';
+
+  @override
+  String get masterful => 'Masterful!';
+
+  @override
+  String get missingTheHookEnd => 'Missing the hook/end.';
+
+  @override
+  String get thai => 'Thai';
+
+  @override
+  String get dartIo => 'dart:io';
+
+  @override
+  String get dartAsync => 'dart:async';
+
+  @override
+  String get asset => 'asset:';
+
+  @override
+  String get ocpApimSubscriptionKey => 'Ocp-Apim-Subscription-Key';
+
+  @override
+  String get xMicrosoftOutputFormat => 'X-Microsoft-OutputFormat';
+
+  @override
+  String get audio24khz48kbitrateMonoMp3 => 'audio-24khz-48kbitrate-mono-mp3';
+
+  @override
+  String get googleGemini25Flash => 'google/gemini-2.5-flash';
+
+  @override
+  String get ink => 'ink,';
+
+  @override
+  String get stroke => 'stroke,';
+
+  @override
+  String get breath => 'breath.';
+
+  @override
+  String get deepseekDeepseekChat => 'deepseek/deepseek-chat';
+
+  @override
+  String get hTTPReferer => 'HTTP-Referer';
+
+  @override
+  String get xTitle => 'X-Title';
+
+  @override
+  String get data => 'data:';
+
+  @override
+  String get shadowingModeCustomSentence => 'ShadowingMode.customSentence';
+
+  @override
+  String get theExactSentenceProvided => 'the exact sentence provided';
+
+  @override
+  String get pinyinWithToneMarks2 => 'pinyin with tone marks';
+
+  @override
+  String get wXHuNH => 'Wǒ xǐhuān hē píngguǒzhī.';
+
+  @override
+  String get extractAllChineseCharactersFrom =>
+      'Extract all Chinese characters from this image. Return ONLY the extracted text — no commentary, no formatting, no translations. Preserve line breaks. If there are no Chinese characters, return an empty string.';
+
+  @override
+  String get householdObject => 'household object';
+
+  @override
+  String get genericLabelFromTheList => 'generic label from the list';
+
+  @override
+  String get gNgS => 'gōng sī';
+
+  @override
+  String get measureWord => 'measure word';
+
+  @override
+  String get zenInk => 'Zen & Ink';
+
+  @override
+  String get cRITICALPutTheEnglishTranslation =>
+      'CRITICAL: Put the English translation in the \"english\" JSON key!';
+
+  @override
+  String get definitionInEnglish => 'definition in English';
+
+  @override
+  String get simplifiedLine0 => 'simplified line 0';
+
+  @override
+  String get simplifiedLine1 => 'simplified line 1';
+
+  @override
+  String get iMPORTANTRULEDoNotAddress =>
+      'IMPORTANT RULE: Do not address the user by any name. Never use placeholder names like \"John\". Speak directly to them without using a name.';
+
+  @override
+  String get rULESAnswerIn23 =>
+      'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists.';
+
+  @override
+  String get neverWriteIntroductionsSignOffs =>
+      'Never write introductions, sign-offs, or filler phrases like \"Great question!\" or \"Certainly!\".';
+
+  @override
+  String get useBoldForChineseCharacters =>
+      'Use **bold** for Chinese characters and key terms.';
+
+  @override
+  String get rULESAnswerIn232 => 'RULES: Answer in 2–3 sentences max.';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get pronunciationAssessment => 'Pronunciation-Assessment';
+
+  @override
+  String get nBest => 'NBest';
+
+  @override
+  String get none => 'None';
+
+  @override
+  String get theCorrectedChineseText => 'the corrected Chinese text';
+
+  @override
+  String get thePinyinForTheCorrected => 'the pinyin for the corrected text';
+
+  @override
+  String get theEnglishMeaningOfThe =>
+      'the english meaning of the corrected text';
+
+  @override
+  String get pNyNWithTone => 'pīnyīn with tone marks';
+
+  @override
+  String get englishTranslation2 => 'english translation';
+
+  @override
+  String get zhNggu => 'Zhōngguó';
+
+  @override
+  String get youAreAChineseClassical =>
+      'You are a Chinese classical literature expert providing detailed accessible summaries of classical Chinese poetry.';
+
+  @override
+  String get youAreAChineseCulture =>
+      'You are a Chinese culture and literature expert. Provide highly engaging, beautifully written cultural insights.';
+
+  @override
+  String get english2 => 'English:';
+
+  @override
+  String get remindersWhenYouHavenT =>
+      'Reminders when you haven\'t used the app for a few days';
+
+  @override
+  String get itSBeenAFew =>
+      'It\'s been a few days! Take 5 minutes to learn a new Hanzi today.';
+
+  @override
+  String get abbreviationFor => 'abbreviation for';
+
+  @override
+  String get cL => 'CL:';
+
+  @override
+  String get measureWord2 => 'Measure word:';
+
+  @override
+  String get lu => 'lu:';
+
+  @override
+  String get luE => 'lu:e';
+
+  @override
+  String get nu => 'nu:';
+
+  @override
+  String get nuE => 'nu:e';
+
+  @override
+  String get noUser => 'no-user';
+
+  @override
+  String get passwordRequired => 'password-required';
+
+  @override
+  String get unsupportedProvider => 'unsupported-provider';
+
+  @override
+  String get appleRevocationUnavailable => 'apple-revocation-unavailable';
+
+  @override
+  String get appleCredentialMissing => 'apple-credential-missing';
+
+  @override
+  String get authenticationDidNotReturnA =>
+      'Authentication did not return a user.';
+
+  @override
+  String get viewSubscriptionPlans => 'View subscription plans';
+
+  @override
+  String get wrongPassword => 'wrong-password';
+
+  @override
+  String get invalidCredential => 'invalid-credential';
+
+  @override
+  String get networkRequestFailed => 'network-request-failed';
+
+  @override
+  String get requiresRecentLogin => 'requires-recent-login';
+
+  @override
+  String get userMismatch => 'user-mismatch';
+
+  @override
+  String get deleteAccountPassword => 'delete-account-password';
+
+  @override
+  String get deleteAccountError => 'delete-account-error';
+
+  @override
+  String get deleteAccountSubmit => 'delete-account-submit';
+
+  @override
+  String get theSimplestShapesTheBeginning =>
+      'The simplest shapes. The beginning of all things.';
+
+  @override
+  String get sunMoonWaterAndFire =>
+      'Sun, Moon, Water, and Fire. The natural world.';
+
+  @override
+  String get theBodyTheHeartAnd => 'The body, the heart, and the family.';
+
+  @override
+  String get fieldsRoofsAndToolsThe =>
+      'Fields, roofs, and tools. The foundations of society.';
+
+  @override
+  String get movementSpeechAndSustenance => 'Movement, speech, and sustenance.';
+
+  @override
+  String get commerceClothingAndComplexArtifacts =>
+      'Commerce, clothing, and complex artifacts.';
+
+  @override
+  String get fastTrackSimpleCharacterMastered =>
+      '🚀 Fast Track! Simple character mastered.';
+
+  @override
+  String get excellentPrecisionGhostTraceSkipped =>
+      '⚡ Excellent precision! Ghost trace skipped.';
+
+  @override
+  String get sample => 'Sample:';
+
+  @override
+  String get itsThat => 'Its/That';
+
+  @override
+  String get iMe => 'I/Me';
+
+  @override
+  String get stillTough => 'Still/Tough';
+
+  @override
+  String get partDecide => 'Part/Decide';
+
+  @override
+  String get selectTheCharacterFor => 'Select the character for:';
+
+  @override
+  String get selectThePinyinFor => 'Select the Pinyin for:';
+
+  @override
+  String get whereAreYouGoingThe =>
+      'Where are you going? The airport? It is quite a trip!';
+
+  @override
+  String get youAreAuntieChenA =>
+      'You are Auntie Chen, a shrewd market vendor selling silk and fabrics. Your ONLY role is a market vendor. Negotiate prices firmly but fairly in Mandarin. NEVER break character or introduce yourself as anything other than a vendor. Start with high prices and be willing to bargain down.';
+
+  @override
+  String get youAreDrZhangA =>
+      'You are Dr. Zhang, a calm and professional doctor at a medical clinic. Your ONLY role is a doctor. Ask about health symptoms and provide medical advice in Mandarin. NEVER break character or introduce yourself as anything other than a doctor. Be reassuring but thorough.';
+
+  @override
+  String get whereDoYouFeelUncomfortable =>
+      'Where do you feel uncomfortable? Do you have a fever?';
+
+  @override
+  String get youAreACloseFriend =>
+      'You are a close friend catching up after a long time. Your ONLY role is a friend. Keep responses casual, warm, and short in Mandarin. NEVER break character or introduce yourself as anything other than a friend. Use informal speech patterns appropriate for close friends.';
+
+  @override
+  String get noNbest => 'no nbest';
+
+  @override
+  String get timedOut => 'timed out';
+
+  @override
+  String get grading => 'Grading...';
+
+  @override
+  String get label1st => '1st ˉ';
+
+  @override
+  String get label2nd => '2nd ˊ';
+
+  @override
+  String get label3rd => '3rd ˇ';
+
+  @override
+  String get label4th => '4th ˋ';
+
+  @override
+  String get speaking2 => 'Speaking...';
+
+  @override
+  String get sessionCompletedInYourNext =>
+      'Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.';
+
+  @override
+  String get craneSoaring => 'crane soaring';
+
+  @override
+  String get gentleStream => 'gentle stream';
+
+  @override
+  String get brushAndInk => 'brush and ink';
+
+  @override
+  String get myStudent => 'my student';
+
+  @override
+  String get honoredDisciple => 'honored disciple';
+
+  @override
+  String get notEnoughInformation => 'not enough information';
+
+  @override
+  String get asAnAi => 'as an ai';
+
+  @override
+  String get goodPracticeSessionContinueFocusing =>
+      'Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.';
+
+  @override
+  String get insideASleekFuxingBullet =>
+      'Inside a sleek Fuxing bullet train traveling at 350 km/h from Beijing to Shanghai.';
+
+  @override
+  String get harbinIceSnowWorldWonder => 'Harbin Ice & Snow World Wonder';
+
+  @override
+  String get theFamousPanjiayuanWeekendFlea =>
+      'The famous Panjiayuan weekend flea market crowded with calligraphy scrolls, jade, and vintage trinkets.';
+
+  @override
+  String get jingdezhenBlueWhitePorcelainStudio =>
+      'Jingdezhen Blue & White Porcelain Studio';
+
+  @override
+  String get pekingOperaDressingRoomMakeup =>
+      'Peking Opera Dressing Room & Makeup';
+
+  @override
+  String get aHistoricTongrentangApothecaryScented =>
+      'A historic Tongrentang apothecary scented with ginseng, wolfberry, and hundreds of wooden herbal drawers.';
+
+  @override
+  String get aVibrantPrivateNeonLit =>
+      'A vibrant private neon-lit karaoke room in Shenzhen with microphones, fruit platters, and screen controls.';
+
+  @override
+  String get animeCosplayExpoInGuangzhou => 'Anime & Cosplay Expo in Guangzhou';
+
+  @override
+  String get nHOHuNy =>
+      'Nǐ hǎo! Huānyíng lái dào zhèlǐ, jīntiān wǒmen liáo xiē shénme ne?';
+
+  @override
+  String get surpriseMe2 => '🎲 Surprise Me';
+
+  @override
+  String get eGALivelyBanquet =>
+      'e.g., A lively banquet celebrating in Shanghai...';
+
+  @override
+  String get rollCharacter2 => '🎲 Roll Character';
+
+  @override
+  String get eGACuriousCousin =>
+      'e.g., A curious cousin asking about your career...';
+
+  @override
+  String get keepTrying => 'Keep trying!';
+
+  @override
+  String get pending => 'Pending...';
+
+  @override
+  String get expected => '🎯 Expected';
+
+  @override
+  String get hSK2Elementary => 'HSK 2: Elementary';
+
+  @override
+  String get hSK3Intermediate => 'HSK 3: Intermediate';
+
+  @override
+  String get hSK5Advanced => 'HSK 5: Advanced';
+
+  @override
+  String get expressYourselfFullyWith5000 =>
+      'Express yourself fully with 5000+ words.';
+
+  @override
+  String get hanziWriter => 'hanzi-writer';
+
+  @override
+  String get hvg => 'hvg:';
+
+  @override
+  String get unlimited => 'Unlimited';
+
+  @override
+  String get dueToday => 'Due today';
+
+  @override
+  String get newAvailable => 'New available';
+
+  @override
+  String get deleteAccountTile => 'delete-account-tile';
+
+  @override
+  String get giveASingleShortPractical =>
+      'Give a single, short, practical tip on how to improve the shape, position, or length of the poorly drawn strokes. Be direct and helpful, do not be overly poetic or metaphorical. Do not use markdown.';
+
+  @override
+  String get localOnDeviceTTS => 'Local — On-device TTS';
+
+  @override
+  String get espaOl => 'Español';
+
+  @override
+  String get franAis => 'Français';
+
+  @override
+  String get portuguS => 'Português';
+
+  @override
+  String get tiNgViT => 'Tiếng Việt';
+
+  @override
+  String get koreFemaleWarm => 'Kore — Female, warm';
+
+  @override
+  String get aoedeFemaleCheerful => 'Aoede — Female, cheerful';
+
+  @override
+  String get fenrirMaleUpbeat => 'Fenrir — Male, upbeat';
+
+  @override
+  String get charonMaleNewsStyle => 'Charon — Male, news-style';
+
+  @override
+  String get puckMaleSporty => 'Puck — Male, sporty';
+
+  @override
+  String get systemVoice => 'System voice';
+
+  @override
+  String get generateAdd => 'Generate & Add';
+
+  @override
+  String get moreExamples => '📝 More examples';
+
+  @override
+  String get usage2 => '❓ Usage';
+
+  @override
+  String get translation => '💬 Translation';
+
+  @override
+  String get collocations => '📚 Collocations';
+
+  @override
+  String get mistakes => '❌ Mistakes';
+
+  @override
+  String get decrease => 'Decrease';
+
+  @override
+  String get increase => 'Increase';
+
+  @override
+  String get label0MeansThisCardType => '0 means this card type is disabled.';
+
+  @override
+  String get tapTheValueToEnter => 'Tap the value to enter an exact limit.';
+
+  @override
+  String get exactDailyLimit => 'Exact daily limit';
+
+  @override
+  String get enter0ToDisable => 'Enter 0 to disable.';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get selectDeck => 'Select Deck';
+
+  @override
+  String get azureSpeechKeysNotConfigured =>
+      'Azure Speech keys not configured. Add AZURE_SPEECH_KEY and AZURE_SPEECH_REGION to .env';
+
+  @override
+  String get sTARTING => 'STARTING…';
+
+  @override
+  String get sTARTSESSION => 'START SESSION';
+
+  @override
+  String get translating2 => 'Translating...';
+
+  @override
+  String get chai => '柴知道Chai...';
+
+  @override
+  String get oneInABillion2 => '@One-In-a-Billion';
+
+  @override
+  String get businessEconomics => 'business & economics';
+
+  @override
+  String get hskPreparation => 'hsk preparation';
+
+  @override
+  String get liveInChina => 'live in china';
+
+  @override
+  String get comprehensiveExercise => 'comprehensive exercise';
+
+  @override
+  String get howToUse => 'how to use';
+
+  @override
+  String get usesOf => 'uses of';
+
+  @override
+  String get appearedFirstOnMandarinBean => 'appeared first on Mandarin Bean';
+
+  @override
+  String get news2 => 'news:';
+
+  @override
+  String get joke => 'joke:';
+
+  @override
+  String get jokes => 'jokes:';
+
+  @override
+  String get academicScience => 'academic / science';
+
+  @override
+  String get politicsCommunism => 'politics & communism';
+
+  @override
+  String get foodDining => 'Food & Dining';
+
+  @override
+  String get sciFi => 'sci-fi';
+
+  @override
+  String get scienceFictionTech => 'Science Fiction & Tech';
+
+  @override
+  String get travelPlaces => 'Travel & Places';
+
+  @override
+  String get mythologyFantasy => 'Mythology & Fantasy';
+
+  @override
+  String get cultureTraditions => 'Culture & Traditions';
+
+  @override
+  String get businessEconomy => 'Business & Economy';
+
+  @override
+  String get natureAnimals => 'Nature & Animals';
+
+  @override
+  String get articleImg => 'article img';
+
+  @override
+  String get entryContentImg => '.entry-content img';
+
+  @override
+  String get zhHans => 'zh-Hans';
+
+  @override
+  String get zhHant => 'zh-Hant';
+
+  @override
+  String get pLDpUVcjhvJisQCVw4YJVNTxTDrVQUgbr =>
+      'PLDpUVcjhvJisQCVw4YJVNTxT-DrVQUgbr';
+
+  @override
+  String get siJin => '【似锦 Si Jin】正片 | #张晚意 #景甜';
+
+  @override
+  String get xiXiPicturesOfficialChannel =>
+      '西嘻影业官方频道 XiXi Pictures Official Channel';
+
+  @override
+  String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
+      'PLDpUVcjhvJitpknWzhJb-wevf7VSVWXk2';
+
+  @override
+  String get sIXSISTERS => '【六姊妹 SIX SISTERS】正片 | #梅婷 #陆毅 #邬君梅 #奚美娟';
+
+  @override
+  String get shineOnMeENGSUB => '【骄阳似我 Shine On Me】ENG SUB | #宋威龙 #赵今麦';
+
+  @override
+  String get eNGSUBThoseDays => 'ENG SUB【四喜 Those Days】| 童瑶 蒋欣 黄明昊 许娣';
+
+  @override
+  String get getTheWeTVAPP => '腾讯视频 - Get the WeTV APP';
+
+  @override
+  String get liziqi2 => '李子柒 Liziqi';
+
+  @override
+  String get uCQRJN2yW42jqXIGK2VKIPw => 'UCQ_RJN2yW42jqXIGK2VKIPw';
+
+  @override
+  String get uCt4t3iY8hL5sF5pV6qW2xRg => 'UCt4t3iY8hL5sF5pV6qW2xRg';
+
+  @override
+  String get uCp8q9rL2jG5hV7xW3mR5bNQ => 'UCp8q9rL2jG5hV7xW3mR5bNQ';
+
+  @override
+  String get uCvZ9W7u3T6a5YJS0VT28oA => 'UCvZ9W7u3T6a5YJS0VT-28oA';
+
+  @override
+  String get uCm7yM8rL5jG5pV6qW3xR2bQ => 'UCm7yM8rL5jG5pV6qW3xR2bQ';
+
+  @override
+  String get uCJ10R97LkwGdTqBT6xzV8g => 'UCJ10R97LkwGdTqBT6xz-v8g';
+
+  @override
+  String get learnMandarinWithTaiwanPlus => 'Learn Mandarin with TaiwanPlus';
+
+  @override
+  String get everydayChinese => 'Everyday Chinese';
+
+  @override
+  String get uCCFdR7zZ5SUXuOrEdKw => 'UCC_fdR7zZ_5SU--xuOrEdKw';
+
+  @override
+  String get tingDailyLifeInChina => 'Ting-Daily life in China';
+
+  @override
+  String get tFTFOODTRAVEL => 'TFT - FOOD & TRAVEL';
+
+  @override
+  String get uCsHMiBJ9r87fRH7VAWZw => 'UCs_h_miBJ9r8-7fRH7VAWZw';
+
+  @override
+  String get liziqi3 => '李子柒 Liziqi: 大蒜的一生';
+
+  @override
+  String get label2MINCULTURALCONTEXT => '2 MIN CULTURAL CONTEXT';
+
+  @override
+  String get liziqi4 => '李子柒 Liziqi: 竹子家具';
+
+  @override
+  String get peppaPigChinese2 => 'Peppa Pig Chinese: 泥坑';
+
+  @override
+  String get noBBCLeadArticleIs =>
+      'No BBC lead article is currently available.';
+
+  @override
+  String get mediaThumbnail => 'media:thumbnail';
+
+  @override
+  String get bBC => 'BBC 中文';
+
+  @override
+  String get siJin2 => '似锦 Si Jin';
+
+  @override
+  String get n9Yh6jSqjg => 'n9Yh-6jSqjg';
+
+  @override
+  String get eV4j0RDXDVU => 'EV4j0RDXDVU';
+
+  @override
+  String get eY3hnHAmSg => 'e-Y3hnHAmSg';
+
+  @override
+  String get cD0Q81FnaY => 'CD0Q81-fnaY';
+
+  @override
+  String get label0UEwtWyW5s => '0UEwtWy-W5s';
+
+  @override
+  String get label8PNkm5Mxxk => '8PNkm5-Mxxk';
+
+  @override
+  String get iWNYkjEle8 => 'IWNYkj-ele8';
+
+  @override
+  String get rGrzq5WtBE => 'r-grzq5WtBE';
+
+  @override
+  String get tBo7q3wafw => 't-bo7q3wafw';
+
+  @override
+  String get iJkbO5H6E => 'I_jkbO5-h6E';
+
+  @override
+  String get oMM5UD0T2w => 'OMM5_UD0T2w';
+
+  @override
+  String get sIXSISTERS2 => '六姊妹 SIX SISTERS';
+
+  @override
+  String get cNylns5HiA => 'c-nylns5HiA';
+
+  @override
+  String get mEUH5U8EZa4 => 'MEUH5U8EZa4';
+
+  @override
+  String get label3Wx8JnjWZc => '3Wx8JnjW-Zc';
+
+  @override
+  String get qj17RJVE5B0 => 'Qj17RJVE5B0';
+
+  @override
+  String get vO4nggZ6Grs => 'VO4nggZ6Grs';
+
+  @override
+  String get zNR4WLEcJ4 => 'Z-NR4WLEcJ4';
+
+  @override
+  String get mA08u68O7Q => 'MA08u68O7_Q';
+
+  @override
+  String get ig8tnI0c9xM => 'Ig8tnI0c9xM';
+
+  @override
+  String get gIBYzq4lFtw => 'GIBYzq4lFtw';
+
+  @override
+  String get qDOf4OCZgd0 => 'QDOf4OCZgd0';
+
+  @override
+  String get shineOnMe => '骄阳似我 Shine on Me';
+
+  @override
+  String get zx7pUK2J1Uc => 'Zx7pUK2J1Uc';
+
+  @override
+  String get zdgymrBo9Y => 'zdgymr-bo9Y';
+
+  @override
+  String get label7yMAZEUBs => '7yMAZ_e-uBs';
+
+  @override
+  String get l9AqUHU14 => '_l9AqU-hU14';
+
+  @override
+  String get label1elnMxr0A0 => '1elnMxr0-A0';
+
+  @override
+  String get ozsUxgd7sk => 'OzsUxgd-7sk';
+
+  @override
+  String get label4czDUfmwv8 => '4cz-dUfmwv8';
+
+  @override
+  String get iuiTM37MII => 'iuiTM37M-II';
+
+  @override
+  String get xgXf9j96yM => 'XgXf-9j96yM';
+
+  @override
+  String get thoseDays => '四喜 Those days';
+
+  @override
+  String get a5nhDbkkCU => 'a5nhDbkkC-U';
+
+  @override
+  String get jb8unABN00 => '-jb8unABN00';
+
+  @override
+  String get label78OX9HXqKA => '78OX-9HXqKA';
+
+  @override
+  String get oDw77ocPGXg => 'ODw77ocPGXg';
+
+  @override
+  String get tt28uayZ7U => '-tt28uayZ7U';
+
+  @override
+  String get sOl3U7rPEPc => 'SOl3U7rPEPc';
+
+  @override
+  String get sffGZZpJ48 => 'sffGZZp-j48';
+
+  @override
+  String get v2UNvBajdY => 'v2UNv-BajdY';
+
+  @override
+  String get noFunnyNoMoney => '不好笑就露宿街头No Funny No Money';
+
+  @override
+  String get dob3yGGLHIg => 'Dob3yGGLHIg';
+
+  @override
+  String get q5vqCQ6P9Pk => 'Q5vqCQ6P9Pk';
+
+  @override
+  String get label9Nc40rZ3b8 => '-9Nc40rZ3b8';
+
+  @override
+  String get d3zEt3pV8 => '_D3z-Et3pV8';
+
+  @override
+  String get label5S3yHQ10 => '5_S3yHQ--10';
+
+  @override
+  String get jQbyRRCa5U => 'JQbyR-rCa5U';
+
+  @override
+  String get x5WFTXq2FW0 => 'X5WFTXq2FW0';
+
+  @override
+  String get getTheWeTVAPP2 => '腾讯视频 - 动漫 - Get the WeTV APP';
+
+  @override
+  String get y4TWL0m2i4c => 'Y4TWL0m2i4c';
+
+  @override
+  String get uVZdKZcAXU => 'UV-ZdKZcAXU';
+
+  @override
+  String get mR8VUhHc => '-__MR8VUhHc';
+
+  @override
+  String get jrTInzf1Kc => 'Jr_tInzf1Kc';
+
+  @override
+  String get xfjz857p3w => 'Xfjz_857p3w';
+
+  @override
+  String get mI1Wl3V5WBE => 'MI1Wl3V5WBE';
+
+  @override
+  String get lordOfMysteriesVlog =>
+      '《诡秘之主》Lord of Mysteries 乌贼配音vlog终版 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries => '《诡秘之主》Lord of Mysteries 神秘学课堂第八期 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries2 => '《诡秘之主》Lord of Mysteries 神秘学课堂第七期 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries3 => '《诡秘之主》Lord of Mysteries 神秘学课堂第六期 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries4 => '《诡秘之主》Lord of Mysteries 神秘学课堂第五期 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries5 => '《诡秘之主》Lord of Mysteries 神秘学课堂第四期 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries6 => '《诡秘之主》Lord of Mysteries 神秘学课堂第三期 腾讯视频 - 动漫';
+
+  @override
+  String get pakhctn6g6A => 'Pakhctn6g6A';
+
+  @override
+  String get lordOfMysteries7 => '《诡秘之主》Lord of Mysteries 神秘学课堂第二期 腾讯视频 - 动漫';
+
+  @override
+  String get lordOfMysteries8 => '《诡秘之主》Lord of Mysteries 神秘学课堂第一期 腾讯视频 - 动漫';
+
+  @override
+  String get g5fLWO98axs => 'G5fLWO98axs';
+
+  @override
+  String get gK0eOTF2s4c => 'GK0eOTF2s4c';
+
+  @override
+  String get oSTLordOfMysteries =>
+      '【OST】《诡秘之主》Lord of Mysteries 终幕曲《勿忘我》 腾讯视频 - 动漫';
+
+  @override
+  String get membersPremiere2 => 'Members Premiere 会员抢先看';
+
+  @override
+  String get dOtFXu1Vw => '_dOt-fXu1Vw';
+
+  @override
+  String get eA13aHY8jw => 'EA13aH_Y8jw';
+
+  @override
+  String get jVfwogmt8JM => 'JVfwogmt8JM';
+
+  @override
+  String get sfj9727Xu4 => 'Sfj9727-Xu4';
+
+  @override
+  String get tnv6Me0FI4s => 'Tnv6Me0FI4s';
+
+  @override
+  String get wEY80ZpZ8 => 'wEY80-_ZpZ8';
+
+  @override
+  String get pNRv9ncKDq4 => 'PNRv9ncKDq4';
+
+  @override
+  String get yZI6rr4wR1I => 'YZI6rr4wR1I';
+
+  @override
+  String get bDzKpcxWto => 'B-DzKpcxWto';
+
+  @override
+  String get dy9QDPpZBk => 'dy9QDPpZ-bk';
+
+  @override
+  String get tZ53akmpvyc => 'TZ53akmpvyc';
+
+  @override
+  String get label4Ip1rJO4gE => '4-Ip1rJO4gE';
+
+  @override
+  String get label5VKww8pjFA => '5-vKww8pjFA';
+
+  @override
+  String get label60SpwYfgUU => '60Spw-yfgUU';
+
+  @override
+  String get v8AG9HnmFA => 'V8AG9_hnmFA';
+
+  @override
+  String get vY6ao4ktdo => '-vY6ao4ktdo';
+
+  @override
+  String get htxVeakvE => '-htx-veakvE';
+
+  @override
+  String get fO7muIAr9dA => 'FO7muIAr9dA';
+
+  @override
+  String get s4O9Nk3Q4 => 'S4_O9Nk-3Q4';
+
+  @override
+  String get lMDHc55prI => 'LM_dHc55prI';
+
+  @override
+  String get lGpl7G7850 => '-LGpl7G7850';
+
+  @override
+  String get xJ2dwZ2xCw0 => 'XJ2dwZ2xCw0';
+
+  @override
+  String get qo47iejJOQ => 'Qo_47iejJOQ';
+
+  @override
+  String get gbnoj9WUP5Y => 'Gbnoj9WUP5Y';
+
+  @override
+  String get qCHKUuwF0 => 'QCHKUuw_f_0';
+
+  @override
+  String get qyh4kU263OA => 'Qyh4kU263OA';
+
+  @override
+  String get vnTQZY6QM => 'Vn-TQZ_Y6QM';
+
+  @override
+  String get vwk9yx7WL0c => 'Vwk9yx7WL0c';
+
+  @override
+  String get uLa6Qw2aL0 => 'u-La6Qw2aL0';
+
+  @override
+  String get kQJ5gjZwU0 => 'k-QJ5gjZwU0';
+
+  @override
+  String get mQH5jhyqPHc => 'MQH5jhyqPHc';
+
+  @override
+  String get h6rjzyquxA => 'h6rjzyqux-A';
+
+  @override
+  String get pLMX26aiIvX5phl8n87NqTbaeXK2HHm =>
+      'PLMX26aiIvX5phl8n8-7-nqTbaeXK2HHm-';
+
+  @override
+  String get eightHundred => '方圆八百米 Eight Hundred';
+
+  @override
+  String get l1Xmsbo6RE => 'L1Xmsbo6_rE';
+
+  @override
+  String get dq1IgosbLQ => 'Dq1Igosb_lQ';
+
+  @override
+  String get i8e9E1bZR7I => 'I8e9E1bZR7I';
+
+  @override
+  String get iqRK2KUN0I => 'IqRK2KUN-0I';
+
+  @override
+  String get c3wWSQPFc0 => 'C3w-WSQPFc0';
+
+  @override
+  String get loveBeyondTheGrave => '白日提灯 Love Beyond the Grave';
+
+  @override
+  String get rPWA2OHxlaw => 'RPWA2OHxlaw';
+
+  @override
+  String get label8NShMGCGZk => '8NShMG-cGZk';
+
+  @override
+  String get q2TPc3EOYl4 => 'Q2TPc3EOYl4';
+
+  @override
+  String get pmPPM7YT5M => 'PmPP-M7YT5M';
+
+  @override
+  String get azFL5ujNQ0 => '-AzFL5ujNQ0';
+
+  @override
+  String get kpD2a0Z9yE => 'kpD-2a0Z9yE';
+
+  @override
+  String get dMAm1i8Ylb8 => 'DMAm1i8Ylb8';
+
+  @override
+  String get ppk0MGKF8Y => 'Ppk_0MGKF8Y';
+
+  @override
+  String get label1ZEKWcipU => '1_zEK-WcipU';
+
+  @override
+  String get dcOLJI4L5A => 'dcO-LJI4L5A';
+
+  @override
+  String get loveBeyondTheGrave2 =>
+      '片场彩蛋：贺思慕段胥本名难觅花名纷至【白日提灯 Love Beyond the Grave】';
+
+  @override
+  String get label5MVET41ATY => '5MVET41A-tY';
+
+  @override
+  String get bTSLoveBeyondTheGrave =>
+      'BTS｜【鹅剧派对】迪丽热巴陈飞宇携众主创默契五感五连拍！【白日提灯 Love Beyond the Grave】';
+
+  @override
+  String get bTSLoveBeyondTheGrave2 =>
+      'BTS｜【鹅剧派对】迪丽热巴陈飞宇亮相，眼神杀直接封神！【白日提灯 Love Beyond the Grave】';
+
+  @override
+  String get herBlaze => '她的盛焰 Her Blaze';
+
+  @override
+  String get opOIDzw8Vo => 'Op_OIDzw8Vo';
+
+  @override
+  String get rv9nnIn4wxQ => 'Rv9nnIn4wxQ';
+
+  @override
+  String get c5e9V1GRnn8 => 'C5e9V1GRnn8';
+
+  @override
+  String get xAjvi1fmrrQ => 'XAjvi1fmrrQ';
+
+  @override
+  String get yIkxweh5A0 => 'yIkxweh5-A0';
+
+  @override
+  String get label9CM48di86g => '9-CM48di86g';
+
+  @override
+  String get dAwbSEDikg => 'D-AwbSEDikg';
+
+  @override
+  String get ecXCXc5EUg => 'Ec_xCXc5EUg';
+
+  @override
+  String get lKBf8Y0Qfqg => 'LKBf8Y0Qfqg';
+
+  @override
+  String get qnc5caQJITA => 'Qnc5caQJITA';
+
+  @override
+  String get xmLEreDeoU => 'xmLEreDeo-U';
+
+  @override
+  String get aboutLove => '玫瑰丛生 About Love';
+
+  @override
+  String get i4cZFlj8Fw => 'I4cZ-Flj8Fw';
+
+  @override
+  String get v8m00Hcam0 => 'V8m0-0Hcam0';
+
+  @override
+  String get aVPsfT4c4 => 'a-_vPsfT4c4';
+
+  @override
+  String get cJ9KNnY2cc => 'CJ9K-NnY2cc';
+
+  @override
+  String get j078HAJbI => 'J-078H-aJbI';
+
+  @override
+  String get byLJulMrNs => 'by-lJulMrNs';
+
+  @override
+  String get hj663skfypU => 'Hj663skfypU';
+
+  @override
+  String get lVOj0dkxDQ => 'LVOj0dkx-DQ';
+
+  @override
+  String get hKCVYT0J0 => 'hK-CVYT0J_0';
+
+  @override
+  String get v9czXRh5oUc => 'V9czXRh5oUc';
+
+  @override
+  String get af4fVhhPVg => 'af4fVhhP-Vg';
+
+  @override
+  String get tA => '《玫瑰丛生》全员陷入爱情迷雾，TA会如何破局？ ｜主演：王子文、刘宇宁';
+
+  @override
+  String get pLMX26aiIvX5rSLe74r7sARps4oOqaBWD =>
+      'PLMX26aiIvX5rSLe74r7sA-Rps4oOqaBWD';
+
+  @override
+  String get generationToGeneration2 => '江湖夜雨十年灯 Generation to Generation';
+
+  @override
+  String get wCfp3YN9mPs => 'WCfp3YN9mPs';
+
+  @override
+  String get label0Sus6s0HWM => '0Sus6s0-hWM';
+
+  @override
+  String get zjcGjE54zU => 'Zjc-GjE54zU';
+
+  @override
+  String get g1q8I4lZ5mU => 'G1q8I4lZ5mU';
+
+  @override
+  String get y2IWPq6jFCE => 'Y2IWPq6jFCE';
+
+  @override
+  String get wz9oy74X8 => 'Wz9oy_74_x8';
+
+  @override
+  String get ztz3CXfrQE => '-ztz3CXfrQE';
+
+  @override
+  String get loveStoryInThe1970s => '纯真年代的爱情 Love Story in the 1970s';
+
+  @override
+  String get eGYAJh8Z8Pc => 'EGYAJh8Z8Pc';
+
+  @override
+  String get aBXZma9Mqc => 'A-bXZma9Mqc';
+
+  @override
+  String get wSHZC7Yb5s => 'WSHZC_7Yb5s';
+
+  @override
+  String get aK8Fl3m9W7I => 'AK8Fl3m9W7I';
+
+  @override
+  String get label0jw5TGzM0s => '0jw5T-gzM0s';
+
+  @override
+  String get xIbV4LmjNk => 'XIbV4-lmjNk';
+
+  @override
+  String get hkpSEzLKLg => 'HkpSEzLK-Lg';
+
+  @override
+  String get pLMX26aiIvX5q5kRTszb0kZqKc2TJWnf =>
+      'PLMX26aiIvX5q5kR_Tszb0kZqKc2T-JWnf';
+
+  @override
+  String get whyIsHeStillSingle => '他为什么依然单身 Why Is He Still Single';
+
+  @override
+  String get okB86OjCI => 'okB_86OjC-I';
+
+  @override
+  String get m8eZwl6rA4 => 'm8eZwl6rA-4';
+
+  @override
+  String get label3ub1XXXYI => '3ub-1-xXXYI';
+
+  @override
+  String get label4dW228WSVk => '4dW228-wSVk';
+
+  @override
+  String get wCAK3UFi5M => 'WCAK3_uFi5M';
+
+  @override
+  String get eZzak3C73nI => 'EZzak3C73nI';
+
+  @override
+  String get theGlamorousNight => '夜色正浓 The Glamorous Night';
+
+  @override
+  String get theGlamorousNightE03 =>
+      '【夜色正浓 The Glamorous Night】E03 霸气出招！赵玫绝地反击（江疏影，佟大为）';
+
+  @override
+  String get zaalDLrc => '--Zaal-DLrc';
+
+  @override
+  String get label26Lkp84WD0 => '2-6Lkp84WD0';
+
+  @override
+  String get jD9iPkDDqC => 'jD9iPkDDq-c';
+
+  @override
+  String get jIyk18uXB7Q => 'JIyk18uXB7Q';
+
+  @override
+  String get h3XEsv0mgA => 'h3-xEsv0mgA';
+
+  @override
+  String get vClRnlEUTQ => 'VClRnlEUT-Q';
+
+  @override
+  String get myPageInThe90s => '突然的喜欢 My Page in the 90s';
+
+  @override
+  String get m7XBiuw1TU => 'm7XBiuw1-tU';
+
+  @override
+  String get a25pD4FCQio => 'A25pD4FCQio';
+
+  @override
+  String get muCj0GdNdw => 'muCj-0GdNdw';
+
+  @override
+  String get aQ4hlmkOv3A => 'AQ4hlmkOv3A';
+
+  @override
+  String get nEiRnIHDg => 'NEiRn_IH-Dg';
+
+  @override
+  String get label04MyPageInThe =>
+      '精彩片段04 : 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get label03MyPageInThe =>
+      '精彩片段03 : 替闺蜜去相亲，结果相到了男主本尊？【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get bTSXXMyPage =>
+      'BTS｜「出戏 X 陈星旭 X 王玉雯」高总和欢儿的抽象究竟谁更甚一筹？【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get label02MyPageInThe =>
+      '精彩片段 02：本想攻略男主，结果竟然认错人？【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get label01MyPageInThe =>
+      '精彩片段01 : 离谱！突然就穿书了？这剧情我该怎么演?【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get bTSMyPageInThe => 'BTS｜陈星旭王玉雯溜冰撞了个满怀【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get bTSMyPageInThe2 => 'BTS｜陈星旭王玉雯甜蜜跨年【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get bTSMyPageInThe3 => 'BTS｜陈星旭王玉雯七夕定格甜蜜瞬间【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get bTSMyPageInThe4 => 'BTS｜陈星旭王玉雯欢乐游乐场【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get myPageInThe90s2 => '《突然的喜欢 My Page in the 90s》今日开播，陈星旭王玉雯玩转系统甜蜜热恋';
+
+  @override
+  String get myPageInThe90s3 =>
+      '《突然的喜欢 My Page in the 90s》1月22日甜蜜开播，陈星旭王玉雯反套路恋爱';
+
+  @override
+  String get myPageInThe90s4 => '《突然的喜欢 My Page in the 90s》定档0122！陈星旭王玉雯跨时代热恋';
+
+  @override
+  String get pLMX26aiIvX5qxr2ZxGgBQKRNVGydd =>
+      'PLMX26aiIvX5qxr2ZxGgBQKR-n-V_Gydd-';
+
+  @override
+  String get uDFuWJvE1M => 'uDFuWJv-e1M';
+
+  @override
+  String get bNKH0V8G => 'bN-kH-0V8-g';
+
+  @override
+  String get l4tkACioRc => 'L4tkACio-Rc';
+
+  @override
+  String get label2TheImperialCoronerS2 => '御赐小仵作2 The Imperial Coroner S2';
+
+  @override
+  String get hNa1FW55Q5s => 'HNa1FW55Q5s';
+
+  @override
+  String get yyn06Ql7ADg => 'Yyn06Ql7ADg';
+
+  @override
+  String get h0LBmMzQBc => 'h0LBmMz-qBc';
+
+  @override
+  String get label25FI49I6Sk => '25FI49I6-Sk';
+
+  @override
+  String get aAY7eaH3jw => 'aAY7ea-H3jw';
+
+  @override
+  String get ukcZXSZhOc => 'UkcZX-SZhOc';
+
+  @override
+  String get pLMX26aiIvX5o7sdz290MeDHgSqCHsIS =>
+      'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
+
+  @override
+  String get theDreamMaker => '小城大事 The Dream Maker';
+
+  @override
+  String get fLcyGh4lXM => 'FLcy_gh4lXM';
+
+  @override
+  String get zvaRoKDtG0 => 'ZvaRoKDtG-0';
+
+  @override
+  String get x1CkUlPzUc => 'x1CkUl-pzUc';
+
+  @override
+  String get axn5uV9sXSw => 'Axn5uV9sXSw';
+
+  @override
+  String get hj11XBTF4hQ => 'Hj11XBTF4hQ';
+
+  @override
+  String get kzB7eE7CFc => 'Kz_B7eE7CFc';
+
+  @override
+  String get m5bbHdJrE => '-m5bb_HdJrE';
+
+  @override
+  String get vl9SPb3Hs => 'Vl9_s-Pb3Hs';
+
+  @override
+  String get y1y6xz0xM2I => 'Y1y6xz0xM2I';
+
+  @override
+  String get label8HxijD19OI => '8HxijD19O-I';
+
+  @override
+  String get nj33Wy40VXU => 'Nj33Wy40VXU';
+
+  @override
+  String get eDGFBue80s => 'EDGF_Bue80s';
+
+  @override
+  String get label19zBynsjTk => '19z-BynsjTk';
+
+  @override
+  String get oJmIfnNd8s => 'oJmIfnNd-8s';
+
+  @override
+  String get yVp1Ms3ZE8 => 'YVp1_Ms3ZE8';
+
+  @override
+  String get foreverYoungE23 =>
+      '【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）';
+
+  @override
+  String get foreverYoungE25 =>
+      '【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）';
+
+  @override
+  String get foreverYoungE24 =>
+      '【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）';
+
+  @override
+  String get fEYoHxyxzQ => 'FEYo_hxyxzQ';
+
+  @override
+  String get zF8OR9onddY => 'ZF8OR9onddY';
+
+  @override
+  String get b1FJGDAKV8 => 'B1FJ-GDAKV8';
+
+  @override
+  String get pLL3q9saUp1GZjNkX3Zxfr4y8rZhaZ0jV =>
+      'PLL3q9saUp1GZj-nkX3Zxfr4y8rZhaZ0jV';
+
+  @override
+  String get hOMELANDGUARDIAN => '守诚者|HOMELAND GUARDIAN🚔';
+
+  @override
+  String get iQIYIGetTheIQIYIAPP => 'iQIYI 悬疑社 - Get the iQIYI APP';
+
+  @override
+  String get label8QBlaWEtbw => '8Q-blaWEtbw';
+
+  @override
+  String get label0XrMBoHTsY => '0XrMBoH-TsY';
+
+  @override
+  String get zBzbg0Nu84 => 'zBzbg0-Nu84';
+
+  @override
+  String get label7ItX7Vt8Qc => '7ItX7Vt8-qc';
+
+  @override
+  String get zx5XvNKhXo => 'zx5Xv-NKhXo';
+
+  @override
+  String get nigVK5Ing => '-Nig_vK5Ing';
+
+  @override
+  String get loveHasFireworks => '爱情有烟火 Love Has Fireworks';
+
+  @override
+  String get getTheWeTVAPP3 => '腾讯视频 - 青春剧场 - Get the WeTV APP';
+
+  @override
+  String get oMOcpoXhYw => 'OMOcpoXh-yw';
+
+  @override
+  String get xwTcCP8TsU => 'XwTc-CP8TsU';
+
+  @override
+  String get t4dBHQH9F0I => 'T4dBHQH9F0I';
+
+  @override
+  String get jZP3R3khZMk => 'JZP3R3khZMk';
+
+  @override
+  String get cLBYyAU0AU => '-CLBYyAU0AU';
+
+  @override
+  String get x1F7qp1cZo => 'X-1F7qp1cZo';
+
+  @override
+  String get jJ5X6yEpiI => 'J-j5X6yEpiI';
+
+  @override
+  String get label8JmxrnwT0 => '8-jmxrnwT-0';
+
+  @override
+  String get gWvOJODRXU => 'gWvOJO-dRXU';
+
+  @override
+  String get t1VyWJTB2A => 't1VyWJT-b2A';
+
+  @override
+  String get e00xfXWql4Q => 'E00xfXWql4Q';
+
+  @override
+  String get theHiddenHeirYeChen2 => '进击的叶辰 The Hidden Heir Ye Chen';
+
+  @override
+  String get xtTr8ZBDpG => 'XtTr8ZBDp-g';
+
+  @override
+  String get dresmsNeverEnd => '去听旷野的风 Dresms Never End';
+
+  @override
+  String get mamaGo => '我的妈妈是校花 Mama Go!';
+
+  @override
+  String get o4rwrV9yv0 => 'O4rwr_v9yv0';
+
+  @override
+  String get x5Cm37j3g0 => 'X5Cm37j_3g0';
+
+  @override
+  String get jTqQ3t6gg => '_jTqQ3t-6gg';
+
+  @override
+  String get cNIRYF7Ig4 => 'cNIR-yF7Ig4';
+
+  @override
+  String get hr2GfDJNGg => 'Hr2GfD-JNGg';
+
+  @override
+  String get yXXjFZcZw => 'Y-X-xjFZcZw';
+
+  @override
+  String get xrBNQazEsk => 'xrBN-qazEsk';
+
+  @override
+  String get fJDN8r3rcRw => 'FJDN8r3rcRw';
+
+  @override
+  String get jEXB1NMkHs => 'JEXB1N-MkHs';
+
+  @override
+  String get d3dl69d81pQ => 'D3dl69d81pQ';
+
+  @override
+  String get xGZPKLBH8Q => 'XGZPK-LBH8Q';
+
+  @override
+  String get x59A8sSoGs => 'x59A8s-SoGs';
+
+  @override
+  String get lo6iApMzI => '_lo6iAp-mzI';
+
+  @override
+  String get d4a9aQ7h18 => 'D4a9aQ7h1_8';
+
+  @override
+  String get zCt0on2nA9s => 'ZCt0on2nA9s';
+
+  @override
+  String get b6BykN3fT4 => 'b6BykN3f-t4';
+
+  @override
+  String get eMZrxHTajM => 'EM-zrxHTajM';
+
+  @override
+  String get t1RJnvl2RA => 'T1RJnvl2R_A';
+
+  @override
+  String get hOE347NBAc => 'hOE-347NBAc';
+
+  @override
+  String get loveStoryInThe1970s2 =>
+      '《纯真年代的爱情 Love Story in the 1970s》双线编年史短片温暖来袭~';
+
+  @override
+  String get loveStoryInThe1970s3 =>
+      '《纯真年代的爱情 Love Story in the 1970s》双人短片正式发布~让我们用感官书写一封情书';
+
+  @override
+  String get bTSLoveStoryInThe =>
+      'BTS｜全员杀青，期待下一次重逢【纯真年代的爱情 Love Story in the 1970s】';
+
+  @override
+  String get loveStoryInThe1970s4 =>
+      '《纯真年代的爱情 Love Story in the 1970s》爱是藏在烟火里的诗～';
+
+  @override
+  String get sGX3zNIuzM => 'SGX-3zNIuzM';
+
+  @override
+  String get loveStoryInThe1970s5 =>
+      '《纯真年代的爱情 Love Story in the 1970s》正式定档2月21日播出啦~';
+
+  @override
+  String get dEZKlJqTo => 'DE_ZKl_jqTo';
+
+  @override
+  String get sc8aQLBntwk => 'Sc8aQLBntwk';
+
+  @override
+  String get aDa3c9hGZA => 'ADa_3c9hGZA';
+
+  @override
+  String get yj9xkfkxmpQ => 'Yj9xkfkxmpQ';
+
+  @override
+  String get idjCqdRyYG => 'idjCqdRyY-g';
+
+  @override
+  String get sqwEl8o75U => 'Sqw-El8o75U';
+
+  @override
+  String get wbF6Wgzai4 => 'WbF-6Wgzai4';
+
+  @override
+  String get pLyX50Z72L2xpkH5SEO0XjQxJPO1sC =>
+      'PLyX_50Z72L2xpk_h5SEO0Xj_qx-jPO1sC';
+
+  @override
+  String get theTruth => '风过留痕 The Truth';
+
+  @override
+  String get q4im6PPfcw => 'Q4im6P_Pfcw';
+
+  @override
+  String get tsyfcT6RG8 => 'Tsyfc-t6RG8';
+
+  @override
+  String get pHOAi3EJ6Cg => 'PHOAi3EJ6Cg';
+
+  @override
+  String get l2EHE50Bhlw => 'L2EHE50Bhlw';
+
+  @override
+  String get pVgnsUnNXw => 'PVgnsUnN-Xw';
+
+  @override
+  String get pLyX50Z72L2wsEVLZsclrIke3z7FY8n =>
+      'PLyX_50Z72L2wsEVL-zsclrIke3z7F-Y8n';
+
+  @override
+  String get ugNrNd0OM8 => 'Ug_nrNd0OM8';
+
+  @override
+  String get b4hADbXtGo => 'b4hADb-xtGo';
+
+  @override
+  String get rQXFQTj6XY => 'RQ_XFQTj6XY';
+
+  @override
+  String get a6TSVxp9x0 => 'A6TS_Vxp9x0';
+
+  @override
+  String get gwt9Y2ESIOA => 'Gwt9Y2ESIOA';
+
+  @override
+  String get c2tVD8rhVMM => 'C2tVD8rhVMM';
+
+  @override
+  String get pLyX50Z72L2wshCDZ4cWBwWHjigU7av =>
+      'PLyX_50Z72L2wshCDZ4cW-BwWHjigU7av-';
+
+  @override
+  String get tW5f69bxL0 => 'TW_5f69bxL0';
+
+  @override
+  String get l8T7Lz5VN44 => 'L8T7Lz5VN44';
+
+  @override
+  String get cVLZ3AmkTE => '-cVLZ3AmkTE';
+
+  @override
+  String get t4E2lf096yM => 'T4E2lf096yM';
+
+  @override
+  String get wHENTJCl9M => 'WHENTJCl9-M';
+
+  @override
+  String get bTSOutOfCharacterDuo =>
+      'BTS｜「Out of Character Duo Interview 」出戏双彩—高总和欢儿的抽象究竟谁更甚一筹？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+
+  @override
+  String get rEk9xALNODE => 'REk9xALNODE';
+
+  @override
+  String get label04MyPageInThe2 =>
+      '精彩片段04 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+
+  @override
+  String get label03MyPageInThe2 =>
+      '精彩片段03 替闺蜜去相亲，结果相到了男主本尊？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+
+  @override
+  String get xsb7BJppy0 => 'Xsb7B-Jppy0';
+
+  @override
+  String get label02MyPageInThe2 =>
+      '精彩片段02 本想攻略男主，结果竟然认错人？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+
+  @override
+  String get label01MyPageInThe2 =>
+      '精彩片段01 离谱！突然就穿书了？这剧情我该怎么演? 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+
+  @override
+  String get zSpXoH9ok => 'Z_SpXo-H9ok';
+
+  @override
+  String get myPageInThe90s5 => '《突然的喜欢 My Page in the 90s》BTS｜陈星旭王玉雯溜冰撞了个满';
+
+  @override
+  String get myPageInThe90s6 => '《突然的喜欢 My Page in the 90s》今日开播！陈星旭王玉雯玩转系统甜蜜热恋';
+
+  @override
+  String get bTSMyPageInThe5 => 'BTS｜陈星旭王玉雯搞怪互动暧昧超标【突然的喜欢 My Page in the 90s】';
+
+  @override
+  String get aYyrt0eGYw => 'AYyrt0e-gYw';
+
+  @override
+  String get qM5S5tiCI0 => 'QM_5S5tiCI0';
+
+  @override
+  String get w1mYTU1AGkg => 'W1mYTU1AGkg';
+
+  @override
+  String get pLyX50Z72L2zuddUfGdIXCxO1jAzTlPd =>
+      'PLyX_50Z72L2zudd-ufGdIXCxO1jAzTlPd';
+
+  @override
+  String get jWEK0M59Ysk => 'JWEK0M59Ysk';
+
+  @override
+  String get p6l7C0ovRFM => 'P6l7C0ovRFM';
+
+  @override
+  String get vRYp5JmLwc => '-vRYp5JmLwc';
+
+  @override
+  String get dearSecretary => '我亲爱的秘书 Dear Secretary';
+
+  @override
+  String get pAoESWUjrI => 'PAoES-wUjrI';
+
+  @override
+  String get pLyX50Z72L2yOG39wBXIFJlA2GtbWheA =>
+      'PLyX_50Z72L2yOG39wBXIFJlA-2GtbWheA';
+
+  @override
+  String get label0JQ43Tt8D4 => '0J-q43Tt8D4';
+
+  @override
+  String get lIJJXYywPM => 'LIJ-jXYywPM';
+
+  @override
+  String get xLc3qBC5k => 'XLc3qB_c-5k';
+
+  @override
+  String get mKLZpubV04 => 'MKL_zpubV04';
+
+  @override
+  String get wXevXICxAQ => 'wXevXICx-AQ';
+
+  @override
+  String get xRRUT4fbgQ => 'xRR-uT4fbgQ';
+
+  @override
+  String get q5WMmVzsGQ => 'q5-wMmVzsGQ';
+
+  @override
+  String get dOFDys0lAJ0 => 'DOFDys0lAJ0';
+
+  @override
+  String get wadaICY1qo => 'WadaIC-Y1qo';
+
+  @override
+  String get label44PA4p4dXY => '44P-a4p4dXY';
+
+  @override
+  String get pLyX50Z72L2xbAikt1CHmEyvZrQv1XJu =>
+      'PLyX_50Z72L2xbAikt1CHmEyvZrQv1X-ju';
+
+  @override
+  String get foreverYoung2 => '轻年 Forever Young';
+
+  @override
+  String get omVSnG9O8g => 'omVSn-G9O8g';
+
+  @override
+  String get label2qKWcz2zU0 => '2qKWcz2z-u0';
+
+  @override
+  String get label1WMYcdS8oE => '1WMYcdS8o-E';
+
+  @override
+  String get u0fCO4W9LHg => 'U0fCO4W9LHg';
+
+  @override
+  String get m9xLRZlwO => 'M9xL-rZlw-o';
+
+  @override
+  String get vo5jCUWPNAo => 'Vo5jCUWPNAo';
+
+  @override
+  String get vb1N5r3zZFo => 'Vb1N5r3zZFo';
+
+  @override
+  String get lightOfDawn => '人之初 Light of Dawn​';
+
+  @override
+  String get teDx70IJcw => 'Te_dx70IJcw';
+
+  @override
+  String get mF2299T610 => 'mF2299T-610';
+
+  @override
+  String get yLNGIsWlU => 'YL_-NGIsWlU';
+
+  @override
+  String get mUZMDrFnNw => 'MUZMDrFn-Nw';
+
+  @override
+  String get pi2b8VYkM8 => 'Pi2b8VYk-m8';
+
+  @override
+  String get pLyX50Z72L2xDQ9d02geVDYSbkol6u9Z =>
+      'PLyX_50Z72L2xDQ9d02geVDYSbkol-6u9Z';
+
+  @override
+  String get wWy3IO1E9cw => 'WWy3IO1E9cw';
+
+  @override
+  String get wW9DI00Rx3w => 'WW9DI00Rx3w';
+
+  @override
+  String get a6Y3wzD0I => 'A_6Y3wzD-0I';
+
+  @override
+  String get wXEkwsviSA => '-WXEkwsviSA';
+
+  @override
+  String get uq15J34lYB0 => 'Uq15J34lYB0';
+
+  @override
+  String get sc7Fg23kmUM => 'Sc7Fg23kmUM';
+
+  @override
+  String get kaJ2rw9Aqk => 'ka-j2rw9Aqk';
+
+  @override
+  String get uLnBQ3TFuc => 'ULnBQ3-TFuc';
+
+  @override
+  String get t2Iwb6RA1A => 'T2Iwb6-RA1A';
+
+  @override
+  String get mug6zYTLTlc => 'Mug6zYTLTlc';
+
+  @override
+  String get n2FDS8D8uu4 => 'N2FDS8D8uu4';
+
+  @override
+  String get s8lCa09LCr8 => 'S8lCa09LCr8';
+
+  @override
+  String get cU6u6WUM => 'C-u6u_6-WUM';
+
+  @override
+  String get oNNJqZYydM => 'ONN-JqZYydM';
+
+  @override
+  String get sniperButterfly => '狙击蝴蝶 Sniper Butterfly';
+
+  @override
+  String get zExesh1IRe4 => 'ZExesh1IRe4';
+
+  @override
+  String get ygyiJvBu0 => 'ygyi-JvBu-0';
+
+  @override
+  String get label8lAlJTtlQw => '8lAlJ-ttlQw';
+
+  @override
+  String get oi4cSib0SMU => 'Oi4cSib0SMU';
+
+  @override
+  String get gBZIZ1syhRw => 'GBZIZ1syhRw';
+
+  @override
+  String get yOIsab02PVs => 'YOIsab02PVs';
+
+  @override
+  String get y3OhRM7dJg => 'Y3Oh_RM7dJg';
+
+  @override
+  String get bqvORbC4cY => 'BqvORbC4c-Y';
+
+  @override
+  String get iE8MjgoaPY => 'IE8Mjgoa-pY';
+
+  @override
+  String get sniperButterfly1204 => '《狙击蝴蝶 Sniper Butterfly》定档1204！ 为爱越界';
+
+  @override
+  String get sniperButterflyFullVersion1 =>
+      '《狙击蝴蝶 Sniper Butterfly》Full Version 1-15｜主演：陈妍希，周柯宇 腾讯视频-青春剧场';
+
+  @override
+  String get sniperButterflyFullVersion16 =>
+      '《狙击蝴蝶 Sniper Butterfly》Full Version 16-30｜主演：陈妍希，周柯宇 腾讯视频-青春剧场';
+
+  @override
+  String get imr0DFA4mNA => 'Imr0DFA4mNA';
+
+  @override
+  String get iVGn2RlvnG => 'IVGn2Rlvn_g';
+
+  @override
+  String get dIhValICo => 'dIh-Val_ICo';
+
+  @override
+  String get u3CEzhnlaM => 'U3C-EzhnlaM';
+
+  @override
+  String get bJ3HUIXyu04 => 'BJ3HUIXyu04';
+
+  @override
+  String get g9lIyw6LKr8 => 'G9lIyw6LKr8';
+
+  @override
+  String get xQhtl58Mg0 => 'x-qhtl58Mg0';
+
+  @override
+  String get emRj53N7q0 => 'emRj53N7q-0';
+
+  @override
+  String get g4LSe3sjJ1I => 'G4LSe3sjJ1I';
+
+  @override
+  String get label7PpYIVmyaU => '7PpYI-vmyaU';
+
+  @override
+  String get allRise => '即刻上场 All Rise';
+
+  @override
+  String get label9AaKDIWNK8 => '-9AaKDIWNK8';
+
+  @override
+  String get cIY8AALMGA => 'cIY8AAL-MGA';
+
+  @override
+  String get mwHNJlgj0M => '-MwHNJlgj0M';
+
+  @override
+  String get lM6Siyziyfg => 'LM6Siyziyfg';
+
+  @override
+  String get yUgNvqLkHo => 'Y-ugNvqLkHo';
+
+  @override
+  String get loveIsAlwaysOnline2 => '对的时间对的人 Love is Always Online';
+
+  @override
+  String get bbu8Ct33WGY => 'Bbu8Ct33WGY';
+
+  @override
+  String get iW8gQdPQE => 'iW-8g-qdPQE';
+
+  @override
+  String get zKjqrbqqc74 => 'ZKjqrbqqc74';
+
+  @override
+  String get label1UbEkGEXNs => '1UbEkGE-xNs';
+
+  @override
+  String get w8eDA1UJ5OY => 'W8eDA1UJ5OY';
+
+  @override
+  String get hydT2kHzno => '-hydT2kHzno';
+
+  @override
+  String get fONOKBq7bLo => 'FONOKBq7bLo';
+
+  @override
+  String get s4zCx2IlFE => 's4zCx2Il-fE';
+
+  @override
+  String get bA13fouCls => 'BA_13fouCls';
+
+  @override
+  String get pLyX50Z72L2xw1E6HhmF968YkX7BlZ9 =>
+      'PLyX_50Z72L2xw1-e6HhmF968YkX7Bl_Z9';
+
+  @override
+  String get loveOnTheTurquoiseLand => '枭起青壤 Love on the Turquoise Land';
+
+  @override
+  String get we5ry5kxdHE => 'We5ry5kxdHE';
+
+  @override
+  String get emIUEma8Hg => 'EmIUEma-8Hg';
+
+  @override
+  String get wu6k5Xa3MM => 'Wu-6k5Xa3MM';
+
+  @override
+  String get label80SA571cW0 => '80-SA571cW0';
+
+  @override
+  String get label4PdR5JPhcY => '4Pd-R5JPhcY';
+
+  @override
+  String get fyB12Rr0V8 => 'fyB12-Rr0V8';
+
+  @override
+  String get ldKl7dOoRs => 'ld-Kl7dOoRs';
+
+  @override
+  String get label3xjBMrz6iC => '3xjBMrz6i-c';
+
+  @override
+  String get vt0403FhEU => 'Vt0403Fh-eU';
+
+  @override
+  String get eCcqo2QsOI => 'ECcqo2Qs-OI';
+
+  @override
+  String get syI7F7W2c8 => 'Sy-i7F7W2c8';
+
+  @override
+  String get vxTWyvL1Ms => 'VxTWyvL-1Ms';
+
+  @override
+  String get yw8QK3SuW => 'yw8QK-3Su-w';
+
+  @override
+  String get o16uHD0kTS => 'O16uHD0kT-s';
+
+  @override
+  String get nHx9DZl4Q => 'nHx9-D-Zl4Q';
+
+  @override
+  String get wMJrWKUN7w => '-WMJrWKUN7w';
+
+  @override
+  String get s9JU0L2RS4o => 'S9JU0L2RS4o';
+
+  @override
+  String get uJC6xna2PBM => 'UJC6xna2PBM';
+
+  @override
+  String get rbvdnADd18 => 'Rbvdn-ADd18';
+
+  @override
+  String get iHHlxN0Swo => 'i-HHlxN0Swo';
+
+  @override
+  String get zd8EBbfqs => 'Zd8_-EBbfqs';
+
+  @override
+  String get xUG53k1B4 => 'XUG_53k1-b4';
+
+  @override
+  String get whyIsHeStillSingle2 =>
+      '《他为什么依然单身 Why Is He Still Single》定档1116！霍建华朱珠熟龄男女的爱情童话有！';
+
+  @override
+  String get whyIsHeStillSingle3 =>
+      '《他为什么依然单身 Why Is He Still Single》Full Version｜主演：霍建华，朱珠 腾讯视频-青春剧场';
+
+  @override
+  String get ijgFlHRPHw => 'Ijg-FlHRPHw';
+
+  @override
+  String get whyIsHeStillSingle4 =>
+      '《他为什么依然单身 Why Is He Still Single》Full Version 1｜主演：霍建华，朱珠 腾讯视频-青春剧场';
+
+  @override
+  String get whyIsHeStillSingle5 =>
+      '《他为什么依然单身 Why Is He Still Single》Full Version 2｜主演：霍建华，朱珠 腾讯视频-青春剧场';
+
+  @override
+  String get yVGKe9xonY => 'YV-GKe9xonY';
+
+  @override
+  String get qKftsk37mXo => 'QKftsk37mXo';
+
+  @override
+  String get ccxy931pac => 'ccxy9-31pac';
+
+  @override
+  String get uc5hawjBFU => 'Uc5hawj_bFU';
+
+  @override
+  String get fightForLove => '山河枕 Fight for Love';
+
+  @override
+  String get lGP6TCHM => 'l_g-p6TC_hM';
+
+  @override
+  String get wXKMI7kmY3Y => 'WXKMI7kmY3Y';
+
+  @override
+  String get v0wqy1HUJJE => 'V0wqy1HUJJE';
+
+  @override
+  String get j24dJWDtyps => 'J24dJWDtyps';
+
+  @override
+  String get v937gFLg7QU => 'V937gFLg7QU';
+
+  @override
+  String get x4R4W9wwzY => 'x4R-4W9wwzY';
+
+  @override
+  String get jV9KYnyvsg => 'jV9-kYnyvsg';
+
+  @override
+  String get hQPFMP7zQO0 => 'HQPFMP7zQO0';
+
+  @override
+  String get pLyX50Z72L2wHtPGkazV4LCGl20kRY4 =>
+      'PLyX_50Z72L2w_HtPGkazV4-lCGl20kRY4';
+
+  @override
+  String get iMNobody => '我本无名  I\'m Nobody';
+
+  @override
+  String get persona => '重影 Persona';
+
+  @override
+  String get d5CPVc0EIY => 'D5CPVc0E-IY';
+
+  @override
+  String get pJsHXm9ZsC => 'pJsHXm9Zs-c';
+
+  @override
+  String get vYRvNE7Yk => '-VYRvNE-7Yk';
+
+  @override
+  String get lightBeyondTheReed => '余生有涯 Light Beyond the Reed';
+
+  @override
+  String get kqfhRrmmG => 'Kqfh_Rrmm_g';
+
+  @override
+  String get iKEYUsv14 => 'I-kE-YUsv14';
+
+  @override
+  String get hOC9mu9HVs => 'HOC9mu_9HVs';
+
+  @override
+  String get x8jqt87WIuo => 'X8jqt87WIuo';
+
+  @override
+  String get gb0Bk564EQ => 'gb0Bk564-EQ';
+
+  @override
+  String get thePrisonerOfBeauty => '折腰精简版 The Prisoner of Beauty';
+
+  @override
+  String get wsGeYBRO => 'wsGeYB_-r_o';
+
+  @override
+  String get thePrisonerOfBeauty2 =>
+      '《折腰精简版 The Prisoner of Beauty》小乔替姐嫁世仇，新婚头天就和夫君杠上了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty3 =>
+      '《折腰精简版 The Prisoner of Beauty》小乔破刘琰炸渠阴谋，和魏劭从死磕变互相护着｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty4 =>
+      '《折腰精简版 The Prisoner of Beauty》小乔装病争主院，魏劭当众护妻拒纳妾｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty5 =>
+      '《折腰精简版 The Prisoner of Beauty》小乔破了木匣栽赃局，魏劭认她是自家女君了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty6 =>
+      '《折腰精简版 The Prisoner of Beauty》小乔智破嫁祸局，魏劭认妻护妻婆媳掀桌｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty7 =>
+      '《折腰精简版 The Prisoner of Beauty》魏俨挑事传假信，小乔魏劭因玉坠闹信任危机｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty8 =>
+      '《折腰精简版 The Prisoner of Beauty》苏娥皇用熟麦坑小乔，魏劭护妻破案俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty9 =>
+      '《折腰精简版 The Prisoner of Beauty》小乔魏劭遇刺中毒，小乔智破阴谋救夫更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get rNYFWNcb8o => 'RNYFW-Ncb8o';
+
+  @override
+  String get thePrisonerOfBeauty10 =>
+      '《折腰精简版 The Prisoner of Beauty》魏劭送战马后补发簪，护妻失踪急得抓耳挠腮｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty11 =>
+      '《折腰精简版 The Prisoner of Beauty》魏劭怕小乔跑了吃醋护妻，搬出又后悔想她｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty12 =>
+      '《折腰精简版 The Prisoner of Beauty》魏劭吃醋背小乔，解木匣疑云俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty13 =>
+      '《折腰精简版 The Prisoner of Beauty》乔慈探姐引魏劭吃醋，小乔俩口子掏心定终身｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get thePrisonerOfBeauty14 =>
+      '《折腰精简版 The Prisoner of Beauty》魏俨为小乔离乡，劭乔吵架后和好｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get ry1BWClaV0 => 'ry1BWCla-V0';
+
+  @override
+  String get thePrisonerOfBeauty15 =>
+      '《折腰精简版 The Prisoner of Beauty》新婚夜兵变姐妹反目，小乔智退敌魏劭认错｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get o8nFcvzyvM => 'O8n-FcvzyvM';
+
+  @override
+  String get thePrisonerOfBeauty16 =>
+      '《折腰精简版 The Prisoner of Beauty》魏劭陪小乔回康郡解心结，乔父认婿俩口子圆房｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get krsrk6wSAy8 => 'Krsrk6wSAy8';
+
+  @override
+  String get thePrisonerOfBeauty17 =>
+      '《折腰精简版 The Prisoner of Beauty》乔越叛变魏梁丧命，大乔被劫比彘拼命反杀｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get v26fn6w270 => 'V-26fn6w270';
+
+  @override
+  String get thePrisonerOfBeauty18 =>
+      '《折腰精简版 The Prisoner of Beauty》魏梁战死魏渠断臂，大乔坠楼刘琰覆灭｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+
+  @override
+  String get pLyX50Z72L2zD8aIumtBOoc0OWrwUUSe =>
+      'PLyX_50Z72L2zD-8aIumtBOoc0OWrwUUSe';
+
+  @override
+  String get ahjr3KPEXv4 => 'Ahjr3KPEXv4';
+
+  @override
+  String get igijfp2Q8BY => 'Igijfp2Q8BY';
+
+  @override
+  String get kIy3O9LyJQ => 'kIy3-o9LyJQ';
+
+  @override
+  String get g40pz8IOI => 'G-40pz8I_oI';
+
+  @override
+  String get label4LTdKzOI54 => '4LTdKzO-I54';
+
+  @override
+  String get pPT => '小组作业嫌我慢？霸总半夜爬窗送PPT，保安追着他跑 腾讯视频-青春剧场';
+
+  @override
+  String get zPBZ1KRQ3hY => 'ZPBZ1KRQ3hY';
+
+  @override
+  String get aThousandMilesToYour => '过遍千城才识君 A Thousand Miles to Your Heart';
+
+  @override
+  String get getTheWeTVAPP4 => '腾讯视频 - 古装剧场 - Get the WeTV APP';
+
+  @override
+  String get jnz1S8Qb5xE => 'Jnz1S8Qb5xE';
+
+  @override
+  String get nf5tvYU1W5A => 'Nf5tvYU1W5A';
+
+  @override
+  String get jRzsIK84C0 => 'jRzsIK84C-0';
+
+  @override
+  String get label9TcXQyaUAC => '9TcXQyaUA-c';
+
+  @override
+  String get mG6d7wN6fg => 'M-g6d7wN6fg';
+
+  @override
+  String get theInescapable => '锁簪 The Inescapable';
+
+  @override
+  String get label2TF7nb09WM => '2TF7nb09W-M';
+
+  @override
+  String get xG7qBdDRn0 => '-XG7qBdDRn0';
+
+  @override
+  String get zeFO2XDbA4 => 'zeFO2XDb-A4';
+
+  @override
+  String get pLs3DOuT3JlGR2nMcuGW2139rVVeHcWIs =>
+      'PLs3DOuT3JlGR2nMcuGW2139rV-veHcWIs';
+
+  @override
+  String get pursuitOfJade2 => '逐玉 Pursuit of Jade';
+
+  @override
+  String get tBj7OHjb2tI => 'TBj7OHjb2tI';
+
+  @override
+  String get vWOECNVUlQ => 'VWOE-cNVUlQ';
+
+  @override
+  String get label5NKgOE5DPQ => '5NKgOE5D-pQ';
+
+  @override
+  String get ipim7l2LZg => 'ipim7l2L-Zg';
+
+  @override
+  String get vmuf05J8Vc => '-Vmuf05J8Vc';
+
+  @override
+  String get label2M3Ls74gZY => '2M3Ls74gZ-Y';
+
+  @override
+  String get p8DW4Gef70o => 'P8DW4Gef70o';
+
+  @override
+  String get d4duxTP0FDE => 'D4duxTP0FDE';
+
+  @override
+  String get b1T03rs9WGI => 'B1T03rs9WGI';
+
+  @override
+  String get ruBRX68XPg => 'Ru-BRX68XPg';
+
+  @override
+  String get aX5eShfmFk => 'AX5eShfm_fk';
+
+  @override
+  String get fCsjHXbBlE => 'f-CsjHXbBlE';
+
+  @override
+  String get m9xKlm95oc => 'M9xKlm-95oc';
+
+  @override
+  String get xh0z4YV9v2s => 'Xh0z4YV9v2s';
+
+  @override
+  String get iufzj2MLPs => 'iufzj2M-LPs';
+
+  @override
+  String get x6uXEQgWuM => '-X6uXEQgWuM';
+
+  @override
+  String get wlz3IhZptM => 'Wlz3Ih-ZptM';
+
+  @override
+  String get p10GCq30oNI => 'P10GCq30oNI';
+
+  @override
+  String get b65UYuRtpE => 'B65-uYuRtpE';
+
+  @override
+  String get generationToGeneration222 =>
+      '《江湖夜雨十年灯 Generation to Generation》定档2月22日！看江湖最强新生代慕慕昭昭一起闯江湖';
+
+  @override
+  String get label6yOPycBAyU => '6y-oPycBAyU';
+
+  @override
+  String get lIAUBGNQM => 'LI-AUBGN-QM';
+
+  @override
+  String get sU12uaTtBg => 'SU-12uaTtBg';
+
+  @override
+  String get label05nLbIKPkQ => '05nLb-iKPkQ';
+
+  @override
+  String get rKGFPIzgpO => 'rKGFPIzgp-o';
+
+  @override
+  String get shO2wXA6U => 'Sh-o2w-xA6U';
+
+  @override
+  String get dNsDNXcJgM => 'd-nsDNXcJgM';
+
+  @override
+  String get w0NMLE9Hw => 'W_0N-mLE9Hw';
+
+  @override
+  String get lTtwLNkDHY => 'LTtwLNkD-HY';
+
+  @override
+  String get the300LoyalGhosts2 => '大明暗影三百忠魂 The 300 Loyal Ghosts';
+
+  @override
+  String get zj1Mh0bRE => 'zj1Mh_0b-rE';
+
+  @override
+  String get kj6122rOzW => 'kj6122rOz-w';
+
+  @override
+  String get ftgF1Hu9Ko => 'Ftg-f1Hu9Ko';
+
+  @override
+  String get cnFIQ9QT4M => '-CnFIQ9QT4M';
+
+  @override
+  String get ajdFKQ4uq8 => 'AjdF-kQ4uq8';
+
+  @override
+  String get danceOfThePhoenix => '且听凤鸣 Dance of The Phoenix';
+
+  @override
+  String get f0uIRYSOwo => 'F0uIRY_SOwo';
+
+  @override
+  String get extraordinary2 => '非凡 Extraordinary';
+
+  @override
+  String get mIOS6JeeMU => 'mIOS6Jee-mU';
+
+  @override
+  String get d8CsUqEy4 => 'd8CsUq-ey_4';
+
+  @override
+  String get oZpINX3A => '-o_zpI-NX3A';
+
+  @override
+  String get hyKy6aEDmo => 'HyKy6aE-Dmo';
+
+  @override
+  String get nkAYc4ZSW8 => 'NkAYc4Z-sW8';
+
+  @override
+  String get ovTXZjh2M => 'ov-T_XZjh2M';
+
+  @override
+  String get label2TheImperialCoronerS22 =>
+      '《御赐小仵作2 The Imperial Coroner S2》定档0115，楚瑜夫妇暖心回归！';
+
+  @override
+  String get kvFDYYmg => 'KvF__d-YYmg';
+
+  @override
+  String get llaTO7muek => 'llaT-O7muek';
+
+  @override
+  String get label3r4Qw60AhM => '3r4Qw60Ah-M';
+
+  @override
+  String get nwb6rTXjAs => 'Nwb6rTXj-As';
+
+  @override
+  String get label87A7F8yq94 => '87A7F-8yq94';
+
+  @override
+  String get yJPJ6RWgyg => 'yJP-j6RWgyg';
+
+  @override
+  String get rebirthForYou => '嘉南传 Rebirth For You';
+
+  @override
+  String get f9eLAZQDUds => 'F9eLAZQDUds';
+
+  @override
+  String get aVowInTheDark2 => '恋恋风陵渡 A Vow in the Dark';
+
+  @override
+  String get theUltimateVowUnknownTo => '君不知 The Ultimate Vow, Unknown to You';
+
+  @override
+  String get duMRGzTeKs => 'DuM-rGzTeKs';
+
+  @override
+  String get pLs3DOuT3JlGTynSBKz3Z5DcDzwwmqSOf =>
+      'PLs3DOuT3JlGTynSBKz3-z5DcDzwwmqSOf';
+
+  @override
+  String get theChangAnYouth => '长安少年行 The Chang\'An Youth';
+
+  @override
+  String get jg0aX6eEK4 => 'Jg0aX6e_EK4';
+
+  @override
+  String get adbjo5emA => 'Adbjo5em__A';
+
+  @override
+  String get label2QO1c7aWBE => '2QO1c7aW-bE';
+
+  @override
+  String get x75eul0gjYM => 'X75eul0gjYM';
+
+  @override
+  String get dN6c2uB2cF4 => 'DN6c2uB2cF4';
+
+  @override
+  String get label1xqkI5jRsc => '1xqkI5j-rsc';
+
+  @override
+  String get jRRXVJblrk => 'JRR-XVJblrk';
+
+  @override
+  String get thePrincessDecree2 => '平凝有令 The Princess Decree';
+
+  @override
+  String get ppiNYsUwOA => 'PpiNYs-uwOA';
+
+  @override
+  String get label83tIjIiqM => '-_83tIjIiqM';
+
+  @override
+  String get p4cKjzSHFw => 'P4cKjz-sHFw';
+
+  @override
+  String get babysitter => '我在冷宫做月嫂 Babysitter';
+
+  @override
+  String get label0MjfIXHKOM => '0MjfIXHKO-M';
+
+  @override
+  String get zEOhv9GVlao => 'ZEOhv9GVlao';
+
+  @override
+  String get pLs3DOuT3JlGRa8QmAVS9qfbbZS7afa0x =>
+      'PLs3DOuT3JlGRa8Qm-AVS9qfbbZS7afa0x';
+
+  @override
+  String get xUjdpB74DU => 'XUjdp_B74DU';
+
+  @override
+  String get ddcGbI27AE => 'DdcGbI-27AE';
+
+  @override
+  String get herPhoenixMajesty2 => '凤皇传 Her Phoenix Majesty';
+
+  @override
+  String get pzXvIZTfw => 'Pz_xvIZ-Tfw';
+
+  @override
+  String get lXojyPTBzS => 'lXojyPTBz-s';
+
+  @override
+  String get pLs3DOuT3JlGQtL9S4u2QaRJty8BDrUk6 =>
+      'PLs3DOuT3JlGQtL9S4u2QaRJty8BDrUk6-';
+
+  @override
+  String get ntuwtDMChw => 'ntuwtD-MChw';
+
+  @override
+  String get bGXUzqodupo => 'BGXUzqodupo';
+
+  @override
+  String get plePvm344k => 'plePvm-344k';
+
+  @override
+  String get f0OIk6BUbo => 'F0OIk6-BUbo';
+
+  @override
+  String get kZZnmxJGHw => 'KZZnmx_jGHw';
+
+  @override
+  String get eIuk7EPq2hg => 'EIuk7EPq2hg';
+
+  @override
+  String get label2H0pqyiPdk => '2H0pqyi-Pdk';
+
+  @override
+  String get j6Xs9w4Elw => 'J6_Xs9w4Elw';
+
+  @override
+  String get xMtNosSw0 => 'X_-mtNosSw0';
+
+  @override
+  String get bienjpo0UFM => 'Bienjpo0UFM';
+
+  @override
+  String get oJOso5tVBek => 'OJOso5tVBek';
+
+  @override
+  String get eRxWzG9p7U => 'eRxWzG9p7-U';
+
+  @override
+  String get iusgk4UlU => 'iusgk-4Ul-U';
+
+  @override
+  String get pUV3TRgebig => 'PUV3TRgebig';
+
+  @override
+  String get lr4EpeONCw => 'Lr4Epe-oNCw';
+
+  @override
+  String get o3jzt2IlGU => 'o3jzt2IlG-U';
+
+  @override
+  String get kKJPm6qb54A => 'KKJPm6qb54A';
+
+  @override
+  String get qlWNAIqlvw => 'Ql_WNAIqlvw';
+
+  @override
+  String get label0miWUBl3ZA => '0miWUBl3-zA';
+
+  @override
+  String get jQMZbtl7b2w => 'JQMZbtl7b2w';
+
+  @override
+  String get qAw54adzTQ => 'QAw5_4adzTQ';
+
+  @override
+  String get eSL64O0EfI => 'eSL-64O0EfI';
+
+  @override
+  String get eYC4j7ky8pg => 'EYC4j7ky8pg';
+
+  @override
+  String get hGDl1nDeqE => 'h-gDl1nDeqE';
+
+  @override
+  String get oAHE5vyYQg => '-oAHE5vyYQg';
+
+  @override
+  String get gbFQy8CqEo => 'GbFQy8Cq-Eo';
+
+  @override
+  String get izi1KFUxPk => 'Izi1KFUx-Pk';
+
+  @override
+  String get i3qxA2cr8kA => 'I3qxA2cr8kA';
+
+  @override
+  String get oFI5pek3lvY => 'OFI5pek3lvY';
+
+  @override
+  String get obuu6ZaIA8 => 'obuu6ZaIA-8';
+
+  @override
+  String get xIf4aL45npQ => 'XIf4aL45npQ';
+
+  @override
+  String get aGirlLikeMe2 => '我就是这般女子 A Girl Like Me';
+
+  @override
+  String get p4YsJ5WtBw => 'p4YsJ5Wt-bw';
+
+  @override
+  String get pIg2oXFWS8 => 'pIg2oXFWS-8';
+
+  @override
+  String get hrJz2C0Fxs => 'hrJz-2C0Fxs';
+
+  @override
+  String get mL0phSCWJY => 'mL0phSC-wJY';
+
+  @override
+  String get sideStoryOfFoxVolant2 => '飞狐外传 Side Story of Fox Volant';
+
+  @override
+  String get pLs3DOuT3JlGQCkd77fhalA8WxMD3OT4Q =>
+      'PLs3DOuT3JlGQCkd77fhalA8Wx-mD3OT4Q';
+
+  @override
+  String get aFlowerOnTheContinent2 => '有花在洲 A Flower On The Continent';
+
+  @override
+  String get aFlowerOnTheContinent3 =>
+      '【有花在洲 A Flower On The Continent】 小王爷当质子被花姑娘硬当公主，还挤一块住';
+
+  @override
+  String get aFlowerOnTheContinent4 =>
+      '【有花在洲 A Flower On The Continent】 花姑娘女装露馅，小王爷舍命护她还反被诬陷';
+
+  @override
+  String get aFlowerOnTheContinent5 =>
+      '【有花在洲 A Flower On The Continent】 花惜玉发现杀父仇人是宁玄洲的爹当场翻脸';
+
+  @override
+  String get aFlowerOnTheContinent6 =>
+      '【有花在洲 A Flower On The Continent】 花惜玉穿嫁衣闯敌营，拼了命救宁玄洲差点没命';
+
+  @override
+  String get aFlowerOnTheContinent7 =>
+      '【有花在洲 A Flower On The Continent】 两国签和约，宁玄洲撕诏书非要娶花惜玉';
+
+  @override
+  String get aFlowerOnTheContinent8 =>
+      '【有花在洲 A Flower On The Continent】 花惜玉割腕放血制药，宁玄洲告发父皇杀了她爹';
+
+  @override
+  String get aFlowerOnTheContinent9 =>
+      '【有花在洲 A Flower On The Continent】 花惜玉知道爹是宁玄洲爹杀的，在花海砍断定情树枝';
+
+  @override
+  String get pLs3DOuT3JlGS2bplCB41Z0150Kb9oQdn =>
+      'PLs3DOuT3JlGS2bplCB41Z0150-Kb9oQdn';
+
+  @override
+  String get t1D3w33qTG8 => 'T1D3w33qTG8';
+
+  @override
+  String get fLoEBicAD0 => 'fLoEBicA-D0';
+
+  @override
+  String get pLs3DOuT3JlGTeaxmA97G31cUKERfzNgN =>
+      'PLs3DOuT3JlGTeaxmA97G31cUK-eRfzNgN';
+
+  @override
+  String get d3UOh8aqKE => 'D3UOh_8aqKE';
+
+  @override
+  String get hcEA13KgnE => 'hcEA13Kgn-E';
+
+  @override
+  String get pbC7hP30zU => 'PbC7h-P30zU';
+
+  @override
+  String get hilariousFamily22 => '芬芳喜事 Hilarious Family 2';
+
+  @override
+  String get sliceOfLife => 'Slice of Life';
+
+  @override
+  String get p6Og4b7SEiw => 'P6Og4b7SEiw';
+
+  @override
+  String get label6TOkoVJcus => '6-tOkoVJcus';
+
+  @override
+  String get xKUz23x2pOo => 'XKUz23x2pOo';
+
+  @override
+  String get fTuSIxeFUY => 'FTuSIxe-fUY';
+
+  @override
+  String get kdow9dKN0 => '_Kdow9dKN-0';
+
+  @override
+  String get y4eB2fuCNs => 'Y4e_b2fuCNs';
+
+  @override
+  String get sVClNTSRcQ => 'SV-clNTSRcQ';
+
+  @override
+  String get xQtiANGe8 => 'x-qtiA-NGe8';
+
+  @override
+  String get obESRYh3NU => 'obESRYh3-NU';
+
+  @override
+  String get pLs3DOuT3JlGShdDzo52tfDOSU1UkUcHX =>
+      'PLs3DOuT3JlGShdDzo52tfDOSU1UkUc-hX';
+
+  @override
+  String get legendOfTheFemaleGeneral => '锦月如歌 Legend of The Female General';
+
+  @override
+  String get highlightLegendOfTheFemale =>
+      'Highlight高光合集 【锦月如歌 Legend of The Female General】';
+
+  @override
+  String get a40F2TEZrms => 'A40F2TEZrms';
+
+  @override
+  String get lYQ5iND4 => 'lYQ5iN-d-_4';
+
+  @override
+  String get bTSLegendOfTheFemale =>
+      'BTS 周也的生日大放送 🎂！【锦月如歌 Legend of The Female General】';
+
+  @override
+  String get bTSLegendOfTheFemale2 =>
+      'BTS 肖都督丞磊生日大放送 🎂！【锦月如歌 Legend of The Female General】';
+
+  @override
+  String get bTSLegendOfTheFemale3 =>
+      'BTS 战场上帅气合体打斗，没人能拒绝飒感拉满的大魏双星【锦月如歌 Legend of The Female General】';
+
+  @override
+  String get bTS520LegendOfThe =>
+      'BTS 喜肖晏开的520约会方案【锦月如歌 Legend of The Female General】';
+
+  @override
+  String get bTSLegendOfTheFemale4 =>
+      'BTS 醉酒的周也可爱到犯规~舞剑反差萌拉满~一旁的丞磊嘴角笑意真藏不住一点！【锦月如歌 Legend of The Female General】';
+
+  @override
+  String get pLs3DOuT3JlGRucYIZLqmT7FO5IWDWrP =>
+      'PLs3DOuT3JlGRuc_yIZLqmT7FO5IWD-WrP';
+
+  @override
+  String get thePrincessSGambit => '桃花映江山 The Princess\'s Gambit';
+
+  @override
+  String get highlightThePrincessSGambit =>
+      'Highlight高光合集 【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get qJRbuw2hJ3s => 'QJRbuw2hJ3s';
+
+  @override
+  String get cGtKgr7X4o => 'cGt-Kgr7X4o';
+
+  @override
+  String get iZe4HBUZQ => 'IZe4_HBU_ZQ';
+
+  @override
+  String get zGgyp0sbyDM => 'ZGgyp0sbyDM';
+
+  @override
+  String get label2BI4oU8Rwo => '2BI4o-u8Rwo';
+
+  @override
+  String get zNZAQZZQ => '-ZN-zAQZZ-Q';
+
+  @override
+  String get uma3ppi4wiM => 'Uma3ppi4wiM';
+
+  @override
+  String get clipThePrincessSGambit =>
+      'Clip 一袭红衣染白雪！姜桃花为保护幼弟诀别故土远嫁祈国【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get clipThePrincessSGambit2 =>
+      'Clip 新婚日沈府妻妾集体作妖？桃花以退为进淡定接招【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get clipThePrincessSGambit3 =>
+      'Clip 桃花自缢装晕被拆穿，沈在野一针扎醒：演，接着演！【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get clipThePrincessSGambit4 =>
+      'Clip 沈相办案好狠的心！雷霆手段彻查恶钱案，贪官们瑟瑟发抖【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get eDrJjtCRF0 => 'eDr-jjtCRF0';
+
+  @override
+  String get clipThePrincessSGambit5 =>
+      'Clip 面具刺客完美伪装难逃制裁，神探桃花：你的脚出卖了你！【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get clipPlayThePrincessS =>
+      'Clip 发簪审讯play！沈在野执簪挑起桃花下巴冷声逼问【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get label58K8GxhXlQ => '58K8-gxhXlQ';
+
+  @override
+  String get clipThePrincessSGambit6 =>
+      'Clip 初次相见就玩这么大！沈在野桃花身中合欢散四目相对【桃花映江山 The Princess\'s Gambit】';
+
+  @override
+  String get pLIPiKkSFpK8B6r2izKyYYiYdbkYSBbd =>
+      'PLIPiKkS-FpK8B6r2izKyY-yiYdbkYSBbd';
+
+  @override
+  String get reqdatIdS => 'Reqdat_id-s';
+
+  @override
+  String get label72zyHSuRDM => '72zyHSuR-dM';
+
+  @override
+  String get zQDc6PfC0 => 'z-q_Dc6PfC0';
+
+  @override
+  String get hfcLvnUQqA => '-hfcLvnUQqA';
+
+  @override
+  String get y5CHMfB8dw => 'Y5C-HMfB8dw';
+
+  @override
+  String get p28HP1H4Vc => 'P28HP_1H4Vc';
+
+  @override
+  String get yBclY6CaTw => 'yBclY6-caTw';
+
+  @override
+  String get bGIAtDEdlk => 'B-gIAtDEdlk';
+
+  @override
+  String get mWKB6zDZwc => 'mWKB6zD-zwc';
+
+  @override
+  String get q8N3LJ0A9Bk => 'Q8N3LJ0A9Bk';
+
+  @override
+  String get yR6T2qwwRJ0 => 'YR6T2qwwRJ0';
+
+  @override
+  String get oOgqhGuLE => '-o_ogqhGuLE';
+
+  @override
+  String get sk2MR0LGf0E => 'Sk2MR0LGf0E';
+
+  @override
+  String get rodBx023QQ => 'rodBx023-qQ';
+
+  @override
+  String get zPVcOAzByY => 'z-pVcOAzByY';
+
+  @override
+  String get nWM1Ceq5oyE => 'NWM1Ceq5oyE';
+
+  @override
+  String get pLIPiKkSFpKIRCE5jKV6WuMHd3ba79JP =>
+      'PLIPiKkS-FpK_IRCE5jKV6WuMHd3ba79JP';
+
+  @override
+  String get label7yLGOh2ABg => '7y-lGOh2ABg';
+
+  @override
+  String get yr5pUONS3c => '-Yr5pUONS3c';
+
+  @override
+  String get svE0DPJGYA => 'SvE0DPJ-gYA';
+
+  @override
+  String get i709WD0cVs => 'I_709WD0cVs';
+
+  @override
+  String get mgWNgw9MQ => 'MgWNgw_9-MQ';
+
+  @override
+  String get xs2k2nlJYYc => 'Xs2k2nlJYYc';
+
+  @override
+  String get fdXXdYB6Vo => 'FdXXd-YB6Vo';
+
+  @override
+  String get pKG6QKF6Og => 'p-KG6QKF6Og';
+
+  @override
+  String get limitedFULLTheIngeniousOne =>
+      '【Limited FULL】云襄传 | The Ingenious One | iQIYI 👑Join the Membership and enjoy full episodes now!';
+
+  @override
+  String get iQIYIGetTheIQIYIAPP2 => 'iQIYI 爱奇艺 - Get the iQIYI APP';
+
+  @override
+  String get aky3021PW => '_Aky3021P-w';
+
+  @override
+  String get hMaBvO3nkM => 'hMaBv-O3nkM';
+
+  @override
+  String get r2YEAXZFxp4 => 'R2YEAXZFxp4';
+
+  @override
+  String get iTLYG63GDc => 'ITLYG-63GDc';
+
+  @override
+  String get label1TyTz8z1vK => '1TyTz8z1v-k';
+
+  @override
+  String get jIq5a7yEd8c => 'JIq5a7yEd8c';
+
+  @override
+  String get tDMpSBCf5k => 'tDMp-sBCf5k';
+
+  @override
+  String get iPWSYbG6s4 => 'IPW-sYbG6s4';
+
+  @override
+  String get label6GjFP04aw => '6Gj-FP-04aw';
+
+  @override
+  String get pL6xVgUZ4UP2Ps7N0b2CUMkQ49aAX3xlw =>
+      'PL6xVgUZ4UP2Ps7N0b2-cUMkQ49aAX3xlw';
+
+  @override
+  String get f8ilmFb30 => 'f8ilm_Fb-30';
+
+  @override
+  String get dQt4Zorb4gE => 'DQt4Zorb4gE';
+
+  @override
+  String get t9XDOuWLc => 't9XD-OuW-Lc';
+
+  @override
+  String get vcEgRd08 => '-vc_egRd_08';
+
+  @override
+  String get b0b1dFL9Nc => 'B0b1dF-l9Nc';
+
+  @override
+  String get pLIPiKkSFpK8VhfSNo7Vsx4lCMTKbcOm =>
+      'PLIPiKkS-FpK8_VhfSNo7Vsx4lCMTKbcOm';
+
+  @override
+  String get aMeUFNq1m8 => 'AMe-uFNq1m8';
+
+  @override
+  String get dJUpKoPRtg => 'DJ-UpKoPRtg';
+
+  @override
+  String get oQMLDVlb7g => 'OQML_DVlb7g';
+
+  @override
+  String get aUeypfRL24 => 'aUeypfRL-24';
+
+  @override
+  String get uB9ycPhk1mg => 'UB9ycPhk1mg';
+
+  @override
+  String get pLIPiKkSFpK8Pesmyu9gzK2jXpplqUn9d =>
+      'PLIPiKkS-FpK8Pesmyu9gzK2jXpplqUn9d';
+
+  @override
+  String get i5TQ4zJDUs => 'I5TQ4z_jDUs';
+
+  @override
+  String get goft2N911yE => 'Goft2N911yE';
+
+  @override
+  String get sraEP5hG98 => 'sraEP5hG-98';
+
+  @override
+  String get axhDRyKII => '_AxhDRy-kII';
+
+  @override
+  String get j1z4azTG40 => 'J-1z4azTG40';
+
+  @override
+  String get m87V7kOvg => '-m_87V7kOvg';
+
+  @override
+  String get g2ASv4fOuc => 'G2-aSv4fOuc';
+
+  @override
+  String get tONKwUFYQ => '-TONKwU_FYQ';
+
+  @override
+  String get mw7OlvkWDg => '-Mw7OlvkWDg';
+
+  @override
+  String get pLIPiKkSFpK8KCCeSQTpodI0VqMejybr9 =>
+      'PLIPiKkS-FpK8KCCeSQTpodI0VqMejybr9';
+
+  @override
+  String get label4GJqLnsV6c => '4G-jqLnsV6c';
+
+  @override
+  String get b36gveSPqI => 'B36gveS-pqI';
+
+  @override
+  String get da6GLS11sDg => 'Da6GLS11sDg';
+
+  @override
+  String get r7Jzgv6XuM => '-r7Jzgv6XuM';
+
+  @override
+  String get fULLROADHOMEBoranJingSeven =>
+      '【FULL】👮ROAD HOME💕 | BoranJing, Seven Tan | iQIYI Philippines';
+
+  @override
+  String get iQIYIPhilippinesGetTheIQIYI =>
+      'iQIYI Philippines - Get the iQIYI APP';
+
+  @override
+  String get lKuff6Nfwp8 => 'LKuff6Nfwp8';
+
+  @override
+  String get n3oPG8EusI => 'N3oPG8Eus-I';
+
+  @override
+  String get jEq6lPG1rus => 'JEq6lPG1rus';
+
+  @override
+  String get uwhhmc98HX8 => 'Uwhhmc98HX8';
+
+  @override
+  String get k3KVVNRjgw => 'K3KVV-NRjgw';
+
+  @override
+  String get aIEnglishDubMrBAD =>
+      '【AI English Dub】Mr. BAD | Chen Zheyuan, Yue Shen | iQIYI Philippines';
+
+  @override
+  String get h7d38oiW4 => '-h7d38oi_w4';
+
+  @override
+  String get tIjEEDlLPY => '-TIjEEDlLPY';
+
+  @override
+  String get label6P746xQE1E => '6P746xQE1-E';
+
+  @override
+  String get wJo20fh1ovU => 'WJo20fh1ovU';
+
+  @override
+  String get aUci4B6qoIY => 'AUci4B6qoIY';
+
+  @override
+  String get loveOfTheDivineTree2 =>
+      '🌸【奇幻仙侠】🎋Love of the Divine Tree 仙台有树 | Deng Wei × Xiang Hanzhi | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!';
+
+  @override
+  String get uFSyFzIASM => 'UFSyFzIA-sM';
+
+  @override
+  String get c8THRSSU6M => 'c8-tHRSSU6M';
+
+  @override
+  String get cxx0rl8JJnc => 'Cxx0rl8JJnc';
+
+  @override
+  String get o5Mn9URF3uE => 'O5Mn9URF3uE';
+
+  @override
+  String get eE1jl4dzrg8 => 'EE1jl4dzrg8';
+
+  @override
+  String get label6GeLMiukHC => '6GeLMiukH-c';
+
+  @override
+  String get eAhVaQ2RA => 'e_ahVaQ2-rA';
+
+  @override
+  String get h9VQfSPUzs => 'H9VQfS-pUzs';
+
+  @override
+  String get pLIPiKkSFpKUBrffjChZ310g2OtsQfLf =>
+      'PLIPiKkS-FpK-uBrffjChZ310g2OtsQfLf';
+
+  @override
+  String get k8DtfAAU4U => 'K8-DtfAAU4U';
+
+  @override
+  String get pLIPiKkSFpK9TcBapXhwwF9nCt2DZu9k =>
+      'PLIPiKkS-FpK9-TcBapXhwwF9nCt2DZu9k';
+
+  @override
+  String get vP12XNOv5eM => 'VP12XNOv5eM';
+
+  @override
+  String get yTp22S1oA5Q => 'YTp22S1oA5Q';
+
+  @override
+  String get rxgy49XHTbs => 'Rxgy49XHTbs';
+
+  @override
+  String get hHw9RaWByc => 'hHw9-RaWByc';
+
+  @override
+  String get wwoz6JPu2Yg => 'Wwoz6JPu2Yg';
+
+  @override
+  String get lW32xQCoqs => 'LW32x_QCoqs';
+
+  @override
+  String get gb414C2O3w => 'Gb414C2_O3w';
+
+  @override
+  String get k7iTvKzZyQ => 'K7iTv-KzZyQ';
+
+  @override
+  String get npbhgWJePE => 'npbhgWJe-PE';
+
+  @override
+  String get knWpROE9xU => 'kn-WpROE9xU';
+
+  @override
+  String get eT8okyktVok => 'ET8okyktVok';
+
+  @override
+  String get pLIPiKkSFpK8Q5DyWQXPpAdGsyH8BPUYA =>
+      'PLIPiKkS-FpK8Q5DyWQXPpAdGsyH8BPUYA';
+
+  @override
+  String get rD40VQSYnjo => 'RD40VQSYnjo';
+
+  @override
+  String get bmdZBo8HoE => 'BmdZ-Bo8HoE';
+
+  @override
+  String get pLIPiKkSFpK9MiE3quPZjNnu7RgviYDy =>
+      'PLIPiKkS-FpK9MiE3quPZjNnu7-RgviYDy';
+
+  @override
+  String get fYFcg3qNJE => 'fYFcg3qN-jE';
+
+  @override
+  String get uWRVG89Kn8M => 'UWRVG89Kn8M';
+
+  @override
+  String get iBUh0B2XAMQ => 'IBUh0B2XAMQ';
+
+  @override
+  String get wQlTnSp5s => 'W-ql-tnSp5s';
+
+  @override
+  String get edAqyr6ieU => '-EdAqyr6ieU';
+
+  @override
+  String get pLIPiKkSFpK8wb8Yzzh4eptkOEn2LPtDf =>
+      'PLIPiKkS-FpK8wb8Yzzh4eptkOEn2LPtDf';
+
+  @override
+  String get label93ckJe0R6c => '-93ckJe0R6c';
+
+  @override
+  String get vzb1BHRshM => 'Vzb1B-hRshM';
+
+  @override
+  String get yC69yjVyOo => 'y-C69yjVyOo';
+
+  @override
+  String get pLIPiKkSFpK8MdPQg72ceDNUGjf0mhENz =>
+      'PLIPiKkS-FpK8MdPQg72ceDNUGjf0mhENz';
+
+  @override
+  String get iEC4DBbzBI => 'iEC4DBbzB-I';
+
+  @override
+  String get yf7VWSAbOU => 'yf7VW-sAbOU';
+
+  @override
+  String get sF0QfbuHtQ => 'S-F0QfbuHtQ';
+
+  @override
+  String get yPcsflr52s => 'yPcsflr-52s';
+
+  @override
+  String get md04meyJlA => 'md0-4meyJlA';
+
+  @override
+  String get iof4jeN6LG4 => 'Iof4jeN6LG4';
+
+  @override
+  String get label8FjmZttLM => '-8_fjmZttLM';
+
+  @override
+  String get cCnli0HQ3IE => 'CCnli0HQ3IE';
+
+  @override
+  String get label8EXPB74Dyc => '8-EXPB74Dyc';
+
+  @override
+  String get fULLMyDearGuardianJohnny =>
+      '【FULL】🕊️My Dear Guardian |  Johnny Huang, Li Qin | iQIYI Philippines';
+
+  @override
+  String get fN0lxPL4Qa0 => 'FN0lxPL4Qa0';
+
+  @override
+  String get bjlqxe76Cc => 'bjlqxe76-cc';
+
+  @override
+  String get pLIPiKkSFpKHKjDQgjOj98MaZq0gm =>
+      'PLIPiKkS-FpK-_h-KjD_qgjOj98MaZq0gm';
+
+  @override
+  String get tcWqflGCUY => 'TcWqflG-CUY';
+
+  @override
+  String get rZfxh4rSg => '--rZfxh4rSg';
+
+  @override
+  String get label1ORyfeHBGG => '1ORyfeHBG-g';
+
+  @override
+  String get pLIPiKkSFpK9cwfQqamjvymbElQlrV6do =>
+      'PLIPiKkS-FpK9cwfQqamjvymbElQlrV6do';
+
+  @override
+  String get vKvu1urDSps => 'VKvu1urDSps';
+
+  @override
+  String get dB2fAHAIw30 => 'DB2fAHAIw30';
+
+  @override
+  String get pLlCrV9TCfzMYJebfwvzDDQzDFbY9XqvE =>
+      'PLlCrV9TCfzMYJebfwvzDDQzDFbY-9XqvE';
+
+  @override
+  String get theBestThingZhangLinghe =>
+      '🌸【治愈爱情】🎋The Best Thing 爱你 | Zhang Linghe × Xu Ruohan | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!';
+
+  @override
+  String get h22R4lYT0QQ => 'H22R4lYT0QQ';
+
+  @override
+  String get a4CMqC9Hg => 'A-4C-mqC9Hg';
+
+  @override
+  String get jJvSIEUsWY => 'jJvSI-EUsWY';
+
+  @override
+  String get label94M1y8ivG => '94M1y8iv--g';
+
+  @override
+  String get k50lO8uGHM => 'K_50lO8uGHM';
+
+  @override
+  String get eP012026RebirthChineseDrama =>
+      '📽️【EP01 2026】Rebirth Chinese Drama  ENGSUB | Li Yunrui / Huangyang Tiantian /Zhang Kangle ⛵😍 Historical Drama 2026 #冰湖重生';
+
+  @override
+  String get soRNQqVHiE => 'SoRN-qqVHiE';
+
+  @override
+  String get label0WKj11GO1k => '0WKj11G-O1k';
+
+  @override
+  String get mckn8scIT9M => 'Mckn8scIT9M';
+
+  @override
+  String get label3ouJb1XcvO => '3ouJb1Xcv-o';
+
+  @override
+  String get oGOi5zR5GE => 'OGOi5z-R5GE';
+
+  @override
+  String get oSCmrPPTm8 => 'oSCmrPPTm-8';
+
+  @override
+  String get fSBy5hig8pk => 'FSBy5hig8pk';
+
+  @override
+  String get sC1tGve5Nr0 => 'SC1tGve5Nr0';
+
+  @override
+  String get lYWUkqJk2E => 'LYW-ukqJk2E';
+
+  @override
+  String get iXwhs66r7C => 'IXwhs66r7_c';
+
+  @override
+  String get hJ1qGBGVF14 => 'HJ1qGBGVF14';
+
+  @override
+  String get xz1ZaLRTo => 'xz1-Za_LRTo';
+
+  @override
+  String get pL6xVgUZ4UP2OaE8yjLqTIxq2XKePI7m7 =>
+      'PL6xVgUZ4UP2OaE8yjLqTIxq2XKe-PI7m7';
+
+  @override
+  String get xi7IXdkzYg => 'Xi7IXdkz-yg';
+
+  @override
+  String get xMUzyFFGBS => 'xMUzyFFGB-s';
+
+  @override
+  String get cAPUf0NVjfg => 'CAPUf0NVjfg';
+
+  @override
+  String get jObgd77gRVI => 'JObgd77gRVI';
+
+  @override
+  String get zAh5l4TSL44 => 'ZAh5l4TSL44';
+
+  @override
+  String get iH5Dhymb50 => 'IH-5Dhymb50';
+
+  @override
+  String get pLIPiKkSFpKBxGpxeLaoE3RK1B27J2K =>
+      'PLIPiKkS-FpK-BxGpxeLaoE3RK1-B27J2K';
+
+  @override
+  String get label5iTVfTFX1c => '5i-tVfTFX1c';
+
+  @override
+  String get label2jKJSKqQlI => '2jKJSKq-qlI';
+
+  @override
+  String get xTqeH63puw => 'xTqe-h63puw';
+
+  @override
+  String get oazvgr9cyow => 'Oazvgr9cyow';
+
+  @override
+  String get fULLFatedHeartsLiQin =>
+      '【FULL】🏹Fated Hearts | Li Qin, Chen Zheyuan | iQIYI Philippines';
+
+  @override
+  String get kCYYUs6wGOY => 'KCYYUs6wGOY';
+
+  @override
+  String get tm2SyrqoQg => 'tm2-SyrqoQg';
+
+  @override
+  String get qZ5uUGk9gmg => 'QZ5uUGk9gmg';
+
+  @override
+  String get xETV6qEPY => 'XETV6qE-P_Y';
+
+  @override
+  String get label8rWW83nQVE => '-8rWW83nQVE';
+
+  @override
+  String get zd4MuxKNDE => 'zd-4MuxKNDE';
+
+  @override
+  String get s2pk7pn3go4 => 'S2pk7pn3go4';
+
+  @override
+  String get hQvrj4X9Frg => 'HQvrj4X9Frg';
+
+  @override
+  String get fc8AWtgpGY => 'fc-8AWtgpGY';
+
+  @override
+  String get zPgeg1zFU1s => 'ZPgeg1zFU1s';
+
+  @override
+  String get iYjOKBPzxE => 'iYjOK-bPzxE';
+
+  @override
+  String get label6DmBfkWs4I => '-6DmBfkWs4I';
+
+  @override
+  String get label3JUCW6WIY => '-3JUC-w6WIY';
+
+  @override
+  String get sJ22yMn4qfY => 'SJ22yMn4qfY';
+
+  @override
+  String get ono7fMWcfcg => 'Ono7fMWcfcg';
+
+  @override
+  String get txW0Ss7D50 => 'txW-0Ss7D50';
+
+  @override
+  String get pLIPiKkSFpK9dJRiyjRahGpG8woGS9Sl2 =>
+      'PLIPiKkS-FpK9dJRiyjRahGpG8woGS9Sl2';
+
+  @override
+  String get mVab12IKYMA => 'MVab12IKYMA';
+
+  @override
+  String get zLABLPu8ik => 'Z-lABLPu8ik';
+
+  @override
+  String get hCoJMcrjQ => 'hCoJ_-McrjQ';
+
+  @override
+  String get eRyFDWPR4 => 'e_ry-fDWPR4';
+
+  @override
+  String get mAvoRUd3wU => 'MAvoRUd-3wU';
+
+  @override
+  String get dWExvMyVU => 'dW-ExvMyV-U';
+
+  @override
+  String get bPKuepfUA => '-bPKuepf_UA';
+
+  @override
+  String get fBj8DL4EF0 => 'fBj8D-L4EF0';
+
+  @override
+  String get pLIPiKkSFpK87slgXbMjH686D5Y9P0EuG =>
+      'PLIPiKkS-FpK87slgXbMjH686D5Y9P0EuG';
+
+  @override
+  String get k0Gl3FEW4s => 'K0Gl-3FEW4s';
+
+  @override
+  String get shHZmbjrqI => '-shHZmbjrqI';
+
+  @override
+  String get label7X5IzmrLCw => '7-X5IzmrLCw';
+
+  @override
+  String get nI1kp3v97O => 'nI1kp3v97-o';
+
+  @override
+  String get ea8enhWKTo0 => 'Ea8enhWKTo0';
+
+  @override
+  String get yL0RBWIo2iw => 'YL0RBWIo2iw';
+
+  @override
+  String get hX1u0R19FY => 'H_x1u0R19FY';
+
+  @override
+  String get cEGtoc5chDc => 'CEGtoc5chDc';
+
+  @override
+  String get qXKk36teGLc => 'QXKk36teGLc';
+
+  @override
+  String get pLIPiKkSFpKZTWsxZO5xUAlAsUEFOl3K =>
+      'PLIPiKkS-FpK-zTWsxZO5xUAlAsUEFOl3K';
+
+  @override
+  String get mtO6K9Y59Q => 'Mt_o6K9Y59Q';
+
+  @override
+  String get kVop5QZCM => 'kVop_5QZ-cM';
+
+  @override
+  String get lX8cA1yLAg => 'l-X8cA1yLAg';
+
+  @override
+  String get v7m8WNX1gxE => 'V7m8WNX1gxE';
+
+  @override
+  String get bGf1clBUq0 => 'BGf1clB_uq0';
+
+  @override
+  String get lPA6cWd9vqA => 'LPA6cWd9vqA';
+
+  @override
+  String get pfckLVY64 => '-Pfck_LVY64';
+
+  @override
+  String get pLIPiKkSFpKN3T51FbkSIbF5IQ0RxhVm =>
+      'PLIPiKkS-FpK_n3T51FbkSIbF5IQ0RxhVm';
+
+  @override
+  String get aH80GizsvY => 'AH8-0GizsvY';
+
+  @override
+  String get jI2ISWehQ => 'jI2IS-Weh_Q';
+
+  @override
+  String get label7rwGdyAl0g => '7rw-gdyAl0g';
+
+  @override
+  String get kF4rfnm9qdo => 'KF4rfnm9qdo';
+
+  @override
+  String get v1ae2rgrl70 => 'V1ae2rgrl70';
+
+  @override
+  String get c9D8kCt3k => 'C9D8k_-Ct3k';
+
+  @override
+  String get zY4ALWb5lw => 'ZY4AL-wb5lw';
+
+  @override
+  String get qUvwUdI73Y => 'q-UvwUdI73Y';
+
+  @override
+  String get iT670fTpFQ => 'iT-670fTpFQ';
+
+  @override
+  String get b6t7LGBPK => 'b6t_7LGBP-k';
+
+  @override
+  String get w9QYDN3nxTc => 'W9QYDN3nxTc';
+
+  @override
+  String get w9NPQe4Z5kE => 'W9NPQe4Z5kE';
+
+  @override
+  String get tQSHAlsaxqw => 'TQSHAlsaxqw';
+
+  @override
+  String get tN0ATkrc2zw => 'TN0ATkrc2zw';
+
+  @override
+  String get label7tsZeZfLtI => '7tsZeZfLt-I';
+
+  @override
+  String get w59SaAa6Ck => 'W59Sa_Aa6Ck';
+
+  @override
+  String get lSBiko45p8U => 'LSBiko45p8U';
+
+  @override
+  String get t2PwfV1JIE => 'T2PwfV1J-iE';
+
+  @override
+  String get bz75CXZ3c => 'Bz75CX-z_3c';
+
+  @override
+  String get nEEt9D9uR4g => 'NEEt9D9uR4g';
+
+  @override
+  String get dFv86C0wEg8 => 'DFv86C0wEg8';
+
+  @override
+  String get nWijSsYBUI => 'nWijSsYBU-I';
+
+  @override
+  String get ui2O9fffvWM => 'Ui2O9fffvWM';
+
+  @override
+  String get kMK9ZIL5vIE => 'KMK9ZIL5vIE';
+
+  @override
+  String get pZxPXGSNk => 'pZx_pXG-sNk';
+
+  @override
+  String get lGe1BEo7wL8 => 'LGe1BEo7wL8';
+
+  @override
+  String get wtVVEt4NxI => 'WtVVEt4Nx-I';
+
+  @override
+  String get ggXL7dEPA => 'Gg-xL7d-ePA';
+
+  @override
+  String get mPO0drxj4XI => 'MPO0drxj4XI';
+
+  @override
+  String get qYkUzAJo => '--q_ykUzAJo';
+
+  @override
+  String get mU4PJGdOxg => 'mU4PJGd-oxg';
+
+  @override
+  String get hOWSRDXSjb4 => 'HOWSRDXSjb4';
+
+  @override
+  String get nttqxJL3ES => 'nttqxJL3E-s';
+
+  @override
+  String get tJCmewUT4O => 'tJCmewUT4-o';
+
+  @override
+  String get sp7QFdPm3o => 'Sp7Q-FdPm3o';
+
+  @override
+  String get qI7c50Jcxbk => 'QI7c50Jcxbk';
+
+  @override
+  String get tM0RxsWCms => 'tM0Rxs-wCms';
+
+  @override
+  String get pLIPiKkSFpK6Iyv3Gsa1hZqwSLQ4z34u =>
+      'PLIPiKkS-FpK_6Iyv3Gsa1hZqwSLQ4z34u';
+
+  @override
+  String get p1c9AW9VNY => 'p1c9-aW9VNY';
+
+  @override
+  String get eTwGAe5RiM => 'e-TwGAe5RiM';
+
+  @override
+  String get vSDFc4ivKU => 'VSD-Fc4ivKU';
+
+  @override
+  String get label2UNAa30mF0 => '2U-nAa30mF0';
+
+  @override
+  String get iLP6X3nSYE => 'I-LP6X3nSYE';
+
+  @override
+  String get mo4kd8rg3yU => 'Mo4kd8rg3yU';
+
+  @override
+  String get xt8m39rI9o => 'Xt8m_39rI9o';
+
+  @override
+  String get oFLWTHOJJo => 'OFLWTHO-jJo';
+
+  @override
+  String get pLlRMBKO6RkY69nj6AJ051lj7vSGrkNxZ =>
+      'PLlRMBK-O6RkY69nj6AJ051lj7vSGrkNxZ';
+
+  @override
+  String get label3gTpyQenT0 => '3gTpy-qenT0';
+
+  @override
+  String get nM3BDMI4YS => 'nM3BDMI4Y-s';
+
+  @override
+  String get hudgy0oFTz4 => 'Hudgy0oFTz4';
+
+  @override
+  String get lVc0U1sJIBU => 'LVc0U1sJIBU';
+
+  @override
+  String get gBTqOwTPTU => 'G-BTqOwTPTU';
+
+  @override
+  String get tN0iGRSk => '_T-N-0iGRSk';
+
+  @override
+  String get gkEBMyB9TM => 'gkEBMy-B9TM';
+
+  @override
+  String get bw3XWYzoI => '-bw3XWYzo-I';
+
+  @override
+  String get fullBrightEyesInThe =>
+      '【Full】Bright Eyes in the Dark | Johnny Huang, Zhang Jing Yi | iQIYI Philippines';
+
+  @override
+  String get jalmOqeImY => 'JalmOqeIm-Y';
+
+  @override
+  String get vUuzPUBkas => 'V-UuzPUBkas';
+
+  @override
+  String get ni1jN2ECMY => 'Ni1j-N2ECMY';
+
+  @override
+  String get v5qeq2caORg => 'V5qeq2caORg';
+
+  @override
+  String get cB64rYJ2tX4 => 'CB64rYJ2tX4';
+
+  @override
+  String get qwyz2k6oymc => 'Qwyz2k6oymc';
+
+  @override
+  String get gQYaqUf4 => 'GQ_-_YaqUf4';
+
+  @override
+  String get tqHC6KtyoI => 'tqHC6-ktyoI';
+
+  @override
+  String get hvsJOV10Q => 'hvsJOV-_10Q';
+
+  @override
+  String get label9LFPEXffyQ => '-9LFPEXffyQ';
+
+  @override
+  String get bMbhR77eps => 'b-MbhR77eps';
+
+  @override
+  String get olkxX4m0m4 => 'OlkxX-4m0m4';
+
+  @override
+  String get vE8nY1UC2zo => 'VE8nY1UC2zo';
+
+  @override
+  String get pLIPiKkSFpKZjc5dsVYfFD44oWYA1YZ =>
+      'PLIPiKkS-FpK-Zjc5dsVYfFD44oWYA-1YZ';
+
+  @override
+  String get gZDlH6PN3M => 'gZDlH6P-n3M';
+
+  @override
+  String get iw4jJBB5z7A => 'Iw4jJBB5z7A';
+
+  @override
+  String get hOTu6yklewA => 'HOTu6yklewA';
+
+  @override
+  String get vJqSl1U6CE => '-VJqSl1U6CE';
+
+  @override
+  String get yF3ZBEnNaA => 'YF-3ZBEnNaA';
+
+  @override
+  String get at8v7Xp7XX4 => 'At8v7Xp7XX4';
+
+  @override
+  String get ctXWz6p3RI => '-CtXWz6p3RI';
+
+  @override
+  String get gsuEr3Rwo => 'GsuEr3--Rwo';
+
+  @override
+  String get cvkAplxMt0 => '-CvkAplxMt0';
+
+  @override
+  String get ssQiWv0MEA => 'SsQiWv0M-eA';
+
+  @override
+  String get aaDlYQswEc => 'aaDl-YQswEc';
+
+  @override
+  String get oaDLF7MQF0 => 'Oa_DLF7MQF0';
+
+  @override
+  String get pLIPiKkSFpK9jSaLiXXKZUvwfh7ROuLy =>
+      'PLIPiKkS-FpK9jSaLiXX_KZUvwfh7ROuLy';
+
+  @override
+  String get g0nqbugnDI => 'G_0nqbugnDI';
+
+  @override
+  String get tnHgUzjPNQ => 'TnHgUzj-pNQ';
+
+  @override
+  String get nM7ZeWM1g => 'n-m7ZeW-m1g';
+
+  @override
+  String get sUqbEIap2M => '-sUqbEIap2M';
+
+  @override
+  String get x0qW6MwABw => 'X0qW6Mw-ABw';
+
+  @override
+  String get lANXfM0Hmc => 'L-aNXfM0Hmc';
+
+  @override
+  String get y84UUFKMZf4 => 'Y84UUFKMZf4';
+
+  @override
+  String get mGPFI2bfKPE => 'MGPFI2bfKPE';
+
+  @override
+  String get f3wSwhf0z8 => 'F3w_swhf0z8';
+
+  @override
+  String get qFITVBXVj2g => 'QFITVBXVj2g';
+
+  @override
+  String get pLyT8L9yeLXCR7t2xuK0L7L4qIRBTnA2n =>
+      'PLyT8L9yeLXCR7t2xuK0-L7L4qIRBTnA2n';
+
+  @override
+  String get aY1Wv805lUw => 'AY1Wv805lUw';
+
+  @override
+  String get w44Q3K2QJY => 'W44-q3K2QJY';
+
+  @override
+  String get kJn1gifAmok => 'KJn1gifAmok';
+
+  @override
+  String get xwEsWU6WI => 'xwEs-WU6_wI';
+
+  @override
+  String get gt93TaUaco => 'gt9-3TaUaco';
+
+  @override
+  String get label0C62qBO6o => '0_c62q-bO6o';
+
+  @override
+  String get label7DqIz7YqcA => '7Dq-iz7YqcA';
+
+  @override
+  String get xh5K9iCMoo => 'xh5K9iC-Moo';
+
+  @override
+  String get aKGp1lOCRTI => 'AKGp1lOCRTI';
+
+  @override
+  String get jWYI2dtDE0 => 'JWY_i2dtDE0';
+
+  @override
+  String get yWHZCsskuvo => 'YWHZCsskuvo';
+
+  @override
+  String get label76Z43cwXKQ => '76Z43cw-xKQ';
+
+  @override
+  String get cINtsiKIx4 => 'CINtsi-kIx4';
+
+  @override
+  String get eNGSUBChineseFantasyMovie =>
+      '🎥✨【ENG SUB】Chinese Fantasy Movie | Fantasy、Adventure【 iQIYI MOVIE THEATER-Welcome to subscribe】';
+
+  @override
+  String get iQIYIMOVIETHEATERGetThe =>
+      '爱奇艺大电影 iQIYI MOVIE THEATER - Get the iQIYI APP';
+
+  @override
+  String get oNi1Mh97lYo => 'ONi1Mh97lYo';
+
+  @override
+  String get sF74vcQwZE => 'sF74vc-qwZE';
+
+  @override
+  String get qBQ1xvkvQHw => 'QBQ1xvkvQHw';
+
+  @override
+  String get s2HdHtZAU => 'S2HdHtZ_A-U';
+
+  @override
+  String get pyt8OISpH0 => 'Pyt8O-ISpH0';
+
+  @override
+  String get x5oUtpXWQ => 'X5oUtp_X_wQ';
+
+  @override
+  String get miniDramaENGSUBFull =>
+      '🎀【微短剧 Mini Drama】ENG SUB | Full Version Collection | Download WeTV / Tencent Video APP to Watch More';
+
+  @override
+  String get vZysxG7Jdg => 'V-zysxG7Jdg';
+
+  @override
+  String get aLCm1V4uj8 => 'aL-Cm1V4uj8';
+
+  @override
+  String get xk8guI5XC7I => 'Xk8guI5XC7I';
+
+  @override
+  String get woIZMiblY => 'Wo--IZMiblY';
+
+  @override
+  String get e0Z1n9lVyg => 'E0Z1n-9lVyg';
+
+  @override
+  String get rakZAuY6Xc => 'RakZ-auY6Xc';
+
+  @override
+  String get rW5f3p84 => 'RW_5f-_3p84';
+
+  @override
+  String get wMtyXWrQRY => 'wMtyXWrQ-rY';
+
+  @override
+  String get bQj9Q1GRnrk => 'BQj9Q1GRnrk';
+
+  @override
+  String get ezD9rGwMk => '-EzD9r_GwMk';
+
+  @override
+  String get pLIPiKkSFpK8hfRCOdc3tpxnj6JmGAZoc =>
+      'PLIPiKkS-FpK8hfRCOdc3tpxnj6JmGAZoc';
+
+  @override
+  String get bSt0NgJemE => '-bSt0NgJemE';
+
+  @override
+  String get zwSSFibKM => 'zwSSFib-_kM';
+
+  @override
+  String get rFPkjQgdwQ => 'rFPkjQgdw-Q';
+
+  @override
+  String get label0BgIjnISU => '0BgIjnIS-_U';
+
+  @override
+  String get o1mRObiOog => 'O-1mRObiOog';
+
+  @override
+  String get yHkKXeRbbk => 'YHk-KXeRbbk';
+
+  @override
+  String get label0E4CVmwEv0 => '0E4-CVmwEv0';
+
+  @override
+  String get n220nwxfsgY => 'N220nwxfsgY';
+
+  @override
+  String get rZQc0wk8Y4c => 'RZQc0wk8Y4c';
+
+  @override
+  String get uIV6jneTw => 'U_i-v6jneTw';
+
+  @override
+  String get fullBeautyOfResilienceJu =>
+      '【Full】Beauty of Resilience | Ju Jing Yi, Fiction | iQIYI Philippines';
+
+  @override
+  String get tT8V4eOewkc => 'TT8V4eOewkc';
+
+  @override
+  String get a6D40BKYc9Y => 'A6D40BKYc9Y';
+
+  @override
+  String get gd5lvL1Y3UI => 'Gd5lvL1Y3UI';
+
+  @override
+  String get bhrmf6kUnc => 'Bhrmf6k_Unc';
+
+  @override
+  String get zajsQ18HyM => 'Zajs-Q18HyM';
+
+  @override
+  String get za9iO7xrdhU => 'Za9iO7xrdhU';
+
+  @override
+  String get cCi69c44BTY => 'CCi69c44BTY';
+
+  @override
+  String get c5Lnqm4FI5s => 'C5Lnqm4FI5s';
+
+  @override
+  String get bXr6Zu7EH3g => 'BXr6Zu7EH3g';
+
+  @override
+  String get pLIPiKkSFpK85Ldm2HSl0Xwj2hN7T59g =>
+      'PLIPiKkS-FpK85Ldm2HSl-0Xwj2hN7T59g';
+
+  @override
+  String get pLWIh6wofY4 => 'PLWIh6wofY4';
+
+  @override
+  String get label3YVDQD5Onc => '3-yVDQD5Onc';
+
+  @override
+  String get iPxGP1UGnM => 'IPx-GP1UGnM';
+
+  @override
+  String get hotTrendingMoonlitReunionFull =>
+      '🔥Hot Trending【子夜归 Moonlit Reunion】Full EPS | Human and Demon fall in love while solving mysteries | Xu Kai, Tian Xiwei | ENG SUB';
+
+  @override
+  String get v7niIXnWWM => 'v7ni-iXnWWM';
+
+  @override
+  String get vQ5PKKJSVHc => 'VQ5PKKJSVHc';
+
+  @override
+  String get hWuKG1vJe0 => 'hWu-kG1vJe0';
+
+  @override
+  String get ydHHEma2Q => '-ydHH-ema2Q';
+
+  @override
+  String get w6SB0R7W1U => 'W6-SB0R7W1U';
+
+  @override
+  String get kwjhz1XOLhs => 'Kwjhz1XOLhs';
+
+  @override
+  String get cmyjS5zTQ => '-cmyjS-5zTQ';
+
+  @override
+  String get label8DzphxFJPI => '8-DzphxFJPI';
+
+  @override
+  String get gzjc1eGV22g => 'Gzjc1eGV22g';
+
+  @override
+  String get y9ZHRA9lxcg => 'Y9ZHRA9lxcg';
+
+  @override
+  String get mnfa5S7KO8 => 'Mnfa5_S7KO8';
+
+  @override
+  String get gNiRWpeMws => 'gNiRWpe-mws';
+
+  @override
+  String get cVO0hA3P8O => 'CVO0hA3P8-o';
+
+  @override
+  String get label9afZnkZaPs => '9afZnk-zaPs';
+
+  @override
+  String get pLIPiKkSFpK9cUoS9l5spDGFvN2Crmdn =>
+      'PLIPiKkS-FpK9cUoS9l_5spDGFvN2Crmdn';
+
+  @override
+  String get nLMKI6PT3o => 'NL_MKI6PT3o';
+
+  @override
+  String get zR7i5LASYI => 'ZR7i5_lASYI';
+
+  @override
+  String get keKMrR1Yss => 'KeK-mrR1Yss';
+
+  @override
+  String get juRTPVpVXA => 'juRTPVp-VXA';
+
+  @override
+  String get yzSy3klEQU => 'yzSy3kl-eQU';
+
+  @override
+  String get label8A7WTDaaGs => '8A7W-tDaaGs';
+
+  @override
+  String get pLIPiKkSFpK8hIu32ZhKKsO2wlADWaCBU =>
+      'PLIPiKkS-FpK8hIu32ZhKKsO2wlADWaCBU';
+
+  @override
+  String get oVN1y6LPWD4 => 'OVN1y6LPWD4';
+
+  @override
+  String get qU7t6C4Gc => 'qU7t6-c4_gc';
+
+  @override
+  String get fk9JXDCOG4 => 'Fk9_JXDCOG4';
+
+  @override
+  String get uC7Mnd3qJc => 'UC7Mnd3q_Jc';
+
+  @override
+  String get glHm8Zs8Ac => 'glHm8Zs8-Ac';
+
+  @override
+  String get l2w4TUDxmsg => 'L2w4TUDxmsg';
+
+  @override
+  String get cPLU864rP14 => 'CPLU864rP14';
+
+  @override
+  String get a4mUs48UAU => 'a4mUs4-8UAU';
+
+  @override
+  String get bVmda5m2mN4 => 'BVmda5m2mN4';
+
+  @override
+  String get mZUf8J2gZA4 => 'MZUf8J2gZA4';
+
+  @override
+  String get tQiZtftwY => 'TQi--ZtftwY';
+
+  @override
+  String get bR38d9KJoos => 'BR38d9KJoos';
+
+  @override
+  String get pLIPiKkSFpKOHffjOp4RqWHtE2OYq =>
+      'PLIPiKkS-FpK-oHffjOp4-rq__WHtE2OYq';
+
+  @override
+  String get fyuHVqsXMI => 'fyuHVqs-XMI';
+
+  @override
+  String get yJB0nFJNw0 => 'YJB0nFJNw_0';
+
+  @override
+  String get label21RxwDPr8k => '21Rxw-DPr8k';
+
+  @override
+  String get zZTZ149pQ => 'ZZ-_tZ149pQ';
+
+  @override
+  String get o5qvwYEyQ0 => 'o5qvwY-EyQ0';
+
+  @override
+  String get bGGDIBw4TIw => 'BGGDIBw4TIw';
+
+  @override
+  String get gU0lbFUBwg8 => 'GU0lbFUBwg8';
+
+  @override
+  String get yTfshUkXmG => 'yTfshUkXm-g';
+
+  @override
+  String get yOUTUBEAPIKEY => 'YOUTUBE_API_KEY=';
+
+  @override
+  String get partContentDetails => '?part=contentDetails';
+
+  @override
+  String get fallInLove => 'fall in love';
+
+  @override
+  String get myGirl => 'my girl';
+
+  @override
+  String get firstRomance2 => 'first romance';
+
+  @override
+  String get fallFor => 'fall for';
+
+  @override
+  String get uCD83JhUFQXRDwC6S8caCQ => 'UCD_83Jh-UFQXRDwC6S8caCQ';
+
+  @override
+  String get uCFh5x5AZHQQ6FaGKnGQXDA => 'UCFh5x5AZHQQ6FaGKnG-QXDA';
+
+  @override
+  String get uCRABdhiBHX4BieJfPCd2pg => 'UCRABdhiBHX4Bie-jfPCd2pg';
+
+  @override
+  String get hiddenLove2 => 'Hidden Love';
+
+  @override
+  String get loveBetweenFairyAndDevil2 => 'Love Between Fairy and Devil';
+
+  @override
+  String get loveLikeTheGalaxy2 => 'Love Like The Galaxy';
+
+  @override
+  String get myJourneyToYou2 => 'My Journey to You';
+
+  @override
+  String get mysteriousLotusCasebook2 => 'Mysterious Lotus Casebook';
+
+  @override
+  String get reset => 'Reset';
+
+  @override
+  String get theLongBallad2 => 'The Long Ballad';
+
+  @override
+  String get theUntamed2 => 'The Untamed';
+
+  @override
+  String get wordOfHonor2 => 'Word of Honor';
+
+  @override
+  String get lightOfDawn2 => '人之初 Light of Dawn';
+
+  @override
+  String get hOMELANDGUARDIAN2 => '守诚者|HOMELAND GUARDIAN';
+
+  @override
+  String get searching2 => 'Searching...';
+
+  @override
+  String get verse => 'Verse';
+
+  @override
+  String get allStories2 => 'All Stories';
+
+  @override
+  String get bbcComZhongwenTrad => 'bbc.com/zhongwen/trad';
+
+  @override
+  String get hanziClickable => '.hanzi-clickable';
+
+  @override
+  String get sentenceText => 'sentence-text';
+
+  @override
+  String get sentenceWrapper => 'sentence-wrapper';
+
+  @override
+  String get hanziClickable2 => 'hanzi-clickable';
+
+  @override
+  String get char2 => '+ char +';
+
+  @override
+  String get sentenceText2 => '.sentence-text';
+
+  @override
+  String get ttsBtn => 'tts-btn';
+
+  @override
+  String get hanziTranslateBtn => 'hanzi-translate-btn';
+
+  @override
+  String get label10px16px => '10px 16px';
+
+  @override
+  String get articleArticlePostContentMain =>
+      'article, .article, .post, .content, main';
+
+  @override
+  String get ttsActiveWord => '.tts-active-word';
+
+  @override
+  String get ttsActiveWord2 => 'tts-active-word';
+
+  @override
+  String get upperIntermediate2 => 'Upper-Intermediate';
+
+  @override
+  String get hanziDarkModeStyle => 'hanzi-dark-mode-style';
+
+  @override
+  String get sharedaddyJpPostFlairEntry =>
+      '.sharedaddy, #jp-post-flair, .entry-meta, .wpcnt, .author-info, #comments, .comments, .post-footer, footer, .related-posts, .share-buttons';
+
+  @override
+  String get aiInsightBanner => 'ai-insight-banner';
+
+  @override
+  String get summaryToggleBtn => 'summary-toggle-btn';
+
+  @override
+  String get toggleChevron => 'toggle-chevron';
+
+  @override
+  String get summaryText => 'summary-text';
+
+  @override
+  String get documentBodyInnerText => 'document.body.innerText';
+
+  @override
+  String get documentTitle => 'document.title';
+
+  @override
+  String get processing => 'Processingâ€¦';
+
+  @override
+  String get keepItUp => '好！Keep it up';
+
+  @override
+  String get minutesDay => 'Minutes / Day';
+
+  @override
+  String get consistencyIsTheInkThat =>
+      '\"Consistency is the ink that builds the character.\"';
+
+  @override
+  String get businessCareer => 'Business & Career';
+
+  @override
+  String get travelSurvival => 'Travel & Survival';
+
+  @override
+  String get label05MinDay => '05 Min / Day';
+
+  @override
+  String get label10MinDay => '10 Min / Day';
+
+  @override
+  String get label20MinDay => '20 Min / Day';
+
+  @override
+  String get label30MinDay => '30 Min / Day';
+
+  @override
+  String get dynamicDecksStrokeAnalysis => 'Dynamic Decks & Stroke Analysis';
+
+  @override
+  String get subscriptionsAreTemporarilyUnavailablePl =>
+      'Subscriptions are temporarily unavailable. Please try again.';
+
+  @override
+  String get trialReminder => 'Trial Reminder';
+
+  @override
+  String get turnOnNotificationsIfYou =>
+      'Turn on notifications if you would like a reminder before your eligible trial expires. Your App Store subscription settings remain the source of truth.';
+
+  @override
+  String get label2Months => '2 months';
+
+  @override
+  String get label3Months => '3 months';
+
+  @override
+  String get label6Months => '6 months';
+
+  @override
+  String get billingPeriod => 'billing period';
+
+  @override
+  String get chooseASubscription => 'Choose a subscription';
+
+  @override
+  String get startFreeTrial => 'Start free trial';
+
+  @override
+  String get smartNewsDict => 'Smart News & Dict';
+
+  @override
+  String get hSK16AIDecks => 'HSK 1-6 & AI Decks';
+
+  @override
+  String get continueWithTemporaryPremium => 'Continue with temporary Premium';
+
+  @override
+  String get testProductUnavailable => 'Test product unavailable';
+
+  @override
+  String get paymentIsChargedToYour =>
+      'Payment is charged to your App Store account.';
+
+  @override
+  String get subscriptionsRenewAutomaticallyUnlessCan =>
+      'Subscriptions renew automatically unless canceled';
+
+  @override
+  String get atLeast24HoursBefore =>
+      'at least 24 hours before the end of the current period.';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get closePurchaseOffer => 'Close purchase offer';
+
+  @override
+  String get loading => '読み込み中...';
+
+  @override
+  String get analyzingImage2 => 'Analyzing image…';
+
+  @override
+  String get extractingChineseText2 => 'Extracting Chinese text…';
+
+  @override
+  String get lookingUpVocabulary2 => 'Looking up vocabulary…';
+
+  @override
+  String get deselectAll => 'Deselect All';
+
+  @override
+  String get selectAll => 'Select All';
+
+  @override
+  String get worldChineseLiteraryMasterpiece =>
+      'World & Chinese literary masterpiece.';
+
+  @override
+  String get classic => 'Classic';
+
+  @override
+  String get literature => 'Literature';
+
+  @override
+  String get theOriginAwakening => 'The Origin & Awakening';
+
+  @override
+  String get turbulentHorizonsTheJourney => 'Turbulent Horizons & The Journey';
+
+  @override
+  String get trialsTribulationsDevotion => 'Trials, Tribulations & Devotion';
+
+  @override
+  String get theClashOfWitsBravery => 'The Clash of Wits & Bravery';
+
+  @override
+  String get theGrandClimaxResolution => 'The Grand Climax & Resolution';
+
+  @override
+  String get everlastingLegacyEpilogue => 'Everlasting Legacy & Epilogue';
+
+  @override
+  String get acrossTheVastExpanseOf =>
+      'Across the vast expanse of heaven and earth, characters pursue their destiny and convictions through profound trials.';
+
+  @override
+  String get everyDialogueAndEncounterWithin =>
+      'Every dialogue and encounter within the tale carries the brilliance of the human spirit and the imprint of its era.';
+
+  @override
+  String get followingTheFlowOfProse =>
+      'Following the flow of prose, readers traverse centuries of time to share in the triumphs and sorrows of legendary figures.';
+
+  @override
+  String get preQin => 'pre-qin';
+
+  @override
+  String get theGoddessNWaRepairing => 'The goddess Nüwa repairing the sky';
+
+  @override
+  String get artsTraditions => 'Arts & Traditions';
+
+  @override
+  String get femaleWarm => 'Female, warm';
+
+  @override
+  String get femaleCheerful => 'Female, cheerful';
+
+  @override
+  String get maleUpbeat => 'Male, upbeat';
+
+  @override
+  String get maleNewsStyle => 'Male, news-style';
+
+  @override
+  String get maleSporty => 'Male, sporty';
+
+  @override
+  String get onDevice => 'On-device';
+
+  @override
+  String get label15Minutes => '15 Minutes';
+
+  @override
+  String get label30Minutes => '30 Minutes';
+
+  @override
+  String get label45Minutes => '45 Minutes';
+
+  @override
+  String get selectChapter => 'Select Chapter';
+
+  @override
+  String get andContinuesToBeStudied =>
+      'and continues to be studied and celebrated by readers across generations.';
+
+  @override
+  String get label1Poem => '1 Poem';
+
+  @override
+  String get label1Chapter => '1 Chapter';
+
+  @override
+  String get localDeviceVoice2 => 'Local device voice';
+
+  @override
+  String get weeklyAzureQuotaReachedSwitching =>
+      'Weekly Azure quota reached — switching to local voice';
+
+  @override
+  String get sleepTimer2 => '定时关闭 · Sleep Timer';
+
+  @override
+  String get tableOfContents2 => '目录 · Table of Contents';
+
+  @override
+  String get hanziMaster10 => 'HanziMaster/1.0';
+
+  @override
+  String get spanishItalianRussianClassics =>
+      'Spanish, Italian & Russian Classics';
+
+  @override
+  String get englishAmericanGlobalClassics =>
+      'English, American & Global Classics';
+
+  @override
+  String get whileStrategicallyEmbeddingWordsYou =>
+      'while strategically embedding words you are currently struggling with so you can learn them in context.';
+
+  @override
+  String get poetryPainting => 'poetry-painting';
+
+  @override
+  String get contactSinosparkCom => 'contact@sinospark.com';
+
+  @override
+  String get shadowingStudioIsADedicated =>
+      'Shadowing Studio is a dedicated space to practice mimicking native speakers. You listen to a phrase, record yourself repeating it, and compare the waveforms and pronunciation scores to refine your accent.';
+
+  @override
+  String get theVoicesInAIStories =>
+      'The voices in AI Stories and Echo Hall are powered by advanced Neural Text-to-Speech models. They are specifically tuned to provide authentic native Chinese accents, appropriate emotional inflection, and natural pacing.';
+
+  @override
+  String get theWebExplorerAllowsYou =>
+      'The Web Explorer allows you to browse any Chinese website. When you encounter a difficult word, simply tap it to open the Quick Look card, which provides instant pinyin, translation, and HSK level.';
+
+  @override
+  String get zenModeStripsAwayDistracting =>
+      'Zen Mode strips away distracting web elements, ads, and complex layouts from articles, presenting you with a clean, calligraphic reading environment focused purely on the text.';
+
+  @override
+  String get weUseAnIntelligentAlgorithm =>
+      'We use an intelligent algorithm that predicts when you are about to forget a word. Words you struggle with will appear more frequently, while words you know well will be scheduled further into the future.';
+
+  @override
+  String get usage3 => 'Usage:';
 }

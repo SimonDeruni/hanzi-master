@@ -36,7 +36,8 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
       body: showsAsync.when(
         loading: () => Center(
           child: CircularProgressIndicator(
@@ -84,13 +85,15 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
             );
           }
 
-          final allShows = showsByGenre.values.expand((shows) => shows).toSet().toList();
+          final allShows =
+              showsByGenre.values.expand((shows) => shows).toSet().toList();
 
           // Filtering logic
           final filteredShows = allShows.where((show) {
             final matchesQuery = _searchQuery.isEmpty ||
                 show.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-                show.tags.any((tag) => tag.toLowerCase().contains(_searchQuery.toLowerCase()));
+                show.tags.any((tag) =>
+                    tag.toLowerCase().contains(_searchQuery.toLowerCase()));
             return matchesQuery;
           }).toList();
 
@@ -100,7 +103,8 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
             children: [
               // Search Bar
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: ZenSearchBar(
                   controller: _searchController,
                   hintText: AppLocalizations.of(context)!.searchByTitleOrTag,
@@ -111,7 +115,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                   },
                 ),
               ),
-              
+
               const SizedBox(height: 8),
 
               // Content Area
@@ -120,9 +124,11 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                     ? (filteredShows.isEmpty
                         ? Center(
                             child: Text(
-                              'No shows found',
+                              AppLocalizations.of(context)!.noShowsFound,
                               style: TextStyle(
-                                color: isDark ? Colors.grey[600] : Colors.grey.shade600,
+                                color: isDark
+                                    ? Colors.grey[600]
+                                    : Colors.grey.shade600,
                               ),
                             ),
                           )
@@ -135,7 +141,8 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                                 child: SizedBox(
                                   height: 200,
                                   width: double.infinity,
-                                  child: _ShowCard(show: filteredShows[index], isWide: true),
+                                  child: _ShowCard(
+                                      show: filteredShows[index], isWide: true),
                                 ),
                               );
                             },
@@ -149,7 +156,9 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                               .toList();
 
                           if (index == 0) {
-                            if (bookmarkedShows.isEmpty) return const SizedBox.shrink();
+                            if (bookmarkedShows.isEmpty) {
+                              return const SizedBox.shrink();
+                            }
                             return _BookmarkedRow(shows: bookmarkedShows);
                           }
 
@@ -186,10 +195,11 @@ class _BookmarkedRow extends StatelessWidget {
           child: Row(
             children: [
               Icon(Icons.bookmark,
-                  color: isDark ? Colors.amber : const Color(0xFF8B6914), size: 18),
+                  color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                  size: 18),
               const SizedBox(width: 6),
               Text(
-                'Bookmarked',
+                AppLocalizations.of(context)!.bookmarked,
                 style: TextStyle(
                   color: isDark ? Colors.amber : const Color(0xFF8B6914),
                   fontSize: 18,
@@ -311,17 +321,20 @@ class _ShowCard extends ConsumerWidget {
                     width: isWide ? double.infinity : 150,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
-                      final uriMatch = RegExp(r'vi(?:_webp)?/([^/]+)/').firstMatch(show.thumbnailUrl);
+                      final uriMatch = RegExp(r'vi(?:_webp)?/([^/]+)/')
+                          .firstMatch(show.thumbnailUrl);
                       if (uriMatch != null) {
                         final vid = uriMatch.group(1)!;
-                        final fallbackUrl = 'https://img.youtube.com/vi/$vid/hqdefault.jpg';
+                        final fallbackUrl =
+                            'https://img.youtube.com/vi/$vid/hqdefault.jpg';
                         if (fallbackUrl != show.thumbnailUrl) {
                           return Image.network(
                             fallbackUrl,
                             height: 105,
                             width: isWide ? double.infinity : 150,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => _buildPlaceholder(isDark, isWide),
+                            errorBuilder: (_, __, ___) =>
+                                _buildPlaceholder(isDark, isWide),
                           );
                         }
                       }
@@ -332,7 +345,9 @@ class _ShowCard extends ConsumerWidget {
                       return Container(
                         height: 105,
                         width: isWide ? double.infinity : 150,
-                        color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade200,
+                        color: isDark
+                            ? const Color(0xFF2C2C2E)
+                            : Colors.grey.shade200,
                       );
                     },
                   ),
@@ -341,9 +356,11 @@ class _ShowCard extends ConsumerWidget {
                       top: 6,
                       left: 6,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF3252C7), // Blue CC badge matching media
+                          color: const Color(
+                              0xFF3252C7), // Blue CC badge matching media
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: const Text(
@@ -357,20 +374,24 @@ class _ShowCard extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  if (show.tags.contains('Trailer') || show.tags.contains('Highlight'))
+                  if (show.tags.contains('Trailer') ||
+                      show.tags.contains('Highlight'))
                     Positioned(
                       top: 6,
                       left: show.subtitleType == SubtitleType.soft ? 42 : 6,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: show.tags.contains('Trailer') 
+                          color: show.tags.contains('Trailer')
                               ? Colors.redAccent.withValues(alpha: 0.9)
                               : Colors.purpleAccent.withValues(alpha: 0.9),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Text(
-                          show.tags.contains('Trailer') ? AppLocalizations.of(context)!.trailer : AppLocalizations.of(context)!.highlight,
+                          show.tags.contains('Trailer')
+                              ? AppLocalizations.of(context)!.trailer
+                              : AppLocalizations.of(context)!.highlight,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 9,
@@ -391,7 +412,8 @@ class _ShowCard extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Icon(Icons.bookmark_rounded,
-                            color: isDark ? Colors.amber : const Color(0xFF8B6914),
+                            color:
+                                isDark ? Colors.amber : const Color(0xFF8B6914),
                             size: 14),
                       ),
                     ),
@@ -416,7 +438,8 @@ class _ShowCard extends ConsumerWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${show.episodeCount} episodes',
+                      AppLocalizations.of(context)!
+                          .episodesCount(show.episodeCount),
                       style: TextStyle(
                         color: isDark ? Colors.white54 : Colors.grey.shade600,
                         fontSize: 11,

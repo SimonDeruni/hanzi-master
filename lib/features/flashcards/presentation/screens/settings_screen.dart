@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 
@@ -6,7 +6,6 @@ import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
-import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/ai_data_privacy_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
@@ -115,18 +114,18 @@ class SettingsScreen extends ConsumerWidget {
                 onTap: () => _showAppLanguagePicker(context, ref),
               ),
               _buildDivider(),
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blue.withValues(alpha: 0.1),
-                  child: const Icon(Icons.translate, color: Colors.blue),
-                ),
-                title: Text(
-                    l10n?.translationLanguage ??
-                        AppLocalizations.of(context)!.translationLanguage,
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(ref.watch(translationLanguageProvider)),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => _showTranslationLanguagePicker(context, ref),
+              _buildSwitchTile(
+                icon: Icons.menu_book_outlined,
+                iconColor: Colors.indigo,
+                title: l10n?.useEnglishDefinitions ?? "Use English definitions",
+                subtitle: l10n?.useEnglishDefinitionsDesc ??
+                    "English definitions are generally more accurate and detailed",
+                value: settings.useEnglishDefinitions,
+                onChanged: (val) {
+                  ref
+                      .read(settingsProvider.notifier)
+                      .toggleUseEnglishDefinitions(val);
+                },
               ),
               _buildDivider(),
               _buildSliderTile(
@@ -253,20 +252,6 @@ class SettingsScreen extends ConsumerWidget {
                       ],
                     ),
                   );
-                },
-              ),
-              _buildDivider(),
-              _buildSwitchTile(
-                icon: Icons.menu_book_outlined,
-                iconColor: Colors.indigo,
-                title: l10n?.useEnglishDefinitions ?? "Use English definitions",
-                subtitle: l10n?.useEnglishDefinitionsDesc ??
-                    "English definitions are generally more accurate and detailed",
-                value: settings.useEnglishDefinitions,
-                onChanged: (val) {
-                  ref
-                      .read(settingsProvider.notifier)
-                      .toggleUseEnglishDefinitions(val);
                 },
               ),
             ],
@@ -463,38 +448,6 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  static void _showTranslationLanguagePicker(
-      BuildContext context, WidgetRef ref) {
-    final currentLanguage = ref.read(translationLanguageProvider);
-    showDialog<void>(
-      context: context,
-      builder: (dialogContext) => SimpleDialog(
-        title: Text(AppLocalizations.of(context)!.translationLanguage),
-        children: [
-          RadioGroup<String>(
-            groupValue: currentLanguage,
-            onChanged: (selectedLanguage) async {
-              if (selectedLanguage == null) return;
-              await ref
-                  .read(translationLanguageProvider.notifier)
-                  .setLanguage(selectedLanguage);
-              if (dialogContext.mounted) Navigator.pop(dialogContext);
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: supportedTranslationLanguages
-                  .map((language) => RadioListTile<String>(
-                        value: language,
-                        title: Text(language),
-                      ))
-                  .toList(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   static void _showVoicePickerDialog(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final currentVoice = ref.read(settingsProvider).audiobookVoice;
@@ -561,7 +514,7 @@ void _showNotificationSettings(BuildContext context, WidgetRef ref) {
 
   showModalBottomSheet(
     context: context,
-      useRootNavigator: true,
+    useRootNavigator: true,
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
     builder: (ctx) {

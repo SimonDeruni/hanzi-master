@@ -71,28 +71,42 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final inkColor = theme.colorScheme.onSurface;
+
     if (_isLoading || _cardOne == null || _cardWater == null) {
       return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircularProgressIndicator(color: Colors.indigo),
-              const SizedBox(height: 16),
-              Text(AppLocalizations.of(context)!.openingTheOriginScroll,
-                  style: const TextStyle(
-                      color: Colors.indigo, fontWeight: FontWeight.bold)),
-            ],
+        backgroundColor:
+            isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+        body: CalligraphyBackground(
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(color: theme.colorScheme.primary),
+                const SizedBox(height: 16),
+                Text(
+                  AppLocalizations.of(context)!.openingTheOriginScroll,
+                  style: TextStyle(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
     }
 
     return Scaffold(
+      backgroundColor:
+          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.grey),
+          icon: Icon(Icons.close, color: inkColor.withValues(alpha: 0.65)),
           onPressed: () => Navigator.pop(context),
         ),
         backgroundColor: Colors.transparent,
@@ -120,6 +134,11 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   }
 
   Widget _buildConstellationExplanationStep() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final inkColor = theme.colorScheme.onSurface;
+    final buttonColor = isDark ? Colors.amber.shade300 : Colors.amber.shade800;
+
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Column(
@@ -136,24 +155,29 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                 letterSpacing: 2),
           ),
           const SizedBox(height: 48),
-          const Text(
+          Text(
             "Not every character has a parent Radical. Some are unique pictographs or stand alone.",
-            style: TextStyle(fontSize: 18, height: 1.5),
+            style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          const Text(
+          Text(
             "On the map, we group these independent characters into CONSTELLATIONS (✨).",
             style: TextStyle(
-                fontSize: 18, height: 1.5, fontWeight: FontWeight.bold),
+              fontSize: 18,
+              height: 1.5,
+              fontWeight: FontWeight.bold,
+              color: inkColor,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48),
           ElevatedButton(
             onPressed: _nextPage,
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.amber.shade800,
-                foregroundColor: Colors.white,
+                backgroundColor: buttonColor,
+                foregroundColor:
+                    isDark ? const Color(0xFF1A1A1B) : Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
             child: Text(AppLocalizations.of(context)!.iUnderstand),
@@ -164,17 +188,22 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   }
 
   Widget _buildRadicalExplanationStep() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final inkColor = theme.colorScheme.onSurface;
+    final primaryColor = theme.colorScheme.primary;
+
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "WHAT ARE RADICALS?",
             style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.indigo,
+                color: primaryColor,
                 letterSpacing: 2),
           ),
           const SizedBox(height: 48),
@@ -200,17 +229,18 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
             ],
           ),
           const SizedBox(height: 48),
-          const Text(
+          Text(
             "Hanzi are built from building blocks called RADICALS.\n\nThey give the character its core meaning or theme.",
-            style: TextStyle(fontSize: 18, height: 1.5),
+            style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48),
           ElevatedButton(
             onPressed: _nextPage,
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
-                foregroundColor: Colors.white,
+                backgroundColor: primaryColor,
+                foregroundColor:
+                    isDark ? const Color(0xFF1A1A1B) : Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
             child: Text(AppLocalizations.of(context)!.continueText),
@@ -246,6 +276,11 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   }
 
   Widget _buildIntroStep() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final inkColor = theme.colorScheme.onSurface;
+    final primaryColor = theme.colorScheme.primary;
+
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Column(
@@ -260,17 +295,18 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                   color: Colors.amber,
                   letterSpacing: 2)),
           const SizedBox(height: 24),
-          const Text(
+          Text(
             "Hanzi are not just letters. They are pictures frozen in time.\n\nTo master them, you must learn to trace their flow.",
-            style: TextStyle(fontSize: 18, height: 1.5),
+            style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48),
           ElevatedButton(
             onPressed: _nextPage,
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
-                foregroundColor: Colors.white,
+                backgroundColor: primaryColor,
+                foregroundColor:
+                    isDark ? const Color(0xFF1A1A1B) : Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
             child: Text(AppLocalizations.of(context)!.iAmReady),
@@ -281,20 +317,25 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   }
 
   Widget _buildDrawingStep(String title, String subtitle, Flashcard card) {
+    final theme = Theme.of(context);
+
     return Column(
       children: [
         const SizedBox(height: 100),
         Text(title,
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Colors.indigo)),
+                color: theme.colorScheme.primary)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           child: Text(subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 18, color: Colors.grey.shade700, height: 1.4)),
+                fontSize: 18,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                height: 1.4,
+              )),
         ),
         Expanded(
           child: Center(
@@ -314,31 +355,37 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   }
 
   Widget _buildFinaleStep() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final inkColor = theme.colorScheme.onSurface;
+    final successColor = isDark ? Colors.green.shade300 : Colors.green;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.check_circle, size: 80, color: Colors.green),
+          Icon(Icons.check_circle, size: 80, color: successColor),
           const SizedBox(height: 32),
           Text(AppLocalizations.of(context)!.youAreAScholar,
-              style: const TextStyle(
+              style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: successColor,
                   letterSpacing: 2)),
           const SizedBox(height: 24),
-          const Text(
+          Text(
             "The Galaxy Map awaits.\nMaster the Suns (Radicals) to unlock the Planets (Characters).",
-            style: TextStyle(fontSize: 18, height: 1.5),
+            style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48),
           ElevatedButton(
             onPressed: _nextPage,
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
+                backgroundColor: successColor,
+                foregroundColor:
+                    isDark ? const Color(0xFF1A1A1B) : Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
             child: Text(AppLocalizations.of(context)!.enterTheScroll),
@@ -363,11 +410,24 @@ class _TutorialCanvasWrapperState extends State<_TutorialCanvasWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.9),
+        color: isDark
+            ? const Color(0xFF2A2A2B)
+            : Colors.white.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(24),
-        boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 20)],
+        border: Border.all(
+          color: (isDark ? Colors.white : Colors.black)
+              .withValues(alpha: isDark ? 0.10 : 0.06),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.35 : 0.12),
+            blurRadius: 20,
+          ),
+        ],
       ),
       child: DrawingCanvas(
         key: ValueKey(widget.card.id),

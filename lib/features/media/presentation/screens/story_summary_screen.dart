@@ -206,9 +206,9 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                                 color: const Color(0xFF1A1A1B), // Deep ink
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: const Text(
-                                'Native',
-                                style: TextStyle(
+                              child: Text(
+                                AppLocalizations.of(context)!.native,
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
@@ -277,7 +277,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                       Row(
                         children: [
                           Text(
-                            'Summary',
+                            AppLocalizations.of(context)!.summary,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -318,7 +318,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
 
                       // Key Words
                       Text(
-                        'Key Words',
+                        AppLocalizations.of(context)!.keyWords,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -378,19 +378,19 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         ),
                         elevation: 0,
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Open Original Website',
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.openOriginalWebsite,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.5,
                             ),
                           ),
-                          SizedBox(width: 8),
-                          Icon(Icons.open_in_new_rounded, size: 20),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.open_in_new_rounded, size: 20),
                         ],
                       ),
                     ),
@@ -417,19 +417,19 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         ),
                         elevation: 0,
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Start Reading',
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.startReading,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.5,
                             ),
                           ),
-                          SizedBox(width: 8),
-                          Icon(Icons.menu_book_rounded, size: 20),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.menu_book_rounded, size: 20),
                         ],
                       ),
                     ),

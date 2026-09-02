@@ -1,4 +1,4 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -208,8 +208,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           ? const Color(0xFF1A1A1B)
           : const Color(0xFFFDFCF0), // Zen Paper
       appBar: AppBar(
-        title: const Text('æ–‡åŒ–ä¹¦æˆ¿ Library',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(AppLocalizations.of(context)!.culturalReadingRoom,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor:
@@ -255,16 +255,17 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'ç»å…¸è—ä¹¦é˜ Â· Grand Library',
-                            style: TextStyle(
+                          Text(
+                            AppLocalizations.of(context)!.theMainLibrary,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),
                           ),
                           Text(
-                            '80+ Complete classic novels & world epics',
+                            AppLocalizations.of(context)!
+                                .k80CompleteClassicNovelsWorldEpics,
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.85),
                               fontSize: 12,
@@ -296,7 +297,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-      useRootNavigator: true,
+            useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => const CustomStoryCreatorSheet(),
@@ -305,7 +306,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         backgroundColor: const Color(0xFF8B0000), // Crimson/Deep Red
         icon: const Icon(Icons.auto_awesome, color: Colors.white),
         label: Text(AppLocalizations.of(context)!.createStory,
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -576,9 +578,9 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                       color: Colors.white, // Pure white background
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text(
-                      'STORY OF THE DAY',
-                      style: TextStyle(
+                    child: Text(
+                      AppLocalizations.of(context)!.storyOfTheDay,
+                      style: const TextStyle(
                           color: Color(0xFF1A1A1B),
                           fontSize: 10,
                           fontWeight: FontWeight.w700,

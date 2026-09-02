@@ -344,15 +344,15 @@ class MediaHubScreen extends ConsumerWidget {
                               width: 1,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.auto_awesome,
+                              const Icon(Icons.auto_awesome,
                                   color: Color(0xFFFFD54F), size: 12),
-                              SizedBox(width: 5),
+                              const SizedBox(width: 5),
                               Text(
-                                "LIVE OVERLAY",
-                                style: TextStyle(
+                                AppLocalizations.of(context)!.liveOverlay,
+                                style: const TextStyle(
                                   color: Color(0xFFFFE082),
                                   fontSize: 10,
                                   fontWeight: FontWeight.w800,
@@ -372,9 +372,9 @@ class MediaHubScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
                       children: [
-                        const Text(
-                          'WEB EXPLORER',
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.webExplorer,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w900,
@@ -396,7 +396,8 @@ class MediaHubScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.',
+                      AppLocalizations.of(context)!
+                          .browseAnyChineseWebsiteWithRealtime,
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.78),
                         fontSize: 13,
@@ -423,20 +424,20 @@ class MediaHubScreen extends ConsumerWidget {
                               width: 1,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'START EXPLORING',
-                                style: TextStyle(
+                                AppLocalizations.of(context)!.startExploring,
+                                style: const TextStyle(
                                   color: Color(0xFFFFE082),
                                   fontSize: 11,
                                   fontWeight: FontWeight.w800,
                                   letterSpacing: 1.0,
                                 ),
                               ),
-                              SizedBox(width: 6),
-                              Icon(
+                              const SizedBox(width: 6),
+                              const Icon(
                                 Icons.arrow_forward_rounded,
                                 color: Color(0xFFFFE082),
                                 size: 14,
@@ -737,7 +738,15 @@ class _DailyDiscoveryCarouselState
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        isCompleted ? "âœ“ COMPLETED" : item.tag,
+                        isCompleted
+                            ? '✓ ${AppLocalizations.of(context)!.completed}'
+                            : switch (item.tag) {
+                                'VIDEO OF THE DAY' =>
+                                  AppLocalizations.of(context)!.videoOfTheDay,
+                                'ARTICLE OF THE DAY' =>
+                                  AppLocalizations.of(context)!.articleOfTheDay,
+                                _ => item.tag,
+                              },
                         style: TextStyle(
                           color:
                               isCompleted ? Colors.greenAccent : Colors.white,
@@ -772,10 +781,10 @@ class _DailyDiscoveryCarouselState
                             size: 16),
                         const SizedBox(width: 6),
                         Expanded(
-                            child: Text(
-                              item.tag == 'VIDEO OF THE DAY'
-                                  ? item.title
-                                  : item.subtitle,
+                          child: Text(
+                            item.tag == 'VIDEO OF THE DAY'
+                                ? item.title
+                                : item.subtitle,
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.6),
                               fontSize: 13,
