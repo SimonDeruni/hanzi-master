@@ -3755,5 +3755,16 @@
   "theWebExplorerAllowsYou": "The Web Explorer allows you to browse any Chinese website. When you encounter a difficult word, simply tap it to open the Quick Look card, which provides instant pinyin, translation, and HSK level.",
   "zenModeStripsAwayDistracting": "Zen Mode strips away distracting web elements, ads, and complex layouts from articles, presenting you with a clean, calligraphic reading environment focused purely on the text.",
   "weUseAnIntelligentAlgorithm": "We use an intelligent algorithm that predicts when you are about to forget a word. Words you struggle with will appear more frequently, while words you know well will be scheduled further into the future.",
-  "usage3": "Usage:"
+  "usage3": "Usage:",
+  "tutorialOneExplanation": "This is ONE (Yī). Always draw from Left to Right.",
+  "tutorialWaterExplanation": "This is the full character WATER (Shuǐ). When used as a left-side component, it shapeshifts into '氵' (Three Drops)!",
+  "tutorialRadicalsExplanation": "Hanzi are built from building blocks called RADICALS. They give the character its core meaning or theme.",
+  "tutorialLettersExplanation": "Hanzi are not just letters. They are pictures frozen in time. To master them, you must learn to trace their flow.",
+  "tutorialGalaxyExplanation": "The Galaxy Map awaits. Master the Suns (Radicals) to unlock the Planets (Characters).",
+  "onboardingDailyLifeTravel": "Daily Life & Travel",
+  "onboardingPhilosophyIdioms": "Philosophy & Idioms",
+  "onboardingBusinessCareerMulti": "Business &\nCareer",
+  "onboardingTravelSurvivalMulti": "Travel &\nSurvival",
+  "onboardingHskCertificationMulti": "HSK\nCertification",
+  "onboardingCulturalAppreciationMulti": "Cultural\nAppreciation"
 }
