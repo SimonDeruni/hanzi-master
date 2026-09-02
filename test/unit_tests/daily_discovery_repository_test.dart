@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/media/data/repositories/daily_discovery_repository.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +11,7 @@ void main() {
     final client = MockClient((request) async {
       expect(request.url.toString(),
           'https://feeds.bbci.co.uk/zhongwen/simp/rss.xml');
-      return http.Response('''
+      return http.Response.bytes(utf8.encode('''
         <rss xmlns:media="http://search.yahoo.com/mrss/">
           <channel>
             <item>
@@ -19,10 +21,13 @@ void main() {
             </item>
           </channel>
         </rss>
-      ''', 200);
+      '''), 200, headers: const {
+        'content-type': 'application/rss+xml; charset=utf-8',
+      });
     });
 
-    final item = await DailyDiscoveryRepository(client: client).getDailyArticle();
+    final item =
+        await DailyDiscoveryRepository(client: client).getDailyArticle();
 
     expect(item.title, '今日头条');
     expect(item.subtitle, 'BBC 中文');
@@ -37,7 +42,7 @@ void main() {
       if (request.url.host == 'feeds.bbci.co.uk') {
         return http.Response('unavailable', 503);
       }
-      return http.Response('''
+      return http.Response.bytes(utf8.encode('''
         <html><body><main>
           <section>
             <img src="https://example.com/home-lead.jpg">
@@ -46,14 +51,16 @@ void main() {
             </a></h3></div>
           </section>
         </main></body></html>
-      ''', 200);
+      '''), 200, headers: const {
+        'content-type': 'text/html; charset=utf-8',
+      });
     });
 
-    final item = await DailyDiscoveryRepository(client: client).getDailyArticle();
+    final item =
+        await DailyDiscoveryRepository(client: client).getDailyArticle();
 
     expect(item.title, '屏幕上的主要新闻');
-    expect(item.url,
-        'https://www.bbc.com/zhongwen/articles/lead-story/simp');
+    expect(item.url, 'https://www.bbc.com/zhongwen/articles/lead-story/simp');
     expect(item.imageUrl, 'https://example.com/home-lead.jpg');
   });
 }

@@ -9,7 +9,6 @@ class GlobalBlurredBottomSheet extends StatelessWidget {
   static Future<T?> show<T>(BuildContext context, {required Widget child}) {
     return showModalBottomSheet<T>(
       context: context,
-      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       useSafeArea: true,
@@ -26,7 +25,7 @@ class GlobalBlurredBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0);
-    
+
     return Container(
       decoration: BoxDecoration(
         color: bg,

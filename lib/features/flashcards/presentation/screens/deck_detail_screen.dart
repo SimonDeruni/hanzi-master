@@ -1,4 +1,4 @@
-﻿import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -222,7 +222,6 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         onPressed: () async {
                           final updatedDeck = await showModalBottomSheet<Deck>(
                             context: context,
-      useRootNavigator: true,
                             isScrollControlled: true,
                             useRootNavigator: true,
                             backgroundColor: Colors.transparent,
