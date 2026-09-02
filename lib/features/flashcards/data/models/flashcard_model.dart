@@ -39,16 +39,16 @@ class FlashcardModel extends HiveObject {
 
   @HiveField(9)
   final List<String> strokePaths;
-  
+
   @HiveField(10)
   final double? lastScore;
-  
+
   @HiveField(11)
   final int? attempts;
-  
+
   @HiveField(12)
   final DateTime? lastAttemptDate;
-  
+
   @HiveField(13)
   final int? successCount;
 
@@ -166,16 +166,25 @@ class FlashcardModel extends HiveObject {
         attempts: attempts ?? 0,
         lastAttemptDate: lastAttemptDate,
         successCount: successCount ?? 0,
+        introducedAt: lastAttemptDate,
       );
     }
 
     // Default legacy data goes to reading
     map[StudyMode.reading] = readingStats?.toEntity() ?? buildLegacyStats();
-    
-    if (calligraphyStats != null) map[StudyMode.calligraphy] = calligraphyStats!.toEntity();
-    if (recallStats != null) map[StudyMode.recall] = recallStats!.toEntity();
-    if (speakingStats != null) map[StudyMode.speaking] = speakingStats!.toEntity();
-    if (listeningStats != null) map[StudyMode.listening] = listeningStats!.toEntity();
+
+    if (calligraphyStats != null) {
+      map[StudyMode.calligraphy] = calligraphyStats!.toEntity();
+    }
+    if (recallStats != null) {
+      map[StudyMode.recall] = recallStats!.toEntity();
+    }
+    if (speakingStats != null) {
+      map[StudyMode.speaking] = speakingStats!.toEntity();
+    }
+    if (listeningStats != null) {
+      map[StudyMode.listening] = listeningStats!.toEntity();
+    }
 
     return map;
   }
@@ -183,8 +192,11 @@ class FlashcardModel extends HiveObject {
   static FlashcardModel fromEntity(Flashcard flashcard) {
     String? mediansJson;
     if (flashcard.medianPaths.isNotEmpty) {
-      final List<dynamic> encodableMedians = flashcard.medianPaths.map((stroke) {
-        return stroke.map((offset) => {'x': offset.dx, 'y': offset.dy}).toList();
+      final List<dynamic> encodableMedians =
+          flashcard.medianPaths.map((stroke) {
+        return stroke
+            .map((offset) => {'x': offset.dx, 'y': offset.dy})
+            .toList();
       }).toList();
       mediansJson = json.encode(encodableMedians);
     }
@@ -211,15 +223,22 @@ class FlashcardModel extends HiveObject {
       medianPathsJson: mediansJson,
       isFlipped: flashcard.isFlipped,
       inkPoints: flashcard.inkPoints,
-      calligraphyStats: flashcard.modeStats.containsKey(StudyMode.calligraphy) 
-          ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.calligraphy]!) : null,
+      calligraphyStats: flashcard.modeStats.containsKey(StudyMode.calligraphy)
+          ? ReviewStatsModel.fromEntity(
+              flashcard.modeStats[StudyMode.calligraphy]!)
+          : null,
       readingStats: ReviewStatsModel.fromEntity(readingStats),
-      recallStats: flashcard.modeStats.containsKey(StudyMode.recall) 
-          ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.recall]!) : null,
-      speakingStats: flashcard.modeStats.containsKey(StudyMode.speaking) 
-          ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.speaking]!) : null,
-      listeningStats: flashcard.modeStats.containsKey(StudyMode.listening) 
-          ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.listening]!) : null,
+      recallStats: flashcard.modeStats.containsKey(StudyMode.recall)
+          ? ReviewStatsModel.fromEntity(flashcard.modeStats[StudyMode.recall]!)
+          : null,
+      speakingStats: flashcard.modeStats.containsKey(StudyMode.speaking)
+          ? ReviewStatsModel.fromEntity(
+              flashcard.modeStats[StudyMode.speaking]!)
+          : null,
+      listeningStats: flashcard.modeStats.containsKey(StudyMode.listening)
+          ? ReviewStatsModel.fromEntity(
+              flashcard.modeStats[StudyMode.listening]!)
+          : null,
       sourceSentence: flashcard.sourceSentence,
       sourceContext: flashcard.sourceContext,
     );
@@ -227,14 +246,14 @@ class FlashcardModel extends HiveObject {
 
   factory FlashcardModel.fromJson(Map<String, dynamic> json) {
     return FlashcardModel(
-      id: json['uuid'] ?? json['id'] ?? '', 
+      id: json['uuid'] ?? json['id'] ?? '',
       deckId: json['deckId'] ?? 'default',
       hanzi: json['hanzi'] ?? '',
       pinyin: PinyinUtils.convertNumericToMarks(json['pinyin'] ?? ''),
       definition: json['definition'] ?? '',
       hskLevel: json['hskLevel'] ?? 1,
       strokePaths: [],
-      nextReviewDate: DateTime.now(), 
+      nextReviewDate: DateTime.now(),
       interval: 0,
       easeFactor: 2.5,
       streak: 0,
