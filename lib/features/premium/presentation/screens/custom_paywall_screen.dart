@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
+import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
@@ -14,10 +15,14 @@ class CustomPaywallScreen extends ConsumerStatefulWidget {
   const CustomPaywallScreen({
     super.key,
     this.useMockOfferingsForTesting = false,
+    this.simulateUnavailableOfferingsForTesting = false,
   });
 
   @visibleForTesting
   final bool useMockOfferingsForTesting;
+
+  @visibleForTesting
+  final bool simulateUnavailableOfferingsForTesting;
 
   @override
   ConsumerState<CustomPaywallScreen> createState() =>
@@ -51,7 +56,23 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       _usingTestOfferings = true;
       return;
     }
+    if (widget.simulateUnavailableOfferingsForTesting) {
+      _isLoading = false;
+      _offeringsError =
+          'Subscriptions are temporarily unavailable. Please try again.';
+      return;
+    }
     _fetchOfferings();
+  }
+
+  void _continueWithTemporaryPremium() {
+    HapticFeedback.selectionClick();
+    MonetizationService.grantTemporaryPremiumAccess();
+    ref.read(premiumControllerProvider.notifier).grantTemporaryAccess();
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
+      (route) => false,
+    );
   }
 
   Future<void> _fetchOfferings() async {
@@ -531,6 +552,13 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                               TextButton(
                                 onPressed: _fetchOfferings,
                                 child: const Text('Retry'),
+                              ),
+                              OutlinedButton(
+                                key: const Key(
+                                    'paywall_temporary_premium_button'),
+                                onPressed: _continueWithTemporaryPremium,
+                                child: const Text(
+                                    'Continue with temporary Premium'),
                               ),
                             ],
 

@@ -1,4 +1,4 @@
-import 'package:hanzi_master/l10n/app_localizations.dart';
+﻿import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:collection/collection.dart';
@@ -58,6 +58,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
   void _showCreatorSheet(BuildContext context, WidgetRef ref) {
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => const CustomStoryCreatorSheet(),

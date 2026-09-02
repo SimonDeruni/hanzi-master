@@ -1,4 +1,4 @@
-import 'dart:ui';
+﻿import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class GlobalBlurredBottomSheet extends StatelessWidget {
@@ -9,9 +9,11 @@ class GlobalBlurredBottomSheet extends StatelessWidget {
   static Future<T?> show<T>(BuildContext context, {required Widget child}) {
     return showModalBottomSheet<T>(
       context: context,
+      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       useSafeArea: true,
+      useRootNavigator: true,
       barrierColor: Colors.black.withValues(alpha: 0.6),
       builder: (ctx) => BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),

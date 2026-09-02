@@ -1241,6 +1241,54 @@ class AppLocalizationsDe extends AppLocalizations {
   String get startingSession => 'Sitzung wird gestartet...';
 
   @override
+  String get studySession => 'Study session';
+
+  @override
+  String get readyToStudy => 'Ready to study';
+
+  @override
+  String get studyQueuePreviewDescription =>
+      'Your session is based on today\'s schedule and deck limits.';
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get newLabel => 'Neu';
+
+  @override
+  String get studyDeckEmpty => 'This deck is empty';
+
+  @override
+  String get studyDeckEmptyDescription =>
+      'Add cards before starting a study session.';
+
+  @override
+  String get studyDailyLimitReached => 'Today\'s limit is complete';
+
+  @override
+  String get studyDailyLimitReachedDescription =>
+      'You\'ve used this deck\'s new-card or review allowance for today.';
+
+  @override
+  String get studyCaughtUpDescription =>
+      'Nothing else is scheduled for today. Come back for the next review.';
+
+  @override
+  String get noCardsAvailable => 'No cards available';
+
+  @override
+  String get studyNoEligibleCardsDescription =>
+      'No cards are eligible for this study mode right now.';
+
+  @override
+  String get studySessionLoadFailed =>
+      'Unable to load this study session. Please try again.';
+
+  @override
+  String get retryLimitReached => 'This card will return in your next session.';
+
+  @override
   String get masterBuildingBlocks => 'Meistere die Bausteine der Hanzi';
 
   @override
@@ -2272,6 +2320,54 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get privacyAndAudio => 'Datenschutz & Audio';
+
+  @override
+  String get aiDataPrivacyTitle => 'AI Data & Privacy';
+
+  @override
+  String get aiDataPrivacySettingsSubtitle =>
+      'See what AI features send, why, and to whom';
+
+  @override
+  String get aiDataPrivacyOverviewTitle => 'When AI is used';
+
+  @override
+  String get aiDataPrivacyOverviewBody =>
+      'SinoSpark uses cloud AI only when you choose a feature that needs it, such as AI chat, explanations, translation, image analysis, speech recognition, pronunciation grading, or cloud voices. AI output can be inaccurate, so review important results.';
+
+  @override
+  String get aiDataPrivacyProvidersTitle => 'AI service providers';
+
+  @override
+  String get aiDataPrivacyProvidersBody =>
+      'Google Gemini processes generative text and image requests. OpenRouter routes some generative requests to Google Gemini or DeepSeek. Microsoft Azure AI Speech processes speech recognition, pronunciation assessment, and text sent for cloud voice synthesis.';
+
+  @override
+  String get aiDataPrivacySentTitle => 'Data that may be sent';
+
+  @override
+  String get aiDataPrivacySentBody =>
+      'Depending on the feature, we send the text you enter or select, relevant conversation or lesson context, images you choose for AI analysis, voice recordings you submit, and technical request data such as IP address and device/network metadata. We do not intentionally include your name or email in AI prompts.';
+
+  @override
+  String get aiDataPrivacyControlsTitle => 'Your choices';
+
+  @override
+  String get aiDataPrivacyControlsBody =>
+      'Do not use an AI feature if you do not want its input sent to the named provider. You can deny camera, photo, or microphone permission in device Settings. Choose the Local voice to keep text-to-speech on your device. Avoid submitting sensitive or confidential information.';
+
+  @override
+  String get aiDataPrivacyRetentionTitle => 'Storage and retention';
+
+  @override
+  String get aiDataPrivacyRetentionBody =>
+      'SinoSpark does not intentionally store raw AI prompts, submitted images, or voice recordings on its own servers after processing. Generated results may be saved on your device or with your account when you choose to save them. Providers process data under their own terms and configured retention controls; see the full policy for details.';
+
+  @override
+  String get readFullPrivacyPolicy => 'Read Full Privacy Policy';
+
+  @override
+  String get linkOpenFailed => 'Could not open the link. Please try again.';
 
   @override
   String get puSonglingLiterature =>
@@ -6924,9 +7020,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get errorLoadingFromAi => 'Fehler beim Laden von der KI.';
 
   @override
-  String get newLabel => 'Neu';
-
-  @override
   String get analyzingImage => 'Bild wird analysiert...';
 
   @override
@@ -7101,4 +7194,56 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get characters => 'Zeichen';
+
+  @override
+  String get todayDashboard => 'Today';
+
+  @override
+  String get studyToday => 'Study today\'s cards';
+
+  @override
+  String get studyAhead => 'Study ahead';
+
+  @override
+  String get studyAheadDescription =>
+      'Practice the nearest scheduled reviews without using today\'s quota. No new cards are introduced.';
+
+  @override
+  String get studyAheadComplete => 'Study-ahead practice complete';
+
+  @override
+  String get dueNow => 'Due now';
+
+  @override
+  String get scheduled => 'Scheduled';
+
+  @override
+  String get sevenDayForecast => '7-day review forecast';
+
+  @override
+  String get reviews => 'Reviews';
+
+  @override
+  String get newCardsLabel => 'New cards';
+
+  @override
+  String get attempts => 'Attempts';
+
+  @override
+  String get duration => 'Time';
+
+  @override
+  String get answerBreakdown => 'Answer breakdown';
+
+  @override
+  String get reviewCards => 'Review cards';
+
+  @override
+  String get retries => 'Retries';
+
+  @override
+  String get needsPractice => 'Needs practice';
+
+  @override
+  String get uniqueCardsStudied => 'Cards';
 }

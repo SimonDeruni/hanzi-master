@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 import 'dart:math';
@@ -55,6 +55,7 @@ class UnitHeader extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: () => showModalBottomSheet(
               context: context,
+      useRootNavigator: true,
               isScrollControlled: true,
               backgroundColor: Colors.transparent,
               builder: (context) => UnitIntroSheet(unit: unit),
@@ -464,6 +465,7 @@ class MapNode extends ConsumerWidget {
       if (isSun) {
         await showModalBottomSheet(
           context: context,
+      useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
           builder: (context) => RadicalDetailSheet(
@@ -608,6 +610,7 @@ class MapNode extends ConsumerWidget {
           Navigator.pop(context); // Close current sheet
           await showModalBottomSheet(
             context: context,
+      useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => RadicalDetailSheet(
@@ -632,6 +635,7 @@ class MapNode extends ConsumerWidget {
       if (context.mounted) {
         await showModalBottomSheet(
           context: context,
+      useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
           builder: (context) => MissionBriefingSheet(

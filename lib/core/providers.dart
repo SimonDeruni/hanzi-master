@@ -2,10 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
+import 'package:hanzi_master/features/flashcards/data/models/daily_deck_activity_model.dart';
 import 'package:hanzi_master/features/flashcards/data/repositories/deck_repository_impl.dart';
 import 'package:hanzi_master/features/flashcards/domain/repositories/deck_repository.dart';
 import 'package:hanzi_master/features/flashcards/data/repositories/flashcard_repository_impl.dart';
 import 'package:hanzi_master/features/flashcards/domain/repositories/flashcard_repository.dart';
+import 'package:hanzi_master/features/flashcards/data/repositories/study_activity_repository_impl.dart';
+import 'package:hanzi_master/features/flashcards/domain/repositories/study_activity_repository.dart';
 import 'package:hanzi_master/features/course/data/repositories/course_repository_impl.dart';
 import 'package:hanzi_master/features/course/domain/repositories/course_repository.dart';
 import 'package:hanzi_master/features/flashcards/data/repositories/global_dictionary_repository.dart';
@@ -20,10 +23,19 @@ final deckBoxProvider = Provider<Box<DeckModel>>((ref) {
   return Hive.box<DeckModel>('decks');
 });
 
+final studyActivityBoxProvider = Provider<Box<DailyDeckActivityModel>>((ref) {
+  return Hive.box<DailyDeckActivityModel>('daily_deck_activity_v1');
+});
+
 // 2. Provider for the Repository (The mechanic who uses the box)
 final flashcardRepositoryProvider = Provider<FlashcardRepository>((ref) {
   final box = ref.watch(hiveBoxProvider);
   return FlashcardRepositoryImpl(box);
+});
+
+final studyActivityRepositoryProvider =
+    Provider<StudyActivityRepository>((ref) {
+  return StudyActivityRepositoryImpl(ref.watch(studyActivityBoxProvider));
 });
 
 // 2.5 Provider for DeckRepository
@@ -36,6 +48,7 @@ final courseRepositoryProvider = Provider<CourseRepository>((ref) {
   return CourseRepositoryImpl();
 });
 
-final globalDictionaryRepositoryProvider = Provider<GlobalDictionaryRepository>((ref) {
+final globalDictionaryRepositoryProvider =
+    Provider<GlobalDictionaryRepository>((ref) {
   return GlobalDictionaryRepository();
 });

@@ -67,7 +67,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get aiTutorRateLimit => 'The AI tutor is busy right now. Please wait a moment and try again.';
+  String get aiTutorRateLimit =>
+      'The AI tutor is busy right now. Please wait a moment and try again.';
 
   @override
   String get deleteAccount => 'Xóa tài khoản';
@@ -82,31 +83,36 @@ class AppLocalizationsVi extends AppLocalizations {
   String get accountDataDeletedTitle => 'Dữ liệu tài khoản sẽ bị xóa';
 
   @override
-  String get accountDataDeletedBody => 'Tài khoản đăng nhập và toàn bộ thông tin tài khoản được lưu trữ tại SinoSpark sẽ bị xóa vĩnh viễn. Hành động này không thể hoàn tác.';
+  String get accountDataDeletedBody =>
+      'Tài khoản đăng nhập và toàn bộ thông tin tài khoản được lưu trữ tại SinoSpark sẽ bị xóa vĩnh viễn. Hành động này không thể hoàn tác.';
 
   @override
   String get localDataKeptTitle => 'Dữ liệu trên thiết bị này sẽ được giữ lại';
 
   @override
-  String get localDataKeptBody => 'Tiến độ học tập, nội dung đã tải xuống và các tùy chọn chỉ lưu trên thiết bị này sẽ không bị xóa.';
+  String get localDataKeptBody =>
+      'Tiến độ học tập, nội dung đã tải xuống và các tùy chọn chỉ lưu trên thiết bị này sẽ không bị xóa.';
 
   @override
   String get subscriptionNotCanceledTitle => 'Gói đăng ký không tự động hủy';
 
   @override
-  String get subscriptionNotCanceledBody => 'Xóa tài khoản không tự động hủy gói đăng ký trên App Store. Gói có thể tiếp tục gia hạn cho đến khi bạn hủy trong phần cài đặt của Apple.';
+  String get subscriptionNotCanceledBody =>
+      'Xóa tài khoản không tự động hủy gói đăng ký trên App Store. Gói có thể tiếp tục gia hạn cho đến khi bạn hủy trong phần cài đặt của Apple.';
 
   @override
   String get manageSubscription => 'Quản lý gói đăng ký App Store';
 
   @override
-  String get subscriptionManagementFailed => 'Không thể mở trang quản lý gói đăng ký của Apple. Vui lòng mở Cài đặt > chạm vào tên bạn > Gói đăng ký.';
+  String get subscriptionManagementFailed =>
+      'Không thể mở trang quản lý gói đăng ký của Apple. Vui lòng mở Cài đặt > chạm vào tên bạn > Gói đăng ký.';
 
   @override
   String get confirmPassword => 'Mật khẩu hiện tại';
 
   @override
-  String get confirmPasswordToDelete => 'Nhập mật khẩu để xác minh danh tính của bạn.';
+  String get confirmPasswordToDelete =>
+      'Nhập mật khẩu để xác minh danh tính của bạn.';
 
   @override
   String get deleteAccountPermanently => 'Xóa tài khoản vĩnh viễn';
@@ -115,7 +121,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deleteAccountFinalTitle => 'Xác nhận lần cuối';
 
   @override
-  String get deleteAccountFinalWarning => 'Thao tác này sẽ xóa vĩnh viễn tài khoản của bạn và không thể hoàn tác. Dữ liệu chỉ lưu trên thiết bị này sẽ được giữ lại. Bạn có muốn tiếp tục?';
+  String get deleteAccountFinalWarning =>
+      'Thao tác này sẽ xóa vĩnh viễn tài khoản của bạn và không thể hoàn tác. Dữ liệu chỉ lưu trên thiết bị này sẽ được giữ lại. Bạn có muốn tiếp tục?';
 
   @override
   String get deletingAccount => 'Đang xóa tài khoản...';
@@ -124,31 +131,40 @@ class AppLocalizationsVi extends AppLocalizations {
   String get accountPasswordRequired => 'Nhập mật khẩu hiện tại để tiếp tục.';
 
   @override
-  String get accountPasswordIncorrect => 'Mật khẩu không chính xác. Vui lòng thử lại.';
+  String get accountPasswordIncorrect =>
+      'Mật khẩu không chính xác. Vui lòng thử lại.';
 
   @override
-  String get accountReauthenticationCanceled => 'Xác thực danh tính đã bị hủy. Tài khoản của bạn chưa bị xóa.';
+  String get accountReauthenticationCanceled =>
+      'Xác thực danh tính đã bị hủy. Tài khoản của bạn chưa bị xóa.';
 
   @override
-  String get accountReauthenticationFailed => 'Không thể xác minh danh tính. Vui lòng thử lại và hoàn tất yêu cầu đăng nhập.';
+  String get accountReauthenticationFailed =>
+      'Không thể xác minh danh tính. Vui lòng thử lại và hoàn tất yêu cầu đăng nhập.';
 
   @override
-  String get accountAlreadySignedOut => 'Bạn đã đăng xuất. Không có tài khoản đăng nhập nào bị xóa.';
+  String get accountAlreadySignedOut =>
+      'Bạn đã đăng xuất. Không có tài khoản đăng nhập nào bị xóa.';
 
   @override
-  String get accountProviderUnsupported => 'Phương thức đăng nhập này không thể xác minh trong ứng dụng. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp xóa tài khoản.';
+  String get accountProviderUnsupported =>
+      'Phương thức đăng nhập này không thể xác minh trong ứng dụng. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp xóa tài khoản.';
 
   @override
-  String get appleDeletionRequiresAppleDevice => 'Vì lý do bảo mật, tài khoản liên kết với Apple phải được xóa trên thiết bị Apple.';
+  String get appleDeletionRequiresAppleDevice =>
+      'Vì lý do bảo mật, tài khoản liên kết với Apple phải được xóa trên thiết bị Apple.';
 
   @override
-  String get accountDeletionNetworkError => 'Vui lòng kiểm tra kết nối mạng và thử xóa lại tài khoản.';
+  String get accountDeletionNetworkError =>
+      'Vui lòng kiểm tra kết nối mạng và thử xóa lại tài khoản.';
 
   @override
-  String get accountDeletionFailed => 'Không thể xóa tài khoản. Tài khoản của bạn vẫn hoạt động. Vui lòng thử lại.';
+  String get accountDeletionFailed =>
+      'Không thể xóa tài khoản. Tài khoản của bạn vẫn hoạt động. Vui lòng thử lại.';
 
   @override
-  String get accountDeletedSuccessfully => 'Tài khoản của bạn đã được xóa vĩnh viễn.';
+  String get accountDeletedSuccessfully =>
+      'Tài khoản của bạn đã được xóa vĩnh viễn.';
 
   @override
   String get globalMastery => 'MỨC ĐỘ THÀNH THẠO CHUNG';
@@ -436,7 +452,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get hardMode => 'Chế độ khó';
 
   @override
-  String get hardModeDesc => 'Yêu cầu viết chính xác mà không có nét mẫu hướng dẫn.';
+  String get hardModeDesc =>
+      'Yêu cầu viết chính xác mà không có nét mẫu hướng dẫn.';
 
   @override
   String get adaptiveGuidance => 'Hướng dẫn thích ứng';
@@ -463,7 +480,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get useEnglishDefinitions => 'Dùng định nghĩa tiếng Anh';
 
   @override
-  String get useEnglishDefinitionsDesc => 'Định nghĩa tiếng Anh thường có sắc thái chi tiết và chính xác hơn';
+  String get useEnglishDefinitionsDesc =>
+      'Định nghĩa tiếng Anh thường có sắc thái chi tiết và chính xác hơn';
 
   @override
   String get animationSpeed => 'Tốc độ hoạt ảnh';
@@ -481,7 +499,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get resetAllData => 'Đặt lại tất cả dữ liệu';
 
   @override
-  String get resetDataDesc => 'Thao tác này sẽ xóa vĩnh viễn toàn bộ tiến trình học, thống kê và cài đặt của bạn. Hành động này không thể hoàn tác.';
+  String get resetDataDesc =>
+      'Thao tác này sẽ xóa vĩnh viễn toàn bộ tiến trình học, thống kê và cài đặt của bạn. Hành động này không thể hoàn tác.';
 
   @override
   String get areYouSure => 'Bạn có chắc chắn không?';
@@ -616,13 +635,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get travelInterpreter => 'Thông dịch viên du lịch';
 
   @override
-  String get realTimeSplitScreen => 'Trò chuyện chia đôi màn hình theo thời gian thực với người bản xứ, xóa nhòa rào cản ngôn ngữ tức thì.';
+  String get realTimeSplitScreen =>
+      'Trò chuyện chia đôi màn hình theo thời gian thực với người bản xứ, xóa nhòa rào cản ngôn ngữ tức thì.';
 
   @override
   String get whisperEarpiece => 'Phụ đề giọng nói trực tiếp';
 
   @override
-  String get listenToChineseAudio => 'Lắng nghe âm thanh tiếng Trung và nhận phụ đề tiếng Việt thời gian thực ngay trên màn hình.';
+  String get listenToChineseAudio =>
+      'Lắng nghe âm thanh tiếng Trung và nhận phụ đề tiếng Việt thời gian thực ngay trên màn hình.';
 
   @override
   String get dashboardTitle => 'Bảng điều khiển';
@@ -666,7 +687,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get begin => 'Bắt đầu';
 
   @override
-  String get poweredByAi => 'Tích hợp công nghệ AI tiên tiến. Dịch thuật thời gian thực mượt mà cho mọi tình huống.';
+  String get poweredByAi =>
+      'Tích hợp công nghệ AI tiên tiến. Dịch thuật thời gian thực mượt mà cho mọi tình huống.';
 
   @override
   String get downloadingModel => 'Đang tải mô hình AI...';
@@ -687,7 +709,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get step6Context => 'BƯỚC 6: BỐI CẢNH & VÍ DỤ';
 
   @override
-  String get tapBuildingBlocksTo => 'Chạm vào các thành phần để khám phá nguồn gốc của chữ Hán.';
+  String get tapBuildingBlocksTo =>
+      'Chạm vào các thành phần để khám phá nguồn gốc của chữ Hán.';
 
   @override
   String get initiateRadicalSequence => 'BẮT ĐẦU CHUỖI BỘ THỦ';
@@ -705,7 +728,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get pronunciation => 'Phát âm';
 
   @override
-  String get selectAScenarioTo => 'Chọn tình huống để luyện đàm thoại tiếng Trung. AI Học Giả sẽ đánh giá thanh điệu và độ rõ ràng của bạn.';
+  String get selectAScenarioTo =>
+      'Chọn tình huống để luyện đàm thoại tiếng Trung. AI Học Giả sẽ đánh giá thanh điệu và độ rõ ràng của bạn.';
 
   @override
   String get create => 'Tạo';
@@ -744,10 +768,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get startPractice => 'BẮT ĐẦU LUYỆN TẬP';
 
   @override
-  String get noOtherHsk1 => 'Không có chữ HSK 1 nào khác dùng chung bộ thủ này.';
+  String get noOtherHsk1 =>
+      'Không có chữ HSK 1 nào khác dùng chung bộ thủ này.';
 
   @override
-  String get couldNotLoadAi => 'Không thể tải nội dung AI (vượt giới hạn yêu cầu hoặc lỗi mạng).\nChạm nút làm mới bên dưới để thử lại.';
+  String get couldNotLoadAi =>
+      'Không thể tải nội dung AI (vượt giới hạn yêu cầu hoặc lỗi mạng).\nChạm nút làm mới bên dưới để thử lại.';
 
   @override
   String get noAvailableCardsFound => 'Không tìm thấy thẻ nào khả dụng.';
@@ -789,7 +815,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get latestDiscoveries => 'Khám phá gần đây';
 
   @override
-  String get noCharactersInLexicon => 'Chưa có chữ Hán nào trong vốn từ vựng của bạn.';
+  String get noCharactersInLexicon =>
+      'Chưa có chữ Hán nào trong vốn từ vựng của bạn.';
 
   @override
   String get yourBookshelf => 'Giá sách của bạn';
@@ -810,7 +837,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get radicalsIndex => 'Mục lục bộ thủ';
 
   @override
-  String get masteringRadicalsIsThe => 'Nắm vững bộ thủ là chìa khóa để giải mã hàng ngàn chữ Hán. Hãy chọn một bộ thủ để xem toàn bộ các chữ Hán liên quan.';
+  String get masteringRadicalsIsThe =>
+      'Nắm vững bộ thủ là chìa khóa để giải mã hàng ngàn chữ Hán. Hãy chọn một bộ thủ để xem toàn bộ các chữ Hán liên quan.';
 
   @override
   String get noRadicalsFound => 'Không tìm thấy bộ thủ nào.';
@@ -861,7 +889,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get fullTranslation => 'Bản dịch đầy đủ';
 
   @override
-  String get geminiFlashIsStructuring => 'Gemini Flash đang xây dựng câu chuyện của bạn...';
+  String get geminiFlashIsStructuring =>
+      'Gemini Flash đang xây dựng câu chuyện của bạn...';
 
   @override
   String get aiDeckGenerator => 'Tạo bộ thẻ bằng AI';
@@ -876,7 +905,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get focusArea => 'Lĩnh vực trọng tâm';
 
   @override
-  String get specificContextOrTone => 'Ngữ cảnh hoặc văn phong cụ thể (Tùy chọn)';
+  String get specificContextOrTone =>
+      'Ngữ cảnh hoặc văn phong cụ thể (Tùy chọn)';
 
   @override
   String get numberOfCards => 'Số lượng thẻ';
@@ -912,7 +942,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get reviewAiCard => 'Kiểm tra thẻ AI';
 
   @override
-  String get pleaseDoublecheckTheAis => 'Vui lòng kiểm tra lại kết quả AI bên dưới. Bạn có thể thoải mái sửa pinyin hoặc nghĩa trước khi lưu vào thư viện vĩnh viễn.';
+  String get pleaseDoublecheckTheAis =>
+      'Vui lòng kiểm tra lại kết quả AI bên dưới. Bạn có thể thoải mái sửa pinyin hoặc nghĩa trước khi lưu vào thư viện vĩnh viễn.';
 
   @override
   String get alreadyInYourLibrary => 'Đã có trong thư viện của bạn!';
@@ -927,7 +958,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get addToLibrary => 'Thêm vào thư viện';
 
   @override
-  String get masterYourMandarinPronunciation => 'Làm chủ phát âm tiếng Trung chuẩn xác bằng cách nhại giọng bản xứ theo thời gian thực.';
+  String get masterYourMandarinPronunciation =>
+      'Làm chủ phát âm tiếng Trung chuẩn xác bằng cách nhại giọng bản xứ theo thời gian thực.';
 
   @override
   String get startSession => 'BẮT ĐẦU PHIÊN HỌC';
@@ -959,7 +991,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sessionSaved => 'Đã lưu phiên học!';
 
   @override
-  String get realtimeBidirectionalTranslationSpeak => 'Dịch hai chiều thời gian thực. Nói tiếng Việt hoặc tiếng Trung, hệ thống sẽ dịch tức thì cho bạn và người đối thoại.';
+  String get realtimeBidirectionalTranslationSpeak =>
+      'Dịch hai chiều thời gian thực. Nói tiếng Việt hoặc tiếng Trung, hệ thống sẽ dịch tức thì cho bạn và người đối thoại.';
 
   @override
   String get text_1782026184665 => 'Đang ghi âm';
@@ -968,7 +1001,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get recording => 'Đang ghi âm';
 
   @override
-  String get yourSilentCompanionListen => 'Trợ thủ đắc lực của bạn. Lắng nghe tiếng Trung và nhận ngay bản dịch tiếng Việt tức thì.';
+  String get yourSilentCompanionListen =>
+      'Trợ thủ đắc lực của bạn. Lắng nghe tiếng Trung và nhận ngay bản dịch tiếng Việt tức thì.';
 
   @override
   String get startListening => 'BẮT ĐẦU LẮNG NGHE';
@@ -980,10 +1014,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get independentStars => 'CHỮ ĐỘC THỂ';
 
   @override
-  String get notEveryCharacterHas => 'Không phải chữ Hán nào cũng ghép từ bộ thủ. Một số chữ là chữ tượng hình độc lập (độc thể tự).';
+  String get notEveryCharacterHas =>
+      'Không phải chữ Hán nào cũng ghép từ bộ thủ. Một số chữ là chữ tượng hình độc lập (độc thể tự).';
 
   @override
-  String get onTheMapWe => 'Trên bản đồ, chúng tôi nhóm các chữ độc thể này thành các CHÒM SAO (✨).';
+  String get onTheMapWe =>
+      'Trên bản đồ, chúng tôi nhóm các chữ độc thể này thành các CHÒM SAO (✨).';
 
   @override
   String get iUnderstand => 'ĐÃ HIỂU';
@@ -992,13 +1028,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get whatAreRadicals => 'BỘ THỦ LÀ GÌ?';
 
   @override
-  String get hanziAreBuiltFrom => 'Chữ Hán được cấu tạo từ các thành phần cơ bản gọi là BỘ THỦ.\n\nBộ thủ quyết định ý nghĩa cốt lõi hoặc chủ đề của chữ.';
+  String get hanziAreBuiltFrom =>
+      'Chữ Hán được cấu tạo từ các thành phần cơ bản gọi là BỘ THỦ.\n\nBộ thủ quyết định ý nghĩa cốt lõi hoặc chủ đề của chữ.';
 
   @override
   String get continueText => 'TIẾP TỤC';
 
   @override
-  String get hanziAreNotJust => 'Chữ Hán không chỉ là ký tự. Chúng là những bức tranh sống động đọng lại qua thời gian.\n\nĐể làm chủ chữ Hán, bạn cần cảm nhận dòng chảy của từng nét bút.';
+  String get hanziAreNotJust =>
+      'Chữ Hán không chỉ là ký tự. Chúng là những bức tranh sống động đọng lại qua thời gian.\n\nĐể làm chủ chữ Hán, bạn cần cảm nhận dòng chảy của từng nét bút.';
 
   @override
   String get iAmReady => 'TÔI ĐÃ SẴN SÀNG';
@@ -1007,7 +1045,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youAreAScholar => 'BẠN LÀ MỘT HỌC GIẢ';
 
   @override
-  String get theGalaxyMapAwaitsnmaster => 'Bản đồ Thiên Hà đang chờ đón bạn.\nLàm chủ các Mặt Trời (Bộ thủ) để mở khóa các Hành Tinh (Chữ Hán).';
+  String get theGalaxyMapAwaitsnmaster =>
+      'Bản đồ Thiên Hà đang chờ đón bạn.\nLàm chủ các Mặt Trời (Bộ thủ) để mở khóa các Hành Tinh (Chữ Hán).';
 
   @override
   String get enterTheScroll => 'MỞ CUỘN GIẤY';
@@ -1022,7 +1061,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get theScholarsEdition => 'Phiên Bản Học Giả';
 
   @override
-  String get weArePreparingThe => 'Chúng tôi đang chuẩn bị ra mắt Phiên Bản Học Giả.';
+  String get weArePreparingThe =>
+      'Chúng tôi đang chuẩn bị ra mắt Phiên Bản Học Giả.';
 
   @override
   String get devBypassUnlockNow => 'DEV BYPASS: MỞ KHÓA NGAY';
@@ -1031,31 +1071,39 @@ class AppLocalizationsVi extends AppLocalizations {
   String get restorePurchases => 'Khôi phục gói mua';
 
   @override
-  String get welcomeScholarTheScroll => 'Chào mừng Học giả. Cuộn giấy cổ đã mở rộng trước mắt bạn.';
+  String get welcomeScholarTheScroll =>
+      'Chào mừng Học giả. Cuộn giấy cổ đã mở rộng trước mắt bạn.';
 
   @override
-  String get purchasesRestoredSuccessfully => 'Đã khôi phục giao dịch mua thành công.';
+  String get purchasesRestoredSuccessfully =>
+      'Đã khôi phục giao dịch mua thành công.';
 
   @override
-  String get noPreviousPurchasesFound => 'Không tìm thấy lịch sử mua hàng cho tài khoản này.';
+  String get noPreviousPurchasesFound =>
+      'Không tìm thấy lịch sử mua hàng cho tài khoản này.';
 
   @override
-  String get unlockTheFullPotential => 'Mở khóa toàn bộ tiềm năng học tập của bạn. Mua một lần, sở hữu trọn đời.';
+  String get unlockTheFullPotential =>
+      'Mở khóa toàn bộ tiềm năng học tập của bạn. Mua một lần, sở hữu trọn đời.';
 
   @override
   String get universalScanner => 'Máy quét vạn năng';
 
   @override
-  String get noChineseCharactersFound => 'Không tìm thấy chữ Hán nào trong hình ảnh.';
+  String get noChineseCharactersFound =>
+      'Không tìm thấy chữ Hán nào trong hình ảnh.';
 
   @override
-  String get addedNewCharactersTo => 'Đã thêm chữ Hán mới vào thư viện của bạn!';
+  String get addedNewCharactersTo =>
+      'Đã thêm chữ Hán mới vào thư viện của bạn!';
 
   @override
-  String get extractingTextAndObjects => 'Đang trích xuất văn bản và vật thể...';
+  String get extractingTextAndObjects =>
+      'Đang trích xuất văn bản và vật thể...';
 
   @override
-  String get scanATextbookSign => 'Quét trang sách, biển hiệu hoặc đồ vật để trích xuất chữ Hán.';
+  String get scanATextbookSign =>
+      'Quét trang sách, biển hiệu hoặc đồ vật để trích xuất chữ Hán.';
 
   @override
   String get extractedText => 'Văn bản đã trích xuất';
@@ -1064,7 +1112,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get useText => 'Sử dụng văn bản này';
 
   @override
-  String get noMatchingDictionaryEntries => 'Không tìm thấy mục từ điển phù hợp.';
+  String get noMatchingDictionaryEntries =>
+      'Không tìm thấy mục từ điển phù hợp.';
 
   @override
   String get quizComplete => 'Hoàn thành bài quiz!';
@@ -1073,13 +1122,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get returnToCourse => 'Quay lại khóa học';
 
   @override
-  String get notEnoughCardsFor => 'Không đủ thẻ để làm bài kiểm tra! Cần tối thiểu 4 thẻ.';
+  String get notEnoughCardsFor =>
+      'Không đủ thẻ để làm bài kiểm tra! Cần tối thiểu 4 thẻ.';
 
   @override
   String get creatorMode => 'Chế độ Sáng tạo';
 
   @override
-  String get noStoriesFoundMatching => 'Không tìm thấy câu chuyện nào phù hợp với tìm kiếm.';
+  String get noStoriesFoundMatching =>
+      'Không tìm thấy câu chuyện nào phù hợp với tìm kiếm.';
 
   @override
   String get discard => 'Hủy bỏ';
@@ -1088,7 +1139,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get save => 'Lưu';
 
   @override
-  String get generatingStoryViaDeepseek => 'Đang tạo câu chuyện qua DeepSeek...';
+  String get generatingStoryViaDeepseek =>
+      'Đang tạo câu chuyện qua DeepSeek...';
 
   @override
   String get storySavedToLibrary => 'Đã lưu câu chuyện vào thư viện!';
@@ -1103,7 +1155,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get wedLoveToHear => 'Chúng tôi rất mong nhận được phản hồi từ bạn!';
 
   @override
-  String get whetherYouveFoundA => 'Dù bạn phát hiện lỗi, muốn đề xuất tính năng mới hay chỉ là gửi lời chào, phản hồi của bạn đều giúp SinoSpark hoàn thiện hơn mỗi ngày.';
+  String get whetherYouveFoundA =>
+      'Dù bạn phát hiện lỗi, muốn đề xuất tính năng mới hay chỉ là gửi lời chào, phản hồi của bạn đều giúp SinoSpark hoàn thiện hơn mỗi ngày.';
 
   @override
   String get pointYourCameraAt => 'Hướng camera vào đồ vật';
@@ -1179,6 +1232,54 @@ class AppLocalizationsVi extends AppLocalizations {
   String get startingSession => 'Đang khởi động phiên học...';
 
   @override
+  String get studySession => 'Study session';
+
+  @override
+  String get readyToStudy => 'Ready to study';
+
+  @override
+  String get studyQueuePreviewDescription =>
+      'Your session is based on today\'s schedule and deck limits.';
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get newLabel => 'Mới';
+
+  @override
+  String get studyDeckEmpty => 'This deck is empty';
+
+  @override
+  String get studyDeckEmptyDescription =>
+      'Add cards before starting a study session.';
+
+  @override
+  String get studyDailyLimitReached => 'Today\'s limit is complete';
+
+  @override
+  String get studyDailyLimitReachedDescription =>
+      'You\'ve used this deck\'s new-card or review allowance for today.';
+
+  @override
+  String get studyCaughtUpDescription =>
+      'Nothing else is scheduled for today. Come back for the next review.';
+
+  @override
+  String get noCardsAvailable => 'No cards available';
+
+  @override
+  String get studyNoEligibleCardsDescription =>
+      'No cards are eligible for this study mode right now.';
+
+  @override
+  String get studySessionLoadFailed =>
+      'Unable to load this study session. Please try again.';
+
+  @override
+  String get retryLimitReached => 'This card will return in your next session.';
+
+  @override
   String get masterBuildingBlocks => 'Làm chủ các bộ thủ nền tảng của chữ Hán';
 
   @override
@@ -1251,7 +1352,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get personalNotes => 'Ghi chú cá nhân';
 
   @override
-  String get addPersonalNotes => 'Thêm mẹo nhớ hoặc ghi chú riêng của bạn tại đây...';
+  String get addPersonalNotes =>
+      'Thêm mẹo nhớ hoặc ghi chú riêng của bạn tại đây...';
 
   @override
   String get takePhoto => 'Chụp ảnh';
@@ -1350,10 +1452,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askFollowUpQuestion => 'Hỏi thêm câu hỏi...';
 
   @override
-  String get pasteScanToSimplify => 'Dán hoặc quét văn bản tiếng Trung để chuyển thành văn bản dễ hiểu';
+  String get pasteScanToSimplify =>
+      'Dán hoặc quét văn bản tiếng Trung để chuyển thành văn bản dễ hiểu';
 
   @override
-  String get searchStoriesHint => 'Tìm kiếm truyện theo tiêu đề hoặc thẻ (ví dụ: thần thoại, du lịch)';
+  String get searchStoriesHint =>
+      'Tìm kiếm truyện theo tiêu đề hoặc thẻ (ví dụ: thần thoại, du lịch)';
 
   @override
   String get importAll => 'Nhập tất cả';
@@ -1368,37 +1472,43 @@ class AppLocalizationsVi extends AppLocalizations {
   String get scenarioLocalRestaurant => 'Quán ăn địa phương';
 
   @override
-  String get scenarioLocalRestaurantDesc => 'Luyện gọi món và hỏi xin gợi ý món ngon từ quán.';
+  String get scenarioLocalRestaurantDesc =>
+      'Luyện gọi món và hỏi xin gợi ý món ngon từ quán.';
 
   @override
   String get scenarioTaxiAirport => 'Bắt taxi ra sân bay';
 
   @override
-  String get scenarioTaxiAirportDesc => 'Nói điểm đến cho tài xế và trò chuyện về tình hình giao thông.';
+  String get scenarioTaxiAirportDesc =>
+      'Nói điểm đến cho tài xế và trò chuyện về tình hình giao thông.';
 
   @override
   String get scenarioSilkMarket => 'Mặc cả ở chợ lụa';
 
   @override
-  String get scenarioSilkMarketDesc => 'Thương lượng để có giá tốt nhất khi mua quà lưu niệm.';
+  String get scenarioSilkMarketDesc =>
+      'Thương lượng để có giá tốt nhất khi mua quà lưu niệm.';
 
   @override
   String get scenarioMedicalClinic => 'Phòng khám y tế';
 
   @override
-  String get scenarioMedicalClinicDesc => 'Mô tả triệu chứng sức khỏe với bác sĩ đông y/tây y.';
+  String get scenarioMedicalClinicDesc =>
+      'Mô tả triệu chứng sức khỏe với bác sĩ đông y/tây y.';
 
   @override
   String get scenarioMeetingFriend => 'Gặp gỡ bạn cũ';
 
   @override
-  String get scenarioMeetingFriendDesc => 'Chào hỏi, hỏi thăm sức khỏe và trò chuyện thân mật.';
+  String get scenarioMeetingFriendDesc =>
+      'Chào hỏi, hỏi thăm sức khỏe và trò chuyện thân mật.';
 
   @override
   String get scenarioJobInterview => 'Phỏng vấn xin việc';
 
   @override
-  String get scenarioJobInterviewDesc => 'Ứng tuyển vào một vị trí tại công ty công nghệ ở Thượng Hải.';
+  String get scenarioJobInterviewDesc =>
+      'Ứng tuyển vào một vị trí tại công ty công nghệ ở Thượng Hải.';
 
   @override
   String get createCustomScenario => 'Tạo tình huống tùy chỉnh';
@@ -1410,7 +1520,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get customScenarioDescHint => 'Mô tả ngữ cảnh tình huống';
 
   @override
-  String get customScenarioPersonaHint => 'Vai diễn AI (ví dụ: Đồng nghiệp tò mò)';
+  String get customScenarioPersonaHint =>
+      'Vai diễn AI (ví dụ: Đồng nghiệp tò mò)';
 
   @override
   String get customScenarioDifficulty => 'Độ khó';
@@ -1470,7 +1581,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get speakWithMasterLin => 'Trò chuyện với Thầy Lâm';
 
   @override
-  String get masterLinGreeting => 'Chào mừng con. Nghiên mực đã sẵn sàng, hôm nay chúng ta cùng đàm đạo về chữ Hán hay câu văn nào?';
+  String get masterLinGreeting =>
+      'Chào mừng con. Nghiên mực đã sẵn sàng, hôm nay chúng ta cùng đàm đạo về chữ Hán hay câu văn nào?';
 
   @override
   String get typeYourMessage => 'Nhập tin nhắn của bạn...';
@@ -1584,7 +1696,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get analysisFailed => 'Phân tích thất bại: ';
 
   @override
-  String get analyzingClassicalCharacters => 'Đang phân tích chữ Hán cổ điển...';
+  String get analyzingClassicalCharacters =>
+      'Đang phân tích chữ Hán cổ điển...';
 
   @override
   String get anatomy => 'Cấu tạo chữ Hán';
@@ -1599,7 +1712,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askAFollowUp => 'Đặt câu hỏi tiếp theo...';
 
   @override
-  String get audioPrivacyAndHowThingsWork => 'Âm thanh, quyền riêng tư và cơ chế hoạt động';
+  String get audioPrivacyAndHowThingsWork =>
+      'Âm thanh, quyền riêng tư và cơ chế hoạt động';
 
   @override
   String get audiobookPlayer => 'Trình phát sách nói';
@@ -1608,13 +1722,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get audiobookVoice => 'Giọng đọc sách nói';
 
   @override
-  String get auntieMaTown => 'Dì Mã (马阿姨): chủ quầy hàng xởi lởi, người làm món bánh kẹp thịt Roujiamo và mì lạnh Liangpi giòn ngon nhất thị trấn.';
+  String get auntieMaTown =>
+      'Dì Mã (马阿姨): chủ quầy hàng xởi lởi, người làm món bánh kẹp thịt Roujiamo và mì lạnh Liangpi giòn ngon nhất thị trấn.';
 
   @override
   String get back => 'Quay lại';
 
   @override
-  String get baristaKevinNotes => 'Barista Kevin (小凯): thợ rang cà phê trẻ đầy nhiệt huyết, say mê chia sẻ về hạt cà phê Vân Nam và hương vị đặc trưng.';
+  String get baristaKevinNotes =>
+      'Barista Kevin (小凯): thợ rang cà phê trẻ đầy nhiệt huyết, say mê chia sẻ về hạt cà phê Vân Nam và hương vị đặc trưng.';
 
   @override
   String get bbc => 'BBC Trung văn (BBC 中文)';
@@ -1626,7 +1742,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get bestValue => 'Lựa chọn tốt nhất';
 
   @override
-  String get bookLinkCopiedToClipboard => 'Đã sao chép liên kết sách vào bộ nhớ tạm!';
+  String get bookLinkCopiedToClipboard =>
+      'Đã sao chép liên kết sách vào bộ nhớ tạm!';
 
   @override
   String get bookmarkChapter => 'Đánh dấu chương này';
@@ -1644,7 +1761,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get bugReport => 'Báo lỗi';
 
   @override
-  String get caoXueqinDecline => 'Tào Tuyết Cần (khoảng 1715–1763) là tiểu thuyết gia thời nhà Thanh, xuất thân trong một gia tộc quý tộc suy tàn dưới triều Ung Chính. \'Hồng Lâu Mộng\', được viết trong những năm cuối đời cơ cực, được coi là đỉnh cao của tiểu thuyết cổ điển Trung Quốc — một bức tranh toàn cảnh sâu sắc về sự suy vong của tầng lớp quý tộc.';
+  String get caoXueqinDecline =>
+      'Tào Tuyết Cần (khoảng 1715–1763) là tiểu thuyết gia thời nhà Thanh, xuất thân trong một gia tộc quý tộc suy tàn dưới triều Ung Chính. \'Hồng Lâu Mộng\', được viết trong những năm cuối đời cơ cực, được coi là đỉnh cao của tiểu thuyết cổ điển Trung Quốc — một bức tranh toàn cảnh sâu sắc về sự suy vong của tầng lớp quý tộc.';
 
   @override
   String get cardsTitle => 'THẺ HỌC';
@@ -1659,7 +1777,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get chatMore => 'Trò chuyện tiếp';
 
   @override
-  String get chefChenShumai => 'Đầu bếp Trần (陈师傅): nghệ nhân dim sum Quảng Đông vui vẻ, chuyên gợi ý món há cảo tôm tươi Har Gow và xíu mại thơm ngon.';
+  String get chefChenShumai =>
+      'Đầu bếp Trần (陈师傅): nghệ nhân dim sum Quảng Đông vui vẻ, chuyên gợi ý món há cảo tôm tươi Har Gow và xíu mại thơm ngon.';
 
   @override
   String get chineseEpics => 'Sử thi Trung Quốc';
@@ -1746,7 +1865,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deleteScenario => 'Xóa tình huống';
 
   @override
-  String get deletesAllProgressPermanently => 'Xóa vĩnh viễn toàn bộ tiến trình học';
+  String get deletesAllProgressPermanently =>
+      'Xóa vĩnh viễn toàn bộ tiến trình học';
 
   @override
   String get developerBackdoorUnlocked => 'Đã mở khóa menu nhà phát triển!';
@@ -1773,13 +1893,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get egAnimeVocab => 'Ví dụ: Từ vựng anime';
 
   @override
-  String get egFormalBusinessLanguageSlangForTexting => 'Ví dụ: tiếng Trung thương mại trang trọng, tiếng lóng mạng xã hội...';
+  String get egFormalBusinessLanguageSlangForTexting =>
+      'Ví dụ: tiếng Trung thương mại trang trọng, tiếng lóng mạng xã hội...';
 
   @override
-  String get egOrderingAtARestaurantBusinessVocab => 'Ví dụ: Gọi món nhà hàng, từ vựng kinh doanh...';
+  String get egOrderingAtARestaurantBusinessVocab =>
+      'Ví dụ: Gọi món nhà hàng, từ vựng kinh doanh...';
 
   @override
-  String get egWeddingReceptionTechInterview => 'Ví dụ: Tiệc cưới, phỏng vấn kỹ thuật...';
+  String get egWeddingReceptionTechInterview =>
+      'Ví dụ: Tiệc cưới, phỏng vấn kỹ thuật...';
 
   @override
   String get emailLabel => 'Email';
@@ -1850,7 +1973,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get finalizingStoryDetails => 'Đang hoàn thiện chi tiết câu chuyện...';
 
   @override
-  String get firebaseAuthConsole => 'Chưa bật xác thực Firebase. Vui lòng bật phương thức đăng nhập cần thiết trong Firebase Console.';
+  String get firebaseAuthConsole =>
+      'Chưa bật xác thực Firebase. Vui lòng bật phương thức đăng nhập cần thiết trong Firebase Console.';
 
   @override
   String get flashcardDeckTitle => 'BỘ THẺ FLASHCARD';
@@ -1892,13 +2016,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get grammar => 'Ngữ pháp';
 
   @override
-  String get grandmaLiuFilling => 'Bà Lưu (刘奶奶): người bà phương Bắc hiền hậu chỉ bạn cách gấp nếp sủi cảo và làm nhân thịt heo hành lá thơm ngon.';
+  String get grandmaLiuFilling =>
+      'Bà Lưu (刘奶奶): người bà phương Bắc hiền hậu chỉ bạn cách gấp nếp sủi cảo và làm nhân thịt heo hành lá thơm ngon.';
 
   @override
   String get great => 'Tuyệt vời!';
 
   @override
-  String get handmadeDumplingFeastInHarbin => 'Bữa tiệc sủi cảo tự làm ở Cáp Nhĩ Tân';
+  String get handmadeDumplingFeastInHarbin =>
+      'Bữa tiệc sủi cảo tự làm ở Cáp Nhĩ Tân';
 
   @override
   String get hanziCharacter => 'Chữ Hán (Hanzi)';
@@ -1954,7 +2080,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get i => 'Tôi';
 
   @override
-  String get ifTheAgain => 'Nếu AI phát hiện sự không khớp, hệ thống sẽ hỏi \'Ý bạn có phải là...?\'. Bạn có thể nhấn \'Có, hãy chấm lại!\' để đánh giá lại tệp ghi âm ban đầu theo đúng ý định mà không cần nói lại.';
+  String get ifTheAgain =>
+      'Nếu AI phát hiện sự không khớp, hệ thống sẽ hỏi \'Ý bạn có phải là...?\'. Bạn có thể nhấn \'Có, hãy chấm lại!\' để đánh giá lại tệp ghi âm ban đầu theo đúng ý định mà không cần nói lại.';
 
   @override
   String get install => 'Cài đặt';
@@ -1969,7 +2096,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get knowledgeBase => 'Kho tri thức';
 
   @override
-  String get liRuzhenSubjects => 'Lý Nhữ Trân (khoảng 1763–1830) là học giả thời nhà Thanh am hiểu ngữ âm học, cờ vây và vũ trụ học. \'Kính Hoa Duyên\', cuốn tiểu thuyết kỳ ảo về hành trình qua những xứ sở kỳ lạ, nổi bật với tư tưởng nữ quyền tiến bộ và kiến thức bách khoa phong phú.';
+  String get liRuzhenSubjects =>
+      'Lý Nhữ Trân (khoảng 1763–1830) là học giả thời nhà Thanh am hiểu ngữ âm học, cờ vây và vũ trụ học. \'Kính Hoa Duyên\', cuốn tiểu thuyết kỳ ảo về hành trình qua những xứ sở kỳ lạ, nổi bật với tư tưởng nữ quyền tiến bộ và kiến thức bách khoa phong phú.';
 
   @override
   String get library => 'Thư viện Văn Hóa Thư Phòng';
@@ -1987,34 +2115,42 @@ class AppLocalizationsVi extends AppLocalizations {
   String get listening => 'Đang lắng nghe...';
 
   @override
-  String get liuEEncroachment => 'Lưu Ngạc (1857–1909) là học giả cuối thời Thanh (kỹ sư, thầy thuốc, tiểu thuyết gia). Tiểu thuyết \'Lão Tàn du ký\' là tập du ký trữ tình mang đậm tính phê phán xã hội của một danh y phiêu bạt giữa thời kỳ suy tàn và ngoại xâm.';
+  String get liuEEncroachment =>
+      'Lưu Ngạc (1857–1909) là học giả cuối thời Thanh (kỹ sư, thầy thuốc, tiểu thuyết gia). Tiểu thuyết \'Lão Tàn du ký\' là tập du ký trữ tình mang đậm tính phê phán xã hội của một danh y phiêu bạt giữa thời kỳ suy tàn và ngoại xâm.';
 
   @override
   String get loadingTranslations => 'Đang tải bản dịch...';
 
   @override
-  String get luXunVernacular => 'Lỗ Tấn (1881–1936), tên thật là Chu Thụ Nhân, là cha đẻ của văn học Trung Quốc hiện đại. Từ bỏ ngành y để cầm bút thức tỉnh tinh thần dân tộc, các tập truyện như \'Nhật ký người điên\' và \'AQ chính truyện\' đã tiên phong dùng văn bạch thoại.';
+  String get luXunVernacular =>
+      'Lỗ Tấn (1881–1936), tên thật là Chu Thụ Nhân, là cha đẻ của văn học Trung Quốc hiện đại. Từ bỏ ngành y để cầm bút thức tỉnh tinh thần dân tộc, các tập truyện như \'Nhật ký người điên\' và \'AQ chính truyện\' đã tiên phong dùng văn bạch thoại.';
 
   @override
-  String get luoGuanzhongEpic => 'La Quán Trung (khoảng 1330–1400) là nhà soạn kịch và tiểu thuyết gia thời Nguyên-Minh, tương truyền từng học Thi Nại Am. \'Tam Quốc Diễn Nghĩa\' của ông đã đúc kết sử liệu, truyện kể dân gian và kịch nghệ thành pho sử thi kinh điển của Trung Hoa.';
+  String get luoGuanzhongEpic =>
+      'La Quán Trung (khoảng 1330–1400) là nhà soạn kịch và tiểu thuyết gia thời Nguyên-Minh, tương truyền từng học Thi Nại Am. \'Tam Quốc Diễn Nghĩa\' của ông đã đúc kết sử liệu, truyện kể dân gian và kịch nghệ thành pho sử thi kinh điển của Trung Hoa.';
 
   @override
   String get makeACustomCollection => 'Tạo bộ sưu tập tùy chỉnh';
 
   @override
-  String get manageDailyDropsAndReviewReminders => 'Quản lý bài học hằng ngày và nhắc nhở ôn tập';
+  String get manageDailyDropsAndReviewReminders =>
+      'Quản lý bài học hằng ngày và nhắc nhở ôn tập';
 
   @override
-  String get managerYuOptions => 'Quản lý Dư (余店长): nữ quản lý nhà hàng lẩu nhiệt tình, chuyên gợi ý lá sách bò, tiết vịt và các loại nước lẩu thanh ngọt.';
+  String get managerYuOptions =>
+      'Quản lý Dư (余店长): nữ quản lý nhà hàng lẩu nhiệt tình, chuyên gợi ý lá sách bò, tiết vịt và các loại nước lẩu thanh ngọt.';
 
   @override
-  String get masterGaoRubs => 'Sư phụ Cao (高师傅): bậc thầy nướng than hoa vui tính, thường trò chuyện với khách về độ cay và công thức ướp thì là bí truyền.';
+  String get masterGaoRubs =>
+      'Sư phụ Cao (高师傅): bậc thầy nướng than hoa vui tính, thường trò chuyện với khách về độ cay và công thức ướp thì là bí truyền.';
 
   @override
-  String get masterThisToUnlockItsGalaxy => 'Thành thạo chữ này để mở khóa thiên hà tương ứng.';
+  String get masterThisToUnlockItsGalaxy =>
+      'Thành thạo chữ này để mở khóa thiên hà tương ứng.';
 
   @override
-  String get masterZhaoBrewing => 'Sư phụ Triệu (赵师傅): chuyên gia trà đạo kiên nhẫn, say mê hướng dẫn nghệ thuật pha trà Công phu (Gongfu).';
+  String get masterZhaoBrewing =>
+      'Sư phụ Triệu (赵师傅): chuyên gia trà đạo kiên nhẫn, say mê hướng dẫn nghệ thuật pha trà Công phu (Gongfu).';
 
   @override
   String get mastery => 'Độ thành thạo';
@@ -2038,7 +2174,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get monthly => 'Hằng tháng';
 
   @override
-  String get morningDimSumCartInGuangzhou => 'Xe đẩy dim sum buổi sáng ở Quảng Châu';
+  String get morningDimSumCartInGuangzhou =>
+      'Xe đẩy dim sum buổi sáng ở Quảng Châu';
 
   @override
   String get nameLabel => 'Tên';
@@ -2056,13 +2193,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get newDeckName => 'Tên bộ thẻ mới';
 
   @override
-  String get noActiveSubscriptionFound => 'Không tìm thấy gói đăng ký nào đang hoạt động.';
+  String get noActiveSubscriptionFound =>
+      'Không tìm thấy gói đăng ký nào đang hoạt động.';
 
   @override
   String get noEpisodesFound => 'Không tìm thấy tập phim nào';
 
   @override
-  String get noKeyWordsFoundForThisStory => 'Chưa có từ khóa nào cho câu chuyện này.';
+  String get noKeyWordsFoundForThisStory =>
+      'Chưa có từ khóa nào cho câu chuyện này.';
 
   @override
   String get noLabel => 'Không';
@@ -2106,10 +2245,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get openInYoutube => 'Mở trên YouTube';
 
   @override
-  String get orderingHanddripCoffeeInShanghai => 'Gọi cà phê pha thủ công (pour-over) ở Thượng Hải';
+  String get orderingHanddripCoffeeInShanghai =>
+      'Gọi cà phê pha thủ công (pour-over) ở Thượng Hải';
 
   @override
-  String get orderingSugarcoatedHawsInWinterBeijing => 'Mua kẹo hồ lô rim đường giữa mùa đông Bắc Kinh';
+  String get orderingSugarcoatedHawsInWinterBeijing =>
+      'Mua kẹo hồ lô rim đường giữa mùa đông Bắc Kinh';
 
   @override
   String partnerLang(String lang) {
@@ -2132,7 +2273,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get perfect => 'Hoàn hảo!';
 
   @override
-  String get personalizedPathBasedOnDeck => 'Lộ trình học cá nhân hóa dựa trên bộ thẻ của bạn.';
+  String get personalizedPathBasedOnDeck =>
+      'Lộ trình học cá nhân hóa dựa trên bộ thẻ của bạn.';
 
   @override
   String play(Object pinyin) {
@@ -2140,7 +2282,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get pleaseEnterMessageBeforeSending => 'Vui lòng nhập tin nhắn trước khi gửi.';
+  String get pleaseEnterMessageBeforeSending =>
+      'Vui lòng nhập tin nhắn trước khi gửi.';
 
   @override
   String get practiceInRoleplay => 'Luyện tập qua nhập vai';
@@ -2149,7 +2292,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get practiceModes => 'Chế độ luyện tập';
 
   @override
-  String get practicePronouncingWithAiGrading => 'Luyện phát âm từ này với AI chấm điểm';
+  String get practicePronouncingWithAiGrading =>
+      'Luyện phát âm từ này với AI chấm điểm';
 
   @override
   String get preparingReadingInterface => 'Đang chuẩn bị giao diện đọc...';
@@ -2161,7 +2305,56 @@ class AppLocalizationsVi extends AppLocalizations {
   String get privacyAndAudio => 'Quyền riêng tư & Âm thanh';
 
   @override
-  String get puSonglingLiterature => 'Bồ Tùng Linh (1640–1715) là văn nhân thời nhà Thanh, dành nhiều thập kỷ sưu tầm \'Liêu trai chí dị\' sau nhiều lần thi trượt. Những câu chuyện kỳ ảo về hồ ly, ma quỷ và thư sinh của ông là đỉnh cao của văn học chí dị Trung Hoa.';
+  String get aiDataPrivacyTitle => 'AI Data & Privacy';
+
+  @override
+  String get aiDataPrivacySettingsSubtitle =>
+      'See what AI features send, why, and to whom';
+
+  @override
+  String get aiDataPrivacyOverviewTitle => 'When AI is used';
+
+  @override
+  String get aiDataPrivacyOverviewBody =>
+      'SinoSpark uses cloud AI only when you choose a feature that needs it, such as AI chat, explanations, translation, image analysis, speech recognition, pronunciation grading, or cloud voices. AI output can be inaccurate, so review important results.';
+
+  @override
+  String get aiDataPrivacyProvidersTitle => 'AI service providers';
+
+  @override
+  String get aiDataPrivacyProvidersBody =>
+      'Google Gemini processes generative text and image requests. OpenRouter routes some generative requests to Google Gemini or DeepSeek. Microsoft Azure AI Speech processes speech recognition, pronunciation assessment, and text sent for cloud voice synthesis.';
+
+  @override
+  String get aiDataPrivacySentTitle => 'Data that may be sent';
+
+  @override
+  String get aiDataPrivacySentBody =>
+      'Depending on the feature, we send the text you enter or select, relevant conversation or lesson context, images you choose for AI analysis, voice recordings you submit, and technical request data such as IP address and device/network metadata. We do not intentionally include your name or email in AI prompts.';
+
+  @override
+  String get aiDataPrivacyControlsTitle => 'Your choices';
+
+  @override
+  String get aiDataPrivacyControlsBody =>
+      'Do not use an AI feature if you do not want its input sent to the named provider. You can deny camera, photo, or microphone permission in device Settings. Choose the Local voice to keep text-to-speech on your device. Avoid submitting sensitive or confidential information.';
+
+  @override
+  String get aiDataPrivacyRetentionTitle => 'Storage and retention';
+
+  @override
+  String get aiDataPrivacyRetentionBody =>
+      'SinoSpark does not intentionally store raw AI prompts, submitted images, or voice recordings on its own servers after processing. Generated results may be saved on your device or with your account when you choose to save them. Providers process data under their own terms and configured retention controls; see the full policy for details.';
+
+  @override
+  String get readFullPrivacyPolicy => 'Read Full Privacy Policy';
+
+  @override
+  String get linkOpenFailed => 'Could not open the link. Please try again.';
+
+  @override
+  String get puSonglingLiterature =>
+      'Bồ Tùng Linh (1640–1715) là văn nhân thời nhà Thanh, dành nhiều thập kỷ sưu tầm \'Liêu trai chí dị\' sau nhiều lần thi trượt. Những câu chuyện kỳ ảo về hồ ly, ma quỷ và thư sinh của ông là đỉnh cao của văn học chí dị Trung Hoa.';
 
   @override
   String get qaFaq => 'Hỏi & Đáp / FAQ';
@@ -2256,7 +2449,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get scenarioRemoved => 'Đã xóa tình huống';
 
   @override
-  String get scenarioSavedFindInCustomTab => 'Đã lưu tình huống! Bạn có thể xem lại trong tab Tùy chỉnh.';
+  String get scenarioSavedFindInCustomTab =>
+      'Đã lưu tình huống! Bạn có thể xem lại trong tab Tùy chỉnh.';
 
   @override
   String score(Object score, Object total) {
@@ -2270,7 +2464,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get searchByTitleOrTag => 'Tìm theo tiêu đề hoặc thẻ...';
 
   @override
-  String get searchDictionaryOrTypeCustom => 'Tra từ điển hoặc nhập từ tùy chỉnh';
+  String get searchDictionaryOrTypeCustom =>
+      'Tra từ điển hoặc nhập từ tùy chỉnh';
 
   @override
   String get searchHint => 'Tìm kiếm...';
@@ -2285,7 +2480,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get searchStoriesIdiomsNews => 'Tìm câu chuyện, thành ngữ, tin tức...';
 
   @override
-  String get searchTopicsEgCookingHistory => 'Tìm chủ đề (ví dụ: Nấu ăn, Lịch sử)';
+  String get searchTopicsEgCookingHistory =>
+      'Tìm chủ đề (ví dụ: Nấu ăn, Lịch sử)';
 
   @override
   String get seeAll => 'Xem tất cả';
@@ -2312,7 +2508,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get shadow => 'Shadowing';
 
   @override
-  String get shiNaianEpic => 'Thi Nại Am (khoảng 1296–1372) là văn nhân thời Nguyên, dù đỗ tiến sĩ nhưng chọn lui về ẩn dật. Kiệt tác \'Thủy Hử\' về các anh hùng Lương Sơn Bạc tụ nghĩa chống lại áp bức đã định hình nền sử thi võ hiệp Trung Quốc.';
+  String get shiNaianEpic =>
+      'Thi Nại Am (khoảng 1296–1372) là văn nhân thời Nguyên, dù đỗ tiến sĩ nhưng chọn lui về ẩn dật. Kiệt tác \'Thủy Hử\' về các anh hùng Lương Sơn Bạc tụ nghĩa chống lại áp bức đã định hình nền sử thi võ hiệp Trung Quốc.';
 
   @override
   String get showEnglish => 'Hiện tiếng Anh';
@@ -2363,7 +2560,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get storyBookmarkedInLibrary => 'Đã lưu câu chuyện vào thư viện!';
 
   @override
-  String get streetFoodNightMarketInXian => 'Chợ đêm ẩm thực đường phố ở Tây An';
+  String get streetFoodNightMarketInXian =>
+      'Chợ đêm ẩm thực đường phố ở Tây An';
 
   @override
   String get strokes => 'Nét chữ';
@@ -2402,7 +2600,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get terms => 'Điều khoản';
 
   @override
-  String get theGalaxyCharacters => 'Bản đồ Ngân Hà đang chờ bạn.\nHãy làm chủ các Mặt Trời (Bộ thủ) để mở khóa các Hành Tinh (Chữ Hán).';
+  String get theGalaxyCharacters =>
+      'Bản đồ Ngân Hà đang chờ bạn.\nHãy làm chủ các Mặt Trời (Bộ thủ) để mở khóa các Hành Tinh (Chữ Hán).';
 
   @override
   String get theme => 'Chủ đề';
@@ -2423,7 +2622,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get toggleTranslation => 'Bật/Tắt bản dịch';
 
   @override
-  String get toneDoesNotExistInMandarin => 'Thanh điệu này không tồn tại trong tiếng Quan thoại chuẩn.';
+  String get toneDoesNotExistInMandarin =>
+      'Thanh điệu này không tồn tại trong tiếng Quan thoại chuẩn.';
 
   @override
   String get toneGraph => 'Biểu đồ cao độ thanh điệu';
@@ -2489,7 +2689,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get web => 'Web';
 
   @override
-  String get wedLoveToHearFromYou => 'Chúng tôi rất mong\nnhận được phản hồi từ bạn.';
+  String get wedLoveToHearFromYou =>
+      'Chúng tôi rất mong\nnhận được phản hồi từ bạn.';
 
   @override
   String get welcomeBack => 'Chào mừng bạn trở lại';
@@ -2498,7 +2699,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get whatDoesThisMean => 'Điều này có nghĩa là gì?';
 
   @override
-  String get whatHappensToMyChatHistory => 'Lịch sử trò chuyện của tôi được quản lý ra sao?';
+  String get whatHappensToMyChatHistory =>
+      'Lịch sử trò chuyện của tôi được quản lý ra sao?';
 
   @override
   String get whatIfAiMishears => 'Nếu AI nghe nhầm điều tôi muốn nói thì sao?';
@@ -2510,19 +2712,23 @@ class AppLocalizationsVi extends AppLocalizations {
   String get wikipedia => 'Wikipedia';
 
   @override
-  String get wordsSavedAndSrsScheduled => 'Đã lưu từ vựng và lên lịch lặp lại ngắt quãng (SRS)!';
+  String get wordsSavedAndSrsScheduled =>
+      'Đã lưu từ vựng và lên lịch lặp lại ngắt quãng (SRS)!';
 
   @override
   String get writeYourMessageHere => 'Nhập tin nhắn của bạn tại đây...';
 
   @override
-  String get wuChengenLiterature => 'Ngô Thừa Ân (khoảng 1500–1582) là tiểu thuyết gia thời nhà Minh, quê ở Hoài An, Giang Tô. Dựa trên truyện kể dân gian, ngụ ngôn Phật giáo và ngòi bút châm biếm sâu sắc, ông đã sáng tác nên tuyệt tác \'Tây Du Ký\' — một trong những tác phẩm giàu trí tưởng tượng và được yêu thích nhất nền văn học thế giới.';
+  String get wuChengenLiterature =>
+      'Ngô Thừa Ân (khoảng 1500–1582) là tiểu thuyết gia thời nhà Minh, quê ở Hoài An, Giang Tô. Dựa trên truyện kể dân gian, ngụ ngôn Phật giáo và ngòi bút châm biếm sâu sắc, ông đã sáng tác nên tuyệt tác \'Tây Du Ký\' — một trong những tác phẩm giàu trí tưởng tượng và được yêu thích nhất nền văn học thế giới.';
 
   @override
-  String get wuJingziClass => 'Ngô Kính Tử (1701–1754) là tiểu thuyết gia thời nhà Thanh, quê ở An Huy. Ông đã từ bỏ gia sản thừa kế để dành trọn đời viết nên \'Nho Lâm Ngoại Sử\' — kiệt tác châm biếm bóc trần thói hư danh, mục nát và sự phi lý của chế độ khoa cử cùng tầng lớp sĩ đại phu.';
+  String get wuJingziClass =>
+      'Ngô Kính Tử (1701–1754) là tiểu thuyết gia thời nhà Thanh, quê ở An Huy. Ông đã từ bỏ gia sản thừa kế để dành trọn đời viết nên \'Nho Lâm Ngoại Sử\' — kiệt tác châm biếm bóc trần thói hư danh, mục nát và sự phi lý của chế độ khoa cử cùng tầng lớp sĩ đại phu.';
 
   @override
-  String get xuZhonglinWarfare => 'Hứa Trọng Lâm (thế kỷ 16–17) là tác giả thời nhà Minh được ghi nhận biên soạn \'Phong Thần Diễn Nghĩa\', tác phẩm thần ma hoành tráng kết hợp lịch sử Thương-Chu với vũ trụ quan Đạo giáo, thần tiên thiên giới và những trận chiến huyền ảo.';
+  String get xuZhonglinWarfare =>
+      'Hứa Trọng Lâm (thế kỷ 16–17) là tác giả thời nhà Minh được ghi nhận biên soạn \'Phong Thần Diễn Nghĩa\', tác phẩm thần ma hoành tráng kết hợp lịch sử Thương-Chu với vũ trụ quan Đạo giáo, thần tiên thiên giới và những trận chiến huyền ảo.';
 
   @override
   String get yearly => 'Gói năm';
@@ -2547,10 +2753,12 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get youMustAccount => 'Bạn cần đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư để tạo tài khoản.';
+  String get youMustAccount =>
+      'Bạn cần đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư để tạo tài khoản.';
 
   @override
-  String get yourEchoModels => 'Các đoạn hội thoại Echo Hall chỉ được lưu cục bộ trên thiết bị của bạn để bạn ôn tập bất cứ lúc nào. Chúng tôi không dùng giọng nói cá nhân của bạn để huấn luyện mô hình AI.';
+  String get yourEchoModels =>
+      'Các đoạn hội thoại Echo Hall chỉ được lưu cục bộ trên thiết bị của bạn để bạn ôn tập bất cứ lúc nào. Chúng tôi không dùng giọng nói cá nhân của bạn để huấn luyện mô hình AI.';
 
   @override
   String get zhOnly => 'Chỉ tiếng Trung (ZH)';
@@ -2598,10 +2806,12 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get analyzing_pronunciation_with_gemini_ai => 'Đang phân tích phát âm với Gemini AI...';
+  String get analyzing_pronunciation_with_gemini_ai =>
+      'Đang phân tích phát âm với Gemini AI...';
 
   @override
-  String get analyzing_your_pronunciation => 'Đang phân tích phát âm của bạn...';
+  String get analyzing_your_pronunciation =>
+      'Đang phân tích phát âm của bạn...';
 
   @override
   String are_you_sure_you_want_to(String deckName) {
@@ -2617,7 +2827,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get audio_haptics => 'Âm thanh & Phản hồi xúc giác';
 
   @override
-  String get audio_could_not_start_check_your => 'Không thể phát âm thanh. Vui lòng kiểm tra kết nối mạng và cài đặt giọng đọc trên thiết bị.';
+  String get audio_could_not_start_check_your =>
+      'Không thể phát âm thanh. Vui lòng kiểm tra kết nối mạng và cài đặt giọng đọc trên thiết bị.';
 
   @override
   String get calligraphy_trace => 'Luyện viết nét thư pháp';
@@ -2648,7 +2859,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get display_content => 'Hiển thị & Nội dung';
 
   @override
-  String get do_you_keep_or_store_my => 'Ứng dụng có lưu trữ các đoạn ghi âm giọng nói của tôi không?';
+  String get do_you_keep_or_store_my =>
+      'Ứng dụng có lưu trữ các đoạn ghi âm giọng nói của tôi không?';
 
   @override
   String get elementary => 'Sơ cấp';
@@ -2693,7 +2905,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get explanation => 'Giải thích';
 
   @override
-  String get extracted_text_tap_to_lookup => 'Văn bản trích xuất (Chạm để tra cứu)';
+  String get extracted_text_tap_to_lookup =>
+      'Văn bản trích xuất (Chạm để tra cứu)';
 
   @override
   String extraction_failed(Object error) {
@@ -2725,7 +2938,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get foundation => 'Căn bản';
 
   @override
-  String get how_is_my_pronunciation_scored => 'Điểm phát âm của tôi được tính như thế nào?';
+  String get how_is_my_pronunciation_scored =>
+      'Điểm phát âm của tôi được tính như thế nào?';
 
   @override
   String hsk(Object level) {
@@ -2761,7 +2975,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get no_when_you_use_echo_hall => 'Không. Khi bạn sử dụng Echo Hall, Phán Quyết của Học Giả hoặc Phòng Luyện Shadowing, âm thanh của bạn được chấm điểm bảo mật theo thời gian thực rồi xóa ngay lập tức. Chúng tôi chỉ lưu lại điểm số để theo dõi tiến trình học tập của bạn.';
+  String get no_when_you_use_echo_hall =>
+      'Không. Khi bạn sử dụng Echo Hall, Phán Quyết của Học Giả hoặc Phòng Luyện Shadowing, âm thanh của bạn được chấm điểm bảo mật theo thời gian thực rồi xóa ngay lập tức. Chúng tôi chỉ lưu lại điểm số để theo dõi tiến trình học tập của bạn.';
 
   @override
   String get notification_settings => 'Cài đặt thông báo';
@@ -2779,16 +2994,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get please_select_a_deck_to_add => 'Vui lòng chọn bộ thẻ để thêm vào.';
 
   @override
-  String get point_at_chinese_text_to_translate => 'Hướng camera vào văn bản tiếng Trung để dịch';
+  String get point_at_chinese_text_to_translate =>
+      'Hướng camera vào văn bản tiếng Trung để dịch';
 
   @override
-  String get practice_writing_the_strokes_by_hand => 'Luyện tập viết các nét chữ bằng tay';
+  String get practice_writing_the_strokes_by_hand =>
+      'Luyện tập viết các nét chữ bằng tay';
 
   @override
   String get preferences_audio_and_display => 'Tùy chọn, âm thanh và hiển thị';
 
   @override
-  String get preparing_your_scholars_verdict => 'Đang chuẩn bị Phán quyết của Học Giả...';
+  String get preparing_your_scholars_verdict =>
+      'Đang chuẩn bị Phán quyết của Học Giả...';
 
   @override
   String get previous => 'Trước';
@@ -2829,7 +3047,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sentence => 'Câu';
 
   @override
-  String get shadowing_studio_is_a_dedicated_space => 'Phòng luyện Shadowing là không gian chuyên biệt giúp bạn luyện tập nhại giọng theo người bản xứ theo thời gian thực.';
+  String get shadowing_studio_is_a_dedicated_space =>
+      'Phòng luyện Shadowing là không gian chuyên biệt giúp bạn luyện tập nhại giọng theo người bản xứ theo thời gian thực.';
 
   @override
   String simplify_failed(Object error) {
@@ -2849,7 +3068,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get table_of_contents => 'Mục lục · 目录';
 
   @override
-  String get the_ai_evaluates_your_speech_across => 'AI đánh giá giọng nói của bạn qua 3 tiêu chí:\n• Độ chính xác: Bạn có phát âm đúng từng âm tiết không?\n• Độ hoàn thiện: Bạn có bỏ sót từ nào không?\n• Độ lưu loát: Bạn có ngắt nghỉ tự nhiên và đúng thanh điệu không?\nHệ thống so sánh với giọng người bản xứ để đưa ra thang điểm 100.';
+  String get the_ai_evaluates_your_speech_across =>
+      'AI đánh giá giọng nói của bạn qua 3 tiêu chí:\n• Độ chính xác: Bạn có phát âm đúng từng âm tiết không?\n• Độ hoàn thiện: Bạn có bỏ sót từ nào không?\n• Độ lưu loát: Bạn có ngắt nghỉ tự nhiên và đúng thanh điệu không?\nHệ thống so sánh với giọng người bản xứ để đưa ra thang điểm 100.';
 
   @override
   String get this_cannot_be_undone => 'Thao tác này không thể hoàn tác.';
@@ -2875,10 +3095,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get type_your_message_in => 'Nhập tin nhắn của bạn...';
 
   @override
-  String get unable_to_open_this_video_please => 'Không thể mở video này. Vui lòng thử lại sau.';
+  String get unable_to_open_this_video_please =>
+      'Không thể mở video này. Vui lòng thử lại sau.';
 
   @override
-  String get view_your_learning_history_and_streaks => 'Xem lịch sử học tập và chuỗi ngày rèn luyện';
+  String get view_your_learning_history_and_streaks =>
+      'Xem lịch sử học tập và chuỗi ngày rèn luyện';
 
   @override
   String get what_is_shadowing_studio => 'Phòng luyện Shadowing là gì?';
@@ -2909,10 +3131,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get neverMissAStroke => 'Đừng bỏ lỡ nét bút nào! 🖌️';
 
   @override
-  String get yourTrialEndsTomorrow => 'Thời gian dùng thử của bạn sẽ kết thúc vào ngày mai! ⏳';
+  String get yourTrialEndsTomorrow =>
+      'Thời gian dùng thử của bạn sẽ kết thúc vào ngày mai! ⏳';
 
   @override
-  String get officialStandardVocabularyTiers => 'Cấp độ từ vựng tiêu chuẩn chính thức';
+  String get officialStandardVocabularyTiers =>
+      'Cấp độ từ vựng tiêu chuẩn chính thức';
 
   @override
   String get failedToLoadCollections => 'Không thể tải bộ sưu tập.';
@@ -2934,10 +3158,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get aiSmartContextError => 'Lỗi ngữ cảnh thông minh AI';
 
   @override
-  String get downloadOfficialHskCollections => 'Tải xuống bộ sưu tập HSK chính thức';
+  String get downloadOfficialHskCollections =>
+      'Tải xuống bộ sưu tập HSK chính thức';
 
   @override
-  String get unableToLoadThisSection => 'Không thể tải phần này. Vui lòng thử lại.';
+  String get unableToLoadThisSection =>
+      'Không thể tải phần này. Vui lòng thử lại.';
 
   @override
   String get translationLanguage => 'Ngôn ngữ dịch';
@@ -2967,13 +3193,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get liziqi => 'Lý Tử Thất (李子柒): Nghệ thuật hoa lụa';
 
   @override
-  String get theLifeOfGarlicTraditional => 'Vòng đời của tỏi: Nếp sống nông thôn truyền thống Trung Hoa';
+  String get theLifeOfGarlicTraditional =>
+      'Vòng đời của tỏi: Nếp sống nông thôn truyền thống Trung Hoa';
 
   @override
   String get graceMandarin50Phrases => 'Grace Mandarin: 50 mẫu câu thiết yếu';
 
   @override
-  String get essentialChinesePhrasesForBeginners => 'Mẫu câu tiếng Trung căn bản cho người mới bắt đầu';
+  String get essentialChinesePhrasesForBeginners =>
+      'Mẫu câu tiếng Trung căn bản cho người mới bắt đầu';
 
   @override
   String get makingBambooFurniture => 'Nghề làm đồ nội thất bằng tre';
@@ -2982,10 +3210,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get peppaPigChinese => 'Peppa Pig tiếng Trung: Trốn tìm (躲猫猫)';
 
   @override
-  String get muddyPuddlesBeginnerFriendly => 'Vũng bùn lầy (Dành cho người mới bắt đầu)';
+  String get muddyPuddlesBeginnerFriendly =>
+      'Vũng bùn lầy (Dành cho người mới bắt đầu)';
 
   @override
-  String get mandarinCorner300Verbs => 'Mandarin Corner: 300 động từ thông dụng';
+  String get mandarinCorner300Verbs =>
+      'Mandarin Corner: 300 động từ thông dụng';
 
   @override
   String get mostCommonChineseVerbs => 'Các động từ tiếng Trung phổ biến nhất';
@@ -2997,7 +3227,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get howToOrderFoodIn => 'Cách gọi món ăn trong nhà hàng Trung Quốc';
 
   @override
-  String get silkFlowersTraditionalCraft => 'Hoa lụa: Nghề thủ công truyền thống';
+  String get silkFlowersTraditionalCraft =>
+      'Hoa lụa: Nghề thủ công truyền thống';
 
   @override
   String get mandarinCorner => 'Mandarin Corner: Tiếng Trung khi đi khám bệnh';
@@ -3006,19 +3237,23 @@ class AppLocalizationsVi extends AppLocalizations {
   String get goingToTheDoctorReal => 'Đi khám bệnh: Hội thoại đời thực';
 
   @override
-  String get hideAndSeekBeginnerFriendly => 'Trò chơi trốn tìm (Dành cho người mới bắt đầu)';
+  String get hideAndSeekBeginnerFriendly =>
+      'Trò chơi trốn tìm (Dành cho người mới bắt đầu)';
 
   @override
-  String get linGdp6 => 'Tiểu Lâm giải thích: Vì sao mục tiêu tăng trưởng GDP là 6%?';
+  String get linGdp6 =>
+      'Tiểu Lâm giải thích: Vì sao mục tiêu tăng trưởng GDP là 6%?';
 
   @override
-  String get why6GdpGrowthEasy => 'Vì sao GDP tăng trưởng 6%: Kinh tế Trung Quốc dễ hiểu';
+  String get why6GdpGrowthEasy =>
+      'Vì sao GDP tăng trưởng 6%: Kinh tế Trung Quốc dễ hiểu';
 
   @override
   String get bbcWorldNews => 'BBC 中文 (Tin tức thế giới)';
 
   @override
-  String get currentEventsInSimplifiedChinese => 'Tin tức thời sự bằng chữ Hán giản thể';
+  String get currentEventsInSimplifiedChinese =>
+      'Tin tức thời sự bằng chữ Hán giản thể';
 
   @override
   String get baidu => 'Baidu (Bách Độ)';
@@ -3027,7 +3262,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youtubeDesk => 'GÓC HỌC TẬP YOUTUBE';
 
   @override
-  String get interactiveTranscriptsShadowing => 'Bản chép lời tương tác & Luyện Shadowing';
+  String get interactiveTranscriptsShadowing =>
+      'Bản chép lời tương tác & Luyện Shadowing';
 
   @override
   String get showsDramas => 'PHIM TRUYỀN HÌNH & CHƯƠNG TRÌNH';
@@ -3039,7 +3275,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get autoSimplify => 'Tự động chuyển thành văn bản dễ hiểu';
 
   @override
-  String get rewriteThisArticleToMatch => 'Viết lại bài viết này cho phù hợp với cấp độ HSK của bạn';
+  String get rewriteThisArticleToMatch =>
+      'Viết lại bài viết này cho phù hợp với cấp độ HSK của bạn';
 
   @override
   String failedToSaveExtractedWords(Object error) {
@@ -3096,7 +3333,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get forbiddenCity => 'Tử Cấm Thành (Cố Cung)';
 
   @override
-  String get aBlessingInDisguise => 'Tái ông thất mã (Trong cái rủi có cái may)';
+  String get aBlessingInDisguise =>
+      'Tái ông thất mã (Trong cái rủi có cái may)';
 
   @override
   String get drawingASnake => 'Vẽ rắn thêm chân (Họa xà thiêm túc)';
@@ -3157,13 +3395,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get neverMissAStroke1 => 'Đừng bỏ lỡ nét bút nào! 🖌️';
 
   @override
-  String get yourTrialEndsTomorrow1 => 'Gói dùng thử miễn phí sẽ kết thúc vào ngày mai! ⏳';
+  String get yourTrialEndsTomorrow1 =>
+      'Gói dùng thử miễn phí sẽ kết thúc vào ngày mai! ⏳';
 
   @override
   String get hskCollections1 => 'Bộ sưu tập HSK';
 
   @override
-  String get officialStandardVocabularyTiers1 => 'Các cấp độ từ vựng chuẩn HSK chính thức';
+  String get officialStandardVocabularyTiers1 =>
+      'Các cấp độ từ vựng chuẩn HSK chính thức';
 
   @override
   String get failedToLoadCollections1 => 'Không thể tải bộ sưu tập.';
@@ -3200,10 +3440,12 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get downloadOfficialHskCollections1 => 'Tải xuống bộ sưu tập HSK chính thức';
+  String get downloadOfficialHskCollections1 =>
+      'Tải xuống bộ sưu tập HSK chính thức';
 
   @override
-  String get unableToLoadThisSectionPleaseTryAga => 'Không thể tải phần này. Vui lòng thử lại.';
+  String get unableToLoadThisSectionPleaseTryAga =>
+      'Không thể tải phần này. Vui lòng thử lại.';
 
   @override
   String get searchRadicalsEgWater => 'Tìm kiếm bộ thủ (ví dụ: Thủy, 水, 氵)';
@@ -3283,22 +3525,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get partnerSpeaking1 => 'Đối tác đang nói…';
 
   @override
-  String get theLifeOfGarlicTraditionalChineseLi => 'Vòng đời của tỏi: Nếp sống nông thôn truyền thống Trung Hoa';
+  String get theLifeOfGarlicTraditionalChineseLi =>
+      'Vòng đời của tỏi: Nếp sống nông thôn truyền thống Trung Hoa';
 
   @override
   String get graceMandarin50Phrases1 => 'Grace Mandarin: 50 mẫu câu thiết yếu';
 
   @override
-  String get essentialChinesePhrasesForBeginners1 => 'Mẫu câu tiếng Trung căn bản cho người mới bắt đầu';
+  String get essentialChinesePhrasesForBeginners1 =>
+      'Mẫu câu tiếng Trung căn bản cho người mới bắt đầu';
 
   @override
   String get makingBambooFurniture1 => 'Nghề làm đồ nội thất bằng tre';
 
   @override
-  String get muddyPuddlesBeginnerFriendly1 => 'Vũng bùn lầy (Dành cho người mới bắt đầu)';
+  String get muddyPuddlesBeginnerFriendly1 =>
+      'Vũng bùn lầy (Dành cho người mới bắt đầu)';
 
   @override
-  String get mandarinCorner300Verbs1 => 'Mandarin Corner: 300 động từ thông dụng';
+  String get mandarinCorner300Verbs1 =>
+      'Mandarin Corner: 300 động từ thông dụng';
 
   @override
   String get mostCommonChineseVerbs1 => 'Các động từ tiếng Trung phổ biến nhất';
@@ -3307,25 +3553,31 @@ class AppLocalizationsVi extends AppLocalizations {
   String get graceMandarinOrderFood1 => 'Grace Mandarin: Cách gọi món ăn';
 
   @override
-  String get howToOrderFoodInAChineseRestaurant => 'Cách gọi món ăn trong nhà hàng Trung Quốc';
+  String get howToOrderFoodInAChineseRestaurant =>
+      'Cách gọi món ăn trong nhà hàng Trung Quốc';
 
   @override
-  String get silkFlowersTraditionalCraft1 => 'Hoa lụa: Nghề thủ công truyền thống';
+  String get silkFlowersTraditionalCraft1 =>
+      'Hoa lụa: Nghề thủ công truyền thống';
 
   @override
-  String get goingToTheDoctorRealLifeConversatio => 'Đi khám bệnh: Hội thoại đời thực';
+  String get goingToTheDoctorRealLifeConversatio =>
+      'Đi khám bệnh: Hội thoại đời thực';
 
   @override
-  String get hideAndSeekBeginnerFriendly1 => 'Trò chơi trốn tìm (Dành cho người mới bắt đầu)';
+  String get hideAndSeekBeginnerFriendly1 =>
+      'Trò chơi trốn tìm (Dành cho người mới bắt đầu)';
 
   @override
   String get lingdp6 => 'Tiểu Lâm giải thích: Vì sao GDP tăng trưởng 6%?';
 
   @override
-  String get why6GdpGrowthEasyChineseEconomics => 'Vì sao GDP tăng trưởng 6%: Kinh tế Trung Quốc dễ hiểu';
+  String get why6GdpGrowthEasyChineseEconomics =>
+      'Vì sao GDP tăng trưởng 6%: Kinh tế Trung Quốc dễ hiểu';
 
   @override
-  String get currentEventsInSimplifiedChinese1 => 'Tin tức thời sự bằng chữ Hán giản thể';
+  String get currentEventsInSimplifiedChinese1 =>
+      'Tin tức thời sự bằng chữ Hán giản thể';
 
   @override
   String get baidu1 => 'Baidu (Bách Độ)';
@@ -3334,7 +3586,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youtubeDesk1 => 'GÓC HỌC TẬP YOUTUBE';
 
   @override
-  String get interactiveTranscriptsShadowing1 => 'Bản chép lời tương tác & Luyện Shadowing';
+  String get interactiveTranscriptsShadowing1 =>
+      'Bản chép lời tương tác & Luyện Shadowing';
 
   @override
   String get showsDramas1 => 'PHIM TRUYỀN HÌNH & CHƯƠNG TRÌNH';
@@ -3351,7 +3604,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get autosimplify => 'Tự động chuyển thành văn bản dễ hiểu';
 
   @override
-  String get rewriteThisArticleToMatchYourHskLev => 'Viết lại bài viết này cho phù hợp với cấp độ HSK của bạn';
+  String get rewriteThisArticleToMatchYourHskLev =>
+      'Viết lại bài viết này cho phù hợp với cấp độ HSK của bạn';
 
   @override
   String get addToDeck1 => 'Thêm vào bộ thẻ';
@@ -3433,7 +3687,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get forbiddenCity1 => 'Tử Cấm Thành';
 
   @override
-  String get aBlessingInDisguise1 => 'Trong cái rủi có cái may (Tái ông thất mã)';
+  String get aBlessingInDisguise1 =>
+      'Trong cái rủi có cái may (Tái ông thất mã)';
 
   @override
   String get drawingASnake1 => 'Vẽ rắn thêm chân';
@@ -3472,10 +3727,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get readingVocabulary1 => 'Đọc hiểu & Từ vựng';
 
   @override
-  String get defaultfirebaseoptionsHaveNotBeenCo => 'DefaultFirebaseOptions chưa được cấu hình cho Linux.';
+  String get defaultfirebaseoptionsHaveNotBeenCo =>
+      'DefaultFirebaseOptions chưa được cấu hình cho Linux.';
 
   @override
-  String get defaultfirebaseoptionsAreNotSupport => 'DefaultFirebaseOptions không được hỗ trợ trên nền tảng này.';
+  String get defaultfirebaseoptionsAreNotSupport =>
+      'DefaultFirebaseOptions không được hỗ trợ trên nền tảng này.';
 
   @override
   String get hanziMaster1 => 'SinoSpark';
@@ -3487,10 +3744,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get wrongStartPoint => 'Điểm bắt đầu chưa chính xác.';
 
   @override
-  String get rightShapeButWrongPlace => 'Nét vẽ đúng hình dạng nhưng sai vị trí!';
+  String get rightShapeButWrongPlace =>
+      'Nét vẽ đúng hình dạng nhưng sai vị trí!';
 
   @override
-  String get goodFollowTheFlow => 'Tốt lắm! Hãy viết theo dòng chảy tự nhiên của nét bút.';
+  String get goodFollowTheFlow =>
+      'Tốt lắm! Hãy viết theo dòng chảy tự nhiên của nét bút.';
 
   @override
   String get aBitShaky => 'Nét vẽ hơi bị run tay!';
@@ -3565,7 +3824,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get kore => 'Kore (nữ, ấm áp)';
 
   @override
-  String get xmicrosoftoutputformatAudio24khz48k => 'audio-24khz-48kbitrate-mono-mp3';
+  String get xmicrosoftoutputformatAudio24khz48k =>
+      'audio-24khz-48kbitrate-mono-mp3';
 
   @override
   String get useragentHanzimasterapp => 'HanziMasterApp';
@@ -3577,37 +3837,46 @@ class AppLocalizationsVi extends AppLocalizations {
   String get creativeThematicTitle => 'Tiêu đề chủ đề sáng tạo';
 
   @override
-  String get briefPedagogicalOrSemanticRationale => 'Giải thích ngắn gọn về mặt sư phạm hoặc ngữ nghĩa';
+  String get briefPedagogicalOrSemanticRationale =>
+      'Giải thích ngắn gọn về mặt sư phạm hoặc ngữ nghĩa';
 
   @override
-  String get theSingleMostCentralCharacterFromTh => 'Chữ Hán cốt lõi và đại diện nhất trong danh sách';
+  String get theSingleMostCentralCharacterFromTh =>
+      'Chữ Hán cốt lõi và đại diện nhất trong danh sách';
 
   @override
-  String get aBalancedSetOfCharactersFromYourLib => 'Một bộ chữ Hán cân đối được chọn lọc từ thư viện của bạn.';
+  String get aBalancedSetOfCharactersFromYourLib =>
+      'Một bộ chữ Hán cân đối được chọn lọc từ thư viện của bạn.';
 
   @override
-  String get yourNaturalConversationalReplyInChi => 'Câu trả lời đối thoại tự nhiên bằng chữ Hán.';
+  String get yourNaturalConversationalReplyInChi =>
+      'Câu trả lời đối thoại tự nhiên bằng chữ Hán.';
 
   @override
-  String get theEnglishTranslationOfYourReply => 'Bản dịch tiếng Việt của câu trả lời.';
+  String get theEnglishTranslationOfYourReply =>
+      'Bản dịch tiếng Việt của câu trả lời.';
 
   @override
-  String get thePinyinWithToneMarksForYourReply => 'Pinyin có dấu thanh điệu cho câu trả lời.';
+  String get thePinyinWithToneMarksForYourReply =>
+      'Pinyin có dấu thanh điệu cho câu trả lời.';
 
   @override
-  String get aSuggestedResponseTheUserCouldSayBa => 'Gợi ý câu phản hồi mà người học có thể nói lại với bạn.';
+  String get aSuggestedResponseTheUserCouldSayBa =>
+      'Gợi ý câu phản hồi mà người học có thể nói lại với bạn.';
 
   @override
   String get pinyinForTheSuggestion => 'Pinyin cho câu gợi ý.';
 
   @override
-  String get englishTranslationForTheSuggestion => 'Bản dịch tiếng Việt cho câu gợi ý.';
+  String get englishTranslationForTheSuggestion =>
+      'Bản dịch tiếng Việt cho câu gợi ý.';
 
   @override
   String get scholarsCritique => 'Nhận xét & Đánh giá của Học Giả';
 
   @override
-  String get theEchoHallRemainsSilentTryYourBrea => 'Hành Lang Tiếng Vọng vẫn im lặng. Hãy lấy hơi và thử lại nhé.';
+  String get theEchoHallRemainsSilentTryYourBrea =>
+      'Hành Lang Tiếng Vọng vẫn im lặng. Hãy lấy hơi và thử lại nhé.';
 
   @override
   String get xtitleHanziMaster => 'SinoSpark';
@@ -3643,7 +3912,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get emptyResponseFromOpenrouter => 'Phản hồi trống từ OpenRouter';
 
   @override
-  String get emptyResponseFromVisionModel => 'Phản hồi trống từ mô hình thị giác (Vision)';
+  String get emptyResponseFromVisionModel =>
+      'Phản hồi trống từ mô hình thị giác (Vision)';
 
   @override
   String get standard => 'Tiêu chuẩn';
@@ -3661,49 +3931,61 @@ class AppLocalizationsVi extends AppLocalizations {
   String get emptyResponseFromDeepseekApi => 'Phản hồi trống từ DeepSeek API';
 
   @override
-  String get criticalPutTheEnglishTranslationInT => 'QUAN TRỌNG: Đặt bản dịch tiếng Việt vào mục';
+  String get criticalPutTheEnglishTranslationInT =>
+      'QUAN TRỌNG: Đặt bản dịch tiếng Việt vào mục';
 
   @override
-  String get englishTranslationOfTheEntireSenten => 'Bản dịch tiếng Việt của toàn bộ câu';
+  String get englishTranslationOfTheEntireSenten =>
+      'Bản dịch tiếng Việt của toàn bộ câu';
 
   @override
   String get hanziWord => 'Từ chữ Hán';
 
   @override
-  String get theFullSimplifiedSentenceInChinese => 'Toàn bộ câu bằng chữ Hán giản thể...';
+  String get theFullSimplifiedSentenceInChinese =>
+      'Toàn bộ câu bằng chữ Hán giản thể...';
 
   @override
-  String get lyingFlatACulturalMovement => 'Thoái trào nằm yên (Tang Ping): Một hiện tượng xã hội...';
+  String get lyingFlatACulturalMovement =>
+      'Thoái trào nằm yên (Tang Ping): Một hiện tượng xã hội...';
 
   @override
   String get theUserYouAreSpeakingToIsNamed => 'Tên người dùng đang đàm thoại:';
 
   @override
-  String get importantRuleDoNotAddressTheUserByA => 'QUY TẮC QUAN TRỌNG: Không xưng hô với người dùng bằng tên tùy tiện. Tuyệt đối không dùng tên mẫu như';
+  String get importantRuleDoNotAddressTheUserByA =>
+      'QUY TẮC QUAN TRỌNG: Không xưng hô với người dùng bằng tên tùy tiện. Tuyệt đối không dùng tên mẫu như';
 
   @override
-  String get youAreAConciseChineseCalligraphyAnd => 'Bạn là gia sư súc tích và am hiểu về thư pháp, chiết tự chữ Hán trong ứng dụng flashcard di động.';
+  String get youAreAConciseChineseCalligraphyAnd =>
+      'Bạn là gia sư súc tích và am hiểu về thư pháp, chiết tự chữ Hán trong ứng dụng flashcard di động.';
 
   @override
   String get theStudentIsStudyingTheCharacter => 'Người học đang học chữ Hán';
 
   @override
-  String get neverWriteIntroductionsSignoffsOrFi => 'Tuyệt đối không viết lời chào mở đầu, lời kết hay các câu đệm rườm rà như';
+  String get neverWriteIntroductionsSignoffsOrFi =>
+      'Tuyệt đối không viết lời chào mở đầu, lời kết hay các câu đệm rườm rà như';
 
   @override
-  String get beDirectAndInformative => 'Hãy trả lời trực diện, súc tích và giàu thông tin.';
+  String get beDirectAndInformative =>
+      'Hãy trả lời trực diện, súc tích và giàu thông tin.';
 
   @override
-  String get criticalRuleYouMustRespondEntirelyI => 'QUY TẮC BẮT BUỘC: Bạn phải trả lời HOÀN TOÀN bằng ngôn ngữ tương ứng với mã ISO 639-1';
+  String get criticalRuleYouMustRespondEntirelyI =>
+      'QUY TẮC BẮT BUỘC: Bạn phải trả lời HOÀN TOÀN bằng ngôn ngữ tương ứng với mã ISO 639-1';
 
   @override
-  String get youAreAConciseChineseGrammarTutorIn => 'Bạn là gia sư ngữ pháp tiếng Trung súc tích và chuẩn mực trong ứng dụng di động.';
+  String get youAreAConciseChineseGrammarTutorIn =>
+      'Bạn là gia sư ngữ pháp tiếng Trung súc tích và chuẩn mực trong ứng dụng di động.';
 
   @override
-  String get theStudentIsConfusedAboutTheWord => 'Người học đang thắc mắc về từ';
+  String get theStudentIsConfusedAboutTheWord =>
+      'Người học đang thắc mắc về từ';
 
   @override
-  String get neverWriteIntroductionsSignoffsOrFi1 => 'Tuyệt đối không viết lời chào mở đầu, lời kết hay câu đệm rườm rà.';
+  String get neverWriteIntroductionsSignoffsOrFi1 =>
+      'Tuyệt đối không viết lời chào mở đầu, lời kết hay câu đệm rườm rà.';
 
   @override
   String get azureSpeechApiKeysAreMissing => 'Thiếu khóa API Azure Speech.';
@@ -3724,7 +4006,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get comprehensive => 'Đánh giá toàn diện';
 
   @override
-  String get weCouldntHearYouClearlyPleaseTryAga => 'Không thể nghe rõ giọng của bạn. Vui lòng thử lại.';
+  String get weCouldntHearYouClearlyPleaseTryAga =>
+      'Không thể nghe rõ giọng của bạn. Vui lòng thử lại.';
 
   @override
   String get noNbestResultFound => 'Không tìm thấy kết quả nhận diện tối ưu.';
@@ -3763,19 +4046,24 @@ class AppLocalizationsVi extends AppLocalizations {
   String get pronunciationWasInaccurate => 'Phát âm chưa hoàn toàn chính xác.';
 
   @override
-  String get goodEffortKeepPracticing => 'Cố gắng rất tốt! Hãy tiếp tục luyện tập nhé.';
+  String get goodEffortKeepPracticing =>
+      'Cố gắng rất tốt! Hãy tiếp tục luyện tập nhé.';
 
   @override
-  String get perfectPronunciationSoundsLikeANati => 'Phát âm chuẩn xác tuyệt đối! Giống hệt người bản xứ.';
+  String get perfectPronunciationSoundsLikeANati =>
+      'Phát âm chuẩn xác tuyệt đối! Giống hệt người bản xứ.';
 
   @override
-  String get greatJobAFewMinorToneInaccuracies => 'Làm rất tốt! Chỉ có một vài chỗ thanh điệu hơi lệch nhẹ.';
+  String get greatJobAFewMinorToneInaccuracies =>
+      'Làm rất tốt! Chỉ có một vài chỗ thanh điệu hơi lệch nhẹ.';
 
   @override
-  String get notBadButYourTonesNeedSomeWork => 'Khá tốt, nhưng thanh điệu cần trau chuốt thêm một chút.';
+  String get notBadButYourTonesNeedSomeWork =>
+      'Khá tốt, nhưng thanh điệu cần trau chuốt thêm một chút.';
 
   @override
-  String get keepPracticingListenToTheNativeAudi => 'Hãy tiếp tục luyện tập! Nghe kỹ phát âm mẫu và thử lại nhé.';
+  String get keepPracticingListenToTheNativeAudi =>
+      'Hãy tiếp tục luyện tập! Nghe kỹ phát âm mẫu và thử lại nhé.';
 
   @override
   String get lexical => 'Thuộc về từ vựng';
@@ -3787,13 +4075,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get aShortSummaryInEnglish => 'Tóm tắt ngắn gọn bằng tiếng Việt';
 
   @override
-  String get noCoherentChineseTextFoundInTheScan => 'Không tìm thấy văn bản tiếng Trung rõ ràng nào trong bản quét.';
+  String get noCoherentChineseTextFoundInTheScan =>
+      'Không tìm thấy văn bản tiếng Trung rõ ràng nào trong bản quét.';
 
   @override
-  String get theFullEnglishTranslationOfTheScann => 'Bản dịch tiếng Việt hoàn chỉnh của văn bản đã quét... HOẶC \'Không tìm thấy văn bản tiếng Trung rõ ràng nào.\'';
+  String get theFullEnglishTranslationOfTheScann =>
+      'Bản dịch tiếng Việt hoàn chỉnh của văn bản đã quét... HOẶC \'Không tìm thấy văn bản tiếng Trung rõ ràng nào.\'';
 
   @override
-  String get aShort24WordTitleForThisScanEgResta => 'Tiêu đề ngắn 2–4 từ cho bản quét này (ví dụ: \'Thực đơn nhà hàng\', \'Biển báo giao thông\')';
+  String get aShort24WordTitleForThisScanEgResta =>
+      'Tiêu đề ngắn 2–4 từ cho bản quét này (ví dụ: \'Thực đơn nhà hàng\', \'Biển báo giao thông\')';
 
   @override
   String get china => 'Trung Quốc';
@@ -3805,10 +4096,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get scanResults => 'Kết quả quét';
 
   @override
-  String get whenWasItWrittenAndWhatWasHappening => 'Tác phẩm được sáng tác khi nào và bối cảnh lịch sử Trung Quốc lúc bấy giờ ra sao?';
+  String get whenWasItWrittenAndWhatWasHappening =>
+      'Tác phẩm được sáng tác khi nào và bối cảnh lịch sử Trung Quốc lúc bấy giờ ra sao?';
 
   @override
-  String get whyIsThisPieceFamousWhatPhilosophic => 'Vì sao tác phẩm này nổi tiếng? Tác phẩm khám phá những chủ đề triết học hay văn hóa nào?';
+  String get whyIsThisPieceFamousWhatPhilosophic =>
+      'Vì sao tác phẩm này nổi tiếng? Tác phẩm khám phá những chủ đề triết học hay văn hóa nào?';
 
   @override
   String get aBriefBioOfTheAuthor => 'Tiểu sử tóm tắt của tác giả';
@@ -3829,16 +4122,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dailyDrop => 'Bài học hằng ngày';
 
   @override
-  String get dailyNotificationsForWordOfTheDayAn => 'Thông báo hằng ngày về Từ vựng hôm nay và tin tức';
+  String get dailyNotificationsForWordOfTheDayAn =>
+      'Thông báo hằng ngày về Từ vựng hôm nay và tin tức';
 
   @override
-  String get aNewWordAndStoryOfTheDayAreWaitingF => 'Từ vựng và câu chuyện mới của ngày hôm nay đang chờ bạn!';
+  String get aNewWordAndStoryOfTheDayAreWaitingF =>
+      'Từ vựng và câu chuyện mới của ngày hôm nay đang chờ bạn!';
 
   @override
   String get spacedRepetition => 'Lặp lại ngắt quãng (SRS)';
 
   @override
-  String get remindersForFlashcardsDueForReview => 'Nhắc nhở về các thẻ đến hạn ôn tập';
+  String get remindersForFlashcardsDueForReview =>
+      'Nhắc nhở về các thẻ đến hạn ôn tập';
 
   @override
   String get engagementReminders => 'Nhắc nhở duy trì học tập';
@@ -3847,10 +4143,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get trialReminders => 'Nhắc nhở về gói dùng thử';
 
   @override
-  String get notificationsForYourTrialStatus => 'Thông báo về trạng thái gói dùng thử của bạn';
+  String get notificationsForYourTrialStatus =>
+      'Thông báo về trạng thái gói dùng thử của bạn';
 
   @override
-  String get comeReviewYourHanziAndTryALiveCallB => 'Hãy vào ôn tập chữ Hán và trải nghiệm Gọi thoại trực tiếp trước khi hết hạn dùng thử miễn phí!';
+  String get comeReviewYourHanziAndTryALiveCallB =>
+      'Hãy vào ôn tập chữ Hán và trải nghiệm Gọi thoại trực tiếp trước khi hết hạn dùng thử miễn phí!';
 
   @override
   String get scholarsEye => 'Mắt Nhìn Học Giả';
@@ -3868,46 +4166,60 @@ class AppLocalizationsVi extends AppLocalizations {
   String get neutralToneLight => 'Thanh nhẹ (Đọc nhẹ và lướt)';
 
   @override
-  String get keepYourPitchHighAndSteadyLikeSingi => 'Giữ cao độ cao và đều đặn như khi ngân một nốt nhạc.';
+  String get keepYourPitchHighAndSteadyLikeSingi =>
+      'Giữ cao độ cao và đều đặn như khi ngân một nốt nhạc.';
 
   @override
-  String get startInTheMiddleAndSlideYourPitchUp => 'Bắt đầu ở cao độ trung bình rồi vuốt giọng lên cao, giống như khi hỏi \'Gì cơ?\'';
+  String get startInTheMiddleAndSlideYourPitchUp =>
+      'Bắt đầu ở cao độ trung bình rồi vuốt giọng lên cao, giống như khi hỏi \'Gì cơ?\'';
 
   @override
-  String get dipYourVoiceDownLowThenRiseGentlyBa => 'Hạ giọng xuống trầm rồi nhẹ nhàng nâng cao độ lên.';
+  String get dipYourVoiceDownLowThenRiseGentlyBa =>
+      'Hạ giọng xuống trầm rồi nhẹ nhàng nâng cao độ lên.';
 
   @override
-  String get dropYourPitchSharplyAndDecisivelyLi => 'Hạ giọng thật nhanh và dứt khoát, giống như khi dứt khoát nói \'Không!\'';
+  String get dropYourPitchSharplyAndDecisivelyLi =>
+      'Hạ giọng thật nhanh và dứt khoát, giống như khi dứt khoát nói \'Không!\'';
 
   @override
-  String get pronounceSoftlyBrieflyAndWithoutEmp => 'Phát âm nhẹ nhàng, ngắn gọn và không nhấn mạnh.';
+  String get pronounceSoftlyBrieflyAndWithoutEmp =>
+      'Phát âm nhẹ nhàng, ngắn gọn và không nhấn mạnh.';
 
   @override
-  String get spotOnPitchWasHighFlatAndSteady => 'Chuẩn xác! Cao độ giữ được mức cao, phẳng và rất đều.';
+  String get spotOnPitchWasHighFlatAndSteady =>
+      'Chuẩn xác! Cao độ giữ được mức cao, phẳng và rất đều.';
 
   @override
-  String get spotOnUpwardPitchRiseWasClear => 'Chuẩn xác! Nét vuốt giọng lên cao rất rõ ràng.';
+  String get spotOnUpwardPitchRiseWasClear =>
+      'Chuẩn xác! Nét vuốt giọng lên cao rất rõ ràng.';
 
   @override
-  String get spotOnLowDippingCurveWasAccurate => 'Chuẩn xác! Độ uốn trầm xuống rồi nâng lên rất đúng chuẩn.';
+  String get spotOnLowDippingCurveWasAccurate =>
+      'Chuẩn xác! Độ uốn trầm xuống rồi nâng lên rất đúng chuẩn.';
 
   @override
-  String get spotOnSharpFallingDropWasDecisive => 'Chuẩn xác! Nét rơi giọng dứt khoát và mạnh mẽ.';
+  String get spotOnSharpFallingDropWasDecisive =>
+      'Chuẩn xác! Nét rơi giọng dứt khoát và mạnh mẽ.';
 
   @override
-  String get spotOnToneWasPronouncedAccurately => 'Chuẩn xác! Thanh điệu được phát âm vô cùng chuẩn mực.';
+  String get spotOnToneWasPronouncedAccurately =>
+      'Chuẩn xác! Thanh điệu được phát âm vô cùng chuẩn mực.';
 
   @override
-  String get iAgreeToTheTermsOfServiceAndPrivacy => 'Tôi đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư.';
+  String get iAgreeToTheTermsOfServiceAndPrivacy =>
+      'Tôi đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư.';
 
   @override
-  String get sendMeOccasionalUpdatesTipsAndOffer => 'Gửi cho tôi các cập nhật định kỳ, mẹo học tập và ưu đãi.';
+  String get sendMeOccasionalUpdatesTipsAndOffer =>
+      'Gửi cho tôi các cập nhật định kỳ, mẹo học tập và ưu đãi.';
 
   @override
-  String get signInToSyncYourProgress => 'Đăng nhập để đồng bộ tiến độ học tập trên đám mây.';
+  String get signInToSyncYourProgress =>
+      'Đăng nhập để đồng bộ tiến độ học tập trên đám mây.';
 
   @override
-  String get createAnAccountToSaveYourStats => 'Tạo tài khoản để lưu giữ an toàn các thống kê học tập.';
+  String get createAnAccountToSaveYourStats =>
+      'Tạo tài khoản để lưu giữ an toàn các thống kê học tập.';
 
   @override
   String get smartSpiral => 'XOẮN ỐC THÔNG MINH';
@@ -3931,22 +4243,28 @@ class AppLocalizationsVi extends AppLocalizations {
   String get city => 'Đô Thị & Văn Minh';
 
   @override
-  String get originTheSimplestShapesTheBeginning => 'Những hình dạng khởi thủy đơn sơ nhất. Khởi đầu của vạn vật.';
+  String get originTheSimplestShapesTheBeginning =>
+      'Những hình dạng khởi thủy đơn sơ nhất. Khởi đầu của vạn vật.';
 
   @override
-  String get elementsSunMoonWaterAndFireTheNatur => 'Mặt trời, Mặt trăng, Nước và Lửa. Thế giới tự nhiên bao la.';
+  String get elementsSunMoonWaterAndFireTheNatur =>
+      'Mặt trời, Mặt trăng, Nước và Lửa. Thế giới tự nhiên bao la.';
 
   @override
-  String get humanityTheBodyTheHeartAndTheFamily => 'Cơ thể, trái tim và mối dây gia đình.';
+  String get humanityTheBodyTheHeartAndTheFamily =>
+      'Cơ thể, trái tim và mối dây gia đình.';
 
   @override
-  String get villageFieldsRoofsAndToolsTheFounda => 'Ruộng đồng, mái nhà và công cụ. Nền tảng của đời sống xã hội.';
+  String get villageFieldsRoofsAndToolsTheFounda =>
+      'Ruộng đồng, mái nhà và công cụ. Nền tảng của đời sống xã hội.';
 
   @override
-  String get journeyMovementSpeechAndSustenance => 'Chuyển động, ngôn ngữ và nguồn sống.';
+  String get journeyMovementSpeechAndSustenance =>
+      'Chuyển động, ngôn ngữ và nguồn sống.';
 
   @override
-  String get cityCommerceClothingAndComplexArtif => 'Thương mại, trang phục và những tinh hoa văn minh phức hợp.';
+  String get cityCommerceClothingAndComplexArtif =>
+      'Thương mại, trang phục và những tinh hoa văn minh phức hợp.';
 
   @override
   String get equilibriumAlgorithm => 'Thuật toán cân bằng';
@@ -4157,10 +4475,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get puck => 'Puck (nam, năng động)';
 
   @override
-  String get helloWelcomeWhatWouldYouLikeToOrder => 'Xin chào! Kính chào quý khách. Quý khách muốn gọi món gì ạ?';
+  String get helloWelcomeWhatWouldYouLikeToOrder =>
+      'Xin chào! Kính chào quý khách. Quý khách muốn gọi món gì ạ?';
 
   @override
-  String get ni3Hao3Huan1ying2Guang1lin2Qing3wen => 'Nǐ hǎo! Huānyíng guānglín. Qǐngwèn nǐ yào diǎn shénme?';
+  String get ni3Hao3Huan1ying2Guang1lin2Qing3wen =>
+      'Nǐ hǎo! Huānyíng guānglín. Qǐngwèn nǐ yào diǎn shénme?';
 
   @override
   String get waiterLi => 'Phục vụ Lý';
@@ -4178,13 +4498,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get fenrir => 'Fenrir (nam, sôi nổi)';
 
   @override
-  String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De => 'Nǐ qù nǎr a? Jīchǎng ma? Tǐng yuǎn de!';
+  String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
+      'Nǐ qù nǎr a? Jīchǎng ma? Tǐng yuǎn de!';
 
   @override
   String get driverWang => 'Tài xế Vương';
 
   @override
-  String get tellTheDriverYouAreGoingToTheAirpor => 'Nói với tài xế rằng bạn muốn đến sân bay';
+  String get tellTheDriverYouAreGoingToTheAirpor =>
+      'Nói với tài xế rằng bạn muốn đến sân bay';
 
   @override
   String get askHowLongTheTripWillTake => 'Hỏi xem đi hết bao nhiêu thời gian';
@@ -4196,10 +4518,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get charon => 'Charon (nam, phong cách thời sự)';
 
   @override
-  String get thisClothingQualityIsEspeciallyGood => 'Chất lượng bộ quần áo này rất tốt, chỉ có 200 tệ thôi.';
+  String get thisClothingQualityIsEspeciallyGood =>
+      'Chất lượng bộ quần áo này rất tốt, chỉ có 200 tệ thôi.';
 
   @override
-  String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 => 'Zhè jiàn yīfu zhìliàng tèbié hǎo, zhǐyào liǎng bǎi kuài.';
+  String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 =>
+      'Zhè jiàn yīfu zhìliàng tèbié hǎo, zhǐyào liǎng bǎi kuài.';
 
   @override
   String get auntieChen => 'Dì Trần';
@@ -4214,82 +4538,103 @@ class AppLocalizationsVi extends AppLocalizations {
   String get bargainThePriceDownTo100Rmb => 'Mặc cả giá xuống còn 100 tệ';
 
   @override
-  String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa => 'Nǐ nǎlǐ bù shūfu? Fāshāo le ma?';
+  String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa =>
+      'Nǐ nǎlǐ bù shūfu? Fāshāo le ma?';
 
   @override
   String get drZhang => 'Bác sĩ Trương';
 
   @override
-  String get explainYouHaveHadAHeadacheForTwoDay => 'Trình bày rằng bạn bị đau đầu suốt hai ngày nay';
+  String get explainYouHaveHadAHeadacheForTwoDay =>
+      'Trình bày rằng bạn bị đau đầu suốt hai ngày nay';
 
   @override
   String get sayYouHaveASlightFever => 'Nói rằng bạn đang bị sốt nhẹ';
 
   @override
-  String get askIfYouNeedToTakeMedicine => 'Hỏi xem có cần phải uống thuốc không';
+  String get askIfYouNeedToTakeMedicine =>
+      'Hỏi xem có cần phải uống thuốc không';
 
   @override
   String get aoede => 'Aoede (nữ, trong trẻo)';
 
   @override
-  String get heyLongTimeNoSeeHowHaveYouBeenLatel => 'Chào bạn! Lâu lắm không gặp, dạo này bạn thế nào rồi?';
+  String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
+      'Chào bạn! Lâu lắm không gặp, dạo này bạn thế nào rồi?';
 
   @override
-  String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z => 'Nǐ hǎo! Hǎojiǔ bùjiàn, nǐ zuìjìn zěnmeyàng?';
+  String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z =>
+      'Nǐ hǎo! Hǎojiǔ bùjiàn, nǐ zuìjìn zěnmeyàng?';
 
   @override
-  String get pleaseIntroduceYourselfWhyDoYouWant => 'Vui lòng giới thiệu bản thân. Vì sao bạn muốn ứng tuyển vào công ty chúng tôi?';
+  String get pleaseIntroduceYourselfWhyDoYouWant =>
+      'Vui lòng giới thiệu bản thân. Vì sao bạn muốn ứng tuyển vào công ty chúng tôi?';
 
   @override
-  String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 => 'Qǐng xiān zìwǒ jièshào yíxià. Nǐ wèishénme xiǎng lái wǒmen gōngsī gōngzuò?';
+  String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 =>
+      'Qǐng xiān zìwǒ jièshào yíxià. Nǐ wèishénme xiǎng lái wǒmen gōngsī gōngzuò?';
 
   @override
   String get managerLiu => 'Trưởng phòng nhân sự Lưu';
 
   @override
-  String get introduceYourProfessionalBackground => 'Tóm tắt kinh nghiệm làm việc chuyên môn của bạn';
+  String get introduceYourProfessionalBackground =>
+      'Tóm tắt kinh nghiệm làm việc chuyên môn của bạn';
 
   @override
-  String get explainWhyYouWantToWorkAtThisCompan => 'Trình bày lý do bạn mong muốn làm việc tại công ty';
+  String get explainWhyYouWantToWorkAtThisCompan =>
+      'Trình bày lý do bạn mong muốn làm việc tại công ty';
 
   @override
-  String get askAPoliteQuestionAboutTheCompanyCu => 'Đặt một câu hỏi lịch sự về văn hóa doanh nghiệp';
+  String get askAPoliteQuestionAboutTheCompanyCu =>
+      'Đặt một câu hỏi lịch sự về văn hóa doanh nghiệp';
 
   @override
-  String get microphoneAccessIsRequiredPleaseEna => 'Ứng dụng cần quyền truy cập micro. Vui lòng bật trong phần Cài đặt của thiết bị.';
+  String get microphoneAccessIsRequiredPleaseEna =>
+      'Ứng dụng cần quyền truy cập micro. Vui lòng bật trong phần Cài đặt của thiết bị.';
 
   @override
-  String get couldNotStartMicrophonePleaseCheckY => 'Không thể khởi động micro. Vui lòng kiểm tra cài đặt âm thanh và thử lại.';
+  String get couldNotStartMicrophonePleaseCheckY =>
+      'Không thể khởi động micro. Vui lòng kiểm tra cài đặt âm thanh và thử lại.';
 
   @override
-  String get weDidntQuiteCatchThatPleaseHoldTheM => 'Chưa nghe rõ giọng của bạn. Hãy nhấn giữ micro và nói lại nhé!';
+  String get weDidntQuiteCatchThatPleaseHoldTheM =>
+      'Chưa nghe rõ giọng của bạn. Hãy nhấn giữ micro và nói lại nhé!';
 
   @override
-  String get recordingWasTooShortHoldTheMicAndSp => 'Đoạn ghi âm quá ngắn. Vui lòng giữ micro và phát âm rõ ràng.';
+  String get recordingWasTooShortHoldTheMicAndSp =>
+      'Đoạn ghi âm quá ngắn. Vui lòng giữ micro và phát âm rõ ràng.';
 
   @override
-  String get audioBufferWasEmptyPleaseCheckYourM => 'Dữ liệu âm thanh trống. Vui lòng kiểm tra lại micro và thử lại.';
+  String get audioBufferWasEmptyPleaseCheckYourM =>
+      'Dữ liệu âm thanh trống. Vui lòng kiểm tra lại micro và thử lại.';
 
   @override
-  String get audioFileIsSilentPleaseSpeakIntoThe => 'Tệp âm thanh không có tiếng. Vui lòng nói trực tiếp vào micro.';
+  String get audioFileIsSilentPleaseSpeakIntoThe =>
+      'Tệp âm thanh không có tiếng. Vui lòng nói trực tiếp vào micro.';
 
   @override
-  String get weCouldntUnderstandYourPronunciatio => 'Chưa nhận diện được phát âm của bạn. Vui lòng nói rõ ràng và thử lại.';
+  String get weCouldntUnderstandYourPronunciatio =>
+      'Chưa nhận diện được phát âm của bạn. Vui lòng nói rõ ràng và thử lại.';
 
   @override
-  String get theServerIsTakingTooLongToRespondPl => 'Máy chủ phản hồi lâu hơn bình thường. Vui lòng thử lại.';
+  String get theServerIsTakingTooLongToRespondPl =>
+      'Máy chủ phản hồi lâu hơn bình thường. Vui lòng thử lại.';
 
   @override
-  String get noInternetConnectionPleaseCheckYour => 'Không có kết nối mạng. Vui lòng kiểm tra đường truyền và thử lại.';
+  String get noInternetConnectionPleaseCheckYour =>
+      'Không có kết nối mạng. Vui lòng kiểm tra đường truyền và thử lại.';
 
   @override
-  String get audioProcessingFailedPleaseTryAgain => 'Xử lý âm thanh thất bại. Vui lòng thử lại.';
+  String get audioProcessingFailedPleaseTryAgain =>
+      'Xử lý âm thanh thất bại. Vui lòng thử lại.';
 
   @override
   String get permission => 'Quyền truy cập';
 
   @override
-  String get couldNotProcessYourRecordingPleaseT => 'Không thể xử lý bản ghi âm của bạn. Vui lòng thử lại.';
+  String get couldNotProcessYourRecordingPleaseT =>
+      'Không thể xử lý bản ghi âm của bạn. Vui lòng thử lại.';
 
   @override
   String get user => 'Người dùng';
@@ -4298,7 +4643,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get scholar => 'Học giả';
 
   @override
-  String get ourAiTutorsAreCurrentlyOfflinePleas => 'Gia sư AI hiện đang ngoại tuyến. Vui lòng quay lại sau.';
+  String get ourAiTutorsAreCurrentlyOfflinePleas =>
+      'Gia sư AI hiện đang ngoại tuyến. Vui lòng quay lại sau.';
 
   @override
   String get hideTranslation => 'Ẩn bản dịch';
@@ -4313,19 +4659,23 @@ class AppLocalizationsVi extends AppLocalizations {
   String get connectedSpeakNow => 'Đã kết nối! Bạn có thể nói ngay bây giờ.';
 
   @override
-  String get initializationErrorCheckPermissions => 'Lỗi khởi tạo. Vui lòng kiểm tra các quyền đã cấp.';
+  String get initializationErrorCheckPermissions =>
+      'Lỗi khởi tạo. Vui lòng kiểm tra các quyền đã cấp.';
 
   @override
   String get microphoneErrorTapToRetry => 'Lỗi micro. Chạm để thử lại.';
 
   @override
-  String get theTutorReturnedAnEmptyResponse => 'Gia sư không phản hồi nội dung.';
+  String get theTutorReturnedAnEmptyResponse =>
+      'Gia sư không phản hồi nội dung.';
 
   @override
-  String get connectionInterruptedPleaseSpeakAga => 'Kết nối bị gián đoạn. Vui lòng phát âm lại.';
+  String get connectionInterruptedPleaseSpeakAga =>
+      'Kết nối bị gián đoạn. Vui lòng phát âm lại.';
 
   @override
-  String get callPausedReviewingTones => 'Cuộc gọi tạm dừng (Đang xem xét thanh điệu)';
+  String get callPausedReviewingTones =>
+      'Cuộc gọi tạm dừng (Đang xem xét thanh điệu)';
 
   @override
   String get pausedTakeABreak => 'Tạm dừng - Hãy nghỉ ngơi đôi chút';
@@ -4337,19 +4687,22 @@ class AppLocalizationsVi extends AppLocalizations {
   String get studentCoach => 'Học viên / Huấn luyện viên';
 
   @override
-  String get keepYour1stToneHighAndSteadyOn => 'Giữ thanh 1 cao và phẳng đều ở âm';
+  String get keepYour1stToneHighAndSteadyOn =>
+      'Giữ thanh 1 cao và phẳng đều ở âm';
 
   @override
   String get noScenariosFound => 'Không tìm thấy tình huống nào.';
 
   @override
-  String get designYourOwnAiRoleplayExperience => 'Tự thiết kế tình huống nhập vai cùng AI';
+  String get designYourOwnAiRoleplayExperience =>
+      'Tự thiết kế tình huống nhập vai cùng AI';
 
   @override
   String get generateFromDeck => 'Tạo từ bộ thẻ học';
 
   @override
-  String get practiceFlashcardVocabularyInALiveD => 'Luyện từ vựng trong bộ thẻ qua hội thoại thực tế';
+  String get practiceFlashcardVocabularyInALiveD =>
+      'Luyện từ vựng trong bộ thẻ qua hội thoại thực tế';
 
   @override
   String get tapToRoleplay => 'Chạm để bắt đầu nhập vai';
@@ -4373,7 +4726,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dinnerWithDad => 'Bữa tối ấm cúng cùng bố';
 
   @override
-  String get orderingAtAChengduTeahouse => 'Gọi trà tại quán trà truyền thống Thành Đô';
+  String get orderingAtAChengduTeahouse =>
+      'Gọi trà tại quán trà truyền thống Thành Đô';
 
   @override
   String get buyingTeaAtTheMarket => 'Mua trà tại chợ truyền thống';
@@ -4397,19 +4751,23 @@ class AppLocalizationsVi extends AppLocalizations {
   String get suggestWatchingAMovieAfterwards => 'Gợi ý đi xem phim sau bữa ăn';
 
   @override
-  String get askIfTheyWouldLikeTea => 'Hỏi xem đối phương có muốn dùng trà không';
+  String get askIfTheyWouldLikeTea =>
+      'Hỏi xem đối phương có muốn dùng trà không';
 
   @override
-  String get helloVeryNiceToMeetYou => 'Xin chào! Rất vui được làm quen với bạn.';
+  String get helloVeryNiceToMeetYou =>
+      'Xin chào! Rất vui được làm quen với bạn.';
 
   @override
   String get deckPractice => 'Luyện tập theo bộ thẻ';
 
   @override
-  String get practiceVocabularyWithAnAiPartner => 'Luyện từ vựng đàm thoại cùng bạn học AI.';
+  String get practiceVocabularyWithAnAiPartner =>
+      'Luyện từ vựng đàm thoại cùng bạn học AI.';
 
   @override
-  String get designCustomAiRoleplayConversation => 'Thiết kế tình huống và đối thoại nhập vai AI tùy chỉnh';
+  String get designCustomAiRoleplayConversation =>
+      'Thiết kế tình huống và đối thoại nhập vai AI tùy chỉnh';
 
   @override
   String get random => 'Ngẫu nhiên';
@@ -4421,259 +4779,338 @@ class AppLocalizationsVi extends AppLocalizations {
   String get contextSettingOptional => 'Bối cảnh & Không gian (Tùy chọn)';
 
   @override
-  String get aiCharacterPersonaOptional => 'Vai diễn / Tính cách của AI (Tùy chọn)';
+  String get aiCharacterPersonaOptional =>
+      'Vai diễn / Tính cách của AI (Tùy chọn)';
 
   @override
-  String get aQuietBambooCourtyardTeahouseInChen => 'Một quán trà sân vườn tre thanh tịnh ở Thành Đô, văng vẳng tiếng đàn tranh guzheng êm dịu.';
+  String get aQuietBambooCourtyardTeahouseInChen =>
+      'Một quán trà sân vườn tre thanh tịnh ở Thành Đô, văng vẳng tiếng đàn tranh guzheng êm dịu.';
 
   @override
-  String get aBustlingSmokyNightMarketFilledWith => 'Chợ đêm nhộn nhịp khói tỏa nghi ngút với xiên nướng, bánh bao nóng hổi và món ăn đường phố.';
+  String get aBustlingSmokyNightMarketFilledWith =>
+      'Chợ đêm nhộn nhịp khói tỏa nghi ngút với xiên nướng, bánh bao nóng hổi và món ăn đường phố.';
 
   @override
-  String get aLivelyHotpotRestaurantInChongqingW => 'Quán lẩu Trùng Khánh sôi động với nồi nước dùng đỏ rực sùng sục và thơm nồng hương ớt hoa tiêu.';
+  String get aLivelyHotpotRestaurantInChongqingW =>
+      'Quán lẩu Trùng Khánh sôi động với nồi nước dùng đỏ rực sùng sục và thơm nồng hương ớt hoa tiêu.';
 
   @override
-  String get aBustlingTraditionalCantoneseTeahou => 'Quán trà dim sum truyền thống Quảng Châu tấp nập với những xửng tre nghi ngút khói thơm.';
+  String get aBustlingTraditionalCantoneseTeahou =>
+      'Quán trà dim sum truyền thống Quảng Châu tấp nập với những xửng tre nghi ngút khói thơm.';
 
   @override
-  String get aChicMinimalistCafeInTheFrenchConce => 'Quán cà phê tối giản thanh lịch tại Khu Tô giới Pháp vào một chiều Chủ nhật mưa bay.';
+  String get aChicMinimalistCafeInTheFrenchConce =>
+      'Quán cà phê tối giản thanh lịch tại Khu Tô giới Pháp vào một chiều Chủ nhật mưa bay.';
 
   @override
-  String get aWarmNorthernHomeKitchenDuringWinte => 'Căn bếp gia đình miền Bắc ấm cúng mùa đông, vương bột mì trên bàn và nồi sủi cảo bốc khói.';
+  String get aWarmNorthernHomeKitchenDuringWinte =>
+      'Căn bếp gia đình miền Bắc ấm cúng mùa đông, vương bột mì trên bàn và nồi sủi cảo bốc khói.';
 
   @override
-  String get anOpenairNightStreetFoodAlleyWithSi => 'Hẻm ẩm thực đêm ngoài trời với xiên thịt cừu nướng xèo xèo, cà tím nướng tỏi và bia mát lạnh.';
+  String get anOpenairNightStreetFoodAlleyWithSi =>
+      'Hẻm ẩm thực đêm ngoài trời với xiên thịt cừu nướng xèo xèo, cà tím nướng tỏi và bia mát lạnh.';
 
   @override
-  String get aSnowyStreetCornerOutsideTheLamaTem => 'Góc phố tuyết rơi ngoài cổng Ung Hòa Cung (Chùa Lạt Ma) với những xiên kẹo hồ lô đỏ bóng trên đá.';
+  String get aSnowyStreetCornerOutsideTheLamaTem =>
+      'Góc phố tuyết rơi ngoài cổng Ung Hòa Cung (Chùa Lạt Ma) với những xiên kẹo hồ lô đỏ bóng trên đá.';
 
   @override
   String get craftBeerBreweryInQingdao => 'Xưởng bia thủ công tại Thanh Đảo';
 
   @override
-  String get aLivelyCoastalTaproomWithWoodenBarr => 'Quán bia ven biển sôi động với thùng gỗ sồi, gió biển mát lành và vòi rót bia lúa mì tươi.';
+  String get aLivelyCoastalTaproomWithWoodenBarr =>
+      'Quán bia ven biển sôi động với thùng gỗ sồi, gió biển mát lành và vòi rót bia lúa mì tươi.';
 
   @override
   String get sichuanCookingMasterclass => 'Lớp học nấu món Tứ Xuyên chuyên sâu';
 
   @override
-  String get aVibrantOpenKitchenWithWoksBlazingC => 'Gian bếp mở rực lửa với chảo wok bốc khói, dầu ớt sùng sục và hạt hoa tiêu tươi thơm nồng.';
+  String get aVibrantOpenKitchenWithWoksBlazingC =>
+      'Gian bếp mở rực lửa với chảo wok bốc khói, dầu ớt sùng sục và hạt hoa tiêu tươi thơm nồng.';
 
   @override
   String get highspeedRailSeatMixup => 'Nhầm chỗ ngồi trên tàu cao tốc';
 
   @override
-  String get greatWallSunriseTrekInMutianyu => 'Trekking ngắm bình minh trên Vạn Lý Trường Thành tại Mộ Điền Dục';
+  String get greatWallSunriseTrekInMutianyu =>
+      'Trekking ngắm bình minh trên Vạn Lý Trường Thành tại Mộ Điền Dục';
 
   @override
-  String get theAncientStoneRampartsOfTheGreatWa => 'Những bức tường thành cổ kính của Vạn Lý Trường Thành lúc bình minh giữa núi non xanh mờ sương.';
+  String get theAncientStoneRampartsOfTheGreatWa =>
+      'Những bức tường thành cổ kính của Vạn Lý Trường Thành lúc bình minh giữa núi non xanh mờ sương.';
 
   @override
-  String get bambooRaftDriftOnGuilinLiRiver => 'Du ngoạn bè tre trên dòng sông Ly Giang ở Quế Lâm';
+  String get bambooRaftDriftOnGuilinLiRiver =>
+      'Du ngoạn bè tre trên dòng sông Ly Giang ở Quế Lâm';
 
   @override
-  String get glidingAlongEmeraldKarstWatersBetwe => 'Lướt nhẹ trên dòng nước ngọc bích giữa những rặng núi đá vôi karst kỳ vĩ gần Dương Sóc.';
+  String get glidingAlongEmeraldKarstWatersBetwe =>
+      'Lướt nhẹ trên dòng nước ngọc bích giữa những rặng núi đá vôi karst kỳ vĩ gần Dương Sóc.';
 
   @override
-  String get silkRoadCamelTrekInDunhuang => 'Cưỡi lạc đà khám phá Con đường Tơ lụa ở Đôn Hoàng';
+  String get silkRoadCamelTrekInDunhuang =>
+      'Cưỡi lạc đà khám phá Con đường Tơ lụa ở Đôn Hoàng';
 
   @override
-  String get theRollingGoldenSandDunesOfMingshaM => 'Những đồi cát vàng óng ả nhấp nhô của Núi Minh Sa bên cạnh ốc đảo Hồ Bán Nguyệt (Nguyệt Nha Tuyền).';
+  String get theRollingGoldenSandDunesOfMingshaM =>
+      'Những đồi cát vàng óng ả nhấp nhô của Núi Minh Sa bên cạnh ốc đảo Hồ Bán Nguyệt (Nguyệt Nha Tuyền).';
 
   @override
-  String get bookingACourtyardHomestayInDali => 'Đặt phòng homestay tứ hợp viện truyền thống tại Đại Lý';
+  String get bookingACourtyardHomestayInDali =>
+      'Đặt phòng homestay tứ hợp viện truyền thống tại Đại Lý';
 
   @override
-  String get aSereneBaistyleBoutiqueCourtyardHot => 'Khách sạn boutique sân vườn mang phong cách người Bạch yên bình nhìn ra Hồ Nhĩ Hải ở Vân Nam.';
+  String get aSereneBaistyleBoutiqueCourtyardHot =>
+      'Khách sạn boutique sân vườn mang phong cách người Bạch yên bình nhìn ra Hồ Nhĩ Hải ở Vân Nam.';
 
   @override
-  String get potalaPalacePilgrimageInLhasa => 'Hành hương chiêm bái Cung điện Potala ở Lhasa';
+  String get potalaPalacePilgrimageInLhasa =>
+      'Hành hương chiêm bái Cung điện Potala ở Lhasa';
 
   @override
-  String get theMajesticSundrenchedStoneStepsOut => 'Những bậc thang đá uy nghiêm ngập tràn ánh nắng ngoài Cung điện Potala cùng bánh xe cầu nguyện luân chuyển.';
+  String get theMajesticSundrenchedStoneStepsOut =>
+      'Những bậc thang đá uy nghiêm ngập tràn ánh nắng ngoài Cung điện Potala cùng bánh xe cầu nguyện luân chuyển.';
 
   @override
-  String get aSubzeroWonderlandOfIlluminatedCrys => 'Xứ sở băng tuyết kỳ ảo dưới 0 độ với cung điện băng lung linh ánh đèn và những bức tượng tuyết khổng lồ.';
+  String get aSubzeroWonderlandOfIlluminatedCrys =>
+      'Xứ sở băng tuyết kỳ ảo dưới 0 độ với cung điện băng lung linh ánh đèn và những bức tượng tuyết khổng lồ.';
 
   @override
-  String get zhangjiajieAvatarMountainCableCar => 'Cáp treo dãy núi Avatar Trương Gia Giới';
+  String get zhangjiajieAvatarMountainCableCar =>
+      'Cáp treo dãy núi Avatar Trương Gia Giới';
 
   @override
-  String get suspendedHighInAGlassCableCarSoarin => 'Treo mình trên cáp treo đáy kính, lướt qua hàng ngàn cột đá sa thạch kỳ vĩ.';
+  String get suspendedHighInAGlassCableCarSoarin =>
+      'Treo mình trên cáp treo đáy kính, lướt qua hàng ngàn cột đá sa thạch kỳ vĩ.';
 
   @override
-  String get gobiDesertStargazingCampInGansu => 'Cắm trại ngắm sao trên sa mạc Gobi ở Cam Túc';
+  String get gobiDesertStargazingCampInGansu =>
+      'Cắm trại ngắm sao trên sa mạc Gobi ở Cam Túc';
 
   @override
-  String get aLuxuryYurtCampUnderACrystalclearMi => 'Khu lều yurt sang trọng dưới bầu trời đêm dải Ngân Hà trong vắt giữa sa mạc ngoài Gia Dục Quan.';
+  String get aLuxuryYurtCampUnderACrystalclearMi =>
+      'Khu lều yurt sang trọng dưới bầu trời đêm dải Ngân Hà trong vắt giữa sa mạc ngoài Gia Dục Quan.';
 
   @override
-  String get yangtzeRiverThreeGorgesCruise => 'Du thuyền Tam Hiệp trên sông Dương Tử';
+  String get yangtzeRiverThreeGorgesCruise =>
+      'Du thuyền Tam Hiệp trên sông Dương Tử';
 
   @override
-  String get onTheSunDeckOfARiverCruiseShipPassi => 'Trên boong tắm nắng của du thuyền xuôi dòng qua hẻm núi Cù Đường Hiệp hiểm trở và hùng vĩ.';
+  String get onTheSunDeckOfARiverCruiseShipPassi =>
+      'Trên boong tắm nắng của du thuyền xuôi dòng qua hẻm núi Cù Đường Hiệp hiểm trở và hùng vĩ.';
 
   @override
-  String get buyingAntiquesInBeijingPanjiayuan => 'Mua sắm đồ cổ tại Phan Gia Viên, Bắc Kinh';
+  String get buyingAntiquesInBeijingPanjiayuan =>
+      'Mua sắm đồ cổ tại Phan Gia Viên, Bắc Kinh';
 
   @override
-  String get aHistoricPotteryKilnFilledWithDelic => 'Lò gốm cổ kính chứa đầy những bình sứ mộc tinh xảo và men lam cô-ban.';
+  String get aHistoricPotteryKilnFilledWithDelic =>
+      'Lò gốm cổ kính chứa đầy những bình sứ mộc tinh xảo và men lam cô-ban.';
 
   @override
   String get suzhouSilkEmbroideryStudio => 'Xưởng thêu tơ lụa Tô Châu';
 
   @override
-  String get aPeacefulCanalsideGardenStudioInSuz => 'Xưởng thêu sân vườn thanh bình bên bờ kênh Tô Châu với những sợi tơ óng ả và khung thêu gỗ.';
+  String get aPeacefulCanalsideGardenStudioInSuz =>
+      'Xưởng thêu sân vườn thanh bình bên bờ kênh Tô Châu với những sợi tơ óng ả và khung thêu gỗ.';
 
   @override
-  String get backstageAtATraditionalBeijingOpera => 'Hậu trường rực rỡ của nhà hát Kinh kịch với trang phục lộng lẫy, gương trang điểm và mũ mão.';
+  String get backstageAtATraditionalBeijingOpera =>
+      'Hậu trường rực rỡ của nhà hát Kinh kịch với trang phục lộng lẫy, gương trang điểm và mũ mão.';
 
   @override
-  String get traditionalChineseMedicineConsultat => 'Tư vấn và khám chữa bệnh Đông y';
+  String get traditionalChineseMedicineConsultat =>
+      'Tư vấn và khám chữa bệnh Đông y';
 
   @override
-  String get morningTaiChiInTempleOfHeavenPark => 'Tập Thái Cực Quyền buổi sớm tại Công viên Thiên Đàn';
+  String get morningTaiChiInTempleOfHeavenPark =>
+      'Tập Thái Cực Quyền buổi sớm tại Công viên Thiên Đàn';
 
   @override
-  String get beneathAncientCypressTreesAtDawnWit => 'Dưới bóng bách cổ thụ lúc rạng đông, hòa cùng tiếng chim hót và các bậc cao niên múa quyền nhịp nhàng.';
+  String get beneathAncientCypressTreesAtDawnWit =>
+      'Dưới bóng bách cổ thụ lúc rạng đông, hòa cùng tiếng chim hót và các bậc cao niên múa quyền nhịp nhàng.';
 
   @override
-  String get rentingAHanfuForAPhotoShoot => 'Thuê trang phục Hán phục để chụp ảnh kỷ niệm';
+  String get rentingAHanfuForAPhotoShoot =>
+      'Thuê trang phục Hán phục để chụp ảnh kỷ niệm';
 
   @override
-  String get aTraditionalCostumeBoutiqueNearTheW => 'Tiệm cổ phục bên bờ Tây Hồ với những giá treo đầy áo choàng thời Đường và Tống.';
+  String get aTraditionalCostumeBoutiqueNearTheW =>
+      'Tiệm cổ phục bên bờ Tây Hồ với những giá treo đầy áo choàng thời Đường và Tống.';
 
   @override
-  String get guqinAncientZitherInstrumentWorksho => 'Xưởng đàm đạo và chế tác đàn Cổ Cầm (Guqin)';
+  String get guqinAncientZitherInstrumentWorksho =>
+      'Xưởng đàm đạo và chế tác đàn Cổ Cầm (Guqin)';
 
   @override
-  String get aQuietPinewoodStudioInHangzhouFille => 'Không gian gỗ thông tĩnh lặng tại Hàng Châu, thơm mùi gỗ ngô đồng lâu năm và dây tơ óng mượt.';
+  String get aQuietPinewoodStudioInHangzhouFille =>
+      'Không gian gỗ thông tĩnh lặng tại Hàng Châu, thơm mùi gỗ ngô đồng lâu năm và dây tơ óng mượt.';
 
   @override
-  String get shaanxiShadowPuppetTheater => 'Nhà hát múa rối bóng da (Bì ảnh hí) Thiểm Tây';
+  String get shaanxiShadowPuppetTheater =>
+      'Nhà hát múa rối bóng da (Bì ảnh hí) Thiểm Tây';
 
   @override
-  String get behindAnIlluminatedWhiteSilkScreenW => 'Phía sau tấm màn lụa trắng rực sáng, nơi những con rối da trong suốt chuyển động sống động.';
+  String get behindAnIlluminatedWhiteSilkScreenW =>
+      'Phía sau tấm màn lụa trắng rực sáng, nơi những con rối da trong suốt chuyển động sống động.';
 
   @override
   String get chineseCalligraphyWorkshop => 'Xưởng thực hành thư pháp Trung Hoa';
 
   @override
-  String get aTranquilStudioScentedWithPineSootI => 'Thư phòng thanh tịnh đượm hương mực thông, cuộn giấy xuyến chỉ và thoang thoảng vị trà.';
+  String get aTranquilStudioScentedWithPineSootI =>
+      'Thư phòng thanh tịnh đượm hương mực thông, cuộn giấy xuyến chỉ và thoang thoảng vị trà.';
 
   @override
-  String get adoptingACatAtAnAnimalShelter => 'Nhận nuôi mèo tại trạm cứu hộ động vật';
+  String get adoptingACatAtAnAnimalShelter =>
+      'Nhận nuôi mèo tại trạm cứu hộ động vật';
 
   @override
-  String get aCozyPetRescueCenterInHangzhouWithE => 'Trạm cứu hộ thú cưng ấm áp ở Hàng Châu với những chú mèo con tinh nghịch và trà ấm mời khách.';
+  String get aCozyPetRescueCenterInHangzhouWithE =>
+      'Trạm cứu hộ thú cưng ấm áp ở Hàng Châu với những chú mèo con tinh nghịch và trà ấm mời khách.';
 
   @override
-  String get scriptMurderMysteryJubenshaGame => 'Trò chơi nhập vai phá án theo kịch bản (Jubensha / 剧本杀)';
+  String get scriptMurderMysteryJubenshaGame =>
+      'Trò chơi nhập vai phá án theo kịch bản (Jubensha / 剧本杀)';
 
   @override
-  String get aThemedDetectiveLoungeInShanghaiWit => 'Phòng trinh thám theo chủ đề ở Thượng Hải với người chơi hóa trang bên ánh nến lung linh.';
+  String get aThemedDetectiveLoungeInShanghaiWit =>
+      'Phòng trinh thám theo chủ đề ở Thượng Hải với người chơi hóa trang bên ánh nến lung linh.';
 
   @override
-  String get vintageVinylRecordShopInShanghai => 'Tiệm đĩa than cổ điển tại Thượng Hải';
+  String get vintageVinylRecordShopInShanghai =>
+      'Tiệm đĩa than cổ điển tại Thượng Hải';
 
   @override
-  String get aHiddenVinylStoreInAnOldLaneHousePa => 'Tiệm đĩa than ẩn mình trong ngõ hẻm shikumen cổ kính, đầy ắp đĩa Cantopop và Jazz thập niên 80.';
+  String get aHiddenVinylStoreInAnOldLaneHousePa =>
+      'Tiệm đĩa than ẩn mình trong ngõ hẻm shikumen cổ kính, đầy ắp đĩa Cantopop và Jazz thập niên 80.';
 
   @override
-  String get ktvKaraokePartyWithFriends => 'Hát karaoke KTV tưng bừng cùng bạn bè';
+  String get ktvKaraokePartyWithFriends =>
+      'Hát karaoke KTV tưng bừng cùng bạn bè';
 
   @override
-  String get joiningACityBikeCyclingClub => 'Tham gia câu lạc bộ đạp xe dạo phố';
+  String get joiningACityBikeCyclingClub =>
+      'Tham gia câu lạc bộ đạp xe dạo phố';
 
   @override
-  String get aGatheringOfCyclistsByTheRiverfront => 'Nhóm bạn yêu xe đạp tụ họp ven bờ sông chuẩn bị cho chuyến đạp xe đêm ngắm toàn cảnh thành phố.';
+  String get aGatheringOfCyclistsByTheRiverfront =>
+      'Nhóm bạn yêu xe đạp tụ họp ven bờ sông chuẩn bị cho chuyến đạp xe đêm ngắm toàn cảnh thành phố.';
 
   @override
-  String get blindBoxToyTradingMeetup => 'Buổi giao lưu trao đổi đồ chơi hộp mù (Blind Box)';
+  String get blindBoxToyTradingMeetup =>
+      'Buổi giao lưu trao đổi đồ chơi hộp mù (Blind Box)';
 
   @override
-  String get aColorfulPopcultureToyStoreInChaoya => 'Cửa hàng đồ chơi pop-culture rực rỡ ở Triều Dương với kệ trưng bày đầy hộp sưu tầm.';
+  String get aColorfulPopcultureToyStoreInChaoya =>
+      'Cửa hàng đồ chơi pop-culture rực rỡ ở Triều Dương với kệ trưng bày đầy hộp sưu tầm.';
 
   @override
-  String get droneSkylineVideographyAtTheBund => 'Quay phim toàn cảnh bằng flycam tại Bến Thượng Hải';
+  String get droneSkylineVideographyAtTheBund =>
+      'Quay phim toàn cảnh bằng flycam tại Bến Thượng Hải';
 
   @override
-  String get theBundPromenadeAtDuskOverlookingTh => 'Đại lộ Bến Thượng Hải lúc hoàng hôn phóng tầm mắt sang những tòa tháp chọc trời rực rỡ của Phố Đông.';
+  String get theBundPromenadeAtDuskOverlookingTh =>
+      'Đại lộ Bến Thượng Hải lúc hoàng hôn phóng tầm mắt sang những tòa tháp chọc trời rực rỡ của Phố Đông.';
 
   @override
-  String get goldenRetrieverCafeInNanjing => 'Quán cà phê cún Golden Retriever ở Nam Kinh';
+  String get goldenRetrieverCafeInNanjing =>
+      'Quán cà phê cún Golden Retriever ở Nam Kinh';
 
   @override
-  String get aSunnyCheerfulPetCafeWithDozensOfFr => 'Quán cà phê thú cưng ngập nắng, nơi hàng chục chú cún lông xù thân thiện vẫy đuôi đón khách.';
+  String get aSunnyCheerfulPetCafeWithDozensOfFr =>
+      'Quán cà phê thú cưng ngập nắng, nơi hàng chục chú cún lông xù thân thiện vẫy đuôi đón khách.';
 
   @override
-  String get boulderingClimbingGymInChengdu => 'Phòng tập leo núi trong nhà (Bouldering) tại Thành Đô';
+  String get boulderingClimbingGymInChengdu =>
+      'Phòng tập leo núi trong nhà (Bouldering) tại Thành Đô';
 
   @override
-  String get aModernIndoorClimbingGymWithVibrant => 'Khu leo núi hiện đại trong nhà với những mấu bám rực rỡ sắc màu và âm nhạc sôi động.';
+  String get aModernIndoorClimbingGymWithVibrant =>
+      'Khu leo núi hiện đại trong nhà với những mấu bám rực rỡ sắc màu và âm nhạc sôi động.';
 
   @override
-  String get aMassiveConventionHallFilledWithCol => 'Hội trường triển lãm quy mô lớn tràn ngập gian hàng game, góc check-in và các cosplayer.';
+  String get aMassiveConventionHallFilledWithCol =>
+      'Hội trường triển lãm quy mô lớn tràn ngập gian hàng game, góc check-in và các cosplayer.';
 
   @override
-  String get askingForDirectionsInABeijingHutong => 'Hỏi đường trong ngõ ngách Hutong ở Bắc Kinh';
+  String get askingForDirectionsInABeijingHutong =>
+      'Hỏi đường trong ngõ ngách Hutong ở Bắc Kinh';
 
   @override
-  String get aMazeOfHistoricGreybrickAlleysWithB => 'Mê cung ngõ nhỏ gạch xám lịch sử với xe đạp dựng bên thềm, sân trong và cây lựu trĩu quả.';
+  String get aMazeOfHistoricGreybrickAlleysWithB =>
+      'Mê cung ngõ nhỏ gạch xám lịch sử với xe đạp dựng bên thềm, sân trong và cây lựu trĩu quả.';
 
   @override
-  String get buyingFreshFruitAtAWetMarket => 'Mua trái cây tươi tại chợ truyền thống';
+  String get buyingFreshFruitAtAWetMarket =>
+      'Mua trái cây tươi tại chợ truyền thống';
 
   @override
-  String get aLivelyMorningNeighborhoodMarketWit => 'Khu chợ dân sinh buổi sớm nhộn nhịp với những sạp vải thiều tươi, xoài chín và thanh long ruột đỏ.';
+  String get aLivelyMorningNeighborhoodMarketWit =>
+      'Khu chợ dân sinh buổi sớm nhộn nhịp với những sạp vải thiều tươi, xoài chín và thanh long ruột đỏ.';
 
   @override
   String get flowerMarketBouquetInKunming => 'Bó hoa tươi tại chợ hoa Côn Minh';
 
   @override
-  String get theFamousDounanFlowerMarketSurround => 'Chợ hoa Đấu Nam nổi tiếng ngập tràn hương sắc giữa hàng triệu cành hoa hồng, hoa ly và khuynh diệp.';
+  String get theFamousDounanFlowerMarketSurround =>
+      'Chợ hoa Đấu Nam nổi tiếng ngập tràn hương sắc giữa hàng triệu cành hoa hồng, hoa ly và khuynh diệp.';
 
   @override
-  String get tailorAlterationsInAnOldLaneHouse => 'Sửa trang phục tại tiệm may ngõ cổ';
+  String get tailorAlterationsInAnOldLaneHouse =>
+      'Sửa trang phục tại tiệm may ngõ cổ';
 
   @override
-  String get aTraditionalTailorShopFilledWithSew => 'Tiệm may đo truyền thống đầy ắp máy may, súc vải lụa và thước dây.';
+  String get aTraditionalTailorShopFilledWithSew =>
+      'Tiệm may đo truyền thống đầy ắp máy may, súc vải lụa và thước dây.';
 
   @override
-  String get expressParcelLockerRetrieval => 'Nhận bưu kiện tại tủ khóa thông minh (Hive Box)';
+  String get expressParcelLockerRetrieval =>
+      'Nhận bưu kiện tại tủ khóa thông minh (Hive Box)';
 
   @override
-  String get downstairsAtAResidentialApartmentGa => 'Dưới chân cổng khu chung cư, ngay bên cạnh hệ thống tủ gửi đồ thông minh Hive Box.';
+  String get downstairsAtAResidentialApartmentGa =>
+      'Dưới chân cổng khu chung cư, ngay bên cạnh hệ thống tủ gửi đồ thông minh Hive Box.';
 
   @override
-  String get bicycleFlatTireRepairAtCampusGate => 'Vá săm xe đạp trước cổng trường đại học';
+  String get bicycleFlatTireRepairAtCampusGate =>
+      'Vá săm xe đạp trước cổng trường đại học';
 
   @override
-  String get aSmallOutdoorRoadsideToolkitStandUn => 'Góc sửa xe ven đường bình dị dưới bóng mát của cây đa cổ thụ.';
+  String get aSmallOutdoorRoadsideToolkitStandUn =>
+      'Góc sửa xe ven đường bình dị dưới bóng mát của cây đa cổ thụ.';
 
   @override
-  String get techCompanyProductDemo => 'Buổi demo giới thiệu sản phẩm công nghệ';
+  String get techCompanyProductDemo =>
+      'Buổi demo giới thiệu sản phẩm công nghệ';
 
   @override
-  String get aFuturisticTechConferenceBoothInShe => 'Gian hàng công nghệ tương lai tại hội nghị Thâm Quyến trình diễn phần cứng AI tiên tiến.';
+  String get aFuturisticTechConferenceBoothInShe =>
+      'Gian hàng công nghệ tương lai tại hội nghị Thâm Quyến trình diễn phần cứng AI tiên tiến.';
 
   @override
-  String get ecommerceLivestreamStudio => 'Phòng livestream bán hàng thương mại điện tử';
+  String get ecommerceLivestreamStudio =>
+      'Phòng livestream bán hàng thương mại điện tử';
 
   @override
-  String get aHighenergyBroadcastStudioWithRingL => 'Trường quay livestream sôi động với đèn tròn ring light, kệ hàng mẫu và màn hình bình luận trực tiếp.';
+  String get aHighenergyBroadcastStudioWithRingL =>
+      'Trường quay livestream sôi động với đèn tròn ring light, kệ hàng mẫu và màn hình bình luận trực tiếp.';
 
   @override
-  String get yiwuInternationalTradeMarket => 'Chợ đầu mối Thương mại Quốc tế Nghĩa Ô (Yiwu)';
+  String get yiwuInternationalTradeMarket =>
+      'Chợ đầu mối Thương mại Quốc tế Nghĩa Ô (Yiwu)';
 
   @override
-  String get aVastMultistoryCommercialExhibition => 'Trung tâm thương mại bán buôn nhiều tầng rộng lớn với hàng triệu mặt hàng và đồ thủ công mỹ nghệ.';
+  String get aVastMultistoryCommercialExhibition =>
+      'Trung tâm thương mại bán buôn nhiều tầng rộng lớn với hàng triệu mặt hàng và đồ thủ công mỹ nghệ.';
 
   @override
-  String get universityCampusExchangeProgram => 'Chương trình trao đổi sinh viên tại khuôn viên đại học';
+  String get universityCampusExchangeProgram =>
+      'Chương trình trao đổi sinh viên tại khuôn viên đại học';
 
   @override
-  String get aSunnyLawnOutsideTheUniversityLibra => 'Bãi cỏ ngập nắng trước thư viện trường đại học nơi sinh viên tụ họp học bài và uống trà sữa.';
+  String get aSunnyLawnOutsideTheUniversityLibra =>
+      'Bãi cỏ ngập nắng trước thư viện trường đại học nơi sinh viên tụ họp học bài và uống trà sữa.';
 
   @override
   String get pleaseEnterAScenarioTopic => 'Vui lòng nhập chủ đề tình huống.';
@@ -4685,7 +5122,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get aiCharacter => 'Nhân vật AI';
 
   @override
-  String get helloWelcomeHereWhatShallWeChatAbou => 'Xin chào! Rất vui được đón tiếp bạn. Hôm nay chúng ta sẽ trò chuyện về chủ đề gì?';
+  String get helloWelcomeHereWhatShallWeChatAbou =>
+      'Xin chào! Rất vui được đón tiếp bạn. Hôm nay chúng ta sẽ trò chuyện về chủ đề gì?';
 
   @override
   String get greetYourConversationPartner => 'Chào hỏi bạn đối thoại';
@@ -4739,7 +5177,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get report => 'Báo cáo chi tiết';
 
   @override
-  String get goodPronunciationButCanBeBetter => 'Phát âm khá tốt, nhưng vẫn có thể trau chuốt hơn nữa!';
+  String get goodPronunciationButCanBeBetter =>
+      'Phát âm khá tốt, nhưng vẫn có thể trau chuốt hơn nữa!';
 
   @override
   String get didYouMeanToSay => 'Có phải bạn muốn nói...?';
@@ -4754,7 +5193,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get targetTone => 'Thanh điệu chuẩn';
 
   @override
-  String get k4toneComparisonTapToListen => 'So sánh 4 thanh điệu (Chạm để nghe mẫu):';
+  String get k4toneComparisonTapToListen =>
+      'So sánh 4 thanh điệu (Chạm để nghe mẫu):';
 
   @override
   String get youSpokeMatch => 'Bạn đã phát âm (Chuẩn xác!)';
@@ -4763,7 +5203,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youSpoke => 'Bạn đã phát âm';
 
   @override
-  String get yourPrimaryCollectionOfCharacters => 'Bộ sưu tập chữ Hán nền tảng của bạn.';
+  String get yourPrimaryCollectionOfCharacters =>
+      'Bộ sưu tập chữ Hán nền tảng của bạn.';
 
   @override
   String get deckNotFound => 'Không tìm thấy bộ thẻ';
@@ -4775,19 +5216,24 @@ class AppLocalizationsVi extends AppLocalizations {
   String get hsk4UpperIntermediate1 => 'HSK 4: Trung cấp cao';
 
   @override
-  String get theFirst150CharactersToStartYourJou => '150 chữ Hán đầu tiên để bắt đầu hành trình chinh phục tiếng Trung.';
+  String get theFirst150CharactersToStartYourJou =>
+      '150 chữ Hán đầu tiên để bắt đầu hành trình chinh phục tiếng Trung.';
 
   @override
-  String get buildYourVocabularyTo300EssentialWo => 'Mở rộng vốn từ vựng với 300 từ ngữ thiết yếu.';
+  String get buildYourVocabularyTo300EssentialWo =>
+      'Mở rộng vốn từ vựng với 300 từ ngữ thiết yếu.';
 
   @override
-  String get masterConversationalFluencyWith600W => 'Làm chủ giao tiếp trôi chảy với 600 từ vựng căn bản.';
+  String get masterConversationalFluencyWith600W =>
+      'Làm chủ giao tiếp trôi chảy với 600 từ vựng căn bản.';
 
   @override
-  String get readTextsAndConverseFluentlyWith120 => 'Đọc hiểu văn bản và đối thoại lưu loát với 1.200 từ vựng.';
+  String get readTextsAndConverseFluentlyWith120 =>
+      'Đọc hiểu văn bản và đối thoại lưu loát với 1.200 từ vựng.';
 
   @override
-  String get readNewspapersAndWatchMoviesWith250 => 'Đọc báo và thưởng thức phim ảnh thoải mái với 2.500 từ vựng.';
+  String get readNewspapersAndWatchMoviesWith250 =>
+      'Đọc báo và thưởng thức phim ảnh thoải mái với 2.500 từ vựng.';
 
   @override
   String get databaseBoxNotOpen => 'Cơ sở dữ liệu chưa mở';
@@ -4799,7 +5245,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get gold => 'Vàng';
 
   @override
-  String get globalDictionaryNotInitialized => 'Từ điển toàn cục chưa được khởi tạo';
+  String get globalDictionaryNotInitialized =>
+      'Từ điển toàn cục chưa được khởi tạo';
 
   @override
   String get reading => 'Đọc hiểu';
@@ -4814,34 +5261,42 @@ class AppLocalizationsVi extends AppLocalizations {
   String get listening1 => 'Luyện nghe';
 
   @override
-  String get practiceStrokeOrderWithVisualGuides => 'Luyện thứ tự nét bút với hướng dẫn trực quan.';
+  String get practiceStrokeOrderWithVisualGuides =>
+      'Luyện thứ tự nét bút với hướng dẫn trực quan.';
 
   @override
-  String get seeTheCharacterRecallThePinyinAndMe => 'Nhìn chữ Hán, nhớ lại Pinyin và ý nghĩa.';
+  String get seeTheCharacterRecallThePinyinAndMe =>
+      'Nhìn chữ Hán, nhớ lại Pinyin và ý nghĩa.';
 
   @override
-  String get seeTheMeaningDrawTheCharacterFromMe => 'Nhìn ý nghĩa, tự tay viết chữ Hán từ trí nhớ.';
+  String get seeTheMeaningDrawTheCharacterFromMe =>
+      'Nhìn ý nghĩa, tự tay viết chữ Hán từ trí nhớ.';
 
   @override
-  String get readOutLoudToTestYourPronunciationT => 'Đọc to để kiểm tra độ chuẩn xác của thanh điệu và phát âm.';
+  String get readOutLoudToTestYourPronunciationT =>
+      'Đọc to để kiểm tra độ chuẩn xác của thanh điệu và phát âm.';
 
   @override
-  String get listenToTheAudioAndIdentifyTheChara => 'Lắng nghe âm thanh và chọn đúng chữ Hán tương ứng.';
+  String get listenToTheAudioAndIdentifyTheChara =>
+      'Lắng nghe âm thanh và chọn đúng chữ Hán tương ứng.';
 
   @override
   String get contract => 'Đặc tả giao diện';
 
   @override
-  String get whoeverImplementsMeMustBeAbleToDoTh => 'Bất kỳ lớp nào triển khai interface này BẮT BUỘC phải hỗ trợ các thao tác sau.';
+  String get whoeverImplementsMeMustBeAbleToDoTh =>
+      'Bất kỳ lớp nào triển khai interface này BẮT BUỘC phải hỗ trợ các thao tác sau.';
 
   @override
-  String get koreFenrirCharonAoedePuckOrLocal => 'Kore, Fenrir, Charon, Aoede, Puck hoặc giọng đọc thiết bị';
+  String get koreFenrirCharonAoedePuckOrLocal =>
+      'Kore, Fenrir, Charon, Aoede, Puck hoặc giọng đọc thiết bị';
 
   @override
   String get manageDecks => 'Quản lý bộ thẻ';
 
   @override
-  String get weRanIntoTroubleLoadingTheLibraryPl => 'Gặp sự cố khi tải thư viện. Vui lòng thử lại.';
+  String get weRanIntoTroubleLoadingTheLibraryPl =>
+      'Gặp sự cố khi tải thư viện. Vui lòng thử lại.';
 
   @override
   String get noCharactersInLexicon1 => 'Chưa có chữ Hán nào trong vốn từ vựng';
@@ -4862,7 +5317,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youAreAPremiumMember => 'Bạn là thành viên Premium';
 
   @override
-  String get createAccountToSyncProgress => 'Tạo tài khoản để đồng bộ tiến độ học tập';
+  String get createAccountToSyncProgress =>
+      'Tạo tài khoản để đồng bộ tiến độ học tập';
 
   @override
   String get signOut => 'Đăng xuất';
@@ -4898,7 +5354,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get italiano => 'Tiếng Ý';
 
   @override
-  String get today1d2d3d4d5d6d => 'Hôm nay, 1 ngày, 2 ngày, 3 ngày, 4 ngày, 5 ngày, 6 ngày';
+  String get today1d2d3d4d5d6d =>
+      'Hôm nay, 1 ngày, 2 ngày, 3 ngày, 4 ngày, 5 ngày, 6 ngày';
 
   @override
   String get targetDeck => 'Bộ thẻ đích';
@@ -4934,76 +5391,98 @@ class AppLocalizationsVi extends AppLocalizations {
   String get generatedByAi => 'Do AI tạo';
 
   @override
-  String get canYouGiveMeTwoMoreExamplesUsingThi => 'Bạn có thể cho tôi thêm hai câu ví dụ sử dụng từ này không?';
+  String get canYouGiveMeTwoMoreExamplesUsingThi =>
+      'Bạn có thể cho tôi thêm hai câu ví dụ sử dụng từ này không?';
 
   @override
-  String get whatAreSomeSimilarWordsAndHowDoThey => 'Có những từ nào đồng nghĩa hoặc gần nghĩa và sắc thái khác nhau ra sao?';
+  String get whatAreSomeSimilarWordsAndHowDoThey =>
+      'Có những từ nào đồng nghĩa hoặc gần nghĩa và sắc thái khác nhau ra sao?';
 
   @override
-  String get isThisWordUsedInSpokenOrWrittenChin => 'Từ này thường dùng trong văn nói hay văn viết nhiều hơn?';
+  String get isThisWordUsedInSpokenOrWrittenChin =>
+      'Từ này thường dùng trong văn nói hay văn viết nhiều hơn?';
 
   @override
-  String get areThereOtherWaysToTranslateThisWor => 'Còn cách nào khác để dịch từ này không?';
+  String get areThereOtherWaysToTranslateThisWor =>
+      'Còn cách nào khác để dịch từ này không?';
 
   @override
-  String get whatAreCommonWordsThatGoTogetherWit => 'Những từ nào thường đi kèm (kết hợp từ) với từ này?';
+  String get whatAreCommonWordsThatGoTogetherWit =>
+      'Những từ nào thường đi kèm (kết hợp từ) với từ này?';
 
   @override
-  String get whatAreCommonMistakesLearnersMakeWi => 'Những lỗi sai phổ biến mà người học hay mắc phải với từ này là gì?';
+  String get whatAreCommonMistakesLearnersMakeWi =>
+      'Những lỗi sai phổ biến mà người học hay mắc phải với từ này là gì?';
 
   @override
   String get emptyResponse => 'Phản hồi trống';
 
   @override
-  String get whatIsTheOracleBoneScriptOriginOfTh => 'Nguồn gốc giáp cốt văn của chữ Hán này bắt nguồn từ đâu?';
+  String get whatIsTheOracleBoneScriptOriginOfTh =>
+      'Nguồn gốc giáp cốt văn của chữ Hán này bắt nguồn từ đâu?';
 
   @override
-  String get howDidTheAncientFormOfThisCharacter => 'Hình thể cổ xưa của chữ Hán này đã biến đổi và phát triển ra sao qua các thời kỳ?';
+  String get howDidTheAncientFormOfThisCharacter =>
+      'Hình thể cổ xưa của chữ Hán này đã biến đổi và phát triển ra sao qua các thời kỳ?';
 
   @override
-  String get giveMe3CommonWordsThatContainThisCh => 'Hãy cho tôi 3 từ ghép thông dụng có chứa chữ Hán này.';
+  String get giveMe3CommonWordsThatContainThisCh =>
+      'Hãy cho tôi 3 từ ghép thông dụng có chứa chữ Hán này.';
 
   @override
-  String get whatOtherCharactersShareTheSameRadi => 'Những chữ Hán nào khác có chung bộ thủ này?';
+  String get whatOtherCharactersShareTheSameRadi =>
+      'Những chữ Hán nào khác có chung bộ thủ này?';
 
   @override
-  String get isThereAChineseProverbOrSayingFeatu => 'Có câu tục ngữ, thành ngữ hay danh ngôn tiếng Trung nào chứa chữ Hán này không?';
+  String get isThereAChineseProverbOrSayingFeatu =>
+      'Có câu tục ngữ, thành ngữ hay danh ngôn tiếng Trung nào chứa chữ Hán này không?';
 
   @override
-  String get explainTheStrokeOrderRulesForThisCh => 'Giải thích quy tắc thứ tự nét viết (thuận bút) cho chữ Hán này.';
+  String get explainTheStrokeOrderRulesForThisCh =>
+      'Giải thích quy tắc thứ tự nét viết (thuận bút) cho chữ Hán này.';
 
   @override
-  String get giveMeOneCalligraphyTipForWritingTh => 'Cho tôi một mẹo thư pháp để viết chữ Hán này thật cân đối và đẹp mắt.';
+  String get giveMeOneCalligraphyTipForWritingTh =>
+      'Cho tôi một mẹo thư pháp để viết chữ Hán này thật cân đối và đẹp mắt.';
 
   @override
-  String get isThereAnythingTrickyAboutUsingThis => 'Có điểm ngữ pháp đặc biệt hay bẫy nào cần lưu ý khi dùng từ này không?';
+  String get isThereAnythingTrickyAboutUsingThis =>
+      'Có điểm ngữ pháp đặc biệt hay bẫy nào cần lưu ý khi dùng từ này không?';
 
   @override
-  String get whatWordsAreCommonlyConfusedWithThi => 'Những từ nào dễ bị nhầm lẫn với từ này và lý do tại sao?';
+  String get whatWordsAreCommonlyConfusedWithThi =>
+      'Những từ nào dễ bị nhầm lẫn với từ này và lý do tại sao?';
 
   @override
-  String get doesThisCharacterCarryCulturalSymbo => 'Chữ Hán này có mang ý nghĩa biểu tượng văn hóa đặc biệt nào ở Trung Quốc không?';
+  String get doesThisCharacterCarryCulturalSymbo =>
+      'Chữ Hán này có mang ý nghĩa biểu tượng văn hóa đặc biệt nào ở Trung Quốc không?';
 
   @override
-  String get isThisCharacterCommonlySeenInChines => 'Chữ Hán này có thường xuất hiện trong phim ảnh, bài hát hay văn học hiện đại không?';
+  String get isThisCharacterCommonlySeenInChines =>
+      'Chữ Hán này có thường xuất hiện trong phim ảnh, bài hát hay văn học hiện đại không?';
 
   @override
-  String get whatDoesTheRadicalOfThisCharacterMe => 'Bộ thủ của chữ Hán này biểu thị ý nghĩa gì?';
+  String get whatDoesTheRadicalOfThisCharacterMe =>
+      'Bộ thủ của chữ Hán này biểu thị ý nghĩa gì?';
 
   @override
-  String get breakDownEveryComponentAndItsMeanin => 'Hãy chiết tự từng thành phần cấu tạo và giải nghĩa chi tiết.';
+  String get breakDownEveryComponentAndItsMeanin =>
+      'Hãy chiết tự từng thành phần cấu tạo và giải nghĩa chi tiết.';
 
   @override
-  String get giveMeATrickToRememberTheCorrectTon => 'Hãy mách tôi một mẹo ghi nhớ thanh điệu chuẩn xác của chữ Hán này.';
+  String get giveMeATrickToRememberTheCorrectTon =>
+      'Hãy mách tôi một mẹo ghi nhớ thanh điệu chuẩn xác của chữ Hán này.';
 
   @override
-  String get areThereCommonHomophonesThatAreOfte => 'Có những từ đồng âm nào dễ gây nhầm lẫn với chữ này không?';
+  String get areThereCommonHomophonesThatAreOfte =>
+      'Có những từ đồng âm nào dễ gây nhầm lẫn với chữ này không?';
 
   @override
   String get quotaExceeded => 'Đã vượt quá hạn mức sử dụng';
 
   @override
-  String get mustProvideEitherCardOrCards => 'Cần cung cấp một thẻ hoặc danh sách các thẻ';
+  String get mustProvideEitherCardOrCards =>
+      'Cần cung cấp một thẻ hoặc danh sách các thẻ';
 
   @override
   String get deckSettings => 'Cài đặt bộ thẻ';
@@ -5036,52 +5515,64 @@ class AppLocalizationsVi extends AppLocalizations {
   String get microphonePermissionRequired1 => 'Cần cấp quyền truy cập micro.';
 
   @override
-  String get recordingFailedNoFile => 'Ghi âm thất bại (Không tạo được tệp âm thanh).';
+  String get recordingFailedNoFile =>
+      'Ghi âm thất bại (Không tạo được tệp âm thanh).';
 
   @override
   String get holdToSpeakOptional => 'Nhấn giữ để nói (Tùy chọn)';
 
   @override
-  String get microphonePermissionDeniedEnableItI => 'Quyền micro bị từ chối. Vui lòng bật quyền trong phần Cài đặt để sử dụng Phòng luyện Shadowing.';
+  String get microphonePermissionDeniedEnableItI =>
+      'Quyền micro bị từ chối. Vui lòng bật quyền trong phần Cài đặt để sử dụng Phòng luyện Shadowing.';
 
   @override
   String get sessionSummary => 'Tổng kết phiên học';
 
   @override
-  String get hereAreTheCharactersYouStruggledWit => 'Dưới đây là những chữ Hán bạn cần chú ý luyện tập thêm:';
+  String get hereAreTheCharactersYouStruggledWit =>
+      'Dưới đây là những chữ Hán bạn cần chú ý luyện tập thêm:';
 
   @override
-  String get applySessionGradesToSpacedRepetitio => 'Áp dụng kết quả phiên học vào hệ thống Lặp lại ngắt quãng (Chế độ Nói)';
+  String get applySessionGradesToSpacedRepetitio =>
+      'Áp dụng kết quả phiên học vào hệ thống Lặp lại ngắt quãng (Chế độ Nói)';
 
   @override
-  String get masterYourMandarinPronunciationnbyM => 'Làm chủ phát âm tiếng Quan thoại chuẩn xác\nbằng cách nhại giọng người bản xứ.';
+  String get masterYourMandarinPronunciationnbyM =>
+      'Làm chủ phát âm tiếng Quan thoại chuẩn xác\nbằng cách nhại giọng người bản xứ.';
 
   @override
-  String get aiIsGradingYourPronunciation => 'AI đang phân tích và chấm điểm phát âm...';
+  String get aiIsGradingYourPronunciation =>
+      'AI đang phân tích và chấm điểm phát âm...';
 
   @override
-  String get holdMicToRecordReleaseToGrade => 'Nhấn giữ micro để ghi âm. Thả tay ra để chấm điểm.';
+  String get holdMicToRecordReleaseToGrade =>
+      'Nhấn giữ micro để ghi âm. Thả tay ra để chấm điểm.';
 
   @override
-  String get tapAnySyllableToAuditionAll4Tones => 'Chạm vào âm tiết bất kỳ để nghe mẫu cả 4 thanh điệu:';
+  String get tapAnySyllableToAuditionAll4Tones =>
+      'Chạm vào âm tiết bất kỳ để nghe mẫu cả 4 thanh điệu:';
 
   @override
   String get freeFlowConversationalPractice => 'Thực hành đàm thoại tự do.';
 
   @override
-  String get failedToGeneratePhrasePleaseTryAgai => 'Không thể tạo mẫu câu. Vui lòng thử lại.';
+  String get failedToGeneratePhrasePleaseTryAgai =>
+      'Không thể tạo mẫu câu. Vui lòng thử lại.';
 
   @override
-  String get recordingTooShortHoldTheMicButtonLo => 'Bản ghi âm quá ngắn. Vui lòng giữ nút micro lâu hơn.';
+  String get recordingTooShortHoldTheMicButtonLo =>
+      'Bản ghi âm quá ngắn. Vui lòng giữ nút micro lâu hơn.';
 
   @override
   String get recordingErrorPleaseTryAgain => 'Lỗi ghi âm. Vui lòng thử lại.';
 
   @override
-  String get noRecordingCapturedPleaseTryAgain => 'Chưa thu được giọng nói. Vui lòng thử lại.';
+  String get noRecordingCapturedPleaseTryAgain =>
+      'Chưa thu được giọng nói. Vui lòng thử lại.';
 
   @override
-  String get recordedAudioIsEmptyPleaseTryAgainA => 'Tệp ghi âm không có âm thanh. Vui lòng nói rõ ràng vào micro.';
+  String get recordedAudioIsEmptyPleaseTryAgainA =>
+      'Tệp ghi âm không có âm thanh. Vui lòng nói rõ ràng vào micro.';
 
   @override
   String get azureSpeechApiKeysAreMissing1 => 'Thiếu khóa API Azure Speech';
@@ -5090,22 +5581,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get azureError401 => 'Lỗi xác thực Azure 401';
 
   @override
-  String get azureAuthenticationFailedCheckYourS => 'Xác thực Azure thất bại. Kiểm tra khóa Speech API và khu vực (region) trong tệp .env';
+  String get azureAuthenticationFailedCheckYourS =>
+      'Xác thực Azure thất bại. Kiểm tra khóa Speech API và khu vực (region) trong tệp .env';
 
   @override
   String get azureError429 => 'Lỗi giới hạn Azure 429';
 
   @override
-  String get azureQuotaExceededTryAgainLater => 'Hạn mức API Azure đã hết. Vui lòng thử lại sau.';
+  String get azureQuotaExceededTryAgainLater =>
+      'Hạn mức API Azure đã hết. Vui lòng thử lại sau.';
 
   @override
-  String get azureGradingTimedOutCheckYourIntern => 'Đánh giá Azure bị quá thời gian. Vui lòng kiểm tra kết nối internet.';
+  String get azureGradingTimedOutCheckYourIntern =>
+      'Đánh giá Azure bị quá thời gian. Vui lòng kiểm tra kết nối internet.';
 
   @override
   String get recognitionFailedNull => 'Nhận diện thất bại: null';
 
   @override
-  String get couldNotHearYouClearlyPleaseTryAgai => 'Không thể nghe rõ phát âm. Vui lòng thử lại.';
+  String get couldNotHearYouClearlyPleaseTryAgai =>
+      'Không thể nghe rõ phát âm. Vui lòng thử lại.';
 
   @override
   String get singlePhrasePractice => 'Luyện phát âm câu đơn';
@@ -5135,151 +5630,193 @@ class AppLocalizationsVi extends AppLocalizations {
   String get translationFailed => 'Dịch thất bại';
 
   @override
-  String get engagingMacroeconomicAndBusinessBre => 'Phân tích kinh tế vĩ mô và kinh doanh sâu sắc được truyền tải qua lối kể chuyện sống động.';
+  String get engagingMacroeconomicAndBusinessBre =>
+      'Phân tích kinh tế vĩ mô và kinh doanh sâu sắc được truyền tải qua lối kể chuyện sống động.';
 
   @override
-  String get exploresWorldEconomiesBankingHistor => 'Khám phá các nền kinh tế thế giới, lịch sử ngành ngân hàng và động lực phát triển toàn cầu.';
+  String get exploresWorldEconomiesBankingHistor =>
+      'Khám phá các nền kinh tế thế giới, lịch sử ngành ngân hàng và động lực phát triển toàn cầu.';
 
   @override
-  String get clearArticulateMandarinPerfectForIn => 'Tiếng Trung chuẩn xác, phát âm rõ ràng, lý tưởng cho người học trung cấp và cao cấp rèn luyện kỹ năng nghe.';
+  String get clearArticulateMandarinPerfectForIn =>
+      'Tiếng Trung chuẩn xác, phát âm rõ ràng, lý tưởng cho người học trung cấp và cao cấp rèn luyện kỹ năng nghe.';
 
   @override
   String get chefWang => 'Đầu bếp Vương Cương (Chef Wang)';
 
   @override
-  String get masterSichuanCulinaryTechniquesTaug => 'Nắm vững kỹ thuật ẩm thực Tứ Xuyên chính thống được truyền dạy trực tiếp từ đầu bếp chuyên nghiệp.';
+  String get masterSichuanCulinaryTechniquesTaug =>
+      'Nắm vững kỹ thuật ẩm thực Tứ Xuyên chính thống được truyền dạy trực tiếp từ đầu bếp chuyên nghiệp.';
 
   @override
-  String get stepbystepAuthenticChineseRecipesWi => 'Công thức nấu ăn Trung Hoa chuẩn vị từng bước với kỹ thuật điều khiển lửa chảo và dùng dao điêu luyện.';
+  String get stepbystepAuthenticChineseRecipesWi =>
+      'Công thức nấu ăn Trung Hoa chuẩn vị từng bước với kỹ thuật điều khiển lửa chảo và dùng dao điêu luyện.';
 
   @override
-  String get conciseCulinaryVocabularyAndClearIn => 'Từ vựng ẩm thực cô đọng cùng hướng dẫn rõ ràng bằng tiếng Trung tự nhiên.';
+  String get conciseCulinaryVocabularyAndClearIn =>
+      'Từ vựng ẩm thực cô đọng cùng hướng dẫn rõ ràng bằng tiếng Trung tự nhiên.';
 
   @override
-  String get cinematographyCuttingedgeCameraTech => 'Nghệ thuật quay phim, công nghệ máy quay tối tân và đánh giá truyền thông số chuyên sâu.';
+  String get cinematographyCuttingedgeCameraTech =>
+      'Nghệ thuật quay phim, công nghệ máy quay tối tân và đánh giá truyền thông số chuyên sâu.';
 
   @override
-  String get highproductionDocumentaryStyleExplo => 'Phong cách phim tài liệu chất lượng cao khám phá sáng tạo video và đột phá công nghệ AI.';
+  String get highproductionDocumentaryStyleExplo =>
+      'Phong cách phim tài liệu chất lượng cao khám phá sáng tạo video và đột phá công nghệ AI.';
 
   @override
-  String get richTechnicalMandarinWithCrystalcle => 'Vốn từ vựng công nghệ phong phú với phát âm chuẩn xác và phụ đề trực quan.';
+  String get richTechnicalMandarinWithCrystalcle =>
+      'Vốn từ vựng công nghệ phong phú với phát âm chuẩn xác và phụ đề trực quan.';
 
   @override
-  String get indepthInvestigativeJournalismAndCu => 'Báo chí điều tra chuyên sâu và bình luận sắc sảo về các sự kiện thời sự nổi bật.';
+  String get indepthInvestigativeJournalismAndCu =>
+      'Báo chí điều tra chuyên sâu và bình luận sắc sảo về các sự kiện thời sự nổi bật.';
 
   @override
-  String get criticalPerspectivesOnSocialPhenome => 'Góc nhìn phản biện đa chiều về các hiện tượng xã hội, tin tức quốc tế và lịch sử.';
+  String get criticalPerspectivesOnSocialPhenome =>
+      'Góc nhìn phản biện đa chiều về các hiện tượng xã hội, tin tức quốc tế và lịch sử.';
 
   @override
-  String get formalInvestigativeDiscourseIdealFo => 'Văn phong học thuật, chính luận trang trọng, lý tưởng để nâng cao kỹ năng nghe hiểu nâng cao.';
+  String get formalInvestigativeDiscourseIdealFo =>
+      'Văn phong học thuật, chính luận trang trọng, lý tưởng để nâng cao kỹ năng nghe hiểu nâng cao.';
 
   @override
-  String get bitesizedAnimatedScienceDocumentari => 'Phim tài liệu khoa học hoạt hình ngắn gọn, giải đáp thú vị các thắc mắc đời thường.';
+  String get bitesizedAnimatedScienceDocumentari =>
+      'Phim tài liệu khoa học hoạt hình ngắn gọn, giải đáp thú vị các thắc mắc đời thường.';
 
   @override
-  String get exploresPhysicsBiologyAndEverydayCu => 'Khám phá vật lý, sinh học và những điều kỳ thú quanh ta qua các hình ảnh đồ họa sinh động.';
+  String get exploresPhysicsBiologyAndEverydayCu =>
+      'Khám phá vật lý, sinh học và những điều kỳ thú quanh ta qua các hình ảnh đồ họa sinh động.';
 
   @override
-  String get standardBeijingMandarinWithWellpace => 'Tiếng Quan thoại Bắc Kinh chuẩn với nhịp điệu đọc vừa phải và phụ đề rõ ràng.';
+  String get standardBeijingMandarinWithWellpace =>
+      'Tiếng Quan thoại Bắc Kinh chuẩn với nhịp điệu đọc vừa phải và phụ đề rõ ràng.';
 
   @override
-  String get heartwarmingStreetFoodAdventuresAnd => 'Hành trình ẩm thực đường phố ấm áp và những cuộc trò chuyện chân thành khắp mọi miền Trung Hoa.';
+  String get heartwarmingStreetFoodAdventuresAnd =>
+      'Hành trình ẩm thực đường phố ấm áp và những cuộc trò chuyện chân thành khắp mọi miền Trung Hoa.';
 
   @override
-  String get exploresRegionalHumanStoriesFamilyT => 'Lắng nghe những câu chuyện đời thường, phong tục gia đình và các món ngon đặc sản từng vùng miền.';
+  String get exploresRegionalHumanStoriesFamilyT =>
+      'Lắng nghe những câu chuyện đời thường, phong tục gia đình và các món ngon đặc sản từng vùng miền.';
 
   @override
-  String get naturalConversationalMandarinWithDa => 'Tiếng Trung giao tiếp đời thường tự nhiên kết hợp tiếng lóng hiện đại và cảm xúc gần gũi.';
+  String get naturalConversationalMandarinWithDa =>
+      'Tiếng Trung giao tiếp đời thường tự nhiên kết hợp tiếng lóng hiện đại và cảm xúc gần gũi.';
 
   @override
-  String get humorousAndHonestConsumerElectronic => 'Đánh giá đồ điện tử tiêu dùng hài hước, thẳng thắn và sát thực tế trải nghiệm.';
+  String get humorousAndHonestConsumerElectronic =>
+      'Đánh giá đồ điện tử tiêu dùng hài hước, thẳng thắn và sát thực tế trải nghiệm.';
 
   @override
-  String get testingSmartphonesSmartHomeGadgetsA => 'Đánh giá thực tế smartphone, thiết bị nhà thông minh và đồ công nghệ phục vụ đời sống.';
+  String get testingSmartphonesSmartHomeGadgetsA =>
+      'Đánh giá thực tế smartphone, thiết bị nhà thông minh và đồ công nghệ phục vụ đời sống.';
 
   @override
-  String get relaxedHumorousConversationalDialog => 'Đối thoại thường ngày dí dỏm, thư giãn với các cách diễn đạt đậm chất khẩu ngữ hiện đại.';
+  String get relaxedHumorousConversationalDialog =>
+      'Đối thoại thường ngày dí dỏm, thư giãn với các cách diễn đạt đậm chất khẩu ngữ hiện đại.';
 
   @override
   String get seanKitchen => 'Bếp Nhà Sean (Sean\'s Kitchen)';
 
   @override
-  String get deliciousHomecookedChineseDishesAnd => 'Các món ăn gia đình Trung Hoa thơm ngon và bí quyết nấu các món ăn vặt đường phố nổi tiếng.';
+  String get deliciousHomecookedChineseDishesAnd =>
+      'Các món ăn gia đình Trung Hoa thơm ngon và bí quyết nấu các món ăn vặt đường phố nổi tiếng.';
 
   @override
-  String get easytofollowKitchenTipsForCookingAu => 'Mẹo nhà bếp đơn giản, dễ làm để nấu các món ăn châu Á đậm đà, ấm lòng chuẩn vị.';
+  String get easytofollowKitchenTipsForCookingAu =>
+      'Mẹo nhà bếp đơn giản, dễ làm để nấu các món ăn châu Á đậm đà, ấm lòng chuẩn vị.';
 
   @override
-  String get warmInvitingCommentaryWithPractical => 'Lời bình truyền cảm, ấm áp đan xen vốn từ vựng nhà bếp vô cùng thực tế.';
+  String get warmInvitingCommentaryWithPractical =>
+      'Lời bình truyền cảm, ấm áp đan xen vốn từ vựng nhà bếp vô cùng thực tế.';
 
   @override
   String get chineseChannel => 'Kênh Học Tiếng Trung';
 
   @override
-  String get structuredChineseLanguageLessonsAnd => 'Bài học tiếng Trung bài bản theo lộ trình và các video khám phá văn hóa bổ ích.';
+  String get structuredChineseLanguageLessonsAnd =>
+      'Bài học tiếng Trung bài bản theo lộ trình và các video khám phá văn hóa bổ ích.';
 
   @override
-  String get grammarPointsHskVocabularyBuildingA => 'Tổng hợp điểm ngữ pháp, tích lũy từ vựng HSK và mẫu câu đối thoại thực dụng.';
+  String get grammarPointsHskVocabularyBuildingA =>
+      'Tổng hợp điểm ngữ pháp, tích lũy từ vựng HSK và mẫu câu đối thoại thực dụng.';
 
   @override
-  String get clearEducationalPacingTailoredSpeci => 'Nhịp độ bài giảng mạch lạc, được thiết kế chuyên biệt cho người học tiếng Trung.';
+  String get clearEducationalPacingTailoredSpeci =>
+      'Nhịp độ bài giảng mạch lạc, được thiết kế chuyên biệt cho người học tiếng Trung.';
 
   @override
   String get oneInABillion => 'Một Trong Một Tỷ (One in a Billion)';
 
   @override
-  String get intimatePortraitsAndStoriesOfUnique => 'Chân dung chân thực và những câu chuyện lay động lòng người của các cá nhân đặc biệt tại Trung Quốc đương đại.';
+  String get intimatePortraitsAndStoriesOfUnique =>
+      'Chân dung chân thực và những câu chuyện lay động lòng người của các cá nhân đặc biệt tại Trung Quốc đương đại.';
 
   @override
-  String get exploresDiverseLifeChoicesYouthCult => 'Khám phá những lựa chọn cuộc sống đa dạng, văn hóa giới trẻ và sự chuyển mình của xã hội hiện đại.';
+  String get exploresDiverseLifeChoicesYouthCult =>
+      'Khám phá những lựa chọn cuộc sống đa dạng, văn hóa giới trẻ và sự chuyển mình của xã hội hiện đại.';
 
   @override
-  String get deepNarrativeStorytellingWithRichVo => 'Lối kể chuyện giàu chiều sâu với vốn từ vựng phong phú cùng giọng dẫn truyền cảm.';
+  String get deepNarrativeStorytellingWithRichVo =>
+      'Lối kể chuyện giàu chiều sâu với vốn từ vựng phong phú cùng giọng dẫn truyền cảm.';
 
   @override
   String get vickySoup => 'Vicky Soup Vlog';
 
   @override
-  String get aestheticLifestyleVlogsFashionStyli => 'Vlog phong cách sống thẩm mỹ, phối đồ thời trang và nhịp sống hằng ngày tinh tế.';
+  String get aestheticLifestyleVlogsFashionStyli =>
+      'Vlog phong cách sống thẩm mỹ, phối đồ thời trang và nhịp sống hằng ngày tinh tế.';
 
   @override
-  String get travelDiariesAndCozyLifeMomentsDocu => 'Nhật ký du lịch và những khoảnh khắc ấm cúng đời thường được ghi lại bằng thước phim điện ảnh.';
+  String get travelDiariesAndCozyLifeMomentsDocu =>
+      'Nhật ký du lịch và những khoảnh khắc ấm cúng đời thường được ghi lại bằng thước phim điện ảnh.';
 
   @override
-  String get naturalCasualMandarinSpokenAtAComfo => 'Tiếng Trung giao tiếp tự nhiên với tốc độ vừa phải, dễ nghe và biểu cảm phong phú.';
+  String get naturalCasualMandarinSpokenAtAComfo =>
+      'Tiếng Trung giao tiếp tự nhiên với tốc độ vừa phải, dễ nghe và biểu cảm phong phú.';
 
   @override
   String get tededMandarin => 'TED-Ed Tiếng Trung';
 
   @override
-  String get highqualityAnimatedEducationalLesso => 'Bài học hoạt hình giáo dục chất lượng cao về khoa học, triết học và lịch sử nhân loại.';
+  String get highqualityAnimatedEducationalLesso =>
+      'Bài học hoạt hình giáo dục chất lượng cao về khoa học, triết học và lịch sử nhân loại.';
 
   @override
-  String get thoughtprovokingRiddlesClassicLiter => 'Những câu đố tư duy kích thích trí tuệ, tinh hoa văn học kinh điển và bí ẩn tâm lý học.';
+  String get thoughtprovokingRiddlesClassicLiter =>
+      'Những câu đố tư duy kích thích trí tuệ, tinh hoa văn học kinh điển và bí ẩn tâm lý học.';
 
   @override
-  String get impeccableVoiceoverMandarinWithSync => 'Giọng lồng tiếng chuẩn xác tuyệt đối với phụ đề song ngữ đồng bộ mượt mà.';
+  String get impeccableVoiceoverMandarinWithSync =>
+      'Giọng lồng tiếng chuẩn xác tuyệt đối với phụ đề song ngữ đồng bộ mượt mà.';
 
   @override
   String get channel => 'Kênh';
 
   @override
-  String get curatedCulturalDocumentariesAndChin => 'Phim tài liệu văn hóa chọn lọc và những nét đặc sắc trong phong cách sống Trung Hoa.';
+  String get curatedCulturalDocumentariesAndChin =>
+      'Phim tài liệu văn hóa chọn lọc và những nét đặc sắc trong phong cách sống Trung Hoa.';
 
   @override
-  String get exploringTraditionalArtsHeritageCra => 'Khám phá nghệ thuật cổ truyền, di sản thủ công và những xu hướng thời thượng hiện đại.';
+  String get exploringTraditionalArtsHeritageCra =>
+      'Khám phá nghệ thuật cổ truyền, di sản thủ công và những xu hướng thời thượng hiện đại.';
 
   @override
-  String get highQualityAudioWithSynchronizedChi => 'Âm thanh chất lượng cao có phụ đề tiếng Trung đồng bộ chính xác.';
+  String get highQualityAudioWithSynchronizedChi =>
+      'Âm thanh chất lượng cao có phụ đề tiếng Trung đồng bộ chính xác.';
 
   @override
-  String get interestingStoriesAndCreativeVideoP => 'Những câu chuyện độc đáo và dự án video sáng tạo nổi bật từ không gian mạng Trung Quốc.';
+  String get interestingStoriesAndCreativeVideoP =>
+      'Những câu chuyện độc đáo và dự án video sáng tạo nổi bật từ không gian mạng Trung Quốc.';
 
   @override
-  String get engagingInterviewsStorytellingAndVi => 'Các cuộc phỏng vấn sâu sắc, lối kể chuyện cuốn hút cùng hình ảnh nghệ thuật.';
+  String get engagingInterviewsStorytellingAndVi =>
+      'Các cuộc phỏng vấn sâu sắc, lối kể chuyện cuốn hút cùng hình ảnh nghệ thuật.';
 
   @override
-  String get greatListeningMaterialWithStandardP => 'Nguồn tài liệu luyện nghe xuất sắc với phát âm giọng đọc tiêu chuẩn.';
+  String get greatListeningMaterialWithStandardP =>
+      'Nguồn tài liệu luyện nghe xuất sắc với phát âm giọng đọc tiêu chuẩn.';
 
   @override
   String get xVsY => 'X so với Y';
@@ -5324,16 +5861,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get gradedReader => 'Sách đọc phân cấp';
 
   @override
-  String get ucj10r97lkwgdtqbt6xzv8gLearnMandari => 'Học tiếng Trung cùng TaiwanPlus';
+  String get ucj10r97lkwgdtqbt6xzv8gLearnMandari =>
+      'Học tiếng Trung cùng TaiwanPlus';
 
   @override
-  String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi => 'Tiếng Trung giao tiếp hằng ngày';
+  String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi =>
+      'Tiếng Trung giao tiếp hằng ngày';
 
   @override
   String get graceMandarinChinese => 'Grace Mandarin Chinese';
 
   @override
-  String get ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi => 'Ting: Nhịp sống thường nhật ở Trung Quốc';
+  String get ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi =>
+      'Ting: Nhịp sống thường nhật ở Trung Quốc';
 
   @override
   String get xinxin => 'Hân Hân (Xinxin)';
@@ -5381,7 +5921,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get articleOfTheDay => 'BÀI ĐỌC HÔM NAY';
 
   @override
-  String get failedToLoadOrParseRssFeed => 'Không thể tải hoặc phân tích nguồn cấp dữ liệu RSS.';
+  String get failedToLoadOrParseRssFeed =>
+      'Không thể tải hoặc phân tích nguồn cấp dữ liệu RSS.';
 
   @override
   String get drama => 'Phim truyền hình (Phim bộ)';
@@ -5432,22 +5973,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get backFromTheBrink => 'Hộ Tâm (Back From the Brink)';
 
   @override
-  String get fallingIntoYourSmile => 'Khi Em Mỉm Cười Rất Đẹp (Falling Into Your Smile)';
+  String get fallingIntoYourSmile =>
+      'Khi Em Mỉm Cười Rất Đẹp (Falling Into Your Smile)';
 
   @override
   String get everyoneLovesMe => 'Đừng Rung Động Vì Anh (Everyone Loves Me)';
 
   @override
-  String get tillTheEndOfTheMoon => 'Trường Nguyệt Tẫn Minh (Till The End Of The Moon)';
+  String get tillTheEndOfTheMoon =>
+      'Trường Nguyệt Tẫn Minh (Till The End Of The Moon)';
 
   @override
-  String get theBestDayOfMyLife => 'Ngày Tuyệt Vời Nhất Của Tôi (The Best Day of My Life)';
+  String get theBestDayOfMyLife =>
+      'Ngày Tuyệt Vời Nhất Của Tôi (The Best Day of My Life)';
 
   @override
   String get gikkiChineseDrama => 'Phim truyền hình Trung Quốc GIKKI';
 
   @override
-  String get dashingYouth => 'Thiếu Niên Bạch Mã Túy Xuân Phong (Dashing Youth)';
+  String get dashingYouth =>
+      'Thiếu Niên Bạch Mã Túy Xuân Phong (Dashing Youth)';
 
   @override
   String get rebornChineseDramaEngSub => 'Phim Trung Quốc Trùng Sinh (Reborn)';
@@ -5456,7 +6001,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get ijenwaBenita => 'Ijenwa Benita';
 
   @override
-  String get whenIFlyTowardsYou => 'Khi Anh Chạy Về Phía Em (When I Fly Towards You)';
+  String get whenIFlyTowardsYou =>
+      'Khi Anh Chạy Về Phía Em (When I Fly Towards You)';
 
   @override
   String get mztvExclusiveChineseDrama => 'Phim truyền hình độc quyền MZTV';
@@ -5498,7 +6044,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get hiddenLove => 'Vụng Trộm Không Thể Giấu (Hidden Love)';
 
   @override
-  String get loveBetweenFairyAndDevil => 'Thương Lan Quyết (Love Between Fairy and Devil)';
+  String get loveBetweenFairyAndDevil =>
+      'Thương Lan Quyết (Love Between Fairy and Devil)';
 
   @override
   String get loveLikeTheGalaxy => 'Tinh Hán Xán Lạn (Love Like the Galaxy)';
@@ -5513,7 +6060,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get myJourneyToYou => 'Vân Chi Vũ (My Journey to You)';
 
   @override
-  String get mysteriousLotusCasebook => 'Liên Hoa Lâu (Mysterious Lotus Casebook)';
+  String get mysteriousLotusCasebook =>
+      'Liên Hoa Lâu (Mysterious Lotus Casebook)';
 
   @override
   String get rebornChineseDramaEngSub1 => 'Trùng Sinh (Reborn)';
@@ -5588,7 +6136,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get myDearGuardian => 'Quân Trang Thân Yêu (My Dear Guardian)';
 
   @override
-  String get brightEyesInTheDark => 'Anh Ấy Bước Ra Từ Ánh Lửa (Bright Eyes in the Dark)';
+  String get brightEyesInTheDark =>
+      'Anh Ấy Bước Ra Từ Ánh Lửa (Bright Eyes in the Dark)';
 
   @override
   String get theIngeniousOne => 'Vân Tương Truyện (The Ingenious One)';
@@ -5666,10 +6215,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get moonlitReunion => 'Tương Phùng Dưới Ánh Trăng';
 
   @override
-  String get videoCountsCannotBeNegative => 'Số lượng video không được là số âm.';
+  String get videoCountsCannotBeNegative =>
+      'Số lượng video không được là số âm.';
 
   @override
-  String get publicDomainClassic => 'Tác phẩm kinh điển thuộc phạm vi công cộng';
+  String get publicDomainClassic =>
+      'Tác phẩm kinh điển thuộc phạm vi công cộng';
 
   @override
   String get idioms => 'Thành ngữ & Điển tích';
@@ -5681,7 +6232,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get fairyTales => 'Truyện cổ tích & Ngụ ngôn';
 
   @override
-  String get hereIsAFascinatingCulturalExplanati => 'Dưới đây là lời giải thích văn hóa thú vị:';
+  String get hereIsAFascinatingCulturalExplanati =>
+      'Dưới đây là lời giải thích văn hóa thú vị:';
 
   @override
   String get videoFetchTimedOut => 'Hết thời gian tải video';
@@ -5696,13 +6248,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get failedToLoadVideos => 'Không thể tải video';
 
   @override
-  String get highqualityCuratedMandarinContentWi => 'Nội dung tiếng Trung chọn lọc chất lượng cao với vốn từ vựng tự nhiên.';
+  String get highqualityCuratedMandarinContentWi =>
+      'Nội dung tiếng Trung chọn lọc chất lượng cao với vốn từ vựng tự nhiên.';
 
   @override
-  String get authenticSpokenChineseAcrossRealwor => 'Tiếng Trung giao tiếp chuẩn xác qua các chủ đề và tình huống thực tế.';
+  String get authenticSpokenChineseAcrossRealwor =>
+      'Tiếng Trung giao tiếp chuẩn xác qua các chủ đề và tình huống thực tế.';
 
   @override
-  String get engagingVideoMaterialWithInteractiv => 'Tài liệu video sinh động với phụ đề tương tác được đồng bộ chuẩn xác.';
+  String get engagingVideoMaterialWithInteractiv =>
+      'Tài liệu video sinh động với phụ đề tương tác được đồng bộ chuẩn xác.';
 
   @override
   String get watchVideo => 'Xem video';
@@ -5711,7 +6266,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get culturalInsight => 'Góc Nhìn Văn Hóa';
 
   @override
-  String get aiIsAnalyzingCulturalContext => 'AI đang phân tích bối cảnh văn hóa...';
+  String get aiIsAnalyzingCulturalContext =>
+      'AI đang phân tích bối cảnh văn hóa...';
 
   @override
   String get diveIntoFullContent => 'Khám phá toàn bộ nội dung';
@@ -5726,13 +6282,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get webExplorer => 'TRÌNH DUYỆT WEB';
 
   @override
-  String get browseAnyChineseWebsiteWithRealtime => 'Duyệt bất kỳ trang web tiếng Trung nào với từ điển chạm tức thì, phiên âm pinyin và dịch thuật trực tiếp.';
+  String get browseAnyChineseWebsiteWithRealtime =>
+      'Duyệt bất kỳ trang web tiếng Trung nào với từ điển chạm tức thì, phiên âm pinyin và dịch thuật trực tiếp.';
 
   @override
   String get startExploring => 'BẮT ĐẦU KHÁM PHÁ';
 
   @override
-  String get chineseTvSeriesWithInteractiveSubti => 'Phim bộ Trung Quốc kèm phụ đề tương tác';
+  String get chineseTvSeriesWithInteractiveSubti =>
+      'Phim bộ Trung Quốc kèm phụ đề tương tác';
 
   @override
   String get failedToLoadContent => 'Không thể tải nội dung';
@@ -5741,7 +6299,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get searchingYoutube => 'Đang tìm kiếm trên YouTube...';
 
   @override
-  String get noVideosFoundTryADifferentSearchTer => 'Không tìm thấy video nào. Hãy thử bằng từ khóa khác.';
+  String get noVideosFoundTryADifferentSearchTer =>
+      'Không tìm thấy video nào. Hãy thử bằng từ khóa khác.';
 
   @override
   String get searching => 'Đang tìm kiếm...';
@@ -5768,10 +6327,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get generatingAiBriefing => 'Đang tạo bản tóm tắt bằng AI...';
 
   @override
-  String get noClosedCaptionsCcFoundForThisVideo => 'Không tìm thấy phụ đề kỹ thuật số (CC) cho video này.';
+  String get noClosedCaptionsCcFoundForThisVideo =>
+      'Không tìm thấy phụ đề kỹ thuật số (CC) cho video này.';
 
   @override
-  String get videosWithHardcodedOrBurnedinSubtit => 'Video có phụ đề gắn cứng vào hình ảnh sẽ không có luồng văn bản kỹ thuật số trên YouTube.';
+  String get videosWithHardcodedOrBurnedinSubtit =>
+      'Video có phụ đề gắn cứng vào hình ảnh sẽ không có luồng văn bản kỹ thuật số trên YouTube.';
 
   @override
   String get translatingSubtitles => 'Đang dịch phụ đề...';
@@ -5786,25 +6347,31 @@ class AppLocalizationsVi extends AppLocalizations {
   String get listeningSpeakNow => 'Đang lắng nghe... Hãy nói ngay bây giờ.';
 
   @override
-  String get thisVideoDoesNotHaveADigitalClosedC => 'Video này không có phụ đề kỹ thuật số (CC) trên YouTube.';
+  String get thisVideoDoesNotHaveADigitalClosedC =>
+      'Video này không có phụ đề kỹ thuật số (CC) trên YouTube.';
 
   @override
   String get perfect1 => 'Tuyệt vời';
 
   @override
-  String get thisVideoHasBeenRemovedOrIsNoLonger => 'Video này đã bị gỡ bỏ hoặc không còn khả dụng.';
+  String get thisVideoHasBeenRemovedOrIsNoLonger =>
+      'Video này đã bị gỡ bỏ hoặc không còn khả dụng.';
 
   @override
-  String get thisVideoCannotBePlayedInTheAppYouC => 'Video này không thể phát trực tiếp trong ứng dụng. Bạn có thể xem trên YouTube.';
+  String get thisVideoCannotBePlayedInTheAppYouC =>
+      'Video này không thể phát trực tiếp trong ứng dụng. Bạn có thể xem trên YouTube.';
 
   @override
-  String get yourDeviceCannotPlayThisVideoPlease => 'Thiết bị của bạn không hỗ trợ phát video này. Vui lòng thử video khác.';
+  String get yourDeviceCannotPlayThisVideoPlease =>
+      'Thiết bị của bạn không hỗ trợ phát video này. Vui lòng thử video khác.';
 
   @override
-  String get invalidVideoReferencePleaseTryAgain => 'Liên kết video không hợp lệ. Vui lòng thử lại.';
+  String get invalidVideoReferencePleaseTryAgain =>
+      'Liên kết video không hợp lệ. Vui lòng thử lại.';
 
   @override
-  String get unableToLoadThisVideoPleaseTryAnoth => 'Không thể tải video này. Vui lòng thử video khác.';
+  String get unableToLoadThisVideoPleaseTryAnoth =>
+      'Không thể tải video này. Vui lòng thử video khác.';
 
   @override
   String get startReading => 'Bắt đầu đọc';
@@ -5825,7 +6392,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get authorBackground => 'Tiểu sử & Phong cách tác giả';
 
   @override
-  String get k80CompleteClassicNovelsWorldEpics => 'Hơn 80 bộ tiểu thuyết kinh điển nguyên bản và sử thi thế giới';
+  String get k80CompleteClassicNovelsWorldEpics =>
+      'Hơn 80 bộ tiểu thuyết kinh điển nguyên bản và sử thi thế giới';
 
   @override
   String get storyOfTheDay => 'CÂU CHUYỆN HÔM NAY';
@@ -5852,16 +6420,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get aiReadingTools => 'Công cụ đọc hiểu AI';
 
   @override
-  String get enhanceYourReadingWithAipoweredTool => 'Nâng cao kỹ năng đọc hiểu với các công cụ hỗ trợ bởi AI';
+  String get enhanceYourReadingWithAipoweredTool =>
+      'Nâng cao kỹ năng đọc hiểu với các công cụ hỗ trợ bởi AI';
 
   @override
-  String get chooseTheTargetDifficultyForSimplif => 'Chọn cấp độ khó mục tiêu để chuyển văn bản sang dạng dễ hiểu';
+  String get chooseTheTargetDifficultyForSimplif =>
+      'Chọn cấp độ khó mục tiêu để chuyển văn bản sang dạng dễ hiểu';
 
   @override
   String get chooseDifficultyForSimplification => 'Chọn độ khó để đơn giản hóa';
 
   @override
-  String get extractAllUnknownWordsToANewFlashca => 'Trích xuất toàn bộ từ mới vào một bộ thẻ flashcard mới';
+  String get extractAllUnknownWordsToANewFlashca =>
+      'Trích xuất toàn bộ từ mới vào một bộ thẻ flashcard mới';
 
   @override
   String get length => 'Độ dài';
@@ -5906,31 +6477,40 @@ class AppLocalizationsVi extends AppLocalizations {
   String get neverMissAStroke2 => 'Không bỏ sót nét chữ nào';
 
   @override
-  String get yourDailyDropAndStreakAlertsArePrim => 'Nhắc nhở bài học hằng ngày và chuỗi ngày rèn luyện đã sẵn sàng.';
+  String get yourDailyDropAndStreakAlertsArePrim =>
+      'Nhắc nhở bài học hằng ngày và chuỗi ngày rèn luyện đã sẵn sàng.';
 
   @override
-  String get stayConsistentWithDailyRitualDropsA => 'Duy trì tính kỷ luật với bài học mỗi ngày và thông báo dùng thử kịp thời.';
+  String get stayConsistentWithDailyRitualDropsA =>
+      'Duy trì tính kỷ luật với bài học mỗi ngày và thông báo dùng thử kịp thời.';
 
   @override
-  String get aNewWordAndStoryWaitingForYourDaily => 'Từ vựng và câu chuyện mới đang chờ đón bạn trong bài học hằng ngày.';
+  String get aNewWordAndStoryWaitingForYourDaily =>
+      'Từ vựng và câu chuyện mới đang chờ đón bạn trong bài học hằng ngày.';
 
   @override
-  String get gentlePromptsBeforeCharactersFadeFr => 'Những lời nhắc nhở tinh tế trước khi chữ Hán phai mờ khỏi trí nhớ của bạn.';
+  String get gentlePromptsBeforeCharactersFadeFr =>
+      'Những lời nhắc nhở tinh tế trước khi chữ Hán phai mờ khỏi trí nhớ của bạn.';
 
   @override
-  String get receiveAReminder2DaysBeforeYourFree => 'Nhận thông báo nhắc nhở 2 ngày trước khi gói dùng thử miễn phí kết thúc.';
+  String get receiveAReminder2DaysBeforeYourFree =>
+      'Nhận thông báo nhắc nhở 2 ngày trước khi gói dùng thử miễn phí kết thúc.';
 
   @override
-  String get yourPathTonchineseFluency => 'Lộ trình chinh phục\ntiếng Trung lưu loát';
+  String get yourPathTonchineseFluency =>
+      'Lộ trình chinh phục\ntiếng Trung lưu loát';
 
   @override
-  String get answer3QuickQuestionsSoOurAiCanCraf => 'Trả lời 3 câu hỏi nhanh để AI thiết kế\ngiáo trình cá nhân hóa phù hợp với quỹ thời gian của bạn.';
+  String get answer3QuickQuestionsSoOurAiCanCraf =>
+      'Trả lời 3 câu hỏi nhanh để AI thiết kế\ngiáo trình cá nhân hóa phù hợp với quỹ thời gian của bạn.';
 
   @override
-  String get whatIsYourLevelnwithChinese => 'Trình độ tiếng Trung\ncủa bạn hiện tại ra sao?';
+  String get whatIsYourLevelnwithChinese =>
+      'Trình độ tiếng Trung\ncủa bạn hiện tại ra sao?';
 
   @override
-  String get chooseThePathThatFitsYourDepth => 'Chọn lộ trình phù hợp với năng lực hiện tại của bạn.';
+  String get chooseThePathThatFitsYourDepth =>
+      'Chọn lộ trình phù hợp với năng lực hiện tại của bạn.';
 
   @override
   String get whatDrivesYourStudy => 'Động lực học tiếng Trung của bạn là gì?';
@@ -5942,7 +6522,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get setYourDailyRitual => 'Thiết lập thói quen học tập hằng ngày.';
 
   @override
-  String get youCanAdjustYourRitualAnyTime => 'Bạn có thể điều chỉnh thói quen học bất cứ lúc nào.';
+  String get youCanAdjustYourRitualAnyTime =>
+      'Bạn có thể điều chỉnh thói quen học bất cứ lúc nào.';
 
   @override
   String get letsBegin => 'Bắt đầu ngay';
@@ -5951,22 +6532,27 @@ class AppLocalizationsVi extends AppLocalizations {
   String get brandNew => 'Mới bắt đầu hoàn toàn';
 
   @override
-  String get iveNeverStudiedChineseBefore => 'Tôi chưa từng học tiếng Trung trước đây.';
+  String get iveNeverStudiedChineseBefore =>
+      'Tôi chưa từng học tiếng Trung trước đây.';
 
   @override
-  String get iKnowBasicCharactersAndPhrases => 'Tôi biết một số chữ Hán và câu chào hỏi căn bản.';
+  String get iKnowBasicCharactersAndPhrases =>
+      'Tôi biết một số chữ Hán và câu chào hỏi căn bản.';
 
   @override
-  String get iCanHoldConversationsAndRead => 'Tôi có thể giao tiếp đơn giản và đọc hiểu văn bản ngắn.';
+  String get iCanHoldConversationsAndRead =>
+      'Tôi có thể giao tiếp đơn giản và đọc hiểu văn bản ngắn.';
 
   @override
-  String get iWantToRefineAndPerfectMySkills => 'Tôi muốn trau dồi và nâng tầm kỹ năng giao tiếp như người bản xứ.';
+  String get iWantToRefineAndPerfectMySkills =>
+      'Tôi muốn trau dồi và nâng tầm kỹ năng giao tiếp như người bản xứ.';
 
   @override
   String get confirmSelection => 'Xác nhận lựa chọn';
 
   @override
-  String get purposeFuelsTheBrushsMotion => 'Mục đích rõ ràng tiếp thêm sức mạnh cho từng nét bút.';
+  String get purposeFuelsTheBrushsMotion =>
+      'Mục đích rõ ràng tiếp thêm sức mạnh cho từng nét bút.';
 
   @override
   String get buildMyPath => 'Tạo lộ trình cho tôi';
@@ -5981,13 +6567,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get yourPlanIsReady => 'Lộ trình học của bạn đã sẵn sàng';
 
   @override
-  String get craftingYourCurriculum => 'Đang thiết kế giáo trình riêng cho bạn...';
+  String get craftingYourCurriculum =>
+      'Đang thiết kế giáo trình riêng cho bạn...';
 
   @override
   String get personalizedPathInitialized => 'ĐÃ KHỞI TẠO LỘ TRÌNH CÁ NHÂN HÓA';
 
   @override
-  String get calibratingAiNeuralMasters => 'ĐANG HIỆU CHỈNH GIA SƯ AI NƠ-RON...';
+  String get calibratingAiNeuralMasters =>
+      'ĐANG HIỆU CHỈNH GIA SƯ AI NƠ-RON...';
 
   @override
   String get calibrationComplete => 'Hiệu chỉnh hoàn tất';
@@ -6014,13 +6602,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get day5Reminder => 'Nhắc nhở Ngày thứ 5';
 
   @override
-  String get wePromisedToAlertYou2DaysBeforeYour => 'Đúng như đã hẹn, chúng tôi nhắc bạn 2 ngày trước khi gói dùng thử kết thúc để bạn chủ động quyết định.';
+  String get wePromisedToAlertYou2DaysBeforeYour =>
+      'Đúng như đã hẹn, chúng tôi nhắc bạn 2 ngày trước khi gói dùng thử kết thúc để bạn chủ động quyết định.';
 
   @override
   String get continueWithoutReminder => 'Tiếp tục không cần nhắc nhở';
 
   @override
-  String get masterChineseWithnsinospark => 'Làm chủ tiếng Trung cùng\nSinoSpark';
+  String get masterChineseWithnsinospark =>
+      'Làm chủ tiếng Trung cùng\nSinoSpark';
 
   @override
   String get start7dayFreeTrial => 'Bắt đầu 7 ngày dùng thử miễn phí';
@@ -6050,19 +6640,23 @@ class AppLocalizationsVi extends AppLocalizations {
   String get trialBegins => 'Bắt đầu dùng thử';
 
   @override
-  String get revenuecatIsMissingACurrentOffering => 'RevenueCat chưa có gói ưu đãi hoặc sản phẩm nào. Vui lòng cấu hình trong Dashboard.';
+  String get revenuecatIsMissingACurrentOffering =>
+      'RevenueCat chưa có gói ưu đãi hoặc sản phẩm nào. Vui lòng cấu hình trong Dashboard.';
 
   @override
-  String get cameraPermissionRequiredForLiveScan => 'Cần cấp quyền camera để quét trực tiếp trong thời gian thực.';
+  String get cameraPermissionRequiredForLiveScan =>
+      'Cần cấp quyền camera để quét trực tiếp trong thời gian thực.';
 
   @override
   String get cameraAccessRequired => 'Yêu cầu quyền truy cập máy ảnh';
 
   @override
-  String get pleaseEnableCameraAccessInYourDevic => 'Vui lòng bật quyền truy cập máy ảnh trong Cài đặt thiết bị để sử dụng tính năng này.';
+  String get pleaseEnableCameraAccessInYourDevic =>
+      'Vui lòng bật quyền truy cập máy ảnh trong Cài đặt thiết bị để sử dụng tính năng này.';
 
   @override
-  String get alignChineseTextWithinFrame => 'Căn chỉnh văn bản tiếng Trung nằm gọn trong khung quét';
+  String get alignChineseTextWithinFrame =>
+      'Căn chỉnh văn bản tiếng Trung nằm gọn trong khung quét';
 
   @override
   String get inLibrary => 'Đã có trong thư viện';
@@ -6103,7 +6697,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get asTheNarrativeUnfoldsItIlluminatesT => 'Khi câu chuyện mở ra, nó soi rọi những bài học nhân sinh sâu sắc cùng nguồn cảm hứng trường tồn.';
+  String get asTheNarrativeUnfoldsItIlluminatesT =>
+      'Khi câu chuyện mở ra, nó soi rọi những bài học nhân sinh sâu sắc cùng nguồn cảm hứng trường tồn.';
 
   @override
   String get general => 'Tổng quát';
@@ -6124,31 +6719,40 @@ class AppLocalizationsVi extends AppLocalizations {
   String get justNow => 'Vừa xong';
 
   @override
-  String get theTerracottaArmyOfQinShiHuang => 'Đội quân đất nung của Tần Thủy Hoàng';
+  String get theTerracottaArmyOfQinShiHuang =>
+      'Đội quân đất nung của Tần Thủy Hoàng';
 
   @override
-  String get lifeInsideTheForbiddenCity => 'Đời sống hoàng cung trong Tử Cấm Thành';
+  String get lifeInsideTheForbiddenCity =>
+      'Đời sống hoàng cung trong Tử Cấm Thành';
 
   @override
-  String get buyingATicketAndTakingTheHighSpeedT => 'Mua vé và trải nghiệm đi tàu cao tốc tại Trung Quốc';
+  String get buyingATicketAndTakingTheHighSpeedT =>
+      'Mua vé và trải nghiệm đi tàu cao tốc tại Trung Quốc';
 
   @override
-  String get goingToTheHospitalForAColdAndSeeing => 'Đi bệnh viện khám bác sĩ khi bị cảm lạnh';
+  String get goingToTheHospitalForAColdAndSeeing =>
+      'Đi bệnh viện khám bác sĩ khi bị cảm lạnh';
 
   @override
-  String get goingToALocalRestaurantToOrderJiaoz => 'Ghé quán ăn bản địa gọi món sủi cảo jiaozi';
+  String get goingToALocalRestaurantToOrderJiaoz =>
+      'Ghé quán ăn bản địa gọi món sủi cảo jiaozi';
 
   @override
-  String get theTraditionalGongfuTeaCeremony => 'Nghi thức trà đạo Gongfu truyền thống';
+  String get theTraditionalGongfuTeaCeremony =>
+      'Nghi thức trà đạo Gongfu truyền thống';
 
   @override
-  String get theArtOfWritingChineseCharactersWit => 'Nghệ thuật viết chữ Hán bằng bút lông';
+  String get theArtOfWritingChineseCharactersWit =>
+      'Nghệ thuật viết chữ Hán bằng bút lông';
 
   @override
-  String get theLifeAndConservationOfGiantPandas => 'Đời sống và công tác bảo tồn loài gấu trúc lớn';
+  String get theLifeAndConservationOfGiantPandas =>
+      'Đời sống và công tác bảo tồn loài gấu trúc lớn';
 
   @override
-  String get storyNotFoundInDatabase => 'Không tìm thấy câu chuyện trong cơ sở dữ liệu';
+  String get storyNotFoundInDatabase =>
+      'Không tìm thấy câu chuyện trong cơ sở dữ liệu';
 
   @override
   String get storyTextIsEmpty => 'Nội dung câu chuyện đang trống';
@@ -6166,10 +6770,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get voiceEngineAllowance => 'Bộ chuyển giọng đọc & Hạn mức';
 
   @override
-  String get studioHdVsUnlimitedStandardVoice => 'Giọng đọc Studio HD vs Giọng đọc tiêu chuẩn không giới hạn';
+  String get studioHdVsUnlimitedStandardVoice =>
+      'Giọng đọc Studio HD vs Giọng đọc tiêu chuẩn không giới hạn';
 
   @override
-  String get standardVoiceIs100UnlimitedFree => 'Giọng đọc tiêu chuẩn hoàn toàn miễn phí và không giới hạn';
+  String get standardVoiceIs100UnlimitedFree =>
+      'Giọng đọc tiêu chuẩn hoàn toàn miễn phí và không giới hạn';
 
   @override
   String get read => 'Đọc';
@@ -6205,13 +6811,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get standardVoice => 'Giọng đọc tiêu chuẩn';
 
   @override
-  String get noNovelsFoundMatchingYourFilter => 'Không tìm thấy tiểu thuyết nào phù hợp với bộ lọc.';
+  String get noNovelsFoundMatchingYourFilter =>
+      'Không tìm thấy tiểu thuyết nào phù hợp với bộ lọc.';
 
   @override
-  String get noMicroreadsFoundMatchingYourFilter => 'Không tìm thấy bài đọc ngắn nào phù hợp với bộ lọc.';
+  String get noMicroreadsFoundMatchingYourFilter =>
+      'Không tìm thấy bài đọc ngắn nào phù hợp với bộ lọc.';
 
   @override
-  String get noPoemsFoundMatchingYourFilter => 'Không tìm thấy bài thơ nào phù hợp với bộ lọc.';
+  String get noPoemsFoundMatchingYourFilter =>
+      'Không tìm thấy bài thơ nào phù hợp với bộ lọc.';
 
   @override
   String get audiobook => 'Sách nói';
@@ -6223,10 +6832,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get continueReading => 'Tiếp tục đọc';
 
   @override
-  String get search96FullNovelsAuthorsEpics => 'Tìm trong 96 tiểu thuyết nguyên bản, tác giả, sử thi...';
+  String get search96FullNovelsAuthorsEpics =>
+      'Tìm trong 96 tiểu thuyết nguyên bản, tác giả, sử thi...';
 
   @override
-  String get searchClassicalPoemsAuthorsVerses => 'Tìm thơ cổ điển, thi nhân, câu thơ...';
+  String get searchClassicalPoemsAuthorsVerses =>
+      'Tìm thơ cổ điển, thi nhân, câu thơ...';
 
   @override
   String get allLevelsVal => 'Tất cả cấp độ';
@@ -6253,10 +6864,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get peoplesArtist => 'Nghệ sĩ Nhân dân';
 
   @override
-  String get kafkaesqueForBureaucraticAbsurdityA => '«Chất Kafka» diễn tả sự phi lý của bộ máy quan liêu, cảm giác tha hóa và nỗi âu lo hiện sinh.';
+  String get kafkaesqueForBureaucraticAbsurdityA =>
+      '«Chất Kafka» diễn tả sự phi lý của bộ máy quan liêu, cảm giác tha hóa và nỗi âu lo hiện sinh.';
 
   @override
-  String get bigBrotherAndNewspeak => '«Anh Cả (Big Brother)» và «Tân ngữ (Newspeak)».';
+  String get bigBrotherAndNewspeak =>
+      '«Anh Cả (Big Brother)» và «Tân ngữ (Newspeak)».';
 
   @override
   String get audiobookIncluded => 'Có kèm sách nói';
@@ -6268,13 +6881,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get studioVoiceAllowance => 'Hạn mức giọng đọc Studio HD';
 
   @override
-  String get weeklyHighdefinitionAiRecitation => 'Thời lượng nghe AI ngâm thơ chất lượng cao hằng tuần';
+  String get weeklyHighdefinitionAiRecitation =>
+      'Thời lượng nghe AI ngâm thơ chất lượng cao hằng tuần';
 
   @override
-  String get resetsEveryMondayAt0000 => 'Tự động làm mới vào 00:00 thứ Hai hằng tuần';
+  String get resetsEveryMondayAt0000 =>
+      'Tự động làm mới vào 00:00 thứ Hai hằng tuần';
 
   @override
-  String get whenYourWeekly4hourStudioAllowanceI => 'Khi dùng hết 4 giờ giọng đọc Studio mỗi tuần, ứng dụng sẽ tự động chuyển sang giọng đọc trên thiết bị để bạn tiếp tục nghe miễn phí không giới hạn.';
+  String get whenYourWeekly4hourStudioAllowanceI =>
+      'Khi dùng hết 4 giờ giọng đọc Studio mỗi tuần, ứng dụng sẽ tự động chuyển sang giọng đọc trên thiết bị để bạn tiếp tục nghe miễn phí không giới hạn.';
 
   @override
   String get localDeviceVoice => 'Giọng đọc thiết bị';
@@ -6283,13 +6899,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get classicalVerse => 'Thi ca cổ điển';
 
   @override
-  String get ondeviceVoice4hWeeklyUsed => 'Giọng đọc thiết bị (Đã dùng 4h tuần này)';
+  String get ondeviceVoice4hWeeklyUsed =>
+      'Giọng đọc thiết bị (Đã dùng 4h tuần này)';
 
   @override
-  String get generateACustomAiStoryBasedOnYourIn => 'Tạo câu chuyện AI tùy chỉnh dựa trên sở thích của bạn';
+  String get generateACustomAiStoryBasedOnYourIn =>
+      'Tạo câu chuyện AI tùy chỉnh dựa trên sở thích của bạn';
 
   @override
-  String get insteadOfAFixedHskLevelTheFlowState => 'Thay vì chỉ gò bó trong một cấp độ HSK cố định, công cụ dòng chảy động sẽ tự động phân tích vốn từ trong bộ thẻ của bạn.\n\n';
+  String get insteadOfAFixedHskLevelTheFlowState =>
+      'Thay vì chỉ gò bó trong một cấp độ HSK cố định, công cụ dòng chảy động sẽ tự động phân tích vốn từ trong bộ thẻ của bạn.\n\n';
 
   @override
   String get we => 'Chúng tôi';
@@ -6298,19 +6917,23 @@ class AppLocalizationsVi extends AppLocalizations {
   String get howCanWeHelpYou => 'Chúng tôi có thể giúp gì cho bạn?';
 
   @override
-  String get everythingYouNeedToKnowAboutHanziMa => 'Tất cả những điều bạn cần biết về SinoSpark, các tính năng và chính sách bảo mật.';
+  String get everythingYouNeedToKnowAboutHanziMa =>
+      'Tất cả những điều bạn cần biết về SinoSpark, các tính năng và chính sách bảo mật.';
 
   @override
-  String get whoAreTheVoicesSpeakingInTheApp => 'Ai là người lồng tiếng cho các nhân vật trong ứng dụng?';
+  String get whoAreTheVoicesSpeakingInTheApp =>
+      'Ai là người lồng tiếng cho các nhân vật trong ứng dụng?';
 
   @override
-  String get howDoesTheWebExplorerWork => 'Trình duyệt Web thông minh hoạt động như thế nào?';
+  String get howDoesTheWebExplorerWork =>
+      'Trình duyệt Web thông minh hoạt động như thế nào?';
 
   @override
   String get whatIsZenMode => 'Chế độ Zen (Tập trung) là gì?';
 
   @override
-  String get howDoesTheFlashcardSpacedrepetition => 'Hệ thống Lặp lại ngắt quãng (SRS) của Flashcard hoạt động ra sao?';
+  String get howDoesTheFlashcardSpacedrepetition =>
+      'Hệ thống Lặp lại ngắt quãng (SRS) của Flashcard hoạt động ra sao?';
 
   @override
   String get traceComplete => 'Đã hoàn thành nét viết!';
@@ -6319,7 +6942,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get traceCharacter => 'Tô nét chữ Hán';
 
   @override
-  String get analyzingWordRelationships => 'Đang phân tích mối liên hệ giữa các từ...';
+  String get analyzingWordRelationships =>
+      'Đang phân tích mối liên hệ giữa các từ...';
 
   @override
   String get identifyingUsageContexts => 'Đang xác định ngữ cảnh sử dụng...';
@@ -6328,16 +6952,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get comparingFormalityLevels => 'Đang so sánh sắc thái trang trọng...';
 
   @override
-  String get findingCommonCollocations => 'Đang tìm các cụm từ kết hợp thông dụng...';
+  String get findingCommonCollocations =>
+      'Đang tìm các cụm từ kết hợp thông dụng...';
 
   @override
   String get generatingComparison => 'Đang tổng hợp phân tích so sánh...';
 
   @override
-  String get generationIsTakingLongerThanExpecte => 'Quá trình tạo đang mất nhiều thời gian hơn dự kiến do máy chủ AI đang bận.';
+  String get generationIsTakingLongerThanExpecte =>
+      'Quá trình tạo đang mất nhiều thời gian hơn dự kiến do máy chủ AI đang bận.';
 
   @override
-  String get generationInterruptedShowingPartial => 'Quá trình bị gián đoạn. Đang hiển thị kết quả từng phần.';
+  String get generationInterruptedShowingPartial =>
+      'Quá trình bị gián đoạn. Đang hiển thị kết quả từng phần.';
 
   @override
   String get sorrySomethingWentWrong => 'Rất tiếc, đã có lỗi xảy ra.';
@@ -6358,9 +6985,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get errorLoadingFromAi => 'Lỗi khi tải dữ liệu từ AI.';
 
   @override
-  String get newLabel => 'Mới';
-
-  @override
   String get analyzingImage => 'Đang phân tích hình ảnh...';
 
   @override
@@ -6376,7 +7000,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get journeyToTheWest => 'Tây Du Ký (Journey to the West)';
 
   @override
-  String get romanceOfTheThreeKingdoms => 'Tam Quốc Diễn Nghĩa (Romance of the Three Kingdoms)';
+  String get romanceOfTheThreeKingdoms =>
+      'Tam Quốc Diễn Nghĩa (Romance of the Three Kingdoms)';
 
   @override
   String get mingDynasty => 'Triều nhà Minh';
@@ -6396,7 +7021,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get noBookmarksYet => 'Chưa có dấu trang nào. Chạm vào biểu tượng dấu trang để lưu lại đoạn văn bạn yêu thích.';
+  String get noBookmarksYet =>
+      'Chưa có dấu trang nào. Chạm vào biểu tượng dấu trang để lưu lại đoạn văn bạn yêu thích.';
 
   @override
   String get sinosparkIsNotResponding => 'SinoSpark không phản hồi';
@@ -6441,7 +7067,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get allLevels => 'Tất cả cấp độ';
 
   @override
-  String get searchGradedMicroStories => 'Tìm truyện ngắn phân cấp và truyện ngụ ngôn...';
+  String get searchGradedMicroStories =>
+      'Tìm truyện ngắn phân cấp và truyện ngụ ngôn...';
 
   @override
   String gradedStoriesAndMicroReads(Object count) {
@@ -6457,7 +7084,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get browseAnyChineseWebsite => 'Duyệt bất kỳ trang web tiếng Trung nào với từ điển chạm tức thì, phiên âm pinyin và dịch thuật trực tiếp.';
+  String get browseAnyChineseWebsite =>
+      'Duyệt bất kỳ trang web tiếng Trung nào với từ điển chạm tức thì, phiên âm pinyin và dịch thuật trực tiếp.';
 
   @override
   String get completed => 'ĐÃ HOÀN THÀNH';
@@ -6478,13 +7106,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get hsk4UpperInt => 'HSK 4 (Trung cấp cao)';
 
   @override
-  String get extractAllUnknownWords => 'Trích xuất toàn bộ từ mới vào một bộ thẻ flashcard mới';
+  String get extractAllUnknownWords =>
+      'Trích xuất toàn bộ từ mới vào một bộ thẻ flashcard mới';
 
   @override
-  String get designCustomAiRoleplay => 'Thiết kế tình huống và đối thoại nhập vai AI tùy chỉnh';
+  String get designCustomAiRoleplay =>
+      'Thiết kế tình huống và đối thoại nhập vai AI tùy chỉnh';
 
   @override
-  String get practiceFlashcardVocabulary => 'Luyện tập từ vựng bộ thẻ qua hội thoại thực tế';
+  String get practiceFlashcardVocabulary =>
+      'Luyện tập từ vựng bộ thẻ qua hội thoại thực tế';
 
   @override
   String get surpriseMe => 'Chọn ngẫu nhiên cho tôi';
@@ -6528,4 +7159,56 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get characters => 'chữ';
+
+  @override
+  String get todayDashboard => 'Today';
+
+  @override
+  String get studyToday => 'Study today\'s cards';
+
+  @override
+  String get studyAhead => 'Study ahead';
+
+  @override
+  String get studyAheadDescription =>
+      'Practice the nearest scheduled reviews without using today\'s quota. No new cards are introduced.';
+
+  @override
+  String get studyAheadComplete => 'Study-ahead practice complete';
+
+  @override
+  String get dueNow => 'Due now';
+
+  @override
+  String get scheduled => 'Scheduled';
+
+  @override
+  String get sevenDayForecast => '7-day review forecast';
+
+  @override
+  String get reviews => 'Reviews';
+
+  @override
+  String get newCardsLabel => 'New cards';
+
+  @override
+  String get attempts => 'Attempts';
+
+  @override
+  String get duration => 'Time';
+
+  @override
+  String get answerBreakdown => 'Answer breakdown';
+
+  @override
+  String get reviewCards => 'Review cards';
+
+  @override
+  String get retries => 'Retries';
+
+  @override
+  String get needsPractice => 'Needs practice';
+
+  @override
+  String get uniqueCardsStudied => 'Cards';
 }

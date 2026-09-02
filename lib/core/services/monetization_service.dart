@@ -13,8 +13,14 @@ class MonetizationService {
   static bool _developerBackdoorUnlocked = false;
   static bool _isInitialized = false;
 
-  static void unlockDeveloperBackdoor() {
+  /// Grants premium access for the current app session when the store cannot
+  /// provide subscription offerings. This does not create a store purchase.
+  static void grantTemporaryPremiumAccess() {
     _developerBackdoorUnlocked = true;
+  }
+
+  static void unlockDeveloperBackdoor() {
+    grantTemporaryPremiumAccess();
   }
 
   static Future<void> init() async {

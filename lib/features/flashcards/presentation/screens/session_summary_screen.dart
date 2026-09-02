@@ -1,111 +1,147 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/study_session_summary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class SessionSummaryScreen extends StatelessWidget {
-  final int totalReviewed;
-  final int correctCount;
+  const SessionSummaryScreen({super.key, required this.summary});
 
-  const SessionSummaryScreen({
-    super.key,
-    required this.totalReviewed,
-    required this.correctCount,
-  });
+  final StudySessionSummary summary;
 
   @override
   Widget build(BuildContext context) {
-    // Calculate percentage
-    final double percentage = totalReviewed == 0 ? 0 : (correctCount / totalReviewed);
-    final int percentageInt = (percentage * 100).round();
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final accuracy = (summary.accuracy * 100).round();
+    final minutes = summary.duration.inMinutes;
+    final seconds = summary.duration.inSeconds.remainder(60);
 
     return Scaffold(
-      backgroundColor: Colors.indigo.shade50, // Light blue background
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // 1. TROPHY ICON
-              const Icon(Icons.emoji_events, size: 80, color: Colors.amber),
-              const SizedBox(height: 16),
-              
-              Text(
-                AppLocalizations.of(context)!.sessionComplete,
-                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.indigo),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+          children: [
+            Icon(accuracy >= 80 ? Icons.emoji_events : Icons.insights,
+                size: 72, color: accuracy >= 80 ? Colors.amber : Colors.indigo),
+            const SizedBox(height: 8),
+            Text(l10n.sessionComplete,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.headlineMedium
+                    ?.copyWith(fontWeight: FontWeight.bold)),
+            if (summary.studyAhead)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(l10n.studyAheadComplete,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: theme.colorScheme.primary)),
               ),
-              const SizedBox(height: 32),
-
-              // 2. STATS CARD
-              Card(
-                elevation: 8,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Column(
-                    children: [
-                      Text(AppLocalizations.of(context)!.accuracy, style: const TextStyle(fontSize: 16, color: Colors.grey)),
-                      Text(
-                        "$percentageInt%",
-                        style: TextStyle(
-                          fontSize: 60, 
-                          fontWeight: FontWeight.bold,
-                          color: percentage >= 0.8 ? Colors.green : Colors.orange,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _buildStatItem(AppLocalizations.of(context)!.reviewed, "$totalReviewed", Colors.blue),
-                          _buildStatItem(AppLocalizations.of(context)!.correct, "$correctCount", Colors.green),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ).animate(delay: 200.ms)
-               .fade(duration: 500.ms, curve: Curves.easeOutCubic)
-               .slideY(begin: 0.1, end: 0, duration: 500.ms, curve: Curves.easeOutCubic),
-              
-              const SizedBox(height: 40),
-
-              // 3. HOME BUTTON
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: BouncingButton(
-                  onPressed: () {
-                    // Go back to the very first screen (The Library)
-                    Navigator.of(context).popUntil((route) => route.isFirst);
-                  },
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.indigo,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    ),
-                    onPressed: null,
-                    child: Text(
-                      AppLocalizations.of(context)!.backToLibrary,
-                      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+            const SizedBox(height: 24),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(children: [
+                  Text('$accuracy%',
+                      style: theme.textTheme.displayMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: accuracy >= 80 ? Colors.green : Colors.orange,
+                      )),
+                  Text(l10n.accuracy),
+                  const SizedBox(height: 20),
+                  Row(children: [
+                    _Metric(l10n.uniqueCardsStudied, '${summary.uniqueCards}'),
+                    _Metric(l10n.attempts, '${summary.totalAttempts}'),
+                    _Metric(l10n.duration,
+                        '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}'),
+                  ]),
+                ]),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.answerBreakdown,
+                        style: theme.textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 16),
+                    _RatingBar(l10n.again, summary.againCount, Colors.red),
+                    _RatingBar(l10n.hard, summary.hardCount, Colors.orange),
+                    _RatingBar(l10n.good, summary.goodCount, Colors.green),
+                    _RatingBar(l10n.easy, summary.easyCount, Colors.blue),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 12),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(children: [
+                  _Metric(l10n.newCardsLabel, '${summary.newCards}'),
+                  _Metric(l10n.reviewCards, '${summary.reviewCards}'),
+                  _Metric(l10n.retries, '${summary.retryAttempts}'),
+                  _Metric(l10n.needsPractice, '${summary.needsPractice}'),
+                ]),
+              ),
+            ),
+            const SizedBox(height: 24),
+            FilledButton.icon(
+              onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+              icon: const Icon(Icons.home_outlined),
+              label: Text(l10n.backToLibrary),
+            ),
+          ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildStatItem(String label, String value, Color color) {
-    return Column(
-      children: [
-        Text(value, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: color)),
-        Text(label, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
-      ],
-    );
-  }
+class _Metric extends StatelessWidget {
+  const _Metric(this.label, this.value);
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) => Expanded(
+        child: Column(children: [
+          Text(value,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 3),
+          Text(label,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall),
+        ]),
+      );
+}
+
+class _RatingBar extends StatelessWidget {
+  const _RatingBar(this.label, this.count, this.color);
+  final String label;
+  final int count;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Row(children: [
+          SizedBox(width: 60, child: Text(label)),
+          Expanded(
+            child: LinearProgressIndicator(
+              value: count == 0 ? 0 : (count / 10).clamp(0, 1),
+              color: color,
+              backgroundColor: color.withValues(alpha: .12),
+              borderRadius: BorderRadius.circular(8),
+              minHeight: 8,
+            ),
+          ),
+          SizedBox(width: 36, child: Text('$count', textAlign: TextAlign.end)),
+        ]),
+      );
 }

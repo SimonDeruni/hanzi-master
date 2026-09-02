@@ -1,11 +1,18 @@
 import 'dart:math';
 import 'package:flutter/foundation.dart';
+import 'package:html/parser.dart' as html_parser;
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
+  static const _bbcFeedUrl =
+      'https://feeds.bbci.co.uk/zhongwen/simp/rss.xml';
+  static const _bbcHomepageUrl = 'https://www.bbc.com/zhongwen/simp';
+  static const _bbcLogoUrl =
+      'https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png';
+
   final http.Client _client;
 
   DailyDiscoveryRepository({http.Client? client})
@@ -197,46 +204,106 @@ class DailyDiscoveryRepository {
 
   Future<DailyMediaItem> getDailyArticle() async {
     try {
-      final response = await http.get(Uri.parse('https://feeds.bbci.co.uk/zhongwen/simp/rss.xml'))
-          .timeout(const Duration(seconds: 4));
+      final response = await _client
+          .get(Uri.parse(_bbcFeedUrl))
+          .timeout(const Duration(seconds: 8));
       if (response.statusCode == 200) {
-        final document = XmlDocument.parse(response.body);
-        final items = document.findAllElements('item');
-        if (items.isNotEmpty) {
-          final firstItem = items.first;
-          final title = firstItem.findElements('title').first.innerText;
-          String link = firstItem.findElements('link').first.innerText;
-          
-          // Force simplified Chinese for BBC links
-          if (link.contains('/trad')) {
-            link = link.replaceAll('/trad', '/simp');
-          }
-
-          String imageUrl = "https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png";
-          final mediaThumbnails = firstItem.findElements('media:thumbnail');
-          if (mediaThumbnails.isNotEmpty) {
-            imageUrl = mediaThumbnails.first.getAttribute('url') ?? imageUrl;
-          }
-
-          return DailyMediaItem(
-            title: title,
-            subtitle: "BBC 中文 (World News)",
-            url: link,
-            imageUrl: imageUrl,
-            tag: "ARTICLE OF THE DAY",
-          );
-        }
+        final article = _articleFromRss(response.body);
+        if (article != null) return article;
       }
-      throw Exception("Failed to load or parse RSS feed.");
-    } catch (e) {
-      return DailyMediaItem(
-        title: "BBC 中文网",
-        subtitle: "Current Events in Simplified Chinese",
-        url: "https://www.bbc.com/zhongwen/simp",
-        imageUrl: "https://ichef.bbci.co.uk/news/1024/branded_zhongwen/154F3/production/_115651738_1.jpg",
-        tag: "2 MIN CULTURAL CONTEXT",
-      );
+    } catch (error) {
+      debugPrint('Failed to load BBC RSS feed: $error');
     }
+
+    // The RSS endpoint can occasionally be slow or unavailable. Fall back to
+    // the lead story shown on the BBC Chinese homepage, never to the homepage
+    // itself: a source page is not an "article of the day".
+    final response = await _client
+        .get(Uri.parse(_bbcHomepageUrl))
+        .timeout(const Duration(seconds: 8));
+    if (response.statusCode == 200) {
+      final article = _articleFromHomepage(response.body);
+      if (article != null) return article;
+    }
+
+    throw Exception('No BBC lead article is currently available.');
+  }
+
+  DailyMediaItem? _articleFromRss(String body) {
+    try {
+      final items = XmlDocument.parse(body).findAllElements('item');
+      for (final item in items) {
+        final title = item.findElements('title').firstOrNull?.innerText.trim();
+        final rawLink = item.findElements('link').firstOrNull?.innerText.trim();
+        if (title == null ||
+            title.isEmpty ||
+            rawLink == null ||
+            !_isBbcArticleUrl(rawLink)) {
+          continue;
+        }
+
+        final thumbnail = item
+            .findElements('media:thumbnail')
+            .firstOrNull
+            ?.getAttribute('url');
+        return _buildBbcArticle(
+          title: title,
+          link: rawLink,
+          imageUrl: thumbnail,
+        );
+      }
+    } catch (error) {
+      debugPrint('Failed to parse BBC RSS feed: $error');
+    }
+    return null;
+  }
+
+  DailyMediaItem? _articleFromHomepage(String body) {
+    final document = html_parser.parse(body);
+    final link = document.querySelector(
+      'main h3 a[href*="/zhongwen/articles/"], '
+      'h3 a[href*="/zhongwen/articles/"]',
+    );
+    final href = link?.attributes['href'];
+    final title = link?.text.trim();
+    if (href == null || title == null || title.isEmpty) return null;
+
+    final articleUrl = Uri.parse(_bbcHomepageUrl).resolve(href).toString();
+    if (!_isBbcArticleUrl(articleUrl)) return null;
+
+    String? imageUrl;
+    var ancestor = link?.parent;
+    while (ancestor != null && imageUrl == null) {
+      imageUrl = ancestor.querySelector('img')?.attributes['src'];
+      ancestor = ancestor.parent;
+    }
+
+    return _buildBbcArticle(
+      title: title,
+      link: articleUrl,
+      imageUrl: imageUrl,
+    );
+  }
+
+  bool _isBbcArticleUrl(String value) {
+    final uri = Uri.tryParse(value);
+    return uri != null &&
+        (uri.host == 'www.bbc.com' || uri.host == 'bbc.com') &&
+        uri.path.contains('/zhongwen/articles/');
+  }
+
+  DailyMediaItem _buildBbcArticle({
+    required String title,
+    required String link,
+    String? imageUrl,
+  }) {
+    return DailyMediaItem(
+      title: title,
+      subtitle: 'BBC 中文',
+      url: link.replaceFirst('/trad', '/simp'),
+      imageUrl: imageUrl ?? _bbcLogoUrl,
+      tag: 'ARTICLE OF THE DAY',
+    );
   }
 }
 

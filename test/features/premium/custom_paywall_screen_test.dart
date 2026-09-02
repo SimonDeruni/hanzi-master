@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 Widget _testApp({required Widget home}) {
@@ -84,5 +86,31 @@ void main() {
     );
     expect(find.textContaining('Day 5'), findsNothing);
     expect(find.textContaining('Day 7'), findsNothing);
+  });
+
+  testWidgets('unavailable subscriptions grant temporary premium access',
+      (tester) async {
+    await tester.pumpWidget(
+      _testApp(
+        home: const CustomPaywallScreen(
+          simulateUnavailableOfferingsForTesting: true,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.byKey(const Key('paywall_offerings_error')), findsOneWidget);
+    final continueButton =
+        find.byKey(const Key('paywall_temporary_premium_button'));
+    expect(continueButton, findsOneWidget);
+    expect(find.text('Continue with temporary Premium'), findsOneWidget);
+
+    await tester.ensureVisible(continueButton);
+    await tester.tap(continueButton);
+    await tester.pump();
+
+    expect(find.byType(MainNavigationScreen), findsOneWidget);
+    expect(find.byType(CustomPaywallScreen), findsNothing);
+    expect(await MonetizationService.checkPremiumStatus(), isTrue);
   });
 }

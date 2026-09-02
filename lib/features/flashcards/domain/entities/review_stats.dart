@@ -5,12 +5,13 @@ class ReviewStats extends Equatable {
   final int interval;
   final double easeFactor;
   final int streak;
-  
+
   // Performance Tracking
   final double lastScore;
   final int attempts;
   final DateTime? lastAttemptDate;
   final int successCount;
+  final DateTime? introducedAt;
 
   const ReviewStats({
     required this.nextReviewDate,
@@ -21,6 +22,7 @@ class ReviewStats extends Equatable {
     this.attempts = 0,
     this.lastAttemptDate,
     this.successCount = 0,
+    this.introducedAt,
   });
 
   ReviewStats copyWith({
@@ -32,6 +34,7 @@ class ReviewStats extends Equatable {
     int? attempts,
     DateTime? lastAttemptDate,
     int? successCount,
+    DateTime? introducedAt,
   }) {
     return ReviewStats(
       nextReviewDate: nextReviewDate ?? this.nextReviewDate,
@@ -42,6 +45,7 @@ class ReviewStats extends Equatable {
       attempts: attempts ?? this.attempts,
       lastAttemptDate: lastAttemptDate ?? this.lastAttemptDate,
       successCount: successCount ?? this.successCount,
+      introducedAt: introducedAt ?? this.introducedAt,
     );
   }
 
@@ -56,14 +60,26 @@ class ReviewStats extends Equatable {
 
   @override
   List<Object?> get props => [
-    nextReviewDate, interval, easeFactor, streak, 
-    lastScore, attempts, lastAttemptDate, successCount
-  ];
-  
+        nextReviewDate,
+        interval,
+        easeFactor,
+        streak,
+        lastScore,
+        attempts,
+        lastAttemptDate,
+        successCount,
+        introducedAt
+      ];
+
   bool get isMastered => interval >= 14 || streak >= 5;
   bool get isNew => attempts == 0;
   bool get isLearning => attempts > 0 && !isMastered;
-  bool get isDue => nextReviewDate.isBefore(DateTime.now());
-  
+  bool get isDue => isDueAt(DateTime.now());
+
+  bool isDueAt(DateTime now) {
+    final tomorrow = DateTime(now.year, now.month, now.day + 1);
+    return nextReviewDate.isBefore(tomorrow);
+  }
+
   double get masteryLevel => (streak / 5.0).clamp(0.0, 1.0);
 }

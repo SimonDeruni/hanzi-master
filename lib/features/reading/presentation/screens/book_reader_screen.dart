@@ -1,4 +1,4 @@
-import 'package:lpinyin/lpinyin.dart';
+﻿import 'package:lpinyin/lpinyin.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -538,6 +538,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         return Container(
@@ -715,6 +716,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     HapticsManager.light();
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         return Container(
@@ -828,6 +830,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         return Container(
@@ -1158,6 +1161,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       backgroundColor: cardBg,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -1302,6 +1306,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     HapticsManager.selection();
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: cardBg,
       shape: const RoundedRectangleBorder(

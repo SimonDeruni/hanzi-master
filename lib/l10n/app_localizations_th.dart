@@ -1223,6 +1223,54 @@ class AppLocalizationsTh extends AppLocalizations {
   String get startingSession => 'กำลังเริ่มเซสชัน...';
 
   @override
+  String get studySession => 'Study session';
+
+  @override
+  String get readyToStudy => 'Ready to study';
+
+  @override
+  String get studyQueuePreviewDescription =>
+      'Your session is based on today\'s schedule and deck limits.';
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get newLabel => 'ใหม่';
+
+  @override
+  String get studyDeckEmpty => 'This deck is empty';
+
+  @override
+  String get studyDeckEmptyDescription =>
+      'Add cards before starting a study session.';
+
+  @override
+  String get studyDailyLimitReached => 'Today\'s limit is complete';
+
+  @override
+  String get studyDailyLimitReachedDescription =>
+      'You\'ve used this deck\'s new-card or review allowance for today.';
+
+  @override
+  String get studyCaughtUpDescription =>
+      'Nothing else is scheduled for today. Come back for the next review.';
+
+  @override
+  String get noCardsAvailable => 'No cards available';
+
+  @override
+  String get studyNoEligibleCardsDescription =>
+      'No cards are eligible for this study mode right now.';
+
+  @override
+  String get studySessionLoadFailed =>
+      'Unable to load this study session. Please try again.';
+
+  @override
+  String get retryLimitReached => 'This card will return in your next session.';
+
+  @override
   String get masterBuildingBlocks =>
       'ฝึกฝนชิ้นส่วนพื้นฐานของอักษรจีนให้เชี่ยวชาญ';
 
@@ -2240,6 +2288,54 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get privacyAndAudio => 'ความเป็นส่วนตัวและระบบเสียง';
+
+  @override
+  String get aiDataPrivacyTitle => 'AI Data & Privacy';
+
+  @override
+  String get aiDataPrivacySettingsSubtitle =>
+      'See what AI features send, why, and to whom';
+
+  @override
+  String get aiDataPrivacyOverviewTitle => 'When AI is used';
+
+  @override
+  String get aiDataPrivacyOverviewBody =>
+      'SinoSpark uses cloud AI only when you choose a feature that needs it, such as AI chat, explanations, translation, image analysis, speech recognition, pronunciation grading, or cloud voices. AI output can be inaccurate, so review important results.';
+
+  @override
+  String get aiDataPrivacyProvidersTitle => 'AI service providers';
+
+  @override
+  String get aiDataPrivacyProvidersBody =>
+      'Google Gemini processes generative text and image requests. OpenRouter routes some generative requests to Google Gemini or DeepSeek. Microsoft Azure AI Speech processes speech recognition, pronunciation assessment, and text sent for cloud voice synthesis.';
+
+  @override
+  String get aiDataPrivacySentTitle => 'Data that may be sent';
+
+  @override
+  String get aiDataPrivacySentBody =>
+      'Depending on the feature, we send the text you enter or select, relevant conversation or lesson context, images you choose for AI analysis, voice recordings you submit, and technical request data such as IP address and device/network metadata. We do not intentionally include your name or email in AI prompts.';
+
+  @override
+  String get aiDataPrivacyControlsTitle => 'Your choices';
+
+  @override
+  String get aiDataPrivacyControlsBody =>
+      'Do not use an AI feature if you do not want its input sent to the named provider. You can deny camera, photo, or microphone permission in device Settings. Choose the Local voice to keep text-to-speech on your device. Avoid submitting sensitive or confidential information.';
+
+  @override
+  String get aiDataPrivacyRetentionTitle => 'Storage and retention';
+
+  @override
+  String get aiDataPrivacyRetentionBody =>
+      'SinoSpark does not intentionally store raw AI prompts, submitted images, or voice recordings on its own servers after processing. Generated results may be saved on your device or with your account when you choose to save them. Providers process data under their own terms and configured retention controls; see the full policy for details.';
+
+  @override
+  String get readFullPrivacyPolicy => 'Read Full Privacy Policy';
+
+  @override
+  String get linkOpenFailed => 'Could not open the link. Please try again.';
 
   @override
   String get puSonglingLiterature =>
@@ -4388,57 +4484,57 @@ class AppLocalizationsTh extends AppLocalizations {
       'บอกคนขับว่าคุณกำลังจะไปสนามบิน';
 
   @override
-  String get askHowLongTheTripWillTake => 'Ask how long the trip will take';
+  String get askHowLongTheTripWillTake => 'ถามว่าการเดินทางใช้เวลานานเท่าใด';
 
   @override
-  String get complainAboutTheTraffic => 'Complain about the traffic';
+  String get complainAboutTheTraffic => 'บ่นเรื่องการจราจรติดขัด';
 
   @override
   String get charon => 'Charon';
 
   @override
   String get thisClothingQualityIsEspeciallyGood =>
-      'This clothing quality is especially good, only 200 kuai.';
+      'เสื้อผ้าชุดนี้คุณภาพดีเป็นพิเศษ ราคาเพียง 200 หยวนเท่านั้น';
 
   @override
   String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 =>
       'Zhe4 jian4 yi1fu zhi4liang4 te4bie2 hao3, zhi3yao4 liang3 bai3 kuai4.';
 
   @override
-  String get auntieChen => 'Auntie Chen';
+  String get auntieChen => 'ป้าเฉิน (Auntie Chen)';
 
   @override
-  String get askHowMuchTheSilkShirtCosts => 'Ask how much the silk shirt costs';
+  String get askHowMuchTheSilkShirtCosts => 'ถามราคาเสื้อเชิ้ตผ้าไหม';
 
   @override
-  String get sayItIsTooExpensive => 'Say it is too expensive';
+  String get sayItIsTooExpensive => 'บอกว่าราคาแพงเกินไป';
 
   @override
-  String get bargainThePriceDownTo100Rmb => 'Bargain the price down to 100 RMB';
+  String get bargainThePriceDownTo100Rmb => 'ต่อรองราคาลงเหลือ 100 หยวน';
 
   @override
   String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa =>
       'Ni3 na3li3 bu4 shu1fu? Fa1shao1 le ma?';
 
   @override
-  String get drZhang => 'Dr. Zhang';
+  String get drZhang => 'หมอจาง (Dr. Zhang)';
 
   @override
   String get explainYouHaveHadAHeadacheForTwoDay =>
-      'Explain you have had a headache for two days';
+      'อธิบายว่าคุณมีอาการปวดศีรษะมาสองวันแล้ว';
 
   @override
-  String get sayYouHaveASlightFever => 'Say you have a slight fever';
+  String get sayYouHaveASlightFever => 'บอกว่าคุณมีไข้ต่ำๆ';
 
   @override
-  String get askIfYouNeedToTakeMedicine => 'Ask if you need to take medicine';
+  String get askIfYouNeedToTakeMedicine => 'ถามว่าจำเป็นต้องรับประทานยาหรือไม่';
 
   @override
   String get aoede => 'Aoede';
 
   @override
   String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
-      'Hey! Long time no see, how have you been lately?';
+      'ไง! ไม่ได้เจอกันนานเลย ช่วงนี้เป็นอย่างไรบ้าง?';
 
   @override
   String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z =>
@@ -4446,143 +4542,145 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get pleaseIntroduceYourselfWhyDoYouWant =>
-      'Please introduce yourself. Why do you want to work at our company?';
+      'กรุณาแนะนำตัวเอง เหตุใดคุณจึงอยากร่วมงานกับบริษัทของเรา?';
 
   @override
   String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 =>
       'Qing3 xian1 zi4wo3 jie4shao4 yi1xia4. Ni3 wei4shen2me xiang3 lai2 wo3men gong1si1 gong1zuo4?';
 
   @override
-  String get managerLiu => 'Manager Liu';
+  String get managerLiu => 'ผู้จัดการหลิว (Manager Liu)';
 
   @override
   String get introduceYourProfessionalBackground =>
-      'Introduce your professional background briefly';
+      'แนะนำประวัติการทำงานของคุณโดยสังเขป';
 
   @override
   String get explainWhyYouWantToWorkAtThisCompan =>
-      'Explain why you want to work at this company';
+      'อธิบายเหตุผลที่คุณต้องการร่วมงานกับบริษัทนี้';
 
   @override
   String get askAPoliteQuestionAboutTheCompanyCu =>
-      'Ask a polite question about the company culture';
+      'ถามคำถามเกี่ยวกับวัฒนธรรมองค์กรอย่างสุภาพ';
 
   @override
   String get microphoneAccessIsRequiredPleaseEna =>
-      'Microphone access is required. Please enable it in your device Settings.';
+      'จำเป็นต้องได้รับสิทธิ์การเข้าถึงไมโครโฟน กรุณาเปิดใช้งานในการตั้งค่าอุปกรณ์ของคุณ';
 
   @override
   String get couldNotStartMicrophonePleaseCheckY =>
-      'Could not start microphone. Please check your audio settings and try again.';
+      'ไม่สามารถเปิดไมโครโฟนได้ กรุณาตรวจสอบการตั้งค่าเสียงแล้วลองใหม่อีกครั้ง';
 
   @override
   String get weDidntQuiteCatchThatPleaseHoldTheM =>
-      'We didn\'t quite catch that. Please hold the mic and try again!';
+      'ระบบไม่ได้ยินเสียงของคุณอย่างชัดเจน กรุณากดปุ่มไมโครโฟนค้างไว้แล้วลองใหม่อีกครั้ง!';
 
   @override
   String get recordingWasTooShortHoldTheMicAndSp =>
-      'Recording was too short. Hold the mic and speak clearly.';
+      'เสียงที่บันทึกสั้นเกินไป กรุณากดปุ่มไมโครโฟนค้างไว้และพูดให้ชัดเจน';
 
   @override
   String get audioBufferWasEmptyPleaseCheckYourM =>
-      'Audio buffer was empty. Please check your microphone and try again.';
+      'ไม่มีข้อมูลเสียงในบัฟเฟอร์ กรุณาตรวจสอบไมโครโฟนของคุณแล้วลองใหม่';
 
   @override
   String get audioFileIsSilentPleaseSpeakIntoThe =>
-      'Audio file is silent. Please speak into the microphone.';
+      'ไฟล์เสียงไม่มีเสียง กรุณาพูดใส่ไมโครโฟน';
 
   @override
   String get weCouldntUnderstandYourPronunciatio =>
-      'We couldn\'t understand your pronunciation. Please speak clearly and try again.';
+      'ระบบไม่เข้าใจการออกเสียงของคุณ กรุณาพูดให้ชัดเจนแล้วลองอีกครั้ง';
 
   @override
   String get theServerIsTakingTooLongToRespondPl =>
-      'The server is taking too long to respond. Please try again.';
+      'เซิร์ฟเวอร์ใช้เวลาตอบสนองนานเกินไป กรุณาลองใหม่อีกครั้ง';
 
   @override
   String get noInternetConnectionPleaseCheckYour =>
-      'No internet connection. Please check your network and try again.';
+      'ไม่มีการเชื่อมต่ออินเทอร์เน็ต กรุณาตรวจสอบเครือข่ายของคุณแล้วลองใหม่';
 
   @override
   String get audioProcessingFailedPleaseTryAgain =>
-      'Audio processing failed. Please try again.';
+      'การประมวลผลเสียงล้มเหลว กรุณาลองใหม่อีกครั้ง';
 
   @override
-  String get permission => 'Permission';
+  String get permission => 'สิทธิ์การเข้าถึง';
 
   @override
   String get couldNotProcessYourRecordingPleaseT =>
-      'Could not process your recording. Please try again.';
+      'ไม่สามารถประมวลผลเสียงบันทึกของคุณได้ กรุณาลองใหม่อีกครั้ง';
 
   @override
-  String get user => 'User';
+  String get user => 'ผู้ใช้';
 
   @override
-  String get scholar => 'Scholar';
+  String get scholar => 'บัณฑิต';
 
   @override
   String get ourAiTutorsAreCurrentlyOfflinePleas =>
-      'Our AI tutors are currently offline, please try again later.';
+      'ติวเตอร์ AI ออฟไลน์อยู่ในขณะนี้ กรุณาลองใหม่อีกครั้งในภายหลัง';
 
   @override
-  String get hideTranslation => 'Hide Translation';
+  String get hideTranslation => 'ซ่อนคำแปล';
 
   @override
-  String get azureAssessment => 'Azure Assessment...';
+  String get azureAssessment => 'การประเมินจาก Azure...';
 
   @override
-  String get microphonePermissionRequired => 'Microphone permission required';
+  String get microphonePermissionRequired =>
+      'จำเป็นต้องได้รับสิทธิ์การเข้าถึงไมโครโฟน';
 
   @override
-  String get connectedSpeakNow => 'Connected! Speak now.';
+  String get connectedSpeakNow => 'เชื่อมต่อแล้ว! พูดได้เลย';
 
   @override
   String get initializationErrorCheckPermissions =>
-      'Initialization error. Check permissions.';
+      'เกิดข้อผิดพลาดในการเริ่มต้น กรุณาตรวจสอบสิทธิ์การเข้าถึง';
 
   @override
-  String get microphoneErrorTapToRetry => 'Microphone error. Tap to retry.';
+  String get microphoneErrorTapToRetry =>
+      'เกิดข้อผิดพลาดที่ไมโครโฟน แตะเพื่อลองใหม่';
 
   @override
-  String get theTutorReturnedAnEmptyResponse =>
-      'The tutor returned an empty response';
+  String get theTutorReturnedAnEmptyResponse => 'ติวเตอร์ไม่มีการตอบกลับ';
 
   @override
   String get connectionInterruptedPleaseSpeakAga =>
-      'Connection interrupted. Please speak again.';
+      'การเชื่อมต่อขัดข้อง กรุณาพูดใหม่อีกครั้ง';
 
   @override
-  String get callPausedReviewingTones => 'Call Paused (Reviewing Tones)';
+  String get callPausedReviewingTones =>
+      'พักสายชั่วคราว (กำลังตรวจสอบวรรณยุกต์)';
 
   @override
-  String get pausedTakeABreak => 'Paused - Take a break';
+  String get pausedTakeABreak => 'หยุดชั่วคราว - พักสักครู่';
 
   @override
-  String get goodStartPracticing => 'Good start practicing';
+  String get goodStartPracticing => 'เริ่มต้นฝึกฝนได้ดี';
 
   @override
   String get studentCoach => 'STUDENT\' : \'COACH';
 
   @override
   String get keepYour1stToneHighAndSteadyOn =>
-      'Keep your 1st tone high and steady on';
+      'รักษาเสียงวรรณยุกต์ที่ 1 ให้สูงและคงที่บน';
 
   @override
-  String get noScenariosFound => 'No scenarios found.';
+  String get noScenariosFound => 'ไม่พบสถานการณ์';
 
   @override
   String get designYourOwnAiRoleplayExperience =>
-      'Design your own AI roleplay experience';
+      'ออกแบบประสบการณ์จำลองบทบาท AI ในแบบของคุณ';
 
   @override
-  String get generateFromDeck => 'Generate from Deck';
+  String get generateFromDeck => 'สร้างจากสำรับคำศัพท์';
 
   @override
   String get practiceFlashcardVocabularyInALiveD =>
-      'Practice flashcard vocabulary in a live dialogue';
+      'ฝึกฝนคำศัพท์จากแฟลชการ์ดในบทสนทนาจริง';
 
   @override
-  String get tapToRoleplay => 'Tap to roleplay';
+  String get tapToRoleplay => 'แตะเพื่อจำลองบทบาท';
 
   @override
   String get hsk2 => 'HSK 2';
@@ -4600,414 +4698,411 @@ class AppLocalizationsTh extends AppLocalizations {
   String get hsk6 => 'HSK 6';
 
   @override
-  String get dinnerWithDad => 'Dinner with Dad';
+  String get dinnerWithDad => 'มื้อค่ำกับคุณพ่อ';
 
   @override
-  String get orderingAtAChengduTeahouse => 'Ordering at a Chengdu Teahouse';
+  String get orderingAtAChengduTeahouse => 'การสั่งชาที่โรงน้ำชาในเฉิงตู';
 
   @override
-  String get buyingTeaAtTheMarket => 'Buying Tea at the Market';
+  String get buyingTeaAtTheMarket => 'การซื้อใบชาที่ตลาด';
 
   @override
-  String get meetingAnOldClassmate => 'Meeting an Old Classmate';
+  String get meetingAnOldClassmate => 'พบเพื่อนร่วมชั้นเก่า';
 
   @override
-  String get readyToPractice => 'Ready to practice?';
+  String get readyToPractice => 'พร้อมฝึกฝนหรือยัง?';
 
   @override
-  String get letsPracticeChinese => 'Let\'s practice Chinese';
+  String get letsPracticeChinese => 'มาฝึกภาษาจีนกันเถอะ';
 
   @override
-  String get areYouReady => 'Are you ready?';
+  String get areYouReady => 'คุณพร้อมหรือยัง?';
 
   @override
-  String get discussWhatToHaveForDinner => 'Discuss what to have for dinner';
+  String get discussWhatToHaveForDinner =>
+      'พูดคุยว่าจะรับประทานอะไรเป็นมื้อค่ำ';
 
   @override
   String get suggestWatchingAMovieAfterwards =>
-      'Suggest watching a movie afterwards';
+      'เสนอให้ไปดูภาพยนตร์ต่อหลังจากนั้น';
 
   @override
-  String get askIfTheyWouldLikeTea => 'Ask if they would like tea';
+  String get askIfTheyWouldLikeTea => 'ถามว่าพวกเขาต้องการดื่มชาหรือไม่';
 
   @override
-  String get helloVeryNiceToMeetYou => 'Hello! Very nice to meet you.';
+  String get helloVeryNiceToMeetYou => 'สวัสดี! ยินดีที่ได้รู้จักเป็นอย่างยิ่ง';
 
   @override
-  String get deckPractice => 'Deck Practice';
+  String get deckPractice => 'ฝึกฝนจากสำรับ';
 
   @override
-  String get practiceVocabularyWithAnAiPartner =>
-      'Practice vocabulary with an AI partner.';
+  String get practiceVocabularyWithAnAiPartner => 'ฝึกฝนคำศัพท์กับคู่สนทนา AI';
 
   @override
   String get designCustomAiRoleplayConversation =>
-      'Design custom AI roleplay & conversation';
+      'ออกแบบบทสนทนาและการจำลองบทบาท AI กำหนดเอง';
 
   @override
-  String get random => 'Random';
+  String get random => 'สุ่ม';
 
   @override
-  String get scenarioTopic => 'Scenario Topic';
+  String get scenarioTopic => 'หัวข้อสถานการณ์';
 
   @override
-  String get contextSettingOptional => 'Context & Setting (Optional)';
+  String get contextSettingOptional => 'บริบทและสถานที่ (ไม่บังคับ)';
 
   @override
-  String get aiCharacterPersonaOptional => 'AI Character / Persona (Optional)';
+  String get aiCharacterPersonaOptional => 'ตัวละคร / บุคลิก AI (ไม่บังคับ)';
 
   @override
   String get aQuietBambooCourtyardTeahouseInChen =>
-      'A quiet bamboo courtyard teahouse in Chengdu with gentle guzheng music playing.';
+      'โรงน้ำชาในสวนไผ่อันเงียบสงบที่เฉิงตู พร้อมเสียงดนตรีกู่เจิงอันไพเราะ';
 
   @override
   String get aBustlingSmokyNightMarketFilledWith =>
-      'A bustling, smoky night market filled with skewers, steamed buns, and street food stalls.';
+      'ตลาดกลางคืนที่คึกคักและอบอวลด้วยควัน หนาแน่นไปด้วยแผงขายของเสียบไม้ ซาลาเปานึ่ง และสตรีทฟู้ด';
 
   @override
   String get aLivelyHotpotRestaurantInChongqingW =>
-      'A lively hotpot restaurant in Chongqing with boiling crimson broth and fragrant chili aroma.';
+      'ร้านหม้อไฟอันมีชีวิตชีวาในฉงชิ่ง พร้อมน้ำซุปสีแดงเดือดพล่านและกลิ่นพริกหอมกรุ่น';
 
   @override
   String get aBustlingTraditionalCantoneseTeahou =>
-      'A bustling traditional Cantonese teahouse in Guangzhou filled with steaming bamboo baskets.';
+      'โรงน้ำชากวางตุ้งดั้งเดิมอันจอแจในกว่างโจว เต็มไปด้วยเข่งติ่มซำไม้ไผ่ควันกรุ่น';
 
   @override
   String get aChicMinimalistCafeInTheFrenchConce =>
-      'A chic minimalist cafe in the French Concession during a rainy Sunday afternoon.';
+      'คาเฟ่มินิมอลสุดเก๋ในเขตเฟรนช์คอนเซสชันในบ่ายวันอาทิตย์ที่ฝนพรำ';
 
   @override
   String get aWarmNorthernHomeKitchenDuringWinte =>
-      'A warm northern home kitchen during winter with flour on the table and steaming dumpling pots.';
+      'ครัวในบ้านแถบภาคเหนืออันอบอุ่นในฤดูหนาว มีแป้งบนโต๊ะและหม้อต้มเกี๊ยวควันฉุย';
 
   @override
   String get anOpenairNightStreetFoodAlleyWithSi =>
-      'An open-air night street food alley with sizzling lamb skewers, roasted eggplant, and cold beer.';
+      'ตรอกสตรีทฟู้ดกลางแจ้งยามค่ำคืน มีเนื้อแกะเสียบไม้ย่างร้อนๆ มะเขือยาวเผา และเบียร์เย็นฉ่ำ';
 
   @override
   String get aSnowyStreetCornerOutsideTheLamaTem =>
-      'A snowy street corner outside the Lama Temple with glowing red candied hawthorn skewers on ice.';
+      'หัวมุมถนนที่มีหิมะโปรยปรายนอกวัดลามะ พร้อมไม้เสียบถังหูลู่สีแดงสดแช่เย็น';
 
   @override
-  String get craftBeerBreweryInQingdao => 'Craft Beer Brewery in Qingdao';
+  String get craftBeerBreweryInQingdao => 'โรงเบียร์คราฟต์ในชิงเต่า';
 
   @override
   String get aLivelyCoastalTaproomWithWoodenBarr =>
-      'A lively coastal taproom with wooden barrels, ocean breeze, and fresh wheat beer taps.';
+      'แท็ปรูมริมชายฝั่งทะเลอันมีชีวิตชีวา ประดับด้วยถังไม้ ลมทะเลพัดผ่าน และเบียร์สดข้าวสาลี';
 
   @override
-  String get sichuanCookingMasterclass => 'Sichuan Cooking Masterclass';
+  String get sichuanCookingMasterclass => 'คลาสเรียนทำอาหารเสฉวนขั้นปรมาจารย์';
 
   @override
   String get aVibrantOpenKitchenWithWoksBlazingC =>
-      'A vibrant open kitchen with woks blazing, chili oil simmering, and fresh peppercorns.';
+      'ครัวเปิดที่มีชีวิตชีวา กระทะลุกเป็นไฟ น้ำมันพริกเดือด และพริกไทยเสฉวนสดใหม่';
 
   @override
-  String get highspeedRailSeatMixup => 'High-Speed Rail Seat Mix-Up';
+  String get highspeedRailSeatMixup => 'การสลับที่นั่งบนรถไฟความเร็วสูง';
 
   @override
   String get greatWallSunriseTrekInMutianyu =>
-      'Great Wall Sunrise Trek in Mutianyu';
+      'เดินชมพระอาทิตย์ขึ้นที่กำแพงเมืองจีนด่านมู่เถียนยวี่';
 
   @override
   String get theAncientStoneRampartsOfTheGreatWa =>
-      'The ancient stone ramparts of the Great Wall at dawn, surrounded by misty green mountains.';
+      'เชิงเทินหินโบราณของกำแพงเมืองจีนยามรุ่งอรุณ ล้อมรอบด้วยภูเขาสีเขียวเคล้าสายหมอก';
 
   @override
   String get bambooRaftDriftOnGuilinLiRiver =>
-      'Bamboo Raft Drift on Guilin Li River';
+      'ล่องแพไม้ไผ่บนแม่น้ำหลี่ในกุ้ยหลิน';
 
   @override
   String get glidingAlongEmeraldKarstWatersBetwe =>
-      'Gliding along emerald karst waters between dramatic misty limestone peaks near Yangshuo.';
+      'ล่องไปตามสายน้ำสีมรกตท่ามกลางยอดเขาหินปูนอันงดงามใกล้หยางซั่ว';
 
   @override
-  String get silkRoadCamelTrekInDunhuang => 'Silk Road Camel Trek in Dunhuang';
+  String get silkRoadCamelTrekInDunhuang => 'ขี่อูฐบนเส้นทางสายไหมที่ตุนหวง';
 
   @override
   String get theRollingGoldenSandDunesOfMingshaM =>
-      'The rolling golden sand dunes of Mingsha Mountain next to the Crescent Lake oasis.';
+      'เนินทรายสีทองอร่ามของภูเขาหมิงซาซาน ติดกับโอเอซิสสระน้ำจันทร์เสี้ยว';
 
   @override
   String get bookingACourtyardHomestayInDali =>
-      'Booking a Courtyard Homestay in Dali';
+      'จองโฮมสเตย์เรือนโบราณในต้าหลี่';
 
   @override
   String get aSereneBaistyleBoutiqueCourtyardHot =>
-      'A serene Bai-style boutique courtyard hotel overlooking Erhai Lake in Yunnan.';
+      'โรงแรมบูทีคเรือนโบราณสไตล์ชนเผ่าไป๋อันเงียบสงบ มองเห็นทะเลสาบเอ๋อร์ไห่ในยูนนาน';
 
   @override
   String get potalaPalacePilgrimageInLhasa =>
-      'Potala Palace Pilgrimage in Lhasa';
+      'การเดินทางแสวงบุญที่พระราชวังโปตาลาในลาซา';
 
   @override
   String get theMajesticSundrenchedStoneStepsOut =>
-      'The majestic sun-drenched stone steps outside the Potala Palace with spinning prayer wheels.';
+      'บันไดหินตระการตากลางแสงแดดนอกพระราชวังโปตาลา พร้อมวงล้ออธิษฐานที่หมุนวน';
 
   @override
   String get aSubzeroWonderlandOfIlluminatedCrys =>
-      'A sub-zero wonderland of illuminated crystal ice palaces and towering snow sculptures.';
+      'แดนมหัศจรรย์ติดลบที่เต็มไปด้วยปราสาทน้ำแข็งคริสตัลประดับไฟและประติมากรรมหิมะสูงตระหง่าน';
 
   @override
   String get zhangjiajieAvatarMountainCableCar =>
-      'Zhangjiajie Avatar Mountain Cable Car';
+      'กระเช้าลอยฟ้าเขาอวตารจางเจียเจี้ย';
 
   @override
   String get suspendedHighInAGlassCableCarSoarin =>
-      'Suspended high in a glass cable car soaring above thousands of sandstone pillar peaks.';
+      'ลอยอยู่บนกระเช้าพื้นกระจกสูงเสียดฟ้า ทะยานผ่านยอดเสาหินทรายนับพันต้น';
 
   @override
   String get gobiDesertStargazingCampInGansu =>
-      'Gobi Desert Stargazing Camp in Gansu';
+      'แคมป์ดูดาวกลางทะเลทรายโกบีในกานซู่';
 
   @override
   String get aLuxuryYurtCampUnderACrystalclearMi =>
-      'A luxury yurt camp under a crystal-clear Milky Way sky in the desert outside Jiayuguan.';
+      'แคมป์กระโจมหรูหราใต้ท้องฟ้าทางช้างเผือกอันแจ่มชัดกลางทะเลทรายนอกเมืองเจียยวี่กวน';
 
   @override
-  String get yangtzeRiverThreeGorgesCruise =>
-      'Yangtze River Three Gorges Cruise';
+  String get yangtzeRiverThreeGorgesCruise => 'ล่องเรือสำราญชมสามผาแม่น้ำแยงซี';
 
   @override
   String get onTheSunDeckOfARiverCruiseShipPassi =>
-      'On the sun deck of a river cruise ship passing through the dramatic towering Qutang Gorge.';
+      'บนดาดฟ้าเรือสำราญ ล่องผ่านโตรกผาฉวีถังอันสูงชันและตระการตา';
 
   @override
   String get buyingAntiquesInBeijingPanjiayuan =>
-      'Buying Antiques in Beijing Panjiayuan';
+      'เลือกซื้อของโบราณที่ตลาดพานเจียหยวนในปักกิ่ง';
 
   @override
   String get aHistoricPotteryKilnFilledWithDelic =>
-      'A historic pottery kiln filled with delicate unfired porcelain vases and cobalt blue glazes.';
+      'เตาเผาเครื่องปั้นดินเผาโบราณ เต็มไปด้วยแจกันกระเบื้องเคลือบดิบอันประณีตและเคลือบสีน้ำเงินโคบอลต์';
 
   @override
-  String get suzhouSilkEmbroideryStudio => 'Suzhou Silk Embroidery Studio';
+  String get suzhouSilkEmbroideryStudio => 'สตูดิโองานปักผ้าไหมซูโจว';
 
   @override
   String get aPeacefulCanalsideGardenStudioInSuz =>
-      'A peaceful canal-side garden studio in Suzhou with fine silk threads and wooden embroidery frames.';
+      'สตูดิโอในสวนริมคลองอันเงียบสงบในซูโจว มีเส้นไหมชั้นดีและสะดึงปักผ้าไม้';
 
   @override
   String get backstageAtATraditionalBeijingOpera =>
-      'Backstage at a traditional Beijing opera theater with colorful costumes, mirrors, and headpieces.';
+      'หลังเวทีโรงงิ้วปักกิ่งดั้งเดิม เต็มไปด้วยชุดแสดงสีสันสดใส กระจก และเครื่องประดับศีรษะ';
 
   @override
   String get traditionalChineseMedicineConsultat =>
-      'Traditional Chinese Medicine Consultation';
+      'การตรวจรักษากับแพทย์แผนจีนโบราณ';
 
   @override
   String get morningTaiChiInTempleOfHeavenPark =>
-      'Morning Tai Chi in Temple of Heaven Park';
+      'รำไทเก๊กยามเช้าที่สวนหอสวดมนต์เพื่อความอุดมสมบูรณ์ (เทียนถาน)';
 
   @override
   String get beneathAncientCypressTreesAtDawnWit =>
-      'Beneath ancient cypress trees at dawn with park birds and seniors practicing synchronized movements.';
+      'ใต้ต้นสนไซเปรสโบราณยามรุ่งอรุณ พร้อมเสียงนกในสวนและผู้สูงอายุที่ฝึกฝนท่วงท่าอย่างพร้อมเพรียง';
 
   @override
-  String get rentingAHanfuForAPhotoShoot => 'Renting a Hanfu for a Photo Shoot';
+  String get rentingAHanfuForAPhotoShoot => 'เช่าชุดฮั่นฝูเพื่อถ่ายภาพ';
 
   @override
   String get aTraditionalCostumeBoutiqueNearTheW =>
-      'A traditional costume boutique near the West Lake with racks of Tang and Song dynasty robes.';
+      'ร้านชุดโบราณดั้งเดิมริมทะเลสาบซีหู เรียงรายไปด้วยชุดคลุมสมัยราชวงศ์ถังและซ่ง';
 
   @override
   String get guqinAncientZitherInstrumentWorksho =>
-      'Guqin Ancient Zither Instrument Workshop';
+      'เวิร์กช็อปเครื่องดนตรีกู่ฉินโบราณ';
 
   @override
   String get aQuietPinewoodStudioInHangzhouFille =>
-      'A quiet pine-wood studio in Hangzhou filled with aged paulownia wood and silk-string instruments.';
+      'สตูดิโอไม้สนอันเงียบสงบในหางโจว อบอวลด้วยไม้เพาโลเนียเก่าแก่และเครื่องสายไหม';
 
   @override
-  String get shaanxiShadowPuppetTheater => 'Shaanxi Shadow Puppet Theater';
+  String get shaanxiShadowPuppetTheater => 'โรงละครหุ่นเงาหนังตะลุงส่านซี';
 
   @override
   String get behindAnIlluminatedWhiteSilkScreenW =>
-      'Behind an illuminated white silk screen with delicate translucent leather shadow figures.';
+      'หลังจอผ้าไหมสีขาวส่องสว่าง มีหุ่นเงาหนังโปร่งแสงอันประณีต';
 
   @override
-  String get chineseCalligraphyWorkshop => 'Chinese Calligraphy Workshop';
+  String get chineseCalligraphyWorkshop => 'เวิร์กช็อปการเขียนพู่กันจีน';
 
   @override
   String get aTranquilStudioScentedWithPineSootI =>
-      'A tranquil studio scented with pine soot ink, rice paper scrolls, and soft tea aromas.';
+      'สตูดิโออันเงียบสงบอบอวลด้วยกลิ่นน้ำหมึกเขม่าสน ม้วนกระดาษฟาง และกลิ่นชาหอมละมุน';
 
   @override
   String get adoptingACatAtAnAnimalShelter =>
-      'Adopting a Cat at an Animal Shelter';
+      'รับเลี้ยงแมวที่สถานสงเคราะห์สัตว์';
 
   @override
   String get aCozyPetRescueCenterInHangzhouWithE =>
-      'A cozy pet rescue center in Hangzhou with energetic rescue kittens and tea for visitors.';
+      'ศูนย์ช่วยเหลือสัตว์เลี้ยงอันอบอุ่นในหางโจว มีลูกแมวขี้เล่นและน้ำชาสำหรับผู้มาเยือน';
 
   @override
   String get scriptMurderMysteryJubenshaGame =>
-      'Script Murder Mystery (Jubensha) Game';
+      'เกมไขคดีปริศนาฆาตกรรม (จวี้เปิ่นซา)';
 
   @override
   String get aThemedDetectiveLoungeInShanghaiWit =>
-      'A themed detective lounge in Shanghai with costumed players and candlelight.';
+      'เลานจ์นักสืบตามธีมในเซี่ยงไฮ้ พร้อมผู้เล่นในชุดแต่งกายและแสงเทียนสลัว';
 
   @override
   String get vintageVinylRecordShopInShanghai =>
-      'Vintage Vinyl Record Shop in Shanghai';
+      'ร้านแผ่นเสียงไวนิลวินเทจในเซี่ยงไฮ้';
 
   @override
   String get aHiddenVinylStoreInAnOldLaneHousePa =>
-      'A hidden vinyl store in an old lane house packed with classic 80s Cantopop and jazz records.';
+      'ร้านแผ่นเสียงที่ซ่อนอยู่ในบ้านโบราณ เต็มไปด้วยเพลงแคนโตป็อปยุค 80 และแจ๊สคลาสสิก';
 
   @override
-  String get ktvKaraokePartyWithFriends => 'KTV Karaoke Party with Friends';
+  String get ktvKaraokePartyWithFriends => 'ปาร์ตี้คาราโอเกะ KTV กับเพื่อนๆ';
 
   @override
-  String get joiningACityBikeCyclingClub => 'Joining a City Bike Cycling Club';
+  String get joiningACityBikeCyclingClub => 'เข้าร่วมชมรมปั่นจักรยานในเมือง';
 
   @override
   String get aGatheringOfCyclistsByTheRiverfront =>
-      'A gathering of cyclists by the riverfront preparing for an evening ride around the city skyline.';
+      'การรวมตัวของนักปั่นริมฝั่งแม่น้ำ เพื่อเตรียมพร้อมสำหรับการปั่นยามค่ำคืนชมเส้นขอบฟ้าของเมือง';
 
   @override
-  String get blindBoxToyTradingMeetup => 'Blind Box Toy Trading Meetup';
+  String get blindBoxToyTradingMeetup => 'งานมีทติ้งแลกเปลี่ยนของเล่นกล่องสุ่ม';
 
   @override
   String get aColorfulPopcultureToyStoreInChaoya =>
-      'A colorful pop-culture toy store in Chaoyang with display shelves and unopened collectible boxes.';
+      'ร้านของเล่นป็อปคัลเจอร์สีสันสดใสในเฉาหยาง มีชั้นโชว์และกล่องสะสมที่ยังไม่เปิด';
 
   @override
   String get droneSkylineVideographyAtTheBund =>
-      'Drone Skyline Videography at the Bund';
+      'ถ่ายวิดีโอเส้นขอบฟ้าด้วยโดรนที่หาดไว่ทาน';
 
   @override
   String get theBundPromenadeAtDuskOverlookingTh =>
-      'The Bund promenade at dusk overlooking the futuristic illuminated skyscrapers of Pudong.';
+      'ทางเดินเลียบหาดไว่ทานยามพลบค่ำ มองเห็นตึกระฟ้าประดับไฟแห่งอนาคตของผู่ตง';
 
   @override
-  String get goldenRetrieverCafeInNanjing => 'Golden Retriever Cafe in Nanjing';
+  String get goldenRetrieverCafeInNanjing =>
+      'คาเฟ่สุนัขโกลเด้นรีทรีฟเวอร์ในหนานจิง';
 
   @override
   String get aSunnyCheerfulPetCafeWithDozensOfFr =>
-      'A sunny, cheerful pet cafe with dozens of friendly, fluffy dogs greeting visitors.';
+      'คาเฟ่สัตว์เลี้ยงแสนสดใส มีสุนัขขนนุ่มเป็นมิตรหลายสิบตัวคอยต้อนรับผู้มาเยือน';
 
   @override
-  String get boulderingClimbingGymInChengdu =>
-      'Bouldering Climbing Gym in Chengdu';
+  String get boulderingClimbingGymInChengdu => 'ยิมปีนหน้าผาจำลองในเฉิงตู';
 
   @override
   String get aModernIndoorClimbingGymWithVibrant =>
-      'A modern indoor climbing gym with vibrant colored hold routes and energetic music.';
+      'ยิมปีนผาในร่มที่ทันสมัย มีเส้นทางปีนป่ายสีสันสดใสและดนตรีเร้าใจ';
 
   @override
   String get aMassiveConventionHallFilledWithCol =>
-      'A massive convention hall filled with colorful game booths, photo walls, and costumed creators.';
+      'ฮอลล์จัดแสดงงานขนาดใหญ่ เต็มไปด้วยบูธเกมสีสันสดใส โฟโต้บอร์ด และครีเอเตอร์ในชุดคอสเพลย์';
 
   @override
-  String get askingForDirectionsInABeijingHutong =>
-      'Asking for Directions in a Beijing Hutong';
+  String get askingForDirectionsInABeijingHutong => 'การถามทางในหูท่งปักกิ่ง';
 
   @override
   String get aMazeOfHistoricGreybrickAlleysWithB =>
-      'A maze of historic grey-brick alleys with bicycles, courtyards, and pomegranate trees.';
+      'เขาวงกตตรอกอิฐสีเทาโบราณ มีจักรยาน ลานบ้าน และต้นทับทิม';
 
   @override
-  String get buyingFreshFruitAtAWetMarket =>
-      'Buying Fresh Fruit at a Wet Market';
+  String get buyingFreshFruitAtAWetMarket => 'การซื้อผลไม้สดที่ตลาดสด';
 
   @override
   String get aLivelyMorningNeighborhoodMarketWit =>
-      'A lively morning neighborhood market with mounds of fresh lychees, mangoes, and dragonfruit.';
+      'ตลาดสดยามเช้าอันมีชีวิตชีวา มีลิ้นจี่ มะม่วง และแก้วมังกรสดวางเรียงรายเป็นกองโต';
 
   @override
-  String get flowerMarketBouquetInKunming => 'Flower Market Bouquet in Kunming';
+  String get flowerMarketBouquetInKunming => 'จัดช่อดอกไม้ที่ตลาดดอกไม้คุนหมิง';
 
   @override
   String get theFamousDounanFlowerMarketSurround =>
-      'The famous Dounan Flower Market surrounded by thousands of fresh roses, lilies, and eucalyptus stems.';
+      'ตลาดดอกไม้โต้วหนานอันเลื่องชื่อ ล้อมรอบด้วยดอกกุหลาบ ลิลลี่ และกิ่งยูคาลิปตัสนับพัน';
 
   @override
   String get tailorAlterationsInAnOldLaneHouse =>
-      'Tailor Alterations in an Old Lane House';
+      'แก้ทรงเสื้อผ้ากับช่างตัดเสื้อในบ้านโบราณ';
 
   @override
   String get aTraditionalTailorShopFilledWithSew =>
-      'A traditional tailor shop filled with sewing machines, fabrics, and measuring tapes.';
+      'ร้านตัดเสื้อแบบดั้งเดิม เต็มไปด้วยจักรเย็บผ้า ผ้าพับต่างๆ และสายวัด';
 
   @override
-  String get expressParcelLockerRetrieval => 'Express Parcel Locker Retrieval';
+  String get expressParcelLockerRetrieval => 'รับพัสดุด่วนที่ตู้ล็อกเกอร์';
 
   @override
   String get downstairsAtAResidentialApartmentGa =>
-      'Downstairs at a residential apartment gate next to a smart Hive box locker system.';
+      'ชั้นล่างบริเวณประตูด้านหน้าอพาร์ตเมนต์ ติดกับระบบตู้ล็อกเกอร์อัจฉริยะ';
 
   @override
   String get bicycleFlatTireRepairAtCampusGate =>
-      'Bicycle Flat Tire Repair at Campus Gate';
+      'ซ่อมยางรถจักรยานรั่วที่หน้าประตูมหาวิทยาลัย';
 
   @override
   String get aSmallOutdoorRoadsideToolkitStandUn =>
-      'A small outdoor roadside toolkit stand under a large leafy banyan tree.';
+      'เพิงเครื่องมือซ่อมรถริมทางกลางแจ้งขนาดเล็กใต้ร่มเงาต้นไทรใบดก';
 
   @override
-  String get techCompanyProductDemo => 'Tech Company Product Demo';
+  String get techCompanyProductDemo => 'การสาธิตผลิตภัณฑ์ของบริษัทเทคโนโลยี';
 
   @override
   String get aFuturisticTechConferenceBoothInShe =>
-      'A futuristic tech conference booth in Shenzhen showcasing cutting-edge AI hardware.';
+      'บูธงานประชุมเทคโนโลยีแห่งอนาคตในเซินเจิ้น จัดแสดงฮาร์ดแวร์ AI ล้ำสมัย';
 
   @override
-  String get ecommerceLivestreamStudio => 'E-commerce Live-Stream Studio';
+  String get ecommerceLivestreamStudio => 'สตูดิโอไลฟ์สดอีคอมเมิร์ซ';
 
   @override
   String get aHighenergyBroadcastStudioWithRingL =>
-      'A high-energy broadcast studio with ring lights, product display racks, and live comment monitors.';
+      'สตูดิโอถ่ายทอดสดพลังงานสูง พร้อมไฟวงแหวน ราวแขวนสินค้า และจอแสดงความคิดเห็นสด';
 
   @override
-  String get yiwuInternationalTradeMarket => 'Yiwu International Trade Market';
+  String get yiwuInternationalTradeMarket => 'ตลาดการค้าระหว่างประเทศอี้อู';
 
   @override
   String get aVastMultistoryCommercialExhibition =>
-      'A vast multi-story commercial exhibition mall filled with millions of wholesale goods and crafts.';
+      'ศูนย์แสดงสินค้าเชิงพาณิชย์หลายชั้นขนาดใหญ่ เต็มไปด้วยสินค้าขายส่งและงานฝีมือนับล้านรายการ';
 
   @override
   String get universityCampusExchangeProgram =>
-      'University Campus Exchange Program';
+      'โครงการแลกเปลี่ยนในมหาวิทยาลัย';
 
   @override
   String get aSunnyLawnOutsideTheUniversityLibra =>
-      'A sunny lawn outside the university library with students studying and drinking milk tea.';
+      'สนามหญ้ากลางแดดนอกห้องสมุดมหาวิทยาลัย มีนักศึกษานั่งอ่านหนังสือและดื่มชานม';
 
   @override
-  String get pleaseEnterAScenarioTopic => 'Please enter a scenario topic.';
+  String get pleaseEnterAScenarioTopic => 'กรุณากรอกหัวข้อสถานการณ์';
 
   @override
-  String get nameTitle => 'Name (Title)';
+  String get nameTitle => 'ชื่อ (หัวข้อเรื่อง)';
 
   @override
-  String get aiCharacter => 'AI Character';
+  String get aiCharacter => 'ตัวละคร AI';
 
   @override
   String get helloWelcomeHereWhatShallWeChatAbou =>
-      'Hello! Welcome here, what shall we chat about today?';
+      'สวัสดี! ยินดีต้อนรับ วันนี้เราจะพูดคุยเรื่องอะไรกันดี?';
 
   @override
-  String get greetYourConversationPartner => 'Greet your conversation partner';
+  String get greetYourConversationPartner => 'ทักทายคู่สนทนาของคุณ';
 
   @override
-  String get askAQuestionInChinese => 'Ask a question in Chinese';
+  String get askAQuestionInChinese => 'ถามคำถามเป็นภาษาจีน';
 
   @override
-  String get pinyinWithToneMarks => 'Pinyin with tone marks';
+  String get pinyinWithToneMarks => 'พินอินพร้อมเครื่องหมายวรรณยุกต์';
 
   @override
-  String get goal1InEnglish => 'Goal 1 in English';
+  String get goal1InEnglish => 'เป้าหมายที่ 1 เป็นภาษาอังกฤษ';
 
   @override
-  String get goal2InEnglish => 'Goal 2 in English';
+  String get goal2InEnglish => 'เป้าหมายที่ 2 เป็นภาษาอังกฤษ';
 
   @override
-  String get goal3InEnglish => 'Goal 3 in English';
+  String get goal3InEnglish => 'เป้าหมายที่ 3 เป็นภาษาอังกฤษ';
 
   @override
-  String get beginner => 'Beginner';
+  String get beginner => 'ระดับเริ่มต้น';
 
   @override
   String get hsk12 => 'HSK 1-2';
@@ -5019,710 +5114,707 @@ class AppLocalizationsTh extends AppLocalizations {
   String get hsk56 => 'HSK 5-6';
 
   @override
-  String get master => 'Master';
+  String get master => 'ระดับปรมาจารย์';
 
   @override
-  String get azurePronunciationAssessment => 'AZURE PRONUNCIATION ASSESSMENT';
+  String get azurePronunciationAssessment => 'การประเมินการออกเสียงโดย AZURE';
 
   @override
-  String get tapToReview => 'Tap to review';
+  String get tapToReview => 'แตะเพื่อทบทวน';
 
   @override
-  String get overallScore => 'Overall Score';
+  String get overallScore => 'คะแนนรวม';
 
   @override
-  String get toneAccuracy => 'Tone Accuracy';
+  String get toneAccuracy => 'ความแม่นยำของวรรณยุกต์';
 
   @override
-  String get fluency => 'Fluency';
+  String get fluency => 'ความคล่องแคล่ว';
 
   @override
-  String get report => 'Report';
+  String get report => 'รายงานผล';
 
   @override
   String get goodPronunciationButCanBeBetter =>
-      'Good pronunciation, but can be better!';
+      'ออกเสียงได้ดี แต่ยังพัฒนาให้ดีขึ้นได้อีก!';
 
   @override
-  String get didYouMeanToSay => 'Did you mean to say...?';
+  String get didYouMeanToSay => 'คุณตั้งใจจะพูดว่า... ใช่หรือไม่?';
 
   @override
   String get greatKeepTrying => 'Great!\' : \'Keep trying!';
 
   @override
-  String get completeness => 'Completeness';
+  String get completeness => 'ความครบถ้วน';
 
   @override
-  String get targetTone => 'Target Tone';
+  String get targetTone => 'วรรณยุกต์เป้าหมาย';
 
   @override
   String get k4toneComparisonTapToListen =>
-      '4-Tone Comparison (Tap to Listen):';
+      'เปรียบเทียบวรรณยุกต์ 4 เสียง (แตะเพื่อฟัง):';
 
   @override
-  String get youSpokeMatch => 'You Spoke (Match!)';
+  String get youSpokeMatch => 'สิ่งที่คุณพูด (ตรงกัน!)';
 
   @override
-  String get youSpoke => 'You Spoke';
+  String get youSpoke => 'สิ่งที่คุณพูด';
 
   @override
-  String get yourPrimaryCollectionOfCharacters =>
-      'Your primary collection of characters.';
+  String get yourPrimaryCollectionOfCharacters => 'ชุดสะสมตัวอักษรหลักของคุณ';
 
   @override
-  String get deckNotFound => 'Deck not found';
+  String get deckNotFound => 'ไม่พบสำรับ';
 
   @override
-  String get cannotDeleteTheDefaultDeck => 'Cannot delete the default deck';
+  String get cannotDeleteTheDefaultDeck => 'ไม่สามารถลบสำรับเริ่มต้นได้';
 
   @override
-  String get hsk4UpperIntermediate1 => 'HSK 4: Upper Intermediate';
+  String get hsk4UpperIntermediate1 => 'HSK 4: ระดับกลางค่อนสูง';
 
   @override
   String get theFirst150CharactersToStartYourJou =>
-      'The first 150 characters to start your journey.';
+      'ตัวอักษร 150 ตัวแรกเพื่อเริ่มต้นการเดินทางของคุณ';
 
   @override
   String get buildYourVocabularyTo300EssentialWo =>
-      'Build your vocabulary to 300 essential words.';
+      'สะสมคลังคำศัพท์ของคุณสู่ 300 คำสำคัญ';
 
   @override
   String get masterConversationalFluencyWith600W =>
-      'Master conversational fluency with 600 words.';
+      'เชี่ยวชาญการสนทนาอย่างคล่องแคล่วด้วย 600 คำ';
 
   @override
   String get readTextsAndConverseFluentlyWith120 =>
-      'Read texts and converse fluently with 1200 words.';
+      'อ่านบทความและสนทนาอย่างคล่องแคล่วด้วย 1,200 คำ';
 
   @override
   String get readNewspapersAndWatchMoviesWith250 =>
-      'Read newspapers and watch movies with 2500 words.';
+      'อ่านหนังสือพิมพ์และชมภาพยนตร์ได้อย่างเข้าใจด้วย 2,500 คำ';
 
   @override
-  String get databaseBoxNotOpen => 'Database box not open';
+  String get databaseBoxNotOpen => 'กล่องฐานข้อมูลไม่ได้เปิดอยู่';
 
   @override
-  String get hsk1DataFileIsEmpty => 'HSK1 data file is empty';
+  String get hsk1DataFileIsEmpty => 'ไฟล์ข้อมูล HSK1 ว่างเปล่า';
 
   @override
-  String get gold => 'Gold';
+  String get gold => 'ทองคำ';
 
   @override
   String get globalDictionaryNotInitialized =>
-      'Global Dictionary not initialized';
+      'พจนานุกรมส่วนกลางยังไม่พร้อมใช้งาน';
 
   @override
-  String get reading => 'Reading';
+  String get reading => 'การอ่าน';
 
   @override
-  String get recall => 'Recall';
+  String get recall => 'การระลึกความจำ';
 
   @override
-  String get speaking => 'Speaking';
+  String get speaking => 'การพูด';
 
   @override
-  String get listening1 => 'Listening';
+  String get listening1 => 'การฟัง';
 
   @override
   String get practiceStrokeOrderWithVisualGuides =>
-      'Practice stroke order with visual guides.';
+      'ฝึกเขียนลำดับขีดด้วยเส้นนำสายตา';
 
   @override
   String get seeTheCharacterRecallThePinyinAndMe =>
-      'See the character, recall the Pinyin and Meaning.';
+      'ดูตัวอักษร แล้วระลึกพินอินและความหมาย';
 
   @override
   String get seeTheMeaningDrawTheCharacterFromMe =>
-      'See the meaning, draw the character from memory.';
+      'ดูความหมาย แล้วเขียนตัวอักษรจากความจำ';
 
   @override
   String get readOutLoudToTestYourPronunciationT =>
-      'Read out loud to test your pronunciation tones.';
+      'อ่านออกเสียงเพื่อทดสอบวรรณยุกต์และการออกเสียงของคุณ';
 
   @override
   String get listenToTheAudioAndIdentifyTheChara =>
-      'Listen to the audio and identify the character.';
+      'ฟังเสียงแล้วระบุตัวอักษรที่ถูกต้อง';
 
   @override
-  String get contract => 'Contract';
+  String get contract => 'ข้อสัญญา';
 
   @override
   String get whoeverImplementsMeMustBeAbleToDoTh =>
-      'Whoever implements me MUST be able to do these things.';
+      'ผู้ใดก็ตามที่ปรับใช้ฉัน จะต้องทำสิ่งเหล่านี้ได้';
 
   @override
   String get koreFenrirCharonAoedePuckOrLocal =>
-      'Kore\', \'Fenrir\', \'Charon\', \'Aoede\', \'Puck\', or \'local';
+      'Kore\', \'Fenrir\', \'Charon\', \'Aoede\', \'Puck\', หรือ \'local';
 
   @override
-  String get manageDecks => 'Manage Decks';
+  String get manageDecks => 'จัดการสำรับคำศัพท์';
 
   @override
   String get weRanIntoTroubleLoadingTheLibraryPl =>
-      'We ran into trouble loading the library. Please try again.';
+      'เกิดปัญหาในการโหลดคลังตำรา กรุณาลองใหม่อีกครั้ง';
 
   @override
-  String get noCharactersInLexicon1 => 'No characters in lexicon';
+  String get noCharactersInLexicon1 => 'ไม่มีตัวอักษรในคลังคำศัพท์';
 
   @override
-  String get masterTheBuildingBlocks => 'Master the building blocks';
+  String get masterTheBuildingBlocks => 'ฝึกฝนชิ้นส่วนพื้นฐานให้เชี่ยวชาญ';
 
   @override
-  String get other => 'Other';
+  String get other => 'อื่นๆ';
 
   @override
-  String get required => 'Required';
+  String get required => 'จำเป็น';
 
   @override
-  String get library1 => 'Library';
+  String get library1 => 'คลังตำรา';
 
   @override
-  String get youAreAPremiumMember => 'You are a Premium member';
+  String get youAreAPremiumMember => 'คุณเป็นสมาชิกพรีเมียม';
 
   @override
-  String get createAccountToSyncProgress => 'Create Account to Sync Progress';
+  String get createAccountToSyncProgress => 'สร้างบัญชีเพื่อซิงค์ความคืบหน้า';
 
   @override
-  String get signOut => 'Sign Out';
+  String get signOut => 'ออกจากระบบ';
 
   @override
-  String get account => 'Account';
+  String get account => 'บัญชีผู้ใช้';
 
   @override
-  String get guestScholar => 'Guest Scholar';
+  String get guestScholar => 'บัณฑิตรับเชิญ';
 
   @override
-  String get localAccount => 'Local Account';
+  String get localAccount => 'บัญชีในเครื่อง';
 
   @override
-  String get unknownRadical => 'Unknown Radical';
+  String get unknownRadical => 'ไม่ทราบหมวดอักษร';
 
   @override
-  String get followTheGuideStroke => 'Follow the guide stroke';
+  String get followTheGuideStroke => 'ลากเส้นตามรอยนำ';
 
   @override
-  String get strokeAnimationSpeed => 'Stroke Animation Speed';
+  String get strokeAnimationSpeed => 'ความเร็วแอนิเมชันลำดับขีด';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'การแจ้งเตือน';
 
   @override
-  String get deutsch => 'Deutsch';
+  String get deutsch => 'ภาษาเยอรมัน';
 
   @override
-  String get bahasaIndonesia => 'Bahasa Indonesia';
+  String get bahasaIndonesia => 'ภาษาอินโดนีเซีย';
 
   @override
-  String get italiano => 'Italiano';
+  String get italiano => 'ภาษาอิตาลี';
 
   @override
   String get today1d2d3d4d5d6d =>
       'Today\', \'1d\', \'2d\', \'3d\', \'4d\', \'5d\', \'6d';
 
   @override
-  String get targetDeck => 'Target Deck';
+  String get targetDeck => 'สำรับเป้าหมาย';
 
   @override
-  String get mixed => 'Mixed';
+  String get mixed => 'คละหมวดหมู่';
 
   @override
-  String get topicForContext => 'Topic (for context)';
+  String get topicForContext => 'หัวข้อ (สำหรับบริบท)';
 
   @override
-  String get nounsOnly => 'Nouns only';
+  String get nounsOnly => 'คำนามเท่านั้น';
 
   @override
-  String get verbsOnly => 'Verbs only';
+  String get verbsOnly => 'คำกริยาเท่านั้น';
 
   @override
-  String get idiomsChengyu => 'Idioms (Chengyu)';
+  String get idiomsChengyu => 'สำนวนจีน (เฉิงอวี่)';
 
   @override
-  String get fullSentences => 'Full Sentences';
+  String get fullSentences => 'ประโยคเต็ม';
 
   @override
-  String get beginnerHsk12 => 'Beginner (HSK 1-2)';
+  String get beginnerHsk12 => 'ระดับเริ่มต้น (HSK 1-2)';
 
   @override
-  String get intermediateHsk34 => 'Intermediate (HSK 3-4)';
+  String get intermediateHsk34 => 'ระดับกลาง (HSK 3-4)';
 
   @override
-  String get advancedHsk56 => 'Advanced (HSK 5-6)';
+  String get advancedHsk56 => 'ระดับสูง (HSK 5-6)';
 
   @override
-  String get generatedByAi => 'Generated by AI';
+  String get generatedByAi => 'สร้างโดย AI';
 
   @override
   String get canYouGiveMeTwoMoreExamplesUsingThi =>
-      'Can you give me two more examples using this word?';
+      'ช่วยยกตัวอย่างเพิ่มเติมอีก 2 ประโยคที่ใช้คำนี้ได้ไหม?';
 
   @override
   String get whatAreSomeSimilarWordsAndHowDoThey =>
-      'What are some similar words and how do they differ?';
+      'มีคำที่มีความหมายใกล้เคียงกันคำใดบ้าง และมีความแตกต่างกันอย่างไร?';
 
   @override
   String get isThisWordUsedInSpokenOrWrittenChin =>
-      'Is this word used in spoken or written Chinese more?';
+      'คำนี้ใช้ในภาษาพูดหรือภาษาเขียนมากกว่ากัน?';
 
   @override
   String get areThereOtherWaysToTranslateThisWor =>
-      'Are there other ways to translate this word?';
+      'มีวิธีอื่นในการแปลคำนี้หรือไม่?';
 
   @override
   String get whatAreCommonWordsThatGoTogetherWit =>
-      'What are common words that go together with this word?';
+      'คำศัพท์ที่พบบ่อยและมักใช้ร่วมกับคำนี้มีอะไรบ้าง?';
 
   @override
   String get whatAreCommonMistakesLearnersMakeWi =>
-      'What are common mistakes learners make with this word?';
+      'ข้อผิดพลาดที่ผู้เรียนมักทำเมื่อใช้คำนี้คืออะไร?';
 
   @override
-  String get emptyResponse => 'Empty response';
+  String get emptyResponse => 'ไม่มีการตอบกลับ';
 
   @override
   String get whatIsTheOracleBoneScriptOriginOfTh =>
-      'What is the oracle bone script origin of this character?';
+      'ที่มาของตัวอักษรนี้ในอักษรกระดูกสัตว์โบราณคืออะไร?';
 
   @override
   String get howDidTheAncientFormOfThisCharacter =>
-      'How did the ancient form of this character evolve over time?';
+      'รูปแบบโบราณของตัวอักษรนี้มีวิวัฒนาการอย่างไรตามกาลเวลา?';
 
   @override
   String get giveMe3CommonWordsThatContainThisCh =>
-      'Give me 3 common words that contain this character.';
+      'ขอยกตัวอย่างคำศัพท์ที่พบบ่อย 3 คำที่มีตัวอักษรนี้ประกอบอยู่';
 
   @override
   String get whatOtherCharactersShareTheSameRadi =>
-      'What other characters share the same radical?';
+      'มีตัวอักษรอื่นใดอีกบ้างที่ใช้หมวดอักษรเดียวกัน?';
 
   @override
   String get isThereAChineseProverbOrSayingFeatu =>
-      'Is there a Chinese proverb or saying featuring this character?';
+      'มีสุภาษิตหรือคำพังเพยจีนที่มีตัวอักษรนี้ปรากฏอยู่หรือไม่?';
 
   @override
   String get explainTheStrokeOrderRulesForThisCh =>
-      'Explain the stroke order rules for this character.';
+      'ช่วยอธิบายกฎลำดับขีดของตัวอักษรนี้';
 
   @override
   String get giveMeOneCalligraphyTipForWritingTh =>
-      'Give me one calligraphy tip for writing this character beautifully.';
+      'ขอเคล็ดลับการเขียนพู่กัน 1 ข้อเพื่อให้เขียนตัวอักษรนี้ได้อย่างสวยงาม';
 
   @override
   String get isThereAnythingTrickyAboutUsingThis =>
-      'Is there anything tricky about using this grammatically?';
+      'มีจุดที่ต้องระวังเป็นพิเศษในการใช้คำนี้ตามหลักไวยากรณ์หรือไม่?';
 
   @override
   String get whatWordsAreCommonlyConfusedWithThi =>
-      'What words are commonly confused with this one and why?';
+      'คำใดที่มักสับสนกับคำนี้บ่อยๆ และเพราะเหตุใด?';
 
   @override
   String get doesThisCharacterCarryCulturalSymbo =>
-      'Does this character carry cultural symbolism in China?';
+      'ตัวอักษรนี้มีความหมายเชิงสัญลักษณ์ทางวัฒนธรรมในจีนหรือไม่?';
 
   @override
   String get isThisCharacterCommonlySeenInChines =>
-      'Is this character commonly seen in Chinese movies, songs, or texts?';
+      'ตัวอักษรนี้พบเห็นได้บ่อยในภาพยนตร์ เพลง หรือตำราจีนหรือไม่?';
 
   @override
   String get whatDoesTheRadicalOfThisCharacterMe =>
-      'What does the radical of this character mean?';
+      'หมวดอักษรของตัวอักษรนี้มีความหมายว่าอย่างไร?';
 
   @override
   String get breakDownEveryComponentAndItsMeanin =>
-      'Break down every component and its meaning.';
+      'แยกส่วนประกอบทุกชิ้นพร้อมอธิบายความหมาย';
 
   @override
   String get giveMeATrickToRememberTheCorrectTon =>
-      'Give me a trick to remember the correct tone for this character.';
+      'ขอเทคนิคช่วยจำวรรณยุกต์ที่ถูกต้องของตัวอักษรนี้';
 
   @override
   String get areThereCommonHomophonesThatAreOfte =>
-      'Are there common homophones that are often confused with this?';
+      'มีคำพ้องเสียงที่มักสับสนกับคำนี้บ่อยๆ หรือไม่?';
 
   @override
-  String get quotaExceeded => 'Quota exceeded';
+  String get quotaExceeded => 'เกินโควตาการใช้งาน';
 
   @override
-  String get mustProvideEitherCardOrCards =>
-      'Must provide either card or cards';
+  String get mustProvideEitherCardOrCards => 'ต้องระบุการ์ดใบเดียวหรือหลายใบ';
 
   @override
-  String get deckSettings => 'Deck Settings';
+  String get deckSettings => 'การตั้งค่าสำรับ';
 
   @override
-  String get saveSettings => 'Save Settings';
+  String get saveSettings => 'บันทึกการตั้งค่า';
 
   @override
-  String get sealRed => 'Seal Red';
+  String get sealRed => 'สีแดงชาดตราประทับ';
 
   @override
-  String get sealScript => 'Seal Script';
+  String get sealScript => 'อักษรตราประทับ (จ้วนซู)';
 
   @override
-  String get startYourStreak => 'START YOUR STREAK';
+  String get startYourStreak => 'เริ่มต้นความต่อเนื่องของคุณ';
 
   @override
-  String get traditionalCharacter => 'Traditional Character';
+  String get traditionalCharacter => 'อักษรจีนตัวเต็ม';
 
   @override
-  String get inQueue => 'In Queue';
+  String get inQueue => 'อยู่ในคิว';
 
   @override
-  String get tapToListenAgain => 'Tap to listen again';
+  String get tapToListenAgain => 'แตะเพื่อฟังอีกครั้ง';
 
   @override
-  String get contextClue => 'Context Clue';
+  String get contextClue => 'บริบทช่วยใบ้';
 
   @override
-  String get microphonePermissionRequired1 => 'Microphone permission required.';
+  String get microphonePermissionRequired1 =>
+      'จำเป็นต้องได้รับสิทธิ์การเข้าถึงไมโครโฟน';
 
   @override
-  String get recordingFailedNoFile => 'Recording failed (no file).';
+  String get recordingFailedNoFile => 'การบันทึกเสียงล้มเหลว (ไม่พบไฟล์)';
 
   @override
-  String get holdToSpeakOptional => 'Hold to speak (Optional)';
+  String get holdToSpeakOptional => 'กดค้างเพื่อพูด (ไม่บังคับ)';
 
   @override
   String get microphonePermissionDeniedEnableItI =>
-      'Microphone permission denied. Enable it in Settings to use Shadowing Studio.';
+      'การอนุญาตใช้ไมโครโฟนถูกปฏิเสธ เปิดใช้งานในการตั้งค่าเพื่อใช้งาน Shadowing Studio';
 
   @override
-  String get sessionSummary => 'Session Summary';
+  String get sessionSummary => 'สรุปผลเซสชัน';
 
   @override
   String get hereAreTheCharactersYouStruggledWit =>
-      'Here are the characters you struggled with:';
+      'นี่คือตัวอักษรที่คุณยังติดขัด:';
 
   @override
   String get applySessionGradesToSpacedRepetitio =>
-      'Apply session grades to Spaced Repetition (Speaking Mode)';
+      'นำคะแนนเซสชันไปใช้กับระบบทบทวนแบบเว้นระยะ (โหมดการพูด)';
 
   @override
   String get masterYourMandarinPronunciationnbyM =>
-      'Master your Mandarin pronunciation\\nby mimicking native speech.';
+      'ฝึกฝนการออกเสียงภาษาจีนกลางให้เชี่ยวชาญ\nด้วยการเลียนแบบเสียงเจ้าของภาษา';
 
   @override
   String get aiIsGradingYourPronunciation =>
-      'AI is grading your pronunciation...';
+      'AI กำลังให้คะแนนการออกเสียงของคุณ...';
 
   @override
   String get holdMicToRecordReleaseToGrade =>
-      'Hold mic to record. Release to grade.';
+      'กดไมโครโฟนค้างไว้เพื่อบันทึก ปล่อยเพื่อดูคะแนน';
 
   @override
   String get tapAnySyllableToAuditionAll4Tones =>
-      'Tap any syllable to audition all 4 tones:';
+      'แตะที่พยางค์ใดก็ได้เพื่อลองฟังวรรณยุกต์ทั้ง 4 เสียง:';
 
   @override
-  String get freeFlowConversationalPractice =>
-      'Free flow conversational practice.';
+  String get freeFlowConversationalPractice => 'ฝึกสนทนาแบบอิสระลื่นไหล';
 
   @override
   String get failedToGeneratePhrasePleaseTryAgai =>
-      'Failed to generate phrase. Please try again.';
+      'สร้างวลีไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
 
   @override
   String get recordingTooShortHoldTheMicButtonLo =>
-      'Recording too short. Hold the mic button longer.';
+      'เสียงบันทึกสั้นเกินไป กรุณากดปุ่มไมโครโฟนค้างไว้นานกว่านี้';
 
   @override
   String get recordingErrorPleaseTryAgain =>
-      'Recording error. Please try again.';
+      'เกิดข้อผิดพลาดในการบันทึกเสียง กรุณาลองใหม่อีกครั้ง';
 
   @override
   String get noRecordingCapturedPleaseTryAgain =>
-      'No recording captured. Please try again.';
+      'ตรวจไม่พบเสียงบันทึก กรุณาลองใหม่อีกครั้ง';
 
   @override
   String get recordedAudioIsEmptyPleaseTryAgainA =>
-      'Recorded audio is empty. Please try again and speak clearly.';
+      'ไฟล์เสียงที่บันทึกว่างเปล่า กรุณาลองใหม่อีกครั้งและพูดให้ชัดเจน';
 
   @override
-  String get azureSpeechApiKeysAreMissing1 =>
-      'Azure Speech API keys are missing';
+  String get azureSpeechApiKeysAreMissing1 => 'ไม่พบคีย์ Azure Speech API';
 
   @override
-  String get azureError401 => 'Azure Error 401';
+  String get azureError401 => 'ข้อผิดพลาด Azure 401';
 
   @override
   String get azureAuthenticationFailedCheckYourS =>
-      'Azure authentication failed. Check your Speech API key and region in .env';
+      'การยืนยันตัวตน Azure ล้มเหลว ตรวจสอบคีย์ Speech API และ Region ในไฟล์ .env';
 
   @override
-  String get azureError429 => 'Azure Error 429';
+  String get azureError429 => 'ข้อผิดพลาด Azure 429';
 
   @override
   String get azureQuotaExceededTryAgainLater =>
-      'Azure quota exceeded. Try again later.';
+      'เกินโควตา Azure แล้ว กรุณาลองใหม่อีกครั้งในภายหลัง';
 
   @override
   String get azureGradingTimedOutCheckYourIntern =>
-      'Azure grading timed out. Check your internet connection.';
+      'การให้คะแนนจาก Azure หมดเวลา กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต';
 
   @override
-  String get recognitionFailedNull => 'Recognition failed: null';
+  String get recognitionFailedNull => 'การรู้จำเสียงล้มเหลว: null';
 
   @override
   String get couldNotHearYouClearlyPleaseTryAgai =>
-      'Could not hear you clearly. Please try again.';
+      'ระบบไม่ได้ยินเสียงของคุณอย่างชัดเจน กรุณาลองใหม่อีกครั้ง';
 
   @override
-  String get singlePhrasePractice => 'Single Phrase Practice';
+  String get singlePhrasePractice => 'ฝึกฝนวลีเดี่ยว';
 
   @override
-  String get failedToGeneratePhrase => 'Failed to generate phrase';
+  String get failedToGeneratePhrase => 'สร้างวลีไม่สำเร็จ';
 
   @override
-  String get omitted => 'Omitted';
+  String get omitted => 'ตกหล่น';
 
   @override
-  String get partial => 'Partial';
+  String get partial => 'ออกเสียงบางส่วน';
 
   @override
-  String get mispronounced => 'Mispronounced';
+  String get mispronounced => 'ออกเสียงผิด';
 
   @override
-  String get startSession1 => 'Start Session';
+  String get startSession1 => 'เริ่มเซสชัน';
 
   @override
-  String get chinese => 'Chinese';
+  String get chinese => 'ภาษาจีน';
 
   @override
-  String get paused => 'Paused';
+  String get paused => 'หยุดชั่วคราว';
 
   @override
-  String get translationFailed => 'Translation failed';
+  String get translationFailed => 'การแปลล้มเหลว';
 
   @override
   String get engagingMacroeconomicAndBusinessBre =>
-      'Engaging macroeconomic and business breakdowns explained through lively storytelling.';
+      'วิเคราะห์เศรษฐกิจมหภาคและธุรกิจอย่างน่าติดตาม ผ่านการเล่าเรื่องที่สนุกสนาน';
 
   @override
   String get exploresWorldEconomiesBankingHistor =>
-      'Explores world economies, banking histories, and global industry dynamics.';
+      'สำรวจเศรษฐกิจโลก ประวัติศาสตร์การธนาคาร และพลวัตของอุตสาหกรรมระดับสากล';
 
   @override
   String get clearArticulateMandarinPerfectForIn =>
-      'Clear, articulate Mandarin perfect for intermediate and advanced learners.';
+      'ภาษาจีนกลางที่ชัดถ้อยชัดคำ เหมาะอย่างยิ่งสำหรับผู้เรียนระดับกลางและระดับสูง';
 
   @override
-  String get chefWang => 'Chef Wang';
+  String get chefWang => 'เชฟหวัง (Chef Wang)';
 
   @override
   String get masterSichuanCulinaryTechniquesTaug =>
-      'Master Sichuan culinary techniques taught directly by a professional head chef.';
+      'ฝึกฝนเทคนิคการทำอาหารเสฉวน ถ่ายทอดตรงโดยหัวหน้าเชฟมืออาชีพ';
 
   @override
   String get stepbystepAuthenticChineseRecipesWi =>
-      'Step-by-step authentic Chinese recipes with wok control and knife work.';
+      'สูตรอาหารจีนแท้แบบทีละขั้นตอน พร้อมการควบคุมไฟในกระทะและทักษะการใช้มีด';
 
   @override
   String get conciseCulinaryVocabularyAndClearIn =>
-      'Concise culinary vocabulary and clear instruction in natural Mandarin.';
+      'คำศัพท์การทำอาหารที่กระชับและคำอธิบายที่ชัดเจนด้วยภาษาจีนกลางที่เป็นธรรมชาติ';
 
   @override
   String get cinematographyCuttingedgeCameraTech =>
-      'Cinematography, cutting-edge camera tech, and deep digital media evaluations.';
+      'ศาสตร์แห่งภาพยนตร์ เทคโนโลยีกล้องล้ำสมัย และการประเมินสื่อดิจิทัลเชิงลึก';
 
   @override
   String get highproductionDocumentaryStyleExplo =>
-      'High-production documentary style exploring video creation and AI innovations.';
+      'รูปแบบสารคดีโปรดักชันคุณภาพสูง สำรวจการสร้างสรรค์วิดีโอและนวัตกรรม AI';
 
   @override
   String get richTechnicalMandarinWithCrystalcle =>
-      'Rich technical Mandarin with crystal-clear pronunciation and visual captions.';
+      'ภาษาจีนกลางเชิงเทคนิคที่เข้มข้น ออกเสียงชัดเจน พร้อมคำบรรยายประกอบ';
 
   @override
   String get indepthInvestigativeJournalismAndCu =>
-      'In-depth investigative journalism and current affairs commentary.';
+      'งานข่าวเชิงสืบสวนเชิงลึกและบทวิเคราะห์เหตุการณ์ปัจจุบัน';
 
   @override
   String get criticalPerspectivesOnSocialPhenome =>
-      'Critical perspectives on social phenomena, world news, and history.';
+      'มุมมองเชิงวิพากษ์ต่อปรากฏการณ์ทางสังคม ข่าวสารรอบโลก และประวัติศาสตร์';
 
   @override
   String get formalInvestigativeDiscourseIdealFo =>
-      'Formal investigative discourse ideal for advanced listening comprehension.';
+      'ภาษาทางการเชิงสืบสวน เหมาะอย่างยิ่งสำหรับการฝึกฟังเพื่อความเข้าใจขั้นสูง';
 
   @override
   String get bitesizedAnimatedScienceDocumentari =>
-      'Bite-sized animated science documentaries answering everyday questions.';
+      'สารคดีวิทยาศาสตร์แอนิเมชันขนาดสั้น ตอบคำถามน่ารู้ในชีวิตประจำวัน';
 
   @override
   String get exploresPhysicsBiologyAndEverydayCu =>
-      'Explores physics, biology, and everyday curiosities with fun infographics.';
+      'สำรวจฟิสิกส์ ชีววิทยา และเรื่องน่ารู้รอบตัวด้วยอินโฟกราฟิกที่เข้าใจง่าย';
 
   @override
   String get standardBeijingMandarinWithWellpace =>
-      'Standard Beijing Mandarin with well-paced narration and clear subtitles.';
+      'ภาษาจีนกลางสำเนียงปักกิ่งมาตรฐาน จังหวะการบรรยายพอเหมาะพร้อมคำบรรยายชัดเจน';
 
   @override
   String get heartwarmingStreetFoodAdventuresAnd =>
-      'Heartwarming street food adventures and genuine conversations across China.';
+      'การผจญภัยชิมสตรีทฟู้ดอันอบอุ่นหัวใจและบทสนทนาจริงใจทั่วประเทศจีน';
 
   @override
   String get exploresRegionalHumanStoriesFamilyT =>
-      'Explores regional human stories, family traditions, and local delicacies.';
+      'สำรวจเรื่องราวชีวิตของผู้คนในท้องถิ่น ความผูกพันในครอบครัว และอาหารจานเด็ดประจำถิ่น';
 
   @override
   String get naturalConversationalMandarinWithDa =>
-      'Natural conversational Mandarin with daily slang and emotional warmth.';
+      'ภาษาจีนกลางสำหรับการสนทนาที่เป็นธรรมชาติ สอดแทรกคำสแลงประจำวันและอารมณ์อบอุ่น';
 
   @override
   String get humorousAndHonestConsumerElectronic =>
-      'Humorous and honest consumer electronics reviews from real-life experience.';
+      'รีวิวอุปกรณ์อิเล็กทรอนิกส์สำหรับผู้ใช้อย่างตรงไปตรงมาและมีอารมณ์ขันจากประสบการณ์จริง';
 
   @override
   String get testingSmartphonesSmartHomeGadgetsA =>
-      'Testing smartphones, smart home gadgets, and tech lifestyle gear.';
+      'ทดสอบสมาร์ตโฟน อุปกรณ์สมาร์ตโฮม และอุปกรณ์เทคโนโลยีไลฟ์สไตล์';
 
   @override
   String get relaxedHumorousConversationalDialog =>
-      'Relaxed, humorous conversational dialogue with modern colloquialisms.';
+      'บทสนทนาที่ผ่อนคลาย ขบขัน พร้อมคำสแลงและภาษาพูดสมัยใหม่';
 
   @override
   String get seanKitchen => 'Sean Kitchen';
 
   @override
   String get deliciousHomecookedChineseDishesAnd =>
-      'Delicious home-cooked Chinese dishes and street snack recreation.';
+      'อาหารจีนปรุงเองที่บ้านแสนอร่อยและการรังสรรค์ขนมสตรีทฟู้ดขึ้นมาใหม่';
 
   @override
   String get easytofollowKitchenTipsForCookingAu =>
-      'Easy-to-follow kitchen tips for cooking authentic Asian comfort food.';
+      'เคล็ดลับในครัวที่ทำตามได้ง่ายเพื่อปรุงอาหารเอเชียรสชาติดั้งเดิม';
 
   @override
   String get warmInvitingCommentaryWithPractical =>
-      'Warm, inviting commentary with practical kitchen vocabulary.';
+      'การบรรยายที่อบอุ่นเป็นกันเอง พร้อมคำศัพท์ในครัวที่นำไปใช้ได้จริง';
 
   @override
   String get chineseChannel => 'Chinese Channel';
 
   @override
   String get structuredChineseLanguageLessonsAnd =>
-      'Structured Chinese language lessons and cultural discovery tutorials.';
+      'บทเรียนภาษาจีนที่มีโครงสร้างชัดเจนและบทเรียนสำรวจวัฒนธรรม';
 
   @override
   String get grammarPointsHskVocabularyBuildingA =>
-      'Grammar points, HSK vocabulary building, and conversational patterns.';
+      'ไวยากรณ์ การสะสมคำศัพท์ HSK และรูปแบบประโยคสนทนา';
 
   @override
   String get clearEducationalPacingTailoredSpeci =>
-      'Clear educational pacing tailored specifically for Chinese learners.';
+      'จังหวะการสอนที่ชัดเจน ออกแบบมาโดยเฉพาะสำหรับผู้เรียนภาษาจีน';
 
   @override
   String get oneInABillion => 'One in a Billion';
 
   @override
   String get intimatePortraitsAndStoriesOfUnique =>
-      'Intimate portraits and stories of unique individuals in contemporary China.';
+      'ภาพสะท้อนและเรื่องราวเชิงลึกของบุคคลที่มีเอกลักษณ์ในสังคมจีนร่วมสมัย';
 
   @override
   String get exploresDiverseLifeChoicesYouthCult =>
-      'Explores diverse life choices, youth culture, and modern social shifts.';
+      'สำรวจทางเลือกชีวิตที่หลากหลาย วัฒนธรรมคนรุ่นใหม่ และการเปลี่ยนแปลงทางสังคมยุคใหม่';
 
   @override
   String get deepNarrativeStorytellingWithRichVo =>
-      'Deep narrative storytelling with rich vocabulary and authentic voices.';
+      'การเล่าเรื่องเชิงบรรยายที่ลึกซึ้ง พร้อมคำศัพท์ที่สละสลวยและเสียงสัมภาษณ์จริง';
 
   @override
   String get vickySoup => 'Vicky Soup';
 
   @override
   String get aestheticLifestyleVlogsFashionStyli =>
-      'Aesthetic lifestyle vlogs, fashion styling, and daily routines.';
+      'วล็อกไลฟ์สไตล์สุดเก๋ การแต่งกายแฟชั่น และกิจวัตรประจำวัน';
 
   @override
   String get travelDiariesAndCozyLifeMomentsDocu =>
-      'Travel diaries and cozy life moments documented with cinematic warmth.';
+      'บันทึกการเดินทางและช่วงเวลาชีวิตที่อบอุ่น ถ่ายทอดด้วยบรรยากาศภาพยนตร์';
 
   @override
   String get naturalCasualMandarinSpokenAtAComfo =>
-      'Natural casual Mandarin spoken at a comfortable, expressive pace.';
+      'ภาษาจีนกลางแบบสบายๆ เป็นธรรมชาติ พูดด้วยจังหวะที่ฟังง่ายและสื่ออารมณ์';
 
   @override
-  String get tededMandarin => 'TED-Ed Mandarin';
+  String get tededMandarin => 'TED-Ed ภาษาจีนกลาง';
 
   @override
   String get highqualityAnimatedEducationalLesso =>
-      'High-quality animated educational lessons on science, philosophy, and history.';
+      'บทเรียนการศึกษาแอนิเมชันคุณภาพสูงเกี่ยวกับวิทยาศาสตร์ ปรัชญา และประวัติศาสตร์';
 
   @override
   String get thoughtprovokingRiddlesClassicLiter =>
-      'Thought-provoking riddles, classic literature, and psychology mysteries.';
+      'ปริศนาชวนคิด วรรณกรรมคลาสสิก และความลึกลับทางจิตวิทยา';
 
   @override
   String get impeccableVoiceoverMandarinWithSync =>
-      'Impeccable voice-over Mandarin with synchronized bilingual subtitles.';
+      'เสียงพากย์ภาษาจีนกลางที่ไร้ที่ติ พร้อมคำบรรยายสองภาษาที่ซิงค์อย่างแม่นยำ';
 
   @override
-  String get channel => 'Channel';
+  String get channel => 'ช่อง';
 
   @override
   String get curatedCulturalDocumentariesAndChin =>
-      'Curated cultural documentaries and Chinese lifestyle highlights.';
+      'สารคดีวัฒนธรรมคัดสรรและไฮไลต์วิถีชีวิตชาวจีน';
 
   @override
   String get exploringTraditionalArtsHeritageCra =>
-      'Exploring traditional arts, heritage craftsmanship, and modern trends.';
+      'สำรวจศิลปะดั้งเดิม งานฝีมือมรดกทางวัฒนธรรม และเทรนด์สมัยใหม่';
 
   @override
   String get highQualityAudioWithSynchronizedChi =>
-      'High quality audio with synchronized Chinese closed captions.';
+      'เสียงคุณภาพสูงพร้อมคำบรรยายภาษาจีนที่ซิงค์ตรงกับเสียง';
 
   @override
   String get interestingStoriesAndCreativeVideoP =>
-      'Interesting stories and creative video projects across the Chinese web.';
+      'เรื่องราวที่น่าสนใจและโปรเจกต์วิดีโอสร้างสรรค์จากโลกอินเทอร์เน็ตของจีน';
 
   @override
   String get engagingInterviewsStorytellingAndVi =>
-      'Engaging interviews, storytelling, and visual explorations.';
+      'บทสัมภาษณ์ที่น่าติดตาม การเล่าเรื่อง และการสำรวจผ่านภาพ';
 
   @override
   String get greatListeningMaterialWithStandardP =>
-      'Great listening material with standard pronunciation.';
+      'สื่อการฝึกฟังชั้นยอดด้วยการออกเสียงตามมาตรฐาน';
 
   @override
   String get xVsY => 'X vs Y';
 
   @override
-  String get untitled => 'Untitled';
+  String get untitled => 'ไม่มีชื่อเรื่อง';
 
   @override
-  String get contemporaryStories => 'Contemporary Stories';
+  String get contemporaryStories => 'เรื่องราวร่วมสมัย';
 
   @override
-  String get history => 'History';
+  String get history => 'ประวัติศาสตร์';
 
   @override
-  String get advancedReading => 'Advanced Reading';
+  String get advancedReading => 'การอ่านระดับสูง';
 
   @override
-  String get intermediateReading => 'Intermediate Reading';
+  String get intermediateReading => 'การอ่านระดับกลาง';
 
   @override
-  String get beginnerReading => 'Beginner Reading';
+  String get beginnerReading => 'การอ่านระดับต้น';
 
   @override
   String get mandarinBean => 'Mandarin Bean';
 
   @override
-  String get unknown => 'Unknown';
+  String get unknown => 'ไม่ระบุ';
 
   @override
-  String get localDb => 'Local DB';
+  String get localDb => 'ฐานข้อมูลในเครื่อง';
 
   @override
-  String get emperorTaizong => 'Emperor Taizong';
+  String get emperorTaizong => 'จักรพรรดิถังไท่จง';
 
   @override
-  String get emperorXuanzong => 'Emperor Xuanzong';
+  String get emperorXuanzong => 'จักรพรรดิถังเสวียนจง';
 
   @override
-  String get liBai => 'Li Bai';
+  String get liBai => 'หลี่ไป๋ (Li Bai)';
 
   @override
-  String get gradedReader => 'Graded Reader';
+  String get gradedReader => 'บทอ่านไล่ระดับความยาก';
 
   @override
   String get ucj10r97lkwgdtqbt6xzv8gLearnMandari =>
@@ -5761,52 +5853,53 @@ class AppLocalizationsTh extends AppLocalizations {
   String get alinFoodWalk => 'Alin Food Walk';
 
   @override
-  String get videoOfTheDay => 'VIDEO OF THE DAY';
+  String get videoOfTheDay => 'วิดีโอประจำวัน';
 
   @override
-  String get noValidVideoFound => 'No valid video found.';
+  String get noValidVideoFound => 'ไม่พบวิดีโอที่ถูกต้อง';
 
   @override
-  String get listeningPractice => 'LISTENING PRACTICE';
+  String get listeningPractice => 'การฝึกฟัง';
 
   @override
-  String get socialSkills => 'SOCIAL SKILLS';
+  String get socialSkills => 'ทักษะทางสังคม';
 
   @override
-  String get culturalContext => 'CULTURAL CONTEXT';
+  String get culturalContext => 'บริบททางวัฒนธรรม';
 
   @override
-  String get realLife => 'REAL LIFE';
+  String get realLife => 'ชีวิตจริง';
 
   @override
-  String get realWorld => 'REAL WORLD';
+  String get realWorld => 'โลกแห่งความเป็นจริง';
 
   @override
-  String get articleOfTheDay => 'ARTICLE OF THE DAY';
+  String get articleOfTheDay => 'บทความประจำวัน';
 
   @override
-  String get failedToLoadOrParseRssFeed => 'Failed to load or parse RSS feed.';
+  String get failedToLoadOrParseRssFeed =>
+      'โหลดหรือแยกวิเคราะห์ฟีด RSS ไม่สำเร็จ';
 
   @override
-  String get drama => 'Drama';
+  String get drama => 'ละคร / ซีรีส์';
 
   @override
-  String get youkugetAppNow => 'YOUKU-Get APP now';
+  String get youkugetAppNow => 'YOUKU-รับแอปได้เลย';
 
   @override
   String get romanceTrailer => 'Romance\', \'Trailer';
 
   @override
-  String get romance => 'Romance';
+  String get romance => 'โรแมนติก';
 
   @override
-  String get action => 'Action';
+  String get action => 'แอ็กชัน';
 
   @override
-  String get mystery => 'Mystery';
+  String get mystery => 'ลึกลับ / สืบสวน';
 
   @override
-  String get historical => 'Historical';
+  String get historical => 'ย้อนยุค / ประวัติศาสตร์';
 
   @override
   String get historicalAction => 'Historical\', \'Action';
@@ -5824,52 +5917,53 @@ class AppLocalizationsTh extends AppLocalizations {
   String get historicalHighlight => 'Historical\', \'Highlight';
 
   @override
-  String get youkuEnglishgetAppNow => 'YOUKU English-Get APP now';
+  String get youkuEnglishgetAppNow => 'YOUKU English-รับแอปได้เลย';
 
   @override
-  String get theDouble => 'The Double';
+  String get theDouble => 'มรสุมชีวิต (The Double)';
 
   @override
   String get updatesByOshin => 'Updates By Oshin';
 
   @override
-  String get backFromTheBrink => 'Back from the Brink';
+  String get backFromTheBrink => 'ล่าหัวใจมังกร (Back from the Brink)';
 
   @override
-  String get fallingIntoYourSmile => 'Falling Into Your Smile';
+  String get fallingIntoYourSmile => 'รักยิ้มของเธอ (Falling Into Your Smile)';
 
   @override
-  String get everyoneLovesMe => 'Everyone Loves Me';
+  String get everyoneLovesMe => 'อย่ารักฉันเลย (Everyone Loves Me)';
 
   @override
-  String get tillTheEndOfTheMoon => 'Till The End of The Moon';
+  String get tillTheEndOfTheMoon => 'จันทราอัสดง (Till The End of The Moon)';
 
   @override
-  String get theBestDayOfMyLife => 'The Best Day of My Life';
+  String get theBestDayOfMyLife =>
+      'วันที่ดีที่สุดในชีวิต (The Best Day of My Life)';
 
   @override
-  String get gikkiChineseDrama => 'GIKKI Chinese Drama';
+  String get gikkiChineseDrama => 'GIKKI ซีรีส์จีน';
 
   @override
-  String get dashingYouth => 'Dashing Youth';
+  String get dashingYouth => 'ดรุณอันดามัน (Dashing Youth)';
 
   @override
-  String get rebornChineseDramaEngSub => 'Reborn Chinese drama ENG SUB';
+  String get rebornChineseDramaEngSub => 'Reborn ซีรีส์จีน ซับอังกฤษ';
 
   @override
   String get ijenwaBenita => 'Ijenwa Benita';
 
   @override
-  String get whenIFlyTowardsYou => 'When I Fly Towards You';
+  String get whenIFlyTowardsYou => 'เมื่อเธอเหินเวหา (When I Fly Towards You)';
 
   @override
-  String get mztvExclusiveChineseDrama => 'MZTV Exclusive Chinese Drama';
+  String get mztvExclusiveChineseDrama => 'MZTV ซีรีส์จีนสุดพิเศษ';
 
   @override
-  String get theStarryLove => 'The Starry Love';
+  String get theStarryLove => 'ดุจดวงดาวโอบล้อมใจ (The Starry Love)';
 
   @override
-  String get comedy => 'Comedy';
+  String get comedy => 'ตลก / คอมเมดี้';
 
   @override
   String get backFromTheBrink1 => 'Back from the Brink\':';
@@ -5878,16 +5972,16 @@ class AppLocalizationsTh extends AppLocalizations {
   String get dashingYouth1 => 'Dashing Youth\':';
 
   @override
-  String get beReborn => 'Be Reborn';
+  String get beReborn => 'เกิดใหม่ (Be Reborn)';
 
   @override
-  String get beautyStrategy => 'Beauty Strategy';
+  String get beautyStrategy => 'แผนลวงโฉมงาม (Beauty Strategy)';
 
   @override
-  String get myDivineEmissary => 'My Divine Emissary';
+  String get myDivineEmissary => 'ทูตสวรรค์ของฉัน (My Divine Emissary)';
 
   @override
-  String get theHope => 'The Hope';
+  String get theHope => 'ความหวัง (The Hope)';
 
   @override
   String get ep16In => 'EP16\': \'In';
@@ -5908,22 +6002,23 @@ class AppLocalizationsTh extends AppLocalizations {
   String get loveLikeTheGalaxy => 'Love Like The Galaxy\':';
 
   @override
-  String get membersPremiere => 'Members Premiere';
+  String get membersPremiere => 'สิทธิพิเศษสำหรับสมาชิก';
 
   @override
-  String get moonlight => 'Moonlight';
+  String get moonlight => 'แสงจันทร์ (Moonlight)';
 
   @override
-  String get myJourneyToYou => 'My Journey to You\':';
+  String get myJourneyToYou => 'เหนือเมฆาชะตาลิขิต (My Journey to You)';
 
   @override
-  String get mysteriousLotusCasebook => 'Mysterious Lotus Casebook\':';
+  String get mysteriousLotusCasebook =>
+      'หอดอกบัวลาย (Mysterious Lotus Casebook)';
 
   @override
   String get rebornChineseDramaEngSub1 => 'Reborn Chinese drama ENG SUB\': \'';
 
   @override
-  String get reborn => 'Reborn';
+  String get reborn => 'เกิดใหม่ (Reborn)';
 
   @override
   String get theBestDayOfMyLife1 => 'The Best Day of My Life\': \'';
@@ -5932,13 +6027,13 @@ class AppLocalizationsTh extends AppLocalizations {
   String get theDouble1 => 'The Double\':';
 
   @override
-  String get theLongBallad => 'The Long Ballad\':';
+  String get theLongBallad => 'สตรีหาญ ฉางเกอ (The Long Ballad)';
 
   @override
   String get theStarryLove1 => 'The Starry Love\':';
 
   @override
-  String get theUntamed => 'The Untamed\':';
+  String get theUntamed => 'ปรมาจารย์ลัทธิมาร (The Untamed)';
 
   @override
   String get tillTheEndOfTheMoon1 => 'Till The End of The Moon\':';
@@ -5947,349 +6042,359 @@ class AppLocalizationsTh extends AppLocalizations {
   String get whenIFlyTowardsYou1 => 'When I Fly Towards You\':';
 
   @override
-  String get wordOfHonor => 'Word of Honor\':';
+  String get wordOfHonor => 'นักรบพเนจรสุดขอบฟ้า (Word of Honor)';
 
   @override
-  String get blossom => 'Blossom';
+  String get blossom => 'เบ่งบาน (Blossom)';
 
   @override
   String get gemini => 'Gemini';
 
   @override
-  String get generationToGeneration => 'Generation to Generation';
+  String get generationToGeneration =>
+      'จากรุ่นสู่รุ่น (Generation to Generation)';
 
   @override
-  String get brocadeOdyssey => 'Brocade Odyssey';
+  String get brocadeOdyssey => 'มหากาพย์ผ้าไหม (Brocade Odyssey)';
 
   @override
-  String get circleOfLove => 'Circle of Love';
+  String get circleOfLove => 'วงเวียนรัก (Circle of Love)';
 
   @override
-  String get dawnIsBreaking => 'Dawn is Breaking';
+  String get dawnIsBreaking => 'รุ่งอรุณแรก (Dawn is Breaking)';
 
   @override
-  String get firstRomance => 'First Romance';
+  String get firstRomance => 'รักแรกพบ (First Romance)';
 
   @override
-  String get loveInTheClouds => 'Love in The Clouds';
+  String get loveInTheClouds => 'รักในม่านเมฆ (Love in The Clouds)';
 
   @override
-  String get secondChanceRomance => 'Second Chance Romance';
+  String get secondChanceRomance =>
+      'โอกาสที่สองของความรัก (Second Chance Romance)';
 
   @override
-  String get mrBad => 'Mr. BAD';
+  String get mrBad => 'ตัวร้ายที่รัก (Mr. BAD)';
 
   @override
-  String get pursuitOfJade => 'Pursuit of Jade';
+  String get pursuitOfJade => 'ไขว่คว้าหยกงาม (Pursuit of Jade)';
 
   @override
-  String get fatedHearts => 'Fated Hearts';
+  String get fatedHearts => 'ดวงใจพรหมลิขิต (Fated Hearts)';
 
   @override
-  String get roadHome => 'Road Home';
+  String get roadHome => 'ทางกลับบ้าน (Road Home)';
 
   @override
-  String get myDearGuardian => 'My Dear Guardian';
+  String get myDearGuardian => 'ผู้พิทักษ์ที่รัก (My Dear Guardian)';
 
   @override
-  String get brightEyesInTheDark => 'Bright Eyes in the Dark';
+  String get brightEyesInTheDark =>
+      'ดวงตาประกายในความมืด (Bright Eyes in the Dark)';
 
   @override
-  String get theIngeniousOne => 'The Ingenious One';
+  String get theIngeniousOne => 'บัณฑิตหน้าใสหัวใจปราชญ์ (The Ingenious One)';
 
   @override
-  String get herPhoenixMajesty => 'Her Phoenix Majesty';
+  String get herPhoenixMajesty => 'หงส์เคียงบัลลังก์ (Her Phoenix Majesty)';
 
   @override
-  String get dreamsNeverEnd => 'Dreams Never End';
+  String get dreamsNeverEnd => 'ความฝันไม่สิ้นสุด (Dreams Never End)';
 
   @override
-  String get theUltimateVowUnknownToYou => 'The Ultimate Vow, Unknown to You';
+  String get theUltimateVowUnknownToYou =>
+      'คำสาบานนิรันดร์ที่เธอไม่เคยรู้ (The Ultimate Vow, Unknown to You)';
 
   @override
-  String get the300LoyalGhosts => 'The 300 Loyal Ghosts';
+  String get the300LoyalGhosts => '300 วิญญาณผู้ภักดี (The 300 Loyal Ghosts)';
 
   @override
-  String get homelandGuardian => 'Homeland Guardian';
+  String get homelandGuardian => 'ผู้พิทักษ์แผ่นดินเกิด (Homeland Guardian)';
 
   @override
-  String get loveIsAlwaysOnline => 'Love is Always Online';
+  String get loveIsAlwaysOnline => 'รักออนไลน์เสมอ (Love is Always Online)';
 
   @override
-  String get thePrincessDecree => 'The Princess Decree';
+  String get thePrincessDecree => 'โองการองค์หญิง (The Princess Decree)';
 
   @override
-  String get aVowInTheDark => 'A Vow in the Dark';
+  String get aVowInTheDark => 'คำสาบานในความมืด (A Vow in the Dark)';
 
   @override
-  String get aGirlLikeMe => 'A Girl Like Me';
+  String get aGirlLikeMe => 'ข้าก็เป็นสตรีเช่นนี้ (A Girl Like Me)';
 
   @override
-  String get iAmNobody => 'I Am Nobody';
+  String get iAmNobody => 'อัศวินพันธุ์แปลก (I Am Nobody)';
 
   @override
-  String get myMamaGo => 'My Mama Go!';
+  String get myMamaGo => 'คุณแม่สู้ๆ (My Mama Go!)';
 
   @override
-  String get myWesternRegionPrincess => 'My Western Region Princess';
+  String get myWesternRegionPrincess =>
+      'องค์หญิงแดนประจิมของฉัน (My Western Region Princess)';
 
   @override
-  String get aFlowerOnTheContinent => 'A Flower On The Continent';
+  String get aFlowerOnTheContinent =>
+      'บุปผาแห่งผืนแผ่นดิน (A Flower On The Continent)';
 
   @override
-  String get thePrincess => 'The Princess';
+  String get thePrincess => 'องค์หญิง (The Princess)';
 
   @override
-  String get sweetLoveVersion => 'Sweet Love Version';
+  String get sweetLoveVersion => 'เวอร์ชันรักหวานฉ่ำ';
 
   @override
-  String get hilariousFamily2 => 'Hilarious Family 2';
+  String get hilariousFamily2 => 'ครอบครัวหรรษา 2 (Hilarious Family 2)';
 
   @override
-  String get guYuanMountainHasASchool => 'Gu Yuan Mountain Has a School';
+  String get guYuanMountainHasASchool =>
+      'สำนักศึกษาแห่งเขาเฉิน (Gu Yuan Mountain Has a School)';
 
   @override
-  String get foreverYoung => 'Forever Young';
+  String get foreverYoung => 'เยาว์วัยนิรันดร์ (Forever Young)';
 
   @override
-  String get theHiddenHeirYeChen => 'The Hidden Heir Ye Chen';
+  String get theHiddenHeirYeChen =>
+      'ทายาทที่ซ่อนอยู่ เย่เฉิน (The Hidden Heir Ye Chen)';
 
   @override
-  String get extraordinary => 'Extraordinary';
+  String get extraordinary => 'เหนือธรรมดา (Extraordinary)';
 
   @override
-  String get sideStoryOfFoxVolant => 'Side Story of Fox Volant';
+  String get sideStoryOfFoxVolant =>
+      'จิ้งจอกอหังการ (Side Story of Fox Volant)';
 
   @override
-  String get loveOfTheDivineTree => 'Love of the Divine Tree';
+  String get loveOfTheDivineTree =>
+      'รักแห่งพฤกษาเทวะ (Love of the Divine Tree)';
 
   @override
-  String get rebirth => 'Rebirth';
+  String get rebirth => 'การเกิดใหม่ (Rebirth)';
 
   @override
-  String get moonlitReunion => 'Moonlit Reunion';
+  String get moonlitReunion => 'พบกันใต้แสงจันทร์ (Moonlit Reunion)';
 
   @override
-  String get videoCountsCannotBeNegative => 'Video counts cannot be negative.';
+  String get videoCountsCannotBeNegative => 'จำนวนวิดีโอต้องไม่เป็นค่าติดลบ';
 
   @override
-  String get publicDomainClassic => 'Public Domain Classic';
+  String get publicDomainClassic => 'วรรณกรรมคลาสสิกสาธารณสมบัติ';
 
   @override
-  String get idioms => 'Idioms';
+  String get idioms => 'สำนวนจีน';
 
   @override
-  String get news => 'News';
+  String get news => 'ข่าวสาร';
 
   @override
-  String get fairyTales => 'Fairy Tales';
+  String get fairyTales => 'นิทานและเทพนิยาย';
 
   @override
   String get hereIsAFascinatingCulturalExplanati =>
-      'Here is a fascinating cultural explanation';
+      'นี่คือคำอธิบายทางวัฒนธรรมที่น่าสนใจ';
 
   @override
-  String get videoFetchTimedOut => 'Video fetch timed out';
+  String get videoFetchTimedOut => 'หมดเวลาการดึงข้อมูลวิดีโอ';
 
   @override
-  String get aboutChannel => 'ABOUT CHANNEL';
+  String get aboutChannel => 'เกี่ยวกับช่อง';
 
   @override
-  String get noVideosFound => 'No videos found';
+  String get noVideosFound => 'ไม่พบวิดีโอ';
 
   @override
-  String get failedToLoadVideos => 'Failed to load videos';
+  String get failedToLoadVideos => 'โหลดวิดีโอไม่สำเร็จ';
 
   @override
   String get highqualityCuratedMandarinContentWi =>
-      'High-quality curated Mandarin content with natural vocabulary.';
+      'เนื้อหาภาษาจีนกลางคุณภาพสูงที่คัดสรรมาเป็นอย่างดีพร้อมคำศัพท์ธรรมชาติ';
 
   @override
   String get authenticSpokenChineseAcrossRealwor =>
-      'Authentic spoken Chinese across real-world themes and topics.';
+      'ภาษาจีนพูดแท้ๆ ในหัวข้อและบริบทโลกแห่งความจริง';
 
   @override
   String get engagingVideoMaterialWithInteractiv =>
-      'Engaging video material with interactive synchronized subtitles.';
+      'สื่อวิดีโอที่น่าติดตามพร้อมคำบรรยายอินเทอร์แอ็กทีฟที่ซิงค์ตรงกัน';
 
   @override
-  String get watchVideo => 'Watch Video';
+  String get watchVideo => 'ชมวิดีโอ';
 
   @override
-  String get culturalInsight => 'Cultural Insight';
+  String get culturalInsight => 'เกร็ดความรู้ทางวัฒนธรรม';
 
   @override
   String get aiIsAnalyzingCulturalContext =>
-      'AI is analyzing cultural context...';
+      'AI กำลังวิเคราะห์บริบททางวัฒนธรรม...';
 
   @override
-  String get diveIntoFullContent => 'Dive into Full Content';
+  String get diveIntoFullContent => 'เจาะลึกเนื้อหาฉบับเต็ม';
 
   @override
-  String get savedArticles => 'Saved Articles';
+  String get savedArticles => 'บทความที่บันทึกไว้';
 
   @override
-  String get liveOverlay => 'LIVE OVERLAY';
+  String get liveOverlay => 'โอเวอร์เลย์สด (LIVE OVERLAY)';
 
   @override
-  String get webExplorer => 'WEB EXPLORER';
+  String get webExplorer => 'ตัวสำรวจเว็บ (WEB EXPLORER)';
 
   @override
   String get browseAnyChineseWebsiteWithRealtime =>
-      'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.';
+      'ท่องเว็บไซต์ภาษาจีนด้วยพจนานุกรมแบบแตะทันใจ เสียงพินอิน และการแปลแบบเรียลไทม์';
 
   @override
-  String get startExploring => 'START EXPLORING';
+  String get startExploring => 'เริ่มสำรวจ';
 
   @override
   String get chineseTvSeriesWithInteractiveSubti =>
-      'Chinese TV series with interactive subtitles';
+      'ซีรีส์จีนพร้อมคำบรรยายแบบโต้ตอบ';
 
   @override
-  String get failedToLoadContent => 'Failed to load content';
+  String get failedToLoadContent => 'โหลดเนื้อหาไม่สำเร็จ';
 
   @override
-  String get searchingYoutube => 'Searching YouTube...';
+  String get searchingYoutube => 'กำลังค้นหาบน YouTube...';
 
   @override
   String get noVideosFoundTryADifferentSearchTer =>
-      'No videos found. Try a different search term.';
+      'ไม่พบวิดีโอ ลองค้นหาด้วยคำอื่น';
 
   @override
-  String get searching => 'Searching';
+  String get searching => 'กำลังค้นหา';
 
   @override
-  String get noShowsFound => 'No shows found';
+  String get noShowsFound => 'ไม่พบรายการ';
 
   @override
-  String get bookmarked => 'Bookmarked';
+  String get bookmarked => 'คั่นหน้าแล้ว';
 
   @override
-  String get trailer1 => 'Trailer';
+  String get trailer1 => 'ตัวอย่าง';
 
   @override
-  String get highlight1 => 'Highlight';
+  String get highlight1 => 'ไฮไลต์';
 
   @override
-  String get noCaptionsAvailable => 'No Captions Available';
+  String get noCaptionsAvailable => 'ไม่มีคำบรรยาย';
 
   @override
-  String get fetchingSubtitles => 'Fetching subtitles...';
+  String get fetchingSubtitles => 'กำลังดึงคำบรรยาย...';
 
   @override
-  String get generatingAiBriefing => 'Generating AI briefing...';
+  String get generatingAiBriefing => 'กำลังสร้างบทสรุป AI...';
 
   @override
   String get noClosedCaptionsCcFoundForThisVideo =>
-      'No Closed Captions (CC) found for this video.';
+      'ไม่พบคำบรรยาย (CC) สำหรับวิดีโอนี้';
 
   @override
   String get videosWithHardcodedOrBurnedinSubtit =>
-      'Videos with hardcoded or burned-in subtitles do not have digital text tracks available on YouTube.';
+      'วิดีโอที่มีซับไตเติลฝังอยู่ในภาพจะไม่มีไฟล์ข้อความดิจิทัลบน YouTube';
 
   @override
-  String get translatingSubtitles => 'Translating subtitles...';
+  String get translatingSubtitles => 'กำลังแปลคำบรรยาย...';
 
   @override
-  String get processingYourPronunciation => 'Processing your pronunciation...';
+  String get processingYourPronunciation => 'กำลังประมวลผลการออกเสียงของคุณ...';
 
   @override
-  String get couldntIdentifyLine => 'Couldn\'t identify line.';
+  String get couldntIdentifyLine => 'ไม่สามารถระบุประโยคได้';
 
   @override
-  String get listeningSpeakNow => 'Listening... speak now.';
+  String get listeningSpeakNow => 'กำลังฟัง... พูดได้เลย';
 
   @override
   String get thisVideoDoesNotHaveADigitalClosedC =>
-      'This video does not have a digital Closed Captions (CC) track on YouTube.';
+      'วิดีโอนี้ไม่มีแทร็กคำบรรยายดิจิทัล (CC) บน YouTube';
 
   @override
-  String get perfect1 => 'Perfect';
+  String get perfect1 => 'สมบูรณ์แบบ';
 
   @override
   String get thisVideoHasBeenRemovedOrIsNoLonger =>
-      'This video has been removed or is no longer available.';
+      'วิดีโอนี้ถูกลบออกแล้วหรือไม่พร้อมใช้งานอีกต่อไป';
 
   @override
   String get thisVideoCannotBePlayedInTheAppYouC =>
-      'This video cannot be played in the app. You can still watch it on YouTube.';
+      'วิดีโอนี้ไม่สามารถเล่นในแอปได้ คุณยังสามารถรับชมบน YouTube ได้';
 
   @override
   String get yourDeviceCannotPlayThisVideoPlease =>
-      'Your device cannot play this video. Please try a different one.';
+      'อุปกรณ์ของคุณไม่สามารถเล่นวิดีโอนี้ได้ กรุณาลองวิดีโออื่น';
 
   @override
   String get invalidVideoReferencePleaseTryAgain =>
-      'Invalid video reference. Please try again.';
+      'การอ้างอิงวิดีโอไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง';
 
   @override
   String get unableToLoadThisVideoPleaseTryAnoth =>
-      'Unable to load this video. Please try another one.';
+      'ไม่สามารถโหลดวิดีโอนี้ได้ กรุณาลองอีกครั้งด้วยวิดีโออื่น';
 
   @override
-  String get startReading => 'Start Reading';
+  String get startReading => 'เริ่มอ่าน';
 
   @override
-  String get analyzingCulturalContext => 'Analyzing cultural context...';
+  String get analyzingCulturalContext => 'กำลังวิเคราะห์บริบททางวัฒนธรรม...';
 
   @override
-  String get failedToLoadCulturalInsight => 'Failed to load cultural insight.';
+  String get failedToLoadCulturalInsight => 'โหลดเกร็ดวัฒนธรรมไม่สำเร็จ';
 
   @override
-  String get historicalContext => 'Historical Context';
+  String get historicalContext => 'บริบททางประวัติศาสตร์';
 
   @override
-  String get culturalSignificance => 'Cultural Significance';
+  String get culturalSignificance => 'ความสำคัญทางวัฒนธรรม';
 
   @override
-  String get authorBackground => 'Author Background';
+  String get authorBackground => 'ประวัติผู้ประพันธ์';
 
   @override
   String get k80CompleteClassicNovelsWorldEpics =>
-      '80+ Complete classic novels & world epics';
+      'นวนิยายคลาสสิกและมหากาพย์ระดับโลกฉบับสมบูรณ์กว่า 80 เรื่อง';
 
   @override
-  String get storyOfTheDay => 'STORY OF THE DAY';
+  String get storyOfTheDay => 'นิทานประจำวัน';
 
   @override
-  String get tangDynasty => 'Tang Dynasty';
+  String get tangDynasty => 'ราชวงศ์ถัง';
 
   @override
   String get poetryClassicalVerse => 'Poetry\', \'Classical\', \'Verse';
 
   @override
-  String get allHsk => 'All HSK';
+  String get allHsk => 'HSK ทั้งหมด';
 
   @override
   String get allStories => 'All Stories\' :';
 
   @override
-  String get keyWords => 'Key Words';
+  String get keyWords => 'คำสำคัญ';
 
   @override
-  String get openOriginalWebsite => 'Open Original Website';
+  String get openOriginalWebsite => 'เปิดเว็บไซต์ต้นฉบับ';
 
   @override
-  String get aiReadingTools => 'AI Reading Tools';
+  String get aiReadingTools => 'เครื่องมือช่วยอ่านด้วย AI';
 
   @override
   String get enhanceYourReadingWithAipoweredTool =>
-      'Enhance your reading with AI-powered tools';
+      'ยกระดับการอ่านของคุณด้วยเครื่องมือที่ขับเคลื่อนด้วย AI';
 
   @override
   String get chooseTheTargetDifficultyForSimplif =>
-      'Choose the target difficulty for simplification';
+      'เลือกระดับความยากเป้าหมายสำหรับการปรับให้อ่านง่าย';
 
   @override
   String get chooseDifficultyForSimplification =>
-      'Choose difficulty for simplification';
+      'เลือกระดับความยากสำหรับการปรับให้อ่านง่าย';
 
   @override
   String get extractAllUnknownWordsToANewFlashca =>
-      'Extract all unknown words to a new flashcard deck';
+      'สกัดคำศัพท์ที่ไม่คุ้นเคยทั้งหมดไปยังสำรับแฟลชการ์ดใหม่';
 
   @override
-  String get length => 'Length';
+  String get length => 'ความยาว';
 
   @override
   String get m1554846a550010707 => 'M15.54 8.46a5 5 0 0 1 0 7.07';
@@ -6298,711 +6403,758 @@ class AppLocalizationsTh extends AppLocalizations {
   String get m1907493a101000101414 => 'M19.07 4.93a10 10 0 0 1 0 14.14';
 
   @override
-  String get webExtraction => 'Web Extraction';
+  String get webExtraction => 'การสกัดข้อความจากเว็บ';
 
   @override
-  String get aiTools => 'AI Tools';
+  String get aiTools => 'เครื่องมือ AI';
 
   @override
-  String get stop => 'Stop';
+  String get stop => 'หยุด';
 
   @override
-  String get keepPracticing1 => 'Keep practicing';
+  String get keepPracticing1 => 'ฝึกฝนต่อไป';
 
   @override
-  String get aiPrepRoom => 'AI Prep Room';
+  String get aiPrepRoom => 'ห้องเตรียมตัว AI';
 
   @override
-  String get lessonSummary => 'LESSON SUMMARY';
+  String get lessonSummary => 'สรุปบทเรียน';
 
   @override
-  String get unlockSinosparkPremium => 'Unlock SinoSpark Premium';
+  String get unlockSinosparkPremium => 'ปลดล็อก SinoSpark พรีเมียม';
 
   @override
   String get monthYear => 'Month\' : \'Year';
 
   @override
-  String get enableNotifications => 'Enable Notifications';
+  String get enableNotifications => 'เปิดการแจ้งเตือน';
 
   @override
-  String get notificationsConfigured => 'Notifications Configured';
+  String get notificationsConfigured => 'ตั้งค่าการแจ้งเตือนเรียบร้อยแล้ว';
 
   @override
-  String get neverMissAStroke2 => 'Never Miss a Stroke';
+  String get neverMissAStroke2 => 'อย่าพลาดแม้แต่เส้นเดียว';
 
   @override
   String get yourDailyDropAndStreakAlertsArePrim =>
-      'Your daily drop and streak alerts are primed.';
+      'การแจ้งเตือนบทเรียนประจำวันและความต่อเนื่องพร้อมแล้ว';
 
   @override
   String get stayConsistentWithDailyRitualDropsA =>
-      'Stay consistent with daily ritual drops and timely trial reminders.';
+      'รักษาความต่อเนื่องด้วยบทเรียนประจำวันและการแจ้งเตือนช่วงทดลองใช้ที่ตรงเวลา';
 
   @override
   String get aNewWordAndStoryWaitingForYourDaily =>
-      'A new Word and Story waiting for your daily ritual.';
+      'คำศัพท์และนิทานใหม่พร้อมแล้วสำหรับกิจวัตรประจำวันของคุณ';
 
   @override
   String get gentlePromptsBeforeCharactersFadeFr =>
-      'Gentle prompts before characters fade from your memory.';
+      'เตือนความจำอย่างนุ่มนวลก่อนที่ตัวอักษรจะเลือนหายไปจากความจำ';
 
   @override
   String get receiveAReminder2DaysBeforeYourFree =>
-      'Receive a reminder 2 days before your free trial ends.';
+      'รับการแจ้งเตือน 2 วันก่อนที่ช่วงทดลองใช้ฟรีของคุณจะสิ้นสุดลง';
 
   @override
-  String get yourPathTonchineseFluency => 'Your Path to\\nChinese Fluency';
+  String get yourPathTonchineseFluency =>
+      'เส้นทางสู่ความคล่องแคล่ว\nในภาษาจีนของคุณ';
 
   @override
   String get answer3QuickQuestionsSoOurAiCanCraf =>
-      'Answer 3 quick questions so our AI can craft\\na curriculum that fits your life.';
+      'ตอบคำถามสั้นๆ 3 ข้อ เพื่อให้ AI ออกแบบ\nหลักสูตรที่เหมาะกับชีวิตของคุณ';
 
   @override
   String get whatIsYourLevelnwithChinese =>
-      'What is your level\\nwith Chinese?';
+      'ระดับภาษาจีนของคุณ\nอยู่ในระดับใด?';
 
   @override
   String get chooseThePathThatFitsYourDepth =>
-      'Choose the path that fits your depth.';
+      'เลือกเส้นทางที่เหมาะกับระดับความลึกซึ้งของคุณ';
 
   @override
-  String get whatDrivesYourStudy => 'What drives your study?';
+  String get whatDrivesYourStudy => 'อะไรคือแรงผลักดันในการเรียนของคุณ?';
 
   @override
-  String get purposeFuelsTheBrush => 'Purpose fuels the brush';
+  String get purposeFuelsTheBrush => 'เป้าหมายคือพลังขับเคลื่อนพู่กัน';
 
   @override
-  String get setYourDailyRitual => 'Set your daily ritual.';
+  String get setYourDailyRitual => 'ตั้งเวลากิจวัตรประจำวันของคุณ';
 
   @override
   String get youCanAdjustYourRitualAnyTime =>
-      'You can adjust your ritual any time.';
+      'คุณสามารถปรับเปลี่ยนเวลากิจวัตรได้ตลอดเวลา';
 
   @override
-  String get letsBegin => 'Let\'s Begin';
+  String get letsBegin => 'มาเริ่มกันเลย';
 
   @override
-  String get brandNew => 'Brand New';
+  String get brandNew => 'เริ่มต้นจากศูนย์';
 
   @override
-  String get iveNeverStudiedChineseBefore =>
-      'I\'ve never studied Chinese before.';
+  String get iveNeverStudiedChineseBefore => 'ฉันไม่เคยเรียนภาษาจีนมาก่อน';
 
   @override
   String get iKnowBasicCharactersAndPhrases =>
-      'I know basic characters and phrases.';
+      'ฉันรู้ตัวอักษรและวลีพื้นฐานบ้าง';
 
   @override
-  String get iCanHoldConversationsAndRead =>
-      'I can hold conversations and read.';
+  String get iCanHoldConversationsAndRead => 'ฉันสามารถสนทนาและอ่านได้';
 
   @override
   String get iWantToRefineAndPerfectMySkills =>
-      'I want to refine and perfect my skills.';
+      'ฉันต้องการขัดเกลาและพัฒนาทักษะให้สมบูรณ์แบบ';
 
   @override
-  String get confirmSelection => 'Confirm Selection';
+  String get confirmSelection => 'ยืนยันการเลือก';
 
   @override
   String get purposeFuelsTheBrushsMotion =>
-      'Purpose fuels the brush\'s motion.';
+      'เป้าหมายขับเคลื่อนทุกการตวัดพู่กัน';
 
   @override
-  String get buildMyPath => 'Build My Path';
+  String get buildMyPath => 'สร้างเส้นทางของฉัน';
 
   @override
-  String get hskCertification => 'HSK Certification';
+  String get hskCertification => 'การสอบวัดระดับ HSK';
 
   @override
-  String get culturalAppreciation => 'Cultural Appreciation';
+  String get culturalAppreciation => 'ความซาบซึ้งในวัฒนธรรม';
 
   @override
-  String get yourPlanIsReady => 'Your Plan is Ready';
+  String get yourPlanIsReady => 'แผนการเรียนของคุณพร้อมแล้ว';
 
   @override
-  String get craftingYourCurriculum => 'Crafting Your Curriculum';
+  String get craftingYourCurriculum => 'กำลังออกแบบหลักสูตรของคุณ';
 
   @override
-  String get personalizedPathInitialized => 'PERSONALIZED PATH INITIALIZED';
+  String get personalizedPathInitialized => 'เริ่มต้นเส้นทางเฉพาะบุคคลแล้ว';
 
   @override
-  String get calibratingAiNeuralMasters => 'CALIBRATING AI NEURAL MASTERS...';
+  String get calibratingAiNeuralMasters => 'กำลังปรับเทียบระบบประสาท AI...';
 
   @override
-  String get calibrationComplete => 'Calibration Complete';
+  String get calibrationComplete => 'ปรับเทียบเสร็จสมบูรณ์';
 
   @override
-  String get synthesizingModules => 'Synthesizing Modules...';
+  String get synthesizingModules => 'กำลังรวบรวมโมดูลบทเรียน...';
 
   @override
-  String get oneAndWater => 'One\' and \'Water';
+  String get oneAndWater => 'One\' และ \'Water';
 
   @override
-  String get theHorizontalStroke => 'THE HORIZONTAL STROKE';
+  String get theHorizontalStroke => 'เส้นขวาง (เหิง)';
 
   @override
-  String get theRadical => 'THE RADICAL';
+  String get theRadical => 'หมวดนำอักษร';
 
   @override
-  String get water => 'Water';
+  String get water => 'น้ำ';
 
   @override
-  String get river => 'River';
+  String get river => 'แม่น้ำ';
 
   @override
-  String get day5Reminder => 'Day 5 Reminder';
+  String get day5Reminder => 'การแจ้งเตือนวันที่ 5';
 
   @override
   String get wePromisedToAlertYou2DaysBeforeYour =>
-      'We promised to alert you 2 days before your trial ends so you';
+      'เราสัญญาว่าจะแจ้งเตือนคุณ 2 วันก่อนช่วงทดลองใช้สิ้นสุด เพื่อให้คุณ';
 
   @override
-  String get continueWithoutReminder => 'Continue without reminder';
+  String get continueWithoutReminder => 'ดำเนินการต่อโดยไม่แจ้งเตือน';
 
   @override
-  String get masterChineseWithnsinospark => 'Master Chinese with\\nSinoSpark';
+  String get masterChineseWithnsinospark => 'เก่งภาษาจีนไปกับ\nSinoSpark';
 
   @override
-  String get start7dayFreeTrial => 'Start 7-Day Free Trial';
+  String get start7dayFreeTrial => 'เริ่มทดลองใช้ฟรี 7 วัน';
 
   @override
-  String get precisionStrokes => 'Precision Strokes';
+  String get precisionStrokes => 'ขีดเขียนแม่นยำ';
 
   @override
-  String get aiPronunciation => 'AI Pronunciation';
+  String get aiPronunciation => 'การออกเสียงด้วย AI';
 
   @override
-  String get today => 'Today';
+  String get today => 'วันนี้';
 
   @override
-  String get fullAccess => 'Full Access';
+  String get fullAccess => 'เข้าถึงได้ทุกฟีเจอร์';
 
   @override
-  String get day5 => 'Day 5';
+  String get day5 => 'วันที่ 5';
 
   @override
-  String get reminder => 'Reminder';
+  String get reminder => 'แจ้งเตือน';
 
   @override
-  String get day7 => 'Day 7';
+  String get day7 => 'วันที่ 7';
 
   @override
-  String get trialBegins => 'Trial Begins';
+  String get trialBegins => 'เริ่มการทดลองใช้';
 
   @override
   String get revenuecatIsMissingACurrentOffering =>
-      'RevenueCat is missing a Current Offering or Packages. Please configure your Dashboard.';
+      'RevenueCat ไม่มี Current Offering หรือ Packages กรุณากำหนดค่าในแดชบอร์ดของคุณ';
 
   @override
   String get cameraPermissionRequiredForLiveScan =>
-      'Camera permission required for live scanning.';
+      'จำเป็นต้องได้รับสิทธิ์การเข้าถึงกล้องสำหรับการสแกนสด';
 
   @override
-  String get cameraAccessRequired => 'Camera Access Required';
+  String get cameraAccessRequired => 'จำเป็นต้องเข้าถึงกล้อง';
 
   @override
   String get pleaseEnableCameraAccessInYourDevic =>
-      'Please enable camera access in your device settings to use this feature.';
+      'กรุณาเปิดใช้งานการเข้าถึงกล้องในการตั้งค่าอุปกรณ์เพื่อใช้งานฟีเจอร์นี้';
 
   @override
-  String get alignChineseTextWithinFrame => 'Align Chinese text within frame';
+  String get alignChineseTextWithinFrame => 'จัดวางข้อความภาษาจีนให้อยู่ในกรอบ';
 
   @override
-  String get inLibrary => 'In Library';
+  String get inLibrary => 'อยู่ในคลังแล้ว';
 
   @override
-  String get novice => 'Novice';
+  String get novice => 'ผู้เริ่มต้น';
 
   @override
-  String get apprentice => 'Apprentice';
+  String get apprentice => 'ผู้ฝึกฝน';
 
   @override
-  String get artisan => 'Artisan';
+  String get artisan => 'ช่างฝีมือ';
 
   @override
-  String get grandmaster => 'Grandmaster';
+  String get grandmaster => 'ปรมาจารย์';
 
   @override
-  String get poem => 'Poem';
+  String get poem => 'บทกวี';
 
   @override
-  String get theNarrative => 'The Narrative';
+  String get theNarrative => 'การเล่าเรื่อง';
 
   @override
-  String get classicMasterpiece => 'Classic Masterpiece';
+  String get classicMasterpiece => 'ผลงานชิ้นเอกคลาสสิก';
 
   @override
-  String get classicAuthor => 'Classic Author';
+  String get classicAuthor => 'ผู้ประพันธ์คลาสสิก';
 
   @override
-  String get classical => 'Classical';
+  String get classical => 'คลาสสิกโบราณ';
 
   @override
   String get classicLiterature => 'Classic\', \'Literature';
 
   @override
   String inThisChapterOf(Object title) {
-    return 'In this chapter of';
+    return 'ในบทนี้ของ';
   }
 
   @override
   String get asTheNarrativeUnfoldsItIlluminatesT =>
-      'As the narrative unfolds, it illuminates the fundamental wisdom of life and lasting inspiration.';
+      'เมื่อเรื่องราวดำเนินไป ยิ่งสะท้อนถึงภูมิปัญญาพื้นฐานของชีวิตและแรงบันดาลใจอันไม่รู้จบ';
 
   @override
-  String get general => 'General';
+  String get general => 'ทั่วไป';
 
   @override
-  String get mythology => 'Mythology';
+  String get mythology => 'เทพปกรณัม';
 
   @override
-  String get dailyLife => 'Daily Life';
+  String get dailyLife => 'ชีวิตประจำวัน';
 
   @override
-  String get tangPoetry => 'Tang Poetry';
+  String get tangPoetry => 'กวีนิพนธ์ราชวงศ์ถัง';
 
   @override
-  String get classicalLiterature => 'Classical Literature';
+  String get classicalLiterature => 'วรรณกรรมคลาสสิก';
 
   @override
-  String get justNow => 'Just now';
+  String get justNow => 'เมื่อสักครู่';
 
   @override
   String get theTerracottaArmyOfQinShiHuang =>
-      'The Terracotta Army of Qin Shi Huang';
+      'กองทัพทหารดินเผาของจิ๋นซีฮ่องเต้';
 
   @override
-  String get lifeInsideTheForbiddenCity => 'Life inside the Forbidden City';
+  String get lifeInsideTheForbiddenCity => 'ชีวิตภายในพระราชวังต้องห้าม';
 
   @override
   String get buyingATicketAndTakingTheHighSpeedT =>
-      'Buying a ticket and taking the high speed train in China';
+      'การซื้อตั๋วและโดยสารรถไฟความเร็วสูงในประเทศจีน';
 
   @override
   String get goingToTheHospitalForAColdAndSeeing =>
-      'Going to the hospital for a cold and seeing a doctor';
+      'การไปโรงพยาบาลเพราะเป็นหวัดและพบแพทย์';
 
   @override
   String get goingToALocalRestaurantToOrderJiaoz =>
-      'Going to a local restaurant to order Jiaozi (dumplings)';
+      'การไปร้านอาหารท้องถิ่นเพื่อสั่งเกี๊ยว (เจี่ยวจื่อ)';
 
   @override
-  String get theTraditionalGongfuTeaCeremony =>
-      'The traditional Gongfu tea ceremony';
+  String get theTraditionalGongfuTeaCeremony => 'พิธีชงชากังฟูดั้งเดิม';
 
   @override
   String get theArtOfWritingChineseCharactersWit =>
-      'The art of writing Chinese characters with a brush';
+      'ศิลปะการเขียนตัวอักษรจีนด้วยพู่กัน';
 
   @override
   String get theLifeAndConservationOfGiantPandas =>
-      'The life and conservation of Giant Pandas';
+      'ชีวิตและการอนุรักษ์แพนด้ายักษ์';
 
   @override
-  String get storyNotFoundInDatabase => 'Story not found in database';
+  String get storyNotFoundInDatabase => 'ไม่พบเรื่องราวในฐานข้อมูล';
 
   @override
-  String get storyTextIsEmpty => 'Story text is empty';
+  String get storyTextIsEmpty => 'ข้อความเนื้อเรื่องว่างเปล่า';
 
   @override
-  String get myCustomStories => 'My Custom Stories';
+  String get myCustomStories => 'นิทานกำหนดเองของฉัน';
 
   @override
-  String get userProvidedText => 'User provided text';
+  String get userProvidedText => 'ข้อความที่ผู้ใช้ระบุ';
 
   @override
-  String get local => 'Local';
+  String get local => 'ในเครื่อง';
 
   @override
-  String get voiceEngineAllowance => 'Voice Engine & Allowance';
+  String get voiceEngineAllowance => 'ระบบเสียงและโควตาการใช้งาน';
 
   @override
   String get studioHdVsUnlimitedStandardVoice =>
-      'Studio HD vs. Unlimited Standard Voice';
+      'Studio HD เทียบกับ เสียงมาตรฐานแบบไม่จำกัด';
 
   @override
   String get standardVoiceIs100UnlimitedFree =>
-      'Standard Voice is 100% Unlimited & Free';
+      'เสียงมาตรฐานใช้งานได้ฟรี 100% ไม่จำกัด';
 
   @override
-  String get read => 'Read';
+  String get read => 'อ่าน';
 
   @override
-  String get koreKoreFemaleWarm => 'Kore\', \'Kore\', \'Female, warm';
+  String get koreKoreFemaleWarm => 'Kore\', \'Kore\', \'หญิง, อบอุ่น';
 
   @override
-  String get aoedeAoedeFemaleCheerful =>
-      'Aoede\', \'Aoede\', \'Female, cheerful';
+  String get aoedeAoedeFemaleCheerful => 'Aoede\', \'Aoede\', \'หญิง, ร่าเริง';
 
   @override
-  String get fenrirFenrirMaleUpbeat => 'Fenrir\', \'Fenrir\', \'Male, upbeat';
+  String get fenrirFenrirMaleUpbeat => 'Fenrir\', \'Fenrir\', \'ชาย, สดใส';
 
   @override
   String get charonCharonMaleNewsstyle =>
-      'Charon\', \'Charon\', \'Male, news-style';
+      'Charon\', \'Charon\', \'ชาย, สไตล์ผู้ประกาศข่าว';
 
   @override
-  String get puckPuckMaleSporty => 'Puck\', \'Puck\', \'Male, sporty';
+  String get puckPuckMaleSporty => 'Puck\', \'Puck\', \'ชาย, กระฉับกระเฉง';
 
   @override
   String get localOndevice => 'Local\', \'On-device';
 
   @override
-  String get localOndeviceTts => 'Local on-device TTS';
+  String get localOndeviceTts => 'TTS ในอุปกรณ์ของเครื่อง';
 
   @override
-  String get off => 'Off';
+  String get off => 'ปิด';
 
   @override
-  String get endOfCurrentChapter => 'End of Current Chapter';
+  String get endOfCurrentChapter => 'จบบทปัจจุบัน';
 
   @override
-  String get standardVoice => 'Standard Voice';
+  String get standardVoice => 'เสียงมาตรฐาน';
 
   @override
   String get noNovelsFoundMatchingYourFilter =>
-      'No novels found matching your filter.';
+      'ไม่พบนวนิยายที่ตรงกับตัวกรองของคุณ';
 
   @override
   String get noMicroreadsFoundMatchingYourFilter =>
-      'No micro-reads found matching your filter.';
+      'ไม่พบบทอ่านสั้นที่ตรงกับตัวกรองของคุณ';
 
   @override
   String get noPoemsFoundMatchingYourFilter =>
-      'No poems found matching your filter.';
+      'ไม่พบบทกวีที่ตรงกับตัวกรองของคุณ';
 
   @override
-  String get audiobook => 'Audiobook';
+  String get audiobook => 'หนังสือเสียง';
 
   @override
-  String get audio => 'Audio';
+  String get audio => 'เสียง';
 
   @override
-  String get continueReading => 'Continue Reading';
+  String get continueReading => 'อ่านต่อ';
 
   @override
   String get search96FullNovelsAuthorsEpics =>
-      'Search 96 full novels, authors, epics...';
+      'ค้นหานวนิยายฉบับเต็ม 96 เรื่อง ผู้ประพันธ์ มหากาพย์...';
 
   @override
   String get searchClassicalPoemsAuthorsVerses =>
-      'Search classical poems, authors, verses...';
+      'ค้นหาบทกวีคลาสสิก ผู้ประพันธ์ วรรคทอง...';
 
   @override
-  String get allLevelsVal => 'All Levels';
+  String get allLevelsVal => 'ทุกระดับ';
 
   @override
-  String get hsk1BeginnerVal => 'HSK 1 (Beginner)';
+  String get hsk1BeginnerVal => 'HSK 1 (ระดับต้น)';
 
   @override
-  String get hsk2ElementaryVal => 'HSK 2 (Elementary)';
+  String get hsk2ElementaryVal => 'HSK 2 (ระดับประถม)';
 
   @override
-  String get hsk3IntermediateVal => 'HSK 3 (Intermediate)';
+  String get hsk3IntermediateVal => 'HSK 3 (ระดับกลาง)';
 
   @override
-  String get hsk4UpperIntVal => 'HSK 4 (Upper Int)';
+  String get hsk4UpperIntVal => 'HSK 4 (ระดับกลางค่อนสูง)';
 
   @override
-  String get listenToAudiobook => 'Listen to Audiobook';
+  String get listenToAudiobook => 'ฟังหนังสือเสียง';
 
   @override
-  String get synopsis => 'Synopsis';
+  String get synopsis => 'เรื่องย่อ';
 
   @override
-  String get peoplesArtist => 'People\'s Artist\'.';
+  String get peoplesArtist => 'ศิลปินแห่งประชาชน\'.';
 
   @override
   String get kafkaesqueForBureaucraticAbsurdityA =>
-      'Kafkaesque\' for bureaucratic absurdity, alienation, and existential dread.';
+      'Kafkaesque\' สำหรับความไร้สาระของระบบราชการ ความแปลกแยก และความสิ้นหวังในการมีอยู่';
 
   @override
-  String get bigBrotherAndNewspeak => 'Big Brother\', and \'Newspeak\'.';
+  String get bigBrotherAndNewspeak => 'Big Brother\', และ \'Newspeak\'.';
 
   @override
-  String get audiobookIncluded => 'Audiobook Included';
+  String get audiobookIncluded => 'รวมหนังสือเสียงแล้ว';
 
   @override
-  String get readPoem => 'Read Poem';
+  String get readPoem => 'อ่านบทกวี';
 
   @override
-  String get studioVoiceAllowance => 'Studio Voice Allowance';
+  String get studioVoiceAllowance => 'โควตาเสียง Studio';
 
   @override
   String get weeklyHighdefinitionAiRecitation =>
-      'Weekly High-Definition AI Recitation';
+      'การอ่านออกเสียงด้วย AI คุณภาพสูงระดับ HD ประจำสัปดาห์';
 
   @override
-  String get resetsEveryMondayAt0000 => 'Resets every Monday at 00:00';
+  String get resetsEveryMondayAt0000 => 'รีเซ็ตทุกวันจันทร์ เวลา 00:00 น.';
 
   @override
   String get whenYourWeekly4hourStudioAllowanceI =>
-      'When your weekly 4-hour Studio allowance is used, the app automatically switches to On-Device Voice for unlimited, free listening without interruption.';
+      'เมื่อใช้โควตาเสียง Studio ครบ 4 ชั่วโมงต่อสัปดาห์แล้ว แอปจะเปลี่ยนไปใช้เสียงในเครื่องโดยอัตโนมัติ เพื่อให้คุณฟังต่อได้ฟรีไม่จำกัดโดยไม่สะดุด';
 
   @override
   String get localDeviceVoice => 'Local device voice\' :';
 
   @override
-  String get classicalVerse => 'Classical Verse';
+  String get classicalVerse => 'กวีนิพนธ์คลาสสิก';
 
   @override
-  String get ondeviceVoice4hWeeklyUsed => 'On-Device Voice (4h weekly used)';
+  String get ondeviceVoice4hWeeklyUsed =>
+      'เสียงในเครื่อง (ใช้โควตา 4 ชม./สัปดาห์แล้ว)';
 
   @override
   String get generateACustomAiStoryBasedOnYourIn =>
-      'Generate a custom AI story based on your interests';
+      'สร้างนิทาน AI กำหนดเองตามความสนใจของคุณ';
 
   @override
   String get insteadOfAFixedHskLevelTheFlowState =>
-      'Instead of a fixed HSK level, the Flow State Engine analyzes your Flashcard Library.\\n\\n';
+      'แทนที่จะใช้ระดับ HSK คงที่ Flow State Engine จะวิเคราะห์คลังแฟลชการ์ดของคุณ\\n\\n';
 
   @override
-  String get we => 'We';
+  String get we => 'เรา';
 
   @override
-  String get howCanWeHelpYou => 'How can we help you?';
+  String get howCanWeHelpYou => 'เราสามารถช่วยเหลือคุณได้อย่างไร?';
 
   @override
   String get everythingYouNeedToKnowAboutHanziMa =>
-      'Everything you need to know about Hanzi Master, its features, and your privacy.';
+      'ทุกสิ่งที่คุณจำเป็นต้องรู้เกี่ยวกับ Hanzi Master ฟีเจอร์ต่างๆ และความเป็นส่วนตัวของคุณ';
 
   @override
   String get whoAreTheVoicesSpeakingInTheApp =>
-      'Who are the voices speaking in the app?';
+      'ใครคือเจ้าของเสียงที่พูดในแอป?';
 
   @override
-  String get howDoesTheWebExplorerWork => 'How does the Web Explorer work?';
+  String get howDoesTheWebExplorerWork => 'ตัวสำรวจเว็บทำงานอย่างไร?';
 
   @override
-  String get whatIsZenMode => 'What is Zen Mode?';
+  String get whatIsZenMode => 'โหมด Zen คืออะไร?';
 
   @override
   String get howDoesTheFlashcardSpacedrepetition =>
-      'How does the Flashcard spaced-repetition work?';
+      'ระบบการทบทวนแบบเว้นระยะของแฟลชการ์ดทำงานอย่างไร?';
 
   @override
-  String get traceComplete => 'Trace Complete!';
+  String get traceComplete => 'ลากเส้นเสร็จสมบูรณ์!';
 
   @override
-  String get traceCharacter => 'Trace Character';
+  String get traceCharacter => 'ลากเส้นตามตัวอักษร';
 
   @override
-  String get analyzingWordRelationships => 'Analyzing word relationships...';
+  String get analyzingWordRelationships => 'กำลังวิเคราะห์ความสัมพันธ์ของคำ...';
 
   @override
-  String get identifyingUsageContexts => 'Identifying usage contexts...';
+  String get identifyingUsageContexts => 'กำลังระบุบริบทการใช้งาน...';
 
   @override
-  String get comparingFormalityLevels => 'Comparing formality levels...';
+  String get comparingFormalityLevels =>
+      'กำลังเปรียบเทียบระดับความเป็นทางการ...';
 
   @override
-  String get findingCommonCollocations => 'Finding common collocations...';
+  String get findingCommonCollocations => 'กำลังค้นหาคำที่มักใช้ร่วมกัน...';
 
   @override
-  String get generatingComparison => 'Generating comparison...';
+  String get generatingComparison => 'กำลังสร้างการเปรียบเทียบ...';
 
   @override
   String get generationIsTakingLongerThanExpecte =>
-      'Generation is taking longer than expected. The AI may be overloaded.';
+      'การประมวลผลใช้เวลานานกว่าปกติ AI อาจกำลังทำงานหนัก';
 
   @override
   String get generationInterruptedShowingPartial =>
-      'Generation interrupted. Showing partial result.';
+      'การประมวลผลถูกขัดจังหวะ กำลังแสดงผลลัพธ์บางส่วน';
 
   @override
-  String get sorrySomethingWentWrong => 'Sorry, something went wrong.';
+  String get sorrySomethingWentWrong => 'ขออภัย เกิดข้อผิดพลาดบางอย่าง';
 
   @override
   String get usage => 'Usage:\', \'';
 
   @override
-  String get alsoSeenIn => 'Also seen in';
+  String get alsoSeenIn => 'พบได้ใน';
 
   @override
-  String get quickLook => 'Quick Look';
+  String get quickLook => 'ดูอย่างรวดเร็ว';
 
   @override
-  String get notFound => 'Not found';
+  String get notFound => 'ไม่พบข้อมูล';
 
   @override
-  String get errorLoadingFromAi => 'Error loading from AI.';
+  String get errorLoadingFromAi => 'เกิดข้อผิดพลาดในการโหลดข้อมูลจาก AI';
 
   @override
-  String get newLabel => 'New';
+  String get analyzingImage => 'กำลังวิเคราะห์รูปภาพ...';
 
   @override
-  String get analyzingImage => 'Analyzing image...';
+  String get extractingChineseText => 'กำลังสกัดข้อความภาษาจีน...';
 
   @override
-  String get extractingChineseText => 'Extracting Chinese text...';
+  String get lookingUpVocabulary => 'กำลังค้นหาคำศัพท์...';
 
   @override
-  String get lookingUpVocabulary => 'Looking up vocabulary...';
+  String get dreamOfTheRedChamber => 'ความฝันในหอแดง';
 
   @override
-  String get dreamOfTheRedChamber => 'Dream of the Red Chamber';
+  String get journeyToTheWest => 'ไซอิ๋ว';
 
   @override
-  String get journeyToTheWest => 'Journey to the West';
+  String get romanceOfTheThreeKingdoms => 'สามก๊ก';
 
   @override
-  String get romanceOfTheThreeKingdoms => 'Romance of the Three Kingdoms';
+  String get mingDynasty => 'ราชวงศ์หมิง';
 
   @override
-  String get mingDynasty => 'Ming Dynasty';
+  String get wuChengEn => 'อู๋เฉิงเอิน';
 
   @override
-  String get wuChengEn => 'Wu Cheng\'en';
+  String get hundredChapters => '100 บท';
 
   @override
-  String get hundredChapters => '100 Chapters';
-
-  @override
-  String get volume1 => 'Volume 1';
+  String get volume1 => 'เล่มที่ 1';
 
   @override
   String bookmarksCount(Object count) {
-    return 'Bookmarks ($count)';
+    return 'ที่คั่นหน้า ($count)';
   }
 
   @override
   String get noBookmarksYet =>
-      'No bookmarks yet. Tap the bookmark icon to save a passage.';
+      'ยังไม่มีที่คั่นหน้า แตะไอคอนที่คั่นหน้าเพื่อบันทึกข้อความ';
 
   @override
-  String get sinosparkIsNotResponding => 'SinoSpark isn\'t responding';
+  String get sinosparkIsNotResponding => 'SinoSpark ไม่ตอบสนอง';
 
   @override
-  String get closeApp => 'Close app';
+  String get closeApp => 'ปิดแอป';
 
   @override
-  String get wait => 'Wait';
+  String get wait => 'รอ';
 
   @override
   String studioHdAllowance(Object hours) {
-    return 'Studio HD: ${hours}h';
+    return 'Studio HD: $hours ชม.';
   }
 
   @override
   String bookPercentRead(Object percent) {
-    return 'Book $percent%';
+    return 'อ่านไปแล้ว $percent%';
   }
 
   @override
   String chAbbreviation(Object number) {
-    return 'Ch. $number';
+    return 'บทที่ $number';
   }
 
   @override
   String booksAndAudiobooks(Object count) {
-    return '$count Books & Audiobooks';
+    return 'หนังสือและหนังสือเสียง $count รายการ';
   }
 
   @override
   String sentenceXOfY(Object current, Object total) {
-    return 'Sentence $current of $total';
+    return 'ประโยคที่ $current จาก $total';
   }
 
   @override
   String chapterXOfY(Object current, Object total) {
-    return 'Chapter $current of $total';
+    return 'บทที่ $current จาก $total';
   }
 
   @override
-  String get allLevels => 'All Levels';
+  String get allLevels => 'ทุกระดับ';
 
   @override
   String get searchGradedMicroStories =>
-      'Search graded micro-stories & fables...';
+      'ค้นหานิทานขนาดสั้นและนิทานอีสปตามระดับ...';
 
   @override
   String gradedStoriesAndMicroReads(Object count) {
-    return '$count Graded Stories & Daily Micro-Reads';
+    return 'นิทานตามระดับและบทอ่านสั้นรายวัน $count เรื่อง';
   }
 
   @override
-  String get searchClassicalPoems =>
-      'Search classical poems, authors, verses...';
+  String get searchClassicalPoems => 'ค้นหาบทกวีคลาสสิก ผู้ประพันธ์ วรรคทอง...';
 
   @override
   String classicalPoemsAndVerse(Object count) {
-    return '$count Classical Poems & Verse';
+    return 'บทกวีและกวีนิพนธ์คลาสสิก $count บท';
   }
 
   @override
   String get browseAnyChineseWebsite =>
-      'Browse any Chinese website with real-time tap dictionary, pinyin annotations & instant translations.';
+      'ท่องเว็บไซต์ภาษาจีนด้วยพจนานุกรมแบบแตะทันใจ เสียงพินอิน และการแปลแบบเรียลไทม์';
 
   @override
-  String get completed => 'COMPLETED';
+  String get completed => 'เสร็จสมบูรณ์';
 
   @override
-  String get aiIsReading => 'AI is reading...';
+  String get aiIsReading => 'AI กำลังอ่าน...';
 
   @override
-  String get bbcVerify => 'BBC VERIFY';
+  String get bbcVerify => 'บีบีซี ตรวจสอบข้อเท็จจริง (BBC VERIFY)';
 
   @override
-  String get hsk5AdvancedVal => 'HSK 5 (Advanced)';
+  String get hsk5AdvancedVal => 'HSK 5 (ระดับสูง)';
 
   @override
-  String get hsk1Beginner => 'HSK 1 (Beginner)';
+  String get hsk1Beginner => 'HSK 1 (ระดับต้น)';
 
   @override
-  String get hsk4UpperInt => 'HSK 4 (Upper Int)';
+  String get hsk4UpperInt => 'HSK 4 (ระดับกลางค่อนสูง)';
 
   @override
   String get extractAllUnknownWords =>
-      'Extract all unknown words to a new flashcard deck';
+      'สกัดคำศัพท์ที่ไม่คุ้นเคยทั้งหมดไปยังสำรับแฟลชการ์ดใหม่';
 
   @override
   String get designCustomAiRoleplay =>
-      'Design custom AI roleplay & conversation';
+      'ออกแบบการสนทนาและการจำลองบทบาท AI กำหนดเอง';
 
   @override
   String get practiceFlashcardVocabulary =>
-      'Practice flashcard vocabulary in a live dialogue';
+      'ฝึกฝนคำศัพท์จากแฟลชการ์ดในบทสนทนาจริง';
 
   @override
-  String get surpriseMe => 'Surprise Me';
+  String get surpriseMe => 'สุ่มให้ฉัน';
 
   @override
-  String get rollCharacter => 'Roll Character';
+  String get rollCharacter => 'สุ่มตัวละคร';
 
   @override
-  String get historicalCostume => 'Historical / Costume';
+  String get historicalCostume => 'ย้อนยุค / เครื่องแต่งกายโบราณ';
 
   @override
-  String get modernYouth => 'Modern & Youth';
+  String get modernYouth => 'ยุคใหม่และวัยรุ่น';
 
   @override
-  String get fantasyMythology => 'Fantasy & Mythology';
+  String get fantasyMythology => 'แฟนตาซีและเทพนิยาย';
 
   @override
-  String get familyDrama => 'Family & Drama';
+  String get familyDrama => 'ครอบครัวและดราม่า';
 
   @override
-  String get fullVersion => 'Full Version';
+  String get fullVersion => 'ฉบับเต็ม';
 
   @override
   String episodesCount(Object count) {
-    return '$count episodes';
+    return '$count ตอน';
   }
 
   @override
   String episodeLabel(Object number) {
-    return 'EP$number';
+    return 'ตอนที่ $number';
   }
 
   @override
-  String get translating => '[ Translating... ]';
+  String get translating => '[ กำลังแปล... ]';
 
   @override
-  String get engSub => '[ENG SUB]';
+  String get engSub => '[ซับอังกฤษ]';
 
   @override
-  String get standardVocabulary => 'Standard Vocabulary';
+  String get standardVocabulary => 'คำศัพท์มาตรฐาน';
 
   @override
-  String get characters => 'characters';
+  String get characters => 'ตัวอักษร';
+
+  @override
+  String get todayDashboard => 'Today';
+
+  @override
+  String get studyToday => 'Study today\'s cards';
+
+  @override
+  String get studyAhead => 'Study ahead';
+
+  @override
+  String get studyAheadDescription =>
+      'Practice the nearest scheduled reviews without using today\'s quota. No new cards are introduced.';
+
+  @override
+  String get studyAheadComplete => 'Study-ahead practice complete';
+
+  @override
+  String get dueNow => 'Due now';
+
+  @override
+  String get scheduled => 'Scheduled';
+
+  @override
+  String get sevenDayForecast => '7-day review forecast';
+
+  @override
+  String get reviews => 'Reviews';
+
+  @override
+  String get newCardsLabel => 'New cards';
+
+  @override
+  String get attempts => 'Attempts';
+
+  @override
+  String get duration => 'Time';
+
+  @override
+  String get answerBreakdown => 'Answer breakdown';
+
+  @override
+  String get reviewCards => 'Review cards';
+
+  @override
+  String get retries => 'Retries';
+
+  @override
+  String get needsPractice => 'Needs practice';
+
+  @override
+  String get uniqueCardsStudied => 'Cards';
 }

@@ -29,6 +29,9 @@ class ReviewStatsModel extends HiveObject {
   @HiveField(7)
   final int? successCount;
 
+  @HiveField(8)
+  final DateTime? introducedAt;
+
   ReviewStatsModel({
     required this.nextReviewDate,
     required this.interval,
@@ -38,6 +41,7 @@ class ReviewStatsModel extends HiveObject {
     this.attempts = 0,
     this.lastAttemptDate,
     this.successCount = 0,
+    this.introducedAt,
   });
 
   factory ReviewStatsModel.fromEntity(ReviewStats stats) {
@@ -50,6 +54,7 @@ class ReviewStatsModel extends HiveObject {
       attempts: stats.attempts,
       lastAttemptDate: stats.lastAttemptDate,
       successCount: stats.successCount,
+      introducedAt: stats.introducedAt,
     );
   }
 
@@ -63,6 +68,7 @@ class ReviewStatsModel extends HiveObject {
       attempts: attempts ?? 0,
       lastAttemptDate: lastAttemptDate,
       successCount: successCount ?? 0,
+      introducedAt: introducedAt,
     );
   }
 }

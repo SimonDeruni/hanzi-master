@@ -25,13 +25,14 @@ class ReviewStatsModelAdapter extends TypeAdapter<ReviewStatsModel> {
       attempts: fields[5] as int?,
       lastAttemptDate: fields[6] as DateTime?,
       successCount: fields[7] as int?,
+      introducedAt: fields[8] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ReviewStatsModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.nextReviewDate)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class ReviewStatsModelAdapter extends TypeAdapter<ReviewStatsModel> {
       ..writeByte(6)
       ..write(obj.lastAttemptDate)
       ..writeByte(7)
-      ..write(obj.successCount);
+      ..write(obj.successCount)
+      ..writeByte(8)
+      ..write(obj.introducedAt);
   }
 
   @override

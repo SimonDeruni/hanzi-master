@@ -24,7 +24,7 @@ class DailyDiscovery extends _$DailyDiscovery {
 
     final now = DateTime.now();
     final todayString = "${now.year}-${now.month}-${now.day}";
-    const cacheVersion = "v4"; // Bump to bust the cache
+    const cacheVersion = "v5"; // Bust cached BBC homepage fallback entries.
 
     final cacheDate = prefs.getString('daily_discovery_cache_date');
     final cacheData = prefs.getString('daily_discovery_cache_data');
@@ -89,28 +89,7 @@ class DailyDiscovery extends _$DailyDiscovery {
 
   Future<DailyMediaItem> _fetchArticle() async {
     final repo = DailyDiscoveryRepository();
-    try {
-      return await repo.getDailyArticle().timeout(
-            const Duration(seconds: 4),
-            onTimeout: () => DailyMediaItem(
-              title: "BBC 中文网",
-              subtitle: "Current Events in Simplified Chinese",
-              url: "https://www.bbc.com/zhongwen/simp",
-              imageUrl:
-                  "https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png",
-              tag: "2 MIN CULTURAL CONTEXT",
-            ),
-          );
-    } catch (_) {
-      return DailyMediaItem(
-        title: "BBC 中文网",
-        subtitle: "Current Events in Simplified Chinese",
-        url: "https://www.bbc.com/zhongwen/simp",
-        imageUrl:
-            "https://ichef.bbci.co.uk/news/1024/branded_zhongwen/154F3/production/_115651738_1.jpg",
-        tag: "2 MIN CULTURAL CONTEXT",
-      );
-    }
+    return repo.getDailyArticle();
   }
 }
 

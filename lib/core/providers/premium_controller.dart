@@ -12,7 +12,8 @@ class PremiumController extends _$PremiumController {
     final isPremium = await MonetizationService.checkPremiumStatus();
     if (isPremium) {
       final notificationService = ref.read(notificationServiceProvider);
-      await MonetizationService.checkTrialAndScheduleReminder(notificationService);
+      await MonetizationService.checkTrialAndScheduleReminder(
+          notificationService);
     }
     return isPremium;
   }
@@ -24,16 +25,22 @@ class PremiumController extends _$PremiumController {
       final isPremium = await MonetizationService.checkPremiumStatus();
       if (isPremium) {
         final notificationService = ref.read(notificationServiceProvider);
-        await MonetizationService.checkTrialAndScheduleReminder(notificationService);
+        await MonetizationService.checkTrialAndScheduleReminder(
+            notificationService);
       }
       state = AsyncValue.data(isPremium);
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);
     }
   }
-  
+
+  /// Reflects a temporary premium grant immediately in the current UI.
+  void grantTemporaryAccess() {
+    state = const AsyncValue.data(true);
+  }
+
   /// A debug tool to force unlock premium features locally during development
   void debugUnlock() {
-    state = const AsyncValue.data(true);
+    grantTemporaryAccess();
   }
 }

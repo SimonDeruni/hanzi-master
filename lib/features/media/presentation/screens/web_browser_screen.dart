@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
@@ -603,6 +603,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
     showModalBottomSheet(
         context: context,
+      useRootNavigator: true,
         backgroundColor: bgColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
@@ -700,6 +701,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
     showModalBottomSheet(
         context: context,
+      useRootNavigator: true,
         backgroundColor: bgColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
@@ -1428,6 +1430,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                               final selectedLevel =
                                   await showModalBottomSheet<int>(
                                 context: context,
+      useRootNavigator: true,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.vertical(
                                         top: Radius.circular(20))),

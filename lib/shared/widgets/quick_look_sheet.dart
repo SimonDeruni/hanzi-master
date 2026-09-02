@@ -1,4 +1,4 @@
-import 'package:hanzi_master/l10n/app_localizations.dart';
+﻿import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -410,6 +410,7 @@ class _FoundBody extends ConsumerWidget {
                     } else {
                       showModalBottomSheet(
                         context: context,
+      useRootNavigator: true,
                         isScrollControlled: true,
                         useSafeArea: true,
                         backgroundColor: Colors.transparent,

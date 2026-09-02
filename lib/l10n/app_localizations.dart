@@ -74,7 +74,8 @@ import 'app_localizations_vi.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -82,7 +83,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -94,7 +96,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -1952,7 +1955,7 @@ abstract class AppLocalizations {
   /// No description provided for @startSession.
   ///
   /// In en, this message translates to:
-  /// **'START SESSION'**
+  /// **'Start session'**
   String get startSession;
 
   /// No description provided for @sessionHistory.
@@ -2410,6 +2413,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Starting session...'**
   String get startingSession;
+
+  /// No description provided for @studySession.
+  ///
+  /// In en, this message translates to:
+  /// **'Study session'**
+  String get studySession;
+
+  /// No description provided for @readyToStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to study'**
+  String get readyToStudy;
+
+  /// No description provided for @studyQueuePreviewDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session is based on today\'s schedule and deck limits.'**
+  String get studyQueuePreviewDescription;
+
+  /// No description provided for @notNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get notNow;
+
+  /// No description provided for @newLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newLabel;
+
+  /// No description provided for @studyDeckEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'This deck is empty'**
+  String get studyDeckEmpty;
+
+  /// No description provided for @studyDeckEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Add cards before starting a study session.'**
+  String get studyDeckEmptyDescription;
+
+  /// No description provided for @studyDailyLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s limit is complete'**
+  String get studyDailyLimitReached;
+
+  /// No description provided for @studyDailyLimitReachedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used this deck\'s new-card or review allowance for today.'**
+  String get studyDailyLimitReachedDescription;
+
+  /// No description provided for @studyCaughtUpDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing else is scheduled for today. Come back for the next review.'**
+  String get studyCaughtUpDescription;
+
+  /// No description provided for @noCardsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards available'**
+  String get noCardsAvailable;
+
+  /// No description provided for @studyNoEligibleCardsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards are eligible for this study mode right now.'**
+  String get studyNoEligibleCardsDescription;
+
+  /// No description provided for @studySessionLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this study session. Please try again.'**
+  String get studySessionLoadFailed;
+
+  /// No description provided for @retryLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'This card will return in your next session.'**
+  String get retryLimitReached;
 
   /// No description provided for @masterBuildingBlocks.
   ///
@@ -4306,6 +4393,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Privacy & Audio'**
   String get privacyAndAudio;
+
+  /// No description provided for @aiDataPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Data & Privacy'**
+  String get aiDataPrivacyTitle;
+
+  /// No description provided for @aiDataPrivacySettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See what AI features send, why, and to whom'**
+  String get aiDataPrivacySettingsSubtitle;
+
+  /// No description provided for @aiDataPrivacyOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When AI is used'**
+  String get aiDataPrivacyOverviewTitle;
+
+  /// No description provided for @aiDataPrivacyOverviewBody.
+  ///
+  /// In en, this message translates to:
+  /// **'SinoSpark uses cloud AI only when you choose a feature that needs it, such as AI chat, explanations, translation, image analysis, speech recognition, pronunciation grading, or cloud voices. AI output can be inaccurate, so review important results.'**
+  String get aiDataPrivacyOverviewBody;
+
+  /// No description provided for @aiDataPrivacyProvidersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI service providers'**
+  String get aiDataPrivacyProvidersTitle;
+
+  /// No description provided for @aiDataPrivacyProvidersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Gemini processes generative text and image requests. OpenRouter routes some generative requests to Google Gemini or DeepSeek. Microsoft Azure AI Speech processes speech recognition, pronunciation assessment, and text sent for cloud voice synthesis.'**
+  String get aiDataPrivacyProvidersBody;
+
+  /// No description provided for @aiDataPrivacySentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data that may be sent'**
+  String get aiDataPrivacySentTitle;
+
+  /// No description provided for @aiDataPrivacySentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Depending on the feature, we send the text you enter or select, relevant conversation or lesson context, images you choose for AI analysis, voice recordings you submit, and technical request data such as IP address and device/network metadata. We do not intentionally include your name or email in AI prompts.'**
+  String get aiDataPrivacySentBody;
+
+  /// No description provided for @aiDataPrivacyControlsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your choices'**
+  String get aiDataPrivacyControlsTitle;
+
+  /// No description provided for @aiDataPrivacyControlsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not use an AI feature if you do not want its input sent to the named provider. You can deny camera, photo, or microphone permission in device Settings. Choose the Local voice to keep text-to-speech on your device. Avoid submitting sensitive or confidential information.'**
+  String get aiDataPrivacyControlsBody;
+
+  /// No description provided for @aiDataPrivacyRetentionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage and retention'**
+  String get aiDataPrivacyRetentionTitle;
+
+  /// No description provided for @aiDataPrivacyRetentionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'SinoSpark does not intentionally store raw AI prompts, submitted images, or voice recordings on its own servers after processing. Generated results may be saved on your device or with your account when you choose to save them. Providers process data under their own terms and configured retention controls; see the full policy for details.'**
+  String get aiDataPrivacyRetentionBody;
+
+  /// No description provided for @readFullPrivacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Full Privacy Policy'**
+  String get readFullPrivacyPolicy;
+
+  /// No description provided for @linkOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the link. Please try again.'**
+  String get linkOpenFailed;
 
   /// No description provided for @puSonglingLiterature.
   ///
@@ -12473,12 +12644,6 @@ abstract class AppLocalizations {
   /// **'Error loading from AI.'**
   String get errorLoadingFromAi;
 
-  /// No description provided for @newLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'New'**
-  String get newLabel;
-
   /// No description provided for @analyzingImage.
   ///
   /// In en, this message translates to:
@@ -12772,9 +12937,112 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'characters'**
   String get characters;
+
+  /// No description provided for @todayDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get todayDashboard;
+
+  /// No description provided for @studyToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Study today\'s cards'**
+  String get studyToday;
+
+  /// No description provided for @studyAhead.
+  ///
+  /// In en, this message translates to:
+  /// **'Study ahead'**
+  String get studyAhead;
+
+  /// No description provided for @studyAheadDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice the nearest scheduled reviews without using today\'s quota. No new cards are introduced.'**
+  String get studyAheadDescription;
+
+  /// No description provided for @studyAheadComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Study-ahead practice complete'**
+  String get studyAheadComplete;
+
+  /// No description provided for @dueNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Due now'**
+  String get dueNow;
+
+  /// No description provided for @scheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get scheduled;
+
+  /// No description provided for @sevenDayForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'7-day review forecast'**
+  String get sevenDayForecast;
+
+  /// No description provided for @reviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviews'**
+  String get reviews;
+
+  /// No description provided for @newCardsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New cards'**
+  String get newCardsLabel;
+
+  /// No description provided for @attempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Attempts'**
+  String get attempts;
+
+  /// No description provided for @duration.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get duration;
+
+  /// No description provided for @answerBreakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer breakdown'**
+  String get answerBreakdown;
+
+  /// No description provided for @reviewCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Review cards'**
+  String get reviewCards;
+
+  /// No description provided for @retries.
+  ///
+  /// In en, this message translates to:
+  /// **'Retries'**
+  String get retries;
+
+  /// No description provided for @needsPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs practice'**
+  String get needsPractice;
+
+  /// No description provided for @uniqueCardsStudied.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get uniqueCardsStudied;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -12783,37 +13051,63 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'pt', 'ru', 'th', 'vi'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'ar',
+        'de',
+        'en',
+        'es',
+        'fr',
+        'hi',
+        'id',
+        'it',
+        'ja',
+        'ko',
+        'pt',
+        'ru',
+        'th',
+        'vi'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'de': return AppLocalizationsDe();
-    case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
-    case 'fr': return AppLocalizationsFr();
-    case 'hi': return AppLocalizationsHi();
-    case 'id': return AppLocalizationsId();
-    case 'it': return AppLocalizationsIt();
-    case 'ja': return AppLocalizationsJa();
-    case 'ko': return AppLocalizationsKo();
-    case 'pt': return AppLocalizationsPt();
-    case 'ru': return AppLocalizationsRu();
-    case 'th': return AppLocalizationsTh();
-    case 'vi': return AppLocalizationsVi();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'de':
+      return AppLocalizationsDe();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'hi':
+      return AppLocalizationsHi();
+    case 'id':
+      return AppLocalizationsId();
+    case 'it':
+      return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'th':
+      return AppLocalizationsTh();
+    case 'vi':
+      return AppLocalizationsVi();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

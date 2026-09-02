@@ -67,7 +67,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get aiTutorRateLimit => 'The AI tutor is busy right now. Please wait a moment and try again.';
+  String get aiTutorRateLimit =>
+      'The AI tutor is busy right now. Please wait a moment and try again.';
 
   @override
   String get deleteAccount => 'खाता हटाएं';
@@ -76,37 +77,43 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteAccountSubtitle => 'अपना खाता स्थायी रूप से हटाएं';
 
   @override
-  String get deleteAccountTitle => 'क्या आप अपना खाता स्थायी रूप से हटाना चाहते हैं?';
+  String get deleteAccountTitle =>
+      'क्या आप अपना खाता स्थायी रूप से हटाना चाहते हैं?';
 
   @override
   String get accountDataDeletedTitle => 'खाते का डेटा हटा दिया जाएगा';
 
   @override
-  String get accountDataDeletedBody => 'SinoSpark द्वारा रखा गया आपका साइन-इन खाता और खाता विवरण स्थायी रूप से हटा दिया जाएगा। इसे पूर्ववत नहीं किया जा सकता।';
+  String get accountDataDeletedBody =>
+      'SinoSpark द्वारा रखा गया आपका साइन-इन खाता और खाता विवरण स्थायी रूप से हटा दिया जाएगा। इसे पूर्ववत नहीं किया जा सकता।';
 
   @override
   String get localDataKeptTitle => 'इस डिवाइस का डेटा सुरक्षित रहेगा';
 
   @override
-  String get localDataKeptBody => 'केवल इस डिवाइस पर संग्रहीत अध्ययन प्रगति, डाउनलोड की गई सामग्री और प्राथमिकताएं नहीं हटाई जाएंगी।';
+  String get localDataKeptBody =>
+      'केवल इस डिवाइस पर संग्रहीत अध्ययन प्रगति, डाउनलोड की गई सामग्री और प्राथमिकताएं नहीं हटाई जाएंगी।';
 
   @override
   String get subscriptionNotCanceledTitle => 'सदस्यता रद्द नहीं होगी';
 
   @override
-  String get subscriptionNotCanceledBody => 'अपना खाता हटाने से App Store की सदस्यता रद्द नहीं होती है। जब तक आप इसे Apple के माध्यम से रद्द नहीं करते, इसका नवीनीकरण जारी रह सकता है।';
+  String get subscriptionNotCanceledBody =>
+      'अपना खाता हटाने से App Store की सदस्यता रद्द नहीं होती है। जब तक आप इसे Apple के माध्यम से रद्द नहीं करते, इसका नवीनीकरण जारी रह सकता है।';
 
   @override
   String get manageSubscription => 'App Store सदस्यता प्रबंधित करें';
 
   @override
-  String get subscriptionManagementFailed => 'Apple सदस्यता प्रबंधन खोला नहीं जा सका। सेटिंग्स खोलें, अपने नाम पर टैप करें, फिर \'सदस्यताएं\' चुनें।';
+  String get subscriptionManagementFailed =>
+      'Apple सदस्यता प्रबंधन खोला नहीं जा सका। सेटिंग्स खोलें, अपने नाम पर टैप करें, फिर \'सदस्यताएं\' चुनें।';
 
   @override
   String get confirmPassword => 'वर्तमान पासवर्ड';
 
   @override
-  String get confirmPasswordToDelete => 'अपनी पहचान की पुष्टि करने के लिए पासवर्ड दर्ज करें।';
+  String get confirmPasswordToDelete =>
+      'अपनी पहचान की पुष्टि करने के लिए पासवर्ड दर्ज करें।';
 
   @override
   String get deleteAccountPermanently => 'खाता स्थायी रूप से हटाएं';
@@ -115,40 +122,51 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteAccountFinalTitle => 'अंतिम पुष्टि';
 
   @override
-  String get deleteAccountFinalWarning => 'यह आपके खाते को स्थायी रूप से हटा देगा और इसे पूर्ववत नहीं किया जा सकता। केवल इस डिवाइस पर संग्रहीत डेटा सुरक्षित रहेगा। क्या आप जारी रखना चाहते हैं?';
+  String get deleteAccountFinalWarning =>
+      'यह आपके खाते को स्थायी रूप से हटा देगा और इसे पूर्ववत नहीं किया जा सकता। केवल इस डिवाइस पर संग्रहीत डेटा सुरक्षित रहेगा। क्या आप जारी रखना चाहते हैं?';
 
   @override
   String get deletingAccount => 'खाता हटाया जा रहा है...';
 
   @override
-  String get accountPasswordRequired => 'जारी रखने के लिए अपना वर्तमान पासवर्ड दर्ज करें।';
+  String get accountPasswordRequired =>
+      'जारी रखने के लिए अपना वर्तमान पासवर्ड दर्ज करें।';
 
   @override
-  String get accountPasswordIncorrect => 'पासवर्ड गलत है। कृपया पुनः प्रयास करें।';
+  String get accountPasswordIncorrect =>
+      'पासवर्ड गलत है। कृपया पुनः प्रयास करें।';
 
   @override
-  String get accountReauthenticationCanceled => 'पहचान की पुष्टि रद्द कर दी गई। आपका खाता नहीं हटाया गया।';
+  String get accountReauthenticationCanceled =>
+      'पहचान की पुष्टि रद्द कर दी गई। आपका खाता नहीं हटाया गया।';
 
   @override
-  String get accountReauthenticationFailed => 'हम आपकी पहचान की पुष्टि नहीं कर सके। कृपया पुनः प्रयास करें और साइन-इन पूरा करें।';
+  String get accountReauthenticationFailed =>
+      'हम आपकी पहचान की पुष्टि नहीं कर सके। कृपया पुनः प्रयास करें और साइन-इन पूरा करें।';
 
   @override
-  String get accountAlreadySignedOut => 'आप पहले ही साइन आउट कर चुके हैं। कोई खाता नहीं हटाया गया।';
+  String get accountAlreadySignedOut =>
+      'आप पहले ही साइन आउट कर चुके हैं। कोई खाता नहीं हटाया गया।';
 
   @override
-  String get accountProviderUnsupported => 'ऐप में इस साइन-इन विधि को सत्यापित नहीं किया जा सकता। खाता हटाने में सहायता के लिए सहायता केंद्र से संपर्क करें।';
+  String get accountProviderUnsupported =>
+      'ऐप में इस साइन-इन विधि को सत्यापित नहीं किया जा सकता। खाता हटाने में सहायता के लिए सहायता केंद्र से संपर्क करें।';
 
   @override
-  String get appleDeletionRequiresAppleDevice => 'सुरक्षा कारणों से, Apple से जुड़ा खाता Apple डिवाइस पर ही हटाया जाना चाहिए।';
+  String get appleDeletionRequiresAppleDevice =>
+      'सुरक्षा कारणों से, Apple से जुड़ा खाता Apple डिवाइस पर ही हटाया जाना चाहिए।';
 
   @override
-  String get accountDeletionNetworkError => 'अपना इंटरनेट कनेक्शन जांचें और खाता दोबारा हटाने का प्रयास करें।';
+  String get accountDeletionNetworkError =>
+      'अपना इंटरनेट कनेक्शन जांचें और खाता दोबारा हटाने का प्रयास करें।';
 
   @override
-  String get accountDeletionFailed => 'खाता हटाया नहीं जा सका। आपका खाता अभी भी सक्रिय है। कृपया पुनः प्रयास करें।';
+  String get accountDeletionFailed =>
+      'खाता हटाया नहीं जा सका। आपका खाता अभी भी सक्रिय है। कृपया पुनः प्रयास करें।';
 
   @override
-  String get accountDeletedSuccessfully => 'आपका खाता स्थायी रूप से हटा दिया गया है।';
+  String get accountDeletedSuccessfully =>
+      'आपका खाता स्थायी रूप से हटा दिया गया है।';
 
   @override
   String get globalMastery => 'संपूर्ण महारत';
@@ -436,7 +454,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get hardMode => 'कठिन मोड';
 
   @override
-  String get hardModeDesc => 'बिना किसी दृश्य सहायता के सटीक इनपुट की आवश्यकता होती है।';
+  String get hardModeDesc =>
+      'बिना किसी दृश्य सहायता के सटीक इनपुट की आवश्यकता होती है।';
 
   @override
   String get adaptiveGuidance => 'अनुकूली मार्गदर्शन';
@@ -463,7 +482,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get useEnglishDefinitions => 'अंग्रेज़ी परिभाषाएँ उपयोग करें';
 
   @override
-  String get useEnglishDefinitionsDesc => 'अंग्रेज़ी परिभाषाएँ आम तौर पर अधिक सटीक और विस्तृत होती हैं';
+  String get useEnglishDefinitionsDesc =>
+      'अंग्रेज़ी परिभाषाएँ आम तौर पर अधिक सटीक और विस्तृत होती हैं';
 
   @override
   String get animationSpeed => 'एनिमेशन गति';
@@ -481,7 +501,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get resetAllData => 'सभी डेटा रीसेट करें';
 
   @override
-  String get resetDataDesc => 'यह आपके सभी प्रगति डेटा, आँकड़े और सेटिंग्स को स्थायी रूप से हटा देगा। यह क्रिया पूर्ववत नहीं की जा सकती।';
+  String get resetDataDesc =>
+      'यह आपके सभी प्रगति डेटा, आँकड़े और सेटिंग्स को स्थायी रूप से हटा देगा। यह क्रिया पूर्ववत नहीं की जा सकती।';
 
   @override
   String get areYouSure => 'क्या आप सुनिश्चित हैं?';
@@ -553,7 +574,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get tapCardToReveal => 'दिखाने के लिए कार्ड पर टैप करें';
 
   @override
-  String get ratePronunciationConfidence => 'अपने उच्चारण आत्मविश्वास को रेट करें';
+  String get ratePronunciationConfidence =>
+      'अपने उच्चारण आत्मविश्वास को रेट करें';
 
   @override
   String get botchedIt => 'पूरी तरह से गलत';
@@ -616,13 +638,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get travelInterpreter => 'यात्रा दुभाषिया';
 
   @override
-  String get realTimeSplitScreen => 'मूल वक्ता के साथ वास्तविक समय में स्प्लिट-स्क्रीन बातचीत। भाषा की बाधाओं को तुरंत दूर करें।';
+  String get realTimeSplitScreen =>
+      'मूल वक्ता के साथ वास्तविक समय में स्प्लिट-स्क्रीन बातचीत। भाषा की बाधाओं को तुरंत दूर करें।';
 
   @override
   String get whisperEarpiece => 'फुसफुसाहट इयरपीस';
 
   @override
-  String get listenToChineseAudio => 'चीनी ऑडियो सुनें और अपनी स्क्रीन पर सीधे वास्तविक समय में हिंदी अनुवाद प्राप्त करें।';
+  String get listenToChineseAudio =>
+      'चीनी ऑडियो सुनें और अपनी स्क्रीन पर सीधे वास्तविक समय में हिंदी अनुवाद प्राप्त करें।';
 
   @override
   String get dashboardTitle => 'डैशबोर्ड';
@@ -666,7 +690,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get begin => 'शुरू करें';
 
   @override
-  String get poweredByAi => 'उन्नत AI द्वारा संचालित। किसी भी स्थिति के लिए सहज वास्तविक समय अनुवाद।';
+  String get poweredByAi =>
+      'उन्नत AI द्वारा संचालित। किसी भी स्थिति के लिए सहज वास्तविक समय अनुवाद।';
 
   @override
   String get downloadingModel => 'मॉडल डाउनलोड हो रहा है...';
@@ -687,7 +712,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get step6Context => 'चरण 6: संदर्भ';
 
   @override
-  String get tapBuildingBlocksTo => 'उनके मूल को जानने के लिए बिल्डिंग ब्लॉक्स पर टैप करें।';
+  String get tapBuildingBlocksTo =>
+      'उनके मूल को जानने के लिए बिल्डिंग ब्लॉक्स पर टैप करें।';
 
   @override
   String get initiateRadicalSequence => 'रेडिकल अनुक्रम प्रारंभ करें';
@@ -705,7 +731,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get pronunciation => 'उच्चारण';
 
   @override
-  String get selectAScenarioTo => 'अपनी बोली जाने वाली मंदारिन का अभ्यास करने के लिए एक परिदृश्य चुनें। विद्वान आपके स्वर और स्पष्टता का मूल्यांकन करेंगे।';
+  String get selectAScenarioTo =>
+      'अपनी बोली जाने वाली मंदारिन का अभ्यास करने के लिए एक परिदृश्य चुनें। विद्वान आपके स्वर और स्पष्टता का मूल्यांकन करेंगे।';
 
   @override
   String get create => 'बनाएँ';
@@ -744,10 +771,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get startPractice => 'अभ्यास शुरू करें';
 
   @override
-  String get noOtherHsk1 => 'कोई अन्य HSK 1 वर्ण इस रेडिकल का उपयोग नहीं करता है।';
+  String get noOtherHsk1 =>
+      'कोई अन्य HSK 1 वर्ण इस रेडिकल का उपयोग नहीं करता है।';
 
   @override
-  String get couldNotLoadAi => 'AI संदर्भ लोड नहीं हो सका। (दर सीमा या नेटवर्क त्रुटि)\nबाद में पुनः प्रयास करने के लिए नीचे दिए गए रिफ्रेश बटन पर टैप करें।';
+  String get couldNotLoadAi =>
+      'AI संदर्भ लोड नहीं हो सका। (दर सीमा या नेटवर्क त्रुटि)\nबाद में पुनः प्रयास करने के लिए नीचे दिए गए रिफ्रेश बटन पर टैप करें।';
 
   @override
   String get noAvailableCardsFound => 'कोई उपलब्ध कार्ड नहीं मिला।';
@@ -810,7 +839,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get radicalsIndex => 'रेडिकल्स इंडेक्स';
 
   @override
-  String get masteringRadicalsIsThe => 'रेडिकल में महारत हासिल करना हजारों हान्ज़ी को समझने की कुंजी है। इसका उपयोग करने वाले सभी वर्णों को देखने के लिए एक रेडिकल चुनें।';
+  String get masteringRadicalsIsThe =>
+      'रेडिकल में महारत हासिल करना हजारों हान्ज़ी को समझने की कुंजी है। इसका उपयोग करने वाले सभी वर्णों को देखने के लिए एक रेडिकल चुनें।';
 
   @override
   String get noRadicalsFound => 'कोई रेडिकल नहीं मिला।';
@@ -828,7 +858,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get contactUs => 'हमसे संपर्क करें';
 
   @override
-  String get reportBugsOrRequest => 'बग की रिपोर्ट करें या सुविधाओं का अनुरोध करें';
+  String get reportBugsOrRequest =>
+      'बग की रिपोर्ट करें या सुविधाओं का अनुरोध करें';
 
   @override
   String get allDataHasBeen => 'सभी डेटा मिटा दिया गया है।';
@@ -846,7 +877,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiStory => 'AI कहानी';
 
   @override
-  String get usingYourDecksVocabulary => 'आपके डेक की शब्दावली का उपयोग करते हुए';
+  String get usingYourDecksVocabulary =>
+      'आपके डेक की शब्दावली का उपयोग करते हुए';
 
   @override
   String get tryAgain => 'पुनः प्रयास करें';
@@ -861,7 +893,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get fullTranslation => 'पूर्ण अनुवाद';
 
   @override
-  String get geminiFlashIsStructuring => 'Gemini Flash आपकी कहानी तैयार कर रहा है...';
+  String get geminiFlashIsStructuring =>
+      'Gemini Flash आपकी कहानी तैयार कर रहा है...';
 
   @override
   String get aiDeckGenerator => 'AI डेक जनरेटर';
@@ -900,7 +933,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get addToDefaultStudy => 'डिफ़ॉल्ट अध्ययन डेक में जोड़ें';
 
   @override
-  String get ifOffItsOnly => 'यदि बंद किया गया है, तो यह केवल सामान्य शब्दकोश में सहेजा जाएगा';
+  String get ifOffItsOnly =>
+      'यदि बंद किया गया है, तो यह केवल सामान्य शब्दकोश में सहेजा जाएगा';
 
   @override
   String get saveToLibrary => 'पुस्तकालय में सहेजें';
@@ -912,7 +946,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get reviewAiCard => 'AI कार्ड की समीक्षा करें';
 
   @override
-  String get pleaseDoublecheckTheAis => 'कृपया नीचे AI के आउटपुट की दोबारा जाँच करें। इसे अपनी स्थायी लाइब्रेरी में सहेजने से पहले पिनयिन या परिभाषा को बदलने के लिए स्वतंत्र महसूस करें।';
+  String get pleaseDoublecheckTheAis =>
+      'कृपया नीचे AI के आउटपुट की दोबारा जाँच करें। इसे अपनी स्थायी लाइब्रेरी में सहेजने से पहले पिनयिन या परिभाषा को बदलने के लिए स्वतंत्र महसूस करें।';
 
   @override
   String get alreadyInYourLibrary => 'पहले से ही आपकी लाइब्रेरी में है!';
@@ -927,7 +962,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get addToLibrary => 'पुस्तकालय में जोड़ें';
 
   @override
-  String get masterYourMandarinPronunciation => 'वास्तविक समय में मूल उच्चारण का अनुकरण करके अपने मंदारिन उच्चारण में महारत हासिल करें।';
+  String get masterYourMandarinPronunciation =>
+      'वास्तविक समय में मूल उच्चारण का अनुकरण करके अपने मंदारिन उच्चारण में महारत हासिल करें।';
 
   @override
   String get startSession => 'सत्र शुरू करें';
@@ -959,7 +995,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get sessionSaved => 'सत्र सहेजा गया!';
 
   @override
-  String get realtimeBidirectionalTranslationSpeak => 'वास्तविक समय में द्वि-दिशात्मक अनुवाद। हिंदी या मंदारिन बोलें, और यह आपके और आपके साथी के लिए तुरंत अनुवाद करेगा।';
+  String get realtimeBidirectionalTranslationSpeak =>
+      'वास्तविक समय में द्वि-दिशात्मक अनुवाद। हिंदी या मंदारिन बोलें, और यह आपके और आपके साथी के लिए तुरंत अनुवाद करेगा।';
 
   @override
   String get text_1782026184665 => 'रिकॉर्डिंग';
@@ -968,7 +1005,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get recording => 'रिकॉर्डिंग';
 
   @override
-  String get yourSilentCompanionListen => 'आपका शांत साथी। मंदारिन सुनें और तुरंत हिंदी अनुवाद प्राप्त करें।';
+  String get yourSilentCompanionListen =>
+      'आपका शांत साथी। मंदारिन सुनें और तुरंत हिंदी अनुवाद प्राप्त करें।';
 
   @override
   String get startListening => 'सुनना शुरू करें';
@@ -980,10 +1018,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get independentStars => 'स्वतंत्र सितारे';
 
   @override
-  String get notEveryCharacterHas => 'हर वर्ण का एक मूल रेडिकल नहीं होता है। कुछ अद्वितीय पिक्टोग्राफ होते हैं या अपने आप में पूर्ण होते हैं।';
+  String get notEveryCharacterHas =>
+      'हर वर्ण का एक मूल रेडिकल नहीं होता है। कुछ अद्वितीय पिक्टोग्राफ होते हैं या अपने आप में पूर्ण होते हैं।';
 
   @override
-  String get onTheMapWe => 'मानचित्र पर, हम इन स्वतंत्र वर्णों को नक्षत्रों (✨) में समूहित करते हैं।';
+  String get onTheMapWe =>
+      'मानचित्र पर, हम इन स्वतंत्र वर्णों को नक्षत्रों (✨) में समूहित करते हैं।';
 
   @override
   String get iUnderstand => 'समझ गया';
@@ -992,13 +1032,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get whatAreRadicals => 'रेडिकल क्या हैं?';
 
   @override
-  String get hanziAreBuiltFrom => 'हान्ज़ी बिल्डिंग ब्लॉक्स से बने होते हैं जिन्हें रेडिकल कहा जाता है।\n\nवे वर्ण को उसका मुख्य अर्थ या विषय देते हैं।';
+  String get hanziAreBuiltFrom =>
+      'हान्ज़ी बिल्डिंग ब्लॉक्स से बने होते हैं जिन्हें रेडिकल कहा जाता है।\n\nवे वर्ण को उसका मुख्य अर्थ या विषय देते हैं।';
 
   @override
   String get continueText => 'जारी रखें';
 
   @override
-  String get hanziAreNotJust => 'हान्ज़ी केवल अक्षर नहीं हैं। वे समय में जमे हुए चित्र हैं।\n\nउनमें महारत हासिल करने के लिए, आपको उनके प्रवाह को समझना सीखना होगा।';
+  String get hanziAreNotJust =>
+      'हान्ज़ी केवल अक्षर नहीं हैं। वे समय में जमे हुए चित्र हैं।\n\nउनमें महारत हासिल करने के लिए, आपको उनके प्रवाह को समझना सीखना होगा।';
 
   @override
   String get iAmReady => 'मैं तैयार हूँ';
@@ -1007,7 +1049,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youAreAScholar => 'आप एक विद्वान हैं';
 
   @override
-  String get theGalaxyMapAwaitsnmaster => 'आकाशगंगा का नक्शा आपका इंतजार कर रहा है।\nग्रहों (वर्णों) को अनलॉक करने के लिए सूर्यों (रेडिकल्स) में महारत हासिल करें।';
+  String get theGalaxyMapAwaitsnmaster =>
+      'आकाशगंगा का नक्शा आपका इंतजार कर रहा है।\nग्रहों (वर्णों) को अनलॉक करने के लिए सूर्यों (रेडिकल्स) में महारत हासिल करें।';
 
   @override
   String get enterTheScroll => 'स्क्रॉल में प्रवेश करें';
@@ -1022,7 +1065,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get theScholarsEdition => 'विद्वान संस्करण';
 
   @override
-  String get weArePreparingThe => 'हम विद्वान संस्करण को लॉन्च करने की तैयारी कर रहे हैं।';
+  String get weArePreparingThe =>
+      'हम विद्वान संस्करण को लॉन्च करने की तैयारी कर रहे हैं।';
 
   @override
   String get devBypassUnlockNow => 'डेवलपर बायपास: अभी अनलॉक करें';
@@ -1031,16 +1075,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get restorePurchases => 'खरीदारी बहाल करें';
 
   @override
-  String get welcomeScholarTheScroll => 'स्वागत है, विद्वान। स्क्रॉल आपके लिए पूरी तरह खुला है।';
+  String get welcomeScholarTheScroll =>
+      'स्वागत है, विद्वान। स्क्रॉल आपके लिए पूरी तरह खुला है।';
 
   @override
   String get purchasesRestoredSuccessfully => 'खरीदारी सफलतापूर्वक बहाल की गई।';
 
   @override
-  String get noPreviousPurchasesFound => 'इस खाते पर कोई पिछली खरीदारी नहीं मिली।';
+  String get noPreviousPurchasesFound =>
+      'इस खाते पर कोई पिछली खरीदारी नहीं मिली।';
 
   @override
-  String get unlockTheFullPotential => 'अपनी यात्रा की पूरी क्षमता को अनलॉक करें। एक बार की खरीदारी, हमेशा के लिए आपकी।';
+  String get unlockTheFullPotential =>
+      'अपनी यात्रा की पूरी क्षमता को अनलॉक करें। एक बार की खरीदारी, हमेशा के लिए आपकी।';
 
   @override
   String get universalScanner => 'यूनिवर्सल स्कैनर';
@@ -1052,10 +1099,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get addedNewCharactersTo => 'आपकी लाइब्रेरी में नए वर्ण जोड़े गए!';
 
   @override
-  String get extractingTextAndObjects => 'टेक्स्ट और वस्तुओं को निकाला जा रहा है...';
+  String get extractingTextAndObjects =>
+      'टेक्स्ट और वस्तुओं को निकाला जा रहा है...';
 
   @override
-  String get scanATextbookSign => 'चीनी वर्णों को निकालने के लिए एक पाठ्यपुस्तक, साइनबोर्ड या वस्तु को स्कैन करें।';
+  String get scanATextbookSign =>
+      'चीनी वर्णों को निकालने के लिए एक पाठ्यपुस्तक, साइनबोर्ड या वस्तु को स्कैन करें।';
 
   @override
   String get extractedText => 'निकाला गया टेक्स्ट';
@@ -1064,7 +1113,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get useText => 'टेक्स्ट का उपयोग करें';
 
   @override
-  String get noMatchingDictionaryEntries => 'कोई मिलान वाली शब्दकोश प्रविष्टियां नहीं मिलीं।';
+  String get noMatchingDictionaryEntries =>
+      'कोई मिलान वाली शब्दकोश प्रविष्टियां नहीं मिलीं।';
 
   @override
   String get quizComplete => 'क्विज़ पूर्ण!';
@@ -1073,13 +1123,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get returnToCourse => 'पाठ्यक्रम पर लौटें';
 
   @override
-  String get notEnoughCardsFor => 'क्विज़ के लिए पर्याप्त कार्ड नहीं हैं! कम से कम 4 की आवश्यकता है।';
+  String get notEnoughCardsFor =>
+      'क्विज़ के लिए पर्याप्त कार्ड नहीं हैं! कम से कम 4 की आवश्यकता है।';
 
   @override
   String get creatorMode => 'क्रिएटर मोड';
 
   @override
-  String get noStoriesFoundMatching => 'आपकी खोज से मेल खाने वाली कोई कहानी नहीं मिली।';
+  String get noStoriesFoundMatching =>
+      'आपकी खोज से मेल खाने वाली कोई कहानी नहीं मिली।';
 
   @override
   String get discard => 'खारिज करें';
@@ -1088,7 +1140,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get save => 'सहेजें';
 
   @override
-  String get generatingStoryViaDeepseek => 'DeepSeek के माध्यम से कहानी जनरेट हो रही है...';
+  String get generatingStoryViaDeepseek =>
+      'DeepSeek के माध्यम से कहानी जनरेट हो रही है...';
 
   @override
   String get storySavedToLibrary => 'कहानी लाइब्रेरी में सहेजी गई!';
@@ -1103,7 +1156,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get wedLoveToHear => 'हमें आपसे प्रतिक्रिया पाकर खुशी होगी!';
 
   @override
-  String get whetherYouveFoundA => 'चाहे आपको कोई बग मिला हो, कोई सुविधा अनुरोध हो, या सिर्फ नमस्ते कहना चाहते हों, आपकी प्रतिक्रिया हमें SinoSpark को बेहतर बनाने में मदद करती है।';
+  String get whetherYouveFoundA =>
+      'चाहे आपको कोई बग मिला हो, कोई सुविधा अनुरोध हो, या सिर्फ नमस्ते कहना चाहते हों, आपकी प्रतिक्रिया हमें SinoSpark को बेहतर बनाने में मदद करती है।';
 
   @override
   String get pointYourCameraAt => 'अपने कैमरे को वस्तुओं की ओर करें';
@@ -1179,7 +1233,56 @@ class AppLocalizationsHi extends AppLocalizations {
   String get startingSession => 'सत्र शुरू हो रहा है...';
 
   @override
-  String get masterBuildingBlocks => 'हान्ज़ी के मूल तत्वों में महारत हासिल करें';
+  String get studySession => 'Study session';
+
+  @override
+  String get readyToStudy => 'Ready to study';
+
+  @override
+  String get studyQueuePreviewDescription =>
+      'Your session is based on today\'s schedule and deck limits.';
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get newLabel => 'नया';
+
+  @override
+  String get studyDeckEmpty => 'This deck is empty';
+
+  @override
+  String get studyDeckEmptyDescription =>
+      'Add cards before starting a study session.';
+
+  @override
+  String get studyDailyLimitReached => 'Today\'s limit is complete';
+
+  @override
+  String get studyDailyLimitReachedDescription =>
+      'You\'ve used this deck\'s new-card or review allowance for today.';
+
+  @override
+  String get studyCaughtUpDescription =>
+      'Nothing else is scheduled for today. Come back for the next review.';
+
+  @override
+  String get noCardsAvailable => 'No cards available';
+
+  @override
+  String get studyNoEligibleCardsDescription =>
+      'No cards are eligible for this study mode right now.';
+
+  @override
+  String get studySessionLoadFailed =>
+      'Unable to load this study session. Please try again.';
+
+  @override
+  String get retryLimitReached => 'This card will return in your next session.';
+
+  @override
+  String get masterBuildingBlocks =>
+      'हान्ज़ी के मूल तत्वों में महारत हासिल करें';
 
   @override
   String get totalWords => 'कुल शब्द';
@@ -1350,10 +1453,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get askFollowUpQuestion => 'अनुवर्ती प्रश्न पूछें...';
 
   @override
-  String get pasteScanToSimplify => 'सरल बनाने के लिए चीनी पाठ पेस्ट या स्कैन करें';
+  String get pasteScanToSimplify =>
+      'सरल बनाने के लिए चीनी पाठ पेस्ट या स्कैन करें';
 
   @override
-  String get searchStoriesHint => 'शीर्षक या टैग द्वारा कहानियाँ खोजें (जैसे पौराणिक कथा, यात्रा)';
+  String get searchStoriesHint =>
+      'शीर्षक या टैग द्वारा कहानियाँ खोजें (जैसे पौराणिक कथा, यात्रा)';
 
   @override
   String get importAll => 'सभी आयात करें';
@@ -1368,37 +1473,43 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scenarioLocalRestaurant => 'स्थानीय रेस्तरां';
 
   @override
-  String get scenarioLocalRestaurantDesc => 'व्यंजन ऑर्डर करने और सुझाव मांगने का अभ्यास करें।';
+  String get scenarioLocalRestaurantDesc =>
+      'व्यंजन ऑर्डर करने और सुझाव मांगने का अभ्यास करें।';
 
   @override
   String get scenarioTaxiAirport => 'हवाई अड्डा टैक्सी';
 
   @override
-  String get scenarioTaxiAirportDesc => 'ड्राइवर को अपनी मंजिल बताएं और ट्रैफिक पर चर्चा करें।';
+  String get scenarioTaxiAirportDesc =>
+      'ड्राइवर को अपनी मंजिल बताएं और ट्रैफिक पर चर्चा करें।';
 
   @override
   String get scenarioSilkMarket => 'सिल्क मार्केट में मोलभाव';
 
   @override
-  String get scenarioSilkMarketDesc => 'एक स्मारिका के लिए बेहतर कीमत पाने का प्रयास करें।';
+  String get scenarioSilkMarketDesc =>
+      'एक स्मारिका के लिए बेहतर कीमत पाने का प्रयास करें।';
 
   @override
   String get scenarioMedicalClinic => 'मेडिकल क्लिनिक';
 
   @override
-  String get scenarioMedicalClinicDesc => 'एक पारंपरिक डॉक्टर को अपने लक्षण बताएं।';
+  String get scenarioMedicalClinicDesc =>
+      'एक पारंपरिक डॉक्टर को अपने लक्षण बताएं।';
 
   @override
   String get scenarioMeetingFriend => 'दोस्त से मिलना';
 
   @override
-  String get scenarioMeetingFriendDesc => 'अपना परिचय दें और थोड़ी बहुत बात करें।';
+  String get scenarioMeetingFriendDesc =>
+      'अपना परिचय दें और थोड़ी बहुत बात करें।';
 
   @override
   String get scenarioJobInterview => 'नौकरी का इंटरव्यू';
 
   @override
-  String get scenarioJobInterviewDesc => 'शंघाई में एक टेक कंपनी में एक पद के लिए आवेदन करें।';
+  String get scenarioJobInterviewDesc =>
+      'शंघाई में एक टेक कंपनी में एक पद के लिए आवेदन करें।';
 
   @override
   String get createCustomScenario => 'कस्टम परिदृश्य बनाएं';
@@ -1410,7 +1521,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get customScenarioDescHint => 'विवरण (संदर्भ)';
 
   @override
-  String get customScenarioPersonaHint => 'AI व्यक्तित्व (उदा. एक जिज्ञासु सहकर्मी)';
+  String get customScenarioPersonaHint =>
+      'AI व्यक्तित्व (उदा. एक जिज्ञासु सहकर्मी)';
 
   @override
   String get customScenarioDifficulty => 'कठिनाई';
@@ -1440,7 +1552,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get huaMulan => 'हुआ मुलान';
 
   @override
-  String get huaMulanDesc => 'हुआ मुलान अपने पिता के स्थान पर सेना में शामिल हुईं';
+  String get huaMulanDesc =>
+      'हुआ मुलान अपने पिता के स्थान पर सेना में शामिल हुईं';
 
   @override
   String get confuciusTitle => 'कन्फ्यूशियस';
@@ -1470,7 +1583,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get speakWithMasterLin => 'मास्टर लिन से बात करें';
 
   @override
-  String get masterLinGreeting => 'नमस्ते, छात्र। स्याही तैयार है। आज हम किस वर्ण या वाक्यांश का अध्ययन करेंगे?';
+  String get masterLinGreeting =>
+      'नमस्ते, छात्र। स्याही तैयार है। आज हम किस वर्ण या वाक्यांश का अध्ययन करेंगे?';
 
   @override
   String get typeYourMessage => 'अपना संदेश लिखें...';
@@ -1538,7 +1652,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aClassicTangDynastyPoem => 'तांग राजवंश की एक शास्त्रीय कविता';
 
   @override
-  String get aClassicTangDynastyPoemBy => 'तांग राजवंश की एक शास्त्रीय कविता, रचयिता:';
+  String get aClassicTangDynastyPoemBy =>
+      'तांग राजवंश की एक शास्त्रीय कविता, रचयिता:';
 
   @override
   String get aStructuralComponent => 'एक संरचनात्मक घटक।';
@@ -1584,7 +1699,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get analysisFailed => 'विश्लेषण विफल:';
 
   @override
-  String get analyzingClassicalCharacters => 'शास्त्रीय वर्णों का विश्लेषण किया जा रहा है...';
+  String get analyzingClassicalCharacters =>
+      'शास्त्रीय वर्णों का विश्लेषण किया जा रहा है...';
 
   @override
   String get anatomy => 'शरीर रचना';
@@ -1608,13 +1724,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get audiobookVoice => 'ऑडियोबुक आवाज़';
 
   @override
-  String get auntieMaTown => 'आंटी मा (马阿姨), एक ऊर्जावान स्टॉल मालिक जो शहर में सबसे कुरकुरी रौजियामो और लियांगपी बनाती हैं।';
+  String get auntieMaTown =>
+      'आंटी मा (马阿姨), एक ऊर्जावान स्टॉल मालिक जो शहर में सबसे कुरकुरी रौजियामो और लियांगपी बनाती हैं।';
 
   @override
   String get back => 'वापस';
 
   @override
-  String get baristaKevinNotes => 'बरिस्ता केविन (小凯), एक उत्साही युवा कॉफ़ी रोस्टर जिन्हें युन्नान कॉफ़ी बीन्स और स्वाद के नोट्स पर चर्चा करना पसंद है।';
+  String get baristaKevinNotes =>
+      'बरिस्ता केविन (小凯), एक उत्साही युवा कॉफ़ी रोस्टर जिन्हें युन्नान कॉफ़ी बीन्स और स्वाद के नोट्स पर चर्चा करना पसंद है।';
 
   @override
   String get bbc => 'बीबीसी चीनी';
@@ -1626,7 +1744,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bestValue => 'सर्वोत्तम मूल्य';
 
   @override
-  String get bookLinkCopiedToClipboard => 'पुस्तक का लिंक क्लिपबोर्ड पर कॉपी हो गया!';
+  String get bookLinkCopiedToClipboard =>
+      'पुस्तक का लिंक क्लिपबोर्ड पर कॉपी हो गया!';
 
   @override
   String get bookmarkChapter => 'अध्याय बुकमार्क करें';
@@ -1644,7 +1763,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bugReport => 'बग रिपोर्ट';
 
   @override
-  String get caoXueqinDecline => 'काओ ज़्यूचिन (लगभग 1715–1763) किंग राजवंश के उपन्यासकार थे। उनका जन्म एक समृद्ध परिवार में हुआ था जिसका भाग्य सम्राट योंगझेंग के समय ढह गया। \'लाल कक्ष का सपना\' (Dream of the Red Chamber), उनके अंतिम गरीबी के वर्षों में लिखा गया, चीनी गल्प साहित्य का शिखर माना जाता है।';
+  String get caoXueqinDecline =>
+      'काओ ज़्यूचिन (लगभग 1715–1763) किंग राजवंश के उपन्यासकार थे। उनका जन्म एक समृद्ध परिवार में हुआ था जिसका भाग्य सम्राट योंगझेंग के समय ढह गया। \'लाल कक्ष का सपना\' (Dream of the Red Chamber), उनके अंतिम गरीबी के वर्षों में लिखा गया, चीनी गल्प साहित्य का शिखर माना जाता है।';
 
   @override
   String get cardsTitle => 'कार्ड';
@@ -1659,7 +1779,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get chatMore => 'और बातचीत करें';
 
   @override
-  String get chefChenShumai => 'शेफ़ चेन (陈师傅), एक प्रसन्नचित्त कैंटोनीज़ डिम सम शेफ़ जो ताज़े हार गौ झींगा डंपलिंग और शुमाई की सिफारिश करते हैं।';
+  String get chefChenShumai =>
+      'शेफ़ चेन (陈师傅), एक प्रसन्नचित्त कैंटोनीज़ डिम सम शेफ़ जो ताज़े हार गौ झींगा डंपलिंग और शुमाई की सिफारिश करते हैं।';
 
   @override
   String get chineseEpics => 'चीनी महाकाव्य';
@@ -1746,7 +1867,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteScenario => 'परिदृश्य हटाएं';
 
   @override
-  String get deletesAllProgressPermanently => 'सभी प्रगति को स्थायी रूप से हटा देता है';
+  String get deletesAllProgressPermanently =>
+      'सभी प्रगति को स्थायी रूप से हटा देता है';
 
   @override
   String get developerBackdoorUnlocked => 'डेवलपर बैकडोर अनलॉक हो गया!';
@@ -1773,13 +1895,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get egAnimeVocab => 'उदा. एनीमे शब्दावली';
 
   @override
-  String get egFormalBusinessLanguageSlangForTexting => 'उदा. औपचारिक व्यावसायिक भाषा, चैटिंग स्लैंग...';
+  String get egFormalBusinessLanguageSlangForTexting =>
+      'उदा. औपचारिक व्यावसायिक भाषा, चैटिंग स्लैंग...';
 
   @override
-  String get egOrderingAtARestaurantBusinessVocab => 'उदा. रेस्तरां में ऑर्डर करना, व्यावसायिक शब्दावली...';
+  String get egOrderingAtARestaurantBusinessVocab =>
+      'उदा. रेस्तरां में ऑर्डर करना, व्यावसायिक शब्दावली...';
 
   @override
-  String get egWeddingReceptionTechInterview => 'उदा. शादी का रिसेप्शन, तकनीकी साक्षात्कार...';
+  String get egWeddingReceptionTechInterview =>
+      'उदा. शादी का रिसेप्शन, तकनीकी साक्षात्कार...';
 
   @override
   String get emailLabel => 'ईमेल';
@@ -1847,10 +1972,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get finalizingDetails => 'विवरण अंतिम रूप दिए जा रहे हैं...';
 
   @override
-  String get finalizingStoryDetails => 'कहानी का विवरण अंतिम रूप दिया जा रहा है...';
+  String get finalizingStoryDetails =>
+      'कहानी का विवरण अंतिम रूप दिया जा रहा है...';
 
   @override
-  String get firebaseAuthConsole => 'Firebase Auth सक्षम नहीं है। कृपया अपने Firebase कंसोल में आवश्यक साइन-इन विधि सक्षम करें।';
+  String get firebaseAuthConsole =>
+      'Firebase Auth सक्षम नहीं है। कृपया अपने Firebase कंसोल में आवश्यक साइन-इन विधि सक्षम करें।';
 
   @override
   String get flashcardDeckTitle => 'फ़्लैशकार्ड डेक';
@@ -1892,13 +2019,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get grammar => 'व्याकरण';
 
   @override
-  String get grandmaLiuFilling => 'दादी लियू (刘奶奶), उत्तरी चीन की एक स्नेही दादी जो आपको डंपलिंग की सिलवटें बनाना और पोर्क-हरी प्याज़ का भरावन तैयार करना सिखाती हैं।';
+  String get grandmaLiuFilling =>
+      'दादी लियू (刘奶奶), उत्तरी चीन की एक स्नेही दादी जो आपको डंपलिंग की सिलवटें बनाना और पोर्क-हरी प्याज़ का भरावन तैयार करना सिखाती हैं।';
 
   @override
   String get great => 'बहुत बढ़िया!';
 
   @override
-  String get handmadeDumplingFeastInHarbin => 'हार्बिन में हाथ से बनी डंपलिंग दावत';
+  String get handmadeDumplingFeastInHarbin =>
+      'हार्बिन में हाथ से बनी डंपलिंग दावत';
 
   @override
   String get hanziCharacter => 'हान्ज़ी (वर्ण)';
@@ -1954,7 +2083,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get i => 'मैं';
 
   @override
-  String get ifTheAgain => 'यदि AI को कोई असंगति मिलती है, तो वह पूछेगा \'क्या आपका मतलब था...?\'. आप दोबारा बोले बिना अपने मूल ऑडियो का पुनः मूल्यांकन कराने के लिए \'हाँ, मुझे फिर से रेट करें!\' पर टैप कर सकते हैं।';
+  String get ifTheAgain =>
+      'यदि AI को कोई असंगति मिलती है, तो वह पूछेगा \'क्या आपका मतलब था...?\'. आप दोबारा बोले बिना अपने मूल ऑडियो का पुनः मूल्यांकन कराने के लिए \'हाँ, मुझे फिर से रेट करें!\' पर टैप कर सकते हैं।';
 
   @override
   String get install => 'इंस्टॉल करें';
@@ -1969,7 +2099,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get knowledgeBase => 'ज्ञानकोष';
 
   @override
-  String get liRuzhenSubjects => 'ली रुझेन (लगभग 1763–1830) किंग राजवंश के एक विद्वान थे जिनकी ध्वनिविज्ञान, शतरंज और ब्रह्मांड विज्ञान में गहरी रुचि थी। उनका काल्पनिक उपन्यास \'आईने में फूल\' (Flowers in the Mirror) अपने नारीवादी विषयों और विश्वकोशीय दायरे के लिए प्रसिद्ध है।';
+  String get liRuzhenSubjects =>
+      'ली रुझेन (लगभग 1763–1830) किंग राजवंश के एक विद्वान थे जिनकी ध्वनिविज्ञान, शतरंज और ब्रह्मांड विज्ञान में गहरी रुचि थी। उनका काल्पनिक उपन्यास \'आईने में फूल\' (Flowers in the Mirror) अपने नारीवादी विषयों और विश्वकोशीय दायरे के लिए प्रसिद्ध है।';
 
   @override
   String get library => 'सांस्कृतिक पुस्तकालय (文化书房)';
@@ -1987,34 +2118,42 @@ class AppLocalizationsHi extends AppLocalizations {
   String get listening => 'सुन रहा है...';
 
   @override
-  String get liuEEncroachment => 'लियू ए (1857–1909) उत्तर-किंग काल के बहुमुखी प्रतिभा के धनी विद्वान (इंजीनियर, डॉक्टर और उपन्यासकार) थे। उनका उपन्यास \'लाओ चान की यात्राएं\' (The Travels of Lao Can) राजवंशीय पतन के दौर में एक भटकते हुए चिकित्सक की यात्रा का सजीव चित्रण करता है।';
+  String get liuEEncroachment =>
+      'लियू ए (1857–1909) उत्तर-किंग काल के बहुमुखी प्रतिभा के धनी विद्वान (इंजीनियर, डॉक्टर और उपन्यासकार) थे। उनका उपन्यास \'लाओ चान की यात्राएं\' (The Travels of Lao Can) राजवंशीय पतन के दौर में एक भटकते हुए चिकित्सक की यात्रा का सजीव चित्रण करता है।';
 
   @override
   String get loadingTranslations => 'अनुवाद लोड हो रहे हैं...';
 
   @override
-  String get luXunVernacular => 'लू शुन (1881–1936), झोउ शुरेन का उपनाम, आधुनिक चीनी साहित्य के जनक हैं। समाज की कुरीतियों को उजागर करने के लिए उन्होंने अपनी कालजयी रचनाओं (\'एक पागल की डायरी\' और \'आह क्यू की सच्ची कहानी\') में बोलचाल की भाषा (बाईहुआ) का उपयोग किया।';
+  String get luXunVernacular =>
+      'लू शुन (1881–1936), झोउ शुरेन का उपनाम, आधुनिक चीनी साहित्य के जनक हैं। समाज की कुरीतियों को उजागर करने के लिए उन्होंने अपनी कालजयी रचनाओं (\'एक पागल की डायरी\' और \'आह क्यू की सच्ची कहानी\') में बोलचाल की भाषा (बाईहुआ) का उपयोग किया।';
 
   @override
-  String get luoGuanzhongEpic => 'लुओ गुआनझोंग (लगभग 1330–1400) युआन-मिंग संक्रमण काल के नाटककार और उपन्यासकार थे। उनका महाकाव्य \'तीन साम्राज्यों का रोमांस\' (Romance of the Three Kingdoms) ऐतिहासिक वृत्तांतों और लोक कथाओं का अनुपम संगम है।';
+  String get luoGuanzhongEpic =>
+      'लुओ गुआनझोंग (लगभग 1330–1400) युआन-मिंग संक्रमण काल के नाटककार और उपन्यासकार थे। उनका महाकाव्य \'तीन साम्राज्यों का रोमांस\' (Romance of the Three Kingdoms) ऐतिहासिक वृत्तांतों और लोक कथाओं का अनुपम संगम है।';
 
   @override
   String get makeACustomCollection => 'एक कस्टम संग्रह बनाएं';
 
   @override
-  String get manageDailyDropsAndReviewReminders => 'दैनिक ड्रॉप्स और समीक्षा अनुस्मारक प्रबंधित करें';
+  String get manageDailyDropsAndReviewReminders =>
+      'दैनिक ड्रॉप्स और समीक्षा अनुस्मारक प्रबंधित करें';
 
   @override
-  String get managerYuOptions => 'मैनेजर यू (余店长), एक ऊर्जावान हॉटपॉट रेस्तरां प्रबंधक जो ट्राइप, डक ब्लड और हल्के शोरबे के विकल्पों का सुझाव देती हैं।';
+  String get managerYuOptions =>
+      'मैनेजर यू (余店长), एक ऊर्जावान हॉटपॉट रेस्तरां प्रबंधक जो ट्राइप, डक ब्लड और हल्के शोरबे के विकल्पों का सुझाव देती हैं।';
 
   @override
-  String get masterGaoRubs => 'मास्टर गाओ (高师傅), एक करिश्माई चारकोल बारबेक्यू मास्टर जो ग्राहकों के साथ तीखेपन के स्तर और गुप्त जीरा मसालों के बारे में बातचीत करते हैं।';
+  String get masterGaoRubs =>
+      'मास्टर गाओ (高师傅), एक करिश्माई चारकोल बारबेक्यू मास्टर जो ग्राहकों के साथ तीखेपन के स्तर और गुप्त जीरा मसालों के बारे में बातचीत करते हैं।';
 
   @override
-  String get masterThisToUnlockItsGalaxy => 'इसकी आकाशगंगा को अनलॉक करने के लिए इसमें महारत हासिल करें।';
+  String get masterThisToUnlockItsGalaxy =>
+      'इसकी आकाशगंगा को अनलॉक करने के लिए इसमें महारत हासिल करें।';
 
   @override
-  String get masterZhaoBrewing => 'मास्टर झाओ (赵师傅), एक धैर्यवान और जानकार चाय विशेषज्ञ जिन्हें गोंगफू चाय बनाने की विधि समझाना पसंद है।';
+  String get masterZhaoBrewing =>
+      'मास्टर झाओ (赵师傅), एक धैर्यवान और जानकार चाय विशेषज्ञ जिन्हें गोंगफू चाय बनाने की विधि समझाना पसंद है।';
 
   @override
   String get mastery => 'महारत';
@@ -2038,7 +2177,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get monthly => 'मासिक';
 
   @override
-  String get morningDimSumCartInGuangzhou => 'गुआंगज़ौ में सुबह की डिम सम गाड़ी';
+  String get morningDimSumCartInGuangzhou =>
+      'गुआंगज़ौ में सुबह की डिम सम गाड़ी';
 
   @override
   String get nameLabel => 'नाम';
@@ -2062,7 +2202,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get noEpisodesFound => 'कोई एपिसोड नहीं मिला';
 
   @override
-  String get noKeyWordsFoundForThisStory => 'इस कहानी के लिए कोई कीवर्ड नहीं मिला।';
+  String get noKeyWordsFoundForThisStory =>
+      'इस कहानी के लिए कोई कीवर्ड नहीं मिला।';
 
   @override
   String get noLabel => 'नहीं';
@@ -2074,7 +2215,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get noPinyin => 'पिनयिन नहीं';
 
   @override
-  String get noPremiumPackagesAvailable => 'फ़िलहाल कोई प्रीमियम पैकेज उपलब्ध नहीं है।';
+  String get noPremiumPackagesAvailable =>
+      'फ़िलहाल कोई प्रीमियम पैकेज उपलब्ध नहीं है।';
 
   @override
   String noResultsFoundForSearchquery(String searchQuery) {
@@ -2106,10 +2248,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get openInYoutube => 'YouTube में खोलें';
 
   @override
-  String get orderingHanddripCoffeeInShanghai => 'शंघाई में फ़िल्टर कॉफ़ी ऑर्डर करना';
+  String get orderingHanddripCoffeeInShanghai =>
+      'शंघाई में फ़िल्टर कॉफ़ी ऑर्डर करना';
 
   @override
-  String get orderingSugarcoatedHawsInWinterBeijing => 'सर्दियों के बीजिंग में तांगहुलु (कैंडीड हॉथॉर्न) ऑर्डर करना';
+  String get orderingSugarcoatedHawsInWinterBeijing =>
+      'सर्दियों के बीजिंग में तांगहुलु (कैंडीड हॉथॉर्न) ऑर्डर करना';
 
   @override
   String partnerLang(String lang) {
@@ -2132,7 +2276,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get perfect => 'बिल्कुल सही!';
 
   @override
-  String get personalizedPathBasedOnDeck => 'आपके डेक पर आधारित एक व्यक्तिगत शिक्षण पथ।';
+  String get personalizedPathBasedOnDeck =>
+      'आपके डेक पर आधारित एक व्यक्तिगत शिक्षण पथ।';
 
   @override
   String play(Object pinyin) {
@@ -2140,7 +2285,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get pleaseEnterMessageBeforeSending => 'कृपया भेजने से पहले एक संदेश लिखें।';
+  String get pleaseEnterMessageBeforeSending =>
+      'कृपया भेजने से पहले एक संदेश लिखें।';
 
   @override
   String get practiceInRoleplay => 'रोलप्ले में अभ्यास करें';
@@ -2149,10 +2295,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get practiceModes => 'अभ्यास मोड';
 
   @override
-  String get practicePronouncingWithAiGrading => 'AI मूल्यांकन के साथ इस शब्द के उच्चारण का अभ्यास करें';
+  String get practicePronouncingWithAiGrading =>
+      'AI मूल्यांकन के साथ इस शब्द के उच्चारण का अभ्यास करें';
 
   @override
-  String get preparingReadingInterface => 'पठन इंटरफ़ेस तैयार किया जा रहा है...';
+  String get preparingReadingInterface =>
+      'पठन इंटरफ़ेस तैयार किया जा रहा है...';
 
   @override
   String get privacy => 'गोपनीयता';
@@ -2161,7 +2309,56 @@ class AppLocalizationsHi extends AppLocalizations {
   String get privacyAndAudio => 'गोपनीयता और ऑडियो';
 
   @override
-  String get puSonglingLiterature => 'पु सोंगलिंग (1640–1715) किंग राजवंश के लेखक थे जिन्होंने \'एक चीनी अध्ययन कक्ष की अजीबोगरीब कहानियां\' (Strange Tales from a Chinese Studio) का संकलन किया। उनकी आत्माओं और अलौकिक पात्रों की कहानियां चीनी गॉथिक साहित्य का मानक मानी जाती हैं।';
+  String get aiDataPrivacyTitle => 'AI Data & Privacy';
+
+  @override
+  String get aiDataPrivacySettingsSubtitle =>
+      'See what AI features send, why, and to whom';
+
+  @override
+  String get aiDataPrivacyOverviewTitle => 'When AI is used';
+
+  @override
+  String get aiDataPrivacyOverviewBody =>
+      'SinoSpark uses cloud AI only when you choose a feature that needs it, such as AI chat, explanations, translation, image analysis, speech recognition, pronunciation grading, or cloud voices. AI output can be inaccurate, so review important results.';
+
+  @override
+  String get aiDataPrivacyProvidersTitle => 'AI service providers';
+
+  @override
+  String get aiDataPrivacyProvidersBody =>
+      'Google Gemini processes generative text and image requests. OpenRouter routes some generative requests to Google Gemini or DeepSeek. Microsoft Azure AI Speech processes speech recognition, pronunciation assessment, and text sent for cloud voice synthesis.';
+
+  @override
+  String get aiDataPrivacySentTitle => 'Data that may be sent';
+
+  @override
+  String get aiDataPrivacySentBody =>
+      'Depending on the feature, we send the text you enter or select, relevant conversation or lesson context, images you choose for AI analysis, voice recordings you submit, and technical request data such as IP address and device/network metadata. We do not intentionally include your name or email in AI prompts.';
+
+  @override
+  String get aiDataPrivacyControlsTitle => 'Your choices';
+
+  @override
+  String get aiDataPrivacyControlsBody =>
+      'Do not use an AI feature if you do not want its input sent to the named provider. You can deny camera, photo, or microphone permission in device Settings. Choose the Local voice to keep text-to-speech on your device. Avoid submitting sensitive or confidential information.';
+
+  @override
+  String get aiDataPrivacyRetentionTitle => 'Storage and retention';
+
+  @override
+  String get aiDataPrivacyRetentionBody =>
+      'SinoSpark does not intentionally store raw AI prompts, submitted images, or voice recordings on its own servers after processing. Generated results may be saved on your device or with your account when you choose to save them. Providers process data under their own terms and configured retention controls; see the full policy for details.';
+
+  @override
+  String get readFullPrivacyPolicy => 'Read Full Privacy Policy';
+
+  @override
+  String get linkOpenFailed => 'Could not open the link. Please try again.';
+
+  @override
+  String get puSonglingLiterature =>
+      'पु सोंगलिंग (1640–1715) किंग राजवंश के लेखक थे जिन्होंने \'एक चीनी अध्ययन कक्ष की अजीबोगरीब कहानियां\' (Strange Tales from a Chinese Studio) का संकलन किया। उनकी आत्माओं और अलौकिक पात्रों की कहानियां चीनी गॉथिक साहित्य का मानक मानी जाती हैं।';
 
   @override
   String get qaFaq => 'प्रश्नोत्तर / FAQ';
@@ -2256,7 +2453,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scenarioRemoved => 'परिदृश्य हटा दिया गया';
 
   @override
-  String get scenarioSavedFindInCustomTab => 'परिदृश्य सहेजा गया! इसे कस्टम टैब में देखें।';
+  String get scenarioSavedFindInCustomTab =>
+      'परिदृश्य सहेजा गया! इसे कस्टम टैब में देखें।';
 
   @override
   String score(Object score, Object total) {
@@ -2312,7 +2510,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get shadow => 'शैडोइंग';
 
   @override
-  String get shiNaianEpic => 'शी नाइआन (लगभग 1296–1372) युआन राजवंश के लेखक थे। उनकी उत्कृष्ट कृति \'जल सीमांत\' (Water Margin) ने चीनी वीरगाथा परंपरा को स्थापित किया।';
+  String get shiNaianEpic =>
+      'शी नाइआन (लगभग 1296–1372) युआन राजवंश के लेखक थे। उनकी उत्कृष्ट कृति \'जल सीमांत\' (Water Margin) ने चीनी वीरगाथा परंपरा को स्थापित किया।';
 
   @override
   String get showEnglish => 'अंग्रेज़ी दिखाएं';
@@ -2363,7 +2562,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get storyBookmarkedInLibrary => 'कहानी लाइब्रेरी में बुकमार्क हो गई!';
 
   @override
-  String get streetFoodNightMarketInXian => 'शी\'आन में स्ट्रीट फ़ूड नाइट मार्केट';
+  String get streetFoodNightMarketInXian =>
+      'शी\'आन में स्ट्रीट फ़ूड नाइट मार्केट';
 
   @override
   String get strokes => 'स्ट्रोक';
@@ -2402,7 +2602,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get terms => 'सेवा की शर्तें';
 
   @override
-  String get theGalaxyCharacters => 'आकाशगंगा का नक्शा आपका इंतजार कर रहा है।\nग्रहों (वर्णों) को अनलॉक करने के लिए सूर्यों (रेडिकल्स) में महारत हासिल करें।';
+  String get theGalaxyCharacters =>
+      'आकाशगंगा का नक्शा आपका इंतजार कर रहा है।\nग्रहों (वर्णों) को अनलॉक करने के लिए सूर्यों (रेडिकल्स) में महारत हासिल करें।';
 
   @override
   String get theme => 'थीम';
@@ -2411,7 +2612,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get thinking => 'सोच रहा है...';
 
   @override
-  String get thisArticleCharacters => 'इस लेख में पारंपरिक चीनी वर्ण शामिल हैं।';
+  String get thisArticleCharacters =>
+      'इस लेख में पारंपरिक चीनी वर्ण शामिल हैं।';
 
   @override
   String get todaysWord => 'आज का शब्द';
@@ -2423,7 +2625,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get toggleTranslation => 'अनुवाद टॉगल करें';
 
   @override
-  String get toneDoesNotExistInMandarin => 'यह स्वर मानक मंदारिन में मौजूद नहीं है।';
+  String get toneDoesNotExistInMandarin =>
+      'यह स्वर मानक मंदारिन में मौजूद नहीं है।';
 
   @override
   String get toneGraph => 'स्वर ग्राफ़';
@@ -2435,7 +2638,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get trailer => 'ट्रेलर';
 
   @override
-  String get translatingAndAddingPinyin => 'अनुवाद और पिनयिन जोड़ा जा रहा है...';
+  String get translatingAndAddingPinyin =>
+      'अनुवाद और पिनयिन जोड़ा जा रहा है...';
 
   @override
   String get translatingText => 'पाठ का अनुवाद किया जा रहा है...';
@@ -2444,7 +2648,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get turnOn => 'चालू करें';
 
   @override
-  String get typeHanziPinyinOrEnglish => 'हान्ज़ी, पिनयिन या अंग्रेज़ी लिखें...';
+  String get typeHanziPinyinOrEnglish =>
+      'हान्ज़ी, पिनयिन या अंग्रेज़ी लिखें...';
 
   @override
   String get unknown2 => '游戏 实况 王者荣耀 原神';
@@ -2510,19 +2715,23 @@ class AppLocalizationsHi extends AppLocalizations {
   String get wikipedia => 'विकिपीडिया';
 
   @override
-  String get wordsSavedAndSrsScheduled => 'शब्द सहेजे गए और SRS निर्धारित किया गया!';
+  String get wordsSavedAndSrsScheduled =>
+      'शब्द सहेजे गए और SRS निर्धारित किया गया!';
 
   @override
   String get writeYourMessageHere => 'अपना संदेश यहाँ लिखें...';
 
   @override
-  String get wuChengenLiterature => 'वू चेंग\'एन (लगभग 1500–1582) मिंग राजवंश के उपन्यासकार थे। उन्होंने तांग तीर्थयात्रा की पौराणिक कथाओं को \'पश्चिम की यात्रा\' (Journey to the West) में पिरोया, जो विश्व साहित्य की सबसे लोकप्रिय कृतियों में से एक है।';
+  String get wuChengenLiterature =>
+      'वू चेंग\'एन (लगभग 1500–1582) मिंग राजवंश के उपन्यासकार थे। उन्होंने तांग तीर्थयात्रा की पौराणिक कथाओं को \'पश्चिम की यात्रा\' (Journey to the West) में पिरोया, जो विश्व साहित्य की सबसे लोकप्रिय कृतियों में से एक है।';
 
   @override
-  String get wuJingziClass => 'वू जिंगज़ी (1701–1754) किंग राजवंश के उपन्यासकार थे जिन्होंने \'द स्कॉलर्स\' (The Scholars - Rulin Waishi) लिखा। यह एक तीखा व्यंग्यात्मक उपन्यास है जो शाही परीक्षा प्रणाली और कुलीन वर्ग के आडंबर को उजागर करता है।';
+  String get wuJingziClass =>
+      'वू जिंगज़ी (1701–1754) किंग राजवंश के उपन्यासकार थे जिन्होंने \'द स्कॉलर्स\' (The Scholars - Rulin Waishi) लिखा। यह एक तीखा व्यंग्यात्मक उपन्यास है जो शाही परीक्षा प्रणाली और कुलीन वर्ग के आडंबर को उजागर करता है।';
 
   @override
-  String get xuZhonglinWarfare => 'शू झोंगलिन (16वीं–17वीं शताब्दी) मिंग राजवंश के लेखक थे जिन्हें \'देवताओं का अलंकरण\' (Investiture of the Gods - Fengshen Yanyi) के संकलन का श्रेय दिया जाता है।';
+  String get xuZhonglinWarfare =>
+      'शू झोंगलिन (16वीं–17वीं शताब्दी) मिंग राजवंश के लेखक थे जिन्हें \'देवताओं का अलंकरण\' (Investiture of the Gods - Fengshen Yanyi) के संकलन का श्रेय दिया जाता है।';
 
   @override
   String get yearly => 'वार्षिक';
@@ -2547,10 +2756,12 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get youMustAccount => 'खाता बनाने के लिए आपको सेवा की शर्तें और गोपनीयता नीति स्वीकार करनी होगी।';
+  String get youMustAccount =>
+      'खाता बनाने के लिए आपको सेवा की शर्तें और गोपनीयता नीति स्वीकार करनी होगी।';
 
   @override
-  String get yourEchoModels => 'आपकी Echo Hall बातचीत आपके डिवाइस पर स्थानीय रूप से संग्रहीत की जाती है ताकि आप कभी भी उनकी समीक्षा कर सकें। हम अपने AI मॉडल को प्रशिक्षित करने के लिए आपकी व्यक्तिगत बातचीत का उपयोग नहीं करते हैं।';
+  String get yourEchoModels =>
+      'आपकी Echo Hall बातचीत आपके डिवाइस पर स्थानीय रूप से संग्रहीत की जाती है ताकि आप कभी भी उनकी समीक्षा कर सकें। हम अपने AI मॉडल को प्रशिक्षित करने के लिए आपकी व्यक्तिगत बातचीत का उपयोग नहीं करते हैं।';
 
   @override
   String get zhOnly => 'केवल चीनी (ZH)';
@@ -2598,10 +2809,12 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get analyzing_pronunciation_with_gemini_ai => 'Gemini AI के साथ उच्चारण का विश्लेषण किया जा रहा है...';
+  String get analyzing_pronunciation_with_gemini_ai =>
+      'Gemini AI के साथ उच्चारण का विश्लेषण किया जा रहा है...';
 
   @override
-  String get analyzing_your_pronunciation => 'आपके उच्चारण का विश्लेषण किया जा रहा है...';
+  String get analyzing_your_pronunciation =>
+      'आपके उच्चारण का विश्लेषण किया जा रहा है...';
 
   @override
   String are_you_sure_you_want_to(String deckName) {
@@ -2617,7 +2830,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get audio_haptics => 'ऑडियो और हैप्टिक्स';
 
   @override
-  String get audio_could_not_start_check_your => 'ऑडियो शुरू नहीं हो सका। अपना कनेक्शन और डिवाइस की ऑडियो सेटिंग्स जांचें।';
+  String get audio_could_not_start_check_your =>
+      'ऑडियो शुरू नहीं हो सका। अपना कनेक्शन और डिवाइस की ऑडियो सेटिंग्स जांचें।';
 
   @override
   String get calligraphy_trace => 'सुलेख अनुरेखण';
@@ -2634,7 +2848,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get chinese_character => 'चीनी वर्ण';
 
   @override
-  String get contact_us_and_report_issues => 'हमसे संपर्क करें और समस्याओं की रिपोर्ट करें';
+  String get contact_us_and_report_issues =>
+      'हमसे संपर्क करें और समस्याओं की रिपोर्ट करें';
 
   @override
   String created_smart_deck_with_words(String deckName, int wordCount) {
@@ -2648,7 +2863,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get display_content => 'प्रदर्शन और सामग्री';
 
   @override
-  String get do_you_keep_or_store_my => 'क्या आप मेरी आवाज़ की रिकॉर्डिंग संग्रहीत करते हैं?';
+  String get do_you_keep_or_store_my =>
+      'क्या आप मेरी आवाज़ की रिकॉर्डिंग संग्रहीत करते हैं?';
 
   @override
   String get elementary => 'प्रारंभिक';
@@ -2693,7 +2909,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get explanation => 'स्पष्टीकरण';
 
   @override
-  String get extracted_text_tap_to_lookup => 'निकाला गया पाठ (खोजने के लिए टैप करें)';
+  String get extracted_text_tap_to_lookup =>
+      'निकाला गया पाठ (खोजने के लिए टैप करें)';
 
   @override
   String extraction_failed(Object error) {
@@ -2725,7 +2942,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get foundation => 'बुनियादी';
 
   @override
-  String get how_is_my_pronunciation_scored => 'मेरे उच्चारण का मूल्यांकन कैसे किया जाता है?';
+  String get how_is_my_pronunciation_scored =>
+      'मेरे उच्चारण का मूल्यांकन कैसे किया जाता है?';
 
   @override
   String hsk(Object level) {
@@ -2761,7 +2979,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get no_when_you_use_echo_hall => 'नहीं। जब आप Echo Hall, Scholar\'s Verdict, या Shadowing Studio का उपयोग करते हैं, तो उच्चारण स्कोर उत्पन्न करने के लिए आपके ऑडियो का वास्तविक समय में सुरक्षित मूल्यांकन किया जाता है और उसके तुरंत बाद उसे हटा दिया जाता है। हम आपकी प्रगति को ट्रैक करने के लिए केवल संख्यात्मक रेटिंग संग्रहीत करते हैं।';
+  String get no_when_you_use_echo_hall =>
+      'नहीं। जब आप Echo Hall, Scholar\'s Verdict, या Shadowing Studio का उपयोग करते हैं, तो उच्चारण स्कोर उत्पन्न करने के लिए आपके ऑडियो का वास्तविक समय में सुरक्षित मूल्यांकन किया जाता है और उसके तुरंत बाद उसे हटा दिया जाता है। हम आपकी प्रगति को ट्रैक करने के लिए केवल संख्यात्मक रेटिंग संग्रहीत करते हैं।';
 
   @override
   String get notification_settings => 'सूचना सेटिंग्स';
@@ -2776,19 +2995,23 @@ class AppLocalizationsHi extends AppLocalizations {
   String get play_reference_pronunciation => 'संदर्भ उच्चारण चलाएं';
 
   @override
-  String get please_select_a_deck_to_add => 'कृपया कार्ड जोड़ने के लिए एक डेक चुनें।';
+  String get please_select_a_deck_to_add =>
+      'कृपया कार्ड जोड़ने के लिए एक डेक चुनें।';
 
   @override
-  String get point_at_chinese_text_to_translate => 'अनुवाद के लिए चीनी पाठ की ओर कैमरा करें';
+  String get point_at_chinese_text_to_translate =>
+      'अनुवाद के लिए चीनी पाठ की ओर कैमरा करें';
 
   @override
-  String get practice_writing_the_strokes_by_hand => 'हाथ से स्ट्रोक लिखने का अभ्यास करें';
+  String get practice_writing_the_strokes_by_hand =>
+      'हाथ से स्ट्रोक लिखने का अभ्यास करें';
 
   @override
   String get preferences_audio_and_display => 'प्राथमिकताएं, ऑडियो और प्रदर्शन';
 
   @override
-  String get preparing_your_scholars_verdict => 'विद्वान का निर्णय तैयार किया जा रहा है...';
+  String get preparing_your_scholars_verdict =>
+      'विद्वान का निर्णय तैयार किया जा रहा है...';
 
   @override
   String get previous => 'पिछला';
@@ -2829,7 +3052,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get sentence => 'वाक्य';
 
   @override
-  String get shadowing_studio_is_a_dedicated_space => 'शैडोइंग स्टूडियो वास्तविक समय में मूल वक्ताओं के बोलने का अनुकरण करने का अभ्यास करने के लिए एक समर्पित सुविधा है।';
+  String get shadowing_studio_is_a_dedicated_space =>
+      'शैडोइंग स्टूडियो वास्तविक समय में मूल वक्ताओं के बोलने का अनुकरण करने का अभ्यास करने के लिए एक समर्पित सुविधा है।';
 
   @override
   String simplify_failed(Object error) {
@@ -2849,7 +3073,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get table_of_contents => 'विषय सूची · 目录';
 
   @override
-  String get the_ai_evaluates_your_speech_across => 'AI तीन पैमानों पर आपके बोलने का मूल्यांकन करता है:\n• सटीकता: क्या आपने सही शब्दांश बोले?\n• पूर्णता: क्या आपसे कोई शब्द छूटा?\n• प्रवाह: क्या आपने स्वाभाविक विराम और सही स्वरों का उपयोग किया?\nयह 100 में से स्कोर देने के लिए आपके ऑडियो की तुलना मूल वक्ताओं से करता है।';
+  String get the_ai_evaluates_your_speech_across =>
+      'AI तीन पैमानों पर आपके बोलने का मूल्यांकन करता है:\n• सटीकता: क्या आपने सही शब्दांश बोले?\n• पूर्णता: क्या आपसे कोई शब्द छूटा?\n• प्रवाह: क्या आपने स्वाभाविक विराम और सही स्वरों का उपयोग किया?\nयह 100 में से स्कोर देने के लिए आपके ऑडियो की तुलना मूल वक्ताओं से करता है।';
 
   @override
   String get this_cannot_be_undone => 'इसे पूर्ववत नहीं किया जा सकता।';
@@ -2875,13 +3100,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get type_your_message_in => 'अपना संदेश लिखें...';
 
   @override
-  String get unable_to_open_this_video_please => 'यह वीडियो खोलने में असमर्थ। कृपया बाद में पुनः प्रयास करें।';
+  String get unable_to_open_this_video_please =>
+      'यह वीडियो खोलने में असमर्थ। कृपया बाद में पुनः प्रयास करें।';
 
   @override
-  String get view_your_learning_history_and_streaks => 'अपना अध्ययन इतिहास और स्ट्रीक्स देखें';
+  String get view_your_learning_history_and_streaks =>
+      'अपना अध्ययन इतिहास और स्ट्रीक्स देखें';
 
   @override
-  String get what_is_shadowing_studio => 'शैडोइंग स्टूडियो (Shadowing Studio) क्या है?';
+  String get what_is_shadowing_studio =>
+      'शैडोइंग स्टूडियो (Shadowing Studio) क्या है?';
 
   @override
   String get words => 'शब्द';
@@ -2934,10 +3162,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiSmartContextError => 'AI स्मार्ट संदर्भ त्रुटि';
 
   @override
-  String get downloadOfficialHskCollections => 'आधिकारिक HSK संग्रह डाउनलोड करें';
+  String get downloadOfficialHskCollections =>
+      'आधिकारिक HSK संग्रह डाउनलोड करें';
 
   @override
-  String get unableToLoadThisSection => 'इस अनुभाग को लोड करने में असमर्थ। कृपया पुनः प्रयास करें।';
+  String get unableToLoadThisSection =>
+      'इस अनुभाग को लोड करने में असमर्थ। कृपया पुनः प्रयास करें।';
 
   @override
   String get translationLanguage => 'अनुवाद भाषा';
@@ -2973,7 +3203,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get graceMandarin50Phrases => 'Grace Mandarin: 50 वाक्यांश';
 
   @override
-  String get essentialChinesePhrasesForBeginners => 'शुरुआती लोगों के लिए आवश्यक चीनी वाक्यांश';
+  String get essentialChinesePhrasesForBeginners =>
+      'शुरुआती लोगों के लिए आवश्यक चीनी वाक्यांश';
 
   @override
   String get makingBambooFurniture => 'बांस का फ़र्नीचर बनाना';
@@ -3000,10 +3231,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get silkFlowersTraditionalCraft => 'रेशमी फूल: पारंपरिक शिल्प';
 
   @override
-  String get mandarinCorner => 'Mandarin Corner: चीनी सीखें - डॉक्टर के पास जाना';
+  String get mandarinCorner =>
+      'Mandarin Corner: चीनी सीखें - डॉक्टर के पास जाना';
 
   @override
-  String get goingToTheDoctorReal => 'डॉक्टर के पास जाना: वास्तविक जीवन की बातचीत';
+  String get goingToTheDoctorReal =>
+      'डॉक्टर के पास जाना: वास्तविक जीवन की बातचीत';
 
   @override
   String get hideAndSeekBeginnerFriendly => 'लुका-छिपी (शुरुआती स्तर)';
@@ -3018,7 +3251,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bbcWorldNews => 'BBC 中文 (विश्व समाचार)';
 
   @override
-  String get currentEventsInSimplifiedChinese => 'सरलीकृत चीनी में समसामयिक घटनाएं';
+  String get currentEventsInSimplifiedChinese =>
+      'सरलीकृत चीनी में समसामयिक घटनाएं';
 
   @override
   String get baidu => 'Baidu';
@@ -3027,7 +3261,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youtubeDesk => 'YOUTUBE डेस्क';
 
   @override
-  String get interactiveTranscriptsShadowing => 'इंटरैक्टिव ट्रांसक्रिप्ट और शैडोइंग';
+  String get interactiveTranscriptsShadowing =>
+      'इंटरैक्टिव ट्रांसक्रिप्ट और शैडोइंग';
 
   @override
   String get showsDramas => 'शो और ड्रामा';
@@ -3039,7 +3274,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get autoSimplify => 'स्वतः सरल करें';
 
   @override
-  String get rewriteThisArticleToMatch => 'इस लेख को अपने HSK स्तर के अनुसार फिर से लिखें';
+  String get rewriteThisArticleToMatch =>
+      'इस लेख को अपने HSK स्तर के अनुसार फिर से लिखें';
 
   @override
   String failedToSaveExtractedWords(Object error) {
@@ -3055,7 +3291,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dailyDiscoveryDrop => 'दैनिक खोज ड्रॉप';
 
   @override
-  String get smartSpacedRepetition => 'स्मार्ट अंतराल पुनरावृत्ति (Spaced Repetition)';
+  String get smartSpacedRepetition =>
+      'स्मार्ट अंतराल पुनरावृत्ति (Spaced Repetition)';
 
   @override
   String get trialProtectionAlert => 'ट्रायल सुरक्षा अलर्ट';
@@ -3200,10 +3437,12 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get downloadOfficialHskCollections1 => 'आधिकारिक HSK संग्रह डाउनलोड करें';
+  String get downloadOfficialHskCollections1 =>
+      'आधिकारिक HSK संग्रह डाउनलोड करें';
 
   @override
-  String get unableToLoadThisSectionPleaseTryAga => 'इस अनुभाग को लोड करने में असमर्थ। कृपया पुनः प्रयास करें।';
+  String get unableToLoadThisSectionPleaseTryAga =>
+      'इस अनुभाग को लोड करने में असमर्थ। कृपया पुनः प्रयास करें।';
 
   @override
   String get searchRadicalsEgWater => 'रेडिकल खोजें (उदा. जल, 氵)';
@@ -3283,13 +3522,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get partnerSpeaking1 => 'साझेदार बोल रहा है…';
 
   @override
-  String get theLifeOfGarlicTraditionalChineseLi => 'लहसुन का जीवन: पारंपरिक चीनी जीवन';
+  String get theLifeOfGarlicTraditionalChineseLi =>
+      'लहसुन का जीवन: पारंपरिक चीनी जीवन';
 
   @override
   String get graceMandarin50Phrases1 => 'Grace Mandarin: 50 वाक्यांश';
 
   @override
-  String get essentialChinesePhrasesForBeginners1 => 'शुरुआती लोगों के लिए आवश्यक चीनी वाक्यांश';
+  String get essentialChinesePhrasesForBeginners1 =>
+      'शुरुआती लोगों के लिए आवश्यक चीनी वाक्यांश';
 
   @override
   String get makingBambooFurniture1 => 'बांस का फ़र्नीचर बनाना';
@@ -3307,13 +3548,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get graceMandarinOrderFood1 => 'Grace Mandarin: खाना ऑर्डर करें';
 
   @override
-  String get howToOrderFoodInAChineseRestaurant => 'चीनी रेस्तरां में खाना कैसे ऑर्डर करें';
+  String get howToOrderFoodInAChineseRestaurant =>
+      'चीनी रेस्तरां में खाना कैसे ऑर्डर करें';
 
   @override
   String get silkFlowersTraditionalCraft1 => 'रेशमी फूल: पारंपरिक शिल्प';
 
   @override
-  String get goingToTheDoctorRealLifeConversatio => 'डॉक्टर के पास जाना: वास्तविक जीवन की बातचीत';
+  String get goingToTheDoctorRealLifeConversatio =>
+      'डॉक्टर के पास जाना: वास्तविक जीवन की बातचीत';
 
   @override
   String get hideAndSeekBeginnerFriendly1 => 'लुका-छिपी (शुरुआती स्तर)';
@@ -3322,10 +3565,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get lingdp6 => 'श्याओ लिन बताते हैं: GDP वृद्धि 6% क्यों?';
 
   @override
-  String get why6GdpGrowthEasyChineseEconomics => '6% GDP वृद्धि क्यों: सरल चीनी अर्थशास्त्र';
+  String get why6GdpGrowthEasyChineseEconomics =>
+      '6% GDP वृद्धि क्यों: सरल चीनी अर्थशास्त्र';
 
   @override
-  String get currentEventsInSimplifiedChinese1 => 'सरलीकृत चीनी में समसामयिक घटनाएं';
+  String get currentEventsInSimplifiedChinese1 =>
+      'सरलीकृत चीनी में समसामयिक घटनाएं';
 
   @override
   String get baidu1 => 'Baidu';
@@ -3334,7 +3579,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youtubeDesk1 => 'YOUTUBE डेस्क';
 
   @override
-  String get interactiveTranscriptsShadowing1 => 'इंटरैक्टिव ट्रांसक्रिप्ट और शैडोइंग';
+  String get interactiveTranscriptsShadowing1 =>
+      'इंटरैक्टिव ट्रांसक्रिप्ट और शैडोइंग';
 
   @override
   String get showsDramas1 => 'शो और ड्रामा';
@@ -3351,7 +3597,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get autosimplify => 'स्वतः सरल करें';
 
   @override
-  String get rewriteThisArticleToMatchYourHskLev => 'इस लेख को अपने HSK स्तर के अनुसार फिर से लिखें';
+  String get rewriteThisArticleToMatchYourHskLev =>
+      'इस लेख को अपने HSK स्तर के अनुसार फिर से लिखें';
 
   @override
   String get addToDeck1 => 'डेक में जोड़ें';
@@ -3472,10 +3719,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get readingVocabulary1 => 'पठन और शब्दावली';
 
   @override
-  String get defaultfirebaseoptionsHaveNotBeenCo => 'Linux के लिए DefaultFirebaseOptions कॉन्फ़िगर नहीं किए गए हैं।';
+  String get defaultfirebaseoptionsHaveNotBeenCo =>
+      'Linux के लिए DefaultFirebaseOptions कॉन्फ़िगर नहीं किए गए हैं।';
 
   @override
-  String get defaultfirebaseoptionsAreNotSupport => 'इस प्लेटफ़ॉर्म के लिए DefaultFirebaseOptions समर्थित नहीं हैं।';
+  String get defaultfirebaseoptionsAreNotSupport =>
+      'इस प्लेटफ़ॉर्म के लिए DefaultFirebaseOptions समर्थित नहीं हैं।';
 
   @override
   String get hanziMaster1 => 'SinoSpark';
@@ -3565,7 +3814,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get kore => 'Kore (स्त्रीलिंग, सौम्य)';
 
   @override
-  String get xmicrosoftoutputformatAudio24khz48k => 'audio-24khz-48kbitrate-mono-mp3';
+  String get xmicrosoftoutputformatAudio24khz48k =>
+      'audio-24khz-48kbitrate-mono-mp3';
 
   @override
   String get useragentHanzimasterapp => 'HanziMasterApp';
@@ -3577,25 +3827,30 @@ class AppLocalizationsHi extends AppLocalizations {
   String get creativeThematicTitle => 'रचनात्मक विषयगत शीर्षक';
 
   @override
-  String get briefPedagogicalOrSemanticRationale => 'संक्षिप्त शैक्षणिक या अर्थ संबंधी तर्क';
+  String get briefPedagogicalOrSemanticRationale =>
+      'संक्षिप्त शैक्षणिक या अर्थ संबंधी तर्क';
 
   @override
   String get theSingleMostCentralCharacterFromTh => 'सूची का सबसे मुख्य वर्ण';
 
   @override
-  String get aBalancedSetOfCharactersFromYourLib => 'आपकी लाइब्रेरी से वर्णों का एक संतुलित समूह।';
+  String get aBalancedSetOfCharactersFromYourLib =>
+      'आपकी लाइब्रेरी से वर्णों का एक संतुलित समूह।';
 
   @override
-  String get yourNaturalConversationalReplyInChi => 'चीनी वर्णों में आपका स्वाभाविक संवादात्मक उत्तर।';
+  String get yourNaturalConversationalReplyInChi =>
+      'चीनी वर्णों में आपका स्वाभाविक संवादात्मक उत्तर।';
 
   @override
   String get theEnglishTranslationOfYourReply => 'आपके उत्तर का हिंदी अनुवाद।';
 
   @override
-  String get thePinyinWithToneMarksForYourReply => 'आपके उत्तर के लिए टोन चिह्नों के साथ पिनयिन।';
+  String get thePinyinWithToneMarksForYourReply =>
+      'आपके उत्तर के लिए टोन चिह्नों के साथ पिनयिन।';
 
   @override
-  String get aSuggestedResponseTheUserCouldSayBa => 'एक सुझाया गया उत्तर जो उपयोगकर्ता कह सकता है।';
+  String get aSuggestedResponseTheUserCouldSayBa =>
+      'एक सुझाया गया उत्तर जो उपयोगकर्ता कह सकता है।';
 
   @override
   String get pinyinForTheSuggestion => 'सुझाव के लिए पिनयिन।';
@@ -3607,7 +3862,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scholarsCritique => 'विद्वान की समीक्षा';
 
   @override
-  String get theEchoHallRemainsSilentTryYourBrea => 'इको हॉल शांत है। एक गहरी सांस लें और पुनः प्रयास करें।';
+  String get theEchoHallRemainsSilentTryYourBrea =>
+      'इको हॉल शांत है। एक गहरी सांस लें और पुनः प्रयास करें।';
 
   @override
   String get xtitleHanziMaster => 'SinoSpark';
@@ -3640,10 +3896,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get failedToLoadComparison => 'तुलना लोड करने में विफल।';
 
   @override
-  String get emptyResponseFromOpenrouter => 'OpenRouter से खाली प्रतिक्रिया प्राप्त हुई';
+  String get emptyResponseFromOpenrouter =>
+      'OpenRouter से खाली प्रतिक्रिया प्राप्त हुई';
 
   @override
-  String get emptyResponseFromVisionModel => 'विज़न मॉडल से खाली प्रतिक्रिया प्राप्त हुई';
+  String get emptyResponseFromVisionModel =>
+      'विज़न मॉडल से खाली प्रतिक्रिया प्राप्त हुई';
 
   @override
   String get standard => 'मानक';
@@ -3658,55 +3916,70 @@ class AppLocalizationsHi extends AppLocalizations {
   String get thePinyinForThisSpecificWord => 'इस विशिष्ट शब्द के लिए पिनयिन';
 
   @override
-  String get emptyResponseFromDeepseekApi => 'DeepSeek API से खाली प्रतिक्रिया प्राप्त हुई';
+  String get emptyResponseFromDeepseekApi =>
+      'DeepSeek API से खाली प्रतिक्रिया प्राप्त हुई';
 
   @override
-  String get criticalPutTheEnglishTranslationInT => 'महत्वपूर्ण: अनुवाद को इसमें रखें';
+  String get criticalPutTheEnglishTranslationInT =>
+      'महत्वपूर्ण: अनुवाद को इसमें रखें';
 
   @override
-  String get englishTranslationOfTheEntireSenten => 'पूरे वाक्य का हिंदी अनुवाद';
+  String get englishTranslationOfTheEntireSenten =>
+      'पूरे वाक्य का हिंदी अनुवाद';
 
   @override
   String get hanziWord => 'हान्ज़ी शब्द';
 
   @override
-  String get theFullSimplifiedSentenceInChinese => 'चीनी में पूरा सरलीकृत वाक्य...';
+  String get theFullSimplifiedSentenceInChinese =>
+      'चीनी में पूरा सरलीकृत वाक्य...';
 
   @override
-  String get lyingFlatACulturalMovement => 'तांग पिंग (Tang Ping): एक सांस्कृतिक आंदोलन...';
+  String get lyingFlatACulturalMovement =>
+      'तांग पिंग (Tang Ping): एक सांस्कृतिक आंदोलन...';
 
   @override
-  String get theUserYouAreSpeakingToIsNamed => 'जिस उपयोगकर्ता से आप बात कर रहे हैं उसका नाम है';
+  String get theUserYouAreSpeakingToIsNamed =>
+      'जिस उपयोगकर्ता से आप बात कर रहे हैं उसका नाम है';
 
   @override
-  String get importantRuleDoNotAddressTheUserByA => 'महत्वपूर्ण नियम: उपयोगकर्ता को किसी नाम से संबोधित न करें। कभी भी प्लेसहोल्डर नामों का उपयोग न करें जैसे';
+  String get importantRuleDoNotAddressTheUserByA =>
+      'महत्वपूर्ण नियम: उपयोगकर्ता को किसी नाम से संबोधित न करें। कभी भी प्लेसहोल्डर नामों का उपयोग न करें जैसे';
 
   @override
-  String get youAreAConciseChineseCalligraphyAnd => 'आप एक मोबाइल फ्लैशकार्ड ऐप में चीनी सुलेख और व्युत्पत्ति के सटीक ट्यूटर हैं।';
+  String get youAreAConciseChineseCalligraphyAnd =>
+      'आप एक मोबाइल फ्लैशकार्ड ऐप में चीनी सुलेख और व्युत्पत्ति के सटीक ट्यूटर हैं।';
 
   @override
-  String get theStudentIsStudyingTheCharacter => 'शिक्षार्थी इस वर्ण का अध्ययन कर रहा है';
+  String get theStudentIsStudyingTheCharacter =>
+      'शिक्षार्थी इस वर्ण का अध्ययन कर रहा है';
 
   @override
-  String get neverWriteIntroductionsSignoffsOrFi => 'कभी भी औपचारिक परिचय, समापन या अनावश्यक वाक्यांश न लिखें जैसे';
+  String get neverWriteIntroductionsSignoffsOrFi =>
+      'कभी भी औपचारिक परिचय, समापन या अनावश्यक वाक्यांश न लिखें जैसे';
 
   @override
   String get beDirectAndInformative => 'सटीक और ज्ञानवर्धक रहें।';
 
   @override
-  String get criticalRuleYouMustRespondEntirelyI => 'महत्वपूर्ण नियम: आपको ISO 639-1 कोड के अनुरूप भाषा में ही पूरा उत्तर देना होगा';
+  String get criticalRuleYouMustRespondEntirelyI =>
+      'महत्वपूर्ण नियम: आपको ISO 639-1 कोड के अनुरूप भाषा में ही पूरा उत्तर देना होगा';
 
   @override
-  String get youAreAConciseChineseGrammarTutorIn => 'आप एक मोबाइल ऐप में चीनी व्याकरण के सटीक ट्यूटर हैं।';
+  String get youAreAConciseChineseGrammarTutorIn =>
+      'आप एक मोबाइल ऐप में चीनी व्याकरण के सटीक ट्यूटर हैं।';
 
   @override
-  String get theStudentIsConfusedAboutTheWord => 'शिक्षार्थी इस शब्द को लेकर भ्रमित है';
+  String get theStudentIsConfusedAboutTheWord =>
+      'शिक्षार्थी इस शब्द को लेकर भ्रमित है';
 
   @override
-  String get neverWriteIntroductionsSignoffsOrFi1 => 'कभी भी परिचय, समापन या अनावश्यक वाक्यांश न लिखें।';
+  String get neverWriteIntroductionsSignoffsOrFi1 =>
+      'कभी भी परिचय, समापन या अनावश्यक वाक्यांश न लिखें।';
 
   @override
-  String get azureSpeechApiKeysAreMissing => 'Azure Speech API कुंजियाँ मौजूद नहीं हैं।';
+  String get azureSpeechApiKeysAreMissing =>
+      'Azure Speech API कुंजियाँ मौजूद नहीं हैं।';
 
   @override
   String get success => 'सफलता';
@@ -3724,7 +3997,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get comprehensive => 'व्यापक';
 
   @override
-  String get weCouldntHearYouClearlyPleaseTryAga => 'हम आपको स्पष्ट रूप से सुन नहीं पाए। कृपया पुनः प्रयास करें।';
+  String get weCouldntHearYouClearlyPleaseTryAga =>
+      'हम आपको स्पष्ट रूप से सुन नहीं पाए। कृपया पुनः प्रयास करें।';
 
   @override
   String get noNbestResultFound => 'कोई उपयुक्त पहचान परिणाम नहीं मिला।';
@@ -3766,16 +4040,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get goodEffortKeepPracticing => 'अच्छा प्रयास! अभ्यास जारी रखें।';
 
   @override
-  String get perfectPronunciationSoundsLikeANati => 'शानदार उच्चारण! बिल्कुल मूल वक्ता जैसा।';
+  String get perfectPronunciationSoundsLikeANati =>
+      'शानदार उच्चारण! बिल्कुल मूल वक्ता जैसा।';
 
   @override
-  String get greatJobAFewMinorToneInaccuracies => 'बहुत बढ़िया! कुछ मामूली टोन अशुद्धियां।';
+  String get greatJobAFewMinorToneInaccuracies =>
+      'बहुत बढ़िया! कुछ मामूली टोन अशुद्धियां।';
 
   @override
-  String get notBadButYourTonesNeedSomeWork => 'अच्छा प्रयास, लेकिन टोन पर थोड़ा और ध्यान देने की आवश्यकता है।';
+  String get notBadButYourTonesNeedSomeWork =>
+      'अच्छा प्रयास, लेकिन टोन पर थोड़ा और ध्यान देने की आवश्यकता है।';
 
   @override
-  String get keepPracticingListenToTheNativeAudi => 'अभ्यास जारी रखें! मूल ऑडियो सुनें और दोबारा प्रयास करें।';
+  String get keepPracticingListenToTheNativeAudi =>
+      'अभ्यास जारी रखें! मूल ऑडियो सुनें और दोबारा प्रयास करें।';
 
   @override
   String get lexical => 'शाब्दिक';
@@ -3787,13 +4065,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aShortSummaryInEnglish => 'एक संक्षिप्त सारांश';
 
   @override
-  String get noCoherentChineseTextFoundInTheScan => 'स्कैन में कोई सुसंगत चीनी पाठ नहीं मिला।';
+  String get noCoherentChineseTextFoundInTheScan =>
+      'स्कैन में कोई सुसंगत चीनी पाठ नहीं मिला।';
 
   @override
-  String get theFullEnglishTranslationOfTheScann => 'स्कैन किए गए पाठ का पूरा अनुवाद... या \'कोई सुसंगत चीनी पाठ नहीं मिला।\'';
+  String get theFullEnglishTranslationOfTheScann =>
+      'स्कैन किए गए पाठ का पूरा अनुवाद... या \'कोई सुसंगत चीनी पाठ नहीं मिला।\'';
 
   @override
-  String get aShort24WordTitleForThisScanEgResta => 'इस स्कैन के लिए 2-4 शब्दों का एक संक्षिप्त शीर्षक (उदा. \'रेस्तरां मेनू\', \'सड़क का बोर्ड\')';
+  String get aShort24WordTitleForThisScanEgResta =>
+      'इस स्कैन के लिए 2-4 शब्दों का एक संक्षिप्त शीर्षक (उदा. \'रेस्तरां मेनू\', \'सड़क का बोर्ड\')';
 
   @override
   String get china => 'चीन';
@@ -3805,10 +4086,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scanResults => 'स्कैन परिणाम';
 
   @override
-  String get whenWasItWrittenAndWhatWasHappening => 'यह कब लिखा गया था और उस समय चीन में क्या ऐतिहासिक पृष्ठभूमि थी?';
+  String get whenWasItWrittenAndWhatWasHappening =>
+      'यह कब लिखा गया था और उस समय चीन में क्या ऐतिहासिक पृष्ठभूमि थी?';
 
   @override
-  String get whyIsThisPieceFamousWhatPhilosophic => 'यह रचना क्यों प्रसिद्ध है? यह किन दार्शनिक या सांस्कृतिक विषयों को छूती है?';
+  String get whyIsThisPieceFamousWhatPhilosophic =>
+      'यह रचना क्यों प्रसिद्ध है? यह किन दार्शनिक या सांस्कृतिक विषयों को छूती है?';
 
   @override
   String get aBriefBioOfTheAuthor => 'लेखक का संक्षिप्त परिचय।';
@@ -3829,16 +4112,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dailyDrop => 'दैनिक ड्रॉप';
 
   @override
-  String get dailyNotificationsForWordOfTheDayAn => 'आज का शब्द और समाचार के लिए दैनिक सूचनाएं';
+  String get dailyNotificationsForWordOfTheDayAn =>
+      'आज का शब्द और समाचार के लिए दैनिक सूचनाएं';
 
   @override
-  String get aNewWordAndStoryOfTheDayAreWaitingF => 'आज का एक नया शब्द और कहानी आपका इंतजार कर रहे हैं!';
+  String get aNewWordAndStoryOfTheDayAreWaitingF =>
+      'आज का एक नया शब्द और कहानी आपका इंतजार कर रहे हैं!';
 
   @override
   String get spacedRepetition => 'अंतराल पुनरावृत्ति (Spaced Repetition)';
 
   @override
-  String get remindersForFlashcardsDueForReview => 'समीक्षा के लिए बाकी फ्लैशकार्ड के अनुस्मारक';
+  String get remindersForFlashcardsDueForReview =>
+      'समीक्षा के लिए बाकी फ्लैशकार्ड के अनुस्मारक';
 
   @override
   String get engagementReminders => 'सक्रियता अनुस्मारक';
@@ -3847,10 +4133,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get trialReminders => 'ट्रायल अनुस्मारक';
 
   @override
-  String get notificationsForYourTrialStatus => 'आपके ट्रायल की स्थिति के लिए सूचनाएं';
+  String get notificationsForYourTrialStatus =>
+      'आपके ट्रायल की स्थिति के लिए सूचनाएं';
 
   @override
-  String get comeReviewYourHanziAndTryALiveCallB => 'अपने हान्ज़ी का अभ्यास करें और मुफ़्त एक्सेस समाप्त होने से पहले लाइव कॉल आज़माएं!';
+  String get comeReviewYourHanziAndTryALiveCallB =>
+      'अपने हान्ज़ी का अभ्यास करें और मुफ़्त एक्सेस समाप्त होने से पहले लाइव कॉल आज़माएं!';
 
   @override
   String get scholarsEye => 'विद्वान की दृष्टि';
@@ -3868,46 +4156,60 @@ class AppLocalizationsHi extends AppLocalizations {
   String get neutralToneLight => 'तटस्थ टोन (हल्का)';
 
   @override
-  String get keepYourPitchHighAndSteadyLikeSingi => 'अपनी पिच को ऊंचा और स्थिर रखें जैसे कोई सुर साध रहे हों।';
+  String get keepYourPitchHighAndSteadyLikeSingi =>
+      'अपनी पिच को ऊंचा और स्थिर रखें जैसे कोई सुर साध रहे हों।';
 
   @override
-  String get startInTheMiddleAndSlideYourPitchUp => 'मध्यम पिच से शुरू करें और सवाल पूछते हुए ऊपर ले जाएं, जैसे \'क्या?\'';
+  String get startInTheMiddleAndSlideYourPitchUp =>
+      'मध्यम पिच से शुरू करें और सवाल पूछते हुए ऊपर ले जाएं, जैसे \'क्या?\'';
 
   @override
-  String get dipYourVoiceDownLowThenRiseGentlyBa => 'अपनी आवाज़ को पहले नीचे ले जाएं, फिर धीरे से वापस ऊपर उठाएं।';
+  String get dipYourVoiceDownLowThenRiseGentlyBa =>
+      'अपनी आवाज़ को पहले नीचे ले जाएं, फिर धीरे से वापस ऊपर उठाएं।';
 
   @override
-  String get dropYourPitchSharplyAndDecisivelyLi => 'अपनी पिच को तेजी से और दृढ़ता से नीचे गिराएं, जैसे \'नहीं!\' कहना हो।';
+  String get dropYourPitchSharplyAndDecisivelyLi =>
+      'अपनी पिच को तेजी से और दृढ़ता से नीचे गिराएं, जैसे \'नहीं!\' कहना हो।';
 
   @override
-  String get pronounceSoftlyBrieflyAndWithoutEmp => 'हल्के, संक्षिप्त और बिना किसी जोर के उच्चारण करें।';
+  String get pronounceSoftlyBrieflyAndWithoutEmp =>
+      'हल्के, संक्षिप्त और बिना किसी जोर के उच्चारण करें।';
 
   @override
-  String get spotOnPitchWasHighFlatAndSteady => 'बिल्कुल सही! पिच ऊंची, सपाट और स्थिर थी।';
+  String get spotOnPitchWasHighFlatAndSteady =>
+      'बिल्कुल सही! पिच ऊंची, सपाट और स्थिर थी।';
 
   @override
-  String get spotOnUpwardPitchRiseWasClear => 'बिल्कुल सही! ऊपर की ओर टोन का चढ़ाव स्पष्ट था।';
+  String get spotOnUpwardPitchRiseWasClear =>
+      'बिल्कुल सही! ऊपर की ओर टोन का चढ़ाव स्पष्ट था।';
 
   @override
-  String get spotOnLowDippingCurveWasAccurate => 'बिल्कुल सही! नीचे झुककर ऊपर उठने वाला वक्र सटीक था।';
+  String get spotOnLowDippingCurveWasAccurate =>
+      'बिल्कुल सही! नीचे झुककर ऊपर उठने वाला वक्र सटीक था।';
 
   @override
-  String get spotOnSharpFallingDropWasDecisive => 'बिल्कुल सही! तीखा और गिरता हुआ टोन सटीक था।';
+  String get spotOnSharpFallingDropWasDecisive =>
+      'बिल्कुल सही! तीखा और गिरता हुआ टोन सटीक था।';
 
   @override
-  String get spotOnToneWasPronouncedAccurately => 'बिल्कुल सही! टोन का उच्चारण सटीक था।';
+  String get spotOnToneWasPronouncedAccurately =>
+      'बिल्कुल सही! टोन का उच्चारण सटीक था।';
 
   @override
-  String get iAgreeToTheTermsOfServiceAndPrivacy => 'मैं सेवा की शर्तों और गोपनीयता नीति से सहमत हूँ।';
+  String get iAgreeToTheTermsOfServiceAndPrivacy =>
+      'मैं सेवा की शर्तों और गोपनीयता नीति से सहमत हूँ।';
 
   @override
-  String get sendMeOccasionalUpdatesTipsAndOffer => 'मुझे सामयिक अपडेट, सुझाव और ऑफ़र भेजें।';
+  String get sendMeOccasionalUpdatesTipsAndOffer =>
+      'मुझे सामयिक अपडेट, सुझाव और ऑफ़र भेजें।';
 
   @override
-  String get signInToSyncYourProgress => 'अपनी सीखने की प्रगति सिंक करने के लिए साइन इन करें।';
+  String get signInToSyncYourProgress =>
+      'अपनी सीखने की प्रगति सिंक करने के लिए साइन इन करें।';
 
   @override
-  String get createAnAccountToSaveYourStats => 'अपने आंकड़े सहेजने के लिए एक खाता बनाएं।';
+  String get createAnAccountToSaveYourStats =>
+      'अपने आंकड़े सहेजने के लिए एक खाता बनाएं।';
 
   @override
   String get smartSpiral => 'स्मार्ट स्पाइरल';
@@ -3931,22 +4233,26 @@ class AppLocalizationsHi extends AppLocalizations {
   String get city => 'नगर और वाणिज्य';
 
   @override
-  String get originTheSimplestShapesTheBeginning => 'सबसे सरल आकृतियां। सभी चीजों की शुरुआत।';
+  String get originTheSimplestShapesTheBeginning =>
+      'सबसे सरल आकृतियां। सभी चीजों की शुरुआत।';
 
   @override
-  String get elementsSunMoonWaterAndFireTheNatur => 'सूर्य, चंद्रमा, जल और अग्नि। प्राकृतिक संसार।';
+  String get elementsSunMoonWaterAndFireTheNatur =>
+      'सूर्य, चंद्रमा, जल और अग्नि। प्राकृतिक संसार।';
 
   @override
   String get humanityTheBodyTheHeartAndTheFamily => 'शरीर, हृदय और परिवार।';
 
   @override
-  String get villageFieldsRoofsAndToolsTheFounda => 'खेत, छतें और औजार। समाज की नींव।';
+  String get villageFieldsRoofsAndToolsTheFounda =>
+      'खेत, छतें और औजार। समाज की नींव।';
 
   @override
   String get journeyMovementSpeechAndSustenance => 'गति, वाणी और पोषण।';
 
   @override
-  String get cityCommerceClothingAndComplexArtif => 'व्यापार, वस्त्र और जटिल कलाकृतियां।';
+  String get cityCommerceClothingAndComplexArtif =>
+      'व्यापार, वस्त्र और जटिल कलाकृतियां।';
 
   @override
   String get equilibriumAlgorithm => 'संतुलन एल्गोरिदम';
@@ -4157,10 +4463,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get puck => 'Puck (पुल्लिंग, स्पोर्टी)';
 
   @override
-  String get helloWelcomeWhatWouldYouLikeToOrder => 'नमस्ते! स्वागत है। आप क्या ऑर्डर करना चाहेंगे?';
+  String get helloWelcomeWhatWouldYouLikeToOrder =>
+      'नमस्ते! स्वागत है। आप क्या ऑर्डर करना चाहेंगे?';
 
   @override
-  String get ni3Hao3Huan1ying2Guang1lin2Qing3wen => 'Nǐ hǎo! Huānyíng guānglín. Qǐngwèn nǐ yào diǎn shénme?';
+  String get ni3Hao3Huan1ying2Guang1lin2Qing3wen =>
+      'Nǐ hǎo! Huānyíng guānglín. Qǐngwèn nǐ yào diǎn shénme?';
 
   @override
   String get waiterLi => 'वेटर ली';
@@ -4178,13 +4486,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get fenrir => 'Fenrir (पुल्लिंग, ऊर्जावान)';
 
   @override
-  String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De => 'Nǐ qù nǎr a? Jīchǎng ma? Tǐng yuǎn de!';
+  String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
+      'Nǐ qù nǎr a? Jīchǎng ma? Tǐng yuǎn de!';
 
   @override
   String get driverWang => 'ड्राइवर वांग';
 
   @override
-  String get tellTheDriverYouAreGoingToTheAirpor => 'ड्राइवर को बताएं कि आपको हवाई अड्डे जाना है';
+  String get tellTheDriverYouAreGoingToTheAirpor =>
+      'ड्राइवर को बताएं कि आपको हवाई अड्डे जाना है';
 
   @override
   String get askHowLongTheTripWillTake => 'पूछें कि रास्ते में कितना समय लगेगा';
@@ -4196,31 +4506,37 @@ class AppLocalizationsHi extends AppLocalizations {
   String get charon => 'Charon (पुल्लिंग, समाचार शैली)';
 
   @override
-  String get thisClothingQualityIsEspeciallyGood => 'इस पोशाक की गुणवत्ता बहुत अच्छी है, केवल 200 कुआई।';
+  String get thisClothingQualityIsEspeciallyGood =>
+      'इस पोशाक की गुणवत्ता बहुत अच्छी है, केवल 200 कुआई।';
 
   @override
-  String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 => 'Zhè jiàn yīfu zhìliàng tèbié hǎo, zhǐyào liǎng bǎi kuài.';
+  String get zhe4Jian4Yi1fuZhi4liang4Te4bie2Hao3 =>
+      'Zhè jiàn yīfu zhìliàng tèbié hǎo, zhǐyào liǎng bǎi kuài.';
 
   @override
   String get auntieChen => 'आंटी चेन';
 
   @override
-  String get askHowMuchTheSilkShirtCosts => 'पूछें कि रेशमी कमीज़ की कीमत कितनी है';
+  String get askHowMuchTheSilkShirtCosts =>
+      'पूछें कि रेशमी कमीज़ की कीमत कितनी है';
 
   @override
   String get sayItIsTooExpensive => 'कहें कि यह बहुत महंगा है';
 
   @override
-  String get bargainThePriceDownTo100Rmb => 'कीमत 100 RMB तक घटाने के लिए मोलभाव करें';
+  String get bargainThePriceDownTo100Rmb =>
+      'कीमत 100 RMB तक घटाने के लिए मोलभाव करें';
 
   @override
-  String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa => 'Nǐ nǎlǐ bù shūfu? Fāshāo le ma?';
+  String get ni3Na3li3Bu4Shu1fuFa1shao1LeMa =>
+      'Nǐ nǎlǐ bù shūfu? Fāshāo le ma?';
 
   @override
   String get drZhang => 'डॉ. झांग';
 
   @override
-  String get explainYouHaveHadAHeadacheForTwoDay => 'बताएं कि आपको दो दिन से सिरदर्द हो रहा है';
+  String get explainYouHaveHadAHeadacheForTwoDay =>
+      'बताएं कि आपको दो दिन से सिरदर्द हो रहा है';
 
   @override
   String get sayYouHaveASlightFever => 'बताएं कि आपको हल्का बुखार है';
@@ -4232,64 +4548,82 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aoede => 'Aoede (स्त्रीलिंग, प्रफुल्लित)';
 
   @override
-  String get heyLongTimeNoSeeHowHaveYouBeenLatel => 'अरे! बहुत दिनों बाद मिले, आजकल आपका क्या हाल-चाल है?';
+  String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
+      'अरे! बहुत दिनों बाद मिले, आजकल आपका क्या हाल-चाल है?';
 
   @override
-  String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z => 'Nǐ hǎo! Hǎojiǔ bùjiàn, nǐ zuìjìn zěnmeyàng?';
+  String get ni3Hao3Hao3jiu3Bu4jian4Ni3Zui4jin4Z =>
+      'Nǐ hǎo! Hǎojiǔ bùjiàn, nǐ zuìjìn zěnmeyàng?';
 
   @override
-  String get pleaseIntroduceYourselfWhyDoYouWant => 'कृपया अपना परिचय दें। आप हमारी कंपनी में क्यों काम करना चाहते हैं?';
+  String get pleaseIntroduceYourselfWhyDoYouWant =>
+      'कृपया अपना परिचय दें। आप हमारी कंपनी में क्यों काम करना चाहते हैं?';
 
   @override
-  String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 => 'Qǐng xiān zìwǒ jièshào yíxià. Nǐ wèishénme xiǎng lái wǒmen gōngsī gōngzuò?';
+  String get qing3Xian1Zi4wo3Jie4shao4Yi1xia4Ni3 =>
+      'Qǐng xiān zìwǒ jièshào yíxià. Nǐ wèishénme xiǎng lái wǒmen gōngsī gōngzuò?';
 
   @override
   String get managerLiu => 'मैनेजर लियू';
 
   @override
-  String get introduceYourProfessionalBackground => 'संक्षेप में अपनी पेशेवर पृष्ठभूमि बताएं';
+  String get introduceYourProfessionalBackground =>
+      'संक्षेप में अपनी पेशेवर पृष्ठभूमि बताएं';
 
   @override
-  String get explainWhyYouWantToWorkAtThisCompan => 'बताएं कि आप इस कंपनी में क्यों काम करना चाहते हैं';
+  String get explainWhyYouWantToWorkAtThisCompan =>
+      'बताएं कि आप इस कंपनी में क्यों काम करना चाहते हैं';
 
   @override
-  String get askAPoliteQuestionAboutTheCompanyCu => 'कंपनी की संस्कृति के बारे में एक विनम्र प्रश्न पूछें';
+  String get askAPoliteQuestionAboutTheCompanyCu =>
+      'कंपनी की संस्कृति के बारे में एक विनम्र प्रश्न पूछें';
 
   @override
-  String get microphoneAccessIsRequiredPleaseEna => 'माइक्रोफ़ोन एक्सेस आवश्यक है। कृपया इसे अपने डिवाइस की सेटिंग्स में सक्षम करें।';
+  String get microphoneAccessIsRequiredPleaseEna =>
+      'माइक्रोफ़ोन एक्सेस आवश्यक है। कृपया इसे अपने डिवाइस की सेटिंग्स में सक्षम करें।';
 
   @override
-  String get couldNotStartMicrophonePleaseCheckY => 'माइक्रोफ़ोन शुरू नहीं हो सका। कृपया अपनी ऑडियो सेटिंग्स जांचें और पुनः प्रयास करें।';
+  String get couldNotStartMicrophonePleaseCheckY =>
+      'माइक्रोफ़ोन शुरू नहीं हो सका। कृपया अपनी ऑडियो सेटिंग्स जांचें और पुनः प्रयास करें।';
 
   @override
-  String get weDidntQuiteCatchThatPleaseHoldTheM => 'हम ठीक से सुन नहीं पाए। कृपया माइक बटन दबाकर रखें और पुनः प्रयास करें!';
+  String get weDidntQuiteCatchThatPleaseHoldTheM =>
+      'हम ठीक से सुन नहीं पाए। कृपया माइक बटन दबाकर रखें और पुनः प्रयास करें!';
 
   @override
-  String get recordingWasTooShortHoldTheMicAndSp => 'रिकॉर्डिंग बहुत छोटी थी। माइक बटन दबाकर रखें और स्पष्ट बोलें।';
+  String get recordingWasTooShortHoldTheMicAndSp =>
+      'रिकॉर्डिंग बहुत छोटी थी। माइक बटन दबाकर रखें और स्पष्ट बोलें।';
 
   @override
-  String get audioBufferWasEmptyPleaseCheckYourM => 'ऑडियो बफ़र खाली था। कृपया अपना माइक्रोफ़ोन जांचें और पुनः प्रयास करें।';
+  String get audioBufferWasEmptyPleaseCheckYourM =>
+      'ऑडियो बफ़र खाली था। कृपया अपना माइक्रोफ़ोन जांचें और पुनः प्रयास करें।';
 
   @override
-  String get audioFileIsSilentPleaseSpeakIntoThe => 'ऑडियो फ़ाइल मूक है। कृपया सीधे माइक्रोफ़ोन में बोलें।';
+  String get audioFileIsSilentPleaseSpeakIntoThe =>
+      'ऑडियो फ़ाइल मूक है। कृपया सीधे माइक्रोफ़ोन में बोलें।';
 
   @override
-  String get weCouldntUnderstandYourPronunciatio => 'हम आपका उच्चारण समझ नहीं सके। कृपया स्पष्ट बोलें और पुनः प्रयास करें।';
+  String get weCouldntUnderstandYourPronunciatio =>
+      'हम आपका उच्चारण समझ नहीं सके। कृपया स्पष्ट बोलें और पुनः प्रयास करें।';
 
   @override
-  String get theServerIsTakingTooLongToRespondPl => 'सर्वर जवाब देने में बहुत अधिक समय ले रहा है। कृपया पुनः प्रयास करें।';
+  String get theServerIsTakingTooLongToRespondPl =>
+      'सर्वर जवाब देने में बहुत अधिक समय ले रहा है। कृपया पुनः प्रयास करें।';
 
   @override
-  String get noInternetConnectionPleaseCheckYour => 'कोई इंटरनेट कनेक्शन नहीं है। कृपया अपना नेटवर्क जांचें और पुनः प्रयास करें।';
+  String get noInternetConnectionPleaseCheckYour =>
+      'कोई इंटरनेट कनेक्शन नहीं है। कृपया अपना नेटवर्क जांचें और पुनः प्रयास करें।';
 
   @override
-  String get audioProcessingFailedPleaseTryAgain => 'ऑडियो प्रोसेसिंग विफल रही। कृपया पुनः प्रयास करें।';
+  String get audioProcessingFailedPleaseTryAgain =>
+      'ऑडियो प्रोसेसिंग विफल रही। कृपया पुनः प्रयास करें।';
 
   @override
   String get permission => 'अनुमति';
 
   @override
-  String get couldNotProcessYourRecordingPleaseT => 'आपकी रिकॉर्डिंग को प्रोसेस नहीं किया जा सका। कृपया पुनः प्रयास करें।';
+  String get couldNotProcessYourRecordingPleaseT =>
+      'आपकी रिकॉर्डिंग को प्रोसेस नहीं किया जा सका। कृपया पुनः प्रयास करें।';
 
   @override
   String get user => 'उपयोगकर्ता';
@@ -4298,7 +4632,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scholar => 'विद्वान';
 
   @override
-  String get ourAiTutorsAreCurrentlyOfflinePleas => 'हमारे AI ट्यूटर इस समय ऑफ़लाइन हैं, कृपया बाद में पुनः प्रयास करें।';
+  String get ourAiTutorsAreCurrentlyOfflinePleas =>
+      'हमारे AI ट्यूटर इस समय ऑफ़लाइन हैं, कृपया बाद में पुनः प्रयास करें।';
 
   @override
   String get hideTranslation => 'अनुवाद छिपाएं';
@@ -4313,16 +4648,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get connectedSpeakNow => 'कनेक्ट हो गया! अब आप बोल सकते हैं।';
 
   @override
-  String get initializationErrorCheckPermissions => 'आरंभीकरण त्रुटि। कृपया अनुमतियां जांचें।';
+  String get initializationErrorCheckPermissions =>
+      'आरंभीकरण त्रुटि। कृपया अनुमतियां जांचें।';
 
   @override
-  String get microphoneErrorTapToRetry => 'माइक्रोफ़ोन त्रुटि। पुनः प्रयास करने के लिए टैप करें।';
+  String get microphoneErrorTapToRetry =>
+      'माइक्रोफ़ोन त्रुटि। पुनः प्रयास करने के लिए टैप करें।';
 
   @override
-  String get theTutorReturnedAnEmptyResponse => 'ट्यूटर की ओर से कोई उत्तर नहीं मिला।';
+  String get theTutorReturnedAnEmptyResponse =>
+      'ट्यूटर की ओर से कोई उत्तर नहीं मिला।';
 
   @override
-  String get connectionInterruptedPleaseSpeakAga => 'कनेक्शन टूट गया। कृपया दोबारा बोलें।';
+  String get connectionInterruptedPleaseSpeakAga =>
+      'कनेक्शन टूट गया। कृपया दोबारा बोलें।';
 
   @override
   String get callPausedReviewingTones => 'कॉल रोकी गई (टोन का पुनरीक्षण)';
@@ -4337,19 +4676,22 @@ class AppLocalizationsHi extends AppLocalizations {
   String get studentCoach => 'विद्यार्थी / कोच';
 
   @override
-  String get keepYour1stToneHighAndSteadyOn => 'अपनी पहली टोन को इस पर ऊंचा और स्थिर रखें:';
+  String get keepYour1stToneHighAndSteadyOn =>
+      'अपनी पहली टोन को इस पर ऊंचा और स्थिर रखें:';
 
   @override
   String get noScenariosFound => 'कोई परिदृश्य नहीं मिला।';
 
   @override
-  String get designYourOwnAiRoleplayExperience => 'अपना स्वयं का AI रोलप्ले अनुभव डिज़ाइन करें';
+  String get designYourOwnAiRoleplayExperience =>
+      'अपना स्वयं का AI रोलप्ले अनुभव डिज़ाइन करें';
 
   @override
   String get generateFromDeck => 'डेक से बनाएं';
 
   @override
-  String get practiceFlashcardVocabularyInALiveD => 'लाइव संवाद में फ्लैशकार्ड शब्दावली का अभ्यास करें';
+  String get practiceFlashcardVocabularyInALiveD =>
+      'लाइव संवाद में फ्लैशकार्ड शब्दावली का अभ्यास करें';
 
   @override
   String get tapToRoleplay => 'रोलप्ले शुरू करने के लिए टैप करें';
@@ -4394,7 +4736,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get discussWhatToHaveForDinner => 'रात के खाने के बारे में चर्चा करें';
 
   @override
-  String get suggestWatchingAMovieAfterwards => 'बाद में मूवी देखने का सुझाव दें';
+  String get suggestWatchingAMovieAfterwards =>
+      'बाद में मूवी देखने का सुझाव दें';
 
   @override
   String get askIfTheyWouldLikeTea => 'पूछें कि क्या वे चाय लेना पसंद करेंगे';
@@ -4406,10 +4749,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deckPractice => 'डेक अभ्यास';
 
   @override
-  String get practiceVocabularyWithAnAiPartner => 'AI पार्टनर के साथ शब्दावली का अभ्यास करें।';
+  String get practiceVocabularyWithAnAiPartner =>
+      'AI पार्टनर के साथ शब्दावली का अभ्यास करें।';
 
   @override
-  String get designCustomAiRoleplayConversation => 'कस्टम AI रोलप्ले और बातचीत डिज़ाइन करें';
+  String get designCustomAiRoleplayConversation =>
+      'कस्टम AI रोलप्ले और बातचीत डिज़ाइन करें';
 
   @override
   String get random => 'यादृच्छिक';
@@ -4424,256 +4769,330 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiCharacterPersonaOptional => 'AI चरित्र / व्यक्तित्व (वैकल्पिक)';
 
   @override
-  String get aQuietBambooCourtyardTeahouseInChen => 'चेंगदू में एक शांत बांस के आंगन वाला टीहाउस, जहाँ पृष्ठभूमि में मधुर गुझेंग संगीत बज रहा है।';
+  String get aQuietBambooCourtyardTeahouseInChen =>
+      'चेंगदू में एक शांत बांस के आंगन वाला टीहाउस, जहाँ पृष्ठभूमि में मधुर गुझेंग संगीत बज रहा है।';
 
   @override
-  String get aBustlingSmokyNightMarketFilledWith => 'एक हलचल भरा, धुआंधार रात्रि बाज़ार, जो सीख कबाब, बाओज़ी और स्ट्रीट फ़ूड स्टालों से भरा है।';
+  String get aBustlingSmokyNightMarketFilledWith =>
+      'एक हलचल भरा, धुआंधार रात्रि बाज़ार, जो सीख कबाब, बाओज़ी और स्ट्रीट फ़ूड स्टालों से भरा है।';
 
   @override
-  String get aLivelyHotpotRestaurantInChongqingW => 'चोंगकिंग का एक जीवंत हॉटपॉट रेस्तरां, जिसमें उबलता हुआ गहरा लाल शोरबा और सुगंधित मिर्च का तीखापन है।';
+  String get aLivelyHotpotRestaurantInChongqingW =>
+      'चोंगकिंग का एक जीवंत हॉटपॉट रेस्तरां, जिसमें उबलता हुआ गहरा लाल शोरबा और सुगंधित मिर्च का तीखापन है।';
 
   @override
-  String get aBustlingTraditionalCantoneseTeahou => 'गुआंगज़ौ में एक पारंपरिक कैंटोनीज़ टीहाउस, जहाँ बांस की टोकरियों से गर्म भाप उठ रही है।';
+  String get aBustlingTraditionalCantoneseTeahou =>
+      'गुआंगज़ौ में एक पारंपरिक कैंटोनीज़ टीहाउस, जहाँ बांस की टोकरियों से गर्म भाप उठ रही है।';
 
   @override
-  String get aChicMinimalistCafeInTheFrenchConce => 'फ़्रेंच कंसेशन में बारिश की रविवार दोपहर में एक सुरुचिपूर्ण और शांत कैफ़े।';
+  String get aChicMinimalistCafeInTheFrenchConce =>
+      'फ़्रेंच कंसेशन में बारिश की रविवार दोपहर में एक सुरुचिपूर्ण और शांत कैफ़े।';
 
   @override
-  String get aWarmNorthernHomeKitchenDuringWinte => 'सर्दियों में उत्तरी चीन की एक आरामदायक घरेलू रसोई, जहाँ मेज़ पर आटा और उबलते जियाओज़ी के बर्तन हैं।';
+  String get aWarmNorthernHomeKitchenDuringWinte =>
+      'सर्दियों में उत्तरी चीन की एक आरामदायक घरेलू रसोई, जहाँ मेज़ पर आटा और उबलते जियाओज़ी के बर्तन हैं।';
 
   @override
-  String get anOpenairNightStreetFoodAlleyWithSi => 'स्ट्रीट फ़ूड की एक खुली रात्रि गली, जहाँ सिज़लिंग मटन कबाब, भुने हुए बैंगन और ठंडी बीयर का आनंद है।';
+  String get anOpenairNightStreetFoodAlleyWithSi =>
+      'स्ट्रीट फ़ूड की एक खुली रात्रि गली, जहाँ सिज़लिंग मटन कबाब, भुने हुए बैंगन और ठंडी बीयर का आनंद है।';
 
   @override
-  String get aSnowyStreetCornerOutsideTheLamaTem => 'लामा मंदिर के बाहर बर्फ से ढका सड़क का कोना, जहाँ चमकते हुए लाल तांगहुलु (कैंडीड हॉथॉर्न) सजे हैं।';
+  String get aSnowyStreetCornerOutsideTheLamaTem =>
+      'लामा मंदिर के बाहर बर्फ से ढका सड़क का कोना, जहाँ चमकते हुए लाल तांगहुलु (कैंडीड हॉथॉर्न) सजे हैं।';
 
   @override
   String get craftBeerBreweryInQingdao => 'क़िंगदाओ में क्राफ्ट बीयर ब्रूअरी';
 
   @override
-  String get aLivelyCoastalTaproomWithWoodenBarr => 'लकड़ी के बैरल, समुद्री हवा और ताज़ा व्हीट बीयर के साथ एक जीवंत तटीय टैपरूम।';
+  String get aLivelyCoastalTaproomWithWoodenBarr =>
+      'लकड़ी के बैरल, समुद्री हवा और ताज़ा व्हीट बीयर के साथ एक जीवंत तटीय टैपरूम।';
 
   @override
   String get sichuanCookingMasterclass => 'सिचुआन कुकिंग मास्टरक्लास';
 
   @override
-  String get aVibrantOpenKitchenWithWoksBlazingC => 'लपटों से घिरे वोक, खौलते मिर्च के तेल और ताज़ी सिचुआन मिर्च के साथ एक खुली जीवंत रसोई।';
+  String get aVibrantOpenKitchenWithWoksBlazingC =>
+      'लपटों से घिरे वोक, खौलते मिर्च के तेल और ताज़ी सिचुआन मिर्च के साथ एक खुली जीवंत रसोई।';
 
   @override
   String get highspeedRailSeatMixup => 'हाई-स्पीड रेल में सीट को लेकर भ्रम';
 
   @override
-  String get greatWallSunriseTrekInMutianyu => 'मुतियान्यु में चीन की महान दीवार पर सूर्योदय ट्रेक';
+  String get greatWallSunriseTrekInMutianyu =>
+      'मुतियान्यु में चीन की महान दीवार पर सूर्योदय ट्रेक';
 
   @override
-  String get theAncientStoneRampartsOfTheGreatWa => 'भोर की धुंधली हरी पहाड़ियों से घिरी महान दीवार की प्राचीन पत्थर की प्राचीर।';
+  String get theAncientStoneRampartsOfTheGreatWa =>
+      'भोर की धुंधली हरी पहाड़ियों से घिरी महान दीवार की प्राचीन पत्थर की प्राचीर।';
 
   @override
-  String get bambooRaftDriftOnGuilinLiRiver => 'गुइलिन की ली नदी पर बांस के बेड़े की सैर';
+  String get bambooRaftDriftOnGuilinLiRiver =>
+      'गुइलिन की ली नदी पर बांस के बेड़े की सैर';
 
   @override
-  String get glidingAlongEmeraldKarstWatersBetwe => 'यांगशुओ की चूना पत्थर की चोटियों के बीच पन्ना जैसे हरे पानी पर तैरती नाव।';
+  String get glidingAlongEmeraldKarstWatersBetwe =>
+      'यांगशुओ की चूना पत्थर की चोटियों के बीच पन्ना जैसे हरे पानी पर तैरती नाव।';
 
   @override
-  String get silkRoadCamelTrekInDunhuang => 'दुन्हुआंग में सिल्क रोड पर ऊंट की सवारी';
+  String get silkRoadCamelTrekInDunhuang =>
+      'दुन्हुआंग में सिल्क रोड पर ऊंट की सवारी';
 
   @override
-  String get theRollingGoldenSandDunesOfMingshaM => 'क्रिसेंट लेक नखलिस्तान के समीप मिंग्शा पर्वत के सुनहरे रेत के टीले।';
+  String get theRollingGoldenSandDunesOfMingshaM =>
+      'क्रिसेंट लेक नखलिस्तान के समीप मिंग्शा पर्वत के सुनहरे रेत के टीले।';
 
   @override
-  String get bookingACourtyardHomestayInDali => 'डाली में एक पारंपरिक आंगन वाला होमस्टे बुक करना';
+  String get bookingACourtyardHomestayInDali =>
+      'डाली में एक पारंपरिक आंगन वाला होमस्टे बुक करना';
 
   @override
-  String get aSereneBaistyleBoutiqueCourtyardHot => 'युन्नान में एरहाई झील के सुरम्य नज़ारे वाला पारंपरिक बाई-शैली का बुटीक होटल।';
+  String get aSereneBaistyleBoutiqueCourtyardHot =>
+      'युन्नान में एरहाई झील के सुरम्य नज़ारे वाला पारंपरिक बाई-शैली का बुटीक होटल।';
 
   @override
-  String get potalaPalacePilgrimageInLhasa => 'ल्हासा में पोटाला पैलेस की तीर्थयात्रा';
+  String get potalaPalacePilgrimageInLhasa =>
+      'ल्हासा में पोटाला पैलेस की तीर्थयात्रा';
 
   @override
-  String get theMajesticSundrenchedStoneStepsOut => 'घूमते हुए प्रार्थना चक्रों के बीच पोटाला पैलेस की धूप से नहाई भव्य पत्थर की सीढ़ियाँ।';
+  String get theMajesticSundrenchedStoneStepsOut =>
+      'घूमते हुए प्रार्थना चक्रों के बीच पोटाला पैलेस की धूप से नहाई भव्य पत्थर की सीढ़ियाँ।';
 
   @override
-  String get aSubzeroWonderlandOfIlluminatedCrys => 'जगमगाते बर्फ के महलों और विशालकाय हिम मूर्तियों का एक शीतकालीन वंडरलैंड।';
+  String get aSubzeroWonderlandOfIlluminatedCrys =>
+      'जगमगाते बर्फ के महलों और विशालकाय हिम मूर्तियों का एक शीतकालीन वंडरलैंड।';
 
   @override
-  String get zhangjiajieAvatarMountainCableCar => 'झांगजियाजी अवतार माउंटेन केबल कार';
+  String get zhangjiajieAvatarMountainCableCar =>
+      'झांगजियाजी अवतार माउंटेन केबल कार';
 
   @override
-  String get suspendedHighInAGlassCableCarSoarin => 'बलुआ पत्थर के हज़ारों ऊँचे खंभों के ऊपर से गुजरती कांच की केबल कार।';
+  String get suspendedHighInAGlassCableCarSoarin =>
+      'बलुआ पत्थर के हज़ारों ऊँचे खंभों के ऊपर से गुजरती कांच की केबल कार।';
 
   @override
-  String get gobiDesertStargazingCampInGansu => 'गांसु के गोबी रेगिस्तान में तारों को निहारने का कैंप';
+  String get gobiDesertStargazingCampInGansu =>
+      'गांसु के गोबी रेगिस्तान में तारों को निहारने का कैंप';
 
   @override
-  String get aLuxuryYurtCampUnderACrystalclearMi => 'जियायुगुआन के पास रेगिस्तान में आकाशगंगा के साफ़ तारों तले बना एक लक्ज़री यर्ट कैंप।';
+  String get aLuxuryYurtCampUnderACrystalclearMi =>
+      'जियायुगुआन के पास रेगिस्तान में आकाशगंगा के साफ़ तारों तले बना एक लक्ज़री यर्ट कैंप।';
 
   @override
-  String get yangtzeRiverThreeGorgesCruise => 'यांग्त्ज़ी नदी की तीन घाटियों (थ्री गॉर्जेस) का क्रूज़';
+  String get yangtzeRiverThreeGorgesCruise =>
+      'यांग्त्ज़ी नदी की तीन घाटियों (थ्री गॉर्जेस) का क्रूज़';
 
   @override
-  String get onTheSunDeckOfARiverCruiseShipPassi => 'रिवर क्रूज़ के सन डेक पर खड़े होकर भव्य कुटांग घाटी से गुज़रने का अनुभव।';
+  String get onTheSunDeckOfARiverCruiseShipPassi =>
+      'रिवर क्रूज़ के सन डेक पर खड़े होकर भव्य कुटांग घाटी से गुज़रने का अनुभव।';
 
   @override
-  String get buyingAntiquesInBeijingPanjiayuan => 'बीजिंग के पानजियायुआन बाज़ार में प्राचीन वस्तुएं खरीदना';
+  String get buyingAntiquesInBeijingPanjiayuan =>
+      'बीजिंग के पानजियायुआन बाज़ार में प्राचीन वस्तुएं खरीदना';
 
   @override
-  String get aHistoricPotteryKilnFilledWithDelic => 'नाजुक चीनी मिट्टी के बर्तनों और कोबाल्ट नीले ग्लेज़ से भरी एक ऐतिहासिक भट्टी।';
+  String get aHistoricPotteryKilnFilledWithDelic =>
+      'नाजुक चीनी मिट्टी के बर्तनों और कोबाल्ट नीले ग्लेज़ से भरी एक ऐतिहासिक भट्टी।';
 
   @override
   String get suzhouSilkEmbroideryStudio => 'सूझोऊ सिल्क कढ़ाई स्टूडियो';
 
   @override
-  String get aPeacefulCanalsideGardenStudioInSuz => 'नहर के किनारे बना एक शांत गार्डन स्टूडियो, जहाँ रेशम के बारीक धागे और लकड़ी के फ्रेम सजे हैं।';
+  String get aPeacefulCanalsideGardenStudioInSuz =>
+      'नहर के किनारे बना एक शांत गार्डन स्टूडियो, जहाँ रेशम के बारीक धागे और लकड़ी के फ्रेम सजे हैं।';
 
   @override
-  String get backstageAtATraditionalBeijingOpera => 'पारंपरिक बीजिंग ओपेरा थिएटर के मंच के पीछे सजे रंग-बिरंगे परिधान, दर्पण और मुकुट।';
+  String get backstageAtATraditionalBeijingOpera =>
+      'पारंपरिक बीजिंग ओपेरा थिएटर के मंच के पीछे सजे रंग-बिरंगे परिधान, दर्पण और मुकुट।';
 
   @override
-  String get traditionalChineseMedicineConsultat => 'पारंपरिक चीनी चिकित्सा (TCM) परामर्श';
+  String get traditionalChineseMedicineConsultat =>
+      'पारंपरिक चीनी चिकित्सा (TCM) परामर्श';
 
   @override
-  String get morningTaiChiInTempleOfHeavenPark => 'टेंपल ऑफ़ हेवन पार्क में सुबह का ताई ची';
+  String get morningTaiChiInTempleOfHeavenPark =>
+      'टेंपल ऑफ़ हेवन पार्क में सुबह का ताई ची';
 
   @override
-  String get beneathAncientCypressTreesAtDawnWit => 'सुबह के समय प्राचीन सरू के पेड़ों के नीचे पक्षियों के चहकने और बुजुर्गों के ताई ची का दृश्य।';
+  String get beneathAncientCypressTreesAtDawnWit =>
+      'सुबह के समय प्राचीन सरू के पेड़ों के नीचे पक्षियों के चहकने और बुजुर्गों के ताई ची का दृश्य।';
 
   @override
-  String get rentingAHanfuForAPhotoShoot => 'फ़ोटोशूट के लिए पारंपरिक हानफू पोशाक किराए पर लेना';
+  String get rentingAHanfuForAPhotoShoot =>
+      'फ़ोटोशूट के लिए पारंपरिक हानफू पोशाक किराए पर लेना';
 
   @override
-  String get aTraditionalCostumeBoutiqueNearTheW => 'वेस्ट लेक के पास एक बुटीक, जहाँ तांग और सोंग राजवंश के परिधानों की कतारें लगी हैं।';
+  String get aTraditionalCostumeBoutiqueNearTheW =>
+      'वेस्ट लेक के पास एक बुटीक, जहाँ तांग और सोंग राजवंश के परिधानों की कतारें लगी हैं।';
 
   @override
-  String get guqinAncientZitherInstrumentWorksho => 'गुकिन (प्राचीन चीनी ज़ीथर) वाद्य यंत्र कार्यशाला';
+  String get guqinAncientZitherInstrumentWorksho =>
+      'गुकिन (प्राचीन चीनी ज़ीथर) वाद्य यंत्र कार्यशाला';
 
   @override
-  String get aQuietPinewoodStudioInHangzhouFille => 'हांग्जो में देवदार की लकड़ी से बना एक शांत स्टूडियो, जहाँ रेशम के तारों वाले वाद्य यंत्र रखे हैं।';
+  String get aQuietPinewoodStudioInHangzhouFille =>
+      'हांग्जो में देवदार की लकड़ी से बना एक शांत स्टूडियो, जहाँ रेशम के तारों वाले वाद्य यंत्र रखे हैं।';
 
   @override
   String get shaanxiShadowPuppetTheater => 'शानक्सी छाया कठपुतली थियेटर';
 
   @override
-  String get behindAnIlluminatedWhiteSilkScreenW => 'रोशन सफेद रेशमी पर्दे के पीछे से पारदर्शी चमड़े की कठपुतलियों का प्रदर्शन।';
+  String get behindAnIlluminatedWhiteSilkScreenW =>
+      'रोशन सफेद रेशमी पर्दे के पीछे से पारदर्शी चमड़े की कठपुतलियों का प्रदर्शन।';
 
   @override
   String get chineseCalligraphyWorkshop => 'चीनी सुलेख कार्यशाला';
 
   @override
-  String get aTranquilStudioScentedWithPineSootI => 'एक शांत कला स्टूडियो, जो पाइन की स्याही, राइस पेपर और ताज़ा चाय की खुशबू से महक रहा है।';
+  String get aTranquilStudioScentedWithPineSootI =>
+      'एक शांत कला स्टूडियो, जो पाइन की स्याही, राइस पेपर और ताज़ा चाय की खुशबू से महक रहा है।';
 
   @override
   String get adoptingACatAtAnAnimalShelter => 'पशु आश्रय से बिल्ली को गोद लेना';
 
   @override
-  String get aCozyPetRescueCenterInHangzhouWithE => 'हांग्जो में एक आरामदायक रेस्क्यू सेंटर, जहाँ नटखट बिल्लियाँ और आगंतुकों के लिए चाय उपलब्ध है।';
+  String get aCozyPetRescueCenterInHangzhouWithE =>
+      'हांग्जो में एक आरामदायक रेस्क्यू सेंटर, जहाँ नटखट बिल्लियाँ और आगंतुकों के लिए चाय उपलब्ध है।';
 
   @override
-  String get scriptMurderMysteryJubenshaGame => 'स्क्रिप्ट मर्डर मिस्ट्री (जुबेंशा) खेल';
+  String get scriptMurderMysteryJubenshaGame =>
+      'स्क्रिप्ट मर्डर मिस्ट्री (जुबेंशा) खेल';
 
   @override
-  String get aThemedDetectiveLoungeInShanghaiWit => 'शंघाई में मोमबत्ती की रोशनी और रहस्यमयी वेशभूषा वाला एक डिटेक्टिव लाउंज।';
+  String get aThemedDetectiveLoungeInShanghaiWit =>
+      'शंघाई में मोमबत्ती की रोशनी और रहस्यमयी वेशभूषा वाला एक डिटेक्टिव लाउंज।';
 
   @override
-  String get vintageVinylRecordShopInShanghai => 'शंघाई में विंटेज विनाइल रिकॉर्ड की दुकान';
+  String get vintageVinylRecordShopInShanghai =>
+      'शंघाई में विंटेज विनाइल रिकॉर्ड की दुकान';
 
   @override
-  String get aHiddenVinylStoreInAnOldLaneHousePa => 'एक पारंपरिक गली के घर में छिपी रिकॉर्ड शॉप, जहाँ 80 के दशक के कैंटोपॉप और जैज़ रिकॉर्ड्स हैं।';
+  String get aHiddenVinylStoreInAnOldLaneHousePa =>
+      'एक पारंपरिक गली के घर में छिपी रिकॉर्ड शॉप, जहाँ 80 के दशक के कैंटोपॉप और जैज़ रिकॉर्ड्स हैं।';
 
   @override
   String get ktvKaraokePartyWithFriends => 'दोस्तों के साथ KTV कराओके पार्टी';
 
   @override
-  String get joiningACityBikeCyclingClub => 'शहरी साइकिलिंग क्लब में शामिल होना';
+  String get joiningACityBikeCyclingClub =>
+      'शहरी साइकिलिंग क्लब में शामिल होना';
 
   @override
-  String get aGatheringOfCyclistsByTheRiverfront => 'नदी किनारे इकट्ठा हुए साइकिल चालक, जो शहर की नाइट राइड के लिए तैयार हैं।';
+  String get aGatheringOfCyclistsByTheRiverfront =>
+      'नदी किनारे इकट्ठा हुए साइकिल चालक, जो शहर की नाइट राइड के लिए तैयार हैं।';
 
   @override
-  String get blindBoxToyTradingMeetup => 'ब्लाइंड बॉक्स संग्रहणीय खिलौनों का आदान-प्रदान';
+  String get blindBoxToyTradingMeetup =>
+      'ब्लाइंड बॉक्स संग्रहणीय खिलौनों का आदान-प्रदान';
 
   @override
-  String get aColorfulPopcultureToyStoreInChaoya => 'चाओयांग की एक रंग-बिरंगी टॉय शॉप, जहाँ नए डिज़ाइनर खिलौनों के बॉक्स सजे हैं।';
+  String get aColorfulPopcultureToyStoreInChaoya =>
+      'चाओयांग की एक रंग-बिरंगी टॉय शॉप, जहाँ नए डिज़ाइनर खिलौनों के बॉक्स सजे हैं।';
 
   @override
-  String get droneSkylineVideographyAtTheBund => 'द बंड पर ड्रोन से स्काईलाइन वीडियोग्राफी';
+  String get droneSkylineVideographyAtTheBund =>
+      'द बंड पर ड्रोन से स्काईलाइन वीडियोग्राफी';
 
   @override
-  String get theBundPromenadeAtDuskOverlookingTh => 'शाम के समय द बंड की सैरगाह, जहाँ से पुडोंग के जगमगाते गगनचुंबी टॉवर दिखाई देते हैं।';
+  String get theBundPromenadeAtDuskOverlookingTh =>
+      'शाम के समय द बंड की सैरगाह, जहाँ से पुडोंग के जगमगाते गगनचुंबी टॉवर दिखाई देते हैं।';
 
   @override
-  String get goldenRetrieverCafeInNanjing => 'नानजिंग में गोल्डन रिट्रीवर कैफ़े';
+  String get goldenRetrieverCafeInNanjing =>
+      'नानजिंग में गोल्डन रिट्रीवर कैफ़े';
 
   @override
-  String get aSunnyCheerfulPetCafeWithDozensOfFr => 'एक धूप से खिला हुआ कैफ़े, जहाँ दर्जनों दोस्ताना और प्यारे कुत्ते आगंतुकों का स्वागत करते हैं।';
+  String get aSunnyCheerfulPetCafeWithDozensOfFr =>
+      'एक धूप से खिला हुआ कैफ़े, जहाँ दर्जनों दोस्ताना और प्यारे कुत्ते आगंतुकों का स्वागत करते हैं।';
 
   @override
-  String get boulderingClimbingGymInChengdu => 'चेंगदू में बोल्डरिंग क्लाइंबिंग जिम';
+  String get boulderingClimbingGymInChengdu =>
+      'चेंगदू में बोल्डरिंग क्लाइंबिंग जिम';
 
   @override
-  String get aModernIndoorClimbingGymWithVibrant => 'एक आधुनिक इंडोर क्लाइंबिंग जिम, जिसमें रंग-बिरंगे रूट्स और जोशीला संगीत है।';
+  String get aModernIndoorClimbingGymWithVibrant =>
+      'एक आधुनिक इंडोर क्लाइंबिंग जिम, जिसमें रंग-बिरंगे रूट्स और जोशीला संगीत है।';
 
   @override
-  String get aMassiveConventionHallFilledWithCol => 'गेमिंग बूथों, फ़ोटो ज़ोन और कॉस्ट्यूम कलाकारों से भरा एक विशाल कन्वेंशन हॉल।';
+  String get aMassiveConventionHallFilledWithCol =>
+      'गेमिंग बूथों, फ़ोटो ज़ोन और कॉस्ट्यूम कलाकारों से भरा एक विशाल कन्वेंशन हॉल।';
 
   @override
-  String get askingForDirectionsInABeijingHutong => 'बीजिंग के हुतोंग में रास्ता पूछना';
+  String get askingForDirectionsInABeijingHutong =>
+      'बीजिंग के हुतोंग में रास्ता पूछना';
 
   @override
-  String get aMazeOfHistoricGreybrickAlleysWithB => 'ग्रे ईंटों की ऐतिहासिक गलियों की भूलभुलैया, जहाँ साइकिलें, आंगन और अनार के पेड़ हैं।';
+  String get aMazeOfHistoricGreybrickAlleysWithB =>
+      'ग्रे ईंटों की ऐतिहासिक गलियों की भूलभुलैया, जहाँ साइकिलें, आंगन और अनार के पेड़ हैं।';
 
   @override
-  String get buyingFreshFruitAtAWetMarket => 'पारंपरिक ताज़ा फल बाज़ार में खरीदारी';
+  String get buyingFreshFruitAtAWetMarket =>
+      'पारंपरिक ताज़ा फल बाज़ार में खरीदारी';
 
   @override
-  String get aLivelyMorningNeighborhoodMarketWit => 'सुबह का एक चहल-पहल भरा स्थानीय बाज़ार, जहाँ लीची, आम और ड्रैगनफ्रूट के ढेर लगे हैं।';
+  String get aLivelyMorningNeighborhoodMarketWit =>
+      'सुबह का एक चहल-पहल भरा स्थानीय बाज़ार, जहाँ लीची, आम और ड्रैगनफ्रूट के ढेर लगे हैं।';
 
   @override
-  String get flowerMarketBouquetInKunming => 'कुनमिंग के फूल बाज़ार से गुलदस्ता';
+  String get flowerMarketBouquetInKunming =>
+      'कुनमिंग के फूल बाज़ार से गुलदस्ता';
 
   @override
-  String get theFamousDounanFlowerMarketSurround => 'प्रसिद्ध डौनान फूल बाज़ार, जो हज़ारों ताज़ा गुलाबों, लिली और यूकेलिप्टस से महक रहा है।';
+  String get theFamousDounanFlowerMarketSurround =>
+      'प्रसिद्ध डौनान फूल बाज़ार, जो हज़ारों ताज़ा गुलाबों, लिली और यूकेलिप्टस से महक रहा है।';
 
   @override
-  String get tailorAlterationsInAnOldLaneHouse => 'पारंपरिक गली के मकान में टेलर से कपड़ों की फिटिंग';
+  String get tailorAlterationsInAnOldLaneHouse =>
+      'पारंपरिक गली के मकान में टेलर से कपड़ों की फिटिंग';
 
   @override
-  String get aTraditionalTailorShopFilledWithSew => 'सिलाई मशीनों, कपड़ों के थानों और इंची टेपों से भरी एक पारंपरिक दर्जी की दुकान।';
+  String get aTraditionalTailorShopFilledWithSew =>
+      'सिलाई मशीनों, कपड़ों के थानों और इंची टेपों से भरी एक पारंपरिक दर्जी की दुकान।';
 
   @override
-  String get expressParcelLockerRetrieval => 'स्मार्ट पार्सल लॉकर से पैकेज प्राप्त करना';
+  String get expressParcelLockerRetrieval =>
+      'स्मार्ट पार्सल लॉकर से पैकेज प्राप्त करना';
 
   @override
-  String get downstairsAtAResidentialApartmentGa => 'अपार्टमेंट के मुख्य द्वार पर स्थित स्मार्ट हाइव पार्सल लॉकर सिस्टम।';
+  String get downstairsAtAResidentialApartmentGa =>
+      'अपार्टमेंट के मुख्य द्वार पर स्थित स्मार्ट हाइव पार्सल लॉकर सिस्टम।';
 
   @override
-  String get bicycleFlatTireRepairAtCampusGate => 'कैंपस गेट पर साइकिल का पंचर बनवाना';
+  String get bicycleFlatTireRepairAtCampusGate =>
+      'कैंपस गेट पर साइकिल का पंचर बनवाना';
 
   @override
-  String get aSmallOutdoorRoadsideToolkitStandUn => 'घने बरगद के पेड़ की छांव में सड़क किनारे लगा एक छोटा साइकिल मरम्मत स्टॉल।';
+  String get aSmallOutdoorRoadsideToolkitStandUn =>
+      'घने बरगद के पेड़ की छांव में सड़क किनारे लगा एक छोटा साइकिल मरम्मत स्टॉल।';
 
   @override
   String get techCompanyProductDemo => 'टेक कंपनी का उत्पाद डेमो';
 
   @override
-  String get aFuturisticTechConferenceBoothInShe => 'शेन्ज़ेन में अत्याधुनिक AI हार्डवेयर प्रदर्शित करता हुआ एक भविष्यवादी टेक बूथ।';
+  String get aFuturisticTechConferenceBoothInShe =>
+      'शेन्ज़ेन में अत्याधुनिक AI हार्डवेयर प्रदर्शित करता हुआ एक भविष्यवादी टेक बूथ।';
 
   @override
   String get ecommerceLivestreamStudio => 'ई-कॉमर्स लाइव-स्ट्रीम स्टूडियो';
 
   @override
-  String get aHighenergyBroadcastStudioWithRingL => 'रिंग लाइट्स, डिस्प्ले रैक और लाइव कमेंट्री स्क्रीन से सुसज्जित एक हाई-एनर्जी ब्रॉडकास्ट स्टूडियो।';
+  String get aHighenergyBroadcastStudioWithRingL =>
+      'रिंग लाइट्स, डिस्प्ले रैक और लाइव कमेंट्री स्क्रीन से सुसज्जित एक हाई-एनर्जी ब्रॉडकास्ट स्टूडियो।';
 
   @override
-  String get yiwuInternationalTradeMarket => 'यीवू अंतर्राष्ट्रीय व्यापार बाज़ार';
+  String get yiwuInternationalTradeMarket =>
+      'यीवू अंतर्राष्ट्रीय व्यापार बाज़ार';
 
   @override
-  String get aVastMultistoryCommercialExhibition => 'लाखों थोक उत्पादों और शिल्पों से भरा एक विशाल बहुमंजिला व्यापारिक केंद्र।';
+  String get aVastMultistoryCommercialExhibition =>
+      'लाखों थोक उत्पादों और शिल्पों से भरा एक विशाल बहुमंजिला व्यापारिक केंद्र।';
 
   @override
-  String get universityCampusExchangeProgram => 'विश्वविद्यालय कैंपस विनिमय कार्यक्रम';
+  String get universityCampusExchangeProgram =>
+      'विश्वविद्यालय कैंपस विनिमय कार्यक्रम';
 
   @override
-  String get aSunnyLawnOutsideTheUniversityLibra => 'यूनिवर्सिटी लाइब्रेरी के बाहर धूप खिली घास, जहाँ छात्र पढ़ाई करते हुए मिल्क टी पी रहे हैं।';
+  String get aSunnyLawnOutsideTheUniversityLibra =>
+      'यूनिवर्सिटी लाइब्रेरी के बाहर धूप खिली घास, जहाँ छात्र पढ़ाई करते हुए मिल्क टी पी रहे हैं।';
 
   @override
   String get pleaseEnterAScenarioTopic => 'कृपया परिदृश्य का विषय दर्ज करें।';
@@ -4685,10 +5104,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiCharacter => 'AI पात्र';
 
   @override
-  String get helloWelcomeHereWhatShallWeChatAbou => 'नमस्ते! आपका स्वागत है, आज हम किस विषय पर बात करें?';
+  String get helloWelcomeHereWhatShallWeChatAbou =>
+      'नमस्ते! आपका स्वागत है, आज हम किस विषय पर बात करें?';
 
   @override
-  String get greetYourConversationPartner => 'अपने वार्तालाप साथी का अभिवादन करें';
+  String get greetYourConversationPartner =>
+      'अपने वार्तालाप साथी का अभिवादन करें';
 
   @override
   String get askAQuestionInChinese => 'चीनी भाषा में एक प्रश्न पूछें';
@@ -4739,7 +5160,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get report => 'रिपोर्ट';
 
   @override
-  String get goodPronunciationButCanBeBetter => 'उच्चारण अच्छा है, लेकिन और बेहतर हो सकता है!';
+  String get goodPronunciationButCanBeBetter =>
+      'उच्चारण अच्छा है, लेकिन और बेहतर हो सकता है!';
 
   @override
   String get didYouMeanToSay => 'क्या आपका मतलब यह था...?';
@@ -4754,7 +5176,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get targetTone => 'लक्षित टोन';
 
   @override
-  String get k4toneComparisonTapToListen => '4-टोन तुलना (सुनने के लिए टैप करें):';
+  String get k4toneComparisonTapToListen =>
+      '4-टोन तुलना (सुनने के लिए टैप करें):';
 
   @override
   String get youSpokeMatch => 'आपने कहा (सटीक मेल!)';
@@ -4763,7 +5186,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youSpoke => 'आपने कहा';
 
   @override
-  String get yourPrimaryCollectionOfCharacters => 'आपके वर्णों का मुख्य संग्रह।';
+  String get yourPrimaryCollectionOfCharacters =>
+      'आपके वर्णों का मुख्य संग्रह।';
 
   @override
   String get deckNotFound => 'डेक नहीं मिला';
@@ -4775,19 +5199,24 @@ class AppLocalizationsHi extends AppLocalizations {
   String get hsk4UpperIntermediate1 => 'HSK 4: उच्च-मध्यवर्ती';
 
   @override
-  String get theFirst150CharactersToStartYourJou => 'आपकी अध्ययन यात्रा शुरू करने के लिए पहले 150 वर्ण।';
+  String get theFirst150CharactersToStartYourJou =>
+      'आपकी अध्ययन यात्रा शुरू करने के लिए पहले 150 वर्ण।';
 
   @override
-  String get buildYourVocabularyTo300EssentialWo => 'अपनी शब्दावली को 300 आवश्यक शब्दों तक बढ़ाएं।';
+  String get buildYourVocabularyTo300EssentialWo =>
+      'अपनी शब्दावली को 300 आवश्यक शब्दों तक बढ़ाएं।';
 
   @override
-  String get masterConversationalFluencyWith600W => '600 शब्दों के साथ बातचीत के प्रवाह में महारत हासिल करें।';
+  String get masterConversationalFluencyWith600W =>
+      '600 शब्दों के साथ बातचीत के प्रवाह में महारत हासिल करें।';
 
   @override
-  String get readTextsAndConverseFluentlyWith120 => '1200 शब्दों के साथ धाराप्रवाह पाठ पढ़ें और संवाद करें।';
+  String get readTextsAndConverseFluentlyWith120 =>
+      '1200 शब्दों के साथ धाराप्रवाह पाठ पढ़ें और संवाद करें।';
 
   @override
-  String get readNewspapersAndWatchMoviesWith250 => '2500 शब्दों के साथ समाचार पत्र पढ़ें और फ़िल्में देखें।';
+  String get readNewspapersAndWatchMoviesWith250 =>
+      '2500 शब्दों के साथ समाचार पत्र पढ़ें और फ़िल्में देखें।';
 
   @override
   String get databaseBoxNotOpen => 'डेटाबेस बॉक्स खुला नहीं है';
@@ -4799,7 +5228,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get gold => 'स्वर्ण';
 
   @override
-  String get globalDictionaryNotInitialized => 'वैश्विक शब्दकोश प्रारंभ नहीं हुआ';
+  String get globalDictionaryNotInitialized =>
+      'वैश्विक शब्दकोश प्रारंभ नहीं हुआ';
 
   @override
   String get reading => 'पढ़ना';
@@ -4814,34 +5244,42 @@ class AppLocalizationsHi extends AppLocalizations {
   String get listening1 => 'सुनना';
 
   @override
-  String get practiceStrokeOrderWithVisualGuides => 'विज़ुअल गाइड की मदद से स्ट्रोक क्रम का अभ्यास करें।';
+  String get practiceStrokeOrderWithVisualGuides =>
+      'विज़ुअल गाइड की मदद से स्ट्रोक क्रम का अभ्यास करें।';
 
   @override
-  String get seeTheCharacterRecallThePinyinAndMe => 'वर्ण देखकर उसका पिनयिन और अर्थ याद करें।';
+  String get seeTheCharacterRecallThePinyinAndMe =>
+      'वर्ण देखकर उसका पिनयिन और अर्थ याद करें।';
 
   @override
-  String get seeTheMeaningDrawTheCharacterFromMe => 'अर्थ देखकर याददाश्त से वर्ण बनाएं।';
+  String get seeTheMeaningDrawTheCharacterFromMe =>
+      'अर्थ देखकर याददाश्त से वर्ण बनाएं।';
 
   @override
-  String get readOutLoudToTestYourPronunciationT => 'उच्चारण और टोन का परीक्षण करने के लिए ज़ोर से पढ़ें।';
+  String get readOutLoudToTestYourPronunciationT =>
+      'उच्चारण और टोन का परीक्षण करने के लिए ज़ोर से पढ़ें।';
 
   @override
-  String get listenToTheAudioAndIdentifyTheChara => 'ऑडियो सुनकर सही वर्ण की पहचान करें।';
+  String get listenToTheAudioAndIdentifyTheChara =>
+      'ऑडियो सुनकर सही वर्ण की पहचान करें।';
 
   @override
   String get contract => 'अनुबंध';
 
   @override
-  String get whoeverImplementsMeMustBeAbleToDoTh => 'इस इंटरफ़ेस को लागू करने वाले को ये सभी कार्य करने में सक्षम होना चाहिए।';
+  String get whoeverImplementsMeMustBeAbleToDoTh =>
+      'इस इंटरफ़ेस को लागू करने वाले को ये सभी कार्य करने में सक्षम होना चाहिए।';
 
   @override
-  String get koreFenrirCharonAoedePuckOrLocal => 'Kore, Fenrir, Charon, Aoede, Puck या स्थानीय';
+  String get koreFenrirCharonAoedePuckOrLocal =>
+      'Kore, Fenrir, Charon, Aoede, Puck या स्थानीय';
 
   @override
   String get manageDecks => 'डेक प्रबंधित करें';
 
   @override
-  String get weRanIntoTroubleLoadingTheLibraryPl => 'लाइब्रेरी लोड करने में समस्या हुई। कृपया पुनः प्रयास करें।';
+  String get weRanIntoTroubleLoadingTheLibraryPl =>
+      'लाइब्रेरी लोड करने में समस्या हुई। कृपया पुनः प्रयास करें।';
 
   @override
   String get noCharactersInLexicon1 => 'शब्दकोश में कोई वर्ण नहीं है';
@@ -4862,7 +5300,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youAreAPremiumMember => 'आप एक प्रीमियम सदस्य हैं';
 
   @override
-  String get createAccountToSyncProgress => 'प्रगति सिंक करने के लिए खाता बनाएं';
+  String get createAccountToSyncProgress =>
+      'प्रगति सिंक करने के लिए खाता बनाएं';
 
   @override
   String get signOut => 'साइन आउट करें';
@@ -4898,7 +5337,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get italiano => 'इतालवी';
 
   @override
-  String get today1d2d3d4d5d6d => 'आज, 1 दिन, 2 दिन, 3 दिन, 4 दिन, 5 दिन, 6 दिन';
+  String get today1d2d3d4d5d6d =>
+      'आज, 1 दिन, 2 दिन, 3 दिन, 4 दिन, 5 दिन, 6 दिन';
 
   @override
   String get targetDeck => 'लक्ष्य डेक';
@@ -4934,76 +5374,98 @@ class AppLocalizationsHi extends AppLocalizations {
   String get generatedByAi => 'AI द्वारा निर्मित';
 
   @override
-  String get canYouGiveMeTwoMoreExamplesUsingThi => 'क्या आप इस शब्द का उपयोग करके दो और उदाहरण दे सकते हैं?';
+  String get canYouGiveMeTwoMoreExamplesUsingThi =>
+      'क्या आप इस शब्द का उपयोग करके दो और उदाहरण दे सकते हैं?';
 
   @override
-  String get whatAreSomeSimilarWordsAndHowDoThey => 'इसके समान शब्द कौन से हैं और वे कैसे भिन्न हैं?';
+  String get whatAreSomeSimilarWordsAndHowDoThey =>
+      'इसके समान शब्द कौन से हैं और वे कैसे भिन्न हैं?';
 
   @override
-  String get isThisWordUsedInSpokenOrWrittenChin => 'क्या यह शब्द बोलचाल में अधिक प्रयुक्त होता है या लिखित चीनी में?';
+  String get isThisWordUsedInSpokenOrWrittenChin =>
+      'क्या यह शब्द बोलचाल में अधिक प्रयुक्त होता है या लिखित चीनी में?';
 
   @override
-  String get areThereOtherWaysToTranslateThisWor => 'क्या इस शब्द का अनुवाद करने के अन्य विकल्प हैं?';
+  String get areThereOtherWaysToTranslateThisWor =>
+      'क्या इस शब्द का अनुवाद करने के अन्य विकल्प हैं?';
 
   @override
-  String get whatAreCommonWordsThatGoTogetherWit => 'इस शब्द के साथ सामान्यतः कौन से शब्द जोड़े जाते हैं?';
+  String get whatAreCommonWordsThatGoTogetherWit =>
+      'इस शब्द के साथ सामान्यतः कौन से शब्द जोड़े जाते हैं?';
 
   @override
-  String get whatAreCommonMistakesLearnersMakeWi => 'इस शब्द के उपयोग में शिक्षार्थी प्रायः क्या गलतियाँ करते हैं?';
+  String get whatAreCommonMistakesLearnersMakeWi =>
+      'इस शब्द के उपयोग में शिक्षार्थी प्रायः क्या गलतियाँ करते हैं?';
 
   @override
   String get emptyResponse => 'खाली उत्तर';
 
   @override
-  String get whatIsTheOracleBoneScriptOriginOfTh => 'ओरेकल बोन लिपि (Oracle Bone Script) में इस वर्ण की उत्पत्ति क्या है?';
+  String get whatIsTheOracleBoneScriptOriginOfTh =>
+      'ओरेकल बोन लिपि (Oracle Bone Script) में इस वर्ण की उत्पत्ति क्या है?';
 
   @override
-  String get howDidTheAncientFormOfThisCharacter => 'समय के साथ इस वर्ण का प्राचीन रूप कैसे विकसित हुआ?';
+  String get howDidTheAncientFormOfThisCharacter =>
+      'समय के साथ इस वर्ण का प्राचीन रूप कैसे विकसित हुआ?';
 
   @override
-  String get giveMe3CommonWordsThatContainThisCh => 'मुझे 3 सामान्य शब्द बताएं जिनमें यह वर्ण आता हो।';
+  String get giveMe3CommonWordsThatContainThisCh =>
+      'मुझे 3 सामान्य शब्द बताएं जिनमें यह वर्ण आता हो।';
 
   @override
-  String get whatOtherCharactersShareTheSameRadi => 'कौन से अन्य वर्ण इसी रेडिकल से बने हैं?';
+  String get whatOtherCharactersShareTheSameRadi =>
+      'कौन से अन्य वर्ण इसी रेडिकल से बने हैं?';
 
   @override
-  String get isThereAChineseProverbOrSayingFeatu => 'क्या कोई चीनी कहावत या लोकोक्ति है जिसमें यह वर्ण आता है?';
+  String get isThereAChineseProverbOrSayingFeatu =>
+      'क्या कोई चीनी कहावत या लोकोक्ति है जिसमें यह वर्ण आता है?';
 
   @override
-  String get explainTheStrokeOrderRulesForThisCh => 'इस वर्ण के स्ट्रोक क्रम के नियमों को स्पष्ट करें।';
+  String get explainTheStrokeOrderRulesForThisCh =>
+      'इस वर्ण के स्ट्रोक क्रम के नियमों को स्पष्ट करें।';
 
   @override
-  String get giveMeOneCalligraphyTipForWritingTh => 'इस वर्ण को सुंदरता से लिखने के लिए एक सुलेख सुझाव दें।';
+  String get giveMeOneCalligraphyTipForWritingTh =>
+      'इस वर्ण को सुंदरता से लिखने के लिए एक सुलेख सुझाव दें।';
 
   @override
-  String get isThereAnythingTrickyAboutUsingThis => 'क्या इसके व्याकरणिक प्रयोग में कोई विशेष सावधानी रखनी होती है?';
+  String get isThereAnythingTrickyAboutUsingThis =>
+      'क्या इसके व्याकरणिक प्रयोग में कोई विशेष सावधानी रखनी होती है?';
 
   @override
-  String get whatWordsAreCommonlyConfusedWithThi => 'किन शब्दों को लेकर इसके साथ अक्सर भ्रम होता है और क्यों?';
+  String get whatWordsAreCommonlyConfusedWithThi =>
+      'किन शब्दों को लेकर इसके साथ अक्सर भ्रम होता है और क्यों?';
 
   @override
-  String get doesThisCharacterCarryCulturalSymbo => 'क्या इस वर्ण का चीनी संस्कृति में कोई विशेष प्रतीकात्मक अर्थ है?';
+  String get doesThisCharacterCarryCulturalSymbo =>
+      'क्या इस वर्ण का चीनी संस्कृति में कोई विशेष प्रतीकात्मक अर्थ है?';
 
   @override
-  String get isThisCharacterCommonlySeenInChines => 'क्या यह वर्ण चीनी गीतों, फ़िल्मों या समकालीन पाठों में अक्सर दिखाई देता है?';
+  String get isThisCharacterCommonlySeenInChines =>
+      'क्या यह वर्ण चीनी गीतों, फ़िल्मों या समकालीन पाठों में अक्सर दिखाई देता है?';
 
   @override
-  String get whatDoesTheRadicalOfThisCharacterMe => 'इस वर्ण के रेडिकल का क्या अर्थ है?';
+  String get whatDoesTheRadicalOfThisCharacterMe =>
+      'इस वर्ण के रेडिकल का क्या अर्थ है?';
 
   @override
-  String get breakDownEveryComponentAndItsMeanin => 'इसके प्रत्येक घटक और उसके अर्थ का विश्लेषण करें।';
+  String get breakDownEveryComponentAndItsMeanin =>
+      'इसके प्रत्येक घटक और उसके अर्थ का विश्लेषण करें।';
 
   @override
-  String get giveMeATrickToRememberTheCorrectTon => 'इस वर्ण के सही टोन को याद रखने की कोई युक्ति बताएं।';
+  String get giveMeATrickToRememberTheCorrectTon =>
+      'इस वर्ण के सही टोन को याद रखने की कोई युक्ति बताएं।';
 
   @override
-  String get areThereCommonHomophonesThatAreOfte => 'क्या इसके कोई सामान्य समध्वनिक (Homophones) शब्द हैं जो भ्रम पैदा करते हैं?';
+  String get areThereCommonHomophonesThatAreOfte =>
+      'क्या इसके कोई सामान्य समध्वनिक (Homophones) शब्द हैं जो भ्रम पैदा करते हैं?';
 
   @override
   String get quotaExceeded => 'कोटा सीमा समाप्त हो गई है';
 
   @override
-  String get mustProvideEitherCardOrCards => 'एक कार्ड या कार्डों की सूची प्रदान करना आवश्यक है';
+  String get mustProvideEitherCardOrCards =>
+      'एक कार्ड या कार्डों की सूची प्रदान करना आवश्यक है';
 
   @override
   String get deckSettings => 'डेक सेटिंग्स';
@@ -5033,7 +5495,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get contextClue => 'संदर्भ संकेत';
 
   @override
-  String get microphonePermissionRequired1 => 'माइक्रोफ़ोन की अनुमति आवश्यक है।';
+  String get microphonePermissionRequired1 =>
+      'माइक्रोफ़ोन की अनुमति आवश्यक है।';
 
   @override
   String get recordingFailedNoFile => 'रिकॉर्डिंग विफल रही (फ़ाइल नहीं बनी)।';
@@ -5042,70 +5505,88 @@ class AppLocalizationsHi extends AppLocalizations {
   String get holdToSpeakOptional => 'बोलने के लिए दबाकर रखें (वैकल्पिक)';
 
   @override
-  String get microphonePermissionDeniedEnableItI => 'माइक्रोफ़ोन अनुमति अस्वीकृत। शैडोइंग स्टूडियो का उपयोग करने के लिए इसे सेटिंग्स में सक्षम करें।';
+  String get microphonePermissionDeniedEnableItI =>
+      'माइक्रोफ़ोन अनुमति अस्वीकृत। शैडोइंग स्टूडियो का उपयोग करने के लिए इसे सेटिंग्स में सक्षम करें।';
 
   @override
   String get sessionSummary => 'सत्र सारांश';
 
   @override
-  String get hereAreTheCharactersYouStruggledWit => 'ये वे वर्ण हैं जिनमें आपको कठिनाई हुई:';
+  String get hereAreTheCharactersYouStruggledWit =>
+      'ये वे वर्ण हैं जिनमें आपको कठिनाई हुई:';
 
   @override
-  String get applySessionGradesToSpacedRepetitio => 'सत्र के अंकों को अंतराल पुनरावृत्ति (बोलने का मोड) पर लागू करें';
+  String get applySessionGradesToSpacedRepetitio =>
+      'सत्र के अंकों को अंतराल पुनरावृत्ति (बोलने का मोड) पर लागू करें';
 
   @override
-  String get masterYourMandarinPronunciationnbyM => 'मूल वक्ताओं का अनुकरण करके अपने मंदारिन उच्चारण\nमें महारत हासिल करें।';
+  String get masterYourMandarinPronunciationnbyM =>
+      'मूल वक्ताओं का अनुकरण करके अपने मंदारिन उच्चारण\nमें महारत हासिल करें।';
 
   @override
-  String get aiIsGradingYourPronunciation => 'AI आपके उच्चारण का मूल्यांकन कर रहा है...';
+  String get aiIsGradingYourPronunciation =>
+      'AI आपके उच्चारण का मूल्यांकन कर रहा है...';
 
   @override
-  String get holdMicToRecordReleaseToGrade => 'रिकॉर्ड करने के लिए माइक दबाकर रखें। मूल्यांकन के लिए छोड़ें।';
+  String get holdMicToRecordReleaseToGrade =>
+      'रिकॉर्ड करने के लिए माइक दबाकर रखें। मूल्यांकन के लिए छोड़ें।';
 
   @override
-  String get tapAnySyllableToAuditionAll4Tones => 'सभी 4 टोन सुनने के लिए किसी भी शब्दांश पर टैप करें:';
+  String get tapAnySyllableToAuditionAll4Tones =>
+      'सभी 4 टोन सुनने के लिए किसी भी शब्दांश पर टैप करें:';
 
   @override
-  String get freeFlowConversationalPractice => 'मुक्त प्रवाह संवादात्मक अभ्यास।';
+  String get freeFlowConversationalPractice =>
+      'मुक्त प्रवाह संवादात्मक अभ्यास।';
 
   @override
-  String get failedToGeneratePhrasePleaseTryAgai => 'वाक्यांश बनाने में विफल। कृपया पुनः प्रयास करें।';
+  String get failedToGeneratePhrasePleaseTryAgai =>
+      'वाक्यांश बनाने में विफल। कृपया पुनः प्रयास करें।';
 
   @override
-  String get recordingTooShortHoldTheMicButtonLo => 'रिकॉर्डिंग बहुत छोटी थी। माइक बटन को अधिक समय तक दबाकर रखें।';
+  String get recordingTooShortHoldTheMicButtonLo =>
+      'रिकॉर्डिंग बहुत छोटी थी। माइक बटन को अधिक समय तक दबाकर रखें।';
 
   @override
-  String get recordingErrorPleaseTryAgain => 'रिकॉर्डिंग में त्रुटि हुई। कृपया पुनः प्रयास करें।';
+  String get recordingErrorPleaseTryAgain =>
+      'रिकॉर्डिंग में त्रुटि हुई। कृपया पुनः प्रयास करें।';
 
   @override
-  String get noRecordingCapturedPleaseTryAgain => 'कोई रिकॉर्डिंग दर्ज नहीं हुई। कृपया पुनः प्रयास करें।';
+  String get noRecordingCapturedPleaseTryAgain =>
+      'कोई रिकॉर्डिंग दर्ज नहीं हुई। कृपया पुनः प्रयास करें।';
 
   @override
-  String get recordedAudioIsEmptyPleaseTryAgainA => 'रिकॉर्ड किया गया ऑडियो मूक है। कृपया स्पष्ट आवाज़ में पुनः प्रयास करें।';
+  String get recordedAudioIsEmptyPleaseTryAgainA =>
+      'रिकॉर्ड किया गया ऑडियो मूक है। कृपया स्पष्ट आवाज़ में पुनः प्रयास करें।';
 
   @override
-  String get azureSpeechApiKeysAreMissing1 => 'Azure Speech API कुंजियाँ उपलब्ध नहीं हैं';
+  String get azureSpeechApiKeysAreMissing1 =>
+      'Azure Speech API कुंजियाँ उपलब्ध नहीं हैं';
 
   @override
   String get azureError401 => 'Azure त्रुटि 401';
 
   @override
-  String get azureAuthenticationFailedCheckYourS => 'Azure प्रमाणीकरण विफल। .env फ़ाइल में अपनी Speech API कुंजी और क्षेत्र की जाँच करें।';
+  String get azureAuthenticationFailedCheckYourS =>
+      'Azure प्रमाणीकरण विफल। .env फ़ाइल में अपनी Speech API कुंजी और क्षेत्र की जाँच करें।';
 
   @override
   String get azureError429 => 'Azure त्रुटि 429';
 
   @override
-  String get azureQuotaExceededTryAgainLater => 'Azure कोटा समाप्त हो गया है। कृपया बाद में पुनः प्रयास करें।';
+  String get azureQuotaExceededTryAgainLater =>
+      'Azure कोटा समाप्त हो गया है। कृपया बाद में पुनः प्रयास करें।';
 
   @override
-  String get azureGradingTimedOutCheckYourIntern => 'Azure मूल्यांकन का समय समाप्त हो गया। अपना इंटरनेट कनेक्शन जांचें।';
+  String get azureGradingTimedOutCheckYourIntern =>
+      'Azure मूल्यांकन का समय समाप्त हो गया। अपना इंटरनेट कनेक्शन जांचें।';
 
   @override
   String get recognitionFailedNull => 'पहचान विफल: परिणाम शून्य';
 
   @override
-  String get couldNotHearYouClearlyPleaseTryAgai => 'हम आपकी आवाज़ स्पष्ट रूप से नहीं सुन सके। कृपया पुनः प्रयास करें।';
+  String get couldNotHearYouClearlyPleaseTryAgai =>
+      'हम आपकी आवाज़ स्पष्ट रूप से नहीं सुन सके। कृपया पुनः प्रयास करें।';
 
   @override
   String get singlePhrasePractice => 'एकल वाक्यांश अभ्यास';
@@ -5135,151 +5616,193 @@ class AppLocalizationsHi extends AppLocalizations {
   String get translationFailed => 'अनुवाद विफल';
 
   @override
-  String get engagingMacroeconomicAndBusinessBre => 'सजीव कहानियों के माध्यम से प्रस्तुत रोचक वृहद-आर्थिक और व्यावसायिक विश्लेषण।';
+  String get engagingMacroeconomicAndBusinessBre =>
+      'सजीव कहानियों के माध्यम से प्रस्तुत रोचक वृहद-आर्थिक और व्यावसायिक विश्लेषण।';
 
   @override
-  String get exploresWorldEconomiesBankingHistor => 'वैश्विक अर्थव्यवस्थाओं, बैंकिंग इतिहास और उद्योग की गतिशीलता की खोज।';
+  String get exploresWorldEconomiesBankingHistor =>
+      'वैश्विक अर्थव्यवस्थाओं, बैंकिंग इतिहास और उद्योग की गतिशीलता की खोज।';
 
   @override
-  String get clearArticulateMandarinPerfectForIn => 'स्पष्ट और धाराप्रवाह मंदारिन, जो मध्यम और उच्च स्तर के शिक्षार्थियों के लिए आदर्श है।';
+  String get clearArticulateMandarinPerfectForIn =>
+      'स्पष्ट और धाराप्रवाह मंदारिन, जो मध्यम और उच्च स्तर के शिक्षार्थियों के लिए आदर्श है।';
 
   @override
   String get chefWang => 'शेफ वांग';
 
   @override
-  String get masterSichuanCulinaryTechniquesTaug => 'एक पेशेवर हेड शेफ से सीखें सिचुआन की प्रामाणिक पाक कला।';
+  String get masterSichuanCulinaryTechniquesTaug =>
+      'एक पेशेवर हेड शेफ से सीखें सिचुआन की प्रामाणिक पाक कला।';
 
   @override
-  String get stepbystepAuthenticChineseRecipesWi => 'वोक नियंत्रण और कटिंग कौशल के साथ प्रामाणिक चीनी व्यंजनों की चरण-दर-चरण विधि।';
+  String get stepbystepAuthenticChineseRecipesWi =>
+      'वोक नियंत्रण और कटिंग कौशल के साथ प्रामाणिक चीनी व्यंजनों की चरण-दर-चरण विधि।';
 
   @override
-  String get conciseCulinaryVocabularyAndClearIn => 'सहज मंदारिन में संक्षिप्त रसोई शब्दावली और स्पष्ट निर्देश।';
+  String get conciseCulinaryVocabularyAndClearIn =>
+      'सहज मंदारिन में संक्षिप्त रसोई शब्दावली और स्पष्ट निर्देश।';
 
   @override
-  String get cinematographyCuttingedgeCameraTech => 'सिनेमैटोग्राफी, अत्याधुनिक कैमरा तकनीक और डिजिटल मीडिया का गहन विश्लेषण।';
+  String get cinematographyCuttingedgeCameraTech =>
+      'सिनेमैटोग्राफी, अत्याधुनिक कैमरा तकनीक और डिजिटल मीडिया का गहन विश्लेषण।';
 
   @override
-  String get highproductionDocumentaryStyleExplo => 'उच्च-स्तरीय डॉक्यूमेंट्री शैली, जो वीडियो निर्माण और AI नवाचारों की पड़ताल करती है।';
+  String get highproductionDocumentaryStyleExplo =>
+      'उच्च-स्तरीय डॉक्यूमेंट्री शैली, जो वीडियो निर्माण और AI नवाचारों की पड़ताल करती है।';
 
   @override
-  String get richTechnicalMandarinWithCrystalcle => 'स्पष्ट उच्चारण और विज़ुअल कैप्शन के साथ समृद्ध तकनीकी मंदारिन।';
+  String get richTechnicalMandarinWithCrystalcle =>
+      'स्पष्ट उच्चारण और विज़ुअल कैप्शन के साथ समृद्ध तकनीकी मंदारिन।';
 
   @override
-  String get indepthInvestigativeJournalismAndCu => 'गहन खोजी पत्रकारिता और समसामयिक विषयों पर गंभीर टिप्पणी।';
+  String get indepthInvestigativeJournalismAndCu =>
+      'गहन खोजी पत्रकारिता और समसामयिक विषयों पर गंभीर टिप्पणी।';
 
   @override
-  String get criticalPerspectivesOnSocialPhenome => 'सामाजिक घटनाओं, वैश्विक समाचार और इतिहास पर विश्लेषणात्मक दृष्टिकोण।';
+  String get criticalPerspectivesOnSocialPhenome =>
+      'सामाजिक घटनाओं, वैश्विक समाचार और इतिहास पर विश्लेषणात्मक दृष्टिकोण।';
 
   @override
-  String get formalInvestigativeDiscourseIdealFo => 'औपचारिक खोजी शैली, जो उन्नत श्रवण कौशल विकसित करने के लिए उत्तम है।';
+  String get formalInvestigativeDiscourseIdealFo =>
+      'औपचारिक खोजी शैली, जो उन्नत श्रवण कौशल विकसित करने के लिए उत्तम है।';
 
   @override
-  String get bitesizedAnimatedScienceDocumentari => 'दैनिक जीवन के सवालों के उत्तर देने वाली संक्षिप्त एनिमेटेड विज्ञान डॉक्यूमेंट्री।';
+  String get bitesizedAnimatedScienceDocumentari =>
+      'दैनिक जीवन के सवालों के उत्तर देने वाली संक्षिप्त एनिमेटेड विज्ञान डॉक्यूमेंट्री।';
 
   @override
-  String get exploresPhysicsBiologyAndEverydayCu => 'रोचक इन्फोग्राफिक्स के साथ भौतिकी, जीव विज्ञान और रोज़मर्रा की जिज्ञासाओं की पड़ताल।';
+  String get exploresPhysicsBiologyAndEverydayCu =>
+      'रोचक इन्फोग्राफिक्स के साथ भौतिकी, जीव विज्ञान और रोज़मर्रा की जिज्ञासाओं की पड़ताल।';
 
   @override
-  String get standardBeijingMandarinWithWellpace => 'उचित गति और स्पष्ट उपशीर्षकों के साथ मानक बीजिंग मंदारिन।';
+  String get standardBeijingMandarinWithWellpace =>
+      'उचित गति और स्पष्ट उपशीर्षकों के साथ मानक बीजिंग मंदारिन।';
 
   @override
-  String get heartwarmingStreetFoodAdventuresAnd => 'चीन भर में स्ट्रीट फ़ूड के दिलकश अनुभव और स्थानीय लोगों से सच्ची बातचीत।';
+  String get heartwarmingStreetFoodAdventuresAnd =>
+      'चीन भर में स्ट्रीट फ़ूड के दिलकश अनुभव और स्थानीय लोगों से सच्ची बातचीत।';
 
   @override
-  String get exploresRegionalHumanStoriesFamilyT => 'क्षेत्रीय लोककथाओं, पारिवारिक परंपराओं और स्थानीय स्वादों की खोज।';
+  String get exploresRegionalHumanStoriesFamilyT =>
+      'क्षेत्रीय लोककथाओं, पारिवारिक परंपराओं और स्थानीय स्वादों की खोज।';
 
   @override
-  String get naturalConversationalMandarinWithDa => 'दैनिक बोलचाल और आत्मीयता से युक्त सहज संवादी मंदारिन।';
+  String get naturalConversationalMandarinWithDa =>
+      'दैनिक बोलचाल और आत्मीयता से युक्त सहज संवादी मंदारिन।';
 
   @override
-  String get humorousAndHonestConsumerElectronic => 'वास्तविक अनुभवों पर आधारित उपभोक्ता इलेक्ट्रॉनिक्स की निष्पक्ष और हास्यपूर्ण समीक्षाएं।';
+  String get humorousAndHonestConsumerElectronic =>
+      'वास्तविक अनुभवों पर आधारित उपभोक्ता इलेक्ट्रॉनिक्स की निष्पक्ष और हास्यपूर्ण समीक्षाएं।';
 
   @override
-  String get testingSmartphonesSmartHomeGadgetsA => 'स्मार्टफोन, स्मार्ट होम गैजेट्स और लाइफस्टाइल टेक गियर का परीक्षण।';
+  String get testingSmartphonesSmartHomeGadgetsA =>
+      'स्मार्टफोन, स्मार्ट होम गैजेट्स और लाइफस्टाइल टेक गियर का परीक्षण।';
 
   @override
-  String get relaxedHumorousConversationalDialog => 'आधुनिक बोलचाल की भाषा के साथ सहज और हास्यपूर्ण संवाद।';
+  String get relaxedHumorousConversationalDialog =>
+      'आधुनिक बोलचाल की भाषा के साथ सहज और हास्यपूर्ण संवाद।';
 
   @override
   String get seanKitchen => 'शॉन किचन';
 
   @override
-  String get deliciousHomecookedChineseDishesAnd => 'स्वादिष्ट घरेलू चीनी व्यंजन और प्रसिद्ध स्ट्रीट स्नैक्स।';
+  String get deliciousHomecookedChineseDishesAnd =>
+      'स्वादिष्ट घरेलू चीनी व्यंजन और प्रसिद्ध स्ट्रीट स्नैक्स।';
 
   @override
-  String get easytofollowKitchenTipsForCookingAu => 'प्रामाणिक एशियाई व्यंजन पकाने के लिए सरल और उपयोगी किचन टिप्स।';
+  String get easytofollowKitchenTipsForCookingAu =>
+      'प्रामाणिक एशियाई व्यंजन पकाने के लिए सरल और उपयोगी किचन टिप्स।';
 
   @override
-  String get warmInvitingCommentaryWithPractical => 'व्यावहारिक रसोई शब्दावली के साथ आत्मीय और आकर्षक प्रस्तुति।';
+  String get warmInvitingCommentaryWithPractical =>
+      'व्यावहारिक रसोई शब्दावली के साथ आत्मीय और आकर्षक प्रस्तुति।';
 
   @override
   String get chineseChannel => 'चीनी चैनल';
 
   @override
-  String get structuredChineseLanguageLessonsAnd => 'संरचित चीनी भाषा पाठ और सांस्कृतिक खोज ट्यूटोरियल।';
+  String get structuredChineseLanguageLessonsAnd =>
+      'संरचित चीनी भाषा पाठ और सांस्कृतिक खोज ट्यूटोरियल।';
 
   @override
-  String get grammarPointsHskVocabularyBuildingA => 'व्याकरण बिंदु, HSK शब्दावली निर्माण और बातचीत के पैटर्न।';
+  String get grammarPointsHskVocabularyBuildingA =>
+      'व्याकरण बिंदु, HSK शब्दावली निर्माण और बातचीत के पैटर्न।';
 
   @override
-  String get clearEducationalPacingTailoredSpeci => 'चीनी शिक्षार्थियों के लिए विशेष रूप से तैयार की गई स्पष्ट शिक्षण गति।';
+  String get clearEducationalPacingTailoredSpeci =>
+      'चीनी शिक्षार्थियों के लिए विशेष रूप से तैयार की गई स्पष्ट शिक्षण गति।';
 
   @override
   String get oneInABillion => 'एक अरब में एक';
 
   @override
-  String get intimatePortraitsAndStoriesOfUnique => 'समकालीन चीन के अद्वितीय व्यक्तित्वों की जीवन गाथाएं।';
+  String get intimatePortraitsAndStoriesOfUnique =>
+      'समकालीन चीन के अद्वितीय व्यक्तित्वों की जीवन गाथाएं।';
 
   @override
-  String get exploresDiverseLifeChoicesYouthCult => 'विविध जीवन विकल्पों, युवा संस्कृति और आधुनिक सामाजिक परिवर्तनों की खोज।';
+  String get exploresDiverseLifeChoicesYouthCult =>
+      'विविध जीवन विकल्पों, युवा संस्कृति और आधुनिक सामाजिक परिवर्तनों की खोज।';
 
   @override
-  String get deepNarrativeStorytellingWithRichVo => 'समृद्ध शब्दावली और प्रामाणिक आवाज़ों के साथ गहन कथात्मक प्रस्तुति।';
+  String get deepNarrativeStorytellingWithRichVo =>
+      'समृद्ध शब्दावली और प्रामाणिक आवाज़ों के साथ गहन कथात्मक प्रस्तुति।';
 
   @override
   String get vickySoup => 'विक्की सूप';
 
   @override
-  String get aestheticLifestyleVlogsFashionStyli => 'सौंदर्यपूर्ण लाइफस्टाइल व्लॉग, फैशन स्टाइलिंग और दैनिक दिनचर्या।';
+  String get aestheticLifestyleVlogsFashionStyli =>
+      'सौंदर्यपूर्ण लाइफस्टाइल व्लॉग, फैशन स्टाइलिंग और दैनिक दिनचर्या।';
 
   @override
-  String get travelDiariesAndCozyLifeMomentsDocu => 'सिनेमाई खूबसूरती के साथ प्रस्तुत यात्रा डायरी और जीवन के सुखद पल।';
+  String get travelDiariesAndCozyLifeMomentsDocu =>
+      'सिनेमाई खूबसूरती के साथ प्रस्तुत यात्रा डायरी और जीवन के सुखद पल।';
 
   @override
-  String get naturalCasualMandarinSpokenAtAComfo => 'सहज गति में बोली जाने वाली स्वाभाविक और अनौपचारिक मंदारिन।';
+  String get naturalCasualMandarinSpokenAtAComfo =>
+      'सहज गति में बोली जाने वाली स्वाभाविक और अनौपचारिक मंदारिन।';
 
   @override
   String get tededMandarin => 'TED-Ed मंदारिन';
 
   @override
-  String get highqualityAnimatedEducationalLesso => 'विज्ञान, दर्शन और इतिहास पर उच्च गुणवत्ता वाले एनिमेटेड शैक्षणिक पाठ।';
+  String get highqualityAnimatedEducationalLesso =>
+      'विज्ञान, दर्शन और इतिहास पर उच्च गुणवत्ता वाले एनिमेटेड शैक्षणिक पाठ।';
 
   @override
-  String get thoughtprovokingRiddlesClassicLiter => 'विचारोत्तेजक पहेलियाँ, शास्त्रीय साहित्य और मनोवैज्ञानिक रहस्य।';
+  String get thoughtprovokingRiddlesClassicLiter =>
+      'विचारोत्तेजक पहेलियाँ, शास्त्रीय साहित्य और मनोवैज्ञानिक रहस्य।';
 
   @override
-  String get impeccableVoiceoverMandarinWithSync => 'सटीक द्विभाषी उपशीर्षकों के साथ त्रुटिहीन वॉयस-ओवर मंदारिन।';
+  String get impeccableVoiceoverMandarinWithSync =>
+      'सटीक द्विभाषी उपशीर्षकों के साथ त्रुटिहीन वॉयस-ओवर मंदारिन।';
 
   @override
   String get channel => 'चैनल';
 
   @override
-  String get curatedCulturalDocumentariesAndChin => 'चयनित सांस्कृतिक डॉक्यूमेंट्री और चीनी जीवनशैली की झलकियां।';
+  String get curatedCulturalDocumentariesAndChin =>
+      'चयनित सांस्कृतिक डॉक्यूमेंट्री और चीनी जीवनशैली की झलकियां।';
 
   @override
-  String get exploringTraditionalArtsHeritageCra => 'पारंपरिक कलाओं, सांस्कृतिक शिल्प और आधुनिक रुझानों की खोज।';
+  String get exploringTraditionalArtsHeritageCra =>
+      'पारंपरिक कलाओं, सांस्कृतिक शिल्प और आधुनिक रुझानों की खोज।';
 
   @override
-  String get highQualityAudioWithSynchronizedChi => 'सिंक्रोनाइज़्ड चीनी उपशीर्षकों के साथ उच्च गुणवत्ता वाला ऑडियो।';
+  String get highQualityAudioWithSynchronizedChi =>
+      'सिंक्रोनाइज़्ड चीनी उपशीर्षकों के साथ उच्च गुणवत्ता वाला ऑडियो।';
 
   @override
-  String get interestingStoriesAndCreativeVideoP => 'चीनी वेब की दिलचस्प कहानियाँ और रचनात्मक वीडियो प्रोजेक्ट।';
+  String get interestingStoriesAndCreativeVideoP =>
+      'चीनी वेब की दिलचस्प कहानियाँ और रचनात्मक वीडियो प्रोजेक्ट।';
 
   @override
-  String get engagingInterviewsStorytellingAndVi => 'आकर्षक साक्षात्कार, कहानी और विज़ुअल प्रस्तुति।';
+  String get engagingInterviewsStorytellingAndVi =>
+      'आकर्षक साक्षात्कार, कहानी और विज़ुअल प्रस्तुति।';
 
   @override
-  String get greatListeningMaterialWithStandardP => 'मानक उच्चारण के साथ बेहतरीन श्रवण सामग्री।';
+  String get greatListeningMaterialWithStandardP =>
+      'मानक उच्चारण के साथ बेहतरीन श्रवण सामग्री।';
 
   @override
   String get xVsY => 'X बनाम Y';
@@ -5324,7 +5847,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get gradedReader => 'श्रेणीबद्ध पाठक (Graded Reader)';
 
   @override
-  String get ucj10r97lkwgdtqbt6xzv8gLearnMandari => 'TaiwanPlus के साथ मंदारिन सीखें';
+  String get ucj10r97lkwgdtqbt6xzv8gLearnMandari =>
+      'TaiwanPlus के साथ मंदारिन सीखें';
 
   @override
   String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi => 'रोजमर्रा की चीनी भाषा';
@@ -5381,7 +5905,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get articleOfTheDay => 'आज का लेख';
 
   @override
-  String get failedToLoadOrParseRssFeed => 'RSS फ़ीड लोड या पार्स करने में विफल।';
+  String get failedToLoadOrParseRssFeed =>
+      'RSS फ़ीड लोड या पार्स करने में विफल।';
 
   @override
   String get drama => 'ड्रामा';
@@ -5666,7 +6191,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get moonlitReunion => 'चाँदनी रात का पुनर्मिलन';
 
   @override
-  String get videoCountsCannotBeNegative => 'वीडियो की संख्या ऋणात्मक नहीं हो सकती।';
+  String get videoCountsCannotBeNegative =>
+      'वीडियो की संख्या ऋणात्मक नहीं हो सकती।';
 
   @override
   String get publicDomainClassic => 'सार्वजनिक डोमेन क्लासिक';
@@ -5681,7 +6207,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get fairyTales => 'परियों की कहानियाँ';
 
   @override
-  String get hereIsAFascinatingCulturalExplanati => 'यहाँ एक रोचक सांस्कृतिक व्याख्या है';
+  String get hereIsAFascinatingCulturalExplanati =>
+      'यहाँ एक रोचक सांस्कृतिक व्याख्या है';
 
   @override
   String get videoFetchTimedOut => 'वीडियो लाने का समय समाप्त हो गया';
@@ -5696,13 +6223,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get failedToLoadVideos => 'वीडियो लोड करने में विफल';
 
   @override
-  String get highqualityCuratedMandarinContentWi => 'सहज शब्दावली के साथ उच्च गुणवत्ता वाली चयनित मंदारिन सामग्री।';
+  String get highqualityCuratedMandarinContentWi =>
+      'सहज शब्दावली के साथ उच्च गुणवत्ता वाली चयनित मंदारिन सामग्री।';
 
   @override
-  String get authenticSpokenChineseAcrossRealwor => 'वास्तविक दुनिया के विषयों पर प्रामाणिक बोलचाल की चीनी।';
+  String get authenticSpokenChineseAcrossRealwor =>
+      'वास्तविक दुनिया के विषयों पर प्रामाणिक बोलचाल की चीनी।';
 
   @override
-  String get engagingVideoMaterialWithInteractiv => 'इंटरैक्टिव समकालिक उपशीर्षकों के साथ रोचक वीडियो सामग्री।';
+  String get engagingVideoMaterialWithInteractiv =>
+      'इंटरैक्टिव समकालिक उपशीर्षकों के साथ रोचक वीडियो सामग्री।';
 
   @override
   String get watchVideo => 'वीडियो देखें';
@@ -5711,7 +6241,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get culturalInsight => 'सांस्कृतिक दृष्टिकोण';
 
   @override
-  String get aiIsAnalyzingCulturalContext => 'AI सांस्कृतिक संदर्भ का विश्लेषण कर रहा है...';
+  String get aiIsAnalyzingCulturalContext =>
+      'AI सांस्कृतिक संदर्भ का विश्लेषण कर रहा है...';
 
   @override
   String get diveIntoFullContent => 'पूरी सामग्री देखें';
@@ -5726,13 +6257,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get webExplorer => 'वेब एक्सप्लोरर';
 
   @override
-  String get browseAnyChineseWebsiteWithRealtime => 'रीयल-टाइम टैप शब्दकोश, पिनयिन एनोटेशन और तुरंत अनुवाद के साथ किसी भी चीनी वेबसाइट को ब्राउज़ करें।';
+  String get browseAnyChineseWebsiteWithRealtime =>
+      'रीयल-टाइम टैप शब्दकोश, पिनयिन एनोटेशन और तुरंत अनुवाद के साथ किसी भी चीनी वेबसाइट को ब्राउज़ करें।';
 
   @override
   String get startExploring => 'अन्वेषण शुरू करें';
 
   @override
-  String get chineseTvSeriesWithInteractiveSubti => 'इंटरैक्टिव उपशीर्षकों के साथ चीनी टीवी धारावाहिक';
+  String get chineseTvSeriesWithInteractiveSubti =>
+      'इंटरैक्टिव उपशीर्षकों के साथ चीनी टीवी धारावाहिक';
 
   @override
   String get failedToLoadContent => 'सामग्री लोड करने में विफल';
@@ -5741,7 +6274,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get searchingYoutube => 'YouTube पर खोजा जा रहा है...';
 
   @override
-  String get noVideosFoundTryADifferentSearchTer => 'कोई वीडियो नहीं मिला। कृपया अन्य खोज शब्द का प्रयास करें।';
+  String get noVideosFoundTryADifferentSearchTer =>
+      'कोई वीडियो नहीं मिला। कृपया अन्य खोज शब्द का प्रयास करें।';
 
   @override
   String get searching => 'खोजा जा रहा है';
@@ -5768,16 +6302,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get generatingAiBriefing => 'AI ब्रीफिंग तैयार की जा रही है...';
 
   @override
-  String get noClosedCaptionsCcFoundForThisVideo => 'इस वीडियो के लिए कोई डिजिटल उपशीर्षक (CC) नहीं मिला।';
+  String get noClosedCaptionsCcFoundForThisVideo =>
+      'इस वीडियो के लिए कोई डिजिटल उपशीर्षक (CC) नहीं मिला।';
 
   @override
-  String get videosWithHardcodedOrBurnedinSubtit => 'वीडियो में पहले से छपे हुए उपशीर्षकों के लिए YouTube पर डिजिटल टेक्स्ट ट्रैक उपलब्ध नहीं होते हैं।';
+  String get videosWithHardcodedOrBurnedinSubtit =>
+      'वीडियो में पहले से छपे हुए उपशीर्षकों के लिए YouTube पर डिजिटल टेक्स्ट ट्रैक उपलब्ध नहीं होते हैं।';
 
   @override
   String get translatingSubtitles => 'उपशीर्षकों का अनुवाद किया जा रहा है...';
 
   @override
-  String get processingYourPronunciation => 'आपके उच्चारण का विश्लेषण किया जा रहा है...';
+  String get processingYourPronunciation =>
+      'आपके उच्चारण का विश्लेषण किया जा रहा है...';
 
   @override
   String get couldntIdentifyLine => 'पंक्ति की पहचान नहीं हो सकी।';
@@ -5786,34 +6323,42 @@ class AppLocalizationsHi extends AppLocalizations {
   String get listeningSpeakNow => 'सुन रहे हैं... अब बोलें।';
 
   @override
-  String get thisVideoDoesNotHaveADigitalClosedC => 'इस वीडियो में YouTube पर डिजिटल उपशीर्षक (CC) ट्रैक उपलब्ध नहीं है।';
+  String get thisVideoDoesNotHaveADigitalClosedC =>
+      'इस वीडियो में YouTube पर डिजिटल उपशीर्षक (CC) ट्रैक उपलब्ध नहीं है।';
 
   @override
   String get perfect1 => 'उत्तम';
 
   @override
-  String get thisVideoHasBeenRemovedOrIsNoLonger => 'यह वीडियो हटा दिया गया है या अब उपलब्ध नहीं है।';
+  String get thisVideoHasBeenRemovedOrIsNoLonger =>
+      'यह वीडियो हटा दिया गया है या अब उपलब्ध नहीं है।';
 
   @override
-  String get thisVideoCannotBePlayedInTheAppYouC => 'यह वीडियो ऐप में नहीं चलाया जा सकता। आप इसे YouTube पर देख सकते हैं।';
+  String get thisVideoCannotBePlayedInTheAppYouC =>
+      'यह वीडियो ऐप में नहीं चलाया जा सकता। आप इसे YouTube पर देख सकते हैं।';
 
   @override
-  String get yourDeviceCannotPlayThisVideoPlease => 'आपका डिवाइस यह वीडियो नहीं चला सकता। कृपया कोई अन्य वीडियो आज़माएं।';
+  String get yourDeviceCannotPlayThisVideoPlease =>
+      'आपका डिवाइस यह वीडियो नहीं चला सकता। कृपया कोई अन्य वीडियो आज़माएं।';
 
   @override
-  String get invalidVideoReferencePleaseTryAgain => 'अमान्य वीडियो संदर्भ। कृपया पुनः प्रयास करें।';
+  String get invalidVideoReferencePleaseTryAgain =>
+      'अमान्य वीडियो संदर्भ। कृपया पुनः प्रयास करें।';
 
   @override
-  String get unableToLoadThisVideoPleaseTryAnoth => 'यह वीडियो लोड नहीं हो सका। कृपया कोई अन्य वीडियो आज़माएं।';
+  String get unableToLoadThisVideoPleaseTryAnoth =>
+      'यह वीडियो लोड नहीं हो सका। कृपया कोई अन्य वीडियो आज़माएं।';
 
   @override
   String get startReading => 'पढ़ना शुरू करें';
 
   @override
-  String get analyzingCulturalContext => 'सांस्कृतिक संदर्भ का विश्लेषण किया जा रहा है...';
+  String get analyzingCulturalContext =>
+      'सांस्कृतिक संदर्भ का विश्लेषण किया जा रहा है...';
 
   @override
-  String get failedToLoadCulturalInsight => 'सांस्कृतिक जानकारी लोड करने में विफल।';
+  String get failedToLoadCulturalInsight =>
+      'सांस्कृतिक जानकारी लोड करने में विफल।';
 
   @override
   String get historicalContext => 'ऐतिहासिक संदर्भ';
@@ -5825,7 +6370,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get authorBackground => 'लेखक की पृष्ठभूमि';
 
   @override
-  String get k80CompleteClassicNovelsWorldEpics => '80+ संपूर्ण शास्त्रीय उपन्यास और विश्व महाकाव्य';
+  String get k80CompleteClassicNovelsWorldEpics =>
+      '80+ संपूर्ण शास्त्रीय उपन्यास और विश्व महाकाव्य';
 
   @override
   String get storyOfTheDay => 'आज की कहानी';
@@ -5852,16 +6398,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiReadingTools => 'AI पठन उपकरण';
 
   @override
-  String get enhanceYourReadingWithAipoweredTool => 'AI-संचालित उपकरणों के साथ अपने पठन कौशल को बेहतर बनाएं';
+  String get enhanceYourReadingWithAipoweredTool =>
+      'AI-संचालित उपकरणों के साथ अपने पठन कौशल को बेहतर बनाएं';
 
   @override
-  String get chooseTheTargetDifficultyForSimplif => 'सरलीकरण के लिए लक्षित कठिनाई स्तर चुनें';
+  String get chooseTheTargetDifficultyForSimplif =>
+      'सरलीकरण के लिए लक्षित कठिनाई स्तर चुनें';
 
   @override
-  String get chooseDifficultyForSimplification => 'सरलीकरण के लिए कठिनाई स्तर चुनें';
+  String get chooseDifficultyForSimplification =>
+      'सरलीकरण के लिए कठिनाई स्तर चुनें';
 
   @override
-  String get extractAllUnknownWordsToANewFlashca => 'सभी अज्ञात शब्दों को एक नए फ्लैशकार्ड डेक में निकालें';
+  String get extractAllUnknownWordsToANewFlashca =>
+      'सभी अज्ञात शब्दों को एक नए फ्लैशकार्ड डेक में निकालें';
 
   @override
   String get length => 'लंबाई';
@@ -5906,31 +6456,38 @@ class AppLocalizationsHi extends AppLocalizations {
   String get neverMissAStroke2 => 'कोई भी स्ट्रोक न चूकें';
 
   @override
-  String get yourDailyDropAndStreakAlertsArePrim => 'आपकी दैनिक ड्रॉप और स्ट्रीक अलर्ट तैयार हैं।';
+  String get yourDailyDropAndStreakAlertsArePrim =>
+      'आपकी दैनिक ड्रॉप और स्ट्रीक अलर्ट तैयार हैं।';
 
   @override
-  String get stayConsistentWithDailyRitualDropsA => 'दैनिक अध्ययन और समय पर ट्रायल अलर्ट के साथ निरंतरता बनाए रखें।';
+  String get stayConsistentWithDailyRitualDropsA =>
+      'दैनिक अध्ययन और समय पर ट्रायल अलर्ट के साथ निरंतरता बनाए रखें।';
 
   @override
-  String get aNewWordAndStoryWaitingForYourDaily => 'आपकी दैनिक अध्ययन दिनचर्या के लिए एक नया शब्द और कहानी तैयार है।';
+  String get aNewWordAndStoryWaitingForYourDaily =>
+      'आपकी दैनिक अध्ययन दिनचर्या के लिए एक नया शब्द और कहानी तैयार है।';
 
   @override
-  String get gentlePromptsBeforeCharactersFadeFr => 'वर्णों को भूलने से पहले सहायक अनुस्मारक।';
+  String get gentlePromptsBeforeCharactersFadeFr =>
+      'वर्णों को भूलने से पहले सहायक अनुस्मारक।';
 
   @override
-  String get receiveAReminder2DaysBeforeYourFree => 'निःशुल्क ट्रायल समाप्त होने से 2 दिन पहले अनुस्मारक प्राप्त करें।';
+  String get receiveAReminder2DaysBeforeYourFree =>
+      'निःशुल्क ट्रायल समाप्त होने से 2 दिन पहले अनुस्मारक प्राप्त करें।';
 
   @override
   String get yourPathTonchineseFluency => 'चीनी भाषा में प्रवाह की\nआपकी राह';
 
   @override
-  String get answer3QuickQuestionsSoOurAiCanCraf => '3 त्वरित प्रश्नों के उत्तर दें ताकि हमारा AI\nआपकी दिनचर्या के अनुकूल पाठ्यक्रम तैयार कर सके।';
+  String get answer3QuickQuestionsSoOurAiCanCraf =>
+      '3 त्वरित प्रश्नों के उत्तर दें ताकि हमारा AI\nआपकी दिनचर्या के अनुकूल पाठ्यक्रम तैयार कर सके।';
 
   @override
   String get whatIsYourLevelnwithChinese => 'चीनी भाषा में आपका स्तर\nक्या है?';
 
   @override
-  String get chooseThePathThatFitsYourDepth => 'वह विकल्प चुनें जो आपके वर्तमान ज्ञान के अनुकूल हो।';
+  String get chooseThePathThatFitsYourDepth =>
+      'वह विकल्प चुनें जो आपके वर्तमान ज्ञान के अनुकूल हो।';
 
   @override
   String get whatDrivesYourStudy => 'आप चीनी क्यों सीखना चाहते हैं?';
@@ -5942,7 +6499,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get setYourDailyRitual => 'अपना दैनिक अध्ययन नियम निर्धारित करें।';
 
   @override
-  String get youCanAdjustYourRitualAnyTime => 'आप अपनी दिनचर्या को कभी भी बदल सकते हैं।';
+  String get youCanAdjustYourRitualAnyTime =>
+      'आप अपनी दिनचर्या को कभी भी बदल सकते हैं।';
 
   @override
   String get letsBegin => 'आइए शुरू करें';
@@ -5951,22 +6509,27 @@ class AppLocalizationsHi extends AppLocalizations {
   String get brandNew => 'बिल्कुल नए शिक्षार्थी';
 
   @override
-  String get iveNeverStudiedChineseBefore => 'मैंने पहले कभी चीनी भाषा नहीं सीखी है।';
+  String get iveNeverStudiedChineseBefore =>
+      'मैंने पहले कभी चीनी भाषा नहीं सीखी है।';
 
   @override
-  String get iKnowBasicCharactersAndPhrases => 'मुझे बुनियादी वर्ण और वाक्यांश आते हैं।';
+  String get iKnowBasicCharactersAndPhrases =>
+      'मुझे बुनियादी वर्ण और वाक्यांश आते हैं।';
 
   @override
-  String get iCanHoldConversationsAndRead => 'मैं सामान्य बातचीत कर सकता/सकती हूँ और पढ़ सकता/सकती हूँ।';
+  String get iCanHoldConversationsAndRead =>
+      'मैं सामान्य बातचीत कर सकता/सकती हूँ और पढ़ सकता/सकती हूँ।';
 
   @override
-  String get iWantToRefineAndPerfectMySkills => 'मैं अपने भाषा कौशल को और निखारना चाहता/चाहती हूँ।';
+  String get iWantToRefineAndPerfectMySkills =>
+      'मैं अपने भाषा कौशल को और निखारना चाहता/चाहती हूँ।';
 
   @override
   String get confirmSelection => 'चयन की पुष्टि करें';
 
   @override
-  String get purposeFuelsTheBrushsMotion => 'उद्देश्य ही स्ट्रोक को गति देता है।';
+  String get purposeFuelsTheBrushsMotion =>
+      'उद्देश्य ही स्ट्रोक को गति देता है।';
 
   @override
   String get buildMyPath => 'मेरा मार्ग तैयार करें';
@@ -5987,7 +6550,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get personalizedPathInitialized => 'व्यक्तिगत शिक्षण पथ प्रारंभ';
 
   @override
-  String get calibratingAiNeuralMasters => 'AI न्यूरल मास्टर्स कैलिब्रेट किए जा रहे हैं...';
+  String get calibratingAiNeuralMasters =>
+      'AI न्यूरल मास्टर्स कैलिब्रेट किए जा रहे हैं...';
 
   @override
   String get calibrationComplete => 'कैलिब्रेशन पूर्ण';
@@ -6014,13 +6578,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get day5Reminder => 'दिन 5 अनुस्मारक';
 
   @override
-  String get wePromisedToAlertYou2DaysBeforeYour => 'हमने आपसे वादा किया था कि ट्रायल समाप्त होने से 2 दिन पहले हम आपको सूचित करेंगे।';
+  String get wePromisedToAlertYou2DaysBeforeYour =>
+      'हमने आपसे वादा किया था कि ट्रायल समाप्त होने से 2 दिन पहले हम आपको सूचित करेंगे।';
 
   @override
   String get continueWithoutReminder => 'बिना अनुस्मारक के जारी रखें';
 
   @override
-  String get masterChineseWithnsinospark => 'SinoSpark के साथ चीनी में\nमहारत हासिल करें';
+  String get masterChineseWithnsinospark =>
+      'SinoSpark के साथ चीनी में\nमहारत हासिल करें';
 
   @override
   String get start7dayFreeTrial => '7-दिवसीय निःशुल्क ट्रायल शुरू करें';
@@ -6050,19 +6616,23 @@ class AppLocalizationsHi extends AppLocalizations {
   String get trialBegins => 'ट्रायल प्रारंभ';
 
   @override
-  String get revenuecatIsMissingACurrentOffering => 'RevenueCat में कोई सक्रिय पैकेज उपलब्ध नहीं है। कृपया अपना डैशबोर्ड कॉन्फ़िगर करें।';
+  String get revenuecatIsMissingACurrentOffering =>
+      'RevenueCat में कोई सक्रिय पैकेज उपलब्ध नहीं है। कृपया अपना डैशबोर्ड कॉन्फ़िगर करें।';
 
   @override
-  String get cameraPermissionRequiredForLiveScan => 'लाइव स्कैन के लिए कैमरा अनुमति आवश्यक है।';
+  String get cameraPermissionRequiredForLiveScan =>
+      'लाइव स्कैन के लिए कैमरा अनुमति आवश्यक है।';
 
   @override
   String get cameraAccessRequired => 'कैमरा एक्सेस आवश्यक है';
 
   @override
-  String get pleaseEnableCameraAccessInYourDevic => 'इस सुविधा का उपयोग करने के लिए कृपया अपनी डिवाइस सेटिंग्स में कैमरा एक्सेस सक्षम करें।';
+  String get pleaseEnableCameraAccessInYourDevic =>
+      'इस सुविधा का उपयोग करने के लिए कृपया अपनी डिवाइस सेटिंग्स में कैमरा एक्सेस सक्षम करें।';
 
   @override
-  String get alignChineseTextWithinFrame => 'फ़्रेम के भीतर चीनी पाठ को संरेखित करें';
+  String get alignChineseTextWithinFrame =>
+      'फ़्रेम के भीतर चीनी पाठ को संरेखित करें';
 
   @override
   String get inLibrary => 'लाइब्रेरी में';
@@ -6103,7 +6673,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get asTheNarrativeUnfoldsItIlluminatesT => 'जैसे-जैसे कहानी आगे बढ़ती है, यह जीवन के मूलभूत ज्ञान और प्रेरणा को उजागर करती है।';
+  String get asTheNarrativeUnfoldsItIlluminatesT =>
+      'जैसे-जैसे कहानी आगे बढ़ती है, यह जीवन के मूलभूत ज्ञान और प्रेरणा को उजागर करती है।';
 
   @override
   String get general => 'सामान्य';
@@ -6130,22 +6701,27 @@ class AppLocalizationsHi extends AppLocalizations {
   String get lifeInsideTheForbiddenCity => 'फॉरबिडन सिटी के भीतर का जीवन';
 
   @override
-  String get buyingATicketAndTakingTheHighSpeedT => 'टिकट खरीदना और हाई-स्पीड ट्रेन से यात्रा करना';
+  String get buyingATicketAndTakingTheHighSpeedT =>
+      'टिकट खरीदना और हाई-स्पीड ट्रेन से यात्रा करना';
 
   @override
-  String get goingToTheHospitalForAColdAndSeeing => 'सर्दी-जुकाम के लिए डॉक्टर के पास जाना';
+  String get goingToTheHospitalForAColdAndSeeing =>
+      'सर्दी-जुकाम के लिए डॉक्टर के पास जाना';
 
   @override
-  String get goingToALocalRestaurantToOrderJiaoz => 'स्थानीय रेस्तरां में जियाओज़ी (डंपलिंग) ऑर्डर करना';
+  String get goingToALocalRestaurantToOrderJiaoz =>
+      'स्थानीय रेस्तरां में जियाओज़ी (डंपलिंग) ऑर्डर करना';
 
   @override
   String get theTraditionalGongfuTeaCeremony => 'पारंपरिक गोंगफू चाय समारोह';
 
   @override
-  String get theArtOfWritingChineseCharactersWit => 'ब्रश से चीनी वर्ण लिखने की कला';
+  String get theArtOfWritingChineseCharactersWit =>
+      'ब्रश से चीनी वर्ण लिखने की कला';
 
   @override
-  String get theLifeAndConservationOfGiantPandas => 'विशाल पांडा का जीवन और संरक्षण';
+  String get theLifeAndConservationOfGiantPandas =>
+      'विशाल पांडा का जीवन और संरक्षण';
 
   @override
   String get storyNotFoundInDatabase => 'कहानी डेटाबेस में नहीं मिली';
@@ -6166,10 +6742,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get voiceEngineAllowance => 'वॉयस इंजन और कोटा';
 
   @override
-  String get studioHdVsUnlimitedStandardVoice => 'Studio HD बनाम असीमित मानक आवाज़';
+  String get studioHdVsUnlimitedStandardVoice =>
+      'Studio HD बनाम असीमित मानक आवाज़';
 
   @override
-  String get standardVoiceIs100UnlimitedFree => 'मानक आवाज़ 100% असीमित और निःशुल्क है';
+  String get standardVoiceIs100UnlimitedFree =>
+      'मानक आवाज़ 100% असीमित और निःशुल्क है';
 
   @override
   String get read => 'पढ़ें';
@@ -6205,13 +6783,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get standardVoice => 'मानक आवाज़';
 
   @override
-  String get noNovelsFoundMatchingYourFilter => 'आपके फ़िल्टर से मेल खाता कोई उपन्यास नहीं मिला।';
+  String get noNovelsFoundMatchingYourFilter =>
+      'आपके फ़िल्टर से मेल खाता कोई उपन्यास नहीं मिला।';
 
   @override
-  String get noMicroreadsFoundMatchingYourFilter => 'आपके फ़िल्टर से मेल खाती कोई माइक्रो-रीडिंग नहीं मिली।';
+  String get noMicroreadsFoundMatchingYourFilter =>
+      'आपके फ़िल्टर से मेल खाती कोई माइक्रो-रीडिंग नहीं मिली।';
 
   @override
-  String get noPoemsFoundMatchingYourFilter => 'आपके फ़िल्टर से मेल खाती कोई कविता नहीं मिली।';
+  String get noPoemsFoundMatchingYourFilter =>
+      'आपके फ़िल्टर से मेल खाती कोई कविता नहीं मिली।';
 
   @override
   String get audiobook => 'ऑडियोबुक';
@@ -6223,10 +6804,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get continueReading => 'पढ़ना जारी रखें';
 
   @override
-  String get search96FullNovelsAuthorsEpics => '96 संपूर्ण उपन्यास, लेखक और महाकाव्य खोजें...';
+  String get search96FullNovelsAuthorsEpics =>
+      '96 संपूर्ण उपन्यास, लेखक और महाकाव्य खोजें...';
 
   @override
-  String get searchClassicalPoemsAuthorsVerses => 'शास्त्रीय कविताएं, लेखक और छंद खोजें...';
+  String get searchClassicalPoemsAuthorsVerses =>
+      'शास्त्रीय कविताएं, लेखक और छंद खोजें...';
 
   @override
   String get allLevelsVal => 'सभी स्तर';
@@ -6253,7 +6836,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get peoplesArtist => 'जन कलाकार';
 
   @override
-  String get kafkaesqueForBureaucraticAbsurdityA => '«काफ्काएस्क» नौकरशाही की विसंगतियों और अस्तित्वगत संकट के लिए।';
+  String get kafkaesqueForBureaucraticAbsurdityA =>
+      '«काफ्काएस्क» नौकरशाही की विसंगतियों और अस्तित्वगत संकट के लिए।';
 
   @override
   String get bigBrotherAndNewspeak => '«बिग ब्रदर» और «न्यूस्पीक»।';
@@ -6268,13 +6852,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get studioVoiceAllowance => 'Studio आवाज़ कोटा';
 
   @override
-  String get weeklyHighdefinitionAiRecitation => 'साप्ताहिक हाई-डेफिनिशन AI पाठ';
+  String get weeklyHighdefinitionAiRecitation =>
+      'साप्ताहिक हाई-डेफिनिशन AI पाठ';
 
   @override
-  String get resetsEveryMondayAt0000 => 'प्रत्येक सोमवार 00:00 बजे रीसेट होता है';
+  String get resetsEveryMondayAt0000 =>
+      'प्रत्येक सोमवार 00:00 बजे रीसेट होता है';
 
   @override
-  String get whenYourWeekly4hourStudioAllowanceI => 'जब आपका साप्ताहिक 4 घंटे का Studio कोटा समाप्त हो जाता है, तो ऐप बिना किसी रुकावट के असीमित सुनने के लिए ऑन-डिवाइस आवाज़ पर स्विच हो जाता है।';
+  String get whenYourWeekly4hourStudioAllowanceI =>
+      'जब आपका साप्ताहिक 4 घंटे का Studio कोटा समाप्त हो जाता है, तो ऐप बिना किसी रुकावट के असीमित सुनने के लिए ऑन-डिवाइस आवाज़ पर स्विच हो जाता है।';
 
   @override
   String get localDeviceVoice => 'स्थानीय डिवाइस आवाज़';
@@ -6283,13 +6870,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get classicalVerse => 'शास्त्रीय छंद';
 
   @override
-  String get ondeviceVoice4hWeeklyUsed => 'डिवाइस आवाज़ (साप्ताहिक 4 घंटे प्रयुक्त)';
+  String get ondeviceVoice4hWeeklyUsed =>
+      'डिवाइस आवाज़ (साप्ताहिक 4 घंटे प्रयुक्त)';
 
   @override
-  String get generateACustomAiStoryBasedOnYourIn => 'अपनी रुचियों के आधार पर एक कस्टम AI कहानी बनाएं';
+  String get generateACustomAiStoryBasedOnYourIn =>
+      'अपनी रुचियों के आधार पर एक कस्टम AI कहानी बनाएं';
 
   @override
-  String get insteadOfAFixedHskLevelTheFlowState => 'किसी निश्चित स्तर तक सीमित रहने के बजाय, डायनामिक इंजन आपके व्यक्तिगत कार्ड संग्रह का मूल्यांकन करता है।';
+  String get insteadOfAFixedHskLevelTheFlowState =>
+      'किसी निश्चित स्तर तक सीमित रहने के बजाय, डायनामिक इंजन आपके व्यक्तिगत कार्ड संग्रह का मूल्यांकन करता है।';
 
   @override
   String get we => 'हम';
@@ -6298,10 +6888,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get howCanWeHelpYou => 'हम आपकी क्या सहायता कर सकते हैं?';
 
   @override
-  String get everythingYouNeedToKnowAboutHanziMa => 'SinoSpark, इसकी विशेषताओं और आपकी गोपनीयता के बारे में सभी आवश्यक जानकारी।';
+  String get everythingYouNeedToKnowAboutHanziMa =>
+      'SinoSpark, इसकी विशेषताओं और आपकी गोपनीयता के बारे में सभी आवश्यक जानकारी।';
 
   @override
-  String get whoAreTheVoicesSpeakingInTheApp => 'ऐप में बोलने वाले वक्ता कौन हैं?';
+  String get whoAreTheVoicesSpeakingInTheApp =>
+      'ऐप में बोलने वाले वक्ता कौन हैं?';
 
   @override
   String get howDoesTheWebExplorerWork => 'वेब एक्सप्लोरर कैसे काम करता है?';
@@ -6310,7 +6902,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get whatIsZenMode => 'ज़ेन मोड क्या है?';
 
   @override
-  String get howDoesTheFlashcardSpacedrepetition => 'फ़्लैशकार्ड अंतराल पुनरावृत्ति प्रणाली कैसे काम करती है?';
+  String get howDoesTheFlashcardSpacedrepetition =>
+      'फ़्लैशकार्ड अंतराल पुनरावृत्ति प्रणाली कैसे काम करती है?';
 
   @override
   String get traceComplete => 'ट्रेसिंग पूर्ण!';
@@ -6319,28 +6912,36 @@ class AppLocalizationsHi extends AppLocalizations {
   String get traceCharacter => 'वर्ण ट्रेस करें';
 
   @override
-  String get analyzingWordRelationships => 'शब्द संबंधों का विश्लेषण किया जा रहा है...';
+  String get analyzingWordRelationships =>
+      'शब्द संबंधों का विश्लेषण किया जा रहा है...';
 
   @override
-  String get identifyingUsageContexts => 'उपयोग संदर्भों की पहचान की जा रही है...';
+  String get identifyingUsageContexts =>
+      'उपयोग संदर्भों की पहचान की जा रही है...';
 
   @override
-  String get comparingFormalityLevels => 'औपचारिकता के स्तरों की तुलना की जा रही है...';
+  String get comparingFormalityLevels =>
+      'औपचारिकता के स्तरों की तुलना की जा रही है...';
 
   @override
-  String get findingCommonCollocations => 'सामान्य सह-प्रयोगों की खोज की जा रही है...';
+  String get findingCommonCollocations =>
+      'सामान्य सह-प्रयोगों की खोज की जा रही है...';
 
   @override
-  String get generatingComparison => 'तुलनात्मक विश्लेषण तैयार किया जा रहा है...';
+  String get generatingComparison =>
+      'तुलनात्मक विश्लेषण तैयार किया जा रहा है...';
 
   @override
-  String get generationIsTakingLongerThanExpecte => 'प्रक्रिया में अधिक समय लग रहा है। AI सर्वर पर अत्यधिक लोड हो सकता है।';
+  String get generationIsTakingLongerThanExpecte =>
+      'प्रक्रिया में अधिक समय लग रहा है। AI सर्वर पर अत्यधिक लोड हो सकता है।';
 
   @override
-  String get generationInterruptedShowingPartial => 'प्रक्रिया बाधित हुई। आंशिक परिणाम दिखाया जा रहा है।';
+  String get generationInterruptedShowingPartial =>
+      'प्रक्रिया बाधित हुई। आंशिक परिणाम दिखाया जा रहा है।';
 
   @override
-  String get sorrySomethingWentWrong => 'क्षमा करें, कोई तकनीकी समस्या उत्पन्न हुई।';
+  String get sorrySomethingWentWrong =>
+      'क्षमा करें, कोई तकनीकी समस्या उत्पन्न हुई।';
 
   @override
   String get usage => 'प्रयोग:';
@@ -6358,9 +6959,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get errorLoadingFromAi => 'AI से डेटा लोड करने में त्रुटि।';
 
   @override
-  String get newLabel => 'नया';
-
-  @override
   String get analyzingImage => 'छवि का विश्लेषण किया जा रहा है...';
 
   @override
@@ -6370,13 +6968,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get lookingUpVocabulary => 'शब्दावली खोजी जा रही है...';
 
   @override
-  String get dreamOfTheRedChamber => 'लाल कक्ष का सपना (Dream of the Red Chamber)';
+  String get dreamOfTheRedChamber =>
+      'लाल कक्ष का सपना (Dream of the Red Chamber)';
 
   @override
   String get journeyToTheWest => 'पश्चिम की यात्रा (Journey to the West)';
 
   @override
-  String get romanceOfTheThreeKingdoms => 'तीन साम्राज्यों का रोमांस (Romance of the Three Kingdoms)';
+  String get romanceOfTheThreeKingdoms =>
+      'तीन साम्राज्यों का रोमांस (Romance of the Three Kingdoms)';
 
   @override
   String get mingDynasty => 'मिंग राजवंश';
@@ -6396,7 +6996,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get noBookmarksYet => 'अभी तक कोई बुकमार्क नहीं है। किसी अंश को सहेजने के लिए बुकमार्क आइकन पर टैप करें।';
+  String get noBookmarksYet =>
+      'अभी तक कोई बुकमार्क नहीं है। किसी अंश को सहेजने के लिए बुकमार्क आइकन पर टैप करें।';
 
   @override
   String get sinosparkIsNotResponding => 'SinoSpark जवाब नहीं दे रहा है';
@@ -6441,7 +7042,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get allLevels => 'सभी स्तर';
 
   @override
-  String get searchGradedMicroStories => 'श्रेणीबद्ध लघु कहानियों और नीति-कथाओं में खोजें...';
+  String get searchGradedMicroStories =>
+      'श्रेणीबद्ध लघु कहानियों और नीति-कथाओं में खोजें...';
 
   @override
   String gradedStoriesAndMicroReads(Object count) {
@@ -6449,7 +7051,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get searchClassicalPoems => 'शास्त्रीय कविताओं, रचयिताओं और छंदों में खोजें...';
+  String get searchClassicalPoems =>
+      'शास्त्रीय कविताओं, रचयिताओं और छंदों में खोजें...';
 
   @override
   String classicalPoemsAndVerse(Object count) {
@@ -6457,7 +7060,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get browseAnyChineseWebsite => 'रीयल-टाइम टैप शब्दकोश, पिनयिन एनोटेशन और तुरंत अनुवाद के साथ किसी भी चीनी वेबसाइट को ब्राउज़ करें।';
+  String get browseAnyChineseWebsite =>
+      'रीयल-टाइम टैप शब्दकोश, पिनयिन एनोटेशन और तुरंत अनुवाद के साथ किसी भी चीनी वेबसाइट को ब्राउज़ करें।';
 
   @override
   String get completed => 'पूर्ण';
@@ -6478,13 +7082,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get hsk4UpperInt => 'HSK 4 (उच्च-मध्यवर्ती)';
 
   @override
-  String get extractAllUnknownWords => 'सभी अज्ञात शब्दों को एक नए फ्लैशकार्ड डेक में निकालें';
+  String get extractAllUnknownWords =>
+      'सभी अज्ञात शब्दों को एक नए फ्लैशकार्ड डेक में निकालें';
 
   @override
-  String get designCustomAiRoleplay => 'कस्टम AI रोलप्ले और बातचीत डिज़ाइन करें';
+  String get designCustomAiRoleplay =>
+      'कस्टम AI रोलप्ले और बातचीत डिज़ाइन करें';
 
   @override
-  String get practiceFlashcardVocabulary => 'लाइव संवाद में फ्लैशकार्ड शब्दावली का अभ्यास करें';
+  String get practiceFlashcardVocabulary =>
+      'लाइव संवाद में फ्लैशकार्ड शब्दावली का अभ्यास करें';
 
   @override
   String get surpriseMe => 'मुझे आश्चर्यचकित करें';
@@ -6528,4 +7135,56 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get characters => 'वर्ण';
+
+  @override
+  String get todayDashboard => 'Today';
+
+  @override
+  String get studyToday => 'Study today\'s cards';
+
+  @override
+  String get studyAhead => 'Study ahead';
+
+  @override
+  String get studyAheadDescription =>
+      'Practice the nearest scheduled reviews without using today\'s quota. No new cards are introduced.';
+
+  @override
+  String get studyAheadComplete => 'Study-ahead practice complete';
+
+  @override
+  String get dueNow => 'Due now';
+
+  @override
+  String get scheduled => 'Scheduled';
+
+  @override
+  String get sevenDayForecast => '7-day review forecast';
+
+  @override
+  String get reviews => 'Reviews';
+
+  @override
+  String get newCardsLabel => 'New cards';
+
+  @override
+  String get attempts => 'Attempts';
+
+  @override
+  String get duration => 'Time';
+
+  @override
+  String get answerBreakdown => 'Answer breakdown';
+
+  @override
+  String get reviewCards => 'Review cards';
+
+  @override
+  String get retries => 'Retries';
+
+  @override
+  String get needsPractice => 'Needs practice';
+
+  @override
+  String get uniqueCardsStudied => 'Cards';
 }

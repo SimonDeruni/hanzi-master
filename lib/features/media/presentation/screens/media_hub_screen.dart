@@ -367,7 +367,7 @@ class MediaHubScreen extends ConsumerWidget {
 
                     const SizedBox(height: 18),
 
-                    // Title & Description
+                    // Headline & source
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
@@ -749,7 +749,9 @@ class _DailyDiscoveryCarouselState
                     ),
                     const Spacer(),
                     Text(
-                      item.subtitle,
+                      item.tag == 'VIDEO OF THE DAY'
+                          ? item.subtitle
+                          : item.title,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -770,8 +772,10 @@ class _DailyDiscoveryCarouselState
                             size: 16),
                         const SizedBox(width: 6),
                         Expanded(
-                          child: Text(
-                            item.title,
+                            child: Text(
+                              item.tag == 'VIDEO OF THE DAY'
+                                  ? item.title
+                                  : item.subtitle,
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.6),
                               fontSize: 13,

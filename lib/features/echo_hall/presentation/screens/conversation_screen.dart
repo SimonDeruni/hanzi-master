@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -507,6 +507,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         if (isUser && message.grade != null) {
           showModalBottomSheet(
             context: context,
+      useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => PronunciationReportSheet(message: message),

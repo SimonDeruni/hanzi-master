@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/utils/pinyin_utils.dart';
@@ -30,6 +30,7 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
   }) {
     return showModalBottomSheet<T>(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => ToneComparisonSheet(

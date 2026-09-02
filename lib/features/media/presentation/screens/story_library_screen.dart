@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -296,6 +296,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
+      useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => const CustomStoryCreatorSheet(),

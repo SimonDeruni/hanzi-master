@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
 import 'package:hanzi_master/features/flashcards/data/models/review_stats_model.dart';
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
+import 'package:hanzi_master/features/flashcards/data/models/daily_deck_activity_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
@@ -58,6 +59,7 @@ void main() async {
   Hive.registerAdapter(FlashcardModelAdapter());
   Hive.registerAdapter(ReviewStatsModelAdapter());
   Hive.registerAdapter(DeckModelAdapter());
+  Hive.registerAdapter(DailyDeckActivityModelAdapter());
   Hive.registerAdapter(SavedArticleAdapter());
 
   await LocalTranslationService.init();
@@ -99,6 +101,10 @@ void main() async {
   await safeOpenBox<String>('graded_stories_v2', cipher: cipher);
   await safeOpenBox<String>('custom_blueprints_v2', cipher: cipher);
   final deckBox = await safeOpenBox<DeckModel>('decks', cipher: cipher);
+  final studyActivityBox = await safeOpenBox<DailyDeckActivityModel>(
+    'daily_deck_activity_v1',
+    cipher: cipher,
+  );
   await safeOpenBox<String>('curriculum_cache_box', cipher: cipher);
   await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
 
@@ -108,6 +114,7 @@ void main() async {
       sharedPreferencesProvider.overrideWithValue(prefs),
       hiveBoxProvider.overrideWithValue(box),
       deckBoxProvider.overrideWithValue(deckBox),
+      studyActivityBoxProvider.overrideWithValue(studyActivityBox),
     ],
   );
 

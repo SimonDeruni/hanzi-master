@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -872,6 +872,7 @@ class _RadicalCard extends ConsumerWidget {
         // 3. Open Detail Sheet
         showModalBottomSheet(
           context: context,
+      useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
           builder: (context) => RadicalDetailSheet(

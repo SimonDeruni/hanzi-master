@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:equatable/equatable.dart';
 import 'review_stats.dart';
 import 'study_mode.dart';
+import '../logic/review_scheduler.dart';
 
 class Flashcard extends Equatable {
   final String id;
@@ -42,9 +43,20 @@ class Flashcard extends Equatable {
 
   @override
   List<Object?> get props => [
-    id, deckId, hanzi, pinyin, definition, hskLevel, strokePaths, medianPaths, 
-    isFlipped, modeStats, inkPoints, sourceSentence, sourceContext
-  ];
+        id,
+        deckId,
+        hanzi,
+        pinyin,
+        definition,
+        hskLevel,
+        strokePaths,
+        medianPaths,
+        isFlipped,
+        modeStats,
+        inkPoints,
+        sourceSentence,
+        sourceContext
+      ];
 
   // --- Helpers for UI ---
   ReviewStats getStatsForMode(StudyMode mode) {
@@ -69,44 +81,14 @@ class Flashcard extends Equatable {
     return sum / modeStats.length;
   }
 
-  /// Applies the SuperMemo-2 (SM-2) algorithm.
-  /// Expected grades: 0 (Again), 2 (Hard), 4 (Good), 5 (Easy)
-  Flashcard processReview(int grade, StudyMode mode) {
+  /// Applies the app's scheduling policy.
+  /// Expected grades: 0 (Again), 2 (Hard), 4 (Good), 5 (Easy).
+  Flashcard processReview(int grade, StudyMode mode, {DateTime? reviewedAt}) {
     final stats = getStatsForMode(mode);
-    
-    int newStreak;
-    int newInterval;
-    
-    // SM-2 formula for ease factor
-    double newEase = stats.easeFactor + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
-    if (newEase < 1.3) newEase = 1.3;
-
-    if (grade >= 3) {
-      newStreak = stats.streak + 1;
-      if (newStreak == 1) {
-        newInterval = 1;
-      } else if (newStreak == 2) {
-        newInterval = 6;
-      } else {
-        newInterval = (stats.interval * newEase).round();
-      }
-    } else {
-      newStreak = 0;
-      newInterval = 1;
-    }
-
-    // Set the new review date
-    final newNextReviewDate = DateTime.now().add(Duration(days: newInterval));
-
-    final updatedStats = stats.copyWith(
-      streak: newStreak,
-      interval: newInterval,
-      easeFactor: newEase,
-      nextReviewDate: newNextReviewDate,
-      attempts: stats.attempts + 1,
-      lastAttemptDate: DateTime.now(),
-      successCount: grade >= 3 ? stats.successCount + 1 : stats.successCount,
-      lastScore: grade.toDouble(),
+    final updatedStats = ReviewScheduler.schedule(
+      stats: stats,
+      rating: ReviewRating.fromGrade(grade),
+      reviewedAt: reviewedAt ?? DateTime.now(),
     );
 
     final newModeStats = Map<StudyMode, ReviewStats>.from(modeStats);

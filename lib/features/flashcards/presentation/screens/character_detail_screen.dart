@@ -1,4 +1,4 @@
-import 'package:hanzi_master/l10n/app_localizations.dart';
+﻿import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
@@ -250,6 +250,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         padding: const EdgeInsets.all(24),
@@ -496,6 +497,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
+      useRootNavigator: true,
                 shape: const RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(24))),

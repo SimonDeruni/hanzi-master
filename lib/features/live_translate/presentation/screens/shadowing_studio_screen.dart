@@ -1,4 +1,4 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -466,6 +466,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
         context: context,
+      useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -603,6 +604,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
         context: context,
+      useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -1761,6 +1763,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor:
           isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),

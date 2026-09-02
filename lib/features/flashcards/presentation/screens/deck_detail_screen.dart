@@ -1,4 +1,4 @@
-import 'package:hanzi_master/l10n/app_localizations.dart';
+﻿import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/daily_study_dashboard_screen.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
@@ -50,6 +51,36 @@ class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
+class _DailyGoal extends StatelessWidget {
+  const _DailyGoal({
+    required this.label,
+    required this.available,
+    required this.limit,
+    required this.color,
+  });
+
+  final String label;
+  final int available;
+  final int limit;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final goal = limit < 0 ? 'Unlimited' : limit.toString();
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '$available / $goal',
+          style: TextStyle(fontWeight: FontWeight.bold, color: color),
+        ),
+        const SizedBox(height: 2),
+        Text(label, style: Theme.of(context).textTheme.bodySmall),
+      ],
+    );
+  }
+}
+
 class DeckDetailScreen extends ConsumerStatefulWidget {
   final Deck deck;
 
@@ -62,6 +93,9 @@ class DeckDetailScreen extends ConsumerStatefulWidget {
 class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  late Deck _currentDeck = widget.deck;
+  late int _dailyNewCardsLimit = widget.deck.dailyNewCardsLimit;
+  late int _dailyReviewLimit = widget.deck.dailyReviewLimit;
 
   @override
   void dispose() {
@@ -104,6 +138,15 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     c.deckId == widget.deck.id ||
                     (widget.deck.id == 'default' && c.deckId.isEmpty))
                 .toList();
+            final now = DateTime.now();
+            final endOfToday = DateTime(now.year, now.month, now.day + 1);
+            final dueToday = deckCards.where((card) {
+              final stats = card.getStatsForMode(StudyMode.reading);
+              return !stats.isNew && stats.nextReviewDate.isBefore(endOfToday);
+            }).length;
+            final newAvailable = deckCards
+                .where((card) => card.getStatsForMode(StudyMode.reading).isNew)
+                .length;
 
             final filteredCards = deckCards.where((c) {
               if (_searchQuery.isEmpty) return true;
@@ -176,14 +219,24 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       IconButton(
                         icon: Icon(Icons.settings_outlined,
                             color: isDark ? Colors.white70 : Colors.black87),
-                        onPressed: () {
-                          showModalBottomSheet(
+                        onPressed: () async {
+                          final updatedDeck = await showModalBottomSheet<Deck>(
                             context: context,
+      useRootNavigator: true,
                             isScrollControlled: true,
+                            useRootNavigator: true,
                             backgroundColor: Colors.transparent,
                             builder: (ctx) =>
-                                DeckSettingsSheet(deck: widget.deck),
+                                DeckSettingsSheet(deck: _currentDeck),
                           );
+                          if (updatedDeck != null && mounted) {
+                            setState(() {
+                              _currentDeck = updatedDeck;
+                              _dailyNewCardsLimit =
+                                  updatedDeck.dailyNewCardsLimit;
+                              _dailyReviewLimit = updatedDeck.dailyReviewLimit;
+                            });
+                          }
                         },
                       ),
                       if (widget.deck.id != 'default')
@@ -256,6 +309,63 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
                         child: Column(
                           children: [
+                            Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.only(bottom: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 10),
+                              decoration: BoxDecoration(
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.06)
+                                    : Colors.indigo.withValues(alpha: 0.06),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: _DailyGoal(
+                                      label: 'Due today',
+                                      available: dueToday,
+                                      limit: _dailyReviewLimit,
+                                      color: Colors.indigo,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 1,
+                                    height: 32,
+                                    color: Colors.grey.withValues(alpha: 0.25),
+                                  ),
+                                  Expanded(
+                                    child: _DailyGoal(
+                                      label: 'New available',
+                                      available: newAvailable,
+                                      limit: _dailyNewCardsLimit,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton.icon(
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  SwipeBackPageRoute(
+                                    builder: (_) => DailyStudyDashboardScreen(
+                                      deck: widget.deck.copyWith(
+                                        dailyNewCardsLimit: _dailyNewCardsLimit,
+                                        dailyReviewLimit: _dailyReviewLimit,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                icon: const Icon(Icons.today_outlined),
+                                label: Text(AppLocalizations.of(context)!
+                                    .todayDashboard),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
                             Row(
                               children: [
                                 Expanded(
