@@ -58,9 +58,11 @@ class GlobalDictionaryRepository {
             !colNames.contains('definition_pt') ||
             !colNames.contains('definition_it') ||
             !colNames.contains('definition_de') ||
-            !colNames.contains('definition_ar')) {
+            !colNames.contains('definition_ar') ||
+            !colNames.contains('definition_hi')) {
           needsRefresh = true;
         }
+
       } catch (_) {
         needsRefresh = true;
       }
