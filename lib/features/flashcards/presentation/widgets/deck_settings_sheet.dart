@@ -14,23 +14,23 @@ class DeckSettingsSheet extends ConsumerStatefulWidget {
 }
 
 class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
-  late double _newCardsLimit;
-  late double _reviewLimit;
+  late int _newCardsLimit;
+  late int _reviewLimit;
 
   @override
   void initState() {
     super.initState();
-    _newCardsLimit = widget.deck.dailyNewCardsLimit.toDouble();
-    _reviewLimit = widget.deck.dailyReviewLimit.toDouble();
+    _newCardsLimit = widget.deck.dailyNewCardsLimit;
+    _reviewLimit = widget.deck.dailyReviewLimit;
   }
 
-  void _saveSettings() {
+  Future<void> _saveSettings() async {
     final updatedDeck = widget.deck.copyWith(
-      dailyNewCardsLimit: _newCardsLimit.toInt(),
-      dailyReviewLimit: _reviewLimit.toInt(),
+      dailyNewCardsLimit: _newCardsLimit,
+      dailyReviewLimit: _reviewLimit,
     );
-    ref.read(deckControllerProvider.notifier).updateDeck(updatedDeck);
-    Navigator.pop(context);
+    await ref.read(deckControllerProvider.notifier).updateDeck(updatedDeck);
+    if (mounted) Navigator.pop(context, updatedDeck);
   }
 
   @override
@@ -82,34 +82,27 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
-
-          // Daily New Cards Slider
-          _buildSliderSetting(
-            title: AppLocalizations.of(context)?.dailyNewCards ?? "Daily New Cards",
+          _buildLimitSetting(
+            title: AppLocalizations.of(context)?.dailyNewCards ??
+                "Daily New Cards",
             value: _newCardsLimit,
-            min: 0,
-            max: 100,
-            divisions: 20,
+            presets: const [0, 10, 20, 50, -1],
             onChanged: (val) => setState(() => _newCardsLimit = val),
             icon: Icons.fiber_new_rounded,
             color: Colors.green,
             isDark: isDark,
           ),
           const SizedBox(height: 24),
-
-          // Daily Reviews Slider
-          _buildSliderSetting(
-            title: AppLocalizations.of(context)?.dailyReviewLimit ?? "Daily Review Limit",
+          _buildLimitSetting(
+            title: AppLocalizations.of(context)?.dailyReviewLimit ??
+                "Daily Review Limit",
             value: _reviewLimit,
-            min: 0,
-            max: 500,
-            divisions: 50,
+            presets: const [0, 50, 100, 200, -1],
             onChanged: (val) => setState(() => _reviewLimit = val),
             icon: Icons.repeat_rounded,
             color: Colors.indigo,
             isDark: isDark,
           ),
-          
           const SizedBox(height: 40),
           ElevatedButton(
             onPressed: _saveSettings,
@@ -117,12 +110,16 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
               backgroundColor: Colors.indigo,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
               elevation: 4,
             ),
             child: const Text(
               "Save Settings",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.1),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.1),
             ),
           ),
         ],
@@ -130,13 +127,11 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
     );
   }
 
-  Widget _buildSliderSetting({
+  Widget _buildLimitSetting({
     required String title,
-    required double value,
-    required double min,
-    required double max,
-    required int divisions,
-    required ValueChanged<double> onChanged,
+    required int value,
+    required List<int> presets,
+    required ValueChanged<int> onChanged,
     required IconData icon,
     required Color color,
     required bool isDark,
@@ -157,41 +152,108 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
               ),
             ),
             const Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                value.toInt().toString(),
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: color,
+            IconButton(
+              tooltip: 'Decrease',
+              onPressed: value <= 0 ? null : () => onChanged(value - 1),
+              icon: const Icon(Icons.remove_circle_outline),
+            ),
+            InkWell(
+              onTap: () => _showExactValueDialog(title, value, onChanged),
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                constraints: const BoxConstraints(minWidth: 72),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  value < 0 ? 'Unlimited' : value.toString(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
                 ),
               ),
+            ),
+            IconButton(
+              tooltip: 'Increase',
+              onPressed: () => onChanged(value < 0 ? 1 : value + 1),
+              icon: const Icon(Icons.add_circle_outline),
             ),
           ],
         ),
         const SizedBox(height: 8),
-        SliderTheme(
-          data: SliderTheme.of(context).copyWith(
-            activeTrackColor: color,
-            inactiveTrackColor: color.withValues(alpha: 0.2),
-            thumbColor: color,
-            overlayColor: color.withValues(alpha: 0.1),
-            trackHeight: 6,
-          ),
-          child: Slider(
-            value: value,
-            min: min,
-            max: max,
-            divisions: divisions,
-            onChanged: onChanged,
-          ),
+        Wrap(
+          spacing: 8,
+          children: presets.map((preset) {
+            return ChoiceChip(
+              label: Text(preset < 0 ? 'Unlimited' : preset.toString()),
+              selected: value == preset,
+              onSelected: (_) => onChanged(preset),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          value == 0
+              ? '0 means this card type is disabled.'
+              : 'Tap the value to enter an exact limit.',
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
     );
+  }
+
+  Future<void> _showExactValueDialog(
+    String title,
+    int currentValue,
+    ValueChanged<int> onChanged,
+  ) async {
+    // Capture the root navigator context before the dialog opens. Using the
+    // root navigator decouples the AlertDialog from the bottom sheet's widget
+    // subtree, preventing the '_dependents.isEmpty' assertion crash that occurs
+    // when Flutter tries to resolve InheritedWidgets through a context that is
+    // being removed from the tree.
+    final rootContext =
+        Navigator.of(context, rootNavigator: true).context;
+    final controller = TextEditingController(
+      text: currentValue < 0 ? '' : currentValue.toString(),
+    );
+    final value = await showDialog<int>(
+      context: rootContext,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(title),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            labelText: 'Exact daily limit',
+            helperText: 'Enter 0 to disable.',
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              final parsed = int.tryParse(controller.text.trim());
+              if (parsed != null && parsed >= 0) {
+                Navigator.pop(dialogContext, parsed);
+              }
+            },
+            child: const Text('Apply'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+    if (value != null) onChanged(value);
   }
 }
