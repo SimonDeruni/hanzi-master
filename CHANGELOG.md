@@ -1,8 +1,15 @@
-# Changelog
+﻿# Changelog
 
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
+
+### [2026-09-04] Complete Gemini Translation Matrix (RU/TH/VI)
+- Translated remaining 3,219 UI strings across Russian, Thai, and Vietnamese.
+- Used zero-cost Gemini 3.1 Flash Lite API via custom script.
+- Regenerated \AppLocalizations\ via \lutter gen-l10n\.
+- All 13 languages are now 100% fully translated with 3,769 keys each.
+
 - Added in-app account deletion with provider reauthentication, Apple credential revocation support, clear local-data and subscription disclosures, localized copy, and widget tests.
 - Made the premium offer dismissible, added subscription/legal disclosures, and made its content scroll safely on smaller viewports.
 - Localized character-chat labels and errors through canonical ARB entries, improved French translations, and regenerated localization classes.
@@ -41,7 +48,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0+297] - 2026-08-31
 - **Universal Open-Source Multi-Language Dictionary Ingestion (Build #297)**:
-  - Ingested full-scale open-source bilingual dictionaries into SQLite `dictionary.db`: **French** (CFDICT - 73,557 entries), **German** (HanDeDict - 99,124 entries), **Japanese** (WordNet-JA - 14,508 words), **Portuguese** (OpenWN-PT - 13,054 words), **Vietnamese** (Hán-Việt DB - 12,250 words), **Italian** (ItalWordNet - 12,594 words), **Indonesian** (Bahasa WordNet - 12,341 words), **Spanish** (WordNet MCR - 10,561 words), **Arabic** (Arabic WordNet - 6,678 words), and **Russian** (BKRS / Liudmila HSK - 5,293 words).
+  - Ingested full-scale open-source bilingual dictionaries into SQLite `dictionary.db`: **French** (CFDICT - 73,557 entries), **German** (HanDeDict - 99,124 entries), **Japanese** (WordNet-JA - 14,508 words), **Portuguese** (OpenWN-PT - 13,054 words), **Vietnamese** (HÃ¡n-Viá»‡t DB - 12,250 words), **Italian** (ItalWordNet - 12,594 words), **Indonesian** (Bahasa WordNet - 12,341 words), **Spanish** (WordNet MCR - 10,561 words), **Arabic** (Arabic WordNet - 6,678 words), and **Russian** (BKRS / Liudmila HSK - 5,293 words).
   - Created B-Tree search indexes across all 12 localized definition columns (`definition_fr`, `definition_de`, `definition_es`, `definition_ja`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_ru`, `definition_vi`).
   - Upgraded [`GlobalDictionaryRepository`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/flashcards/data/repositories/global_dictionary_repository.dart) to search and return localized definitions across all 12 languages with 0ms offline query latency.
   - Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)**.
@@ -104,7 +111,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0+288] - 2026-08-30
 - **Full International & French UTF-8 Encoding / Mojibake Repair (Build #288)**:
-  - Repaired double-encoded UTF-8 strings (`Ã¨`, `Ã©`, `Ã `, etc.) across all 13 `.arb` and `app_localizations_*.dart` files.
+  - Repaired double-encoded UTF-8 strings (`ÃƒÂ¨`, `ÃƒÂ©`, `Ãƒ `, etc.) across all 13 `.arb` and `app_localizations_*.dart` files.
   - Restored pristine accents in French, Spanish, Portuguese, Italian, German, Russian, Arabic, Japanese, Korean, Vietnamese, and Hindi.
 
 ## [1.0.0+287] - 2026-08-30
@@ -122,8 +129,8 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0+285] - 2026-08-30
 - **HSK Collections (Tome Manager) "Zen & Ink" Visual Redesign (Build #285)**:
   - **Authentic Calligraphic Cards**: Redesigned [`TomeManagerScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/course/presentation/screens/tome_manager_screen.dart) from plain white flat cards into warm Xuan paper and deep carbon ink calligraphic cards with soft shadows, rounded corners (`18px`), and tier-tinted borders.
-  - **Calligraphic Numeral Seals**: Added authentic Chinese numeral seal badges (`一`, `二`, `三`, `四`, `五`, `六`) with distinct tier gradients (Emerald Jade, Deep Teal, Amber Ochre, Vermilion Crimson, Deep Indigo, Imperial Violet).
-  - **Sample Characters Preview**: Added an in-line sample character pill strip to each card (e.g. `Sample: 你 • 好 • 我 • 是 • 爱 • 家`) for instant visual feedback of character difficulty.
+  - **Calligraphic Numeral Seals**: Added authentic Chinese numeral seal badges (`ä¸€`, `äºŒ`, `ä¸‰`, `å››`, `äº”`, `å…­`) with distinct tier gradients (Emerald Jade, Deep Teal, Amber Ochre, Vermilion Crimson, Deep Indigo, Imperial Violet).
+  - **Sample Characters Preview**: Added an in-line sample character pill strip to each card (e.g. `Sample: ä½  â€¢ å¥½ â€¢ æˆ‘ â€¢ æ˜¯ â€¢ çˆ± â€¢ å®¶`) for instant visual feedback of character difficulty.
   - **Interactive Tier Filter Tabs**: Replaced static level tags with interactive filter chips (`All Tiers`, `HSK 1` through `HSK 6`) with tactile haptic feedback and installed indicators.
   - **Summary Library Header Banner**: Added an active collections stats card displaying total installed tomes, available characters, and library status.
   - `dart analyze lib/features/course/presentation/screens/tome_manager_screen.dart`: 0 issues found.
@@ -133,7 +140,7 @@ All notable changes to this project will be documented in this file.
   - **Luminous Ambient Live Call Screen**: Replaced the pitch-black void with a rich luminous navy/slate radial ambient backdrop (`#24344D` to `#0B1120`) and softened the background blur scrim, creating a warm, elegant atmosphere where incoming dialogue and subtitles have high contrast and readability.
   - **Enhanced Transcript Bubble Legibility**: Redesigned [`_LiveTranscriptBubble`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/echo_hall/presentation/screens/live_call_screen.dart) with translucent frosted-glass cards, crisp high-contrast Chinese typography (`#F8FAFC`, `fontSize: 16.5`), light cyan-tinted Pinyin (`#E2E8F0`), and soft italicized English translations (`#CBD5E1`).
   - **Conversation Header Formatting Fix**: Refined [`ConversationScreen`](file:///c:/Users/simon/Documents/hanzi_master/lib/features/echo_hall/presentation/screens/conversation_screen.dart) app bar with horizontal padding (`56px`) and single-line truncation, elevating the seal circle higher in the header to completely prevent overlap with multi-word scenario titles.
-  - **Zero 4th Wall Breaks**: Removed all 4th-wall-breaking prompts and fallback greetings (e.g. *"准备好练习了吗？"* / *"Ready to practice?"*). Replaced them with authentic, in-character opening lines and strict system prompt rules forbidding any mention of language learning, studying, lessons, or being an AI.
+  - **Zero 4th Wall Breaks**: Removed all 4th-wall-breaking prompts and fallback greetings (e.g. *"å‡†å¤‡å¥½ç»ƒä¹ äº†å—ï¼Ÿ"* / *"Ready to practice?"*). Replaced them with authentic, in-character opening lines and strict system prompt rules forbidding any mention of language learning, studying, lessons, or being an AI.
   - `dart analyze lib/features/echo_hall/`: 0 issues found.
 
 ## [1.0.0+283] - 2026-08-30
@@ -163,7 +170,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0+279] - 2026-08-30
 - **Global Dictionary & Studio Numeric Pinyin to Tone Accents Diacritics Conversion (Build #279)**:
-  - **Tone Diacritics Pipeline**: Updated `GlobalDictionaryRepository` (`search`, `getWordsContaining`, and `getExact`) to map all raw CC-CEDICT numeric pinyin strings from the SQLite database through `PinyinUtils.convertNumericToMarks` (e.g. converting `ha1 luo2` $\rightarrow$ `hā luó`, `wen4 hao3` $\rightarrow$ `wèn hǎo`).
+  - **Tone Diacritics Pipeline**: Updated `GlobalDictionaryRepository` (`search`, `getWordsContaining`, and `getExact`) to map all raw CC-CEDICT numeric pinyin strings from the SQLite database through `PinyinUtils.convertNumericToMarks` (e.g. converting `ha1 luo2` $\rightarrow$ `hÄ luÃ³`, `wen4 hao3` $\rightarrow$ `wÃ¨n hÇŽo`).
   - **Service & UI Hardening**: Integrated tone-marked conversion into `CharacterLookupService`, `ShadowingStudioScreen` custom word search dropdown list, and `WebBrowserScreen` vocabulary selection list.
   - `dart analyze`: 0 issues found.
 
@@ -250,7 +257,7 @@ All notable changes to this project will be documented in this file.
   - **AudioQuotaService**: Created persistent weekly allowance tracker resetting every Monday at 00:00 via ISO 8601 week calculations.
   - **Cloud Financial Protection**: Hard-caps Azure Neural Voice synthesis at 4.0 hours per week ($\approx 45,600$ chars/week), capping maximum monthly cloud cost per subscriber at under \$2.91/month and securing a strong 43% to 85%+ profit margin on $6/month subscriptions.
   - **Continuous Soft Fallback**: Playback never terminates when the weekly quota is exhausted; it automatically transitions to high-definition on-device speech synthesis (`flutter_tts`) at \$0 cost.
-  - **In-Reader Sleep Timer**: Added 🌙 Sleep Timer bottom sheet with 15m, 30m, 45m, and End of Chapter presets to prevent overnight battery and API drain.
+  - **In-Reader Sleep Timer**: Added ðŸŒ™ Sleep Timer bottom sheet with 15m, 30m, 45m, and End of Chapter presets to prevent overnight battery and API drain.
   - **Floating Audio Bar HUD**: Displays real-time Studio Voice hours remaining alongside sentence progression.
   - `flutter test` & `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
 
@@ -283,19 +290,19 @@ All notable changes to this project will be documented in this file.
   - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
 
 ## [1.0.0+186] - 2026-08-28
-- **Grand Library Overhaul — Uncapped Full Literature & Tier 3/4 Pruning (Build #186)**:
+- **Grand Library Overhaul â€” Uncapped Full Literature & Tier 3/4 Pruning (Build #186)**:
   - **Pruned Incomplete Books (Tier 3 & 4)**: Completely removed 6 sample-only and synthetic placeholder books (`water_margin`, `xunzi`, `four_generations_roof`, `the_stranger_camus`, `the_plague_camus`, `alice_in_wonderland`) from the catalog and assets.
   - **Rebuilt All Truncated Books (Tier 2)**: Re-fetched full unabridged texts from open source master editions without any sentence caps (`.take(150)` removed).
   - **The Great Gatsby**: Now complete 9 chapters (96,966 characters) from the opening line to the iconic ending sentence.
   - **Classical Epics & Philosophy**: Rebuilt *Journey to the West* (100 ch, 713K chars), *Three Kingdoms* (120 ch, 588K chars), *Red Chamber* (122 ch, 851K chars), and *The Art of War* (13 complete chapters).
-  - **World & Modern Masterpieces Rebuilt**: *Les Misérables* (986K chars), *Monte Cristo* (846K chars), *Karamazov* (663K chars), *Anna Karenina* (620K chars), *Don Quixote* (583K chars), *Crime and Punishment* (434K chars), *1984* (169K chars), *Animal Farm* (52K chars), *The Family* (241K chars), *Spring* (266K chars), *Fortress Besieged* (197K chars), *The Castle* (223K chars).
+  - **World & Modern Masterpieces Rebuilt**: *Les MisÃ©rables* (986K chars), *Monte Cristo* (846K chars), *Karamazov* (663K chars), *Anna Karenina* (620K chars), *Don Quixote* (583K chars), *Crime and Punishment* (434K chars), *1984* (169K chars), *Animal Farm* (52K chars), *The Family* (241K chars), *Spring* (266K chars), *Fortress Besieged* (197K chars), *The Castle* (223K chars).
   - **Master Library Totals**: 90 verified authentic books, 5,475 chapters, 17.56 Million Chinese characters, 672,462 sentences with tone-marked Pinyin.
   - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
 
 ## [1.0.0+185] - 2026-08-28
 - **Duplicate Book Covers Resolved (Build #185)**:
-  - Fixed duplicate cover between Eileen Chang's 《倾城之恋》 (*Love in a Fallen City*) and 《金锁记》 (*The Golden Cangue*). Downloaded the dedicated standalone cover for *The Golden Cangue* (`golden_cangue.jpg`).
-  - Also resolved shared anthology cover between 《道德经》 and 《列子》 with dedicated *Book of Lieh-tzu* cover (`liezi.jpg`).
+  - Fixed duplicate cover between Eileen Chang's ã€Šå€¾åŸŽä¹‹æ‹ã€‹ (*Love in a Fallen City*) and ã€Šé‡‘é”è®°ã€‹ (*The Golden Cangue*). Downloaded the dedicated standalone cover for *The Golden Cangue* (`golden_cangue.jpg`).
+  - Also resolved shared anthology cover between ã€Šé“å¾·ç»ã€‹ and ã€Šåˆ—å­ã€‹ with dedicated *Book of Lieh-tzu* cover (`liezi.jpg`).
   - Automated full-library verification: **all 96 book covers are now 100% distinct and unique**.
   - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
 
@@ -310,10 +317,10 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0+183] - 2026-08-28
 - **Master Chinese Audiobooks Bundled Offline in App Assets (Build #183)**:
   - Bundled voice-optimized MP3 master audio files directly into `assets/audio/audiobooks/`:
-    1. **孫子兵法 (The Art of War)**: `the_art_of_war.mp3` (2.2 MB)
-    2. **論語 (The Analects of Confucius)**: `the_analects.mp3` (5.0 MB)
-    3. **紅樓夢 (Dream of the Red Chamber)**: `dream_of_red_chamber.mp3` (8.1 MB)
-    4. **西遊記 (Journey to the West)**: `journey_to_the_west.mp3` (28.5 MB)
+    1. **å­«å­å…µæ³• (The Art of War)**: `the_art_of_war.mp3` (2.2 MB)
+    2. **è«–èªž (The Analects of Confucius)**: `the_analects.mp3` (5.0 MB)
+    3. **ç´…æ¨“å¤¢ (Dream of the Red Chamber)**: `dream_of_red_chamber.mp3` (8.1 MB)
+    4. **è¥¿éŠè¨˜ (Journey to the West)**: `journey_to_the_west.mp3` (28.5 MB)
   - Registered `assets/audio/audiobooks/` in `pubspec.yaml`.
   - Updated `AudioService.playStreamUrl` to play bundled audio assets via `AssetSource` with zero network latency.
   - Cleaned up audio mode selector dialog and floating audio bar labels to clean, elegant English.
@@ -330,10 +337,10 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0+181] - 2026-08-28
 - **Archive.org Human Voice Audiobooks Connected for Chinese Classics (Build #181)**:
   - Discovered verified, live `HTTP 200 OK` Archive.org / LibriVox public-domain direct stream URLs for key Chinese classics:
-    1. **Sun Tzu's The Art of War (孙子兵法)**: `art_of_war_chinese_1506_librivox`
-    2. **The Analects of Confucius (论语)**: `confucian_analects_1207_librivox`
-    3. **Dream of the Red Chamber (红楼梦)**: `dream_red_chamber_1_1603_librivox`
-    4. **Journey to the West (西游记)**: `001_20220304` (master storyteller recitation)
+    1. **Sun Tzu's The Art of War (å­™å­å…µæ³•)**: `art_of_war_chinese_1506_librivox`
+    2. **The Analects of Confucius (è®ºè¯­)**: `confucian_analects_1207_librivox`
+    3. **Dream of the Red Chamber (çº¢æ¥¼æ¢¦)**: `dream_red_chamber_1_1603_librivox`
+    4. **Journey to the West (è¥¿æ¸¸è®°)**: `001_20220304` (master storyteller recitation)
   - Updated `grand_library_catalog.json` with these direct endpoints.
   - In `BookDetailScreen`, tapping **Listen to Audiobook** plays the authentic human Archive.org stream for books with human recordings, and the Synchronized Neural Narrator for all other books.
   - Implemented automatic seamless fallback: if an Archive.org stream ever drops or fails to connect, the player automatically falls back to the Synchronized Neural Narrator so playback is never interrupted.
@@ -364,18 +371,18 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0+177] - 2026-08-28
 - **English-First Author Bio & Synopsis with Chinese Dropdown (Build #177)**:
   - Rewrote `BookDetailScreen` as a `ConsumerStatefulWidget` to manage expand/collapse state for two Chinese language dropdowns.
-  - **Author bio**: Now shows a unique, hand-crafted English biography per author (50+ entries covering all Chinese classical, European, and American authors in the library). The generic template Chinese sentence moves to a collapsible `查看中文简介` dropdown.
-  - **Synopsis**: Shows `descriptionEn` (unique, rich per-book English text) by default. Chinese `description` + Core Themes block moved to a collapsible `查看中文概述` dropdown with tinted container.
-  - Dropdown toggle shows a `▾ / ▴` chevron with muted accent color; Chinese content appears in a bordered tinted box for clear visual separation.
+  - **Author bio**: Now shows a unique, hand-crafted English biography per author (50+ entries covering all Chinese classical, European, and American authors in the library). The generic template Chinese sentence moves to a collapsible `æŸ¥çœ‹ä¸­æ–‡ç®€ä»‹` dropdown.
+  - **Synopsis**: Shows `descriptionEn` (unique, rich per-book English text) by default. Chinese `description` + Core Themes block moved to a collapsible `æŸ¥çœ‹ä¸­æ–‡æ¦‚è¿°` dropdown with tinted container.
+  - Dropdown toggle shows a `â–¾ / â–´` chevron with muted accent color; Chinese content appears in a bordered tinted box for clear visual separation.
   - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
 
 ## [1.0.0+176] - 2026-08-28
-- **Calligraphic Micro-Reads Grid (微读封面卡)**:
+- **Calligraphic Micro-Reads Grid (å¾®è¯»å°é¢å¡)**:
   - Transformed Micro-Reads section from a flat horizontal list to a 2-column calligraphic grid matching the novel cover aesthetic.
-  - Each micro-read card now has a silk-bound terracotta/amber gradient cover (`#B85C1A → #8C3A0A → #5C1F00`), distinct from novel deep-red, with a spine binding line.
+  - Each micro-read card now has a silk-bound terracotta/amber gradient cover (`#B85C1A â†’ #8C3A0A â†’ #5C1F00`), distinct from novel deep-red, with a spine binding line.
   - Chinese title centred on the cover with serif font, decorative dot divider, and source name in italic.
-  - HSK level badge pinned to top-right corner; `⚡ 微读` seal badge pinned to bottom-right corner.
-  - Bottom info panel retains Chinese title, English subtitle (if available), and `⚡ 1-2 min` reading time.
+  - HSK level badge pinned to top-right corner; `âš¡ å¾®è¯»` seal badge pinned to bottom-right corner.
+  - Bottom info panel retains Chinese title, English subtitle (if available), and `âš¡ 1-2 min` reading time.
   - `dart analyze`: 0 issues. Pushed to GitLab and GitHub.
 
 ## [1.0.0+175] - 2026-08-28
@@ -384,23 +391,23 @@ All notable changes to this project will be documented in this file.
   - Hosts `ScenarioSelectionScreen` (AI Roleplay avatars & conversational scenarios) and `ShadowingStudioScreen` (Pronunciation & Speaking Studio) inside an `IndexedStack` to preserve state.
   - Added `showBackButton` support to both screens for clean embedded presentation.
   - **100% Unabridged Masterpiece Library (96 Complete Works)**: Curated and pruned the Grand Library catalog to feature exclusively 100% full-text, unabridged masterpieces (96 full books ranging from 100 KB to 10.6 MB each with full tone-marked Pinyin, character sentence segmentation, and bilingual reader metadata). Removed all partial/placeholder entries from catalog and asset bundles.
-  - **"正在阅读 · Continue Reading" Shelf**: Added horizontal in-progress carousel on `BookCatalogScreen` with chapter progress, percentage completion bars, and instant 1-tap resume.
+  - **"æ­£åœ¨é˜…è¯» Â· Continue Reading" Shelf**: Added horizontal in-progress carousel on `BookCatalogScreen` with chapter progress, percentage completion bars, and instant 1-tap resume.
   - **Author Dossier & Historical Context**: Added author biographical card and historical significance section to `BookDetailScreen`.
   - **Interactive Table of Contents**: Added chapter drawer modal in `BookReaderScreen` and interactive chapter list in `BookDetailScreen` for quick jumping across long-form literature.
-  - **Smart Autosave & Bookmarks**: Added bookmark creation (`🔖`), persistent bookmarks drawer, and real-time sentence/chapter progress autosave in Hive.
-  - **Archive.org Open-Source Human Voice Stream (评书与真人原声)**: Integrated public-domain human master narrator audio streams from Internet Archive (`archive.org`) for core classics (*Journey to the West*, *Romance of the Three Kingdoms*, *The Art of War*, *Three Hundred Tang Poems*, *The Analects*, *Dream of the Red Chamber*), with audio mode selector modal (`🎙️ Open Human Voice` vs `⚡ Synchronized Neural Reader`) and dedicated playback bar.
-  - **Continuous Full-Chapter Audiobook Narrator (有声伴读模式)**: Added top-bar headphones toggle (`🎧`), continuous sentence-by-sentence read-aloud playback with automatic sentence highlight (amber glow & golden border), auto-advance to next chapter, and floating playback controls (`⏮`, `▶️/⏸`, `⏭`, `✖`).
+  - **Smart Autosave & Bookmarks**: Added bookmark creation (`ðŸ”–`), persistent bookmarks drawer, and real-time sentence/chapter progress autosave in Hive.
+  - **Archive.org Open-Source Human Voice Stream (è¯„ä¹¦ä¸ŽçœŸäººåŽŸå£°)**: Integrated public-domain human master narrator audio streams from Internet Archive (`archive.org`) for core classics (*Journey to the West*, *Romance of the Three Kingdoms*, *The Art of War*, *Three Hundred Tang Poems*, *The Analects*, *Dream of the Red Chamber*), with audio mode selector modal (`ðŸŽ™ï¸ Open Human Voice` vs `âš¡ Synchronized Neural Reader`) and dedicated playback bar.
+  - **Continuous Full-Chapter Audiobook Narrator (æœ‰å£°ä¼´è¯»æ¨¡å¼)**: Added top-bar headphones toggle (`ðŸŽ§`), continuous sentence-by-sentence read-aloud playback with automatic sentence highlight (amber glow & golden border), auto-advance to next chapter, and floating playback controls (`â®`, `â–¶ï¸/â¸`, `â­`, `âœ–`).
   - **English Reader Navigation Controls**: Translated bottom reader navigation buttons to clean English (`Previous`, `Chapter X of Y`, `Next`).
   - **Complete English Chapter Translations & Runtime Safety**: Translated all chapter titles across all 185 books into authentic English (e.g. *Chapter 1: The Divine Monkey is Born & Learns the Great Way*, *Chapter 2: Bodhi's Secret Wisdom & Defeating the Demon King*), added runtime safety sanitizer, and purged legacy Hive cache boxes (`grand_library_book_cache_v5`).
   - **Dynamic Comprehensive Synopsis with Thematic Pillars**: Built automated multi-paragraph Chinese & English synopsis generator with Core Themes and Literary Value sections for every book.
-  - **Prominent Author Footer on Book Cards**: Upgraded the small book card footer with an author icon, bilingual name (`✍️ 吴承恩 · Wu Cheng'en`), and high-contrast typography.
-  - **Zen Calligraphic Bookplates (No Emojis)**: Replaced toy emojis with `CalligraphicBookCover` featuring genre-specific silk textures, antique gold borders, Xuan parchment title banners (竖排封签), cinnabar red seals (`典藏`), and traditional thread binding accents.
+  - **Prominent Author Footer on Book Cards**: Upgraded the small book card footer with an author icon, bilingual name (`âœï¸ å´æ‰¿æ© Â· Wu Cheng'en`), and high-contrast typography.
+  - **Zen Calligraphic Bookplates (No Emojis)**: Replaced toy emojis with `CalligraphicBookCover` featuring genre-specific silk textures, antique gold borders, Xuan parchment title banners (ç«–æŽ’å°ç­¾), cinnabar red seals (`å…¸è—`), and traditional thread binding accents.
   - **Expanded Multi-Line English Titles & Layout**: Increased grid aspect ratio from `0.68` to `0.58`, enabling 2-line legible English book titles with amber/crimson calligraphic styling without truncation.
   - **Reader Lifecycle Fix**: Resolved `dependOnInheritedWidgetOfExactType<UncontrolledProviderScope>()` crash by deferring progress saving and provider invalidation to post-frame callback.
   - **Hygiene & Tests**: Total Hygiene State verified (`dart analyze lib/` - 0 issues, flutter test 100% pass across all 184 books).
 
 ## [1.0.0+169] - 2026-08-27
-- **Grand Library (经典藏书阁) — Global Literature Expansion to 184 Masterpiece Books**:
+- **Grand Library (ç»å…¸è—ä¹¦é˜) â€” Global Literature Expansion to 184 Masterpiece Books**:
   - Expanded catalog to 184 full-length masterpieces across global literature in Mandarin.
   - Organized into 8 specialized categories: *Chinese Epics (25 books)*, *Ancient Philosophy (20 books)*, *Supernatural & Folklore (15 books)*, *Modern Chinese (20 books)*, *French Classics (25 books)*, *German Classics (22 books)*, *Spanish, Italian & Russian Classics (23 books)*, and *English, American & Global Classics (34 books)*.
   - Updated `BookCatalogScreen` category selector with dynamic regional filters.
@@ -408,7 +415,7 @@ All notable changes to this project will be documented in this file.
   - Verified Total Hygiene State (`dart analyze lib/` - 0 issues).
 
 ## [1.0.0+168] - 2026-08-27
-- **Grand Library (经典藏书阁) — 80+ Classical Epics & World Masterpieces**:
+- **Grand Library (ç»å…¸è—ä¹¦é˜) â€” 80+ Classical Epics & World Masterpieces**:
   - Implemented multi-chapter long-form reader supporting extensive multi-page classical Chinese literature and world masterpieces translated into Mandarin.
   - Added Master Catalog (`assets/data/grand_library_catalog.json`) indexing 80+ books across 6 categories (Chinese Epics, Ancient Philosophy, Supernatural & Folklore, Modern Masterpieces, World Classics) with HSK ratings, dynasty/era metadata, and chapter counts.
   - Implemented multi-chapter readers with Simplified Chinese text, pinyin modes (Full, Ghost, Hidden), instant tap-to-lookup dictionary integration (`showQuickLook`), tap-to-reveal English translations, and Hive progress bookmarking.
@@ -416,7 +423,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0+167] - 2026-08-27
 - **Simplified Chinese Conversion for Classical Literature**:
-  - Converted all 150 classical Tang poems in `assets/data/tang_poetry.json` and `assets/data/tang_poetry_en.json` from Traditional Chinese to standard Simplified Chinese (`简体字`).
+  - Converted all 150 classical Tang poems in `assets/data/tang_poetry.json` and `assets/data/tang_poetry_en.json` from Traditional Chinese to standard Simplified Chinese (`ç®€ä½“å­—`).
   - Improved readability and dictionary cross-referencing for modern Mandarin & HSK learners.
 - **Cleaned Deck & Dictionary Presentation**:
   - Removed "AI Generated" badge from deck detail cards and dictionary entry lists.
@@ -482,29 +489,29 @@ All notable changes to this project will be documented in this file.
 - **Exhaustive Automated Dictionary Tone Audit & Natural Balanced Prosody**:
   - Ran automated validation script across all 120,990 CC-CEDICT / Mandarin dictionary entries covering all 409 Chinese base syllables $\times$ 4 tones (1,636 combinations).
   - Mathematically identified and pruned all 404 natural tone gaps in the Chinese language, ensuring 100% dictionary fidelity in `PinyinUtils._syllableExemplars`.
-  - Re-tuned tone audition prosody to a natural pedagogical pitch range (`+18%`, `-8%` speed) and wired explicit Azure SAPI phoneme guidance (`<phoneme alphabet='sapi' ph='$sapiPh'>`), eliminating unnatural falsetto/hollow sound on `wō` and initial vowels. Bumped build to `1.0.0+154`.
+  - Re-tuned tone audition prosody to a natural pedagogical pitch range (`+18%`, `-8%` speed) and wired explicit Azure SAPI phoneme guidance (`<phoneme alphabet='sapi' ph='$sapiPh'>`), eliminating unnatural falsetto/hollow sound on `wÅ` and initial vowels. Bumped build to `1.0.0+154`.
 - **Audited Tone-Gap Detection & Zero-Playback for Non-Existent Tones**:
-  - Audited `PinyinUtils._syllableExemplars` across the Chinese lexicon to remove fake copy-pasted characters for non-existent tones (e.g. removed fake 2nd-tone `蜗` from `wo`, fake tones from `gei`, `shei`, `te`, `de`, `sen`, `ri`, `re`).
+  - Audited `PinyinUtils._syllableExemplars` across the Chinese lexicon to remove fake copy-pasted characters for non-existent tones (e.g. removed fake 2nd-tone `èœ—` from `wo`, fake tones from `gei`, `shei`, `te`, `de`, `sen`, `ri`, `re`).
   - Updated `ToneComparisonSheet` to detect when a tone does not exist in standard Mandarin Chinese: displays `[ Does not exist in Chinese ]`, dims the card, and completely disables the speaker button so learners never hear fake or duplicate audio. Bumped build to `1.0.0+153`.
 - **Comprehensive Codebase Regex & Unicode Hardening**:
   - Audited all regular expressions across the codebase for Unicode safety, pinyin diacritics, and Chinese character matching.
-  - Added support for `v`/`V` input normalization alongside `u:` in `PinyinUtils.convertNumericToMarks` (e.g. `lv4` ➔ `lǜ`, `nv3` ➔ `nǚ`).
+  - Added support for `v`/`V` input normalization alongside `u:` in `PinyinUtils.convertNumericToMarks` (e.g. `lv4` âž” `lÇœ`, `nv3` âž” `nÇš`).
   - Confirmed all character/syllable sanitization functions use Unicode hashing (`_hashText`) or `\p{Script=Hani}` rather than destructive ASCII-only `\w` patterns. Bumped build to `1.0.0+152`.
 - **Exaggerated Tone Comparison Pitch Range (+50%) & Articulated Rate (-22%)**:
   - Boosted dynamic SSML pitch range in `AudioService.playToneAudition` to `+50%` (maximum register span).
   - Relaxed pacing to `-22%` for clear contour glide, allowing learners to easily distinguish high flat (55), rising (35), low dipping (214), and sharp falling (51) contours.
   - Migrated to `tone_v3_` cache namespace. Bumped build to `1.0.0+151`.
 - **Unicode-Safe Tone Audition Cache Hashing (Eliminating Audio Cross-Contamination)**:
-  - Fixed regex stripping bug in `AudioService.playToneAudition` where non-ASCII tone marks (e.g. `ā`, `á`, `ǐ`) were stripped into other syllables (e.g. `huān_1` ➔ `hun_1`, causing `huān` to play `hun` audio).
+  - Fixed regex stripping bug in `AudioService.playToneAudition` where non-ASCII tone marks (e.g. `Ä`, `Ã¡`, `Ç`) were stripped into other syllables (e.g. `huÄn_1` âž” `hun_1`, causing `huÄn` to play `hun` audio).
   - Migrated tone audition cache to `tone_v2_` with stable 32-bit Unicode hashing (`_hashText`), ensuring zero cache collisions and eliminating all stale cross-talk between syllables. Bumped build to `1.0.0+150`.
 - **Unified Azure Pipeline & Direct Character Pinyin Alignment**:
   - Unified both Speech-to-Text and Pronunciation Assessment onto Microsoft Azure Speech Cognitive Services, eliminating cross-engine discrepancy.
   - Decomposed multi-character words into single-character tokens with direct character-level pinyin generation (`PinyinHelper.getPinyinE`), preventing syllable index drift.
-  - Audited `PinyinUtils._syllableExemplars` to remove polyphones (e.g. replaced `还` with `环` for `huán`, `充/虫/宠/冲` for `chong`), ensuring Azure Neural TTS always synthesizes the intended tone and syllable. Bumped build to `1.0.0+149`.
+  - Audited `PinyinUtils._syllableExemplars` to remove polyphones (e.g. replaced `è¿˜` with `çŽ¯` for `huÃ¡n`, `å……/è™«/å® /å†²` for `chong`), ensuring Azure Neural TTS always synthesizes the intended tone and syllable. Bumped build to `1.0.0+149`.
 - **Sequential Single-Recorder Azure Pipeline (Zero Microphone Conflicts)**:
   - Implemented `GeminiService.transcribeAudio` for dedicated high-speed Azure Speech-to-Text conversion (~300ms).
   - Single microphone ownership via `AudioRecorder` capturing 16kHz PCM WAV with real-time amplitude VAD.
-  - Sequential pipeline flow: Audio Capture ➔ Azure STT ➔ Instant AI Voice Response + Asynchronous Background Azure Pronunciation Assessment.
+  - Sequential pipeline flow: Audio Capture âž” Azure STT âž” Instant AI Voice Response + Asynchronous Background Azure Pronunciation Assessment.
   - Eliminates all dual-microphone collisions on Android/iOS, ensures zero `NoMatch` errors by supplying recognized reference text, and upgrades bubbles with real acoustic character tone scores. Bumped build to `1.0.0+148`.
 - **True Asynchronous Live Call & Background Azure Acoustic Grading**:
   - Restored real-time on-device speech-to-text streaming so Chinese characters appear live on screen as you speak.
@@ -526,7 +533,7 @@ All notable changes to this project will be documented in this file.
   - Enhanced turn silence tolerance (5s duration + 1.4s debounce) to prevent premature sentence cutoffs.
   - Added Azure Pronunciation Assessment Overview metrics banner to `LiveCallSummaryScreen` and grounded Scholar's Verdict in genuine acoustic assessment data. Bumped build to `1.0.0+144`.
 - **Hanzi Exemplar 4-Tone Audio Auditioning**:
-  - Implemented `PinyinUtils.getExemplarHanzi` mapping Mandarin syllables across all 4 tones to genuine Chinese characters (e.g. `mi` -> `咪`, `迷`, `米`, `密`).
+  - Implemented `PinyinUtils.getExemplarHanzi` mapping Mandarin syllables across all 4 tones to genuine Chinese characters (e.g. `mi` -> `å’ª`, `è¿·`, `ç±³`, `å¯†`).
   - Tone auditioning in `ToneComparisonSheet` and `AudioService` now synthesizes native Hanzi exemplar characters, ensuring Azure Neural TTS produces 4 radically distinct, authentic native pitch contours. Bumped build to `1.0.0+143`.
 - **Scholar's Verdict 4th-Wall Integrity & Persona Hardening**:
   - Hardened system prompt and added multi-layer safety sanitization in `_generateFinalVerdict` so the AI never breaks character, complains about data/recordings, or references AI limitations during summary generation. Bumped build to `1.0.0+142`.
@@ -535,7 +542,7 @@ All notable changes to this project will be documented in this file.
   - Implemented smart 1-sentence diagnostic summaries in `PinyinUtils.getToneDiagnostic` explaining exactly what pitch adjustment is needed.
   - Enhanced Azure Neural TTS with subtle pitch dynamic expansion (`range="+25%"`, `rate="-12%"`) for crystal-clear tone auditioning. Bumped build to `1.0.0+141`.
 - **Shadowing Studio Compare 4 Tones Action & Visual Affordance**:
-  - Added dedicated "Compare 4 Tones" button and educational `👆 Tap any syllable to audition all 4 tones` hint in `ShadowingStudioScreen` word review sheet. Bumped build to `1.0.0+140`.
+  - Added dedicated "Compare 4 Tones" button and educational `ðŸ‘† Tap any syllable to audition all 4 tones` hint in `ShadowingStudioScreen` word review sheet. Bumped build to `1.0.0+140`.
 - **Shadowing Studio 4-Tone Matrix Integration**:
   - Connected `ToneComparisonSheet` to syllable phoneme chips in `ShadowingStudioScreen` so learners can tap any syllable chip (`ming 2`, `zi 4`) to compare and audition all 4 native tones side-by-side. Bumped build to `1.0.0+139`.
 - **Interactive 4-Tone Comparison & Audio Auditioning Matrix**:
@@ -547,7 +554,7 @@ All notable changes to this project will be documented in this file.
   - Automatically disabled the "Tap to review" prompt and sheet when an utterance is in English or contains no Chinese characters. Bumped build to `1.0.0+136`.
 - **Real Acoustic Tone Assessment & Live Character Coloring**:
   - Connected live speech acoustic confidence and phoneme tone alignment to user bubbles, dynamically coloring each Hanzi character (Green / Orange / Red) with exact expected vs spoken tones.
-  - Added dynamic score badges (`Tone Accurate • 88%`, `Tone Needs Work • 65%`) and preserved full round-by-round `PronunciationGrade` metrics for in-depth review sheets on the call summary screen. Bumped build to `1.0.0+135`.
+  - Added dynamic score badges (`Tone Accurate â€¢ 88%`, `Tone Needs Work â€¢ 65%`) and preserved full round-by-round `PronunciationGrade` metrics for in-depth review sheets on the call summary screen. Bumped build to `1.0.0+135`.
 - **Continuous Multi-Word Sentence Recognition**:
   - Enabled `ListenMode.dictation` in `SpeechListenOptions` so the speech recognizer listens for full sentences and multi-word conversational thoughts rather than cutting off after single words. Bumped build to `1.0.0+134`.
 - **Instant AI Turn Processing & Non-Blocking Translation**:
@@ -586,27 +593,27 @@ All notable changes to this project will be documented in this file.
   - Preserved 100% of dynamic Light/Dark theme rendering and color variables.
   - Eliminated dead fields, unreferenced variables, and unused imports across all features (`shadowing_studio_screen`, `smart_media_desk_screen`, `web_browser_screen`, `profile_screen`, `dashboard_screen`, `story_mode_screen`, `dictionary_screen`, etc.).
   - Added strict `context.mounted` safety guards across async boundary flows in UI sheets and screens to prevent crashes on pop.
-  - Modernized deprecated APIs (`Color.withOpacity` ➔ `Color.withValues()`, `Purchases.purchasePackage` ➔ `Purchases.purchase(PurchaseParams.package())`, `onPopInvoked` ➔ `onPopInvokedWithResult`).
+  - Modernized deprecated APIs (`Color.withOpacity` âž” `Color.withValues()`, `Purchases.purchasePackage` âž” `Purchases.purchase(PurchaseParams.package())`, `onPopInvoked` âž” `onPopInvokedWithResult`).
 - **Onboarding Vertical Layout Balance**: Rebalanced vertical margins and pinned primary call-to-action buttons to the bottom of the screen across all onboarding steps to prevent top crowding and eliminate bottom voids.
 
 ### Fixed
-- **Pronunciation Assessment — Character & Phoneme Score of Zero Fix**:
+- **Pronunciation Assessment â€” Character & Phoneme Score of Zero Fix**:
   - Fixed a JSON key discrepancy in `SyllableGrade.fromJson` where `wordScore` defaulted to `0` because Azure returned `accuracyScore`.
   - Added recursive syllable-to-phoneme parsing for Azure Chinese (`zh-CN`), ensuring phoneme sub-scores nested under `w['Syllables']` are accurately parsed rather than being lost.
   - Added automatic fallback to syllable/sentence accuracy whenever Azure omits sub-phoneme scores, ensuring characters rated above zero in the sentence are accurately scored in word cards and feedback sheets.
   - Extracted and populated `expectedTone` and `actualTone` for pronunciation feedback chips.
-- **Live Call — Audio Session, Microphone & Listening Loop Overhaul**:
+- **Live Call â€” Audio Session, Microphone & Listening Loop Overhaul**:
   - **Phone Audio Route Fix**: Replaced `flutter_sound` with `audioplayers`, configured `AudioContextIOS` with `defaultToSpeaker: true` and `allowBluetooth: true`, and added audio session restoration upon call exit to prevent your phone sound from degrading or getting stuck in earpiece mode.
   - **Microphone Contention Fix**: Removed parallel `Record` package background recording during live speech recognition, giving `speech_to_text` 100% exclusive access to the microphone for crystal-clear voice capture without choppy/dropped words.
   - **5-Second Reconnect Loop Fix**: Extended listening duration to 60s, increased silence pause threshold to 3s, and introduced smooth background silence resumption so the screen stays calmly on "Listening..." without flickering or triggering reconnect loops.
   - **Speaker Toggle**: Connected the Speaker button to active native audio session routing (`defaultToSpeaker: true` vs earpiece).
-  - **Hidden Mode & User Subtitles**: Removed `🔊` emoji in Hidden mode, added real-time Pinyin via `lpinyin`, and added Gemini English translations for user speech turns.
-- **Universal Scanner — Aspect Ratio & Orientation Stabilization**: Fixed horizontal squishing and vertical stretching in camera previews by swapping out flawed FittedBox scaling for proportional `Transform.scale` and locking orientation during scans.
-- **Library / Latest Discoveries**: Fixed an issue where older saved flashcards (like "吃") that were missing pinyin or definition metadata rendered as visually broken, "empty" UI cards in the library carousel and dictionary list. Converted `_LexiconMiniCard` and `_DictionaryItem` into stateful widgets that now automatically detect missing metadata upon render and asynchronously hydrate themselves from the bundled SQLite dictionary, restoring perfect visual consistency without requiring a full database migration.
+  - **Hidden Mode & User Subtitles**: Removed `ðŸ”Š` emoji in Hidden mode, added real-time Pinyin via `lpinyin`, and added Gemini English translations for user speech turns.
+- **Universal Scanner â€” Aspect Ratio & Orientation Stabilization**: Fixed horizontal squishing and vertical stretching in camera previews by swapping out flawed FittedBox scaling for proportional `Transform.scale` and locking orientation during scans.
+- **Library / Latest Discoveries**: Fixed an issue where older saved flashcards (like "åƒ") that were missing pinyin or definition metadata rendered as visually broken, "empty" UI cards in the library carousel and dictionary list. Converted `_LexiconMiniCard` and `_DictionaryItem` into stateful widgets that now automatically detect missing metadata upon render and asynchronously hydrate themselves from the bundled SQLite dictionary, restoring perfect visual consistency without requiring a full database migration.
 - **AR Camera Permission/Soft-lock**: Fixed a complete UI crash when the AR feature was accessed without camera permissions. Added a fallback UI displaying a permission request and an "Open Settings" button, and wrapped the background to prevent it from shrinking to 0x0 size and showing a blank screen.
 - **Universal Scanner Camera Permission**: Fixed a bug where the scanner failed to recognize granted camera permissions or trigger the native iOS prompt. Replaced the outdated beige error banner with a premium, floating toast notification that correctly guides users to settings if permission is permanently denied.
-- **Shadowing Studio — Scoring Engine Accuracy**: Replaced Azure's holistic `PronScore` mapping with a pure, mathematical average of the `AccuracyScore` from explicitly spoken words. This prevents the score from plummeting to an absolute `0/100` when a user's microphone cuts off early, restoring parity between the visual breakdown (green/orange/red text) and the global score. Also introduced `Colors.grey` to render explicitly "Omitted" words.
-- **Smart Media Desk — Overlay Event Bubbling & State Synchronization**: Hoisted internal state management from `FullscreenMediaOverlay` to the global parent controller (`_SmartMediaDeskScreenState`), eliminating the bug where entering fullscreen forcibly resets toggles to an "On" default state while maintaining actual values. Also applied `enabled: false` to the switch wrappers in `PremiumVideoTopBar` to prevent the `PopupMenuButton` from closing instantly when interacted with.
+- **Shadowing Studio â€” Scoring Engine Accuracy**: Replaced Azure's holistic `PronScore` mapping with a pure, mathematical average of the `AccuracyScore` from explicitly spoken words. This prevents the score from plummeting to an absolute `0/100` when a user's microphone cuts off early, restoring parity between the visual breakdown (green/orange/red text) and the global score. Also introduced `Colors.grey` to render explicitly "Omitted" words.
+- **Smart Media Desk â€” Overlay Event Bubbling & State Synchronization**: Hoisted internal state management from `FullscreenMediaOverlay` to the global parent controller (`_SmartMediaDeskScreenState`), eliminating the bug where entering fullscreen forcibly resets toggles to an "On" default state while maintaining actual values. Also applied `enabled: false` to the switch wrappers in `PremiumVideoTopBar` to prevent the `PopupMenuButton` from closing instantly when interacted with.
 
 ### Fixed
 - **Universal Scanner Camera Permission**: Fixed a bug where the scanner failed to properly refresh the system's camera authorization status when returning from the OS Settings app. Completely bypassed the permission_handler plugin for camera access to circumvent iOS Podfile macro compilation bugs.
@@ -636,14 +643,14 @@ All notable changes to this project will be documented in this file.
 - **UI/UX Clarity**: Added an interactive tooltip and first-time onboarding modal for the ? AI Generated flashcard badge to clarify its source and advise on accuracy checks.
 - **Privacy & Compliance**: Enforced Zero Data Retention (ZDR) across AI integrations. Added programmatic block flags to the OpenRouter payload to guarantee that chat history is never logged or used for model training, legally enforcing the app's privacy claims. The Universal Scanner now relies on the native camera package's internal authorization mechanisms, guaranteeing that the feed initializes instantly once OS-level permission is granted without false negative blockages.
 - **AI Story Reader UI**: Refactored the story reader screens (StoryReaderScreen and StoryModeScreen) from paginated layouts to a continuous scrolling flow. Removed PageView and integrated all text into a SingleChildScrollView to eliminate reading friction and prevent wasted screen real estate, as per the layout enhancement request.
-- **Smart Media Desk & Video of the Day — YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls in `youtube_repository.dart` and `daily_discovery_repository.dart` with `youtube_explode_dart` (InnerTube scraping). The category carousels, user search, and daily video discovery no longer consume any API quota. Shows & Dramas is untouched (fully local). The fallback logic now uses ANY matching term (OR) instead of requiring ALL terms (AND), fixing the silent empty-result failure.
+- **Smart Media Desk & Video of the Day â€” YouTube API Quota Migration**: Replaced all YouTube Data API v3 calls in `youtube_repository.dart` and `daily_discovery_repository.dart` with `youtube_explode_dart` (InnerTube scraping). The category carousels, user search, and daily video discovery no longer consume any API quota. Shows & Dramas is untouched (fully local). The fallback logic now uses ANY matching term (OR) instead of requiring ALL terms (AND), fixing the silent empty-result failure.
 
 ### Fixed
 - **Universal Scanner Camera Permission**: Fixed a bug where the scanner failed to properly refresh the system's camera authorization status when returning from the OS Settings app. Completely bypassed the permission_handler plugin for camera access to circumvent iOS Podfile macro compilation bugs.
 - **UI/UX Clarity**: Added an interactive tooltip and first-time onboarding modal for the ? AI Generated flashcard badge to clarify its source and advise on accuracy checks.
 - **Privacy & Compliance**: Enforced Zero Data Retention (ZDR) across AI integrations. Added programmatic block flags to the OpenRouter payload to guarantee that chat history is never logged or used for model training, legally enforcing the app's privacy claims. The Universal Scanner now relies on the native camera package's internal authorization mechanisms, guaranteeing that the feed initializes instantly once OS-level permission is granted without false negative blockages.
 - **AI Story Reader UI**: Refactored the story reader screens (StoryReaderScreen and StoryModeScreen) from paginated layouts to a continuous scrolling flow. Removed PageView and integrated all text into a SingleChildScrollView to eliminate reading friction and prevent wasted screen real estate, as per the layout enhancement request.
-- **Shadowing Studio → Deck Export — Data Hydration Bug**: Cards saved after a shadowing session now have a complete `pinyin` and `definition` (English translation). Previously, `definition` was always `""` and `pinyin` was often empty. The fix calls `GlobalDictionaryRepository.getExact(hanzi)` for each saved word, pulling authoritative data from the bundled SQLite dictionary before writing the `Flashcard` to Hive.
+- **Shadowing Studio â†’ Deck Export â€” Data Hydration Bug**: Cards saved after a shadowing session now have a complete `pinyin` and `definition` (English translation). Previously, `definition` was always `""` and `pinyin` was often empty. The fix calls `GlobalDictionaryRepository.getExact(hanzi)` for each saved word, pulling authoritative data from the bundled SQLite dictionary before writing the `Flashcard` to Hive.
 
 ### Added
 - Rewrote `rebuild_shows_catalog.dart` to strictly fetch shows that possess soft-coded Chinese captions (using `youtube_explode_dart` `_hasCaps` verification).
@@ -706,7 +713,7 @@ All notable changes to this project will be documented in this file.
 - **Roleplay Chat Polish**:
     - Fixed a bug causing the keyboard to permanently trap users. Tapping the chat background or scrolling the message list now successfully dismisses the keyboard.
     - Fixed a component state failure where the "Hide Translation" toggle button was unresponsive for AI messages.
-    - Improved Pinyin formatting by routing raw numeric tone outputs (e.g., `hao3`) through a utility to render standard Unicode diacritics (e.g., `hǎo`).
+    - Improved Pinyin formatting by routing raw numeric tone outputs (e.g., `hao3`) through a utility to render standard Unicode diacritics (e.g., `hÇŽo`).
 - **Gemini Live & Travel Interpreter Stability**:
     - Fixed an infinite WebSocket crash loop in Travel Interpreter caused by an invalid `realtimeInput` payload format. Audio streaming is now correctly chunked into `mediaChunks`.
     - Eliminated severe echo and interruption loops in Live Call by enabling OS-level hardware echo cancellation instead of software-based muting.
