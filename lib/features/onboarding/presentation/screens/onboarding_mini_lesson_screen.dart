@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:record/record.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
@@ -11,6 +13,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/features/onboarding/domain/voice_activity_detector.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
 /// not write lesson progress, SRS data, streaks, or book progress.
@@ -51,6 +54,8 @@ class _OnboardingMiniLessonScreenState
   List<String> _strokes = const [];
   late final AudioRecordingService _recorder;
   late final AudioService _audioService;
+  final VoiceActivityDetector _voiceActivityDetector = VoiceActivityDetector();
+  StreamSubscription<Amplitude>? _amplitudeSubscription;
 
   @override
   void initState() {
@@ -86,7 +91,8 @@ class _OnboardingMiniLessonScreenState
     });
     try {
       if (!widget.disableExternalServicesForTesting) {
-        final started = await _audioService.playSentence(text);
+        final started =
+            await _audioService.playSentence(text, voiceName: 'Fenrir');
         if (!started) throw Exception('Playback did not start');
       }
     } catch (_) {
@@ -111,6 +117,11 @@ class _OnboardingMiniLessonScreenState
             await _recorder.requestPermission()) {
           if (!widget.disableExternalServicesForTesting) {
             await _recorder.startRecording('onboarding_shadow');
+            _voiceActivityDetector.reset();
+            _amplitudeSubscription = _recorder.onAmplitudeChanged.listen(
+              (amplitude) =>
+                  _voiceActivityDetector.addSample(amplitude.current),
+            );
           }
           if (mounted) setState(() => _recording = true);
         } else if (mounted) {
@@ -135,8 +146,20 @@ class _OnboardingMiniLessonScreenState
     String? path;
     try {
       if (!widget.disableExternalServicesForTesting) {
+        await _amplitudeSubscription?.cancel();
+        _amplitudeSubscription = null;
         path = await _recorder.stopRecording();
         if (path == null) throw Exception('No recording');
+
+        if (!_voiceActivityDetector.hasDetectedSpeech) {
+          if (mounted) {
+            setState(() {
+              _message = "We didn't catch that. Please try speaking again.";
+            });
+          }
+          return;
+        }
+
         final bytes = await File(path).readAsBytes();
         final grade = await ref
             .read(geminiServiceProvider)
@@ -146,15 +169,20 @@ class _OnboardingMiniLessonScreenState
             .map((word) => Map<String, dynamic>.from(word))
             .where((word) => (word['word'] ?? '').toString().isNotEmpty)
             .toList();
+        if (_words.isEmpty) {
+          throw StateError('Pronunciation assessment returned no words');
+        }
+      } else {
+        _words = _demoWords;
       }
-      if (_words.isEmpty) _words = _demoWords;
       if (mounted) _goTo(3);
-    } catch (_) {
-      _words = _demoWords;
+    } catch (error) {
       if (mounted) {
-        setState(() => _message =
-            'We could not score that recording, so here is a sample tone comparison.');
-        _goTo(3);
+        setState(() {
+          _message = isNoSpeechAssessmentError(error)
+              ? "We didn't catch that. Please try speaking again."
+              : "We couldn't evaluate that recording. Please try speaking again.";
+        });
       }
     } finally {
       if (path != null) {
@@ -202,6 +230,7 @@ class _OnboardingMiniLessonScreenState
 
   @override
   void dispose() {
+    _amplitudeSubscription?.cancel();
     if (_recording) _recorder.stopRecording();
     super.dispose();
   }
@@ -367,8 +396,64 @@ class _OnboardingMiniLessonScreenState
     }
   }
 
+  Widget _sourceAttribution(Color ink) => Container(
+        margin: const EdgeInsets.only(top: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: ink.withValues(alpha: .04),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: ink.withValues(alpha: .08)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.asset(
+                'assets/images/books/spring_bajin.jpg',
+                width: 28,
+                height: 38,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Icon(
+                  Icons.menu_book,
+                  size: 20,
+                  color: ink.withValues(alpha: .4),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'From the Grand Library',
+                    style: TextStyle(
+                      fontSize: 10,
+                      letterSpacing: 0.5,
+                      fontWeight: FontWeight.w600,
+                      color: ink.withValues(alpha: .5),
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '《春》 (Spring) · 巴金 (Ba Jin)',
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w600,
+                      color: ink.withValues(alpha: .85),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+
   Widget _passageCard(Color ink, {required bool showPinyin}) => Container(
-        padding: const EdgeInsets.all(22),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: ink.withValues(alpha: .055),
           borderRadius: BorderRadius.circular(22),
@@ -378,23 +463,37 @@ class _OnboardingMiniLessonScreenState
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'NotoSerifSC',
-                  fontSize: 25,
-                  height: 1.75,
+                  fontSize: 23,
+                  height: 1.65,
                   color: ink)),
           if (showPinyin) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
             Text(
                 'Qīngchén, xiǎoyǔ tíng le. Wǒ dǎkāi chuānghu, tīngjiàn niǎor zài shù shàng chànggē. Xīn de yì tiān kāishǐ le.',
                 textAlign: TextAlign.center,
                 style:
-                    TextStyle(height: 1.5, color: ink.withValues(alpha: .6))),
-            const SizedBox(height: 8),
-            Text(
-                'At dawn, the light rain stopped. I opened the window and heard birds singing in the trees. A new day began.',
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(height: 1.5, color: ink.withValues(alpha: .75))),
+                    TextStyle(height: 1.45, color: ink.withValues(alpha: .6))),
           ],
+          const SizedBox(height: 12),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: ink.withValues(alpha: .035),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              '“At dawn, the light rain stopped. I opened the window and heard birds singing in the trees. A new day began.”',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 13.5,
+                fontStyle: FontStyle.italic,
+                height: 1.45,
+                color: ink.withValues(alpha: .75),
+              ),
+            ),
+          ),
+          _sourceAttribution(ink),
         ]),
       );
 

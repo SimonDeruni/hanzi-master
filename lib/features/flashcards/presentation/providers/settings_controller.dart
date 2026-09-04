@@ -38,7 +38,7 @@ class SettingsState {
     this.showPinyinInSpeaking = true,
     this.enableHaptics = true,
     this.useEnglishDefinitions = false,
-    this.audiobookVoice = 'Kore',
+    this.audiobookVoice = 'Fenrir',
   });
 
   SettingsState copyWith({
@@ -99,7 +99,7 @@ class SettingsController extends StateNotifier<SettingsState> {
           enableHaptics: prefs.getBool(_keyHaptics) ?? true,
           useEnglishDefinitions:
               prefs.getBool(_keyUseEnglishDefinitions) ?? false,
-          audiobookVoice: prefs.getString(_keyAudiobookVoice) ?? 'Kore',
+          audiobookVoice: prefs.getString(_keyAudiobookVoice) ?? 'Fenrir',
         )) {
     HapticsManager.setEnabled(state.enableHaptics);
   }

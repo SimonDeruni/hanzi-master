@@ -232,16 +232,20 @@ class AudioService {
   /// Maps scenario voice names to Azure Neural voice IDs.
   /// See: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support
   static const Map<String, String> _azureVoiceMap = {
-    'Fenrir': 'zh-CN-YunxiNeural',       // Male, upbeat
+    'Fenrir': 'zh-CN-YunxiNeural',       // Male, upbeat (default)
+    'Yunxi': 'zh-CN-YunxiNeural',
+    'zh-CN-YunxiNeural': 'zh-CN-YunxiNeural',
     'Charon': 'zh-CN-YunyangNeural',     // Male, news-style
-    'Kore': 'zh-CN-XiaoxiaoNeural',      // Female, warm (default)
+    'Kore': 'zh-CN-XiaoxiaoNeural',      // Female, warm
     'Aoede': 'zh-CN-XiaoyiNeural',       // Female, cheerful
+    'Xiaoyi': 'zh-CN-XiaoyiNeural',
+    'zh-CN-XiaoyiNeural': 'zh-CN-XiaoyiNeural',
     'Puck': 'zh-CN-YunjianNeural',       // Male, older/sporty
   };
 
-  static const String _defaultAzureVoice = 'zh-CN-XiaoxiaoNeural';
+  static const String _defaultAzureVoice = 'zh-CN-YunxiNeural';
 
-  Future<bool> playSentence(String sentence, {String voiceName = 'Kore'}) async {
+  Future<bool> playSentence(String sentence, {String voiceName = 'Fenrir'}) async {
     final generation = ++_playbackGeneration;
     if (!_isInitialized) await init();
     if (generation != _playbackGeneration || _isDisposed) return false;
@@ -582,7 +586,7 @@ class AudioService {
   /// Uses audio-16khz-128kbitrate-mono-mp3 for highest Neural fidelity and rapid transfer.
   Future<CloudTtsResult?> _fetchCloudTTS(
     String text, {
-    String azureVoice = 'zh-CN-XiaoxiaoNeural',
+    String azureVoice = 'zh-CN-YunxiNeural',
     String pitchRange = '+15%',
     int rateAdjustment = 0,
     String? phoneme,
