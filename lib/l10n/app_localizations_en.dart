@@ -2094,7 +2094,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects.';
 
   @override
-  String get library => 'æ–‡åŒ–ä¹¦æˆ¿ Library';
+  String get libraryLabel => '文化书房 Library';
 
   @override
   String get lifestyleAndVlog => 'Lifestyle & Vlog';
@@ -5268,7 +5268,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get other => 'Other';
 
   @override
-  String get required => 'Required';
+  String get requiredLabel => 'Required';
 
   @override
   String get library1 => 'Library';
@@ -11717,4 +11717,542 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingCulturalAppreciationMulti => 'Cultural\nAppreciation';
+
+  @override
+  String get practiceReminders => 'Practice reminders';
+
+  @override
+  String get oneOptionalDailyReminderTo =>
+      'One optional daily reminder to practice Chinese';
+
+  @override
+  String get aFewMinutesOfChinese => 'A few minutes of Chinese? 🌱';
+
+  @override
+  String get keepYourProgressMovingWith =>
+      'Keep your progress moving with a short practice session.';
+
+  @override
+  String get xuX => 'xué xí';
+
+  @override
+  String get toStudyToLearn => 'to study · to learn';
+
+  @override
+  String get pNgYou => 'péng you';
+
+  @override
+  String get fXiN => 'fā xiàn';
+
+  @override
+  String get toDiscover => 'to discover';
+
+  @override
+  String get jiNCh => 'jiān chí';
+
+  @override
+  String get toPersist => 'to persist';
+
+  @override
+  String get yNgQ => 'yǒng qì';
+
+  @override
+  String get zhHu => 'zhì huì';
+
+  @override
+  String get chNgZhNg => 'chéng zhǎng';
+
+  @override
+  String get toGrow => 'to grow';
+
+  @override
+  String get pNgJNg => 'píng jìng';
+
+  @override
+  String get calmPeaceful => 'calm · peaceful';
+
+  @override
+  String get xWNg => 'xī wàng';
+
+  @override
+  String get lJi => 'lǐ jiě';
+
+  @override
+  String get toUnderstand => 'to understand';
+
+  @override
+  String get xGuN => 'xí guàn';
+
+  @override
+  String get wNNuN => 'wēn nuǎn';
+
+  @override
+  String get warmthWarm => 'warmth · warm';
+
+  @override
+  String get zhuNZh => 'zhuān zhù';
+
+  @override
+  String get toFocus => 'to focus';
+
+  @override
+  String get definitionExpansionButton => 'definition-expansion-button';
+
+  @override
+  String get wenigerAnzeigen => 'Weniger anzeigen';
+
+  @override
+  String get mostrarMenos => 'Mostrar menos';
+
+  @override
+  String get afficherMoins => 'Afficher moins';
+
+  @override
+  String get mostraMeno => 'Mostra meno';
+
+  @override
+  String get showFewer => 'Show fewer';
+
+  @override
+  String get masterLin => 'Master Lin';
+
+  @override
+  String get xiaoMei => 'Xiao Mei';
+
+  @override
+  String get thePoet => 'The Poet';
+
+  @override
+  String get aQiang => 'A-Qiang';
+
+  @override
+  String get vivian => 'Vivian';
+
+  @override
+  String get formalWise => 'Formal & wise';
+
+  @override
+  String get casualFriendly => 'Casual & friendly';
+
+  @override
+  String get poeticAncient => 'Poetic & ancient';
+
+  @override
+  String get slangInternet => 'Slang & internet';
+
+  @override
+  String get trendyModern => 'Trendy & modern';
+
+  @override
+  String get designYourOwn => 'Design your own';
+
+  @override
+  String get theBambooSwaysAndThe =>
+      'The bamboo sways, and the scholar awaits your words like morning rain...';
+
+  @override
+  String get yourCustomPersonaIsActive =>
+      'Your custom persona is active. Type to start the conversation.';
+
+  @override
+  String get hHMm => 'HH:mm';
+
+  @override
+  String get fROMLocalizedDefinitionQualityWHERE =>
+      'FROM localized_definition_quality WHERE language_code = ?';
+
+  @override
+  String get gemini25Flash => 'gemini-2.5-flash';
+
+  @override
+  String get dictionaryExpansionV1 => 'dictionary-expansion-v1';
+
+  @override
+  String get staleDictionaryExpansionResponse =>
+      'Stale dictionary expansion response';
+
+  @override
+  String get dictionaryExpansionWasEmpty => 'Dictionary expansion was empty';
+
+  @override
+  String get explicationDTaillEDisponible => 'Explication détaillée disponible';
+
+  @override
+  String get ausfHrlicheErklRungVerf => 'Ausführliche Erklärung verfügbar';
+
+  @override
+  String get explicaciNDetalladaDisponible =>
+      'Explicación detallada disponible';
+
+  @override
+  String get spiegazioneDettagliataDisponibile =>
+      'Spiegazione dettagliata disponibile';
+
+  @override
+  String get explicaODetalhadaDisponVel => 'Explicação detalhada disponível';
+
+  @override
+  String get detailedExplanationAvailable => 'Detailed explanation available';
+
+  @override
+  String get oneOptionalDailyPracticeReminder =>
+      'One optional daily practice reminder';
+
+  @override
+  String get chooseOneOptionalDailyPractice =>
+      'Choose one optional daily practice reminder.';
+
+  @override
+  String get practiceReminder => 'Practice reminder';
+
+  @override
+  String get oneGentleReminderADay =>
+      'One gentle reminder a day, only if you need it';
+
+  @override
+  String get finishingPracticeSilencesTodayS =>
+      'Finishing practice silences today’s reminder. Review and';
+
+  @override
+  String get reEngagementAlertsAreCombined =>
+      're-engagement alerts are combined so they never stack.';
+
+  @override
+  String get processing2 => 'Processing…';
+
+  @override
+  String get wDKIChu => 'wǒ dǎ kāi chuāng hu';
+
+  @override
+  String get listen => 'Listen';
+
+  @override
+  String get notice => 'Notice';
+
+  @override
+  String get fourTones => 'Four tones';
+
+  @override
+  String get write => 'Write';
+
+  @override
+  String get recap => 'Recap';
+
+  @override
+  String get playbackDidNotStart => 'Playback did not start';
+
+  @override
+  String get audioIsUnavailableYouCan =>
+      'Audio is unavailable. You can still read and continue.';
+
+  @override
+  String get microphoneAccessWasNotGranted =>
+      'Microphone access was not granted. You can use the quiet option below.';
+
+  @override
+  String get recordingIsUnavailableRightNow =>
+      'Recording is unavailable right now.';
+
+  @override
+  String get listeningToYourTones => 'Listening to your tones…';
+
+  @override
+  String get noRecording => 'No recording';
+
+  @override
+  String get weCouldNotScoreThat =>
+      'We could not score that recording, so here is a sample tone comparison.';
+
+  @override
+  String get listenForTheLowDipping =>
+      'Listen for the low, dipping third tone.';
+
+  @override
+  String get firstHearATinyMoment =>
+      'First, hear a tiny moment in Mandarin. No memorizing yet.';
+
+  @override
+  String get loadingAudio => 'Loading audio…';
+
+  @override
+  String get listenToThePassage => 'Listen to the passage';
+
+  @override
+  String get continueAction => 'Continue';
+
+  @override
+  String get noticeHowMeaningSoundAnd =>
+      'Notice how meaning, sound, and characters travel together.';
+
+  @override
+  String get shadowOneSentence => 'Shadow one sentence';
+
+  @override
+  String get listenOnceThenHoldThe =>
+      'Listen once, then hold the microphone and say the sentence.';
+
+  @override
+  String get hearItAgain => 'Hear it again';
+
+  @override
+  String get stopAndCheckMyTones => 'Stop and check my tones';
+
+  @override
+  String get useMicrophone => 'Use microphone';
+
+  @override
+  String get iCanTSpeakRight => 'I can\'t speak right now';
+
+  @override
+  String get tapACharacterToCompare =>
+      'Tap a character to compare the tone you said with the target, then hear tones 1–4.';
+
+  @override
+  String get tryHandwriting => 'Try handwriting';
+
+  @override
+  String get seeWhatYouLearned => 'See what you learned';
+
+  @override
+  String get inAFewMinutesYou =>
+      'In a few minutes, you used the same loop that powers your lessons.';
+
+  @override
+  String get listenedToChineseInContext => 'Listened to Chinese in context';
+
+  @override
+  String get shadowedASentence => 'Shadowed a sentence';
+
+  @override
+  String get comparedMandarinTones => 'Compared Mandarin tones';
+
+  @override
+  String get practicedARealCharacter => 'Practiced a real character';
+
+  @override
+  String get qNgchNXiOy =>
+      'Qīngchén, xiǎoyǔ tíng le. Wǒ dǎkāi chuānghu, tīngjiàn niǎor zài shù shàng chànggē. Xīn de yì tiān kāishǐ le.';
+
+  @override
+  String get atDawnTheLightRain =>
+      'At dawn, the light rain stopped. I opened the window and heard birds singing in the trees. A new day began.';
+
+  @override
+  String get learnThroughRealVideos => 'Learn through real videos';
+
+  @override
+  String get followInteractiveSubtitlesLookUp =>
+      'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.';
+
+  @override
+  String get videoLearningScreenshot => 'Video learning screenshot';
+
+  @override
+  String get turnAnyBookIntoA => 'Turn any book into a lesson';
+
+  @override
+  String get readNaturallyWithPronunciationDefinition =>
+      'Read naturally with pronunciation, definitions, and translation available whenever you need them.';
+
+  @override
+  String get bookReaderScreenshot => 'Book reader screenshot';
+
+  @override
+  String get speakWithTheRightRhythm => 'Speak with the right rhythm';
+
+  @override
+  String get shadowNativeAudioAndVisualize =>
+      'Shadow native audio and visualize all four tones as your pronunciation improves.';
+
+  @override
+  String get shadowingAndTonesScreenshot => 'Shadowing and tones screenshot';
+
+  @override
+  String get understandEveryCharacter => 'Understand every character';
+
+  @override
+  String get exploreMeaningPronunciationComponentsStr =>
+      'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.';
+
+  @override
+  String get characterDictionaryScreenshot => 'Character dictionary screenshot';
+
+  @override
+  String get learnChineseWithoutLimits => 'Learn Chinese without limits';
+
+  @override
+  String get watchReadSpeakAndUnderstand =>
+      'Watch, read, speak, and understand Chinese with one complete learning companion.';
+
+  @override
+  String get seeWhatPremiumUnlocks => 'See what Premium unlocks';
+
+  @override
+  String get scrollToExploreTheComplete =>
+      'Scroll to explore the complete learning experience';
+
+  @override
+  String get cOMINGSOON => 'COMING SOON';
+
+  @override
+  String get guidedHandwritingPractice => 'Guided handwriting practice';
+
+  @override
+  String get scannerAndLiveTranslation => 'Scanner and live translation';
+
+  @override
+  String get hSK16AndAI => 'HSK 1–6 and AI decks';
+
+  @override
+  String get smartSpacedRepetition2 => 'Smart spaced repetition';
+
+  @override
+  String get progressAndStreakTracking => 'Progress and streak tracking';
+
+  @override
+  String get learningToolsInOnePlace => 'Learning tools in one place';
+
+  @override
+  String get everythingIncluded => 'Everything included';
+
+  @override
+  String get paymentIsChargedToYour2 =>
+      'Payment is charged to your App Store account. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.';
+
+  @override
+  String get yourFirstWeekOfTracked => 'Your first week of tracked practice';
+
+  @override
+  String get sameNumberOfCardsAs => 'Same number of cards as last week';
+
+  @override
+  String get todaySPractice => 'Today’s practice';
+
+  @override
+  String get goalCompleteAnythingMoreIs =>
+      'Goal complete — anything more is a bonus.';
+
+  @override
+  String get aSmallAchievableTargetNo =>
+      'A small, achievable target. No penalty for a rest day.';
+
+  @override
+  String get thisWeek => 'This week';
+
+  @override
+  String get minutes => 'Minutes';
+
+  @override
+  String get activeDays => 'Active days';
+
+  @override
+  String get masterChineseOneStrokeAt => 'Master Chinese, one stroke at a time';
+
+  @override
+  String get dictionaryExpansionButton => 'dictionary-expansion-button';
+
+  @override
+  String get kIErweiterterWRterbucheintrag =>
+      'KI-erweiterter Wörterbucheintrag';
+
+  @override
+  String get detalleAmpliadoPorIA => 'Detalle ampliado por IA';
+
+  @override
+  String get dTailEnrichiParL => 'Détail enrichi par l’IA';
+
+  @override
+  String get aI => 'AI द्वारा विस्तृत शब्दकोश विवरण';
+
+  @override
+  String get detailKamusYangDiperluasAI => 'Detail kamus yang diperluas AI';
+
+  @override
+  String get dettaglioDelDizionarioAmpliatoDall =>
+      'Dettaglio del dizionario ampliato dall’IA';
+
+  @override
+  String get aI2 => 'AIによる辞書の補足';
+
+  @override
+  String get aI3 => 'AI로 확장된 사전 설명';
+
+  @override
+  String get detalheDeDicionRioExpandido =>
+      'Detalhe de dicionário expandido por IA';
+
+  @override
+  String get aI4 => 'รายละเอียดพจนานุกรมที่ขยายโดย AI';
+
+  @override
+  String get chiTiTTI => 'Chi tiết từ điển được AI mở rộng';
+
+  @override
+  String get aI5 => 'AI 扩展词典释义';
+
+  @override
+  String get aIExpandedDictionaryDetail => 'AI-expanded dictionary detail';
+
+  @override
+  String get cetteEntrEEstBr =>
+      'Cette entrée est brève. Une explication détaillée est disponible.';
+
+  @override
+  String get dieserEintragIstKurzEine =>
+      'Dieser Eintrag ist kurz. Eine ausführliche Erklärung ist verfügbar.';
+
+  @override
+  String get estaEntradaEsBreveHay =>
+      'Esta entrada es breve. Hay una explicación detallada disponible.';
+
+  @override
+  String get questaVoceBreveDisponibileUna =>
+      'Questa voce è breve. È disponibile una spiegazione dettagliata.';
+
+  @override
+  String get estaEntradaBreveEstDispon =>
+      'Esta entrada é breve. Está disponível uma explicação detalhada.';
+
+  @override
+  String get thisDictionaryEntryIsBrief =>
+      'This dictionary entry is brief. A detailed explanation is available.';
+
+  @override
+  String get dVelopperEnFranAis => 'Développer en français';
+
+  @override
+  String get aufDeutschErweitern => 'Auf Deutsch erweitern';
+
+  @override
+  String get ampliarEnEspaOl => 'Ampliar en español';
+
+  @override
+  String get approfondisciInItaliano => 'Approfondisci in italiano';
+
+  @override
+  String get expandirEmPortuguS => 'Expandir em português';
+
+  @override
+  String get expandDefinition => 'Expand definition';
+
+  @override
+  String get impossibleDeChargerLExplication =>
+      'Impossible de charger l’explication.';
+
+  @override
+  String get dieErklRungKonnteNicht =>
+      'Die Erklärung konnte nicht geladen werden.';
+
+  @override
+  String get noSePudoCargarLa => 'No se pudo cargar la explicación.';
+
+  @override
+  String get impossibileCaricareLaSpiegazione =>
+      'Impossibile caricare la spiegazione.';
+
+  @override
+  String get nOFoiPossVel => 'Não foi possível carregar a explicação.';
+
+  @override
+  String get unableToLoadTheExplanation => 'Unable to load the explanation.';
 }

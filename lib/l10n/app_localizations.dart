@@ -4028,11 +4028,11 @@ abstract class AppLocalizations {
   /// **'Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects.'**
   String get liRuzhenSubjects;
 
-  /// No description provided for @library.
+  /// No description provided for @libraryLabel.
   ///
   /// In en, this message translates to:
-  /// **'æ–‡åŒ–ä¹¦æˆ¿ Library'**
-  String get library;
+  /// **'文化书房 Library'**
+  String get libraryLabel;
 
   /// No description provided for @lifestyleAndVlog.
   ///
@@ -9638,11 +9638,11 @@ abstract class AppLocalizations {
   /// **'Other'**
   String get other;
 
-  /// No description provided for @required.
+  /// No description provided for @requiredLabel.
   ///
   /// In en, this message translates to:
   /// **'Required'**
-  String get required;
+  String get requiredLabel;
 
   /// No description provided for @library1.
   ///
@@ -21751,6 +21751,990 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cultural\nAppreciation'**
   String get onboardingCulturalAppreciationMulti;
+
+  /// No description provided for @practiceReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice reminders'**
+  String get practiceReminders;
+
+  /// No description provided for @oneOptionalDailyReminderTo.
+  ///
+  /// In en, this message translates to:
+  /// **'One optional daily reminder to practice Chinese'**
+  String get oneOptionalDailyReminderTo;
+
+  /// No description provided for @aFewMinutesOfChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'A few minutes of Chinese? 🌱'**
+  String get aFewMinutesOfChinese;
+
+  /// No description provided for @keepYourProgressMovingWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your progress moving with a short practice session.'**
+  String get keepYourProgressMovingWith;
+
+  /// No description provided for @xuX.
+  ///
+  /// In en, this message translates to:
+  /// **'xué xí'**
+  String get xuX;
+
+  /// No description provided for @toStudyToLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'to study · to learn'**
+  String get toStudyToLearn;
+
+  /// No description provided for @pNgYou.
+  ///
+  /// In en, this message translates to:
+  /// **'péng you'**
+  String get pNgYou;
+
+  /// No description provided for @fXiN.
+  ///
+  /// In en, this message translates to:
+  /// **'fā xiàn'**
+  String get fXiN;
+
+  /// No description provided for @toDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'to discover'**
+  String get toDiscover;
+
+  /// No description provided for @jiNCh.
+  ///
+  /// In en, this message translates to:
+  /// **'jiān chí'**
+  String get jiNCh;
+
+  /// No description provided for @toPersist.
+  ///
+  /// In en, this message translates to:
+  /// **'to persist'**
+  String get toPersist;
+
+  /// No description provided for @yNgQ.
+  ///
+  /// In en, this message translates to:
+  /// **'yǒng qì'**
+  String get yNgQ;
+
+  /// No description provided for @zhHu.
+  ///
+  /// In en, this message translates to:
+  /// **'zhì huì'**
+  String get zhHu;
+
+  /// No description provided for @chNgZhNg.
+  ///
+  /// In en, this message translates to:
+  /// **'chéng zhǎng'**
+  String get chNgZhNg;
+
+  /// No description provided for @toGrow.
+  ///
+  /// In en, this message translates to:
+  /// **'to grow'**
+  String get toGrow;
+
+  /// No description provided for @pNgJNg.
+  ///
+  /// In en, this message translates to:
+  /// **'píng jìng'**
+  String get pNgJNg;
+
+  /// No description provided for @calmPeaceful.
+  ///
+  /// In en, this message translates to:
+  /// **'calm · peaceful'**
+  String get calmPeaceful;
+
+  /// No description provided for @xWNg.
+  ///
+  /// In en, this message translates to:
+  /// **'xī wàng'**
+  String get xWNg;
+
+  /// No description provided for @lJi.
+  ///
+  /// In en, this message translates to:
+  /// **'lǐ jiě'**
+  String get lJi;
+
+  /// No description provided for @toUnderstand.
+  ///
+  /// In en, this message translates to:
+  /// **'to understand'**
+  String get toUnderstand;
+
+  /// No description provided for @xGuN.
+  ///
+  /// In en, this message translates to:
+  /// **'xí guàn'**
+  String get xGuN;
+
+  /// No description provided for @wNNuN.
+  ///
+  /// In en, this message translates to:
+  /// **'wēn nuǎn'**
+  String get wNNuN;
+
+  /// No description provided for @warmthWarm.
+  ///
+  /// In en, this message translates to:
+  /// **'warmth · warm'**
+  String get warmthWarm;
+
+  /// No description provided for @zhuNZh.
+  ///
+  /// In en, this message translates to:
+  /// **'zhuān zhù'**
+  String get zhuNZh;
+
+  /// No description provided for @toFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'to focus'**
+  String get toFocus;
+
+  /// No description provided for @definitionExpansionButton.
+  ///
+  /// In en, this message translates to:
+  /// **'definition-expansion-button'**
+  String get definitionExpansionButton;
+
+  /// No description provided for @wenigerAnzeigen.
+  ///
+  /// In en, this message translates to:
+  /// **'Weniger anzeigen'**
+  String get wenigerAnzeigen;
+
+  /// No description provided for @mostrarMenos.
+  ///
+  /// In en, this message translates to:
+  /// **'Mostrar menos'**
+  String get mostrarMenos;
+
+  /// No description provided for @afficherMoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Afficher moins'**
+  String get afficherMoins;
+
+  /// No description provided for @mostraMeno.
+  ///
+  /// In en, this message translates to:
+  /// **'Mostra meno'**
+  String get mostraMeno;
+
+  /// No description provided for @showFewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Show fewer'**
+  String get showFewer;
+
+  /// No description provided for @masterLin.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Lin'**
+  String get masterLin;
+
+  /// No description provided for @xiaoMei.
+  ///
+  /// In en, this message translates to:
+  /// **'Xiao Mei'**
+  String get xiaoMei;
+
+  /// No description provided for @thePoet.
+  ///
+  /// In en, this message translates to:
+  /// **'The Poet'**
+  String get thePoet;
+
+  /// No description provided for @aQiang.
+  ///
+  /// In en, this message translates to:
+  /// **'A-Qiang'**
+  String get aQiang;
+
+  /// No description provided for @vivian.
+  ///
+  /// In en, this message translates to:
+  /// **'Vivian'**
+  String get vivian;
+
+  /// No description provided for @formalWise.
+  ///
+  /// In en, this message translates to:
+  /// **'Formal & wise'**
+  String get formalWise;
+
+  /// No description provided for @casualFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Casual & friendly'**
+  String get casualFriendly;
+
+  /// No description provided for @poeticAncient.
+  ///
+  /// In en, this message translates to:
+  /// **'Poetic & ancient'**
+  String get poeticAncient;
+
+  /// No description provided for @slangInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'Slang & internet'**
+  String get slangInternet;
+
+  /// No description provided for @trendyModern.
+  ///
+  /// In en, this message translates to:
+  /// **'Trendy & modern'**
+  String get trendyModern;
+
+  /// No description provided for @designYourOwn.
+  ///
+  /// In en, this message translates to:
+  /// **'Design your own'**
+  String get designYourOwn;
+
+  /// No description provided for @theBambooSwaysAndThe.
+  ///
+  /// In en, this message translates to:
+  /// **'The bamboo sways, and the scholar awaits your words like morning rain...'**
+  String get theBambooSwaysAndThe;
+
+  /// No description provided for @yourCustomPersonaIsActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Your custom persona is active. Type to start the conversation.'**
+  String get yourCustomPersonaIsActive;
+
+  /// No description provided for @hHMm.
+  ///
+  /// In en, this message translates to:
+  /// **'HH:mm'**
+  String get hHMm;
+
+  /// No description provided for @fROMLocalizedDefinitionQualityWHERE.
+  ///
+  /// In en, this message translates to:
+  /// **'FROM localized_definition_quality WHERE language_code = ?'**
+  String get fROMLocalizedDefinitionQualityWHERE;
+
+  /// No description provided for @gemini25Flash.
+  ///
+  /// In en, this message translates to:
+  /// **'gemini-2.5-flash'**
+  String get gemini25Flash;
+
+  /// No description provided for @dictionaryExpansionV1.
+  ///
+  /// In en, this message translates to:
+  /// **'dictionary-expansion-v1'**
+  String get dictionaryExpansionV1;
+
+  /// No description provided for @staleDictionaryExpansionResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Stale dictionary expansion response'**
+  String get staleDictionaryExpansionResponse;
+
+  /// No description provided for @dictionaryExpansionWasEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary expansion was empty'**
+  String get dictionaryExpansionWasEmpty;
+
+  /// No description provided for @explicationDTaillEDisponible.
+  ///
+  /// In en, this message translates to:
+  /// **'Explication détaillée disponible'**
+  String get explicationDTaillEDisponible;
+
+  /// No description provided for @ausfHrlicheErklRungVerf.
+  ///
+  /// In en, this message translates to:
+  /// **'Ausführliche Erklärung verfügbar'**
+  String get ausfHrlicheErklRungVerf;
+
+  /// No description provided for @explicaciNDetalladaDisponible.
+  ///
+  /// In en, this message translates to:
+  /// **'Explicación detallada disponible'**
+  String get explicaciNDetalladaDisponible;
+
+  /// No description provided for @spiegazioneDettagliataDisponibile.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiegazione dettagliata disponibile'**
+  String get spiegazioneDettagliataDisponibile;
+
+  /// No description provided for @explicaODetalhadaDisponVel.
+  ///
+  /// In en, this message translates to:
+  /// **'Explicação detalhada disponível'**
+  String get explicaODetalhadaDisponVel;
+
+  /// No description provided for @detailedExplanationAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed explanation available'**
+  String get detailedExplanationAvailable;
+
+  /// No description provided for @oneOptionalDailyPracticeReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'One optional daily practice reminder'**
+  String get oneOptionalDailyPracticeReminder;
+
+  /// No description provided for @chooseOneOptionalDailyPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one optional daily practice reminder.'**
+  String get chooseOneOptionalDailyPractice;
+
+  /// No description provided for @practiceReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice reminder'**
+  String get practiceReminder;
+
+  /// No description provided for @oneGentleReminderADay.
+  ///
+  /// In en, this message translates to:
+  /// **'One gentle reminder a day, only if you need it'**
+  String get oneGentleReminderADay;
+
+  /// No description provided for @finishingPracticeSilencesTodayS.
+  ///
+  /// In en, this message translates to:
+  /// **'Finishing practice silences today’s reminder. Review and'**
+  String get finishingPracticeSilencesTodayS;
+
+  /// No description provided for @reEngagementAlertsAreCombined.
+  ///
+  /// In en, this message translates to:
+  /// **'re-engagement alerts are combined so they never stack.'**
+  String get reEngagementAlertsAreCombined;
+
+  /// No description provided for @processing2.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing…'**
+  String get processing2;
+
+  /// No description provided for @wDKIChu.
+  ///
+  /// In en, this message translates to:
+  /// **'wǒ dǎ kāi chuāng hu'**
+  String get wDKIChu;
+
+  /// No description provided for @listen.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen'**
+  String get listen;
+
+  /// No description provided for @notice.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice'**
+  String get notice;
+
+  /// No description provided for @fourTones.
+  ///
+  /// In en, this message translates to:
+  /// **'Four tones'**
+  String get fourTones;
+
+  /// No description provided for @write.
+  ///
+  /// In en, this message translates to:
+  /// **'Write'**
+  String get write;
+
+  /// No description provided for @recap.
+  ///
+  /// In en, this message translates to:
+  /// **'Recap'**
+  String get recap;
+
+  /// No description provided for @playbackDidNotStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback did not start'**
+  String get playbackDidNotStart;
+
+  /// No description provided for @audioIsUnavailableYouCan.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio is unavailable. You can still read and continue.'**
+  String get audioIsUnavailableYouCan;
+
+  /// No description provided for @microphoneAccessWasNotGranted.
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone access was not granted. You can use the quiet option below.'**
+  String get microphoneAccessWasNotGranted;
+
+  /// No description provided for @recordingIsUnavailableRightNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording is unavailable right now.'**
+  String get recordingIsUnavailableRightNow;
+
+  /// No description provided for @listeningToYourTones.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening to your tones…'**
+  String get listeningToYourTones;
+
+  /// No description provided for @noRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'No recording'**
+  String get noRecording;
+
+  /// No description provided for @weCouldNotScoreThat.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not score that recording, so here is a sample tone comparison.'**
+  String get weCouldNotScoreThat;
+
+  /// No description provided for @listenForTheLowDipping.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen for the low, dipping third tone.'**
+  String get listenForTheLowDipping;
+
+  /// No description provided for @firstHearATinyMoment.
+  ///
+  /// In en, this message translates to:
+  /// **'First, hear a tiny moment in Mandarin. No memorizing yet.'**
+  String get firstHearATinyMoment;
+
+  /// No description provided for @loadingAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading audio…'**
+  String get loadingAudio;
+
+  /// No description provided for @listenToThePassage.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to the passage'**
+  String get listenToThePassage;
+
+  /// No description provided for @continueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueAction;
+
+  /// No description provided for @noticeHowMeaningSoundAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice how meaning, sound, and characters travel together.'**
+  String get noticeHowMeaningSoundAnd;
+
+  /// No description provided for @shadowOneSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadow one sentence'**
+  String get shadowOneSentence;
+
+  /// No description provided for @listenOnceThenHoldThe.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen once, then hold the microphone and say the sentence.'**
+  String get listenOnceThenHoldThe;
+
+  /// No description provided for @hearItAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Hear it again'**
+  String get hearItAgain;
+
+  /// No description provided for @stopAndCheckMyTones.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop and check my tones'**
+  String get stopAndCheckMyTones;
+
+  /// No description provided for @useMicrophone.
+  ///
+  /// In en, this message translates to:
+  /// **'Use microphone'**
+  String get useMicrophone;
+
+  /// No description provided for @iCanTSpeakRight.
+  ///
+  /// In en, this message translates to:
+  /// **'I can\'t speak right now'**
+  String get iCanTSpeakRight;
+
+  /// No description provided for @tapACharacterToCompare.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a character to compare the tone you said with the target, then hear tones 1–4.'**
+  String get tapACharacterToCompare;
+
+  /// No description provided for @tryHandwriting.
+  ///
+  /// In en, this message translates to:
+  /// **'Try handwriting'**
+  String get tryHandwriting;
+
+  /// No description provided for @seeWhatYouLearned.
+  ///
+  /// In en, this message translates to:
+  /// **'See what you learned'**
+  String get seeWhatYouLearned;
+
+  /// No description provided for @inAFewMinutesYou.
+  ///
+  /// In en, this message translates to:
+  /// **'In a few minutes, you used the same loop that powers your lessons.'**
+  String get inAFewMinutesYou;
+
+  /// No description provided for @listenedToChineseInContext.
+  ///
+  /// In en, this message translates to:
+  /// **'Listened to Chinese in context'**
+  String get listenedToChineseInContext;
+
+  /// No description provided for @shadowedASentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowed a sentence'**
+  String get shadowedASentence;
+
+  /// No description provided for @comparedMandarinTones.
+  ///
+  /// In en, this message translates to:
+  /// **'Compared Mandarin tones'**
+  String get comparedMandarinTones;
+
+  /// No description provided for @practicedARealCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Practiced a real character'**
+  String get practicedARealCharacter;
+
+  /// No description provided for @qNgchNXiOy.
+  ///
+  /// In en, this message translates to:
+  /// **'Qīngchén, xiǎoyǔ tíng le. Wǒ dǎkāi chuānghu, tīngjiàn niǎor zài shù shàng chànggē. Xīn de yì tiān kāishǐ le.'**
+  String get qNgchNXiOy;
+
+  /// No description provided for @atDawnTheLightRain.
+  ///
+  /// In en, this message translates to:
+  /// **'At dawn, the light rain stopped. I opened the window and heard birds singing in the trees. A new day began.'**
+  String get atDawnTheLightRain;
+
+  /// No description provided for @learnThroughRealVideos.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn through real videos'**
+  String get learnThroughRealVideos;
+
+  /// No description provided for @followInteractiveSubtitlesLookUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.'**
+  String get followInteractiveSubtitlesLookUp;
+
+  /// No description provided for @videoLearningScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Video learning screenshot'**
+  String get videoLearningScreenshot;
+
+  /// No description provided for @turnAnyBookIntoA.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn any book into a lesson'**
+  String get turnAnyBookIntoA;
+
+  /// No description provided for @readNaturallyWithPronunciationDefinition.
+  ///
+  /// In en, this message translates to:
+  /// **'Read naturally with pronunciation, definitions, and translation available whenever you need them.'**
+  String get readNaturallyWithPronunciationDefinition;
+
+  /// No description provided for @bookReaderScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Book reader screenshot'**
+  String get bookReaderScreenshot;
+
+  /// No description provided for @speakWithTheRightRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak with the right rhythm'**
+  String get speakWithTheRightRhythm;
+
+  /// No description provided for @shadowNativeAudioAndVisualize.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadow native audio and visualize all four tones as your pronunciation improves.'**
+  String get shadowNativeAudioAndVisualize;
+
+  /// No description provided for @shadowingAndTonesScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowing and tones screenshot'**
+  String get shadowingAndTonesScreenshot;
+
+  /// No description provided for @understandEveryCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Understand every character'**
+  String get understandEveryCharacter;
+
+  /// No description provided for @exploreMeaningPronunciationComponentsStr.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.'**
+  String get exploreMeaningPronunciationComponentsStr;
+
+  /// No description provided for @characterDictionaryScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Character dictionary screenshot'**
+  String get characterDictionaryScreenshot;
+
+  /// No description provided for @learnChineseWithoutLimits.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Chinese without limits'**
+  String get learnChineseWithoutLimits;
+
+  /// No description provided for @watchReadSpeakAndUnderstand.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch, read, speak, and understand Chinese with one complete learning companion.'**
+  String get watchReadSpeakAndUnderstand;
+
+  /// No description provided for @seeWhatPremiumUnlocks.
+  ///
+  /// In en, this message translates to:
+  /// **'See what Premium unlocks'**
+  String get seeWhatPremiumUnlocks;
+
+  /// No description provided for @scrollToExploreTheComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll to explore the complete learning experience'**
+  String get scrollToExploreTheComplete;
+
+  /// No description provided for @cOMINGSOON.
+  ///
+  /// In en, this message translates to:
+  /// **'COMING SOON'**
+  String get cOMINGSOON;
+
+  /// No description provided for @guidedHandwritingPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided handwriting practice'**
+  String get guidedHandwritingPractice;
+
+  /// No description provided for @scannerAndLiveTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanner and live translation'**
+  String get scannerAndLiveTranslation;
+
+  /// No description provided for @hSK16AndAI.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK 1–6 and AI decks'**
+  String get hSK16AndAI;
+
+  /// No description provided for @smartSpacedRepetition2.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart spaced repetition'**
+  String get smartSpacedRepetition2;
+
+  /// No description provided for @progressAndStreakTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress and streak tracking'**
+  String get progressAndStreakTracking;
+
+  /// No description provided for @learningToolsInOnePlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning tools in one place'**
+  String get learningToolsInOnePlace;
+
+  /// No description provided for @everythingIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything included'**
+  String get everythingIncluded;
+
+  /// No description provided for @paymentIsChargedToYour2.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment is charged to your App Store account. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.'**
+  String get paymentIsChargedToYour2;
+
+  /// No description provided for @yourFirstWeekOfTracked.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first week of tracked practice'**
+  String get yourFirstWeekOfTracked;
+
+  /// No description provided for @sameNumberOfCardsAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Same number of cards as last week'**
+  String get sameNumberOfCardsAs;
+
+  /// No description provided for @todaySPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s practice'**
+  String get todaySPractice;
+
+  /// No description provided for @goalCompleteAnythingMoreIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal complete — anything more is a bonus.'**
+  String get goalCompleteAnythingMoreIs;
+
+  /// No description provided for @aSmallAchievableTargetNo.
+  ///
+  /// In en, this message translates to:
+  /// **'A small, achievable target. No penalty for a rest day.'**
+  String get aSmallAchievableTargetNo;
+
+  /// No description provided for @thisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get thisWeek;
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get minutes;
+
+  /// No description provided for @activeDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Active days'**
+  String get activeDays;
+
+  /// No description provided for @masterChineseOneStrokeAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Chinese, one stroke at a time'**
+  String get masterChineseOneStrokeAt;
+
+  /// No description provided for @dictionaryExpansionButton.
+  ///
+  /// In en, this message translates to:
+  /// **'dictionary-expansion-button'**
+  String get dictionaryExpansionButton;
+
+  /// No description provided for @kIErweiterterWRterbucheintrag.
+  ///
+  /// In en, this message translates to:
+  /// **'KI-erweiterter Wörterbucheintrag'**
+  String get kIErweiterterWRterbucheintrag;
+
+  /// No description provided for @detalleAmpliadoPorIA.
+  ///
+  /// In en, this message translates to:
+  /// **'Detalle ampliado por IA'**
+  String get detalleAmpliadoPorIA;
+
+  /// No description provided for @dTailEnrichiParL.
+  ///
+  /// In en, this message translates to:
+  /// **'Détail enrichi par l’IA'**
+  String get dTailEnrichiParL;
+
+  /// No description provided for @aI.
+  ///
+  /// In en, this message translates to:
+  /// **'AI द्वारा विस्तृत शब्दकोश विवरण'**
+  String get aI;
+
+  /// No description provided for @detailKamusYangDiperluasAI.
+  ///
+  /// In en, this message translates to:
+  /// **'Detail kamus yang diperluas AI'**
+  String get detailKamusYangDiperluasAI;
+
+  /// No description provided for @dettaglioDelDizionarioAmpliatoDall.
+  ///
+  /// In en, this message translates to:
+  /// **'Dettaglio del dizionario ampliato dall’IA'**
+  String get dettaglioDelDizionarioAmpliatoDall;
+
+  /// No description provided for @aI2.
+  ///
+  /// In en, this message translates to:
+  /// **'AIによる辞書の補足'**
+  String get aI2;
+
+  /// No description provided for @aI3.
+  ///
+  /// In en, this message translates to:
+  /// **'AI로 확장된 사전 설명'**
+  String get aI3;
+
+  /// No description provided for @detalheDeDicionRioExpandido.
+  ///
+  /// In en, this message translates to:
+  /// **'Detalhe de dicionário expandido por IA'**
+  String get detalheDeDicionRioExpandido;
+
+  /// No description provided for @aI4.
+  ///
+  /// In en, this message translates to:
+  /// **'รายละเอียดพจนานุกรมที่ขยายโดย AI'**
+  String get aI4;
+
+  /// No description provided for @chiTiTTI.
+  ///
+  /// In en, this message translates to:
+  /// **'Chi tiết từ điển được AI mở rộng'**
+  String get chiTiTTI;
+
+  /// No description provided for @aI5.
+  ///
+  /// In en, this message translates to:
+  /// **'AI 扩展词典释义'**
+  String get aI5;
+
+  /// No description provided for @aIExpandedDictionaryDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'AI-expanded dictionary detail'**
+  String get aIExpandedDictionaryDetail;
+
+  /// No description provided for @cetteEntrEEstBr.
+  ///
+  /// In en, this message translates to:
+  /// **'Cette entrée est brève. Une explication détaillée est disponible.'**
+  String get cetteEntrEEstBr;
+
+  /// No description provided for @dieserEintragIstKurzEine.
+  ///
+  /// In en, this message translates to:
+  /// **'Dieser Eintrag ist kurz. Eine ausführliche Erklärung ist verfügbar.'**
+  String get dieserEintragIstKurzEine;
+
+  /// No description provided for @estaEntradaEsBreveHay.
+  ///
+  /// In en, this message translates to:
+  /// **'Esta entrada es breve. Hay una explicación detallada disponible.'**
+  String get estaEntradaEsBreveHay;
+
+  /// No description provided for @questaVoceBreveDisponibileUna.
+  ///
+  /// In en, this message translates to:
+  /// **'Questa voce è breve. È disponibile una spiegazione dettagliata.'**
+  String get questaVoceBreveDisponibileUna;
+
+  /// No description provided for @estaEntradaBreveEstDispon.
+  ///
+  /// In en, this message translates to:
+  /// **'Esta entrada é breve. Está disponível uma explicação detalhada.'**
+  String get estaEntradaBreveEstDispon;
+
+  /// No description provided for @thisDictionaryEntryIsBrief.
+  ///
+  /// In en, this message translates to:
+  /// **'This dictionary entry is brief. A detailed explanation is available.'**
+  String get thisDictionaryEntryIsBrief;
+
+  /// No description provided for @dVelopperEnFranAis.
+  ///
+  /// In en, this message translates to:
+  /// **'Développer en français'**
+  String get dVelopperEnFranAis;
+
+  /// No description provided for @aufDeutschErweitern.
+  ///
+  /// In en, this message translates to:
+  /// **'Auf Deutsch erweitern'**
+  String get aufDeutschErweitern;
+
+  /// No description provided for @ampliarEnEspaOl.
+  ///
+  /// In en, this message translates to:
+  /// **'Ampliar en español'**
+  String get ampliarEnEspaOl;
+
+  /// No description provided for @approfondisciInItaliano.
+  ///
+  /// In en, this message translates to:
+  /// **'Approfondisci in italiano'**
+  String get approfondisciInItaliano;
+
+  /// No description provided for @expandirEmPortuguS.
+  ///
+  /// In en, this message translates to:
+  /// **'Expandir em português'**
+  String get expandirEmPortuguS;
+
+  /// No description provided for @expandDefinition.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand definition'**
+  String get expandDefinition;
+
+  /// No description provided for @impossibleDeChargerLExplication.
+  ///
+  /// In en, this message translates to:
+  /// **'Impossible de charger l’explication.'**
+  String get impossibleDeChargerLExplication;
+
+  /// No description provided for @dieErklRungKonnteNicht.
+  ///
+  /// In en, this message translates to:
+  /// **'Die Erklärung konnte nicht geladen werden.'**
+  String get dieErklRungKonnteNicht;
+
+  /// No description provided for @noSePudoCargarLa.
+  ///
+  /// In en, this message translates to:
+  /// **'No se pudo cargar la explicación.'**
+  String get noSePudoCargarLa;
+
+  /// No description provided for @impossibileCaricareLaSpiegazione.
+  ///
+  /// In en, this message translates to:
+  /// **'Impossibile caricare la spiegazione.'**
+  String get impossibileCaricareLaSpiegazione;
+
+  /// No description provided for @nOFoiPossVel.
+  ///
+  /// In en, this message translates to:
+  /// **'Não foi possível carregar a explicação.'**
+  String get nOFoiPossVel;
+
+  /// No description provided for @unableToLoadTheExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the explanation.'**
+  String get unableToLoadTheExplanation;
 }
 
 class _AppLocalizationsDelegate
