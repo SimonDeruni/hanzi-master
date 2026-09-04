@@ -9,66 +9,65 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get originStoryChip => '📜 Origin story';
+  String get originStoryChip => '📜 유래';
 
   @override
-  String get ancientFormChip => '🏺 Ancient form';
+  String get ancientFormChip => '🏺 고대 자형';
 
   @override
-  String get threeMoreWordsChip => '📖 3 more words';
+  String get threeMoreWordsChip => '📖 단어 3개 더보기';
 
   @override
-  String get wordFamilyChip => '🔗 Word family';
+  String get wordFamilyChip => '🔗 어휘 그룹';
 
   @override
-  String get idiomChip => '🀄 Idiom';
+  String get idiomChip => '🀄 성어';
 
   @override
-  String get proverbChip => '💬 Proverb';
+  String get proverbChip => '💬 속담';
 
   @override
-  String get strokeOrderChip => '✏️ Stroke order';
+  String get strokeOrderChip => '✏️ 획순';
 
   @override
-  String get calligraphyTipChip => '🎨 Calligraphy tip';
+  String get calligraphyTipChip => '🎨 서예 팁';
 
   @override
-  String get grammarNoteChip => '📝 Grammar note';
+  String get grammarNoteChip => '📝 문법 노트';
 
   @override
-  String get similarWordsChip => '🔄 Similar words';
+  String get similarWordsChip => '🔄 유의어';
 
   @override
-  String get culturalNoteChip => '🏮 Cultural note';
+  String get culturalNoteChip => '🏮 문화 노트';
 
   @override
-  String get inMediaChip => '🀄 In media';
+  String get inMediaChip => '🀄 미디어 활용';
 
   @override
-  String get radicalMeaningChip => '🧩 Radical meaning';
+  String get radicalMeaningChip => '🧩 부수 의미';
 
   @override
-  String get componentBreakdownChip => '🔍 Component breakdown';
+  String get componentBreakdownChip => '🔍 구성 요소 분석';
 
   @override
-  String get toneTipChip => '🎵 Tone tip';
+  String get toneTipChip => '🎵 성조 팁';
 
   @override
-  String get homophonesChip => '👯 Homophones';
+  String get homophonesChip => '👯 동음이의어';
 
   @override
   String askMeAnythingAbout(String hanzi) {
-    return 'Ask me anything about $hanzi...';
+    return '$hanzi에 대해 무엇이든 물어보세요...';
   }
 
   @override
   String aiTutorError(String error) {
-    return 'AI tutor error: $error';
+    return 'AI 튜터 오류: $error';
   }
 
   @override
-  String get aiTutorRateLimit =>
-      'The AI tutor is busy right now. Please wait a moment and try again.';
+  String get aiTutorRateLimit => 'AI 튜터가 현재 응답하기 어렵습니다. 잠시 후 다시 시도해 주세요.';
 
   @override
   String get deleteAccount => '계정 삭제';
@@ -1203,52 +1202,47 @@ class AppLocalizationsKo extends AppLocalizations {
   String get startingSession => '학습 세션을 시작하는 중...';
 
   @override
-  String get studySession => 'Study session';
+  String get studySession => '학습 세션';
 
   @override
-  String get readyToStudy => 'Ready to study';
+  String get readyToStudy => '학습 준비 완료';
 
   @override
-  String get studyQueuePreviewDescription =>
-      'Your session is based on today\'s schedule and deck limits.';
+  String get studyQueuePreviewDescription => '오늘의 일정과 덱 제한을 바탕으로 세션이 구성됩니다.';
 
   @override
-  String get notNow => 'Not now';
+  String get notNow => '나중에';
 
   @override
   String get newLabel => '신규';
 
   @override
-  String get studyDeckEmpty => 'This deck is empty';
+  String get studyDeckEmpty => '이 덱은 비어 있습니다';
 
   @override
-  String get studyDeckEmptyDescription =>
-      'Add cards before starting a study session.';
+  String get studyDeckEmptyDescription => '학습 세션을 시작하기 전에 카드를 추가해 주세요.';
 
   @override
-  String get studyDailyLimitReached => 'Today\'s limit is complete';
+  String get studyDailyLimitReached => '오늘의 학습 분량 완료';
 
   @override
   String get studyDailyLimitReachedDescription =>
-      'You\'ve used this deck\'s new-card or review allowance for today.';
+      '오늘 이 덱에서 할당된 새 카드 및 복습 카드를 모두 마쳤습니다.';
 
   @override
-  String get studyCaughtUpDescription =>
-      'Nothing else is scheduled for today. Come back for the next review.';
+  String get studyCaughtUpDescription => '오늘 예정된 학습이 없습니다. 다음 복습 때 다시 찾아와 주세요.';
 
   @override
-  String get noCardsAvailable => 'No cards available';
+  String get noCardsAvailable => '학습할 카드 없음';
 
   @override
-  String get studyNoEligibleCardsDescription =>
-      'No cards are eligible for this study mode right now.';
+  String get studyNoEligibleCardsDescription => '현재 이 학습 모드에 적합한 카드가 없습니다.';
 
   @override
-  String get studySessionLoadFailed =>
-      'Unable to load this study session. Please try again.';
+  String get studySessionLoadFailed => '학습 세션을 불러올 수 없습니다. 다시 시도해 주세요.';
 
   @override
-  String get retryLimitReached => 'This card will return in your next session.';
+  String get retryLimitReached => '이 카드는 다음 세션에 다시 등장합니다.';
 
   @override
   String get masterBuildingBlocks => '한자의 기초 구성 요소를 마스터하세요';
@@ -2055,7 +2049,7 @@ class AppLocalizationsKo extends AppLocalizations {
       '이여진(李汝珍, 약 1763~1830)은 음운학, 바둑, 천문학에 조예가 깊었던 청나라 학자입니다. 기상천외한 나라들을 여행하는 상인의 이야기를 담은 환상 소설 《경화연(鏡花緣)》은 시대를 앞선 페미니즘적 문제의식과 백과사전적 박학다식함으로 높은 평가를 받습니다.';
 
   @override
-  String get library => '문화 서재 (文化书房)';
+  String get libraryLabel => '文化书房 서재';
 
   @override
   String get lifestyleAndVlog => '라이프스타일 및 브이로그';
@@ -2251,52 +2245,52 @@ class AppLocalizationsKo extends AppLocalizations {
   String get privacyAndAudio => '개인정보 및 오디오';
 
   @override
-  String get aiDataPrivacyTitle => 'AI Data & Privacy';
+  String get aiDataPrivacyTitle => 'AI 데이터 및 개인정보 보호';
 
   @override
   String get aiDataPrivacySettingsSubtitle =>
-      'See what AI features send, why, and to whom';
+      'AI 기능이 데이터를 전송하는 항목, 이유 및 대상을 확인하세요';
 
   @override
-  String get aiDataPrivacyOverviewTitle => 'When AI is used';
+  String get aiDataPrivacyOverviewTitle => 'AI 사용 시점';
 
   @override
   String get aiDataPrivacyOverviewBody =>
-      'SinoSpark uses cloud AI only when you choose a feature that needs it, such as AI chat, explanations, translation, image analysis, speech recognition, pronunciation grading, or cloud voices. AI output can be inaccurate, so review important results.';
+      'SinoSpark는 AI 채팅, 설명, 번역, 이미지 분석, 음성 인식, 발음 평가, 클라우드 음성과 같이 필요한 기능을 선택할 때만 클라우드 AI를 사용합니다. AI 결과는 부정확할 수 있으므로 중요한 내용은 직접 확인하세요.';
 
   @override
-  String get aiDataPrivacyProvidersTitle => 'AI service providers';
+  String get aiDataPrivacyProvidersTitle => 'AI 서비스 제공업체';
 
   @override
   String get aiDataPrivacyProvidersBody =>
-      'Google Gemini processes generative text and image requests. OpenRouter routes some generative requests to Google Gemini or DeepSeek. Microsoft Azure AI Speech processes speech recognition, pronunciation assessment, and text sent for cloud voice synthesis.';
+      'Google Gemini는 생성형 텍스트 및 이미지 요청을 처리합니다. OpenRouter는 일부 생성형 요청을 Google Gemini 또는 DeepSeek로 전달합니다. Microsoft Azure AI Speech는 음성 인식, 발음 평가 및 클라우드 음성 합성용 텍스트를 처리합니다.';
 
   @override
-  String get aiDataPrivacySentTitle => 'Data that may be sent';
+  String get aiDataPrivacySentTitle => '전송될 수 있는 데이터';
 
   @override
   String get aiDataPrivacySentBody =>
-      'Depending on the feature, we send the text you enter or select, relevant conversation or lesson context, images you choose for AI analysis, voice recordings you submit, and technical request data such as IP address and device/network metadata. We do not intentionally include your name or email in AI prompts.';
+      '기능에 따라 입력하거나 선택한 텍스트, 관련 대화/학습 맥락, AI 분석용 이미지, 제출한 음성 녹음, IP 주소 및 기기/네트워크 메타데이터 등 기술적 요청 데이터를 전송합니다. AI 프롬프트에 사용자의 이름이나 이메일을 의도적으로 포함하지 않습니다.';
 
   @override
-  String get aiDataPrivacyControlsTitle => 'Your choices';
+  String get aiDataPrivacyControlsTitle => '사용자 선택권';
 
   @override
   String get aiDataPrivacyControlsBody =>
-      'Do not use an AI feature if you do not want its input sent to the named provider. You can deny camera, photo, or microphone permission in device Settings. Choose the Local voice to keep text-to-speech on your device. Avoid submitting sensitive or confidential information.';
+      '해당 제공업체에 데이터가 전송되는 것을 원하지 않는 경우 AI 기능을 사용하지 마세요. 기기 설정에서 카메라, 사진 또는 마이크 권한을 거부할 수 있습니다. 텍스트 음성 변환을 기기 내에서 처리하려면 \'로컬 음성\'을 선택하세요. 민감하거나 기밀인 정보는 제출하지 마세요.';
 
   @override
-  String get aiDataPrivacyRetentionTitle => 'Storage and retention';
+  String get aiDataPrivacyRetentionTitle => '저장 및 보관 기간';
 
   @override
   String get aiDataPrivacyRetentionBody =>
-      'SinoSpark does not intentionally store raw AI prompts, submitted images, or voice recordings on its own servers after processing. Generated results may be saved on your device or with your account when you choose to save them. Providers process data under their own terms and configured retention controls; see the full policy for details.';
+      'SinoSpark는 처리 완료 후 원본 AI 프롬프트, 제출된 이미지, 음성 녹음을 자체 서버에 의도적으로 저장하지 않습니다. 생성된 결과는 사용자가 저장을 선택할 때 기기나 계정에 저장될 수 있습니다. 제공업체는 자체 약관 및 보관 설정에 따라 데이터를 처리합니다. 자세한 내용은 전체 처리방침을 확인하세요.';
 
   @override
-  String get readFullPrivacyPolicy => 'Read Full Privacy Policy';
+  String get readFullPrivacyPolicy => '전체 개인정보 처리방침 읽기';
 
   @override
-  String get linkOpenFailed => 'Could not open the link. Please try again.';
+  String get linkOpenFailed => '링크를 열 수 없습니다. 다시 시도해 주세요.';
 
   @override
   String get puSonglingLiterature =>
@@ -5104,7 +5098,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get other => '기타';
 
   @override
-  String get required => '필수';
+  String get requiredLabel => '필수';
 
   @override
   String get library1 => '라이브러리';
@@ -6884,56 +6878,56 @@ class AppLocalizationsKo extends AppLocalizations {
   String get characters => '글자';
 
   @override
-  String get todayDashboard => 'Today';
+  String get todayDashboard => '오늘';
 
   @override
-  String get studyToday => 'Study today\'s cards';
+  String get studyToday => '오늘의 카드 학습하기';
 
   @override
-  String get studyAhead => 'Study ahead';
+  String get studyAhead => '선행 학습';
 
   @override
   String get studyAheadDescription =>
-      'Practice the nearest scheduled reviews without using today\'s quota. No new cards are introduced.';
+      '오늘 할당량을 사용하지 않고 예정된 복습을 미리 연습합니다. 새 카드는 추가되지 않습니다.';
 
   @override
-  String get studyAheadComplete => 'Study-ahead practice complete';
+  String get studyAheadComplete => '선행 학습 완료';
 
   @override
-  String get dueNow => 'Due now';
+  String get dueNow => '지금 복습';
 
   @override
-  String get scheduled => 'Scheduled';
+  String get scheduled => '예정됨';
 
   @override
-  String get sevenDayForecast => '7-day review forecast';
+  String get sevenDayForecast => '7일 복습 예측';
 
   @override
-  String get reviews => 'Reviews';
+  String get reviews => '복습';
 
   @override
-  String get newCardsLabel => 'New cards';
+  String get newCardsLabel => '새 카드';
 
   @override
-  String get attempts => 'Attempts';
+  String get attempts => '시도 횟수';
 
   @override
-  String get duration => 'Time';
+  String get duration => '시간';
 
   @override
-  String get answerBreakdown => 'Answer breakdown';
+  String get answerBreakdown => '정답 분석';
 
   @override
-  String get reviewCards => 'Review cards';
+  String get reviewCards => '복습 카드';
 
   @override
-  String get retries => 'Retries';
+  String get retries => '재시도';
 
   @override
-  String get needsPractice => 'Needs practice';
+  String get needsPractice => '연습 필요';
 
   @override
-  String get uniqueCardsStudied => 'Cards';
+  String get uniqueCardsStudied => '학습한 카드';
 
   @override
   String get dartConvert => 'dart:convert';
@@ -6948,25 +6942,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dartMath => 'dart:math';
 
   @override
-  String get drawInTheOtherDirection => 'Draw in the other direction ➔';
+  String get drawInTheOtherDirection => '반대 방향으로 그리세요 ➔';
 
   @override
-  String get fastClean => 'Fast & Clean!';
+  String get fastClean => '빠르고 깔끔해요!';
 
   @override
-  String get good2 => 'Good!';
+  String get good2 => '좋아요!';
 
   @override
-  String get followTheFlow => 'Follow the flow.';
+  String get followTheFlow => '획순을 따라 그리세요.';
 
   @override
-  String get masterful => 'Masterful!';
+  String get masterful => '완벽해요!';
 
   @override
-  String get missingTheHookEnd => 'Missing the hook/end.';
+  String get missingTheHookEnd => '갈고리/끝처리가 빠졌습니다.';
 
   @override
-  String get thai => 'Thai';
+  String get thai => '태국어';
 
   @override
   String get dartIo => 'dart:io';
@@ -6990,13 +6984,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get googleGemini25Flash => 'google/gemini-2.5-flash';
 
   @override
-  String get ink => 'ink,';
+  String get ink => '먹물,';
 
   @override
-  String get stroke => 'stroke,';
+  String get stroke => '획,';
 
   @override
-  String get breath => 'breath.';
+  String get breath => '호흡.';
 
   @override
   String get deepseekDeepseekChat => 'deepseek/deepseek-chat';
@@ -7014,123 +7008,118 @@ class AppLocalizationsKo extends AppLocalizations {
   String get shadowingModeCustomSentence => 'ShadowingMode.customSentence';
 
   @override
-  String get theExactSentenceProvided => 'the exact sentence provided';
+  String get theExactSentenceProvided => '제공된 정확한 문장';
 
   @override
-  String get pinyinWithToneMarks2 => 'pinyin with tone marks';
+  String get pinyinWithToneMarks2 => '성조가 표시된 병음';
 
   @override
   String get wXHuNH => 'Wǒ xǐhuān hē píngguǒzhī.';
 
   @override
   String get extractAllChineseCharactersFrom =>
-      'Extract all Chinese characters from this image. Return ONLY the extracted text — no commentary, no formatting, no translations. Preserve line breaks. If there are no Chinese characters, return an empty string.';
+      '이 이미지에서 모든 한자를 추출하세요. 주석, 서식, 번역 없이 추출된 텍스트만 반환하세요. 줄바꿈을 유지하세요. 한자가 없으면 빈 문자열을 반환하세요.';
 
   @override
-  String get householdObject => 'household object';
+  String get householdObject => '생활용품';
 
   @override
-  String get genericLabelFromTheList => 'generic label from the list';
+  String get genericLabelFromTheList => '목록의 일반 레이블';
 
   @override
   String get gNgS => 'gōng sī';
 
   @override
-  String get measureWord => 'measure word';
+  String get measureWord => '양사';
 
   @override
-  String get zenInk => 'Zen & Ink';
+  String get zenInk => '선과 먹';
 
   @override
   String get cRITICALPutTheEnglishTranslation =>
-      'CRITICAL: Put the English translation in the \"english\" JSON key!';
+      '중요: 영어 번역을 \"english\" JSON 키에 입력하세요!';
 
   @override
-  String get definitionInEnglish => 'definition in English';
+  String get definitionInEnglish => '영어 정의';
 
   @override
-  String get simplifiedLine0 => 'simplified line 0';
+  String get simplifiedLine0 => '간체자 줄 0';
 
   @override
-  String get simplifiedLine1 => 'simplified line 1';
+  String get simplifiedLine1 => '간체자 줄 1';
 
   @override
   String get iMPORTANTRULEDoNotAddress =>
-      'IMPORTANT RULE: Do not address the user by any name. Never use placeholder names like \"John\". Speak directly to them without using a name.';
+      '중요 규칙: 사용자의 이름을 부르지 마세요. \"John\"과 같은 임시 이름을 절대 사용하지 마세요. 이름 없이 직접 대화하세요.';
 
   @override
-  String get rULESAnswerIn23 =>
-      'RULES: Answer in 2–3 sentences max. Prefer bullet points for lists.';
+  String get rULESAnswerIn23 => '규칙: 최대 2~3문장으로 답하세요. 목록은 글머리 기호를 권장합니다.';
 
   @override
   String get neverWriteIntroductionsSignOffs =>
-      'Never write introductions, sign-offs, or filler phrases like \"Great question!\" or \"Certainly!\".';
+      '도입부, 맺음말 또는 \"좋은 질문입니다!\", \"당연하죠!\"와 같은 추임새를 절대 쓰지 마세요.';
 
   @override
-  String get useBoldForChineseCharacters =>
-      'Use **bold** for Chinese characters and key terms.';
+  String get useBoldForChineseCharacters => '한자와 핵심 용어에는 **굵은 글씨**를 사용하세요.';
 
   @override
-  String get rULESAnswerIn232 => 'RULES: Answer in 2–3 sentences max.';
+  String get rULESAnswerIn232 => '규칙: 최대 2~3문장으로 답하세요.';
 
   @override
-  String get accept => 'Accept';
+  String get accept => '수락';
 
   @override
-  String get pronunciationAssessment => 'Pronunciation-Assessment';
+  String get pronunciationAssessment => '발음 평가';
 
   @override
-  String get nBest => 'NBest';
+  String get nBest => 'N-Best';
 
   @override
-  String get none => 'None';
+  String get none => '없음';
 
   @override
-  String get theCorrectedChineseText => 'the corrected Chinese text';
+  String get theCorrectedChineseText => '수정된 중국어 텍스트';
 
   @override
-  String get thePinyinForTheCorrected => 'the pinyin for the corrected text';
+  String get thePinyinForTheCorrected => '수정된 텍스트의 병음';
 
   @override
-  String get theEnglishMeaningOfThe =>
-      'the english meaning of the corrected text';
+  String get theEnglishMeaningOfThe => '수정된 텍스트의 영어 뜻';
 
   @override
-  String get pNyNWithTone => 'pīnyīn with tone marks';
+  String get pNyNWithTone => '성조가 표시된 병음';
 
   @override
-  String get englishTranslation2 => 'english translation';
+  String get englishTranslation2 => '영어 번역';
 
   @override
   String get zhNggu => 'Zhōngguó';
 
   @override
   String get youAreAChineseClassical =>
-      'You are a Chinese classical literature expert providing detailed accessible summaries of classical Chinese poetry.';
+      '당신은 중국 고전 시에 대한 상세하고 이해하기 쉬운 요약을 제공하는 중국 고전 문학 전문가입니다.';
 
   @override
   String get youAreAChineseCulture =>
-      'You are a Chinese culture and literature expert. Provide highly engaging, beautifully written cultural insights.';
+      '당신은 중국 문화 및 문학 전문가입니다. 매우 흥미롭고 유려하게 작성된 문화적 통찰을 제공하세요.';
 
   @override
-  String get english2 => 'English:';
+  String get english2 => '영어:';
 
   @override
-  String get remindersWhenYouHavenT =>
-      'Reminders when you haven\'t used the app for a few days';
+  String get remindersWhenYouHavenT => '며칠 동안 앱을 사용하지 않았을 때의 알림';
 
   @override
-  String get itSBeenAFew =>
-      'It\'s been a few days! Take 5 minutes to learn a new Hanzi today.';
+  String get itSBeenAFew => '며칠 만이네요! 오늘 5분만 투자해서 새로운 한자를 배워보세요.';
 
   @override
-  String get abbreviationFor => 'abbreviation for';
+  String get abbreviationFor => '~의 약어';
 
   @override
-  String get cL => 'CL:';
+  String get cL => '양사:';
 
   @override
-  String get measureWord2 => 'Measure word:';
+  String get measureWord2 => '양사:';
 
   @override
   String get lu => 'lu:';
@@ -7145,244 +7134,230 @@ class AppLocalizationsKo extends AppLocalizations {
   String get nuE => 'nu:e';
 
   @override
-  String get noUser => 'no-user';
+  String get noUser => '사용자 없음';
 
   @override
-  String get passwordRequired => 'password-required';
+  String get passwordRequired => '비밀번호 필요';
 
   @override
-  String get unsupportedProvider => 'unsupported-provider';
+  String get unsupportedProvider => '지원되지 않는 제공업체';
 
   @override
-  String get appleRevocationUnavailable => 'apple-revocation-unavailable';
+  String get appleRevocationUnavailable => 'Apple 취소 불가';
 
   @override
-  String get appleCredentialMissing => 'apple-credential-missing';
+  String get appleCredentialMissing => 'Apple 자격 증명 누락';
 
   @override
-  String get authenticationDidNotReturnA =>
-      'Authentication did not return a user.';
+  String get authenticationDidNotReturnA => '인증에서 사용자를 찾을 수 없습니다.';
 
   @override
-  String get viewSubscriptionPlans => 'View subscription plans';
+  String get viewSubscriptionPlans => '구독 요금제 보기';
 
   @override
-  String get wrongPassword => 'wrong-password';
+  String get wrongPassword => '잘못된 비밀번호';
 
   @override
-  String get invalidCredential => 'invalid-credential';
+  String get invalidCredential => '유효하지 않은 자격 증명';
 
   @override
-  String get networkRequestFailed => 'network-request-failed';
+  String get networkRequestFailed => '네트워크 요청 실패';
 
   @override
-  String get requiresRecentLogin => 'requires-recent-login';
+  String get requiresRecentLogin => '최근 로그인 필요';
 
   @override
-  String get userMismatch => 'user-mismatch';
+  String get userMismatch => '사용자 불일치';
 
   @override
-  String get deleteAccountPassword => 'delete-account-password';
+  String get deleteAccountPassword => '계정 삭제 비밀번호';
 
   @override
-  String get deleteAccountError => 'delete-account-error';
+  String get deleteAccountError => '계정 삭제 오류';
 
   @override
-  String get deleteAccountSubmit => 'delete-account-submit';
+  String get deleteAccountSubmit => '계정 삭제';
 
   @override
-  String get theSimplestShapesTheBeginning =>
-      'The simplest shapes. The beginning of all things.';
+  String get theSimplestShapesTheBeginning => '가장 단순한 형상. 모든 것의 시작.';
 
   @override
-  String get sunMoonWaterAndFire =>
-      'Sun, Moon, Water, and Fire. The natural world.';
+  String get sunMoonWaterAndFire => '해, 달, 물, 불. 자연의 세계.';
 
   @override
-  String get theBodyTheHeartAnd => 'The body, the heart, and the family.';
+  String get theBodyTheHeartAnd => '몸, 마음, 그리고 가족.';
 
   @override
-  String get fieldsRoofsAndToolsThe =>
-      'Fields, roofs, and tools. The foundations of society.';
+  String get fieldsRoofsAndToolsThe => '밭, 지붕, 그리고 도구. 사회의 기초.';
 
   @override
-  String get movementSpeechAndSustenance => 'Movement, speech, and sustenance.';
+  String get movementSpeechAndSustenance => '이동, 언어, 그리고 식생활.';
 
   @override
-  String get commerceClothingAndComplexArtifacts =>
-      'Commerce, clothing, and complex artifacts.';
+  String get commerceClothingAndComplexArtifacts => '상업, 의복, 그리고 복합 공예품.';
 
   @override
-  String get fastTrackSimpleCharacterMastered =>
-      '🚀 Fast Track! Simple character mastered.';
+  String get fastTrackSimpleCharacterMastered => '🚀 패스트 트랙! 쉬운 글자를 마스터했습니다.';
 
   @override
-  String get excellentPrecisionGhostTraceSkipped =>
-      '⚡ Excellent precision! Ghost trace skipped.';
+  String get excellentPrecisionGhostTraceSkipped => '⚡ 뛰어난 정확도! 획 가이드를 건너뜁니다.';
 
   @override
-  String get sample => 'Sample:';
+  String get sample => '예시:';
 
   @override
-  String get itsThat => 'Its/That';
+  String get itsThat => '그것의/저것';
 
   @override
-  String get iMe => 'I/Me';
+  String get iMe => '나/저';
 
   @override
-  String get stillTough => 'Still/Tough';
+  String get stillTough => '여전히/힘든';
 
   @override
-  String get partDecide => 'Part/Decide';
+  String get partDecide => '부분/결정';
 
   @override
-  String get selectTheCharacterFor => 'Select the character for:';
+  String get selectTheCharacterFor => '다음 항목의 한자를 선택하세요:';
 
   @override
-  String get selectThePinyinFor => 'Select the Pinyin for:';
+  String get selectThePinyinFor => '다음 항목의 병음을 선택하세요:';
 
   @override
-  String get whereAreYouGoingThe =>
-      'Where are you going? The airport? It is quite a trip!';
+  String get whereAreYouGoingThe => '어디 가시나요? 공항이요? 제법 먼 거리네요!';
 
   @override
   String get youAreAuntieChenA =>
-      'You are Auntie Chen, a shrewd market vendor selling silk and fabrics. Your ONLY role is a market vendor. Negotiate prices firmly but fairly in Mandarin. NEVER break character or introduce yourself as anything other than a vendor. Start with high prices and be willing to bargain down.';
+      '당신은 비단과 직물을 파는 수완 좋은 시장 상인인 첸 아줌마입니다. 당신의 유일한 역할은 시장 상인입니다. 중국어로 단호하지만 공정하게 가격을 협상하세요. 절대로 캐릭터에서 벗어나거나 상인이 아닌 다른 사람으로 자신을 소개하지 마세요. 높은 가격으로 시작하되 흥정할 의향을 보이세요.';
 
   @override
   String get youAreDrZhangA =>
-      'You are Dr. Zhang, a calm and professional doctor at a medical clinic. Your ONLY role is a doctor. Ask about health symptoms and provide medical advice in Mandarin. NEVER break character or introduce yourself as anything other than a doctor. Be reassuring but thorough.';
+      '당신은 의원의 차분하고 전문적인 의사인 장 선생님입니다. 당신의 유일한 역할은 의사입니다. 건강 증상에 대해 묻고 중국어로 의학적 조언을 제공하세요. 절대로 캐릭터에서 벗어나거나 의사가 아닌 다른 사람으로 자신을 소개하지 마세요. 안심시키되 철저하게 진료하세요.';
 
   @override
-  String get whereDoYouFeelUncomfortable =>
-      'Where do you feel uncomfortable? Do you have a fever?';
+  String get whereDoYouFeelUncomfortable => '어디가 불편하신가요? 열이 있으신가요?';
 
   @override
   String get youAreACloseFriend =>
-      'You are a close friend catching up after a long time. Your ONLY role is a friend. Keep responses casual, warm, and short in Mandarin. NEVER break character or introduce yourself as anything other than a friend. Use informal speech patterns appropriate for close friends.';
+      '당신은 오랜만에 안부를 묻는 친한 친구입니다. 당신의 유일한 역할은 친구입니다. 중국어로 편안하고 따뜻하며 짧게 답변하세요. 절대로 캐릭터에서 벗어나거나 친구가 아닌 다른 사람으로 자신을 소개하지 마세요. 친한 친구 사이에 어울리는 대화체를 사용하세요.';
 
   @override
-  String get noNbest => 'no nbest';
+  String get noNbest => '결과 없음';
 
   @override
-  String get timedOut => 'timed out';
+  String get timedOut => '시간 초과됨';
 
   @override
-  String get grading => 'Grading...';
+  String get grading => '채점 중...';
 
   @override
-  String get label1st => '1st ˉ';
+  String get label1st => '1성 ˉ';
 
   @override
-  String get label2nd => '2nd ˊ';
+  String get label2nd => '2성 ˊ';
 
   @override
-  String get label3rd => '3rd ˇ';
+  String get label3rd => '3성 ˇ';
 
   @override
-  String get label4th => '4th ˋ';
+  String get label4th => '4성 ˋ';
 
   @override
-  String get speaking2 => 'Speaking...';
+  String get speaking2 => '말하는 중...';
 
   @override
   String get sessionCompletedInYourNext =>
-      'Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.';
+      '세션이 완료되었습니다. 다음 연습에서는 완전한 문장으로 말하여 자세한 발음 및 성조 진단을 받아보세요.';
 
   @override
-  String get craneSoaring => 'crane soaring';
+  String get craneSoaring => '비상하는 학';
 
   @override
-  String get gentleStream => 'gentle stream';
+  String get gentleStream => '잔잔한 개울';
 
   @override
-  String get brushAndInk => 'brush and ink';
+  String get brushAndInk => '붓과 먹';
 
   @override
-  String get myStudent => 'my student';
+  String get myStudent => '나의 제자';
 
   @override
-  String get honoredDisciple => 'honored disciple';
+  String get honoredDisciple => '자랑스러운 제자';
 
   @override
-  String get notEnoughInformation => 'not enough information';
+  String get notEnoughInformation => '정보 부족';
 
   @override
-  String get asAnAi => 'as an ai';
+  String get asAnAi => 'AI로서';
 
   @override
   String get goodPracticeSessionContinueFocusing =>
-      'Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.';
+      '훌륭한 연습이었습니다. 명확한 성조 대비와 자연스러운 대화 호흡에 계속 집중해 보세요.';
 
   @override
   String get insideASleekFuxingBullet =>
-      'Inside a sleek Fuxing bullet train traveling at 350 km/h from Beijing to Shanghai.';
+      '베이징에서 상하이까지 시속 350km로 달리는 세련된 푸싱호 고속열차 안.';
 
   @override
-  String get harbinIceSnowWorldWonder => 'Harbin Ice & Snow World Wonder';
+  String get harbinIceSnowWorldWonder => '하얼빈 빙설대세계의 경관';
 
   @override
   String get theFamousPanjiayuanWeekendFlea =>
-      'The famous Panjiayuan weekend flea market crowded with calligraphy scrolls, jade, and vintage trinkets.';
+      '서예 족자, 옥, 빈티지 골동품으로 북적이는 유명한 판자위안 주말 벼룩시장.';
 
   @override
-  String get jingdezhenBlueWhitePorcelainStudio =>
-      'Jingdezhen Blue & White Porcelain Studio';
+  String get jingdezhenBlueWhitePorcelainStudio => '징더전 청화백자 공방';
 
   @override
-  String get pekingOperaDressingRoomMakeup =>
-      'Peking Opera Dressing Room & Makeup';
+  String get pekingOperaDressingRoomMakeup => '경극 분장실 및 메이크업';
 
   @override
   String get aHistoricTongrentangApothecaryScented =>
-      'A historic Tongrentang apothecary scented with ginseng, wolfberry, and hundreds of wooden herbal drawers.';
+      '인삼, 구기자 향과 수백 개의 나무 약재 서랍이 맞아주는 역사적인 동인당 한약방.';
 
   @override
   String get aVibrantPrivateNeonLit =>
-      'A vibrant private neon-lit karaoke room in Shenzhen with microphones, fruit platters, and screen controls.';
+      '마이크, 과일 안주, 화면 컨트롤러가 갖춰진 선전의 활기찬 네온 프라이빗 노래방.';
 
   @override
-  String get animeCosplayExpoInGuangzhou => 'Anime & Cosplay Expo in Guangzhou';
+  String get animeCosplayExpoInGuangzhou => '광저우 애니메이션 & 코스프레 엑스포';
 
   @override
   String get nHOHuNy =>
       'Nǐ hǎo! Huānyíng lái dào zhèlǐ, jīntiān wǒmen liáo xiē shénme ne?';
 
   @override
-  String get surpriseMe2 => '🎲 Surprise Me';
+  String get surpriseMe2 => '🎲 랜덤 추천';
 
   @override
-  String get eGALivelyBanquet =>
-      'e.g., A lively banquet celebrating in Shanghai...';
+  String get eGALivelyBanquet => '예: 상하이에서 열리는 활기찬 축하 연회...';
 
   @override
-  String get rollCharacter2 => '🎲 Roll Character';
+  String get rollCharacter2 => '🎲 캐릭터 랜덤 선택';
 
   @override
-  String get eGACuriousCousin =>
-      'e.g., A curious cousin asking about your career...';
+  String get eGACuriousCousin => '예: 당신의 커리어에 대해 이것저것 묻는 사촌...';
 
   @override
-  String get keepTrying => 'Keep trying!';
+  String get keepTrying => '계속 도전하세요!';
 
   @override
-  String get pending => 'Pending...';
+  String get pending => '대기 중...';
 
   @override
-  String get expected => '🎯 Expected';
+  String get expected => '🎯 예상';
 
   @override
-  String get hSK2Elementary => 'HSK 2: Elementary';
+  String get hSK2Elementary => 'HSK 2급: 초급';
 
   @override
-  String get hSK3Intermediate => 'HSK 3: Intermediate';
+  String get hSK3Intermediate => 'HSK 3: 중급';
 
   @override
-  String get hSK5Advanced => 'HSK 5: Advanced';
+  String get hSK5Advanced => 'HSK 5: 고급';
 
   @override
-  String get expressYourselfFullyWith5000 =>
-      'Express yourself fully with 5000+ words.';
+  String get expressYourselfFullyWith5000 => '5,000개 이상의 단어로 마음껏 표현해 보세요.';
 
   @override
   String get hanziWriter => 'hanzi-writer';
@@ -7391,23 +7366,23 @@ class AppLocalizationsKo extends AppLocalizations {
   String get hvg => 'hvg:';
 
   @override
-  String get unlimited => 'Unlimited';
+  String get unlimited => '무제한';
 
   @override
-  String get dueToday => 'Due today';
+  String get dueToday => '오늘 복습 예정';
 
   @override
-  String get newAvailable => 'New available';
+  String get newAvailable => '신규 학습 가능';
 
   @override
   String get deleteAccountTile => 'delete-account-tile';
 
   @override
   String get giveASingleShortPractical =>
-      'Give a single, short, practical tip on how to improve the shape, position, or length of the poorly drawn strokes. Be direct and helpful, do not be overly poetic or metaphorical. Do not use markdown.';
+      '잘못 그려진 획의 모양, 위치, 길이를 개선할 수 있는 짧고 실용적인 팁을 하나만 제공하세요. 시적이거나 비유적인 표현을 사용하지 말고 직관적이고 유용하게 작성하세요. 마크다운은 사용하지 마세요.';
 
   @override
-  String get localOnDeviceTTS => 'Local — On-device TTS';
+  String get localOnDeviceTTS => '로컬 — 기기 내 TTS';
 
   @override
   String get espaOl => 'Español';
@@ -7422,77 +7397,77 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tiNgViT => 'Tiếng Việt';
 
   @override
-  String get koreFemaleWarm => 'Kore — Female, warm';
+  String get koreFemaleWarm => 'Kore — 여성, 따뜻한 톤';
 
   @override
-  String get aoedeFemaleCheerful => 'Aoede — Female, cheerful';
+  String get aoedeFemaleCheerful => 'Aoede — 여성, 밝은 톤';
 
   @override
-  String get fenrirMaleUpbeat => 'Fenrir — Male, upbeat';
+  String get fenrirMaleUpbeat => 'Fenrir — 남성, 활기찬 톤';
 
   @override
-  String get charonMaleNewsStyle => 'Charon — Male, news-style';
+  String get charonMaleNewsStyle => 'Charon — 남성, 뉴스 스타일';
 
   @override
-  String get puckMaleSporty => 'Puck — Male, sporty';
+  String get puckMaleSporty => 'Puck — 남성, 스포티한 톤';
 
   @override
-  String get systemVoice => 'System voice';
+  String get systemVoice => '시스템 음성';
 
   @override
-  String get generateAdd => 'Generate & Add';
+  String get generateAdd => '생성 및 추가';
 
   @override
-  String get moreExamples => '📝 More examples';
+  String get moreExamples => '📝 추가 예문';
 
   @override
-  String get usage2 => '❓ Usage';
+  String get usage2 => '❓ 용법';
 
   @override
-  String get translation => '💬 Translation';
+  String get translation => '💬 번역';
 
   @override
-  String get collocations => '📚 Collocations';
+  String get collocations => '📚 연어';
 
   @override
-  String get mistakes => '❌ Mistakes';
+  String get mistakes => '❌ 오답';
 
   @override
-  String get decrease => 'Decrease';
+  String get decrease => '줄이기';
 
   @override
-  String get increase => 'Increase';
+  String get increase => '늘리기';
 
   @override
-  String get label0MeansThisCardType => '0 means this card type is disabled.';
+  String get label0MeansThisCardType => '0은 이 카드 유형을 비활성화함을 의미합니다.';
 
   @override
-  String get tapTheValueToEnter => 'Tap the value to enter an exact limit.';
+  String get tapTheValueToEnter => '값을 탭하여 정확한 한도를 입력하세요.';
 
   @override
-  String get exactDailyLimit => 'Exact daily limit';
+  String get exactDailyLimit => '일일 정확한 한도';
 
   @override
-  String get enter0ToDisable => 'Enter 0 to disable.';
+  String get enter0ToDisable => '비활성화하려면 0을 입력하세요.';
 
   @override
-  String get apply => 'Apply';
+  String get apply => '적용';
 
   @override
-  String get selectDeck => 'Select Deck';
+  String get selectDeck => '덱 선택';
 
   @override
   String get azureSpeechKeysNotConfigured =>
-      'Azure Speech keys not configured. Add AZURE_SPEECH_KEY and AZURE_SPEECH_REGION to .env';
+      'Azure Speech 키가 설정되지 않았습니다. .env에 AZURE_SPEECH_KEY 및 AZURE_SPEECH_REGION을 추가하세요.';
 
   @override
-  String get sTARTING => 'STARTING…';
+  String get sTARTING => '시작 중…';
 
   @override
-  String get sTARTSESSION => 'START SESSION';
+  String get sTARTSESSION => '세션 시작';
 
   @override
-  String get translating2 => 'Translating...';
+  String get translating2 => '번역 중...';
 
   @override
   String get chai => '柴知道Chai...';
@@ -7501,67 +7476,67 @@ class AppLocalizationsKo extends AppLocalizations {
   String get oneInABillion2 => '@One-In-a-Billion';
 
   @override
-  String get businessEconomics => 'business & economics';
+  String get businessEconomics => '비즈니스 및 경제';
 
   @override
-  String get hskPreparation => 'hsk preparation';
+  String get hskPreparation => 'HSK 대비';
 
   @override
-  String get liveInChina => 'live in china';
+  String get liveInChina => '중국 생활';
 
   @override
-  String get comprehensiveExercise => 'comprehensive exercise';
+  String get comprehensiveExercise => '종합 연습';
 
   @override
-  String get howToUse => 'how to use';
+  String get howToUse => '사용 방법';
 
   @override
-  String get usesOf => 'uses of';
+  String get usesOf => '용법';
 
   @override
-  String get appearedFirstOnMandarinBean => 'appeared first on Mandarin Bean';
+  String get appearedFirstOnMandarinBean => 'Mandarin Bean에 처음 게재됨';
 
   @override
-  String get news2 => 'news:';
+  String get news2 => '뉴스:';
 
   @override
-  String get joke => 'joke:';
+  String get joke => '유머:';
 
   @override
-  String get jokes => 'jokes:';
+  String get jokes => '유머:';
 
   @override
-  String get academicScience => 'academic / science';
+  String get academicScience => '학술 / 과학';
 
   @override
-  String get politicsCommunism => 'politics & communism';
+  String get politicsCommunism => '정치 및 공산주의';
 
   @override
-  String get foodDining => 'Food & Dining';
+  String get foodDining => '음식 및 외식';
 
   @override
-  String get sciFi => 'sci-fi';
+  String get sciFi => 'SF';
 
   @override
-  String get scienceFictionTech => 'Science Fiction & Tech';
+  String get scienceFictionTech => 'SF 및 테크';
 
   @override
-  String get travelPlaces => 'Travel & Places';
+  String get travelPlaces => '여행 및 명소';
 
   @override
-  String get mythologyFantasy => 'Mythology & Fantasy';
+  String get mythologyFantasy => '신화 및 판타지';
 
   @override
-  String get cultureTraditions => 'Culture & Traditions';
+  String get cultureTraditions => '문화 및 전통';
 
   @override
-  String get businessEconomy => 'Business & Economy';
+  String get businessEconomy => '비즈니스 및 경제';
 
   @override
-  String get natureAnimals => 'Nature & Animals';
+  String get natureAnimals => '자연 및 동물';
 
   @override
-  String get articleImg => 'article img';
+  String get articleImg => '기사 이미지';
 
   @override
   String get entryContentImg => '.entry-content img';
@@ -7621,47 +7596,46 @@ class AppLocalizationsKo extends AppLocalizations {
   String get uCJ10R97LkwGdTqBT6xzV8g => 'UCJ10R97LkwGdTqBT6xz-v8g';
 
   @override
-  String get learnMandarinWithTaiwanPlus => 'Learn Mandarin with TaiwanPlus';
+  String get learnMandarinWithTaiwanPlus => 'TaiwanPlus와 함께 중국어 배우기';
 
   @override
-  String get everydayChinese => 'Everyday Chinese';
+  String get everydayChinese => '일상 중국어';
 
   @override
   String get uCCFdR7zZ5SUXuOrEdKw => 'UCC_fdR7zZ_5SU--xuOrEdKw';
 
   @override
-  String get tingDailyLifeInChina => 'Ting-Daily life in China';
+  String get tingDailyLifeInChina => 'Ting - 중국에서의 일상';
 
   @override
-  String get tFTFOODTRAVEL => 'TFT - FOOD & TRAVEL';
+  String get tFTFOODTRAVEL => 'TFT - 음식 & 여행';
 
   @override
   String get uCsHMiBJ9r87fRH7VAWZw => 'UCs_h_miBJ9r8-7fRH7VAWZw';
 
   @override
-  String get liziqi3 => '李子柒 Liziqi: 大蒜的一生';
+  String get liziqi3 => '리쯔치 Liziqi: 마늘의 일생';
 
   @override
-  String get label2MINCULTURALCONTEXT => '2 MIN CULTURAL CONTEXT';
+  String get label2MINCULTURALCONTEXT => '2분 문화 상식';
 
   @override
-  String get liziqi4 => '李子柒 Liziqi: 竹子家具';
+  String get liziqi4 => '리쯔치 Liziqi: 대나무 가구';
 
   @override
-  String get peppaPigChinese2 => 'Peppa Pig Chinese: 泥坑';
+  String get peppaPigChinese2 => '페파피그 중국어: 진흙 웅덩이';
 
   @override
-  String get noBBCLeadArticleIs =>
-      'No BBC lead article is currently available.';
+  String get noBBCLeadArticleIs => '현재 이용 가능한 BBC 헤드라인 기사가 없습니다.';
 
   @override
-  String get mediaThumbnail => 'media:thumbnail';
+  String get mediaThumbnail => '미디어 썸네일';
 
   @override
-  String get bBC => 'BBC 中文';
+  String get bBC => 'BBC 중국어';
 
   @override
-  String get siJin2 => '似锦 Si Jin';
+  String get siJin2 => '사금 Si Jin';
 
   @override
   String get n9Yh6jSqjg => 'n9Yh-6jSqjg';
@@ -7697,7 +7671,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get oMM5UD0T2w => 'OMM5_UD0T2w';
 
   @override
-  String get sIXSISTERS2 => '六姊妹 SIX SISTERS';
+  String get sIXSISTERS2 => '육자매 SIX SISTERS';
 
   @override
   String get cNylns5HiA => 'c-nylns5HiA';
@@ -7730,7 +7704,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get qDOf4OCZgd0 => 'QDOf4OCZgd0';
 
   @override
-  String get shineOnMe => '骄阳似我 Shine on Me';
+  String get shineOnMe => '교양사아 Shine on Me';
 
   @override
   String get zx7pUK2J1Uc => 'Zx7pUK2J1Uc';
@@ -7760,7 +7734,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get xgXf9j96yM => 'XgXf-9j96yM';
 
   @override
-  String get thoseDays => '四喜 Those days';
+  String get thoseDays => '四喜 그 시절';
 
   @override
   String get a5nhDbkkCU => 'a5nhDbkkC-U';
@@ -7787,7 +7761,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get v2UNvBajdY => 'v2UNv-BajdY';
 
   @override
-  String get noFunnyNoMoney => '不好笑就露宿街头No Funny No Money';
+  String get noFunnyNoMoney => '재미없으면 노숙 No Funny No Money';
 
   @override
   String get dob3yGGLHIg => 'Dob3yGGLHIg';
@@ -7811,7 +7785,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get x5WFTXq2FW0 => 'X5WFTXq2FW0';
 
   @override
-  String get getTheWeTVAPP2 => '腾讯视频 - 动漫 - Get the WeTV APP';
+  String get getTheWeTVAPP2 => '텐센트 비디오 - 애니메이션 - WeTV 앱 받기';
 
   @override
   String get y4TWL0m2i4c => 'Y4TWL0m2i4c';
@@ -7833,34 +7807,42 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get lordOfMysteriesVlog =>
-      '《诡秘之主》Lord of Mysteries 乌贼配音vlog终版 腾讯视频 - 动漫';
+      '《신비의 제왕》 Lord of Mysteries 오징어 더빙 Vlog 최종판 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries => '《诡秘之主》Lord of Mysteries 神秘学课堂第八期 腾讯视频 - 动漫';
+  String get lordOfMysteries =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 8화 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries2 => '《诡秘之主》Lord of Mysteries 神秘学课堂第七期 腾讯视频 - 动漫';
+  String get lordOfMysteries2 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 7화 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries3 => '《诡秘之主》Lord of Mysteries 神秘学课堂第六期 腾讯视频 - 动漫';
+  String get lordOfMysteries3 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 6화 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries4 => '《诡秘之主》Lord of Mysteries 神秘学课堂第五期 腾讯视频 - 动漫';
+  String get lordOfMysteries4 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 5화 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries5 => '《诡秘之主》Lord of Mysteries 神秘学课堂第四期 腾讯视频 - 动漫';
+  String get lordOfMysteries5 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 4화 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries6 => '《诡秘之主》Lord of Mysteries 神秘学课堂第三期 腾讯视频 - 动漫';
+  String get lordOfMysteries6 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 3화 텐센트 비디오 - 애니메이션';
 
   @override
   String get pakhctn6g6A => 'Pakhctn6g6A';
 
   @override
-  String get lordOfMysteries7 => '《诡秘之主》Lord of Mysteries 神秘学课堂第二期 腾讯视频 - 动漫';
+  String get lordOfMysteries7 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 2화 텐센트 비디오 - 애니메이션';
 
   @override
-  String get lordOfMysteries8 => '《诡秘之主》Lord of Mysteries 神秘学课堂第一期 腾讯视频 - 动漫';
+  String get lordOfMysteries8 =>
+      '《신비의 제왕》 Lord of Mysteries 신비학 클래스 1화 텐센트 비디오 - 애니메이션';
 
   @override
   String get g5fLWO98axs => 'G5fLWO98axs';
@@ -7870,10 +7852,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get oSTLordOfMysteries =>
-      '【OST】《诡秘之主》Lord of Mysteries 终幕曲《勿忘我》 腾讯视频 - 动漫';
+      '【OST】 《신비의 제왕》 Lord of Mysteries 엔딩곡 《물망초》 텐센트 비디오 - 애니메이션';
 
   @override
-  String get membersPremiere2 => 'Members Premiere 会员抢先看';
+  String get membersPremiere2 => '회원 선공개';
 
   @override
   String get dOtFXu1Vw => '_dOt-fXu1Vw';
@@ -7976,7 +7958,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLMX26aiIvX5phl8n8-7-nqTbaeXK2HHm-';
 
   @override
-  String get eightHundred => '方圆八百米 Eight Hundred';
+  String get eightHundred => '반경 800m Eight Hundred';
 
   @override
   String get l1Xmsbo6RE => 'L1Xmsbo6_rE';
@@ -7994,7 +7976,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get c3wWSQPFc0 => 'C3w-WSQPFc0';
 
   @override
-  String get loveBeyondTheGrave => '白日提灯 Love Beyond the Grave';
+  String get loveBeyondTheGrave => '백일제등 Love Beyond the Grave';
 
   @override
   String get rPWA2OHxlaw => 'RPWA2OHxlaw';
@@ -8028,21 +8010,21 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get loveBeyondTheGrave2 =>
-      '片场彩蛋：贺思慕段胥本名难觅花名纷至【白日提灯 Love Beyond the Grave】';
+      '촬영장 비하인드: 허사모와 단서, 본명은 찾기 힘들고 별명만 수두룩【백일제등 Love Beyond the Grave】';
 
   @override
   String get label5MVET41ATY => '5MVET41A-tY';
 
   @override
   String get bTSLoveBeyondTheGrave =>
-      'BTS｜【鹅剧派对】迪丽热巴陈飞宇携众主创默契五感五连拍！【白日提灯 Love Beyond the Grave】';
+      '메이킹｜[텐센트 드라마 파티] 디리러바, 천페이위와 주연진의 찰떡궁합 오감 5연사!【백일제등 Love Beyond the Grave】';
 
   @override
   String get bTSLoveBeyondTheGrave2 =>
-      'BTS｜【鹅剧派对】迪丽热巴陈飞宇亮相，眼神杀直接封神！【白日提灯 Love Beyond the Grave】';
+      '메이킹｜[텐센트 드라마 파티] 디리러바, 천페이위 등장! 레전드 눈빛 연기【백일제등 Love Beyond the Grave】';
 
   @override
-  String get herBlaze => '她的盛焰 Her Blaze';
+  String get herBlaze => '그녀의 불꽃 Her Blaze';
 
   @override
   String get opOIDzw8Vo => 'Op_OIDzw8Vo';
@@ -8078,7 +8060,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get xmLEreDeoU => 'xmLEreDeo-U';
 
   @override
-  String get aboutLove => '玫瑰丛生 About Love';
+  String get aboutLove => '장미총생 About Love';
 
   @override
   String get i4cZFlj8Fw => 'I4cZ-Flj8Fw';
@@ -8114,14 +8096,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get af4fVhhPVg => 'af4fVhhP-Vg';
 
   @override
-  String get tA => '《玫瑰丛生》全员陷入爱情迷雾，TA会如何破局？ ｜主演：王子文、刘宇宁';
+  String get tA =>
+      '《장미총생》 전원이 사랑의 안개 속에 빠졌다. 과연 어떻게 난국을 헤쳐 나갈 것인가? | 주연: 왕자문, 유우녕';
 
   @override
   String get pLMX26aiIvX5rSLe74r7sARps4oOqaBWD =>
       'PLMX26aiIvX5rSLe74r7sA-Rps4oOqaBWD';
 
   @override
-  String get generationToGeneration2 => '江湖夜雨十年灯 Generation to Generation';
+  String get generationToGeneration2 => '강호야우십년등 Generation to Generation';
 
   @override
   String get wCfp3YN9mPs => 'WCfp3YN9mPs';
@@ -8145,7 +8128,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ztz3CXfrQE => '-ztz3CXfrQE';
 
   @override
-  String get loveStoryInThe1970s => '纯真年代的爱情 Love Story in the 1970s';
+  String get loveStoryInThe1970s => '1970년대의 순수한 사랑';
 
   @override
   String get eGYAJh8Z8Pc => 'EGYAJh8Z8Pc';
@@ -8173,7 +8156,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLMX26aiIvX5q5kR_Tszb0kZqKc2T-JWnf';
 
   @override
-  String get whyIsHeStillSingle => '他为什么依然单身 Why Is He Still Single';
+  String get whyIsHeStillSingle => '그는 왜 아직도 싱글일까';
 
   @override
   String get okB86OjCI => 'okB_86OjC-I';
@@ -8194,11 +8177,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get eZzak3C73nI => 'EZzak3C73nI';
 
   @override
-  String get theGlamorousNight => '夜色正浓 The Glamorous Night';
+  String get theGlamorousNight => '야색정농 (The Glamorous Night)';
 
   @override
   String get theGlamorousNightE03 =>
-      '【夜色正浓 The Glamorous Night】E03 霸气出招！赵玫绝地反击（江疏影，佟大为）';
+      '【야색정농 The Glamorous Night】3화 압도적인 한 수! 자오메이의 절체절명 반격 (장수잉, 퉁따웨이)';
 
   @override
   String get zaalDLrc => '--Zaal-DLrc';
@@ -8219,7 +8202,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get vClRnlEUTQ => 'VClRnlEUT-Q';
 
   @override
-  String get myPageInThe90s => '突然的喜欢 My Page in the 90s';
+  String get myPageInThe90s => '갑작스러운 사랑 My Page in the 90s';
 
   @override
   String get m7XBiuw1TU => 'm7XBiuw1-tU';
@@ -8238,45 +8221,51 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get label04MyPageInThe =>
-      '精彩片段04 : 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！【突然的喜欢 My Page in the 90s】';
+      '하이라이트 04: 황당한 시스템의 개입! 휴지가 생리대로? 대형 민망 사건! 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
   String get label03MyPageInThe =>
-      '精彩片段03 : 替闺蜜去相亲，结果相到了男主本尊？【突然的喜欢 My Page in the 90s】';
+      '하이라이트 03: 친구 대신 나간 소개팅, 상대가 남주 본인? 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
   String get bTSXXMyPage =>
-      'BTS｜「出戏 X 陈星旭 X 王玉雯」高总和欢儿的抽象究竟谁更甚一筹？【突然的喜欢 My Page in the 90s】';
+      '메이킹｜[비하인드 X 천싱쉬 X 왕위원] 가오 대표와 환얼 중 누구의 엉뚱함이 한 수 위일까? 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
   String get label02MyPageInThe =>
-      '精彩片段 02：本想攻略男主，结果竟然认错人？【突然的喜欢 My Page in the 90s】';
+      '하이라이트 02: 남주를 공략하려다 사람을 잘못 알아봤다? 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
   String get label01MyPageInThe =>
-      '精彩片段01 : 离谱！突然就穿书了？这剧情我该怎么演?【突然的喜欢 My Page in the 90s】';
+      '하이라이特 01: 황당해! 갑자기 책 속으로 빙의? 이 스토리 어떻게 연기하지? 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
-  String get bTSMyPageInThe => 'BTS｜陈星旭王玉雯溜冰撞了个满怀【突然的喜欢 My Page in the 90s】';
+  String get bTSMyPageInThe =>
+      '메이킹｜천싱쉬와 왕위원의 스케이트장 달콤한 충돌 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
-  String get bTSMyPageInThe2 => 'BTS｜陈星旭王玉雯甜蜜跨年【突然的喜欢 My Page in the 90s】';
+  String get bTSMyPageInThe2 =>
+      '메이킹｜천싱쉬와 왕위원의 달콤한 새해맞이 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
-  String get bTSMyPageInThe3 => 'BTS｜陈星旭王玉雯七夕定格甜蜜瞬间【突然的喜欢 My Page in the 90s】';
+  String get bTSMyPageInThe3 =>
+      '메이킹｜천싱쉬와 왕위원의 칠석 순간 포착 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
-  String get bTSMyPageInThe4 => 'BTS｜陈星旭王玉雯欢乐游乐场【突然的喜欢 My Page in the 90s】';
+  String get bTSMyPageInThe4 =>
+      '메이킹｜천싱쉬와 왕위원의 즐거운 놀이공원 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
-  String get myPageInThe90s2 => '《突然的喜欢 My Page in the 90s》今日开播，陈星旭王玉雯玩转系统甜蜜热恋';
+  String get myPageInThe90s2 =>
+      '《갑작스러운 사랑 My Page in the 90s》 오늘 첫 방송, 천싱쉬와 왕위원의 시스템 활용 달콤 로맨스';
 
   @override
   String get myPageInThe90s3 =>
-      '《突然的喜欢 My Page in the 90s》1月22日甜蜜开播，陈星旭王玉雯反套路恋爱';
+      '《갑작스러운 사랑 My Page in the 90s》 1월 22일 달콤한 첫 방송, 천싱쉬와 왕위원의 반전 연애';
 
   @override
-  String get myPageInThe90s4 => '《突然的喜欢 My Page in the 90s》定档0122！陈星旭王玉雯跨时代热恋';
+  String get myPageInThe90s4 =>
+      '《갑작스러운 사랑 My Page in the 90s》 1월 22일 공개 확정! 천싱쉬와 왕위원의 시대를 초월한 열애';
 
   @override
   String get pLMX26aiIvX5qxr2ZxGgBQKRNVGydd =>
@@ -8292,7 +8281,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get l4tkACioRc => 'L4tkACio-Rc';
 
   @override
-  String get label2TheImperialCoronerS2 => '御赐小仵作2 The Imperial Coroner S2';
+  String get label2TheImperialCoronerS2 => '어사소오작2 The Imperial Coroner S2';
 
   @override
   String get hNa1FW55Q5s => 'HNa1FW55Q5s';
@@ -8317,7 +8306,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
 
   @override
-  String get theDreamMaker => '小城大事 The Dream Maker';
+  String get theDreamMaker => '소성대사 The Dream Maker';
 
   @override
   String get fLcyGh4lXM => 'FLcy_gh4lXM';
@@ -8366,15 +8355,15 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get foreverYoungE23 =>
-      '【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【경년 Forever Young】E23 마틴이 후퉁으로 돌아와 형제들에게 꽉 잡히다 (곽건화, 전우, 장설영, 교진우)';
 
   @override
   String get foreverYoungE25 =>
-      '【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【경년 Forever Young】E25 침착·정확·단호! 마틴이 형수에게 남편 길들이는 법을 가르치다 (곽건화, 전우, 장설영, 교진우)';
 
   @override
   String get foreverYoungE24 =>
-      '【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【경년 Forever Young】E24 연적 등장? 마틴이 풋내기에게 아저씨 소리를 듣다 (곽건화, 전우, 장설영, 교진우)';
 
   @override
   String get fEYoHxyxzQ => 'FEYo_hxyxzQ';
@@ -8393,7 +8382,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get hOMELANDGUARDIAN => '守诚者|HOMELAND GUARDIAN🚔';
 
   @override
-  String get iQIYIGetTheIQIYIAPP => 'iQIYI 悬疑社 - Get the iQIYI APP';
+  String get iQIYIGetTheIQIYIAPP => 'iQIYI 悬疑社 - iQIYI 앱 다운로드';
 
   @override
   String get label8QBlaWEtbw => '8Q-blaWEtbw';
@@ -8417,7 +8406,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get loveHasFireworks => '爱情有烟火 Love Has Fireworks';
 
   @override
-  String get getTheWeTVAPP3 => '腾讯视频 - 青春剧场 - Get the WeTV APP';
+  String get getTheWeTVAPP3 => '腾讯视频 - 青春剧场 - WeTV 앱 다운로드';
 
   @override
   String get oMOcpoXhYw => 'OMOcpoXh-yw';
@@ -8453,16 +8442,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get e00xfXWql4Q => 'E00xfXWql4Q';
 
   @override
-  String get theHiddenHeirYeChen2 => '进击的叶辰 The Hidden Heir Ye Chen';
+  String get theHiddenHeirYeChen2 => '진격의 예천 The Hidden Heir Ye Chen';
 
   @override
   String get xtTr8ZBDpG => 'XtTr8ZBDp-g';
 
   @override
-  String get dresmsNeverEnd => '去听旷野的风 Dresms Never End';
+  String get dresmsNeverEnd => '들판의 바람을 들으러 Dreams Never End';
 
   @override
-  String get mamaGo => '我的妈妈是校花 Mama Go!';
+  String get mamaGo => '우리 엄마는 캠퍼스 여신 Mama Go!';
 
   @override
   String get o4rwrV9yv0 => 'O4rwr_v9yv0';
@@ -8523,26 +8512,26 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get loveStoryInThe1970s2 =>
-      '《纯真年代的爱情 Love Story in the 1970s》双线编年史短片温暖来袭~';
+      '《순수시대의 사랑 Love Story in the 1970s》 듀얼 스토리 연대기 영상 공개~';
 
   @override
   String get loveStoryInThe1970s3 =>
-      '《纯真年代的爱情 Love Story in the 1970s》双人短片正式发布~让我们用感官书写一封情书';
+      '《순수시대의 사랑 Love Story in the 1970s》 커플 영상 정식 공개~ 감각으로 써 내려가는 러브레터';
 
   @override
   String get bTSLoveStoryInThe =>
-      'BTS｜全员杀青，期待下一次重逢【纯真年代的爱情 Love Story in the 1970s】';
+      '메이킹｜전원 촬영 종료, 다음 재회를 기대하며 【순진시대의 사랑 Love Story in the 1970s】';
 
   @override
   String get loveStoryInThe1970s4 =>
-      '《纯真年代的爱情 Love Story in the 1970s》爱是藏在烟火里的诗～';
+      '《순진시대의 사랑 Love Story in the 1970s》 사랑은 일상 속에 숨어 있는 시~';
 
   @override
   String get sGX3zNIuzM => 'SGX-3zNIuzM';
 
   @override
   String get loveStoryInThe1970s5 =>
-      '《纯真年代的爱情 Love Story in the 1970s》正式定档2月21日播出啦~';
+      '《순진시대의 사랑 Love Story in the 1970s》 2월 21일 첫 방송 확정~';
 
   @override
   String get dEZKlJqTo => 'DE_ZKl_jqTo';
@@ -8570,7 +8559,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLyX_50Z72L2xpk_h5SEO0Xj_qx-jPO1sC';
 
   @override
-  String get theTruth => '风过留痕 The Truth';
+  String get theTruth => '풍과유흔 The Truth';
 
   @override
   String get q4im6PPfcw => 'Q4im6P_Pfcw';
@@ -8630,41 +8619,44 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get bTSOutOfCharacterDuo =>
-      'BTS｜「Out of Character Duo Interview 」出戏双彩—高总和欢儿的抽象究竟谁更甚一筹？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+      'BTS｜「배역 탈출 인터뷰」 고 대표와 환어, 과연 누구의 4차원이 한 수 위일까? 《갑작스러운 사랑 My Page in the 90s》 텐센트 비디오 - 청춘극장';
 
   @override
   String get rEk9xALNODE => 'REk9xALNODE';
 
   @override
   String get label04MyPageInThe2 =>
-      '精彩片段04 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+      '하이라이트 04 황당한 시스템의 억지 연출! 휴지가 생리대로? 이거 진짜 민망하네! 《갑작스러운 사랑 My Page in the 90s》 텐센트 비디오 - 청춘극장';
 
   @override
   String get label03MyPageInThe2 =>
-      '精彩片段03 替闺蜜去相亲，结果相到了男主本尊？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+      '하이라이트 03 절친 대신 나간 맞선, 알고 보니 남주 본인? 《갑작스러운 사랑 My Page in the 90s》 텐센트 비디오 - 청춘극장';
 
   @override
   String get xsb7BJppy0 => 'Xsb7B-Jppy0';
 
   @override
   String get label02MyPageInThe2 =>
-      '精彩片段02 本想攻略男主，结果竟然认错人？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+      '하이라이트 02 남주를 공략하려다 사람을 잘못 봤다? 《갑작스러운 사랑 My Page in the 90s》 텐센트 비디오 - 청춘극장';
 
   @override
   String get label01MyPageInThe2 =>
-      '精彩片段01 离谱！突然就穿书了？这剧情我该怎么演? 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场';
+      '하이라이트 01 말도 안 돼! 갑자기 책 속에 빙의했다고? 이 스토리를 어떻게 연기해? 《갑작스러운 사랑 My Page in the 90s》 텐센트 비디오 - 청춘극장';
 
   @override
   String get zSpXoH9ok => 'Z_SpXo-H9ok';
 
   @override
-  String get myPageInThe90s5 => '《突然的喜欢 My Page in the 90s》BTS｜陈星旭王玉雯溜冰撞了个满';
+  String get myPageInThe90s5 =>
+      '《갑작스러운 사랑 My Page in the 90s》BTS｜스케이트 타다 정면 충돌한 천싱쉬와 왕위원';
 
   @override
-  String get myPageInThe90s6 => '《突然的喜欢 My Page in the 90s》今日开播！陈星旭王玉雯玩转系统甜蜜热恋';
+  String get myPageInThe90s6 =>
+      '《갑작스러운 사랑 My Page in the 90s》 오늘 첫 방송! 천싱쉬와 왕위원의 달콤한 시스템 로맨스';
 
   @override
-  String get bTSMyPageInThe5 => 'BTS｜陈星旭王玉雯搞怪互动暧昧超标【突然的喜欢 My Page in the 90s】';
+  String get bTSMyPageInThe5 =>
+      'BTS｜천싱쉬와 왕위원의 장난기 가득한 케미, 썸 지수 초과 【갑작스러운 사랑 My Page in the 90s】';
 
   @override
   String get aYyrt0eGYw => 'AYyrt0e-gYw';
@@ -8689,7 +8681,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get vRYp5JmLwc => '-vRYp5JmLwc';
 
   @override
-  String get dearSecretary => '我亲爱的秘书 Dear Secretary';
+  String get dearSecretary => '친애하는 나의 비서 Dear Secretary';
 
   @override
   String get pAoESWUjrI => 'PAoES-wUjrI';
@@ -8733,7 +8725,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLyX_50Z72L2xbAikt1CHmEyvZrQv1X-ju';
 
   @override
-  String get foreverYoung2 => '轻年 Forever Young';
+  String get foreverYoung2 => '轻年 영원한 청춘';
 
   @override
   String get omVSnG9O8g => 'omVSn-G9O8g';
@@ -8757,7 +8749,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get vb1N5r3zZFo => 'Vb1N5r3zZFo';
 
   @override
-  String get lightOfDawn => '人之初 Light of Dawn​';
+  String get lightOfDawn => '人之初 새벽의 빛';
 
   @override
   String get teDx70IJcw => 'Te_dx70IJcw';
@@ -8821,7 +8813,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get oNNJqZYydM => 'ONN-JqZYydM';
 
   @override
-  String get sniperButterfly => '狙击蝴蝶 Sniper Butterfly';
+  String get sniperButterfly => '狙击蝴蝶 스나이퍼 버터플라이';
 
   @override
   String get zExesh1IRe4 => 'ZExesh1IRe4';
@@ -8851,15 +8843,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get iE8MjgoaPY => 'IE8Mjgoa-pY';
 
   @override
-  String get sniperButterfly1204 => '《狙击蝴蝶 Sniper Butterfly》定档1204！ 为爱越界';
+  String get sniperButterfly1204 =>
+      '《스나이퍼 버터플라이 Sniper Butterfly》 12월 4일 공개! 사랑을 위해 선을 넘다';
 
   @override
   String get sniperButterflyFullVersion1 =>
-      '《狙击蝴蝶 Sniper Butterfly》Full Version 1-15｜主演：陈妍希，周柯宇 腾讯视频-青春剧场';
+      '《스나이퍼 버터플라이 Sniper Butterfly》 풀버전 1-15｜주연: 천옌시, 저우커위 텐센트 비디오-청춘극장';
 
   @override
   String get sniperButterflyFullVersion16 =>
-      '《狙击蝴蝶 Sniper Butterfly》Full Version 16-30｜主演：陈妍希，周柯宇 腾讯视频-青春剧场';
+      '《스나이퍼 버터플라이 Sniper Butterfly》 풀버전 16-30｜주연: 천옌시, 저우커위 텐센트 비디오-청춘극장';
 
   @override
   String get imr0DFA4mNA => 'Imr0DFA4mNA';
@@ -8892,7 +8885,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get label7PpYIVmyaU => '7PpYI-vmyaU';
 
   @override
-  String get allRise => '即刻上场 All Rise';
+  String get allRise => '즉시 출전 All Rise';
 
   @override
   String get label9AaKDIWNK8 => '-9AaKDIWNK8';
@@ -8910,7 +8903,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get yUgNvqLkHo => 'Y-ugNvqLkHo';
 
   @override
-  String get loveIsAlwaysOnline2 => '对的时间对的人 Love is Always Online';
+  String get loveIsAlwaysOnline2 => '알맞은 때, 알맞은 사람 Love is Always Online';
 
   @override
   String get bbu8Ct33WGY => 'Bbu8Ct33WGY';
@@ -9014,22 +9007,22 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get whyIsHeStillSingle2 =>
-      '《他为什么依然单身 Why Is He Still Single》定档1116！霍建华朱珠熟龄男女的爱情童话有！';
+      '《그는 왜 아직 싱글인가 Why Is He Still Single》 11월 16일 공개 확정! 곽건화, 주주 성숙한 남녀의 동화 같은 로맨스!';
 
   @override
   String get whyIsHeStillSingle3 =>
-      '《他为什么依然单身 Why Is He Still Single》Full Version｜主演：霍建华，朱珠 腾讯视频-青春剧场';
+      '《그는 왜 아직 싱글인가 Why Is He Still Single》 풀버전｜주연: 곽건화, 주주 텐센트 비디오-청춘극장';
 
   @override
   String get ijgFlHRPHw => 'Ijg-FlHRPHw';
 
   @override
   String get whyIsHeStillSingle4 =>
-      '《他为什么依然单身 Why Is He Still Single》Full Version 1｜主演：霍建华，朱珠 腾讯视频-青春剧场';
+      '《그는 왜 아직 싱글인가 Why Is He Still Single》 풀버전 1｜주연: 곽건화, 주주 텐센트 비디오-청춘극장';
 
   @override
   String get whyIsHeStillSingle5 =>
-      '《他为什么依然单身 Why Is He Still Single》Full Version 2｜主演：霍建华，朱珠 腾讯视频-青春剧场';
+      '《그는 왜 아직 싱글인가 Why Is He Still Single》 풀버전 2｜주연: 곽건화, 주주 텐센트 비디오-청춘극장';
 
   @override
   String get yVGKe9xonY => 'YV-GKe9xonY';
@@ -9044,7 +9037,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get uc5hawjBFU => 'Uc5hawj_bFU';
 
   @override
-  String get fightForLove => '山河枕 Fight for Love';
+  String get fightForLove => '산하침 Fight for Love';
 
   @override
   String get lGP6TCHM => 'l_g-p6TC_hM';
@@ -9075,10 +9068,10 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLyX_50Z72L2w_HtPGkazV4-lCGl20kRY4';
 
   @override
-  String get iMNobody => '我本无名  I\'m Nobody';
+  String get iMNobody => '아본무명 I\'m Nobody';
 
   @override
-  String get persona => '重影 Persona';
+  String get persona => '중영 페르소나';
 
   @override
   String get d5CPVc0EIY => 'D5CPVc0E-IY';
@@ -9090,7 +9083,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get vYRvNE7Yk => '-VYRvNE-7Yk';
 
   @override
-  String get lightBeyondTheReed => '余生有涯 Light Beyond the Reed';
+  String get lightBeyondTheReed => '여생유애 Light Beyond the Reed';
 
   @override
   String get kqfhRrmmG => 'Kqfh_Rrmm_g';
@@ -9108,93 +9101,93 @@ class AppLocalizationsKo extends AppLocalizations {
   String get gb0Bk564EQ => 'gb0Bk564-EQ';
 
   @override
-  String get thePrisonerOfBeauty => '折腰精简版 The Prisoner of Beauty';
+  String get thePrisonerOfBeauty => '절요 요약본 The Prisoner of Beauty';
 
   @override
   String get wsGeYBRO => 'wsGeYB_-r_o';
 
   @override
   String get thePrisonerOfBeauty2 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔替姐嫁世仇，新婚头天就和夫君杠上了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 소교가 언니 대신 원수 집안으로 시집가 첫날부터 남편과 기싸움을 벌이다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty3 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔破刘琰炸渠阴谋，和魏劭从死磕变互相护着｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 소교가 유염의 운하 폭파 음모를 저지하고 위소와 숙적에서 서로를 지켜주는 사이가 되다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty4 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔装病争主院，魏劭当众护妻拒纳妾｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 소교가 꾀병으로 안채를 차지하고 위소가 사람들 앞에서 아내를 싸고돌며 첩 두기를 거절하다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty5 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔破了木匣栽赃局，魏劭认她是自家女君了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 소교가 나무 상자 모함 공작을 파헤치고 위소가 그녀를 집안의 안주인으로 인정하다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty6 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔智破嫁祸局，魏劭认妻护妻婆媳掀桌｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 소교가 지혜로 모함 공작을 파헤치고 위소가 아내를 인정하고 지키자 고부 갈등이 타오르다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty7 =>
-      '《折腰精简版 The Prisoner of Beauty》魏俨挑事传假信，小乔魏劭因玉坠闹信任危机｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 위엄이 가짜 편지로 도발하고 소교와 위소가 옥노리개 때문에 신뢰 위기에 빠지다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty8 =>
-      '《折腰精简版 The Prisoner of Beauty》苏娥皇用熟麦坑小乔，魏劭护妻破案俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 서아황이 익힌 보리로 소교를 함정에 빠뜨리고 위소가 아내를 지키며 사건을 해결해 둘의 사이가 더욱 가까워지다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty9 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔魏劭遇刺中毒，小乔智破阴谋救夫更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 소교와 위소가 암살 시도와 중독을 겪고 소교가 지혜로 음모를 파헤쳐 남편을 구하며 더욱 친밀해지다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get rNYFWNcb8o => 'RNYFW-Ncb8o';
 
   @override
   String get thePrisonerOfBeauty10 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭送战马后补发簪，护妻失踪急得抓耳挠腮｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 위소가 전마를 선물한 후 비녀를 챙겨주고 아내가 실종되자 안절부절못하다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty11 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭怕小乔跑了吃醋护妻，搬出又后悔想她｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 위소가 소교가 도망칠까 봐 질투하며 아내를 감싸고 이사 나갔다가 후회하며 그녀를 그리워하다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty12 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭吃醋背小乔，解木匣疑云俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 위소가 질투하며 소교를 업어주고 나무 상자 의문이 풀리며 둘 사이가 더욱 가까워지다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty13 =>
-      '《折腰精简版 The Prisoner of Beauty》乔慈探姐引魏劭吃醋，小乔俩口子掏心定终身｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 요약본 The Prisoner of Beauty》 교자가 누나를 찾아와 위소의 질투를 유발하고 소교 부부가 진심을 터놓으며 평생을 약속하다 | 주연: 송조아, 유우녕 텐센트 비디오-청춘극장';
 
   @override
   String get thePrisonerOfBeauty14 =>
-      '《折腰精简版 The Prisoner of Beauty》魏俨为小乔离乡，劭乔吵架后和好｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 축약본 The Prisoner of Beauty》 웨이옌은 소교를 위해 고향을 떠나고, 샤오와 교는 다툰 후 화해함｜주연: 송조아, 유우녕 텐센트 비디오 - 청춘극장';
 
   @override
   String get ry1BWClaV0 => 'ry1BWCla-V0';
 
   @override
   String get thePrisonerOfBeauty15 =>
-      '《折腰精简版 The Prisoner of Beauty》新婚夜兵变姐妹反目，小乔智退敌魏劭认错｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 축약본 The Prisoner of Beauty》 첫날밤 군사 반란으로 자매가 대립하고, 소교는 지혜로 적을 물리치고 웨이샤오는 잘못을 인정함｜주연: 송조아, 유우녕 텐센트 비디오 - 청춘극장';
 
   @override
   String get o8nFcvzyvM => 'O8n-FcvzyvM';
 
   @override
   String get thePrisonerOfBeauty16 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭陪小乔回康郡解心结，乔父认婿俩口子圆房｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 축약본 The Prisoner of Beauty》 웨이샤오가 소교와 함께 강군으로 돌아가 앙금을 풀고, 교 아버지가 사위를 인정해 두 사람이 합방함｜주연: 송조아, 유우녕 텐센트 비디오 - 청춘극장';
 
   @override
   String get krsrk6wSAy8 => 'Krsrk6wSAy8';
 
   @override
   String get thePrisonerOfBeauty17 =>
-      '《折腰精简版 The Prisoner of Beauty》乔越叛变魏梁丧命，大乔被劫比彘拼命反杀｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 축약본 The Prisoner of Beauty》 교월의 반란으로 웨이량이 목숨을 잃고, 대교가 납치되자 비치가 목숨 걸고 반격함｜주연: 송조아, 유우녕 텐센트 비디오 - 청춘극장';
 
   @override
   String get v26fn6w270 => 'V-26fn6w270';
 
   @override
   String get thePrisonerOfBeauty18 =>
-      '《折腰精简版 The Prisoner of Beauty》魏梁战死魏渠断臂，大乔坠楼刘琰覆灭｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《절요 축약본 The Prisoner of Beauty》 웨이량이 전사하고 웨이취는 팔을 잃으며, 대교가 추락하고 유염이 멸망함｜주연: 송조아, 유우녕 텐센트 비디오 - 청춘극장';
 
   @override
   String get pLyX50Z72L2zD8aIumtBOoc0OWrwUUSe =>
@@ -9216,16 +9209,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get label4LTdKzOI54 => '4LTdKzO-I54';
 
   @override
-  String get pPT => '小组作业嫌我慢？霸总半夜爬窗送PPT，保安追着他跑 腾讯视频-青春剧场';
+  String get pPT =>
+      '조별 과제가 느리다고 구박받으니? 재벌 대표가 한밤중에 창문으로 PPT 전해주다 경비원한테 쫓김 텐센트 비디오 - 청춘극장';
 
   @override
   String get zPBZ1KRQ3hY => 'ZPBZ1KRQ3hY';
 
   @override
-  String get aThousandMilesToYour => '过遍千城才识君 A Thousand Miles to Your Heart';
+  String get aThousandMilesToYour =>
+      '수많은 도시를 지나 비로소 당신을 알았네 A Thousand Miles to Your Heart';
 
   @override
-  String get getTheWeTVAPP4 => '腾讯视频 - 古装剧场 - Get the WeTV APP';
+  String get getTheWeTVAPP4 => '텐센트 비디오 - 사극극장 - WeTV 앱 받기';
 
   @override
   String get jnz1S8Qb5xE => 'Jnz1S8Qb5xE';
@@ -9243,7 +9238,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mG6d7wN6fg => 'M-g6d7wN6fg';
 
   @override
-  String get theInescapable => '锁簪 The Inescapable';
+  String get theInescapable => '쇄잠 The Inescapable';
 
   @override
   String get label2TF7nb09WM => '2TF7nb09W-M';
@@ -9320,7 +9315,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get generationToGeneration222 =>
-      '《江湖夜雨十年灯 Generation to Generation》定档2月22日！看江湖最强新生代慕慕昭昭一起闯江湖';
+      '《강호야우십년등 Generation to Generation》 2월 22일 공개 확정! 강호 최강의 신세대 무무와 소소의 강호 모험을 확인하세요!';
 
   @override
   String get label6yOPycBAyU => '6y-oPycBAyU';
@@ -9350,7 +9345,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get lTtwLNkDHY => 'LTtwLNkD-HY';
 
   @override
-  String get the300LoyalGhosts2 => '大明暗影三百忠魂 The 300 Loyal Ghosts';
+  String get the300LoyalGhosts2 => '대명암영 삼백충혼 The 300 Loyal Ghosts';
 
   @override
   String get zj1Mh0bRE => 'zj1Mh_0b-rE';
@@ -9368,13 +9363,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ajdFKQ4uq8 => 'AjdF-kQ4uq8';
 
   @override
-  String get danceOfThePhoenix => '且听凤鸣 Dance of The Phoenix';
+  String get danceOfThePhoenix => '차청봉명 Dance of The Phoenix';
 
   @override
   String get f0uIRYSOwo => 'F0uIRY_SOwo';
 
   @override
-  String get extraordinary2 => '非凡 Extraordinary';
+  String get extraordinary2 => '비범 Extraordinary';
 
   @override
   String get mIOS6JeeMU => 'mIOS6Jee-mU';
@@ -9396,7 +9391,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get label2TheImperialCoronerS22 =>
-      '《御赐小仵作2 The Imperial Coroner S2》定档0115，楚瑜夫妇暖心回归！';
+      '<어사소오작2 The Imperial Coroner S2> 1월 15일 공개 확정, 초유 부부의 따뜻한 컴백!';
 
   @override
   String get kvFDYYmg => 'KvF__d-YYmg';
@@ -9417,16 +9412,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get yJPJ6RWgyg => 'yJP-j6RWgyg';
 
   @override
-  String get rebirthForYou => '嘉南传 Rebirth For You';
+  String get rebirthForYou => '가남전 Rebirth For You';
 
   @override
   String get f9eLAZQDUds => 'F9eLAZQDUds';
 
   @override
-  String get aVowInTheDark2 => '恋恋风陵渡 A Vow in the Dark';
+  String get aVowInTheDark2 => '연연풍릉도 A Vow in the Dark';
 
   @override
-  String get theUltimateVowUnknownTo => '君不知 The Ultimate Vow, Unknown to You';
+  String get theUltimateVowUnknownTo => '군부지 The Ultimate Vow, Unknown to You';
 
   @override
   String get duMRGzTeKs => 'DuM-rGzTeKs';
@@ -9436,7 +9431,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLs3DOuT3JlGTynSBKz3-z5DcDzwwmqSOf';
 
   @override
-  String get theChangAnYouth => '长安少年行 The Chang\'An Youth';
+  String get theChangAnYouth => '장안소년행 The Chang\'An Youth';
 
   @override
   String get jg0aX6eEK4 => 'Jg0aX6e_EK4';
@@ -9460,7 +9455,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get jRRXVJblrk => 'JRR-XVJblrk';
 
   @override
-  String get thePrincessDecree2 => '平凝有令 The Princess Decree';
+  String get thePrincessDecree2 => '평응유령 The Princess Decree';
 
   @override
   String get ppiNYsUwOA => 'PpiNYs-uwOA';
@@ -9472,7 +9467,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get p4cKjzSHFw => 'P4cKjz-sHFw';
 
   @override
-  String get babysitter => '我在冷宫做月嫂 Babysitter';
+  String get babysitter => '냉궁의 산후도우미 Babysitter';
 
   @override
   String get label0MjfIXHKOM => '0MjfIXHKO-M';
@@ -9491,7 +9486,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ddcGbI27AE => 'DdcGbI-27AE';
 
   @override
-  String get herPhoenixMajesty2 => '凤皇传 Her Phoenix Majesty';
+  String get herPhoenixMajesty2 => '봉황전 Her Phoenix Majesty';
 
   @override
   String get pzXvIZTfw => 'Pz_xvIZ-Tfw';
@@ -9597,7 +9592,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get xIf4aL45npQ => 'XIf4aL45npQ';
 
   @override
-  String get aGirlLikeMe2 => '我就是这般女子 A Girl Like Me';
+  String get aGirlLikeMe2 => '아취시적반녀자 A Girl Like Me';
 
   @override
   String get p4YsJ5WtBw => 'p4YsJ5Wt-bw';
@@ -9612,42 +9607,42 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mL0phSCWJY => 'mL0phSC-wJY';
 
   @override
-  String get sideStoryOfFoxVolant2 => '飞狐外传 Side Story of Fox Volant';
+  String get sideStoryOfFoxVolant2 => '비호외전 Side Story of Fox Volant';
 
   @override
   String get pLs3DOuT3JlGQCkd77fhalA8WxMD3OT4Q =>
       'PLs3DOuT3JlGQCkd77fhalA8Wx-mD3OT4Q';
 
   @override
-  String get aFlowerOnTheContinent2 => '有花在洲 A Flower On The Continent';
+  String get aFlowerOnTheContinent2 => '유화재주 A Flower On The Continent';
 
   @override
   String get aFlowerOnTheContinent3 =>
-      '【有花在洲 A Flower On The Continent】 小王爷当质子被花姑娘硬当公主，还挤一块住';
+      '【유화재주 A Flower On The Continent】 인질이 된 소왕야, 화 낭자에게 억지로 공주 취급받으며 한방 생활까지';
 
   @override
   String get aFlowerOnTheContinent4 =>
-      '【有花在洲 A Flower On The Continent】 花姑娘女装露馅，小王爷舍命护她还反被诬陷';
+      '【유화재주 A Flower On The Continent】 화 낭자의 여장이 들통나고, 소왕야는 목숨 걸고 그녀를 지켰으나 도리어 누명을 쓰다';
 
   @override
   String get aFlowerOnTheContinent5 =>
-      '【有花在洲 A Flower On The Continent】 花惜玉发现杀父仇人是宁玄洲的爹当场翻脸';
+      '【유화재주 A Flower On The Continent】 화석옥은 아버지를 죽인 원수가 닝쉬안저우의 부친임을 알고 그 자리에서 분노한다';
 
   @override
   String get aFlowerOnTheContinent6 =>
-      '【有花在洲 A Flower On The Continent】 花惜玉穿嫁衣闯敌营，拼了命救宁玄洲差点没命';
+      '【유화재주 A Flower On The Continent】 화석옥은 혼례복을 입고 적진에 침투해 목숨을 걸고 닝쉬안저우를 구하다 목숨을 잃을 뻔한다';
 
   @override
   String get aFlowerOnTheContinent7 =>
-      '【有花在洲 A Flower On The Continent】 两国签和约，宁玄洲撕诏书非要娶花惜玉';
+      '【유화재주 A Flower On The Continent】 양국이 화친 조약을 맺자, 닝쉬안저우는 조서를 찢으며 화석옥과 결혼하겠다고 고집한다';
 
   @override
   String get aFlowerOnTheContinent8 =>
-      '【有花在洲 A Flower On The Continent】 花惜玉割腕放血制药，宁玄洲告发父皇杀了她爹';
+      '【유화재주 A Flower On The Continent】 화석옥은 손목을 그어 약을 만들고, 닝쉬안저우는 부황이 그녀의 아버지를 죽였음을 고발한다';
 
   @override
   String get aFlowerOnTheContinent9 =>
-      '【有花在洲 A Flower On The Continent】 花惜玉知道爹是宁玄洲爹杀的，在花海砍断定情树枝';
+      '【유화재주 A Flower On The Continent】 화석옥은 아버지를 죽인 자가 닝쉬안저우의 부친임을 알고 꽃밭에서 정표 나뭇가지를 잘라버린다';
 
   @override
   String get pLs3DOuT3JlGS2bplCB41Z0150Kb9oQdn =>
@@ -9673,10 +9668,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get pbC7hP30zU => 'PbC7h-P30zU';
 
   @override
-  String get hilariousFamily22 => '芬芳喜事 Hilarious Family 2';
+  String get hilariousFamily22 => '분방희사 Hilarious Family 2';
 
   @override
-  String get sliceOfLife => 'Slice of Life';
+  String get sliceOfLife => '일상';
 
   @override
   String get p6Og4b7SEiw => 'P6Og4b7SEiw';
@@ -9710,11 +9705,11 @@ class AppLocalizationsKo extends AppLocalizations {
       'PLs3DOuT3JlGShdDzo52tfDOSU1UkUc-hX';
 
   @override
-  String get legendOfTheFemaleGeneral => '锦月如歌 Legend of The Female General';
+  String get legendOfTheFemaleGeneral => '금월어가 Legend of The Female General';
 
   @override
   String get highlightLegendOfTheFemale =>
-      'Highlight高光合集 【锦月如歌 Legend of The Female General】';
+      '하이라이트 모음 【금월여가 Legend of The Female General】';
 
   @override
   String get a40F2TEZrms => 'A40F2TEZrms';
@@ -9724,34 +9719,34 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get bTSLegendOfTheFemale =>
-      'BTS 周也的生日大放送 🎂！【锦月如歌 Legend of The Female General】';
+      '[메이킹] 저우예의 생일 비하인드 🎂! 【금월여가 Legend of The Female General】';
 
   @override
   String get bTSLegendOfTheFemale2 =>
-      'BTS 肖都督丞磊生日大放送 🎂！【锦月如歌 Legend of The Female General】';
+      '[메이킹] 소 도독 청레이의 생일 비하인드 🎂! 【금월여가 Legend of The Female General】';
 
   @override
   String get bTSLegendOfTheFemale3 =>
-      'BTS 战场上帅气合体打斗，没人能拒绝飒感拉满的大魏双星【锦月如歌 Legend of The Female General】';
+      '[메이킹] 전장에서의 멋진 합동 액션, 걸크러시 넘치는 대위의 두 별 【금월여가 Legend of The Female General】';
 
   @override
   String get bTS520LegendOfThe =>
-      'BTS 喜肖晏开的520约会方案【锦月如歌 Legend of The Female General】';
+      '[메이킹] 희소안개의 520 데이트 코스 【금월여가 Legend of The Female General】';
 
   @override
   String get bTSLegendOfTheFemale4 =>
-      'BTS 醉酒的周也可爱到犯规~舞剑反差萌拉满~一旁的丞磊嘴角笑意真藏不住一点！【锦月如歌 Legend of The Female General】';
+      '[메이킹] 취한 저우예의 심쿵 귀여움~ 검무 출 때 반전 매력 폭발! 옆에서 웃음 못 참는 청레이 【금월여가 Legend of The Female General】';
 
   @override
   String get pLs3DOuT3JlGRucYIZLqmT7FO5IWDWrP =>
       'PLs3DOuT3JlGRuc_yIZLqmT7FO5IWD-WrP';
 
   @override
-  String get thePrincessSGambit => '桃花映江山 The Princess\'s Gambit';
+  String get thePrincessSGambit => '도화영강산 The Princess\'s Gambit';
 
   @override
   String get highlightThePrincessSGambit =>
-      'Highlight高光合集 【桃花映江山 The Princess\'s Gambit】';
+      '하이라이트 모음 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get qJRbuw2hJ3s => 'QJRbuw2hJ3s';
@@ -9776,37 +9771,37 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get clipThePrincessSGambit =>
-      'Clip 一袭红衣染白雪！姜桃花为保护幼弟诀别故土远嫁祈国【桃花映江山 The Princess\'s Gambit】';
+      '[클립] 붉은 옷으로 흰 눈을 물들이다! 장도화, 어린 남동생을 지키려 고향을 떠나 기국으로 시집가다 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get clipThePrincessSGambit2 =>
-      'Clip 新婚日沈府妻妾集体作妖？桃花以退为进淡定接招【桃花映江山 The Princess\'s Gambit】';
+      '[클립] 혼인날 심부의 처첩들이 떼지어 행패? 도화, 후퇴를 전진 삼아 담담히 응수 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get clipThePrincessSGambit3 =>
-      'Clip 桃花自缢装晕被拆穿，沈在野一针扎醒：演，接着演！【桃花映江山 The Princess\'s Gambit】';
+      '[클립] 도화의 기절 자작극 간파한 심재야, 침으로 깨우며: 어디 계속 연기해보시지! 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get clipThePrincessSGambit4 =>
-      'Clip 沈相办案好狠的心！雷霆手段彻查恶钱案，贪官们瑟瑟发抖【桃花映江山 The Princess\'s Gambit】';
+      '[클립] 심 재상의 지독한 수사! 위조화폐 사건을 신속히 철저 수사하자 덜덜 떠는 탐관오리들 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get eDrJjtCRF0 => 'eDr-jjtCRF0';
 
   @override
   String get clipThePrincessSGambit5 =>
-      'Clip 面具刺客完美伪装难逃制裁，神探桃花：你的脚出卖了你！【桃花映江山 The Princess\'s Gambit】';
+      '[클립] 자객의 완벽 위장도 못 피한 처벌, 명탐정 도화: 네 발이 덜미를 잡았어! 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get clipPlayThePrincessS =>
-      'Clip 发簪审讯play！沈在野执簪挑起桃花下巴冷声逼问【桃花映江山 The Princess\'s Gambit】';
+      '[클립] 비녀 심문 PLAY! 심재야, 비녀로 도화의 턱을 치켜들며 차갑게 취조 【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get label58K8GxhXlQ => '58K8-gxhXlQ';
 
   @override
   String get clipThePrincessSGambit6 =>
-      'Clip 初次相见就玩这么大！沈在野桃花身中合欢散四目相对【桃花映江山 The Princess\'s Gambit】';
+      '클립 첫 만남부터 이렇게 파격적이라니! 심재야와 도화, 합환산에 중독된 채 서로를 바라보다【도화영강산 The Princess\'s Gambit】';
 
   @override
   String get pLIPiKkSFpK8B6r2izKyYYiYdbkYSBbd =>
@@ -9890,10 +9885,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get limitedFULLTheIngeniousOne =>
-      '【Limited FULL】云襄传 | The Ingenious One | iQIYI 👑Join the Membership and enjoy full episodes now!';
+      '【한정 전편 공개】운향전 | The Ingenious One | iQIYI 👑지금 멤버십에 가입하고 전편을 시청해보세요!';
 
   @override
-  String get iQIYIGetTheIQIYIAPP2 => 'iQIYI 爱奇艺 - Get the iQIYI APP';
+  String get iQIYIGetTheIQIYIAPP2 => 'iQIYI 아이치이 - iQIYI 앱 다운로드';
 
   @override
   String get aky3021PW => '_Aky3021P-w';
@@ -10008,12 +10003,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get r7Jzgv6XuM => '-r7Jzgv6XuM';
 
   @override
-  String get fULLROADHOMEBoranJingSeven =>
-      '【FULL】👮ROAD HOME💕 | BoranJing, Seven Tan | iQIYI Philippines';
+  String get fULLROADHOMEBoranJingSeven => '【전편】👮귀로💕 | 정백연, 담송운 | iQIYI 필리핀';
 
   @override
-  String get iQIYIPhilippinesGetTheIQIYI =>
-      'iQIYI Philippines - Get the iQIYI APP';
+  String get iQIYIPhilippinesGetTheIQIYI => 'iQIYI 필리핀 - iQIYI 앱 다운로드';
 
   @override
   String get lKuff6Nfwp8 => 'LKuff6Nfwp8';
@@ -10031,8 +10024,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get k3KVVNRjgw => 'K3KVV-NRjgw';
 
   @override
-  String get aIEnglishDubMrBAD =>
-      '【AI English Dub】Mr. BAD | Chen Zheyuan, Yue Shen | iQIYI Philippines';
+  String get aIEnglishDubMrBAD => '【AI 영어 더빙】Mr. BAD | 진철원, 심월 | iQIYI 필리핀';
 
   @override
   String get h7d38oiW4 => '-h7d38oi_w4';
@@ -10051,7 +10043,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get loveOfTheDivineTree2 =>
-      '🌸【奇幻仙侠】🎋Love of the Divine Tree 仙台有树 | Deng Wei × Xiang Hanzhi | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!';
+      '🌸【판타지 선협】🎋선대유수 Love of the Divine Tree 仙台有树 | 덩웨이 × 샹한즈 | FULL 정편 | iQIYI 👑지금 멤버십에 가입하고 전편을 즐기세요!';
 
   @override
   String get uFSyFzIASM => 'UFSyFzIA-sM';
@@ -10195,8 +10187,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get label8EXPB74Dyc => '8-EXPB74Dyc';
 
   @override
-  String get fULLMyDearGuardianJohnny =>
-      '【FULL】🕊️My Dear Guardian |  Johnny Huang, Li Qin | iQIYI Philippines';
+  String get fULLMyDearGuardianJohnny => '【전편】🕊️친애적융장 | 황징위, 리친 | iQIYI 필리핀';
 
   @override
   String get fN0lxPL4Qa0 => 'FN0lxPL4Qa0';
@@ -10233,7 +10224,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get theBestThingZhangLinghe =>
-      '🌸【治愈爱情】🎋The Best Thing 爱你 | Zhang Linghe × Xu Ruohan | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!';
+      '🌸【힐링 로맨스】🎋애니 (The Best Thing) | 장링허 × 쉬뤄한 | FULL 본편 | iQIYI 👑지금 멤버십에 가입하고 전편을 감상하세요!';
 
   @override
   String get h22R4lYT0QQ => 'H22R4lYT0QQ';
@@ -10252,7 +10243,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get eP012026RebirthChineseDrama =>
-      '📽️【EP01 2026】Rebirth Chinese Drama  ENGSUB | Li Yunrui / Huangyang Tiantian /Zhang Kangle ⛵😍 Historical Drama 2026 #冰湖重生';
+      '📽️【EP01 2026】빙호중생 중국 드라마 영문자막 | 리윈루이 / 황양톈톈 / 장캉러 ⛵😍 사극 2026 #빙호중생';
 
   @override
   String get soRNQqVHiE => 'SoRN-qqVHiE';
@@ -10330,7 +10321,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get fULLFatedHeartsLiQin =>
-      '【FULL】🏹Fated Hearts | Li Qin, Chen Zheyuan | iQIYI Philippines';
+      '【전편】🏹Fated Hearts | 리친, 천쩌위안 | iQIYI 필리핀';
 
   @override
   String get kCYYUs6wGOY => 'KCYYUs6wGOY';
@@ -10637,7 +10628,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get fullBrightEyesInThe =>
-      '【Full】Bright Eyes in the Dark | Johnny Huang, Zhang Jing Yi | iQIYI Philippines';
+      '【전편】 Bright Eyes in the Dark | 황징위, 장징이 | iQIYI 필리핀';
 
   @override
   String get jalmOqeImY => 'JalmOqeIm-Y';
@@ -10797,11 +10788,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get eNGSUBChineseFantasyMovie =>
-      '🎥✨【ENG SUB】Chinese Fantasy Movie | Fantasy、Adventure【 iQIYI MOVIE THEATER-Welcome to subscribe】';
+      '🎥✨【영어 자막】 중국 판타지 영화 | 판타지, 모험 【아이치이 영화관 - 구독을 환영합니다】';
 
   @override
   String get iQIYIMOVIETHEATERGetThe =>
-      '爱奇艺大电影 iQIYI MOVIE THEATER - Get the iQIYI APP';
+      '아이치이 영화관 iQIYI MOVIE THEATER - iQIYI 앱 받기';
 
   @override
   String get oNi1Mh97lYo => 'ONi1Mh97lYo';
@@ -10823,7 +10814,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get miniDramaENGSUBFull =>
-      '🎀【微短剧 Mini Drama】ENG SUB | Full Version Collection | Download WeTV / Tencent Video APP to Watch More';
+      '🎀【미니 드라마 Mini Drama】영어 자막 | 전편 모음집 | WeTV / Tencent Video 앱에서 더 보기';
 
   @override
   String get vZysxG7Jdg => 'V-zysxG7Jdg';
@@ -10891,7 +10882,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get fullBeautyOfResilienceJu =>
-      '【Full】Beauty of Resilience | Ju Jing Yi, Fiction | iQIYI Philippines';
+      '【전편】화융(Beauty of Resilience) | 쥐징이, 궈쥔천 | iQIYI Philippines';
 
   @override
   String get tT8V4eOewkc => 'TT8V4eOewkc';
@@ -10935,7 +10926,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get hotTrendingMoonlitReunionFull =>
-      '🔥Hot Trending【子夜归 Moonlit Reunion】Full EPS | Human and Demon fall in love while solving mysteries | Xu Kai, Tian Xiwei | ENG SUB';
+      '🔥인기 급상승【자야귀 Moonlit Reunion】전편 | 사건을 해결하며 사랑에 빠지는 인간과 요괴 | 쉬카이, 톈시웨이 | 영어 자막';
 
   @override
   String get v7niIXnWWM => 'v7ni-iXnWWM';
@@ -11076,16 +11067,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get partContentDetails => '?part=contentDetails';
 
   @override
-  String get fallInLove => 'fall in love';
+  String get fallInLove => '사랑에 빠지다';
 
   @override
-  String get myGirl => 'my girl';
+  String get myGirl => '마이 걸';
 
   @override
-  String get firstRomance2 => 'first romance';
+  String get firstRomance2 => '첫 로맨스';
 
   @override
-  String get fallFor => 'fall for';
+  String get fallFor => '반하다';
 
   @override
   String get uCD83JhUFQXRDwC6S8caCQ => 'UCD_83Jh-UFQXRDwC6S8caCQ';
@@ -11097,46 +11088,46 @@ class AppLocalizationsKo extends AppLocalizations {
   String get uCRABdhiBHX4BieJfPCd2pg => 'UCRABdhiBHX4Bie-jfPCd2pg';
 
   @override
-  String get hiddenLove2 => 'Hidden Love';
+  String get hiddenLove2 => '투투장부주';
 
   @override
-  String get loveBetweenFairyAndDevil2 => 'Love Between Fairy and Devil';
+  String get loveBetweenFairyAndDevil2 => '창란결';
 
   @override
-  String get loveLikeTheGalaxy2 => 'Love Like The Galaxy';
+  String get loveLikeTheGalaxy2 => '성한찬란';
 
   @override
-  String get myJourneyToYou2 => 'My Journey to You';
+  String get myJourneyToYou2 => '운지깃';
 
   @override
-  String get mysteriousLotusCasebook2 => 'Mysterious Lotus Casebook';
+  String get mysteriousLotusCasebook2 => '연화루';
 
   @override
-  String get reset => 'Reset';
+  String get reset => '초기화';
 
   @override
-  String get theLongBallad2 => 'The Long Ballad';
+  String get theLongBallad2 => '장가행';
 
   @override
-  String get theUntamed2 => 'The Untamed';
+  String get theUntamed2 => '진정령';
 
   @override
-  String get wordOfHonor2 => 'Word of Honor';
+  String get wordOfHonor2 => '산하령';
 
   @override
-  String get lightOfDawn2 => '人之初 Light of Dawn';
+  String get lightOfDawn2 => '人之初 새벽의 빛';
 
   @override
-  String get hOMELANDGUARDIAN2 => '守诚者|HOMELAND GUARDIAN';
+  String get hOMELANDGUARDIAN2 => '守诚者|조국 수호자';
 
   @override
-  String get searching2 => 'Searching...';
+  String get searching2 => '검색 중...';
 
   @override
-  String get verse => 'Verse';
+  String get verse => '시구';
 
   @override
-  String get allStories2 => 'All Stories';
+  String get allStories2 => '모든 이야기';
 
   @override
   String get bbcComZhongwenTrad => 'bbc.com/zhongwen/trad';
@@ -11179,7 +11170,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ttsActiveWord2 => 'tts-active-word';
 
   @override
-  String get upperIntermediate2 => 'Upper-Intermediate';
+  String get upperIntermediate2 => '중상급';
 
   @override
   String get hanziDarkModeStyle => 'hanzi-dark-mode-style';
@@ -11207,297 +11198,795 @@ class AppLocalizationsKo extends AppLocalizations {
   String get documentTitle => 'document.title';
 
   @override
-  String get processing => 'Processingâ€¦';
+  String get processing => '처리 중…';
 
   @override
-  String get keepItUp => '好！Keep it up';
+  String get keepItUp => '好！ 계속 힘내세요';
 
   @override
-  String get minutesDay => 'Minutes / Day';
+  String get minutesDay => '분 / 일';
 
   @override
-  String get consistencyIsTheInkThat =>
-      '\"Consistency is the ink that builds the character.\"';
+  String get consistencyIsTheInkThat => '\"꾸준함은 한자를 완성하는 먹물입니다.\"';
 
   @override
-  String get businessCareer => 'Business & Career';
+  String get businessCareer => '비즈니스 및 커리어';
 
   @override
-  String get travelSurvival => 'Travel & Survival';
+  String get travelSurvival => '여행 및 필수 회화';
 
   @override
-  String get label05MinDay => '05 Min / Day';
+  String get label05MinDay => '05분 / 일';
 
   @override
-  String get label10MinDay => '10 Min / Day';
+  String get label10MinDay => '10분 / 일';
 
   @override
-  String get label20MinDay => '20 Min / Day';
+  String get label20MinDay => '20분 / 일';
 
   @override
-  String get label30MinDay => '30 Min / Day';
+  String get label30MinDay => '30분 / 일';
 
   @override
-  String get dynamicDecksStrokeAnalysis => 'Dynamic Decks & Stroke Analysis';
+  String get dynamicDecksStrokeAnalysis => '동적 덱 및 획순 분석';
 
   @override
   String get subscriptionsAreTemporarilyUnavailablePl =>
-      'Subscriptions are temporarily unavailable. Please try again.';
+      '구독 서비스를 일시적으로 사용할 수 없습니다. 다시 시도해 주세요.';
 
   @override
-  String get trialReminder => 'Trial Reminder';
+  String get trialReminder => '무료 체험 알림';
 
   @override
   String get turnOnNotificationsIfYou =>
-      'Turn on notifications if you would like a reminder before your eligible trial expires. Your App Store subscription settings remain the source of truth.';
+      '무료 체험 기간이 만료되기 전에 알림을 받으려면 알림을 켜세요. 최종 구독 정보는 App Store 구독 설정에서 확인하실 수 있습니다.';
 
   @override
-  String get label2Months => '2 months';
+  String get label2Months => '2개월';
 
   @override
-  String get label3Months => '3 months';
+  String get label3Months => '3개월';
 
   @override
-  String get label6Months => '6 months';
+  String get label6Months => '6개월';
 
   @override
-  String get billingPeriod => 'billing period';
+  String get billingPeriod => '결제 주기';
 
   @override
-  String get chooseASubscription => 'Choose a subscription';
+  String get chooseASubscription => '구독 플랜 선택';
 
   @override
-  String get startFreeTrial => 'Start free trial';
+  String get startFreeTrial => '무료 체험 시작';
 
   @override
-  String get smartNewsDict => 'Smart News & Dict';
+  String get smartNewsDict => '스마트 뉴스 및 사전';
 
   @override
-  String get hSK16AIDecks => 'HSK 1-6 & AI Decks';
+  String get hSK16AIDecks => 'HSK 1~6 및 AI 덱';
 
   @override
-  String get continueWithTemporaryPremium => 'Continue with temporary Premium';
+  String get continueWithTemporaryPremium => '임시 프리미엄으로 계속하기';
 
   @override
-  String get testProductUnavailable => 'Test product unavailable';
+  String get testProductUnavailable => '테스트 상품을 사용할 수 없습니다';
 
   @override
-  String get paymentIsChargedToYour =>
-      'Payment is charged to your App Store account.';
+  String get paymentIsChargedToYour => '결제 금액은 App Store 계정으로 청구됩니다.';
 
   @override
   String get subscriptionsRenewAutomaticallyUnlessCan =>
-      'Subscriptions renew automatically unless canceled';
+      '취소하지 않으면 구독이 자동으로 갱신됩니다';
 
   @override
-  String get atLeast24HoursBefore =>
-      'at least 24 hours before the end of the current period.';
+  String get atLeast24HoursBefore => '현재 기간 종료 최소 24시간 전에.';
 
   @override
   String get privacyPolicy => '개인정보 처리방침';
 
   @override
-  String get closePurchaseOffer => 'Close purchase offer';
+  String get closePurchaseOffer => '구매 제안 닫기';
 
   @override
-  String get loading => 'Loading...';
+  String get loading => '로딩 중...';
 
   @override
-  String get analyzingImage2 => 'Analyzing image…';
+  String get analyzingImage2 => '이미지 분석 중…';
 
   @override
-  String get extractingChineseText2 => 'Extracting Chinese text…';
+  String get extractingChineseText2 => '중국어 텍스트 추출 중…';
 
   @override
-  String get lookingUpVocabulary2 => 'Looking up vocabulary…';
+  String get lookingUpVocabulary2 => '어휘 검색 중…';
 
   @override
-  String get deselectAll => 'Deselect All';
+  String get deselectAll => '전체 선택 해제';
 
   @override
-  String get selectAll => 'Select All';
+  String get selectAll => '전체 선택';
 
   @override
-  String get worldChineseLiteraryMasterpiece =>
-      'World & Chinese literary masterpiece.';
+  String get worldChineseLiteraryMasterpiece => '세계 및 중국 문학의 명작.';
 
   @override
-  String get classic => 'Classic';
+  String get classic => '고전';
 
   @override
-  String get literature => 'Literature';
+  String get literature => '문학';
 
   @override
-  String get theOriginAwakening => 'The Origin & Awakening';
+  String get theOriginAwakening => '기원과 깨어남';
 
   @override
-  String get turbulentHorizonsTheJourney => 'Turbulent Horizons & The Journey';
+  String get turbulentHorizonsTheJourney => '격동의 지평과 여정';
 
   @override
-  String get trialsTribulationsDevotion => 'Trials, Tribulations & Devotion';
+  String get trialsTribulationsDevotion => '시련, 고난, 그리고 헌신';
 
   @override
-  String get theClashOfWitsBravery => 'The Clash of Wits & Bravery';
+  String get theClashOfWitsBravery => '지혜와 용기의 대결';
 
   @override
-  String get theGrandClimaxResolution => 'The Grand Climax & Resolution';
+  String get theGrandClimaxResolution => '대단원과 결말';
 
   @override
-  String get everlastingLegacyEpilogue => 'Everlasting Legacy & Epilogue';
+  String get everlastingLegacyEpilogue => '영원한 유산과 에필로그';
 
   @override
   String get acrossTheVastExpanseOf =>
-      'Across the vast expanse of heaven and earth, characters pursue their destiny and convictions through profound trials.';
+      '광활한 천지 속에서, 등장인물들은 깊은 시련을 거치며 자신만의 운명과 신념을 좇아갑니다.';
 
   @override
   String get everyDialogueAndEncounterWithin =>
-      'Every dialogue and encounter within the tale carries the brilliance of the human spirit and the imprint of its era.';
+      '이야기 속 모든 대화와 만남에는 인간 정신의 빛나는 가치와 시대의 흔적이 새겨져 있습니다.';
 
   @override
   String get followingTheFlowOfProse =>
-      'Following the flow of prose, readers traverse centuries of time to share in the triumphs and sorrows of legendary figures.';
+      '글의 흐름을 따라 독자는 수백 년의 세월을 넘어 전설적 인물들의 영광과 슬픔을 함께합니다.';
 
   @override
-  String get preQin => 'pre-qin';
+  String get preQin => '선진';
 
   @override
-  String get theGoddessNWaRepairing => 'The goddess Nüwa repairing the sky';
+  String get theGoddessNWaRepairing => '하늘을 메우는 여와 여신';
 
   @override
-  String get artsTraditions => 'Arts & Traditions';
+  String get artsTraditions => '예술 및 전통';
 
   @override
-  String get femaleWarm => 'Female, warm';
+  String get femaleWarm => '여성, 따뜻함';
 
   @override
-  String get femaleCheerful => 'Female, cheerful';
+  String get femaleCheerful => '여성, 밝음';
 
   @override
-  String get maleUpbeat => 'Male, upbeat';
+  String get maleUpbeat => '남성, 경쾌함';
 
   @override
-  String get maleNewsStyle => 'Male, news-style';
+  String get maleNewsStyle => '남성, 뉴스 스타일';
 
   @override
-  String get maleSporty => 'Male, sporty';
+  String get maleSporty => '남성, 스포티';
 
   @override
-  String get onDevice => 'On-device';
+  String get onDevice => '온디바이스';
 
   @override
-  String get label15Minutes => '15 Minutes';
+  String get label15Minutes => '15분';
 
   @override
-  String get label30Minutes => '30 Minutes';
+  String get label30Minutes => '30분';
 
   @override
-  String get label45Minutes => '45 Minutes';
+  String get label45Minutes => '45분';
 
   @override
-  String get selectChapter => 'Select Chapter';
+  String get selectChapter => '챕터 선택';
 
   @override
-  String get andContinuesToBeStudied =>
-      'and continues to be studied and celebrated by readers across generations.';
+  String get andContinuesToBeStudied => '또한 세대를 넘어 독자들에게 계속 연구되고 사랑받고 있습니다.';
 
   @override
-  String get label1Poem => '1 Poem';
+  String get label1Poem => '시 1편';
 
   @override
-  String get label1Chapter => '1 Chapter';
+  String get label1Chapter => '1개 챕터';
 
   @override
-  String get localDeviceVoice2 => 'Local device voice';
+  String get localDeviceVoice2 => '기기 로컬 음성';
 
   @override
   String get weeklyAzureQuotaReachedSwitching =>
-      'Weekly Azure quota reached — switching to local voice';
+      '주간 Azure 한도 도달 — 기기 로컬 음성으로 전환합니다';
 
   @override
-  String get sleepTimer2 => '定时关闭 · Sleep Timer';
+  String get sleepTimer2 => '취침 타이머';
 
   @override
-  String get tableOfContents2 => '目录 · Table of Contents';
+  String get tableOfContents2 => '목차';
 
   @override
   String get hanziMaster10 => 'HanziMaster/1.0';
 
   @override
-  String get spanishItalianRussianClassics =>
-      'Spanish, Italian & Russian Classics';
+  String get spanishItalianRussianClassics => '스페인·이탈리아·러시아 고전';
 
   @override
-  String get englishAmericanGlobalClassics =>
-      'English, American & Global Classics';
+  String get englishAmericanGlobalClassics => '영미 및 세계 고전';
 
   @override
   String get whileStrategicallyEmbeddingWordsYou =>
-      'while strategically embedding words you are currently struggling with so you can learn them in context.';
+      '현재 어려워하는 단어를 문맥 속에서 학습할 수 있도록 전략적으로 배치합니다.';
 
   @override
-  String get poetryPainting => 'poetry-painting';
+  String get poetryPainting => '시화';
 
   @override
   String get contactSinosparkCom => 'contact@sinospark.com';
 
   @override
   String get shadowingStudioIsADedicated =>
-      'Shadowing Studio is a dedicated space to practice mimicking native speakers. You listen to a phrase, record yourself repeating it, and compare the waveforms and pronunciation scores to refine your accent.';
+      '섀도잉 스튜디오는 원어민 따라 말하기를 연습하는 전용 공간입니다. 문장을 듣고 녹음한 후, 파형과 발음 점수를 비교하여 억양을 교정할 수 있습니다.';
 
   @override
   String get theVoicesInAIStories =>
-      'The voices in AI Stories and Echo Hall are powered by advanced Neural Text-to-Speech models. They are specifically tuned to provide authentic native Chinese accents, appropriate emotional inflection, and natural pacing.';
+      'AI 스토리와 에코 홀의 목소리는 최첨단 신경망 음성 합성(Neural TTS) 모델을 기반으로 합니다. 원어민의 성조와 억양, 자연스러운 감정 표현 및 속도를 제공하도록 정교하게 조율되었습니다.';
 
   @override
   String get theWebExplorerAllowsYou =>
-      'The Web Explorer allows you to browse any Chinese website. When you encounter a difficult word, simply tap it to open the Quick Look card, which provides instant pinyin, translation, and HSK level.';
+      '웹 탐색기를 사용하여 모든 중국어 웹사이트를 탐색할 수 있습니다. 어려운 단어를 발견하면 탭하여 퀵 룩 카드를 열고 병음, 번역, HSK 등급을 즉시 확인해보세요.';
 
   @override
   String get zenModeStripsAwayDistracting =>
-      'Zen Mode strips away distracting web elements, ads, and complex layouts from articles, presenting you with a clean, calligraphic reading environment focused purely on the text.';
+      '선(Zen) 모드는 기사의 산만한 웹 요소, 광고, 복잡한 레이아웃을 제거하여 텍스트에만 집중할 수 있는 깔끔한 서예 스타일의 독서 환경을 제공합니다.';
 
   @override
   String get weUseAnIntelligentAlgorithm =>
-      'We use an intelligent algorithm that predicts when you are about to forget a word. Words you struggle with will appear more frequently, while words you know well will be scheduled further into the future.';
+      '지능형 알고리즘을 통해 단어를 잊어버릴 시점을 예측합니다. 어려운 단어는 더 자주 나타나고, 잘 아는 단어는 나중에 복습하도록 일정이 조정됩니다.';
 
   @override
-  String get usage3 => 'Usage:';
+  String get usage3 => '용례:';
 
   @override
   String get tutorialOneExplanation =>
-      'This is ONE (Yī). Always draw from Left to Right.';
+      '이것은 숫자 \'一(Yī)\'입니다. 항상 왼쪽에서 오른쪽으로 획을 그으세요.';
 
   @override
   String get tutorialWaterExplanation =>
-      'This is the full character WATER (Shuǐ). When used as a left-side component, it shapeshifts into \'氵\' (Three Drops)!';
+      '이것은 \'水(Shuǐ)\' 글자입니다. 왼쪽에 부수로 사용될 때는 \'氵\'(삼수변) 형태로 변형됩니다!';
 
   @override
   String get tutorialRadicalsExplanation =>
-      'Hanzi are built from building blocks called RADICALS. They give the character its core meaning or theme.';
+      '한자는 \'부수\'라는 기본 요소로 구성됩니다. 부수는 한자의 핵심 의미나 주제를 나타냅니다.';
 
   @override
   String get tutorialLettersExplanation =>
-      'Hanzi are not just letters. They are pictures frozen in time. To master them, you must learn to trace their flow.';
+      '한자는 단순한 글자가 아닌 시간 속에 멈춘 그림입니다. 한자를 마스터하려면 획의 흐름을 익혀야 합니다.';
 
   @override
   String get tutorialGalaxyExplanation =>
-      'The Galaxy Map awaits. Master the Suns (Radicals) to unlock the Planets (Characters).';
+      '은하수 지도가 기다리고 있습니다. 항성(부수)을 마스터하여 행성(한자)을 해금해보세요.';
 
   @override
-  String get onboardingDailyLifeTravel => 'Daily Life & Travel';
+  String get onboardingDailyLifeTravel => '일상생활 및 여행';
 
   @override
-  String get onboardingPhilosophyIdioms => 'Philosophy & Idioms';
+  String get onboardingPhilosophyIdioms => '철학 및 성어';
 
   @override
-  String get onboardingBusinessCareerMulti => 'Business &\nCareer';
+  String get onboardingBusinessCareerMulti => '비즈니스 및\n커리어';
 
   @override
-  String get onboardingTravelSurvivalMulti => 'Travel &\nSurvival';
+  String get onboardingTravelSurvivalMulti => '여행 및\n필수 표현';
 
   @override
-  String get onboardingHskCertificationMulti => 'HSK\nCertification';
+  String get onboardingHskCertificationMulti => 'HSK\n자격증';
 
   @override
-  String get onboardingCulturalAppreciationMulti => 'Cultural\nAppreciation';
+  String get onboardingCulturalAppreciationMulti => '문화\n이해';
+
+  @override
+  String get practiceReminders => '연습 알림';
+
+  @override
+  String get oneOptionalDailyReminderTo => '중국어 학습을 위한 매일 알림 (선택 사항)';
+
+  @override
+  String get aFewMinutesOfChinese => '잠시 중국어 공부해보실래요? 🌱';
+
+  @override
+  String get keepYourProgressMovingWith => '짧은 연습으로 꾸준히 실력을 쌓아보세요.';
+
+  @override
+  String get xuX => 'xué xí';
+
+  @override
+  String get toStudyToLearn => '공부하다 · 배우다';
+
+  @override
+  String get pNgYou => 'péng you';
+
+  @override
+  String get fXiN => 'fā xiàn';
+
+  @override
+  String get toDiscover => '발견하다';
+
+  @override
+  String get jiNCh => 'jiān chí';
+
+  @override
+  String get toPersist => '지속하다';
+
+  @override
+  String get yNgQ => 'yǒng qì';
+
+  @override
+  String get zhHu => 'zhì huì';
+
+  @override
+  String get chNgZhNg => 'chéng zhǎng';
+
+  @override
+  String get toGrow => '성장하다';
+
+  @override
+  String get pNgJNg => 'píng jìng';
+
+  @override
+  String get calmPeaceful => '차분함 · 평온함';
+
+  @override
+  String get xWNg => 'xī wàng';
+
+  @override
+  String get lJi => 'lǐ jiě';
+
+  @override
+  String get toUnderstand => '이해하다';
+
+  @override
+  String get xGuN => 'xí guàn';
+
+  @override
+  String get wNNuN => 'wēn nuǎn';
+
+  @override
+  String get warmthWarm => '온기 · 따뜻함';
+
+  @override
+  String get zhuNZh => 'zhuān zhù';
+
+  @override
+  String get toFocus => '집중하다';
+
+  @override
+  String get definitionExpansionButton => '정의 확장 버튼';
+
+  @override
+  String get wenigerAnzeigen => '간략히 보기';
+
+  @override
+  String get mostrarMenos => '간략히 보기';
+
+  @override
+  String get afficherMoins => '간략히 보기';
+
+  @override
+  String get mostraMeno => '간략히 보기';
+
+  @override
+  String get showFewer => '간략히 보기';
+
+  @override
+  String get masterLin => '마스터 린';
+
+  @override
+  String get xiaoMei => '샤오메이';
+
+  @override
+  String get thePoet => '시인';
+
+  @override
+  String get aQiang => '아창';
+
+  @override
+  String get vivian => '비비안';
+
+  @override
+  String get formalWise => '격식 있고 지혜로운';
+
+  @override
+  String get casualFriendly => '편안하고 친근한';
+
+  @override
+  String get poeticAncient => '시적이고 고전적인';
+
+  @override
+  String get slangInternet => '신조어 및 인터넷 용어';
+
+  @override
+  String get trendyModern => '트렌디하고 현대적인';
+
+  @override
+  String get designYourOwn => '직접 만들기';
+
+  @override
+  String get theBambooSwaysAndThe => '대나무가 흔들리고, 선비는 단비 같은 당신의 말을 기다립니다...';
+
+  @override
+  String get yourCustomPersonaIsActive => '맞춤 페르소나가 활성화되었습니다. 대화를 시작하려면 입력하세요.';
+
+  @override
+  String get hHMm => 'HH:mm';
+
+  @override
+  String get fROMLocalizedDefinitionQualityWHERE =>
+      'FROM localized_definition_quality WHERE language_code = ?';
+
+  @override
+  String get gemini25Flash => 'gemini-2.5-flash';
+
+  @override
+  String get dictionaryExpansionV1 => 'dictionary-expansion-v1';
+
+  @override
+  String get staleDictionaryExpansionResponse => '만료된 사전 확장 응답';
+
+  @override
+  String get dictionaryExpansionWasEmpty => '사전 확장 내용이 없습니다';
+
+  @override
+  String get explicationDTaillEDisponible => '상세 설명 이용 가능';
+
+  @override
+  String get ausfHrlicheErklRungVerf => '상세 설명 이용 가능';
+
+  @override
+  String get explicaciNDetalladaDisponible => '상세 설명 이용 가능';
+
+  @override
+  String get spiegazioneDettagliataDisponibile => '상세 설명 이용 가능';
+
+  @override
+  String get explicaODetalhadaDisponVel => '상세 설명 이용 가능';
+
+  @override
+  String get detailedExplanationAvailable => '상세 설명 이용 가능';
+
+  @override
+  String get oneOptionalDailyPracticeReminder => '선택 가능한 매일 연습 알림 1개';
+
+  @override
+  String get chooseOneOptionalDailyPractice => '매일 연습 알림을 선택하세요.';
+
+  @override
+  String get practiceReminder => '연습 알림';
+
+  @override
+  String get oneGentleReminderADay => '필요할 때만 전해지는 하루 한 번의 다정한 알림';
+
+  @override
+  String get finishingPracticeSilencesTodayS => '연습을 완료하면 오늘 알림이 꺼집니다. 복습 및';
+
+  @override
+  String get reEngagementAlertsAreCombined => '재참여 알림이 하나로 통합되어 겹치지 않습니다.';
+
+  @override
+  String get processing2 => '처리 중…';
+
+  @override
+  String get wDKIChu => 'wǒ dǎ kāi chuāng hu';
+
+  @override
+  String get listen => '듣기';
+
+  @override
+  String get notice => '살펴보기';
+
+  @override
+  String get fourTones => '4가지 성조';
+
+  @override
+  String get write => '쓰기';
+
+  @override
+  String get recap => '정리';
+
+  @override
+  String get playbackDidNotStart => '재생이 시작되지 않았습니다';
+
+  @override
+  String get audioIsUnavailableYouCan =>
+      '오디오를 사용할 수 없습니다. 글을 읽고 계속 진행하실 수 있습니다.';
+
+  @override
+  String get microphoneAccessWasNotGranted =>
+      '마이크 접근 권한이 허용되지 않았습니다. 아래의 무음 옵션을 이용하실 수 있습니다.';
+
+  @override
+  String get recordingIsUnavailableRightNow => '지금은 녹음을 사용할 수 없습니다.';
+
+  @override
+  String get listeningToYourTones => '성조를 듣고 있습니다…';
+
+  @override
+  String get noRecording => '녹음 없음';
+
+  @override
+  String get weCouldNotScoreThat => '녹음 결과를 채점할 수 없어 샘플 성조 비교를 보여드립니다.';
+
+  @override
+  String get listenForTheLowDipping => '낮게 내려갔다 올라가는 3성을 들어보세요.';
+
+  @override
+  String get firstHearATinyMoment => '먼저 짧은 중국어를 들어보세요. 아직 암기할 필요는 없습니다.';
+
+  @override
+  String get loadingAudio => '오디오 불러오는 중…';
+
+  @override
+  String get listenToThePassage => '지문 듣기';
+
+  @override
+  String get continueAction => '계속하기';
+
+  @override
+  String get noticeHowMeaningSoundAnd => '의미와 소리, 한자가 어떻게 함께 연결되는지 살펴보세요.';
+
+  @override
+  String get shadowOneSentence => '한 문장 따라 말하기';
+
+  @override
+  String get listenOnceThenHoldThe => '한 번 듣고 마이크 버튼을 누른 채 문장을 따라 말해보세요.';
+
+  @override
+  String get hearItAgain => '다시 듣기';
+
+  @override
+  String get stopAndCheckMyTones => '멈추고 성조 확인하기';
+
+  @override
+  String get useMicrophone => '마이크 사용';
+
+  @override
+  String get iCanTSpeakRight => '지금은 말할 수 없음';
+
+  @override
+  String get tapACharacterToCompare =>
+      '글자를 탭하여 녹음한 성조와 목표 성조를 비교하고 1~4성을 들어보세요.';
+
+  @override
+  String get tryHandwriting => '직접 써보기';
+
+  @override
+  String get seeWhatYouLearned => '학습 내용 확인하기';
+
+  @override
+  String get inAFewMinutesYou => '몇 분 만에 레슨의 핵심 학습 루프를 직접 경험하셨습니다.';
+
+  @override
+  String get listenedToChineseInContext => '문맥 속 중국어 듣기';
+
+  @override
+  String get shadowedASentence => '문장 따라 말하기(쉐도잉)';
+
+  @override
+  String get comparedMandarinTones => '중국어 성조 비교하기';
+
+  @override
+  String get practicedARealCharacter => '실제 한자 연습하기';
+
+  @override
+  String get qNgchNXiOy =>
+      'Qīngchén, xiǎoyǔ tíng le. Wǒ dǎkāi chuānghu, tīngjiàn niǎor zài shù shàng chànggē. Xīn de yì tiān kāishǐ le.';
+
+  @override
+  String get atDawnTheLightRain =>
+      '이른 아침, 가랑비가 그쳤습니다. 창문을 열자 나무에서 새들이 지저귀는 소리가 들렸습니다. 새로운 하루가 시작되었습니다.';
+
+  @override
+  String get learnThroughRealVideos => '생생한 영상으로 학습하기';
+
+  @override
+  String get followInteractiveSubtitlesLookUp =>
+      '대화형 자막을 따라가며 단어를 즉시 검색하고, 모든 영상을 레슨으로 활용해 보세요.';
+
+  @override
+  String get videoLearningScreenshot => '영상 학습 스크린샷';
+
+  @override
+  String get turnAnyBookIntoA => '모든 책을 레슨으로 활용하기';
+
+  @override
+  String get readNaturallyWithPronunciationDefinition =>
+      '필요할 때 언제든 발음, 뜻, 번역을 확인하며 자연스럽게 읽어 보세요.';
+
+  @override
+  String get bookReaderScreenshot => '도서 리더 스크린샷';
+
+  @override
+  String get speakWithTheRightRhythm => '올바른 리듬으로 말하기';
+
+  @override
+  String get shadowNativeAudioAndVisualize =>
+      '원어민 오디오를 따라 말하며 발음 변화에 맞춰 4개 성조를 시각적으로 확인해 보세요.';
+
+  @override
+  String get shadowingAndTonesScreenshot => '쉐도잉 및 성조 스크린샷';
+
+  @override
+  String get understandEveryCharacter => '모든 글자 완벽하게 이해하기';
+
+  @override
+  String get exploreMeaningPronunciationComponentsStr =>
+      '뜻, 발음, 부수, 획순, 유용한 어휘까지 한곳에서 탐색해 보세요.';
+
+  @override
+  String get characterDictionaryScreenshot => '한자 사전 스크린샷';
+
+  @override
+  String get learnChineseWithoutLimits => '제한 없는 중국어 학습';
+
+  @override
+  String get watchReadSpeakAndUnderstand =>
+      '하나의 올인원 학습 파트너로 중국어를 보고, 읽고, 말하고, 이해해 보세요.';
+
+  @override
+  String get seeWhatPremiumUnlocks => '프리미엄 혜택 확인하기';
+
+  @override
+  String get scrollToExploreTheComplete => '스크롤하여 전체 학습 기능을 둘러보세요';
+
+  @override
+  String get cOMINGSOON => '출시 예정';
+
+  @override
+  String get guidedHandwritingPractice => '가이드형 쓰기 연습';
+
+  @override
+  String get scannerAndLiveTranslation => '스캐너 및 실시간 번역';
+
+  @override
+  String get hSK16AndAI => 'HSK 1–6 및 AI 덱';
+
+  @override
+  String get smartSpacedRepetition2 => '스마트 간격 반복 학습';
+
+  @override
+  String get progressAndStreakTracking => '진도 및 연속 학습 추적';
+
+  @override
+  String get learningToolsInOnePlace => '모든 학습 도구를 한곳에서';
+
+  @override
+  String get everythingIncluded => '모든 기능 포함';
+
+  @override
+  String get paymentIsChargedToYour2 =>
+      '결제는 App Store 계정으로 청구됩니다. 현재 기간이 끝나기 최소 24시간 전에 취소하지 않으면 구독이 자동으로 갱신됩니다.';
+
+  @override
+  String get yourFirstWeekOfTracked => '기록된 첫 주 연습';
+
+  @override
+  String get sameNumberOfCardsAs => '지난주와 동일한 카드 수';
+
+  @override
+  String get todaySPractice => '오늘의 연습';
+
+  @override
+  String get goalCompleteAnythingMoreIs => '목표 달성 — 추가 학습은 보너스입니다.';
+
+  @override
+  String get aSmallAchievableTargetNo => '달성 가능한 작은 목표. 쉬어가는 날도 부담 없이.';
+
+  @override
+  String get thisWeek => '이번 주';
+
+  @override
+  String get minutes => '분';
+
+  @override
+  String get activeDays => '학습한 날';
+
+  @override
+  String get masterChineseOneStrokeAt => '한 획씩 완성하는 중국어';
+
+  @override
+  String get dictionaryExpansionButton => '사전 확장 버튼';
+
+  @override
+  String get kIErweiterterWRterbucheintrag => 'AI 확장 사전 항목';
+
+  @override
+  String get detalleAmpliadoPorIA => 'AI 확장 사전 설명';
+
+  @override
+  String get dTailEnrichiParL => 'AI 확장 사전 설명';
+
+  @override
+  String get aI => 'AI 확장 사전 설명';
+
+  @override
+  String get detailKamusYangDiperluasAI => 'AI 확장 사전 설명';
+
+  @override
+  String get dettaglioDelDizionarioAmpliatoDall => 'AI 확장 사전 설명';
+
+  @override
+  String get aI2 => 'AI 확장 사전 설명';
+
+  @override
+  String get aI3 => 'AI 확장 사전 설명';
+
+  @override
+  String get detalheDeDicionRioExpandido => 'AI 확장 사전 설명';
+
+  @override
+  String get aI4 => 'AI 확장 사전 설명';
+
+  @override
+  String get chiTiTTI => 'AI 확장 사전 설명';
+
+  @override
+  String get aI5 => 'AI 확장 사전 설명';
+
+  @override
+  String get aIExpandedDictionaryDetail => 'AI 확장 사전 설명';
+
+  @override
+  String get cetteEntrEEstBr => '사전 내용이 간략합니다. 상세 설명을 확인할 수 있습니다.';
+
+  @override
+  String get dieserEintragIstKurzEine => '사전 내용이 간략합니다. 상세 설명을 확인할 수 있습니다.';
+
+  @override
+  String get estaEntradaEsBreveHay => '사전 내용이 간략합니다. 상세 설명을 확인할 수 있습니다.';
+
+  @override
+  String get questaVoceBreveDisponibileUna =>
+      '사전 내용이 간략합니다. 상세 설명을 확인할 수 있습니다.';
+
+  @override
+  String get estaEntradaBreveEstDispon => '사전 내용이 간략합니다. 상세 설명을 확인할 수 있습니다.';
+
+  @override
+  String get thisDictionaryEntryIsBrief => '사전 내용이 간략합니다. 상세 설명을 확인할 수 있습니다.';
+
+  @override
+  String get dVelopperEnFranAis => '프랑스어로 확장';
+
+  @override
+  String get aufDeutschErweitern => '독일어로 확장';
+
+  @override
+  String get ampliarEnEspaOl => '스페인어로 확장';
+
+  @override
+  String get approfondisciInItaliano => '이탈리아어로 확장';
+
+  @override
+  String get expandirEmPortuguS => '포르투갈어로 확장';
+
+  @override
+  String get expandDefinition => '정의 확장';
+
+  @override
+  String get impossibleDeChargerLExplication => '설명을 불러올 수 없습니다.';
+
+  @override
+  String get dieErklRungKonnteNicht => '설명을 불러올 수 없습니다.';
+
+  @override
+  String get noSePudoCargarLa => '설명을 불러올 수 없습니다.';
+
+  @override
+  String get impossibileCaricareLaSpiegazione => '설명을 불러올 수 없습니다.';
+
+  @override
+  String get nOFoiPossVel => '설명을 불러올 수 없습니다.';
+
+  @override
+  String get unableToLoadTheExplanation => '설명을 불러올 수 없습니다.';
 }
