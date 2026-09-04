@@ -1,8 +1,13 @@
-﻿# Changelog
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
+
+### [2026-09-04] Onboarding Mini Lesson Audio & Visual Enhancements
+- Switched Azure TTS voice in lesson and app defaults to `zh-CN-YunxiNeural` ('Fenrir'), replacing robotic Xiaoxiao with natural human storytelling narration.
+- Integrated English translation directly beneath the Chinese passage in Step 0 (Listen) and Step 1 (Notice).
+- Added source attribution container with book cover artwork (`spring_bajin.jpg` - 《春》 Spring by Ba Jin) providing context for the literature excerpt.
 
 ### [2026-09-04] Complete Gemini Translation Matrix (RU/TH/VI)
 - Translated remaining 3,219 UI strings across Russian, Thai, and Vietnamese.

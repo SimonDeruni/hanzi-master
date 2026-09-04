@@ -1,17 +1,13 @@
-﻿# ðŸ§  SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
+# 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
-#### ðŸŽ¯ Current Context
-- **Objective:** Expanded Multi-Source Thai Dictionary Ingestion (89,754 words, 71.8% coverage)
-- **Status:** âœ… COMPLETED (Build #301)
+#### 🎯 Current Context
+- **Objective:** Onboarding Mini Lesson Voice, Translation & Book Attribution
+- **Status:** ✅ COMPLETED
 - **Hygiene:** App compiles 100% clean (0 errors, 0 warnings, 0 infos), all unit tests passing, all changes pushed to Git remotes.
 - **Locked Files:**
     - [None]
 
-- [x] **Total Project Hygiene & Zero Flutter Analyzer Issues (2026-09-04 18:19):** (1) Deleted orphaned echo_hall_screen.dart to fix Undefined name 'chatControllerProvider' errors; (2) Fixed unclosed duplicate bracket block in ook_detail_screen.dart causing 120 syntax errors; (3) Cleaned up unused _showChineseAuthor and _showChineseSynopsis variables in ook_detail_screen.dart; (4) Fixed missing libraryLabel localization getter in main_navigation_screen.dart; (5) Removed unused imports in onboarding_screen.dart. Verified lutter analyze: **No issues found**. (Status: COMPLETED)
-
-
-- [x] **Complete 13-Language Gemini Translation Matrix (2026-09-04 18:13):** (1) Translated remaining 3,219 empty/missing ARB keys across Russian, Thai, and Vietnamese using direct Gemini 3.1 Flash Lite via Custom Finisher Script; (2) Automatically skipped 10 completed languages and avoided 429 quota exhaustion; (3) Regenerated Dart localizations via lutter gen-l10n; (4) Verified lutter analyze: **No issues found**. (Status: COMPLETED)
-
+- [x] **Onboarding Mini Lesson Audio & Visual Enhancements (2026-09-04 23:00):** (1) Switched Azure TTS voice in lesson and app defaults to `zh-CN-YunxiNeural` ('Fenrir'), replacing robotic Xiaoxiao with natural human storytelling narration; (2) Added English translation directly beneath the Chinese passage in Step 0 (Listen) and Step 1 (Notice); (3) Added source attribution container with book cover artwork (`spring_bajin.jpg` - 《春》 Spring by Ba Jin) providing context for the literature excerpt; (4) Verified `flutter test` and `flutter analyze`: **0 errors, 0 warnings, 0 infos**. (Status: COMPLETED)
 
 - [x] **Expanded Multi-Source Thai Dictionary Ingestion (Build #301):** (1) Combined Open Multilingual WordNet (Thai NECTEC), PanLex Thai concepts, and Facebook MUSE bilingual lexicon to expand offline Thai dictionary from 14,552 $\rightarrow$ **89,754 words** (71.8% coverage of all 125,009 Chinese words in the dictionary); (2) Created SQLite B-tree search index `idx_words_def_th` on `definition_th` and vacuumed database to 70.00 MB; (3) Added full Thai localization support to `GlobalDictionaryRepository` and `translationLanguageProvider`; (4) Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)** and all unit tests passed. (Status: COMPLETED)
 - [x] **Dynamic Offline-First Multilingual Dictionary Resolution with Fallback (Build #300):** (1) Updated `GlobalDictionaryRepository` to extract target language definitions (`definition_fr`, `definition_de`, `definition_es`, `definition_ru`, `definition_vi`, `definition_ja`, `definition_ko`, `definition_it`, `definition_pt`, `definition_id`, `definition_ar`, `definition_hi`) directly based on active locale with canonical English fallback; (2) Upgraded `LocalTranslationService` and `TranslatedDefinition` with zero-latency offline SQLite dictionary checks before falling back to on-the-spot neural translation; (3) Connected `masterSearchProvider`, `commonWordsProvider`, `quickLookProvider`, and study modes (Reading, Listening, Recall, Speaking) to dynamically resolve definitions in the user's selected language; (4) Verified `flutter analyze`: **No issues found! (0 errors, 0 warnings, 0 infos)** and all unit tests passed. (Status: COMPLETED)
