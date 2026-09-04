@@ -1,7 +1,7 @@
 name: hanzi_master
 description: A mobile-first Chinese learning application.
 publish_to: 'none'
-version: 1.0.0+167
+version: 1.0.0+523
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -111,14 +111,10 @@ flutter:
     - assets/images/books/
     - assets/images/poetry/
     - assets/images/mandarin_bean/
-    - assets/images/user_web_explorer.png
-    - assets/images/ai_hub_web_explorer_zen1.png
-    - assets/images/web_explorer_hero.png
     - assets/audio/
     - third_party/chinese-poetry-LICENSE
     - assets/default_stories.json
     - assets/mascot/
-    - assets/mascot/data/
 
 #  fonts:
 #    - family: NotoSansSC
