@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "azure/DeepSeek-V4-Pro-2",
+  "provider": {
+    "azure": {
+      "options": {
+        "apiKey": "EMFQEBf8Q90vGzgh2GMmIiY5kRYJ7N5BGIJf0KcS5Q6AvfkPlVtiJQQJ99CGACPV0roXJ3w3AAAAACOGEF1m",
+        "baseURL": "https://sinospark.services.ai.azure.com/openai"
+      },
+      "models": {
+        "DeepSeek-V4-Pro-2": {
+          "name": "Azure DeepSeek 1M"
+        }
+      }
+    }
+  }
+}

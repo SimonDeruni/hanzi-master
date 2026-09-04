@@ -1,3 +1,15 @@
+# Dictionary definition quality
+
+After generating and localizing `assets/data/dictionary.db`, run:
+
+```powershell
+python scripts/score_dictionary_quality.py
+```
+
+This creates the versioned `dictionary_metadata` and
+`localized_definition_quality` tables and writes calibration samples to
+`scripts/reports/`. The scoring step is deterministic and safe to rerun.
+
 # 🌐 Hanzi Master Localization Scripts
 
 This directory contains the automation scripts for scanning, managing, and synchronizing app localizations.

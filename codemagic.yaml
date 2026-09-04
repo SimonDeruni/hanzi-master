@@ -5,6 +5,9 @@ workflows:
     environment:
       flutter: default
       ruby: 3.2.4
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.sinospark.app
       # API keys are stored as secret environment variables in the Codemagic dashboard.
       # Go to: App settings → Environment variables → add each key as a secret.
       vars:
@@ -19,6 +22,8 @@ workflows:
     scripts:
       - name: Get dependencies
         script: flutter packages pub get
+      - name: Set up iOS code signing
+        script: xcode-project use-profiles
       - name: Build iOS IPA
         script: |
           flutter build ipa \

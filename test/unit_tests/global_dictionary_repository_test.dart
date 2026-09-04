@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/flashcards/data/repositories/global_dictionary_repository.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -31,6 +33,18 @@ void main() {
         definition_ar TEXT,
         definition_hi TEXT,
         definition_th TEXT
+      )
+    ''');
+    await database.execute('''
+      CREATE TABLE localized_definition_quality (
+        word_id INTEGER NOT NULL,
+        language_code TEXT NOT NULL,
+        score INTEGER NOT NULL,
+        expansion_eligible INTEGER NOT NULL,
+        source_definition_hash TEXT NOT NULL,
+        scoring_version TEXT NOT NULL,
+        reasons TEXT NOT NULL,
+        PRIMARY KEY (word_id, language_code)
       )
     ''');
 
@@ -110,6 +124,33 @@ void main() {
     );
 
     expect(cards.first.hanzi, '问候');
+  });
+
+  test('attaches localized definition quality metadata', () async {
+    final sourceHash =
+        Uint8List.fromList(List<int>.generate(32, (index) => index));
+    await database.insert('localized_definition_quality', {
+      'word_id': 3,
+      'language_code': 'fr',
+      'score': 42,
+      'expansion_eligible': 1,
+      'source_definition_hash': sourceHash,
+      'scoring_version': 'localized-quality-v1',
+      'reasons': '["partial_sense_coverage"]',
+    });
+
+    final card = await repository.getExact('你好', targetLanguage: 'French');
+    expect(card, isNotNull);
+    expect(card!.dictionaryWordId, 3);
+    expect(card.englishDefinition, 'hello; hi');
+    expect(card.localizedDefinitionQuality, 42);
+    expect(card.isExpansionEligible, isTrue);
+    expect(
+      card.sourceDefinitionHash,
+      '000102030405060708090a0b0c0d0e0f'
+      '101112131415161718191a1b1c1d1e1f',
+    );
+    expect(card.sourceDefinitionHash, matches(RegExp(r'^[0-9a-f]{64}$')));
   });
 }
 

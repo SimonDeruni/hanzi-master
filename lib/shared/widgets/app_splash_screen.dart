@@ -40,10 +40,10 @@ class _AppSplashScreenState extends State<AppSplashScreen>
     return Scaffold(
       backgroundColor: const Color(0xFFFCBC03),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            const Spacer(),
-            Center(
+            Align(
+              alignment: const Alignment(0, -0.08),
               child: AnimatedBuilder(
                 animation: _controller,
                 builder: (context, child) {
@@ -55,66 +55,37 @@ class _AppSplashScreenState extends State<AppSplashScreen>
                     ),
                   );
                 },
-                child: Container(
-                  width: 240,
-                  height: 240,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(36),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.08),
-                        blurRadius: 30,
-                        offset: const Offset(0, 10),
-                      ),
-                    ],
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: Image.asset(
-                    'assets/icon/icon.png',
-                    fit: BoxFit.cover,
+                child: LayoutBuilder(
+                  builder: (context, constraints) => Image.asset(
+                    'assets/images/mascot.png',
+                    width: constraints.maxWidth.clamp(0, 300).toDouble(),
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
             ),
-            const Spacer(),
-            AnimatedBuilder(
-              animation: _fadeAnimation,
-              builder: (context, child) => Opacity(
-                opacity: _fadeAnimation.value,
-                child: child,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'Master Chinese, one stroke at a time',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF1A1A1B),
-                        letterSpacing: 0.3,
-                        fontFamily: 'Serif',
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'SinoSpark',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF1A1A1B).withValues(alpha: 0.65),
-                        letterSpacing: 1.5,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+            Positioned(
+              left: 24,
+              right: 24,
+              bottom: 28,
+              child: AnimatedBuilder(
+                animation: _fadeAnimation,
+                builder: (context, child) => Opacity(
+                  opacity: _fadeAnimation.value,
+                  child: child,
+                ),
+                child: const Text(
+                  'Master Chinese with SinoSpark',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    letterSpacing: 0.3,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
-            const SizedBox(height: 12),
           ],
         ),
       ),

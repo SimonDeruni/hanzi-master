@@ -60,6 +60,14 @@
 					<string>com.googleusercontent.apps.168461209502-gvp7gd9tmls9dmcuom170e83l2n00ocm</string>
 				</array>
 			</dict>
+			<dict>
+				<key>CFBundleURLName</key>
+				<string>com.sinospark.app.widget</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>sinospark</string>
+				</array>
+			</dict>
 		</array>
 	</dict>
 </plist>

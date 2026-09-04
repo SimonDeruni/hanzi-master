@@ -37,7 +37,7 @@ void main() {
             File('assets/data/famous_chinese_poetry.json').readAsStringSync())
         as List<dynamic>;
     final manifest = jsonDecode(
-            File('assets/data/poetry_cover_manifest.json').readAsStringSync())
+            File('test/fixtures/poetry_cover_manifest.json').readAsStringSync())
         as Map<String, dynamic>;
     final covers = manifest['covers'] as List<dynamic>;
     expect(poems, hasLength(100));

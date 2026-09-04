@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:record/record.dart';
+import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
@@ -13,7 +12,6 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
-import 'package:hanzi_master/features/onboarding/domain/voice_activity_detector.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
 /// not write lesson progress, SRS data, streaks, or book progress.
@@ -52,10 +50,10 @@ class _OnboardingMiniLessonScreenState
   String? _message;
   List<Map<String, dynamic>> _words = const [];
   List<String> _strokes = const [];
+  List<List<Offset>> _medianPaths = const [];
+  int _currentStrokeIndex = 0;
   late final AudioRecordingService _recorder;
   late final AudioService _audioService;
-  final VoiceActivityDetector _voiceActivityDetector = VoiceActivityDetector();
-  StreamSubscription<Amplitude>? _amplitudeSubscription;
 
   @override
   void initState() {
@@ -76,7 +74,21 @@ class _OnboardingMiniLessonScreenState
       final data = jsonDecode(raw) as Map<String, dynamic>;
       final entry = data['好'] as Map<String, dynamic>?;
       if (mounted && entry != null) {
-        setState(() => _strokes = List<String>.from(entry['strokes'] as List));
+        final medianPaths = (entry['medians'] as List).map((median) {
+          final points = (median as List)
+              .map((point) => Offset(
+                    (point as List)[0].toDouble(),
+                    point[1].toDouble(),
+                  ))
+              .toList();
+          return CharacterLoader.flipPoints(points)
+              .map(CharacterLoader.transformPoint)
+              .toList();
+        }).toList();
+        setState(() {
+          _strokes = List<String>.from(entry['strokes'] as List);
+          _medianPaths = medianPaths;
+        });
       }
     } catch (error) {
       debugPrint('Could not load onboarding handwriting data: $error');
@@ -117,11 +129,6 @@ class _OnboardingMiniLessonScreenState
             await _recorder.requestPermission()) {
           if (!widget.disableExternalServicesForTesting) {
             await _recorder.startRecording('onboarding_shadow');
-            _voiceActivityDetector.reset();
-            _amplitudeSubscription = _recorder.onAmplitudeChanged.listen(
-              (amplitude) =>
-                  _voiceActivityDetector.addSample(amplitude.current),
-            );
           }
           if (mounted) setState(() => _recording = true);
         } else if (mounted) {
@@ -146,19 +153,8 @@ class _OnboardingMiniLessonScreenState
     String? path;
     try {
       if (!widget.disableExternalServicesForTesting) {
-        await _amplitudeSubscription?.cancel();
-        _amplitudeSubscription = null;
         path = await _recorder.stopRecording();
         if (path == null) throw Exception('No recording');
-
-        if (!_voiceActivityDetector.hasDetectedSpeech) {
-          if (mounted) {
-            setState(() {
-              _message = "We didn't catch that. Please try speaking again.";
-            });
-          }
-          return;
-        }
 
         final bytes = await File(path).readAsBytes();
         final grade = await ref
@@ -179,9 +175,7 @@ class _OnboardingMiniLessonScreenState
     } catch (error) {
       if (mounted) {
         setState(() {
-          _message = isNoSpeechAssessmentError(error)
-              ? "We didn't catch that. Please try speaking again."
-              : "We couldn't evaluate that recording. Please try speaking again.";
+          _message = error.toString().replaceFirst('Exception: ', '');
         });
       }
     } finally {
@@ -218,6 +212,7 @@ class _OnboardingMiniLessonScreenState
     setState(() {
       _step = step;
       _message = null;
+      if (step == 4) _currentStrokeIndex = 0;
     });
   }
 
@@ -230,7 +225,6 @@ class _OnboardingMiniLessonScreenState
 
   @override
   void dispose() {
-    _amplitudeSubscription?.cancel();
     if (_recording) _recorder.stopRecording();
     super.dispose();
   }
@@ -362,14 +356,15 @@ class _OnboardingMiniLessonScreenState
                     child: Text('好',
                         style: TextStyle(
                             fontSize: 150, color: ink.withValues(alpha: .18))))
-                : DrawingCanvas(
+                : OnboardingPracticeCanvas(
                     strokePaths: _strokes,
-                    showAnimation: false,
-                    showReference: true,
-                    showGuideLines: true,
-                    showGrade: false,
-                    showControls: false,
-                    strictGrading: false,
+                    medianPaths: _medianPaths,
+                    currentStrokeIndex: _currentStrokeIndex,
+                    onStrokeComplete: () {
+                      if (_currentStrokeIndex < _strokes.length - 1) {
+                        setState(() => _currentStrokeIndex++);
+                      }
+                    },
                   ),
           ),
           primaryLabel: 'See what you learned',
@@ -571,6 +566,41 @@ class _OnboardingMiniLessonScreenState
       ],
     );
   }
+}
+
+class OnboardingPracticeCanvas extends StatelessWidget {
+  const OnboardingPracticeCanvas({
+    super.key,
+    required this.strokePaths,
+    required this.medianPaths,
+    required this.currentStrokeIndex,
+    required this.onStrokeComplete,
+  });
+
+  final List<String> strokePaths;
+  final List<List<Offset>> medianPaths;
+  final int currentStrokeIndex;
+  final VoidCallback onStrokeComplete;
+
+  @override
+  Widget build(BuildContext context) => ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: CalligraphyBackground(
+          child: DrawingCanvas(
+            key: const ValueKey('onboardingPracticeCanvas'),
+            strokePaths: strokePaths,
+            medianPaths: medianPaths,
+            showAnimation: false,
+            showReference: true,
+            showGuideLines: true,
+            strokeByStrokeMode: true,
+            currentStrokeIndex: currentStrokeIndex,
+            showGrade: false,
+            showControls: false,
+            onStrokeComplete: (_, __) => onStrokeComplete(),
+          ),
+        ),
+      );
 }
 
 class _RecapRow extends StatelessWidget {

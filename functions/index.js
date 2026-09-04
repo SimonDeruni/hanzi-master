@@ -3,10 +3,187 @@ const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
 const fetch = require("node-fetch");
 const cors = require("cors")({ origin: true });
+const {
+  MODEL_VERSION,
+  PROMPT_VERSION,
+  OUTPUT_SCHEMA,
+  parseInput,
+  sourceHash,
+  cacheIdentity,
+  canonicalSource,
+  buildPrompt,
+  outputText,
+  extractGeminiJson,
+} = require("./dictionary-expansion");
 
 admin.initializeApp();
 
 const revenueCatSecretKey = defineSecret("REVENUECAT_SECRET_API_KEY");
+const geminiApiKey = defineSecret("GEMINI_API_KEY");
+
+const EXPANSION_DAILY_QUOTA = 20;
+const GENERATION_LEASE_MS = 2 * 60 * 1000;
+const FAILURE_RETRY_MS = 30 * 1000;
+
+function publicExpansion(cache, cached) {
+  return {
+    text: outputText(cache.output),
+    structuredOutput: cache.output,
+    languageCode: cache.provenance.languageCode,
+    sourceDefinitionHash: cache.provenance.sourceDefinitionHash,
+    modelVersion: cache.provenance.modelVersion,
+    promptVersion: cache.provenance.promptVersion,
+    cached,
+    provenance: cache.provenance,
+  };
+}
+
+async function callGemini(source, languageCode) {
+  const apiKey = geminiApiKey.value() || process.env.GEMINI_API_KEY_LOCAL;
+  if (!apiKey) throw new Error("GEMINI_API_KEY is not configured");
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_VERSION}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: buildPrompt(source, languageCode) }] }],
+      generationConfig: {
+        responseMimeType: "application/json",
+        responseSchema: OUTPUT_SCHEMA,
+        temperature: 0.2,
+      },
+    }),
+  });
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) throw new Error(`Gemini request failed (${response.status})`);
+  return extractGeminiJson(payload);
+}
+
+/**
+ * Produces a server-grounded dictionary expansion. The client can select only
+ * an imported source record and output language; it cannot submit source text
+ * or prompt text.
+ */
+exports.getDictionaryExpansionV1 = onCall(
+  { enforceAppCheck: true, secrets: [geminiApiKey], timeoutSeconds: 120 },
+  async (request) => {
+    if (!request.auth) throw new HttpsError("unauthenticated", "Sign in to request an expansion.");
+
+    let input;
+    try { input = parseInput(request.data); } catch (error) {
+      throw new HttpsError("invalid-argument", error.message);
+    }
+
+    const db = admin.firestore();
+    const sourceRef = db.collection("dictionarySources").doc(input.wordId);
+    const eligibilityRef = db.collection("dictionaryScoreEligibility")
+      .doc(`${input.wordId}_${input.languageCode}`);
+    const [sourceSnapshot, eligibilitySnapshot] = await Promise.all([
+      sourceRef.get(), eligibilityRef.get(),
+    ]);
+    if (!sourceSnapshot.exists) throw new HttpsError("not-found", "Dictionary source was not found.");
+
+    let source;
+    try { source = canonicalSource(sourceSnapshot.data()); } catch (error) {
+      console.error("Invalid canonical dictionary source", { wordId: input.wordId, error });
+      throw new HttpsError("failed-precondition", "Dictionary source is unavailable.");
+    }
+    const storedHash = sourceSnapshot.get("sourceDefinitionHash");
+    if (storedHash !== input.sourceDefinitionHash || sourceHash(source.definition) !== storedHash) {
+      throw new HttpsError("failed-precondition", "Dictionary source has changed. Refresh and try again.");
+    }
+    const eligibility = eligibilitySnapshot.exists ? eligibilitySnapshot.data() : null;
+    if (!eligibility || eligibility.eligible !== true ||
+        eligibility.sourceDefinitionHash !== input.sourceDefinitionHash) {
+      throw new HttpsError("failed-precondition", "This dictionary entry is not eligible for expansion.");
+    }
+
+    const cacheId = cacheIdentity(input);
+    const cacheRef = db.collection("dictionaryExpansionCache").doc(cacheId);
+    const day = new Date().toISOString().slice(0, 10);
+    const quotaRef = db.collection("dictionaryExpansionQuotas").doc(`${request.auth.uid}_${day}`);
+    const leaseToken = require("node:crypto").randomUUID();
+    const now = Date.now();
+
+    const acquisition = await db.runTransaction(async (transaction) => {
+      const [cacheSnapshot, quotaSnapshot] = await Promise.all([
+        transaction.get(cacheRef), transaction.get(quotaRef),
+      ]);
+      const cache = cacheSnapshot.exists ? cacheSnapshot.data() : null;
+      if (cache && cache.state === "ready") return { ready: cache };
+      if (cache && cache.state === "generating" && cache.leaseExpiresAtMs > now) return { busy: true };
+      if (cache && cache.state === "failed" && cache.retryAfterMs > now) return { retryLater: true };
+
+      const quota = quotaSnapshot.exists ? quotaSnapshot.data() : {};
+      const used = Number.isInteger(quota.used) ? quota.used : 0;
+      if (used >= EXPANSION_DAILY_QUOTA) return { quotaExceeded: true };
+
+      transaction.set(quotaRef, {
+        uid: request.auth.uid, day, used: used + 1,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      transaction.set(cacheRef, {
+        state: "generating", leaseToken, leaseExpiresAtMs: now + GENERATION_LEASE_MS,
+        wordId: input.wordId, languageCode: input.languageCode,
+        sourceDefinitionHash: input.sourceDefinitionHash,
+        modelVersion: MODEL_VERSION, promptVersion: PROMPT_VERSION,
+        attempts: (cache && Number.isInteger(cache.attempts) ? cache.attempts : 0) + 1,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+      return { acquired: true };
+    });
+
+    if (acquisition.ready) return publicExpansion(acquisition.ready, true);
+    if (acquisition.quotaExceeded) throw new HttpsError("resource-exhausted", "Daily expansion quota reached.");
+    if (acquisition.busy || acquisition.retryLater) {
+      throw new HttpsError("unavailable", "Expansion is being prepared. Retry shortly.");
+    }
+
+    try {
+      const output = await callGemini(source, input.languageCode);
+      const provenance = {
+        wordId: input.wordId,
+        languageCode: input.languageCode,
+        sourceDefinitionHash: input.sourceDefinitionHash,
+        modelVersion: MODEL_VERSION,
+        promptVersion: PROMPT_VERSION,
+      };
+      const saved = await db.runTransaction(async (transaction) => {
+        const snapshot = await transaction.get(cacheRef);
+        const current = snapshot.data();
+        if (!current || current.state !== "generating" || current.leaseToken !== leaseToken) return false;
+        transaction.set(cacheRef, {
+          state: "ready", output, provenance,
+          generatedAt: admin.firestore.FieldValue.serverTimestamp(),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+          leaseToken: admin.firestore.FieldValue.delete(),
+          leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
+          retryAfterMs: admin.firestore.FieldValue.delete(),
+          lastError: admin.firestore.FieldValue.delete(),
+        }, { merge: true });
+        return true;
+      });
+      if (!saved) throw new Error("generation lease was lost");
+      return publicExpansion({ output, provenance }, false);
+    } catch (error) {
+      await db.runTransaction(async (transaction) => {
+        const snapshot = await transaction.get(cacheRef);
+        const current = snapshot.data();
+        if (!current || current.leaseToken !== leaseToken) return;
+        transaction.set(cacheRef, {
+          state: "failed", retryAfterMs: Date.now() + FAILURE_RETRY_MS,
+          lastError: "provider-or-validation-failure",
+          failedAt: admin.firestore.FieldValue.serverTimestamp(),
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+          leaseToken: admin.firestore.FieldValue.delete(),
+          leaseExpiresAtMs: admin.firestore.FieldValue.delete(),
+        }, { merge: true });
+      }).catch((writeError) => console.error("Could not record expansion failure", writeError));
+      console.error("Dictionary expansion failed", { cacheId, wordId: input.wordId, error });
+      throw new HttpsError("internal", "Expansion generation failed. Retry later.");
+    }
+  },
+);
 
 async function deleteDocumentTree(path) {
   const document = admin.firestore().doc(path);
@@ -101,7 +278,7 @@ exports.generateContentProxyV2 = onRequest({ cors: true, invoker: "public" }, (r
       return res.status(405).send("Method Not Allowed");
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY_LOCAL;
     if (!apiKey) {
       return res.status(500).json({ error: "Missing Gemini API Key" });
     }
@@ -133,7 +310,7 @@ exports.openRouterProxyV2 = onRequest({ cors: true, invoker: "public" }, (req, r
     }
 
     // Use the perfectly working Gemini API key instead of the broken OpenRouter key
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY_LOCAL;
     if (!apiKey) {
       return res.status(500).json({ error: "Missing Gemini API Key" });
     }
