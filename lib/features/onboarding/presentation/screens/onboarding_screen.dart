@@ -127,7 +127,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         children: [
           const Spacer(),
           Image.asset(
-            'assets/icon/icon.png',
+            'assets/images/mascot.png',
             height: 160,
           ).animate().scale(duration: 400.ms).fadeIn(),
           const SizedBox(height: 48),
