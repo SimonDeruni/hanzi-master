@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-04] Native iOS Microphone Permission Prompt
+- Trigger native iOS `AVAudioSession.requestRecordPermission()` prompt via `AudioRecorder.hasPermission()` in `AudioRecordingService.requestPermission()`.
+- Added `PERMISSION_MICROPHONE=1` and `PERMISSION_SPEECH_RECOGNIZER=1` preprocessor definitions to `ios/Podfile` post_install targets to ensure CocoaPods links iOS permission handlers.
+- Fixed onboarding shadowing step jumping straight to "Microphone access was not granted" before prompting the user.
+
 ### [2026-09-04] Onboarding Mini Lesson Audio & Visual Enhancements
 - Switched Azure TTS voice in lesson and app defaults to `zh-CN-YunxiNeural` ('Fenrir'), replacing robotic Xiaoxiao with natural human storytelling narration.
 - Integrated English translation directly beneath the Chinese passage in Step 0 (Listen) and Step 1 (Notice).
