@@ -128,9 +128,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           const Spacer(),
           Image.asset(
             'assets/images/mascot.png',
-            height: 160,
+            height: 195,
           ).animate().scale(duration: 400.ms).fadeIn(),
-          const SizedBox(height: 48),
+          const SizedBox(height: 36),
           Text(
             "Your Path to\nChinese Fluency",
             textAlign: TextAlign.center,
