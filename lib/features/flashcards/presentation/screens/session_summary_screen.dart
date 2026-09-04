@@ -1,11 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/services/analytics_service.dart';
+import 'package:hanzi_master/core/services/app_rating_service.dart';
+import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_session_summary.dart';
+import 'package:hanzi_master/features/progression/data/study_progress_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
-class SessionSummaryScreen extends StatelessWidget {
+class SessionSummaryScreen extends ConsumerStatefulWidget {
   const SessionSummaryScreen({super.key, required this.summary});
 
   final StudySessionSummary summary;
+
+  @override
+  ConsumerState<SessionSummaryScreen> createState() =>
+      _SessionSummaryScreenState();
+}
+
+class _SessionSummaryScreenState extends ConsumerState<SessionSummaryScreen> {
+  StudySessionSummary get summary => widget.summary;
+
+  @override
+  void initState() {
+    super.initState();
+    Future<void>(() async {
+      try {
+        final wasAdded = await ref
+            .read(studyProgressServiceProvider)
+            .recordCompletedSession(summary);
+        if (!wasAdded) return;
+        ref.invalidate(studyProgressProvider);
+        await ref.read(notificationServiceProvider).recordPracticeCompleted();
+      } catch (error) {
+        debugPrint('Could not update completed-session habits: $error');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +119,24 @@ class SessionSummaryScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+              onPressed: () {
+                final ratingService = ref.read(appRatingServiceProvider);
+                final analytics = ref.read(analyticsServiceProvider);
+                Navigator.of(context).popUntil((route) => route.isFirst);
+                Future<void>.delayed(const Duration(milliseconds: 500),
+                    () async {
+                  final result =
+                      await ratingService.registerCompletedSession(summary);
+                  if (result == RatingPromptResult.requested) {
+                    await analytics
+                        .logEvent('app_rating_requested', parameters: {
+                      'trigger': 'study_session_complete',
+                      'cards': summary.uniqueCards,
+                      'accuracy_percent': (summary.accuracy * 100).round(),
+                    });
+                  }
+                });
+              },
               icon: const Icon(Icons.home_outlined),
               label: Text(l10n.backToLibrary),
             ),

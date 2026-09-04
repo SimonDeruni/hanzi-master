@@ -13,7 +13,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 enum BookPinyinMode { all, ghost, none }
 
@@ -1145,7 +1145,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         final l10n = AppLocalizations.of(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(l10n != null ? "${l10n.bookmarkAdded}: 第${chapter.chapterIndex}回" : "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
+            content: Text(l10n != null
+                ? "${l10n.bookmarkAdded}: 第${chapter.chapterIndex}回"
+                : "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
             duration: const Duration(seconds: 2),
           ),
         );
@@ -1427,8 +1429,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             subtitle: FutureBuilder<String>(
                               future: LocalizedCatalogService.getChapterTitle(
                                 titleEn: ch.titleEn,
-                                localeCode:
-                                    Localizations.localeOf(context).languageCode,
+                                localeCode: Localizations.localeOf(context)
+                                    .languageCode,
                               ),
                               builder: (context, snap) => Padding(
                                 padding: const EdgeInsets.only(top: 2),
@@ -1444,7 +1446,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 ),
                               ),
                             ),
-
                             trailing: Text(
                               '${ch.sentences.length}句',
                               style: TextStyle(
@@ -1739,7 +1740,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             ),
                           ),
                         ],
-
                       ],
                     ),
                   ),
@@ -1859,9 +1859,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 }
 
                                 return GestureDetector(
-                                  onTap: () {
+                                  onTapDown: (details) {
                                     HapticsManager.light();
-                                    showQuickLook(context, token.char);
+                                    showQuickLook(
+                                      context,
+                                      token.char,
+                                      presentation:
+                                          QuickLookPresentation.readingPopover,
+                                      anchorPosition: details.globalPosition,
+                                    );
                                   },
                                   behavior: HitTestBehavior.opaque,
                                   child: Column(

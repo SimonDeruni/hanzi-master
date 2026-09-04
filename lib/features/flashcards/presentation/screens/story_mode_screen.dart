@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -298,9 +298,15 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
 
                                       return GestureDetector(
                                         key: ValueKey('word_$wordStart'),
-                                        onTap: () => showQuickLook(
-                                            context, word.hanzi,
-                                            contextText: sentence.chinese),
+                                        onTapDown: (details) => showQuickLook(
+                                          context,
+                                          word.hanzi,
+                                          contextText: sentence.chinese,
+                                          presentation: QuickLookPresentation
+                                              .readingPopover,
+                                          anchorPosition:
+                                              details.globalPosition,
+                                        ),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -464,7 +470,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                         final story = asyncStory.value!;
                         showModalBottomSheet(
                           context: context,
-      useRootNavigator: true,
+                          useRootNavigator: true,
                           backgroundColor: Colors.transparent,
                           isScrollControlled: true,
                           builder: (context) {

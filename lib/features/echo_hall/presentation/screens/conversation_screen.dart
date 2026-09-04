@@ -1,4 +1,4 @@
-﻿import 'dart:io';
+import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +10,7 @@ import '../widgets/pronunciation_report_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
@@ -507,7 +508,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         if (isUser && message.grade != null) {
           showModalBottomSheet(
             context: context,
-      useRootNavigator: true,
+            useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => PronunciationReportSheet(message: message),
@@ -552,6 +553,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: TappableMarkdownHanziText(
                       message.content,
+                      quickLookPresentation:
+                          QuickLookPresentation.readingPopover,
                       style: theme.textTheme.bodyLarge
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
@@ -567,6 +570,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                 ] else ...[
                   TappableMarkdownHanziText(
                     message.content,
+                    quickLookPresentation: QuickLookPresentation.readingPopover,
                     style: theme.textTheme.bodyLarge
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
@@ -606,6 +610,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                         children: [
                           TappableMarkdownHanziText(
                             message.content,
+                            quickLookPresentation:
+                                QuickLookPresentation.readingPopover,
                             style: theme.textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -680,8 +686,10 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                                     const SizedBox(width: 4),
                                     Text(
                                       isExpanded
-                                          ? AppLocalizations.of(context)!.hideTranslation
-                                          : AppLocalizations.of(context)!.translate,
+                                          ? AppLocalizations.of(context)!
+                                              .hideTranslation
+                                          : AppLocalizations.of(context)!
+                                              .translate,
                                       style:
                                           theme.textTheme.labelSmall?.copyWith(
                                         color: theme.colorScheme.primary,

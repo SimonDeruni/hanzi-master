@@ -17,6 +17,13 @@ class Flashcard extends Equatable {
   /// translation fallback. Global dictionary results set it so already
   /// localized definitions are not translated a second time.
   final String? definitionLanguage;
+
+  /// Global dictionary provenance. Null for user-created/local cards.
+  final int? dictionaryWordId;
+  final String? englishDefinition;
+  final int? localizedDefinitionQuality;
+  final bool isExpansionEligible;
+  final String? sourceDefinitionHash;
   final int hskLevel;
   final List<String> strokePaths;
   final List<List<Offset>> medianPaths;
@@ -39,6 +46,11 @@ class Flashcard extends Equatable {
     required this.pinyin,
     required this.definition,
     this.definitionLanguage,
+    this.dictionaryWordId,
+    this.englishDefinition,
+    this.localizedDefinitionQuality,
+    this.isExpansionEligible = false,
+    this.sourceDefinitionHash,
     required this.hskLevel,
     required this.strokePaths,
     this.medianPaths = const [],
@@ -57,6 +69,11 @@ class Flashcard extends Equatable {
         pinyin,
         definition,
         definitionLanguage,
+        dictionaryWordId,
+        englishDefinition,
+        localizedDefinitionQuality,
+        isExpansionEligible,
+        sourceDefinitionHash,
         hskLevel,
         strokePaths,
         medianPaths,
@@ -116,6 +133,11 @@ class Flashcard extends Equatable {
     String? pinyin,
     String? definition,
     String? definitionLanguage,
+    int? dictionaryWordId,
+    String? englishDefinition,
+    int? localizedDefinitionQuality,
+    bool? isExpansionEligible,
+    String? sourceDefinitionHash,
     int? hskLevel,
     List<String>? strokePaths,
     List<List<Offset>>? medianPaths,
@@ -132,6 +154,12 @@ class Flashcard extends Equatable {
       pinyin: pinyin ?? this.pinyin,
       definition: definition ?? this.definition,
       definitionLanguage: definitionLanguage ?? this.definitionLanguage,
+      dictionaryWordId: dictionaryWordId ?? this.dictionaryWordId,
+      englishDefinition: englishDefinition ?? this.englishDefinition,
+      localizedDefinitionQuality:
+          localizedDefinitionQuality ?? this.localizedDefinitionQuality,
+      isExpansionEligible: isExpansionEligible ?? this.isExpansionEligible,
+      sourceDefinitionHash: sourceDefinitionHash ?? this.sourceDefinitionHash,
       hskLevel: hskLevel ?? this.hskLevel,
       strokePaths: strokePaths ?? this.strokePaths,
       medianPaths: medianPaths ?? this.medianPaths,

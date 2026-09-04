@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
@@ -9,14 +12,46 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
-class TodayInsightCard extends ConsumerWidget {
+class TodayInsightCard extends ConsumerStatefulWidget {
   const TodayInsightCard({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<TodayInsightCard> createState() => _TodayInsightCardState();
+}
+
+class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
+  late DateTime _now;
+  Timer? _midnightTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    _now = DateTime.now();
+    _scheduleMidnightRefresh();
+  }
+
+  void _scheduleMidnightRefresh() {
+    final now = DateTime.now();
+    final nextDay = DateTime(now.year, now.month, now.day + 1);
+    _midnightTimer = Timer(nextDay.difference(now), () {
+      if (!mounted) return;
+      setState(() => _now = DateTime.now());
+      unawaited(ref.read(widgetServiceProvider).updateWordOfTheDay(now: _now));
+      _scheduleMidnightRefresh();
+    });
+  }
+
+  @override
+  void dispose() {
+    _midnightTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
-    final todayWord = _pickDailyWord(context, cards);
+    final todayWord = _pickDailyWord(cards, _now);
     final card = todayWord['_card'] as Flashcard?;
 
     return BouncingButton(
@@ -178,21 +213,20 @@ class TodayInsightCard extends ConsumerWidget {
   }
 }
 
-Map<String, dynamic> _pickDailyWord(
-    BuildContext context, List<Flashcard> cards) {
-  if (cards.isEmpty) {
-    return {
-      'hanzi': '诚',
-      'pinyin': AppLocalizations.of(context)!.chng,
-      'meaning': AppLocalizations.of(context)!.sincereHonest,
-    };
+Map<String, dynamic> _pickDailyWord(List<Flashcard> cards, DateTime now) {
+  final word = wordOfTheDayFor(now);
+  Flashcard? matchingCard;
+  for (final card in cards) {
+    if (card.hanzi == word.hanzi) {
+      matchingCard = card;
+      break;
+    }
   }
-  final daySeed = DateTime.now().millisecondsSinceEpoch ~/ 86400000;
-  final card = cards[daySeed % cards.length];
+
   return {
-    'hanzi': card.hanzi,
-    'pinyin': card.pinyin,
-    'meaning': card.definition,
-    '_card': card,
+    'hanzi': word.hanzi,
+    'pinyin': word.pinyin,
+    'meaning': word.definition,
+    '_card': matchingCard,
   };
 }

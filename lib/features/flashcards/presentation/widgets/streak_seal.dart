@@ -8,8 +8,6 @@ class StreakSeal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Note: the streakProvider might return an AsyncValue or an int, let's assume it returns an int directly based on how it was used earlier ("$streak Days"), but wait, the view says "final streak = ref.watch(streakProvider);"
-    // Oh, wait, in global_sliver_app_bar.dart I saw "streakProvider.valueOrNull?.streakCount". Wait, in StreakSeal it just uses "$streak". Let's preserve however it was used.
     final streak = ref.watch(streakProvider);
     final theme = Theme.of(context);
 
@@ -23,22 +21,25 @@ class StreakSeal extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Builder(
-            builder: (context) {
-              final flame = Container(
-                padding: const EdgeInsets.all(4),
-                decoration: const BoxDecoration(
-                  color: Color(0xFFE27C5A),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.local_fire_department, color: Colors.white, size: 12),
-              );
-              
-              return streak > 0 
-                  ? flame.animate(onPlay: (controller) => controller.repeat(reverse: true)).scaleXY(end: 1.1, duration: 1.seconds)
-                  : flame;
-            }
-          ),
+          Builder(builder: (context) {
+            final flame = Container(
+              padding: const EdgeInsets.all(4),
+              decoration: const BoxDecoration(
+                color: Color(0xFFE27C5A),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.local_fire_department,
+                  color: Colors.white, size: 12),
+            );
+
+            return streak > 0
+                ? flame
+                    .animate(
+                        onPlay: (controller) =>
+                            controller.repeat(reverse: true))
+                    .scaleXY(end: 1.1, duration: 1.seconds)
+                : flame;
+          }),
           const SizedBox(width: 6),
           Text(
             streak > 0 ? "$streak DAYS STREAK" : "START YOUR STREAK",

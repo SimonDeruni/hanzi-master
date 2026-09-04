@@ -42,13 +42,19 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       listeningStats: fields[22] as ReviewStatsModel?,
       sourceSentence: fields[23] as String?,
       sourceContext: fields[24] as String?,
+      definitionLanguage: fields[25] as String?,
+      dictionaryWordId: fields[26] as int?,
+      englishDefinition: fields[27] as String?,
+      localizedDefinitionQuality: fields[28] as int?,
+      isExpansionEligible: fields[29] as bool?,
+      sourceDefinitionHash: fields[30] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FlashcardModel obj) {
     writer
-      ..writeByte(25)
+      ..writeByte(31)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -98,7 +104,19 @@ class FlashcardModelAdapter extends TypeAdapter<FlashcardModel> {
       ..writeByte(23)
       ..write(obj.sourceSentence)
       ..writeByte(24)
-      ..write(obj.sourceContext);
+      ..write(obj.sourceContext)
+      ..writeByte(25)
+      ..write(obj.definitionLanguage)
+      ..writeByte(26)
+      ..write(obj.dictionaryWordId)
+      ..writeByte(27)
+      ..write(obj.englishDefinition)
+      ..writeByte(28)
+      ..write(obj.localizedDefinitionQuality)
+      ..writeByte(29)
+      ..write(obj.isExpansionEligible)
+      ..writeByte(30)
+      ..write(obj.sourceDefinitionHash);
   }
 
   @override

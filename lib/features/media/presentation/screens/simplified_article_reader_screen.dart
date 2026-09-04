@@ -10,10 +10,12 @@ class SimplifiedArticleReaderScreen extends StatefulWidget {
   const SimplifiedArticleReaderScreen({super.key, required this.story});
 
   @override
-  State<SimplifiedArticleReaderScreen> createState() => _SimplifiedArticleReaderScreenState();
+  State<SimplifiedArticleReaderScreen> createState() =>
+      _SimplifiedArticleReaderScreenState();
 }
 
-class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderScreen> {
+class _SimplifiedArticleReaderScreenState
+    extends State<SimplifiedArticleReaderScreen> {
   bool _showPinyin = false;
   bool _showTranslation = false;
 
@@ -34,7 +36,11 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.simplifiedArticle, style: TextStyle(fontFamily: AppLocalizations.of(context)!.serif, fontWeight: FontWeight.bold, color: textColor)),
+        title: Text(AppLocalizations.of(context)!.simplifiedArticle,
+            style: TextStyle(
+                fontFamily: AppLocalizations.of(context)!.serif,
+                fontWeight: FontWeight.bold,
+                color: textColor)),
         backgroundColor: bg,
         elevation: 0,
         iconTheme: IconThemeData(color: textColor),
@@ -42,7 +48,9 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
           IconButton(
             icon: Icon(
               Icons.sort_by_alpha,
-              color: _showPinyin ? Colors.blue : (isDark ? Colors.white54 : Colors.grey),
+              color: _showPinyin
+                  ? Colors.blue
+                  : (isDark ? Colors.white54 : Colors.grey),
             ),
             tooltip: AppLocalizations.of(context)!.togglePinyin,
             onPressed: () {
@@ -54,7 +62,9 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
           IconButton(
             icon: Icon(
               Icons.translate,
-              color: _showTranslation ? Colors.purple : (isDark ? Colors.white54 : Colors.grey),
+              color: _showTranslation
+                  ? Colors.purple
+                  : (isDark ? Colors.white54 : Colors.grey),
             ),
             tooltip: AppLocalizations.of(context)!.toggleTranslation,
             onPressed: () {
@@ -76,21 +86,25 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                 margin: const EdgeInsets.only(bottom: 16.0),
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.orange.shade900.withValues(alpha: 0.3) : Colors.orange.shade50,
+                  color: isDark
+                      ? Colors.orange.shade900.withValues(alpha: 0.3)
+                      : Colors.orange.shade50,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.orange.shade200),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.warning_amber_rounded, color: Colors.orange),
+                    const Icon(Icons.warning_amber_rounded,
+                        color: Colors.orange),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         AppLocalizations.of(context)!.thisArticleCharacters,
                         style: TextStyle(
-                          color: isDark ? Colors.orange.shade200 : Colors.orange.shade900, 
-                          fontWeight: FontWeight.w500
-                        ),
+                            color: isDark
+                                ? Colors.orange.shade200
+                                : Colors.orange.shade900,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ],
@@ -106,19 +120,33 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                       spacing: 4.0,
                       runSpacing: 12.0,
                       children: sentence.words.map((word) {
-                        bool hasChineseChars = RegExp(r'[\u4e00-\u9fa5]').hasMatch(word.hanzi);
-                        bool hasChinesePunc = RegExp(r'[\u3000-\u303f\uff00-\uffef]').hasMatch(word.hanzi);
+                        bool hasChineseChars =
+                            RegExp(r'[\u4e00-\u9fa5]').hasMatch(word.hanzi);
+                        bool hasChinesePunc =
+                            RegExp(r'[\u3000-\u303f\uff00-\uffef]')
+                                .hasMatch(word.hanzi);
                         bool isChineseStyle = hasChineseChars || hasChinesePunc;
 
                         // Avoid duplicating text if the parser blindly copied English into all fields
-                        bool isValidPinyin = word.pinyin.isNotEmpty && word.pinyin != word.hanzi;
-                        bool isValidMeaning = word.meaning.isNotEmpty && word.meaning != word.hanzi;
+                        bool isValidPinyin =
+                            word.pinyin.isNotEmpty && word.pinyin != word.hanzi;
+                        bool isValidMeaning = word.meaning.isNotEmpty &&
+                            word.meaning != word.hanzi;
 
-                        bool showWordPinyin = _showPinyin && hasChineseChars && isValidPinyin;
-                        bool showWordMeaning = _showTranslation && hasChineseChars && isValidMeaning;
+                        bool showWordPinyin =
+                            _showPinyin && hasChineseChars && isValidPinyin;
+                        bool showWordMeaning = _showTranslation &&
+                            hasChineseChars &&
+                            isValidMeaning;
 
                         return GestureDetector(
-                          onTap: () => showQuickLook(context, word.hanzi, contextText: sentence.chinese),
+                          onTapDown: (details) => showQuickLook(
+                            context,
+                            word.hanzi,
+                            contextText: sentence.chinese,
+                            presentation: QuickLookPresentation.readingPopover,
+                            anchorPosition: details.globalPosition,
+                          ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -127,17 +155,21 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                                   word.pinyin,
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: isDark ? Colors.white54 : Colors.grey,
+                                    color:
+                                        isDark ? Colors.white54 : Colors.grey,
                                   ),
                                 ),
                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: isChineseStyle ? 0 : 8.0),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: isChineseStyle ? 0 : 8.0),
                                 child: Text(
                                   word.hanzi,
                                   style: TextStyle(
                                     fontSize: isChineseStyle ? 24 : 16,
                                     height: 1.2,
-                                    fontFamily: isChineseStyle ? AppLocalizations.of(context)!.serif : null,
+                                    fontFamily: isChineseStyle
+                                        ? AppLocalizations.of(context)!.serif
+                                        : null,
                                     color: textColor,
                                   ),
                                 ),
@@ -147,7 +179,9 @@ class _SimplifiedArticleReaderScreenState extends State<SimplifiedArticleReaderS
                                   word.meaning,
                                   style: TextStyle(
                                     fontSize: 10,
-                                    color: isDark ? Colors.blue.shade200 : Colors.blueGrey,
+                                    color: isDark
+                                        ? Colors.blue.shade200
+                                        : Colors.blueGrey,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,

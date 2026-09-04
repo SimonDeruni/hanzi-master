@@ -680,12 +680,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                             PinyinMode.all);
 
                                                     return GestureDetector(
-                                                      onTap: () =>
-                                                          showQuickLook(context,
-                                                              word.hanzi,
-                                                              contextText:
-                                                                  sentence
-                                                                      .chinese),
+                                                      onTapDown: (details) =>
+                                                          showQuickLook(
+                                                        context,
+                                                        word.hanzi,
+                                                        contextText:
+                                                            sentence.chinese,
+                                                        presentation:
+                                                            QuickLookPresentation
+                                                                .readingPopover,
+                                                        anchorPosition: details
+                                                            .globalPosition,
+                                                      ),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.min,

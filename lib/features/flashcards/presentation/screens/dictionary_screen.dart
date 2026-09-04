@@ -32,6 +32,7 @@ import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/services/widget_service.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
   const DictionaryScreen({super.key});
@@ -41,12 +42,31 @@ class DictionaryScreen extends ConsumerStatefulWidget {
 }
 
 class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
-  String _searchQuery = "";
+  late String _searchQuery;
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
 
   @override
+  void initState() {
+    super.initState();
+    _applyWidgetSearch();
+    widgetWordSearch.addListener(_applyWidgetSearch);
+  }
+
+  void _applyWidgetSearch() {
+    final search = widgetWordSearch.value;
+    if (search == null || search.isEmpty) {
+      _searchQuery = '';
+      return;
+    }
+    _searchQuery = search;
+    _searchController.text = search;
+    if (mounted) setState(() {});
+  }
+
+  @override
   void dispose() {
+    widgetWordSearch.removeListener(_applyWidgetSearch);
     _searchController.dispose();
     _searchFocusNode.dispose();
     super.dispose();
@@ -184,6 +204,11 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             pinyin: masterCard.pinyin,
             definition: masterCard.definition,
             definitionLanguage: masterCard.definitionLanguage,
+            dictionaryWordId: masterCard.dictionaryWordId,
+            englishDefinition: masterCard.englishDefinition,
+            localizedDefinitionQuality: masterCard.localizedDefinitionQuality,
+            isExpansionEligible: masterCard.isExpansionEligible,
+            sourceDefinitionHash: masterCard.sourceDefinitionHash,
           );
         }).toList();
 
@@ -635,7 +660,7 @@ class _LexiconMiniCardState extends ConsumerState<_LexiconMiniCard> {
     return BouncingButton(
       onPressed: () {
         HapticsManager.light();
-        showQuickLook(context, widget.card.hanzi);
+        showQuickLook(context, widget.card.hanzi, card: widget.card);
       },
       child: Container(
         width: 120,
@@ -1000,7 +1025,7 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
     return BouncingButton(
       onPressed: () {
         HapticsManager.light();
-        showQuickLook(context, widget.card.hanzi);
+        showQuickLook(context, widget.card.hanzi, card: widget.card);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -1069,6 +1094,36 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  if (widget.card.isExpansionEligible) ...[
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.auto_awesome,
+                          size: 12,
+                          color: isDark
+                              ? Colors.indigo.shade200
+                              : Colors.indigo.shade600,
+                        ),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            _expansionAvailableLabel(
+                              Localizations.localeOf(context).languageCode,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: isDark
+                                  ? Colors.indigo.shade200
+                                  : Colors.indigo.shade600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -1089,5 +1144,18 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
         ),
       ),
     );
+  }
+
+  String _expansionAvailableLabel(String locale) {
+    const labels = {
+      'fr': 'Explication détaillée disponible',
+      'de': 'Ausführliche Erklärung verfügbar',
+      'es': 'Explicación detallada disponible',
+      'it': 'Spiegazione dettagliata disponibile',
+      'pt': 'Explicação detalhada disponível',
+      'ja': '詳しい説明があります',
+      'ko': '자세한 설명 제공',
+    };
+    return labels[locale] ?? 'Detailed explanation available';
   }
 }

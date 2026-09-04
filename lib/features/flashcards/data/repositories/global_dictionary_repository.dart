@@ -14,6 +14,7 @@ class GlobalDictionaryRepository {
   Map<String, int> _popularityRanks = const {};
 
   static const int _unrankedPopularity = 1000000;
+  static const String requiredSchemaVersion = '2';
 
   GlobalDictionaryRepository();
 
@@ -45,6 +46,9 @@ class GlobalDictionaryRepository {
         final tempDb = await databaseFactory.openDatabase(dbPath);
         final cols = await tempDb.rawQuery("PRAGMA table_info(words)");
         final colNames = cols.map((c) => c['name'] as String).toSet();
+        final metadata = await tempDb.rawQuery(
+          "SELECT value FROM dictionary_metadata WHERE key = 'dictionary_schema_version'",
+        );
         await tempDb.close();
 
         if (!colNames.contains('definition_fr') ||
@@ -59,10 +63,11 @@ class GlobalDictionaryRepository {
             !colNames.contains('definition_it') ||
             !colNames.contains('definition_de') ||
             !colNames.contains('definition_ar') ||
-            !colNames.contains('definition_hi')) {
+            !colNames.contains('definition_hi') ||
+            metadata.isEmpty ||
+            metadata.first['value'] != requiredSchemaVersion) {
           needsRefresh = true;
         }
-
       } catch (_) {
         needsRefresh = true;
       }
@@ -181,6 +186,7 @@ class GlobalDictionaryRepository {
       final results = List<Map<String, dynamic>>.from(
         await _db!.rawQuery(sqlQuery, args),
       );
+      await _attachQualityMetadata(results, targetLanguage);
       results.sort(_compareSearchRows);
 
       final List<Flashcard> cards = results.take(50).map<Flashcard>((row) {
@@ -290,6 +296,12 @@ class GlobalDictionaryRepository {
       definition: chosenDef,
       definitionLanguage:
           hasLocalizedDefinition ? targetLanguage!.trim() : 'English',
+      dictionaryWordId: (row['id'] as num).toInt(),
+      englishDefinition: defEn,
+      localizedDefinitionQuality:
+          (row['localized_quality_score'] as num?)?.toInt(),
+      isExpansionEligible: row['expansion_eligible'] == 1,
+      sourceDefinitionHash: _decodeSourceHash(row['source_definition_hash']),
       hskLevel: 0,
       strokePaths: const [],
       modeStats: const {},
@@ -314,7 +326,10 @@ class GlobalDictionaryRepository {
     final args = ['%$character%', '%$character%', character, character, limit];
 
     try {
-      final results = await _db!.rawQuery(sqlQuery, args);
+      final results = List<Map<String, dynamic>>.from(
+        await _db!.rawQuery(sqlQuery, args),
+      );
+      await _attachQualityMetadata(results, targetLanguage);
 
       final List<Flashcard> cards = results.map<Flashcard>((row) {
         return _mapRowToCard(row, targetLanguage);
@@ -330,11 +345,12 @@ class GlobalDictionaryRepository {
   Future<Flashcard?> getExact(String hanzi, {String? targetLanguage}) async {
     if (_db == null || hanzi.trim().isEmpty) return null;
     try {
-      final results = await _db!.rawQuery(
+      final results = List<Map<String, dynamic>>.from(await _db!.rawQuery(
         'SELECT * FROM words WHERE simplified = ? OR traditional = ? LIMIT 1',
         [hanzi.trim(), hanzi.trim()],
-      );
+      ));
       if (results.isEmpty) return null;
+      await _attachQualityMetadata(results, targetLanguage);
       return _mapRowToCard(results.first, targetLanguage);
     } catch (e) {
       return null;
@@ -346,5 +362,67 @@ class GlobalDictionaryRepository {
       {String? targetLanguage}) async {
     final card = await getExact(hanzi, targetLanguage: targetLanguage);
     return card?.definition;
+  }
+
+  Future<void> _attachQualityMetadata(
+    List<Map<String, dynamic>> rows,
+    String? targetLanguage,
+  ) async {
+    final languageCode = _languageCode(targetLanguage);
+    if (languageCode == null || rows.isEmpty) return;
+    try {
+      final ids = rows.map((row) => row['id']).toList();
+      final placeholders = List.filled(ids.length, '?').join(',');
+      final qualityRows = await _db!.rawQuery(
+        'SELECT word_id, score, expansion_eligible, source_definition_hash '
+        'FROM localized_definition_quality WHERE language_code = ? '
+        'AND word_id IN ($placeholders)',
+        [languageCode, ...ids],
+      );
+      final byId = {for (final row in qualityRows) row['word_id']: row};
+      for (var index = 0; index < rows.length; index++) {
+        final quality = byId[rows[index]['id']];
+        if (quality != null) {
+          rows[index] = {
+            ...rows[index],
+            'localized_quality_score': quality['score'],
+            'expansion_eligible': quality['expansion_eligible'],
+            'source_definition_hash': quality['source_definition_hash'],
+          };
+        }
+      }
+    } catch (_) {
+      // Legacy/in-memory databases remain readable during phased rollout.
+    }
+  }
+
+  String? _languageCode(String? language) {
+    const codes = {
+      'french': 'fr',
+      'german': 'de',
+      'spanish': 'es',
+      'russian': 'ru',
+      'italian': 'it',
+      'portuguese': 'pt',
+      'japanese': 'ja',
+      'korean': 'ko',
+      'vietnamese': 'vi',
+      'indonesian': 'id',
+      'arabic': 'ar',
+      'hindi': 'hi',
+      'thai': 'th',
+    };
+    if (language == null) return null;
+    final normalized = language.toLowerCase().trim();
+    return codes[normalized] ??
+        (codes.containsValue(normalized) ? normalized : null);
+  }
+
+  String? _decodeSourceHash(Object? value) {
+    if (value is String) return value;
+    if (value is Uint8List) {
+      return value.map((byte) => byte.toRadixString(16).padLeft(2, '0')).join();
+    }
+    return null;
   }
 }

@@ -139,9 +139,7 @@ Map<String, String> _authorBios(BuildContext context) => {
           "Arthur Conan Doyle (1859–1930) was a Scottish physician who created Sherlock Holmes — fiction's most celebrated detective — in a series of 60 stories. Holmes's extraordinary deductive method and Baker Street atmosphere made him the most frequently portrayed fictional character in film and television history.",
     };
 
-// ─── Per-author Chinese bio (generic fallback) ──────────────────────────────
-String _authorBioZh(BookModel book) =>
-    '本作是 ${book.author} 的代表性传世巨著，在世界与中华文学史上具有深远的历史影响与文学造诣。';
+
 
 String _authorBioEn(BuildContext context, BookModel book) {
   final authorBios = _authorBios(context);
@@ -170,9 +168,6 @@ class BookDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
-  bool _showChineseAuthor = false;
-  bool _showChineseSynopsis = false;
-
   @override
   Widget build(BuildContext context) {
     final book = widget.book;
@@ -640,26 +635,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         ),
                       );
                     },
-
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 2),
-                            child: Text(
-                              ch.title,
-                              style: TextStyle(
-                                fontSize: 12.5,
-                                color: isDarkLocal
-                                    ? Colors.amber.shade300
-                                    : const Color(0xFF8B0000),
-                                fontStyle: FontStyle.italic,
-                                height: 1.3,
-                              ),
-                            ),
-                          ),
-                          trailing:
-                              const Icon(Icons.arrow_forward_ios, size: 14),
-                        ),
-                      );
-                    },
                     childCount: chapters.length,
                   ),
                 ),
@@ -699,39 +674,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     );
   }
 
-  // ── Chinese language dropdown toggle ────────────────────────────────────────
-  Widget _buildChineseToggle({
-    required String label,
-    required bool isOpen,
-    required Color accentColor,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 12),
-        child: Row(
-          children: [
-            Icon(
-              isOpen ? Icons.expand_less : Icons.expand_more,
-              size: 16,
-              color: accentColor.withValues(alpha: 0.7),
-            ),
-            const SizedBox(width: 4),
-            Text(
-              isOpen ? '收起中文' : label,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: accentColor.withValues(alpha: 0.7),
-                letterSpacing: 0.3,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   // ── Badge ──────────────────────────────────────────────────────────────────
   Widget _buildBadge(String label, Color color) {

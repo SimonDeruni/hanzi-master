@@ -1301,9 +1301,15 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen> {
                                           _currentSpokenCharIndex;
 
                                   return GestureDetector(
-                                    onTap: () {
+                                    onTapDown: (details) {
                                       HapticsManager.light();
-                                      showQuickLook(context, token.char);
+                                      showQuickLook(
+                                        context,
+                                        token.char,
+                                        presentation: QuickLookPresentation
+                                            .readingPopover,
+                                        anchorPosition: details.globalPosition,
+                                      );
                                     },
                                     behavior: HitTestBehavior.opaque,
                                     child: AnimatedContainer(

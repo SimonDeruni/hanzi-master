@@ -17,6 +17,7 @@ import '../widgets/live_call_summary_screen.dart';
 import '../widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -1377,10 +1378,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (isUser && message.grade != null) ...[
-                _buildGradedText(
-                    message.grade!['words'] ?? [],
-                    theme,
-                    context),
+                _buildGradedText(message.grade!['words'] ?? [], theme, context),
                 const SizedBox(height: 4),
                 Builder(builder: (context) {
                   final score = message.grade!['score'] ??
@@ -1433,6 +1431,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
               ] else if (isUser) ...[
                 TappableMarkdownHanziText(
                   message.text,
+                  quickLookPresentation: QuickLookPresentation.readingPopover,
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     color: Colors.white,
@@ -1474,6 +1473,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
               ] else ...[
                 TappableMarkdownHanziText(
                   message.text,
+                  quickLookPresentation: QuickLookPresentation.readingPopover,
                   textAlign: TextAlign.left,
                   style: const TextStyle(
                     color: Colors.white,

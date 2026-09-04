@@ -1,4 +1,4 @@
-﻿import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -423,9 +423,18 @@ class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
         ));
       } else if (match.group(7) != null) {
         final hanzi = match.group(7)!;
+        Offset? anchorPosition;
         final recognizer = TapGestureRecognizer()
-          ..onTap = () =>
-              showQuickLook(context, hanzi, contextText: widget.contextText);
+          ..onTapDown = (details) {
+            anchorPosition = details.globalPosition;
+          }
+          ..onTap = () => showQuickLook(
+                context,
+                hanzi,
+                contextText: widget.contextText,
+                presentation: QuickLookPresentation.readingPopover,
+                anchorPosition: anchorPosition,
+              );
         _recognizers.add(recognizer);
 
         spans.add(TextSpan(

@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/live_translate/domain/entities/translation
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -707,7 +708,8 @@ class _TravelInterpreterScreenState
                                     items: supportedPartnerLanguages
                                         .map((lang) => DropdownMenuItem(
                                             value: lang,
-                                            child: Text("${AppLocalizations.of(context)?.partner ?? 'Partner'} ($lang)")))
+                                            child: Text(
+                                                "${AppLocalizations.of(context)?.partner ?? 'Partner'} ($lang)")))
                                         .toList(),
                                     onChanged: (val) {
                                       if (val != null) {
@@ -811,6 +813,9 @@ class _TravelInterpreterScreenState
                                       ),
                                       child: TappableMarkdownHanziText(
                                         msg.text,
+                                        quickLookPresentation:
+                                            QuickLookPresentation
+                                                .readingPopover,
                                         style: TextStyle(
                                           color: isFromSideB
                                               ? (isDark
@@ -876,7 +881,8 @@ class _TravelInterpreterScreenState
                                   items: supportedTranslationLanguages
                                       .map((lang) => DropdownMenuItem(
                                           value: lang,
-                                          child: Text("${AppLocalizations.of(context)?.you ?? 'You'} ($lang)")))
+                                          child: Text(
+                                              "${AppLocalizations.of(context)?.you ?? 'You'} ($lang)")))
                                       .toList(),
                                   onChanged: (val) {
                                     if (val != null) {
@@ -1011,6 +1017,8 @@ class _TravelInterpreterScreenState
                                     ),
                                     child: TappableMarkdownHanziText(
                                       msg.text,
+                                      quickLookPresentation:
+                                          QuickLookPresentation.readingPopover,
                                       style: TextStyle(
                                         color: isFromSideA
                                             ? (isDark

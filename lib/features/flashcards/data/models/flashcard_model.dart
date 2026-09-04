@@ -86,6 +86,24 @@ class FlashcardModel extends HiveObject {
   @HiveField(24)
   final String? sourceContext;
 
+  @HiveField(25)
+  final String? definitionLanguage;
+
+  @HiveField(26)
+  final int? dictionaryWordId;
+
+  @HiveField(27)
+  final String? englishDefinition;
+
+  @HiveField(28)
+  final int? localizedDefinitionQuality;
+
+  @HiveField(29)
+  final bool? isExpansionEligible;
+
+  @HiveField(30)
+  final String? sourceDefinitionHash;
+
   FlashcardModel({
     required this.id,
     this.deckId = 'default',
@@ -112,6 +130,12 @@ class FlashcardModel extends HiveObject {
     this.listeningStats,
     this.sourceSentence,
     this.sourceContext,
+    this.definitionLanguage,
+    this.dictionaryWordId,
+    this.englishDefinition,
+    this.localizedDefinitionQuality,
+    this.isExpansionEligible,
+    this.sourceDefinitionHash,
   });
 
   Flashcard toEntity() {
@@ -149,6 +173,12 @@ class FlashcardModel extends HiveObject {
       inkPoints: inkPoints ?? 0,
       sourceSentence: sourceSentence,
       sourceContext: sourceContext,
+      definitionLanguage: definitionLanguage,
+      dictionaryWordId: dictionaryWordId,
+      englishDefinition: englishDefinition,
+      localizedDefinitionQuality: localizedDefinitionQuality,
+      isExpansionEligible: isExpansionEligible ?? false,
+      sourceDefinitionHash: sourceDefinitionHash,
     );
   }
 
@@ -241,6 +271,12 @@ class FlashcardModel extends HiveObject {
           : null,
       sourceSentence: flashcard.sourceSentence,
       sourceContext: flashcard.sourceContext,
+      definitionLanguage: flashcard.definitionLanguage,
+      dictionaryWordId: flashcard.dictionaryWordId,
+      englishDefinition: flashcard.englishDefinition,
+      localizedDefinitionQuality: flashcard.localizedDefinitionQuality,
+      isExpansionEligible: flashcard.isExpansionEligible,
+      sourceDefinitionHash: flashcard.sourceDefinitionHash,
     );
   }
 

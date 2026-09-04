@@ -5,10 +5,10 @@ import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 /// CJK Unified Ideographs: basic block + Ext-A + Compatibility Ideographs.
 /// Covers the vast majority of characters used in modern Chinese.
 final _cjkPattern = RegExp(
-  r'[\u4e00-\u9fff'    // CJK Unified Ideographs (basic — most common)
-  r'\u3400-\u4dbf'    // CJK Extension A
-  r'\uf900-\ufaff'    // CJK Compatibility Ideographs
-  r'\u3005'           // 々 (iteration mark)
+  r'[\u4e00-\u9fff' // CJK Unified Ideographs (basic — most common)
+  r'\u3400-\u4dbf' // CJK Extension A
+  r'\uf900-\ufaff' // CJK Compatibility Ideographs
+  r'\u3005' // 々 (iteration mark)
   r']',
   unicode: true,
 );
@@ -20,7 +20,12 @@ final _cjkPattern = RegExp(
 // ---------------------------------------------------------------------------
 
 abstract class _TappableBase extends StatefulWidget {
-  const _TappableBase({super.key});
+  final QuickLookPresentation quickLookPresentation;
+
+  const _TappableBase({
+    super.key,
+    this.quickLookPresentation = QuickLookPresentation.bottomSheet,
+  });
 }
 
 abstract class _TappableBaseState<T extends _TappableBase> extends State<T> {
@@ -34,8 +39,17 @@ abstract class _TappableBaseState<T extends _TappableBase> extends State<T> {
   }
 
   TapGestureRecognizer _makeRecognizer(String char) {
+    Offset? anchorPosition;
     final r = TapGestureRecognizer()
-      ..onTap = () => showQuickLook(context, char);
+      ..onTapDown = (details) {
+        anchorPosition = details.globalPosition;
+      }
+      ..onTap = () => showQuickLook(
+            context,
+            char,
+            presentation: widget.quickLookPresentation,
+            anchorPosition: anchorPosition,
+          );
     _recognizers.add(r);
     return r;
   }
@@ -65,6 +79,7 @@ class TappableHanziText extends _TappableBase {
     this.textAlign = TextAlign.start,
     this.maxLines,
     this.overflow,
+    super.quickLookPresentation,
   });
 
   @override
@@ -155,6 +170,7 @@ class TappableMarkdownHanziText extends _TappableBase {
     this.textAlign = TextAlign.start,
     this.maxLines,
     this.overflow,
+    super.quickLookPresentation,
   });
 
   @override
@@ -167,9 +183,9 @@ class _TappableMarkdownHanziTextState
   // Italic: single * NOT preceded or followed by another * (so **bold** is not confused)
   // Bullet lines: handled in _preprocessText before regex runs
   static final _mdPattern = RegExp(
-    r'\*\*(.+?)\*\*'             // **bold**
+    r'\*\*(.+?)\*\*' // **bold**
     r'|(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)' // *italic* (not **)
-    r'|`(.+?)`',                  // `code`
+    r'|`(.+?)`', // `code`
     dotAll: false,
   );
 
@@ -247,8 +263,8 @@ class _TappableMarkdownHanziTextState
         _addCjkSpans(all, processedText.substring(last, match.start), base);
       }
       if (match.group(1) != null) {
-        _addCjkSpans(
-            all, match.group(1)!, base.copyWith(fontWeight: FontWeight.bold, color: Colors.indigo));
+        _addCjkSpans(all, match.group(1)!,
+            base.copyWith(fontWeight: FontWeight.bold, color: Colors.indigo));
       } else if (match.group(2) != null) {
         _addCjkSpans(
             all, match.group(2)!, base.copyWith(fontStyle: FontStyle.italic));

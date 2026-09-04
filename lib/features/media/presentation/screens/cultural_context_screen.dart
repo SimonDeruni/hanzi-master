@@ -439,10 +439,7 @@ class CulturalContextScreen extends ConsumerWidget {
         spans.add(TextSpan(
           text: char,
           style: effectiveStyle,
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              showQuickLook(context, char);
-            },
+          recognizer: _readingQuickLookRecognizer(context, char),
         ));
       } else {
         spans.add(TextSpan(text: char, style: effectiveStyle));
@@ -480,10 +477,7 @@ class CulturalContextScreen extends ConsumerWidget {
             spans.add(TextSpan(
               text: char,
               style: hanziStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  showQuickLook(context, char);
-                },
+              recognizer: _readingQuickLookRecognizer(context, char),
             ));
           } else {
             spans.add(TextSpan(text: char, style: baseStyle));
@@ -496,6 +490,21 @@ class CulturalContextScreen extends ConsumerWidget {
         );
       }).toList(),
     );
+  }
+
+  TapGestureRecognizer _readingQuickLookRecognizer(
+      BuildContext context, String hanzi) {
+    Offset? anchorPosition;
+    return TapGestureRecognizer()
+      ..onTapDown = (details) {
+        anchorPosition = details.globalPosition;
+      }
+      ..onTap = () => showQuickLook(
+            context,
+            hanzi,
+            presentation: QuickLookPresentation.readingPopover,
+            anchorPosition: anchorPosition,
+          );
   }
 }
 

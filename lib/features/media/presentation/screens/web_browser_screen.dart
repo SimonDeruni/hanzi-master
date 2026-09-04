@@ -48,6 +48,7 @@ class WebBrowserScreen extends ConsumerStatefulWidget {
 class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     with SingleTickerProviderStateMixin {
   late final WebViewController _controller;
+  final GlobalKey _webViewKey = GlobalKey();
   final TextEditingController _urlController = TextEditingController();
   bool _isLoading = true;
   bool _isZenMode = false;
@@ -193,7 +194,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         
         const payload = {
           char: char,
-          context: contextText
+          context: contextText,
+          clientX: event.clientX,
+          clientY: event.clientY
         };
         HanziMasterChannel.postMessage(JSON.stringify(payload));
       };
@@ -209,7 +212,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           }
           p = p.parentNode;
         }
-        HanziMasterChannel.postMessage(JSON.stringify({char: char, context: contextText}));
+        HanziMasterChannel.postMessage(JSON.stringify({
+          char: char,
+          context: contextText,
+          clientX: event.clientX,
+          clientY: event.clientY
+        }));
       };
 
       window.isWordInList = function(word, list) {
@@ -1166,15 +1174,27 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
       final char = data['char'] as String;
       final contextText = data['context'] as String;
+      Offset? anchorPosition;
+      final clientX = data['clientX'];
+      final clientY = data['clientY'];
+      final renderObject = _webViewKey.currentContext?.findRenderObject();
+      if (clientX is num && clientY is num && renderObject is RenderBox) {
+        anchorPosition = renderObject.localToGlobal(
+          Offset(clientX.toDouble(), clientY.toDouble()),
+        );
+      }
 
       final dummyWord = AiWord(hanzi: char, pinyin: '', meaning: '');
       final dummySentence =
           AiSentence(chinese: contextText, english: '', words: []);
       showQuickLook(context, dummyWord.hanzi,
-          contextText: dummySentence.chinese);
+          contextText: dummySentence.chinese,
+          presentation: QuickLookPresentation.readingPopover,
+          anchorPosition: anchorPosition);
     } catch (_) {
       // Fallback if not JSON
-      showQuickLook(context, message);
+      showQuickLook(context, message,
+          presentation: QuickLookPresentation.readingPopover);
     }
   }
 
@@ -1679,7 +1699,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           Expanded(
             child: Stack(
               children: [
-                WebViewWidget(controller: _controller),
+                WebViewWidget(key: _webViewKey, controller: _controller),
                 if (_isProcessingAi && _isZenMode)
                   Container(
                     color: Colors.white.withValues(alpha: 0.9),

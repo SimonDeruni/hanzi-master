@@ -187,8 +187,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 title: Text(AppLocalizations.of(context)!.notification_settings,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(AppLocalizations.of(context)!
-                    .manageDailyDropsAndReviewReminders),
+                subtitle: const Text('One optional daily practice reminder'),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showNotificationSettings(context, ref),
               ),
@@ -485,11 +484,14 @@ class SettingsScreen extends ConsumerWidget {
                       : Icons.radio_button_unchecked,
                   color: isSelected ? accent : Colors.grey,
                 ),
-                title: Text(opt.$2,
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal)),
+                title: Text(
+                  opt.$2,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
                 subtitle: Text(opt.$3, style: const TextStyle(fontSize: 11)),
                 onTap: () {
                   ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
@@ -504,158 +506,118 @@ class SettingsScreen extends ConsumerWidget {
   }
 }
 
-void _showNotificationSettings(BuildContext context, WidgetRef ref) {
-  final isDark = Theme.of(context).brightness == Brightness.dark;
+Future<void> _showNotificationSettings(
+    BuildContext context, WidgetRef ref) async {
   final notificationService = ref.read(notificationServiceProvider);
-  bool dailyDropsEnabled = false;
-  bool reviewRemindersEnabled = false;
-  TimeOfDay dailyDropTime = const TimeOfDay(hour: 8, minute: 0);
-  TimeOfDay reviewTime = const TimeOfDay(hour: 18, minute: 0);
+  var reminderEnabled = await notificationService.isPracticeReminderEnabled();
+  final savedTime = await notificationService.practiceReminderTime();
+  var reminderTime = TimeOfDay(hour: savedTime.hour, minute: savedTime.minute);
+  if (!context.mounted) return;
+  final isDark = Theme.of(context).brightness == Brightness.dark;
 
-  showModalBottomSheet(
+  await showModalBottomSheet<void>(
     context: context,
     useRootNavigator: true,
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
-    builder: (ctx) {
-      return StatefulBuilder(
-        builder: (context, setSheetState) {
-          return Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(28)),
+    builder: (sheetContext) => StatefulBuilder(
+      builder: (context, setSheetState) => Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withValues(alpha: 0.4),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Drag handle
-                Center(
-                  child: Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withValues(alpha: 0.4),
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  AppLocalizations.of(context)!.notification_settings,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? Colors.white : Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  AppLocalizations.of(context)!
-                      .manageDailyDropsAndReviewReminders,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isDark ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 24),
-
-                // Daily Drops toggle
-                _buildNotifToggle(
-                  context: context,
-                  isDark: isDark,
-                  icon: Icons.wb_sunny_outlined,
-                  title: "Daily Drops",
-                  subtitle: "Word of the Day & news",
-                  value: dailyDropsEnabled,
-                  time: dailyDropTime,
-                  onChanged: (val) {
-                    setSheetState(() => dailyDropsEnabled = val);
-                    if (val) {
-                      notificationService.scheduleDailyDrop(
-                          dailyDropTime.hour, dailyDropTime.minute);
-                    } else {
-                      notificationService.cancel(1);
-                      if (reviewRemindersEnabled) {
-                        final dueCount = ref.read(dueFlashcardsCountProvider);
-                        notificationService.scheduleSpacedRepetition(
-                            reviewTime.hour, reviewTime.minute, dueCount);
-                      }
-                    }
-                  },
-                  onTimePicked: (time) {
-                    setSheetState(() => dailyDropTime = time);
-                    if (dailyDropsEnabled) {
-                      notificationService.scheduleDailyDrop(
-                          time.hour, time.minute);
-                    }
-                  },
-                ),
-                const Divider(height: 32),
-
-                // Review Reminders toggle
-                _buildNotifToggle(
-                  context: context,
-                  isDark: isDark,
-                  icon: Icons.menu_book_outlined,
-                  title: "Review Reminders",
-                  subtitle: "Flashcards due for review",
-                  value: reviewRemindersEnabled,
-                  time: reviewTime,
-                  onChanged: (val) {
-                    setSheetState(() => reviewRemindersEnabled = val);
-                    if (val) {
-                      final dueCount = ref.read(dueFlashcardsCountProvider);
-                      notificationService.scheduleSpacedRepetition(
-                          reviewTime.hour, reviewTime.minute, dueCount);
-                    } else {
-                      notificationService.cancel(2);
-                      if (dailyDropsEnabled) {
-                        notificationService.scheduleDailyDrop(
-                            dailyDropTime.hour, dailyDropTime.minute);
-                      }
-                    }
-                  },
-                  onTimePicked: (time) {
-                    setSheetState(() => reviewTime = time);
-                    if (reviewRemindersEnabled) {
-                      final dueCount = ref.read(dueFlashcardsCountProvider);
-                      notificationService.scheduleSpacedRepetition(
-                          time.hour, time.minute, dueCount);
-                    }
-                  },
-                ),
-                const SizedBox(height: 24),
-
-                OutlinedButton.icon(
-                  onPressed: () => notificationService.requestPermissions(),
-                  icon: const Icon(Icons.notifications_active, size: 18),
-                  label: Text(AppLocalizations.of(context)!.requestPermissions),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14)),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14)),
-                  ),
-                  child: Text(AppLocalizations.of(context)!.done),
-                ),
-                const SizedBox(height: 8),
-              ],
+            const SizedBox(height: 20),
+            Text(
+              AppLocalizations.of(context)!.notification_settings,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : Colors.black87,
+              ),
             ),
-          );
-        },
-      );
-    },
+            const SizedBox(height: 8),
+            Text(
+              'Choose one optional daily practice reminder.',
+              style: TextStyle(
+                color: isDark ? Colors.white60 : Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 24),
+            _buildNotifToggle(
+              context: context,
+              isDark: isDark,
+              icon: Icons.self_improvement_outlined,
+              title: 'Practice reminder',
+              subtitle: 'One gentle reminder a day, only if you need it',
+              value: reminderEnabled,
+              time: reminderTime,
+              onChanged: (enabled) async {
+                if (enabled) {
+                  final granted =
+                      await notificationService.requestPermissions();
+                  if (!context.mounted) return;
+                  if (!granted) {
+                    setSheetState(() => reminderEnabled = false);
+                    return;
+                  }
+                }
+                await notificationService.setPracticeReminder(
+                  enabled: enabled,
+                  hour: reminderTime.hour,
+                  minute: reminderTime.minute,
+                );
+                if (context.mounted) {
+                  setSheetState(() => reminderEnabled = enabled);
+                }
+              },
+              onTimePicked: (time) async {
+                setSheetState(() => reminderTime = time);
+                if (reminderEnabled) {
+                  await notificationService.setPracticeReminder(
+                    enabled: true,
+                    hour: time.hour,
+                    minute: time.minute,
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Finishing practice silences today’s reminder. Review and '
+              're-engagement alerts are combined so they never stack.',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(sheetContext),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              child: Text(AppLocalizations.of(context)!.done),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    ),
   );
 }
 

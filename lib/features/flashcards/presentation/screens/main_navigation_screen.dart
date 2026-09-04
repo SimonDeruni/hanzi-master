@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
+import 'package:hanzi_master/core/services/widget_service.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -19,7 +20,13 @@ class MainNavigationScreen extends ConsumerStatefulWidget {
 }
 
 class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = widgetWordSearch.value == null ? 0 : 3;
+
+  void _openWidgetWord() {
+    if (widgetWordSearch.value != null && mounted) {
+      setState(() => _selectedIndex = 3);
+    }
+  }
 
   void _onNavigate(int index) {
     FocusScope.of(context).unfocus();
@@ -32,7 +39,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       l10n?.dashboardTitle ?? 'Dashboard',
       l10n?.explore ?? 'Explore',
       l10n?.aiHubTitle ?? 'AI Hub',
-      l10n?.library ?? 'Library',
+      l10n?.libraryLabel ?? 'Library',
     ];
     if (index >= 0 && index < screenNames.length) {
       ref.read(analyticsServiceProvider).logScreenView(screenNames[index]);
@@ -49,6 +56,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   @override
   void initState() {
     super.initState();
+    widgetWordSearch.addListener(_openWidgetWord);
     // Log the initial screen
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -57,6 +65,12 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           .read(analyticsServiceProvider)
           .logScreenView(l10n?.dashboardTitle ?? 'Dashboard');
     });
+  }
+
+  @override
+  void dispose() {
+    widgetWordSearch.removeListener(_openWidgetWord);
+    super.dispose();
   }
 
   @override
@@ -110,7 +124,8 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.home_outlined),
               activeIcon: const Icon(Icons.home),
-              label: AppLocalizations.of(context)?.dashboardTitle ?? 'Dashboard',
+              label:
+                  AppLocalizations.of(context)?.dashboardTitle ?? 'Dashboard',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.explore_outlined),
@@ -125,7 +140,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             BottomNavigationBarItem(
               icon: const Icon(Icons.menu_book_outlined),
               activeIcon: const Icon(Icons.menu_book),
-              label: AppLocalizations.of(context)?.library ?? 'Library',
+              label: AppLocalizations.of(context)?.libraryLabel ?? 'Library',
             ),
           ],
         ),

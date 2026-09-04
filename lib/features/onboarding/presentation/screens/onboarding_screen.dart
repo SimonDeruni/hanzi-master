@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
+import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -21,8 +21,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _selectedMastery = -1;
   int _selectedDrive = -1;
   int _selectedRitual = -1;
-  double _calibrationProgress = 0.0;
-  bool _calibrationComplete = false;
+  final double _calibrationProgress = 0.0;
+  final bool _calibrationComplete = false;
 
   void _nextPage() {
     if (_currentPage < 3) {
@@ -36,45 +36,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   void _startCalibration() {
-    setState(() {
-      _currentPage = 4;
-      _calibrationProgress = 0.0;
-      _calibrationComplete = false;
-      _pageController.animateToPage(
-        4, 
-        duration: 400.ms, 
-        curve: Curves.easeInOutQuart,
-      );
-    });
-
-    Future.delayed(const Duration(milliseconds: 300), () {
-      if (!mounted) return;
-      setState(() => _calibrationProgress = 0.35);
-      HapticFeedback.lightImpact();
-    });
-
-    Future.delayed(const Duration(milliseconds: 900), () {
-      if (!mounted) return;
-      setState(() => _calibrationProgress = 0.70);
-      HapticFeedback.lightImpact();
-    });
-
-    Future.delayed(const Duration(milliseconds: 1600), () {
-      if (!mounted) return;
-      setState(() => _calibrationProgress = 1.0);
-      HapticFeedback.mediumImpact();
-    });
-
-    Future.delayed(const Duration(milliseconds: 2100), () {
-      if (!mounted) return;
-      setState(() => _calibrationComplete = true);
-      HapticFeedback.heavyImpact();
-    });
-
-    Future.delayed(const Duration(milliseconds: 2700), () {
-      if (!mounted) return;
-      _completeOnboarding();
-    });
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => OnboardingMiniLessonScreen(
+          onComplete: _completeOnboarding,
+        ),
+      ),
+    );
   }
 
   void _completeOnboarding() async {

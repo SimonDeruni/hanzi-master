@@ -56,6 +56,19 @@ class DefinitionFormatter extends ConsumerWidget {
     return _parse(raw, ref).join(', ');
   }
 
+  /// Splits a displayed dictionary definition into individual meanings.
+  ///
+  /// This intentionally only uses strong dictionary delimiters. Commas and
+  /// sentence punctuation may be part of a single meaning, so they are left
+  /// untouched. Text without a semicolon or line break remains one meaning.
+  static List<String> splitMeanings(String definition) {
+    return definition
+        .split(RegExp(r';|\r?\n'))
+        .map((meaning) => meaning.trim())
+        .where((meaning) => meaning.isNotEmpty)
+        .toList(growable: false);
+  }
+
   static List<String> _parse(String raw, WidgetRef ref) {
     // Pre-load the character-level metadata map (covers all ~20k hanzi)
     final charDefs = ref.read(hanziCharDefinitionsProvider).valueOrNull ?? {};
@@ -110,7 +123,7 @@ class DefinitionFormatter extends ConsumerWidget {
     cleaned = cleaned.replaceAll('CL:', 'Measure word: ');
 
     // 3. Split by semicolon into individual meanings
-    final parts = cleaned.split(';');
+    final parts = splitMeanings(cleaned);
 
     // 4. Trim, remove blanks, capitalise each entry, and polish known patterns
     return parts

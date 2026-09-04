@@ -9,6 +9,7 @@ import '../../../reading/presentation/providers/story_controller.dart';
 import '../../../reading/presentation/screens/story_reader_screen.dart';
 import 'web_browser_screen.dart';
 import '../../../../shared/widgets/tappable_hanzi_text.dart';
+import '../../../../shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -248,6 +249,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                       // Titles
                       TappableHanziText(
                         widget.story.titleEn ?? widget.story.title,
+                        quickLookPresentation:
+                            QuickLookPresentation.readingPopover,
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -261,6 +264,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         const SizedBox(height: 8),
                         TappableHanziText(
                           widget.story.title,
+                          quickLookPresentation:
+                              QuickLookPresentation.readingPopover,
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: 'NotoSerifSC',
@@ -306,6 +311,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         _enrichedSummary ??
                             widget.story.summaryEn ??
                             widget.story.summary,
+                        quickLookPresentation:
+                            QuickLookPresentation.readingPopover,
                         style: TextStyle(
                           fontSize: 16,
                           height: 1.6,
@@ -523,6 +530,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
             children: [
               TappableHanziText(
                 word.hanzi,
+                quickLookPresentation: QuickLookPresentation.readingPopover,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

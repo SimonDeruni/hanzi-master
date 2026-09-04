@@ -429,6 +429,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           TranslatedDefinition(
             definition: currentCard.definition,
             hanzi: currentCard.hanzi,
+            presentation: DefinitionPresentation.fullDetail,
             originalStyle: TextStyle(
               fontSize: 18,
               color: isDark ? Colors.white70 : Colors.black87,

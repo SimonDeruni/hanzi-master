@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -13,6 +13,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/dictionary
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
+import 'package:hanzi_master/features/progression/data/study_progress_service.dart';
+import 'package:hanzi_master/features/progression/domain/study_progress.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
@@ -103,6 +105,23 @@ class DashboardScreen extends ConsumerWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: TodayInsightCard(),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 22)),
+
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: ref.watch(studyProgressProvider).when(
+                      loading: () => const SizedBox(
+                        height: 120,
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                      error: (_, __) => const SizedBox.shrink(),
+                      data: (progress) =>
+                          _HabitProgressCards(progress: progress),
+                    ),
               ),
             ),
 
@@ -203,7 +222,8 @@ class DashboardScreen extends ConsumerWidget {
                       child: _buildActionRectangle(
                         context: context,
                         icon: Icons.document_scanner_rounded,
-                        title: AppLocalizations.of(context)?.scanner ?? "Scanner",
+                        title:
+                            AppLocalizations.of(context)?.scanner ?? "Scanner",
                         accentColor: const Color(0xFFFF7A00), // Vibrant Amber
                         onTap: () {
                           Navigator.push(
@@ -221,7 +241,8 @@ class DashboardScreen extends ConsumerWidget {
                       child: _buildActionRectangle(
                         context: context,
                         icon: Icons.translate_rounded,
-                        title: AppLocalizations.of(context)?.interpreter ?? "Interpreter",
+                        title: AppLocalizations.of(context)?.interpreter ??
+                            "Interpreter",
                         accentColor: const Color(0xFF3F51B5), // Deep Indigo
                         onTap: () {
                           Navigator.push(
@@ -776,7 +797,8 @@ class DashboardScreen extends ConsumerWidget {
                           foregroundColor: theme.colorScheme.onSurface
                               .withValues(alpha: 0.5)),
                       child: Text(AppLocalizations.of(context)!.done,
-                          style: const TextStyle(fontWeight: FontWeight.bold)))),
+                          style:
+                              const TextStyle(fontWeight: FontWeight.bold)))),
             ],
           ),
         );
@@ -850,4 +872,135 @@ class _ForecastItem extends StatelessWidget {
       ),
     );
   }
+}
+
+class _HabitProgressCards extends StatelessWidget {
+  const _HabitProgressCards({required this.progress});
+
+  final StudyProgress progress;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final week = progress.thisWeek;
+    final minutes = week.duration.inMinutes;
+    final comparison = progress.cardsChangePercent;
+    final comparisonText = comparison == null
+        ? 'Your first week of tracked practice'
+        : comparison == 0
+            ? 'Same number of cards as last week'
+            : '${comparison > 0 ? '+' : ''}$comparison% cards vs last week';
+
+    return Column(
+      children: [
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.eco_outlined, color: theme.colorScheme.primary),
+                    const SizedBox(width: 10),
+                    Text(
+                      'Today’s practice',
+                      style: theme.textTheme.titleMedium
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${progress.todayCards} / ${progress.dailyCardGoal} cards',
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                LinearProgressIndicator(
+                  value: progress.dailyGoalProgress,
+                  minHeight: 9,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                const SizedBox(height: 9),
+                Text(
+                  progress.todayCards >= progress.dailyCardGoal
+                      ? 'Goal complete — anything more is a bonus.'
+                      : 'A small, achievable target. No penalty for a rest day.',
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.calendar_view_week_outlined,
+                        color: theme.colorScheme.primary),
+                    const SizedBox(width: 10),
+                    Text(
+                      'This week',
+                      style: theme.textTheme.titleMedium
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const Spacer(),
+                    if (progress.currentStreak > 0)
+                      Text(
+                        '${progress.currentStreak} day streak',
+                        style: theme.textTheme.labelLarge,
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                Row(
+                  children: [
+                    _WeeklyMetric('Cards', '${week.cardsStudied}'),
+                    _WeeklyMetric(
+                        'Accuracy', '${(week.accuracy * 100).round()}%'),
+                    _WeeklyMetric('Minutes', '$minutes'),
+                    _WeeklyMetric('Active days', '${week.activeDays}'),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text(comparisonText, style: theme.textTheme.bodySmall),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _WeeklyMetric extends StatelessWidget {
+  const _WeeklyMetric(this.label, this.value);
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) => Expanded(
+        child: Column(
+          children: [
+            Text(
+              value,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      );
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,12 +14,14 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/main_navig
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
+import 'package:hanzi_master/core/services/widget_service.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:hanzi_master/firebase_options.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
@@ -26,7 +29,6 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/app_splash_screen.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -129,10 +131,19 @@ void main() async {
   // 5. Ensure Library is populated
   await container.read(flashcardControllerProvider.notifier).init();
 
+  final widgetService = container.read(widgetServiceProvider);
+  await widgetService.updateWordOfTheDay();
+  handleWidgetUri(await widgetService.initiallyLaunchedFromWidget());
+  widgetService.widgetClicks.listen(handleWidgetUri);
+
   // 6. Initialize Analytics & Auth
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await FirebaseAppCheck.instance.activate(
+      providerAndroid: const AndroidPlayIntegrityProvider(),
+      providerApple: const AppleAppAttestWithDeviceCheckFallbackProvider(),
     );
   } catch (e) {
     debugPrint('Firebase initialization failed: $e');

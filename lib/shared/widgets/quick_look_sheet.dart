@@ -1,4 +1,4 @@
-﻿import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -18,6 +18,9 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explain
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/features/flashcards/data/services/dictionary_expansion_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_expansion_provider.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_positioning.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -48,13 +51,119 @@ String _cleanDefinition(String raw) {
   return shown + remainder;
 }
 
-/// Shows a compact "Quick Look" bottom sheet for a single Chinese character.
-void showQuickLook(BuildContext context, String hanzi, {String? contextText}) {
+enum QuickLookPresentation { bottomSheet, readingPopover }
+
+/// Shows Quick Look using the presentation explicitly selected by its caller.
+void showQuickLook(
+  BuildContext context,
+  String hanzi, {
+  String? contextText,
+  Flashcard? card,
+  QuickLookPresentation presentation = QuickLookPresentation.bottomSheet,
+  Offset? anchorPosition,
+}) {
   if (hanzi.isEmpty) return;
-  GlobalBlurredBottomSheet.show(
-    context,
-    child: _QuickLookSheet(hanzi: hanzi, contextText: contextText),
+  if (presentation == QuickLookPresentation.readingPopover &&
+      anchorPosition != null &&
+      _showAnchoredQuickLook(
+        context,
+        hanzi,
+        contextText: contextText,
+        card: card,
+        anchorPosition: anchorPosition,
+      )) {
+    return;
+  }
+  showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.transparent,
+    isScrollControlled: true,
+    useSafeArea: true,
+    useRootNavigator: true,
+    barrierColor: Colors.black.withValues(alpha: 0.16),
+    builder: (_) => GlobalBlurredBottomSheet(
+      child: _QuickLookSheet(
+        hanzi: hanzi,
+        contextText: contextText,
+        initialCard: card,
+      ),
+    ),
   );
+}
+
+bool _showAnchoredQuickLook(
+  BuildContext context,
+  String hanzi, {
+  required Offset anchorPosition,
+  String? contextText,
+  Flashcard? card,
+}) {
+  final mediaQuery = MediaQuery.of(context);
+  final anchorRect = Rect.fromCircle(center: anchorPosition, radius: 12);
+  final layout = calculateQuickLookPopoverLayout(
+    viewportSize: mediaQuery.size,
+    safePadding: mediaQuery.padding,
+    anchorRect: anchorRect,
+    textScaleFactor: mediaQuery.textScaler.scale(1),
+  );
+  if (layout == null) return false;
+
+  showGeneralDialog<void>(
+    context: context,
+    useRootNavigator: true,
+    barrierDismissible: true,
+    barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+    barrierColor: Colors.black.withValues(alpha: 0.16),
+    transitionDuration: const Duration(milliseconds: 180),
+    pageBuilder: (dialogContext, _, __) => Stack(
+      children: [
+        Positioned(
+          left: layout.left,
+          top: layout.top,
+          width: layout.width,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: layout.maxHeight),
+            child: _QuickLookPopover(
+              child: _QuickLookSheet(
+                hanzi: hanzi,
+                contextText: contextText,
+                initialCard: card,
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+    transitionBuilder: (_, animation, __, child) => FadeTransition(
+      opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 0.97, end: 1).animate(animation),
+        alignment:
+            layout.isAboveAnchor ? Alignment.bottomCenter : Alignment.topCenter,
+        child: child,
+      ),
+    ),
+  );
+  return true;
+}
+
+class _QuickLookPopover extends StatelessWidget {
+  final Widget child;
+
+  const _QuickLookPopover({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Material(
+      color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
+      elevation: 18,
+      shadowColor: Colors.black.withValues(alpha: 0.32),
+      clipBehavior: Clip.antiAlias,
+      borderRadius: BorderRadius.circular(22),
+      child: SingleChildScrollView(child: child),
+    );
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -64,12 +173,19 @@ void showQuickLook(BuildContext context, String hanzi, {String? contextText}) {
 class _QuickLookSheet extends ConsumerWidget {
   final String hanzi;
   final String? contextText;
-  const _QuickLookSheet({required this.hanzi, this.contextText});
+  final Flashcard? initialCard;
+  const _QuickLookSheet({
+    required this.hanzi,
+    this.contextText,
+    this.initialCard,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final asyncCard = ref.watch(quickLookProvider(hanzi));
+    final asyncCard = initialCard == null
+        ? ref.watch(quickLookProvider(hanzi))
+        : AsyncValue<Flashcard?>.data(initialCard);
     final asyncCommon = ref.watch(commonWordsProvider(hanzi));
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final inDeck = allCards.any((c) => c.hanzi == hanzi);
@@ -246,6 +362,12 @@ class _FoundBody extends ConsumerWidget {
             definition: card.definition,
           ),
 
+          if (card.isExpansionEligible &&
+              card.dictionaryWordId != null &&
+              card.sourceDefinitionHash != null &&
+              card.definitionLanguage != null)
+            _DictionaryExpansionPanel(card: card, isDark: isDark),
+
           // ── Compound words ───────────────────────────────────────────
           asyncCommon.maybeWhen(
             data: (words) {
@@ -410,7 +532,7 @@ class _FoundBody extends ConsumerWidget {
                     } else {
                       showModalBottomSheet(
                         context: context,
-      useRootNavigator: true,
+                        useRootNavigator: true,
                         isScrollControlled: true,
                         useSafeArea: true,
                         backgroundColor: Colors.transparent,
@@ -490,6 +612,212 @@ class _FoundBody extends ConsumerWidget {
         ],
       ),
     );
+  }
+}
+
+class _DictionaryExpansionPanel extends ConsumerStatefulWidget {
+  final Flashcard card;
+  final bool isDark;
+
+  const _DictionaryExpansionPanel({required this.card, required this.isDark});
+
+  @override
+  ConsumerState<_DictionaryExpansionPanel> createState() =>
+      _DictionaryExpansionPanelState();
+}
+
+class _DictionaryExpansionPanelState
+    extends ConsumerState<_DictionaryExpansionPanel> {
+  late final DictionaryExpansionRequest _request;
+  bool _requested = false;
+  bool _checkingCache = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _request = DictionaryExpansionRequest(
+      wordId: widget.card.dictionaryWordId!,
+      languageCode: _languageCode(widget.card.definitionLanguage!),
+      sourceDefinitionHash: widget.card.sourceDefinitionHash!,
+    );
+    _loadCachedExpansion();
+  }
+
+  Future<void> _loadCachedExpansion() async {
+    final cached = await ref
+        .read(dictionaryExpansionServiceProvider)
+        .getCachedExpansion(_request);
+    if (!mounted) return;
+    setState(() {
+      _requested = cached != null;
+      _checkingCache = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_checkingCache) {
+      return const SizedBox.shrink();
+    }
+
+    if (!_requested) {
+      return _panel(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _briefEntryLabel(Localizations.localeOf(context).languageCode),
+              style: TextStyle(
+                fontSize: 12,
+                color: widget.isDark ? Colors.white70 : Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              key: const ValueKey('dictionary-expansion-button'),
+              onPressed: () => setState(() => _requested = true),
+              icon: const Icon(Icons.auto_awesome, size: 16),
+              label: Text(
+                _expandLabel(Localizations.localeOf(context).languageCode),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final expansion = ref.watch(dictionaryExpansionProvider(_request));
+    return expansion.when(
+      loading: () => _panel(
+        child: const LinearProgressIndicator(minHeight: 2),
+      ),
+      error: (_, __) => _panel(
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                _errorLabel(Localizations.localeOf(context).languageCode),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: widget.isDark ? Colors.white70 : Colors.black54,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () => ref.invalidate(
+                dictionaryExpansionProvider(_request),
+              ),
+              child: Text(AppLocalizations.of(context)!.retry),
+            ),
+          ],
+        ),
+      ),
+      data: (value) => _panel(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _provenanceLabel(Localizations.localeOf(context).languageCode),
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: widget.isDark ? Colors.white70 : Colors.indigo,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(value.text, style: const TextStyle(fontSize: 14, height: 1.4)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _panel({required Widget child}) => Container(
+        width: double.infinity,
+        margin: const EdgeInsets.only(top: 12),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.indigo.withValues(alpha: widget.isDark ? 0.14 : 0.06),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.indigo.withValues(alpha: 0.18)),
+        ),
+        child: child,
+      );
+
+  String _languageCode(String language) {
+    const codes = {
+      'French': 'fr',
+      'German': 'de',
+      'Spanish': 'es',
+      'Russian': 'ru',
+      'Italian': 'it',
+      'Portuguese': 'pt',
+      'Japanese': 'ja',
+      'Korean': 'ko',
+      'Vietnamese': 'vi',
+      'Indonesian': 'id',
+      'Arabic': 'ar',
+      'Hindi': 'hi',
+      'Thai': 'th',
+    };
+    return codes[language] ?? language.toLowerCase();
+  }
+
+  String _provenanceLabel(String locale) {
+    const labels = {
+      'ar': 'تفاصيل موسعة بالذكاء الاصطناعي',
+      'de': 'KI-erweiterter Wörterbucheintrag',
+      'es': 'Detalle ampliado por IA',
+      'fr': 'Détail enrichi par l’IA',
+      'hi': 'AI द्वारा विस्तृत शब्दकोश विवरण',
+      'id': 'Detail kamus yang diperluas AI',
+      'it': 'Dettaglio del dizionario ampliato dall’IA',
+      'ja': 'AIによる辞書の補足',
+      'ko': 'AI로 확장된 사전 설명',
+      'pt': 'Detalhe de dicionário expandido por IA',
+      'ru': 'Расширенная ИИ словарная статья',
+      'th': 'รายละเอียดพจนานุกรมที่ขยายโดย AI',
+      'vi': 'Chi tiết từ điển được AI mở rộng',
+      'zh': 'AI 扩展词典释义',
+    };
+    return labels[locale] ?? 'AI-expanded dictionary detail';
+  }
+
+  String _briefEntryLabel(String locale) {
+    const labels = {
+      'fr': 'Cette entrée est brève. Une explication détaillée est disponible.',
+      'de':
+          'Dieser Eintrag ist kurz. Eine ausführliche Erklärung ist verfügbar.',
+      'es': 'Esta entrada es breve. Hay una explicación detallada disponible.',
+      'it': 'Questa voce è breve. È disponibile una spiegazione dettagliata.',
+      'pt': 'Esta entrada é breve. Está disponível uma explicação detalhada.',
+    };
+    return labels[locale] ??
+        'This dictionary entry is brief. A detailed explanation is available.';
+  }
+
+  String _expandLabel(String locale) {
+    const labels = {
+      'fr': 'Développer en français',
+      'de': 'Auf Deutsch erweitern',
+      'es': 'Ampliar en español',
+      'it': 'Approfondisci in italiano',
+      'pt': 'Expandir em português',
+      'ja': '詳しい説明を見る',
+      'ko': '자세한 설명 보기',
+    };
+    return labels[locale] ?? 'Expand definition';
+  }
+
+  String _errorLabel(String locale) {
+    const labels = {
+      'fr': 'Impossible de charger l’explication.',
+      'de': 'Die Erklärung konnte nicht geladen werden.',
+      'es': 'No se pudo cargar la explicación.',
+      'it': 'Impossibile caricare la spiegazione.',
+      'pt': 'Não foi possível carregar a explicação.',
+    };
+    return labels[locale] ?? 'Unable to load the explanation.';
   }
 }
 
@@ -637,7 +965,8 @@ class _CharacterHero extends StatelessWidget {
                             if (ChineseHelper.isTraditionalChinese(hanzi)) ...[
                               if (hskLevel > 0) const SizedBox(width: 6),
                               _Badge(
-                                label: AppLocalizations.of(context)!.traditional,
+                                label:
+                                    AppLocalizations.of(context)!.traditional,
                                 color: Colors.orange,
                                 isDark: isDark,
                               ),
