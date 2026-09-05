@@ -58,7 +58,7 @@ class _AppSplashScreenState extends State<AppSplashScreen>
                 child: LayoutBuilder(
                   builder: (context, constraints) => Image.asset(
                     'assets/images/mascot.png',
-                    width: constraints.maxWidth.clamp(0, 300).toDouble(),
+                    width: constraints.maxWidth.clamp(0, 360).toDouble(),
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -67,7 +67,7 @@ class _AppSplashScreenState extends State<AppSplashScreen>
             Positioned(
               left: 24,
               right: 24,
-              bottom: 28,
+              bottom: 36,
               child: AnimatedBuilder(
                 animation: _fadeAnimation,
                 builder: (context, child) => Opacity(
@@ -75,12 +75,13 @@ class _AppSplashScreenState extends State<AppSplashScreen>
                   child: child,
                 ),
                 child: const Text(
-                  'Master Chinese with SinoSpark',
+                  'Learn Chinese with SinoSpark',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    letterSpacing: 0.3,
+                    fontFamily: 'Serif',
+                    color: Color(0xFF1A1A1B),
+                    letterSpacing: 0.5,
                   ),
                   textAlign: TextAlign.center,
                 ),
