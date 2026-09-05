@@ -9,6 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/services/pitch_detector_service.dart';
+import '../../../../core/services/local_translation_service.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -118,13 +120,34 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   void initState() {
     super.initState();
     if (widget.initialContextSentence != null &&
-        widget.initialContextSentence!.isNotEmpty) {
+        widget.initialContextSentence!.trim().isNotEmpty) {
+      final sentence = widget.initialContextSentence!.trim();
+      final sentencePinyin = (widget.initialPinyin != null &&
+              widget.initialPinyin!.trim().isNotEmpty &&
+              widget.initialPinyin!.trim().split(' ').length > 1)
+          ? widget.initialPinyin!.trim()
+          : PinyinHelper.getPinyinE(sentence,
+              separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+
+      final hasValidSentenceTranslation = widget.initialTranslation != null &&
+          widget.initialTranslation!.trim().isNotEmpty &&
+          (sentence.length <= 4 ||
+              widget.initialTranslation!.trim().split(' ').length > 3);
+
       _selectedMode = ShadowingMode.customSentence;
-      _customWordInput = widget.initialContextSentence!;
+      _customWordInput = sentence;
       _isSessionStarted = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _fetchNextPhrase();
-      });
+      _currentPhrase = {
+        "hanzi": sentence,
+        "pinyin": sentencePinyin,
+        "english": hasValidSentenceTranslation
+            ? widget.initialTranslation!.trim()
+            : "Translating sentence...",
+      };
+
+      if (!hasValidSentenceTranslation) {
+        _resolveSentenceTranslation(sentence);
+      }
     } else if (widget.initialHanzi != null) {
       _selectedMode = ShadowingMode.customWord;
       _customWordInput = widget.initialHanzi!;
@@ -168,6 +191,52 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     _audioRecorder.dispose();
     _pulseController.dispose();
     super.dispose();
+  }
+
+  Future<void> _resolveSentenceTranslation(String sentence) async {
+    try {
+      final translationService = ref.read(localTranslationServiceProvider);
+      final translated = await translationService.translate(sentence);
+      if (mounted &&
+          _currentPhrase != null &&
+          _currentPhrase!['hanzi'] == sentence &&
+          translated.trim().isNotEmpty) {
+        setState(() {
+          _currentPhrase = {
+            ..._currentPhrase!,
+            'english': translated.trim(),
+          };
+        });
+        return;
+      }
+    } catch (e) {
+      debugPrint("LocalTranslationService error in ShadowingStudio: $e");
+    }
+
+    try {
+      final geminiService = ref.read(geminiServiceProvider);
+      final phrase = await geminiService.generateShadowingPhrase(
+        ShadowingMode.customSentence.toString(),
+        "Exact Sentence: $sentence",
+      );
+      if (mounted &&
+          _currentPhrase != null &&
+          _currentPhrase!['hanzi'] == sentence) {
+        setState(() {
+          _currentPhrase = {
+            ..._currentPhrase!,
+            if (phrase['english'] != null && phrase['english']!.isNotEmpty)
+              'english': phrase['english']!,
+            if ((_currentPhrase!['pinyin'] == null ||
+                    _currentPhrase!['pinyin']!.isEmpty) &&
+                phrase['pinyin'] != null)
+              'pinyin': phrase['pinyin']!,
+          };
+        });
+      }
+    } catch (e) {
+      debugPrint("Gemini fallback translation error in ShadowingStudio: $e");
+    }
   }
 
   Future<void> _startSession() async {
@@ -778,7 +847,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       }
     }
 
-    if (mounted) {
+    if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Words saved and SRS scheduled!")));
     }
@@ -1155,7 +1224,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   Widget _buildSessionUI(BuildContext context, bool isDark) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (didPop) return;
         _showSessionSummaryDialog(context, isDark);
       },
@@ -1394,168 +1463,228 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
+  Widget _buildHanziPhraseView(bool isDark) {
+    final hanziText = _currentPhrase!['hanzi'] ?? '';
+    final targetHanzi = widget.initialHanzi?.trim();
+    final fontSize = _getHanziFontSize(hanziText.length);
+    final defaultColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final baseStyle = TextStyle(
+      fontSize: fontSize,
+      color: defaultColor,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'NotoSerifSC',
+      height: 1.35,
+    );
+
+    if (targetHanzi == null ||
+        targetHanzi.isEmpty ||
+        !hanziText.contains(targetHanzi)) {
+      return Text(
+        hanziText,
+        style: baseStyle,
+        textAlign: TextAlign.center,
+      );
+    }
+
+    final highlightColor =
+        isDark ? const Color(0xFF818CF8) : const Color(0xFF4F46E5);
+    final highlightBg =
+        highlightColor.withValues(alpha: isDark ? 0.28 : 0.16);
+
+    final spans = <InlineSpan>[];
+    int lastEnd = 0;
+    for (final match
+        in RegExp(RegExp.escape(targetHanzi)).allMatches(hanziText)) {
+      if (match.start > lastEnd) {
+        spans.add(TextSpan(
+          text: hanziText.substring(lastEnd, match.start),
+          style: baseStyle,
+        ));
+      }
+      spans.add(TextSpan(
+        text: match.group(0),
+        style: baseStyle.copyWith(
+          color: highlightColor,
+          backgroundColor: highlightBg,
+          fontWeight: FontWeight.bold,
+        ),
+      ));
+      lastEnd = match.end;
+    }
+    if (lastEnd < hanziText.length) {
+      spans.add(TextSpan(
+        text: hanziText.substring(lastEnd),
+        style: baseStyle,
+      ));
+    }
+
+    return Text.rich(
+      TextSpan(children: spans),
+      textAlign: TextAlign.center,
+    );
+  }
+
   Widget _buildPhraseCard(bool isDark) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // If we have a grade, show it above the text!
-          if (_lastGrade != null)
-            Container(
-              margin: const EdgeInsets.only(bottom: 32),
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: isDark ? Colors.grey[900] : Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(
-                  color:
-                      _lastGrade!['score'] >= 80 ? Colors.green : Colors.orange,
-                  width: 2,
-                ),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    "Score: ${_lastGrade!['score']}/100",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: _lastGrade!['score'] >= 80
-                          ? Colors.green
-                          : Colors.orange,
+      child: Center(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // If we have a grade, show it above the text!
+              if (_lastGrade != null)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 32),
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.grey[900] : Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color:
+                          _lastGrade!['score'] >= 80 ? Colors.green : Colors.orange,
+                      width: 2,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    _lastGrade!['overallFeedback'] ?? "",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: isDark ? Colors.white70 : Colors.black87),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-
-          // The Phrase
-          if (_lastGrade == null || _lastGrade!['words'] == null) ...[
-            Text(
-              _currentPhrase!['pinyin']!,
-              style: TextStyle(
-                fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length),
-                color: isDark ? Colors.white70 : Colors.black87,
-                fontStyle: FontStyle.italic,
-                letterSpacing: 1.2,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              _currentPhrase!['hanzi']!,
-              style: TextStyle(
-                fontSize: _getHanziFontSize(_currentPhrase!['hanzi']!.length),
-                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                fontWeight: FontWeight.w500,
-                fontFamily: 'NotoSerifSC',
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ] else ...[
-            // Breakdown view
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 4,
-              children: (_lastGrade!['words'] as List).map<Widget>((item) {
-                final isCorrect = item['isCorrect'] ?? false;
-                final isPartial = item['isPartial'] ?? false;
-                final isOmitted = item['isOmitted'] ?? false;
-
-                Color color;
-                if (isOmitted) {
-                  color = Colors.grey;
-                } else if (isCorrect) {
-                  color = Colors.green;
-                } else if (isPartial) {
-                  color = Colors.orange;
-                } else {
-                  color = Colors.red;
-                }
-
-                return GestureDetector(
-                  onTap: () =>
-                      _showWordDetailSheet(context, isDark, item, color),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        item['pinyin'] ?? "",
+                        "Score: ${_lastGrade!['score']}/100",
                         style: TextStyle(
-                            fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length) * 0.8,
-                            color: color,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        item['word'] ?? "",
-                        style: TextStyle(
-                          fontSize: _getHanziFontSize(_currentPhrase!['hanzi']!.length),
-                          color: color,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'NotoSerifSC',
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: _lastGrade!['score'] >= 80
+                              ? Colors.green
+                              : Colors.orange,
                         ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        _lastGrade!['overallFeedback'] ?? "",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: isDark ? Colors.white70 : Colors.black87),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
-                );
-              }).toList(),
-            ),
-          ],
+                ),
 
-          // Tone Graph is hidden for V1 MVP as requested by user
-          /*
-          if (_lastGrade != null && _userPitch.isNotEmpty) ...[
-            const SizedBox(height: 24),
-            Container(
-              height: 120,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: isDark ? Colors.black26 : Colors.black.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Stack(
-                children: [
-                  CustomPaint(
-                    size: const Size(double.infinity, 120),
-                    painter: ToneGraphPainter(
-                      idealPitch: _idealPitch,
-                      userPitch: _userPitch,
-                      isLive: false,
-                      highlightStart: _highlightStart,
-                      highlightEnd: _highlightEnd,
-                    ),
+              // The Phrase
+              if (_lastGrade == null || _lastGrade!['words'] == null) ...[
+                Text(
+                  _currentPhrase!['pinyin']!,
+                  style: TextStyle(
+                    fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length),
+                    color: isDark ? Colors.white70 : Colors.black87,
+                    fontStyle: FontStyle.italic,
+                    letterSpacing: 1.2,
                   ),
-                  const Positioned(
-                    top: 8, left: 16,
-                    child: Text("Tone Graph", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  )
-                ],
-              ),
-            ),
-          ],
-          */
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                _buildHanziPhraseView(isDark),
+              ] else ...[
+                // Breakdown view
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 4,
+                  children: (_lastGrade!['words'] as List).map<Widget>((item) {
+                    final isCorrect = item['isCorrect'] ?? false;
+                    final isPartial = item['isPartial'] ?? false;
+                    final isOmitted = item['isOmitted'] ?? false;
+                    final wordText = item['word'] as String? ?? '';
+                    final isTargetWord = widget.initialHanzi != null &&
+                        widget.initialHanzi!.isNotEmpty &&
+                        wordText.contains(widget.initialHanzi!);
 
-          const SizedBox(height: 24),
-          Text(
-            _currentPhrase!['english']!,
-            style: TextStyle(
-              fontSize: widget.isCompact ? 16 : 20,
-              color: isDark ? Colors.white54 : Colors.black54,
-              fontStyle: FontStyle.italic,
-              fontFamily: 'serif',
-            ),
-            textAlign: TextAlign.center,
+                    Color color;
+                    if (isOmitted) {
+                      color = Colors.grey;
+                    } else if (isCorrect) {
+                      color = Colors.green;
+                    } else if (isPartial) {
+                      color = Colors.orange;
+                    } else {
+                      color = Colors.red;
+                    }
+
+                    return GestureDetector(
+                      onTap: () =>
+                          _showWordDetailSheet(context, isDark, item, color),
+                      child: Container(
+                        padding: isTargetWord
+                            ? const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2)
+                            : EdgeInsets.zero,
+                        decoration: isTargetWord
+                            ? BoxDecoration(
+                                color: (isDark
+                                        ? const Color(0xFF818CF8)
+                                        : const Color(0xFF4F46E5))
+                                    .withValues(alpha: 0.14),
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: (isDark
+                                          ? const Color(0xFF818CF8)
+                                          : const Color(0xFF4F46E5))
+                                      .withValues(alpha: 0.5),
+                                  width: 1.5,
+                                ),
+                              )
+                            : null,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              item['pinyin'] ?? "",
+                              style: TextStyle(
+                                  fontSize: _getPinyinFontSize(
+                                          _currentPhrase!['hanzi']!.length) *
+                                      0.8,
+                                  color: color,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                            Text(
+                              wordText,
+                              style: TextStyle(
+                                fontSize: _getHanziFontSize(
+                                    _currentPhrase!['hanzi']!.length),
+                                color: color,
+                                fontWeight: isTargetWord
+                                    ? FontWeight.bold
+                                    : FontWeight.w500,
+                                fontFamily: 'NotoSerifSC',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+
+              if (_currentPhrase!['english'] != null &&
+                  _currentPhrase!['english']!.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                Text(
+                  _currentPhrase!['english']!,
+                  style: TextStyle(
+                    fontSize: widget.isCompact ? 15 : 18,
+                    color: isDark ? Colors.white54 : Colors.black54,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: 'serif',
+                    height: 1.35,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

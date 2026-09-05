@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Shadowing Studio Full Sentence Context & Target Hanzi Highlighting
+- Resolved disconnect when launching Shadowing Studio from a specific character in Quick Look:
+  - Ensured that when practicing a character from a reading sentence, Shadowing Studio displays the full sentence's tone-marked Pinyin (generated offline via `PinyinHelper.getPinyinE`) and the complete sentence's English translation (via `LocalTranslationService` with background resolution), instead of only the single character's pinyin and dictionary definition.
+  - Implemented target character highlighting in `ShadowingStudioScreen`: the specific clicked character (`widget.initialHanzi`) within the full sentence is highlighted in Scholar Indigo (`#4F46E5` light, `#818CF8` dark) with a soft translucent background pill (`alpha: 0.16` - `0.28`) and `FontWeight.bold`, while remaining characters retain the default ink styling.
+  - Enhanced the post-grading breakdown view to preserve the target character/word highlight with a subtle Indigo border/pill so the user always tracks the clicked word throughout pronunciation practice.
+  - Added vertical scroll safety (`SingleChildScrollView` with `BouncingScrollPhysics`) preventing overflows for long sentences or compact popovers.
+  - Added unit test suite `test/unit_tests/shadowing_studio_context_test.dart` verifying full sentence pinyin generation, sentence translation, and target character rich text highlighting.
+
 ### [2026-09-05] Vocabulary Extraction Modal Action Button Redesign
 - Redesigned the action button layout in `WebBrowserScreen`'s "Review Extracted Deck" bottom sheet modal:
   - Fixed visual crowding where three buttons ("Cancel", "Create New Deck", "Add to Deck") were cramped into a single horizontal row on narrow mobile viewports, forcing "Create New Deck" to awkwardly wrap onto two lines.

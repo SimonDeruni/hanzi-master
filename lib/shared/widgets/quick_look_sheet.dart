@@ -512,6 +512,19 @@ class _FoundBody extends ConsumerWidget {
                   isPrimary: false,
                   isDisabled: false,
                   onTap: () {
+                    final hasContext = contextText != null &&
+                        contextText!.trim().isNotEmpty &&
+                        contextText!.trim() != tappedHanzi.trim();
+                    final effectiveSentence =
+                        hasContext ? contextText!.trim() : null;
+                    final effectivePinyin = hasContext
+                        ? PinyinHelper.getPinyinE(effectiveSentence!,
+                            separator: ' ',
+                            format: PinyinFormat.WITH_TONE_MARK)
+                        : card.pinyin;
+                    final effectiveTranslation =
+                        hasContext ? null : card.definition;
+
                     Navigator.pop(context);
                     final isLandscape = MediaQuery.of(context).orientation ==
                         Orientation.landscape;
@@ -533,13 +546,9 @@ class _FoundBody extends ConsumerWidget {
                                     : const Color(0xFFFDFCF0),
                                 child: hanzi_shadowing.ShadowingStudioScreen(
                                   initialHanzi: tappedHanzi,
-                                  initialPinyin: card.pinyin,
-                                  initialTranslation: card.definition,
-                                  initialContextSentence:
-                                      (contextText != null &&
-                                              contextText != tappedHanzi)
-                                          ? contextText
-                                          : null,
+                                  initialPinyin: effectivePinyin,
+                                  initialTranslation: effectiveTranslation,
+                                  initialContextSentence: effectiveSentence,
                                   isCompact: true,
                                 ),
                               ),
@@ -559,12 +568,9 @@ class _FoundBody extends ConsumerWidget {
                               top: Radius.circular(24)),
                           child: hanzi_shadowing.ShadowingStudioScreen(
                             initialHanzi: tappedHanzi,
-                            initialPinyin: card.pinyin,
-                            initialTranslation: card.definition,
-                            initialContextSentence: (contextText != null &&
-                                    contextText != tappedHanzi)
-                                ? contextText
-                                : null,
+                            initialPinyin: effectivePinyin,
+                            initialTranslation: effectiveTranslation,
+                            initialContextSentence: effectiveSentence,
                           ),
                         ),
                       );
