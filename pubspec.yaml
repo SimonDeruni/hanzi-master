@@ -135,16 +135,3 @@ flutter_icons:
   adaptive_icon_background: "#FFC107"
   adaptive_icon_foreground: "assets/icon/icon_foreground.png"
 
-flutter_native_splash:
-  color: "#FCBC03"
-  color_dark: "#FCBC03"
-  image: "assets/images/mascot.png"
-  image_dark: "assets/images/mascot.png"
-  android: true
-  ios: true
-  android_12:
-    image: "assets/images/mascot_android12_splash.png"
-    image_dark: "assets/images/mascot_android12_splash.png"
-    color: "#FCBC03"
-    color_dark: "#FCBC03"
-

@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
-### [2026-09-05] Single Native Splash Screen Simplification
-- Removed the duplicate in-app splash timer (`AppSplashScreen`) from `lib/main.dart` on launch.
-- The app now displays only the single native launch splash before transitioning immediately into Onboarding or the main app.
-- Preserved the Android 12 circular safe-padding fix for the native mascot icon.
+### [2026-09-05] Single In-App Flutter Splash Screen & Seamless Native Transition
+- Removed duplicate/cropped native splash icon by setting the native Android 12+ launch background to solid `#FCBC03` with a transparent animated icon (`@android:color/transparent`) and all legacy drawables to solid `#FCBC03`.
+- Removed `flutter_native_splash` configuration from `pubspec.yaml`.
+- Set `AppSplashScreen` in `lib/main.dart` via `AppStartupFlow` as the single primary splash screen with the animated mascot and `"Learn Chinese with SinoSpark"` typography before proceeding directly to onboarding or subscription verification.
 - Verified: All unit tests pass in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and `flutter analyze` reports 0 issues.
 
 ### [2026-09-05] Splash Screen Mascot Enlargement & Branding Update
