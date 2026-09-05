@@ -30,13 +30,13 @@ final audioServiceProvider = Provider<AudioService>((ref) {
 Future<void> initializeBackgroundAudio(AudioService service) async {
   await background_audio.AudioService.init(
     builder: () => service,
-    config: background_audio.AudioServiceConfig(
+    config: const background_audio.AudioServiceConfig(
       androidNotificationChannelId: 'com.sinospark.app.audiobooks',
       androidNotificationChannelName: 'Audiobook playback',
       androidNotificationChannelDescription:
           'Controls for SinoSpark audiobook playback',
       androidNotificationOngoing: true,
-      androidStopForegroundOnPause: false,
+      androidStopForegroundOnPause: true,
       preloadArtwork: true,
     ),
   );

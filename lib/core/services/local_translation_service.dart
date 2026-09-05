@@ -46,17 +46,31 @@ class LocalTranslationService {
 
   static Future<void> init() async {
     try {
-      await Hive.openBox<String>(_boxName);
-    } catch (e) {
-      debugPrint('Error opening $_boxName: $e. Deleting and retrying.');
-      try {
-        await Hive.deleteBoxFromDisk(_boxName);
-      } catch (_) {
-        // Box or lock file may already be partially deleted; continue
+      if (Hive.isBoxOpen(_boxName)) {
+        await Hive.box<String>(_boxName).close();
       }
       await Hive.openBox<String>(_boxName);
+    } catch (e) {
+      debugPrint('Error opening $_boxName: $e. Purging corrupted cache and re-opening.');
+      try {
+        if (Hive.isBoxOpen(_boxName)) {
+          await Hive.box<String>(_boxName).close();
+        }
+        await Hive.deleteBoxFromDisk(_boxName);
+      } catch (_) {}
+      try {
+        await Hive.openBox<String>(_boxName);
+      } catch (e2) {
+        debugPrint('Second attempt to open $_boxName failed: $e2');
+      }
     }
-    await _seedEnglishCache();
+    try {
+      if (Hive.isBoxOpen(_boxName)) {
+        await _seedEnglishCache();
+      }
+    } catch (e) {
+      debugPrint('Seeding english cache encountered error: $e');
+    }
   }
 
   static Future<void> _seedEnglishCache() async {
