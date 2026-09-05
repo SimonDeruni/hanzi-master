@@ -201,21 +201,46 @@ class HanziMasterApp extends ConsumerWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: Consumer(
-            builder: (context, ref, child) {
-              final prefs = ref.watch(sharedPreferencesProvider);
-              final hasSeenOnboarding =
-                  prefs.getBool('has_seen_onboarding') ?? false;
-
-              if (!hasSeenOnboarding) {
-                return const OnboardingScreen();
-              }
-              return const _SubscriptionGate();
-            },
-          ),
+          home: const AppStartupFlow(),
         ),
       ),
     );
+  }
+}
+
+class AppStartupFlow extends ConsumerStatefulWidget {
+  const AppStartupFlow({super.key});
+
+  @override
+  ConsumerState<AppStartupFlow> createState() => _AppStartupFlowState();
+}
+
+class _AppStartupFlowState extends ConsumerState<AppStartupFlow> {
+  bool _splashCompleted = false;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_splashCompleted) {
+      return AppSplashScreen(
+        duration: const Duration(milliseconds: 1800),
+        onFinished: () {
+          if (mounted) {
+            setState(() {
+              _splashCompleted = true;
+            });
+          }
+        },
+      );
+    }
+
+    final prefs = ref.watch(sharedPreferencesProvider);
+    final hasSeenOnboarding = prefs.getBool('has_seen_onboarding') ?? false;
+
+    if (!hasSeenOnboarding) {
+      return const OnboardingScreen();
+    }
+
+    return const _SubscriptionGate();
   }
 }
 

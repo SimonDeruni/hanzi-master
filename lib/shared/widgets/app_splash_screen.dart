@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppSplashScreen extends StatefulWidget {
-  const AppSplashScreen({super.key});
+  final VoidCallback? onFinished;
+  final Duration duration;
+
+  const AppSplashScreen({
+    super.key,
+    this.onFinished,
+    this.duration = const Duration(milliseconds: 1800),
+  });
 
   @override
   State<AppSplashScreen> createState() => _AppSplashScreenState();
@@ -27,6 +34,14 @@ class _AppSplashScreenState extends State<AppSplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
     _controller.forward();
+
+    if (widget.onFinished != null) {
+      Future.delayed(widget.duration, () {
+        if (mounted) {
+          widget.onFinished!();
+        }
+      });
+    }
   }
 
   @override
