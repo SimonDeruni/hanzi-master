@@ -27,6 +27,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get proverbChip => '💬 مَثَل';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      'هل يوجد تعبير اصطلاحي صيني (成语) يحتوي على هذا الحرف؟';
+
+  @override
   String get strokeOrderChip => '✏️ ترتيب الخطوط';
 
   @override
@@ -1641,7 +1645,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return 'أضف إلى ';
+    return 'أضف إلى $target';
   }
 
   @override
@@ -1684,6 +1688,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => 'الفلسفة القديمة';
+
+  @override
+  String get warringStates => 'Warring States';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
 
   @override
   String get articleSavedToMediaHub => 'تم حفظ المقال في مكتبة الوسائط!';
@@ -2078,7 +2089,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'لي روجن (حوالي 1763–1830) كان عالماً من عهد تشينغ مهتماً بعلم الأصوات والشطرنج وعلم الكون. روايته أزهار في المرآة، وهي رواية خيالية عن تاجر يرتحل عبر ممالك مستحيلة، تتميز بموضوعاتها النسوية ونطاقها الموسوعي.';
 
   @override
-  String get libraryLabel => 'المكتبة 文化书房';
+  String get libraryLabel => 'المكتبة';
 
   @override
   String get lifestyleAndVlog => 'نمط الحياة والفلوغ';
@@ -12329,4 +12340,88 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get readability => 'سهولة القراءة';
+
+  @override
+  String get translateAction => 'ترجمة';
+
+  @override
+  String get checkingDownload => '???? ?????? ?? ???????';
+
+  @override
+  String downloadingBook(int percent) {
+    return '???? ???????: $percent?';
+  }
+
+  @override
+  String get retryDownload => '????? ?????? ???????';
+
+  @override
+  String get downloadBook => '????? ??????';
+
+  @override
+  String continueChapter(int chapter) {
+    return '?????? ????? $chapter';
+  }
+
+  @override
+  String get downloadBookError =>
+      '???? ????? ??? ??????. ???? ?? ?????? ????? ??? ????.';
+
+  @override
+  String downloadBookOffline(int count) {
+    return '???? ?????? ?????? ????? ?????? ????? $count ??? ?????.';
+  }
+
+  @override
+  String poemCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ?????',
+      one: '????? ?????',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get americanLiterature => '????? ????????';
+
+  @override
+  String get ancientChina => '????? ???????';
+
+  @override
+  String get britishLiterature => '????? ?????????';
+
+  @override
+  String get frenchLiterature => '????? ???????';
+
+  @override
+  String get germanLiterature => '????? ????????';
+
+  @override
+  String get italianLiterature => '????? ????????';
+
+  @override
+  String get jinDynasty => '???? ???';
+
+  @override
+  String get preQinEra => '?? ??? ???? ????';
+
+  @override
+  String get qingDynasty => '???? ?????';
+
+  @override
+  String get republicOfChinaEra => '??????? ?????';
+
+  @override
+  String get russianLiterature => '????? ??????';
+
+  @override
+  String get spanishLiterature => '????? ????????';
+
+  @override
+  String get springAndAutumn => '???? ?????? ???????';
+
+  @override
+  String get westernHan => '??? ???????';
 }

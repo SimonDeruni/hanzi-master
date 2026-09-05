@@ -9,6 +9,7 @@ import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/ai_data_privacy_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/core/providers/app_language_controller.dart';
 
 import '../widgets/app_language_picker_sheet.dart';
 
@@ -80,7 +81,8 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 title: Text(AppLocalizations.of(context)!.audiobookVoice,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(_voiceDisplayName(context, settings.audiobookVoice)),
+                subtitle:
+                    Text(_voiceDisplayName(context, settings.audiobookVoice)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showVoicePickerDialog(context, ref),
               ),
@@ -190,7 +192,8 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 title: Text(AppLocalizations.of(context)!.notification_settings,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(AppLocalizations.of(context)!.oneOptionalDailyPracticeReminder),
+                subtitle: Text(AppLocalizations.of(context)!
+                    .oneOptionalDailyPracticeReminder),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showNotificationSettings(context, ref),
               ),
@@ -407,7 +410,7 @@ class SettingsScreen extends ConsumerWidget {
       child: AppLanguagePickerSheet(
         title: title,
         selectedLocale: currentLocale,
-        onSelected: ref.read(settingsProvider.notifier).setLocale,
+        onSelected: ref.read(appLanguageControllerProvider).setLanguage,
       ),
     );
   }
@@ -420,12 +423,36 @@ class SettingsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
 
     final voiceOptions = [
-      ('Kore', 'Kore — ${l10n?.voiceFemaleWarm ?? 'Female, warm'}', 'zh-CN-XiaoxiaoNeural'),
-      ('Aoede', 'Aoede — ${l10n?.voiceFemaleCheerful ?? 'Female, cheerful'}', 'zh-CN-XiaoyiNeural'),
-      ('Fenrir', 'Fenrir — ${l10n?.voiceMaleUpbeat ?? 'Male, upbeat'}', 'zh-CN-YunxiNeural'),
-      ('Charon', 'Charon — ${l10n?.voiceMaleNewsStyle ?? 'Male, news-style'}', 'zh-CN-YunyangNeural'),
-      ('Puck', 'Puck — ${l10n?.voiceMaleSporty ?? 'Male, sporty'}', 'zh-CN-YunjianNeural'),
-      ('local', 'Local — ${l10n?.voiceOnDeviceTts ?? 'On-device TTS'}', l10n?.voiceSystemVoice ?? 'System voice'),
+      (
+        'Kore',
+        'Kore — ${l10n?.voiceFemaleWarm ?? 'Female, warm'}',
+        'zh-CN-XiaoxiaoNeural'
+      ),
+      (
+        'Aoede',
+        'Aoede — ${l10n?.voiceFemaleCheerful ?? 'Female, cheerful'}',
+        'zh-CN-XiaoyiNeural'
+      ),
+      (
+        'Fenrir',
+        'Fenrir — ${l10n?.voiceMaleUpbeat ?? 'Male, upbeat'}',
+        'zh-CN-YunxiNeural'
+      ),
+      (
+        'Charon',
+        'Charon — ${l10n?.voiceMaleNewsStyle ?? 'Male, news-style'}',
+        'zh-CN-YunyangNeural'
+      ),
+      (
+        'Puck',
+        'Puck — ${l10n?.voiceMaleSporty ?? 'Male, sporty'}',
+        'zh-CN-YunjianNeural'
+      ),
+      (
+        'local',
+        'Local — ${l10n?.voiceOnDeviceTts ?? 'On-device TTS'}',
+        l10n?.voiceSystemVoice ?? 'System voice'
+      ),
     ];
 
     showDialog(
@@ -487,102 +514,105 @@ Future<void> _showNotificationSettings(
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
     builder: (sheetContext) => StatefulBuilder(
-      builder: (context, setSheetState) => Container(
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withValues(alpha: 0.4),
-                  borderRadius: BorderRadius.circular(2),
+      builder: (context, setSheetState) {
+        final l10n = AppLocalizations.of(context)!;
+        return Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withValues(alpha: 0.4),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              AppLocalizations.of(context)!.notification_settings,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: isDark ? Colors.white : Colors.black87,
+              const SizedBox(height: 20),
+              Text(
+                l10n.notification_settings,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? Colors.white : Colors.black87,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Choose one optional daily practice reminder.',
-              style: TextStyle(
-                color: isDark ? Colors.white60 : Colors.black54,
+              const SizedBox(height: 8),
+              Text(
+                l10n.chooseOneOptionalDailyPractice,
+                style: TextStyle(
+                  color: isDark ? Colors.white60 : Colors.black54,
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-            _buildNotifToggle(
-              context: context,
-              isDark: isDark,
-              icon: Icons.self_improvement_outlined,
-              title: 'Practice reminder',
-              subtitle: 'One gentle reminder a day, only if you need it',
-              value: reminderEnabled,
-              time: reminderTime,
-              onChanged: (enabled) async {
-                if (enabled) {
-                  final granted =
-                      await notificationService.requestPermissions();
-                  if (!context.mounted) return;
-                  if (!granted) {
-                    setSheetState(() => reminderEnabled = false);
-                    return;
+              const SizedBox(height: 24),
+              _buildNotifToggle(
+                context: context,
+                isDark: isDark,
+                icon: Icons.self_improvement_outlined,
+                title: l10n.practiceReminder,
+                subtitle: l10n.oneGentleReminderADay,
+                value: reminderEnabled,
+                time: reminderTime,
+                onChanged: (enabled) async {
+                  if (enabled) {
+                    final granted =
+                        await notificationService.requestPermissions();
+                    if (!context.mounted) return;
+                    if (!granted) {
+                      setSheetState(() => reminderEnabled = false);
+                      return;
+                    }
                   }
-                }
-                await notificationService.setPracticeReminder(
-                  enabled: enabled,
-                  hour: reminderTime.hour,
-                  minute: reminderTime.minute,
-                );
-                if (context.mounted) {
-                  setSheetState(() => reminderEnabled = enabled);
-                }
-              },
-              onTimePicked: (time) async {
-                setSheetState(() => reminderTime = time);
-                if (reminderEnabled) {
                   await notificationService.setPracticeReminder(
-                    enabled: true,
-                    hour: time.hour,
-                    minute: time.minute,
+                    enabled: enabled,
+                    hour: reminderTime.hour,
+                    minute: reminderTime.minute,
                   );
-                }
-              },
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'Finishing practice silences today’s reminder. Review and '
-              're-engagement alerts are combined so they never stack.',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(sheetContext),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
+                  if (context.mounted) {
+                    setSheetState(() => reminderEnabled = enabled);
+                  }
+                },
+                onTimePicked: (time) async {
+                  setSheetState(() => reminderTime = time);
+                  if (reminderEnabled) {
+                    await notificationService.setPracticeReminder(
+                      enabled: true,
+                      hour: time.hour,
+                      minute: time.minute,
+                    );
+                  }
+                },
               ),
-              child: Text(AppLocalizations.of(context)!.done),
-            ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
+              const SizedBox(height: 12),
+              Text(
+                '${l10n.finishingPracticeSilencesTodayS} '
+                '${l10n.reEngagementAlertsAreCombined}',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(sheetContext),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+                child: Text(l10n.done),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
+      },
     ),
   );
 }

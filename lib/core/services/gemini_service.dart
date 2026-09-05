@@ -869,7 +869,8 @@ Output JSON matching this exact structure:
     "generic label from the list": {
       "hanzi": "汉字",
       "pinyin": "pinyin",
-      "meaning": "Meaning in ISO 639-1 code $languageCode",
+      "meaning": "Meaning in $languageCode",
+      "english": "Canonical English meaning",
       "hskLevel": 1
     }
   },
@@ -877,7 +878,8 @@ Output JSON matching this exact structure:
     {
       "hanzi": "汉字",
       "pinyin": "pinyin",
-      "meaning": "Meaning in ISO 639-1 code $languageCode",
+      "meaning": "Meaning in $languageCode",
+      "english": "Canonical English meaning",
       "hskLevel": 1
     }
   ]
@@ -2629,9 +2631,15 @@ You are a Chinese learning assistant. Create a briefing for a video titled "$tit
 Transcript:
 $text
 
+Write both localizedTitle and summary entirely in $targetLanguage. Preserve the
+meaning of the original title, but make localizedTitle natural and concise for a
+$targetLanguage-speaking learner. Keep hardWords in Chinese because they are
+interactive vocabulary from the video.
+
 Output JSON matching MediaBriefing format:
 {
-  "summary": "A short summary in English",
+  "localizedTitle": "A natural translation of the video title in $targetLanguage",
+  "summary": "A short summary in $targetLanguage",
   "hardWords": ["HardWord1", "HardWord2"]
 }
     ''';
@@ -2745,7 +2753,7 @@ Your task is to:
 2. If it is valid Chinese, provide a smooth, full $targetLanguage translation of the entire scanned text so the user understands the full context.
 3. Extract the most important Chinese vocabulary (words, phrases, idioms) from the text. 
    - Group them into logical words (e.g. don't split idioms into 4 separate characters).
-   - Provide the pinyin, $targetLanguage definition, and estimated HSK level (1-9).
+   - Provide the pinyin, a $targetLanguage definition, the canonical English definition, and estimated HSK level (1-9).
    - Only include up to 20 of the most relevant/useful words.
 
 Output JSON matching this exact structure:
@@ -2756,7 +2764,8 @@ Output JSON matching this exact structure:
     {
       "hanzi": "中国",
       "pinyin": "Zhōngguó",
-      "meaning": "China",
+      "meaning": "The definition in $targetLanguage",
+      "english": "China",
       "hskLevel": 1
     }
   ]

@@ -77,6 +77,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
   }
 
   Future<void> _enrichSummary() async {
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
     setState(() => _isEnriching = true);
     try {
       // Load the Tang poetry JSON to get the full poem text
@@ -94,7 +95,9 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
 
       final gemini = ref.read(geminiServiceProvider);
       final result = await gemini.generateDetailedSummary(
-        widget.story.titleEn ?? widget.story.title,
+        widget.story.localizedTitle(
+          localeCode,
+        ),
         rawText,
         gemini.targetLanguage,
       );
@@ -248,7 +251,9 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
 
                       // Titles
                       TappableHanziText(
-                        widget.story.titleEn ?? widget.story.title,
+                        widget.story.localizedTitle(
+                          Localizations.localeOf(context).toLanguageTag(),
+                        ),
                         quickLookPresentation:
                             QuickLookPresentation.readingPopover,
                         style: TextStyle(

@@ -23,6 +23,16 @@ class _FakeTranslationService extends LocalTranslationService {
   }
 }
 
+class _FailingTranslationService extends LocalTranslationService {
+  _FailingTranslationService() : super(targetLanguage: 'French');
+
+  @override
+  Future<String> translateEnglishDefinition(String definition,
+      {String? hanzi}) async {
+    throw StateError('translation failed');
+  }
+}
+
 void main() {
   group('definition language settings', () {
     test('maps every supported app locale to a translation language', () {
@@ -94,7 +104,7 @@ void main() {
       ),
     );
 
-    expect(find.text(definition), findsOneWidget);
+    expect(find.text(definition), findsNothing);
     await tester.pump();
     expect(service.requests, [definition]);
     service.translation.complete('Traduction complète');
@@ -107,6 +117,36 @@ void main() {
     await tester.pump();
     expect(find.text(definition), findsOneWidget);
     expect(find.text('Traduction complète'), findsNothing);
+  });
+
+  testWidgets('falls back to English only after translation fails',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({'app_locale': 'fr'});
+    final prefs = await SharedPreferences.getInstance();
+    final container = ProviderContainer(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        localTranslationServiceProvider
+            .overrideWithValue(_FailingTranslationService()),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    const definition = 'English fallback';
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: const MaterialApp(
+          home: Scaffold(
+            body: TranslatedDefinition(definition: definition),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text(definition), findsNothing);
+    await tester.pumpAndSettle();
+    expect(find.text(definition), findsOneWidget);
   });
 
   for (final languageCase in <({String locale, String language, String text})>[

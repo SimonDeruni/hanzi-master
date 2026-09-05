@@ -2124,6 +2124,7 @@
   "wordFamilyChip": "🔗 Wortfamilie",
   "idiomChip": "🀄 Redewendung",
   "proverbChip": "💬 Sprichwort",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Gibt es eine chinesische Redewendung (成语), die dieses Schriftzeichen enthält?",
   "strokeOrderChip": "✏️ Strichfolge",
   "calligraphyTipChip": "🎨 Kalligrafie-Tipp",
   "grammarNoteChip": "📝 Grammatik-Hinweis",
@@ -2150,7 +2151,7 @@
   "studyNoEligibleCardsDescription": "Zurzeit sind keine Karten für diesen Lernmodus verfügbar.",
   "studySessionLoadFailed": "Lerneinheit konnte nicht geladen werden. Bitte versuche es erneut.",
   "retryLimitReached": "Diese Karte wird in deiner nächsten Lerneinheit wieder angezeigt.",
-  "libraryLabel": "文化书房 Bibliothek",
+  "libraryLabel": "Bibliothek",
   "aiDataPrivacyTitle": "KI-Daten & Datenschutz",
   "aiDataPrivacySettingsSubtitle": "Erfahre, was KI-Funktionen senden, warum und an wen",
   "aiDataPrivacyOverviewTitle": "Wann KI verwendet wird",
@@ -3840,5 +3841,56 @@
     }
   },
   "aiSummary": "KI-Zusammenfassung",
-  "readability": "Lesbarkeit"
+  "readability": "Lesbarkeit",
+  "translateAction": "Übersetzen",
+  "checkingDownload": "Download wird gepr?ft",
+  "downloadingBook": "Download l?uft: {percent} %",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "Download wiederholen",
+  "downloadBook": "Buch herunterladen",
+  "continueChapter": "Bei Kapitel {chapter} weiterlesen",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "Dieses Buch konnte nicht heruntergeladen werden. Pr?fe deine Verbindung und versuche es erneut.",
+  "downloadBookOffline": "Lade das Buch herunter, um seine {count} Kapitel offline zu lesen.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count, plural, =1{1 Gedicht} other{{count} Gedichte}}",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "Amerikanische Literatur",
+  "ancientChina": "Altes China",
+  "britishLiterature": "Britische Literatur",
+  "frenchLiterature": "Franz?sische Literatur",
+  "germanLiterature": "Deutsche Literatur",
+  "italianLiterature": "Italienische Literatur",
+  "jinDynasty": "Jin-Dynastie",
+  "preQinEra": "Vor-Qin-Zeit",
+  "qingDynasty": "Qing-Dynastie",
+  "republicOfChinaEra": "Republik China",
+  "russianLiterature": "Russische Literatur",
+  "spanishLiterature": "Spanische Literatur",
+  "springAndAutumn": "Zeit der Fr?hlings- und Herbstannalen",
+  "westernHan": "Westliche Han-Dynastie"
 }

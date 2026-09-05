@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
   final String radicalChar;
@@ -168,6 +169,9 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                             definition: (widget.radicalData['name'] ??
                                     'Unknown Radical')
                                 .toString(),
+                            hanzi: widget.radicalChar,
+                            definitionLanguage: translationLanguageForLocale(
+                                Localizations.localeOf(context).languageCode),
                             originalStyle: theme.textTheme.titleLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -175,6 +179,9 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                           TranslatedDefinition(
                             definition: (widget.radicalData['meaning'] ?? '')
                                 .toString(),
+                            hanzi: widget.radicalChar,
+                            definitionLanguage: translationLanguageForLocale(
+                                Localizations.localeOf(context).languageCode),
                             originalStyle: TextStyle(
                                 fontSize: 16,
                                 color:
@@ -236,7 +243,8 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
                 child: HanziTextField(
                   controller: _searchController,
-                  hintText: AppLocalizations.of(context)!.searchByPinyinOrMeaning,
+                  hintText:
+                      AppLocalizations.of(context)!.searchByPinyinOrMeaning,
                   style:
                       TextStyle(color: isDark ? Colors.white : Colors.black87),
                   decoration: InputDecoration(

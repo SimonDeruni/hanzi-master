@@ -30,7 +30,9 @@ class LocalTranslationService {
   final String targetLanguage;
   final ApiKeyPool? apiKeyPool;
   final GlobalDictionaryRepository? dictionaryRepository;
-  static const String _boxName = 'local_translations_cache_v5';
+  // v6 invalidates definitions that may have been generated after an already
+  // localized dictionary entry was incorrectly treated as English.
+  static const String _boxName = 'local_translations_cache_v6';
 
   OnDeviceTranslator? _translator;
   OnDeviceTranslator? _englishDefinitionTranslator;
@@ -146,13 +148,16 @@ class LocalTranslationService {
   /// Unlike [translate], this method checks the offline SQLite dictionary first
   /// for the user's active [targetLanguage]. If not present offline, it translates
   /// on-the-fly and caches the result into Hive, with canonical English as fallback.
-  Future<String> translateEnglishDefinition(String definition, {String? hanzi}) async {
+  Future<String> translateEnglishDefinition(String definition,
+      {String? hanzi}) async {
     if (definition.isEmpty || targetLanguage.toLowerCase() == 'english') {
       return definition;
     }
 
     // 1. Check Offline SQLite Dictionary first if hanzi is known
-    if (hanzi != null && hanzi.trim().isNotEmpty && dictionaryRepository != null) {
+    if (hanzi != null &&
+        hanzi.trim().isNotEmpty &&
+        dictionaryRepository != null) {
       try {
         final offlineDef = await dictionaryRepository!.getExactDefinition(
           hanzi.trim(),
@@ -164,7 +169,8 @@ class LocalTranslationService {
           return offlineDef.trim();
         }
       } catch (e) {
-        debugPrint('[LocalTranslationService] Offline dictionary check error: $e');
+        debugPrint(
+            '[LocalTranslationService] Offline dictionary check error: $e');
       }
     }
 

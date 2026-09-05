@@ -1,0 +1,357 @@
+{
+  "人": {
+    "name": "Nhân (Người)",
+    "meaning": "Con người đang đứng.",
+    "mnemonic": "Hình dáng con người nhìn từ bên cạnh. Trở thành bộ '亻' (Nhân đứng) khi ở bên trái."
+  },
+  "亻": {
+    "name": "Nhân đứng",
+    "meaning": "Con người đang đứng.",
+    "mnemonic": "Bộ 'Nhân đứng'. Được dùng trong các chữ như '你' (bạn) và '他' (anh ấy/ông ấy)."
+  },
+  "口": {
+    "name": "Khẩu",
+    "meaning": "Cái miệng mở.",
+    "mnemonic": "Hình vuông mô tả một cái miệng đang mở. Dùng cho việc ăn uống, nói năng, hoặc lối ra vào."
+  },
+  "女": {
+    "name": "Nữ",
+    "meaning": "Phụ nữ.",
+    "mnemonic": "Chữ tượng hình vẽ người phụ nữ đang quỳ hoặc ngồi một cách duyên dáng."
+  },
+  "日": {
+    "name": "Nhật",
+    "meaning": "Mặt trời; ban ngày.",
+    "mnemonic": "Hình chữ nhật tượng trưng cho mặt trời với một chấm ở giữa hoặc tia sáng."
+  },
+  "月": {
+    "name": "Nguyệt",
+    "meaning": "Mặt trăng; thịt.",
+    "mnemonic": "Hình trăng lưỡi liềm. Thường đại diện cho 'Thịt' (các bộ phận cơ thể) trong các chữ như '胃' (dạ dày)."
+  },
+  "木": {
+    "name": "Mộc",
+    "meaning": "Cây cối.",
+    "mnemonic": "Một cái cây với thân ở giữa, rễ ở dưới và cành ở phía trên."
+  },
+  "水": {
+    "name": "Thủy",
+    "meaning": "Nước chảy.",
+    "mnemonic": "Gợn sóng trong dòng suối. Biến thành '氵' (Ba chấm thủy) khi dùng làm bộ thủ."
+  },
+  "氵": {
+    "name": "Ba chấm thủy",
+    "meaning": "Nước; chất lỏng.",
+    "mnemonic": "Ba giọt nước bắn tung tóe. Dạng biến thể của bộ Thủy (水) khi đứng bên trái."
+  },
+  "火": {
+    "name": "Hỏa",
+    "meaning": "Lửa; sức nóng.",
+    "mnemonic": "Ngọn lửa bốc lên từ một điểm trung tâm."
+  },
+  "灬": {
+    "name": "Hỏa chân (Bốn chấm)",
+    "meaning": "Lửa; sức nóng.",
+    "mnemonic": "Bốn ngọn lửa nằm dưới đáy nồi. Dạng đặt ở dưới của bộ Hỏa (火)."
+  },
+  "土": {
+    "name": "Thổ",
+    "meaning": "Đất; mặt đất.",
+    "mnemonic": "Một mầm cây đang nhô lên khỏi mặt đất."
+  },
+  "心": {
+    "name": "Tâm",
+    "meaning": "Trái tim; tâm trí.",
+    "mnemonic": "Sơ đồ các ngăn của trái tim. Dùng để diễn tả cảm xúc và suy nghĩ."
+  },
+  "忄": {
+    "name": "Tâm đứng",
+    "meaning": "Trái tim; cảm xúc.",
+    "mnemonic": "Dạng đứng của bộ Tâm (心). Dùng cho các cảm xúc như '快' (vui vẻ/nhanh) hoặc '怕' (sợ hãi)."
+  },
+  "手": {
+    "name": "Thủ",
+    "meaning": "Bàn tay.",
+    "mnemonic": "Các đường chỉ tay hoặc năm ngón tay."
+  },
+  "扌": {
+    "name": "Thủ tài bàng (Tay gảy)",
+    "meaning": "Hành động; bàn tay.",
+    "mnemonic": "Bộ 'Tay cầm/tay gảy'. Dùng cho các hành động như '打' (đánh) hoặc '推' (đẩy)."
+  },
+  "一": {
+    "name": "Nhất",
+    "meaning": "Sự thống nhất; đường chân trời.",
+    "mnemonic": "Một nét ngang duy nhất đại diện cho số một hoặc đường chân trời."
+  },
+  "十": {
+    "name": "Thập",
+    "meaning": "Số mười; sự đầy đủ, trọn vẹn.",
+    "mnemonic": "Dấu cộng đại diện cho tất cả các hướng (Bắc-Nam-Đông-Tây), tượng trưng cho sự trọn vẹn."
+  },
+  "宀": {
+    "name": "Mái nhà (Miên)",
+    "meaning": "Mái nhà; nhà cửa.",
+    "mnemonic": "Một mái nhà có ống khói. Dùng cho các tòa nhà và nơi trú ẩn an toàn như chữ '家' (nhà)."
+  },
+  "目": {
+    "name": "Mục",
+    "meaning": "Mắt; tầm nhìn.",
+    "mnemonic": "Con mắt nằm dọc với con ngươi ở giữa."
+  },
+  "足": {
+    "name": "Chân",
+    "meaning": "Bàn chân; chân.",
+    "mnemonic": "Một cái chân có bàn chân ở dưới. Dùng trong các từ chỉ việc đi lại và đá."
+  },
+  "讠": {
+    "name": "Ngôn (thể giản thể)",
+    "meaning": "Lời nói; ngôn ngữ.",
+    "mnemonic": "Sóng âm phát ra từ miệng. Dạng giản thể của bộ 'Ngôn' (言)."
+  },
+  "饣": {
+    "name": "Thực (thể giản thể)",
+    "meaning": "Thức ăn; ăn uống.",
+    "mnemonic": "Một đồ đựng thức ăn có nắp. Dạng giản thể của bộ 'Thực' (食)."
+  },
+  "彳": {
+    "name": "Xích",
+    "meaning": "Bước chân trái.",
+    "mnemonic": "Nửa bên trái của một dấu chân hoặc con đường. Dùng trong các từ chỉ việc đi lại và khoảng cách."
+  },
+  "辶": {
+    "name": "Xước",
+    "meaning": "Sự chuyển động; khoảng cách.",
+    "mnemonic": "Một bàn chân đang bước đi trên đường. Dùng cho sự di chuyển như chữ 'Đi' (去) hoặc 'Xa' (远)."
+  },
+  "纟": {
+    "name": "Tư (thể giản thể)",
+    "meaning": "Tơ lụa; chỉ sợi.",
+    "mnemonic": "Những sợi tơ xoắn vào nhau. Dùng cho hàng dệt may, màu sắc và sự kết nối."
+  },
+  "艹": {
+    "name": "Thảo",
+    "meaning": "Cỏ; thực vật.",
+    "mnemonic": "Hai mầm cỏ đang vươn lên. Luôn xuất hiện ở phía trên."
+  },
+  "父": {
+    "name": "Phụ",
+    "meaning": "Cha; quyền lực.",
+    "mnemonic": "Một bàn tay cầm rìu đá, tượng trưng cho người gia trưởng trong gia đình."
+  },
+  "儿": {
+    "name": "Nhân (chân đi)",
+    "meaning": "Con trai; chân.",
+    "mnemonic": "Hai chân của một đứa trẻ đang chạy."
+  },
+  "大": {
+    "name": "Đại",
+    "meaning": "To lớn; vĩ đại.",
+    "mnemonic": "Một người dang rộng hai tay để nói 'Nó to thế này này!'"
+  },
+  "小": {
+    "name": "Tiểu",
+    "meaning": "Nhỏ bé.",
+    "mnemonic": "Một hạt giống bị tách thành những hạt nhỏ xíu."
+  },
+  "门": {
+    "name": "Môn",
+    "meaning": "Cửa; cổng.",
+    "mnemonic": "Hai cánh cửa đứng song song cạnh nhau."
+  },
+  "工": {
+    "name": "Công",
+    "meaning": "Công việc; lao động.",
+    "mnemonic": "Ê-ke hoặc thước của thợ mộc dùng để đo đạc công việc."
+  },
+  "刀": {
+    "name": "Đao",
+    "meaning": "Con dao; vũ khí.",
+    "mnemonic": "Một lưỡi dao sắc bén."
+  },
+  "刂": {
+    "name": "Đao đứng",
+    "meaning": "Dao; cắt.",
+    "mnemonic": "Dạng đứng của bộ Đao (刀). Dùng cho các hành động cắt gọt."
+  },
+  "力": {
+    "name": "Lực",
+    "meaning": "Sức mạnh; lực lượng.",
+    "mnemonic": "Cơ bắp tay đang gồng lên hoặc cái cày dùng trên đồng ruộng."
+  },
+  "贝": {
+    "name": "Bối (thể giản thể)",
+    "meaning": "Tiền tệ; giá trị.",
+    "mnemonic": "Vỏ ốc biển, được dùng làm tiền tệ thời cổ đại. Xuất hiện trong các từ liên quan đến mua bán."
+  },
+  "雨": {
+    "name": "Vũ",
+    "meaning": "Mưa; thời tiết.",
+    "mnemonic": "Những giọt nước rơi từ trên mây/bầu trời xuống."
+  },
+  "山": {
+    "name": "Sơn",
+    "meaning": "Núi; đồi.",
+    "mnemonic": "Ba đỉnh của một dãy núi."
+  },
+  "石": {
+    "name": "Thạch",
+    "meaning": "Đá; đá tảng.",
+    "mnemonic": "Một hòn đá rơi xuống từ vách đá."
+  },
+  "广": {
+    "name": "Nghiễm (mái che)",
+    "meaning": "Rộng; mái nhà che.",
+    "mnemonic": "Một mái che tựa vào vách đá."
+  },
+  "尸": {
+    "name": "Xác chết",
+    "meaning": "Thân thể; thây ma.",
+    "mnemonic": "Hình dáng một người nằm co quắp."
+  },
+  "车": {
+    "name": "Xe",
+    "meaning": "Xe cộ.",
+    "mnemonic": "Chiếc xe nhìn từ trên xuống có gắn bánh xe."
+  },
+  "巾": {
+    "name": "Khăn",
+    "meaning": "Vải; khăn quàng.",
+    "mnemonic": "Một tấm vải vắt trên sào."
+  },
+  "衣": {
+    "name": "Áo",
+    "meaning": "Y phục; quần áo.",
+    "mnemonic": "Bộ trang phục có cổ áo và tay áo."
+  },
+  "衤": {
+    "name": "Áo (dạng đứng)",
+    "meaning": "Y phục.",
+    "mnemonic": "Biến thể của bộ Áo (衣) nằm bên trái chữ. Đừng nhầm lẫn với bộ Kỳ (礻) nhé!"
+  },
+  "白": {
+    "name": "Trắng",
+    "meaning": "Màu trắng; sáng rõ.",
+    "mnemonic": "Mặt trời mọc làm cho mọi thứ trở nên sáng rõ và trắng tinh."
+  },
+  "立": {
+    "name": "Đứng",
+    "meaning": "Đứng; lập.",
+    "mnemonic": "Một người đứng vững vàng trên mặt đất."
+  },
+  "走": {
+    "name": "Chạy",
+    "meaning": "Đi; chạy.",
+    "mnemonic": "Hình ảnh một người đang sải chân chạy."
+  },
+  "戈": {
+    "name": "Qua (vũ khí)",
+    "meaning": "Vũ khí; chiến tranh.",
+    "mnemonic": "Cây kích hoặc giáo mác cổ."
+  },
+  "斤": {
+    "name": "Cân (rìu)",
+    "meaning": "Cái rìu; đơn vị cân.",
+    "mnemonic": "Chiếc rìu đang chặt gỗ."
+  },
+  "见": {
+    "name": "Thấy",
+    "meaning": "Nhìn thấy.",
+    "mnemonic": "Con mắt (目) mọc trên đôi chân (儿)."
+  },
+  "田": {
+    "name": "Ruộng",
+    "meaning": "Ruộng lúa.",
+    "mnemonic": "Thửa ruộng được chia ngăn bởi các mương nước tưới tiêu."
+  },
+  "囗": {
+    "name": "Vi",
+    "meaning": "Vây quanh; bao bọc.",
+    "mnemonic": "Bức tường bao quanh một thành trì hoặc không gian (to hơn bộ Khẩu 口)."
+  },
+  "匕": {
+    "name": "Chủy (thìa)",
+    "meaning": "Cái thìa; chủy thủ (dao găm).",
+    "mnemonic": "Chiếc thìa múc canh hoặc người đang ngồi."
+  },
+  "冖": {
+    "name": "Mịch",
+    "meaning": "Che phủ; mũ miện.",
+    "mnemonic": "Tấm vải phủ che lên một vật gì đó."
+  },
+  "冫": {
+    "name": "Băng",
+    "meaning": "Băng giá; lạnh.",
+    "mnemonic": "Hai giọt nước đóng băng lại."
+  },
+  "竹": {
+    "name": "Trúc",
+    "meaning": "Tre; trúc.",
+    "mnemonic": "Hai thân cây tre có kèm theo lá."
+  },
+  "禾": {
+    "name": "Hòa",
+    "meaning": "Lúa; hoa màu.",
+    "mnemonic": "Cây lúa trĩu bông rủ xuống đất."
+  },
+  "风": {
+    "name": "Phong",
+    "meaning": "Gió.",
+    "mnemonic": "Cơn gió thổi làm bay con côn trùng (hoặc sâu bọ)."
+  },
+  "耳": {
+    "name": "Tai",
+    "meaning": "Cái tai.",
+    "mnemonic": "Hình dáng của cái tai gắn trên đầu."
+  },
+  "身": {
+    "name": "Thân",
+    "meaning": "Thân thể; bản thân.",
+    "mnemonic": "Hình dáng một người phụ nữ mang thai, đại diện cho thân thể con người."
+  },
+  "欠": {
+    "name": "Khiếm",
+    "meaning": "Thiếu; ngáp.",
+    "mnemonic": "Hình ảnh một người đang quỳ gối với miệng há ra (đang ngáp)."
+  },
+  "厂": {
+    "name": "Hán",
+    "meaning": "Vách đá; nhà xưởng.",
+    "mnemonic": "Hình ảnh một mỏm đá nhô ra, treo lơ lửng."
+  },
+  "户": {
+    "name": "Hộ",
+    "meaning": "Hộ gia đình; cửa một cánh.",
+    "mnemonic": "Hình ảnh một cánh cửa (một nửa của chữ môn 门)."
+  },
+  "弓": {
+    "name": "Cung",
+    "meaning": "Cái cung (vũ khí).",
+    "mnemonic": "Hình chiếc cung cong sẵn sàng bắn."
+  },
+  "矢": {
+    "name": "Thỉ",
+    "meaning": "Mũi tên.",
+    "mnemonic": "Hình ảnh mũi tên đang bay trong không trung."
+  },
+  "钅": {
+    "name": "Kim (thể giản thể)",
+    "meaning": "Vàng; kim loại.",
+    "mnemonic": "Vàng vùi sâu trong lòng đất. Đây là dạng biến thể (bộ thủ) của chữ 金."
+  },
+  "金": {
+    "name": "Kim",
+    "meaning": "Vàng; kim loại.",
+    "mnemonic": "Những khối vàng được cất giấu dưới lòng đất."
+  },
+  "皿": {
+    "name": "Mãnh",
+    "meaning": "Bát đĩa; đồ đựng.",
+    "mnemonic": "Hình ảnh cái bát hoặc cái đĩa đựng thức ăn."
+  },
+  "玉": {
+    "name": "Ngọc",
+    "meaning": "Ngọc; vua.",
+    "mnemonic": "Ba viên ngọc được xâu lại với nhau trên một sợi dây (gồm chữ Vương 王 + một dấu chấm)."
+  }
+}

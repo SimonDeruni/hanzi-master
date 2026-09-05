@@ -499,7 +499,7 @@
   "aClassicTangDynastyPoemBy": "Una poesia classica della dinastia Tang di",
   "aStructuralComponent": "Un componente strutturale.",
   "addSelectedToDeck": "Aggiungi selezionati al mazzo",
-  "addTo": "Aggiungi a ",
+  "addTo": "Aggiungi a {target}",
   "addedHanziToYourLibrary": "«{hanzi}» è stato aggiunto alla tua biblioteca",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -2187,6 +2187,7 @@
   "wordFamilyChip": "🔗 Famiglia di parole",
   "idiomChip": "🀄 Modo di dire",
   "proverbChip": "💬 Proverbio",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Esiste un'espressione idiomatica cinese (成语) che contiene questo carattere?",
   "strokeOrderChip": "✏️ Ordine dei tratti",
   "calligraphyTipChip": "🎨 Consiglio calligrafico",
   "grammarNoteChip": "📝 Nota grammaticale",
@@ -2213,7 +2214,7 @@
   "studyNoEligibleCardsDescription": "Al momento nessuna carta è idonea per questa modalità di studio.",
   "studySessionLoadFailed": "Impossibile caricare questa sessione di studio. Riprova.",
   "retryLimitReached": "Questa carta tornerà nella tua prossima sessione.",
-  "libraryLabel": "文化书房 Biblioteca",
+  "libraryLabel": "Biblioteca",
   "aiDataPrivacyTitle": "Dati e privacy dell'IA",
   "aiDataPrivacySettingsSubtitle": "Scopri quali dati inviano le funzionalità IA, perché e a chi",
   "aiDataPrivacyOverviewTitle": "Quando viene usata l'IA",
@@ -3903,5 +3904,56 @@
     }
   },
   "aiSummary": "Riepilogo IA",
-  "readability": "Leggibilità"
+  "readability": "Leggibilità",
+  "translateAction": "Traduci",
+  "checkingDownload": "Verifica del download",
+  "downloadingBook": "Download: {percent}%",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "Riprova il download",
+  "downloadBook": "Scarica libro",
+  "continueChapter": "Continua dal capitolo {chapter}",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "Impossibile scaricare questo libro. Controlla la connessione e riprova.",
+  "downloadBookOffline": "Scarica il libro per leggere i suoi {count} capitoli offline.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count, plural, =1{1 poesia} other{{count} poesie}}",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "Letteratura americana",
+  "ancientChina": "Cina antica",
+  "britishLiterature": "Letteratura britannica",
+  "frenchLiterature": "Letteratura francese",
+  "germanLiterature": "Letteratura tedesca",
+  "italianLiterature": "Letteratura italiana",
+  "jinDynasty": "Dinastia Jin",
+  "preQinEra": "Epoca pre-Qin",
+  "qingDynasty": "Dinastia Qing",
+  "republicOfChinaEra": "Repubblica di Cina",
+  "russianLiterature": "Letteratura russa",
+  "spanishLiterature": "Letteratura spagnola",
+  "springAndAutumn": "Periodo delle Primavere e degli Autunni",
+  "westernHan": "Han occidentali"
 }

@@ -21,69 +21,89 @@ enum _ChipGroup {
   grammar,
   culture,
   radicals,
-  tone
+  tone,
 }
 
-class _FollowUpChip {
-  final String label;
-  final String prompt;
-  const _FollowUpChip(this.label, this.prompt);
-}
+typedef CharacterChatPrompt = ({String label, String prompt});
 
-Map<_ChipGroup, List<_FollowUpChip>> _allChips(AppLocalizations l10n) {
-  return <_ChipGroup, List<_FollowUpChip>>{
-    _ChipGroup.history: [
-      _FollowUpChip(l10n.originStoryChip,
-          'What is the oracle bone script origin of this character?'),
-      _FollowUpChip(l10n.ancientFormChip,
-          'How did the ancient form of this character evolve over time?'),
-    ],
-    _ChipGroup.words: [
-      _FollowUpChip(l10n.threeMoreWordsChip,
-          'Give me 3 common words that contain this character.'),
-      _FollowUpChip(
-          l10n.wordFamilyChip, 'What other characters share the same radical?'),
-    ],
-    _ChipGroup.idioms: [
-      _FollowUpChip(l10n.idiomChip,
-          'Is there a popular Chinese idiom (成语) using this character?'),
-      _FollowUpChip(l10n.proverbChip,
-          'Is there a Chinese proverb or saying featuring this character?'),
-    ],
-    _ChipGroup.stroke: [
-      _FollowUpChip(l10n.strokeOrderChip,
-          'Explain the stroke order rules for this character.'),
-      _FollowUpChip(l10n.calligraphyTipChip,
-          'Give me one calligraphy tip for writing this character beautifully.'),
-    ],
-    _ChipGroup.grammar: [
-      _FollowUpChip(l10n.grammarNoteChip,
-          'Is there anything tricky about using this grammatically?'),
-      _FollowUpChip(l10n.similarWordsChip,
-          'What words are commonly confused with this one and why?'),
-    ],
-    _ChipGroup.culture: [
-      _FollowUpChip(l10n.culturalNoteChip,
-          'Does this character carry cultural symbolism in China?'),
-      _FollowUpChip(l10n.inMediaChip,
-          'Is this character commonly seen in Chinese movies, songs, or texts?'),
-    ],
-    _ChipGroup.radicals: [
-      _FollowUpChip(l10n.radicalMeaningChip,
-          'What does the radical of this character mean?'),
-      _FollowUpChip(l10n.componentBreakdownChip,
-          'Break down every component and its meaning.'),
-    ],
-    _ChipGroup.tone: [
-      _FollowUpChip(l10n.toneTipChip,
-          'Give me a trick to remember the correct tone for this character.'),
-      _FollowUpChip(l10n.homophonesChip,
-          'Are there common homophones that are often confused with this?'),
-    ],
+@visibleForTesting
+List<CharacterChatPrompt> characterChatPrompts(AppLocalizations l10n) => [
+      (
+        label: l10n.originStoryChip,
+        prompt: l10n.whatIsTheOracleBoneScriptOriginOfTh
+      ),
+      (
+        label: l10n.ancientFormChip,
+        prompt: l10n.howDidTheAncientFormOfThisCharacter
+      ),
+      (
+        label: l10n.threeMoreWordsChip,
+        prompt: l10n.giveMe3CommonWordsThatContainThisCh
+      ),
+      (
+        label: l10n.wordFamilyChip,
+        prompt: l10n.whatOtherCharactersShareTheSameRadi
+      ),
+      (
+        label: l10n.idiomChip,
+        prompt: l10n.isThereAChineseIdiomFeaturingThisCharacter
+      ),
+      (
+        label: l10n.proverbChip,
+        prompt: l10n.isThereAChineseProverbOrSayingFeatu
+      ),
+      (
+        label: l10n.strokeOrderChip,
+        prompt: l10n.explainTheStrokeOrderRulesForThisCh
+      ),
+      (
+        label: l10n.calligraphyTipChip,
+        prompt: l10n.giveMeOneCalligraphyTipForWritingTh
+      ),
+      (
+        label: l10n.grammarNoteChip,
+        prompt: l10n.isThereAnythingTrickyAboutUsingThis
+      ),
+      (
+        label: l10n.similarWordsChip,
+        prompt: l10n.whatWordsAreCommonlyConfusedWithThi
+      ),
+      (
+        label: l10n.culturalNoteChip,
+        prompt: l10n.doesThisCharacterCarryCulturalSymbo
+      ),
+      (
+        label: l10n.inMediaChip,
+        prompt: l10n.isThisCharacterCommonlySeenInChines
+      ),
+      (
+        label: l10n.radicalMeaningChip,
+        prompt: l10n.whatDoesTheRadicalOfThisCharacterMe
+      ),
+      (
+        label: l10n.componentBreakdownChip,
+        prompt: l10n.breakDownEveryComponentAndItsMeanin
+      ),
+      (
+        label: l10n.toneTipChip,
+        prompt: l10n.giveMeATrickToRememberTheCorrectTon
+      ),
+      (
+        label: l10n.homophonesChip,
+        prompt: l10n.areThereCommonHomophonesThatAreOfte
+      ),
+    ];
+
+Map<_ChipGroup, List<CharacterChatPrompt>> _allChips(AppLocalizations l10n) {
+  final prompts = characterChatPrompts(l10n);
+  return {
+    for (var i = 0; i < _ChipGroup.values.length; i++)
+      _ChipGroup.values[i]: prompts.sublist(i * 2, i * 2 + 2),
   };
 }
 
-List<_FollowUpChip> _chipsForIndex(int replyIndex, AppLocalizations l10n) {
+List<CharacterChatPrompt> _chipsForIndex(
+    int replyIndex, AppLocalizations l10n) {
   const groups = _ChipGroup.values;
   final group1 = groups[replyIndex % groups.length];
   final group2 = groups[(replyIndex + 1) % groups.length];
@@ -100,7 +120,7 @@ class ChatMessage {
   final String text;
   final bool isUser;
   // ignore: library_private_types_in_public_api
-  final List<_FollowUpChip> chips;
+  final List<CharacterChatPrompt> chips;
   ChatMessage(
       {required this.text, required this.isUser, this.chips = const []});
 }
@@ -185,12 +205,14 @@ class CharacterChatSheet extends ConsumerStatefulWidget {
   final String hanzi;
   final String pinyin;
   final String definition;
+  final Future<String> Function(String message)? messageSender;
 
   const CharacterChatSheet({
     super.key,
     required this.hanzi,
     required this.pinyin,
     required this.definition,
+    this.messageSender,
   });
 
   @override
@@ -216,9 +238,11 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     super.didChangeDependencies();
     if (!_isSessionInitialized) {
       final langCode = Localizations.localeOf(context).languageCode;
-      _chatSession = ref
-          .read(geminiServiceProvider)
-          .startCharacterChat(widget.hanzi, langCode);
+      if (widget.messageSender == null) {
+        _chatSession = ref
+            .read(geminiServiceProvider)
+            .startCharacterChat(widget.hanzi, langCode);
+      }
       _isSessionInitialized = true;
 
       final l10n = AppLocalizations.of(context)!;
@@ -248,6 +272,13 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     _scrollToBottom();
 
     try {
+      if (widget.messageSender != null) {
+        final rawText = await widget.messageSender!(text);
+        if (rawText.isEmpty) throw Exception('Empty response');
+        _addAiReply(rawText, l10n);
+        return;
+      }
+
       final user = FirebaseAuth.instance.currentUser;
       final userScope =
           (user != null && !user.isAnonymous) ? user.uid : 'guest';
@@ -263,16 +294,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
         await box.put(cacheKey, rawText);
       }
 
-      _aiReplyCount++;
-      setState(() {
-        _messages.add(ChatMessage(
-          text: rawText,
-          isUser: false,
-          chips: _chipsForIndex(_aiReplyCount, l10n),
-        ));
-        _isLoading = false;
-      });
-      _scrollToBottom();
+      _addAiReply(rawText, l10n);
     } catch (e) {
       final errorStr = e.toString();
       String userMessage = l10n.aiTutorError(errorStr);
@@ -287,6 +309,19 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
       });
       _scrollToBottom();
     }
+  }
+
+  void _addAiReply(String text, AppLocalizations l10n) {
+    _aiReplyCount++;
+    setState(() {
+      _messages.add(ChatMessage(
+        text: text,
+        isUser: false,
+        chips: _chipsForIndex(_aiReplyCount, l10n),
+      ));
+      _isLoading = false;
+    });
+    _scrollToBottom();
   }
 
   void _scrollToBottom() {

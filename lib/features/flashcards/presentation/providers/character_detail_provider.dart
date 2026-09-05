@@ -13,11 +13,15 @@ final commonWordsProvider =
   final targetLanguage = ref.watch(translationLanguageProvider);
   final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
   final result = await dictionaryRepo.getWordsContaining(character,
-      limit: 6, targetLanguage: targetLanguage);
+      limit: 12, targetLanguage: targetLanguage);
 
   return result.fold(
     (l) => [],
-    (r) => r,
+    (words) => words
+        .where(
+            (word) => word.hanzi != character && word.hanzi.contains(character))
+        .take(6)
+        .toList(growable: false),
   );
 });
 

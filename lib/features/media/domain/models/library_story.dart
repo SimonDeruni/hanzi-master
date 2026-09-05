@@ -6,6 +6,7 @@ enum StorySourceType {
 class LibraryStory {
   final String title;
   final String? titleEn;
+  final Map<String, String> localizedTitles;
   final String sourceName; // e.g. "Mandarin Bean" or "Public Domain Classic"
   final String link; // URL to the story (either webpage URL or JSON/TXT URL)
   final String? imageUrl;
@@ -20,6 +21,7 @@ class LibraryStory {
   const LibraryStory({
     required this.title,
     this.titleEn,
+    this.localizedTitles = const {},
     required this.sourceName,
     required this.link,
     this.imageUrl,
@@ -35,6 +37,7 @@ class LibraryStory {
   LibraryStory copyWith({
     String? title,
     String? titleEn,
+    Map<String, String>? localizedTitles,
     String? sourceName,
     String? link,
     String? imageUrl,
@@ -48,6 +51,7 @@ class LibraryStory {
     return LibraryStory(
       title: title ?? this.title,
       titleEn: titleEn ?? this.titleEn,
+      localizedTitles: localizedTitles ?? this.localizedTitles,
       sourceName: sourceName ?? this.sourceName,
       link: link ?? this.link,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -58,5 +62,15 @@ class LibraryStory {
       sourceType: sourceType ?? this.sourceType,
       hskLevel: hskLevel ?? this.hskLevel,
     );
+  }
+
+  String localizedTitle(String localeCode) {
+    final normalizedLocale = localeCode.replaceAll('-', '_').toLowerCase();
+    final languageCode = normalizedLocale.split('_').first;
+    if (languageCode == 'zh') return title;
+    return localizedTitles[normalizedLocale] ??
+        localizedTitles[languageCode] ??
+        titleEn ??
+        title;
   }
 }

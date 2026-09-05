@@ -38,7 +38,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("${AppLocalizations.of(context)?.addTo ?? 'Add to'} ${widget.deckName}"),
+        title: Text(AppLocalizations.of(context)!.addTo(widget.deckName)),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -101,6 +101,8 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                               title: PinyinText(text: card.pinyin),
                               subtitle: TranslatedDefinition(
                                 definition: card.definition,
+                                definitionLanguage: card.definitionLanguage,
+                                hanzi: card.hanzi,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),

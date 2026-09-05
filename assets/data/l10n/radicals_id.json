@@ -1,0 +1,357 @@
+{
+  "人": {
+    "name": "Orang",
+    "meaning": "Seseorang yang sedang berdiri.",
+    "mnemonic": "Tampilan samping manusia. Menjadi '亻' (Orang Berdiri) di sebelah kiri."
+  },
+  "亻": {
+    "name": "Orang (Samping)",
+    "meaning": "Seseorang yang sedang berdiri.",
+    "mnemonic": "Radikal 'Orang Berdiri Tunggal'. Digunakan dalam kata-kata seperti 'Kamu' (你) dan 'Dia' (他)."
+  },
+  "口": {
+    "name": "Mulut",
+    "meaning": "Mulut yang terbuka.",
+    "mnemonic": "Sebuah kotak yang menggambarkan mulut terbuka. Digunakan untuk makan, berbicara, atau pintu masuk."
+  },
+  "女": {
+    "name": "Wanita",
+    "meaning": "Seorang wanita.",
+    "mnemonic": "Piktogram seorang wanita yang berlutut atau duduk dengan anggun."
+  },
+  "日": {
+    "name": "Matahari",
+    "meaning": "Matahari; hari.",
+    "mnemonic": "Matahari berbentuk persegi panjang dengan bintik matahari atau berkas cahaya di tengahnya."
+  },
+  "月": {
+    "name": "Bulan",
+    "meaning": "Bulan; daging.",
+    "mnemonic": "Bulan sabit. Sering merepresentasikan 'Daging' (Bagian Tubuh) dalam karakter seperti 'Perut' (胃)."
+  },
+  "木": {
+    "name": "Kayu",
+    "meaning": "Sebuah pohon.",
+    "mnemonic": "Sebuah pohon dengan batang di tengah, akar di bawah, dan dahan di atas."
+  },
+  "水": {
+    "name": "Air",
+    "meaning": "Air yang mengalir.",
+    "mnemonic": "Riak air di sungai. Menjadi '氵' (Tiga Titik Air) saat digunakan sebagai komponen."
+  },
+  "氵": {
+    "name": "Tiga Titik Air",
+    "meaning": "Air; cairan.",
+    "mnemonic": "Tiga cipratan air. Bentuk komponen dari Air (水)."
+  },
+  "火": {
+    "name": "Api",
+    "meaning": "Api; panas.",
+    "mnemonic": "Lidah-lidah api yang membubung dari titik pusat."
+  },
+  "灬": {
+    "name": "Empat Titik (Api)",
+    "meaning": "Api; panas.",
+    "mnemonic": "Empat nyala api di bawah panci. Bentuk bawah dari Api (火)."
+  },
+  "土": {
+    "name": "Tanah",
+    "meaning": "Tanah; bumi.",
+    "mnemonic": "Tunas yang tumbuh keluar dari tanah."
+  },
+  "心": {
+    "name": "Hati",
+    "meaning": "Hati; pikiran.",
+    "mnemonic": "Diagram bilik jantung. Digunakan untuk emosi dan pikiran."
+  },
+  "忄": {
+    "name": "Hati Vertikal",
+    "meaning": "Hati; emosi.",
+    "mnemonic": "Bentuk tegak dari Hati (心). Digunakan untuk perasaan seperti 'Cepat' (快) atau 'Takut' (怕)."
+  },
+  "手": {
+    "name": "Tangan",
+    "meaning": "Sebuah tangan.",
+    "mnemonic": "Garis-garis pada telapak tangan atau lima jari."
+  },
+  "扌": {
+    "name": "Tangan (Samping)",
+    "meaning": "Tindakan; tangan.",
+    "mnemonic": "Radikal 'Tangan Mengambil'. Digunakan untuk tindakan seperti 'Memukul' (打) atau 'Mendorong' (推)."
+  },
+  "一": {
+    "name": "Satu",
+    "meaning": "Kesatuan; cakrawala.",
+    "mnemonic": "Garis horizontal tunggal yang merepresentasikan angka satu atau cakrawala."
+  },
+  "十": {
+    "name": "Sepuluh",
+    "meaning": "Sepuluh; kelengkapan.",
+    "mnemonic": "Sebuah salib yang merepresentasikan segala arah (U-S-T-B), menyimbolkan kelengkapan."
+  },
+  "宀": {
+    "name": "Atap",
+    "meaning": "Atap; rumah.",
+    "mnemonic": "Atap dengan cerobong asap. Digunakan untuk bangunan dan tempat aman seperti 'Rumah' (家)."
+  },
+  "目": {
+    "name": "Mata",
+    "meaning": "Mata; penglihatan.",
+    "mnemonic": "Mata vertikal dengan pupil di tengah."
+  },
+  "足": {
+    "name": "Kaki",
+    "meaning": "Kaki; tungkai.",
+    "mnemonic": "Tungkai dengan kaki di bagian bawah. Digunakan untuk berjalan dan menendang."
+  },
+  "讠": {
+    "name": "Ucapan",
+    "meaning": "Kata-kata; ucapan.",
+    "mnemonic": "Gelombang suara yang keluar dari mulut. Bentuk sederhana dari 'Ucapan' (言)."
+  },
+  "饣": {
+    "name": "Makanan",
+    "meaning": "Makanan; makan.",
+    "mnemonic": "Wadah makanan yang tertutup. Bentuk sederhana dari 'Makan' (食)."
+  },
+  "彳": {
+    "name": "Langkah",
+    "meaning": "Langkah kiri.",
+    "mnemonic": "Separuh kiri dari jejak kaki atau jalan. Digunakan untuk berjalan dan jarak."
+  },
+  "辶": {
+    "name": "Jalan",
+    "meaning": "Pergerakan; jarak.",
+    "mnemonic": "Kaki yang berjalan di sepanjang jalan. Digunakan untuk pergerakan seperti 'pergi' (去) atau 'jauh' (远)."
+  },
+  "纟": {
+    "name": "Sutra",
+    "meaning": "Sutra; benang.",
+    "mnemonic": "Benang sutra yang dipilin. Digunakan untuk tekstil, warna, dan hubungan."
+  },
+  "艹": {
+    "name": "Rumput",
+    "meaning": "Rumput; tanaman.",
+    "mnemonic": "Dua tunas rumput yang tumbuh ke atas. Selalu muncul di bagian atas."
+  },
+  "父": {
+    "name": "Ayah",
+    "meaning": "Ayah; otoritas.",
+    "mnemonic": "Sebuah tangan yang memegang kapak batu, melambangkan kepala keluarga."
+  },
+  "儿": {
+    "name": "Anak",
+    "meaning": "Anak laki-laki; kaki.",
+    "mnemonic": "Dua kaki dari anak yang sedang berlari."
+  },
+  "大": {
+    "name": "Besar",
+    "meaning": "Besar; agung.",
+    "mnemonic": "Seseorang yang merentangkan tangannya lebar-lebar untuk mengatakan 'Besarnya segini!'"
+  },
+  "小": {
+    "name": "Kecil",
+    "meaning": "Kecil.",
+    "mnemonic": "Sebuah biji yang terbelah menjadi butiran-butiran kecil."
+  },
+  "门": {
+    "name": "Gerbang",
+    "meaning": "Pintu; gerbang.",
+    "mnemonic": "Dua daun pintu yang berdiri berdampingan."
+  },
+  "工": {
+    "name": "Kerja",
+    "meaning": "Pekerjaan; buruh.",
+    "mnemonic": "Siku atau penggaris tukang kayu yang digunakan untuk mengukur pekerjaan."
+  },
+  "刀": {
+    "name": "Pisau",
+    "meaning": "Pisau; senjata.",
+    "mnemonic": "Bilah pisau yang tajam."
+  },
+  "刂": {
+    "name": "Pisau (Samping)",
+    "meaning": "Pisau; potong.",
+    "mnemonic": "Bentuk tegak dari radikal Pisau (刀). Digunakan untuk tindakan memotong."
+  },
+  "力": {
+    "name": "Tenaga",
+    "meaning": "Kekuatan; tenaga.",
+    "mnemonic": "Biseps yang melingkar atau bajak yang digunakan di ladang."
+  },
+  "贝": {
+    "name": "Kerang",
+    "meaning": "Uang; nilai.",
+    "mnemonic": "Cangkang kerang laut, digunakan sebagai mata uang kuno. Ditemukan dalam kata-kata yang berkaitan dengan jual beli."
+  },
+  "雨": {
+    "name": "Hujan",
+    "meaning": "Hujan; cuaca.",
+    "mnemonic": "Tetesan air yang jatuh dari awan atau langit."
+  },
+  "山": {
+    "name": "Gunung",
+    "meaning": "Gunung; bukit.",
+    "mnemonic": "Tiga puncak dari jajaran pegunungan."
+  },
+  "石": {
+    "name": "Batu",
+    "meaning": "Batu.",
+    "mnemonic": "Sebuah batu yang jatuh dari tebing."
+  },
+  "广": {
+    "name": "Tempat Berlindung",
+    "meaning": "Luas; naungan.",
+    "mnemonic": "Sebuah tempat perlindungan sederhana yang dibangun bersandar pada tebing."
+  },
+  "尸": {
+    "name": "Tubuh",
+    "meaning": "Tubuh; mayat.",
+    "mnemonic": "Seseorang yang berbaring dengan posisi meringkuk."
+  },
+  "车": {
+    "name": "Kendaraan",
+    "meaning": "Kendaraan.",
+    "mnemonic": "Sebuah gerobak yang dilihat dari atas beserta roda-rodanya."
+  },
+  "巾": {
+    "name": "Handuk",
+    "meaning": "Kain; syal.",
+    "mnemonic": "Sehelai kain yang digantungkan pada sebatang tongkat."
+  },
+  "衣": {
+    "name": "Pakaian",
+    "meaning": "Pakaian.",
+    "mnemonic": "Sehelai pakaian yang memiliki kerah dan lengan baju."
+  },
+  "衤": {
+    "name": "Pakaian (Samping)",
+    "meaning": "Pakaian.",
+    "mnemonic": "Bentuk komponen dari Pakaian (衣). Jangan bingung dengan radikal 'Menunjukkan' (礻)!"
+  },
+  "白": {
+    "name": "Putih",
+    "meaning": "Putih; jernih.",
+    "mnemonic": "Matahari yang sedang terbit, membuat segala sesuatu menjadi jelas dan putih."
+  },
+  "立": {
+    "name": "Berdiri",
+    "meaning": "Berdiri; tegak.",
+    "mnemonic": "Seseorang yang berdiri dengan kokoh di atas tanah."
+  },
+  "走": {
+    "name": "Lari",
+    "meaning": "Berjalan; lari.",
+    "mnemonic": "Seseorang yang sedang berlari dengan kaki yang bergerak."
+  },
+  "戈": {
+    "name": "Tombak Bermata Pisau",
+    "meaning": "Senjata; perang.",
+    "mnemonic": "Sebuah tombak atau tombak kapak kuno."
+  },
+  "斤": {
+    "name": "Kapak",
+    "meaning": "Kapak; berat.",
+    "mnemonic": "Sebuah kapak yang sedang memotong kayu."
+  },
+  "见": {
+    "name": "Melihat",
+    "meaning": "Melihat.",
+    "mnemonic": "Sebuah mata (目) di atas kaki (儿)."
+  },
+  "田": {
+    "name": "Sawah",
+    "meaning": "Sawah; ladang.",
+    "mnemonic": "Sebuah ladang yang dibagi oleh saluran irigasi."
+  },
+  "囗": {
+    "name": "Kurungan",
+    "meaning": "Kurungan; pagar pembatas.",
+    "mnemonic": "Dinding yang mengelilingi kota atau ruang. (Lebih besar dari radikal Mulut 口)."
+  },
+  "匕": {
+    "name": "Sendok",
+    "meaning": "Sendok; belati.",
+    "mnemonic": "Sebuah sendok sayur atau seseorang yang sedang duduk."
+  },
+  "冖": {
+    "name": "Penutup",
+    "meaning": "Penutup; mahkota.",
+    "mnemonic": "Sebuah kain yang menutupi sesuatu."
+  },
+  "冫": {
+    "name": "Dua Titik Air",
+    "meaning": "Es; dingin.",
+    "mnemonic": "Dua tetes air yang membeku menjadi es."
+  },
+  "竹": {
+    "name": "Bambu",
+    "meaning": "Bambu.",
+    "mnemonic": "Dua batang bambu dengan daun-daunnya."
+  },
+  "禾": {
+    "name": "Tanaman Biji-bijian",
+    "meaning": "Biji-bijian; tanaman pangan.",
+    "mnemonic": "Seikat tanaman biji-bijian dengan ujung kepala yang menunduk."
+  },
+  "风": {
+    "name": "Angin",
+    "meaning": "Angin.",
+    "mnemonic": "Angin yang meniup seekor serangga (ulat) berputar-putar."
+  },
+  "耳": {
+    "name": "Telinga",
+    "meaning": "Telinga.",
+    "mnemonic": "Sebuah telinga yang menempel pada kepala."
+  },
+  "身": {
+    "name": "Tubuh",
+    "meaning": "Tubuh; diri sendiri.",
+    "mnemonic": "Seorang wanita hamil, melambangkan tubuh fisik."
+  },
+  "欠": {
+    "name": "Menguap",
+    "meaning": "Kekurangan; menguap.",
+    "mnemonic": "Seseorang yang berlutut dengan mulut terbuka (menguap)."
+  },
+  "厂": {
+    "name": "Tebing",
+    "meaning": "Tebing; pabrik.",
+    "mnemonic": "Tebing curam yang menjorok ke atas."
+  },
+  "户": {
+    "name": "Pintu",
+    "meaning": "Rumah tangga; pintu.",
+    "mnemonic": "Sebuah daun pintu tunggal (separuh dari gerbang 门)."
+  },
+  "弓": {
+    "name": "Busur",
+    "meaning": "Busur panah (senjata).",
+    "mnemonic": "Busur yang melengkung dan siap untuk menembak."
+  },
+  "矢": {
+    "name": "Panah",
+    "meaning": "Panah.",
+    "mnemonic": "Sebuah anak panah yang meluncur di udara."
+  },
+  "钅": {
+    "name": "Logam",
+    "meaning": "Emas; logam.",
+    "mnemonic": "Emas yang terkubur di dalam bumi. Bentuk komponen dari 金."
+  },
+  "金": {
+    "name": "Emas",
+    "meaning": "Emas; logam.",
+    "mnemonic": "Bongkahan emas yang tersembunyi di bawah tanah."
+  },
+  "皿": {
+    "name": "Piring",
+    "meaning": "Piring; wadah.",
+    "mnemonic": "Sebuah mangkuk atau piring untuk makanan."
+  },
+  "玉": {
+    "name": "Giok",
+    "meaning": "Giok; raja.",
+    "mnemonic": "Tiga buah batu giok yang diikat pada seutas tali (Raja 王 + sebuah titik)."
+  }
+}

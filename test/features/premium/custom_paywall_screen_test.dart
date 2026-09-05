@@ -78,6 +78,25 @@ void main() {
     expect(find.text(r'$9.99 / month'), findsOneWidget);
     expect(find.text(r'$59.99 / year'), findsOneWidget);
     expect(find.text('SinoSpark Premium'), findsOneWidget);
+    expect(find.text('Master every stroke'), findsOneWidget);
+    expect(find.text('Explore the Chinese web'), findsOneWidget);
+    expect(find.text('Turn any book into a lesson & audiobook'), findsOneWidget);
+    expect(find.text('Speak freely with AI & live tones'), findsOneWidget);
+    expect(find.text('Understand Chinese around you'), findsNothing);
+    expect(find.text('Scanner and translation screenshot'), findsNothing);
+    final characterStory = find.text('Understand every character');
+    final videoStory = find.text('Learn through real videos');
+    final handwritingStory = find.text('Master every stroke');
+    expect(characterStory, findsOneWidget);
+    expect(videoStory, findsOneWidget);
+    expect(
+      tester.getTopLeft(characterStory).dy,
+      lessThan(tester.getTopLeft(videoStory).dy),
+    );
+    expect(
+      tester.getTopLeft(videoStory).dy,
+      lessThan(tester.getTopLeft(handwritingStory).dy),
+    );
     expect(find.text('Terms of Use (EULA)'), findsOneWidget);
     expect(find.text('Privacy Policy'), findsOneWidget);
     expect(
@@ -86,6 +105,42 @@ void main() {
     );
     expect(find.textContaining('Day 5'), findsNothing);
     expect(find.textContaining('Day 7'), findsNothing);
+  });
+
+  testWidgets('benefits lead the offer and legal actions need no scrolling',
+      (tester) async {
+    tester.view.physicalSize = const Size(390, 700);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      _testApp(
+        home: const CustomPaywallScreen(
+          useMockOfferingsForTesting: true,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    final benefits = find.text('Everything included');
+    final monthlyPlan = find.text('Monthly');
+    expect(benefits, findsOneWidget);
+    expect(monthlyPlan, findsOneWidget);
+    expect(
+      tester.getTopLeft(benefits).dy,
+      lessThan(tester.getTopLeft(monthlyPlan).dy),
+    );
+
+    for (final key in [
+      'paywall_restore_button',
+      'paywall_terms_button',
+      'paywall_privacy_button',
+    ]) {
+      final action = find.byKey(Key(key));
+      expect(action, findsOneWidget);
+      expect(action.hitTestable(), findsOneWidget);
+    }
   });
 
   testWidgets('unavailable subscriptions grant temporary premium access',

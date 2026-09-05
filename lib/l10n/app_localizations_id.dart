@@ -27,6 +27,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get proverbChip => '💬 Peribahasa';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      'Apakah ada idiom Tionghoa (成语) yang mengandung karakter ini?';
+
+  @override
   String get strokeOrderChip => '✏️ Urutan goresan';
 
   @override
@@ -1666,7 +1670,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return 'Tambahkan ke ';
+    return 'Tambahkan ke $target';
   }
 
   @override
@@ -1709,6 +1713,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => 'Filsafat Kuno';
+
+  @override
+  String get warringStates => 'Warring States';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
 
   @override
   String get articleSavedToMediaHub =>
@@ -2105,7 +2116,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Li Ruzhen (sekitar 1763–1830) adalah cendekiawan Dinasti Qing yang memiliki minat mendalam pada fonologi, catur, dan kosmologi. Bunga di Dalam Cermin (Flowers in the Mirror), novel fantasinya tentang perjalanan seorang pedagang melintasi negeri-negeri ajaib, terkenal karena tema feminis dan cakupan ilmunya yang ensiklopedis.';
 
   @override
-  String get libraryLabel => '文化书房 Perpustakaan';
+  String get libraryLabel => 'Perpustakaan';
 
   @override
   String get lifestyleAndVlog => 'Gaya Hidup & Vlog';
@@ -12439,4 +12450,88 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get readability => 'Keterbacaan';
+
+  @override
+  String get translateAction => 'Terjemahkan';
+
+  @override
+  String get checkingDownload => 'Memeriksa unduhan';
+
+  @override
+  String downloadingBook(int percent) {
+    return 'Mengunduh: $percent%';
+  }
+
+  @override
+  String get retryDownload => 'Coba unduh lagi';
+
+  @override
+  String get downloadBook => 'Unduh buku';
+
+  @override
+  String continueChapter(int chapter) {
+    return 'Lanjutkan bab $chapter';
+  }
+
+  @override
+  String get downloadBookError =>
+      'Buku ini tidak dapat diunduh. Periksa koneksi Anda lalu coba lagi.';
+
+  @override
+  String downloadBookOffline(int count) {
+    return 'Unduh buku untuk membaca $count babnya secara offline.';
+  }
+
+  @override
+  String poemCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count puisi',
+      one: '1 puisi',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get americanLiterature => 'Sastra Amerika';
+
+  @override
+  String get ancientChina => 'Tiongkok Kuno';
+
+  @override
+  String get britishLiterature => 'Sastra Britania';
+
+  @override
+  String get frenchLiterature => 'Sastra Prancis';
+
+  @override
+  String get germanLiterature => 'Sastra Jerman';
+
+  @override
+  String get italianLiterature => 'Sastra Italia';
+
+  @override
+  String get jinDynasty => 'Dinasti Jin';
+
+  @override
+  String get preQinEra => 'Masa Pra-Qin';
+
+  @override
+  String get qingDynasty => 'Dinasti Qing';
+
+  @override
+  String get republicOfChinaEra => 'Republik Tiongkok';
+
+  @override
+  String get russianLiterature => 'Sastra Rusia';
+
+  @override
+  String get spanishLiterature => 'Sastra Spanyol';
+
+  @override
+  String get springAndAutumn => 'Periode Musim Semi dan Gugur';
+
+  @override
+  String get westernHan => 'Han Barat';
 }

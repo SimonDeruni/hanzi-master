@@ -27,6 +27,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get proverbChip => '💬 Tục ngữ';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      'Có thành ngữ Trung Quốc (成语) nào chứa chữ Hán này không?';
+
+  @override
   String get strokeOrderChip => '✏️ Thứ tự nét';
 
   @override
@@ -1661,7 +1665,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return 'Thêm vào ';
+    return 'Thêm vào $target';
   }
 
   @override
@@ -1705,6 +1709,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => 'Triết học cổ đại';
+
+  @override
+  String get warringStates => 'Warring States';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
 
   @override
   String get articleSavedToMediaHub => 'Đã lưu bài viết vào Media Hub!';
@@ -12433,4 +12444,82 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get readability => 'Độ dễ đọc';
+
+  @override
+  String get translateAction => 'Dịch';
+
+  @override
+  String get checkingDownload => '?ang ki?m tra b?n t?i xu?ng';
+
+  @override
+  String downloadingBook(int percent) {
+    return '?ang t?i xu?ng: $percent%';
+  }
+
+  @override
+  String get retryDownload => 'Th? t?i l?i';
+
+  @override
+  String get downloadBook => 'T?i s?ch xu?ng';
+
+  @override
+  String continueChapter(int chapter) {
+    return '??c ti?p t? ch??ng $chapter';
+  }
+
+  @override
+  String get downloadBookError =>
+      'Kh?ng th? t?i cu?n s?ch n?y. H?y ki?m tra k?t n?i r?i th? l?i.';
+
+  @override
+  String downloadBookOffline(int count) {
+    return 'T?i s?ch xu?ng ?? ??c $count ch??ng khi kh?ng c? m?ng.';
+  }
+
+  @override
+  String poemCount(int count) {
+    return '$count b?i th?';
+  }
+
+  @override
+  String get americanLiterature => 'V?n h?c M?';
+
+  @override
+  String get ancientChina => 'Trung Hoa c? ??i';
+
+  @override
+  String get britishLiterature => 'V?n h?c Anh';
+
+  @override
+  String get frenchLiterature => 'V?n h?c Ph?p';
+
+  @override
+  String get germanLiterature => 'V?n h?c ??c';
+
+  @override
+  String get italianLiterature => 'V?n h?c ?';
+
+  @override
+  String get jinDynasty => 'Nh? T?n';
+
+  @override
+  String get preQinEra => 'Th?i Ti?n T?n';
+
+  @override
+  String get qingDynasty => 'Nh? Thanh';
+
+  @override
+  String get republicOfChinaEra => 'Trung Hoa D?n Qu?c';
+
+  @override
+  String get russianLiterature => 'V?n h?c Nga';
+
+  @override
+  String get spanishLiterature => 'V?n h?c T?y Ban Nha';
+
+  @override
+  String get springAndAutumn => 'Th?i Xu?n Thu';
+
+  @override
+  String get westernHan => 'T?y H?n';
 }

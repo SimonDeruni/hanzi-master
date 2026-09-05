@@ -1,8 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class ToneComparisonSheet extends ConsumerStatefulWidget {
   final String character;
@@ -51,6 +52,21 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
 class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
   int? _playingTone;
 
+  String get _comparisonPinyin {
+    final suppliedPinyin = PinyinUtils.normalizeSyllable(widget.pinyin);
+    if (suppliedPinyin.isNotEmpty) return suppliedPinyin;
+
+    try {
+      return PinyinHelper.getPinyinE(
+        widget.character,
+        separator: ' ',
+        format: PinyinFormat.WITH_TONE_MARK,
+      ).split(' ').first;
+    } catch (_) {
+      return '';
+    }
+  }
+
   Future<void> _playToneAudio(
       int tone, String tonePinyin, String? exemplarHanzi) async {
     if (exemplarHanzi == null || exemplarHanzi.isEmpty) return;
@@ -80,7 +96,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     final onSurface = theme.colorScheme.onSurface;
 
     final isCorrect = widget.expectedTone == widget.actualTone;
-    final toneMap = PinyinUtils.getAllTonesForSyllable(widget.pinyin);
+    final comparisonPinyin = _comparisonPinyin;
+    final toneMap = PinyinUtils.getAllTonesForSyllable(comparisonPinyin);
 
     return Container(
       decoration: BoxDecoration(
@@ -239,13 +256,15 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                                 : const Color(0xFFF59E0B),
                           ),
                           const SizedBox(width: 4),
-                          Text(
-                            isCorrect ? "You Spoke (Match!)" : "You Spoke",
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: isCorrect
-                                  ? const Color(0xFF10B981)
-                                  : const Color(0xFFF59E0B),
-                              fontWeight: FontWeight.bold,
+                          Expanded(
+                            child: Text(
+                              isCorrect ? "You Spoke (Match!)" : "You Spoke",
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: isCorrect
+                                    ? const Color(0xFF10B981)
+                                    : const Color(0xFFF59E0B),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
@@ -321,7 +340,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
           const SizedBox(height: 16),
 
           Text(
-            "4-Tone Comparison (Tap to Listen):",
+            AppLocalizations.of(context)!.k4toneComparisonTapToListen,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
               color: onSurface.withValues(alpha: 0.8),
@@ -336,6 +355,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               pinyinWithTone: toneMap[tone] ?? '',
               isExpected: tone == widget.expectedTone,
               isActual: tone == widget.actualTone,
+              comparisonPinyin: comparisonPinyin,
               theme: theme,
             ),
             const SizedBox(height: 8),
@@ -351,15 +371,17 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     required String pinyinWithTone,
     required bool isExpected,
     required bool isActual,
+    required String comparisonPinyin,
     required ThemeData theme,
   }) {
     final isDark = theme.brightness == Brightness.dark;
     final onSurface = theme.colorScheme.onSurface;
     final isPlaying = _playingTone == tone;
 
-    final exemplarHanzi = PinyinUtils.getExemplarHanzi(widget.pinyin, tone);
+    final exemplarHanzi = PinyinUtils.getExemplarHanzi(comparisonPinyin, tone);
     final bool existsInChinese =
-        exemplarHanzi != null && exemplarHanzi.isNotEmpty;
+        comparisonPinyin.isNotEmpty && pinyinWithTone.isNotEmpty;
+    final audioExemplar = exemplarHanzi ?? pinyinWithTone;
 
     Color borderColor = theme.colorScheme.outlineVariant.withValues(alpha: 0.3);
     Color cardBg = isDark ? Colors.white.withValues(alpha: 0.03) : Colors.white;
@@ -384,7 +406,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
 
     return InkWell(
       onTap: existsInChinese
-          ? () => _playToneAudio(tone, pinyinWithTone, exemplarHanzi)
+          ? () => _playToneAudio(tone, pinyinWithTone, audioExemplar)
           : null,
       borderRadius: BorderRadius.circular(16),
       child: Opacity(
@@ -437,7 +459,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     Row(
                       children: [
                         Text(
-                          existsInChinese
+                          exemplarHanzi != null
                               ? "$pinyinWithTone  ($exemplarHanzi)"
                               : pinyinWithTone,
                           style: theme.textTheme.titleMedium?.copyWith(
@@ -527,7 +549,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               if (existsInChinese)
                 IconButton(
                   onPressed: () =>
-                      _playToneAudio(tone, pinyinWithTone, exemplarHanzi),
+                      _playToneAudio(tone, pinyinWithTone, audioExemplar),
                   icon: Icon(
                     isPlaying ? Icons.volume_up : Icons.volume_down_outlined,
                     color: isPlaying

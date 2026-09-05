@@ -9,7 +9,6 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
-import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class TodayInsightCard extends ConsumerStatefulWidget {
@@ -52,17 +51,19 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
     final theme = Theme.of(context);
     final cards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
     final todayWord = _pickDailyWord(cards, _now);
-    final card = todayWord['_card'] as Flashcard?;
+    final word = todayWord['_word'] as WordOfTheDay;
+    final card = todayWord['_card'] as Flashcard? ?? _dailyWordCard(word);
 
-    return BouncingButton(
-      scaleFactor: 0.97,
-      onPressed: () {
-        if (card != null) {
-          Navigator.push(
-              context,
-              SwipeBackPageRoute(
-                  builder: (_) => CharacterDetailScreen(card: card)));
-        }
+    return InkWell(
+      borderRadius: BorderRadius.circular(24),
+      onTap: () {
+        Navigator.push(
+          context,
+          SwipeBackPageRoute(
+            builder: (_) => CharacterDetailScreen(card: card),
+            settings: RouteSettings(arguments: card),
+          ),
+        );
       },
       child: Container(
         width: double.infinity,
@@ -187,6 +188,8 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
                               const SizedBox(height: 8),
                               TranslatedDefinition(
                                 definition: todayWord['meaning']!,
+                                hanzi: todayWord['hanzi']!,
+                                bundledTranslations: word.localizedDefinitions,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 originalStyle:
@@ -227,6 +230,18 @@ Map<String, dynamic> _pickDailyWord(List<Flashcard> cards, DateTime now) {
     'hanzi': word.hanzi,
     'pinyin': word.pinyin,
     'meaning': word.definition,
+    '_word': word,
     '_card': matchingCard,
   };
 }
+
+Flashcard _dailyWordCard(WordOfTheDay word) => Flashcard(
+      id: 'word-of-the-day:${word.hanzi}',
+      hanzi: word.hanzi,
+      pinyin: word.pinyin,
+      definition: word.definition,
+      definitionLanguage: 'English',
+      hskLevel: 0,
+      strokePaths: const [],
+      modeStats: const {},
+    );

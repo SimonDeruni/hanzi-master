@@ -724,7 +724,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              widget.video.title,
+              _briefing?.displayTitle(widget.video.title) ?? widget.video.title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(

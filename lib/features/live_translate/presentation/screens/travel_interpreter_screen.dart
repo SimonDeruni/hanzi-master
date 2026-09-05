@@ -74,8 +74,6 @@ class _TravelInterpreterScreenState
     final l10n = AppLocalizations.of(context);
     if (l10n != null) {
       if (_status == 'Ready') _status = l10n.ready;
-      _sideALanguage = l10n.english;
-      _sideBLanguage = l10n.mandarin;
     }
   }
 
@@ -537,7 +535,7 @@ class _TravelInterpreterScreenState
                 // Side B (Partner) mic button
                 _buildMicButton(
                   sideId: 'b',
-                  label: 'Partner',
+                  label: AppLocalizations.of(context)!.partner1,
                   isActive: _recordingSide == 'b',
                   isDark: isDark,
                 ),
@@ -709,7 +707,8 @@ class _TravelInterpreterScreenState
                                         .map((lang) => DropdownMenuItem(
                                             value: lang,
                                             child: Text(
-                                                "${AppLocalizations.of(context)?.partner ?? 'Partner'} ($lang)")))
+                                                AppLocalizations.of(context)!
+                                                    .partnerLang(lang))))
                                         .toList(),
                                     onChanged: (val) {
                                       if (val != null) {
@@ -738,13 +737,15 @@ class _TravelInterpreterScreenState
                               ],
                             ),
                             if (_recordingSide != null)
-                              const Row(
+                              Row(
                                 children: [
-                                  Icon(Icons.mic,
+                                  const Icon(Icons.mic,
                                       color: Colors.redAccent, size: 16),
-                                  SizedBox(width: 8),
-                                  Text("Partner speaking…",
-                                      style: TextStyle(
+                                  const SizedBox(width: 8),
+                                  Text(
+                                      AppLocalizations.of(context)!
+                                          .partnerSpeaking,
+                                      style: const TextStyle(
                                           color: Colors.redAccent,
                                           fontWeight: FontWeight.bold)),
                                 ],
@@ -771,8 +772,10 @@ class _TravelInterpreterScreenState
                                   children: [
                                     Text(
                                       isFromSideB
-                                          ? 'Partner (${msg.language})'
-                                          : 'You (${msg.language})',
+                                          ? AppLocalizations.of(context)!
+                                              .partnerLang(msg.language)
+                                          : AppLocalizations.of(context)!
+                                              .youLang(msg.language),
                                       style: TextStyle(
                                           color: isDark
                                               ? Colors.white38
@@ -882,7 +885,8 @@ class _TravelInterpreterScreenState
                                       .map((lang) => DropdownMenuItem(
                                           value: lang,
                                           child: Text(
-                                              "${AppLocalizations.of(context)?.you ?? 'You'} ($lang)")))
+                                              AppLocalizations.of(context)!
+                                                  .youLang(lang))))
                                       .toList(),
                                   onChanged: (val) {
                                     if (val != null) {
@@ -975,8 +979,10 @@ class _TravelInterpreterScreenState
                                 children: [
                                   Text(
                                     isFromSideA
-                                        ? 'You (${msg.language})'
-                                        : 'Partner (${msg.language})',
+                                        ? AppLocalizations.of(context)!
+                                            .youLang(msg.language)
+                                        : AppLocalizations.of(context)!
+                                            .partnerLang(msg.language),
                                     style: TextStyle(
                                         color: isDark
                                             ? Colors.white38

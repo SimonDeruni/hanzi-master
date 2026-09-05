@@ -27,6 +27,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proverbChip => '💬 ことわざ';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      'この漢字を含む中国語の成語（成语）はありますか？';
+
+  @override
   String get strokeOrderChip => '✏️ 筆順';
 
   @override
@@ -1612,7 +1616,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return '〜に追加: ';
+    return '$targetに追加';
   }
 
   @override
@@ -1655,6 +1659,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => '古代哲学';
+
+  @override
+  String get warringStates => 'Warring States';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
 
   @override
   String get articleSavedToMediaHub => '記事をメディアハブに保存しました！';
@@ -2045,7 +2056,7 @@ class AppLocalizationsJa extends AppLocalizations {
       '李汝珍（1763年頃〜1830年）は音韻論、囲碁、宇宙論に精通した清朝の学者。奇想天外な異国を旅する幻想小説『鏡花縁』は、フェミニズム的な先駆的テーマと百科全書的な博識さで高く評価されている。';
 
   @override
-  String get libraryLabel => '文化书房 ライブラリ';
+  String get libraryLabel => 'ライブラリ';
 
   @override
   String get lifestyleAndVlog => 'ライフスタイル＆Vlog';
@@ -12069,4 +12080,81 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get readability => '読みやすさ';
+
+  @override
+  String get translateAction => '翻訳';
+
+  @override
+  String get checkingDownload => '??????????';
+
+  @override
+  String downloadingBook(int percent) {
+    return '????????$percent%';
+  }
+
+  @override
+  String get retryDownload => '??????????';
+
+  @override
+  String get downloadBook => '????????';
+
+  @override
+  String continueChapter(int chapter) {
+    return '?$chapter????????';
+  }
+
+  @override
+  String get downloadBookError => '???????????????????????????????????????';
+
+  @override
+  String downloadBookOffline(int count) {
+    return '?$count????????????????????????????';
+  }
+
+  @override
+  String poemCount(int count) {
+    return '$count?';
+  }
+
+  @override
+  String get americanLiterature => '??????';
+
+  @override
+  String get ancientChina => '????';
+
+  @override
+  String get britishLiterature => '??????';
+
+  @override
+  String get frenchLiterature => '??????';
+
+  @override
+  String get germanLiterature => '?????';
+
+  @override
+  String get italianLiterature => '??????';
+
+  @override
+  String get jinDynasty => '??';
+
+  @override
+  String get preQinEra => '????';
+
+  @override
+  String get qingDynasty => '??';
+
+  @override
+  String get republicOfChinaEra => '?????';
+
+  @override
+  String get russianLiterature => '?????';
+
+  @override
+  String get spanishLiterature => '??????';
+
+  @override
+  String get springAndAutumn => '????';
+
+  @override
+  String get westernHan => '??';
 }

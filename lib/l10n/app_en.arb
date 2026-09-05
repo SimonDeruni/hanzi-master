@@ -6,6 +6,7 @@
   "wordFamilyChip": "🔗 Word family",
   "idiomChip": "🀄 Idiom",
   "proverbChip": "💬 Proverb",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Is there a Chinese idiom (成语) featuring this character?",
   "strokeOrderChip": "✏️ Stroke order",
   "calligraphyTipChip": "🎨 Calligraphy tip",
   "grammarNoteChip": "📝 Grammar note",
@@ -538,7 +539,7 @@
   "aClassicTangDynastyPoemBy": "A classic Tang Dynasty poem by",
   "aStructuralComponent": "A structural component.",
   "addSelectedToDeck": "Add Selected to Deck",
-  "addTo": "Add to",
+  "addTo": "Add to {target}",
   "addedHanziToYourLibrary": "Added '{hanzi}' to your Library",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -559,6 +560,8 @@
   "analyzingClassicalCharacters": "Analyzing classical characters...",
   "anatomy": "Anatomy",
   "ancientPhilosophy": "Ancient Philosophy",
+  "warringStates": "Warring States",
+  "hanFeiLegalism": "Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.",
   "articleSavedToMediaHub": "Article saved to Media Hub!",
   "askAFollowUp": "Ask a follow-up...",
   "audioPrivacyAndHowThingsWork": "Audio, privacy, and how things work",
@@ -720,7 +723,7 @@
   "keyword": "keyword",
   "knowledgeBase": "Knowledge Base",
   "liRuzhenSubjects": "Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects.",
-  "libraryLabel": "文化书房 Library",
+  "libraryLabel": "Library",
   "lifestyleAndVlog": "Lifestyle & Vlog",
   "listenInAudiobookMode": "Listen in Audiobook Mode",
   "listenToThisWord": "Listen to this word",
@@ -3986,5 +3989,56 @@
     }
   },
   "aiSummary": "AI Summary",
-  "readability": "Readability"
+  "readability": "Readability",
+  "translateAction": "Translate",
+  "checkingDownload": "Checking download",
+  "downloadingBook": "Downloading {percent}%",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "Retry download",
+  "downloadBook": "Download book",
+  "continueChapter": "Continue chapter {chapter}",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "Could not download this book. Check your connection and try again.",
+  "downloadBookOffline": "Download the book to read its {count} chapters offline.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count, plural, =1{1 poem} other{{count} poems}}",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "American Literature",
+  "ancientChina": "Ancient China",
+  "britishLiterature": "British Literature",
+  "frenchLiterature": "French Literature",
+  "germanLiterature": "German Literature",
+  "italianLiterature": "Italian Literature",
+  "jinDynasty": "Jin Dynasty",
+  "preQinEra": "Pre-Qin",
+  "qingDynasty": "Qing Dynasty",
+  "republicOfChinaEra": "Republic of China",
+  "russianLiterature": "Russian Literature",
+  "spanishLiterature": "Spanish Literature",
+  "springAndAutumn": "Spring and Autumn period",
+  "westernHan": "Western Han"
 }

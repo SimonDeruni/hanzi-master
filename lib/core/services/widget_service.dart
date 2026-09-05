@@ -22,29 +22,86 @@ class WordOfTheDay {
     required this.hanzi,
     required this.pinyin,
     required this.definition,
+    this.localizedDefinitions = const {},
   });
 
   final String hanzi;
   final String pinyin;
   final String definition;
+  final Map<String, String> localizedDefinitions;
 }
 
 const wordOfTheDayVocabulary = <WordOfTheDay>[
-  WordOfTheDay(hanzi: '你好', pinyin: 'nǐ hǎo', definition: 'hello'),
   WordOfTheDay(
-      hanzi: '学习', pinyin: 'xué xí', definition: 'to study · to learn'),
-  WordOfTheDay(hanzi: '朋友', pinyin: 'péng you', definition: 'friend'),
-  WordOfTheDay(hanzi: '发现', pinyin: 'fā xiàn', definition: 'to discover'),
-  WordOfTheDay(hanzi: '坚持', pinyin: 'jiān chí', definition: 'to persist'),
-  WordOfTheDay(hanzi: '勇气', pinyin: 'yǒng qì', definition: 'courage'),
-  WordOfTheDay(hanzi: '智慧', pinyin: 'zhì huì', definition: 'wisdom'),
-  WordOfTheDay(hanzi: '成长', pinyin: 'chéng zhǎng', definition: 'to grow'),
-  WordOfTheDay(hanzi: '平静', pinyin: 'píng jìng', definition: 'calm · peaceful'),
-  WordOfTheDay(hanzi: '希望', pinyin: 'xī wàng', definition: 'hope'),
-  WordOfTheDay(hanzi: '理解', pinyin: 'lǐ jiě', definition: 'to understand'),
-  WordOfTheDay(hanzi: '习惯', pinyin: 'xí guàn', definition: 'habit'),
-  WordOfTheDay(hanzi: '温暖', pinyin: 'wēn nuǎn', definition: 'warmth · warm'),
-  WordOfTheDay(hanzi: '专注', pinyin: 'zhuān zhù', definition: 'to focus'),
+      hanzi: '你好',
+      pinyin: 'nǐ hǎo',
+      definition: 'hello',
+      localizedDefinitions: {'french': 'bonjour'}),
+  WordOfTheDay(
+      hanzi: '学习',
+      pinyin: 'xué xí',
+      definition: 'to study · to learn',
+      localizedDefinitions: {'french': 'étudier · apprendre'}),
+  WordOfTheDay(
+      hanzi: '朋友',
+      pinyin: 'péng you',
+      definition: 'friend',
+      localizedDefinitions: {'french': 'ami · amie'}),
+  WordOfTheDay(
+      hanzi: '发现',
+      pinyin: 'fā xiàn',
+      definition: 'to discover',
+      localizedDefinitions: {'french': 'découvrir'}),
+  WordOfTheDay(
+      hanzi: '坚持',
+      pinyin: 'jiān chí',
+      definition: 'to persist',
+      localizedDefinitions: {'french': 'persévérer'}),
+  WordOfTheDay(
+      hanzi: '勇气',
+      pinyin: 'yǒng qì',
+      definition: 'courage',
+      localizedDefinitions: {'french': 'courage'}),
+  WordOfTheDay(
+      hanzi: '智慧',
+      pinyin: 'zhì huì',
+      definition: 'wisdom',
+      localizedDefinitions: {'french': 'sagesse'}),
+  WordOfTheDay(
+      hanzi: '成长',
+      pinyin: 'chéng zhǎng',
+      definition: 'to grow',
+      localizedDefinitions: {'french': 'grandir'}),
+  WordOfTheDay(
+      hanzi: '平静',
+      pinyin: 'píng jìng',
+      definition: 'calm · peaceful',
+      localizedDefinitions: {'french': 'calme · paisible'}),
+  WordOfTheDay(
+      hanzi: '希望',
+      pinyin: 'xī wàng',
+      definition: 'hope',
+      localizedDefinitions: {'french': 'espoir'}),
+  WordOfTheDay(
+      hanzi: '理解',
+      pinyin: 'lǐ jiě',
+      definition: 'to understand',
+      localizedDefinitions: {'french': 'comprendre'}),
+  WordOfTheDay(
+      hanzi: '习惯',
+      pinyin: 'xí guàn',
+      definition: 'habit',
+      localizedDefinitions: {'french': 'habitude'}),
+  WordOfTheDay(
+      hanzi: '温暖',
+      pinyin: 'wēn nuǎn',
+      definition: 'warmth · warm',
+      localizedDefinitions: {'french': 'chaleur · chaleureux'}),
+  WordOfTheDay(
+      hanzi: '专注',
+      pinyin: 'zhuān zhù',
+      definition: 'to focus',
+      localizedDefinitions: {'french': 'se concentrer'}),
 ];
 
 WordOfTheDay wordOfTheDayFor(DateTime date) {

@@ -152,6 +152,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
 
   Future<void> _configureAndStartAudiobook() async {
     final audioService = ref.read(audioServiceProvider);
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
     final tracks = <AudiobookTrack>[];
     for (var chapterIndex = 0;
         chapterIndex < widget.chapters.length;
@@ -165,9 +166,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           id: '${widget.book.id}:${chapter.id}:$sentenceIndex',
           sentence: sentence.chinese,
           translation: sentence.english,
-          bookTitle: widget.book.title,
+          bookTitle: widget.book.localizedTitle(localeCode),
           author: widget.book.author,
-          chapterTitle: chapter.title,
+          chapterTitle: await LocalizedCatalogService.getChapterTitle(
+            titleEn: chapter.titleEn,
+            localeCode: localeCode,
+            localizedTitles: chapter.localizedTitles,
+          ),
           chapterIndex: chapterIndex,
           sentenceIndex: sentenceIndex,
         ));
@@ -1020,7 +1025,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
               ),
               const SizedBox(height: 16),
               Text(
-                'Select Chapter',
+                AppLocalizations.of(context)!.selectChapter,
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
@@ -1042,7 +1047,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 2),
                       leading: Text(
-                        'Ch ${ch.chapterIndex}',
+                        '${ch.chapterIndex}',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -1064,7 +1069,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                       ),
                       subtitle: FutureBuilder<String>(
                         future: LocalizedCatalogService.getChapterTitle(
+                          chapterId: ch.id,
                           titleEn: ch.titleEn,
+                          localizedTitles: ch.localizedTitles,
                           localeCode:
                               Localizations.localeOf(context).languageCode,
                         ),
@@ -1180,7 +1187,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              widget.book.title,
+                              widget.book.localizedTitle(
+                                Localizations.localeOf(context).toLanguageTag(),
+                              ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -1197,14 +1206,25 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Flexible(
-                                    child: Text(
-                                      chapter.title,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 11.5,
-                                        color: activeAccent,
-                                        fontWeight: FontWeight.w600,
+                                    child: FutureBuilder<String>(
+                                      future: LocalizedCatalogService
+                                          .getChapterTitle(
+                                        titleEn: chapter.titleEn,
+                                        localeCode:
+                                            Localizations.localeOf(context)
+                                                .toLanguageTag(),
+                                        localizedTitles:
+                                            chapter.localizedTitles,
+                                      ),
+                                      builder: (context, snapshot) => Text(
+                                        snapshot.data ?? chapter.titleEn,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 11.5,
+                                          color: activeAccent,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ),
                                   ),

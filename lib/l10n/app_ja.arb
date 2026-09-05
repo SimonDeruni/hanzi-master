@@ -555,7 +555,7 @@
   "aClassicTangDynastyPoemBy": "〜による唐詩の名作",
   "aStructuralComponent": "構造パーツ（部首・構成要素）",
   "addSelectedToDeck": "選択した項目をデッキに追加",
-  "addTo": "〜に追加: ",
+  "addTo": "{target}に追加",
   "addedHanziToYourLibrary": "「{hanzi}」をライブラリに追加しました",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -2239,6 +2239,7 @@
   "wordFamilyChip": "🔗 関連語",
   "idiomChip": "🀄 成語",
   "proverbChip": "💬 ことわざ",
+  "isThereAChineseIdiomFeaturingThisCharacter": "この漢字を含む中国語の成語（成语）はありますか？",
   "strokeOrderChip": "✏️ 筆順",
   "calligraphyTipChip": "🎨 書道のコツ",
   "grammarNoteChip": "📝 文法ノート",
@@ -2265,7 +2266,7 @@
   "studyNoEligibleCardsDescription": "現在この学習モードで対象となるカードはありません。",
   "studySessionLoadFailed": "学習セッションを読み込めませんでした。もう一度お試しください。",
   "retryLimitReached": "このカードは次回のセッションで再度出題されます。",
-  "libraryLabel": "文化书房 ライブラリ",
+  "libraryLabel": "ライブラリ",
   "aiDataPrivacyTitle": "AIデータとプライバシー",
   "aiDataPrivacySettingsSubtitle": "AI機能のデータ送信内容、目的、送信先を確認",
   "aiDataPrivacyOverviewTitle": "AIが使用されるタイミング",
@@ -3954,5 +3955,56 @@
     }
   },
   "aiSummary": "AI要約",
-  "readability": "読みやすさ"
+  "readability": "読みやすさ",
+  "translateAction": "翻訳",
+  "checkingDownload": "??????????",
+  "downloadingBook": "????????{percent}%",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "??????????",
+  "downloadBook": "????????",
+  "continueChapter": "?{chapter}????????",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "???????????????????????????????????????",
+  "downloadBookOffline": "?{count}????????????????????????????",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count}?",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "??????",
+  "ancientChina": "????",
+  "britishLiterature": "??????",
+  "frenchLiterature": "??????",
+  "germanLiterature": "?????",
+  "italianLiterature": "??????",
+  "jinDynasty": "??",
+  "preQinEra": "????",
+  "qingDynasty": "??",
+  "republicOfChinaEra": "?????",
+  "russianLiterature": "?????",
+  "spanishLiterature": "??????",
+  "springAndAutumn": "????",
+  "westernHan": "??"
 }

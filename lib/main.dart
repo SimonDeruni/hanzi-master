@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/premium/presentation/screens/custom_paywal
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
+import 'package:hanzi_master/core/services/audio_service.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -29,6 +30,7 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/app_splash_screen.dart';
+import 'package:hanzi_master/core/widgets/app_reload_boundary.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -121,6 +123,10 @@ void main() async {
     ],
   );
 
+  // Register the app-scoped audio engine as the system media handler once.
+  final audioService = container.read(audioServiceProvider);
+  await initializeBackgroundAudio(audioService);
+
   // 4. Pre-warm Repository (Heavy JSON parsing)
   await container.read(flashcardRepositoryProvider).init();
   await container.read(globalDictionaryRepositoryProvider).init();
@@ -169,57 +175,44 @@ class HanziMasterApp extends ConsumerWidget {
     // 4. Watch settings to apply theme mode dynamically
     final settings = ref.watch(settingsProvider);
 
-    return GestureDetector(
-      onTap: () {
-        // Global Keyboard Dismissal Mandate
-        final FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        }
-      },
-      child: MaterialApp(
-        onGenerateTitle: (context) =>
-            AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-        locale: Locale(settings.locale),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en'),
-          Locale('zh'),
-          Locale('es'),
-          Locale('fr'),
-          Locale('de'),
-          Locale('ja'),
-          Locale('ko'),
-          Locale('ru'),
-          Locale('ar'),
-          Locale('hi'),
-          Locale('pt'),
-          Locale('it'),
-          Locale('tr'),
-          Locale('vi'),
-          Locale('id'),
-        ],
-        home: Consumer(
-          builder: (context, ref, child) {
-            final prefs = ref.watch(sharedPreferencesProvider);
-            final hasSeenOnboarding =
-                prefs.getBool('has_seen_onboarding') ?? false;
+    return AppReloadBoundary(
+      locale: settings.locale,
+      child: GestureDetector(
+        onTap: () {
+          // Global Keyboard Dismissal Mandate
+          final FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
+        },
+        child: MaterialApp(
+          onGenerateTitle: (context) =>
+              AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: settings.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          locale: Locale(settings.locale),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Consumer(
+            builder: (context, ref, child) {
+              final prefs = ref.watch(sharedPreferencesProvider);
+              final hasSeenOnboarding =
+                  prefs.getBool('has_seen_onboarding') ?? false;
 
-            if (!hasSeenOnboarding) {
-              return const OnboardingScreen();
-            }
-            return const _SubscriptionGate();
-          },
+              if (!hasSeenOnboarding) {
+                return const OnboardingScreen();
+              }
+              return const _SubscriptionGate();
+            },
+          ),
         ),
       ),
     );

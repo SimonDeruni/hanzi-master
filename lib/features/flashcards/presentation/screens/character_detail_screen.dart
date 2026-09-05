@@ -25,6 +25,8 @@ import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -40,6 +42,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   Map<String, dynamic>? _fullHanziMeta;
   late PageController _pageController;
   int _activeAnatomyIndex = 0;
+  String? _currentLocaleCode;
 
   // Scrubbing State
   int? _manualStrokeLimit;
@@ -106,9 +109,18 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     super.initState();
     _pageController = PageController();
     _scrollController.addListener(_onScroll);
-    _loadAnatomyData();
     _hydrateStrokes();
     _loadNotes();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context).languageCode;
+    if (_currentLocaleCode != locale) {
+      _currentLocaleCode = locale;
+      _loadAnatomyData(locale);
+    }
   }
 
   Future<void> _loadNotes() async {
@@ -145,27 +157,29 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     }
   }
 
-  Future<void> _loadAnatomyData() async {
+  Future<void> _loadAnatomyData([String? localeCode]) async {
     try {
-      final metadataString =
-          await rootBundle.loadString('assets/data/hanzi_metadata.json');
-      final hanziMeta = json.decode(metadataString);
-      final radicalString =
-          await rootBundle.loadString('assets/data/radicals.json');
-      final radicalData = json.decode(radicalString)['radicals'];
+      final effectiveLocale = localeCode ?? _currentLocaleCode ?? 'en';
+      final results = await Future.wait([
+        rootBundle.loadString('assets/data/hanzi_metadata.json'),
+        LocalizedCatalogService.getRadicals(effectiveLocale),
+      ]);
+      final hanziMeta = json.decode(results[0] as String);
+      final radicalData = results[1] as Map<String, dynamic>;
 
       if (mounted) setState(() => _fullHanziMeta = hanziMeta);
 
-      // --- HSK 2 BUNDLE HOOK ---
       Map<String, dynamic> hsk2Meta = {};
-      try {
-        final hsk2String =
-            await rootBundle.loadString('assets/data/hsk2_bundle.json');
-        hsk2Meta = json.decode(hsk2String)['metadata'] ?? {};
-      } catch (e) {/* ignore */}
-      // -------------------------
-
       final chars = widget.card.hanzi.split('');
+      if (chars.any((char) =>
+          !radicalData.containsKey(char) && !hanziMeta.containsKey(char))) {
+        try {
+          final hsk2String =
+              await rootBundle.loadString('assets/data/hsk2_bundle.json');
+          hsk2Meta = json.decode(hsk2String)['metadata'] ?? {};
+        } catch (_) {/* Optional fallback data. */}
+      }
+
       final List<Map<String, dynamic>> foundComponents = [];
       final structuralChars = [
         '⿰',
@@ -221,12 +235,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         for (final comp in components) {
           if (radicalData.containsKey(comp)) {
             // Avoid adding duplicates of the same radical
-            if (!foundComponents.any((element) =>
-                element['radical'] == comp)) {
+            if (!foundComponents.any((element) => element['radical'] == comp)) {
               foundComponents.add({
                 'char': char,
                 'radical': comp,
                 'info': radicalData[comp],
+                'definitionLanguage':
+                    translationLanguageForLocale(effectiveLocale),
                 'decomposition': hanziMeta[char]?['decomposition'] ?? '',
               });
             }
@@ -240,7 +255,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           _anatomyComponents.addAll(foundComponents);
         });
       }
-    } catch (e) {/* silent fail */}
+    } catch (error) {
+      debugPrint('Unable to load character anatomy: $error');
+    }
   }
 
   void _showRadicalDetails(Map<String, dynamic> comp) {
@@ -283,13 +300,17 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TranslatedDefinition(
-                          definition:
-                              info?['name']?.toString() ?? '',
+                          definition: info?['name']?.toString() ?? '',
+                          definitionLanguage:
+                              comp['definitionLanguage']?.toString(),
+                          hanzi: radicalChar,
                           originalStyle: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold)),
                       TranslatedDefinition(
-                          definition:
-                              info?['meaning']?.toString() ?? '',
+                          definition: info?['meaning']?.toString() ?? '',
+                          definitionLanguage:
+                              comp['definitionLanguage']?.toString(),
+                          hanzi: radicalChar,
                           originalStyle: const TextStyle(
                               fontSize: 16, color: Colors.grey)),
                     ],
@@ -428,6 +449,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           const SizedBox(height: 12),
           TranslatedDefinition(
             definition: currentCard.definition,
+            definitionLanguage: currentCard.definitionLanguage,
             hanzi: currentCard.hanzi,
             presentation: DefinitionPresentation.fullDetail,
             originalStyle: TextStyle(
@@ -498,7 +520,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-      useRootNavigator: true,
+                useRootNavigator: true,
                 shape: const RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(24))),
@@ -520,7 +542,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                               color: Colors.orange, size: 32),
                           title: Text(
                               AppLocalizations.of(context)!.shadowingStudio,
-                              style: const TextStyle(fontWeight: FontWeight.bold)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: Text(AppLocalizations.of(context)!
                               .practicePronouncingWithAiGrading),
                           onTap: () {
@@ -543,7 +566,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                               color: Colors.teal, size: 32),
                           title: Text(
                               AppLocalizations.of(context)!.calligraphy_trace,
-                              style: const TextStyle(fontWeight: FontWeight.bold)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: Text(AppLocalizations.of(context)!
                               .practice_writing_the_strokes_by_hand),
                           onTap: () {
@@ -1004,8 +1028,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: _anatomyComponents.asMap().entries.map((entry) {
             final int idx = entry.key;
-            final String radical =
-                entry.value['radical']?.toString() ?? '';
+            final String radical = entry.value['radical']?.toString() ?? '';
             final bool isActive = _activeAnatomyIndex == idx;
             return GestureDetector(
               onTap: () {
@@ -1076,7 +1099,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     const Icon(Icons.architecture,
                         size: 18, color: Colors.indigo),
                     const SizedBox(width: 8),
-                    Text("${comp['char']} ANATOMY",
+                    Text(
+                        "${comp['char']} ${AppLocalizations.of(context)!.anatomy.toUpperCase()}",
                         style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -1114,11 +1138,17 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                     children: [
                       TranslatedDefinition(
                           definition: comp['info']?['name']?.toString() ?? '',
+                          definitionLanguage:
+                              comp['definitionLanguage']?.toString(),
+                          hanzi: comp['radical']?.toString(),
                           originalStyle: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 4),
                       TranslatedDefinition(
                         definition: comp['info']?['meaning']?.toString() ?? '',
+                        definitionLanguage:
+                            comp['definitionLanguage']?.toString(),
+                        hanzi: comp['radical']?.toString(),
                         originalStyle: TextStyle(
                             fontSize: 13,
                             color: isDark ? Colors.white70 : Colors.black87),
@@ -1202,31 +1232,75 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           context,
           title: AppLocalizations.of(context)!.commonWords,
           icon: Icons.hub,
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
+          child: Column(
             children: words
-                .map((w) => GestureDetector(
-                      onTap: () => showQuickLook(context, w.hanzi),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 7),
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? Colors.indigo.shade900.withValues(alpha: 0.3)
-                              : Colors.indigo.shade50,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: Colors.indigo
-                                  .withValues(alpha: isDark ? 0.25 : 0.15)),
-                        ),
-                        child: Text(
-                          '${w.hanzi}  ${PinyinUtils.convertNumericToMarks(w.pinyin)}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color:
-                                isDark ? Colors.white : Colors.indigo.shade800,
+                .map((word) => Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Material(
+                        color: isDark
+                            ? Colors.indigo.shade900.withValues(alpha: 0.3)
+                            : Colors.indigo.shade50,
+                        borderRadius: BorderRadius.circular(14),
+                        child: InkWell(
+                          key: ValueKey('common-word-${word.hanzi}'),
+                          onTap: () => showQuickLook(context, word.hanzi),
+                          borderRadius: BorderRadius.circular(14),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        word.hanzi,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: isDark
+                                              ? Colors.white
+                                              : Colors.indigo.shade900,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        PinyinUtils.convertNumericToMarks(
+                                            word.pinyin),
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: isDark
+                                              ? Colors.white70
+                                              : Colors.indigo.shade600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  flex: 3,
+                                  child: TranslatedDefinition(
+                                    definition: word.definition,
+                                    definitionLanguage: word.definitionLanguage,
+                                    hanzi: word.hanzi,
+                                    originalStyle: TextStyle(
+                                      fontSize: 14,
+                                      color: isDark
+                                          ? Colors.white70
+                                          : Colors.black87,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                const Icon(Icons.chevron_right,
+                                    size: 18, color: Colors.grey),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -1250,6 +1324,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            _buildCategoryHeading(
+              key: const ValueKey('context-section-heading'),
+              title: AppLocalizations.of(context)!.context,
+              icon: Icons.auto_awesome,
+              isDark: isDark,
+            ),
+            const SizedBox(height: 12),
             _buildInfoSection(
               context,
               title: AppLocalizations.of(context)!.aiMemoryHook,
@@ -1455,6 +1536,34 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           if (child != null) child,
         ],
       ),
+    );
+  }
+
+  Widget _buildCategoryHeading({
+    required Key key,
+    required String title,
+    required IconData icon,
+    required bool isDark,
+  }) {
+    return Row(
+      key: key,
+      children: [
+        Icon(icon, size: 18, color: Colors.indigo),
+        const SizedBox(width: 8),
+        Text(
+          title.toUpperCase(),
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+            color: isDark ? Colors.white70 : Colors.black54,
+            letterSpacing: 1.2,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Divider(color: isDark ? Colors.white24 : Colors.black12),
+        ),
+      ],
     );
   }
 }

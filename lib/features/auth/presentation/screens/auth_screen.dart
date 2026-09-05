@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   final bool requireSubscription;
@@ -82,6 +83,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
@@ -105,7 +107,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  _isLogin ? "Welcome Back" : "Begin Your Journey",
+                  _isLogin
+                      ? (l10n?.welcomeBack ?? "Welcome Back")
+                      : "Begin Your Journey",
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w900,
@@ -116,8 +120,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 const SizedBox(height: 8),
                 Text(
                   _isLogin 
-                      ? "Sign in to sync your progress." 
-                      : "Create an account to save your stats.",
+                      ? (l10n?.signInToSyncYourProgress ?? "Sign in to sync your progress.") 
+                      : (l10n?.createAnAccountToSaveYourStats ?? "Create an account to save your stats."),
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: isDark ? Colors.white70 : Colors.black54,
@@ -162,7 +166,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     value: _acceptTerms,
                     onChanged: (val) => setState(() => _acceptTerms = val ?? false),
                     title: Text(
-                      "I agree to the Terms of Service and Privacy Policy.",
+                      l10n?.iAgreeToTheTermsOfServiceAndPrivacy ??
+                          "I agree to the Terms of Service and Privacy Policy.",
                       style: TextStyle(
                         color: isDark ? Colors.white70 : Colors.black87,
                         fontSize: 13,
@@ -177,7 +182,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     value: _subscribeNewsletter,
                     onChanged: (val) => setState(() => _subscribeNewsletter = val ?? false),
                     title: Text(
-                      "Send me occasional updates, tips, and offers.",
+                      l10n?.sendMeOccasionalUpdatesTipsAndOffer ??
+                          "Send me occasional updates, tips, and offers.",
                       style: TextStyle(
                         color: isDark ? Colors.white70 : Colors.black87,
                         fontSize: 13,
@@ -194,7 +200,38 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 const SizedBox(height: 24),
 
 
-                const SizedBox(height: 32),
+                if (widget.requireSubscription) ...[
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        key: const Key('auth_restore_subscription'),
+                        onPressed: () {},
+                        child: Text(
+                          l10n?.restore ?? "Restore Purchases",
+                          style: TextStyle(
+                            color: isDark ? Colors.white60 : Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                      Text("•", style: TextStyle(color: isDark ? Colors.white30 : Colors.black26)),
+                      TextButton(
+                        key: const Key('auth_view_subscription_plans'),
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(
+                          "View Plans",
+                          style: TextStyle(
+                            color: isDark ? Colors.white60 : Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+                const SizedBox(height: 16),
                 
                 TextButton(
                   onPressed: () {

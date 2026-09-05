@@ -10,6 +10,7 @@ import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'dart:io';
 import '../../../../core/services/ocr_service.dart';
 import '../../../../core/services/gemini_service.dart';
@@ -55,6 +56,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   String _fullTranslation = "";
   String _smartDeckName = "";
   List<AiWord> _matchedCharacters = [];
+  String _resultLanguage = 'English';
   Set<int> _selectedWordIndices = {};
   bool _isCreatingSmartDeck = false;
 
@@ -536,6 +538,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     });
 
     final gemini = ref.read(geminiServiceProvider);
+    final resultLanguage = gemini.targetLanguage;
 
     try {
       final extraction = await gemini.extractVocabularyFromScan(text);
@@ -545,6 +548,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _fullTranslation = extraction['fullTranslation'] as String;
           _smartDeckName = extraction['deckName'] as String? ?? 'Scan Results';
           _matchedCharacters = extraction['words'] as List<AiWord>;
+          _resultLanguage = resultLanguage;
           _selectedWordIndices.clear();
           _isLookingUp = false;
           _showingResults = true;
@@ -580,7 +584,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               id: '',
               hanzi: info.hanzi,
               pinyin: info.pinyin,
-              definition: info.meaning,
+              definition: info.meaning.isNotEmpty ? info.meaning : info.english,
+              definitionLanguage: info.meaning.isNotEmpty
+                  ? _resultLanguage
+                  : 'English',
+              englishDefinition:
+                  info.english.isNotEmpty ? info.english : null,
               hskLevel: info.hskLevel,
               strokePaths: const [],
               modeStats: const {},
@@ -606,7 +615,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       id: '',
       hanzi: info.hanzi,
       pinyin: info.pinyin,
-      definition: info.meaning,
+      definition: info.meaning.isNotEmpty ? info.meaning : info.english,
+      definitionLanguage:
+          info.meaning.isNotEmpty ? _resultLanguage : 'English',
+      englishDefinition: info.english.isNotEmpty ? info.english : null,
       hskLevel: info.hskLevel,
       strokePaths: const [],
       modeStats: const {},
@@ -790,10 +802,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         }
       }
 
-      // Keep canonical word definitions in English. The presentation layer
-      // translates them and can therefore honor the English override.
+      // Request both localized and canonical English definitions so the
+      // presentation layer can honor the English override.
+      final resultLanguage = ref.read(translationLanguageProvider);
       final result = await _geminiService.analyzeSceneObjects(
-          bytes, currentLabels.toList(), 'English');
+        bytes,
+        currentLabels.toList(),
+        resultLanguage,
+      );
 
       final updatedLabels = result['updatedLabels'] as Map<String, AiWord>;
       final allObjects = result['allObjects'] as List<AiWord>;
@@ -803,6 +819,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _isLookingUp = false;
           _showingResults = true;
           _matchedCharacters = allObjects;
+          _resultLanguage = resultLanguage;
 
           final newCache = Map<String, Flashcard>.from(_translationCache);
           updatedLabels.forEach((label, aiWord) {
@@ -810,7 +827,14 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               id: '',
               hanzi: aiWord.hanzi,
               pinyin: aiWord.pinyin,
-              definition: aiWord.meaning,
+              definition: aiWord.meaning.isNotEmpty
+                  ? aiWord.meaning
+                  : aiWord.english,
+              definitionLanguage: aiWord.meaning.isNotEmpty
+                  ? resultLanguage
+                  : 'English',
+              englishDefinition:
+                  aiWord.english.isNotEmpty ? aiWord.english : null,
               hskLevel: aiWord.hskLevel,
               strokePaths: const [],
               modeStats: const {},
@@ -1145,10 +1169,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       );
     }
 
-    return CustomPaint(
-      painter: ScannerOverlayPainter(),
-      child: const SizedBox.expand(),
-    );
+    return const ScannerOverlay();
   }
 
   Widget _buildZoomSlider() {
@@ -1557,8 +1578,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                     fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 6),
-                              TranslatedDefinition(
-                                definition: info.meaning,
+                              ScannerResultDefinition(
+                                word: info,
+                                resultLanguage: _resultLanguage,
                                 originalStyle: theme.textTheme.bodyMedium
                                     ?.copyWith(
                                         color: isDark
@@ -1825,10 +1847,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                               fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(height: 4),
-                                    TranslatedDefinition(
-                                      definition: info.meaning.isNotEmpty
-                                          ? info.meaning
-                                          : info.english,
+                                    ScannerResultDefinition(
+                                      word: info,
+                                      resultLanguage: _resultLanguage,
                                       originalStyle: theme.textTheme.bodyMedium
                                           ?.copyWith(color: Colors.white70),
                                       maxLines: 1,
@@ -1894,6 +1915,11 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 definition: w.meaning.isNotEmpty
                                     ? w.meaning
                                     : w.english,
+                                definitionLanguage: w.meaning.isNotEmpty
+                                    ? _resultLanguage
+                                    : 'English',
+                                englishDefinition:
+                                    w.english.isNotEmpty ? w.english : null,
                                 hskLevel: w.hskLevel,
                                 strokePaths: const [],
                                 modeStats: const {},
@@ -1939,6 +1965,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             hanzi: w.hanzi,
             pinyin: w.pinyin,
             definition: w.meaning.isNotEmpty ? w.meaning : w.english,
+            definitionLanguage:
+                w.meaning.isNotEmpty ? _resultLanguage : 'English',
+            englishDefinition: w.english.isNotEmpty ? w.english : null,
             hskLevel: w.hskLevel,
             deckId: newDeck.id,
             strokePaths: const [],
@@ -1977,8 +2006,78 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 }
 
+/// Displays a scanner result using its canonical English definition and any
+/// localized definition returned with the scan.
+class ScannerResultDefinition extends ConsumerWidget {
+  const ScannerResultDefinition({
+    super.key,
+    required this.word,
+    required this.resultLanguage,
+    this.originalStyle,
+    this.translationStyle,
+    this.maxLines,
+    this.overflow,
+  });
+
+  final AiWord word;
+  final String resultLanguage;
+  final TextStyle? originalStyle;
+  final TextStyle? translationStyle;
+  final int? maxLines;
+  final TextOverflow? overflow;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hasEnglishDefinition = word.english.trim().isNotEmpty;
+    final localizedMeaning = word.meaning.trim();
+
+    return TranslatedDefinition(
+      definition: hasEnglishDefinition ? word.english : word.meaning,
+      definitionLanguage: hasEnglishDefinition ? 'English' : resultLanguage,
+      hanzi: word.hanzi,
+      bundledTranslations: hasEnglishDefinition && localizedMeaning.isNotEmpty
+          ? {resultLanguage.toLowerCase(): localizedMeaning}
+          : const {},
+      originalStyle: originalStyle,
+      translationStyle: translationStyle,
+      maxLines: maxLines,
+      overflow: overflow,
+    );
+  }
+}
+
+class ScannerOverlay extends StatelessWidget {
+  const ScannerOverlay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final instruction =
+        AppLocalizations.of(context)!.alignChineseTextWithinFrame;
+    final textDirection = Directionality.of(context);
+
+    return Semantics(
+      label: instruction,
+      child: ExcludeSemantics(
+        child: CustomPaint(
+          painter: ScannerOverlayPainter(
+            instruction: instruction,
+            textDirection: textDirection,
+          ),
+          child: const SizedBox.expand(),
+        ),
+      ),
+    );
+  }
+}
+
 class ScannerOverlayPainter extends CustomPainter {
-  ScannerOverlayPainter();
+  const ScannerOverlayPainter({
+    required this.instruction,
+    required this.textDirection,
+  });
+
+  final String instruction;
+  final TextDirection textDirection;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -2043,7 +2142,7 @@ class ScannerOverlayPainter extends CustomPainter {
     // Guidance Text
     final textPainter = TextPainter(
       text: TextSpan(
-        text: "Align Chinese text within frame",
+        text: instruction,
         style: TextStyle(
           color: Colors.white.withValues(alpha: 0.6),
           fontSize: 14,
@@ -2051,17 +2150,19 @@ class ScannerOverlayPainter extends CustomPainter {
           letterSpacing: 0.5,
         ),
       ),
-      textDirection: TextDirection.ltr,
+      textDirection: textDirection,
       textAlign: TextAlign.center,
     );
 
-    textPainter.layout();
+    textPainter.layout(maxWidth: rect.width);
     textPainter.paint(canvas,
         Offset(size.width / 2 - textPainter.width / 2, rect.bottom + 32));
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant ScannerOverlayPainter oldDelegate) =>
+      instruction != oldDelegate.instruction ||
+      textDirection != oldDelegate.textDirection;
 }
 
 class TranslatedTextBlock {

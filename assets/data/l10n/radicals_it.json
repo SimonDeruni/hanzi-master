@@ -1,0 +1,357 @@
+{
+  "人": {
+    "name": "Persona",
+    "meaning": "Una persona in piedi.",
+    "mnemonic": "La vista laterale di un essere umano. Diventa '亻' (persona in piedi) sul lato sinistro."
+  },
+  "亻": {
+    "name": "Persona (lato)",
+    "meaning": "Una persona in piedi.",
+    "mnemonic": "Il radicale della 'persona in piedi'. Usato in parole come 'Tu' (你) e 'Lui' (他)."
+  },
+  "口": {
+    "name": "Bocca",
+    "meaning": "Una bocca aperta.",
+    "mnemonic": "Un quadrato che raffigura una bocca aperta. Usato per mangiare, parlare o per indicare ingressi."
+  },
+  "女": {
+    "name": "Donna",
+    "meaning": "Una donna.",
+    "mnemonic": "Il pittogramma di una donna inginocchiata o seduta con eleganza."
+  },
+  "日": {
+    "name": "Sole",
+    "meaning": "Il sole; il giorno.",
+    "mnemonic": "Un sole rettangolare con una macchia solare o un raggio di luce al centro."
+  },
+  "月": {
+    "name": "Luna",
+    "meaning": "La luna; la carne.",
+    "mnemonic": "Una falce di luna. Spesso rappresenta la 'carne' (parti del corpo) in caratteri come 'Stomaco' (胃)."
+  },
+  "木": {
+    "name": "Legno",
+    "meaning": "Un albero.",
+    "mnemonic": "Un albero con un tronco centrale, radici in basso e rami in alto."
+  },
+  "水": {
+    "name": "Acqua",
+    "meaning": "Acqua che scorre.",
+    "mnemonic": "Onde in un ruscello. Diventa '氵' (tre gocce) quando viene usato come componente."
+  },
+  "氵": {
+    "name": "Tre gocce",
+    "meaning": "Acqua; liquido.",
+    "mnemonic": "Tre spruzzi d'acqua. La forma ridotta del radicale Acqua (水)."
+  },
+  "火": {
+    "name": "Fuoco",
+    "meaning": "Fuoco; calore.",
+    "mnemonic": "Fiamme che si innalzano da un punto centrale."
+  },
+  "灬": {
+    "name": "Quattro punti (Fuoco)",
+    "meaning": "Fuoco; calore.",
+    "mnemonic": "Quattro fiamme sotto una pentola. La forma inferiore del Fuoco (火)."
+  },
+  "土": {
+    "name": "Terra",
+    "meaning": "Terra; suolo.",
+    "mnemonic": "Un germoglio che spunta dal terreno."
+  },
+  "心": {
+    "name": "Cuore",
+    "meaning": "Il cuore; la mente.",
+    "mnemonic": "Il diagramma delle cavità del cuore. Usato per emozioni e pensieri."
+  },
+  "忄": {
+    "name": "Cuore verticale",
+    "meaning": "Cuore; emozione.",
+    "mnemonic": "La forma in piedi del Cuore (心). Usato per sentimenti come 'Veloce' (快) o 'Paura' (怕)."
+  },
+  "手": {
+    "name": "Mano",
+    "meaning": "Una mano.",
+    "mnemonic": "Le linee del palmo o cinque dita."
+  },
+  "扌": {
+    "name": "Mano (lato)",
+    "meaning": "Azione; mano.",
+    "mnemonic": "Il radicale della 'mano che afferra'. Usato per azioni come 'Colpire' (打) o 'Spingere' (推)."
+  },
+  "一": {
+    "name": "Uno",
+    "meaning": "Unità; orizzonte.",
+    "mnemonic": "Un singolo tratto orizzontale che rappresenta il numero uno o l'orizzonte."
+  },
+  "十": {
+    "name": "Dieci",
+    "meaning": "Dieci; completezza.",
+    "mnemonic": "Una croce che rappresenta tutte le direzioni (N-S-E-O), simboleggiando la completezza."
+  },
+  "宀": {
+    "name": "Tetto",
+    "meaning": "Tetto; casa.",
+    "mnemonic": "Un tetto con un camino. Usato per edifici e luoghi sicuri come 'Casa' (家)."
+  },
+  "目": {
+    "name": "Occhio",
+    "meaning": "Occhio; vista.",
+    "mnemonic": "Un occhio verticale con la pupilla al centro."
+  },
+  "足": {
+    "name": "Piede",
+    "meaning": "Piede; gamba.",
+    "mnemonic": "Una gamba con un piede in basso. Usato per camminare e dare calci."
+  },
+  "讠": {
+    "name": "Parola",
+    "meaning": "Parole; discorso.",
+    "mnemonic": "Onde sonore che escono da una bocca. La forma semplificata di 'Parola' (言)."
+  },
+  "饣": {
+    "name": "Cibo",
+    "meaning": "Cibo; mangiare.",
+    "mnemonic": "Un contenitore di cibo coperto. La forma semplificata di 'Mangiare' (食)."
+  },
+  "彳": {
+    "name": "Passo",
+    "meaning": "Passo sinistro.",
+    "mnemonic": "La metà sinistra di un'impronta o di una strada. Usato per indicare il cammino e la distanza."
+  },
+  "辶": {
+    "name": "Camminare",
+    "meaning": "Movimento; distanza.",
+    "mnemonic": "Un piede che cammina lungo una strada. Usato per indicare movimento come in 'Andare' (去) o 'Lontano' (远)."
+  },
+  "纟": {
+    "name": "Seta",
+    "meaning": "Seta; filo.",
+    "mnemonic": "Fili di seta intrecciati. Usato per tessuti, colori e connessioni."
+  },
+  "艹": {
+    "name": "Erba",
+    "meaning": "Erba; piante.",
+    "mnemonic": "Due germogli d'erba che crescono verso l'alto. Compare sempre in alto."
+  },
+  "父": {
+    "name": "Padre",
+    "meaning": "Padre; autorità.",
+    "mnemonic": "Una mano che regge un'ascia di pietra, rappresentando il patriarca."
+  },
+  "儿": {
+    "name": "Bambino",
+    "meaning": "Figlio; gambe.",
+    "mnemonic": "Le due gambe di un bambino che corre."
+  },
+  "大": {
+    "name": "Grande",
+    "meaning": "Grande.",
+    "mnemonic": "Una persona che allarga le braccia per dire 'Era grande così!'"
+  },
+  "小": {
+    "name": "Piccolo",
+    "meaning": "Piccolo.",
+    "mnemonic": "Un seme diviso in minuscoli granelli."
+  },
+  "门": {
+    "name": "Porta",
+    "meaning": "Porta; cancello.",
+    "mnemonic": "Due ante di una porta affiancate."
+  },
+  "工": {
+    "name": "Lavoro",
+    "meaning": "Lavoro; fatica.",
+    "mnemonic": "Una squadra o un righello da falegname usati per misurare il lavoro."
+  },
+  "刀": {
+    "name": "Coltello",
+    "meaning": "Coltello; arma.",
+    "mnemonic": "Una lama affilata."
+  },
+  "刂": {
+    "name": "Coltello (lato)",
+    "meaning": "Coltello; taglio.",
+    "mnemonic": "La forma verticale del radicale Coltello (刀). Usato per azioni di taglio."
+  },
+  "力": {
+    "name": "Potenza",
+    "meaning": "Forza; energia.",
+    "mnemonic": "Un bicipite contratto o un aratro utilizzato nei campi."
+  },
+  "贝": {
+    "name": "Conchiglia",
+    "meaning": "Denaro; valore.",
+    "mnemonic": "Una conchiglia di ciprea, usata come antica valuta. Si trova nei caratteri relativi all'acquisto e alla vendita."
+  },
+  "雨": {
+    "name": "Pioggia",
+    "meaning": "Pioggia; tempo atmosferico.",
+    "mnemonic": "Gocce d'acqua che cadono da una nuvola o dal cielo."
+  },
+  "山": {
+    "name": "Montagna",
+    "meaning": "Montagna; collina.",
+    "mnemonic": "Le tre cime di una catena montuosa."
+  },
+  "石": {
+    "name": "Pietra",
+    "meaning": "Roccia; pietra.",
+    "mnemonic": "Una roccia che cade da una scogliera."
+  },
+  "广": {
+    "name": "Rifugio",
+    "meaning": "Ampio; rifugio.",
+    "mnemonic": "Una tettoia o un riparo costruito contro una scogliera."
+  },
+  "尸": {
+    "name": "Corpo",
+    "meaning": "Corpo; cadavere.",
+    "mnemonic": "Una persona distesa e rannicchiata."
+  },
+  "车": {
+    "name": "Veicolo",
+    "meaning": "Veicolo; macchina.",
+    "mnemonic": "Un carro visto dall'alto completo di ruote."
+  },
+  "巾": {
+    "name": "Asciugamano",
+    "meaning": "Stoffa; fazzoletto.",
+    "mnemonic": "Un pezzo di stoffa che pende da un'asta."
+  },
+  "衣": {
+    "name": "Vestiti",
+    "meaning": "Abbigliamento.",
+    "mnemonic": "Un indumento dotato di colletto e maniche."
+  },
+  "衤": {
+    "name": "Vestiti (lato)",
+    "meaning": "Abbigliamento.",
+    "mnemonic": "La forma componente del radicale Vestiti (衣). Da non confondere con 'Mostrare' (礻)!"
+  },
+  "白": {
+    "name": "Bianco",
+    "meaning": "Bianco; chiaro.",
+    "mnemonic": "Un sole che sorge, rendendo ogni cosa chiara e bianca."
+  },
+  "立": {
+    "name": "Stare in piedi",
+    "meaning": "Stare in piedi; eretto.",
+    "mnemonic": "Una persona che si erge saldamente sul terreno."
+  },
+  "走": {
+    "name": "Corsa",
+    "meaning": "Camminare; correre.",
+    "mnemonic": "Una persona che corre con un piede in movimento."
+  },
+  "戈": {
+    "name": "Alabarda",
+    "meaning": "Arma; guerra.",
+    "mnemonic": "Un'antica alabarda o lancia."
+  },
+  "斤": {
+    "name": "Ascia",
+    "meaning": "Ascia; peso.",
+    "mnemonic": "Un'ascia che taglia la legna."
+  },
+  "见": {
+    "name": "Vedere",
+    "meaning": "Vedere.",
+    "mnemonic": "Un occhio (目) su delle gambe (儿)."
+  },
+  "田": {
+    "name": "Campo",
+    "meaning": "Risaia.",
+    "mnemonic": "Un campo diviso da canali di irrigazione."
+  },
+  "囗": {
+    "name": "Recinto",
+    "meaning": "Recinto.",
+    "mnemonic": "Mura che circondano una città o uno spazio. (Più grande della bocca 口)."
+  },
+  "匕": {
+    "name": "Cucchiaio",
+    "meaning": "Cucchiaio; pugnale.",
+    "mnemonic": "Un mestolo o una persona seduta."
+  },
+  "冖": {
+    "name": "Copertura",
+    "meaning": "Copertura; corona.",
+    "mnemonic": "Un panno che copre qualcosa."
+  },
+  "冫": {
+    "name": "Due gocce",
+    "meaning": "Ghiaccio; freddo.",
+    "mnemonic": "Due gocce d'acqua che gelano trasformandosi in ghiaccio."
+  },
+  "竹": {
+    "name": "Bambù",
+    "meaning": "Bambù.",
+    "mnemonic": "Due steli di bambù con foglie."
+  },
+  "禾": {
+    "name": "Cereale",
+    "meaning": "Cereale; raccolto.",
+    "mnemonic": "Uno stelo di cereale con la spiga china verso il basso."
+  },
+  "风": {
+    "name": "Vento",
+    "meaning": "Vento.",
+    "mnemonic": "Il vento che fa svolazzare un insetto (verme)."
+  },
+  "耳": {
+    "name": "Orecchio",
+    "meaning": "Orecchio.",
+    "mnemonic": "Un orecchio attaccato alla testa."
+  },
+  "身": {
+    "name": "Corpo",
+    "meaning": "Corpo; sé.",
+    "mnemonic": "Una donna incinta, che rappresenta il corpo fisico."
+  },
+  "欠": {
+    "name": "Sbadiglio",
+    "meaning": "Mancanza; sbadiglio.",
+    "mnemonic": "Una persona in ginocchio con la bocca aperta (che sbadiglia)."
+  },
+  "厂": {
+    "name": "Rupe",
+    "meaning": "Rupe; fabbrica.",
+    "mnemonic": "Il bordo di una scogliera a strapiombo."
+  },
+  "户": {
+    "name": "Porta",
+    "meaning": "Famiglia; porta.",
+    "mnemonic": "Un singolo battente di porta (metà di un cancello 门)."
+  },
+  "弓": {
+    "name": "Arco",
+    "meaning": "Arco (arma).",
+    "mnemonic": "Un arco curvo pronto a tirare."
+  },
+  "矢": {
+    "name": "Freccia",
+    "meaning": "Freccia.",
+    "mnemonic": "Una freccia che vola nell'aria."
+  },
+  "钅": {
+    "name": "Metallo",
+    "meaning": "Oro; metallo.",
+    "mnemonic": "Oro sepolto nella terra. La forma radicale di 金."
+  },
+  "金": {
+    "name": "Oro",
+    "meaning": "Oro; metallo.",
+    "mnemonic": "Pepite d'oro nascoste sotto terra."
+  },
+  "皿": {
+    "name": "Piatto",
+    "meaning": "Piatto; recipiente.",
+    "mnemonic": "Una ciotola o un piatto per il cibo."
+  },
+  "玉": {
+    "name": "Giada",
+    "meaning": "Giada; re.",
+    "mnemonic": "Tre pezzi di giada infilati su un filo (Re 王 + un punto)."
+  }
+}

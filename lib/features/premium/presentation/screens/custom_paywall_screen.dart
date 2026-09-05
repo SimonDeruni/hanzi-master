@@ -405,6 +405,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                           children: [
                             _buildHero(textColor),
                             const SizedBox(height: 24),
+                            _buildEverythingIncluded(textColor, accentColor),
+                            const SizedBox(height: 24),
                             _buildPackages(textColor, accentColor),
                             if (_selectedHasEligibleTrial) ...[
                               const SizedBox(height: 12),
@@ -437,38 +439,28 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                               _buildExploreHeading(textColor),
                               const SizedBox(height: 24),
                               _buildFeatureStory(
-                                category: 'WATCH',
-                                title: 'Learn through real videos',
+                                category: 'READ',
+                                title: 'Turn any book into a lesson & audiobook',
                                 description:
-                                    'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.',
-                                icon: Icons.play_circle_outline,
-                                placeholderLabel: 'Video learning screenshot',
+                                    'Read naturally with instant definitions and pinyin, or listen along with human-like studio audiobooks.',
+                                icon: Icons.auto_stories_outlined,
+                                imageAsset: 'assets/images/paywall/paywall_read.png',
+                                placeholderLabel: 'Book reader and audiobook',
                                 textColor: textColor,
                                 accentColor: accentColor,
                                 index: 0,
                               ),
                               _buildFeatureStory(
-                                category: 'READ',
-                                title: 'Turn any book into a lesson',
+                                category: 'SPEAK',
+                                title: 'Speak freely with AI & live tones',
                                 description:
-                                    'Read naturally with pronunciation, definitions, and translation available whenever you need them.',
-                                icon: Icons.auto_stories_outlined,
-                                placeholderLabel: 'Book reader screenshot',
+                                    'Engage in real-time spoken conversations with instant feedback on pronunciation and tone accuracy.',
+                                icon: Icons.graphic_eq,
+                                imageAsset: 'assets/images/paywall/paywall_speak.png',
+                                placeholderLabel: 'AI voice roleplay and tones',
                                 textColor: textColor,
                                 accentColor: accentColor,
                                 index: 1,
-                              ),
-                              _buildFeatureStory(
-                                category: 'SPEAK',
-                                title: 'Speak with the right rhythm',
-                                description:
-                                    'Shadow native audio and visualize all four tones as your pronunciation improves.',
-                                icon: Icons.graphic_eq,
-                                placeholderLabel:
-                                    'Shadowing and tones screenshot',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 2,
                               ),
                               _buildFeatureStory(
                                 category: 'EXPLORE',
@@ -476,15 +468,48 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                                 description:
                                     'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.',
                                 icon: Icons.search,
-                                placeholderLabel:
-                                    'Character dictionary screenshot',
+                                imageAsset: 'assets/images/paywall/paywall_explore.png',
+                                placeholderLabel: 'Character dictionary and anatomy',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 2,
+                              ),
+                              _buildFeatureStory(
+                                category: 'WATCH',
+                                title: 'Learn through real videos',
+                                description:
+                                    'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.',
+                                icon: Icons.play_circle_outline,
+                                imageAsset: 'assets/images/paywall/paywall_watch.png',
+                                placeholderLabel: 'Video learning and subtitles',
                                 textColor: textColor,
                                 accentColor: accentColor,
                                 index: 3,
                               ),
-                              _buildEverythingIncluded(textColor, accentColor),
-                              const SizedBox(height: 18),
-                              _buildLegalLinks(textColor),
+                              _buildFeatureStory(
+                                category: 'WRITE',
+                                title: 'Master every stroke',
+                                description:
+                                    'Practice characters with guided stroke order and instant handwriting feedback.',
+                                icon: Icons.gesture,
+                                imageAsset: 'assets/images/paywall/paywall_write.png',
+                                placeholderLabel: 'Handwriting practice and guide',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 4,
+                              ),
+                              _buildFeatureStory(
+                                category: 'WEB',
+                                title: 'Explore the Chinese web',
+                                description:
+                                    'Browse Chinese websites with instant word lookups, translation, and tools that turn any article into a lesson.',
+                                icon: Icons.language,
+                                imageAsset: 'assets/images/paywall/paywall_web.png',
+                                placeholderLabel: 'Web explorer and live lookup',
+                                textColor: textColor,
+                                accentColor: accentColor,
+                                index: 5,
+                              ),
                             ],
                           ],
                         ),
@@ -647,6 +672,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     required String title,
     required String description,
     required IconData icon,
+    required String imageAsset,
     required String placeholderLabel,
     required Color textColor,
     required Color accentColor,
@@ -657,7 +683,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildScreenshotPlaceholder(
+          _buildFeatureScreenshotCard(
+            imageAsset: imageAsset,
             icon: icon,
             label: placeholderLabel,
             textColor: textColor,
@@ -699,7 +726,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     );
   }
 
-  Widget _buildScreenshotPlaceholder({
+  Widget _buildFeatureScreenshotCard({
+    required String imageAsset,
     required IconData icon,
     required String label,
     required Color textColor,
@@ -708,124 +736,65 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? const Color(0xFF252526) : Colors.white;
-    final previewColor =
-        index.isEven ? const Color(0xFF8B2E2E) : const Color(0xFF4C6673);
 
     return AspectRatio(
-      aspectRatio: 1.45,
+      aspectRatio: 1.35,
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: surface,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: textColor.withValues(alpha: 0.09)),
+          border: Border.all(color: textColor.withValues(alpha: 0.10)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.26 : 0.08),
+              color: Colors.black.withValues(alpha: isDark ? 0.35 : 0.09),
               blurRadius: 24,
               offset: const Offset(0, 10),
             ),
           ],
         ),
         child: Stack(
+          fit: StackFit.expand,
           children: [
-            Positioned.fill(
+            Image.asset(
+              imageAsset,
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+              errorBuilder: (context, error, stackTrace) {
+                final previewColor =
+                    index.isEven ? const Color(0xFF8B2E2E) : const Color(0xFF4C6673);
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        previewColor.withValues(alpha: isDark ? 0.30 : 0.13),
+                        surface,
+                      ],
+                    ),
+                  ),
+                  child: Center(
+                    child: Icon(icon, color: accentColor, size: 48),
+                  ),
+                );
+              },
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 48,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                     colors: [
-                      previewColor.withValues(alpha: isDark ? 0.30 : 0.13),
-                      surface,
+                      surface.withValues(alpha: 0.4),
+                      surface.withValues(alpha: 0.0),
                     ],
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 18,
-              right: 18,
-              top: 16,
-              child: Row(
-                children: [
-                  ...List.generate(
-                    3,
-                    (dot) => Container(
-                      width: 7,
-                      height: 7,
-                      margin: const EdgeInsets.only(right: 6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: textColor.withValues(alpha: 0.16 + dot * 0.05),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    width: 72,
-                    height: 7,
-                    decoration: BoxDecoration(
-                      color: textColor.withValues(alpha: 0.08),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Center(
-              child: Container(
-                width: 78,
-                height: 78,
-                decoration: BoxDecoration(
-                  color: previewColor.withValues(alpha: isDark ? 0.34 : 0.16),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: previewColor.withValues(alpha: 0.35),
-                  ),
-                ),
-                child: Icon(icon, color: accentColor, size: 38),
-              ),
-            ),
-            Positioned(
-              left: 18,
-              right: 18,
-              bottom: 16,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                decoration: BoxDecoration(
-                  color: surface.withValues(alpha: 0.88),
-                  borderRadius: BorderRadius.circular(13),
-                  border: Border.all(
-                    color: textColor.withValues(alpha: 0.07),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.image_outlined,
-                        color: textColor.withValues(alpha: 0.45), size: 18),
-                    const SizedBox(width: 9),
-                    Expanded(
-                      child: Text(
-                        label,
-                        style: TextStyle(
-                          color: textColor.withValues(alpha: 0.6),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'COMING SOON',
-                      style: TextStyle(
-                        color: textColor.withValues(alpha: 0.38),
-                        fontSize: 8,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.8,
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ),
@@ -907,6 +876,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         TextButton(
+          key: const Key('paywall_restore_button'),
           onPressed: _restorePurchases,
           child: Text(
             AppLocalizations.of(context)!.restore,
@@ -918,6 +888,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         ),
         Text('•', style: TextStyle(color: textColor.withValues(alpha: 0.3))),
         TextButton(
+          key: const Key('paywall_terms_button'),
           onPressed: () => _launchURL('https://sinospark.app/terms.html'),
           child: Text(
             'Terms of Use (EULA)',
@@ -929,6 +900,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         ),
         Text('•', style: TextStyle(color: textColor.withValues(alpha: 0.3))),
         TextButton(
+          key: const Key('paywall_privacy_button'),
           onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
           child: Text(
             'Privacy Policy',
@@ -1023,6 +995,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               height: 1.25,
             ),
           ),
+          _buildLegalLinks(textColor),
         ],
       ),
     );

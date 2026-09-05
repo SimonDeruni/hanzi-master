@@ -18,6 +18,24 @@ void main() {
       expect(PinyinUtils.getTone('lǜ'), 4);
     });
 
+    test('tone variants normalize numeric pinyin without compounding digits',
+        () {
+      expect(PinyinUtils.normalizeSyllable('mu4'), 'mu');
+      expect(PinyinUtils.getAllTonesForSyllable('mu4'), {
+        1: 'mū',
+        2: 'mú',
+        3: 'mǔ',
+        4: 'mù',
+        5: 'mu',
+      });
+    });
+
+    test('tone-only values are not treated as pinyin syllables', () {
+      expect(PinyinUtils.normalizeSyllable('5'), isEmpty);
+      expect(PinyinUtils.getAllTonesForSyllable('5'), isEmpty);
+      expect(PinyinUtils.getExemplarHanzi('5', 1), isNull);
+    });
+
     test('tokenize splits multi-syllable words correctly', () {
       final tokens = PinyinUtils.tokenize('nǐhǎo');
       expect(tokens.length, 2);

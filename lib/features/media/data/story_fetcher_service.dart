@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
+import 'package:hanzi_master/features/reading/data/services/localized_title_loader.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -147,7 +148,8 @@ class StoryFetcherService {
                   .toList();
               final titleLower = title.toLowerCase();
 
-              if (categories.contains('news') || titleLower.startsWith('news:')) {
+              if (categories.contains('news') ||
+                  titleLower.startsWith('news:')) {
                 return null;
               }
               if (categories.contains('jokes') ||
@@ -469,7 +471,13 @@ class StoryFetcherService {
 
     try {
       // Load Poetry
-      final jsonString2 = await rootBundle.loadString(chinesePoetryAsset);
+      final results = await Future.wait([
+        rootBundle.loadString(chinesePoetryAsset),
+        loadLocalizedTitlesById('poetry'),
+      ]);
+      final jsonString2 = results[0] as String;
+      final localizedTitlesById =
+          results[1] as Map<String, Map<String, String>>;
       final List<dynamic> list2 = json.decode(jsonString2);
       localStories.addAll(list2.map((data) {
         final poetryData = Map<String, dynamic>.from(data as Map);
@@ -478,10 +486,11 @@ class StoryFetcherService {
         return LibraryStory(
           title: poetryData['title'] ?? '',
           titleEn: poetryData['title_en'],
+          localizedTitles: localizedTitlesById[poemId] ?? const {},
           sourceName: _translateAuthor(rawAuthor),
           link: poemId,
-          imageUrl: poetryData['imageUrl'] ??
-              'assets/images/poetry/$poemId.jpg',
+          imageUrl:
+              poetryData['imageUrl'] ?? 'assets/images/poetry/$poemId.jpg',
           summary: poetryData['summary'] ?? '',
           summaryEn: poetryData['summary_en'],
           category: poetryData['category'] ?? 'Chinese Poetry',

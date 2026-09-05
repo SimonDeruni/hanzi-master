@@ -25,6 +25,7 @@ const appLanguageOptions = <AppLanguageOption>[
   AppLanguageOption(code: 'ko', name: '한국어', symbol: '한'),
   AppLanguageOption(code: 'pt', name: 'Português', symbol: 'PT'),
   AppLanguageOption(code: 'ru', name: 'Русский', symbol: 'РУ'),
+  AppLanguageOption(code: 'th', name: 'ไทย', symbol: 'TH'),
   AppLanguageOption(code: 'vi', name: 'Tiếng Việt', symbol: 'VI'),
 ];
 

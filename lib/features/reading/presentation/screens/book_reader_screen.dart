@@ -1429,7 +1429,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             ),
                             subtitle: FutureBuilder<String>(
                               future: LocalizedCatalogService.getChapterTitle(
+                                chapterId: ch.id,
                                 titleEn: ch.titleEn,
+                                localizedTitles: ch.localizedTitles,
                                 localeCode: Localizations.localeOf(context)
                                     .languageCode,
                               ),
@@ -1509,7 +1511,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         title: Column(
           children: [
             Text(
-              widget.book.title,
+              widget.book.localizedTitle(
+                Localizations.localeOf(context).toLanguageTag(),
+              ),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -1641,7 +1645,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                   Row(
                     children: [
                       Text(
-                        'Chapter ${chapter.chapterIndex} of ${widget.chapters.length}',
+                        AppLocalizations.of(context)!.chapterXOfY(
+                          chapter.chapterIndex,
+                          widget.chapters.length,
+                        ),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
@@ -1726,7 +1733,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           const SizedBox(height: 6),
                           FutureBuilder<String>(
                             future: LocalizedCatalogService.getChapterTitle(
+                              chapterId: chapter.id,
                               titleEn: chapter.titleEn,
+                              localizedTitles: chapter.localizedTitles,
                               localeCode:
                                   Localizations.localeOf(context).languageCode,
                             ),
@@ -1889,8 +1898,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                     );
                                     if (mounted) {
                                       setState(() {
-                                        if (_quickLookSelectedKey ==
-                                            tokenKey) {
+                                        if (_quickLookSelectedKey == tokenKey) {
                                           _quickLookSelectedKey = null;
                                         }
                                       });
@@ -1898,8 +1906,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                   },
                                   behavior: HitTestBehavior.opaque,
                                   child: AnimatedContainer(
-                                    duration:
-                                        const Duration(milliseconds: 150),
+                                    duration: const Duration(milliseconds: 150),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 3, vertical: 2),
                                     decoration: BoxDecoration(
@@ -1983,7 +1990,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                   ),
                                 );
                               }).toList(),
-                             ),
+                            ),
 
                             // English Translation (Global toggle or tap to reveal)
                             if (_showAllTranslations || isRevealed)
@@ -2245,7 +2252,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                   : const Color(0xFF8B0000)),
                           const SizedBox(width: 4),
                           Text(
-                            'Chapter ${_currentIndex + 1} of ${widget.chapters.length}',
+                            AppLocalizations.of(context)!.chapterXOfY(
+                              _currentIndex + 1,
+                              widget.chapters.length,
+                            ),
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.bold,

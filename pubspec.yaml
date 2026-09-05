@@ -22,6 +22,8 @@ dependencies:
   # Chinese Features
   flutter_tts: ^4.2.5
   audioplayers: ^6.1.1
+  audio_service: ^0.18.19
+  audio_session: ^0.2.2
   speech_to_text: ^7.3.0
   lpinyin: ^2.0.3
   path_drawing: ^1.0.1
@@ -106,8 +108,8 @@ flutter:
     - assets/data/dictionary.db
     - assets/data/
     - assets/data/l10n/
-    - assets/data/books/
     - assets/images/
+    - assets/images/paywall/
     - assets/images/books/
     - assets/images/poetry/
     - assets/images/mandarin_bean/

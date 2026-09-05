@@ -11,6 +11,8 @@ import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import '../screens/radical_lesson_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class RadicalDetailSheet extends ConsumerStatefulWidget {
   final CourseNode sunNode;
@@ -29,21 +31,24 @@ class RadicalDetailSheet extends ConsumerStatefulWidget {
 class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
   Map<String, dynamic>? _radicalInfo;
   String? _radicalPinyin;
+  String? _currentLocaleCode;
 
   @override
-  void initState() {
-    super.initState();
-    _loadRadicalData();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context).languageCode;
+    if (_currentLocaleCode != locale) {
+      _currentLocaleCode = locale;
+      _loadRadicalData(locale);
+    }
   }
 
-  Future<void> _loadRadicalData() async {
+  Future<void> _loadRadicalData([String? localeCode]) async {
     try {
-      final radString =
-          await rootBundle.loadString('assets/data/radicals.json');
-      final hskString = await rootBundle.loadString('assets/data/hsk1.json');
-
+      final effectiveLocale = localeCode ?? _currentLocaleCode ?? 'en';
       final radicalsDb =
-          json.decode(radString)['radicals'] as Map<String, dynamic>;
+          await LocalizedCatalogService.getRadicals(effectiveLocale);
+      final hskString = await rootBundle.loadString('assets/data/hsk1.json');
       final hskList = json.decode(hskString) as List<dynamic>;
 
       // 1. Info from Radicals DB
@@ -148,6 +153,10 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
                               const SizedBox(height: 16),
                               TranslatedDefinition(
                                 definition: info['name'].toString(),
+                                hanzi: widget.sunNode.hanzi,
+                                definitionLanguage:
+                                    translationLanguageForLocale(
+                                        _currentLocaleCode ?? 'en'),
                                 originalStyle: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -158,6 +167,10 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
                               const SizedBox(height: 8),
                               TranslatedDefinition(
                                 definition: info['meaning'].toString(),
+                                hanzi: widget.sunNode.hanzi,
+                                definitionLanguage:
+                                    translationLanguageForLocale(
+                                        _currentLocaleCode ?? 'en'),
                                 textAlign: TextAlign.center,
                                 originalStyle: TextStyle(
                                     fontSize: 16,

@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
-import 'package:hanzi_master/features/reading/data/repositories/book_repository.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('Grand Library Catalog 170+ Books Validation', () {
-    test('grand_library_catalog.json loads and parses 90+ full books cleanly', () {
+    test('grand_library_catalog.json loads and parses 90+ full books cleanly',
+        () {
       final file = File('assets/data/grand_library_catalog.json');
       expect(file.existsSync(), isTrue, reason: 'Catalog JSON file must exist');
 
@@ -16,9 +16,11 @@ void main() {
       final list = jsonDecode(content) as List<dynamic>;
 
       expect(list.length, greaterThanOrEqualTo(80),
-          reason: 'Catalog should contain at least 80 curated unabridged world masterpiece books');
+          reason:
+              'Catalog should contain at least 80 curated unabridged world masterpiece books');
       expect(list.length, equals(86),
-          reason: 'Catalog has exactly 86 100% verified unabridged masterpieces');
+          reason:
+              'Catalog has exactly 86 100% verified unabridged masterpieces');
 
       final ids = <String>{};
       for (final item in list) {
@@ -26,7 +28,8 @@ void main() {
         final book = BookModel.fromJson(map);
 
         expect(book.id.isNotEmpty, isTrue);
-        expect(ids.contains(book.id), isFalse, reason: 'Duplicate ID: ${book.id}');
+        expect(ids.contains(book.id), isFalse,
+            reason: 'Duplicate ID: ${book.id}');
         ids.add(book.id);
 
         expect(book.title.isNotEmpty, isTrue);
@@ -44,9 +47,12 @@ void main() {
       }
     });
 
-    test('BookRepository getBookChapters generates valid multi-sentence content', () async {
-      final repo = BookRepository();
-      final chapters = await repo.getBookChapters('journey_to_the_west');
+    test('hosted source contains valid multi-sentence chapter content', () {
+      final content =
+          File('assets/data/books/journey_to_the_west.json').readAsStringSync();
+      final chapters = (jsonDecode(content) as List<dynamic>)
+          .map((item) => BookChapter.fromJson(item as Map<String, dynamic>))
+          .toList();
 
       expect(chapters.isNotEmpty, isTrue);
       expect(chapters.first.title.isNotEmpty, isTrue);
@@ -58,7 +64,9 @@ void main() {
       expect(firstSentence.english, isNotNull);
     });
 
-    test('BookmarkModel and BookReadingProgress serialize and deserialize accurately', () {
+    test(
+        'BookmarkModel and BookReadingProgress serialize and deserialize accurately',
+        () {
       final bm = BookmarkModel(
         id: 'bm_1',
         bookId: 'the_art_of_war',
@@ -97,10 +105,13 @@ void main() {
       for (final item in list) {
         final bookId = item['id'] as String;
         final jsonFile = File('assets/data/books/$bookId.json');
-        expect(jsonFile.existsSync(), isTrue, reason: 'Missing bundled JSON for bookId: $bookId');
+        expect(jsonFile.existsSync(), isTrue,
+            reason: 'Missing bundled JSON for bookId: $bookId');
 
-        final chapters = jsonDecode(jsonFile.readAsStringSync()) as List<dynamic>;
-        expect(chapters.isNotEmpty, isTrue, reason: 'Book $bookId must have at least one chapter');
+        final chapters =
+            jsonDecode(jsonFile.readAsStringSync()) as List<dynamic>;
+        expect(chapters.isNotEmpty, isTrue,
+            reason: 'Book $bookId must have at least one chapter');
       }
     });
   });

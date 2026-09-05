@@ -36,6 +36,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       decoration: BoxDecoration(
@@ -64,7 +65,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
             ),
           ),
           Text(
-            "Deck Settings",
+            l10n.deckSettings,
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
@@ -83,8 +84,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
           ),
           const SizedBox(height: 32),
           _buildLimitSetting(
-            title: AppLocalizations.of(context)?.dailyNewCards ??
-                "Daily New Cards",
+            title: l10n.dailyNewCards,
             value: _newCardsLimit,
             presets: const [0, 10, 20, 50, -1],
             onChanged: (val) => setState(() => _newCardsLimit = val),
@@ -94,8 +94,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
           ),
           const SizedBox(height: 24),
           _buildLimitSetting(
-            title: AppLocalizations.of(context)?.dailyReviewLimit ??
-                "Daily Review Limit",
+            title: l10n.dailyReviewLimit,
             value: _reviewLimit,
             presets: const [0, 50, 100, 200, -1],
             onChanged: (val) => setState(() => _reviewLimit = val),
@@ -114,9 +113,9 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
                   borderRadius: BorderRadius.circular(16)),
               elevation: 4,
             ),
-            child: const Text(
-              "Save Settings",
-              style: TextStyle(
+            child: Text(
+              l10n.saveSettings,
+              style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.1),
@@ -201,7 +200,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
         Text(
           value == 0
               ? '0 means this card type is disabled.'
-              : 'Tap the value to enter an exact limit.',
+              : AppLocalizations.of(context)!.tapTheValueToEnter,
           style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
@@ -218,8 +217,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
     // subtree, preventing the '_dependents.isEmpty' assertion crash that occurs
     // when Flutter tries to resolve InheritedWidgets through a context that is
     // being removed from the tree.
-    final rootContext =
-        Navigator.of(context, rootNavigator: true).context;
+    final rootContext = Navigator.of(context, rootNavigator: true).context;
     final controller = TextEditingController(
       text: currentValue < 0 ? '' : currentValue.toString(),
     );

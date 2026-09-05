@@ -424,7 +424,9 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            entry.book.title,
+                            entry.book.localizedTitle(
+                              Localizations.localeOf(context).toLanguageTag(),
+                            ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
@@ -432,7 +434,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Ch ${entry.bookmark.chapterIndex} · Sent ${entry.bookmark.sentenceIndex}',
+                            '${AppLocalizations.of(context)!.chapterXOfY(entry.bookmark.chapterIndex, entry.book.totalChapters)} · ${AppLocalizations.of(context)!.sentence} ${entry.bookmark.sentenceIndex}',
                             style: TextStyle(
                                 fontSize: 11,
                                 color: Theme.of(context)

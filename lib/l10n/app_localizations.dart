@@ -158,6 +158,12 @@ abstract class AppLocalizations {
   /// **'💬 Proverb'**
   String get proverbChip;
 
+  /// No description provided for @isThereAChineseIdiomFeaturingThisCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Is there a Chinese idiom (成语) featuring this character?'**
+  String get isThereAChineseIdiomFeaturingThisCharacter;
+
   /// No description provided for @strokeOrderChip.
   ///
   /// In en, this message translates to:
@@ -3209,7 +3215,7 @@ abstract class AppLocalizations {
   /// No description provided for @addTo.
   ///
   /// In en, this message translates to:
-  /// **'Add to'**
+  /// **'Add to {target}'**
   String addTo(Object target);
 
   /// No description provided for @addedHanziToYourLibrary.
@@ -3289,6 +3295,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ancient Philosophy'**
   String get ancientPhilosophy;
+
+  /// No description provided for @warringStates.
+  ///
+  /// In en, this message translates to:
+  /// **'Warring States'**
+  String get warringStates;
+
+  /// No description provided for @hanFeiLegalism.
+  ///
+  /// In en, this message translates to:
+  /// **'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.'**
+  String get hanFeiLegalism;
 
   /// No description provided for @articleSavedToMediaHub.
   ///
@@ -4031,7 +4049,7 @@ abstract class AppLocalizations {
   /// No description provided for @libraryLabel.
   ///
   /// In en, this message translates to:
-  /// **'文化书房 Library'**
+  /// **'Library'**
   String get libraryLabel;
 
   /// No description provided for @lifestyleAndVlog.
@@ -22939,6 +22957,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Readability'**
   String get readability;
+
+  /// No description provided for @translateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Translate'**
+  String get translateAction;
+
+  /// No description provided for @checkingDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking download'**
+  String get checkingDownload;
+
+  /// No description provided for @downloadingBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading {percent}%'**
+  String downloadingBook(int percent);
+
+  /// No description provided for @retryDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry download'**
+  String get retryDownload;
+
+  /// No description provided for @downloadBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Download book'**
+  String get downloadBook;
+
+  /// No description provided for @continueChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue chapter {chapter}'**
+  String continueChapter(int chapter);
+
+  /// No description provided for @downloadBookError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not download this book. Check your connection and try again.'**
+  String get downloadBookError;
+
+  /// No description provided for @downloadBookOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Download the book to read its {count} chapters offline.'**
+  String downloadBookOffline(int count);
+
+  /// No description provided for @poemCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 poem} other{{count} poems}}'**
+  String poemCount(int count);
+
+  /// No description provided for @americanLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'American Literature'**
+  String get americanLiterature;
+
+  /// No description provided for @ancientChina.
+  ///
+  /// In en, this message translates to:
+  /// **'Ancient China'**
+  String get ancientChina;
+
+  /// No description provided for @britishLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'British Literature'**
+  String get britishLiterature;
+
+  /// No description provided for @frenchLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'French Literature'**
+  String get frenchLiterature;
+
+  /// No description provided for @germanLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'German Literature'**
+  String get germanLiterature;
+
+  /// No description provided for @italianLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Italian Literature'**
+  String get italianLiterature;
+
+  /// No description provided for @jinDynasty.
+  ///
+  /// In en, this message translates to:
+  /// **'Jin Dynasty'**
+  String get jinDynasty;
+
+  /// No description provided for @preQinEra.
+  ///
+  /// In en, this message translates to:
+  /// **'Pre-Qin'**
+  String get preQinEra;
+
+  /// No description provided for @qingDynasty.
+  ///
+  /// In en, this message translates to:
+  /// **'Qing Dynasty'**
+  String get qingDynasty;
+
+  /// No description provided for @republicOfChinaEra.
+  ///
+  /// In en, this message translates to:
+  /// **'Republic of China'**
+  String get republicOfChinaEra;
+
+  /// No description provided for @russianLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian Literature'**
+  String get russianLiterature;
+
+  /// No description provided for @spanishLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish Literature'**
+  String get spanishLiterature;
+
+  /// No description provided for @springAndAutumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Spring and Autumn period'**
+  String get springAndAutumn;
+
+  /// No description provided for @westernHan.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Han'**
+  String get westernHan;
 }
 
 class _AppLocalizationsDelegate

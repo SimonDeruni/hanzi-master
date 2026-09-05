@@ -856,6 +856,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor:
           isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -905,7 +907,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                       const SizedBox(height: 32),
                       Text(
-                        "Shadowing Studio",
+                        l10n.shadowingStudio,
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.w900,
@@ -917,7 +919,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        "Master your Mandarin pronunciation by mimicking native speech.",
+                        l10n.masterYourMandarinPronunciationnbyM,
                         style: TextStyle(
                           fontSize: 18,
                           color: isDark ? Colors.white70 : Colors.black54,
@@ -929,7 +931,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       // Mode Selection
                       const SizedBox(height: 24),
                       Text(
-                        "PRACTICE MODE",
+                        l10n.practiceMode1,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -944,7 +946,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         alignment: WrapAlignment.center,
                         children: [
                           ChoiceChip(
-                            label: const Text("Free Flow"),
+                            label: Text(l10n.freeFlow),
                             selected: _selectedMode == ShadowingMode.freeFlow,
                             onSelected: (val) => setState(
                                 () => _selectedMode = ShadowingMode.freeFlow),
@@ -954,7 +956,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 : Colors.grey.shade200,
                           ),
                           ChoiceChip(
-                            label: const Text("Thematic"),
+                            label: Text(l10n.thematic),
                             selected: _selectedMode == ShadowingMode.theme,
                             onSelected: (val) => setState(
                                 () => _selectedMode = ShadowingMode.theme),
@@ -964,7 +966,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 : Colors.grey.shade200,
                           ),
                           ChoiceChip(
-                            label: const Text("Deck (Flashcards)"),
+                            label: Text(l10n.deckFlashcards),
                             selected: _selectedMode == ShadowingMode.deck,
                             onSelected: (val) => setState(
                                 () => _selectedMode = ShadowingMode.deck),
@@ -974,7 +976,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 : Colors.grey.shade200,
                           ),
                           ChoiceChip(
-                            label: const Text("Custom Word"),
+                            label: Text(l10n.customWord),
                             selected: _selectedMode == ShadowingMode.customWord,
                             onSelected: (val) => setState(
                                 () => _selectedMode = ShadowingMode.customWord),
@@ -1197,18 +1199,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32)),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.mic, size: 28, color: Colors.white),
-                        SizedBox(width: 12),
-                        Text(
-                          "START SESSION",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5,
-                            color: Colors.white,
+                        const Icon(Icons.mic, size: 28, color: Colors.white),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            l10n.sTARTSESSION,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.5,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -1265,7 +1270,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Shadowing Studio",
+                                        AppLocalizations.of(context)!.shadowingStudio,
                                         style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,

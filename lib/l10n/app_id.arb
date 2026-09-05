@@ -481,7 +481,7 @@
   "aClassicTangDynastyPoemBy": "Puisi klasik Dinasti Tang oleh",
   "aStructuralComponent": "Komponen struktural.",
   "addSelectedToDeck": "Tambahkan yang Dipilih ke Dek",
-  "addTo": "Tambahkan ke ",
+  "addTo": "Tambahkan ke {target}",
   "addedHanziToYourLibrary": "«{hanzi}» telah ditambahkan ke perpustakaan Anda",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -2169,6 +2169,7 @@
   "wordFamilyChip": "🔗 Rumpun kata",
   "idiomChip": "🀄 Idiom",
   "proverbChip": "💬 Peribahasa",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Apakah ada idiom Tionghoa (成语) yang mengandung karakter ini?",
   "strokeOrderChip": "✏️ Urutan goresan",
   "calligraphyTipChip": "🎨 Tips kaligrafi",
   "grammarNoteChip": "📝 Catatan tata bahasa",
@@ -2195,7 +2196,7 @@
   "studyNoEligibleCardsDescription": "Tidak ada kartu yang memenuhi syarat untuk mode belajar ini saat ini.",
   "studySessionLoadFailed": "Gagal memuat sesi belajar ini. Silakan coba lagi.",
   "retryLimitReached": "Kartu ini akan muncul kembali di sesi Anda berikutnya.",
-  "libraryLabel": "文化书房 Perpustakaan",
+  "libraryLabel": "Perpustakaan",
   "aiDataPrivacyTitle": "Data & Privasi AI",
   "aiDataPrivacySettingsSubtitle": "Lihat apa yang dikirim fitur AI, alasannya, dan kepada siapa",
   "aiDataPrivacyOverviewTitle": "Kapan AI digunakan",
@@ -3885,5 +3886,56 @@
     }
   },
   "aiSummary": "Ringkasan AI",
-  "readability": "Keterbacaan"
+  "readability": "Keterbacaan",
+  "translateAction": "Terjemahkan",
+  "checkingDownload": "Memeriksa unduhan",
+  "downloadingBook": "Mengunduh: {percent}%",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "Coba unduh lagi",
+  "downloadBook": "Unduh buku",
+  "continueChapter": "Lanjutkan bab {chapter}",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "Buku ini tidak dapat diunduh. Periksa koneksi Anda lalu coba lagi.",
+  "downloadBookOffline": "Unduh buku untuk membaca {count} babnya secara offline.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count, plural, =1{1 puisi} other{{count} puisi}}",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "Sastra Amerika",
+  "ancientChina": "Tiongkok Kuno",
+  "britishLiterature": "Sastra Britania",
+  "frenchLiterature": "Sastra Prancis",
+  "germanLiterature": "Sastra Jerman",
+  "italianLiterature": "Sastra Italia",
+  "jinDynasty": "Dinasti Jin",
+  "preQinEra": "Masa Pra-Qin",
+  "qingDynasty": "Dinasti Qing",
+  "republicOfChinaEra": "Republik Tiongkok",
+  "russianLiterature": "Sastra Rusia",
+  "spanishLiterature": "Sastra Spanyol",
+  "springAndAutumn": "Periode Musim Semi dan Gugur",
+  "westernHan": "Han Barat"
 }

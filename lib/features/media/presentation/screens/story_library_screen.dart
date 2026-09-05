@@ -139,6 +139,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         id: story.link,
         title: story.title,
         titleEn: story.titleEn ?? story.title,
+        localizedTitles: story.localizedTitles,
         author: story.sourceName,
         authorEn: story.sourceName,
         category: story.category.isNotEmpty
@@ -174,6 +175,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     final query = _searchController.text.toLowerCase();
     return _allStories.where((story) {
       final matchesSearch = story.title.toLowerCase().contains(query) ||
+          story.localizedTitles.values
+              .any((title) => title.toLowerCase().contains(query)) ||
           story.summary.toLowerCase().contains(query) ||
           (story.titleEn?.toLowerCase().contains(query) ?? false) ||
           (story.summaryEn?.toLowerCase().contains(query) ?? false) ||
@@ -590,7 +593,9 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                   ),
                   const Spacer(),
                   Text(
-                    dailyStory.titleEn ?? dailyStory.title,
+                    dailyStory.localizedTitle(
+                      Localizations.localeOf(context).toLanguageTag(),
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -763,7 +768,9 @@ class StoryCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      story.titleEn ?? story.title,
+                      story.localizedTitle(
+                        Localizations.localeOf(context).toLanguageTag(),
+                      ),
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

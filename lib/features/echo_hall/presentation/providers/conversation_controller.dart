@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,11 +12,14 @@ import '../../../../core/utils/pinyin_utils.dart';
 
 import 'package:lpinyin/lpinyin.dart';
 
+import '../../../../core/services/local_translation_service.dart';
+
 final conversationControllerProvider = StateNotifierProvider.autoDispose<ConversationController, ConversationState>((ref) {
   return ConversationController(
     echoHallService: ref.watch(echoHallServiceProvider),
     audioService: ref.watch(audioRecordingServiceProvider),
     geminiService: ref.watch(geminiServiceProvider),
+    localTranslationService: ref.watch(localTranslationServiceProvider),
   );
 });
 
@@ -55,14 +59,17 @@ class ConversationController extends StateNotifier<ConversationState> {
   final EchoHallService _echoHallService;
   final AudioRecordingService _audioService;
   final GeminiService _geminiService;
+  final LocalTranslationService _localTranslationService;
 
   ConversationController({
     required EchoHallService echoHallService,
     required AudioRecordingService audioService,
     required GeminiService geminiService,
+    required LocalTranslationService localTranslationService,
   })  : _echoHallService = echoHallService,
         _audioService = audioService,
         _geminiService = geminiService,
+        _localTranslationService = localTranslationService,
         super(ConversationState());
 
   Future<void> startScenario(ConversationScenario scenario) async {
@@ -73,21 +80,40 @@ class ConversationController extends StateNotifier<ConversationState> {
         ? PinyinUtils.convertNumericToMarks(scenario.initialPinyin!)
         : PinyinHelper.getPinyinE(scenario.initialAiMessage, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
 
+    final isEnglishTarget = _localTranslationService.targetLanguage.toLowerCase() == 'english';
+    final initialTranslation = isEnglishTarget ? scenario.initialEnglish : null;
+
+    final initialMsgId = DateTime.now().millisecondsSinceEpoch.toString();
     state = ConversationState(
       currentScenario: scenario,
       messages: [
         GradedChatMessage(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          id: initialMsgId,
           content: scenario.initialAiMessage,
           role: ChatRole.scholar,
           timestamp: DateTime.now(),
-          english: scenario.initialEnglish,
+          english: initialTranslation,
           pinyin: initialPinyin,
         ),
       ],
       isProcessing: false,
       error: null,
     );
+
+    // If target language is non-English, pre-warm translation into the localized target language
+    if (!isEnglishTarget && scenario.initialAiMessage.isNotEmpty) {
+      unawaited(() async {
+        try {
+          final translated = await _localTranslationService.translate(scenario.initialAiMessage);
+          if (mounted && state.messages.isNotEmpty && state.messages.first.id == initialMsgId) {
+            final updatedMsg = state.messages.first.copyWith(english: translated);
+            final updatedList = List<GradedChatMessage>.from(state.messages);
+            updatedList[0] = updatedMsg;
+            state = state.copyWith(messages: updatedList);
+          }
+        } catch (_) {}
+      }());
+    }
   }
 
   Future<void> sendMessage(String content) async {
@@ -283,12 +309,12 @@ class ConversationController extends StateNotifier<ConversationState> {
 
   Future<void> _fetchAiResponse() async {
     try {
-      // 1. Translate the user's last message to English if it is missing its translation
+      // 1. Translate the user's last message to target language if it is missing its translation
       final messages = List<GradedChatMessage>.from(state.messages);
       final lastUserIdx = messages.lastIndexWhere((m) => m.role == ChatRole.user);
       if (lastUserIdx != -1 && (messages[lastUserIdx].english == null || messages[lastUserIdx].english!.isEmpty)) {
         try {
-          final translation = await _geminiService.translateTextToEnglish(messages[lastUserIdx].content);
+          final translation = await _localTranslationService.translate(messages[lastUserIdx].content);
           final oldMsg = messages[lastUserIdx];
           messages[lastUserIdx] = GradedChatMessage(
             id: oldMsg.id,
@@ -391,7 +417,7 @@ class ConversationController extends StateNotifier<ConversationState> {
     }
 
     try {
-      final translation = await _geminiService.translateTextToEnglish(msg.content);
+      final translation = await _localTranslationService.translate(msg.content);
       final updatedMsg = msg.copyWith(english: translation, pinyin: pinyin);
       final newMessages = List<GradedChatMessage>.from(state.messages);
       newMessages[index] = updatedMsg;

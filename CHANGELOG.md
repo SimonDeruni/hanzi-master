@@ -4,6 +4,61 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] SinoSpark Premium Paywall Real Screenshot Integration & Story Polish
+- Replaced media card placeholders across all 6 feature stories in `CustomPaywallScreen` with real, high-resolution app screenshots:
+  - **READ**: `assets/images/paywall/paywall_read.png` (Audiobook & synchronized sentence reading studio with natural voice selection).
+  - **SPEAK**: `assets/images/paywall/paywall_speak.png` (Gemini Live Call real-time conversational roleplay and tone accuracy grading).
+  - **EXPLORE**: `assets/images/paywall/paywall_explore.png` (Character Reference breakdown, stroke counting, and anatomical components).
+  - **WATCH**: `assets/images/paywall/paywall_watch.png` (Video learning with synchronized interactive subtitles and AI Prep Room).
+  - **WRITE**: `assets/images/paywall/paywall_write.png` (Handwriting canvas with guided strokes and real-time accuracy scoring).
+  - **WEB**: `assets/images/paywall/paywall_web.png` (Chinese web explorer with HSK/readability metrics and live word lookups).
+- Polished feature story copy: Updated READ to emphasize both natural book reading and studio audiobooks (*"Turn any book into a lesson & audiobook"*), and SPEAK to emphasize conversational AI with live tone feedback (*"Speak freely with AI & live tones"*).
+- Enhanced paywall card presentation: Designed `_buildFeatureScreenshotCard` with rounded ink borders (`BorderRadius.circular(24)`), soft ambient shadows, subtle top gradients, and responsive aspect ratios (`1.35`).
+- Registered `assets/images/paywall/` in `pubspec.yaml` and ensured all unit tests pass with 0 analyzer issues.
+
+### [2026-09-05] Complete Gemini Chapter and Poem Title Localization
+- Added a resumable Gemini batch CLI at `tool/generate_chapter_title_localizations.dart` with `--lang`, `--all`, `--dry-run`, `--force`, `--batch-size`, and `--model` controls, environment-first credential loading, structured JSON responses, stable ID validation, retries, atomic checkpoints, and retained-Han rejection.
+- Generated complete runtime assets for all 5,356 chapter IDs in all 14 app languages (74,984 localized values) and verified all 100 poem titles in all 14 languages (1,400 localized values), preserving existing poem summaries.
+- Strengthened localization tests to require exact chapter-ID coverage and nonblank canonical English poem titles.
+
+### [2026-09-05] Complete Radical & Anatomy Multilingual Localization Across 13 Languages
+- Generated complete localized datasets (`assets/data/l10n/radicals_<lang>.json`) for all 71 Chinese radicals across all 13 supported non-English languages (FR, ES, DE, IT, PT, RU, AR, HI, JA, KO, VI, TH, ID) plus English:
+  - Translated `name`, `meaning`, and `mnemonic` breakdown sentences with natural, educational calligraphic phrasing (e.g. for `艹` in French: *"Deux pousses d'herbe qui poussent vers le haut. Apparaît toujours en haut."*).
+  - Enhanced `LocalizedCatalogService` with `getRadicals(localeCode)` and `getRadicalData(char, localeCode)` with zero-latency in-memory caching and fallback to canonical English.
+  - Connected `CharacterDetailScreen` anatomy breakdown card, `RadicalLibraryScreen`, `RadicalDetailSheet`, and `DictionaryScreen` to dynamically load localized radical entries based on the user's active locale.
+
+### [2026-09-05] Auth Screen Sign-In Subtitle Localization
+- Localized the authentication screen headers and descriptions in `AuthScreen`:
+  - Bound the login subtitle string to `l10n?.signInToSyncYourProgress ?? "Sign in to sync your progress."` (rendering *"Connectez-vous pour synchroniser votre progression."* in French).
+  - Bound the register subtitle string to `l10n?.createAnAccountToSaveYourStats ?? "Create an account to save your stats."` (rendering *"Créez un compte pour sauvegarder vos statistiques."* in French).
+  - Bound the login header to `l10n?.welcomeBack ?? "Welcome Back"` (rendering *"Ravi de vous revoir"* in French).
+  - Bound legal and newsletter checkbox labels to `l10n?.iAgreeToTheTermsOfServiceAndPrivacy` and `l10n?.sendMeOccasionalUpdatesTipsAndOffer`.
+
+### [2026-09-05] Library Hub HSK Collections Subtitle Banner Localization
+- Updated `DictionaryScreen` (`The Scholar's Library`) HSK Collections banner subtitle:
+  - Localized with `l10n?.downloadOfficialHskCollections ?? "Download official HSK collections"`.
+  - Refined French localization string to *"Télécharger les collections officielles HSK"*.
+  - Regenerated all `AppLocalizations` classes with `flutter gen-l10n`.
+
+### [2026-09-05] Dynamic Multilingual AI Roleplay Dialogue Localization
+- Implemented full multilingual dynamic translation for AI Roleplay dialogues:
+  - Injected `LocalTranslationService` into `ConversationController` and `conversationControllerProvider`.
+  - Updated scenario initiation (`startScenario`): If target language is non-English, dynamically pre-warms and translates the initial AI greeting via `_localTranslationService.translate(scenario.initialAiMessage)` into the user's active language (French, Spanish, German, etc.) while serving cached English if the user is in English.
+  - Updated live AI conversation (`_fetchAiResponse`): Dynamic user message reverse translations and subsequent AI dialogue responses now translate directly into the user's active locale target language instead of English.
+  - Updated lazy on-demand translation toggle (`translateMessage`): Tapping translate now calls `_localTranslationService.translate()` dynamically in the user's active language.
+  - Localized "Tap to roleplay" card action prompt (`AppLocalizations.of(context)?.tapToRoleplay`) in `ScenarioSelectionScreen`.
+
+### [2026-09-05] Roleplay Chat Message Translation Toggle Localization
+- Localized the message translation action toggle in `ConversationScreen`:
+  - Dynamically renders `AppLocalizations.of(context)?.hideTranslation` (e.g. *"Masquer la traduction"* in French) when expanded, and `AppLocalizations.of(context)?.translation` (e.g. *"Traduction"* in French) when collapsed.
+
+### [2026-09-05] AI Hub Roleplay Banner Localization
+- Localized the custom scenario and deck generator action banners in `ScenarioSelectionScreen`:
+  - Bound "Create Custom Scenario" to `AppLocalizations.of(context)?.createCustomScenario` (e.g. *"Créer un scénario personnalisé"* in French).
+  - Bound "Design your own AI roleplay experience" to `AppLocalizations.of(context)?.designCustomAiRoleplay` (e.g. *"Concevoir une expérience de jeu de rôle et conversation IA personnalisée"* in French).
+  - Bound "Generate from Deck" to `AppLocalizations.of(context)?.generateFromDeck` (e.g. *"Générer depuis le deck"* in French).
+  - Bound "Practice flashcard vocabulary in a live dialogue" to `AppLocalizations.of(context)?.practiceFlashcardVocabulary` (e.g. *"Pratiquer le vocabulaire des fiches dans un dialogue en direct"* in French).
+
 ### [2026-09-05] In-App Browser Zen Mode & AI Reading Status Localization
 - Localized the in-app browser article Zen Mode AI loading and summary elements across all 14 supported languages (EN, FR, ES, DE, IT, PT, RU, JA, KO, VI, ID, AR, HI, TH):
   - Localized the skeleton loading banner status ("AI is reading..." -> "L'IA est en train de lire..." in French, "La IA está leyendo..." in Spanish, "KI liest vor..." in German, etc.) via `AppLocalizations.of(context)?.aiIsReading`.

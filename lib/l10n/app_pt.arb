@@ -516,7 +516,7 @@
   "aClassicTangDynastyPoemBy": "Um poema clássico da dinastia Tang por",
   "aStructuralComponent": "Um componente estrutural (radical/elemento).",
   "addSelectedToDeck": "Adicionar selecionados ao baralho",
-  "addTo": "Adicionar a ",
+  "addTo": "Adicionar a {target}",
   "addedHanziToYourLibrary": "«{hanzi}» foi adicionado à sua biblioteca",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -2204,6 +2204,7 @@
   "wordFamilyChip": "🔗 Família de palavras",
   "idiomChip": "🀄 Expressão idiomática",
   "proverbChip": "💬 Provérbio",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Existe alguma expressão idiomática chinesa (成语) que contenha este caractere?",
   "strokeOrderChip": "✏️ Ordem dos traços",
   "calligraphyTipChip": "🎨 Dica de caligrafia",
   "grammarNoteChip": "📝 Nota gramatical",
@@ -2230,7 +2231,7 @@
   "studyNoEligibleCardsDescription": "Nenhum cartão é elegível para este modo de estudo no momento.",
   "studySessionLoadFailed": "Não foi possível carregar esta sessão de estudo. Tente novamente.",
   "retryLimitReached": "Este cartão retornará na sua próxima sessão.",
-  "libraryLabel": "Biblioteca 文化书房",
+  "libraryLabel": "Biblioteca",
   "aiDataPrivacyTitle": "Dados e Privacidade de IA",
   "aiDataPrivacySettingsSubtitle": "Veja o que os recursos de IA enviam, por que e para quem",
   "aiDataPrivacyOverviewTitle": "Quando a IA é usada",
@@ -3920,5 +3921,56 @@
     }
   },
   "aiSummary": "Resumo da IA",
-  "readability": "Legibilidade"
+  "readability": "Legibilidade",
+  "translateAction": "Traduzir",
+  "checkingDownload": "Verificando download",
+  "downloadingBook": "Baixando: {percent}%",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "Tentar baixar novamente",
+  "downloadBook": "Baixar livro",
+  "continueChapter": "Continuar no cap?tulo {chapter}",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "N?o foi poss?vel baixar este livro. Verifique sua conex?o e tente novamente.",
+  "downloadBookOffline": "Baixe o livro para ler seus {count} cap?tulos offline.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count, plural, =1{1 poema} other{{count} poemas}}",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "Literatura americana",
+  "ancientChina": "China Antiga",
+  "britishLiterature": "Literatura brit?nica",
+  "frenchLiterature": "Literatura francesa",
+  "germanLiterature": "Literatura alem?",
+  "italianLiterature": "Literatura italiana",
+  "jinDynasty": "Dinastia Jin",
+  "preQinEra": "Per?odo pr?-Qin",
+  "qingDynasty": "Dinastia Qing",
+  "republicOfChinaEra": "Rep?blica da China",
+  "russianLiterature": "Literatura russa",
+  "spanishLiterature": "Literatura espanhola",
+  "springAndAutumn": "Per?odo das Primaveras e Outonos",
+  "westernHan": "Han Ocidental"
 }

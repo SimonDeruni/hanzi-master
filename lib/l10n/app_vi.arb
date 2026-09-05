@@ -486,7 +486,7 @@
   "aClassicTangDynastyPoemBy": "Một bài thơ Đường kinh điển của",
   "aStructuralComponent": "Một thành phần cấu tạo chữ Hán.",
   "addSelectedToDeck": "Thêm mục đã chọn vào bộ thẻ",
-  "addTo": "Thêm vào ",
+  "addTo": "Thêm vào {target}",
   "addedHanziToYourLibrary": "Đã thêm «{hanzi}» vào thư viện của bạn",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -2174,6 +2174,7 @@
   "wordFamilyChip": "🔗 Từ cùng gốc",
   "idiomChip": "🀄 Thành ngữ",
   "proverbChip": "💬 Tục ngữ",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Có thành ngữ Trung Quốc (成语) nào chứa chữ Hán này không?",
   "strokeOrderChip": "✏️ Thứ tự nét",
   "calligraphyTipChip": "🎨 Mẹo thư pháp",
   "grammarNoteChip": "📝 Ghi chú ngữ pháp",
@@ -3890,5 +3891,56 @@
     }
   },
   "aiSummary": "Tóm tắt AI",
-  "readability": "Độ dễ đọc"
+  "readability": "Độ dễ đọc",
+  "translateAction": "Dịch",
+  "checkingDownload": "?ang ki?m tra b?n t?i xu?ng",
+  "downloadingBook": "?ang t?i xu?ng: {percent}%",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "Th? t?i l?i",
+  "downloadBook": "T?i s?ch xu?ng",
+  "continueChapter": "??c ti?p t? ch??ng {chapter}",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "Kh?ng th? t?i cu?n s?ch n?y. H?y ki?m tra k?t n?i r?i th? l?i.",
+  "downloadBookOffline": "T?i s?ch xu?ng ?? ??c {count} ch??ng khi kh?ng c? m?ng.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count} b?i th?",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "V?n h?c M?",
+  "ancientChina": "Trung Hoa c? ??i",
+  "britishLiterature": "V?n h?c Anh",
+  "frenchLiterature": "V?n h?c Ph?p",
+  "germanLiterature": "V?n h?c ??c",
+  "italianLiterature": "V?n h?c ?",
+  "jinDynasty": "Nh? T?n",
+  "preQinEra": "Th?i Ti?n T?n",
+  "qingDynasty": "Nh? Thanh",
+  "republicOfChinaEra": "Trung Hoa D?n Qu?c",
+  "russianLiterature": "V?n h?c Nga",
+  "spanishLiterature": "V?n h?c T?y Ban Nha",
+  "springAndAutumn": "Th?i Xu?n Thu",
+  "westernHan": "T?y H?n"
 }

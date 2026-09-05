@@ -1,7 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ContinueReadingCard extends StatelessWidget {
   final InProgressBookItem item;
@@ -50,7 +51,9 @@ class ContinueReadingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.book.title,
+                    item.book.localizedTitle(
+                      Localizations.localeOf(context).toLanguageTag(),
+                    ),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -61,7 +64,7 @@ class ContinueReadingCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'Ch ${item.progress.chapterIndex} · Sentence ${item.progress.sentenceIndex} · ${item.progress.percentage.toStringAsFixed(0)}%',
+                    '${AppLocalizations.of(context)!.chapterXOfY(item.progress.chapterIndex, item.book.totalChapters)} · ${AppLocalizations.of(context)!.sentence} ${item.progress.sentenceIndex} · ${item.progress.percentage.toStringAsFixed(0)}%',
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.7),
                       fontSize: 13,
@@ -76,7 +79,8 @@ class ContinueReadingCard extends StatelessWidget {
                       color: Colors.white.withValues(alpha: 0.3),
                       child: FractionallySizedBox(
                         alignment: Alignment.centerLeft,
-                        widthFactor: (item.progress.percentage / 100).clamp(0.0, 1.0),
+                        widthFactor:
+                            (item.progress.percentage / 100).clamp(0.0, 1.0),
                         child: Container(color: Colors.white),
                       ),
                     ),
@@ -100,7 +104,8 @@ class ContinueReadingCard extends StatelessWidget {
                 color: Colors.white.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 30),
+              child: const Icon(Icons.play_arrow_rounded,
+                  color: Colors.white, size: 30),
             ),
           ],
         ),

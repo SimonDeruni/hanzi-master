@@ -28,6 +28,7 @@ import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
@@ -377,8 +378,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        AppLocalizations.of(context)!
-                                            .hskCollections,
+                                        l10n?.hskCollections ??
+                                            "HSK Collections",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -387,8 +388,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
                                     Text(
-                                        AppLocalizations.of(context)!
-                                            .downloadOfficialHskCollections,
+                                        l10n?.downloadOfficialHskCollections ??
+                                            "Download official HSK collections",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -809,6 +810,7 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
   Map<String, dynamic> _radicals = {};
   Map<String, dynamic> _hanziMeta = {};
   bool _isLoading = true;
+  String? _currentLocaleCode;
 
   @override
   void initState() {
@@ -816,16 +818,27 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
     _loadData();
   }
 
-  Future<void> _loadData() async {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context).languageCode;
+    if (_currentLocaleCode != locale) {
+      _currentLocaleCode = locale;
+      _loadData(locale);
+    }
+  }
+
+  Future<void> _loadData([String? localeCode]) async {
     try {
-      final radString =
-          await rootBundle.loadString('assets/data/radicals.json');
+      final effectiveLocale = localeCode ?? _currentLocaleCode ?? 'en';
+      final radicalsData =
+          await LocalizedCatalogService.getRadicals(effectiveLocale);
       final metaString =
           await rootBundle.loadString('assets/data/hanzi_metadata.json');
 
       if (mounted) {
         setState(() {
-          _radicals = json.decode(radString)['radicals'];
+          _radicals = radicalsData;
           _hanziMeta = json.decode(metaString);
           _isLoading = false;
         });

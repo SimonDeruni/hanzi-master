@@ -109,7 +109,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                   _buildTab(
                                       0, AppLocalizations.of(context)!.newDeck),
                                   const SizedBox(width: 8),
-                                  _buildTab(1, AppLocalizations.of(context)!.addToDeck1),
+                                  _buildTab(1,
+                                      AppLocalizations.of(context)!.addToDeck1),
                                 ],
                               ),
                             ],
@@ -161,11 +162,23 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                       const SizedBox(height: 12),
                       Row(
                         children: [
-                          _buildDifficultySegment(0, "Beginner", "HSK 1-2"),
+                          _buildDifficultySegment(
+                            0,
+                            AppLocalizations.of(context)!.beginner,
+                            "HSK 1-2",
+                          ),
                           const SizedBox(width: 8),
-                          _buildDifficultySegment(1, "Intermediate", "HSK 3-4"),
+                          _buildDifficultySegment(
+                            1,
+                            AppLocalizations.of(context)!.intermediate,
+                            "HSK 3-4",
+                          ),
                           const SizedBox(width: 8),
-                          _buildDifficultySegment(2, "Advanced", "HSK 5-6"),
+                          _buildDifficultySegment(
+                            2,
+                            AppLocalizations.of(context)!.advanced,
+                            "HSK 5-6",
+                          ),
                         ],
                       ),
 
@@ -182,14 +195,32 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                         spacing: 8,
                         runSpacing: 8,
                         children: [
-                          'Mixed',
-                          'Nouns only',
-                          'Verbs only',
-                          'Idioms (Chengyu)',
-                          'Full Sentences'
-                        ]
-                            .map((focus) => _buildFocusChip(focus, isDark))
-                            .toList(),
+                          _buildFocusChip(
+                            'Mixed',
+                            AppLocalizations.of(context)!.mixed,
+                            isDark,
+                          ),
+                          _buildFocusChip(
+                            'Nouns only',
+                            AppLocalizations.of(context)!.nounsOnly,
+                            isDark,
+                          ),
+                          _buildFocusChip(
+                            'Verbs only',
+                            AppLocalizations.of(context)!.verbsOnly,
+                            isDark,
+                          ),
+                          _buildFocusChip(
+                            'Idioms (Chengyu)',
+                            AppLocalizations.of(context)!.idiomsChengyu,
+                            isDark,
+                          ),
+                          _buildFocusChip(
+                            'Full Sentences',
+                            AppLocalizations.of(context)!.fullSentences,
+                            isDark,
+                          ),
+                        ],
                       ),
                     ],
 
@@ -349,8 +380,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                       Navigator.pop(context);
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
-                                               content: Text(
-                                                   "Created ${newDeck.name} with ${cards.length} cards")));
+                                              content: Text(
+                                                  "Created ${newDeck.name} with ${cards.length} cards")));
                                     }
                                   }
                                 }
@@ -407,8 +438,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                               }
                             } catch (e) {
                               if (mounted && context.mounted) {
-                                 ScaffoldMessenger.of(context).showSnackBar(
-                                     SnackBar(content: Text("Error: $e")));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Error: $e")));
                               }
                             } finally {
                               if (mounted) {
@@ -437,7 +468,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                               const Icon(Icons.auto_awesome),
                               const SizedBox(width: 8),
                               Text(
-                                _mode == 0 ? "Generate Deck" : "Generate & Add",
+                                _mode == 0
+                                    ? AppLocalizations.of(context)!.generateDeck
+                                    : AppLocalizations.of(context)!.generateAdd,
                                 style: const TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),
@@ -503,13 +536,13 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
     );
   }
 
-  Widget _buildFocusChip(String label, bool isDark) {
-    final isSelected = _focusArea == label;
+  Widget _buildFocusChip(String value, String label, bool isDark) {
+    final isSelected = _focusArea == value;
     return ChoiceChip(
       label: Text(label),
       selected: isSelected,
       onSelected: (selected) {
-        if (selected) setState(() => _focusArea = label);
+        if (selected) setState(() => _focusArea = value);
       },
       selectedColor: Colors.purple.withValues(alpha: 0.2),
       backgroundColor: isDark

@@ -27,6 +27,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get proverbChip => '💬 Proverbio';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      '¿Hay algún modismo chino (成语) que contenga este carácter?';
+
+  @override
   String get strokeOrderChip => '✏️ Orden de trazos';
 
   @override
@@ -1667,7 +1671,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return 'Añadir a ';
+    return 'Añadir a $target';
   }
 
   @override
@@ -1712,6 +1716,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => 'Filosofía antigua';
+
+  @override
+  String get warringStates => 'Warring States';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
 
   @override
   String get articleSavedToMediaHub =>
@@ -2112,7 +2123,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Li Ruzhen (c. 1763-1830) fue un erudito de la dinastía Qing con profundos intereses en fonología, ajedrez y cosmología. Flores en el espejo, su novela fantástica sobre un comerciante que viaja por reinos imposibles, es notable por sus temas feministas y su alcance enciclopédico.';
 
   @override
-  String get libraryLabel => 'Biblioteca 文化书房';
+  String get libraryLabel => 'Biblioteca';
 
   @override
   String get lifestyleAndVlog => 'Estilo de vida y vlogs';
@@ -12485,4 +12496,88 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get readability => 'Legibilidad';
+
+  @override
+  String get translateAction => 'Traducir';
+
+  @override
+  String get checkingDownload => 'Comprobando descarga';
+
+  @override
+  String downloadingBook(int percent) {
+    return 'Descargando: $percent %';
+  }
+
+  @override
+  String get retryDownload => 'Reintentar descarga';
+
+  @override
+  String get downloadBook => 'Descargar libro';
+
+  @override
+  String continueChapter(int chapter) {
+    return 'Continuar por el cap?tulo $chapter';
+  }
+
+  @override
+  String get downloadBookError =>
+      'No se pudo descargar este libro. Comprueba tu conexi?n e int?ntalo de nuevo.';
+
+  @override
+  String downloadBookOffline(int count) {
+    return 'Descarga el libro para leer sus $count cap?tulos sin conexi?n.';
+  }
+
+  @override
+  String poemCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count poemas',
+      one: '1 poema',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get americanLiterature => 'Literatura estadounidense';
+
+  @override
+  String get ancientChina => 'China antigua';
+
+  @override
+  String get britishLiterature => 'Literatura brit?nica';
+
+  @override
+  String get frenchLiterature => 'Literatura francesa';
+
+  @override
+  String get germanLiterature => 'Literatura alemana';
+
+  @override
+  String get italianLiterature => 'Literatura italiana';
+
+  @override
+  String get jinDynasty => 'Dinast?a Jin';
+
+  @override
+  String get preQinEra => '?poca pre-Qin';
+
+  @override
+  String get qingDynasty => 'Dinast?a Qing';
+
+  @override
+  String get republicOfChinaEra => 'Rep?blica de China';
+
+  @override
+  String get russianLiterature => 'Literatura rusa';
+
+  @override
+  String get spanishLiterature => 'Literatura espa?ola';
+
+  @override
+  String get springAndAutumn => 'Per?odo de Primaveras y Oto?os';
+
+  @override
+  String get westernHan => 'Han occidental';
 }

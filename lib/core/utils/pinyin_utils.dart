@@ -111,6 +111,21 @@ class PinyinUtils {
     return stripped;
   }
 
+  /// Returns the unmarked base of a single pinyin syllable.
+  ///
+  /// Both tone-marked (`mù`) and numeric (`mu4`) input are accepted. A
+  /// tone-only value such as `4` is rejected instead of being treated as a
+  /// syllable, which prevents generated variants such as `41`, `42`, etc.
+  static String normalizeSyllable(String pinyin) {
+    final trimmed = pinyin.trim();
+    final firstSyllable =
+        trimmed.isEmpty ? '' : trimmed.split(RegExp(r'\s+')).first;
+    final base = removeToneMarks(firstSyllable)
+        .replaceFirst(RegExp(r'[1-5]$'), '')
+        .toLowerCase();
+    return RegExp(r'[a-zü]').hasMatch(base) ? base : '';
+  }
+
   /// Tokenizes a string (which may contain multiple syllables, punctuation, and spaces)
   /// into a list of Map objects containing the text and its tone.
   static List<Map<String, dynamic>> tokenize(String rawText) {
@@ -151,7 +166,7 @@ class PinyinUtils {
   /// Generates the 4 (or 5) tone variations for a given pinyin syllable.
   /// E.g. "mā" -> {1: "mā", 2: "má", 3: "mǎ", 4: "mà", 5: "ma"}
   static Map<int, String> getAllTonesForSyllable(String pinyinWithTone) {
-    final base = removeToneMarks(pinyinWithTone).trim();
+    final base = normalizeSyllable(pinyinWithTone);
     if (base.isEmpty) return {};
     return {
       1: convertNumericToMarks('${base}1'),
@@ -244,7 +259,7 @@ class PinyinUtils {
   /// Returns a native Hanzi exemplar character for a given syllable base and tone,
   /// or null if this tone does not exist in standard Mandarin Chinese.
   static String? getExemplarHanzi(String pinyinWithTone, int tone) {
-    final base = removeToneMarks(pinyinWithTone).trim().toLowerCase();
+    final base = normalizeSyllable(pinyinWithTone);
     final map = _syllableExemplars[base];
     if (map != null && map.containsKey(tone)) {
       final val = map[tone];

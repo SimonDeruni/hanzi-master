@@ -6,6 +6,7 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
 import 'package:hanzi_master/features/reading/data/services/book_download_service.dart';
+import 'package:hanzi_master/features/reading/data/services/localized_title_loader.dart';
 
 class BookRepository {
   static const String _progressBoxName = 'grand_library_progress_v1';
@@ -17,6 +18,7 @@ class BookRepository {
 
   List<BookModel> _cachedCatalog = [];
   List<Map<String, dynamic>> _poetryEntries = [];
+  Map<String, Map<String, String>> _poetryTitlesById = {};
   final BookDownloadService _downloadService;
 
   BookRepository({BookDownloadService? downloadService})
@@ -56,13 +58,19 @@ class BookRepository {
 
   Future<void> _loadPoetryEntries() async {
     try {
-      final content = await rootBundle.loadString(chinesePoetryAsset);
+      final results = await Future.wait([
+        rootBundle.loadString(chinesePoetryAsset),
+        loadLocalizedTitlesById('poetry'),
+      ]);
+      final content = results[0] as String;
+      _poetryTitlesById = results[1] as Map<String, Map<String, String>>;
       final entries = jsonDecode(content) as List<dynamic>;
       _poetryEntries = entries
           .map((entry) => Map<String, dynamic>.from(entry as Map))
           .toList();
     } catch (_) {
       _poetryEntries = [];
+      _poetryTitlesById = {};
     }
   }
 
@@ -89,12 +97,23 @@ class BookRepository {
 
   Future<List<BookModel>> loadCatalog() async {
     try {
-      final jsonString =
-          await rootBundle.loadString('assets/data/grand_library_catalog.json');
+      final results = await Future.wait([
+        rootBundle.loadString('assets/data/grand_library_catalog.json'),
+        loadLocalizedTitlesById('book_titles'),
+      ]);
+      final jsonString = results[0] as String;
+      final localizedTitlesById =
+          results[1] as Map<String, Map<String, String>>;
       final List<dynamic> list = jsonDecode(jsonString);
-      _cachedCatalog = list
-          .map((e) => BookModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      _cachedCatalog = list.map((entry) {
+        final json = Map<String, dynamic>.from(entry as Map);
+        final embedded = localizedStringsFromJson(json['localizedTitles']);
+        json['localizedTitles'] = {
+          ...?localizedTitlesById[json['id']?.toString()],
+          ...embedded,
+        };
+        return BookModel.fromJson(json);
+      }).toList();
     } catch (e) {
       _cachedCatalog = [];
     }
@@ -131,6 +150,7 @@ class BookRepository {
             chapterIndex: 1,
             title: data['title'] as String? ?? '诗篇',
             titleEn: data['title_en'] as String? ?? 'Poem',
+            localizedTitles: _poetryTitlesById[poetryEntryId(data)] ?? const {},
             sentences: sentences,
           ),
         ];

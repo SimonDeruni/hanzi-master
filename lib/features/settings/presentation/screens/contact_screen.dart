@@ -102,7 +102,7 @@ class _ContactScreenState extends State<ContactScreen> {
               children: [
                 const SizedBox(height: 10),
                 Text(
-                  "We'd love to\nhear from you.",
+                  localizations.wedLoveToHearFromYou,
                   style: TextStyle(
                     fontSize: 38,
                     fontFamily: 'Serif',

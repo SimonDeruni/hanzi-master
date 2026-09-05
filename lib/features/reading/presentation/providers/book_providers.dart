@@ -186,6 +186,7 @@ final allBookmarksProvider =
       id: story.link,
       title: story.title,
       titleEn: story.titleEn ?? story.title,
+      localizedTitles: story.localizedTitles,
       author: story.sourceName,
       authorEn: story.sourceName,
       category: story.category,

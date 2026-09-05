@@ -1,13 +1,13 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/radical_detail_screen.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -21,12 +21,17 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
   List<String> _radicalKeys = [];
   List<String> _filteredKeys = [];
   bool _isLoading = true;
+  String? _currentLocaleCode;
   final TextEditingController _searchController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _loadRadicals();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context).languageCode;
+    if (_currentLocaleCode != locale) {
+      _currentLocaleCode = locale;
+      _loadRadicals(locale);
+    }
   }
 
   @override
@@ -35,12 +40,11 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
     super.dispose();
   }
 
-  Future<void> _loadRadicals() async {
+  Future<void> _loadRadicals([String? localeCode]) async {
     try {
-      final radicalString =
-          await rootBundle.loadString('assets/data/radicals.json');
+      final effectiveLocale = localeCode ?? _currentLocaleCode ?? 'en';
       final radicalData =
-          json.decode(radicalString)['radicals'] as Map<String, dynamic>;
+          await LocalizedCatalogService.getRadicals(effectiveLocale);
 
       if (mounted) {
         setState(() {
@@ -120,7 +124,9 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
                 child: ZenSearchBar(
                   controller: _searchController,
-                  hintText: AppLocalizations.of(context)?.searchRadicalsEgWater ?? "Search radicals (e.g. Water, 氵)",
+                  hintText:
+                      AppLocalizations.of(context)?.searchRadicalsEgWater ??
+                          "Search radicals (e.g. Water, 氵)",
                   onChanged: _filterRadicals,
                 ),
               ),
@@ -213,6 +219,9 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: TranslatedDefinition(
                 definition: (data['name'] ?? '').toString(),
+                hanzi: character,
+                definitionLanguage:
+                    translationLanguageForLocale(_currentLocaleCode ?? 'en'),
                 originalStyle: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,

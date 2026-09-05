@@ -27,6 +27,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get proverbChip => '💬 Proverbe';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      'Existe-t-il un idiome chinois (成语) contenant ce caractère ?';
+
+  @override
   String get strokeOrderChip => '✏️ Ordre des traits';
 
   @override
@@ -920,7 +924,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get numberOfCards => 'Nombre de cartes';
 
   @override
-  String get generateDeck => 'Générer le paquet';
+  String get generateDeck => 'Générer le deck';
 
   @override
   String get aiGrammarExplanation => 'Explication grammaticale IA';
@@ -1679,7 +1683,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return 'Ajouter à ';
+    return 'Ajouter à $target';
   }
 
   @override
@@ -1724,6 +1728,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => 'Philosophie antique';
+
+  @override
+  String get warringStates => 'Royaumes combattants';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (v. 280-233 av. J.-C.) était un prince de l\'État de Han et le principal penseur du légisme chinois. En réunissant les notions de loi, de technique administrative et d\'autorité, ses écrits dans le Han Feizi ont profondément influencé la philosophie politique et les institutions de la Chine impériale.';
 
   @override
   String get articleSavedToMediaHub => 'Article enregistré dans Media Hub !';
@@ -2125,7 +2136,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Li Ruzhen (v. 1763-1830) était un érudit de la dynastie Qing avec de profonds intérêts en phonologie, échecs et cosmologie. Les Fleurs dans le Miroir, son roman fantastique d\'un marchand voyageant à travers des royaumes impossibles, est remarquable pour ses thèmes féministes et sa gamme encyclopédique de sujets.';
 
   @override
-  String get libraryLabel => '文化书房 Bibliothèque';
+  String get libraryLabel => 'Bibliothèque';
 
   @override
   String get lifestyleAndVlog => 'Mode de vie et vlog';
@@ -3195,7 +3206,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get downloadOfficialHskCollections =>
-      'Télécharger les collections HSK officielles';
+      'Télécharger les collections officielles HSK';
 
   @override
   String get unableToLoadThisSection =>
@@ -3478,7 +3489,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get downloadOfficialHskCollections1 =>
-      'Télécharger les collections HSK officielles';
+      'Télécharger les collections officielles HSK';
 
   @override
   String get unableToLoadThisSectionPleaseTryAga =>
@@ -3549,7 +3560,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get speakingMode1 => 'Mode Expression orale';
 
   @override
-  String get practiceMode1 => 'Mode Pratique';
+  String get practiceMode1 => 'Mode de pratique';
 
   @override
   String acc(Object acc) {
@@ -5410,10 +5421,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get topicForContext => 'Sujet (pour le contexte)';
 
   @override
-  String get nounsOnly => 'Noms seulement';
+  String get nounsOnly => 'Noms uniquement';
 
   @override
-  String get verbsOnly => 'Verbes seulement';
+  String get verbsOnly => 'Verbes uniquement';
 
   @override
   String get idiomsChengyu => 'Idiomes (Chengyu)';
@@ -5528,7 +5539,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Vous devez fournir une carte ou des cartes';
 
   @override
-  String get deckSettings => 'Paramètres du deck';
+  String get deckSettings => 'Paramètres du paquet';
 
   @override
   String get saveSettings => 'Enregistrer les paramètres';
@@ -7785,7 +7796,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tapTheValueToEnter =>
-      'Appuyez sur la valeur pour entrer une limite exacte.';
+      'Appuyez sur la valeur pour saisir une limite exacte.';
 
   @override
   String get exactDailyLimit => 'Limite quotidienne exacte';
@@ -12507,4 +12518,88 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get readability => 'Lisibilité';
+
+  @override
+  String get translateAction => 'Traduire';
+
+  @override
+  String get checkingDownload => 'V?rification du t?l?chargement';
+
+  @override
+  String downloadingBook(int percent) {
+    return 'T?l?chargement : $percent %';
+  }
+
+  @override
+  String get retryDownload => 'R?essayer le t?l?chargement';
+
+  @override
+  String get downloadBook => 'T?l?charger le livre';
+
+  @override
+  String continueChapter(int chapter) {
+    return 'Continuer au chapitre $chapter';
+  }
+
+  @override
+  String get downloadBookError =>
+      'Impossible de t?l?charger ce livre. V?rifiez votre connexion et r?essayez.';
+
+  @override
+  String downloadBookOffline(int count) {
+    return 'T?l?chargez le livre pour lire ses $count chapitres hors ligne.';
+  }
+
+  @override
+  String poemCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count po?mes',
+      one: '1 po?me',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get americanLiterature => 'Litt?rature am?ricaine';
+
+  @override
+  String get ancientChina => 'Chine antique';
+
+  @override
+  String get britishLiterature => 'Litt?rature britannique';
+
+  @override
+  String get frenchLiterature => 'Litt?rature fran?aise';
+
+  @override
+  String get germanLiterature => 'Litt?rature allemande';
+
+  @override
+  String get italianLiterature => 'Litt?rature italienne';
+
+  @override
+  String get jinDynasty => 'Dynastie Jin';
+
+  @override
+  String get preQinEra => '?poque pr?-Qin';
+
+  @override
+  String get qingDynasty => 'Dynastie Qing';
+
+  @override
+  String get republicOfChinaEra => 'R?publique de Chine';
+
+  @override
+  String get russianLiterature => 'Litt?rature russe';
+
+  @override
+  String get spanishLiterature => 'Litt?rature espagnole';
+
+  @override
+  String get springAndAutumn => 'P?riode des Printemps et Automnes';
+
+  @override
+  String get westernHan => 'Han occidentaux';
 }

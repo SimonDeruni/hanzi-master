@@ -11,11 +11,13 @@ enum DefinitionPresentation { plain, fullDetail }
 /// Displays a canonical English definition in the user's selected app language.
 ///
 /// The complete, untouched [definition] is sent for translation. The English
-/// source remains visible while loading and after any translation failure.
+/// source is hidden while loading to avoid flashing the wrong language, and is
+/// shown only when translation fails.
 class TranslatedDefinition extends ConsumerStatefulWidget {
   final String definition;
   final String? definitionLanguage;
   final String? hanzi;
+  final Map<String, String> bundledTranslations;
   final TextStyle? originalStyle;
   final TextStyle? translationStyle;
   final TextAlign textAlign;
@@ -28,6 +30,7 @@ class TranslatedDefinition extends ConsumerStatefulWidget {
     required this.definition,
     this.definitionLanguage,
     this.hanzi,
+    this.bundledTranslations = const {},
     this.originalStyle,
     this.translationStyle,
     this.textAlign = TextAlign.start,
@@ -45,6 +48,7 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
   String? _translated;
   String? _requestKey;
   int _requestGeneration = 0;
+  bool _translationFailed = false;
 
   void _syncTranslation(String targetLanguage, bool useEnglishDefinitions) {
     final requestKey =
@@ -53,10 +57,12 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
 
     _requestKey = requestKey;
     _translated = null;
+    _translationFailed = false;
     final generation = ++_requestGeneration;
 
     if (useEnglishDefinitions ||
         targetLanguage.toLowerCase() == 'english' ||
+        widget.bundledTranslations.containsKey(targetLanguage.toLowerCase()) ||
         _sameLanguage(widget.definitionLanguage, targetLanguage) ||
         widget.definition.isEmpty) {
       return;
@@ -69,10 +75,15 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
             .translateEnglishDefinition(widget.definition, hanzi: widget.hanzi);
         if (!mounted || generation != _requestGeneration) return;
         setState(() {
-          _translated = result == widget.definition ? null : result;
+          if (result == widget.definition) {
+            _translationFailed = true;
+          } else {
+            _translated = result;
+          }
         });
       } catch (_) {
-        // Keep displaying the canonical English definition on failure.
+        if (!mounted || generation != _requestGeneration) return;
+        setState(() => _translationFailed = true);
       }
     });
   }
@@ -89,8 +100,22 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
         settingsProvider.select((settings) => settings.useEnglishDefinitions));
     _syncTranslation(targetLanguage, useEnglishDefinitions);
 
-    final displayedDefinition = _translated ?? widget.definition;
-    final style = _translated == null
+    final bundledTranslation = useEnglishDefinitions
+        ? null
+        : widget.bundledTranslations[targetLanguage.toLowerCase()];
+    final needsTranslation = !useEnglishDefinitions &&
+        targetLanguage.toLowerCase() != 'english' &&
+        bundledTranslation == null &&
+        !_sameLanguage(widget.definitionLanguage, targetLanguage) &&
+        widget.definition.isNotEmpty;
+    if (needsTranslation && _translated == null && !_translationFailed) {
+      return const SizedBox(height: 16);
+    }
+
+    final displayedDefinition =
+        bundledTranslation ?? _translated ?? widget.definition;
+    final isTranslated = bundledTranslation != null || _translated != null;
+    final style = !isTranslated
         ? widget.originalStyle
         : (widget.translationStyle ?? widget.originalStyle);
 

@@ -103,8 +103,67 @@ class DashboardScreen extends ConsumerWidget {
             // --- TODAY'S WORD (CROPPED & COMPACT) ---
             const SliverToBoxAdapter(
               child: Padding(
+                key: Key('dashboard_word_of_the_day'),
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: TodayInsightCard(),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 18)),
+
+            // --- PRIMARY ACTIONS: SCANNER & INTERPRETER ---
+            SliverToBoxAdapter(
+              child: Padding(
+                key: const Key('dashboard_quick_actions'),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  children: [
+                    // Universal Scanner
+                    Expanded(
+                      child: _buildActionRectangle(
+                        context: context,
+                        icon: Icons.document_scanner_rounded,
+                        title:
+                            AppLocalizations.of(context)?.scanner ?? "Scanner",
+                        accentColor: const Color(0xFFFF7A00), // Vibrant Amber
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            SwipeBackPageRoute(
+                              builder: (_) => const UniversalScannerScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    // Travel Interpreter
+                    Expanded(
+                      child: _buildActionRectangle(
+                        context: context,
+                        icon: Icons.translate_rounded,
+                        title: AppLocalizations.of(context)?.interpreter ??
+                            "Interpreter",
+                        accentColor: const Color(0xFF3F51B5), // Deep Indigo
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            SwipeBackPageRoute(
+                              builder: (_) => const TravelInterpreterScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                )
+                    .animate(delay: 150.ms)
+                    .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                    .slideY(
+                        begin: 0.05,
+                        end: 0,
+                        duration: 600.ms,
+                        curve: Curves.easeOutCubic),
               ),
             ),
 
@@ -112,6 +171,7 @@ class DashboardScreen extends ConsumerWidget {
 
             SliverToBoxAdapter(
               child: Padding(
+                key: const Key('dashboard_practice_progress'),
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: ref.watch(studyProgressProvider).when(
                       loading: () => const SizedBox(
@@ -120,7 +180,7 @@ class DashboardScreen extends ConsumerWidget {
                       ),
                       error: (_, __) => const SizedBox.shrink(),
                       data: (progress) =>
-                          _HabitProgressCards(progress: progress),
+                          HabitProgressCards(progress: progress),
                     ),
               ),
             ),
@@ -130,6 +190,7 @@ class DashboardScreen extends ConsumerWidget {
             // --- QUICK SEARCH BAR ---
             SliverToBoxAdapter(
               child: Padding(
+                key: const Key('dashboard_search'),
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Hero(
                   tag: 'dashboard_search_bar',
@@ -200,63 +261,6 @@ class DashboardScreen extends ConsumerWidget {
                   ),
                 )
                     .animate(delay: 150.ms)
-                    .fade(duration: 600.ms, curve: Curves.easeOutCubic)
-                    .slideY(
-                        begin: 0.05,
-                        end: 0,
-                        duration: 600.ms,
-                        curve: Curves.easeOutCubic),
-              ),
-            ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 18)),
-
-            // --- RECTANGLE ACTION BUTTONS: SCANNER & INTERPRETER ---
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Row(
-                  children: [
-                    // Universal Scanner
-                    Expanded(
-                      child: _buildActionRectangle(
-                        context: context,
-                        icon: Icons.document_scanner_rounded,
-                        title:
-                            AppLocalizations.of(context)?.scanner ?? "Scanner",
-                        accentColor: const Color(0xFFFF7A00), // Vibrant Amber
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            SwipeBackPageRoute(
-                              builder: (_) => const UniversalScannerScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(width: 14),
-                    // Travel Interpreter
-                    Expanded(
-                      child: _buildActionRectangle(
-                        context: context,
-                        icon: Icons.translate_rounded,
-                        title: AppLocalizations.of(context)?.interpreter ??
-                            "Interpreter",
-                        accentColor: const Color(0xFF3F51B5), // Deep Indigo
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            SwipeBackPageRoute(
-                              builder: (_) => const TravelInterpreterScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )
-                    .animate(delay: 200.ms)
                     .fade(duration: 600.ms, curve: Curves.easeOutCubic)
                     .slideY(
                         begin: 0.05,
@@ -874,22 +878,25 @@ class _ForecastItem extends StatelessWidget {
   }
 }
 
-class _HabitProgressCards extends StatelessWidget {
-  const _HabitProgressCards({required this.progress});
+class HabitProgressCards extends StatelessWidget {
+  const HabitProgressCards({super.key, required this.progress});
 
   final StudyProgress progress;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final week = progress.thisWeek;
     final minutes = week.duration.inMinutes;
     final comparison = progress.cardsChangePercent;
     final comparisonText = comparison == null
-        ? 'Your first week of tracked practice'
+        ? l10n.yourFirstWeekOfTracked
         : comparison == 0
-            ? 'Same number of cards as last week'
-            : '${comparison > 0 ? '+' : ''}$comparison% cards vs last week';
+            ? l10n.sameNumberOfCardsAs
+            : l10n.cardsComparedWithLastWeek(
+                '${comparison > 0 ? '+' : ''}$comparison%',
+              );
 
     return Column(
       children: [
@@ -904,13 +911,14 @@ class _HabitProgressCards extends StatelessWidget {
                     Icon(Icons.eco_outlined, color: theme.colorScheme.primary),
                     const SizedBox(width: 10),
                     Text(
-                      'Today’s practice',
+                      l10n.todaySPractice,
                       style: theme.textTheme.titleMedium
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const Spacer(),
                     Text(
-                      '${progress.todayCards} / ${progress.dailyCardGoal} cards',
+                      '${progress.todayCards} / '
+                      '${l10n.cardsCount(progress.dailyCardGoal)}',
                       style: theme.textTheme.labelLarge,
                     ),
                   ],
@@ -924,8 +932,8 @@ class _HabitProgressCards extends StatelessWidget {
                 const SizedBox(height: 9),
                 Text(
                   progress.todayCards >= progress.dailyCardGoal
-                      ? 'Goal complete — anything more is a bonus.'
-                      : 'A small, achievable target. No penalty for a rest day.',
+                      ? l10n.goalCompleteAnythingMoreIs
+                      : l10n.aSmallAchievableTargetNo,
                   style: theme.textTheme.bodySmall,
                 ),
               ],
@@ -945,14 +953,14 @@ class _HabitProgressCards extends StatelessWidget {
                         color: theme.colorScheme.primary),
                     const SizedBox(width: 10),
                     Text(
-                      'This week',
+                      l10n.thisWeek,
                       style: theme.textTheme.titleMedium
                           ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     const Spacer(),
                     if (progress.currentStreak > 0)
                       Text(
-                        '${progress.currentStreak} day streak',
+                        l10n.dayStreakCount(progress.currentStreak),
                         style: theme.textTheme.labelLarge,
                       ),
                   ],
@@ -960,11 +968,12 @@ class _HabitProgressCards extends StatelessWidget {
                 const SizedBox(height: 14),
                 Row(
                   children: [
-                    _WeeklyMetric('Cards', '${week.cardsStudied}'),
                     _WeeklyMetric(
-                        'Accuracy', '${(week.accuracy * 100).round()}%'),
-                    _WeeklyMetric('Minutes', '$minutes'),
-                    _WeeklyMetric('Active days', '${week.activeDays}'),
+                        l10n.uniqueCardsStudied, '${week.cardsStudied}'),
+                    _WeeklyMetric(
+                        l10n.accuracy, '${(week.accuracy * 100).round()}%'),
+                    _WeeklyMetric(l10n.minutes, '$minutes'),
+                    _WeeklyMetric(l10n.activeDays, '${week.activeDays}'),
                   ],
                 ),
                 const SizedBox(height: 12),

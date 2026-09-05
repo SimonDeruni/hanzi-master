@@ -1,4 +1,4 @@
-﻿import 'dart:io';
+import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +18,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
+import 'package:hanzi_master/features/echo_hall/domain/logic/generated_scenario_parser.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -348,7 +349,8 @@ class _ScenarioSelectionScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Create Custom Scenario',
+                      AppLocalizations.of(context)?.createCustomScenario ??
+                          'Create Custom Scenario',
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                         fontSize: 15.5,
@@ -358,7 +360,8 @@ class _ScenarioSelectionScreenState
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      'Design your own AI roleplay experience',
+                      AppLocalizations.of(context)?.designCustomAiRoleplay ??
+                          'Design your own AI roleplay experience',
                       style: TextStyle(
                         color: isDark ? Colors.white54 : Colors.black54,
                         fontSize: 12,
@@ -426,7 +429,8 @@ class _ScenarioSelectionScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Generate from Deck',
+                      AppLocalizations.of(context)?.generateFromDeck ??
+                          'Generate from Deck',
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                         fontSize: 15.5,
@@ -436,7 +440,9 @@ class _ScenarioSelectionScreenState
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      'Practice flashcard vocabulary in a live dialogue',
+                      AppLocalizations.of(context)
+                              ?.practiceFlashcardVocabulary ??
+                          'Practice flashcard vocabulary in a live dialogue',
                       style: TextStyle(
                         color: isDark ? Colors.white54 : Colors.black54,
                         fontSize: 12,
@@ -729,7 +735,7 @@ class _ScenarioSelectionScreenState
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          "Tap to roleplay",
+                          AppLocalizations.of(context)?.tapToRoleplay ?? "Tap to roleplay",
                           style: TextStyle(
                             fontSize: 10.5,
                             fontWeight: FontWeight.bold,
@@ -1222,45 +1228,30 @@ Respond ONLY in valid JSON format with NO markdown formatting:
 }''';
 
       final result = await ref.read(geminiServiceProvider).generateText(prompt);
-      final cleaned =
-          result.replaceAll('```json', '').replaceAll('```', '').trim();
-      final Map<String, dynamic> json = jsonDecode(cleaned);
+      final generated = GeneratedScenarioData.parse(result);
 
       final (avatarPath, voice) = _pickAvatarAndVoice(
-        json['personaName'] as String? ?? '',
-        json['title'] as String? ?? '',
+        generated.personaName,
+        generated.title,
       );
 
-      final initialChinese =
-          (json['initialAiMessage'] as String? ?? '你好！很高兴见到你。').trim();
-      final initialEng =
-          (json['initialEnglish'] as String? ?? 'Hello! Very nice to meet you.')
-              .trim();
+      final initialChinese = generated.initialAiMessage;
+      final initialEng = generated.initialEnglish;
       final initialPin = PinyinHelper.getPinyinE(initialChinese,
           separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
 
-      final sysPrompt = (json['systemPrompt'] as String? ?? '').isNotEmpty
-          ? json['systemPrompt'] as String
-          : 'You are ${json['personaName']}. Your ONLY role is ${json['personaName']}. Speak natural conversational Mandarin at HSK $hskLevel level. NEVER break character, never act like an AI or language teacher, and never mention practicing Chinese. Keep responses concise (1-2 sentences) and interactive.';
-
-      List<String> questsList = [];
-      if (json['quests'] is List) {
-        questsList = List<String>.from(json['quests']);
-      }
-
       final scenario = ConversationScenario(
         id: 'deck-${deck.id}',
-        title: json['title'] as String? ?? 'Deck Practice',
-        description: json['description'] as String? ??
-            'Practice vocabulary with an AI partner.',
+        title: generated.title,
+        description: generated.description,
         initialAiMessage: initialChinese,
         initialEnglish: initialEng,
         initialPinyin: initialPin,
-        systemPrompt: sysPrompt,
+        systemPrompt: generated.systemPrompt,
         targetHskLevel: hskLevel,
         avatarAssetPath: 'none',
-        personaName: json['personaName'] as String? ?? 'Partner',
-        quests: questsList,
+        personaName: generated.personaName,
+        quests: generated.quests,
         deckId: deck.id,
         isCustom: true,
         voiceName: voice,
@@ -1277,9 +1268,12 @@ Respond ONLY in valid JSON format with NO markdown formatting:
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text('${AppLocalizations.of(context)?.errorPrefix ?? "Error: "}$e')));
+      debugPrint('Failed to generate deck scenario: $e');
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+          'We had trouble generating this scenario. Please try again.',
+        ),
+      ));
     } finally {
       if (mounted) {
         setState(() => _isGenerating = false);

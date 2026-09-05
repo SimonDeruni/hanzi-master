@@ -97,6 +97,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
     final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
@@ -143,7 +144,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                   // --- SEARCH BAR ---
                   ZenSearchBar(
                     controller: _searchController,
-                    hintText: _getSearchHint(),
+                    hintText: _getSearchHint(l10n),
                     onChanged: (_) => setState(() {}),
                   ),
 
@@ -164,8 +165,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Full Novels
                         Expanded(
                           child: _buildSectionTab(
-                            title: AppLocalizations.of(context)?.novels961 ??
-                                'Novels (96)',
+                            title: l10n.novels961,
                             section: ReadingRoomSection.novels,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -175,8 +175,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Micro-Reads
                         Expanded(
                           child: _buildSectionTab(
-                            title: AppLocalizations.of(context)?.microreads ??
-                                'Micro-Reads',
+                            title: l10n.microreads,
                             section: ReadingRoomSection.microReads,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -186,8 +185,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Poetry
                         Expanded(
                           child: _buildSectionTab(
-                            title: AppLocalizations.of(context)?.poetry1 ??
-                                'Poetry',
+                            title: l10n.poetry1,
                             section: ReadingRoomSection.poetry,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -234,14 +232,14 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     );
   }
 
-  String _getSearchHint() {
+  String _getSearchHint(AppLocalizations l10n) {
     switch (_activeSection) {
       case ReadingRoomSection.novels:
-        return 'Search 96 full novels, authors, epics...';
+        return l10n.search96FullNovelsAuthorsEpics;
       case ReadingRoomSection.microReads:
-        return 'Search graded micro-stories & fables...';
+        return l10n.searchGradedMicroStories;
       case ReadingRoomSection.poetry:
-        return 'Search classical poems, authors, verses...';
+        return l10n.searchClassicalPoems;
     }
   }
 
@@ -349,13 +347,14 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         ),
       );
     } else if (_activeSection == ReadingRoomSection.microReads) {
+      final l10n = AppLocalizations.of(context)!;
       final hskFilters = [
-        {'label': 'All Levels', 'val': -1},
-        {'label': 'HSK 1 (Beginner)', 'val': 1},
-        {'label': 'HSK 2 (Elementary)', 'val': 2},
-        {'label': 'HSK 3 (Intermediate)', 'val': 3},
-        {'label': 'HSK 4 (Upper Int)', 'val': 4},
-        {'label': 'HSK 5+ (Advanced)', 'val': 5},
+        {'label': l10n.allLevelsVal, 'val': -1},
+        {'label': l10n.hsk1BeginnerVal, 'val': 1},
+        {'label': l10n.hsk2ElementaryVal, 'val': 2},
+        {'label': l10n.hsk3IntermediateVal, 'val': 3},
+        {'label': l10n.hsk4UpperIntVal, 'val': 4},
+        {'label': l10n.hsk5AdvancedVal, 'val': 5},
       ];
       return SizedBox(
         height: 34,
@@ -424,6 +423,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   }) {
     return catalogAsync.when(
       data: (books) {
+        final l10n = AppLocalizations.of(context)!;
+        final localeCode = Localizations.localeOf(context).toLanguageTag();
         final query = _searchController.text.trim().toLowerCase();
         final filtered = books.where((b) {
           final matchesCat = _selectedNovelCategory == 'ALL' ||
@@ -431,8 +432,10 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           final matchesSearch = query.isEmpty ||
               b.title.toLowerCase().contains(query) ||
               b.titleEn.toLowerCase().contains(query) ||
+              b.localizedTitle(localeCode).toLowerCase().contains(query) ||
               b.author.toLowerCase().contains(query) ||
-              b.authorEn.toLowerCase().contains(query);
+              b.authorEn.toLowerCase().contains(query) ||
+              b.localizedAuthor(localeCode).toLowerCase().contains(query);
           return matchesCat && matchesSearch;
         }).toList();
 
@@ -453,7 +456,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                '${filtered.length} Books & Audiobooks',
+                l10n.booksAndAudiobooks(filtered.length),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -470,7 +473,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               hasScrollBody: false,
               child: Center(
                 child: Text(
-                  'No novels found matching your filter.',
+                  l10n.noNovelsFoundMatchingYourFilter,
                   style: TextStyle(
                       color: isDark ? Colors.white38 : Colors.black38,
                       fontSize: 14),
@@ -503,7 +506,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(child: Text("Error: $e")),
+          child: Center(child: Text(AppLocalizations.of(context)!.errorE(e))),
         ),
       ],
     );
@@ -520,6 +523,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   }) {
     return microReadsAsync.when(
       data: (stories) {
+        final l10n = AppLocalizations.of(context)!;
         final query = _searchController.text.trim().toLowerCase();
         final filtered = stories.where((s) {
           final matchesHsk = _selectedHsk == -1 ||
@@ -539,7 +543,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                '${filtered.length} Graded Stories & Daily Micro-Reads',
+                l10n.gradedStoriesAndMicroReads(filtered.length),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -555,7 +559,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               hasScrollBody: false,
               child: Center(
                 child: Text(
-                  'No micro-reads found matching your filter.',
+                  l10n.noMicroreadsFoundMatchingYourFilter,
                   style: TextStyle(
                       color: isDark ? Colors.white38 : Colors.black38,
                       fontSize: 14),
@@ -588,7 +592,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(child: Text("Error: $e")),
+          child: Center(child: Text(AppLocalizations.of(context)!.errorE(e))),
         ),
       ],
     );
@@ -605,6 +609,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   }) {
     return poetryAsync.when(
       data: (poems) {
+        final l10n = AppLocalizations.of(context)!;
         final query = _searchController.text.trim().toLowerCase();
         final filtered = poems.where((p) {
           final matchesSearch = query.isEmpty ||
@@ -621,7 +626,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                '${filtered.length} Classical Poems & Verse',
+                l10n.classicalPoemsAndVerse(filtered.length),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -637,7 +642,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               hasScrollBody: false,
               child: Center(
                 child: Text(
-                  'No poems found matching your filter.',
+                  l10n.noPoemsFoundMatchingYourFilter,
                   style: TextStyle(
                       color: isDark ? Colors.white38 : Colors.black38,
                       fontSize: 14),
@@ -673,7 +678,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(child: Text("Error: $e")),
+          child: Center(child: Text(AppLocalizations.of(context)!.errorE(e))),
         ),
       ],
     );
@@ -690,6 +695,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     Color cardBg,
     Color primaryText,
   ) {
+    final l10n = AppLocalizations.of(context)!;
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
     return BouncingButton(
       scaleFactor: 0.96,
       onPressed: () {
@@ -746,15 +753,15 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             width: 0.8,
                           ),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.headphones,
+                            const Icon(Icons.headphones,
                                 size: 10, color: Colors.amber),
-                            SizedBox(width: 3),
+                            const SizedBox(width: 3),
                             Text(
-                              'Audiobook',
-                              style: TextStyle(
+                              l10n.audiobook,
+                              style: const TextStyle(
                                 fontSize: 9,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -793,7 +800,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          book.titleEn,
+                          book.localizedTitle(localeCode),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -843,7 +850,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                               ),
                               const SizedBox(width: 2),
                               Text(
-                                'Audio',
+                                l10n.audio,
                                 style: TextStyle(
                                   fontSize: 9,
                                   fontWeight: FontWeight.bold,
@@ -1085,7 +1092,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             story.titleEn!.isNotEmpty) ...[
                           const SizedBox(height: 2),
                           Text(
-                            story.titleEn!,
+                            story.localizedTitle(
+                              Localizations.localeOf(context).toLanguageTag(),
+                            ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -1203,7 +1212,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             poem.titleEn!.isNotEmpty) ...[
                           const SizedBox(height: 2),
                           Text(
-                            poem.titleEn!,
+                            poem.localizedTitle(
+                              Localizations.localeOf(context).toLanguageTag(),
+                            ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -1242,7 +1253,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            'Poetry',
+                            AppLocalizations.of(context)!.poetry1,
                             style: TextStyle(
                               fontSize: 8.5,
                               fontWeight: FontWeight.bold,
@@ -1269,6 +1280,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       id: poem.link,
       title: poem.title,
       titleEn: poem.titleEn ?? poem.title,
+      localizedTitles: poem.localizedTitles,
       author: poem.sourceName,
       authorEn: poem.sourceName,
       category: poem.category.isNotEmpty ? poem.category : 'Chinese Poetry',
@@ -1309,6 +1321,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     Color cardBg,
     Color primaryText,
   ) {
+    final l10n = AppLocalizations.of(context)!;
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
     return Padding(
       padding: const EdgeInsets.only(top: 4, bottom: 12),
       child: Column(
@@ -1326,7 +1340,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  'Continue Reading',
+                  l10n.continueReading,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -1432,7 +1446,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                item.book.titleEn,
+                                item.book.localizedTitle(localeCode),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -1444,7 +1458,9 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Ch. ${item.progress.chapterIndex}',
+                                    l10n.chAbbreviation(
+                                      item.progress.chapterIndex,
+                                    ),
                                     style: TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w600,

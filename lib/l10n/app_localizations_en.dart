@@ -27,6 +27,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proverbChip => '💬 Proverb';
 
   @override
+  String get isThereAChineseIdiomFeaturingThisCharacter =>
+      'Is there a Chinese idiom (成语) featuring this character?';
+
+  @override
   String get strokeOrderChip => '✏️ Stroke order';
 
   @override
@@ -1655,7 +1659,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String addTo(Object target) {
-    return 'Add to';
+    return 'Add to $target';
   }
 
   @override
@@ -1699,6 +1703,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ancientPhilosophy => 'Ancient Philosophy';
+
+  @override
+  String get warringStates => 'Warring States';
+
+  @override
+  String get hanFeiLegalism =>
+      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
 
   @override
   String get articleSavedToMediaHub => 'Article saved to Media Hub!';
@@ -2094,7 +2105,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Li Ruzhen (c. 1763–1830) was a Qing Dynasty scholar with deep interests in phonology, chess, and cosmology. Flowers in the Mirror, his fantastical novel of a merchant journeying through impossible kingdoms, is remarkable for its feminist themes and encyclopaedic range of subjects.';
 
   @override
-  String get libraryLabel => '文化书房 Library';
+  String get libraryLabel => 'Library';
 
   @override
   String get lifestyleAndVlog => 'Lifestyle & Vlog';
@@ -12365,4 +12376,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get readability => 'Readability';
+
+  @override
+  String get translateAction => 'Translate';
+
+  @override
+  String get checkingDownload => 'Checking download';
+
+  @override
+  String downloadingBook(int percent) {
+    return 'Downloading $percent%';
+  }
+
+  @override
+  String get retryDownload => 'Retry download';
+
+  @override
+  String get downloadBook => 'Download book';
+
+  @override
+  String continueChapter(int chapter) {
+    return 'Continue chapter $chapter';
+  }
+
+  @override
+  String get downloadBookError =>
+      'Could not download this book. Check your connection and try again.';
+
+  @override
+  String downloadBookOffline(int count) {
+    return 'Download the book to read its $count chapters offline.';
+  }
+
+  @override
+  String poemCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count poems',
+      one: '1 poem',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get americanLiterature => 'American Literature';
+
+  @override
+  String get ancientChina => 'Ancient China';
+
+  @override
+  String get britishLiterature => 'British Literature';
+
+  @override
+  String get frenchLiterature => 'French Literature';
+
+  @override
+  String get germanLiterature => 'German Literature';
+
+  @override
+  String get italianLiterature => 'Italian Literature';
+
+  @override
+  String get jinDynasty => 'Jin Dynasty';
+
+  @override
+  String get preQinEra => 'Pre-Qin';
+
+  @override
+  String get qingDynasty => 'Qing Dynasty';
+
+  @override
+  String get republicOfChinaEra => 'Republic of China';
+
+  @override
+  String get russianLiterature => 'Russian Literature';
+
+  @override
+  String get spanishLiterature => 'Spanish Literature';
+
+  @override
+  String get springAndAutumn => 'Spring and Autumn period';
+
+  @override
+  String get westernHan => 'Western Han';
 }

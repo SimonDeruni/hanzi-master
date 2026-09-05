@@ -51,6 +51,7 @@ class _StoryCulturalInsightScreenState
 
   Future<CulturalInsight> _fetchInsight() async {
     final geminiService = ref.read(geminiServiceProvider);
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
     String content = widget.story.summary;
     // Load the full poem text for classical literature
     if (widget.story.link.startsWith('tang_poetry_')) {
@@ -60,7 +61,9 @@ class _StoryCulturalInsightScreenState
       }
     }
     return geminiService.generateCulturalInsight(
-      widget.story.titleEn ?? widget.story.title,
+      widget.story.localizedTitle(
+        localeCode,
+      ),
       content,
     );
   }
@@ -85,7 +88,9 @@ class _StoryCulturalInsightScreenState
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                widget.story.titleEn ?? widget.story.title,
+                widget.story.localizedTitle(
+                  Localizations.localeOf(context).toLanguageTag(),
+                ),
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

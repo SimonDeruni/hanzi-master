@@ -276,7 +276,7 @@
   "focusArea": "Domaine d'intérêt",
   "specificContextOrTone": "Contexte ou ton spécifique (Facultatif)",
   "numberOfCards": "Nombre de cartes",
-  "generateDeck": "Générer le paquet",
+  "generateDeck": "Générer le deck",
   "aiGrammarExplanation": "Explication grammaticale IA",
   "scholarsDesk": "Bureau du savant",
   "chooseADeck": "Choisissez un paquet",
@@ -487,7 +487,7 @@
   "aClassicTangDynastyPoemBy": "Un poème classique de la dynastie Tang de",
   "aStructuralComponent": "Un composant structurel.",
   "addSelectedToDeck": "Ajouter la selection au paquet",
-  "addTo": "Ajouter à ",
+  "addTo": "Ajouter à {target}",
   "addedHanziToYourLibrary": "'{hanzi}' ajouté à votre bibliothèque",
   "@addedHanziToYourLibrary": {
     "placeholders": {
@@ -508,6 +508,8 @@
   "analyzingClassicalCharacters": "Analyse des caractères classiques...",
   "anatomy": "Anatomie",
   "ancientPhilosophy": "Philosophie antique",
+  "warringStates": "Royaumes combattants",
+  "hanFeiLegalism": "Han Fei (v. 280-233 av. J.-C.) était un prince de l'État de Han et le principal penseur du légisme chinois. En réunissant les notions de loi, de technique administrative et d'autorité, ses écrits dans le Han Feizi ont profondément influencé la philosophie politique et les institutions de la Chine impériale.",
   "articleSavedToMediaHub": "Article enregistré dans Media Hub !",
   "askAFollowUp": "Posez une question complémentaire...",
   "audioPrivacyAndHowThingsWork": "Audio, confidentialité et fonctionnement",
@@ -993,7 +995,7 @@
   "error": "Erreur : {error}",
   "aiSmartContext": "Contexte intelligent IA",
   "aiSmartContextError": "Erreur de Contexte intelligent IA",
-  "downloadOfficialHskCollections": "Télécharger les collections HSK officielles",
+  "downloadOfficialHskCollections": "Télécharger les collections officielles HSK",
   "unableToLoadThisSection": "Impossible de charger cette section. Veuillez réessayer.",
   "translationLanguage": "Langue de traduction",
   "dailyDrops": "Doses quotidiennes",
@@ -1075,7 +1077,7 @@
   "aiSmartContext1": "Contexte intelligent IA",
   "aiSmartContextError1": "Erreur de Contexte intelligent IA",
   "errorErr": "Erreur : {error}",
-  "downloadOfficialHskCollections1": "Télécharger les collections HSK officielles",
+  "downloadOfficialHskCollections1": "Télécharger les collections officielles HSK",
   "unableToLoadThisSectionPleaseTryAga": "Impossible de charger cette section. Veuillez réessayer.",
   "searchRadicalsEgWater": "Rechercher des radicaux (ex. Eau, 氵)",
   "ui__currentstrokeindex1totalstrokes": "{current}/{total}",
@@ -1096,7 +1098,7 @@
   "readingMode1": "Mode Lecture",
   "recallMode1": "Mode Rappel",
   "speakingMode1": "Mode Expression orale",
-  "practiceMode1": "Mode Pratique",
+  "practiceMode1": "Mode de pratique",
   "acc": "{acc} %",
   "partner1": "Partenaire",
   "partnerSpeaking1": "Le partenaire parle…",
@@ -1637,8 +1639,8 @@
   "targetDeck": "Deck cible",
   "mixed": "Mixte",
   "topicForContext": "Sujet (pour le contexte)",
-  "nounsOnly": "Noms seulement",
-  "verbsOnly": "Verbes seulement",
+  "nounsOnly": "Noms uniquement",
+  "verbsOnly": "Verbes uniquement",
   "idiomsChengyu": "Idiomes (Chengyu)",
   "fullSentences": "Phrases complètes",
   "beginnerHsk12": "Débutant (HSK 1-2)",
@@ -1669,7 +1671,7 @@
   "areThereCommonHomophonesThatAreOfte": "Existe-t-il des homophones courants souvent confondus avec celui-ci ?",
   "quotaExceeded": "Quota dépassé",
   "mustProvideEitherCardOrCards": "Vous devez fournir une carte ou des cartes",
-  "deckSettings": "Paramètres du deck",
+  "deckSettings": "Paramètres du paquet",
   "saveSettings": "Enregistrer les paramètres",
   "sealRed": "Sceau rouge",
   "sealScript": "Écriture sigillaire",
@@ -2175,6 +2177,7 @@
   "wordFamilyChip": "🔗 Famille de mots",
   "idiomChip": "🀄 Expression",
   "proverbChip": "💬 Proverbe",
+  "isThereAChineseIdiomFeaturingThisCharacter": "Existe-t-il un idiome chinois (成语) contenant ce caractère ?",
   "strokeOrderChip": "✏️ Ordre des traits",
   "calligraphyTipChip": "🎨 Conseil calligraphie",
   "grammarNoteChip": "📝 Note de grammaire",
@@ -2201,7 +2204,7 @@
   "studyNoEligibleCardsDescription": "Aucune carte n'est éligible pour ce mode d'étude pour le moment.",
   "studySessionLoadFailed": "Impossible de charger cette session d'étude. Veuillez réessayer.",
   "retryLimitReached": "Cette carte reviendra lors de votre prochaine session.",
-  "libraryLabel": "文化书房 Bibliothèque",
+  "libraryLabel": "Bibliothèque",
   "aiDataPrivacyTitle": "Données IA et confidentialité",
   "aiDataPrivacySettingsSubtitle": "Découvrez ce que les fonctionnalités IA envoient, pourquoi et à qui",
   "aiDataPrivacyOverviewTitle": "Utilisation de l'IA",
@@ -2399,7 +2402,7 @@
   "decrease": "Diminuer",
   "increase": "Augmenter",
   "label0MeansThisCardType": "0 signifie que ce type de carte est désactivé.",
-  "tapTheValueToEnter": "Appuyez sur la valeur pour entrer une limite exacte.",
+  "tapTheValueToEnter": "Appuyez sur la valeur pour saisir une limite exacte.",
   "exactDailyLimit": "Limite quotidienne exacte",
   "enter0ToDisable": "Entrez 0 pour désactiver.",
   "apply": "Appliquer",
@@ -3891,5 +3894,56 @@
     }
   },
   "aiSummary": "Résumé IA",
-  "readability": "Lisibilité"
+  "readability": "Lisibilité",
+  "translateAction": "Traduire",
+  "checkingDownload": "V?rification du t?l?chargement",
+  "downloadingBook": "T?l?chargement : {percent} %",
+  "@downloadingBook": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retryDownload": "R?essayer le t?l?chargement",
+  "downloadBook": "T?l?charger le livre",
+  "continueChapter": "Continuer au chapitre {chapter}",
+  "@continueChapter": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadBookError": "Impossible de t?l?charger ce livre. V?rifiez votre connexion et r?essayez.",
+  "downloadBookOffline": "T?l?chargez le livre pour lire ses {count} chapitres hors ligne.",
+  "@downloadBookOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "poemCount": "{count, plural, =1{1 po?me} other{{count} po?mes}}",
+  "@poemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "americanLiterature": "Litt?rature am?ricaine",
+  "ancientChina": "Chine antique",
+  "britishLiterature": "Litt?rature britannique",
+  "frenchLiterature": "Litt?rature fran?aise",
+  "germanLiterature": "Litt?rature allemande",
+  "italianLiterature": "Litt?rature italienne",
+  "jinDynasty": "Dynastie Jin",
+  "preQinEra": "?poque pr?-Qin",
+  "qingDynasty": "Dynastie Qing",
+  "republicOfChinaEra": "R?publique de Chine",
+  "russianLiterature": "Litt?rature russe",
+  "spanishLiterature": "Litt?rature espagnole",
+  "springAndAutumn": "P?riode des Printemps et Automnes",
+  "westernHan": "Han occidentaux"
 }

@@ -3,6 +3,9 @@
     "id": "journey_to_the_west",
     "title": "西游记",
     "titleEn": "Journey to the West",
+    "localizedTitles": {
+      "fr": "Voyage vers l'Ouest"
+    },
     "author": "吴承恩",
     "authorEn": "Wu Cheng'en",
     "category": "Chinese Epics",
@@ -23,6 +26,9 @@
     "id": "romance_of_three_kingdoms",
     "title": "三国演义",
     "titleEn": "Romance of the Three Kingdoms",
+    "localizedTitles": {
+      "fr": "Le Roman des Trois Royaumes"
+    },
     "author": "罗贯中",
     "authorEn": "Luo Guanzhong",
     "category": "Chinese Epics",
