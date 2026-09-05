@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Interactive Video Transcript Deduplication & Contiguous Timestamp Merging
+- Resolved issue where identical transcript sentences appeared multiple times consecutively in the video player timeline (caused by 2-second slicing and roll-up subtitle duplication in creator video uploads, such as vlog `LcUoiBwG-OA`):
+  - Implemented `YoutubeRepository.deduplicateAndMergeLines()` to normalize text (stripping whitespace, commas, periods, quotes, and punctuation) and detect contiguous or near-contiguous duplicate cues within a 2.5-second threshold.
+  - Merged contiguous duplicate segments into a single unified sentence, smoothly extending its playback duration (`duration = extendedEnd - prev.start`) and preserving the richest pinyin and translations.
+  - Enhanced YouTube caption track selection with `_scoreTrack()`: strictly prioritizes human-uploaded standard Chinese character tracks (`zh-Hans`, `zh-CN`, `zh-Hant`, `zh-TW`) over generic or auto-generated tracks.
+  - Added defensive deduplication at the presentation layer in `SmartMediaDeskScreen._loadData` before initializing line keys or dispatching to Gemini AI translation.
+  - Added unit test suite `test/unit_tests/transcript_deduplication_test.dart` validating empty/single lists, contiguous identical cue merging and duration extension, punctuation/whitespace normalization, distant repetition preservation, and distinct sentence ordering.
+  - Verified `dart analyze`: **0 errors, 0 warnings, 0 infos** and 100% test pass rate.
+
 ### [2026-09-05] Shadowing Studio Full Sentence Context & Target Hanzi Highlighting
 - Resolved disconnect when launching Shadowing Studio from a specific character in Quick Look:
   - Ensured that when practicing a character from a reading sentence, Shadowing Studio displays the full sentence's tone-marked Pinyin (generated offline via `PinyinHelper.getPinyinE`) and the complete sentence's English translation (via `LocalTranslationService` with background resolution), instead of only the single character's pinyin and dictionary definition.

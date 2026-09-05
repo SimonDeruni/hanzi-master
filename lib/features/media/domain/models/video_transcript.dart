@@ -24,4 +24,20 @@ class TranscriptLine {
   });
 
   Duration get end => start + duration;
+
+  TranscriptLine copyWith({
+    String? text,
+    String? pinyin,
+    Duration? start,
+    Duration? duration,
+    String? translation,
+  }) {
+    return TranscriptLine(
+      text: text ?? this.text,
+      pinyin: pinyin ?? this.pinyin,
+      start: start ?? this.start,
+      duration: duration ?? this.duration,
+      translation: translation ?? this.translation,
+    );
+  }
 }

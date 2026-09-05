@@ -233,14 +233,18 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     try {
       final repository = ref.read(youtubeRepositoryProvider);
       if (mounted) setState(() => _loadingStep = 'Fetching subtitles...');
-      final transcript = await repository.getTranscript(widget.video.id);
+      var transcript = await repository.getTranscript(widget.video.id);
       if (transcript != null) {
+        final cleanedLines = YoutubeRepository.deduplicateAndMergeLines(transcript.lines);
+        if (cleanedLines.length != transcript.lines.length) {
+          transcript = VideoTranscript(videoId: transcript.videoId, lines: cleanedLines);
+        }
         if (mounted) {
           setState(() {
             _transcript = transcript;
             _lineKeys.clear();
             _lineKeys.addAll(
-                List.generate(transcript.lines.length, (_) => GlobalKey()));
+                List.generate(transcript!.lines.length, (_) => GlobalKey()));
             _isLoading = false;
             _loadingStep = 'Generating AI briefing...';
           });
