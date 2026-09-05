@@ -5,11 +5,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_ca
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 
 void main() {
-  testWidgets('quiet path completes all five preview steps', (tester) async {
-    tester.view.physicalSize = const Size(1080, 2400);
-    tester.view.devicePixelRatio = 2.0;
-    addTearDown(() => tester.view.resetPhysicalSize());
-
+  testWidgets('quiet path completes all six preview steps', (tester) async {
     var completed = false;
     await tester.pumpWidget(
       ProviderScope(
@@ -21,37 +17,33 @@ void main() {
         ),
       ),
     );
-    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pumpAndSettle();
 
-    expect(find.text('Audiobook Reader'), findsOneWidget);
-    await tester.ensureVisible(find.text('Next: Shadow this sentence →'));
-    await tester.tap(find.text('Next: Shadow this sentence →'));
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('Shadowing & Tones'), findsOneWidget);
+    expect(find.text('Listen'), findsOneWidget);
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    expect(find.text('Notice'), findsOneWidget);
 
-    await tester.ensureVisible(find.text("I can't speak right now (Try tone demo)"));
-    await tester.tap(find.text("I can't speak right now (Try tone demo)"));
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('Tone Pitch Contour Evaluation'), findsOneWidget);
+    await tester.tap(find.text('Shadow one sentence'));
+    await tester.pumpAndSettle();
+    expect(find.text('Shadow'), findsOneWidget);
+    expect(find.text("I can't speak right now"), findsOneWidget);
 
-    await tester.ensureVisible(find.text('Next: Explore Chinese Web →'));
-    await tester.tap(find.text('Next: Explore Chinese Web →'));
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('Web Explorer'), findsOneWidget);
+    await tester.tap(find.text("I can't speak right now"));
+    await tester.pumpAndSettle();
+    expect(find.text('Four tones'), findsOneWidget);
+    expect(find.text('You: 2  ·  Target: 3'), findsOneWidget);
 
-    await tester.ensureVisible(find.text('Next: Discuss with AI Tutor →'));
-    await tester.tap(find.text('Next: Discuss with AI Tutor →'));
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('AI Voice Roleplay'), findsOneWidget);
+    await tester.tap(find.text('Try handwriting'));
+    await tester.pumpAndSettle();
+    expect(find.text('Write'), findsOneWidget);
 
-    await tester.ensureVisible(find.text('Next: Practice Handwriting →'));
-    await tester.tap(find.text('Next: Practice Handwriting →'));
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('Guided Handwriting'), findsOneWidget);
+    await tester.tap(find.text('See what you learned'));
+    await tester.pumpAndSettle();
+    expect(find.text('Recap'), findsOneWidget);
+    expect(find.text('Compared Mandarin tones'), findsOneWidget);
 
-    await tester.ensureVisible(find.text('See Your Personalized Plan →'));
-    await tester.tap(find.text('See Your Personalized Plan →'));
-    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(find.text('Continue'));
     expect(completed, isTrue);
   });
 

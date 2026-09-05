@@ -4,14 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
-### [2026-09-05] 5-Step Ultra-Guided Interactive Onboarding Mini-Lesson
-- Completely redesigned `OnboardingMiniLessonScreen` into an ultra-guided, interactive 5-step learning tour showcasing authentic app tools with zero placeholders:
-  1. 🎧 **Studio Audiobook Reader**: Ba Jin's 《春》 with Azure neural voice selector chips (`Fenrir`, `Aoede`, `Kore`, `Charon`) with subtle gold glowing indicators and tappable Chinese characters opening instant `QuickLookSheet` dictionary cards.
-  2. 🎙️ **Sentence Shadowing & 4 Tones**: 「我打开窗户。」 sentence shadowing with real-time mic recording/Gemini tone assessment, tone contour chips, `ToneComparisonSheet` inspection, and a responsive quiet demo path.
-  3. 🌐 **Chinese Web Explorer**: Live BBC Chinese space exploration article snippet with HSK 6 & Readability pills, pulsing character highlights, and instant popover definitions.
-  4. 🤖 **Gemini AI Voice Roleplay**: Gemini AI Scholar tutor audio prompt (*“关于这篇文章，你有什么看法？”*), spoken conversational reply options, and instant 98% Tone Match validation feedback.
-  5. ✍️ **Guided Handwriting Canvas**: Trace 「好」 using `OnboardingPracticeCanvas`, bundled SVG strokes (`hsk1_strokes.json`), and median stroke guidelines.
-- Tested and verified: All unit tests pass in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and `flutter analyze` reports 0 issues.
+### [2026-09-05] Restored 6-Step Interactive Onboarding Mini-Lesson
+- Reverted `OnboardingMiniLessonScreen` back to the stable 6-step preview loop:
+  1. 🎧 **Listen**: Authentic audio passage from Ba Jin's 《春》 with natural narration and book cover attribution.
+  2. 🔍 **Notice**: Tappable character sentence with Pinyin and English translation opening instant dictionary cards.
+  3. 🎙️ **Shadow**: Microphone recording with audio playback analysis and quiet demo option.
+  4. 🎵 **Four tones**: Interactive tone pitch breakdown via `ToneComparisonSheet`.
+  5. ✍️ **Write**: Tracing 「好」 using `OnboardingPracticeCanvas` and bundled stroke outlines.
+  6. 📋 **Recap**: Lesson review and summary cards before paywall entry.
+- Maintained all Android cold-start stability improvements (audio service lifecycle handler, Hive translation cache fallback, and startup splash flow).
+- Verified with 100% passing tests in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and 0 analyzer issues.
 
 ### [2026-09-05] Splash Screen Mascot Enlargement & Branding Update
 - Enlarged the central animated mascot sizing (`maxWidth.clamp(0, 360)`) on `AppSplashScreen`.
