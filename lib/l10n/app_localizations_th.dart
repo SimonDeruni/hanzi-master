@@ -12144,6 +12144,11 @@ class AppLocalizationsTh extends AppLocalizations {
   String get sameNumberOfCardsAs => 'จำนวนบัตรคำเท่ากับสัปดาห์ที่แล้ว';
 
   @override
+  String cardsComparedWithLastWeek(String change) {
+    return 'การ์ด $change เทียบกับสัปดาห์ที่แล้ว';
+  }
+
+  @override
   String get todaySPractice => 'การฝึกฝนของวันนี้';
 
   @override
@@ -12162,6 +12167,11 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get activeDays => 'วันที่ใช้งาน';
+
+  @override
+  String dayStreakCount(int count) {
+    return 'ต่อเนื่อง $count วัน';
+  }
 
   @override
   String get masterChineseOneStrokeAt => 'เชี่ยวชาญภาษาจีน ทีละขีด';
@@ -12366,4 +12376,10 @@ class AppLocalizationsTh extends AppLocalizations {
   String cardsCount(num count) {
     return '$count Cards';
   }
+
+  @override
+  String get aiSummary => 'บทสรุป AI';
+
+  @override
+  String get readability => 'ความง่ายในการอ่าน';
 }

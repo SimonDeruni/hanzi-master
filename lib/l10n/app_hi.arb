@@ -3835,12 +3835,14 @@
   "paymentIsChargedToYour2": "भुगतान आपके App Store खाते से लिया जाता है। सदस्यता स्वचालित रूप से नवीनीकृत हो जाती है जब तक कि वर्तमान अवधि समाप्त होने से कम से कम 24 घंटे पहले रद्द न की जाए।",
   "yourFirstWeekOfTracked": "ट्रैक किए गए अभ्यास का आपका पहला सप्ताह",
   "sameNumberOfCardsAs": "पिछले सप्ताह जितने ही कार्ड",
+  "cardsComparedWithLastWeek": "पिछले सप्ताह की तुलना में {change} कार्ड",
   "todaySPractice": "आज का अभ्यास",
   "goalCompleteAnythingMoreIs": "लक्ष्य पूरा हुआ — इसके अलावा सब कुछ एक बोनस है।",
   "aSmallAchievableTargetNo": "एक छोटा, प्राप्त करने योग्य लक्ष्य। आराम के दिन के लिए कोई पेनल्टी नहीं।",
   "thisWeek": "इस सप्ताह",
   "minutes": "मिनट",
   "activeDays": "सक्रिय दिन",
+  "dayStreakCount": "{count} दिन की स्ट्रीक",
   "masterChineseOneStrokeAt": "एक बार में एक स्ट्रोक के साथ चीनी भाषा में महारत हासिल करें",
   "dictionaryExpansionButton": "शब्दकोश विस्तार बटन",
   "kIErweiterterWRterbucheintrag": "AI-विस्तृत शब्दकोश प्रविष्टि",
@@ -3911,5 +3913,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "AI सारांश",
+  "readability": "पठनीयता"
 }

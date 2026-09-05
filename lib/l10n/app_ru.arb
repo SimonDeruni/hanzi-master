@@ -3824,12 +3824,14 @@
   "paymentIsChargedToYour2": "Оплата списывается с вашего аккаунта App Store. Подписка продлевается автоматически, если она не была отменена хотя бы за 24 часа до окончания текущего периода.",
   "yourFirstWeekOfTracked": "Ваша первая неделя занятий со статистикой",
   "sameNumberOfCardsAs": "Столько же карточек, сколько на прошлой неделе",
+  "cardsComparedWithLastWeek": "{change} карточек по сравнению с прошлой неделей",
   "todaySPractice": "Практика на сегодня",
   "goalCompleteAnythingMoreIs": "Цель достигнута — остальное уже бонус.",
   "aSmallAchievableTargetNo": "Небольшая, достижимая цель. Без штрафов за день отдыха.",
   "thisWeek": "На этой неделе",
   "minutes": "Минуты",
   "activeDays": "Дни активности",
+  "dayStreakCount": "Серия: {count} дней",
   "masterChineseOneStrokeAt": "Осваивайте китайский черта за чертой",
   "dictionaryExpansionButton": "dictionary-expansion-button",
   "kIErweiterterWRterbucheintrag": "Расширенная словарная статья ИИ",
@@ -3900,5 +3902,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "Сводка ИИ",
+  "readability": "Читаемость"
 }

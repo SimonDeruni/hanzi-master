@@ -3894,12 +3894,14 @@
   "paymentIsChargedToYour2": "ระบบจะเรียกเก็บเงินผ่านบัญชี App Store ของคุณ การสมัครสมาชิกจะต่ออายุโดยอัตโนมัติเว้นแต่จะยกเลิกอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบปัจจุบัน",
   "yourFirstWeekOfTracked": "สัปดาห์แรกของการฝึกฝนที่คุณติดตาม",
   "sameNumberOfCardsAs": "จำนวนบัตรคำเท่ากับสัปดาห์ที่แล้ว",
+  "cardsComparedWithLastWeek": "การ์ด {change} เทียบกับสัปดาห์ที่แล้ว",
   "todaySPractice": "การฝึกฝนของวันนี้",
   "goalCompleteAnythingMoreIs": "บรรลุเป้าหมายแล้ว ส่วนที่เหลือถือเป็นโบนัส",
   "aSmallAchievableTargetNo": "เป้าหมายเล็กๆ ที่ทำได้จริง ไม่มีการลงโทษหากหยุดพัก",
   "thisWeek": "สัปดาห์นี้",
   "minutes": "นาที",
   "activeDays": "วันที่ใช้งาน",
+  "dayStreakCount": "ต่อเนื่อง {count} วัน",
   "masterChineseOneStrokeAt": "เชี่ยวชาญภาษาจีน ทีละขีด",
   "dictionaryExpansionButton": "ปุ่มขยายพจนานุกรม",
   "kIErweiterterWRterbucheintrag": "รายละเอียดพจนานุกรมที่ขยายโดย AI",
@@ -3970,5 +3972,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "บทสรุป AI",
+  "readability": "ความง่ายในการอ่าน"
 }

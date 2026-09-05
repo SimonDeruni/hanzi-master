@@ -3892,12 +3892,28 @@
   "paymentIsChargedToYour2": "Payment is charged to your App Store account. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.",
   "yourFirstWeekOfTracked": "Your first week of tracked practice",
   "sameNumberOfCardsAs": "Same number of cards as last week",
+  "cardsComparedWithLastWeek": "{change} cards vs last week",
+  "@cardsComparedWithLastWeek": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      }
+    }
+  },
   "todaySPractice": "Today’s practice",
   "goalCompleteAnythingMoreIs": "Goal complete — anything more is a bonus.",
   "aSmallAchievableTargetNo": "A small, achievable target. No penalty for a rest day.",
   "thisWeek": "This week",
   "minutes": "Minutes",
   "activeDays": "Active days",
+  "dayStreakCount": "{count}-day streak",
+  "@dayStreakCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "masterChineseOneStrokeAt": "Master Chinese, one stroke at a time",
   "dictionaryExpansionButton": "dictionary-expansion-button",
   "kIErweiterterWRterbucheintrag": "KI-erweiterter Wörterbucheintrag",
@@ -3968,5 +3984,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "AI Summary",
+  "readability": "Readability"
 }

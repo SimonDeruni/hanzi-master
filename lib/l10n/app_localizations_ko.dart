@@ -11871,6 +11871,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sameNumberOfCardsAs => '지난주와 동일한 카드 수';
 
   @override
+  String cardsComparedWithLastWeek(String change) {
+    return '지난주 대비 카드 $change';
+  }
+
+  @override
   String get todaySPractice => '오늘의 연습';
 
   @override
@@ -11887,6 +11892,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get activeDays => '학습한 날';
+
+  @override
+  String dayStreakCount(int count) {
+    return '$count일 연속';
+  }
 
   @override
   String get masterChineseOneStrokeAt => '한 획씩 완성하는 중국어';
@@ -12081,4 +12091,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String cardsCount(num count) {
     return '$count Cards';
   }
+
+  @override
+  String get aiSummary => 'AI 요약';
+
+  @override
+  String get readability => '가독성';
 }

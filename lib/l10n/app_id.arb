@@ -3805,12 +3805,14 @@
   "paymentIsChargedToYour2": "Pembayaran ditagihkan ke akun App Store Anda. Langganan diperbarui secara otomatis kecuali dibatalkan setidaknya 24 jam sebelum akhir periode saat ini.",
   "yourFirstWeekOfTracked": "Minggu pertama latihan terlacak Anda",
   "sameNumberOfCardsAs": "Jumlah kartu yang sama dengan minggu lalu",
+  "cardsComparedWithLastWeek": "{change} kartu dibandingkan minggu lalu",
   "todaySPractice": "Latihan hari ini",
   "goalCompleteAnythingMoreIs": "Target tercapai — sisanya adalah bonus.",
   "aSmallAchievableTargetNo": "Target kecil yang dapat dicapai. Tanpa penalti untuk hari istirahat.",
   "thisWeek": "Minggu ini",
   "minutes": "Menit",
   "activeDays": "Hari aktif",
+  "dayStreakCount": "Rangkaian {count} hari",
   "masterChineseOneStrokeAt": "Kuasai bahasa Mandarin, goresan demi goresan",
   "dictionaryExpansionButton": "tombol perluasan kamus",
   "kIErweiterterWRterbucheintrag": "Detail kamus diperluas AI",
@@ -3881,5 +3883,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "Ringkasan AI",
+  "readability": "Keterbacaan"
 }

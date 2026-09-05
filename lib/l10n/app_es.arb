@@ -3817,12 +3817,14 @@
   "paymentIsChargedToYour2": "El pago se carga a tu cuenta de App Store. Las suscripciones se renuevan automáticamente a menos que se cancelen al menos 24 horas antes del final del período actual.",
   "yourFirstWeekOfTracked": "Tu primera semana de práctica registrada",
   "sameNumberOfCardsAs": "Mismo número de tarjetas que la semana pasada",
+  "cardsComparedWithLastWeek": "{change} tarjetas respecto a la semana pasada",
   "todaySPractice": "Práctica de hoy",
   "goalCompleteAnythingMoreIs": "Objetivo completado: todo lo demás es un extra.",
   "aSmallAchievableTargetNo": "Un objetivo pequeño y alcanzable. Sin penalización por un día de descanso.",
   "thisWeek": "Esta semana",
   "minutes": "Minutos",
   "activeDays": "Días activos",
+  "dayStreakCount": "Racha de {count} días",
   "masterChineseOneStrokeAt": "Domina el chino, trazo a trazo",
   "dictionaryExpansionButton": "Botón de expansión del diccionario",
   "kIErweiterterWRterbucheintrag": "Entrada de diccionario ampliada por IA",
@@ -3893,5 +3895,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "Resumen de IA",
+  "readability": "Legibilidad"
 }

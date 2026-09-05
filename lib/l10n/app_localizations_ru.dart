@@ -12221,6 +12221,11 @@ class AppLocalizationsRu extends AppLocalizations {
       'Столько же карточек, сколько на прошлой неделе';
 
   @override
+  String cardsComparedWithLastWeek(String change) {
+    return '$change карточек по сравнению с прошлой неделей';
+  }
+
+  @override
   String get todaySPractice => 'Практика на сегодня';
 
   @override
@@ -12239,6 +12244,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get activeDays => 'Дни активности';
+
+  @override
+  String dayStreakCount(int count) {
+    return 'Серия: $count дней';
+  }
 
   @override
   String get masterChineseOneStrokeAt => 'Осваивайте китайский черта за чертой';
@@ -12443,4 +12453,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String cardsCount(num count) {
     return '$count Cards';
   }
+
+  @override
+  String get aiSummary => 'Сводка ИИ';
+
+  @override
+  String get readability => 'Читаемость';
 }

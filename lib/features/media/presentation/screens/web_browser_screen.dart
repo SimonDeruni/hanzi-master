@@ -855,6 +855,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
   void _applyZenMode({bool darkMode = false}) {
     final isStoryMode = widget.isStoryMode;
+    final l10n = AppLocalizations.of(context);
+    final aiIsReadingText = l10n?.aiIsReading ?? 'AI is reading...';
+    final safeAiIsReadingText = aiIsReadingText.replaceAll("'", "\\'").replaceAll('"', '\\"');
 
     // Theme-aware colors
     final bgColor = darkMode ? '#1A1A1B' : '#FDFCF0';
@@ -917,7 +920,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         <div id="ai-insight-banner" style="margin-bottom: 30px; font-family: sans-serif; opacity: 0.7;">
           <div style="display: flex; align-items: center; margin-bottom: 15px;">
              <div style="width: 20px; height: 20px; border: 2px solid $skeletonBorderColor; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-             <span style="margin-left: 12px; font-size: 14px; font-weight: bold; color: $aiLoadingTextColor;">AI is reading...</span>
+             <span style="margin-left: 12px; font-size: 14px; font-weight: bold; color: $aiLoadingTextColor;">$safeAiIsReadingText</span>
           </div>
           <div style="height: 12px; background-color: $skeletonBgColor; border-radius: 4px; margin-bottom: 8px;"></div>
           <div style="height: 12px; background-color: $skeletonBgColor; border-radius: 4px; width: 70%;"></div>
@@ -984,6 +987,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
         if (_isZenMode) {
           final isDark = Theme.of(context).brightness == Brightness.dark;
+          final l10n = AppLocalizations.of(context);
+          final readabilityLabel = l10n?.readability ?? 'Readability';
+          final aiSummaryLabel = l10n?.aiSummary ?? 'AI Summary';
           final toggleBtnColor =
               isDark ? 'rgba(218,218,218,0.5)' : 'rgba(26,26,27,0.5)';
           final summaryTextColor =
@@ -997,12 +1003,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
               banner.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
                    <div style="background: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.4); color: #b38600; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">HSK ${insight.hskLevel}</div>
-                   <div style="background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.35); color: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">Readability ${insight.score}%</div>
+                   <div style="background: rgba(76, 175, 80, 0.12); border: 1px solid rgba(76, 175, 80, 0.35); color: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; font-family: sans-serif;">$readabilityLabel ${insight.score}%</div>
                 </div>
                 <div>
                    <button id="summary-toggle-btn" style="display: inline-flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; color: $toggleBtnColor; cursor: pointer; font-size: 13px; font-family: sans-serif; letter-spacing: 0.2px;">
                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="toggle-chevron"><polyline points="6 9 12 15 18 9"/></svg>
-                     AI Summary
+                     $aiSummaryLabel
                    </button>
                    <div id="summary-text" style="display: none; margin-top: 12px; font-size: 15px; color: $summaryTextColor; line-height: 1.6; font-family: sans-serif; border-left: 2px solid $summaryBorderColor; padding-left: 12px;">
                      \${safeSummary}

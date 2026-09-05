@@ -3810,12 +3810,14 @@
   "paymentIsChargedToYour2": "Thanh toán sẽ được tính vào tài khoản App Store của bạn. Gói đăng ký tự động gia hạn trừ khi bị hủy ít nhất 24 giờ trước khi kết thúc kỳ hiện tại.",
   "yourFirstWeekOfTracked": "Tuần đầu tiên luyện tập có theo dõi",
   "sameNumberOfCardsAs": "Số lượng thẻ bằng tuần trước",
+  "cardsComparedWithLastWeek": "{change} thẻ so với tuần trước",
   "todaySPractice": "Luyện tập hôm nay",
   "goalCompleteAnythingMoreIs": "Đã đạt mục tiêu — học thêm là một điểm cộng.",
   "aSmallAchievableTargetNo": "Một mục tiêu nhỏ, dễ đạt được. Không bị phạt nếu nghỉ một ngày.",
   "thisWeek": "Tuần này",
   "minutes": "Phút",
   "activeDays": "Ngày hoạt động",
+  "dayStreakCount": "Chuỗi {count} ngày",
   "masterChineseOneStrokeAt": "Làm chủ tiếng Trung, từng nét một",
   "dictionaryExpansionButton": "nút-mở-rộng-từ-điển",
   "kIErweiterterWRterbucheintrag": "Chi tiết từ điển mở rộng bởi AI",
@@ -3886,5 +3888,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "Tóm tắt AI",
+  "readability": "Độ dễ đọc"
 }

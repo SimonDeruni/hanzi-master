@@ -3902,12 +3902,14 @@
   "paymentIsChargedToYour2": "يُخصم المبلغ من حساب App Store الخاص بك. تتجدد الاشتراكات تلقائيًا ما لم تُتلغَ قبل 24 ساعة على الأقل من نهاية الفترة الحالية.",
   "yourFirstWeekOfTracked": "أسبوعك الأول من التمرين المسجل",
   "sameNumberOfCardsAs": "نفس عدد بطاقات الأسبوع الماضي",
+  "cardsComparedWithLastWeek": "{change} بطاقات مقارنة بالأسبوع الماضي",
   "todaySPractice": "تمرين اليوم",
   "goalCompleteAnythingMoreIs": "اكتمل الهدف — وما زاد فهو إنجاز إضافي.",
   "aSmallAchievableTargetNo": "هدف صغير وقابل للتحقيق. لا عقوبة على أخذ يوم راحة.",
   "thisWeek": "هذا الأسبوع",
   "minutes": "دقائق",
   "activeDays": "أيام النشاط",
+  "dayStreakCount": "سلسلة لمدة {count} أيام",
   "masterChineseOneStrokeAt": "أتقن الصينية، خطاً تلو الآخر",
   "dictionaryExpansionButton": "زر توسيع القاموس",
   "kIErweiterterWRterbucheintrag": "تفاصيل القاموس الموسعة بالذكاء الاصطناعي",
@@ -3978,5 +3980,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "ملخص الذكاء الاصطناعي",
+  "readability": "سهولة القراءة"
 }

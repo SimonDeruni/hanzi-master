@@ -3760,12 +3760,14 @@
   "paymentIsChargedToYour2": "Die Zahlung wird deinem App Store-Konto belastet. Abonnements verlängern sich automatisch, es sei denn, sie werden mindestens 24 Stunden vor Ablauf des aktuellen Zeitraums gekündigt.",
   "yourFirstWeekOfTracked": "Deine erste Woche mit erfasster Übung",
   "sameNumberOfCardsAs": "Gleiche Kartenanzahl wie letzte Woche",
+  "cardsComparedWithLastWeek": "{change} Karten gegenüber letzter Woche",
   "todaySPractice": "Heutiges Training",
   "goalCompleteAnythingMoreIs": "Ziel erreicht – alles Weitere ist ein Bonus.",
   "aSmallAchievableTargetNo": "Ein kleines, erreichbares Ziel. Keine Strafe für einen Ruhetag.",
   "thisWeek": "Diese Woche",
   "minutes": "Minuten",
   "activeDays": "Aktive Tage",
+  "dayStreakCount": "{count} Tage in Folge",
   "masterChineseOneStrokeAt": "Meistere Chinesisch, Strich für Strich",
   "dictionaryExpansionButton": "Wörterbuch-Erweiterungs-Button",
   "kIErweiterterWRterbucheintrag": "KI-erweiterter Wörterbucheintrag",
@@ -3836,5 +3838,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "KI-Zusammenfassung",
+  "readability": "Lesbarkeit"
 }

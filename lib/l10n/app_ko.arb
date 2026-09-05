@@ -3822,12 +3822,14 @@
   "paymentIsChargedToYour2": "결제는 App Store 계정으로 청구됩니다. 현재 기간이 끝나기 최소 24시간 전에 취소하지 않으면 구독이 자동으로 갱신됩니다.",
   "yourFirstWeekOfTracked": "기록된 첫 주 연습",
   "sameNumberOfCardsAs": "지난주와 동일한 카드 수",
+  "cardsComparedWithLastWeek": "지난주 대비 카드 {change}",
   "todaySPractice": "오늘의 연습",
   "goalCompleteAnythingMoreIs": "목표 달성 — 추가 학습은 보너스입니다.",
   "aSmallAchievableTargetNo": "달성 가능한 작은 목표. 쉬어가는 날도 부담 없이.",
   "thisWeek": "이번 주",
   "minutes": "분",
   "activeDays": "학습한 날",
+  "dayStreakCount": "{count}일 연속",
   "masterChineseOneStrokeAt": "한 획씩 완성하는 중국어",
   "dictionaryExpansionButton": "사전 확장 버튼",
   "kIErweiterterWRterbucheintrag": "AI 확장 사전 항목",
@@ -3898,5 +3900,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "AI 요약",
+  "readability": "가독성"
 }

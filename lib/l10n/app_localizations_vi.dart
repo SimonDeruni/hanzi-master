@@ -12195,6 +12195,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sameNumberOfCardsAs => 'Số lượng thẻ bằng tuần trước';
 
   @override
+  String cardsComparedWithLastWeek(String change) {
+    return '$change thẻ so với tuần trước';
+  }
+
+  @override
   String get todaySPractice => 'Luyện tập hôm nay';
 
   @override
@@ -12213,6 +12218,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get activeDays => 'Ngày hoạt động';
+
+  @override
+  String dayStreakCount(int count) {
+    return 'Chuỗi $count ngày';
+  }
 
   @override
   String get masterChineseOneStrokeAt => 'Làm chủ tiếng Trung, từng nét một';
@@ -12417,4 +12427,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String cardsCount(num count) {
     return '$count Cards';
   }
+
+  @override
+  String get aiSummary => 'Tóm tắt AI';
+
+  @override
+  String get readability => 'Độ dễ đọc';
 }

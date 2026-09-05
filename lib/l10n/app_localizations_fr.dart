@@ -7130,7 +7130,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get completed => 'TERMINÉ';
 
   @override
-  String get aiIsReading => 'L\'IA lit...';
+  String get aiIsReading => 'L\'IA est en train de lire...';
 
   @override
   String get bbcVerify => 'BBC VERIFY';
@@ -12265,6 +12265,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Même nombre de cartes que la semaine dernière';
 
   @override
+  String cardsComparedWithLastWeek(String change) {
+    return '$change de cartes par rapport à la semaine dernière';
+  }
+
+  @override
   String get todaySPractice => 'Pratique du jour';
 
   @override
@@ -12283,6 +12288,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get activeDays => 'Jours actifs';
+
+  @override
+  String dayStreakCount(int count) {
+    return 'Série de $count jours';
+  }
 
   @override
   String get masterChineseOneStrokeAt =>
@@ -12491,4 +12501,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String cardsCount(num count) {
     return '$count cartes';
   }
+
+  @override
+  String get aiSummary => 'Résumé IA';
+
+  @override
+  String get readability => 'Lisibilité';
 }

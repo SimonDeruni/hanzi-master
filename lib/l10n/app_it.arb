@@ -3823,12 +3823,14 @@
   "paymentIsChargedToYour2": "Il pagamento verrà addebitato sul tuo account App Store. L'abbonamento si rinnova automaticamente a meno che non venga annullato almeno 24 ore prima della fine del periodo corrente.",
   "yourFirstWeekOfTracked": "La tua prima settimana di pratica monitorata",
   "sameNumberOfCardsAs": "Stesso numero di carte della settimana scorsa",
+  "cardsComparedWithLastWeek": "{change} carte rispetto alla scorsa settimana",
   "todaySPractice": "Pratica di oggi",
   "goalCompleteAnythingMoreIs": "Obiettivo completato: tutto il resto è un bonus.",
   "aSmallAchievableTargetNo": "Un piccolo obiettivo raggiungibile. Nessuna penalizzazione per i giorni di riposo.",
   "thisWeek": "Questa settimana",
   "minutes": "Minuti",
   "activeDays": "Giorni attivi",
+  "dayStreakCount": "Serie di {count} giorni",
   "masterChineseOneStrokeAt": "Padroneggia il cinese, un tratto alla volta",
   "dictionaryExpansionButton": "Pulsante espansione dizionario",
   "kIErweiterterWRterbucheintrag": "Voce del dizionario ampliata dall'IA",
@@ -3899,5 +3901,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "Riepilogo IA",
+  "readability": "Leggibilità"
 }

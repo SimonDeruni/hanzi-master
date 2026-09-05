@@ -22502,6 +22502,12 @@ abstract class AppLocalizations {
   /// **'Same number of cards as last week'**
   String get sameNumberOfCardsAs;
 
+  /// No description provided for @cardsComparedWithLastWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{change} cards vs last week'**
+  String cardsComparedWithLastWeek(String change);
+
   /// No description provided for @todaySPractice.
   ///
   /// In en, this message translates to:
@@ -22537,6 +22543,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Active days'**
   String get activeDays;
+
+  /// No description provided for @dayStreakCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String dayStreakCount(int count);
 
   /// No description provided for @masterChineseOneStrokeAt.
   ///
@@ -22915,6 +22927,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} Cards'**
   String cardsCount(num count);
+
+  /// No description provided for @aiSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Summary'**
+  String get aiSummary;
+
+  /// No description provided for @readability.
+  ///
+  /// In en, this message translates to:
+  /// **'Readability'**
+  String get readability;
 }
 
 class _AppLocalizationsDelegate

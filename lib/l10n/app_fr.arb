@@ -2148,7 +2148,7 @@
   "classicalPoemsAndVerse": "{count} poèmes classiques et vers",
   "browseAnyChineseWebsite": "Parcourez n'importe quel site web chinois avec un dictionnaire tactile en temps réel, des annotations pinyin et des traductions instantanées.",
   "completed": "TERMINÉ",
-  "aiIsReading": "L'IA lit...",
+  "aiIsReading": "L'IA est en train de lire...",
   "bbcVerify": "BBC VERIFY",
   "hsk1Beginner": "HSK 1 (Débutant)",
   "hsk4UpperInt": "HSK 4 (Intermédiaire supérieur)",
@@ -3811,12 +3811,14 @@
   "paymentIsChargedToYour2": "Le paiement est débité de votre compte App Store. Les abonnements se renouvellent automatiquement, sauf annulation au moins 24 heures avant la fin de la période en cours.",
   "yourFirstWeekOfTracked": "Votre première semaine de pratique suivie",
   "sameNumberOfCardsAs": "Même nombre de cartes que la semaine dernière",
+  "cardsComparedWithLastWeek": "{change} de cartes par rapport à la semaine dernière",
   "todaySPractice": "Pratique du jour",
   "goalCompleteAnythingMoreIs": "Objectif atteint — tout le reste est un bonus.",
   "aSmallAchievableTargetNo": "Un objectif simple et atteignable. Aucune pénalité pour un jour de repos.",
   "thisWeek": "Cette semaine",
   "minutes": "Minutes",
   "activeDays": "Jours actifs",
+  "dayStreakCount": "Série de {count} jours",
   "masterChineseOneStrokeAt": "Maîtrisez le chinois, un trait à la fois",
   "dictionaryExpansionButton": "Bouton d'extension du dictionnaire",
   "kIErweiterterWRterbucheintrag": "Détail enrichi par l'IA",
@@ -3887,5 +3889,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "Résumé IA",
+  "readability": "Lisibilité"
 }

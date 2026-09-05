@@ -3874,12 +3874,14 @@
   "paymentIsChargedToYour2": "お支払いはApp Storeアカウントに請求されます。現在の期間が終了する少なくとも24時間前にキャンセルされない限り、サブスクリプションは自動更新されます。",
   "yourFirstWeekOfTracked": "練習記録の最初の1週間",
   "sameNumberOfCardsAs": "先週と同じカード数",
+  "cardsComparedWithLastWeek": "先週比 {change} カード",
   "todaySPractice": "今日の練習",
   "goalCompleteAnythingMoreIs": "目標達成！ここからはボーナスです。",
   "aSmallAchievableTargetNo": "無理のない達成可能な目標。休んでもペナルティはありません。",
   "thisWeek": "今週",
   "minutes": "分",
   "activeDays": "学習日数",
+  "dayStreakCount": "{count}日連続",
   "masterChineseOneStrokeAt": "一画ずつ、中国語をマスターしよう",
   "dictionaryExpansionButton": "辞書拡張ボタン",
   "kIErweiterterWRterbucheintrag": "AI拡張辞書エントリー",
@@ -3950,5 +3952,7 @@
         "type": "num"
       }
     }
-  }
+  },
+  "aiSummary": "AI要約",
+  "readability": "読みやすさ"
 }

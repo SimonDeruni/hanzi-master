@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] In-App Browser Zen Mode & AI Reading Status Localization
+- Localized the in-app browser article Zen Mode AI loading and summary elements across all 14 supported languages (EN, FR, ES, DE, IT, PT, RU, JA, KO, VI, ID, AR, HI, TH):
+  - Localized the skeleton loading banner status ("AI is reading..." -> "L'IA est en train de lire..." in French, "La IA está leyendo..." in Spanish, "KI liest vor..." in German, etc.) via `AppLocalizations.of(context)?.aiIsReading`.
+  - Localized the AI insight banner components (`readability` and `aiSummary`), replacing hardcoded "Readability" and "AI Summary" strings inside injected web view JavaScript templates with localized resources.
+  - Regenerated localizations via `flutter gen-l10n` and verified syntax across all touched files.
+
+### [2026-09-05] Complete Book and Poetry Title Localization
+- Added complete ID-keyed title catalogs for all 86 books in every non-English app language (`ar`, `de`, `es`, `fr`, `hi`, `id`, `it`, `ja`, `ko`, `pt`, `ru`, `th`, and `vi`); English continues to use the canonical catalog field.
+- Connected all 100-poem translation catalogs to `LibraryStory`, `BookModel`, and `BookChapter`, preserving localized titles through catalog, detail, bookmark, reader, story-summary, cultural-insight, and audiobook flows.
+- Added Thai to the app-language picker and made `MaterialApp` consume the generated localization locale list directly, eliminating the previous picker/delegate configuration mismatch.
+- Replaced English-only title rendering and media metadata with locale-aware resolution while retaining intentionally displayed Chinese source titles for language learning.
+- Added exhaustive asset-contract and resolver tests covering 86 books, 100 poems, all 13 translated locales, regional locale fallback, English fallback, and Chinese source-title resolution. All focused localization tests pass; targeted analysis reports no issues.
+
+### [2026-09-05] French Book Detail Metadata & Action Localization
+- Fixed the book detail page so localized catalog subtitles are displayed instead of the English `titleEn` value (for example, `Voyage vers l'Ouest` for 《西游记》 in French).
+- Wired audiobook, category, era, chapter-count, reading, listening, and synopsis labels to the existing localization resources; the author metadata row now uses the same localized category and era labels as the badges.
+- Added `book_detail_localization_test.dart` covering all reported French labels and guarding against reintroducing the hardcoded English strings.
+- Verified 6 focused localization tests pass and full-project `flutter analyze --no-pub` reports no issues.
+
 ### [2026-09-05] Exhaustive Multi-Screen UI Localization & Voice Descriptors Across 13 Languages
 - Audited, extracted, and fully translated all remaining hardcoded UI strings across the application into all 13 supported languages (FR, ES, DE, IT, PT, RU, AR, HI, JA, KO, VI, TH, ID) and English:
   - Added localized voice descriptors in Settings Audiobook Voice Picker: `voiceFemaleWarm`, `voiceFemaleCheerful`, `voiceMaleUpbeat`, `voiceMaleNewsStyle`, `voiceMaleSporty`, `voiceOnDeviceTts`, and `voiceSystemVoice`. Updated `_voiceDisplayName` and `_showVoicePickerDialog` in `SettingsScreen` to display localized descriptions dynamically.
