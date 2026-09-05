@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 
@@ -80,5 +81,12 @@ void main() {
     expect(practiceCanvas.strokeByStrokeMode, isTrue);
     expect(practiceCanvas.currentStrokeIndex, 0);
     expect(practiceCanvas.showAnimation, isFalse);
+    expect(practiceCanvas.showControls, isTrue);
+    expect(practiceCanvas.showGrade, isTrue);
+    expect(find.byType(CalligraphyBackground), findsOneWidget);
+    expect(
+      tester.widget<AspectRatio>(find.byType(AspectRatio).first).aspectRatio,
+      1,
+    );
   });
 }

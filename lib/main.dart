@@ -222,7 +222,7 @@ class _AppStartupFlowState extends ConsumerState<AppStartupFlow> {
   Widget build(BuildContext context) {
     if (!_splashCompleted) {
       return AppSplashScreen(
-        duration: const Duration(milliseconds: 1800),
+        duration: const Duration(milliseconds: 900),
         onFinished: () {
           if (mounted) {
             setState(() {

@@ -143,8 +143,8 @@ flutter_native_splash:
   android: true
   ios: true
   android_12:
-    image: "assets/images/mascot.png"
-    image_dark: "assets/images/mascot.png"
+    image: "assets/images/mascot_android12_splash.png"
+    image_dark: "assets/images/mascot_android12_splash.png"
     color: "#FCBC03"
     color_dark: "#FCBC03"
 

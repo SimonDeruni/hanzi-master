@@ -4,16 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
-### [2026-09-05] Restored 6-Step Interactive Onboarding Mini-Lesson
-- Reverted `OnboardingMiniLessonScreen` back to the stable 6-step preview loop:
-  1. 🎧 **Listen**: Authentic audio passage from Ba Jin's 《春》 with natural narration and book cover attribution.
-  2. 🔍 **Notice**: Tappable character sentence with Pinyin and English translation opening instant dictionary cards.
-  3. 🎙️ **Shadow**: Microphone recording with audio playback analysis and quiet demo option.
-  4. 🎵 **Four tones**: Interactive tone pitch breakdown via `ToneComparisonSheet`.
-  5. ✍️ **Write**: Tracing 「好」 using `OnboardingPracticeCanvas` and bundled stroke outlines.
-  6. 📋 **Recap**: Lesson review and summary cards before paywall entry.
-- Maintained all Android cold-start stability improvements (audio service lifecycle handler, Hive translation cache fallback, and startup splash flow).
-- Verified with 100% passing tests in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and 0 analyzer issues.
+### [2026-09-05] Android 12 Native Splash & In-App Splash Optimization
+- **Android 12 Native Splash Fix**:
+  - Generated `assets/images/mascot_android12_splash.png` with safe padding to ensure the entire ink drop mascot, brush, and calligraphy character fit 100% inside Android 12's native circular splash viewport without clipping or truncation.
+  - Re-ran `flutter_native_splash:create` to update all native Android/iOS splash assets and density drawables.
+- **In-App Splash Timing & Transitions**:
+  - Reduced `AppSplashScreen` display duration from 1800ms to 900ms with a snappy 600ms fade/scale animation, eliminating long wait times before entering onboarding or the main application.
+- Verified: All unit tests pass in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and `flutter analyze` reports 0 issues.
 
 ### [2026-09-05] Splash Screen Mascot Enlargement & Branding Update
 - Enlarged the central animated mascot sizing (`maxWidth.clamp(0, 360)`) on `AppSplashScreen`.

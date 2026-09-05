@@ -7,7 +7,7 @@ class AppSplashScreen extends StatefulWidget {
   const AppSplashScreen({
     super.key,
     this.onFinished,
-    this.duration = const Duration(milliseconds: 1800),
+    this.duration = const Duration(milliseconds: 900),
   });
 
   @override
@@ -25,12 +25,12 @@ class _AppSplashScreenState extends State<AppSplashScreen>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 600),
     );
-    _scaleAnimation = Tween<double>(begin: 0.92, end: 1.0).animate(
+    _scaleAnimation = Tween<double>(begin: 0.95, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOutQuart),
     );
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    _fadeAnimation = Tween<double>(begin: 0.2, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
     _controller.forward();

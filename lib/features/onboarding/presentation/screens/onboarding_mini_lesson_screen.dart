@@ -583,21 +583,35 @@ class OnboardingPracticeCanvas extends StatelessWidget {
   final VoidCallback onStrokeComplete;
 
   @override
-  Widget build(BuildContext context) => ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: CalligraphyBackground(
-          child: DrawingCanvas(
-            key: const ValueKey('onboardingPracticeCanvas'),
-            strokePaths: strokePaths,
-            medianPaths: medianPaths,
-            showAnimation: false,
-            showReference: true,
-            showGuideLines: true,
-            strokeByStrokeMode: true,
-            currentStrokeIndex: currentStrokeIndex,
-            showGrade: false,
-            showControls: false,
-            onStrokeComplete: (_, __) => onStrokeComplete(),
+  Widget build(BuildContext context) => Center(
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.15),
+                  blurRadius: 16,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: CalligraphyBackground(
+              child: DrawingCanvas(
+                key: const ValueKey('onboardingPracticeCanvas'),
+                strokePaths: strokePaths,
+                medianPaths: medianPaths,
+                showAnimation: false,
+                strokeByStrokeMode: true,
+                currentStrokeIndex: currentStrokeIndex,
+                onStrokeComplete: (_, __) => onStrokeComplete(),
+                masteryLevel: 0,
+                isFlipped: false,
+                showReference: true,
+              ),
+            ),
           ),
         ),
       );
