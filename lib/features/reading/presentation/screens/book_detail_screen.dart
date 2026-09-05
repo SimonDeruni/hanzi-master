@@ -139,8 +139,6 @@ Map<String, String> _authorBios(BuildContext context) => {
           "Arthur Conan Doyle (1859–1930) was a Scottish physician who created Sherlock Holmes — fiction's most celebrated detective — in a series of 60 stories. Holmes's extraordinary deductive method and Baker Street atmosphere made him the most frequently portrayed fictional character in film and television history.",
     };
 
-
-
 String _authorBioEn(BuildContext context, BookModel book) {
   final authorBios = _authorBios(context);
   // Try exact Chinese name match first
@@ -178,7 +176,11 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     final accentColor =
         isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
 
-    final chaptersAsync = ref.watch(bookChaptersProvider(book.id));
+    final downloadState = ref.watch(bookDownloadProvider(book.id));
+    final isDownloaded = downloadState.status == BookDownloadStatus.downloaded;
+    final chaptersAsync = isDownloaded
+        ? ref.watch(bookChaptersProvider(book.id))
+        : const AsyncValue<List<BookChapter>>.data([]);
     final currentProgress = ref.watch(bookProgressProvider(book.id));
 
     return Scaffold(
@@ -288,27 +290,47 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         width: double.infinity,
                         height: 52,
                         child: ElevatedButton(
-                          onPressed: () {
-                            HapticsManager.heavy();
-                            final detailedProg =
-                                ref.read(bookDetailedProgressProvider(book.id));
-                            final initialIndex = (detailedProg != null
-                                    ? detailedProg.chapterIndex - 1
-                                    : currentProgress - 1)
-                                .clamp(0, chapters.length - 1);
-                            final initialSentenceIndex =
-                                detailedProg?.sentenceIndex ?? 0;
-                            Navigator.of(context).push(
-                              SwipeBackPageRoute(
-                                builder: (_) => BookReaderScreen(
-                                  book: book,
-                                  chapters: chapters,
-                                  initialChapterIndex: initialIndex,
-                                  initialSentenceIndex: initialSentenceIndex,
-                                ),
-                              ),
-                            );
-                          },
+                          onPressed: downloadState.status ==
+                                      BookDownloadStatus.downloading ||
+                                  downloadState.status ==
+                                      BookDownloadStatus.checking
+                              ? null
+                              : () async {
+                                  HapticsManager.heavy();
+                                  if (!isDownloaded) {
+                                    await ref
+                                        .read(bookDownloadProvider(book.id)
+                                            .notifier)
+                                        .download();
+                                    if (ref
+                                            .read(bookDownloadProvider(book.id))
+                                            .status ==
+                                        BookDownloadStatus.downloaded) {
+                                      ref.invalidate(
+                                          bookChaptersProvider(book.id));
+                                    }
+                                    return;
+                                  }
+                                  final detailedProg = ref.read(
+                                      bookDetailedProgressProvider(book.id));
+                                  final initialIndex = (detailedProg != null
+                                          ? detailedProg.chapterIndex - 1
+                                          : currentProgress - 1)
+                                      .clamp(0, chapters.length - 1);
+                                  final initialSentenceIndex =
+                                      detailedProg?.sentenceIndex ?? 0;
+                                  Navigator.of(context).push(
+                                    SwipeBackPageRoute(
+                                      builder: (_) => BookReaderScreen(
+                                        book: book,
+                                        chapters: chapters,
+                                        initialChapterIndex: initialIndex,
+                                        initialSentenceIndex:
+                                            initialSentenceIndex,
+                                      ),
+                                    ),
+                                  );
+                                },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: isDark
                                 ? Colors.amber.shade700
@@ -323,20 +345,41 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                currentProgress > 1
-                                    ? Icons.auto_stories
-                                    : Icons.play_arrow_rounded,
+                                downloadState.status ==
+                                        BookDownloadStatus.checking
+                                    ? Icons.hourglass_top_rounded
+                                    : downloadState.status ==
+                                            BookDownloadStatus.downloading
+                                        ? Icons.downloading_rounded
+                                        : !isDownloaded
+                                            ? Icons.download_rounded
+                                            : currentProgress > 1
+                                                ? Icons.auto_stories
+                                                : Icons.play_arrow_rounded,
                                 size: 22,
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                currentProgress > 1
-                                    ? (book.category.contains('Poetry')
-                                        ? 'Continue Reading'
-                                        : 'Continue Chapter $currentProgress')
-                                    : (book.category.contains('Poetry')
-                                        ? 'Read Poem'
-                                        : 'Start Reading'),
+                                downloadState.status ==
+                                        BookDownloadStatus.checking
+                                    ? 'Checking Download'
+                                    : downloadState.status ==
+                                            BookDownloadStatus.downloading
+                                        ? 'Downloading ${(downloadState.progress * 100).round()}%'
+                                        : !isDownloaded
+                                            ? (downloadState.status ==
+                                                    BookDownloadStatus.error
+                                                ? 'Retry Download'
+                                                : 'Download Book')
+                                            : currentProgress > 1
+                                                ? (book.category
+                                                        .contains('Poetry')
+                                                    ? 'Continue Reading'
+                                                    : 'Continue Chapter $currentProgress')
+                                                : (book.category
+                                                        .contains('Poetry')
+                                                    ? 'Read Poem'
+                                                    : 'Start Reading'),
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -347,6 +390,63 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           ),
                         ),
                       ),
+
+                      if (downloadState.status ==
+                          BookDownloadStatus.downloading) ...[
+                        const SizedBox(height: 8),
+                        LinearProgressIndicator(
+                          value: downloadState.progress > 0
+                              ? downloadState.progress
+                              : null,
+                          color: accentColor,
+                        ),
+                      ],
+                      if (downloadState.status == BookDownloadStatus.error) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          'Could not download this book. Check your connection and try again.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.error),
+                        ),
+                      ],
+                      if (isDownloaded &&
+                          !book.category.contains('Poetry')) ...[
+                        const SizedBox(height: 8),
+                        TextButton.icon(
+                          onPressed: () async {
+                            final shouldRemove = await showDialog<bool>(
+                                  context: context,
+                                  builder: (dialogContext) => AlertDialog(
+                                    title: Text(AppLocalizations.of(context)!.removeDownloadQuestion),
+                                    content: Text(
+                                      AppLocalizations.of(context)!.removeDownloadContent,
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(dialogContext, false),
+                                        child: Text(AppLocalizations.of(context)!.cancelAction),
+                                      ),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(dialogContext, true),
+                                        child: Text(AppLocalizations.of(context)!.removeDownloadAction),
+                                      ),
+                                    ],
+                                  ),
+                                ) ??
+                                false;
+                            if (!shouldRemove) return;
+                            await ref
+                                .read(bookDownloadProvider(book.id).notifier)
+                                .remove();
+                            ref.invalidate(bookChaptersProvider(book.id));
+                          },
+                          icon: const Icon(Icons.delete_outline),
+                          label: Text(AppLocalizations.of(context)!.removeDownloadButton),
+                        ),
+                      ],
 
                       if (chapters.isNotEmpty &&
                           !book.category.contains('Poetry')) ...[
@@ -491,7 +591,8 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                             FutureBuilder<String>(
                               future: LocalizedCatalogService.getBookSynopsis(
                                 bookId: book.id,
-                                localeCode: Localizations.localeOf(context).languageCode,
+                                localeCode: Localizations.localeOf(context)
+                                    .languageCode,
                                 fallbackEn: book.descriptionEn,
                               ),
                               builder: (context, snapshot) {
@@ -516,7 +617,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '${AppLocalizations.of(context)?.tableOfContents ?? "Table of Contents"} (${chapters.length})',
+                          '${AppLocalizations.of(context)?.tableOfContents ?? "Table of Contents"} (${isDownloaded ? chapters.length : book.totalChapters})',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -525,6 +626,16 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                         ),
                       ),
                       const SizedBox(height: 10),
+                      if (!isDownloaded)
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Download the book to read its ${book.totalChapters} chapters offline.',
+                            style: TextStyle(
+                              color: isDark ? Colors.white60 : Colors.black54,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -645,8 +756,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(
-            child: Text("Error: $e")),
+        error: (e, _) => Center(child: Text("Error: $e")),
       ),
     );
   }
@@ -673,7 +783,6 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
       child: child,
     );
   }
-
 
   // ── Badge ──────────────────────────────────────────────────────────────────
   Widget _buildBadge(String label, Color color) {

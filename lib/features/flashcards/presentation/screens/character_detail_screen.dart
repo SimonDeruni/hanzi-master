@@ -1,4 +1,4 @@
-﻿import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
@@ -1379,7 +1379,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       },
       loading: () => _buildInfoSection(
         context,
-        title: "AI Smart Context",
+        title: AppLocalizations.of(context)!.aiSmartContext,
         icon: Icons.auto_awesome,
         child: const Center(
           child: Padding(
@@ -1390,7 +1390,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       ),
       error: (e, st) => _buildInfoSection(
         context,
-        title: "AI Smart Context Error",
+        title: AppLocalizations.of(context)!.aiSmartContextError,
         icon: Icons.error_outline,
         child: Padding(
           padding: const EdgeInsets.only(top: 8.0),

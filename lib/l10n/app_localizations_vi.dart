@@ -2278,9 +2278,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Lộ trình học cá nhân hóa dựa trên bộ thẻ của bạn.';
 
   @override
-  String play(Object pinyin) {
-    return 'Phát âm ($pinyin)';
-  }
+  String get play => 'Phát âm )';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2633,7 +2631,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get traceLabel => 'Tập viết chữ';
 
   @override
-  String get trailer => 'TRAILER';
+  String get trailer => 'PHIM GIỚI THIỆU';
 
   @override
   String get translatingAndAddingPinyin => 'Đang dịch và gắn Pinyin...';
@@ -11946,21 +11944,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dictionaryExpansionWasEmpty => 'Không có dữ liệu mở rộng từ điển';
 
   @override
-  String get explicationDTaillEDisponible => 'Explication détaillée disponible';
+  String get explicationDTaillEDisponible => 'Có sẵn giải thích chi tiết';
 
   @override
-  String get ausfHrlicheErklRungVerf => 'Ausführliche Erklärung verfügbar';
+  String get ausfHrlicheErklRungVerf => 'Có sẵn giải thích chi tiết';
 
   @override
-  String get explicaciNDetalladaDisponible =>
-      'Explicación detallada disponible';
+  String get explicaciNDetalladaDisponible => 'Có sẵn giải thích chi tiết';
 
   @override
-  String get spiegazioneDettagliataDisponibile =>
-      'Spiegazione dettagliata disponibile';
+  String get spiegazioneDettagliataDisponibile => 'Có sẵn giải thích chi tiết';
 
   @override
-  String get explicaODetalhadaDisponVel => 'Explicação detalhada disponível';
+  String get explicaODetalhadaDisponVel => 'Có giải thích chi tiết';
 
   @override
   String get detailedExplanationAvailable => 'Có giải thích chi tiết';
@@ -12323,4 +12319,102 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'Không thể tải phần giải thích.';
+
+  @override
+  String get failedToGenerateStoryN => 'Không thể tạo câu chuyện:\\n\$e';
+
+  @override
+  String get thematic => 'Theo chủ đề';
+
+  @override
+  String get deckFlashcards => 'Bộ thẻ (Flashcards)';
+
+  @override
+  String get searchLibraryOrTypeCustom =>
+      'Tìm kiếm thư viện hoặc nhập tùy chỉnh';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Phân tích thất bại: \$e';
+
+  @override
+  String get extractionFailedE => 'Trích xuất thất bại: \$e';
+
+  @override
+  String get simplifyFailedE => 'Đơn giản hóa thất bại: \$e';
+
+  @override
+  String get translationFailedE => 'Dịch thất bại: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'Không thể lưu các từ đã trích xuất: \$error';
+
+  @override
+  String get youActualTargetExpected =>
+      'Bạn: \$actual  ·  Mục tiêu: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Cải thiện giọng đọc cục bộ';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'Tiếng Trung ngoại tuyến chất lượng cao hơn';
+
+  @override
+  String get removeDownload => 'Xóa bản tải xuống?';
+
+  @override
+  String get removeDownload2 => 'Xóa tải xuống';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Nữ, ấm áp';
+
+  @override
+  String get voiceFemaleCheerful => 'Nữ, vui tươi';
+
+  @override
+  String get voiceMaleUpbeat => 'Nam, sôi nổi';
+
+  @override
+  String get voiceMaleNewsStyle => 'Nam, phong cách tin tức';
+
+  @override
+  String get voiceMaleSporty => 'Nam, thể thao';
+
+  @override
+  String get voiceOnDeviceTts => 'TTS trên thiết bị';
+
+  @override
+  String get voiceSystemVoice => 'Giọng hệ thống';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Áp dụng kết quả phiên học vào hệ thống Lặp lại ngắt quãng (Chế độ Nói)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'Không thể tải phần này. Vui lòng thử lại.';
+
+  @override
+  String get removeDownloadQuestion => 'Xóa bản tải xuống?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'Xóa tải xuống';
+
+  @override
+  String get removeDownloadButton => 'Xóa tải xuống';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

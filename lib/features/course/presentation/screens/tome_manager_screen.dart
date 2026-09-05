@@ -536,7 +536,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Failed to load collections.",
+                Text(AppLocalizations.of(context)!.failedToLoadCollections,
                     style: TextStyle(color: inkColor)),
                 const SizedBox(height: 8),
                 TextButton(

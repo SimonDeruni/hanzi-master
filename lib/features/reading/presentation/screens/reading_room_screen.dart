@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:collection/collection.dart';
 import '../providers/story_controller.dart';
 import '../providers/book_providers.dart';
+import '../../domain/entities/book_model.dart';
 import 'story_reader_screen.dart';
 import 'book_reader_screen.dart';
+import 'book_detail_screen.dart';
 import '../widgets/custom_story_creator_sheet.dart';
 import '../widgets/continue_reading_card.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
@@ -22,6 +24,35 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
   int _selectedHskLevel = 2; // Default HSK 2
   String _searchQuery = "";
   final TextEditingController _searchController = TextEditingController();
+
+  Future<void> _openDownloadedBook(
+    BookModel book, {
+    required int chapterIndex,
+    required int sentenceIndex,
+  }) async {
+    final repository = ref.read(bookRepositoryProvider);
+    if (!await repository.isBookDownloaded(book.id)) {
+      if (!mounted) return;
+      Navigator.of(context).push(
+        SwipeBackPageRoute(builder: (_) => BookDetailScreen(book: book)),
+      );
+      return;
+    }
+    final chapters = await repository.getBookChapters(book.id);
+    if (!mounted) return;
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => BookReaderScreen(
+          book: book,
+          chapters: chapters,
+          initialChapterIndex: chapterIndex.clamp(0, chapters.length - 1),
+          initialSentenceIndex: sentenceIndex,
+        ),
+        transitionsBuilder: (_, animation, __, child) =>
+            FadeTransition(opacity: animation, child: child),
+      ),
+    );
+  }
 
   @override
   void dispose() {
@@ -317,21 +348,10 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
             item: item,
             session: session,
             onTap: () async {
-              final chapters = await ref
-                  .read(bookRepositoryProvider)
-                  .getBookChapters(item.book.id);
-              if (!mounted) return;
-              Navigator.of(context).push(
-                PageRouteBuilder(
-                  pageBuilder: (_, __, ___) => BookReaderScreen(
-                    book: item.book,
-                    chapters: chapters,
-                    initialChapterIndex: item.progress.chapterIndex,
-                    initialSentenceIndex: item.progress.sentenceIndex,
-                  ),
-                  transitionsBuilder: (_, animation, __, child) =>
-                      FadeTransition(opacity: animation, child: child),
-                ),
+              await _openDownloadedBook(
+                item.book,
+                chapterIndex: item.progress.chapterIndex,
+                sentenceIndex: item.progress.sentenceIndex,
               );
             },
           ),
@@ -383,21 +403,10 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                   final entry = recent[i];
                   return GestureDetector(
                     onTap: () async {
-                      final chapters = await ref
-                          .read(bookRepositoryProvider)
-                          .getBookChapters(entry.book.id);
-                      if (!mounted) return;
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => BookReaderScreen(
-                            book: entry.book,
-                            chapters: chapters,
-                            initialChapterIndex: entry.bookmark.chapterIndex,
-                            initialSentenceIndex: entry.bookmark.sentenceIndex,
-                          ),
-                          transitionsBuilder: (_, animation, __, child) =>
-                              FadeTransition(opacity: animation, child: child),
-                        ),
+                      await _openDownloadedBook(
+                        entry.book,
+                        chapterIndex: entry.bookmark.chapterIndex,
+                        sentenceIndex: entry.bookmark.sentenceIndex,
                       );
                     },
                     child: Container(

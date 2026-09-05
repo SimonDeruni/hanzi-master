@@ -522,7 +522,9 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
 
                     TextButton.icon(
                       icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow, size: 20),
-                      label: Text(_isPlaying ? "Pause" : "Play"),
+                      label: Text(_isPlaying
+                          ? AppLocalizations.of(context)!.pause
+                          : AppLocalizations.of(context)!.play),
                       style: TextButton.styleFrom(
                         foregroundColor: isDark ? Colors.white70 : Colors.black87,
                       ),
@@ -530,7 +532,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                     ),
                     TextButton.icon(
                       icon: const Icon(Icons.translate, size: 20),
-                      label: const Text("Translate"),
+                      label: Text(AppLocalizations.of(context)!.translate),
                       style: TextButton.styleFrom(
                         foregroundColor: isDark ? Colors.white70 : Colors.black87,
                       ),

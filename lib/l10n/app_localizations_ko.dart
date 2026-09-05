@@ -2219,9 +2219,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get personalizedPathBasedOnDeck => '내 덱을 기반으로 한 맞춤형 학습 경로입니다.';
 
   @override
-  String play(Object pinyin) {
-    return '발음 재생 ($pinyin)';
-  }
+  String get play => '발음 재생 )';
 
   @override
   String get pleaseEnterMessageBeforeSending => '전송할 메시지를 입력해 주세요.';
@@ -5620,7 +5618,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get beginnerReading => '초급 독해';
 
   @override
-  String get mandarinBean => 'Mandarin Bean';
+  String get mandarinBean => '만다린 빈';
 
   @override
   String get unknown => '알 수 없음';
@@ -5770,7 +5768,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get rebornChineseDramaEngSub => '중생 (Reborn) 중국 드라마';
 
   @override
-  String get ijenwaBenita => 'Ijenwa Benita';
+  String get ijenwaBenita => '이젠와 베니타';
 
   @override
   String get whenIFlyTowardsYou => '당아비분향니 (When I Fly Towards You)';
@@ -5866,7 +5864,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get blossom => '번화 (Blossoms Shanghai)';
 
   @override
-  String get gemini => 'Gemini';
+  String get gemini => '제미니';
 
   @override
   String get generationToGeneration => '대대손손 이어지는 이야기';
@@ -7385,16 +7383,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get localOnDeviceTTS => '로컬 — 기기 내 TTS';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => '스페인어';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => '프랑스어';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => '포르투갈어';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => '베트남어';
 
   @override
   String get koreFemaleWarm => 'Kore — 여성, 따뜻한 톤';
@@ -7556,7 +7554,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+      '시시 픽처스 공식 채널 (XiXi Pictures Official Channel)';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -7572,7 +7570,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get eNGSUBThoseDays => 'ENG SUB【四喜 Those Days】| 童瑶 蒋欣 黄明昊 许娣';
 
   @override
-  String get getTheWeTVAPP => '腾讯视频 - Get the WeTV APP';
+  String get getTheWeTVAPP => 'WeTV 앱 다운로드';
 
   @override
   String get liziqi2 => '李子柒 Liziqi';
@@ -11145,7 +11143,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ 글자 +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11161,7 +11159,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      '기사, .article, .post, .content, 메인';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -11989,4 +11987,98 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => '설명을 불러올 수 없습니다.';
+
+  @override
+  String get failedToGenerateStoryN => '스토리 생성 실패:\\n\$e';
+
+  @override
+  String get thematic => '주제별';
+
+  @override
+  String get deckFlashcards => '덱 (플래시카드)';
+
+  @override
+  String get searchLibraryOrTypeCustom => '라이브러리 검색 또는 직접 입력';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => '분석 실패: \$e';
+
+  @override
+  String get extractionFailedE => '추출 실패: \$e';
+
+  @override
+  String get simplifyFailedE => '간소화 실패: \$e';
+
+  @override
+  String get translationFailedE => '번역 실패: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 => '추출된 단어 저장 실패: \$error';
+
+  @override
+  String get youActualTargetExpected => '나: \$actual  ·  목표: \$expected';
+
+  @override
+  String get improveTheLocalVoice => '로컬 음성 개선';
+
+  @override
+  String get higherQualityOfflineMandarin => '고품질 오프라인 만다린';
+
+  @override
+  String get removeDownload => '다운로드를 삭제하시겠습니까?';
+
+  @override
+  String get removeDownload2 => '다운로드 삭제';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => '여성, 따뜻한 톤';
+
+  @override
+  String get voiceFemaleCheerful => '여성, 쾌활한 톤';
+
+  @override
+  String get voiceMaleUpbeat => '남성, 경쾌한 톤';
+
+  @override
+  String get voiceMaleNewsStyle => '남성, 뉴스 스타일';
+
+  @override
+  String get voiceMaleSporty => '남성, 스포티한 톤';
+
+  @override
+  String get voiceOnDeviceTts => '기기 내 음성 합성';
+
+  @override
+  String get voiceSystemVoice => '시스템 음성';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      '세션 채점 결과를 간격 반복 시스템(말하기 모드)에 반영';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      '이 섹션을 불러올 수 없습니다. 다시 시도해 주세요.';
+
+  @override
+  String get removeDownloadQuestion => '다운로드를 삭제하시겠습니까?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => '다운로드 삭제';
+
+  @override
+  String get removeDownloadButton => '다운로드 삭제';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

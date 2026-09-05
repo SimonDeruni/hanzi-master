@@ -89,7 +89,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
     _activeSection = widget.initialSection;
   }
 
-
   @override
   void dispose() {
     _searchController.dispose();
@@ -165,7 +164,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Full Novels
                         Expanded(
                           child: _buildSectionTab(
-                            title: AppLocalizations.of(context)?.novels961 ?? 'Novels (96)',
+                            title: AppLocalizations.of(context)?.novels961 ??
+                                'Novels (96)',
                             section: ReadingRoomSection.novels,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -175,7 +175,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Micro-Reads
                         Expanded(
                           child: _buildSectionTab(
-                            title: AppLocalizations.of(context)?.microreads ?? 'Micro-Reads',
+                            title: AppLocalizations.of(context)?.microreads ??
+                                'Micro-Reads',
                             section: ReadingRoomSection.microReads,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -185,7 +186,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                         // Poetry
                         Expanded(
                           child: _buildSectionTab(
-                            title: AppLocalizations.of(context)?.poetry1 ?? 'Poetry',
+                            title: AppLocalizations.of(context)?.poetry1 ??
+                                'Poetry',
                             section: ReadingRoomSection.poetry,
                             isDark: isDark,
                             cardBg: cardBg,
@@ -346,7 +348,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
           },
         ),
       );
-
     } else if (_activeSection == ReadingRoomSection.microReads) {
       final hskFilters = [
         {'label': 'All Levels', 'val': -1},
@@ -447,7 +448,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                   context, inProgressItems, isDark, cardBg, primaryText),
             ),
 
-
           // Count indicator
           SliverToBoxAdapter(
             child: Padding(
@@ -503,8 +503,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(
-              child: Text("Error: $e")),
+          child: Center(child: Text("Error: $e")),
         ),
       ],
     );
@@ -589,8 +588,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(
-              child: Text("Error: $e")),
+          child: Center(child: Text("Error: $e")),
         ),
       ],
     );
@@ -675,8 +673,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       ],
       error: (e, _) => [
         SliverFillRemaining(
-          child: Center(
-              child: Text("Error: $e")),
+          child: Center(child: Text("Error: $e")),
         ),
       ],
     );
@@ -1358,9 +1355,21 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 return GestureDetector(
                   onTap: () async {
                     HapticsManager.medium();
-                    final chapters = await ref
-                        .read(bookRepositoryProvider)
-                        .getBookChapters(item.book.id);
+                    final repository = ref.read(bookRepositoryProvider);
+                    final isDownloaded =
+                        await repository.isBookDownloaded(item.book.id);
+                    if (!isDownloaded) {
+                      if (context.mounted) {
+                        Navigator.of(context).push(
+                          SwipeBackPageRoute(
+                            builder: (_) => BookDetailScreen(book: item.book),
+                          ),
+                        );
+                      }
+                      return;
+                    }
+                    final chapters =
+                        await repository.getBookChapters(item.book.id);
                     if (context.mounted && chapters.isNotEmpty) {
                       final targetIdx = (item.progress.chapterIndex - 1)
                           .clamp(0, chapters.length - 1);

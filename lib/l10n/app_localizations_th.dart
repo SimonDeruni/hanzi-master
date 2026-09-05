@@ -2263,9 +2263,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'เส้นทางการเรียนรู้เฉพาะบุคคลตามสำรับของคุณ';
 
   @override
-  String play(Object pinyin) {
-    return 'เล่น';
-  }
+  String get play => 'เล่น';
 
   @override
   String get pleaseEnterMessageBeforeSending => 'กรุณากรอกข้อความก่อนส่ง';
@@ -2665,7 +2663,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get viewMyDrawing => 'ดูภาพวาดของฉัน';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'Vlog ชีวิตประจำวันในจีน';
 
   @override
   String get voice => 'เสียง:';
@@ -3798,7 +3796,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get puckZhcnyunjianneural => 'Puck\': \'zh-CN-YunjianNeural';
 
   @override
-  String get kore => 'Kore';
+  String get kore => 'โคเร';
 
   @override
   String get xmicrosoftoutputformatAudio24khz48k =>
@@ -3856,7 +3854,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'ห้องสะท้อนเสียงยังคงเงียบงัน ลองเปล่งเสียงอีกครั้ง';
 
   @override
-  String get xtitleHanziMaster => 'X-Title\': \'Hanzi Master';
+  String get xtitleHanziMaster => 'X-ชื่อเรื่อง: Hanzi Master';
 
   @override
   String get noneYet => 'ยังไม่มี';
@@ -4470,7 +4468,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get askForTheBill => 'เช็คบิล / ขอใบเสร็จ';
 
   @override
-  String get fenrir => 'Fenrir';
+  String get fenrir => 'เฟนริล';
 
   @override
   String get ni3Qu4Na3rAJi1chang3MaTing3Yuan3De =>
@@ -4490,7 +4488,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get complainAboutTheTraffic => 'บ่นเรื่องการจราจรติดขัด';
 
   @override
-  String get charon => 'Charon';
+  String get charon => 'คารอน';
 
   @override
   String get thisClothingQualityIsEspeciallyGood =>
@@ -4530,7 +4528,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get askIfYouNeedToTakeMedicine => 'ถามว่าจำเป็นต้องรับประทานยาหรือไม่';
 
   @override
-  String get aoede => 'Aoede';
+  String get aoede => 'เอเด้';
 
   @override
   String get heyLongTimeNoSeeHowHaveYouBeenLatel =>
@@ -5673,7 +5671,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'บทสนทนาที่ผ่อนคลาย ขบขัน พร้อมคำสแลงและภาษาพูดสมัยใหม่';
 
   @override
-  String get seanKitchen => 'Sean Kitchen';
+  String get seanKitchen => 'ครัวของฌอน';
 
   @override
   String get deliciousHomecookedChineseDishesAnd =>
@@ -5688,7 +5686,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'การบรรยายที่อบอุ่นเป็นกันเอง พร้อมคำศัพท์ในครัวที่นำไปใช้ได้จริง';
 
   @override
-  String get chineseChannel => 'Chinese Channel';
+  String get chineseChannel => 'ช่องภาษาจีน';
 
   @override
   String get structuredChineseLanguageLessonsAnd =>
@@ -5703,7 +5701,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'จังหวะการสอนที่ชัดเจน ออกแบบมาโดยเฉพาะสำหรับผู้เรียนภาษาจีน';
 
   @override
-  String get oneInABillion => 'One in a Billion';
+  String get oneInABillion => 'หนึ่งในล้าน';
 
   @override
   String get intimatePortraitsAndStoriesOfUnique =>
@@ -5718,7 +5716,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'การเล่าเรื่องเชิงบรรยายที่ลึกซึ้ง พร้อมคำศัพท์ที่สละสลวยและเสียงสัมภาษณ์จริง';
 
   @override
-  String get vickySoup => 'Vicky Soup';
+  String get vickySoup => 'วิกกี้ซุป';
 
   @override
   String get aestheticLifestyleVlogsFashionStyli =>
@@ -5818,7 +5816,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get ucj10r97lkwgdtqbt6xzv8gLearnMandari =>
-      'UCJ10R97LkwGdTqBT6xz-v8g\': \'Learn Mandarin with TaiwanPlus';
+      'UCJ10R97LkwGdTqBT6xz-v8g\': \'เรียนภาษาจีนกลางกับ TaiwanPlus';
 
   @override
   String get ucsxriuqkzzmaqklq0n9xfvwEverydayChi =>
@@ -5829,25 +5827,25 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get ucolbhvvl5dcjlmzeqbuu1vwTingdailyLi =>
-      'UCOLBhVvL5dcJLMZeQBUu1Vw\': \'Ting-Daily life in China';
+      'UCOLBhVvL5dcJLMZeQBUu1Vw\': \'Ting-ชีวิตประจำวันในประเทศจีน';
 
   @override
-  String get xinxin => 'Xinxin';
+  String get xinxin => 'ซินซิน';
 
   @override
-  String get sweetFamilyDailyLife => 'Sweet Family Daily Life';
+  String get sweetFamilyDailyLife => 'ชีวิตประจำวันของครอบครัวแสนหวาน';
 
   @override
-  String get chinsunDailyLife => 'Chin-Sun Daily Life';
+  String get chinsunDailyLife => 'ชีวิตประจำวันของชินซุน';
 
   @override
-  String get tasteChina => 'Taste China';
+  String get tasteChina => 'สัมผัสรสชาติจีน';
 
   @override
-  String get dawenFoodQuest => 'DaWen Food Quest';
+  String get dawenFoodQuest => 'ภารกิจอาหารของต้าเหวิน';
 
   @override
-  String get chinaTravelWithCangbao => 'China Travel with Cangbao';
+  String get chinaTravelWithCangbao => 'เที่ยวจีนกับชางเป่า';
 
   @override
   String get alinFoodWalk => 'Alin Food Walk';
@@ -5911,7 +5909,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get anYouth => 'An Youth';
 
   @override
-  String get historicalSliceOfLife => 'Historical\', \'Slice of Life';
+  String get historicalSliceOfLife => 'ประวัติศาสตร์, ชีวิตประจำวัน';
 
   @override
   String get historicalHighlight => 'Historical\', \'Highlight';
@@ -5951,7 +5949,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get rebornChineseDramaEngSub => 'Reborn ซีรีส์จีน ซับอังกฤษ';
 
   @override
-  String get ijenwaBenita => 'Ijenwa Benita';
+  String get ijenwaBenita => 'อิจึนวา เบนิตา';
 
   @override
   String get whenIFlyTowardsYou => 'เมื่อเธอเหินเวหา (When I Fly Towards You)';
@@ -5969,7 +5967,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get backFromTheBrink1 => 'Back from the Brink\':';
 
   @override
-  String get dashingYouth1 => 'Dashing Youth\':';
+  String get dashingYouth1 => '\'Dashing Youth\':';
 
   @override
   String get beReborn => 'เกิดใหม่ (Be Reborn)';
@@ -5987,13 +5985,13 @@ class AppLocalizationsTh extends AppLocalizations {
   String get ep16In => 'EP16\': \'In';
 
   @override
-  String get everyoneLovesMe1 => 'Everyone Loves Me\': \'';
+  String get everyoneLovesMe1 => '\'ทุกคนรักฉัน\': \'';
 
   @override
-  String get fallingIntoYourSmile1 => 'Falling Into Your Smile\':';
+  String get fallingIntoYourSmile1 => '\'Falling Into Your Smile\':';
 
   @override
-  String get hiddenLove => 'Hidden Love\':';
+  String get hiddenLove => 'รักซ่อนเร้น:';
 
   @override
   String get loveBetweenFairyAndDevil => 'Love Between Fairy and Devil\':';
@@ -6015,13 +6013,14 @@ class AppLocalizationsTh extends AppLocalizations {
       'หอดอกบัวลาย (Mysterious Lotus Casebook)';
 
   @override
-  String get rebornChineseDramaEngSub1 => 'Reborn Chinese drama ENG SUB\': \'';
+  String get rebornChineseDramaEngSub1 =>
+      'ซีรีส์จีน Reborn ซับไทย/อังกฤษ\': \'';
 
   @override
   String get reborn => 'เกิดใหม่ (Reborn)';
 
   @override
-  String get theBestDayOfMyLife1 => 'The Best Day of My Life\': \'';
+  String get theBestDayOfMyLife1 => '\'วันที่ดีที่สุดในชีวิตของฉัน\': \'';
 
   @override
   String get theDouble1 => 'The Double\':';
@@ -6030,16 +6029,16 @@ class AppLocalizationsTh extends AppLocalizations {
   String get theLongBallad => 'สตรีหาญ ฉางเกอ (The Long Ballad)';
 
   @override
-  String get theStarryLove1 => 'The Starry Love\':';
+  String get theStarryLove1 => '\'The Starry Love\':';
 
   @override
   String get theUntamed => 'ปรมาจารย์ลัทธิมาร (The Untamed)';
 
   @override
-  String get tillTheEndOfTheMoon1 => 'Till The End of The Moon\':';
+  String get tillTheEndOfTheMoon1 => '\'Till The End of The Moon\':';
 
   @override
-  String get whenIFlyTowardsYou1 => 'When I Fly Towards You\':';
+  String get whenIFlyTowardsYou1 => '\'When I Fly Towards You\':';
 
   @override
   String get wordOfHonor => 'นักรบพเนจรสุดขอบฟ้า (Word of Honor)';
@@ -6842,7 +6841,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'เมื่อใช้โควตาเสียง Studio ครบ 4 ชั่วโมงต่อสัปดาห์แล้ว แอปจะเปลี่ยนไปใช้เสียงในเครื่องโดยอัตโนมัติ เพื่อให้คุณฟังต่อได้ฟรีไม่จำกัดโดยไม่สะดุด';
 
   @override
-  String get localDeviceVoice => 'Local device voice\' :';
+  String get localDeviceVoice => 'เสียงจากอุปกรณ์เครื่อง :';
 
   @override
   String get classicalVerse => 'กวีนิพนธ์คลาสสิก';
@@ -11406,7 +11405,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'บทความ, .article, .post, .content, หลัก';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12270,4 +12269,101 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'ไม่สามารถโหลดคำอธิบายได้';
+
+  @override
+  String get failedToGenerateStoryN => 'สร้างเรื่องราวไม่สำเร็จ:\\n\$e';
+
+  @override
+  String get thematic => 'ตาม ธีม';
+
+  @override
+  String get deckFlashcards => 'สำรับ (บัตรคำ)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'ค้นหาในคลังหรือพิมพ์เอง';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'การวิเคราะห์ล้มเหลว: \$e';
+
+  @override
+  String get extractionFailedE => 'การดึงข้อมูลล้มเหลว: \$e';
+
+  @override
+  String get simplifyFailedE => 'ทำให้ง่ายขึ้นไม่สำเร็จ: \$e';
+
+  @override
+  String get translationFailedE => 'การแปลล้มเหลว: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'บันทึกคำที่ดึงมาไม่สำเร็จ: \$error';
+
+  @override
+  String get youActualTargetExpected =>
+      'คุณ: \$actual  ·  เป้าหมาย: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'ปรับปรุงเสียงท้องถิ่น';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'ภาษาจีนกลางแบบออฟไลน์คุณภาพสูงขึ้น';
+
+  @override
+  String get removeDownload => 'ลบการดาวน์โหลด?';
+
+  @override
+  String get removeDownload2 => 'ลบการดาวน์โหลด';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'หญิง, อบอุ่น';
+
+  @override
+  String get voiceFemaleCheerful => 'หญิง, ร่าเริง';
+
+  @override
+  String get voiceMaleUpbeat => 'ชาย, มีชีวิตชีวา';
+
+  @override
+  String get voiceMaleNewsStyle => 'ชาย, ทางการแบบผู้ประกาศข่าว';
+
+  @override
+  String get voiceMaleSporty => 'ชาย, กระฉับกระเฉง';
+
+  @override
+  String get voiceOnDeviceTts => 'TTS บนตัวเครื่อง';
+
+  @override
+  String get voiceSystemVoice => 'เสียงของระบบ';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'นำคะแนนเซสชันไปใช้กับระบบทบทวนแบบเว้นระยะ (โหมดการพูด)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'ไม่สามารถโหลดส่วนนี้ได้ กรุณาลองใหม่อีกครั้ง';
+
+  @override
+  String get removeDownloadQuestion => 'ลบการดาวน์โหลด?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'ลบการดาวน์โหลด';
+
+  @override
+  String get removeDownloadButton => 'ลบการดาวน์โหลด';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

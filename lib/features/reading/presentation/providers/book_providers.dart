@@ -22,6 +22,101 @@ final bookChaptersProvider =
   return repo.getBookChapters(bookId);
 });
 
+enum BookDownloadStatus {
+  checking,
+  notDownloaded,
+  downloading,
+  downloaded,
+  error
+}
+
+class BookDownloadState {
+  final BookDownloadStatus status;
+  final double progress;
+  final String? error;
+
+  const BookDownloadState({
+    this.status = BookDownloadStatus.checking,
+    this.progress = 0,
+    this.error,
+  });
+}
+
+class BookDownloadController extends StateNotifier<BookDownloadState> {
+  final BookRepository _repository;
+  final String _bookId;
+
+  BookDownloadController(this._repository, this._bookId)
+      : super(const BookDownloadState()) {
+    refresh();
+  }
+
+  Future<void> refresh() async {
+    try {
+      final downloaded = await _repository.isBookDownloaded(_bookId);
+      if (mounted && state.status != BookDownloadStatus.downloading) {
+        state = BookDownloadState(
+          status: downloaded
+              ? BookDownloadStatus.downloaded
+              : BookDownloadStatus.notDownloaded,
+          progress: downloaded ? 1 : 0,
+        );
+      }
+    } catch (error) {
+      if (mounted && state.status != BookDownloadStatus.downloading) {
+        state = BookDownloadState(
+          status: BookDownloadStatus.error,
+          error: error.toString(),
+        );
+      }
+    }
+  }
+
+  Future<void> download() async {
+    state = const BookDownloadState(status: BookDownloadStatus.downloading);
+    try {
+      await _repository.downloadBook(
+        _bookId,
+        onProgress: (progress) {
+          if (mounted) {
+            state = BookDownloadState(
+              status: BookDownloadStatus.downloading,
+              progress: progress,
+            );
+          }
+        },
+      );
+      if (mounted) {
+        state = const BookDownloadState(
+          status: BookDownloadStatus.downloaded,
+          progress: 1,
+        );
+      }
+    } catch (error) {
+      if (mounted) {
+        state = BookDownloadState(
+          status: BookDownloadStatus.error,
+          error: error.toString(),
+        );
+      }
+    }
+  }
+
+  Future<void> remove() async {
+    await _repository.removeDownloadedBook(_bookId);
+    if (mounted) {
+      state = const BookDownloadState(
+        status: BookDownloadStatus.notDownloaded,
+      );
+    }
+  }
+}
+
+final bookDownloadProvider = StateNotifierProvider.autoDispose
+    .family<BookDownloadController, BookDownloadState, String>((ref, bookId) {
+  return BookDownloadController(ref.read(bookRepositoryProvider), bookId);
+});
+
 final bookProgressProvider = StateProvider.family<int, String>((ref, bookId) {
   final repo = ref.read(bookRepositoryProvider);
   return repo.getReadingProgress(bookId);

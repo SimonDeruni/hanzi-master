@@ -8,6 +8,9 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/ai_data_privacy_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+
+import '../widgets/app_language_picker_sheet.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -77,7 +80,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 title: Text(AppLocalizations.of(context)!.audiobookVoice,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(_voiceDisplayName(settings.audiobookVoice)),
+                subtitle: Text(_voiceDisplayName(context, settings.audiobookVoice)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showVoicePickerDialog(context, ref),
               ),
@@ -109,7 +112,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 title: Text(l10n?.appLanguage ?? "App Language",
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(_appLanguageName(settings.locale)),
+                subtitle: Text(appLanguageName(settings.locale)),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showAppLanguagePicker(context, ref),
               ),
@@ -187,7 +190,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
                 title: Text(AppLocalizations.of(context)!.notification_settings,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: const Text('One optional daily practice reminder'),
+                subtitle: Text(AppLocalizations.of(context)!.oneOptionalDailyPracticeReminder),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showNotificationSettings(context, ref),
               ),
@@ -376,73 +379,35 @@ class SettingsScreen extends ConsumerWidget {
     return const Divider(height: 1, thickness: 1, indent: 56);
   }
 
-  static String _voiceDisplayName(String voice) {
+  static String _voiceDisplayName(BuildContext context, String voice) {
+    final l10n = AppLocalizations.of(context);
     switch (voice) {
       case 'Kore':
-        return 'Kore — Female, warm (Azure)';
+        return 'Kore — ${l10n?.voiceFemaleWarm ?? 'Female, warm'} (Azure)';
       case 'Aoede':
-        return 'Aoede — Female, cheerful (Azure)';
+        return 'Aoede — ${l10n?.voiceFemaleCheerful ?? 'Female, cheerful'} (Azure)';
       case 'Fenrir':
-        return 'Fenrir — Male, upbeat (Azure)';
+        return 'Fenrir — ${l10n?.voiceMaleUpbeat ?? 'Male, upbeat'} (Azure)';
       case 'Charon':
-        return 'Charon — Male, news-style (Azure)';
+        return 'Charon — ${l10n?.voiceMaleNewsStyle ?? 'Male, news-style'} (Azure)';
       case 'Puck':
-        return 'Puck — Male, sporty (Azure)';
+        return 'Puck — ${l10n?.voiceMaleSporty ?? 'Male, sporty'} (Azure)';
       case 'local':
-        return 'Local — On-device TTS';
+        return 'Local — ${l10n?.voiceOnDeviceTts ?? 'On-device TTS'}';
       default:
         return voice;
     }
   }
 
-  static const _appLanguages = <(String, String)>[
-    ('en', 'English'),
-    ('ar', 'العربية'),
-    ('de', 'Deutsch'),
-    ('es', 'Español'),
-    ('fr', 'Français'),
-    ('hi', 'हिन्दी'),
-    ('id', 'Bahasa Indonesia'),
-    ('it', 'Italiano'),
-    ('ja', '日本語'),
-    ('ko', '한국어'),
-    ('pt', 'Português'),
-    ('ru', 'Русский'),
-    ('vi', 'Tiếng Việt'),
-  ];
-
-  static String _appLanguageName(String locale) {
-    return _appLanguages
-        .firstWhere((language) => language.$1 == locale,
-            orElse: () => _appLanguages.first)
-        .$2;
-  }
-
   static void _showAppLanguagePicker(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.read(settingsProvider).locale;
-    showDialog<void>(
-      context: context,
-      builder: (dialogContext) => SimpleDialog(
-        title: const Text('App Language'),
-        children: [
-          RadioGroup<String>(
-            groupValue: currentLocale,
-            onChanged: (locale) async {
-              if (locale == null) return;
-              await ref.read(settingsProvider.notifier).setLocale(locale);
-              if (dialogContext.mounted) Navigator.pop(dialogContext);
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: _appLanguages
-                  .map((language) => RadioListTile<String>(
-                        value: language.$1,
-                        title: Text(language.$2),
-                      ))
-                  .toList(),
-            ),
-          ),
-        ],
+    final title = AppLocalizations.of(context)?.appLanguage ?? 'App Language';
+    GlobalBlurredBottomSheet.show<void>(
+      context,
+      child: AppLanguagePickerSheet(
+        title: title,
+        selectedLocale: currentLocale,
+        onSelected: ref.read(settingsProvider.notifier).setLocale,
       ),
     );
   }
@@ -452,14 +417,15 @@ class SettingsScreen extends ConsumerWidget {
     final currentVoice = ref.read(settingsProvider).audiobookVoice;
     final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
     final cardBg = isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0);
+    final l10n = AppLocalizations.of(context);
 
-    const voiceOptions = [
-      ('Kore', 'Kore — Female, warm', 'zh-CN-XiaoxiaoNeural'),
-      ('Aoede', 'Aoede — Female, cheerful', 'zh-CN-XiaoyiNeural'),
-      ('Fenrir', 'Fenrir — Male, upbeat', 'zh-CN-YunxiNeural'),
-      ('Charon', 'Charon — Male, news-style', 'zh-CN-YunyangNeural'),
-      ('Puck', 'Puck — Male, sporty', 'zh-CN-YunjianNeural'),
-      ('local', 'Local — On-device TTS', 'System voice'),
+    final voiceOptions = [
+      ('Kore', 'Kore — ${l10n?.voiceFemaleWarm ?? 'Female, warm'}', 'zh-CN-XiaoxiaoNeural'),
+      ('Aoede', 'Aoede — ${l10n?.voiceFemaleCheerful ?? 'Female, cheerful'}', 'zh-CN-XiaoyiNeural'),
+      ('Fenrir', 'Fenrir — ${l10n?.voiceMaleUpbeat ?? 'Male, upbeat'}', 'zh-CN-YunxiNeural'),
+      ('Charon', 'Charon — ${l10n?.voiceMaleNewsStyle ?? 'Male, news-style'}', 'zh-CN-YunyangNeural'),
+      ('Puck', 'Puck — ${l10n?.voiceMaleSporty ?? 'Male, sporty'}', 'zh-CN-YunjianNeural'),
+      ('local', 'Local — ${l10n?.voiceOnDeviceTts ?? 'On-device TTS'}', l10n?.voiceSystemVoice ?? 'System voice'),
     ];
 
     showDialog(

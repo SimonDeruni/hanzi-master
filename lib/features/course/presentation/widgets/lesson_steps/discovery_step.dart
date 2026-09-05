@@ -89,6 +89,9 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final inkColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final surfaceColor = isDark ? const Color(0xFF252526) : const Color(0xFFFDFCF0);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -98,14 +101,14 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
         // Large Hanzi
         Text(
           widget.card.hanzi,
-          style: const TextStyle(fontSize: 120, fontWeight: FontWeight.bold, color: Color(0xFF1A1A1B)),
+          style: TextStyle(fontSize: 120, fontWeight: FontWeight.bold, color: inkColor),
         ),
         
         // Pinyin
         const SizedBox(height: 16),
         PinyinText(
           text: widget.card.pinyin,
-          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: inkColor),
         ),
         
         const SizedBox(height: 24),
@@ -116,7 +119,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
           children: [
             IconButton(
               onPressed: () => ref.read(audioServiceProvider).playCharacter(widget.card.hanzi),
-              icon: const Icon(Icons.volume_up, size: 40, color: Color(0xFF1A1A1B)),
+              icon: Icon(Icons.volume_up, size: 40, color: inkColor),
             ),
             const SizedBox(width: 40),
             GestureDetector(
@@ -127,9 +130,9 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
                   return Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: _isRecording ? Colors.red.withValues(alpha: 0.2 + (_pulseController.value * 0.3)) : const Color(0xFFFDFCF0),
+                      color: _isRecording ? Colors.red.withValues(alpha: 0.2 + (_pulseController.value * 0.3)) : surfaceColor,
                       shape: BoxShape.circle,
-                      border: Border.all(color: _isRecording ? Colors.red : const Color(0xFF1A1A1B), width: 2),
+                      border: Border.all(color: _isRecording ? Colors.red : inkColor, width: 2),
                       boxShadow: _isRecording ? [
                         BoxShadow(color: Colors.red.withValues(alpha: 0.3), blurRadius: 10 * _pulseController.value, spreadRadius: 5 * _pulseController.value)
                       ] : null,
@@ -137,7 +140,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
                     child: Icon(
                       _isRecording ? Icons.mic : Icons.mic_none,
                       size: 40,
-                      color: _isRecording ? Colors.red : const Color(0xFF1A1A1B),
+                      color: _isRecording ? Colors.red : inkColor,
                     ),
                   );
                 },
@@ -154,9 +157,9 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xFFFDFCF0),
+                color: surfaceColor,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF1A1A1B).withValues(alpha: 0.1)),
+                border: Border.all(color: inkColor.withValues(alpha: 0.1)),
               ),
               child: Column(
                 children: [
@@ -165,7 +168,7 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
                   const SizedBox(height: 8),
                   Text(
                     _feedback,
-                    style: const TextStyle(fontSize: 16, color: Color(0xFF1A1A1B), height: 1.4),
+                    style: TextStyle(fontSize: 16, color: inkColor, height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -184,10 +187,10 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
             child: ElevatedButton(
               onPressed: widget.onComplete,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1A1A1B),
+                backgroundColor: inkColor,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
-              child: Text(AppLocalizations.of(context)!.startLearning, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFDFCF0), letterSpacing: 1.2)),
+              child: Text(AppLocalizations.of(context)!.startLearning, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: surfaceColor, letterSpacing: 1.2)),
             ),
           ),
         ),

@@ -240,7 +240,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get voiceSpeed => 'Vitesse Vocale';
 
   @override
-  String get artAndIntellect => 'ART & INTELLECT';
+  String get artAndIntellect => 'ART ET INTELLIGENCE';
 
   @override
   String get theDigitalScholar => 'L\'Érudit Numérique';
@@ -1866,7 +1866,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get days => 'jours';
 
   @override
-  String get deck => 'Deck';
+  String get deck => 'Paquet';
 
   @override
   String get deckName => 'Nom du deck';
@@ -2303,9 +2303,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Un chemin personnalisé basé sur votre deck.';
 
   @override
-  String play(Object pinyin) {
-    return 'Écouter (pinyin)';
-  }
+  String get play => 'Écouter';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2713,7 +2711,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get viewMyDrawing => 'Voir mon dessin';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'Vlog quotidien chinois';
 
   @override
   String get voice => 'Voix :';
@@ -4615,7 +4613,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Qing3 xian1 zi4wo3 jie4shao4 yi1xia4. Ni3 wei4shen2me xiang3 lai2 wo3men gong1si1 gong1zuo4?';
 
   @override
-  String get managerLiu => 'Manager Liu';
+  String get managerLiu => 'Directeur Liu';
 
   @override
   String get introduceYourProfessionalBackground =>
@@ -5766,7 +5764,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Dialogue conversationnel détendu et humoristique avec des expressions familières modernes.';
 
   @override
-  String get seanKitchen => 'Sean Kitchen';
+  String get seanKitchen => 'Cuisine de Sean';
 
   @override
   String get deliciousHomecookedChineseDishesAnd =>
@@ -6109,7 +6107,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get rebornChineseDramaEngSub1 => 'Drame chinois Reborn (Sous-titres)';
 
   @override
-  String get reborn => 'Reborn';
+  String get reborn => 'Renaissance';
 
   @override
   String get theBestDayOfMyLife1 => 'Le plus beau jour de ma vie';
@@ -7728,16 +7726,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get localOnDeviceTTS => 'Local — Synthèse vocale de l\'appareil';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => 'Espagnol';
 
   @override
   String get franAis => 'Français';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => 'Portugais';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'Vietnamien';
 
   @override
   String get koreFemaleWarm => 'Kore — Féminin, chaleureux';
@@ -8372,7 +8370,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'BTS｜【Soirée Tencent】Dilraba et Chen Feiyu font sensation avec leur regard captivant !【白日提灯 Love Beyond the Grave】';
 
   @override
-  String get herBlaze => '她的盛焰 Her Blaze';
+  String get herBlaze => 'Her Blaze';
 
   @override
   String get opOIDzw8Vo => 'Op_OIDzw8Vo';
@@ -8656,7 +8654,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
 
   @override
-  String get theDreamMaker => '小城大事 The Dream Maker';
+  String get theDreamMaker => 'Le fabricant de rêves The Dream Maker';
 
   @override
   String get fLcyGh4lXM => 'FLcy_gh4lXM';
@@ -8705,15 +8703,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get foreverYoungE23 =>
-      '【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E23 Martin retourne au hutong et se fait manipuler par ses frères (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get foreverYoungE25 =>
-      '【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E25 Précis, stable et sans pitié ! Martin apprend à sa belle-sœur à mater son mari (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get foreverYoungE24 =>
-      '【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E24 Un rival amoureux ? Martin se fait appeler oncle par un gamin (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get fEYoHxyxzQ => 'FEYo_hxyxzQ';
@@ -9163,7 +9161,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get oNNJqZYydM => 'ONN-JqZYydM';
 
   @override
-  String get sniperButterfly => '狙击蝴蝶 Sniper Butterfly';
+  String get sniperButterfly => 'Papillon Sniper Sniper Butterfly';
 
   @override
   String get zExesh1IRe4 => 'ZExesh1IRe4';
@@ -9773,7 +9771,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aVowInTheDark2 => '恋恋风陵渡 A Vow in the Dark';
 
   @override
-  String get theUltimateVowUnknownTo => '君不知 The Ultimate Vow, Unknown to You';
+  String get theUltimateVowUnknownTo => 'The Ultimate Vow, Unknown to You';
 
   @override
   String get duMRGzTeKs => 'DuM-rGzTeKs';
@@ -9783,7 +9781,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'PLs3DOuT3JlGTynSBKz3-z5DcDzwwmqSOf';
 
   @override
-  String get theChangAnYouth => '长安少年行 The Chang\'An Youth';
+  String get theChangAnYouth => 'La jeunesse de Chang\'An The Chang\'An Youth';
 
   @override
   String get jg0aX6eEK4 => 'Jg0aX6e_EK4';
@@ -9807,7 +9805,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get jRRXVJblrk => 'JRR-XVJblrk';
 
   @override
-  String get thePrincessDecree2 => '平凝有令 The Princess Decree';
+  String get thePrincessDecree2 => 'The Princess Decree';
 
   @override
   String get ppiNYsUwOA => 'PpiNYs-uwOA';
@@ -9970,11 +9968,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aFlowerOnTheContinent3 =>
-      '【有花在洲 A Flower On The Continent】 小王爷当质子被花姑娘硬当公主，还挤一块住';
+      '【有花 en洲 A Flower On The Continent】 Un jeune prince pris en otage est forcé par une fille des fleurs à jouer la princesse et ils vivent ensemble';
 
   @override
   String get aFlowerOnTheContinent4 =>
-      '【有花在洲 A Flower On The Continent】 花姑娘女装露馅，小王爷舍命护她还反被诬陷';
+      '【有花在洲 A Flower On The Continent】 Le déguisement de la fille des fleurs est découvert, et le jeune prince risque sa vie pour la protéger mais est accusé à tort';
 
   @override
   String get aFlowerOnTheContinent5 =>
@@ -11444,7 +11442,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get uCRABdhiBHX4BieJfPCd2pg => 'UCRABdhiBHX4Bie-jfPCd2pg';
 
   @override
-  String get hiddenLove2 => 'Hidden Love';
+  String get hiddenLove2 => 'Amour caché';
 
   @override
   String get loveBetweenFairyAndDevil2 => 'Love Between Fairy and Devil';
@@ -11501,7 +11499,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ car +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11517,7 +11515,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'article, .article, .post, .content, principal';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12394,4 +12392,103 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get unableToLoadTheExplanation =>
       'Impossible de charger l\'explication.';
+
+  @override
+  String get failedToGenerateStoryN =>
+      'Échec de la génération de l\'histoire :\\n\$e';
+
+  @override
+  String get thematic => 'Thématique';
+
+  @override
+  String get deckFlashcards => 'Paquet (Cartes mémoire)';
+
+  @override
+  String get searchLibraryOrTypeCustom =>
+      'Rechercher dans la bibliothèque ou saisir du texte personnalisé';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Échec de l\'analyse : \$e';
+
+  @override
+  String get extractionFailedE => 'Échec de l\'extraction : \$e';
+
+  @override
+  String get simplifyFailedE => 'Échec de la simplification : \$e';
+
+  @override
+  String get translationFailedE => 'Échec de la traduction : \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'Échec de l\'enregistrement des mots extraits : \$error';
+
+  @override
+  String get youActualTargetExpected =>
+      'Vous : \$actual  ·  Cible : \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Améliorer la voix locale';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'Mandarin hors-ligne de haute qualité';
+
+  @override
+  String get removeDownload => 'Supprimer le téléchargement ?';
+
+  @override
+  String get removeDownload2 => 'Supprimer le téléchargement';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Femme, chaleureuse';
+
+  @override
+  String get voiceFemaleCheerful => 'Femme, joyeuse';
+
+  @override
+  String get voiceMaleUpbeat => 'Homme, enjoué';
+
+  @override
+  String get voiceMaleNewsStyle => 'Homme, style informatif';
+
+  @override
+  String get voiceMaleSporty => 'Homme, dynamique';
+
+  @override
+  String get voiceOnDeviceTts => 'Synthèse vocale sur l\'appareil';
+
+  @override
+  String get voiceSystemVoice => 'Voix système';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Appliquer les notes de session à la Répétition Espacée (Mode Oral)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'Impossible de charger cette section. Veuillez réessayer.';
+
+  @override
+  String get removeDownloadQuestion => 'Supprimer le téléchargement ?';
+
+  @override
+  String get removeDownloadContent => 'Supprimer le contenu téléchargé ?';
+
+  @override
+  String get removeDownloadAction => 'Supprimer le téléchargement';
+
+  @override
+  String get removeDownloadButton => 'Supprimer le téléchargement';
+
+  @override
+  String cardsCount(num count) {
+    return '$count cartes';
+  }
 }

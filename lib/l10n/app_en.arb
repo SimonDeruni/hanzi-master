@@ -3930,5 +3930,43 @@
   "noSePudoCargarLa": "No se pudo cargar la explicación.",
   "impossibileCaricareLaSpiegazione": "Impossibile caricare la spiegazione.",
   "nOFoiPossVel": "Não foi possível carregar a explicação.",
-  "unableToLoadTheExplanation": "Unable to load the explanation."
+  "unableToLoadTheExplanation": "Unable to load the explanation.",
+  "failedToGenerateStoryN": "Failed to generate story:\\n$e",
+  "thematic": "Thematic",
+  "deckFlashcards": "Deck (Flashcards)",
+  "searchLibraryOrTypeCustom": "Search library or type custom",
+  "hSKLevel": "HSK $level",
+  "analysisFailedE": "Analysis failed: $e",
+  "extractionFailedE": "Extraction failed: $e",
+  "simplifyFailedE": "Simplify failed: $e",
+  "translationFailedE": "Translation failed: $e",
+  "failedToSaveExtractedWords2": "Failed to save extracted words: $error",
+  "youActualTargetExpected": "You: $actual  ·  Target: $expected",
+  "improveTheLocalVoice": "Improve the local voice",
+  "higherQualityOfflineMandarin": "Higher-quality offline Mandarin",
+  "removeDownload": "Remove download?",
+  "removeDownload2": "Remove Download",
+  "tag": "#$tag",
+  "voiceFemaleWarm": "Female, warm",
+  "voiceFemaleCheerful": "Female, cheerful",
+  "voiceMaleUpbeat": "Male, upbeat",
+  "voiceMaleNewsStyle": "Male, news-style",
+  "voiceMaleSporty": "Male, sporty",
+  "voiceOnDeviceTts": "On-device TTS",
+  "voiceSystemVoice": "System voice",
+  "applySessionGradesToSpacedRepetition": "Apply session grades to Spaced Repetition (Speaking Mode)",
+  "unableToLoadThisSectionPleaseTryAgain": "Unable to load this section. Please try again.",
+  "removeDownloadQuestion": "Remove download?",
+  "removeDownloadContent": "Are you sure you want to remove the downloaded content for this book?",
+  "removeDownloadAction": "Remove Download",
+  "removeDownloadButton": "Remove Download",
+  "cardsCount": "{count} Cards",
+  "@cardsCount": {
+    "description": "Number of cards",
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -612,9 +613,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             Navigator.pop(context); // close sheet
                             _exitSession();
                           },
-                          child: const Text("Skip",
+                          child: Text(AppLocalizations.of(context)!.skip,
                               style:
-                                  TextStyle(color: Colors.grey, fontSize: 16)),
+                                  const TextStyle(color: Colors.grey, fontSize: 16)),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -634,8 +635,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   _showDeckSelectionDialog(
                                       context, isDark, selectedWords.toList());
                                 },
-                          child: const Text("Add Selected to Deck",
-                              style: TextStyle(
+                          child: Text(AppLocalizations.of(context)!.addSelectedToDeck,
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16)),
@@ -670,16 +671,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text("Select a Deck",
+                  Text(AppLocalizations.of(context)!.selectADeck,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: isDark ? Colors.white : Colors.black)),
                   const SizedBox(height: 16),
                   SwitchListTile(
-                    title: const Text(
-                        "Apply session grades to Spaced Repetition (Speaking Mode)",
-                        style: TextStyle(fontSize: 14)),
+                    title: Text(
+                        AppLocalizations.of(context)!.applySessionGradesToSpacedRepetition,
+                        style: const TextStyle(fontSize: 14)),
                     activeThumbColor: Colors.orange,
                     value: applySrs,
                     onChanged: (val) => setModalState(() => applySrs = val),
@@ -690,13 +691,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     const Center(
                         child: CircularProgressIndicator(color: Colors.orange)),
                   if (decksAsync.hasValue && decksAsync.value!.isEmpty)
-                    const Text("No decks found."),
+                    Text(AppLocalizations.of(context)!.noDecksFound),
                   if (decksAsync.hasValue && decksAsync.value!.isNotEmpty)
                     ...decksAsync.value!.map((deck) => ListTile(
                           title: Text(deck.name,
                               style: TextStyle(
                                   color: isDark ? Colors.white : Colors.black)),
-                          subtitle: Text("Export to this deck",
+                          subtitle: Text(AppLocalizations.of(context)!.exportToThisDeck,
                               style: TextStyle(
                                   color: isDark
                                       ? Colors.white54
@@ -713,10 +714,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         )),
                   const Divider(),
                   ListTile(
-                    title: const Text("Create New Deck",
-                        style: TextStyle(
+                    title: Text(AppLocalizations.of(context)!.createNewDeck,
+                        style: const TextStyle(
                             color: Colors.orange, fontWeight: FontWeight.bold)),
-                    subtitle: Text("Make a custom collection",
+                    subtitle: Text(AppLocalizations.of(context)!.makeACustomCollection,
                         style: TextStyle(
                             color: isDark ? Colors.white54 : Colors.black54)),
                     trailing:
@@ -743,7 +744,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         return AlertDialog(
           backgroundColor:
               isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-          title: Text("New Deck Name",
+          title: Text(AppLocalizations.of(context)!.newDeckName,
               style: TextStyle(color: isDark ? Colors.white : Colors.black)),
           content: HanziTextField(
             controller: controller,
@@ -761,7 +762,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel", style: TextStyle(color: Colors.grey)),
+              child: Text(AppLocalizations.of(context)!.cancelAction,
+                  style: const TextStyle(color: Colors.grey)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
@@ -849,7 +851,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Words saved and SRS scheduled!")));
+          SnackBar(content: Text(AppLocalizations.of(context)!.wordsSavedAndSrsScheduled)));
     }
   }
 

@@ -2270,9 +2270,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'A personalized path based on your deck.';
 
   @override
-  String play(Object pinyin) {
-    return 'Play';
-  }
+  String get play => 'Play';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -12255,4 +12253,100 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'Unable to load the explanation.';
+
+  @override
+  String get failedToGenerateStoryN => 'Failed to generate story:\\n\$e';
+
+  @override
+  String get thematic => 'Thematic';
+
+  @override
+  String get deckFlashcards => 'Deck (Flashcards)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'Search library or type custom';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Analysis failed: \$e';
+
+  @override
+  String get extractionFailedE => 'Extraction failed: \$e';
+
+  @override
+  String get simplifyFailedE => 'Simplify failed: \$e';
+
+  @override
+  String get translationFailedE => 'Translation failed: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'Failed to save extracted words: \$error';
+
+  @override
+  String get youActualTargetExpected => 'You: \$actual  ·  Target: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Improve the local voice';
+
+  @override
+  String get higherQualityOfflineMandarin => 'Higher-quality offline Mandarin';
+
+  @override
+  String get removeDownload => 'Remove download?';
+
+  @override
+  String get removeDownload2 => 'Remove Download';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Female, warm';
+
+  @override
+  String get voiceFemaleCheerful => 'Female, cheerful';
+
+  @override
+  String get voiceMaleUpbeat => 'Male, upbeat';
+
+  @override
+  String get voiceMaleNewsStyle => 'Male, news-style';
+
+  @override
+  String get voiceMaleSporty => 'Male, sporty';
+
+  @override
+  String get voiceOnDeviceTts => 'On-device TTS';
+
+  @override
+  String get voiceSystemVoice => 'System voice';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Apply session grades to Spaced Repetition (Speaking Mode)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'Unable to load this section. Please try again.';
+
+  @override
+  String get removeDownloadQuestion => 'Remove download?';
+
+  @override
+  String get removeDownloadContent =>
+      'Are you sure you want to remove the downloaded content for this book?';
+
+  @override
+  String get removeDownloadAction => 'Remove Download';
+
+  @override
+  String get removeDownloadButton => 'Remove Download';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

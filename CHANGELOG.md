@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Exhaustive Multi-Screen UI Localization & Voice Descriptors Across 13 Languages
+- Audited, extracted, and fully translated all remaining hardcoded UI strings across the application into all 13 supported languages (FR, ES, DE, IT, PT, RU, AR, HI, JA, KO, VI, TH, ID) and English:
+  - Added localized voice descriptors in Settings Audiobook Voice Picker: `voiceFemaleWarm`, `voiceFemaleCheerful`, `voiceMaleUpbeat`, `voiceMaleNewsStyle`, `voiceMaleSporty`, `voiceOnDeviceTts`, and `voiceSystemVoice`. Updated `_voiceDisplayName` and `_showVoicePickerDialog` in `SettingsScreen` to display localized descriptions dynamically.
+  - Localized UI elements across `DeckDetailScreen` (`cardsCount`, `dueToday`, `newAvailable`), `DeckSettingsSheet` (`exactDailyLimit`, `enter0ToDisable`, `cancelAction`, `apply`), `ShadowingStudioScreen` (`skip`, `addSelectedToDeck`, `selectADeck`, `noDecksFound`, `createNewDeck`, `newDeckName`, `wordsSavedAndSrsScheduled`, `applySessionGradesToSpacedRepetition`), `BookDetailScreen` (`removeDownloadQuestion`, `removeDownloadContent`, `removeDownloadAction`, `removeDownloadButton`), `CharacterDetailScreen` (`aiSmartContext`, `aiSmartContextError`), `TomeManagerScreen` (`failedToLoadCollections`), `DictionaryScreen` (`downloadOfficialHskCollections`, `unableToLoadThisSectionPleaseTryAgain`), `SettingsScreen` (`oneOptionalDailyPracticeReminder`), and `StoryModeScreen` (`pause`, `play`, `translate`).
+  - Ran `scripts/master_localization_pipeline.py` leveraging `gemini-flash-lite-latest` in batched JSON translation passes across 376 newly extracted keys, sanitizing ICU brackets and placeholders.
+  - Successfully compiled all localizations with `flutter gen-l10n`.
+  - Verified `dart analyze`: **0 errors, 0 warnings, 0 infos**.
+
 ### [2026-09-05] Interactive Video Transcript Deduplication & Contiguous Timestamp Merging
 - Resolved issue where identical transcript sentences appeared multiple times consecutively in the video player timeline (caused by 2-second slicing and roll-up subtitle duplication in creator video uploads, such as vlog `LcUoiBwG-OA`):
   - Implemented `YoutubeRepository.deduplicateAndMergeLines()` to normalize text (stripping whitespace, commas, periods, quotes, and punctuation) and detect contiguous or near-contiguous duplicate cues within a 2.5-second threshold.

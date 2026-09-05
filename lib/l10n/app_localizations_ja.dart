@@ -2214,9 +2214,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get personalizedPathBasedOnDeck => 'あなたのデッキに最適化された学習パス。';
 
   @override
-  String play(Object pinyin) {
-    return '発音を再生（$pinyin）';
-  }
+  String get play => '発音を再生（）';
 
   @override
   String get pleaseEnterMessageBeforeSending => '送信するメッセージを入力してください。';
@@ -2609,7 +2607,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get viewMyDrawing => '書いた文字を確認';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => '中国の日常vlog';
 
   @override
   String get voice => '音声：';
@@ -2636,7 +2634,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get whichCharacterIs => '次の説明に当てはまる漢字はどれですか：';
 
   @override
-  String get wikipedia => 'Wikipedia';
+  String get wikipedia => 'ウィキペディア';
 
   @override
   String get wordsSavedAndSrsScheduled => '単語を保存し、SRS復習スケジュールを設定しました！';
@@ -5744,7 +5742,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get rebornChineseDramaEngSub => '重生（Reborn）中国ドラマ';
 
   @override
-  String get ijenwaBenita => 'Ijenwa Benita';
+  String get ijenwaBenita => 'イジェンワ・ベニータ';
 
   @override
   String get whenIFlyTowardsYou => '君に向かって羽ばたく時（When I Fly Towards You）';
@@ -7359,16 +7357,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get localOnDeviceTTS => 'ローカル — デバイス内TTS';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => 'スペイン語';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => 'フランス語';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => 'ポルトガル語';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'ベトナム語';
 
   @override
   String get koreFemaleWarm => 'Kore — 女性、温かい';
@@ -7510,7 +7508,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get natureAnimals => '自然・動物';
 
   @override
-  String get articleImg => 'article img';
+  String get articleImg => '記事画像';
 
   @override
   String get entryContentImg => '.entry-content img';
@@ -7530,7 +7528,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+      '西嘻影業公式チャンネル (XiXi Pictures Official Channel)';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -7708,7 +7706,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get xgXf9j96yM => 'XgXf-9j96yM';
 
   @override
-  String get thoseDays => '四喜 Those days';
+  String get thoseDays => '四喜 あの日々';
 
   @override
   String get a5nhDbkkCU => 'a5nhDbkkC-U';
@@ -7998,7 +7996,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'メイキング｜【鵝劇パーティー】ディリラバとチェン・フェイユーが登場、鋭い眼光で魅了！【白日提灯 Love Beyond the Grave】';
 
   @override
-  String get herBlaze => '她的盛焰 Her Blaze';
+  String get herBlaze => 'Her Blaze';
 
   @override
   String get opOIDzw8Vo => 'Op_OIDzw8Vo';
@@ -9641,7 +9639,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get pbC7hP30zU => 'PbC7h-P30zU';
 
   @override
-  String get hilariousFamily22 => '芬芳喜事 Hilarious Family 2';
+  String get hilariousFamily22 => 'Hilarious Family 2';
 
   @override
   String get sliceOfLife => '日常';
@@ -11121,7 +11119,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ 文字 +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11136,8 +11134,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get label10px16px => '10px 16px';
 
   @override
-  String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+  String get articleArticlePostContentMain => '記事、.article、.post、.content、メイン';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -11962,4 +11959,98 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => '解説を読み込めませんでした。';
+
+  @override
+  String get failedToGenerateStoryN => 'ストーリーの生成に失敗しました：\\n\$e';
+
+  @override
+  String get thematic => 'テーマ別';
+
+  @override
+  String get deckFlashcards => 'デッキ (フラッシュカード)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'ライブラリを検索またはカスタム入力';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => '分析に失敗しました: \$e';
+
+  @override
+  String get extractionFailedE => '抽出に失敗しました: \$e';
+
+  @override
+  String get simplifyFailedE => '簡略化に失敗しました: \$e';
+
+  @override
+  String get translationFailedE => '翻訳に失敗しました: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 => '抽出された単語の保存に失敗しました: \$error';
+
+  @override
+  String get youActualTargetExpected => 'あなた: \$actual  ·  目標: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'ローカル音声を改善する';
+
+  @override
+  String get higherQualityOfflineMandarin => '高品質オフライン中国語';
+
+  @override
+  String get removeDownload => 'ダウンロードを削除しますか？';
+
+  @override
+  String get removeDownload2 => 'ダウンロードを削除';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => '女性、温かみのある声';
+
+  @override
+  String get voiceFemaleCheerful => '女性、明るい声';
+
+  @override
+  String get voiceMaleUpbeat => '男性、アップビートな声';
+
+  @override
+  String get voiceMaleNewsStyle => '男性、ニュース調の声';
+
+  @override
+  String get voiceMaleSporty => '男性、快活な声';
+
+  @override
+  String get voiceOnDeviceTts => '端末内音声合成';
+
+  @override
+  String get voiceSystemVoice => 'システム音声';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'セッション結果を分散学習システム（スピーキングモード）に反映';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'このセクションを読み込めませんでした。もう一度お試しください。';
+
+  @override
+  String get removeDownloadQuestion => 'ダウンロードを削除しますか？';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'ダウンロードを削除';
+
+  @override
+  String get removeDownloadButton => 'ダウンロードを削除';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

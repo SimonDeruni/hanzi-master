@@ -2296,9 +2296,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Uma rota personalizada baseada no seu baralho.';
 
   @override
-  String play(Object pinyin) {
-    return 'Reproduzir ($pinyin)';
-  }
+  String get play => 'Reproduzir )';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2703,7 +2701,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get viewMyDrawing => 'Ver meu desenho';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'Vlog diário da China';
 
   @override
   String get voice => 'Voz:';
@@ -5787,7 +5785,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Narrativa profunda e cativante com vocabulário rico e vozes autênticas.';
 
   @override
-  String get vickySoup => 'Vicky Soup';
+  String get vickySoup => 'Sopa Vicky';
 
   @override
   String get aestheticLifestyleVlogsFashionStyli =>
@@ -7700,16 +7698,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get localOnDeviceTTS => 'Local — TTS no dispositivo';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => 'Espanhol';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => 'Francês';
 
   @override
   String get portuguS => 'Português';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'Vietnamita';
 
   @override
   String get koreFemaleWarm => 'Kore — Feminina, acolhedora';
@@ -7873,8 +7871,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get siJin => '【似锦 Si Jin】正片 | #张晚意 #景甜';
 
   @override
-  String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+  String get xiXiPicturesOfficialChannel => 'Canal Oficial da XiXi Pictures';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -8343,7 +8340,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'BTS｜【鹅剧派对】迪丽热巴陈飞宇亮相，眼神杀直接封神！【白日提灯 Love Beyond the Grave】';
 
   @override
-  String get herBlaze => '她的盛焰 Her Blaze';
+  String get herBlaze => 'Her Blaze';
 
   @override
   String get opOIDzw8Vo => 'Op_OIDzw8Vo';
@@ -8625,7 +8622,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
 
   @override
-  String get theDreamMaker => '小城大事 The Dream Maker';
+  String get theDreamMaker => 'O Criador de Sonhos The Dream Maker';
 
   @override
   String get fLcyGh4lXM => 'FLcy_gh4lXM';
@@ -8761,7 +8758,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get e00xfXWql4Q => 'E00xfXWql4Q';
 
   @override
-  String get theHiddenHeirYeChen2 => '进击的叶辰 The Hidden Heir Ye Chen';
+  String get theHiddenHeirYeChen2 => 'O Herdeiro Oculto Ye Chen 2';
 
   @override
   String get xtTr8ZBDpG => 'XtTr8ZBDp-g';
@@ -9132,7 +9129,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get oNNJqZYydM => 'ONN-JqZYydM';
 
   @override
-  String get sniperButterfly => '狙击蝴蝶 Sniper Butterfly';
+  String get sniperButterfly => 'Borboleta Atiradora Sniper Butterfly';
 
   @override
   String get zExesh1IRe4 => 'ZExesh1IRe4';
@@ -9743,7 +9740,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get aVowInTheDark2 => '恋恋风陵渡 A Vow in the Dark';
 
   @override
-  String get theUltimateVowUnknownTo => '君不知 The Ultimate Vow, Unknown to You';
+  String get theUltimateVowUnknownTo => 'The Ultimate Vow, Unknown to You';
 
   @override
   String get duMRGzTeKs => 'DuM-rGzTeKs';
@@ -9753,7 +9750,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'PLs3DOuT3JlGTynSBKz3-z5DcDzwwmqSOf';
 
   @override
-  String get theChangAnYouth => '长安少年行 The Chang\'An Youth';
+  String get theChangAnYouth => 'A Juventude de Chang\'An The Chang\'An Youth';
 
   @override
   String get jg0aX6eEK4 => 'Jg0aX6e_EK4';
@@ -9777,7 +9774,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get jRRXVJblrk => 'JRR-XVJblrk';
 
   @override
-  String get thePrincessDecree2 => '平凝有令 The Princess Decree';
+  String get thePrincessDecree2 => 'The Princess Decree';
 
   @override
   String get ppiNYsUwOA => 'PpiNYs-uwOA';
@@ -10064,7 +10061,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'PLs3DOuT3JlGRuc_yIZLqmT7FO5IWD-WrP';
 
   @override
-  String get thePrincessSGambit => '桃花映江山 The Princess\'s Gambit';
+  String get thePrincessSGambit => 'The Princess\'s Gambit';
 
   @override
   String get highlightThePrincessSGambit =>
@@ -11471,7 +11468,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ car +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11487,7 +11484,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'artigo, .artigo, .post, .content, principal';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12367,4 +12364,101 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get unableToLoadTheExplanation =>
       'Não foi possível carregar a explicação.';
+
+  @override
+  String get failedToGenerateStoryN => 'Falha ao gerar a história:\\n\$e';
+
+  @override
+  String get thematic => 'Temático';
+
+  @override
+  String get deckFlashcards => 'Baralho (Flashcards)';
+
+  @override
+  String get searchLibraryOrTypeCustom =>
+      'Pesquisar na biblioteca ou digitar personalizado';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Falha na análise: \$e';
+
+  @override
+  String get extractionFailedE => 'Falha na extração: \$e';
+
+  @override
+  String get simplifyFailedE => 'Falha ao simplificar: \$e';
+
+  @override
+  String get translationFailedE => 'Falha na tradução: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'Falha ao salvar as palavras extraídas: \$error';
+
+  @override
+  String get youActualTargetExpected => 'Você: \$actual  ·  Meta: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Melhorar a voz local';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'Mandarim offline de alta qualidade';
+
+  @override
+  String get removeDownload => 'Remover o download?';
+
+  @override
+  String get removeDownload2 => 'Remover Download';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Feminina, calorosa';
+
+  @override
+  String get voiceFemaleCheerful => 'Feminina, alegre';
+
+  @override
+  String get voiceMaleUpbeat => 'Masculino, animado';
+
+  @override
+  String get voiceMaleNewsStyle => 'Masculino, estilo jornalístico';
+
+  @override
+  String get voiceMaleSporty => 'Masculino, esportivo';
+
+  @override
+  String get voiceOnDeviceTts => 'Síntese de voz no dispositivo';
+
+  @override
+  String get voiceSystemVoice => 'Voz do sistema';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Aplicar notas da sessão à Repetição Espaçada (Modo de Fala)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'Não foi possível carregar esta seção. Tente novamente.';
+
+  @override
+  String get removeDownloadQuestion => 'Remover o download?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'Remover Download';
+
+  @override
+  String get removeDownloadButton => 'Remover Download';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

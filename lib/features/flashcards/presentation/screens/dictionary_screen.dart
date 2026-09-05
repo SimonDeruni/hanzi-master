@@ -386,7 +386,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
-                                    Text("Download official HSK collections",
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .downloadOfficialHskCollections,
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -600,9 +602,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                 children: [
                   const Icon(Icons.error_outline, size: 48, color: Colors.grey),
                   const SizedBox(height: 16),
-                  const Text("Unable to load this section. Please try again.",
+                  Text(AppLocalizations.of(context)!.unableToLoadThisSectionPleaseTryAgain,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.grey, fontSize: 14)),
+                      style: const TextStyle(color: Colors.grey, fontSize: 14)),
                   const SizedBox(height: 16),
                   ElevatedButton.icon(
                     onPressed: () =>

@@ -2280,9 +2280,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'आपके डेक पर आधारित एक व्यक्तिगत शिक्षण पथ।';
 
   @override
-  String play(Object pinyin) {
-    return 'चलाएं ($pinyin)';
-  }
+  String get play => 'चलाएं';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2685,7 +2683,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get viewMyDrawing => 'मेरी ड्राइंग देखें';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'चीनी दैनिक व्लॉग';
 
   @override
   String get voice => 'आवाज़:';
@@ -5826,7 +5824,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get beginnerReading => 'प्रारंभिक पठन';
 
   @override
-  String get mandarinBean => 'Mandarin Bean';
+  String get mandarinBean => 'मंदारिन बीन';
 
   @override
   String get unknown => 'अज्ञात';
@@ -5948,7 +5946,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youkuEnglishgetAppNow => 'YOUKU English: अभी ऐप डाउनलोड करें';
 
   @override
-  String get theDouble => 'The Double';
+  String get theDouble => 'द डबल';
 
   @override
   String get updatesByOshin => 'ओशिन द्वारा अपडेट';
@@ -6074,7 +6072,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get blossom => 'खिलना';
 
   @override
-  String get gemini => 'Gemini';
+  String get gemini => 'जेमिनी';
 
   @override
   String get generationToGeneration => 'पीढ़ी दर पीढ़ी';
@@ -7661,16 +7659,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get localOnDeviceTTS => 'लोकल — ऑन-डिवाइस TTS';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => 'स्पेनिश';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => 'फ्रेंच';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => 'पुर्तगाली';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'वियतनामी';
 
   @override
   String get koreFemaleWarm => 'कोर — महिला, गर्मजोश';
@@ -7815,7 +7813,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get natureAnimals => 'प्रकृति और जानवर';
 
   @override
-  String get articleImg => 'article img';
+  String get articleImg => 'लेख img';
 
   @override
   String get entryContentImg => '.entry-content img';
@@ -7834,8 +7832,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get siJin => '【似锦 Si Jin】正片 | #张晚意 #景甜';
 
   @override
-  String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+  String get xiXiPicturesOfficialChannel => 'XiXi पिक्चर्स ऑफिशियल चैनल';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -7893,13 +7890,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get uCsHMiBJ9r87fRH7VAWZw => 'UCs_h_miBJ9r8-7fRH7VAWZw';
 
   @override
-  String get liziqi3 => '李子柒 Liziqi: 大蒜的一生';
+  String get liziqi3 => '李子柒 Liziqi: लहसुन का जीवन';
 
   @override
   String get label2MINCULTURALCONTEXT => '2 मिनट का सांस्कृतिक संदर्भ';
 
   @override
-  String get liziqi4 => '李子柒 Liziqi: 竹子家具';
+  String get liziqi4 => '李子柒 Liziqi: बांस का फर्नीचर';
 
   @override
   String get peppaPigChinese2 => 'Peppa Pig चीनी: 泥坑';
@@ -8588,7 +8585,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
 
   @override
-  String get theDreamMaker => '小城大事 The Dream Maker';
+  String get theDreamMaker => 'द ड्रीम मेकर The Dream Maker';
 
   @override
   String get fLcyGh4lXM => 'FLcy_gh4lXM';
@@ -8637,15 +8634,15 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get foreverYoungE23 =>
-      '【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E23 मार्टिन हुटोंग लौटा और भाइयों द्वारा नियंत्रित किया गया (वॉल्स हू, तian यू, झांग श्युयिंग, किआओ झेन्यू)';
 
   @override
   String get foreverYoungE25 =>
-      '【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E25 सटीक, स्थिर और क्रूर! मार्टिन ने भाभी को सिखाया पति को कैसे काबू करें (वॉल्स हू, तian यू, झांग श्युयिंग, किआओ झेन्यू)';
 
   @override
   String get foreverYoungE24 =>
-      '【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E24 प्यार में प्रतिद्वंद्वी? मार्टिन को एक छोटे लड़के ने अंकल कहा (वॉल्स हू, तian यू, झांग श्युयिंग, किआओ झेन्यू)';
 
   @override
   String get fEYoHxyxzQ => 'FEYo_hxyxzQ';
@@ -8724,7 +8721,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get e00xfXWql4Q => 'E00xfXWql4Q';
 
   @override
-  String get theHiddenHeirYeChen2 => '进击的叶辰 The Hidden Heir Ye Chen';
+  String get theHiddenHeirYeChen2 => 'छिपे हुए वारिस ये चेन 2';
 
   @override
   String get xtTr8ZBDpG => 'XtTr8ZBDp-g';
@@ -9383,61 +9380,62 @@ class AppLocalizationsHi extends AppLocalizations {
   String get gb0Bk564EQ => 'gb0Bk564-EQ';
 
   @override
-  String get thePrisonerOfBeauty => '折腰精简版 The Prisoner of Beauty';
+  String get thePrisonerOfBeauty =>
+      'The Prisoner of Beauty (संक्षिप्त संस्करण)';
 
   @override
   String get wsGeYBRO => 'wsGeYB_-r_o';
 
   @override
   String get thePrisonerOfBeauty2 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔替姐嫁世仇，新婚头天就和夫君杠上了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '«The Prisoner of Beauty»: शियाओ किआओ अपनी बहन के बदले अपने कट्टर दुश्मन से शादी करती है, और शादी के पहले ही दिन पति से भिड़ जाती है | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग';
 
   @override
   String get thePrisonerOfBeauty3 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔破刘琰炸渠阴谋，和魏劭从死磕变互相护着｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: शियाओ किआओ ने लيو यान की साजिश को नाकाम किया, वेई शाओ के साथ उनकी दुश्मनी आपसी सुरक्षा में बदली | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get thePrisonerOfBeauty4 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔装病争主院，魏劭当众护妻拒纳妾｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: शियाओ किआओ बीमारी का नाटक करती है, वेई शाओ सार्वजनिक रूप से अपनी पत्नी की रक्षा करते हैं और रखेलों को ठुकराते हैं | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get thePrisonerOfBeauty5 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔破了木匣栽赃局，魏劭认她是自家女君了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: शियाओ किआओ लकड़ी के बक्से की साजिश को तोड़ती है, वेई शाओ उसे अपनी मालकिन स्वीकार करता है | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get thePrisonerOfBeauty6 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔智破嫁祸局，魏劭认妻护妻婆媳掀桌｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: शियाओ किआओ चालाकी से साजिश को मात देती है, वेई शाओ पत्नी को पहचानकर रक्षा करता है | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get thePrisonerOfBeauty7 =>
-      '《折腰精简版 The Prisoner of Beauty》魏俨挑事传假信，小乔魏劭因玉坠闹信任危机｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: वेई यान झूठा पत्र भेजकर मुसीबत खड़ी करता है, जेड पेंडेंट के कारण शियाओ किआओ और वेई शाओ के बीच विश्वास का संकट पैदा होता है | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get thePrisonerOfBeauty8 =>
-      '《折腰精简版 The Prisoner of Beauty》苏娥皇用熟麦坑小乔，魏劭护妻破案俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: सु एहुआंग पके गेहूं का उपयोग करके शियाओ किआओ को फंसाती है, वेई शाओ पत्नी की रक्षा कर मामला सुलझाता है और दोनों करीब आते हैं | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get thePrisonerOfBeauty9 =>
-      '《折腰精简版 The Prisoner of Beauty》小乔魏劭遇刺中毒，小乔智破阴谋救夫更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '《The Prisoner of Beauty (संक्षिप्त संस्करण)》: शियाओ किआओ और वेई शाओ पर जानलेवा हमला होता है और जहर दिया जाता है, शियाओ किआओ साजिश को मात देकर पति की जान बचाती है और उनके रिश्ते गहरे होते हैं | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग - Tencent Video';
 
   @override
   String get rNYFWNcb8o => 'RNYFW-Ncb8o';
 
   @override
   String get thePrisonerOfBeauty10 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭送战马后补发簪，护妻失踪急得抓耳挠腮｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '«The Prisoner of Beauty»: वेई शाओ युद्ध के घोड़े देने के बाद हेयरبिन भेजता है, पत्नी की रक्षा में बेचैन | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग';
 
   @override
   String get thePrisonerOfBeauty11 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭怕小乔跑了吃醋护妻，搬出又后悔想她｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '«The Prisoner of Beauty»: वेई शाओ को डर है कि शियाओ किआओ भाग जाएगी, ईर्ष्या करता है और याद करता है | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग';
 
   @override
   String get thePrisonerOfBeauty12 =>
-      '《折腰精简版 The Prisoner of Beauty》魏劭吃醋背小乔，解木匣疑云俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '«The Prisoner of Beauty»: ईर्ष्या के कारण वेई शाओ शियाओ किआओ को अपनी पीठ पर उठाता है, लकड़ी के बक्से का रहस्य सुलझता है और वे करीब आते हैं | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग';
 
   @override
   String get thePrisonerOfBeauty13 =>
-      '《折腰精简版 The Prisoner of Beauty》乔慈探姐引魏劭吃醋，小乔俩口子掏心定终身｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场';
+      '«The Prisoner of Beauty»: कियाओ ची अपनी बहन से मिलने आता है जिससे वेई शाओ को ईर्ष्या होती है, दोनों अपने दिल की बात कहते हैं | मुख्य कलाकार: सॉन्ग ज़ूएर, लियू युनिंग';
 
   @override
   String get thePrisonerOfBeauty14 =>
@@ -9769,7 +9767,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ddcGbI27AE => 'DdcGbI-27AE';
 
   @override
-  String get herPhoenixMajesty2 => '凤皇传 Her Phoenix Majesty';
+  String get herPhoenixMajesty2 => 'Her Phoenix Majesty 2';
 
   @override
   String get pzXvIZTfw => 'Pz_xvIZ-Tfw';
@@ -11432,7 +11430,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ वर्ण +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11448,7 +11446,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'लेख, .लेख, .पोस्ट, .सामग्री, मुख्य';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12311,4 +12309,100 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'व्याख्या लोड नहीं की जा सकी।';
+
+  @override
+  String get failedToGenerateStoryN => 'कहानी जनरेट करने में विफल:\\n\$e';
+
+  @override
+  String get thematic => 'विषयगत';
+
+  @override
+  String get deckFlashcards => 'डेक (फ्लैशकार्ड)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'लाइब्रेरी खोजें या कस्टम टाइप करें';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'विश्लेषण विफल: \$e';
+
+  @override
+  String get extractionFailedE => 'निष्कर्षण विफल: \$e';
+
+  @override
+  String get simplifyFailedE => 'सरलीकरण विफल: \$e';
+
+  @override
+  String get translationFailedE => 'अनुवाद विफल: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'निकाल गए शब्दों को सहेजने में विफल: \$error';
+
+  @override
+  String get youActualTargetExpected => 'आप: \$actual  ·  लक्ष्य: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'स्थानीय आवाज़ में सुधार करें';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'उच्च गुणवत्ता वाली ऑफ़लाइन मंदारिन';
+
+  @override
+  String get removeDownload => 'डाउनलोड हटाएं?';
+
+  @override
+  String get removeDownload2 => 'डाउनलोड हटाएं';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'महिला, गर्म';
+
+  @override
+  String get voiceFemaleCheerful => 'महिला, हंसमुख';
+
+  @override
+  String get voiceMaleUpbeat => 'पुरुष, उत्साही';
+
+  @override
+  String get voiceMaleNewsStyle => 'पुरुष, समाचार-शैली';
+
+  @override
+  String get voiceMaleSporty => 'पुरुष, स्पोर्टी';
+
+  @override
+  String get voiceOnDeviceTts => 'डिवाइस पर टीटीएस';
+
+  @override
+  String get voiceSystemVoice => 'सिस्टम आवाज';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'सत्र के अंकों को अंतराल पुनरावृत्ति (बोलने का मोड) पर लागू करें';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'इस अनुभाग को लोड करने में असमर्थ। कृपया पुनः प्रयास करें।';
+
+  @override
+  String get removeDownloadQuestion => 'डाउनलोड हटाएं?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'डाउनलोड हटाएं';
+
+  @override
+  String get removeDownloadButton => 'डाउनलोड हटाएं';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

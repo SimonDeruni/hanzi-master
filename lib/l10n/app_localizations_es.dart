@@ -2290,9 +2290,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Una ruta personalizada basada en tu mazo.';
 
   @override
-  String play(Object pinyin) {
-    return 'Reproducir ($pinyin)';
-  }
+  String get play => 'Reproducir';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2649,7 +2647,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get traceLabel => 'Trazar';
 
   @override
-  String get trailer => 'TRAILER';
+  String get trailer => 'TRÁILER';
 
   @override
   String get translatingAndAddingPinyin => 'Traduciendo y añadiendo Pinyin...';
@@ -2697,7 +2695,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get viewMyDrawing => 'Ver mi dibujo';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'Vlog diario de China';
 
   @override
   String get voice => 'Voz:';
@@ -5996,7 +5994,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get youkuEnglishgetAppNow => 'YOUKU English: Descarga la app';
 
   @override
-  String get theDouble => 'The Double';
+  String get theDouble => 'La doble';
 
   @override
   String get updatesByOshin => 'Actualizaciones de Oshin';
@@ -7713,13 +7711,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get espaOl => 'Español';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => 'Francés';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => 'Portugués';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'Vietnamita';
 
   @override
   String get koreFemaleWarm => 'Kore — Femenina, cálida';
@@ -7863,7 +7861,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get natureAnimals => 'Naturaleza y animales';
 
   @override
-  String get articleImg => 'article img';
+  String get articleImg => 'imagen del artículo';
 
   @override
   String get entryContentImg => '.entry-content img';
@@ -7882,8 +7880,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get siJin => '【似锦 Si Jin】正片 | #张晚意 #景甜';
 
   @override
-  String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+  String get xiXiPicturesOfficialChannel => 'Canal oficial de XiXi Pictures';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -8634,7 +8631,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
 
   @override
-  String get theDreamMaker => '小城大事 The Dream Maker';
+  String get theDreamMaker => 'El creador de sueños The Dream Maker';
 
   @override
   String get fLcyGh4lXM => 'FLcy_gh4lXM';
@@ -8683,15 +8680,15 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get foreverYoungE23 =>
-      '【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E23 Martín regresa al hutong y es presionado por sus hermanos (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get foreverYoungE25 =>
-      '【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E25 ¡Preciso, firme y despiadado! Martín le enseña a su cuñada a controlar a su esposo (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get foreverYoungE24 =>
-      '【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E24 ¿Hay un rival en el amor? Martín es llamado tío por un mocoso (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get fEYoHxyxzQ => 'FEYo_hxyxzQ';
@@ -10075,7 +10072,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'PLs3DOuT3JlGRuc_yIZLqmT7FO5IWD-WrP';
 
   @override
-  String get thePrincessSGambit => '桃花映江山 The Princess\'s Gambit';
+  String get thePrincessSGambit => 'The Princess\'s Gambit';
 
   @override
   String get highlightThePrincessSGambit =>
@@ -10134,7 +10131,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get clipThePrincessSGambit6 =>
-      'Clip 初次相见就玩这么大！沈在野桃花身中合欢散四目相对【桃花映江山 The Princess\'s Gambit】';
+      'Clip: ¡Primera reunión y ya tan osado! Shen Zaiye afectado por el veneno Huanhuan, miradas cruzadas 【桃花映江山 The Princess\'s Gambit】';
 
   @override
   String get pLIPiKkSFpK8B6r2izKyYYiYdbkYSBbd =>
@@ -11482,7 +11479,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ car +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11498,7 +11495,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'artículo, .artículo, .post, .content, principal';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12375,4 +12372,101 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'No se pudo cargar la explicación.';
+
+  @override
+  String get failedToGenerateStoryN => 'No se pudo generar la historia:\\n\$e';
+
+  @override
+  String get thematic => 'Temático';
+
+  @override
+  String get deckFlashcards => 'Mazo (Tarjetas de estudio)';
+
+  @override
+  String get searchLibraryOrTypeCustom =>
+      'Buscar en la biblioteca o escribir personalizado';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Análisis fallido: \$e';
+
+  @override
+  String get extractionFailedE => 'Falló la extracción: \$e';
+
+  @override
+  String get simplifyFailedE => 'Error al simplificar: \$e';
+
+  @override
+  String get translationFailedE => 'Error de traducción: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'No se pudieron guardar las palabras extraídas: \$error';
+
+  @override
+  String get youActualTargetExpected => 'Tú: \$actual  ·  Objetivo: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Mejorar la voz local';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'Mandarín sin conexión de alta calidad';
+
+  @override
+  String get removeDownload => '¿Eliminar descarga?';
+
+  @override
+  String get removeDownload2 => 'Eliminar descarga';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Femenina, cálida';
+
+  @override
+  String get voiceFemaleCheerful => 'Femenina, alegre';
+
+  @override
+  String get voiceMaleUpbeat => 'Masculino, dinámico';
+
+  @override
+  String get voiceMaleNewsStyle => 'Masculino, estilo noticias';
+
+  @override
+  String get voiceMaleSporty => 'Masculino, deportivo';
+
+  @override
+  String get voiceOnDeviceTts => 'TTS en el dispositivo';
+
+  @override
+  String get voiceSystemVoice => 'Voz del sistema';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Aplicar calificaciones de la sesión al sistema de repetición espaciada (modo habla)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'No se pudo cargar esta sección. Por favor, inténtalo de nuevo.';
+
+  @override
+  String get removeDownloadQuestion => '¿Eliminar descarga?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'Eliminar descarga';
+
+  @override
+  String get removeDownloadButton => 'Eliminar descarga';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

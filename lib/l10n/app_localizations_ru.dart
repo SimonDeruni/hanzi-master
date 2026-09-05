@@ -2292,9 +2292,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Персональный учебный план на основе вашей колоды.';
 
   @override
-  String play(Object pinyin) {
-    return 'Воспроизвести ($pinyin)';
-  }
+  String get play => 'Воспроизвести )';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -6012,7 +6010,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get rebornChineseDramaEngSub => 'Дорама «Перерождение» с субтитрами';
 
   @override
-  String get ijenwaBenita => 'Ijenwa Benita';
+  String get ijenwaBenita => 'Идженва Бенита';
 
   @override
   String get whenIFlyTowardsYou =>
@@ -7694,16 +7692,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get localOnDeviceTTS => 'Локально — TTS на устройстве';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => 'Испанский';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => 'Французский';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => 'Португальский';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'Вьетнамский';
 
   @override
   String get koreFemaleWarm => 'Kore — женский, тёплый';
@@ -7848,7 +7846,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get natureAnimals => 'Природа и животные';
 
   @override
-  String get articleImg => 'article img';
+  String get articleImg => 'изображение статьи';
 
   @override
   String get entryContentImg => '.entry-content img';
@@ -7867,8 +7865,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get siJin => '【似锦 Si Jin】正片 | #张晚意 #景甜';
 
   @override
-  String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+  String get xiXiPicturesOfficialChannel => 'Официальный канал XiXi Pictures';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -10203,10 +10200,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get limitedFULLTheIngeniousOne =>
-      '【Limited FULL】云襄传 | The Ingenious One | iQIYI 👑Join the Membership and enjoy full episodes now!';
+      '【Ограничено: ПОЛНАЯ версия】云襄传 | The Ingenious One | iQIYI 👑 Оформите подписку и наслаждайтесь всеми сериями прямо сейчас!';
 
   @override
-  String get iQIYIGetTheIQIYIAPP2 => 'iQIYI 爱奇艺 - Get the iQIYI APP';
+  String get iQIYIGetTheIQIYIAPP2 => 'iQIYI 愛奇藝 - Скачайте приложение iQIYI';
 
   @override
   String get aky3021PW => '_Aky3021P-w';
@@ -10326,7 +10323,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get iQIYIPhilippinesGetTheIQIYI =>
-      'iQIYI Philippines - Get the iQIYI APP';
+      'iQIYI Филиппины - Скачайте приложение iQIYI';
 
   @override
   String get lKuff6Nfwp8 => 'LKuff6Nfwp8';
@@ -10345,7 +10342,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get aIEnglishDubMrBAD =>
-      '【AI English Dub】Mr. BAD | Chen Zheyuan, Yue Shen | iQIYI Philippines';
+      '【Английский дубляж с ИИ】Мистер Злодей | Чэнь Чжэюань, Юэ Шэнь | iQIYI Филиппины';
 
   @override
   String get h7d38oiW4 => '-h7d38oi_w4';
@@ -10509,7 +10506,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get fULLMyDearGuardianJohnny =>
-      '【FULL】🕊️My Dear Guardian |  Johnny Huang, Li Qin | iQIYI Philippines';
+      '【FULL】🕊️My Dear Guardian | Johnny Huang, Li Qin | iQIYI Philippines';
 
   @override
   String get fN0lxPL4Qa0 => 'FN0lxPL4Qa0';
@@ -10546,7 +10543,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get theBestThingZhangLinghe =>
-      '🌸【治愈爱情】🎋The Best Thing 爱你 | Zhang Linghe × Xu Ruohan | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!';
+      '🌸【Исцеляющий роман】🎋The Best Thing Я люблю тебя | Zhang Linghe × Xu Ruohan | ПОЛНАЯ версия | iQIYI 👑Оформите подписку и наслаждайтесь всеми сериями прямо сейчас!';
 
   @override
   String get h22R4lYT0QQ => 'H22R4lYT0QQ';
@@ -10950,7 +10947,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get fullBrightEyesInThe =>
-      '【Full】Bright Eyes in the Dark | Johnny Huang, Zhang Jing Yi | iQIYI Philippines';
+      '【Полный】Bright Eyes in the Dark | Джонни Хуан, Чжан Цзин И | iQIYI Филиппины';
 
   @override
   String get jalmOqeImY => 'JalmOqeIm-Y';
@@ -11114,7 +11111,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get iQIYIMOVIETHEATERGetThe =>
-      '爱奇艺大电影 iQIYI MOVIE THEATER - Get the iQIYI APP';
+      'iQIYI MOVIE THEATER - Скачайте приложение iQIYI';
 
   @override
   String get oNi1Mh97lYo => 'ONi1Mh97lYo';
@@ -11136,7 +11133,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get miniDramaENGSUBFull =>
-      '🎀【微短剧 Mini Drama】ENG SUB | Full Version Collection | Download WeTV / Tencent Video APP to Watch More';
+      '🎀【Мини-драма】Английские субтитры | Полная коллекция версий | Скачайте приложение WeTV / Tencent Video, чтобы смотреть больше';
 
   @override
   String get vZysxG7Jdg => 'V-zysxG7Jdg';
@@ -11204,7 +11201,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get fullBeautyOfResilienceJu =>
-      '【Full】Beauty of Resilience | Ju Jing Yi, Fiction | iQIYI Philippines';
+      '【Полный】Beauty of Resilience | Цзю Цзин И, Фантастика | iQIYI Филиппины';
 
   @override
   String get tT8V4eOewkc => 'TT8V4eOewkc';
@@ -11248,7 +11245,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get hotTrendingMoonlitReunionFull =>
-      '🔥Hot Trending【子夜归 Moonlit Reunion】Full EPS | Human and Demon fall in love while solving mysteries | Xu Kai, Tian Xiwei | ENG SUB';
+      '🔥В тренде【子夜归 Moonlit Reunion】Все серии | Человек и демон влюбляются, разгадывая тайны | Сюй Кай, Тянь Сивэй | АНГЛ. СУБТИТРЫ';
 
   @override
   String get v7niIXnWWM => 'v7ni-iXnWWM';
@@ -11389,16 +11386,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get partContentDetails => '?part=contentDetails';
 
   @override
-  String get fallInLove => 'fall in love';
+  String get fallInLove => 'влюбиться';
 
   @override
-  String get myGirl => 'my girl';
+  String get myGirl => 'My Girl';
 
   @override
-  String get firstRomance2 => 'first romance';
+  String get firstRomance2 => 'первый роман';
 
   @override
-  String get fallFor => 'fall for';
+  String get fallFor => 'запасть на';
 
   @override
   String get uCD83JhUFQXRDwC6S8caCQ => 'UCD_83Jh-UFQXRDwC6S8caCQ';
@@ -11410,7 +11407,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get uCRABdhiBHX4BieJfPCd2pg => 'UCRABdhiBHX4Bie-jfPCd2pg';
 
   @override
-  String get hiddenLove2 => 'Hidden Love';
+  String get hiddenLove2 => 'Скрытая любовь';
 
   @override
   String get loveBetweenFairyAndDevil2 => 'Love Between Fairy and Devil';
@@ -11425,22 +11422,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mysteriousLotusCasebook2 => 'Mysterious Lotus Casebook';
 
   @override
-  String get reset => 'Reset';
+  String get reset => 'Сбросить';
 
   @override
-  String get theLongBallad2 => 'The Long Ballad';
+  String get theLongBallad2 => 'Длинная баллада';
 
   @override
-  String get theUntamed2 => 'The Untamed';
+  String get theUntamed2 => 'Неукротимый: Повелитель Чэньцин (The Untamed)';
 
   @override
-  String get wordOfHonor2 => 'Word of Honor';
+  String get wordOfHonor2 => 'Длекео';
 
   @override
   String get lightOfDawn2 => '人之初 Light of Dawn';
 
   @override
-  String get hOMELANDGUARDIAN2 => '守诚者|HOMELAND GUARDIAN';
+  String get hOMELANDGUARDIAN2 => '守诚者 | HOMELAND GUARDIAN';
 
   @override
   String get searching2 => 'Searching...';
@@ -11449,7 +11446,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get verse => 'Verse';
 
   @override
-  String get allStories2 => 'All Stories';
+  String get allStories2 => 'Все истории';
 
   @override
   String get bbcComZhongwenTrad => 'bbc.com/zhongwen/trad';
@@ -11467,7 +11464,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ симв +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11483,7 +11480,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'статья, .article, .post, .content, главная';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -11526,17 +11523,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get keepItUp => '好！Keep it up';
 
   @override
-  String get minutesDay => 'Minutes / Day';
+  String get minutesDay => 'Минут / День';
 
   @override
   String get consistencyIsTheInkThat =>
-      '\"Consistency is the ink that builds the character.\"';
+      '«Постоянство — это чернила, создающие характер».';
 
   @override
-  String get businessCareer => 'Business & Career';
+  String get businessCareer => 'Бизнес и карьера';
 
   @override
-  String get travelSurvival => 'Travel & Survival';
+  String get travelSurvival => 'Путешествия и выживание';
 
   @override
   String get label05MinDay => '05 Min / Day';
@@ -11551,201 +11548,202 @@ class AppLocalizationsRu extends AppLocalizations {
   String get label30MinDay => '30 Min / Day';
 
   @override
-  String get dynamicDecksStrokeAnalysis => 'Dynamic Decks & Stroke Analysis';
+  String get dynamicDecksStrokeAnalysis => 'Динамические колоды и анализ черт';
 
   @override
   String get subscriptionsAreTemporarilyUnavailablePl =>
-      'Subscriptions are temporarily unavailable. Please try again.';
+      'Подписки временно недоступны. Пожалуйста, попробуйте снова.';
 
   @override
-  String get trialReminder => 'Trial Reminder';
+  String get trialReminder => 'Напоминание о пробном периоде';
 
   @override
   String get turnOnNotificationsIfYou =>
-      'Turn on notifications if you would like a reminder before your eligible trial expires. Your App Store subscription settings remain the source of truth.';
+      'Включите уведомления, если вы хотите получить напоминание до истечения срока действия соответствующей пробной версии. Настройки вашей подписки в App Store остаются источником истины.';
 
   @override
-  String get label2Months => '2 months';
+  String get label2Months => '2 месяца';
 
   @override
-  String get label3Months => '3 months';
+  String get label3Months => '3 месяца';
 
   @override
-  String get label6Months => '6 months';
+  String get label6Months => '6 месяцев';
 
   @override
-  String get billingPeriod => 'billing period';
+  String get billingPeriod => 'расчетный период';
 
   @override
-  String get chooseASubscription => 'Choose a subscription';
+  String get chooseASubscription => 'Выберите подписку';
 
   @override
-  String get startFreeTrial => 'Start free trial';
+  String get startFreeTrial => 'Начать бесплатный пробный период';
 
   @override
-  String get smartNewsDict => 'Smart News & Dict';
+  String get smartNewsDict => 'Умные новости и словарь';
 
   @override
-  String get hSK16AIDecks => 'HSK 1-6 & AI Decks';
+  String get hSK16AIDecks => 'HSK 1-6 и колоды с ИИ';
 
   @override
-  String get continueWithTemporaryPremium => 'Continue with temporary Premium';
+  String get continueWithTemporaryPremium => 'Продолжить с временным Премиумом';
 
   @override
-  String get testProductUnavailable => 'Test product unavailable';
+  String get testProductUnavailable => 'Тестовый продукт недоступен';
 
   @override
   String get paymentIsChargedToYour =>
-      'Payment is charged to your App Store account.';
+      'Платеж будет списан с вашей учетной записи App Store.';
 
   @override
   String get subscriptionsRenewAutomaticallyUnlessCan =>
-      'Subscriptions renew automatically unless canceled';
+      'Подписки продлеваются автоматически, если их не отменить';
 
   @override
   String get atLeast24HoursBefore =>
-      'at least 24 hours before the end of the current period.';
+      'по крайней мере за 24 часа до окончания текущего периода.';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => 'Политика конфиденциальности';
 
   @override
-  String get closePurchaseOffer => 'Close purchase offer';
+  String get closePurchaseOffer => 'Закрыть предложение о покупке';
 
   @override
   String get loading => 'Loading...';
 
   @override
-  String get analyzingImage2 => 'Analyzing image…';
+  String get analyzingImage2 => 'Анализ изображения…';
 
   @override
-  String get extractingChineseText2 => 'Extracting Chinese text…';
+  String get extractingChineseText2 => 'Извлечение китайского текста...';
 
   @override
-  String get lookingUpVocabulary2 => 'Looking up vocabulary…';
+  String get lookingUpVocabulary2 => 'Поиск словаря...';
 
   @override
-  String get deselectAll => 'Deselect All';
+  String get deselectAll => 'Снять выделение со всего';
 
   @override
-  String get selectAll => 'Select All';
+  String get selectAll => 'Выбрать все';
 
   @override
   String get worldChineseLiteraryMasterpiece =>
-      'World & Chinese literary masterpiece.';
+      'Мировой и китайский литературный шедевр.';
 
   @override
-  String get classic => 'Classic';
+  String get classic => 'Классический';
 
   @override
-  String get literature => 'Literature';
+  String get literature => 'Литература';
 
   @override
-  String get theOriginAwakening => 'The Origin & Awakening';
+  String get theOriginAwakening => 'Истоки и пробуждение';
 
   @override
-  String get turbulentHorizonsTheJourney => 'Turbulent Horizons & The Journey';
+  String get turbulentHorizonsTheJourney =>
+      'Турбулентные горизонты и путешествие';
 
   @override
-  String get trialsTribulationsDevotion => 'Trials, Tribulations & Devotion';
+  String get trialsTribulationsDevotion => 'Испытания, невзгоды и преданность';
 
   @override
-  String get theClashOfWitsBravery => 'The Clash of Wits & Bravery';
+  String get theClashOfWitsBravery => 'Столкновение ума и отваги';
 
   @override
-  String get theGrandClimaxResolution => 'The Grand Climax & Resolution';
+  String get theGrandClimaxResolution => 'Великая кульминация и развязка';
 
   @override
-  String get everlastingLegacyEpilogue => 'Everlasting Legacy & Epilogue';
+  String get everlastingLegacyEpilogue => 'Вечное наследие и эпилог';
 
   @override
   String get acrossTheVastExpanseOf =>
-      'Across the vast expanse of heaven and earth, characters pursue their destiny and convictions through profound trials.';
+      'На просторах неба и земли персонажи идут к своей судьбе и убеждениям через глубокие испытания.';
 
   @override
   String get everyDialogueAndEncounterWithin =>
-      'Every dialogue and encounter within the tale carries the brilliance of the human spirit and the imprint of its era.';
+      'Каждый диалог и встреча в этой истории несут в себе блеск человеческого духа и печать своей эпохи.';
 
   @override
   String get followingTheFlowOfProse =>
-      'Following the flow of prose, readers traverse centuries of time to share in the triumphs and sorrows of legendary figures.';
+      'Следуя за течением прозы, читатели преодолевают века, чтобы разделить триумфы и печали легендарных фигур.';
 
   @override
   String get preQin => 'pre-qin';
 
   @override
-  String get theGoddessNWaRepairing => 'The goddess Nüwa repairing the sky';
+  String get theGoddessNWaRepairing => 'Богиня Нюйва латает небо';
 
   @override
-  String get artsTraditions => 'Arts & Traditions';
+  String get artsTraditions => 'Искусство и традиции';
 
   @override
-  String get femaleWarm => 'Female, warm';
+  String get femaleWarm => 'Женский, мягкий';
 
   @override
-  String get femaleCheerful => 'Female, cheerful';
+  String get femaleCheerful => 'Женский, жизнерадостный';
 
   @override
-  String get maleUpbeat => 'Male, upbeat';
+  String get maleUpbeat => 'Мужской, бодрый';
 
   @override
   String get maleNewsStyle => 'Male, news-style';
 
   @override
-  String get maleSporty => 'Male, sporty';
+  String get maleSporty => 'Мужской, спортивный';
 
   @override
   String get onDevice => 'On-device';
 
   @override
-  String get label15Minutes => '15 Minutes';
+  String get label15Minutes => '15 минут';
 
   @override
-  String get label30Minutes => '30 Minutes';
+  String get label30Minutes => '30 минут';
 
   @override
-  String get label45Minutes => '45 Minutes';
+  String get label45Minutes => '45 минут';
 
   @override
-  String get selectChapter => 'Select Chapter';
+  String get selectChapter => 'Выберите главу';
 
   @override
   String get andContinuesToBeStudied =>
-      'and continues to be studied and celebrated by readers across generations.';
+      'и продолжает изучаться и отмечаться читателями из поколения в поколение.';
 
   @override
-  String get label1Poem => '1 Poem';
+  String get label1Poem => '1 стихотворение';
 
   @override
-  String get label1Chapter => '1 Chapter';
+  String get label1Chapter => '1 глава';
 
   @override
-  String get localDeviceVoice2 => 'Local device voice';
+  String get localDeviceVoice2 => 'Голос локального устройства';
 
   @override
   String get weeklyAzureQuotaReachedSwitching =>
-      'Weekly Azure quota reached — switching to local voice';
+      'Достигнута недельная квота Azure — переключение на локальный голос';
 
   @override
-  String get sleepTimer2 => '定时关闭 · Sleep Timer';
+  String get sleepTimer2 => 'Таймер сна · Sleep Timer';
 
   @override
-  String get tableOfContents2 => '目录 · Table of Contents';
+  String get tableOfContents2 => 'Оглавление · Table of Contents';
 
   @override
   String get hanziMaster10 => 'HanziMaster/1.0';
 
   @override
   String get spanishItalianRussianClassics =>
-      'Spanish, Italian & Russian Classics';
+      'Испанская, итальянская и русская классика';
 
   @override
   String get englishAmericanGlobalClassics =>
-      'English, American & Global Classics';
+      'Английские, американские и мировые классические произведения';
 
   @override
   String get whileStrategicallyEmbeddingWordsYou =>
-      'while strategically embedding words you are currently struggling with so you can learn them in context.';
+      'при этом стратегически внедряя слова, с которыми у вас возникают трудности, чтобы вы могли изучать их в контексте.';
 
   @override
   String get poetryPainting => 'poetry-painting';
@@ -12349,4 +12347,100 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'Не удалось загрузить объяснение.';
+
+  @override
+  String get failedToGenerateStoryN => 'Не удалось создать историю:\\n\$e';
+
+  @override
+  String get thematic => 'Тематический';
+
+  @override
+  String get deckFlashcards => 'Колода (Карточки)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'Искать в библиотеке или ввести свое';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Ошибка анализа: \$e';
+
+  @override
+  String get extractionFailedE => 'Ошибка извлечения: \$e';
+
+  @override
+  String get simplifyFailedE => 'Не удалось упростить: \$e';
+
+  @override
+  String get translationFailedE => 'Ошибка перевода: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'Не удалось сохранить извлеченные слова: \$error';
+
+  @override
+  String get youActualTargetExpected => 'Вы: \$actual  ·  Цель: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Улучшить локальный голос';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'Высококачественный китайский оффлайн';
+
+  @override
+  String get removeDownload => 'Удалить загрузку?';
+
+  @override
+  String get removeDownload2 => 'Удалить загрузку';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Женский, тёплый';
+
+  @override
+  String get voiceFemaleCheerful => 'Женский, бодрый';
+
+  @override
+  String get voiceMaleUpbeat => 'Мужской, энергичный';
+
+  @override
+  String get voiceMaleNewsStyle => 'Мужской, дикторский';
+
+  @override
+  String get voiceMaleSporty => 'Мужской, спортивный';
+
+  @override
+  String get voiceOnDeviceTts => 'Синтез речи на устройстве';
+
+  @override
+  String get voiceSystemVoice => 'Системный голос';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Применить результаты сессии к интервальным повторениям (режим говорения)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'Не удалось загрузить этот раздел. Пожалуйста, попробуйте снова.';
+
+  @override
+  String get removeDownloadQuestion => 'Удалить загрузку?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'Удалить загрузку';
+
+  @override
+  String get removeDownloadButton => 'Удалить загрузку';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

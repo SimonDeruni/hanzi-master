@@ -231,15 +231,15 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
           controller: controller,
           autofocus: true,
           keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            labelText: 'Exact daily limit',
-            helperText: 'Enter 0 to disable.',
+          decoration: InputDecoration(
+            labelText: AppLocalizations.of(context)!.exactDailyLimit,
+            helperText: AppLocalizations.of(context)!.enter0ToDisable,
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.cancelAction),
           ),
           TextButton(
             onPressed: () {
@@ -248,7 +248,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
                 Navigator.pop(dialogContext, parsed);
               }
             },
-            child: const Text('Apply'),
+            child: Text(AppLocalizations.of(context)!.apply),
           ),
         ],
       ),

@@ -80,9 +80,24 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
 
     final audioService = ref.read(audioServiceProvider);
 
-    _audioCompleteSub = audioService.onPlayerComplete.listen((_) {
-      if (_isPlaying && mounted) {
-        _onSentenceFinished();
+    _audioCompleteSub =
+        audioService.onAudiobookLocationChanged.listen((location) {
+      if (!mounted) return;
+      final changed = location.chapterIndex != _currentChapterIndex ||
+          location.sentenceIndex != _currentSentenceIndex;
+      setState(() {
+        _currentChapterIndex = location.chapterIndex;
+        _currentSentenceIndex = location.sentenceIndex;
+        _isPlaying = location.playing;
+        if (changed) {
+          _currentSpokenCharIndex = 0;
+          _currentSpokenCharEnd = 1;
+          _totalDurationMs = 0;
+        }
+      });
+      if (changed) {
+        _saveProgress();
+        _scrollToSentence(location.sentenceIndex);
       }
     });
 
@@ -129,10 +144,45 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         unawaited(_refreshLocalVoice());
-        unawaited(_playSentenceAt(_currentSentenceIndex));
+        unawaited(_configureAndStartAudiobook());
         _scrollToSentence(_currentSentenceIndex, animate: false);
       }
     });
+  }
+
+  Future<void> _configureAndStartAudiobook() async {
+    final audioService = ref.read(audioServiceProvider);
+    final tracks = <AudiobookTrack>[];
+    for (var chapterIndex = 0;
+        chapterIndex < widget.chapters.length;
+        chapterIndex++) {
+      final chapter = widget.chapters[chapterIndex];
+      for (var sentenceIndex = 0;
+          sentenceIndex < chapter.sentences.length;
+          sentenceIndex++) {
+        final sentence = chapter.sentences[sentenceIndex];
+        tracks.add(AudiobookTrack(
+          id: '${widget.book.id}:${chapter.id}:$sentenceIndex',
+          sentence: sentence.chinese,
+          translation: sentence.english,
+          bookTitle: widget.book.title,
+          author: widget.book.author,
+          chapterTitle: chapter.title,
+          chapterIndex: chapterIndex,
+          sentenceIndex: sentenceIndex,
+        ));
+      }
+    }
+    final voiceName = ref.read(settingsProvider).audiobookVoice;
+    await audioService.init();
+    await audioService.configureAudiobook(
+      tracks: tracks,
+      chapterIndex: _currentChapterIndex,
+      sentenceIndex: _currentSentenceIndex,
+      voiceName: voiceName,
+    );
+    if (!mounted) return;
+    await _playSentenceAt(_currentSentenceIndex);
   }
 
   @override
@@ -309,64 +359,18 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       _saveProgress();
       _scrollToSentence(sentenceIdx);
 
-      final text = chapter.sentences[sentenceIdx].chinese;
       final audioService = ref.read(audioServiceProvider);
-      final voiceName = ref.read(settingsProvider).audiobookVoice;
       // Ensure audio service is initialized before first play
       await audioService.init();
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
 
       final started =
-          await audioService.playSentence(text, voiceName: voiceName);
+          await audioService.playAudiobookAt(_currentChapterIndex, sentenceIdx);
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
       if (!started) {
         setState(() => _isPlaying = false);
         _showPlaybackFailure();
         return;
-      }
-
-      // Pre-fetch next sentence in background
-      if (sentenceIdx + 1 < chapter.sentences.length) {
-        final nextText = chapter.sentences[sentenceIdx + 1].chinese;
-        unawaited(
-            audioService.prefetchSentence(nextText, voiceName: voiceName));
-      }
-    }
-  }
-
-  Future<void> _onSentenceFinished() async {
-    final chapter = widget.chapters[_currentChapterIndex];
-    if (_currentSentenceIndex < chapter.sentences.length - 1) {
-      unawaited(Future.delayed(const Duration(milliseconds: 250), () async {
-        if (_isPlaying && mounted) {
-          await _playSentenceAt(_currentSentenceIndex + 1);
-        }
-      }));
-    } else {
-      // Chapter complete
-      if (_stopAtEndOfChapter) {
-        setState(() {
-          _isPlaying = false;
-          _stopAtEndOfChapter = false;
-        });
-        await ref.read(audioServiceProvider).stop();
-        return;
-      }
-
-      if (_currentChapterIndex < widget.chapters.length - 1) {
-        unawaited(Future.delayed(const Duration(milliseconds: 600), () async {
-          if (_isPlaying && mounted) {
-            setState(() {
-              _currentChapterIndex++;
-              _currentSentenceIndex = 0;
-              _currentSpokenCharIndex = 0;
-            });
-            await _playSentenceAt(0);
-          }
-        }));
-      } else {
-        setState(() => _isPlaying = false);
-        await ref.read(audioServiceProvider).stop();
       }
     }
   }
@@ -452,6 +456,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                               HapticsManager.selection();
                               ref
                                   .read(settingsProvider.notifier)
+                                  .setAudiobookVoice(opt.$1);
+                              ref
+                                  .read(audioServiceProvider)
                                   .setAudiobookVoice(opt.$1);
                               unawaited(_playSentenceAt(_currentSentenceIndex));
                             },
@@ -694,6 +701,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         _sleepSecondsRemaining = null;
       }
     });
+    ref.read(audioServiceProvider).setStopAtChapterEnd(endOfChapter);
 
     if (minutes != null) {
       _sleepTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -1465,7 +1473,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                     ? Colors.amber.shade700
                                                         .withValues(alpha: 0.5)
                                                     : const Color(0xFFD4AF37)
-                                                        .withValues(alpha: 0.35))
+                                                        .withValues(
+                                                            alpha: 0.35))
                                                 : Colors.transparent),
                                         borderRadius: BorderRadius.circular(6),
                                         border: Border.all(
@@ -1476,8 +1485,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                               : (isCharSpoken
                                                   ? (isDark
                                                       ? Colors.amber.shade300
-                                                      : const Color(
-                                                          0xFF8B0000))
+                                                      : const Color(0xFF8B0000))
                                                   : Colors.transparent),
                                           width: isQuickLookSelected ? 1.5 : 1,
                                         ),
@@ -1490,10 +1498,11 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                             token.pinyin,
                                             style: TextStyle(
                                               fontSize: isActive ? 12.5 : 10.5,
-                                              fontWeight: (isQuickLookSelected ||
-                                                      isCharSpoken)
-                                                  ? FontWeight.bold
-                                                  : FontWeight.w500,
+                                              fontWeight:
+                                                  (isQuickLookSelected ||
+                                                          isCharSpoken)
+                                                      ? FontWeight.bold
+                                                      : FontWeight.w500,
                                               color: isQuickLookSelected
                                                   ? (isDark
                                                       ? const Color(0xFFA5B4FC)
@@ -1529,12 +1538,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                             token.char,
                                             style: TextStyle(
                                               fontSize: isActive ? 22 : 17,
-                                              fontWeight: (isQuickLookSelected ||
-                                                      isCharSpoken)
-                                                  ? FontWeight.bold
-                                                  : (isActive
-                                                      ? FontWeight.w600
-                                                      : FontWeight.w500),
+                                              fontWeight:
+                                                  (isQuickLookSelected ||
+                                                          isCharSpoken)
+                                                      ? FontWeight.bold
+                                                      : (isActive
+                                                          ? FontWeight.w600
+                                                          : FontWeight.w500),
                                               color: isQuickLookSelected
                                                   ? (isDark
                                                       ? Colors.white

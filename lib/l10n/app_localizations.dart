@@ -4350,7 +4350,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Play'**
-  String play(Object pinyin);
+  String get play;
 
   /// No description provided for @pleaseEnterMessageBeforeSending.
   ///
@@ -22735,6 +22735,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to load the explanation.'**
   String get unableToLoadTheExplanation;
+
+  /// No description provided for @failedToGenerateStoryN.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to generate story:\\n\$e'**
+  String get failedToGenerateStoryN;
+
+  /// No description provided for @thematic.
+  ///
+  /// In en, this message translates to:
+  /// **'Thematic'**
+  String get thematic;
+
+  /// No description provided for @deckFlashcards.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck (Flashcards)'**
+  String get deckFlashcards;
+
+  /// No description provided for @searchLibraryOrTypeCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Search library or type custom'**
+  String get searchLibraryOrTypeCustom;
+
+  /// No description provided for @hSKLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK \$level'**
+  String get hSKLevel;
+
+  /// No description provided for @analysisFailedE.
+  ///
+  /// In en, this message translates to:
+  /// **'Analysis failed: \$e'**
+  String get analysisFailedE;
+
+  /// No description provided for @extractionFailedE.
+  ///
+  /// In en, this message translates to:
+  /// **'Extraction failed: \$e'**
+  String get extractionFailedE;
+
+  /// No description provided for @simplifyFailedE.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplify failed: \$e'**
+  String get simplifyFailedE;
+
+  /// No description provided for @translationFailedE.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation failed: \$e'**
+  String get translationFailedE;
+
+  /// No description provided for @failedToSaveExtractedWords2.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save extracted words: \$error'**
+  String get failedToSaveExtractedWords2;
+
+  /// No description provided for @youActualTargetExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'You: \$actual  ·  Target: \$expected'**
+  String get youActualTargetExpected;
+
+  /// No description provided for @improveTheLocalVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve the local voice'**
+  String get improveTheLocalVoice;
+
+  /// No description provided for @higherQualityOfflineMandarin.
+  ///
+  /// In en, this message translates to:
+  /// **'Higher-quality offline Mandarin'**
+  String get higherQualityOfflineMandarin;
+
+  /// No description provided for @removeDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove download?'**
+  String get removeDownload;
+
+  /// No description provided for @removeDownload2.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Download'**
+  String get removeDownload2;
+
+  /// No description provided for @tag.
+  ///
+  /// In en, this message translates to:
+  /// **'#\$tag'**
+  String get tag;
+
+  /// No description provided for @voiceFemaleWarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Female, warm'**
+  String get voiceFemaleWarm;
+
+  /// No description provided for @voiceFemaleCheerful.
+  ///
+  /// In en, this message translates to:
+  /// **'Female, cheerful'**
+  String get voiceFemaleCheerful;
+
+  /// No description provided for @voiceMaleUpbeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Male, upbeat'**
+  String get voiceMaleUpbeat;
+
+  /// No description provided for @voiceMaleNewsStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Male, news-style'**
+  String get voiceMaleNewsStyle;
+
+  /// No description provided for @voiceMaleSporty.
+  ///
+  /// In en, this message translates to:
+  /// **'Male, sporty'**
+  String get voiceMaleSporty;
+
+  /// No description provided for @voiceOnDeviceTts.
+  ///
+  /// In en, this message translates to:
+  /// **'On-device TTS'**
+  String get voiceOnDeviceTts;
+
+  /// No description provided for @voiceSystemVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'System voice'**
+  String get voiceSystemVoice;
+
+  /// No description provided for @applySessionGradesToSpacedRepetition.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply session grades to Spaced Repetition (Speaking Mode)'**
+  String get applySessionGradesToSpacedRepetition;
+
+  /// No description provided for @unableToLoadThisSectionPleaseTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this section. Please try again.'**
+  String get unableToLoadThisSectionPleaseTryAgain;
+
+  /// No description provided for @removeDownloadQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove download?'**
+  String get removeDownloadQuestion;
+
+  /// No description provided for @removeDownloadContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove the downloaded content for this book?'**
+  String get removeDownloadContent;
+
+  /// No description provided for @removeDownloadAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Download'**
+  String get removeDownloadAction;
+
+  /// No description provided for @removeDownloadButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Download'**
+  String get removeDownloadButton;
+
+  /// Number of cards
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Cards'**
+  String cardsCount(num count);
 }
 
 class _AppLocalizationsDelegate

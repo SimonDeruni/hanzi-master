@@ -2281,9 +2281,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Jalur belajar yang dipersonalisasi berdasarkan dek Anda.';
 
   @override
-  String play(Object pinyin) {
-    return 'Putar ($pinyin)';
-  }
+  String get play => 'Putar )';
 
   @override
   String get pleaseEnterMessageBeforeSending =>
@@ -2686,7 +2684,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get viewMyDrawing => 'Lihat Gambar Saya';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'Vlog harian Tiongkok';
 
   @override
   String get voice => 'Suara:';
@@ -3037,7 +3035,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get review_tomorrow => 'Tinjau Besok';
 
   @override
-  String get roleplay => 'Roleplay';
+  String get roleplay => 'Bermain Peran';
 
   @override
   String saving_words_to(int wordCount, String deckName) {
@@ -3799,7 +3797,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get microphonePermissionDenied => 'Izin mikrofon ditolak';
 
   @override
-  String get offset => 'Offset';
+  String get offset => 'Imbuhan';
 
   @override
   String get audioserviceHasBeenDisposed => 'AudioService telah ditutup';
@@ -7679,16 +7677,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get localOnDeviceTTS => 'Lokal — TTS di perangkat';
 
   @override
-  String get espaOl => 'Español';
+  String get espaOl => 'Spanyol';
 
   @override
-  String get franAis => 'Français';
+  String get franAis => 'Prancis';
 
   @override
-  String get portuguS => 'Português';
+  String get portuguS => 'Portugis';
 
   @override
-  String get tiNgViT => 'Tiếng Việt';
+  String get tiNgViT => 'Bahasa Vietnam';
 
   @override
   String get koreFemaleWarm => 'Kore — Wanita, hangat';
@@ -7851,8 +7849,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get siJin => '【似锦 Si Jin】正片 | #张晚意 #景甜';
 
   @override
-  String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+  String get xiXiPicturesOfficialChannel => 'Saluran Resmi XiXi Pictures';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -8322,7 +8319,7 @@ class AppLocalizationsId extends AppLocalizations {
       'BTS｜【鹅剧派对】迪丽热巴陈飞宇亮相，眼神杀直接封神！【白日提灯 Love Beyond the Grave】';
 
   @override
-  String get herBlaze => '她的盛焰 Her Blaze';
+  String get herBlaze => 'Her Blaze';
 
   @override
   String get opOIDzw8Vo => 'Op_OIDzw8Vo';
@@ -8604,7 +8601,7 @@ class AppLocalizationsId extends AppLocalizations {
       'PLMX26aiIvX5o7sdz290MeD-HgSqCHsI_s';
 
   @override
-  String get theDreamMaker => '小城大事 The Dream Maker';
+  String get theDreamMaker => 'Pembuat Mimpi The Dream Maker';
 
   @override
   String get fLcyGh4lXM => 'FLcy_gh4lXM';
@@ -8653,15 +8650,15 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get foreverYoungE23 =>
-      '【轻年 Forever Young】E23 马丁回到胡同被兄弟硬控（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E23 Martin kembali ke hutong dan dikendalikan oleh saudara-saudaranya (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get foreverYoungE25 =>
-      '【轻年 Forever Young】E25 稳准狠！马丁教嫂子拿捏丈夫（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E25 Tepat, mantap, dan tegas! Martin mengajari ipar perempuan cara mengendalikan suaminya (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get foreverYoungE24 =>
-      '【轻年 Forever Young】E24 有情敌？马丁被毛头小子喊大叔（霍建华, 田雨, 张雪迎, 乔振宇）';
+      '【轻年 Forever Young】E24 Ada saingan cinta? Martin dipanggil paman oleh anak muda (Wallace Huo, Tian Yu, Zhang Xueying, Qiao Zhenyu)';
 
   @override
   String get fEYoHxyxzQ => 'FEYo_hxyxzQ';
@@ -9112,7 +9109,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get oNNJqZYydM => 'ONN-JqZYydM';
 
   @override
-  String get sniperButterfly => '狙击蝴蝶 Sniper Butterfly';
+  String get sniperButterfly => 'Kupu-Kupu Penembak Jitu Sniper Butterfly';
 
   @override
   String get zExesh1IRe4 => 'ZExesh1IRe4';
@@ -9337,7 +9334,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get uc5hawjBFU => 'Uc5hawj_bFU';
 
   @override
-  String get fightForLove => '山河枕 Fight for Love';
+  String get fightForLove => 'Shanhe Zhen Fight for Love';
 
   @override
   String get lGP6TCHM => 'l_g-p6TC_hM';
@@ -9722,7 +9719,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get aVowInTheDark2 => '恋恋风陵渡 A Vow in the Dark';
 
   @override
-  String get theUltimateVowUnknownTo => '君不知 The Ultimate Vow, Unknown to You';
+  String get theUltimateVowUnknownTo => 'The Ultimate Vow, Unknown to You';
 
   @override
   String get duMRGzTeKs => 'DuM-rGzTeKs';
@@ -9732,7 +9729,7 @@ class AppLocalizationsId extends AppLocalizations {
       'PLs3DOuT3JlGTynSBKz3-z5DcDzwwmqSOf';
 
   @override
-  String get theChangAnYouth => '长安少年行 The Chang\'An Youth';
+  String get theChangAnYouth => 'Masa Muda Chang\'An The Chang\'An Youth';
 
   @override
   String get jg0aX6eEK4 => 'Jg0aX6e_EK4';
@@ -9756,7 +9753,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get jRRXVJblrk => 'JRR-XVJblrk';
 
   @override
-  String get thePrincessDecree2 => '平凝有令 The Princess Decree';
+  String get thePrincessDecree2 => 'The Princess Decree';
 
   @override
   String get ppiNYsUwOA => 'PpiNYs-uwOA';
@@ -9787,7 +9784,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get ddcGbI27AE => 'DdcGbI-27AE';
 
   @override
-  String get herPhoenixMajesty2 => '凤皇传 Her Phoenix Majesty';
+  String get herPhoenixMajesty2 => 'Her Phoenix Majesty 2';
 
   @override
   String get pzXvIZTfw => 'Pz_xvIZ-Tfw';
@@ -11393,7 +11390,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get uCRABdhiBHX4BieJfPCd2pg => 'UCRABdhiBHX4Bie-jfPCd2pg';
 
   @override
-  String get hiddenLove2 => 'Hidden Love';
+  String get hiddenLove2 => 'Cinta Tersembunyi';
 
   @override
   String get loveBetweenFairyAndDevil2 => 'Love Between Fairy and Devil';
@@ -11450,7 +11447,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ karakter +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11466,7 +11463,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'artikel, .artikel, .posting, .konten, utama';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12330,4 +12327,100 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'Gagal memuat penjelasan.';
+
+  @override
+  String get failedToGenerateStoryN => 'Gagal membuat cerita:\\n\$e';
+
+  @override
+  String get thematic => 'Tematik';
+
+  @override
+  String get deckFlashcards => 'Dek (Kartu Kilat)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'Cari pustaka atau ketik kustom';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'Analisis gagal: \$e';
+
+  @override
+  String get extractionFailedE => 'Ekstraksi gagal: \$e';
+
+  @override
+  String get simplifyFailedE => 'Gagal menyederhanakan: \$e';
+
+  @override
+  String get translationFailedE => 'Terjemahan gagal: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'Gagal menyimpan kata yang diekstrak: \$error';
+
+  @override
+  String get youActualTargetExpected => 'Anda: \$actual  ·  Target: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'Tingkatkan suara lokal';
+
+  @override
+  String get higherQualityOfflineMandarin =>
+      'Mandarin offline berkualitas tinggi';
+
+  @override
+  String get removeDownload => 'Hapus unduhan?';
+
+  @override
+  String get removeDownload2 => 'Hapus Unduhan';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'Wanita, hangat';
+
+  @override
+  String get voiceFemaleCheerful => 'Wanita, ceria';
+
+  @override
+  String get voiceMaleUpbeat => 'Pria, bersemangat';
+
+  @override
+  String get voiceMaleNewsStyle => 'Pria, gaya berita';
+
+  @override
+  String get voiceMaleSporty => 'Pria, sporty';
+
+  @override
+  String get voiceOnDeviceTts => 'TTS di perangkat';
+
+  @override
+  String get voiceSystemVoice => 'Suara sistem';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'Terapkan nilai sesi ke Pengulangan Berjarak (Mode Berbicara)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'Tidak dapat memuat bagian ini. Silakan coba lagi.';
+
+  @override
+  String get removeDownloadQuestion => 'Hapus unduhan?';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'Hapus Unduhan';
+
+  @override
+  String get removeDownloadButton => 'Hapus Unduhan';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

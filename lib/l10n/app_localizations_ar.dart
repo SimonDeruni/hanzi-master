@@ -858,7 +858,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get allDataHasBeen => 'تم مسح جميع البيانات.';
 
   @override
-  String get hanziMasterV100 => 'SinoSpark v1.0.0';
+  String get hanziMasterV100 => 'SinoSpark الإصدار 1.0.0';
 
   @override
   String get myProgress => 'تقدمي';
@@ -2253,9 +2253,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get personalizedPathBasedOnDeck => 'مسار مخصص يعتمد على مجموعتك.';
 
   @override
-  String play(Object pinyin) {
-    return 'استماع (بينيين)';
-  }
+  String get play => 'استماع';
 
   @override
   String get pleaseEnterMessageBeforeSending => 'يرجى إدخال رسالة قبل الإرسال.';
@@ -2656,7 +2654,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get viewMyDrawing => 'عرض رسمي';
 
   @override
-  String get vlog => '中国 日常 vlog';
+  String get vlog => 'مدونة فيديو صينية يومية';
 
   @override
   String get voice => 'الصوت:';
@@ -6012,7 +6010,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get blossom => 'إزهار';
 
   @override
-  String get gemini => 'Gemini';
+  String get gemini => 'جيميني';
 
   @override
   String get generationToGeneration => 'جيل بعد جيل';
@@ -7752,7 +7750,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get xiXiPicturesOfficialChannel =>
-      '西嘻影业官方频道 XiXi Pictures Official Channel';
+      'قناة سي سي بيكتشرز الرسمية XiXi Pictures Official Channel';
 
   @override
   String get pLDpUVcjhvJitpknWzhJbWevf7VSVWXk2 =>
@@ -11347,7 +11345,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hanziClickable2 => 'hanzi-clickable';
 
   @override
-  String get char2 => '+ char +';
+  String get char2 => '+ حرف +';
 
   @override
   String get sentenceText2 => '.sentence-text';
@@ -11363,7 +11361,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get articleArticlePostContentMain =>
-      'article, .article, .post, .content, main';
+      'مقالة، مقالة، مشاركة، محتوى، رئيسي';
 
   @override
   String get ttsActiveWord => '.tts-active-word';
@@ -12219,4 +12217,100 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unableToLoadTheExplanation => 'تعذّر تحميل الشرح.';
+
+  @override
+  String get failedToGenerateStoryN => 'فشل في إنشاء القصة:\\n\$e';
+
+  @override
+  String get thematic => 'الموضوعية';
+
+  @override
+  String get deckFlashcards => 'المجموعة (بطاقات التعليم)';
+
+  @override
+  String get searchLibraryOrTypeCustom => 'ابحث في المكتبة أو اكتب مخصصاً';
+
+  @override
+  String get hSKLevel => 'HSK \$level';
+
+  @override
+  String get analysisFailedE => 'فشل التحليل: \$e';
+
+  @override
+  String get extractionFailedE => 'فشل الاستخراج: \$e';
+
+  @override
+  String get simplifyFailedE => 'فشل التبسيط: \$e';
+
+  @override
+  String get translationFailedE => 'فشل الترجمة: \$e';
+
+  @override
+  String get failedToSaveExtractedWords2 =>
+      'فشل في حفظ الكلمات المستخرجة: \$error';
+
+  @override
+  String get youActualTargetExpected =>
+      'أنت: \$actual  ·  المستهدف: \$expected';
+
+  @override
+  String get improveTheLocalVoice => 'تحسين الصوت المحلي';
+
+  @override
+  String get higherQualityOfflineMandarin => 'ماندارين عالي الجودة بدون إنترنت';
+
+  @override
+  String get removeDownload => 'إزالة التنزيل؟';
+
+  @override
+  String get removeDownload2 => 'إزالة التنزيل';
+
+  @override
+  String get tag => '#\$tag';
+
+  @override
+  String get voiceFemaleWarm => 'أنثى، دافئ';
+
+  @override
+  String get voiceFemaleCheerful => 'أنثى، مبهج';
+
+  @override
+  String get voiceMaleUpbeat => 'ذكر، متفائل';
+
+  @override
+  String get voiceMaleNewsStyle => 'ذكر، أسلوب إخباري';
+
+  @override
+  String get voiceMaleSporty => 'ذكر، رياضي';
+
+  @override
+  String get voiceOnDeviceTts => 'تحويل النص إلى كلام على الجهاز';
+
+  @override
+  String get voiceSystemVoice => 'صوت النظام';
+
+  @override
+  String get applySessionGradesToSpacedRepetition =>
+      'تطبيق تقييمات الجلسة على التكرار المتباعد (وضع التحدث)';
+
+  @override
+  String get unableToLoadThisSectionPleaseTryAgain =>
+      'تعذر تحميل هذا القسم. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get removeDownloadQuestion => 'إزالة التنزيل؟';
+
+  @override
+  String get removeDownloadContent => 'Remove downloaded content?';
+
+  @override
+  String get removeDownloadAction => 'إزالة التنزيل';
+
+  @override
+  String get removeDownloadButton => 'إزالة التنزيل';
+
+  @override
+  String cardsCount(num count) {
+    return '$count Cards';
+  }
 }

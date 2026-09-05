@@ -198,7 +198,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              "${deckCards.length} Cards",
+                              AppLocalizations.of(context)!.cardsCount(deckCards.length),
                               style: TextStyle(
                                 fontSize: 12,
                                 color: isDark ? Colors.white70 : Colors.black54,
@@ -323,7 +323,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 children: [
                                   Expanded(
                                     child: _DailyGoal(
-                                      label: 'Due today',
+                                      label: AppLocalizations.of(context)!.dueToday,
                                       available: dueToday,
                                       limit: _dailyReviewLimit,
                                       color: Colors.indigo,
@@ -336,7 +336,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                   ),
                                   Expanded(
                                     child: _DailyGoal(
-                                      label: 'New available',
+                                      label: AppLocalizations.of(context)!.newAvailable,
                                       available: newAvailable,
                                       limit: _dailyNewCardsLimit,
                                       color: Colors.green,
