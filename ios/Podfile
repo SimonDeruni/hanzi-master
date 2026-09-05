@@ -84,4 +84,33 @@ post_install do |installer|
       end
     end
   end
+
+  # Xcode's archive dependency analysis detects a cycle when Flutter's
+  # "Thin Binary" phase mutates Runner.app before the widget extension is
+  # copied into it. CocoaPods can rewrite the Runner phases on clean CI
+  # machines, so enforce the required order after every pod install.
+  installer.aggregate_targets
+           .map(&:user_project)
+           .compact
+           .uniq
+           .each do |user_project|
+    runner_target = user_project.targets.find { |target| target.name == 'Runner' }
+    next unless runner_target
+
+    embed_extension_phase = runner_target.build_phases.find do |phase|
+      phase.respond_to?(:name) && phase.name == 'Embed App Extensions'
+    end
+    thin_binary_phase = runner_target.build_phases.find do |phase|
+      phase.respond_to?(:name) && phase.name == 'Thin Binary'
+    end
+
+    unless embed_extension_phase && thin_binary_phase
+      raise 'Runner must contain Embed App Extensions and Thin Binary build phases'
+    end
+
+    runner_target.build_phases.delete(embed_extension_phase)
+    thin_binary_index = runner_target.build_phases.index(thin_binary_phase)
+    runner_target.build_phases.insert(thin_binary_index, embed_extension_phase)
+    user_project.save
+  end
 end

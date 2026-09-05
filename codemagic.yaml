@@ -20,8 +20,35 @@ workflows:
         YOUTUBE_API_KEY_2: AIzaSyBYEY2lbPnDPk179ztaw5MxLwu9keTqNlk
         YOUTUBE_API_KEY_3: AIzaSyAYEvgEEbjFXvTAMH7SvYsWMXbyIv0Ev_U
     scripts:
+      - name: Clean previous iOS build state
+        script: |
+          flutter clean
+          rm -rf "$HOME/Library/Developer/Xcode/DerivedData"/*
       - name: Get dependencies
         script: flutter packages pub get
+      - name: Install CocoaPods and verify iOS build phases
+        script: |
+          cd ios
+          pod install
+          ruby <<'RUBY'
+          require 'xcodeproj'
+
+          project = Xcodeproj::Project.open('Runner.xcodeproj')
+          runner = project.targets.find { |target| target.name == 'Runner' }
+          abort 'Runner target not found' unless runner
+
+          phase_names = runner.build_phases.map do |phase|
+            phase.respond_to?(:name) ? phase.name : nil
+          end
+          embed_index = phase_names.index('Embed App Extensions')
+          thin_index = phase_names.index('Thin Binary')
+
+          unless embed_index && thin_index && embed_index < thin_index
+            abort 'Invalid Runner build phase order: Embed App Extensions must precede Thin Binary'
+          end
+
+          puts 'Verified: Embed App Extensions precedes Thin Binary'
+          RUBY
       - name: Set up iOS code signing
         script: xcode-project use-profiles
       - name: Build iOS IPA
