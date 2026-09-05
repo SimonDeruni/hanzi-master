@@ -4,12 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
-### [2026-09-05] Android 12 Native Splash & In-App Splash Optimization
-- **Android 12 Native Splash Fix**:
-  - Generated `assets/images/mascot_android12_splash.png` with safe padding to ensure the entire ink drop mascot, brush, and calligraphy character fit 100% inside Android 12's native circular splash viewport without clipping or truncation.
-  - Re-ran `flutter_native_splash:create` to update all native Android/iOS splash assets and density drawables.
-- **In-App Splash Timing & Transitions**:
-  - Reduced `AppSplashScreen` display duration from 1800ms to 900ms with a snappy 600ms fade/scale animation, eliminating long wait times before entering onboarding or the main application.
+### [2026-09-05] Single Native Splash Screen Simplification
+- Removed the duplicate in-app splash timer (`AppSplashScreen`) from `lib/main.dart` on launch.
+- The app now displays only the single native launch splash before transitioning immediately into Onboarding or the main app.
+- Preserved the Android 12 circular safe-padding fix for the native mascot icon.
 - Verified: All unit tests pass in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and `flutter analyze` reports 0 issues.
 
 ### [2026-09-05] Splash Screen Mascot Enlargement & Branding Update
