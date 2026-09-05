@@ -10,9 +10,10 @@ All notable changes to this project will be documented in this file.
 - Set `AppSplashScreen` in `lib/main.dart` via `AppStartupFlow` as the single primary splash screen with the animated mascot and `"Learn Chinese with SinoSpark"` typography before proceeding directly to onboarding or subscription verification.
 - Verified: All unit tests pass in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and `flutter analyze` reports 0 issues.
 
-### [2026-09-05] Splash Screen Mascot Enlargement & Branding Update
-- Enlarged the central animated mascot sizing (`maxWidth.clamp(0, 360)`) on `AppSplashScreen`.
-- Updated bottom subtitle typography and copy to `"Learn Chinese with SinoSpark"` with classic calligraphic serif styling, subtle letter-spacing, and high contrast against the warm golden `#FCBC03` background.
+### [2026-09-05] Splash Screen Mascot Resize & Two-Line Colored Branding
+- Resized the central animated mascot on `AppSplashScreen` to a compact, well-proportioned maximum of 220px (`maxWidth.clamp(0, 220)`) with optical vertical centering.
+- Refactored bottom typography to a two-line layout: *"Learn Chinese with"* in calligraphic warm ochre (`#5A4300`, 16px, medium weight) followed by *"SinoSpark"* in rich imperial vermilion/crimson ink (`#8C1D18`, 26px, bold).
+- Verified: All unit tests pass in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` and `flutter analyze` reports 0 issues.
 
 ### [2026-09-05] SinoSpark Premium Paywall Real Screenshot Integration & Story Polish
 - Replaced media card placeholders across all 6 feature stories in `CustomPaywallScreen` with real, high-resolution app screenshots:

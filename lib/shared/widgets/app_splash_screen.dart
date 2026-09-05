@@ -58,7 +58,7 @@ class _AppSplashScreenState extends State<AppSplashScreen>
         child: Stack(
           children: [
             Align(
-              alignment: const Alignment(0, -0.08),
+              alignment: const Alignment(0, -0.12),
               child: AnimatedBuilder(
                 animation: _controller,
                 builder: (context, child) {
@@ -73,7 +73,7 @@ class _AppSplashScreenState extends State<AppSplashScreen>
                 child: LayoutBuilder(
                   builder: (context, constraints) => Image.asset(
                     'assets/images/mascot.png',
-                    width: constraints.maxWidth.clamp(0, 360).toDouble(),
+                    width: constraints.maxWidth.clamp(0, 220).toDouble(),
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -82,23 +82,40 @@ class _AppSplashScreenState extends State<AppSplashScreen>
             Positioned(
               left: 24,
               right: 24,
-              bottom: 36,
+              bottom: 44,
               child: AnimatedBuilder(
                 animation: _fadeAnimation,
                 builder: (context, child) => Opacity(
                   opacity: _fadeAnimation.value,
                   child: child,
                 ),
-                child: const Text(
-                  'Learn Chinese with SinoSpark',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Serif',
-                    color: Color(0xFF1A1A1B),
-                    letterSpacing: 0.5,
-                  ),
-                  textAlign: TextAlign.center,
+                child: const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Learn Chinese with',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Serif',
+                        color: Color(0xFF5A4300),
+                        letterSpacing: 0.8,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'SinoSpark',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Serif',
+                        color: Color(0xFF8C1D18), // Rich imperial vermilion/crimson ink
+                        letterSpacing: 1.2,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
             ),
