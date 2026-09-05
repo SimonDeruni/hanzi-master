@@ -56,27 +56,32 @@ String _cleanDefinition(String raw) {
 enum QuickLookPresentation { bottomSheet, readingPopover }
 
 /// Shows Quick Look using the presentation explicitly selected by its caller.
-void showQuickLook(
+Future<void> showQuickLook(
   BuildContext context,
   String hanzi, {
   String? contextText,
   Flashcard? card,
   QuickLookPresentation presentation = QuickLookPresentation.bottomSheet,
   Offset? anchorPosition,
-}) {
+  VoidCallback? onDismiss,
+}) async {
   if (hanzi.isEmpty) return;
   if (presentation == QuickLookPresentation.readingPopover &&
-      anchorPosition != null &&
-      _showAnchoredQuickLook(
-        context,
-        hanzi,
-        contextText: contextText,
-        card: card,
-        anchorPosition: anchorPosition,
-      )) {
-    return;
+      anchorPosition != null) {
+    final shown = await _showAnchoredQuickLook(
+      context,
+      hanzi,
+      contextText: contextText,
+      card: card,
+      anchorPosition: anchorPosition,
+    );
+    if (shown) {
+      onDismiss?.call();
+      return;
+    }
+    if (!context.mounted) return;
   }
-  showModalBottomSheet<void>(
+  await showModalBottomSheet<void>(
     context: context,
     backgroundColor: Colors.transparent,
     isScrollControlled: true,
@@ -91,15 +96,16 @@ void showQuickLook(
       ),
     ),
   );
+  onDismiss?.call();
 }
 
-bool _showAnchoredQuickLook(
+Future<bool> _showAnchoredQuickLook(
   BuildContext context,
   String hanzi, {
   required Offset anchorPosition,
   String? contextText,
   Flashcard? card,
-}) {
+}) async {
   final mediaQuery = MediaQuery.of(context);
   final anchorRect = Rect.fromCircle(center: anchorPosition, radius: 12);
   final effectiveSafePadding = EdgeInsets.only(
@@ -119,7 +125,7 @@ bool _showAnchoredQuickLook(
   );
   if (layout == null) return false;
 
-  showGeneralDialog<void>(
+  await showGeneralDialog<void>(
     context: context,
     useRootNavigator: true,
     barrierDismissible: true,

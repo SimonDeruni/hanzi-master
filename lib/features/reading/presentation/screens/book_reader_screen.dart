@@ -40,6 +40,7 @@ class BookReaderScreen extends ConsumerStatefulWidget {
 class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     with WidgetsBindingObserver {
   final Map<String, List<_RubyToken>> _rubyCache = {};
+  String? _quickLookSelectedKey;
 
   List<_RubyToken> _getRubyTokens(String chinese) {
     if (_rubyCache.containsKey(chinese)) {
@@ -1858,68 +1859,131 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                   );
                                 }
 
+                                final tokenKey =
+                                    '${index}_${token.hanziIndex}_${token.char}';
+                                final isQuickLookSelected =
+                                    _quickLookSelectedKey == tokenKey;
+
                                 return GestureDetector(
-                                  onTapDown: (details) {
+                                  onTapDown: (details) async {
                                     HapticsManager.light();
-                                    showQuickLook(
+                                    setState(() {
+                                      _quickLookSelectedKey = tokenKey;
+                                    });
+                                    await showQuickLook(
                                       context,
                                       token.char,
                                       presentation:
                                           QuickLookPresentation.readingPopover,
                                       anchorPosition: details.globalPosition,
+                                      onDismiss: () {
+                                        if (mounted) {
+                                          setState(() {
+                                            if (_quickLookSelectedKey ==
+                                                tokenKey) {
+                                              _quickLookSelectedKey = null;
+                                            }
+                                          });
+                                        }
+                                      },
                                     );
+                                    if (mounted) {
+                                      setState(() {
+                                        if (_quickLookSelectedKey ==
+                                            tokenKey) {
+                                          _quickLookSelectedKey = null;
+                                        }
+                                      });
+                                    }
                                   },
                                   behavior: HitTestBehavior.opaque,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      // Tone-marked Pinyin directly above Hanzi
-                                      if (_pinyinMode != BookPinyinMode.none)
+                                  child: AnimatedContainer(
+                                    duration:
+                                        const Duration(milliseconds: 150),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 3, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: isQuickLookSelected
+                                          ? (isDark
+                                              ? const Color(0xFF6366F1)
+                                                  .withValues(alpha: 0.35)
+                                              : const Color(0xFF4F46E5)
+                                                  .withValues(alpha: 0.16))
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: Border.all(
+                                        color: isQuickLookSelected
+                                            ? (isDark
+                                                ? const Color(0xFF818CF8)
+                                                : const Color(0xFF4F46E5))
+                                            : Colors.transparent,
+                                        width: isQuickLookSelected ? 1.5 : 1,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        // Tone-marked Pinyin directly above Hanzi
+                                        if (_pinyinMode != BookPinyinMode.none)
+                                          Text(
+                                            token.pinyin,
+                                            style: TextStyle(
+                                              fontSize: _fontSize * 0.55,
+                                              fontWeight: isQuickLookSelected
+                                                  ? FontWeight.bold
+                                                  : FontWeight.w500,
+                                              color: isQuickLookSelected
+                                                  ? (isDark
+                                                      ? const Color(0xFFA5B4FC)
+                                                      : const Color(0xFF3730A3))
+                                                  : (_pinyinMode ==
+                                                          BookPinyinMode.ghost
+                                                      ? (isDark
+                                                          ? Colors.white30
+                                                          : Colors.black26)
+                                                      : (isAudioActiveSentence
+                                                          ? (isDark
+                                                              ? Colors.amber
+                                                                  .shade200
+                                                              : const Color(
+                                                                  0xFF8B0000))
+                                                          : (isDark
+                                                              ? Colors.white70
+                                                              : const Color(
+                                                                  0xFF5A4D41)))),
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        const SizedBox(height: 2),
+                                        // Chinese Hanzi Character
                                         Text(
-                                          token.pinyin,
+                                          token.char,
                                           style: TextStyle(
-                                            fontSize: _fontSize * 0.55,
-                                            fontWeight: FontWeight.w500,
-                                            color: _pinyinMode ==
-                                                    BookPinyinMode.ghost
+                                            fontSize: _fontSize,
+                                            fontWeight: (isQuickLookSelected ||
+                                                    isAudioActiveSentence)
+                                                ? FontWeight.bold
+                                                : FontWeight.w500,
+                                            color: isQuickLookSelected
                                                 ? (isDark
-                                                    ? Colors.white30
-                                                    : Colors.black26)
+                                                    ? Colors.white
+                                                    : const Color(0xFF1E1B4B))
                                                 : (isAudioActiveSentence
                                                     ? (isDark
-                                                        ? Colors.amber.shade200
+                                                        ? Colors.amber.shade300
                                                         : const Color(
                                                             0xFF8B0000))
-                                                    : (isDark
-                                                        ? Colors.white70
-                                                        : const Color(
-                                                            0xFF5A4D41))),
-                                            height: 1.1,
+                                                    : primaryText),
+                                            fontFamily: 'NotoSerifSC',
+                                            height: 1.2,
                                           ),
                                         ),
-                                      const SizedBox(height: 2),
-                                      // Chinese Hanzi Character
-                                      Text(
-                                        token.char,
-                                        style: TextStyle(
-                                          fontSize: _fontSize,
-                                          fontWeight: isAudioActiveSentence
-                                              ? FontWeight.bold
-                                              : FontWeight.w500,
-                                          color: isAudioActiveSentence
-                                              ? (isDark
-                                                  ? Colors.amber.shade300
-                                                  : const Color(0xFF8B0000))
-                                              : primaryText,
-                                          fontFamily: 'NotoSerifSC',
-                                          height: 1.2,
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 );
                               }).toList(),
-                            ),
+                             ),
 
                             // English Translation (Global toggle or tap to reveal)
                             if (_showAllTranslations || isRevealed)

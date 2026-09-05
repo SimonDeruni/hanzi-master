@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Quick Look Tapped Character Selected State Highlight
+- Implemented temporary visual selection highlight on tapped characters in the main text body when Quick Look dictionary card is open.
+- Styled with calligraphic Scholar Indigo translucent tint (`#4F46E5` in light mode, `#6366F1` in dark mode) with a rounded border, clearly differentiating dictionary tap selection from the warm orange/gold audio playback sync highlight (`#D4AF37`).
+- Added `onDismiss` callback and `Future<void>` return to `showQuickLook`, automatically removing the temporary highlight as soon as the user dismisses the card.
+- Implemented across `AudiobookPlayerScreen` and `BookReaderScreen`.
+
 ### [2026-09-05] Quick Look Card Status Bar Safe Area & Dynamic Flip Positioning
 - Strictly respected iOS safe area insets using `math.max(mediaQuery.padding, mediaQuery.viewPadding)` so anchored dictionary popovers never render behind or collide with the system status bar / Dynamic Island, even when called within nested `SafeArea`s.
 - Enforced a minimum 16px clearance buffer below the top safe area boundary (`safePadding.top + 16.0`).
