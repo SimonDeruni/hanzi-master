@@ -1,4 +1,4 @@
-﻿import 'dart:async';
+import 'dart:async';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +28,7 @@ enum PinyinMode { all, ghost, none }
 class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   PinyinMode _pinyinMode = PinyinMode.all;
   final Set<int> _translatedSentences = {};
+  String? _quickLookSelectedWordKey;
   bool _isPlaying = false;
   bool _isPaused = false;
   int? _playingSentenceIndex;
@@ -679,57 +680,130 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                         (_pinyinMode ==
                                                             PinyinMode.all);
 
+                                                    final wordKey =
+                                                        '${globalIndex}_${wordStart}_${word.hanzi}';
+                                                    final isQuickLookSelected =
+                                                        _quickLookSelectedWordKey ==
+                                                            wordKey;
+
                                                     return GestureDetector(
-                                                      onTapDown: (details) =>
-                                                          showQuickLook(
-                                                        context,
-                                                        word.hanzi,
-                                                        contextText:
-                                                            sentence.chinese,
-                                                        presentation:
-                                                            QuickLookPresentation
-                                                                .readingPopover,
-                                                        anchorPosition: details
-                                                            .globalPosition,
-                                                      ),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Text(
-                                                            word.hanzi,
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'NotoSerifSC',
-                                                              fontSize: 28,
-                                                              fontWeight: dueWords
-                                                                      .contains(word
-                                                                          .hanzi)
-                                                                  ? FontWeight
-                                                                      .bold
-                                                                  : FontWeight
-                                                                      .w600,
-                                                              color: isWordActive
-                                                                  ? Colors
-                                                                      .orange
-                                                                  : (dueWords.contains(word
-                                                                          .hanzi)
-                                                                      ? const Color(
-                                                                          0xFFD4AF37)
-                                                                      : textColor),
-                                                            ),
+                                                      onTapDown:
+                                                          (details) async {
+                                                        setState(() {
+                                                          _quickLookSelectedWordKey =
+                                                              wordKey;
+                                                        });
+                                                        await showQuickLook(
+                                                          context,
+                                                          word.hanzi,
+                                                          contextText: sentence
+                                                              .chinese,
+                                                          presentation:
+                                                              QuickLookPresentation
+                                                                  .readingPopover,
+                                                          anchorPosition:
+                                                              details
+                                                                  .globalPosition,
+                                                          onDismiss: () {
+                                                            if (mounted) {
+                                                              setState(() {
+                                                                if (_quickLookSelectedWordKey ==
+                                                                    wordKey) {
+                                                                  _quickLookSelectedWordKey =
+                                                                      null;
+                                                                }
+                                                              });
+                                                            }
+                                                          },
+                                                        );
+                                                        if (mounted) {
+                                                          setState(() {
+                                                            if (_quickLookSelectedWordKey ==
+                                                                wordKey) {
+                                                              _quickLookSelectedWordKey =
+                                                                  null;
+                                                            }
+                                                          });
+                                                        }
+                                                      },
+                                                      child: AnimatedContainer(
+                                                        duration: const Duration(
+                                                            milliseconds: 150),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 4,
+                                                                vertical: 2),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              isQuickLookSelected
+                                                                  ? (isDark
+                                                                      ? const Color(0xFF6366F1).withValues(alpha: 0.35)
+                                                                      : const Color(0xFF4F46E5).withValues(alpha: 0.16))
+                                                                  : Colors
+                                                                      .transparent,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(6),
+                                                          border: Border.all(
+                                                            color:
+                                                                isQuickLookSelected
+                                                                    ? (isDark
+                                                                        ? const Color(0xFF818CF8)
+                                                                        : const Color(0xFF4F46E5))
+                                                                    : Colors
+                                                                        .transparent,
+                                                            width:
+                                                                isQuickLookSelected
+                                                                    ? 1.5
+                                                                    : 1,
                                                           ),
-                                                          if (shouldShowPinyin)
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
                                                             Text(
-                                                              word.pinyin,
-                                                              style:
-                                                                  const TextStyle(
-                                                                fontSize: 12,
-                                                                color: Colors
-                                                                    .blueAccent,
+                                                              word.hanzi,
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'NotoSerifSC',
+                                                                fontSize: 28,
+                                                                fontWeight: (isQuickLookSelected ||
+                                                                        dueWords.contains(word.hanzi))
+                                                                    ? FontWeight
+                                                                        .bold
+                                                                    : FontWeight
+                                                                        .w600,
+                                                                color: isQuickLookSelected
+                                                                    ? (isDark
+                                                                        ? Colors.white
+                                                                        : const Color(0xFF1E1B4B))
+                                                                    : (isWordActive
+                                                                        ? Colors.orange
+                                                                        : (dueWords.contains(word.hanzi)
+                                                                            ? const Color(0xFFD4AF37)
+                                                                            : textColor)),
                                                               ),
                                                             ),
-                                                        ],
+                                                            if (shouldShowPinyin)
+                                                              Text(
+                                                                word.pinyin,
+                                                                style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  fontWeight: isQuickLookSelected
+                                                                      ? FontWeight.bold
+                                                                      : FontWeight.normal,
+                                                                  color: isQuickLookSelected
+                                                                      ? (isDark
+                                                                          ? const Color(0xFFA5B4FC)
+                                                                          : const Color(0xFF3730A3))
+                                                                      : Colors.blueAccent,
+                                                                ),
+                                                              ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     );
                                                   }).toList(),

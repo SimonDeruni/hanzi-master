@@ -382,6 +382,7 @@ class InteractiveMarkdownText extends StatefulWidget {
 
 class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
   final List<TapGestureRecognizer> _recognizers = [];
+  String? _selectedKey;
 
   @override
   void dispose() {
@@ -423,27 +424,56 @@ class _InteractiveMarkdownTextState extends State<InteractiveMarkdownText> {
         ));
       } else if (match.group(7) != null) {
         final hanzi = match.group(7)!;
+        final spanKey = '${match.start}_$hanzi';
+        final isSelected = _selectedKey == spanKey;
         Offset? anchorPosition;
         final recognizer = TapGestureRecognizer()
           ..onTapDown = (details) {
             anchorPosition = details.globalPosition;
           }
-          ..onTap = () => showQuickLook(
-                context,
-                hanzi,
-                contextText: widget.contextText,
-                presentation: QuickLookPresentation.readingPopover,
-                anchorPosition: anchorPosition,
-              );
+          ..onTap = () async {
+            setState(() {
+              _selectedKey = spanKey;
+            });
+            await showQuickLook(
+              context,
+              hanzi,
+              contextText: widget.contextText,
+              presentation: QuickLookPresentation.readingPopover,
+              anchorPosition: anchorPosition,
+              onDismiss: () {
+                if (mounted) {
+                  setState(() {
+                    if (_selectedKey == spanKey) {
+                      _selectedKey = null;
+                    }
+                  });
+                }
+              },
+            );
+            if (mounted) {
+              setState(() {
+                if (_selectedKey == spanKey) {
+                  _selectedKey = null;
+                }
+              });
+            }
+          };
         _recognizers.add(recognizer);
 
         spans.add(TextSpan(
           text: hanzi,
           style: baseStyle?.copyWith(
-            color: widget.theme.colorScheme.primary,
+            backgroundColor: isSelected
+                ? const Color(0xFF4F46E5).withValues(alpha: 0.22)
+                : null,
+            color: isSelected
+                ? const Color(0xFF4F46E5)
+                : widget.theme.colorScheme.primary,
             decoration: TextDecoration.underline,
-            decorationColor:
-                widget.theme.colorScheme.primary.withValues(alpha: 0.5),
+            decorationColor: isSelected
+                ? const Color(0xFF4F46E5)
+                : widget.theme.colorScheme.primary.withValues(alpha: 0.5),
           ),
           recognizer: recognizer,
         ));

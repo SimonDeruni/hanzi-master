@@ -4,11 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Vocabulary Extraction Modal Action Button Redesign
+- Redesigned the action button layout in `WebBrowserScreen`'s "Review Extracted Deck" bottom sheet modal:
+  - Fixed visual crowding where three buttons ("Cancel", "Create New Deck", "Add to Deck") were cramped into a single horizontal row on narrow mobile viewports, forcing "Create New Deck" to awkwardly wrap onto two lines.
+  - Re-architected action hierarchy:
+    - Added an intuitive 'X' dismiss button (`close_rounded`) in the modal header.
+    - Two prominent primary action buttons side by side with generous breathing room: "New Deck" (`ElevatedButton.icon` with `add_rounded`) and "Add to Deck" (`ElevatedButton.icon` with `library_add_outlined`), guaranteed single-line text in all languages with `maxLines: 1` and `TextOverflow.ellipsis`.
+    - Calm, centered "Cancel" `TextButton` positioned below the primary actions in subtle ink styling.
+- Verified 100% clean analyzer state and passing unit tests.
+
 ### [2026-09-05] Quick Look Tapped Character Selected State Highlight
 - Implemented temporary visual selection highlight on tapped characters in the main text body when Quick Look dictionary card is open.
 - Styled with calligraphic Scholar Indigo translucent tint (`#4F46E5` in light mode, `#6366F1` in dark mode) with a rounded border, clearly differentiating dictionary tap selection from the warm orange/gold audio playback sync highlight (`#D4AF37`).
 - Added `onDismiss` callback and `Future<void>` return to `showQuickLook`, automatically removing the temporary highlight as soon as the user dismisses the card.
-- Implemented across `AudiobookPlayerScreen` and `BookReaderScreen`.
+- Implemented everywhere Hanzi characters and words are tapped to open Quick Look: `AudiobookPlayerScreen`, `BookReaderScreen`, `StoryReaderScreen`, `TappableHanziText`, `TappableMarkdownHanziText` (chat, summary), `SimplifiedArticleReaderScreen`, `StoryModeScreen`, `PremiumTranscriptLine`, and `LiveCallSummaryScreen`.
 
 ### [2026-09-05] Quick Look Card Status Bar Safe Area & Dynamic Flip Positioning
 - Strictly respected iOS safe area insets using `math.max(mediaQuery.padding, mediaQuery.viewPadding)` so anchored dictionary popovers never render behind or collide with the system status bar / Dynamic Island, even when called within nested `SafeArea`s.

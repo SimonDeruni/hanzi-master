@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_positioning.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 
 void main() {
   test('positions below an anchor in the upper half', () {
@@ -89,4 +90,47 @@ void main() {
     expect(layout.top, 388); // 380 + 8
     expect(layout.bottom, isNull);
   });
+
+  testWidgets('TappableHanziText creates recognizers for CJK characters',
+      (tester) async {
+    await tester.pumpWidget(
+      const Directionality(
+        textDirection: TextDirection.ltr,
+        child: TappableHanziText('Hello 功 test'),
+      ),
+    );
+
+    final richTextFinder = find.byType(RichText);
+    expect(richTextFinder, findsOneWidget);
+
+    final richText = tester.widget<RichText>(richTextFinder);
+    final spans = (richText.text as TextSpan).children!;
+    expect(spans.length, 3);
+
+    final charSpan = spans[1] as TextSpan;
+    expect(charSpan.text, '功');
+    expect(charSpan.recognizer, isNotNull);
+  });
+
+  testWidgets('TappableMarkdownHanziText creates recognizers for CJK characters in markdown',
+      (tester) async {
+    await tester.pumpWidget(
+      const Directionality(
+        textDirection: TextDirection.ltr,
+        child: TappableMarkdownHanziText('**重点** 功 `code`'),
+      ),
+    );
+
+    final richTextFinder = find.byType(RichText);
+    expect(richTextFinder, findsOneWidget);
+
+    final richText = tester.widget<RichText>(richTextFinder);
+    final spans = (richText.text as TextSpan).children!;
+    expect(spans.isNotEmpty, isTrue);
+
+    final hanziSpans = spans.whereType<TextSpan>().where((s) => s.text == '功');
+    expect(hanziSpans, isNotEmpty);
+    expect(hanziSpans.first.recognizer, isNotNull);
+  });
 }
+

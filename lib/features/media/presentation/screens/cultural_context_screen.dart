@@ -6,9 +6,9 @@ import 'package:hanzi_master/features/media/domain/models/youtube_video.dart';
 import 'package:hanzi_master/features/media/presentation/providers/cultural_context_provider.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/smart_media_desk_screen.dart';
-import 'package:flutter/gestures.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -309,18 +309,10 @@ class CulturalContextScreen extends ConsumerWidget {
   Widget _buildStructuredInsight(
       BuildContext context, String text, ThemeData theme) {
     final lines = text.split('\n');
-    final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
-
     final baseStyle = theme.textTheme.bodyLarge?.copyWith(
       height: 1.8,
       fontSize: 17,
       color: theme.colorScheme.onSurface.withValues(alpha: 0.85),
-    );
-    final hanziStyle = theme.textTheme.bodyLarge?.copyWith(
-      height: 1.8,
-      fontSize: 17,
-      color: theme.colorScheme.primary,
-      fontWeight: FontWeight.w600,
     );
     final headingStyle = theme.textTheme.titleMedium?.copyWith(
       fontWeight: FontWeight.w800,
@@ -351,8 +343,6 @@ class CulturalContextScreen extends ConsumerWidget {
       // Bullet point: "- Something"
       if (trimmed.startsWith('- ')) {
         final bulletContent = trimmed.substring(2).trim();
-        final spans = _buildRichSpans(bulletContent, baseStyle!, hanziStyle!,
-            chineseRegex, context, theme);
         widgets.add(Padding(
           padding: const EdgeInsets.only(left: 12, bottom: 8),
           child: Row(
@@ -362,7 +352,13 @@ class CulturalContextScreen extends ConsumerWidget {
                 padding: const EdgeInsets.only(top: 2, right: 8),
                 child: Text('•', style: baseStyle),
               ),
-              Expanded(child: RichText(text: TextSpan(children: spans))),
+              Expanded(
+                child: TappableMarkdownHanziText(
+                  bulletContent,
+                  style: baseStyle,
+                  quickLookPresentation: QuickLookPresentation.readingPopover,
+                ),
+              ),
             ],
           ),
         ));
@@ -370,11 +366,13 @@ class CulturalContextScreen extends ConsumerWidget {
       }
 
       // Regular paragraph
-      final spans = _buildRichSpans(
-          trimmed, baseStyle!, hanziStyle!, chineseRegex, context, theme);
       widgets.add(Padding(
         padding: const EdgeInsets.only(bottom: 14),
-        child: RichText(text: TextSpan(children: spans)),
+        child: TappableMarkdownHanziText(
+          trimmed,
+          style: baseStyle,
+          quickLookPresentation: QuickLookPresentation.readingPopover,
+        ),
       ));
     }
 
@@ -384,133 +382,26 @@ class CulturalContextScreen extends ConsumerWidget {
     );
   }
 
-  /// Builds a list of [TextSpan] from raw text, making Chinese characters tappable
-  /// and preserving **bold** markers.
-  List<TextSpan> _buildRichSpans(
-    String text,
-    TextStyle baseStyle,
-    TextStyle hanziStyle,
-    RegExp chineseRegex,
-    BuildContext context,
-    ThemeData theme,
-  ) {
-    // First, strip ** markers and track bold ranges
-    final List<_BoldRange> boldRanges = [];
-    final StringBuffer cleanBuffer = StringBuffer();
-    bool insideBold = false;
-
-    for (int i = 0; i < text.length; i++) {
-      if (i + 1 < text.length && text[i] == '*' && text[i + 1] == '*') {
-        insideBold = !insideBold;
-        i++; // skip second *
-        if (insideBold) {
-          // Record start of bold region
-          boldRanges.add(_BoldRange(start: cleanBuffer.length, end: -1));
-        } else {
-          // Close the last opened bold range
-          for (int j = boldRanges.length - 1; j >= 0; j--) {
-            if (boldRanges[j].end == -1) {
-              boldRanges[j] = _BoldRange(
-                  start: boldRanges[j].start, end: cleanBuffer.length);
-              break;
-            }
-          }
-        }
-      } else {
-        cleanBuffer.write(text[i]);
-      }
-    }
-
-    final cleanText = cleanBuffer.toString();
-    final List<TextSpan> spans = [];
-
-    for (int i = 0; i < cleanText.length; i++) {
-      final char = cleanText[i];
-      bool isInsideBoldRange = boldRanges.any((r) => i >= r.start && i < r.end);
-
-      final effectiveStyle = isInsideBoldRange
-          ? (chineseRegex.hasMatch(char) ? hanziStyle : baseStyle)
-              .copyWith(fontWeight: FontWeight.w800)
-          : chineseRegex.hasMatch(char)
-              ? hanziStyle
-              : baseStyle;
-
-      if (chineseRegex.hasMatch(char)) {
-        spans.add(TextSpan(
-          text: char,
-          style: effectiveStyle,
-          recognizer: _readingQuickLookRecognizer(context, char),
-        ));
-      } else {
-        spans.add(TextSpan(text: char, style: effectiveStyle));
-      }
-    }
-
-    return spans;
-  }
-
   /// Legacy renderer — kept for backward compatibility with non-structured text.
   Widget _buildClickableContext(
       BuildContext context, String text, ThemeData theme,
       {TextStyle? customBaseStyle, TextStyle? customHanziStyle}) {
     final paragraphs = text.split('\n\n');
-    final RegExp chineseRegex = RegExp(r'[\u4e00-\u9fa5]');
+    final baseStyle =
+        customBaseStyle ?? theme.textTheme.bodyLarge?.copyWith(height: 1.6);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: paragraphs.map((p) {
-        var content = p.replaceAll(RegExp(r'^#+\s+'), '');
-        content = content.replaceAll('**', '');
-
-        final List<TextSpan> spans = [];
-        final baseStyle =
-            customBaseStyle ?? theme.textTheme.bodyLarge?.copyWith(height: 1.6);
-        final hanziStyle = customHanziStyle ??
-            baseStyle?.copyWith(
-              color: theme.colorScheme.primary,
-              fontWeight: FontWeight.w600,
-            );
-
-        for (int i = 0; i < content.length; i++) {
-          final char = content[i];
-          if (chineseRegex.hasMatch(char)) {
-            spans.add(TextSpan(
-              text: char,
-              style: hanziStyle,
-              recognizer: _readingQuickLookRecognizer(context, char),
-            ));
-          } else {
-            spans.add(TextSpan(text: char, style: baseStyle));
-          }
-        }
-
         return Padding(
           padding: const EdgeInsets.only(bottom: 16.0),
-          child: RichText(text: TextSpan(children: spans)),
+          child: TappableMarkdownHanziText(
+            p,
+            style: baseStyle,
+            quickLookPresentation: QuickLookPresentation.readingPopover,
+          ),
         );
       }).toList(),
     );
   }
-
-  TapGestureRecognizer _readingQuickLookRecognizer(
-      BuildContext context, String hanzi) {
-    Offset? anchorPosition;
-    return TapGestureRecognizer()
-      ..onTapDown = (details) {
-        anchorPosition = details.globalPosition;
-      }
-      ..onTap = () => showQuickLook(
-            context,
-            hanzi,
-            presentation: QuickLookPresentation.readingPopover,
-            anchorPosition: anchorPosition,
-          );
-  }
-}
-
-/// Small helper to hold bold region boundaries in the cleaned text.
-class _BoldRange {
-  final int start;
-  final int end;
-  const _BoldRange({required this.start, required this.end});
 }

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
-import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hanzi_master/core/services/monetization_service.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
-import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
-  const AuthScreen({super.key, this.requireSubscription = false});
-
   final bool requireSubscription;
+  const AuthScreen({super.key, this.requireSubscription = false});
 
   @override
   ConsumerState<AuthScreen> createState() => _AuthScreenState();
@@ -20,7 +14,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
-
+  
   bool _isLogin = true;
   bool _isLoading = false;
   String? _errorMessage;
@@ -51,7 +45,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       } else {
         if (!_acceptTerms) {
           setState(() {
-            _errorMessage = AppLocalizations.of(context)!.youMustAccount;
+            _errorMessage = "You must accept the Terms of Service and Privacy Policy to create an account.";
           });
           return;
         }
@@ -61,14 +55,15 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           _nameController.text.trim(),
         );
       }
-      await _completeAuthentication();
+      if (mounted) {
+        Navigator.pop(context); // Close auth screen on success
+      }
     } catch (e) {
       if (mounted) {
         setState(() {
           final errStr = e.toString();
-          if (errStr.contains('CONFIGURATION_NOT_FOUND') ||
-              errStr.contains('FIRAuthErrorDomain')) {
-            _errorMessage = AppLocalizations.of(context)!.firebaseAuthConsole;
+          if (errStr.contains('CONFIGURATION_NOT_FOUND') || errStr.contains('FIRAuthErrorDomain')) {
+            _errorMessage = "Firebase Auth not enabled. Please enable the required Sign-In method in your Firebase Console.";
           } else {
             _errorMessage = errStr.replaceAll(RegExp(r'\[.*?\]'), '').trim();
           }
@@ -83,68 +78,16 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     }
   }
 
-  Future<void> _completeAuthentication() async {
-    if (!widget.requireSubscription) {
-      if (mounted) Navigator.pop(context);
-      return;
-    }
-
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) throw StateError('Authentication did not return a user.');
-    final isPremium = await MonetizationService.identifyUser(user.uid);
-    if (!mounted) return;
-    if (isPremium) {
-      _enterSubscribedApp();
-    } else {
-      setState(() {
-        _errorMessage = AppLocalizations.of(context)!.noActiveSubscriptionFound;
-      });
-    }
-  }
-
-  Future<void> _restoreSubscription() async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-    try {
-      final restored = await MonetizationService.restorePurchases();
-      if (!mounted) return;
-      if (restored) {
-        _enterSubscribedApp();
-      } else {
-        setState(() => _errorMessage =
-            AppLocalizations.of(context)!.noActiveSubscriptionFound);
-      }
-    } catch (_) {
-      if (mounted) {
-        setState(() => _errorMessage =
-            AppLocalizations.of(context)!.noActiveSubscriptionFound);
-      }
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
-  }
-
-  void _enterSubscribedApp() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const MainNavigationScreen()),
-      (route) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
+      backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: !widget.requireSubscription,
         iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
       ),
       body: SafeArea(
@@ -162,9 +105,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  _isLogin
-                      ? AppLocalizations.of(context)!.welcomeBack
-                      : AppLocalizations.of(context)!.beginYourJourney,
+                  _isLogin ? "Welcome Back" : "Begin Your Journey",
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w900,
@@ -174,8 +115,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  _isLogin
-                      ? "Sign in to sync your progress."
+                  _isLogin 
+                      ? "Sign in to sync your progress." 
                       : "Create an account to save your stats.",
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyMedium?.copyWith(
@@ -186,7 +127,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 if (!_isLogin) ...[
                   _buildTextField(
                     controller: _nameController,
-                    label: AppLocalizations.of(context)!.nameLabel,
+                    label: "Name",
                     icon: Icons.person_outline,
                     isDark: isDark,
                   ),
@@ -194,7 +135,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ],
                 _buildTextField(
                   controller: _emailController,
-                  label: AppLocalizations.of(context)!.emailLabel,
+                  label: "Email",
                   icon: Icons.email_outlined,
                   keyboardType: TextInputType.emailAddress,
                   isDark: isDark,
@@ -202,7 +143,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: _passwordController,
-                  label: AppLocalizations.of(context)!.passwordLabel,
+                  label: "Password",
                   icon: Icons.lock_outline,
                   obscureText: true,
                   isDark: isDark,
@@ -219,8 +160,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   const SizedBox(height: 24),
                   CheckboxListTile(
                     value: _acceptTerms,
-                    onChanged: (val) =>
-                        setState(() => _acceptTerms = val ?? false),
+                    onChanged: (val) => setState(() => _acceptTerms = val ?? false),
                     title: Text(
                       "I agree to the Terms of Service and Privacy Policy.",
                       style: TextStyle(
@@ -235,8 +175,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   ),
                   CheckboxListTile(
                     value: _subscribeNewsletter,
-                    onChanged: (val) =>
-                        setState(() => _subscribeNewsletter = val ?? false),
+                    onChanged: (val) => setState(() => _subscribeNewsletter = val ?? false),
                     title: Text(
                       "Send me occasional updates, tips, and offers.",
                       style: TextStyle(
@@ -252,29 +191,11 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 ],
                 const SizedBox(height: 32),
                 _buildSubmitButton(isDark),
-                if (widget.requireSubscription) ...[
-                  const SizedBox(height: 12),
-                  TextButton.icon(
-                    key: const Key('auth_restore_subscription'),
-                    onPressed: _isLoading ? null : _restoreSubscription,
-                    icon: const Icon(Icons.restore),
-                    label: Text(AppLocalizations.of(context)!.restorePurchases),
-                  ),
-                  TextButton(
-                    key: const Key('auth_view_subscription_plans'),
-                    onPressed: _isLoading
-                        ? null
-                        : () => Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                builder: (_) => const CustomPaywallScreen(),
-                              ),
-                              (route) => false,
-                            ),
-                    child: const Text('View subscription plans'),
-                  ),
-                ],
                 const SizedBox(height: 24),
+
+
                 const SizedBox(height: 32),
+                
                 TextButton(
                   onPressed: () {
                     setState(() {
@@ -283,10 +204,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     });
                   },
                   child: Text(
-                    _isLogin
-                        ? AppLocalizations.of(context)!.dontHaveAccountSignUp
-                        : AppLocalizations.of(context)!
-                            .alreadyHaveAccountSignIn,
+                    _isLogin 
+                        ? "Don't have an account? Sign up" 
+                        : "Already have an account? Sign in",
                     style: TextStyle(
                       color: isDark ? Colors.white70 : Colors.black87,
                       fontWeight: FontWeight.w600,
@@ -371,9 +291,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     ),
                   )
                 : Text(
-                    _isLogin
-                        ? AppLocalizations.of(context)!.signIn
-                        : AppLocalizations.of(context)!.createAccount,
+                    _isLogin ? "Sign In" : "Create Account",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,

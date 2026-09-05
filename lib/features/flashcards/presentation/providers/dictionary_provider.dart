@@ -1,14 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
-import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
-import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'dictionary_provider.g.dart';
 
@@ -45,57 +41,59 @@ class MasterDictionary extends _$MasterDictionary {
 
   Future<void> _loadData() async {
     try {
-      for (int level = 1; level <= 6; level++) {
-        final String fileName = level == 1
-            ? 'assets/data/hsk1.json'
-            : 'assets/data/hsk${level}_bundle.json';
-        final jsonString = await rootBundle.loadString(fileName);
-        if (jsonString.isNotEmpty) {
-          final dynamic decoded = json.decode(jsonString);
-          final List<dynamic> vocabulary;
-
-          if (level == 1) {
-            vocabulary = decoded as List<dynamic>;
-          } else {
-            vocabulary = (decoded as Map<String, dynamic>)['vocabulary']
-                as List<dynamic>;
-          }
-
-          for (var item in vocabulary) {
-            final entry = DictionaryEntry(
-              hanzi: item['hanzi'],
-              pinyin: PinyinUtils.convertNumericToMarks(item['pinyin'] ?? ''),
-              definition: item['definition'],
-              hskLevel: level,
-            );
-            if (!_allEntries.containsKey(entry.hanzi)) {
-              _allEntries[entry.hanzi] = entry;
-            }
-            _vocabulary.add(entry.hanzi);
-          }
+      // 1. Load HSK 1
+      final hsk1String = await rootBundle.loadString('assets/data/hsk1.json');
+      if (hsk1String.isNotEmpty) {
+        final List<dynamic> hsk1List = json.decode(hsk1String);
+        for (var item in hsk1List) {
+          final entry = DictionaryEntry(
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 1,
+          );
+          _allEntries[entry.hanzi] = entry;
+          _vocabulary.add(entry.hanzi);
         }
       }
-    } catch (e) {
-      debugPrint("Dictionary load error: $e");
+
+      // 2. Load HSK 2
+      final hsk2String = await rootBundle.loadString('assets/data/hsk2_bundle.json');
+      if (hsk2String.isNotEmpty) {
+        final Map<String, dynamic> hsk2Bundle = json.decode(hsk2String);
+        final List<dynamic> vocabulary = hsk2Bundle['vocabulary'] as List<dynamic>;
+        for (var item in vocabulary) {
+          final entry = DictionaryEntry(
+            hanzi: item['hanzi'],
+            pinyin: item['pinyin'],
+            definition: item['definition'],
+            hskLevel: 2,
+          );
+          // Prefer HSK 1 if overlap? (Unlikely for HSK1/2 overlap in standard sets, but good to check)
+          if (!_allEntries.containsKey(entry.hanzi)) {
+            _allEntries[entry.hanzi] = entry;
+          }
+          _vocabulary.add(entry.hanzi);
+        }
+      }
+    } catch (_) {
+      // Ignore load error
     }
   }
 
   /// Lookup a word/character in the master dictionary
   DictionaryEntry? lookup(String hanzi) {
     // Check user library first via the flashcard controller
-    final libraryCards =
-        ref.read(flashcardControllerProvider).valueOrNull ?? [];
-    final libMatch = libraryCards.firstWhere((c) => c.hanzi == hanzi,
-        orElse: () => const Flashcard(
-            id: '',
-            hanzi: '',
-            pinyin: '',
-            definition: '',
-            hskLevel: 0,
-            strokePaths: [],
-            modeStats: {}));
+    final libraryCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
+    Flashcard? libMatch;
+    for (final c in libraryCards) {
+      if (c.hanzi == hanzi) {
+        libMatch = c;
+        break;
+      }
+    }
 
-    if (libMatch.hanzi.isNotEmpty) {
+    if (libMatch != null) {
       return DictionaryEntry(
         hanzi: libMatch.hanzi,
         pinyin: libMatch.pinyin,
@@ -138,15 +136,9 @@ class MasterDictionary extends _$MasterDictionary {
   }
 }
 
-final masterSearchProvider =
-    FutureProvider.family<List<Flashcard>, String>((ref, query) async {
+final masterSearchProvider = FutureProvider.family<List<Flashcard>, String>((ref, query) async {
   if (query.isEmpty) return [];
-  final selectedLanguage = ref.watch(translationLanguageProvider);
-  final useEnglishDefinitions = ref.watch(
-    settingsProvider.select((settings) => settings.useEnglishDefinitions),
-  );
-  final targetLanguage = useEnglishDefinitions ? 'English' : selectedLanguage;
-  final repository = ref.read(globalDictionaryRepositoryProvider);
-  final result = await repository.search(query, targetLanguage: targetLanguage);
+  final repository = ref.read(flashcardRepositoryProvider);
+  final result = await repository.searchAll(query);
   return result.fold((l) => [], (r) => r);
 });

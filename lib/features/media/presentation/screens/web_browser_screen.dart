@@ -2213,50 +2213,73 @@ class _ExtractedWordsReviewSheetState
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.fromLTRB(24, 20, 24, 16),
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark
-            ? const Color(0xFF1E1E1E)
-            : const Color(0xFFFDFCF0),
+        color: isDark ? const Color(0xFF1E1E1E) : const Color(0xFFFDFCF0),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(AppLocalizations.of(context)!.reviewExtractedDeck,
-              style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.indigo,
-                  fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Text(widget.deckName,
-              style:
-                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8),
-          Text(
-            "${_selected.where((s) => s).length} of ${widget.words.length} words selected",
-            style: TextStyle(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.white54
-                  : Colors.grey.shade700,
-              fontSize: 16,
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.reviewExtractedDeck,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.indigo,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.deckName,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      "${_selected.where((s) => s).length} of ${widget.words.length} words selected",
+                      style: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.grey.shade700,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.close_rounded),
+                color: isDark ? Colors.white70 : Colors.black54,
+                tooltip: AppLocalizations.of(context)!.cancelAction,
+                onPressed:
+                    _isCreating ? null : () => Navigator.pop(context, null),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white12
-                      : Colors.grey.shade300,
+                  color: isDark ? Colors.white12 : Colors.grey.shade300,
                 ),
                 borderRadius: BorderRadius.circular(12),
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? const Color(0xFF2A2A2B)
-                    : Colors.white,
+                color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
               ),
               child: ListView.separated(
                 itemCount: widget.words.length,
@@ -2293,59 +2316,52 @@ class _ExtractedWordsReviewSheetState
               ),
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           Row(
             children: [
+              // "New Deck" button — direct creation with clean single-line label and icon
               Expanded(
-                child: OutlinedButton(
-                  onPressed:
-                      _isCreating ? null : () => Navigator.pop(context, null),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    side: const BorderSide(color: Colors.indigo),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  child: Text(AppLocalizations.of(context)!.cancelAction,
-                      style: const TextStyle(
-                          color: Colors.indigo,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-              const SizedBox(width: 12),
-              // AppLocalizations.of(context)!.createNewDeck — direct creation
-              Expanded(
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange.shade700,
+                    backgroundColor: Colors.orange.shade800,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 8),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(14)),
                   ),
                   onPressed: _isCreating ? null : () => _createNewDeck(),
-                  child: _isCreating
+                  icon: _isCreating
                       ? const SizedBox(
-                          width: 20,
-                          height: 20,
+                          width: 16,
+                          height: 16,
                           child: CircularProgressIndicator(
                               strokeWidth: 2, color: Colors.white))
-                      : Text(AppLocalizations.of(context)!.createNewDeck,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      : const Icon(Icons.add_rounded, size: 20),
+                  label: Text(
+                    AppLocalizations.of(context)!.newDeck,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
               // "Add to Deck" — returns selected words to caller
               Expanded(
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.indigo,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 14, horizontal: 8),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(14)),
                   ),
                   onPressed: _isCreating
                       ? null
@@ -2358,14 +2374,35 @@ class _ExtractedWordsReviewSheetState
                           }
                           Navigator.pop(context, selectedWords);
                         },
-                  child: Text(AppLocalizations.of(context)!.addToDeck1,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold)),
+                  icon: const Icon(Icons.library_add_outlined, size: 20),
+                  label: Text(
+                    AppLocalizations.of(context)!.addToDeck1,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 6),
+          Center(
+            child: TextButton(
+              onPressed:
+                  _isCreating ? null : () => Navigator.pop(context, null),
+              child: Text(
+                AppLocalizations.of(context)!.cancelAction,
+                style: TextStyle(
+                  color: isDark ? Colors.white60 : Colors.black54,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

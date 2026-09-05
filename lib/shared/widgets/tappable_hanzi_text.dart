@@ -30,6 +30,7 @@ abstract class _TappableBase extends StatefulWidget {
 
 abstract class _TappableBaseState<T extends _TappableBase> extends State<T> {
   final List<TapGestureRecognizer> _recognizers = [];
+  String? _selectedCharKey;
 
   void _disposeRecognizers() {
     for (final r in _recognizers) {
@@ -38,21 +39,47 @@ abstract class _TappableBaseState<T extends _TappableBase> extends State<T> {
     _recognizers.clear();
   }
 
-  TapGestureRecognizer _makeRecognizer(String char) {
+  TapGestureRecognizer _makeRecognizer(String char, String charKey) {
     Offset? anchorPosition;
     final r = TapGestureRecognizer()
       ..onTapDown = (details) {
         anchorPosition = details.globalPosition;
       }
-      ..onTap = () => showQuickLook(
-            context,
-            char,
-            presentation: widget.quickLookPresentation,
-            anchorPosition: anchorPosition,
-          );
+      ..onTap = () async {
+        setState(() {
+          _selectedCharKey = charKey;
+          _rebuildSpans();
+        });
+        await showQuickLook(
+          context,
+          char,
+          presentation: widget.quickLookPresentation,
+          anchorPosition: anchorPosition,
+          onDismiss: () {
+            if (mounted) {
+              setState(() {
+                if (_selectedCharKey == charKey) {
+                  _selectedCharKey = null;
+                  _rebuildSpans();
+                }
+              });
+            }
+          },
+        );
+        if (mounted) {
+          setState(() {
+            if (_selectedCharKey == charKey) {
+              _selectedCharKey = null;
+              _rebuildSpans();
+            }
+          });
+        }
+      };
     _recognizers.add(r);
     return r;
   }
+
+  void _rebuildSpans();
 
   @override
   void dispose() {
@@ -103,6 +130,7 @@ class _TappableHanziTextState extends _TappableBaseState<TappableHanziText> {
     }
   }
 
+  @override
   void _rebuildSpans() {
     _disposeRecognizers();
     final resolved = DefaultTextStyle.of(context).style.merge(widget.style);
@@ -120,14 +148,22 @@ class _TappableHanziTextState extends _TappableBaseState<TappableHanziText> {
         ));
       }
       final char = match.group(0)!;
+      final charKey = '${match.start}_$char';
+      final isSelected = _selectedCharKey == charKey;
       spans.add(TextSpan(
         text: char,
         style: resolved.copyWith(
+          backgroundColor: isSelected
+              ? const Color(0xFF4F46E5).withValues(alpha: 0.22)
+              : null,
+          color: isSelected ? const Color(0xFF4F46E5) : null,
           decoration: TextDecoration.underline,
-          decorationColor: Colors.indigo.withValues(alpha: 0.35),
+          decorationColor: isSelected
+              ? const Color(0xFF4F46E5)
+              : Colors.indigo.withValues(alpha: 0.35),
           decorationStyle: TextDecorationStyle.dotted,
         ),
-        recognizer: _makeRecognizer(char),
+        recognizer: _makeRecognizer(char, charKey),
       ));
       cursor = match.end;
     }
@@ -202,6 +238,7 @@ class _TappableMarkdownHanziTextState
   }
 
   List<InlineSpan>? _spans;
+  int _charSeq = 0;
 
   @override
   void didChangeDependencies() {
@@ -217,6 +254,7 @@ class _TappableMarkdownHanziTextState
     }
   }
 
+  @override
   void _rebuildSpans() {
     _disposeRecognizers();
     final resolved = DefaultTextStyle.of(context).style.merge(widget.style);
@@ -237,14 +275,22 @@ class _TappableMarkdownHanziTextState
         ));
       }
       final char = m.group(0)!;
+      final charKey = '${_charSeq++}_$char';
+      final isSelected = _selectedCharKey == charKey;
       target.add(TextSpan(
         text: char,
         style: segStyle.copyWith(
+          backgroundColor: isSelected
+              ? const Color(0xFF4F46E5).withValues(alpha: 0.22)
+              : null,
+          color: isSelected ? const Color(0xFF4F46E5) : null,
           decoration: TextDecoration.underline,
-          decorationColor: Colors.indigo.withValues(alpha: 0.35),
+          decorationColor: isSelected
+              ? const Color(0xFF4F46E5)
+              : Colors.indigo.withValues(alpha: 0.35),
           decorationStyle: TextDecorationStyle.dotted,
         ),
-        recognizer: _makeRecognizer(char),
+        recognizer: _makeRecognizer(char, charKey),
       ));
       c = m.end;
     }
@@ -254,6 +300,7 @@ class _TappableMarkdownHanziTextState
   }
 
   List<InlineSpan> _buildSpans(TextStyle base) {
+    _charSeq = 0;
     final all = <InlineSpan>[];
     final processedText = _preprocessText(widget.text);
     int last = 0;

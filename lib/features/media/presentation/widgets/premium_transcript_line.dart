@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../../domain/models/video_transcript.dart';
 
 class PremiumTranscriptLine extends StatefulWidget {
@@ -69,14 +70,26 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
     }
   }
 
+  final List<TapGestureRecognizer> _recognizers = [];
+  int? _selectedCharIndex;
+
   @override
   void dispose() {
+    for (final r in _recognizers) {
+      r.dispose();
+    }
+    _recognizers.clear();
     _pulseController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    for (final r in _recognizers) {
+      r.dispose();
+    }
+    _recognizers.clear();
+
     return IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -161,19 +174,63 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                           final char = entry.value;
                           final isHighlighted = widget.isCurrent && charIndex <= widget.highlightedCount;
                           final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
+                          final isSelected = _selectedCharIndex == charIndex;
+
+                          TapGestureRecognizer? recognizer;
+                          if (isChinese) {
+                            Offset? anchorPosition;
+                            recognizer = TapGestureRecognizer()
+                              ..onTapDown = (details) {
+                                anchorPosition = details.globalPosition;
+                              }
+                              ..onTap = () async {
+                                widget.onWordTapped(char);
+                                setState(() {
+                                  _selectedCharIndex = charIndex;
+                                });
+                                await showQuickLook(
+                                  context,
+                                  char,
+                                  presentation: QuickLookPresentation.readingPopover,
+                                  anchorPosition: anchorPosition,
+                                  onDismiss: () {
+                                    if (mounted) {
+                                      setState(() {
+                                        if (_selectedCharIndex == charIndex) {
+                                          _selectedCharIndex = null;
+                                        }
+                                      });
+                                    }
+                                  },
+                                );
+                                if (mounted) {
+                                  setState(() {
+                                    if (_selectedCharIndex == charIndex) {
+                                      _selectedCharIndex = null;
+                                    }
+                                  });
+                                }
+                              };
+                            _recognizers.add(recognizer);
+                          }
 
                           return TextSpan(
                             text: char,
                             style: TextStyle(
                               fontSize: 22,
-                              color: isHighlighted ? const Color(0xFF1976D2) : const Color(0xFF2C2C2C),
+                              backgroundColor: isSelected
+                                  ? const Color(0xFF4F46E5).withValues(alpha: 0.22)
+                                  : null,
+                              color: isSelected
+                                  ? const Color(0xFF4F46E5)
+                                  : isHighlighted
+                                      ? const Color(0xFF1976D2)
+                                      : const Color(0xFF2C2C2C),
                               fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
                               height: 1.5,
                               fontFamily: 'NotoSerifSC', // fallback if needed
                             ),
-                            recognizer: isChinese 
-                                ? (TapGestureRecognizer()..onTap = () => widget.onWordTapped(char))
-                                : null,
+                            recognizer: recognizer,
                           );
                         }).toList(),
                       ),

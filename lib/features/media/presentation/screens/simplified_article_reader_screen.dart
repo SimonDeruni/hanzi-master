@@ -18,6 +18,7 @@ class _SimplifiedArticleReaderScreenState
     extends State<SimplifiedArticleReaderScreen> {
   bool _showPinyin = false;
   bool _showTranslation = false;
+  String? _quickLookSelectedWordKey;
 
   bool get _hasTraditional {
     for (final s in widget.story.sentences) {
@@ -110,7 +111,9 @@ class _SimplifiedArticleReaderScreenState
                   ],
                 ),
               ),
-            ...widget.story.sentences.map((sentence) {
+            ...widget.story.sentences.asMap().entries.map((sEntry) {
+              final sIdx = sEntry.key;
+              final sentence = sEntry.value;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
                 child: Column(
@@ -119,7 +122,11 @@ class _SimplifiedArticleReaderScreenState
                     Wrap(
                       spacing: 4.0,
                       runSpacing: 12.0,
-                      children: sentence.words.map((word) {
+                      children: sentence.words.asMap().entries.map((wEntry) {
+                        final wIdx = wEntry.key;
+                        final word = wEntry.value;
+                        final wordKey = '${sIdx}_${wIdx}_${word.hanzi}';
+                        final isSelected = _quickLookSelectedWordKey == wordKey;
                         bool hasChineseChars =
                             RegExp(r'[\u4e00-\u9fa5]').hasMatch(word.hanzi);
                         bool hasChinesePunc =
@@ -140,53 +147,88 @@ class _SimplifiedArticleReaderScreenState
                             isValidMeaning;
 
                         return GestureDetector(
-                          onTapDown: (details) => showQuickLook(
-                            context,
-                            word.hanzi,
-                            contextText: sentence.chinese,
-                            presentation: QuickLookPresentation.readingPopover,
-                            anchorPosition: details.globalPosition,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (showWordPinyin)
-                                Text(
-                                  word.pinyin,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        isDark ? Colors.white54 : Colors.grey,
+                          onTapDown: (details) async {
+                            setState(() {
+                              _quickLookSelectedWordKey = wordKey;
+                            });
+                            await showQuickLook(
+                              context,
+                              word.hanzi,
+                              contextText: sentence.chinese,
+                              presentation: QuickLookPresentation.readingPopover,
+                              anchorPosition: details.globalPosition,
+                              onDismiss: () {
+                                if (mounted) {
+                                  setState(() {
+                                    if (_quickLookSelectedWordKey == wordKey) {
+                                      _quickLookSelectedWordKey = null;
+                                    }
+                                  });
+                                }
+                              },
+                            );
+                            if (mounted) {
+                              setState(() {
+                                if (_quickLookSelectedWordKey == wordKey) {
+                                  _quickLookSelectedWordKey = null;
+                                }
+                              });
+                            }
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 150),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 3, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? const Color(0xFF4F46E5)
+                                      .withValues(alpha: 0.18)
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (showWordPinyin)
+                                  Text(
+                                    word.pinyin,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color:
+                                          isDark ? Colors.white54 : Colors.grey,
+                                    ),
+                                  ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: isChineseStyle ? 0 : 8.0),
+                                  child: Text(
+                                    word.hanzi,
+                                    style: TextStyle(
+                                      fontSize: isChineseStyle ? 24 : 16,
+                                      height: 1.2,
+                                      fontFamily: isChineseStyle
+                                          ? AppLocalizations.of(context)!.serif
+                                          : null,
+                                      color: isSelected
+                                          ? const Color(0xFF4F46E5)
+                                          : textColor,
+                                    ),
                                   ),
                                 ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: isChineseStyle ? 0 : 8.0),
-                                child: Text(
-                                  word.hanzi,
-                                  style: TextStyle(
-                                    fontSize: isChineseStyle ? 24 : 16,
-                                    height: 1.2,
-                                    fontFamily: isChineseStyle
-                                        ? AppLocalizations.of(context)!.serif
-                                        : null,
-                                    color: textColor,
+                                if (showWordMeaning)
+                                  Text(
+                                    word.meaning,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: isDark
+                                          ? Colors.blue.shade200
+                                          : Colors.blueGrey,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                ),
-                              ),
-                              if (showWordMeaning)
-                                Text(
-                                  word.meaning,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: isDark
-                                        ? Colors.blue.shade200
-                                        : Colors.blueGrey,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       }).toList(),
