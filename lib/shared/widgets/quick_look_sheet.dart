@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -100,9 +102,18 @@ bool _showAnchoredQuickLook(
 }) {
   final mediaQuery = MediaQuery.of(context);
   final anchorRect = Rect.fromCircle(center: anchorPosition, radius: 12);
+  final effectiveSafePadding = EdgeInsets.only(
+    top: math.max(mediaQuery.padding.top, mediaQuery.viewPadding.top),
+    bottom: math.max(
+      math.max(mediaQuery.padding.bottom, mediaQuery.viewPadding.bottom),
+      mediaQuery.viewInsets.bottom,
+    ),
+    left: math.max(mediaQuery.padding.left, mediaQuery.viewPadding.left),
+    right: math.max(mediaQuery.padding.right, mediaQuery.viewPadding.right),
+  );
   final layout = calculateQuickLookPopoverLayout(
     viewportSize: mediaQuery.size,
-    safePadding: mediaQuery.padding,
+    safePadding: effectiveSafePadding,
     anchorRect: anchorRect,
     textScaleFactor: mediaQuery.textScaler.scale(1),
   );
@@ -120,6 +131,7 @@ bool _showAnchoredQuickLook(
         Positioned(
           left: layout.left,
           top: layout.top,
+          bottom: layout.bottom,
           width: layout.width,
           child: ConstrainedBox(
             constraints: BoxConstraints(maxHeight: layout.maxHeight),

@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Quick Look Card Status Bar Safe Area & Dynamic Flip Positioning
+- Strictly respected iOS safe area insets using `math.max(mediaQuery.padding, mediaQuery.viewPadding)` so anchored dictionary popovers never render behind or collide with the system status bar / Dynamic Island, even when called within nested `SafeArea`s.
+- Enforced a minimum 16px clearance buffer below the top safe area boundary (`safePadding.top + 16.0`).
+- Anchored the popover to the bottom edge (`bottom: viewportSize.height - (anchorRect.top - anchorGap)`) when positioned above words, ensuring cards sit directly above the tapped Hanzi rather than shooting up to the top of the screen.
+- Added dynamic collision detection: characters tapped in the upper 45% of the screen spawn the card below the word with generous downward room, while taps in the lower half spawn above the word.
+- Added comprehensive unit tests in `quick_look_positioning_test.dart` verifying bottom anchoring, top safe margin clearance, and dynamic flip behavior. Passed all 7 unit tests.
+
 ### [2026-09-04] Native iOS Microphone Permission Prompt
 - Trigger native iOS `AVAudioSession.requestRecordPermission()` prompt via `AudioRecorder.hasPermission()` in `AudioRecordingService.requestPermission()`.
 - Added `PERMISSION_MICROPHONE=1` and `PERMISSION_SPEECH_RECOGNIZER=1` preprocessor definitions to `ios/Podfile` post_install targets to ensure CocoaPods links iOS permission handlers.
