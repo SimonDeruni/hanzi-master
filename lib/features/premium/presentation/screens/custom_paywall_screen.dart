@@ -8,6 +8,8 @@ import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -375,7 +377,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final bgColor = isDark
+        ? OnboardingDesign.backgroundDark
+        : OnboardingDesign.backgroundLight;
     final textColor =
         isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     const accentColor = Color(0xFFD4C4A8);
@@ -391,145 +395,161 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       },
       child: Scaffold(
         backgroundColor: bgColor,
-        body: SafeArea(
-          bottom: false,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: _isLoading
-                    ? Center(child: CircularProgressIndicator(color: textColor))
-                    : SingleChildScrollView(
-                        padding: const EdgeInsets.fromLTRB(20, 54, 20, 36),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            _buildHero(textColor),
-                            const SizedBox(height: 24),
-                            _buildEverythingIncluded(textColor, accentColor),
-                            const SizedBox(height: 24),
-                            _buildPackages(textColor, accentColor),
-                            if (_selectedHasEligibleTrial) ...[
-                              const SizedBox(height: 12),
-                              _buildTrialNotice(textColor, accentColor),
-                            ],
-                            if (_offeringsError != null) ...[
-                              const SizedBox(height: 16),
-                              Text(
-                                _offeringsError!,
-                                key: const Key('paywall_offerings_error'),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.error,
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: _fetchOfferings,
-                                child: const Text('Retry'),
-                              ),
-                              OutlinedButton(
-                                key: const Key(
-                                    'paywall_temporary_premium_button'),
-                                onPressed: _continueWithTemporaryPremium,
-                                child: const Text(
-                                    'Continue with temporary Premium'),
-                              ),
-                            ],
-                            if (_offeringsError == null) ...[
-                              const SizedBox(height: 36),
-                              _buildExploreHeading(textColor),
+        body: CalligraphyBackground(
+          key: const Key('paywall_calligraphy_background'),
+          child: SafeArea(
+            bottom: false,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(color: textColor))
+                      : SingleChildScrollView(
+                          padding: const EdgeInsets.fromLTRB(20, 54, 20, 36),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _buildHero(textColor),
                               const SizedBox(height: 24),
-                              _buildFeatureStory(
-                                category: 'READ',
-                                title: 'Turn any book into a lesson & audiobook',
-                                description:
-                                    'Read naturally with instant definitions and pinyin, or listen along with human-like studio audiobooks.',
-                                icon: Icons.auto_stories_outlined,
-                                imageAsset: 'assets/images/paywall/paywall_read.png',
-                                placeholderLabel: 'Book reader and audiobook',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 0,
-                              ),
-                              _buildFeatureStory(
-                                category: 'SPEAK',
-                                title: 'Speak freely with AI & live tones',
-                                description:
-                                    'Engage in real-time spoken conversations with instant feedback on pronunciation and tone accuracy.',
-                                icon: Icons.graphic_eq,
-                                imageAsset: 'assets/images/paywall/paywall_speak.png',
-                                placeholderLabel: 'AI voice roleplay and tones',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 1,
-                              ),
-                              _buildFeatureStory(
-                                category: 'EXPLORE',
-                                title: 'Understand every character',
-                                description:
-                                    'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.',
-                                icon: Icons.search,
-                                imageAsset: 'assets/images/paywall/paywall_explore.png',
-                                placeholderLabel: 'Character dictionary and anatomy',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 2,
-                              ),
-                              _buildFeatureStory(
-                                category: 'WATCH',
-                                title: 'Learn through real videos',
-                                description:
-                                    'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.',
-                                icon: Icons.play_circle_outline,
-                                imageAsset: 'assets/images/paywall/paywall_watch.png',
-                                placeholderLabel: 'Video learning and subtitles',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 3,
-                              ),
-                              _buildFeatureStory(
-                                category: 'WRITE',
-                                title: 'Master every stroke',
-                                description:
-                                    'Practice characters with guided stroke order and instant handwriting feedback.',
-                                icon: Icons.gesture,
-                                imageAsset: 'assets/images/paywall/paywall_write.png',
-                                placeholderLabel: 'Handwriting practice and guide',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 4,
-                              ),
-                              _buildFeatureStory(
-                                category: 'WEB',
-                                title: 'Explore the Chinese web',
-                                description:
-                                    'Browse Chinese websites with instant word lookups, translation, and tools that turn any article into a lesson.',
-                                icon: Icons.language,
-                                imageAsset: 'assets/images/paywall/paywall_web.png',
-                                placeholderLabel: 'Web explorer and live lookup',
-                                textColor: textColor,
-                                accentColor: accentColor,
-                                index: 5,
-                              ),
+                              _buildEverythingIncluded(textColor, accentColor),
+                              const SizedBox(height: 24),
+                              _buildPackages(textColor, accentColor),
+                              if (_selectedHasEligibleTrial) ...[
+                                const SizedBox(height: 12),
+                                _buildTrialNotice(textColor, accentColor),
+                              ],
+                              if (_offeringsError != null) ...[
+                                const SizedBox(height: 16),
+                                Text(
+                                  _offeringsError!,
+                                  key: const Key('paywall_offerings_error'),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.error,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: _fetchOfferings,
+                                  child: const Text('Retry'),
+                                ),
+                                OutlinedButton(
+                                  key: const Key(
+                                      'paywall_temporary_premium_button'),
+                                  onPressed: _continueWithTemporaryPremium,
+                                  child: const Text(
+                                      'Continue with temporary Premium'),
+                                ),
+                              ],
+                              if (_offeringsError == null) ...[
+                                const SizedBox(height: 36),
+                                _buildExploreHeading(textColor),
+                                const SizedBox(height: 24),
+                                _buildFeatureStory(
+                                  category: 'READ',
+                                  title:
+                                      'Turn any book into a lesson & audiobook',
+                                  description:
+                                      'Read naturally with instant definitions and pinyin, or listen along with human-like studio audiobooks.',
+                                  icon: Icons.auto_stories_outlined,
+                                  imageAsset:
+                                      'assets/images/paywall/paywall_read.png',
+                                  placeholderLabel: 'Book reader and audiobook',
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 0,
+                                ),
+                                _buildFeatureStory(
+                                  category: 'SPEAK',
+                                  title: 'Speak freely with AI & live tones',
+                                  description:
+                                      'Engage in real-time spoken conversations with instant feedback on pronunciation and tone accuracy.',
+                                  icon: Icons.graphic_eq,
+                                  imageAsset:
+                                      'assets/images/paywall/paywall_speak.png',
+                                  placeholderLabel:
+                                      'AI voice roleplay and tones',
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 1,
+                                ),
+                                _buildFeatureStory(
+                                  category: 'EXPLORE',
+                                  title: 'Understand every character',
+                                  description:
+                                      'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.',
+                                  icon: Icons.search,
+                                  imageAsset:
+                                      'assets/images/paywall/paywall_explore.png',
+                                  placeholderLabel:
+                                      'Character dictionary and anatomy',
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 2,
+                                ),
+                                _buildFeatureStory(
+                                  category: 'WATCH',
+                                  title: 'Learn through real videos',
+                                  description:
+                                      'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.',
+                                  icon: Icons.play_circle_outline,
+                                  imageAsset:
+                                      'assets/images/paywall/paywall_watch.png',
+                                  placeholderLabel:
+                                      'Video learning and subtitles',
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 3,
+                                ),
+                                _buildFeatureStory(
+                                  category: 'WRITE',
+                                  title: 'Master every stroke',
+                                  description:
+                                      'Practice characters with guided stroke order and instant handwriting feedback.',
+                                  icon: Icons.gesture,
+                                  imageAsset:
+                                      'assets/images/paywall/paywall_write.png',
+                                  placeholderLabel:
+                                      'Handwriting practice and guide',
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 4,
+                                ),
+                                _buildFeatureStory(
+                                  category: 'WEB',
+                                  title: 'Explore the Chinese web',
+                                  description:
+                                      'Browse Chinese websites with instant word lookups, translation, and tools that turn any article into a lesson.',
+                                  icon: Icons.language,
+                                  imageAsset:
+                                      'assets/images/paywall/paywall_web.png',
+                                  placeholderLabel:
+                                      'Web explorer and live lookup',
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 5,
+                                ),
+                              ],
                             ],
-                          ],
+                          ),
                         ),
-                      ),
-              ),
-              Positioned(
-                top: 4,
-                right: 8,
-                child: IconButton(
-                  key: const Key('paywall_close_button'),
-                  tooltip: 'Close purchase offer',
-                  onPressed: _isPurchasing ? null : _closePaywall,
-                  icon: const Icon(Icons.close),
-                  color: textColor,
-                  style: IconButton.styleFrom(
-                    backgroundColor: bgColor.withValues(alpha: 0.92),
+                ),
+                Positioned(
+                  top: 4,
+                  right: 8,
+                  child: IconButton(
+                    key: const Key('paywall_close_button'),
+                    tooltip: 'Close purchase offer',
+                    onPressed: _isPurchasing ? null : _closePaywall,
+                    icon: const Icon(Icons.close),
+                    color: textColor,
+                    style: IconButton.styleFrom(
+                      backgroundColor: bgColor.withValues(alpha: 0.92),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         bottomNavigationBar:
@@ -761,8 +781,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,
               errorBuilder: (context, error, stackTrace) {
-                final previewColor =
-                    index.isEven ? const Color(0xFF8B2E2E) : const Color(0xFF4C6673);
+                final previewColor = index.isEven
+                    ? const Color(0xFF8B2E2E)
+                    : const Color(0xFF4C6673);
                 return DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(

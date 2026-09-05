@@ -1,0 +1,15 @@
+flutter_native_splash:
+  color: "#FCBC03"
+  color_dark: "#FCBC03"
+  image: assets/images/mascot.png
+  image_dark: assets/images/mascot.png
+
+  android: true
+  ios: true
+  web: false
+
+  android_12:
+    color: "#FCBC03"
+    color_dark: "#FCBC03"
+    image: assets/images/mascot.png
+    image_dark: assets/images/mascot.png

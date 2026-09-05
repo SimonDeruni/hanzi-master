@@ -2,16 +2,22 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart';
+import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
 /// not write lesson progress, SRS data, streaks, or book progress.
@@ -51,7 +57,9 @@ class _OnboardingMiniLessonScreenState
   List<Map<String, dynamic>> _words = const [];
   List<String> _strokes = const [];
   List<List<Offset>> _medianPaths = const [];
+  bool _isFlipped = false;
   int _currentStrokeIndex = 0;
+  final ValueNotifier<List<Offset?>> _userPointsNotifier = ValueNotifier([]);
   late final AudioRecordingService _recorder;
   late final AudioService _audioService;
 
@@ -69,6 +77,30 @@ class _OnboardingMiniLessonScreenState
   }
 
   Future<void> _loadBundledStrokes() async {
+    try {
+      const initialCard = Flashcard(
+        id: 'onboarding_hao',
+        hanzi: '好',
+        pinyin: 'hǎo',
+        definition: 'good',
+        deckId: 'onboarding',
+        hskLevel: 1,
+        strokePaths: [],
+        modeStats: {},
+      );
+      final hydrated = await ref
+          .read(flashcardControllerProvider.notifier)
+          .loadStrokesFor(initialCard);
+      if (mounted && hydrated != null && hydrated.strokePaths.isNotEmpty) {
+        setState(() {
+          _strokes = hydrated.strokePaths;
+          _medianPaths = hydrated.medianPaths;
+          _isFlipped = hydrated.isFlipped;
+        });
+        return;
+      }
+    } catch (_) {}
+
     try {
       final raw = await rootBundle.loadString('assets/data/hsk1_strokes.json');
       final data = jsonDecode(raw) as Map<String, dynamic>;
@@ -88,6 +120,7 @@ class _OnboardingMiniLessonScreenState
         setState(() {
           _strokes = List<String>.from(entry['strokes'] as List);
           _medianPaths = medianPaths;
+          _isFlipped = false;
         });
       }
     } catch (error) {
@@ -190,13 +223,45 @@ class _OnboardingMiniLessonScreenState
 
   List<Map<String, dynamic>> get _demoWords => const [
         {
-          'word': '好',
-          'pinyin': 'hǎo',
+          'word': '我',
+          'pinyin': 'wǒ',
+          'expectedTone': 3,
+          'actualTone': 3,
+          'isCorrect': true,
+          'feedback': 'Great dipping 3rd tone.',
+        },
+        {
+          'word': '打',
+          'pinyin': 'dǎ',
           'expectedTone': 3,
           'actualTone': 2,
           'isCorrect': false,
-          'feedback': 'Listen for the low, dipping third tone.',
-        }
+          'feedback': 'Dip lower before rising for the 3rd tone.',
+        },
+        {
+          'word': '开',
+          'pinyin': 'kāi',
+          'expectedTone': 1,
+          'actualTone': 1,
+          'isCorrect': true,
+          'feedback': 'High and flat 1st tone.',
+        },
+        {
+          'word': '窗',
+          'pinyin': 'chuāng',
+          'expectedTone': 1,
+          'actualTone': 1,
+          'isCorrect': true,
+          'feedback': 'Sustained high 1st tone.',
+        },
+        {
+          'word': '户',
+          'pinyin': 'hu',
+          'expectedTone': 4,
+          'actualTone': 4,
+          'isCorrect': true,
+          'feedback': 'Light falling tone.',
+        },
       ];
 
   void _quietPath() {
@@ -216,16 +281,29 @@ class _OnboardingMiniLessonScreenState
     });
   }
 
-  void _finish() {
+  Future<void> _finish() async {
     ref
         .read(analyticsServiceProvider)
         .logEvent('onboarding_mini_lesson_completed');
     widget.onComplete();
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('has_seen_onboarding', true);
+    } catch (_) {}
+    if (mounted) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute<void>(
+          builder: (context) => const NotificationPermissionScreen(),
+        ),
+        (route) => false,
+      );
+    }
   }
 
   @override
   void dispose() {
     if (_recording) _recorder.stopRecording();
+    _userPointsNotifier.dispose();
     super.dispose();
   }
 
@@ -234,41 +312,81 @@ class _OnboardingMiniLessonScreenState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final ink = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      key: const Key('onboarding_mini_lesson_screen'),
+      backgroundColor: isDark
+          ? OnboardingDesign.backgroundDark
+          : OnboardingDesign.backgroundLight,
       body: CalligraphyBackground(
         child: SafeArea(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+                padding: const EdgeInsets.fromLTRB(
+                  OnboardingDesign.horizontalPadding,
+                  OnboardingDesign.topPadding,
+                  OnboardingDesign.horizontalPadding,
+                  8,
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(children: [
-                      Text('${_step + 1} / 6',
-                          style: TextStyle(color: ink.withValues(alpha: .55))),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child:
-                              LinearProgressIndicator(value: (_step + 1) / 6),
+                    Text(
+                      'YOUR FIRST LESSON  •  ${_step + 1} OF ${_titles.length}',
+                      key: const Key('onboarding_lesson_eyebrow'),
+                      style: TextStyle(
+                        color: Colors.red[700],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 250),
+                      child: Text(
+                        _titles[_step],
+                        key: ValueKey('lesson-title-$_step'),
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: 'Serif',
+                          fontSize: OnboardingDesign.titleFontSize,
+                          height: 1.2,
+                          color: ink,
                         ),
                       ),
-                    ]),
-                    const SizedBox(height: 14),
-                    Text(_titles[_step],
-                        style: TextStyle(
-                            fontFamily: 'Serif', fontSize: 30, color: ink)),
+                    ),
+                    const SizedBox(height: 16),
+                    _buildProgressIndicator(isDark),
                   ],
                 ),
               ),
               Expanded(
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 250),
+                  duration: const Duration(milliseconds: 350),
+                  transitionBuilder: (child, animation) {
+                    final curvedAnimation = CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeOutCubic,
+                    );
+                    return FadeTransition(
+                      opacity: curvedAnimation,
+                      child: SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0.04, 0),
+                          end: Offset.zero,
+                        ).animate(curvedAnimation),
+                        child: child,
+                      ),
+                    );
+                  },
                   child: SingleChildScrollView(
                     key: ValueKey(_step),
-                    padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+                    padding: const EdgeInsets.fromLTRB(
+                      OnboardingDesign.horizontalPadding,
+                      12,
+                      OnboardingDesign.horizontalPadding,
+                      OnboardingDesign.bottomPadding,
+                    ),
                     child: _buildStep(ink, isDark),
                   ),
                 ),
@@ -277,6 +395,32 @@ class _OnboardingMiniLessonScreenState
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildProgressIndicator(bool isDark) {
+    return Row(
+      key: const Key('onboarding_lesson_progress'),
+      children: List.generate(_titles.length, (index) {
+        final isReached = index <= _step;
+        return Expanded(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: 6,
+            margin: EdgeInsets.only(
+              right: index == _titles.length - 1 ? 0 : 8,
+            ),
+            decoration: BoxDecoration(
+              color: isReached
+                  ? Colors.red[700]
+                  : isDark
+                      ? Colors.white24
+                      : Colors.black12,
+              borderRadius: BorderRadius.circular(3),
+            ),
+          ),
+        );
+      }),
     );
   }
 
@@ -359,10 +503,27 @@ class _OnboardingMiniLessonScreenState
                 : OnboardingPracticeCanvas(
                     strokePaths: _strokes,
                     medianPaths: _medianPaths,
+                    isFlipped: _isFlipped,
                     currentStrokeIndex: _currentStrokeIndex,
+                    userPointsNotifier: _userPointsNotifier,
                     onStrokeComplete: () {
-                      if (_currentStrokeIndex < _strokes.length - 1) {
+                      HapticsManager.light();
+                      _userPointsNotifier.value = [];
+                      final validStrokes = _strokes
+                          .where((s) => s != '__CHAR_SEPARATOR__')
+                          .toList();
+                      if (_currentStrokeIndex < validStrokes.length - 1) {
                         setState(() => _currentStrokeIndex++);
+                      } else {
+                        HapticsManager.success();
+                        if (!widget.disableExternalServicesForTesting) {
+                          _audioService.playCharacter('好');
+                        }
+                        Future.delayed(const Duration(milliseconds: 600), () {
+                          if (mounted) {
+                            _goTo(5);
+                          }
+                        });
                       }
                     },
                   ),
@@ -540,10 +701,12 @@ class _OnboardingMiniLessonScreenState
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(instruction,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 16, height: 1.45, color: ink.withValues(alpha: .7))),
-        const SizedBox(height: 24),
+                fontSize: OnboardingDesign.bodyFontSize,
+                height: 1.45,
+                color: ink.withValues(alpha: .7))),
+        const SizedBox(height: OnboardingDesign.sectionSpacing),
         child,
         if (_message != null) ...[
           const SizedBox(height: 16),
@@ -552,12 +715,37 @@ class _OnboardingMiniLessonScreenState
               style: const TextStyle(color: Colors.orange)),
         ],
         const SizedBox(height: 32),
-        FilledButton.icon(
-          onPressed: onPrimary,
-          icon: Icon(primaryIcon),
-          label: Text(primaryLabel),
-          style: FilledButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 17)),
+        SizedBox(
+          height: OnboardingDesign.primaryButtonHeight,
+          child: FilledButton.icon(
+            key: const Key('onboarding_primary_button'),
+            onPressed: onPrimary,
+            icon: Icon(primaryIcon),
+            label: Text(
+              primaryLabel,
+              style: const TextStyle(
+                fontSize: OnboardingDesign.bodyFontSize,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            style: FilledButton.styleFrom(
+              backgroundColor: ink,
+              foregroundColor: Theme.of(context).brightness == Brightness.dark
+                  ? OnboardingDesign.backgroundDark
+                  : OnboardingDesign.backgroundLight,
+              disabledBackgroundColor: ink.withValues(alpha: 0.3),
+              disabledForegroundColor:
+                  (Theme.of(context).brightness == Brightness.dark
+                          ? OnboardingDesign.backgroundDark
+                          : OnboardingDesign.backgroundLight)
+                      .withValues(alpha: 0.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  OnboardingDesign.primaryButtonRadius,
+                ),
+              ),
+            ),
+          ),
         ),
         if (secondaryLabel != null) ...[
           const SizedBox(height: 8),
@@ -573,48 +761,67 @@ class OnboardingPracticeCanvas extends StatelessWidget {
     super.key,
     required this.strokePaths,
     required this.medianPaths,
+    this.isFlipped = false,
     required this.currentStrokeIndex,
     required this.onStrokeComplete,
+    this.userPointsNotifier,
   });
 
   final List<String> strokePaths;
   final List<List<Offset>> medianPaths;
+  final bool isFlipped;
   final int currentStrokeIndex;
   final VoidCallback onStrokeComplete;
+  final ValueNotifier<List<Offset?>>? userPointsNotifier;
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.15),
-                  blurRadius: 16,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Center(
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Container(
+          decoration: BoxDecoration(
+            color: isDark
+                ? const Color(0xFF2A2A2B)
+                : Colors.white.withValues(alpha: 0.9),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color: (isDark ? Colors.white : Colors.black)
+                  .withValues(alpha: isDark ? 0.10 : 0.06),
             ),
-            clipBehavior: Clip.antiAlias,
-            child: CalligraphyBackground(
-              child: DrawingCanvas(
-                key: const ValueKey('onboardingPracticeCanvas'),
-                strokePaths: strokePaths,
-                medianPaths: medianPaths,
-                showAnimation: false,
-                strokeByStrokeMode: true,
-                currentStrokeIndex: currentStrokeIndex,
-                onStrokeComplete: (_, __) => onStrokeComplete(),
-                masteryLevel: 0,
-                isFlipped: false,
-                showReference: true,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: isDark ? 0.35 : 0.12),
+                blurRadius: 20,
+                offset: const Offset(0, 4),
               ),
+            ],
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: CalligraphyBackground(
+            child: DrawingCanvas(
+              key: const ValueKey('onboardingPracticeCanvas'),
+              strokePaths: strokePaths,
+              medianPaths: medianPaths,
+              isFlipped: isFlipped,
+              showAnimation: false,
+              strokeByStrokeMode: true,
+              currentStrokeIndex: currentStrokeIndex,
+              onStrokeComplete: (_, __) => onStrokeComplete(),
+              masteryLevel: 0,
+              showReference: true,
+              showGuideLines: true,
+              showControls: false,
+              showGrade: false,
+              autoActiveChar: false,
+              userPointsNotifier: userPointsNotifier,
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 class _RecapRow extends StatelessWidget {

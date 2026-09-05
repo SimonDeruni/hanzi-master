@@ -71,7 +71,7 @@ class MonetizationService {
     }
   }
 
-  static Future<bool> checkPremiumStatus() async {
+  static Future<bool> checkPremiumStatus({bool rethrowErrors = false}) async {
     if (_developerBackdoorUnlocked) return true;
 
     try {
@@ -81,6 +81,7 @@ class MonetizationService {
       }
     } catch (e) {
       debugPrint("Failed to check premium status: $e");
+      if (rethrowErrors) rethrow;
     }
     return false;
   }

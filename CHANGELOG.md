@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-05] Onboarding Navigator History & Route Transition Repair
+- **Resolved `_history.isNotEmpty` assertion crash:** Repaired route replacement during onboarding transitions by having `OnboardingMiniLessonScreen` manage its forward transition to `NotificationPermissionScreen` via clean `Navigator.of(context).pushAndRemoveUntil(...)`, eliminating underlying route replacement conflicts on parent build contexts.
+- **Activated AI Calibration & Synthesis (Page 4):** Connected the dynamic progress synthesizer (`_runCalibration()`, 0% $\rightarrow$ 100%) with haptic milestone triggers and real persistence of user preferences (`user_mastery_level`, `user_drive`, `daily_ritual_minutes`, `target_hsk_level`) directly into `SharedPreferences`.
+- **Accurate Shadowing & Tone Analysis:** Upgraded the fallback dataset for the sentence *"我打开窗户。"* in `OnboardingMiniLessonScreen` with complete, authentic per-character Pinyin, tones, and feedback (`我` 3, `打` 3/2, `开` 1, `窗` 1, `户` 4), fully powering interactive pitch curves in `ToneComparisonSheet`.
+- **Tactile Transitions:** Integrated smooth haptics (`HapticsManager`) across questionnaire selections, milestone checks, and lesson launches.
+- **Verified:** All onboarding tests pass 100% and `flutter analyze` reports 0 issues.
+
+### [2026-09-05] Onboarding Mini-Lesson Handwriting Canvas Modernization & Production Parity
+- Modernized Step 4 ("Write") of `OnboardingMiniLessonScreen` to use the canonical `DrawingCanvas` and `CalligraphyBackground` architecture used throughout the rest of the application (`TutorialLessonScreen`, `CalligraphyCanvasDialog`, `DrawingStep`).
+- Replaced raw JSON transformation logic with standard `Flashcard` hydration via `flashcardControllerProvider.notifier.loadStrokesFor(...)` with resilient offline asset fallback.
+- Enforced clean Zen & Ink styling on `OnboardingPracticeCanvas`: disabled stray debugging labels (`showGrade: false`) and unwanted floating buttons (`showControls: false`), while keeping rich calligraphic guide lines (`showGuideLines: true`) and ghost reference tracing (`showReference: true`).
+- Integrated `ValueNotifier<List<Offset?>> _userPointsNotifier`, tactile micro-haptics (`HapticsManager.light()` on stroke match, `HapticsManager.success()` on completion), and native pronunciation audio on completing the character 好.
+- Verified: `flutter test` passes 100% and `flutter analyze` reports 0 issues.
+
+### [2026-09-05] Native iOS LaunchScreen Storyboard & Flutter Splash Screen 1:1 Pixel Match
+- Configured `LaunchScreen.storyboard` with the `LaunchImage` mascot centered at matching proportions (`180x180` aspect fit, centered horizontally with `0.88` multiplier matching Flutter's `-0.12` alignment) over the solid `#FCBC03` launch background.
+- Removed initial opacity/scale delay on Flutter `AppSplashScreen` (`begin: 1.0`) and added `precacheImage` during bootstrap so the Flutter mascot renders with 0 decoding latency directly on top of the native launch frame without any intermediate blank gold frame.
+- Verified: `flutter analyze` reports 0 issues, and all onboarding unit tests pass 100%.
+
 ### [2026-09-05] Single In-App Flutter Splash Screen & Seamless Native Transition
 - Removed duplicate/cropped native splash icon by setting the native Android 12+ launch background to solid `#FCBC03` with a transparent animated icon (`@android:color/transparent`) and all legacy drawables to solid `#FCBC03`.
 - Removed `flutter_native_splash` configuration from `pubspec.yaml`.

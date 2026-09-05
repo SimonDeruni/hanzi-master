@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -73,6 +74,11 @@ void main() {
     );
     await tester.pump();
 
+    expect(find.byType(CalligraphyBackground), findsOneWidget);
+    expect(
+      find.byKey(const Key('paywall_calligraphy_background')),
+      findsOneWidget,
+    );
     expect(find.text('Monthly'), findsOneWidget);
     expect(find.text('Yearly'), findsOneWidget);
     expect(find.text(r'$9.99 / month'), findsOneWidget);
@@ -80,7 +86,8 @@ void main() {
     expect(find.text('SinoSpark Premium'), findsOneWidget);
     expect(find.text('Master every stroke'), findsOneWidget);
     expect(find.text('Explore the Chinese web'), findsOneWidget);
-    expect(find.text('Turn any book into a lesson & audiobook'), findsOneWidget);
+    expect(
+        find.text('Turn any book into a lesson & audiobook'), findsOneWidget);
     expect(find.text('Speak freely with AI & live tones'), findsOneWidget);
     expect(find.text('Understand Chinese around you'), findsNothing);
     expect(find.text('Scanner and translation screenshot'), findsNothing);

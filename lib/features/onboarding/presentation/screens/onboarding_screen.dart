@@ -1,11 +1,13 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
+import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -21,26 +23,113 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _selectedMastery = -1;
   int _selectedDrive = -1;
   int _selectedRitual = -1;
-  final double _calibrationProgress = 0.0;
-  final bool _calibrationComplete = false;
+  double _calibrationProgress = 0.0;
+  bool _calibrationComplete = false;
+  Timer? _calibrationTimer;
 
   void _nextPage() {
+    HapticsManager.light();
     if (_currentPage < 3) {
       _pageController.nextPage(
-        duration: 400.ms, 
+        duration: 400.ms,
         curve: Curves.easeInOutQuart,
       );
-    } else {
-      _startCalibration();
+    } else if (_currentPage == 3) {
+      _pageController.nextPage(
+        duration: 400.ms,
+        curve: Curves.easeInOutQuart,
+      );
+      _runCalibration();
     }
   }
 
-  void _startCalibration() {
+  void _runCalibration() {
+    _calibrationTimer?.cancel();
+    setState(() {
+      _calibrationProgress = 0.0;
+      _calibrationComplete = false;
+    });
+
+    _persistUserPreferences();
+
+    const totalSteps = 30;
+    const interval = Duration(milliseconds: 50);
+    int currentStep = 0;
+
+    _calibrationTimer = Timer.periodic(interval, (timer) {
+      currentStep++;
+      final progress = (currentStep / totalSteps).clamp(0.0, 1.0);
+
+      if ((progress >= 0.35 && _calibrationProgress < 0.35) ||
+          (progress >= 0.70 && _calibrationProgress < 0.70) ||
+          (progress >= 0.99 && _calibrationProgress < 0.99)) {
+        HapticsManager.light();
+      }
+
+      if (mounted) {
+        setState(() {
+          _calibrationProgress = progress;
+          if (progress >= 1.0) {
+            _calibrationComplete = true;
+            HapticsManager.success();
+            timer.cancel();
+          }
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  Future<void> _persistUserPreferences() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setInt('user_mastery_level', _selectedMastery);
+      await prefs.setInt('user_drive', _selectedDrive);
+      final minutes = _selectedRitual == 0
+          ? 5
+          : (_selectedRitual == 1
+              ? 10
+              : (_selectedRitual == 2 ? 20 : 30));
+      await prefs.setInt('daily_ritual_minutes', minutes);
+      final targetHsk = _selectedMastery == 0
+          ? 1
+          : (_selectedMastery == 1
+              ? 2
+              : (_selectedMastery == 2 ? 3 : 5));
+      await prefs.setInt('target_hsk_level', targetHsk);
+    } catch (e) {
+      debugPrint('Failed to persist onboarding choices: $e');
+    }
+  }
+
+  void _launchMiniLesson() {
+    HapticsManager.medium();
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => OnboardingMiniLessonScreen(
+      PageRouteBuilder<void>(
+        transitionDuration: const Duration(milliseconds: 500),
+        reverseTransitionDuration: const Duration(milliseconds: 350),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            OnboardingMiniLessonScreen(
           onComplete: _completeOnboarding,
         ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final entrance = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeOutCubic,
+            reverseCurve: Curves.easeInCubic,
+          );
+          return FadeTransition(
+            opacity: entrance,
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 0.04),
+                end: Offset.zero,
+              ).animate(entrance),
+              child: child,
+            ),
+          );
+        },
       ),
     );
   }
@@ -48,16 +137,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void _completeOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('has_seen_onboarding', true);
-    if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const NotificationPermissionScreen()),
-      );
-    }
   }
 
   @override
   void dispose() {
+    _calibrationTimer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -66,32 +150,35 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor: isDark
+          ? OnboardingDesign.backgroundDark
+          : OnboardingDesign.backgroundLight,
       body: CalligraphyBackground(
         child: SafeArea(
           child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                controller: _pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (index) => setState(() => _currentPage = index),
-                children: [
-                  _buildWelcomePage(),
-                  _buildMasteryPage(),
-                  _buildDrivePage(),
-                  _buildRitualPage(),
-                  _buildCalibrationPage(),
-                ],
+            children: [
+              Expanded(
+                child: PageView(
+                  controller: _pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  onPageChanged: (index) =>
+                      setState(() => _currentPage = index),
+                  children: [
+                    _buildWelcomePage(),
+                    _buildMasteryPage(),
+                    _buildDrivePage(),
+                    _buildRitualPage(),
+                    _buildCalibrationPage(),
+                  ],
+                ),
               ),
-            ),
-            if (_currentPage < 4) ...[
-              _buildProgressIndicator(),
-              const SizedBox(height: 12),
+              if (_currentPage < 4) ...[
+                _buildProgressIndicator(),
+                const SizedBox(height: 12),
+              ],
             ],
-          ],
+          ),
         ),
-      ),
       ),
     );
   }
@@ -108,9 +195,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           height: 6,
           width: isActive ? 24 : 6,
           decoration: BoxDecoration(
-            color: isActive 
-                ? Colors.red[700] 
-                : isDark ? Colors.white24 : Colors.black12,
+            color: isActive
+                ? Colors.red[700]
+                : isDark
+                    ? Colors.white24
+                    : Colors.black12,
             borderRadius: BorderRadius.circular(3),
           ),
         );
@@ -161,10 +250,26 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget _buildMasteryPage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final options = [
-      {"title": "Brand New", "subtitle": "I've never studied Chinese before.", "icon": Icons.child_care_outlined},
-      {"title": "Elementary", "subtitle": "I know basic characters and phrases.", "icon": Icons.auto_stories_outlined},
-      {"title": "Intermediate", "subtitle": "I can hold conversations and read.", "icon": Icons.school_outlined},
-      {"title": "Advanced", "subtitle": "I want to refine and perfect my skills.", "icon": Icons.psychology_outlined},
+      {
+        "title": "Brand New",
+        "subtitle": "I've never studied Chinese before.",
+        "icon": Icons.child_care_outlined
+      },
+      {
+        "title": "Elementary",
+        "subtitle": "I know basic characters and phrases.",
+        "icon": Icons.auto_stories_outlined
+      },
+      {
+        "title": "Intermediate",
+        "subtitle": "I can hold conversations and read.",
+        "icon": Icons.school_outlined
+      },
+      {
+        "title": "Advanced",
+        "subtitle": "I want to refine and perfect my skills.",
+        "icon": Icons.psychology_outlined
+      },
     ];
 
     return Padding(
@@ -172,49 +277,45 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
           Text(
             "What is your level\nwith Chinese?",
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-              fontSize: 32,
+              fontSize: OnboardingDesign.titleFontSize,
               fontFamily: 'Serif',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
-          
           const SizedBox(height: 8),
-          
           Text(
             "Choose the path that fits your depth.",
-            style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
+            style: TextStyle(
+                color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
           ).animate().fadeIn(delay: 200.ms),
-          
           const SizedBox(height: 24),
-          
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: options.length,
-            separatorBuilder: (c, i) => const SizedBox(height: 12),
-            itemBuilder: (context, index) {
-              bool isSelected = _selectedMastery == index;
-              return _buildSelectionCard(
-                title: options[index]["title"] as String,
-                subtitle: options[index]["subtitle"] as String,
-                icon: options[index]["icon"] as IconData,
-                isSelected: isSelected,
-                onTap: () {
-                  setState(() {
-                    _selectedMastery = index;
-                  });
-                },
-              ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).slideX();
-            },
+          Expanded(
+            child: ListView.separated(
+              itemCount: options.length,
+              separatorBuilder: (c, i) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                bool isSelected = _selectedMastery == index;
+                return _buildSelectionCard(
+                  title: options[index]["title"] as String,
+                  subtitle: options[index]["subtitle"] as String,
+                  icon: options[index]["icon"] as IconData,
+                  isSelected: isSelected,
+                  onTap: () {
+                    setState(() {
+                      _selectedMastery = index;
+                    });
+                  },
+                )
+                    .animate()
+                    .fadeIn(delay: Duration(milliseconds: 300 + (100 * index)))
+                    .slideX();
+              },
+            ),
           ),
-          
-          const Spacer(),
-          
           _buildPrimaryButton(
             "Confirm Selection",
             _selectedMastery != -1 ? _nextPage : null,
@@ -239,53 +340,49 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
           Text(
             "What drives your study?",
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-              fontSize: 32,
+              fontSize: OnboardingDesign.titleFontSize,
               fontFamily: 'Serif',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
-          
           const SizedBox(height: 8),
-          
           Text(
             "Purpose fuels the brush's motion.",
-            style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
+            style: TextStyle(
+                color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
           ).animate().fadeIn(delay: 200.ms),
-          
           const SizedBox(height: 24),
-          
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 0.95,
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 0.95,
+              ),
+              itemCount: options.length,
+              itemBuilder: (context, index) {
+                bool isSelected = _selectedDrive == index;
+                return _buildGridSelectionCard(
+                  title: options[index]["title"] as String,
+                  icon: options[index]["icon"] as IconData,
+                  isSelected: isSelected,
+                  onTap: () {
+                    setState(() {
+                      _selectedDrive = index;
+                    });
+                  },
+                )
+                    .animate()
+                    .fadeIn(delay: Duration(milliseconds: 300 + (100 * index)))
+                    .scale();
+              },
             ),
-            itemCount: options.length,
-            itemBuilder: (context, index) {
-              bool isSelected = _selectedDrive == index;
-              return _buildGridSelectionCard(
-                title: options[index]["title"] as String,
-                icon: options[index]["icon"] as IconData,
-                isSelected: isSelected,
-                onTap: () {
-                  setState(() {
-                    _selectedDrive = index;
-                  });
-                },
-              ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).scale();
-            },
           ),
-          
-          const Spacer(),
-          
           _buildPrimaryButton(
             "Next",
             _selectedDrive != -1 ? _nextPage : null,
@@ -310,55 +407,55 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16),
           Text(
             "Set your daily ritual.",
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-              fontSize: 32,
+              fontSize: OnboardingDesign.titleFontSize,
               fontFamily: 'Serif',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
-          
           const SizedBox(height: 8),
-          
           Text(
             "\"Consistency is the ink that builds the character.\"",
-            style: TextStyle(color: isDark ? Colors.white54 : Colors.black54, fontSize: 16, fontStyle: FontStyle.italic),
+            style: TextStyle(
+                color: isDark ? Colors.white54 : Colors.black54,
+                fontSize: 16,
+                fontStyle: FontStyle.italic),
           ).animate().fadeIn(delay: 200.ms),
-          
           const SizedBox(height: 24),
-          
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: options.length,
-            separatorBuilder: (c, i) => const SizedBox(height: 12),
-            itemBuilder: (context, index) {
-              bool isSelected = _selectedRitual == index;
-              return _buildRitualCard(
-                title: options[index]["title"] as String,
-                subtitle: options[index]["subtitle"] as String,
-                isSelected: isSelected,
-                onTap: () {
-                  setState(() {
-                    _selectedRitual = index;
-                  });
-                },
-              ).animate().fadeIn(delay: Duration(milliseconds: 300 + (100 * index))).slideX();
-            },
+          Expanded(
+            child: ListView.separated(
+              itemCount: options.length,
+              separatorBuilder: (c, i) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                bool isSelected = _selectedRitual == index;
+                return _buildRitualCard(
+                  title: options[index]["title"] as String,
+                  subtitle: options[index]["subtitle"] as String,
+                  isSelected: isSelected,
+                  onTap: () {
+                    setState(() {
+                      _selectedRitual = index;
+                    });
+                  },
+                )
+                    .animate()
+                    .fadeIn(delay: Duration(milliseconds: 300 + (100 * index)))
+                    .slideX();
+              },
+            ),
           ),
-          
-          const Spacer(),
-          
           Column(
             children: [
               Icon(Icons.hourglass_empty, color: Colors.red[700]),
               const SizedBox(height: 8),
               Text(
                 "You can adjust your ritual any time.",
-                style: TextStyle(color: isDark ? Colors.white38 : Colors.black38, fontSize: 12),
+                style: TextStyle(
+                    color: isDark ? Colors.white38 : Colors.black38,
+                    fontSize: 12),
               ),
               const SizedBox(height: 16),
               _buildPrimaryButton(
@@ -375,7 +472,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildCalibrationPage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     String masteryText = "Brand New";
     if (_selectedMastery == 1) masteryText = "Elementary";
     if (_selectedMastery == 2) masteryText = "Intermediate";
@@ -398,9 +495,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 16),
           Text(
-            _calibrationComplete ? "Your Plan is Ready" : "Crafting Your Curriculum",
+            _calibrationComplete
+                ? "Your Plan is Ready"
+                : "Crafting Your Curriculum",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -410,21 +508,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               height: 1.2,
             ),
           ).animate().fadeIn(),
-          
+
           const SizedBox(height: 8),
-          
+
           Text(
-            _calibrationComplete 
-                ? "PERSONALIZED PATH INITIALIZED" 
+            _calibrationComplete
+                ? "PERSONALIZED PATH INITIALIZED"
                 : "CALIBRATING AI NEURAL MASTERS...",
             style: TextStyle(
-              color: isDark ? Colors.white54 : Colors.black54, 
+              color: isDark ? Colors.white54 : Colors.black54,
               fontSize: 11,
               letterSpacing: 1.5,
               fontWeight: FontWeight.bold,
             ),
           ),
-          
+
           const SizedBox(height: 24),
 
           // Live Progress Bar & Percentage
@@ -433,10 +531,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             decoration: BoxDecoration(
               color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05)),
+              border: Border.all(
+                  color: (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.05)),
               boxShadow: [
                 BoxShadow(
-                  color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+                  color: (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.02),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -448,7 +549,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      _calibrationComplete ? "Calibration Complete" : "Synthesizing Modules...",
+                      _calibrationComplete
+                          ? "Calibration Complete"
+                          : "Synthesizing Modules...",
                       style: TextStyle(
                         color: isDark ? Colors.white70 : Colors.black87,
                         fontSize: 13,
@@ -488,7 +591,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               children: [
                 _buildCalibrationStep(
                   icon: Icons.person_outline,
-                  title: AppLocalizations.of(context)?.masteryLevel ?? "Mastery Level",
+                  title: AppLocalizations.of(context)?.masteryLevel ??
+                      "Mastery Level",
                   value: masteryText,
                   isDone: _calibrationProgress >= 0.35,
                   isDark: isDark,
@@ -496,7 +600,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.flag_outlined,
-                  title: AppLocalizations.of(context)?.targetObjective ?? "Target Objective",
+                  title: AppLocalizations.of(context)?.targetObjective ??
+                      "Target Objective",
                   value: driveText,
                   isDone: _calibrationProgress >= 0.70,
                   isDark: isDark,
@@ -504,7 +609,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.access_time,
-                  title: AppLocalizations.of(context)?.dailyPractice ?? "Daily Practice",
+                  title: AppLocalizations.of(context)?.dailyPractice ??
+                      "Daily Practice",
                   value: ritualText,
                   isDone: _calibrationProgress >= 0.99,
                   isDark: isDark,
@@ -512,7 +618,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.auto_awesome,
-                  title: AppLocalizations.of(context)?.aiSpacedRepetition ?? "AI Spaced Repetition",
+                  title: AppLocalizations.of(context)?.aiSpacedRepetition ??
+                      "AI Spaced Repetition",
                   value: "Dynamic Decks & Stroke Analysis",
                   isDone: _calibrationComplete,
                   isDark: isDark,
@@ -520,7 +627,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
+          if (_calibrationComplete)
+            _buildPrimaryButton(
+              "Begin First Lesson",
+              _launchMiniLesson,
+            ).animate().fadeIn(duration: 300.ms),
+          const SizedBox(height: 12),
         ],
       ),
     );
@@ -537,21 +650,25 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       duration: const Duration(milliseconds: 300),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: isDone 
+        color: isDone
             ? (isDark ? const Color(0xFF2A2A2B) : Colors.white)
             : (isDark ? const Color(0xFF222223) : const Color(0xFFF5F4E8)),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isDone 
-              ? (isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black.withValues(alpha: 0.08))
+          color: isDone
+              ? (isDark
+                  ? Colors.white.withValues(alpha: 0.1)
+                  : Colors.black.withValues(alpha: 0.08))
               : Colors.transparent,
         ),
       ),
       child: Row(
         children: [
           Icon(
-            icon, 
-            color: isDone ? Colors.red[700] : (isDark ? Colors.white24 : Colors.black26), 
+            icon,
+            color: isDone
+                ? Colors.red[700]
+                : (isDark ? Colors.white24 : Colors.black26),
             size: 22,
           ),
           const SizedBox(width: 14),
@@ -570,7 +687,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 Text(
                   value,
                   style: TextStyle(
-                    color: isDone 
+                    color: isDone
                         ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
                         : (isDark ? Colors.white38 : Colors.black38),
                     fontSize: 14,
@@ -583,7 +700,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             child: isDone
-                ? Icon(Icons.check_circle, color: Colors.green[600], size: 20, key: const ValueKey("done"))
+                ? Icon(Icons.check_circle,
+                    color: Colors.green[600],
+                    size: 20,
+                    key: const ValueKey("done"))
                 : SizedBox(
                     width: 16,
                     height: 16,
@@ -606,26 +726,34 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required VoidCallback onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    final selectedBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final selectedText = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-    
+
+    final selectedBg =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final selectedText =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         decoration: BoxDecoration(
-          color: isSelected ? selectedBg : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
+          color: isSelected
+              ? selectedBg
+              : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? selectedBg : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+            color: isSelected
+                ? selectedBg
+                : (isDark ? Colors.white : Colors.black)
+                    .withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
             if (!isSelected)
               BoxShadow(
-                color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+                color: (isDark ? Colors.white : Colors.black)
+                    .withValues(alpha: 0.02),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               )
@@ -636,7 +764,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             Text(
               title,
               style: TextStyle(
-                color: isSelected ? selectedText : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                color: isSelected
+                    ? selectedText
+                    : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                 fontSize: 24,
                 fontFamily: 'Serif',
               ),
@@ -646,7 +776,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               child: Text(
                 subtitle,
                 style: TextStyle(
-                  color: isSelected ? selectedText : (isDark ? Colors.white54 : Colors.black54),
+                  color: isSelected
+                      ? selectedText
+                      : (isDark ? Colors.white54 : Colors.black54),
                   fontSize: 16,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
@@ -660,8 +792,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
-
-
   Widget _buildSelectionCard({
     required String title,
     required String subtitle,
@@ -670,25 +800,33 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required VoidCallback onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final selectedBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final selectedText = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-    
+    final selectedBg =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final selectedText =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isSelected ? selectedBg : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
+          color: isSelected
+              ? selectedBg
+              : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? selectedBg : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+            color: isSelected
+                ? selectedBg
+                : (isDark ? Colors.white : Colors.black)
+                    .withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
             if (!isSelected)
               BoxShadow(
-                color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+                color: (isDark ? Colors.white : Colors.black)
+                    .withValues(alpha: 0.02),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               )
@@ -703,7 +841,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   Text(
                     title,
                     style: TextStyle(
-                      color: isSelected ? selectedText : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                      color: isSelected
+                          ? selectedText
+                          : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -712,7 +852,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   Text(
                     subtitle,
                     style: TextStyle(
-                      color: isSelected ? selectedText : (isDark ? Colors.white54 : Colors.black54),
+                      color: isSelected
+                          ? selectedText
+                          : (isDark ? Colors.white54 : Colors.black54),
                       fontSize: 12,
                     ),
                   ),
@@ -721,7 +863,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
             Icon(
               icon,
-              color: isSelected ? selectedText : (isDark ? Colors.white38 : Colors.black38),
+              color: isSelected
+                  ? selectedText
+                  : (isDark ? Colors.white38 : Colors.black38),
               size: 28,
             ),
           ],
@@ -737,25 +881,33 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required VoidCallback onTap,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final selectedBg = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final selectedText = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-    
+    final selectedBg =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final selectedText =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isSelected ? selectedBg : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
+          color: isSelected
+              ? selectedBg
+              : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? selectedBg : (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
+            color: isSelected
+                ? selectedBg
+                : (isDark ? Colors.white : Colors.black)
+                    .withValues(alpha: 0.05),
             width: 1.5,
           ),
           boxShadow: [
             if (!isSelected)
               BoxShadow(
-                color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+                color: (isDark ? Colors.white : Colors.black)
+                    .withValues(alpha: 0.02),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               )
@@ -766,7 +918,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           children: [
             Icon(
               icon,
-              color: isSelected ? selectedText : (isDark ? Colors.white38 : Colors.black38),
+              color: isSelected
+                  ? selectedText
+                  : (isDark ? Colors.white38 : Colors.black38),
               size: 32,
             ),
             const SizedBox(height: 16),
@@ -774,7 +928,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: isSelected ? selectedText : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                color: isSelected
+                    ? selectedText
+                    : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 height: 1.3,
@@ -789,27 +945,34 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget _buildPrimaryButton(String text, VoidCallback? onPressed) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isDisabled = onPressed == null;
-    
-    final activeBgColor = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final activeTextColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-    
+
+    final activeBgColor =
+        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
+    final activeTextColor =
+        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+
     return SizedBox(
       width: double.infinity,
-      height: 56,
+      height: OnboardingDesign.primaryButtonHeight,
       child: BouncingButton(
         onPressed: onPressed,
         child: Container(
           decoration: BoxDecoration(
-            color: isDisabled ? activeBgColor.withValues(alpha: 0.3) : activeBgColor,
-            borderRadius: BorderRadius.circular(16),
+            color: isDisabled
+                ? activeBgColor.withValues(alpha: 0.3)
+                : activeBgColor,
+            borderRadius:
+                BorderRadius.circular(OnboardingDesign.primaryButtonRadius),
           ),
           child: Center(
             child: Text(
               text,
               style: TextStyle(
-                color: isDisabled ? activeTextColor.withValues(alpha: 0.5) : activeTextColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                color: isDisabled
+                    ? activeTextColor.withValues(alpha: 0.5)
+                    : activeTextColor,
+                fontSize: OnboardingDesign.bodyFontSize,
+                fontWeight: FontWeight.w700,
                 letterSpacing: 0.5,
               ),
             ),

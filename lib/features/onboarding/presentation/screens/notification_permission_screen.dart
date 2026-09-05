@@ -4,6 +4,7 @@ import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
+import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -100,47 +101,58 @@ class _NotificationPermissionScreenState
         child: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) => SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+              padding: OnboardingDesign.screenPadding,
               child: ConstrainedBox(
-                constraints:
-                    BoxConstraints(minHeight: constraints.maxHeight - 44),
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight -
+                      OnboardingDesign.topPadding -
+                      OnboardingDesign.bottomPadding,
+                ),
                 child: IntrinsicHeight(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const Spacer(),
-                      GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: _handleSecretTap,
-                        child: _NotificationIllustration(colors: colors),
-                      ),
-                      const SizedBox(height: 28),
                       Text(
                         _isRequested
                             ? l10n.notificationsConfigured
                             : l10n.neverMissAStroke2,
-                        textAlign: TextAlign.center,
+                        key: Key(
+                          _isRequested
+                              ? 'notifications_configured_title'
+                              : 'notification_permission_title',
+                        ),
                         style: TextStyle(
                           color: colors.text,
                           fontFamily: 'Serif',
-                          fontSize: 32,
-                          height: 1.12,
-                          fontWeight: FontWeight.w600,
+                          fontSize: OnboardingDesign.titleFontSize,
+                          height: 1.2,
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
                       Text(
                         _isRequested
                             ? l10n.yourDailyDropAndStreakAlertsArePrim
                             : l10n.stayConsistentWithDailyRitualDropsA,
-                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: colors.mutedText,
-                          fontSize: 15,
+                          fontSize: OnboardingDesign.bodyFontSize,
                           height: 1.5,
                         ),
                       ),
-                      const SizedBox(height: 28),
+                      const SizedBox(height: OnboardingDesign.sectionSpacing),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          key: const Key('notification_illustration'),
+                          behavior: HitTestBehavior.opaque,
+                          onTap: _handleSecretTap,
+                          child: _NotificationIllustration(
+                            colors: colors,
+                            isConfigured: _isRequested,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: OnboardingDesign.sectionSpacing),
                       _BenefitRow(
                         colors: colors,
                         icon: Icons.auto_stories_rounded,
@@ -162,9 +174,9 @@ class _NotificationPermissionScreenState
                         description: l10n.receiveAReminder2DaysBeforeYourFree,
                       ),
                       const Spacer(),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: OnboardingDesign.sectionSpacing),
                       SizedBox(
-                        height: 56,
+                        height: OnboardingDesign.primaryButtonHeight,
                         child: FilledButton(
                           key: const Key('enable_notifications_button'),
                           onPressed:
@@ -175,7 +187,9 @@ class _NotificationPermissionScreenState
                             disabledBackgroundColor:
                                 colors.primary.withValues(alpha: 0.65),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
+                              borderRadius: BorderRadius.circular(
+                                OnboardingDesign.primaryButtonRadius,
+                              ),
                             ),
                           ),
                           child: AnimatedSwitcher(
@@ -193,20 +207,26 @@ class _NotificationPermissionScreenState
                                 : Row(
                                     key: const ValueKey('label'),
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      const Icon(
-                                        Icons.notifications_none_rounded,
+                                      Icon(
+                                        _isRequested
+                                            ? Icons.check_rounded
+                                            : Icons.notifications_none_rounded,
                                         size: 21,
                                       ),
                                       const SizedBox(width: 10),
-                                      Text(
-                                        _isRequested
-                                            ? l10n.continueText
-                                            : l10n.enableNotifications,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
+                                      Expanded(
+                                        child: Text(
+                                          _isRequested
+                                              ? l10n.continueText
+                                              : l10n.enableNotifications,
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize:
+                                                OnboardingDesign.bodyFontSize,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -242,59 +262,33 @@ class _NotificationPermissionScreenState
 }
 
 class _NotificationIllustration extends StatelessWidget {
-  const _NotificationIllustration({required this.colors});
+  const _NotificationIllustration({
+    required this.colors,
+    required this.isConfigured,
+  });
 
   final _NotificationColors colors;
+  final bool isConfigured;
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: Container(
-          width: 118,
-          height: 118,
-          decoration: BoxDecoration(
-            color: colors.accentSoft,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Container(
-              width: 78,
-              height: 78,
-              decoration: BoxDecoration(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(26),
-                border: Border.all(color: colors.border),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.08),
-                    blurRadius: 24,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Icon(
-                    Icons.notifications_none_rounded,
-                    color: colors.accent,
-                    size: 38,
-                  ),
-                  Positioned(
-                    right: 16,
-                    top: 16,
-                    child: Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: colors.accent,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: colors.surface, width: 2),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+  Widget build(BuildContext context) => AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 88,
+        height: 88,
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: colors.border),
+        ),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 180),
+          child: Icon(
+            isConfigured
+                ? Icons.check_circle_outline_rounded
+                : Icons.notifications_none_rounded,
+            key: ValueKey(isConfigured),
+            color: colors.text,
+            size: 42,
           ),
         ),
       );
@@ -314,23 +308,19 @@ class _BenefitRow extends StatelessWidget {
   final String description;
 
   @override
-  Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 42,
-            height: 42,
-            decoration: BoxDecoration(
-              color: colors.surface,
-              borderRadius: BorderRadius.circular(13),
-              border: Border.all(color: colors.border),
-            ),
-            child: Icon(icon, color: colors.accent, size: 21),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 1),
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: colors.border, width: 1.5),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: colors.mutedText, size: 24),
+            const SizedBox(width: 16),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -342,7 +332,7 @@ class _BenefitRow extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 3),
+                  const SizedBox(height: 4),
                   Text(
                     description,
                     style: TextStyle(
@@ -354,21 +344,26 @@ class _BenefitRow extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }
 
 class _NotificationColors {
   _NotificationColors(bool isDark)
-      : background = isDark ? const Color(0xFF171716) : const Color(0xFFFCFAF5),
+      : background = isDark
+            ? OnboardingDesign.backgroundDark
+            : OnboardingDesign.backgroundLight,
         surface = isDark ? const Color(0xFF242422) : const Color(0xFFFFFFFF),
-        text = isDark ? const Color(0xFFF7F3E9) : const Color(0xFF20201E),
+        text = isDark
+            ? OnboardingDesign.backgroundLight
+            : OnboardingDesign.backgroundDark,
         mutedText = isDark ? const Color(0xFFA9A59C) : const Color(0xFF706D66),
-        primary = isDark ? const Color(0xFFF4EEE1) : const Color(0xFF25231F),
-        onPrimary = isDark ? const Color(0xFF25231F) : const Color(0xFFFFFFFF),
-        accent = const Color(0xFFC8873E),
-        accentSoft = isDark ? const Color(0xFF332A20) : const Color(0xFFF4E8D7),
+        primary = isDark
+            ? OnboardingDesign.backgroundLight
+            : OnboardingDesign.backgroundDark,
+        onPrimary =
+            isDark ? OnboardingDesign.backgroundDark : const Color(0xFFFFFFFF),
         border = isDark ? const Color(0xFF363532) : const Color(0xFFE8E2D8);
 
   final Color background;
@@ -377,7 +372,5 @@ class _NotificationColors {
   final Color mutedText;
   final Color primary;
   final Color onPrimary;
-  final Color accent;
-  final Color accentSoft;
   final Color border;
 }
