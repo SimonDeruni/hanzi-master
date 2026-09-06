@@ -149,5 +149,8 @@ final masterSearchProvider =
     query,
     targetLanguage: targetLanguage,
   );
-  return result.fold((l) => [], (r) => r);
+  return result.fold(
+    (error) => throw StateError(error),
+    (cards) => cards,
+  );
 });

@@ -226,7 +226,9 @@ void main() {
     expect(
         find.byKey(const ValueKey('context-section-heading')), findsOneWidget);
     expect(find.text('CONTEXTE'), findsOneWidget);
-    expect(find.text('Un moyen mnémotechnique distinct.'), findsOneWidget);
+    expect(find.text('Ancrage Mémoriel IA'), findsNothing);
+    expect(find.text('Un moyen mnémotechnique distinct.'), findsNothing);
+    expect(find.text("PHRASES D'EXEMPLE"), findsOneWidget);
 
     final wordsBottom = tester.getBottomLeft(find.text('le peuple')).dy;
     final contextTop = tester

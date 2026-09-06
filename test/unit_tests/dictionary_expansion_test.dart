@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/flashcards/data/services/dictionary_expansion_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/dictionary_expansion.dart';
@@ -22,7 +24,7 @@ void main() {
     expect(first, same);
     expect(
       first.cacheKey,
-      '42:fr:abc:gemini-2.5-flash:dictionary-expansion-v1',
+      '42:fr:abc:gemini-2.5-flash:dictionary-expansion-v2-concise',
     );
     expect(first, isNot(changedSource));
   });
@@ -46,5 +48,43 @@ void main() {
     expect(expansion.text, 'Une explication.');
     expect(expansion.fromSharedCache, isTrue);
     expect(expansion.sourceDefinitionHash, 'abc');
+  });
+
+  test('maps callable failures to actionable expansion failures', () {
+    expect(
+      DictionaryExpansionException.fromFirebaseCode('unauthenticated').failure,
+      DictionaryExpansionFailure.signIn,
+    );
+    expect(
+      DictionaryExpansionException.fromFirebaseCode('resource-exhausted')
+          .failure,
+      DictionaryExpansionFailure.quota,
+    );
+    expect(
+      DictionaryExpansionException.fromFirebaseCode('not-found').failure,
+      DictionaryExpansionFailure.staleSource,
+    );
+    expect(
+      DictionaryExpansionException.fromFirebaseCode('unavailable').failure,
+      DictionaryExpansionFailure.unavailable,
+    );
+  });
+
+  test('dictionary main card and Quick Look share the expansion workflow', () {
+    final dictionarySource = File(
+      'lib/features/flashcards/presentation/screens/dictionary_screen.dart',
+    ).readAsStringSync();
+    final quickLookSource =
+        File('lib/shared/widgets/quick_look_sheet.dart').readAsStringSync();
+    final expansionPanelSource = File(
+      'lib/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart',
+    ).readAsStringSync();
+
+    expect(dictionarySource, contains('autoExpand: true'));
+    expect(quickLookSource, contains('bool autoExpand = false'));
+    expect(
+      expansionPanelSource,
+      contains('_requested = cached != null || widget.autoExpand'),
+    );
   });
 }

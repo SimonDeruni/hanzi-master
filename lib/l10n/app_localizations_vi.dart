@@ -1711,11 +1711,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get ancientPhilosophy => 'Triết học cổ đại';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => 'Thời Chiến Quốc';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      'Hàn Phi (khoảng 280–233 TCN) là một công tử của nước Hàn và là nhà tư tưởng hàng đầu của Pháp gia Trung Hoa. Kết hợp các tư tưởng về pháp luật, thuật trị quốc và quyền lực, các tác phẩm của ông trong cuốn Hàn Phi Tử đã ảnh hưởng sâu sắc đến triết học chính trị và các thể chế của Trung Hoa đế chế.';
 
   @override
   String get articleSavedToMediaHub => 'Đã lưu bài viết vào Media Hub!';
@@ -12126,7 +12126,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get videoLearningScreenshot => 'Ảnh chụp màn hình học qua video';
 
   @override
-  String get turnAnyBookIntoA => 'Biến bất kỳ cuốn sách nào thành bài học';
+  String get turnAnyBookIntoA =>
+      'Biến bất kỳ cuốn sách nào thành bài học và sách nói';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12136,7 +12137,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get bookReaderScreenshot => 'Ảnh chụp màn hình trình đọc sách';
 
   @override
-  String get speakWithTheRightRhythm => 'Nói đúng nhịp điệu';
+  String get speakWithTheRightRhythm =>
+      'Tự do trò chuyện cùng AI và thanh điệu trực tiếp';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12374,8 +12376,9 @@ class AppLocalizationsVi extends AppLocalizations {
       'Không thể lưu các từ đã trích xuất: \$error';
 
   @override
-  String get youActualTargetExpected =>
-      'Bạn: \$actual  ·  Mục tiêu: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'Bạn: $actual  ·  Mục tiêu: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'Cải thiện giọng đọc cục bộ';
@@ -12530,4 +12533,278 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'ví dụ: Một người anh em họ tò mò hỏi về sự nghiệp của bạn...';
+
+  @override
+  String get beginFirstLesson => 'Bắt đầu bài học đầu tiên';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'BÀI HỌC ĐẦU TIÊN  •  $current / $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'Trước tiên, hãy lắng nghe một trong những câu văn nổi tiếng nhất của văn học Trung Hoa. Chưa cần ghi nhớ.';
+
+  @override
+  String get onboardingFromGrandLibrary => 'Từ Đại Thư Viện';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'Tôn Tử Binh Pháp · Tôn Tử';
+
+  @override
+  String get onboardingArtOfWarChapter => 'Mưu Công Thiên · Chương 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'CÂU VĂN KINH ĐIỂN';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '“Biết người biết ta, trăm trận không nguy.”';
+
+  @override
+  String get onboardingNoticeMeaning => 'Biết người biết ta,';
+
+  @override
+  String get onboardingShadowMeaning => 'Trăm trận không nguy.';
+
+  @override
+  String get onboardingPracticeThisLabel => 'BẠN SẼ LUYỆN TẬP CÂU NÀY';
+
+  @override
+  String get onboardingFromArtOfWarLabel => 'TRÍCH TỪ TÔN TỬ BINH PHÁP';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'PHÁT ÂM CỦA BẠN';
+
+  @override
+  String get onboardingTapACharacter => 'Chạm vào một chữ';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'Đã khớp';
+
+  @override
+  String get onboardingCompareTones => 'So sánh thanh điệu';
+
+  @override
+  String get onboardingToneOneHigh => 'thanh 1 · cao bằng';
+
+  @override
+  String get onboardingToneTwoRising => 'thanh 2 · vút lên';
+
+  @override
+  String get onboardingToneThreeDipping => 'thanh 3 · trầm uốn';
+
+  @override
+  String get onboardingToneFourFalling => 'thanh 4 · hạ dứt khoát';
+
+  @override
+  String get onboardingToneNotDetected => 'không nhận diện được';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone =>
+      'Thanh 3 trầm uốn rất chuẩn xác.';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'Hãy phát âm thanh 4 hạ xuống nhanh và dứt khoát.';
+
+  @override
+  String get onboardingFeedbackClearFourthTone =>
+      'Thanh 4 hạ dứt khoát và rõ ràng.';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone =>
+      'Thanh 4 hạ dứt khoát đầy uy lực.';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return 'Viết chữ $character ($pinyin, “$meaning”). Mài nét theo hướng dẫn mờ.';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ngày',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tuần',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tháng',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count năm',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return 'Bắt đầu $period dùng thử miễn phí';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return 'Đăng ký với giá $price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'Sản phẩm StoreKit bạn chọn đi kèm thời gian dùng thử miễn phí hợp lệ. Sau khi hết dùng thử, gói sẽ tự động gia hạn với giá $price mỗi $period trừ khi bị hủy.';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'Học';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'Sách và sách nói chất lượng phòng thu';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'Trò chuyện AI và phản hồi thanh điệu trực tiếp';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'Video tương tác và đắm chìm trên web';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'Phân tích chữ viết và luyện viết tay';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'Bộ thẻ HSK và lặp lại ngắt quãng thông minh';
+
+  @override
+  String get termsOfUseEula => 'Điều khoản sử dụng (EULA)';
+
+  @override
+  String get masterEveryStroke => 'Làm chủ từng nét chữ';
+
+  @override
+  String get exploreTheChineseWeb => 'Khám phá web tiếng Trung';
+
+  @override
+  String get tone1Description =>
+      'Giữ cao độ của bạn cao và ổn định như khi hát một nốt nhạc.';
+
+  @override
+  String get tone2Description =>
+      'Bắt đầu ở giữa và lướt cao độ của bạn lên trên như khi hỏi \'Cái gì?\'';
+
+  @override
+  String get tone3Description =>
+      'Hạ giọng xuống thấp, sau đó nhẹ nhàng nâng lên trở lại.';
+
+  @override
+  String get tone4Description =>
+      'Hạ cao độ của bạn một cách sắc bén và dứt khoát như một tiếng \'Không!\' kiên quyết.';
+
+  @override
+  String get toneNeutralDescription =>
+      'Phát âm nhẹ nhàng, ngắn gọn và không nhấn mạnh.';
+
+  @override
+  String get toneDiagMatch1 => 'Chính xác! Cao độ cao, bằng phẳng và ổn định.';
+
+  @override
+  String get toneDiagMatch2 => 'Chính xác! Cao độ tăng rõ ràng.';
+
+  @override
+  String get toneDiagMatch3 => 'Chính xác! Đường cong thấp xuống chính xác.';
+
+  @override
+  String get toneDiagMatch4 => 'Chính xác! Giảm mạnh dứt khoát.';
+
+  @override
+  String get toneDiagMatchDefault =>
+      'Chính xác! Thanh điệu được phát âm chuẩn xác.';
+
+  @override
+  String get toneDiag1vs2 =>
+      'Bạn đã nâng cao độ (thanh 2 /). Giữ giọng bằng phẳng và cao trên toàn bộ âm tiết (thanh 1 ˉ).';
+
+  @override
+  String get toneDiag1vs3 =>
+      'Bạn đã hạ giọng (thanh 3 ˇ). Giữ cao độ ổn định và cao mà không hạ xuống (thanh 1 ˉ).';
+
+  @override
+  String get toneDiag1vs4 =>
+      'Bạn đã hạ cao độ (thanh 4 \\). Duy trì cao độ cao, đều như hát một nốt nhạc (thanh 1 ˉ).';
+
+  @override
+  String get toneDiag2vs1 =>
+      'Bạn giữ bằng phẳng (thanh 1 ˉ). Trượt cao độ lên trên như hỏi \'Cái gì?\' (thanh 2 /).';
+
+  @override
+  String get toneDiag2vs3 =>
+      'Bạn đã hạ quá sâu (thanh 3 ˇ). Bắt đầu ở mức trung bình và tăng đều mà không chạm đáy (thanh 2 /).';
+
+  @override
+  String get toneDiag2vs4 =>
+      'Bạn đã hạ cao độ (thanh 4 \\). Tăng lên trên như đặt câu hỏi (thanh 2 /).';
+
+  @override
+  String get toneDiag3vs1 =>
+      'Bạn giữ cao và bằng phẳng (thanh 1 ˉ). Để cao độ hạ thấp xuống giọng ngực trước khi tăng lên (thanh 3 ˇ).';
+
+  @override
+  String get toneDiag3vs2 =>
+      'Bạn đã tăng ngay lập tức (thanh 2 /). Đảm bảo hạ thấp xuống trước khi tăng trở lại (thanh 3 ˇ).';
+
+  @override
+  String get toneDiag3vs4 =>
+      'Bạn đã hạ mạnh mà không tăng (thanh 4 \\). Cho phép cao độ nảy nhẹ nhàng trở lại ở cuối (thanh 3 ˇ).';
+
+  @override
+  String get toneDiag4vs1 =>
+      'Bạn giữ bằng phẳng (thanh 1 ˉ). Hạ cao độ mạnh và dứt khoát như một tiếng \'Không!\' kiên quyết (thanh 4 \\).';
+
+  @override
+  String get toneDiag4vs2 =>
+      'Bạn đã nâng cao độ (thanh 2 /). Bắt đầu cao và hạ mạnh xuống (thanh 4 \\).';
+
+  @override
+  String get toneDiag4vs3 =>
+      'Bạn đã hạ và tăng (thanh 3 ˇ). Hạ thẳng xuống mà không tăng trở lại (thanh 4 \\).';
+
+  @override
+  String get toneDiagListenDiff =>
+      'Nghe 4 thanh điệu dưới đây để nghe sự khác biệt.';
 }

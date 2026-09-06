@@ -1700,11 +1700,11 @@ class AppLocalizationsTh extends AppLocalizations {
   String get ancientPhilosophy => 'ปรัชญาโบราณ';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => 'ยุครณรัฐ';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      'หานเฟย (ประมาณ 280–233 ปีก่อนคริสตกาล) เป็นเจ้าชายแห่งแคว้นหานและเป็นนักคิดคนสำคัญที่สุดของสำนักนิติธรรมนิยมจีน ด้วยการรวบรวมแนวคิดเรื่องกฎหมาย เทคนิคการบริหาร และอำนาจเข้าด้วยกัน งานเขียนของเขาในหนังสือ \'หานเฟยจื่อ\' ได้ส่งอิทธิพลอย่างลึกซึ้งต่อปรัชญาการเมืองและสถาบันต่างๆ ของจักรวรรดิจีน';
 
   @override
   String get articleSavedToMediaHub => 'บันทึกบทความลงใน Media Hub แล้ว!';
@@ -12074,7 +12074,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get videoLearningScreenshot => 'ภาพหน้าจอการเรียนรู้ผ่านวิดีโอ';
 
   @override
-  String get turnAnyBookIntoA => 'เปลี่ยนหนังสือทุกเล่มให้เป็นบทเรียน';
+  String get turnAnyBookIntoA =>
+      'เปลี่ยนหนังสือทุกเล่มให้เป็นบทเรียนและหนังสือเสียง';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12084,7 +12085,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get bookReaderScreenshot => 'ภาพหน้าจอโปรแกรมอ่านหนังสือ';
 
   @override
-  String get speakWithTheRightRhythm => 'พูดด้วยจังหวะที่ถูกต้อง';
+  String get speakWithTheRightRhythm =>
+      'พูดคุยอย่างอิสระด้วย AI และวรรณยุกต์แบบสด';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12322,8 +12324,9 @@ class AppLocalizationsTh extends AppLocalizations {
       'บันทึกคำที่ดึงมาไม่สำเร็จ: \$error';
 
   @override
-  String get youActualTargetExpected =>
-      'คุณ: \$actual  ·  เป้าหมาย: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'คุณ: $actual  ·  เป้าหมาย: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'ปรับปรุงเสียงท้องถิ่น';
@@ -12478,4 +12481,275 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'เช่น ลูกพี่ลูกน้องที่อยากรู้และถามเกี่ยวกับอาชีพของคุณ...';
+
+  @override
+  String get beginFirstLesson => 'เริ่มบทเรียนแรก';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'บทเรียนแรกของคุณ  •  $current จาก $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'เริ่มต้นด้วยการฟังวรรคทองอันเลื่องชื่อแห่งวรรณกรรมจีน ยังไม่ต้องท่องจำ';
+
+  @override
+  String get onboardingFromGrandLibrary => 'จากหอสมุดหลวง';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'ตำราพิชัยสงคราม · ซุนวู';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · บทที่ 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'วรรคทองอมตะ';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '“รู้เขา รู้เรา รบร้อยครั้ง มิพ่าย”';
+
+  @override
+  String get onboardingNoticeMeaning => 'รู้เขา รู้เรา';
+
+  @override
+  String get onboardingShadowMeaning => 'รบร้อยครั้ง จักมิเป็นอันตราย';
+
+  @override
+  String get onboardingPracticeThisLabel => 'สิ่งที่คุณจะได้ฝึกฝน';
+
+  @override
+  String get onboardingFromArtOfWarLabel => 'จากตำราพิชัยสงคราม';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'การออกเสียงของคุณ';
+
+  @override
+  String get onboardingTapACharacter => 'แตะอักษร';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'ตรงกัน';
+
+  @override
+  String get onboardingCompareTones => 'เปรียบเทียบเสียงวรรณยุกต์';
+
+  @override
+  String get onboardingToneOneHigh => 'เสียงที่ 1 · สูง';
+
+  @override
+  String get onboardingToneTwoRising => 'เสียงที่ 2 · ขึ้น';
+
+  @override
+  String get onboardingToneThreeDipping => 'เสียงที่ 3 · ตก-ขึ้น';
+
+  @override
+  String get onboardingToneFourFalling => 'เสียงที่ 4 · ลง';
+
+  @override
+  String get onboardingToneNotDetected => 'ตรวจไม่พบเสียง';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone =>
+      'ออกเสียงสาม (เสียงตก-ขึ้น) ได้ยอดเยี่ยม';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'ออกเสียงสี่ให้ทิ้งน้ำหนักลงอย่างหนักแน่นและรวดเร็ว';
+
+  @override
+  String get onboardingFeedbackClearFourthTone =>
+      'ออกเสียงสี่ (เสียงลง) ได้ชัดเจน';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone =>
+      'ออกเสียงสี่ (เสียงลง) ได้หนักแน่นยอดเยี่ยม';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return 'คัดอักษร $character ($pinyin, “$meaning”) ตามเส้นนำทางอันบางเบา';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count วัน',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count สัปดาห์',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count เดือน',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ปี',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return 'เริ่มทดลองใช้ฟรี $period';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return 'สมัครสมาชิกในราคา $price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'รายการที่คุณเลือกมีสิทธิ์ทดลองใช้ฟรี หลังจากหมดช่วงทดลองใช้ ระบบจะต่ออายุอัตโนมัติในราคา $price ต่อ $period จนกว่าจะยกเลิก';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'เรียนรู้';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'หนังสือและหนังสือเสียงคุณภาพระดับสตูดิโอ';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'การสนทนากับ AI และคำแนะนำวรรณยุกต์แบบเรียลไทม์';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'วิดีโอแบบโต้ตอบและการเรียนรู้แบบสมจริงบนเว็บ';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'ข้อมูลเชิงลึกของตัวอักษรและการฝึกเขียนด้วยมือ';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'สำรับคำศัพท์ HSK และระบบทบทวนแบบเว้นระยะอัจฉริยะ';
+
+  @override
+  String get termsOfUseEula => 'ข้อกำหนดการใช้งาน (EULA)';
+
+  @override
+  String get masterEveryStroke => 'เชี่ยวชาญทุกเส้นขีด';
+
+  @override
+  String get exploreTheChineseWeb => 'สำรวจเว็บภาษาจีน';
+
+  @override
+  String get tone1Description =>
+      'รักษาระดับเสียงของคุณให้สูงและคงที่เหมือนการร้องเพลงโน้ตตัวหนึ่ง';
+
+  @override
+  String get tone2Description =>
+      'เริ่มต้นที่ระดับกลางแล้วเลื่อนระดับเสียงของคุณขึ้นไปเหมือนถามว่า \'อะไรนะ?\'';
+
+  @override
+  String get tone3Description =>
+      'ลดเสียงของคุณให้ต่ำลง จากนั้นค่อยๆ ยกขึ้นมาใหม่';
+
+  @override
+  String get tone4Description =>
+      'ลดระดับเสียงของคุณลงอย่างรวดเร็วและเด็ดขาดเหมือนคำว่า \'ไม่!\' ที่หนักแน่น';
+
+  @override
+  String get toneNeutralDescription => 'ออกเสียงเบาๆ สั้นๆ และไม่มีการเน้น';
+
+  @override
+  String get toneDiagMatch1 => 'ถูกต้อง! ระดับเสียงสูง แบน และคงที่';
+
+  @override
+  String get toneDiagMatch2 => 'ถูกต้อง! การขึ้นของระดับเสียงชัดเจน';
+
+  @override
+  String get toneDiagMatch3 => 'ถูกต้อง! เส้นโค้งต่ำที่ลดลงแม่นยำ';
+
+  @override
+  String get toneDiagMatch4 => 'ถูกต้อง! การลดลงอย่างรวดเร็วเด็ดขาด';
+
+  @override
+  String get toneDiagMatchDefault => 'ถูกต้อง! โทนเสียงออกเสียงได้อย่างแม่นยำ';
+
+  @override
+  String get toneDiag1vs2 =>
+      'คุณขึ้นเสียงสูง (วรรณยุกต์ที่ 2 /) รักษาระดับเสียงให้แบนและสูงตลอดทั้งพยางค์ (วรรณยุกต์ที่ 1 ˉ)';
+
+  @override
+  String get toneDiag1vs3 =>
+      'คุณลดเสียงลง (วรรณยุกต์ที่ 3 ˇ) รักษาระดับเสียงให้คงที่และสูงโดยไม่ลดลง (วรรณยุกต์ที่ 1 ˉ)';
+
+  @override
+  String get toneDiag1vs4 =>
+      'คุณลดระดับเสียงลง (วรรณยุกต์ที่ 4 \\) รักษาระดับเสียงให้สูงและสม่ำเสมอเหมือนร้องเพลง (วรรณยุกต์ที่ 1 ˉ)';
+
+  @override
+  String get toneDiag2vs1 =>
+      'คุณคงที่ (วรรณยุกต์ที่ 1 ˉ) เลื่อนระดับเสียงขึ้นเหมือนถามว่า \'อะไร?\' (วรรณยุกต์ที่ 2 /)';
+
+  @override
+  String get toneDiag2vs3 =>
+      'คุณลดต่ำเกินไป (วรรณยุกต์ที่ 3 ˇ) เริ่มต้นที่ระดับกลางและขึ้นอย่างราบรื่นโดยไม่ถึงจุดต่ำสุด (วรรณยุกต์ที่ 2 /)';
+
+  @override
+  String get toneDiag2vs4 =>
+      'คุณลดระดับเสียงลง (วรรณยุกต์ที่ 4 \\) ขึ้นเสียงสูงเหมือนถามคำถาม (วรรณยุกต์ที่ 2 /)';
+
+  @override
+  String get toneDiag3vs1 =>
+      'คุณคงที่และสูง (วรรณยุกต์ที่ 1 ˉ) ปล่อยให้ระดับเสียงลดต่ำลงไปในเสียงอกของคุณก่อนที่จะขึ้น (วรรณยุกต์ที่ 3 ˇ)';
+
+  @override
+  String get toneDiag3vs2 =>
+      'คุณขึ้นเสียงทันที (วรรณยุกต์ที่ 2 /) ตรวจสอบให้แน่ใจว่าได้ลดต่ำลงก่อนที่จะขึ้นกลับมา (วรรณยุกต์ที่ 3 ˇ)';
+
+  @override
+  String get toneDiag3vs4 =>
+      'คุณลดลงอย่างรวดเร็วโดยไม่ขึ้น (วรรณยุกต์ที่ 4 \\) ปล่อยให้ระดับเสียงเด้งขึ้นเบา ๆ ในตอนท้าย (วรรณยุกต์ที่ 3 ˇ)';
+
+  @override
+  String get toneDiag4vs1 =>
+      'คุณคงที่ (วรรณยุกต์ที่ 1 ˉ) ลดระดับเสียงลงอย่างรวดเร็วและเด็ดขาดเหมือน \'ไม่!\' ที่หนักแน่น (วรรณยุกต์ที่ 4 \\)';
+
+  @override
+  String get toneDiag4vs2 =>
+      'คุณขึ้นเสียงสูง (วรรณยุกต์ที่ 2 /) เริ่มต้นสูงและลดลงอย่างรวดเร็ว (วรรณยุกต์ที่ 4 \\)';
+
+  @override
+  String get toneDiag4vs3 =>
+      'คุณลดลงและขึ้น (วรรณยุกต์ที่ 3 ˇ) ลดลงตรงๆ โดยไม่ขึ้นกลับมา (วรรณยุกต์ที่ 4 \\)';
+
+  @override
+  String get toneDiagListenDiff => 'ฟัง 4 วรรณยุกต์ด้านล่างเพื่อฟังความแตกต่าง';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:lpinyin/lpinyin.dart';
 
@@ -88,6 +89,85 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     }
   }
 
+  String _getLocalizedToneName(BuildContext context, int tone) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (tone) {
+      case 1:
+        return l10n.onboardingToneOneHigh;
+      case 2:
+        return l10n.onboardingToneTwoRising;
+      case 3:
+        return l10n.onboardingToneThreeDipping;
+      case 4:
+        return l10n.onboardingToneFourFalling;
+      default:
+        return l10n.neutralToneLight;
+    }
+  }
+
+  String _getLocalizedToneDescription(BuildContext context, int tone) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (tone) {
+      case 1:
+        return l10n.tone1Description;
+      case 2:
+        return l10n.tone2Description;
+      case 3:
+        return l10n.tone3Description;
+      case 4:
+        return l10n.tone4Description;
+      default:
+        return l10n.toneNeutralDescription;
+    }
+  }
+
+  String _getLocalizedToneDiagnostic(
+      BuildContext context, int expectedTone, int actualTone) {
+    final l10n = AppLocalizations.of(context)!;
+    if (expectedTone == actualTone && expectedTone > 0) {
+      switch (expectedTone) {
+        case 1:
+          return l10n.toneDiagMatch1;
+        case 2:
+          return l10n.toneDiagMatch2;
+        case 3:
+          return l10n.toneDiagMatch3;
+        case 4:
+          return l10n.toneDiagMatch4;
+        default:
+          return l10n.toneDiagMatchDefault;
+      }
+    }
+
+    if (expectedTone == 1 && actualTone == 2) {
+      return l10n.toneDiag1vs2;
+    } else if (expectedTone == 1 && actualTone == 3) {
+      return l10n.toneDiag1vs3;
+    } else if (expectedTone == 1 && actualTone == 4) {
+      return l10n.toneDiag1vs4;
+    } else if (expectedTone == 2 && actualTone == 1) {
+      return l10n.toneDiag2vs1;
+    } else if (expectedTone == 2 && actualTone == 3) {
+      return l10n.toneDiag2vs3;
+    } else if (expectedTone == 2 && actualTone == 4) {
+      return l10n.toneDiag2vs4;
+    } else if (expectedTone == 3 && actualTone == 1) {
+      return l10n.toneDiag3vs1;
+    } else if (expectedTone == 3 && actualTone == 2) {
+      return l10n.toneDiag3vs2;
+    } else if (expectedTone == 3 && actualTone == 4) {
+      return l10n.toneDiag3vs4;
+    } else if (expectedTone == 4 && actualTone == 1) {
+      return l10n.toneDiag4vs1;
+    } else if (expectedTone == 4 && actualTone == 2) {
+      return l10n.toneDiag4vs2;
+    } else if (expectedTone == 4 && actualTone == 3) {
+      return l10n.toneDiag4vs3;
+    }
+
+    return "${l10n.targetTone}: ${_getLocalizedToneName(context, expectedTone)}. ${l10n.toneDiagListenDiff}";
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -112,10 +192,11 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
         ],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           // Drag Handle
           Center(
             child: Container(
@@ -150,14 +231,16 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                   ),
                 ),
                 child: Center(
-                  child: Text(
-                    widget.character,
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: isCorrect
-                          ? Colors.green.shade700
-                          : Colors.orange.shade800,
+                  child: LtrSanctuary(
+                    child: Text(
+                      widget.character,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: isCorrect
+                            ? Colors.green.shade700
+                            : Colors.orange.shade800,
+                      ),
                     ),
                   ),
                 ),
@@ -167,15 +250,17 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.pinyin,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
+                    LtrSanctuary(
+                      child: Text(
+                        widget.pinyin,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      PinyinUtils.getToneName(widget.expectedTone),
+                      _getLocalizedToneName(context, widget.expectedTone),
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: onSurface.withValues(alpha: 0.6),
                       ),
@@ -216,7 +301,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                               size: 14, color: Color(0xFF10B981)),
                           const SizedBox(width: 4),
                           Text(
-                            "Target Tone",
+                            AppLocalizations.of(context)!.targetTone,
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: const Color(0xFF10B981),
                               fontWeight: FontWeight.bold,
@@ -226,7 +311,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "Tone ${widget.expectedTone} (${toneMap[widget.expectedTone] ?? widget.pinyin})",
+                        "${_getLocalizedToneName(context, widget.expectedTone)} (${toneMap[widget.expectedTone] ?? widget.pinyin})",
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -258,7 +343,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                           const SizedBox(width: 4),
                           Expanded(
                             child: Text(
-                              isCorrect ? "You Spoke (Match!)" : "You Spoke",
+                              isCorrect
+                                  ? "${AppLocalizations.of(context)!.toneYouSaid} (${AppLocalizations.of(context)!.onboardingToneMatched})"
+                                  : AppLocalizations.of(context)!.toneYouSaid,
                               style: theme.textTheme.labelSmall?.copyWith(
                                 color: isCorrect
                                     ? const Color(0xFF10B981)
@@ -271,7 +358,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "Tone ${widget.actualTone} (${toneMap[widget.actualTone] ?? widget.pinyin})",
+                        "${_getLocalizedToneName(context, widget.actualTone)} (${toneMap[widget.actualTone] ?? widget.pinyin})",
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: isCorrect
@@ -294,9 +381,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
             decoration: BoxDecoration(
               color: isCorrect
                   ? const Color(0xFF10B981)
-                      .withValues(alpha: isDark ? 0.12 : 0.08)
+                  .withValues(alpha: isDark ? 0.12 : 0.08)
                   : const Color(0xFFF59E0B)
-                      .withValues(alpha: isDark ? 0.12 : 0.08),
+                  .withValues(alpha: isDark ? 0.12 : 0.08),
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
                 color: isCorrect
@@ -319,16 +406,16 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    PinyinUtils.getToneDiagnostic(
-                        widget.expectedTone, widget.actualTone),
+                    _getLocalizedToneDiagnostic(
+                        context, widget.expectedTone, widget.actualTone),
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: isCorrect
                           ? (isDark
-                              ? const Color(0xFF34D399)
-                              : const Color(0xFF047857))
+                          ? const Color(0xFF34D399)
+                          : const Color(0xFF047857))
                           : (isDark
-                              ? const Color(0xFFFBBF24)
-                              : const Color(0xFFB45309)),
+                          ? const Color(0xFFFBBF24)
+                          : const Color(0xFFB45309)),
                       fontWeight: FontWeight.w600,
                       height: 1.4,
                     ),
@@ -363,7 +450,8 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
           const SizedBox(height: 8),
         ],
       ),
-    );
+    ),
+  );
   }
 
   Widget _buildToneCard({
@@ -422,29 +510,31 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
           ),
           child: Row(
             children: [
-              // Pitch Contour Badge
-              Container(
-                width: 38,
-                height: 38,
-                decoration: BoxDecoration(
-                  color: existsInChinese
-                      ? borderColor.withValues(alpha: 0.15)
-                      : Colors.grey.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    pitchIcon,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: !existsInChinese
-                          ? onSurface.withValues(alpha: 0.3)
-                          : (isExpected
-                              ? const Color(0xFF3B82F6)
-                              : (isActual
-                                  ? const Color(0xFFF59E0B)
-                                  : onSurface.withValues(alpha: 0.6))),
+              // Pitch Contour Badge (Protected LTR so pitch curve orientation never inverts)
+              LtrSanctuary(
+                child: Container(
+                  width: 38,
+                  height: 38,
+                  decoration: BoxDecoration(
+                    color: existsInChinese
+                        ? borderColor.withValues(alpha: 0.15)
+                        : Colors.grey.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      pitchIcon,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: !existsInChinese
+                            ? onSurface.withValues(alpha: 0.3)
+                            : (isExpected
+                                ? const Color(0xFF3B82F6)
+                                : (isActual
+                                    ? const Color(0xFFF59E0B)
+                                    : onSurface.withValues(alpha: 0.6))),
+                      ),
                     ),
                   ),
                 ),
@@ -458,16 +548,18 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          exemplarHanzi != null
-                              ? "$pinyinWithTone  ($exemplarHanzi)"
-                              : pinyinWithTone,
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: existsInChinese
-                                ? null
-                                : onSurface.withValues(alpha: 0.5),
+                        LtrSanctuary(
+                          child: Text(
+                            exemplarHanzi != null
+                                ? "$pinyinWithTone  ($exemplarHanzi)"
+                                : pinyinWithTone,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: existsInChinese
+                                  ? null
+                                  : onSurface.withValues(alpha: 0.5),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -480,9 +572,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                                   .withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(6),
                             ),
-                            child: const Text(
-                              "🎯 Expected",
-                              style: TextStyle(
+                            child: Text(
+                              "🎯 ${AppLocalizations.of(context)!.toneExpected}",
+                              style: const TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF2563EB),
@@ -532,7 +624,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     const SizedBox(height: 2),
                     Text(
                       existsInChinese
-                          ? PinyinUtils.getToneDescription(tone)
+                          ? _getLocalizedToneDescription(context, tone)
                           : AppLocalizations.of(context)!
                               .toneDoesNotExistInMandarin,
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -557,7 +649,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                         : theme.colorScheme.primary,
                     size: 24,
                   ),
-                  tooltip: "Play $pinyinWithTone",
+                  tooltip: "${AppLocalizations.of(context)!.listen}: $pinyinWithTone",
                 )
               else
                 Padding(

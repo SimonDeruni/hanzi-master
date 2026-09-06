@@ -6458,15 +6458,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Receive a reminder 2 days before your free trial ends.';
 
   @override
-  String get yourPathTonchineseFluency => 'Your Path to\\nChinese Fluency';
+  String get yourPathTonchineseFluency => 'Your Path to\nChinese Fluency';
 
   @override
   String get answer3QuickQuestionsSoOurAiCanCraf =>
-      'Answer 3 quick questions so our AI can craft\\na curriculum that fits your life.';
+      'Answer 3 quick questions so our AI can craft\na curriculum that fits your life.';
 
   @override
-  String get whatIsYourLevelnwithChinese =>
-      'What is your level\\nwith Chinese?';
+  String get whatIsYourLevelnwithChinese => 'What is your level\nwith Chinese?';
 
   @override
   String get chooseThePathThatFitsYourDepth =>
@@ -12058,7 +12057,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get videoLearningScreenshot => 'Video learning screenshot';
 
   @override
-  String get turnAnyBookIntoA => 'Turn any book into a lesson';
+  String get turnAnyBookIntoA => 'Turn any book into a lesson & audiobook';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12068,7 +12067,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bookReaderScreenshot => 'Book reader screenshot';
 
   @override
-  String get speakWithTheRightRhythm => 'Speak with the right rhythm';
+  String get speakWithTheRightRhythm => 'Speak freely with AI & live tones';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12308,7 +12307,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Failed to save extracted words: \$error';
 
   @override
-  String get youActualTargetExpected => 'You: \$actual  ·  Target: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'You: $actual  ·  Target: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'Improve the local voice';
@@ -12469,4 +12470,280 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'e.g., A curious cousin asking about your career...';
+
+  @override
+  String get beginFirstLesson => 'Begin First Lesson';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'YOUR FIRST LESSON  •  $current OF $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'First, hear one of the best-known lines in Chinese literature. No memorizing yet.';
+
+  @override
+  String get onboardingFromGrandLibrary => 'From the Grand Library';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'The Art of War · Sun Tzu';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · Chapter 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'A CLASSIC LINE';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '“Know the enemy and know yourself, and you need not fear the result of a hundred battles.”';
+
+  @override
+  String get onboardingNoticeMeaning => 'Know the enemy and know yourself,';
+
+  @override
+  String get onboardingShadowMeaning =>
+      'You will not be imperiled in a hundred battles.';
+
+  @override
+  String get onboardingPracticeThisLabel => 'YOU’LL PRACTICE THIS';
+
+  @override
+  String get onboardingFromArtOfWarLabel => 'FROM THE ART OF WAR';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'YOUR PRONUNCIATION';
+
+  @override
+  String get onboardingTapACharacter => 'Tap a character';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'Matched';
+
+  @override
+  String get onboardingCompareTones => 'Compare tones';
+
+  @override
+  String get onboardingToneOneHigh => 'tone 1 · high';
+
+  @override
+  String get onboardingToneTwoRising => 'tone 2 · rising';
+
+  @override
+  String get onboardingToneThreeDipping => 'tone 3 · dipping';
+
+  @override
+  String get onboardingToneFourFalling => 'tone 4 · falling';
+
+  @override
+  String get onboardingToneNotDetected => 'not detected';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone => 'Great dipping third tone.';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'Let the fourth tone fall firmly and quickly.';
+
+  @override
+  String get onboardingFeedbackClearFourthTone => 'Clear falling fourth tone.';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone =>
+      'Strong falling fourth tone.';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return 'Trace $character ($pinyin, “$meaning”). Follow the faint stroke guide.';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: 'day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count weeks',
+      one: 'week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count months',
+      one: 'month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count years',
+      one: 'year',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return 'Start $period free trial';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return 'Subscribe for $price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'Your selected StoreKit product includes an eligible free trial. After the trial, it renews for $price per $period unless canceled.';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'Learn';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'Books and studio-quality audiobooks';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'AI conversations and live tone feedback';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'Interactive video and web immersion';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'Character insights and handwriting practice';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'HSK decks and smart spaced repetition';
+
+  @override
+  String get termsOfUseEula => 'Terms of Use (EULA)';
+
+  @override
+  String get masterEveryStroke => 'Master every stroke';
+
+  @override
+  String get exploreTheChineseWeb => 'Explore the Chinese web';
+
+  @override
+  String get tone1Description =>
+      'Keep your pitch high and steady like singing a note.';
+
+  @override
+  String get tone2Description =>
+      'Start in the middle and slide your pitch upward like asking \'What?\'';
+
+  @override
+  String get tone3Description =>
+      'Dip your voice down low, then rise gently back up.';
+
+  @override
+  String get tone4Description =>
+      'Drop your pitch sharply and decisively like a firm \'No!\'';
+
+  @override
+  String get toneNeutralDescription =>
+      'Pronounce softly, briefly, and without emphasis.';
+
+  @override
+  String get toneDiagMatch1 => 'Spot on! Pitch was high, flat, and steady.';
+
+  @override
+  String get toneDiagMatch2 => 'Spot on! Upward pitch rise was clear.';
+
+  @override
+  String get toneDiagMatch3 => 'Spot on! Low dipping curve was accurate.';
+
+  @override
+  String get toneDiagMatch4 => 'Spot on! Sharp falling drop was decisive.';
+
+  @override
+  String get toneDiagMatchDefault => 'Spot on! Tone was pronounced accurately.';
+
+  @override
+  String get toneDiag1vs2 =>
+      'You rose your pitch (2nd tone /). Keep your voice flat and high across the whole syllable (1st tone ˉ).';
+
+  @override
+  String get toneDiag1vs3 =>
+      'You dipped your voice (3rd tone ˇ). Keep your pitch steady and high without dipping (1st tone ˉ).';
+
+  @override
+  String get toneDiag1vs4 =>
+      'You dropped your pitch (4th tone \\). Sustain a high, level pitch like singing a note (1st tone ˉ).';
+
+  @override
+  String get toneDiag2vs1 =>
+      'You stayed flat (1st tone ˉ). Slide your pitch upward like asking \'What?\' (2nd tone /).';
+
+  @override
+  String get toneDiag2vs3 =>
+      'You dipped too deep (3rd tone ˇ). Start mid-level and rise smoothly without bottoming out (2nd tone /).';
+
+  @override
+  String get toneDiag2vs4 =>
+      'You dropped your pitch (4th tone \\). Rise upward like asking a question (2nd tone /).';
+
+  @override
+  String get toneDiag3vs1 =>
+      'You stayed high and flat (1st tone ˉ). Let your pitch drop low into your chest register before rising (3rd tone ˇ).';
+
+  @override
+  String get toneDiag3vs2 =>
+      'You rose immediately (2nd tone /). Make sure to dip down low first before rising back up (3rd tone ˇ).';
+
+  @override
+  String get toneDiag3vs4 =>
+      'You dropped sharply without rising (4th tone \\). Allow your pitch to bounce gently back up at the end (3rd tone ˇ).';
+
+  @override
+  String get toneDiag4vs1 =>
+      'You stayed flat (1st tone ˉ). Drop your pitch sharply and decisively like a firm \'No!\' (4th tone \\).';
+
+  @override
+  String get toneDiag4vs2 =>
+      'You rose your pitch (2nd tone /). Start high and snap sharply downward (4th tone \\).';
+
+  @override
+  String get toneDiag4vs3 =>
+      'You dipped and rose (3rd tone ˇ). Drop straight down without rising back up (4th tone \\).';
+
+  @override
+  String get toneDiagListenDiff =>
+      'Listen to the 4 tones below to hear the difference.';
 }

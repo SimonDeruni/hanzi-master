@@ -6,8 +6,6 @@ import '../providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/notification_service.dart';
-import 'package:hanzi_master/features/settings/presentation/screens/ai_data_privacy_screen.dart';
-import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/core/providers/app_language_controller.dart';
 
@@ -20,7 +18,6 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
     final l10n = AppLocalizations.of(context);
-    final aiPrivacyL10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     return Scaffold(
@@ -148,34 +145,6 @@ class SettingsScreen extends ConsumerWidget {
             ],
           ),
 
-          _buildSectionHeader(aiPrivacyL10n.privacy, theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.deepPurple.withValues(alpha: 0.1),
-                  child: const Icon(
-                    Icons.policy_outlined,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                title: Text(
-                  aiPrivacyL10n.aiDataPrivacyTitle,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                subtitle: Text(aiPrivacyL10n.aiDataPrivacySettingsSubtitle),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-                onTap: () => Navigator.push(
-                  context,
-                  SwipeBackPageRoute(
-                    builder: (context) => const AiDataPrivacyScreen(),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
           _buildSectionHeader(
               l10n?.notifications ??
                   AppLocalizations.of(context)!.notifications,

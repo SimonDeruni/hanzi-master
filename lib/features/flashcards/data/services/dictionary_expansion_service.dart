@@ -1,4 +1,5 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/dictionary_expansion.dart';
 
@@ -6,7 +7,7 @@ class DictionaryExpansionRequest {
   // Keep these aligned with functions/dictionary-expansion.js. Changing either
   // version intentionally invalidates the device cache.
   static const modelVersion = 'gemini-2.5-flash';
-  static const promptVersion = 'dictionary-expansion-v1';
+  static const promptVersion = 'dictionary-expansion-v2-concise';
 
   final int wordId;
   final String languageCode;
@@ -32,9 +33,13 @@ class DictionaryExpansionRequest {
 class DictionaryExpansionService {
   static const _boxName = 'dictionary_expansions_v1';
   final FirebaseFunctions _functions;
+  final FirebaseAuth _auth;
 
-  DictionaryExpansionService({FirebaseFunctions? functions})
-      : _functions = functions ?? FirebaseFunctions.instance;
+  DictionaryExpansionService({
+    FirebaseFunctions? functions,
+    FirebaseAuth? auth,
+  })  : _functions = functions ?? FirebaseFunctions.instance,
+        _auth = auth ?? FirebaseAuth.instance;
 
   /// Returns a valid device-cached expansion without contacting Firebase.
   Future<DictionaryExpansion?> getCachedExpansion(
@@ -69,19 +74,90 @@ class DictionaryExpansionService {
 
     final box = await Hive.openBox<dynamic>(_boxName);
 
-    final result = await _functions
-        .httpsCallable('getDictionaryExpansionV1')
-        .call(<String, dynamic>{
-      'wordId': request.wordId,
-      'languageCode': request.languageCode,
-      'sourceDefinitionHash': request.sourceDefinitionHash,
-    });
-    final payload = Map<String, dynamic>.from(result.data as Map);
-    final expansion = DictionaryExpansion.fromJson(payload);
-    if (expansion.sourceDefinitionHash != request.sourceDefinitionHash) {
-      throw const FormatException('Stale dictionary expansion response');
+    try {
+      if (_auth.currentUser == null) {
+        await _auth.signInAnonymously();
+      }
+
+      final result = await _functions
+          .httpsCallable('getDictionaryExpansionV1')
+          .call(<String, dynamic>{
+        'wordId': request.wordId,
+        'languageCode': request.languageCode,
+        'sourceDefinitionHash': request.sourceDefinitionHash,
+      });
+      final payload = Map<String, dynamic>.from(result.data as Map);
+      final expansion = DictionaryExpansion.fromJson(payload);
+      if (expansion.sourceDefinitionHash != request.sourceDefinitionHash ||
+          expansion.languageCode != request.languageCode ||
+          expansion.modelVersion != DictionaryExpansionRequest.modelVersion ||
+          expansion.promptVersion != DictionaryExpansionRequest.promptVersion) {
+        throw const FormatException('Stale dictionary expansion response');
+      }
+      await box.put(request.cacheKey, expansion.toJson());
+      return expansion;
+    } on DictionaryExpansionException {
+      rethrow;
+    } on FirebaseFunctionsException catch (error) {
+      throw DictionaryExpansionException.fromFirebaseCode(error.code);
+    } on FirebaseAuthException catch (error) {
+      throw DictionaryExpansionException.fromFirebaseCode(error.code);
+    } on FirebaseException catch (_) {
+      throw const DictionaryExpansionException(
+        DictionaryExpansionFailure.appVerification,
+      );
     }
-    await box.put(request.cacheKey, expansion.toJson());
-    return expansion;
   }
+}
+
+enum DictionaryExpansionFailure {
+  signIn,
+  appVerification,
+  unavailable,
+  quota,
+  staleSource,
+  notEligible,
+  unknown,
+}
+
+class DictionaryExpansionException implements Exception {
+  final DictionaryExpansionFailure failure;
+
+  const DictionaryExpansionException(this.failure);
+
+  factory DictionaryExpansionException.fromFirebaseCode(String code) {
+    switch (code) {
+      case 'unauthenticated':
+      case 'operation-not-allowed':
+        return const DictionaryExpansionException(
+          DictionaryExpansionFailure.signIn,
+        );
+      case 'unauthorized':
+      case 'failed-precondition':
+        return const DictionaryExpansionException(
+          DictionaryExpansionFailure.notEligible,
+        );
+      case 'resource-exhausted':
+        return const DictionaryExpansionException(
+          DictionaryExpansionFailure.quota,
+        );
+      case 'not-found':
+        return const DictionaryExpansionException(
+          DictionaryExpansionFailure.staleSource,
+        );
+      case 'unavailable':
+      case 'deadline-exceeded':
+      case 'internal':
+        return const DictionaryExpansionException(
+          DictionaryExpansionFailure.unavailable,
+        );
+      default:
+        return const DictionaryExpansionException(
+          DictionaryExpansionFailure.unknown,
+        );
+    }
+  }
+
+  @override
+  String toString() => 'Dictionary expansion failed: ${failure.name}';
 }

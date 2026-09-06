@@ -10,8 +10,8 @@ import '../../domain/repositories/flashcard_repository.dart';
 import '../models/flashcard_model.dart';
 
 // Top-level function for background parsing
-Map<String, dynamic> _parseJsonMap(String data) => json.decode(data) as Map<String, dynamic>;
-List<dynamic> _parseJsonList(String data) => json.decode(data) as List<dynamic>;
+Map<String, dynamic> _parseJsonMap(String data) =>
+    json.decode(data) as Map<String, dynamic>;
 
 class FlashcardRepositoryImpl implements FlashcardRepository {
   final Box<FlashcardModel> flashcardBox;
@@ -38,34 +38,44 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   Future<void> preloadDatabases() async {
     try {
       if (_hsk1StrokesDb == null) {
-        final jsonString = await rootBundle.loadString('assets/data/hsk1_strokes.json');
+        final jsonString =
+            await rootBundle.loadString('assets/data/hsk1_strokes.json');
         if (jsonString.isNotEmpty) {
           _hsk1StrokesDb = await compute(_parseJsonMap, jsonString);
         }
       }
       if (_hsk2BundleDb == null) {
         try {
-          final hsk2String = await rootBundle.loadString('assets/data/hsk2_bundle.json');
+          final hsk2String =
+              await rootBundle.loadString('assets/data/hsk2_bundle.json');
           if (hsk2String.isNotEmpty) {
             _hsk2BundleDb = await compute(_parseJsonMap, hsk2String);
           }
-        } catch (e) { _hsk2BundleDb = {}; }
+        } catch (e) {
+          _hsk2BundleDb = {};
+        }
       }
       if (_animCjkDb == null) {
         try {
-          final acjkString = await rootBundle.loadString('assets/data/hsk1_animcjk.json');
+          final acjkString =
+              await rootBundle.loadString('assets/data/hsk1_animcjk.json');
           if (acjkString.isNotEmpty) {
             _animCjkDb = await compute(_parseJsonMap, acjkString);
           }
-        } catch (e) { _animCjkDb = {}; }
+        } catch (e) {
+          _animCjkDb = {};
+        }
       }
       if (_hanziVgDb == null) {
         try {
-          final hvgString = await rootBundle.loadString('assets/data/hsk1_hanzivg.json');
+          final hvgString =
+              await rootBundle.loadString('assets/data/hsk1_hanzivg.json');
           if (hvgString.isNotEmpty) {
             _hanziVgDb = await compute(_parseJsonMap, hvgString);
           }
-        } catch (e) { _hanziVgDb = {}; }
+        } catch (e) {
+          _hanziVgDb = {};
+        }
       }
     } catch (e) {
       debugPrint("Warning: Database pre-warming skipped: $e");
@@ -79,19 +89,20 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   Future<Either<String, List<Flashcard>>> getFlashcards() async {
     try {
       if (!flashcardBox.isOpen) return const Right([]);
-      
+
       // Auto-migrate legacy cards that have incorrect deckId
       bool migrated = false;
       final updates = <String, FlashcardModel>{};
       for (var m in flashcardBox.values) {
-        if (m.hskLevel > 0 && (m.deckId == 'default' || m.deckId == null || m.deckId!.isEmpty)) {
+        if (m.hskLevel > 0 &&
+            (m.deckId == 'default' || m.deckId == null || m.deckId!.isEmpty)) {
           final entity = m.toEntity();
           final updatedEntity = entity.copyWith(deckId: 'hsk${m.hskLevel}');
           updates[m.id] = FlashcardModel.fromEntity(updatedEntity);
           migrated = true;
         }
       }
-      
+
       if (migrated) {
         await flashcardBox.putAll(updates);
       }
@@ -103,11 +114,13 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   }
 
   @override
-  Future<Either<String, List<Flashcard>>> getFlashcardsByDeck(String deckId) async {
+  Future<Either<String, List<Flashcard>>> getFlashcardsByDeck(
+      String deckId) async {
     try {
       if (!flashcardBox.isOpen) return const Right([]);
       return Right(flashcardBox.values
-          .where((m) => m.deckId == deckId || (deckId == 'default' && m.deckId == null))
+          .where((m) =>
+              m.deckId == deckId || (deckId == 'default' && m.deckId == null))
           .map((m) => m.toEntity())
           .toList());
     } catch (e) {
@@ -140,14 +153,16 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   @override
   Future<Either<String, void>> deleteFlashcardsByLevel(int level) async {
     try {
-      if (!flashcardBox.isOpen) return const Left("Database box not open");
-      
-      final keysToDelete = flashcardBox.values
+      final box = flashcardBox.isOpen
+          ? flashcardBox
+          : Hive.box<FlashcardModel>('flashcards');
+
+      final keysToDelete = box.values
           .where((m) => m.hskLevel == level)
           .map((m) => m.id)
           .toList();
-          
-      await flashcardBox.deleteAll(keysToDelete);
+
+      await box.deleteAll(keysToDelete);
       return const Right(null);
     } catch (e) {
       return Left("Failed to delete level $level cards: $e");
@@ -171,20 +186,24 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
     }
   }
 
-  Future<List<Flashcard>> _searchHskLevel(int level, String query, String lowQuery) async {
+  Future<List<Flashcard>> _searchHskLevel(
+      int level, String query, String lowQuery) async {
     final List<Flashcard> results = [];
-    final String fileName = level == 1 ? 'assets/data/hsk1.json' : 'assets/data/hsk${level}_bundle.json';
-    
+    final String fileName = level == 1
+        ? 'assets/data/hsk1.json'
+        : 'assets/data/hsk${level}_bundle.json';
+
     try {
       final jsonString = await rootBundle.loadString(fileName);
       if (jsonString.isNotEmpty) {
         final dynamic decoded = json.decode(jsonString);
         final List<dynamic> vocabulary;
-        
+
         if (level == 1) {
           vocabulary = decoded as List<dynamic>;
         } else {
-          vocabulary = (decoded as Map<String, dynamic>)['vocabulary'] as List<dynamic>;
+          vocabulary =
+              (decoded as Map<String, dynamic>)['vocabulary'] as List<dynamic>;
         }
 
         for (int i = 0; i < vocabulary.length; i++) {
@@ -192,9 +211,12 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
           final hanzi = item['hanzi'] as String;
           final pinyin = (item['pinyin'] as String).toLowerCase();
           final def = (item['definition'] as String).toLowerCase();
-          
-          if (hanzi.contains(query) || pinyin.contains(lowQuery) || def.contains(lowQuery)) {
-            final String uuid = item['uuid'] ?? "hsk${level}_${(i + 1).toString().padLeft(3, '0')}";
+
+          if (hanzi.contains(query) ||
+              pinyin.contains(lowQuery) ||
+              def.contains(lowQuery)) {
+            final String uuid = item['uuid'] ??
+                "hsk${level}_${(i + 1).toString().padLeft(3, '0')}";
             results.add(FlashcardModel.fromJson({
               ...item,
               'uuid': uuid,
@@ -210,45 +232,46 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   }
 
   @override
-  Future<Either<String, void>> importHsk1() async {
-    try {
-      final jsonString = await rootBundle.loadString('assets/data/hsk1.json');
-      if (jsonString.isEmpty) return const Left("HSK1 data file is empty");
-      
-      final List<dynamic> jsonList = await compute(_parseJsonList, jsonString);
-      final Map<String, FlashcardModel> entries = {
-        for (var item in jsonList) 
-          item['uuid']: FlashcardModel.fromJson({
-            ...item,
-            'hskLevel': 1,
-            'deckId': 'hsk1',
-          })
-      };
-      
-      if (!flashcardBox.isOpen) return const Left("Database box not open");
-      await flashcardBox.putAll(entries);
-      return const Right(null);
-    } catch (e) {
-      return Left("Import failed: $e");
-    }
-  }
+  Future<Either<String, void>> importHsk1() => importLevel(1);
 
   @override
   Future<Either<String, void>> importLevel(int level) async {
     try {
-      final String fileName = level == 1 ? 'assets/data/hsk1.json' : 'assets/data/hsk${level}_bundle.json';
+      if (level < 1 || level > 6) {
+        return Left("Invalid HSK level: $level");
+      }
+      final String fileName = level == 1
+          ? 'assets/data/hsk1.json'
+          : 'assets/data/hsk${level}_bundle.json';
       final jsonString = await rootBundle.loadString(fileName);
       if (jsonString.isEmpty) return Left("HSK$level bundle file is empty");
-      
+
       // hsk1.json is a JSON array, hsk2-6_bundle.json are objects with "vocabulary" key.
-      final List<dynamic> vocabulary = level == 1
-          ? await compute(_parseJsonList, jsonString)
-          : ((await compute(_parseJsonMap, jsonString))['vocabulary'] as List<dynamic>?) ?? [];
-      
+      final List<dynamic> vocabulary;
+      if (level == 1) {
+        final decoded = json.decode(jsonString);
+        vocabulary = decoded is List<dynamic> ? decoded : [];
+      } else {
+        final decoded = json.decode(jsonString);
+        vocabulary =
+            (decoded is Map ? decoded['vocabulary'] as List<dynamic>? : null) ??
+                [];
+      }
+      if (vocabulary.isEmpty) {
+        return Left("HSK$level bundle contains no vocabulary");
+      }
+
       final Map<String, FlashcardModel> entries = {};
       for (int i = 0; i < vocabulary.length; i++) {
-        final item = vocabulary[i] as Map<String, dynamic>;
-        final String uuid = item['uuid'] ?? "hsk${level}_${(i + 1).toString().padLeft(3, '0')}";
+        final rawItem = vocabulary[i];
+        if (rawItem is! Map) continue;
+        final item = Map<String, dynamic>.from(rawItem);
+        final hanzi = item['hanzi'];
+        if (hanzi is! String || hanzi.trim().isEmpty) {
+          return Left("HSK$level bundle contains an invalid entry at index $i");
+        }
+        final String uuid = item['uuid']?.toString() ??
+            "hsk${level}_${(i + 1).toString().padLeft(3, '0')}";
         entries[uuid] = FlashcardModel.fromJson({
           ...item,
           'uuid': uuid,
@@ -256,9 +279,11 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
           'deckId': 'hsk$level',
         });
       }
-      
-      if (!flashcardBox.isOpen) return const Left("Database box not open");
-      await flashcardBox.putAll(entries);
+
+      final box = flashcardBox.isOpen
+          ? flashcardBox
+          : Hive.box<FlashcardModel>('flashcards');
+      await box.putAll(entries);
       return const Right(null);
     } catch (e) {
       return Left("Import failed: $e");
@@ -270,7 +295,8 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
     if (card.strokePaths.isNotEmpty) {
       // Self-healing migration: If the card has cached outline paths (contains 'z' or 'Z' for closed path),
       // we force a re-fetch to generate the new skeletal paths from HanziVG or our medians.
-      final hasOutlines = card.strokePaths.any((p) => p.contains('Z') || p.contains('z'));
+      final hasOutlines =
+          card.strokePaths.any((p) => p.contains('Z') || p.contains('z'));
       if (!hasOutlines) {
         return Right(card);
       }
@@ -283,31 +309,37 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       for (int i = 0; i < characters.length; i++) {
         final charData = await _fetchStrokesForCharacter(characters[i]);
         if (charData['source'] == 'hanzi-writer') needsFlip = true;
-        
-        final List<String> strokes = (charData['strokes'] as List? ?? []).cast<String>();
-        final List<List<Offset>> medians = (charData['medians'] as List? ?? []).cast<List<Offset>>();
+
+        final List<String> strokes =
+            (charData['strokes'] as List? ?? []).cast<String>();
+        final List<List<Offset>> medians =
+            (charData['medians'] as List? ?? []).cast<List<Offset>>();
 
         if (i > 0 && strokes.isNotEmpty) {
           allStrokes.add('__CHAR_SEPARATOR__');
           // Add a placeholder to keep medianPaths index-synchronized with valid strokePaths
-          allMedians.add([]); 
+          allMedians.add([]);
         }
 
         if (strokes.isNotEmpty) {
           allStrokes.addAll(strokes);
-          
+
           // Ensure medians length parity with strokes count
           final List<List<Offset>> normalizedMedians;
           if (medians.length == strokes.length) {
             normalizedMedians = medians;
           } else {
             // Provide empty skeletons if parity is broken to avoid desync
-            normalizedMedians = List.generate(strokes.length, (_) => <Offset>[]);
+            normalizedMedians =
+                List.generate(strokes.length, (_) => <Offset>[]);
           }
           allMedians.addAll(normalizedMedians);
         }
       }
-      final updatedCard = card.copyWith(strokePaths: allStrokes, medianPaths: allMedians, isFlipped: needsFlip);
+      final updatedCard = card.copyWith(
+          strokePaths: allStrokes,
+          medianPaths: allMedians,
+          isFlipped: needsFlip);
       if (!card.id.startsWith('global_')) {
         await saveFlashcard(updatedCard);
       }
@@ -319,14 +351,14 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
 
   Future<Map<String, dynamic>> _fetchStrokesForCharacter(String char) async {
     if (_strokeCache.containsKey(char)) return _strokeCache[char]!;
-    
+
     // 1. Try Local Assets
     final offlineData = await _loadOfflineStrokes(char);
     if (offlineData.isNotEmpty) {
-      _strokeCache[char] = offlineData; 
-      return offlineData; 
+      _strokeCache[char] = offlineData;
+      return offlineData;
     }
-    
+
     // 2. Try Network Fallback (AnimCJK CDN)
     var onlineData = await _fetchOnlineStrokes(char);
     if (onlineData.isNotEmpty) {
@@ -336,9 +368,12 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
 
     // 3. Proxy Rescue (Borrow strokes from a character that contains the radical)
     // This is the most robust way to handle isolated radicals in HSK1.
-    final proxyStrokes = CharacterLoader.getProxyStrokes(char, _animCjkDb ?? {});
+    final proxyStrokes =
+        CharacterLoader.getProxyStrokes(char, _animCjkDb ?? {});
     if (proxyStrokes.isNotEmpty) {
-      final List<List<Offset>> medians = await CharacterLoader.parseAndSampleAsync(proxyStrokes, interval: 2.0);
+      final List<List<Offset>> medians =
+          await CharacterLoader.parseAndSampleAsync(proxyStrokes,
+              interval: 2.0);
 
       final proxyData = {
         'strokes': proxyStrokes,
@@ -352,7 +387,13 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
     // 4. Variant Hunt (Legacy fallback)
     // Map of common problematic radicals to their alternate Unicode forms
     const variants = {
-      '阝': ['\u961D', '\u2ECF', '\u2ED6', '阜', '邑'], // Left/Right Ear variants + Full forms
+      '阝': [
+        '\u961D',
+        '\u2ECF',
+        '\u2ED6',
+        '阜',
+        '邑'
+      ], // Left/Right Ear variants + Full forms
       '亻': ['\u4EBB', '人'],
       '氵': ['\u6C35', '水'],
       '忄': ['\u5FC4', '心'],
@@ -367,32 +408,39 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
       for (final variant in variants[char]!) {
         onlineData = await _fetchOnlineStrokes(variant);
         if (onlineData.isNotEmpty) {
-          _strokeCache[char] = onlineData; // Cache under original char for seamless access
+          _strokeCache[char] =
+              onlineData; // Cache under original char for seamless access
           return onlineData;
         }
       }
     }
-    
+
     return {};
   }
 
   Future<Map<String, dynamic>> _fetchOnlineStrokes(String char) async {
     try {
-      final url = Uri.parse('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/$char.json');
+      final url = Uri.parse(
+          'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/$char.json');
       final response = await http.get(url);
-      
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
-        
+
         List<String> strokes = [];
         List<List<Offset>> medians = [];
         if (data['medians'] != null) {
           // Parse medians as points
           medians = (data['medians'] as List).map((m) {
-            final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
-            return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
+            final pts = (m as List)
+                .map(
+                    (p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble()))
+                .toList();
+            return CharacterLoader.flipPoints(pts)
+                .map(CharacterLoader.transformPoint)
+                .toList();
           }).toList();
-          
+
           // Construct skeletal SVG paths from the RAW medians so they look like HanziVG (single thick strokes)
           strokes = (data['medians'] as List).map((m) {
             final pts = m as List;
@@ -405,10 +453,15 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
           }).toList();
         } else {
           strokes = (data['strokes'] as List).cast<String>();
-          medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
+          medians =
+              await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
         }
-        
-        return {'strokes': strokes, 'medians': medians, 'source': 'hanzi-writer'};
+
+        return {
+          'strokes': strokes,
+          'medians': medians,
+          'source': 'hanzi-writer'
+        };
       }
     } catch (e) {
       debugPrint("Network fetch failed for $char: $e");
@@ -419,15 +472,16 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
   Future<Map<String, dynamic>> _loadOfflineStrokes(String char) async {
     try {
       await preloadDatabases();
-      
+
       List<String> strokes = [];
-      List<List<Offset>> medians = []; 
-      
+      List<List<Offset>> medians = [];
+
       // The True Original 'Gold' Aesthetics used skeleton paths rendering with PaintStyle.stroke.
       if (_hanziVgDb != null && _hanziVgDb!.containsKey(char)) {
         List<String> resolvePaths(String targetChar) {
           if (!_hanziVgDb!.containsKey(targetChar)) return [];
-          List<String> rawPaths = List<String>.from(_hanziVgDb![targetChar]['paths'] ?? []);
+          List<String> rawPaths =
+              List<String>.from(_hanziVgDb![targetChar]['paths'] ?? []);
           List<String> resolved = [];
           for (String path in rawPaths) {
             if (path.startsWith('hvg:')) {
@@ -447,18 +501,24 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
         final resolvedStrokes = resolvePaths(char);
         if (resolvedStrokes.isNotEmpty) {
           strokes = resolvedStrokes;
-          medians = await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
+          medians =
+              await CharacterLoader.parseAndSampleAsync(strokes, interval: 2.0);
           return {'strokes': strokes, 'medians': medians, 'source': 'hanzivg'};
         }
-      } 
+      }
       // Fallback: Hanzi Writer
       if (_hsk1StrokesDb != null && _hsk1StrokesDb!.containsKey(char)) {
         if (_hsk1StrokesDb![char]['medians'] != null) {
           medians = (_hsk1StrokesDb![char]['medians'] as List).map((m) {
-            final pts = (m as List).map((p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble())).toList();
-            return CharacterLoader.flipPoints(pts).map(CharacterLoader.transformPoint).toList();
+            final pts = (m as List)
+                .map(
+                    (p) => Offset((p as List)[0].toDouble(), (p[1]).toDouble()))
+                .toList();
+            return CharacterLoader.flipPoints(pts)
+                .map(CharacterLoader.transformPoint)
+                .toList();
           }).toList();
-          
+
           // Construct skeletal SVG paths from the RAW medians so they look like HanziVG (single thick strokes)
           strokes = (_hsk1StrokesDb![char]['medians'] as List).map((m) {
             final pts = m as List;
@@ -472,9 +532,12 @@ class FlashcardRepositoryImpl implements FlashcardRepository {
         } else {
           strokes = List<String>.from(_hsk1StrokesDb![char]['strokes'] ?? []);
         }
-        return {'strokes': strokes, 'medians': medians, 'source': 'hanzi-writer'};
+        return {
+          'strokes': strokes,
+          'medians': medians,
+          'source': 'hanzi-writer'
+        };
       }
-      
     } catch (e) {
       debugPrint("HM: Offline load failed for $char: $e");
     }

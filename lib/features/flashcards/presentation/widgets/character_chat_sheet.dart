@@ -205,6 +205,7 @@ class CharacterChatSheet extends ConsumerStatefulWidget {
   final String hanzi;
   final String pinyin;
   final String definition;
+  final String? definitionLanguage;
   final Future<String> Function(String message)? messageSender;
 
   const CharacterChatSheet({
@@ -212,6 +213,7 @@ class CharacterChatSheet extends ConsumerStatefulWidget {
     required this.hanzi,
     required this.pinyin,
     required this.definition,
+    this.definitionLanguage,
     this.messageSender,
   });
 
@@ -461,6 +463,8 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
                 const SizedBox(height: 2),
                 TranslatedDefinition(
                   definition: widget.definition,
+                  definitionLanguage: widget.definitionLanguage,
+                  hanzi: widget.hanzi,
                   originalStyle: TextStyle(
                     fontSize: 13,
                     color: textColor.withValues(alpha: 0.75),

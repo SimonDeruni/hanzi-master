@@ -134,6 +134,42 @@ void main() {
     expect(reserved.length, 2);
   });
 
+  test('abandoning a reserved review does not consume the daily allowance',
+      () async {
+    final now = DateTime(2026, 9, 1, 10);
+    final dueCard = card(
+      'due',
+      now,
+      introducedAt: DateTime(2026, 8, 1),
+    );
+
+    final firstQueue = await repository.reserveQueue(
+      deckId: 'deck-a',
+      cards: [dueCard],
+      mode: StudyMode.reading,
+      now: now,
+      dailyNewLimit: 0,
+      dailyReviewLimit: 1,
+    );
+    final secondQueue = await repository.reserveQueue(
+      deckId: 'deck-a',
+      cards: [dueCard],
+      mode: StudyMode.reading,
+      now: now,
+      dailyNewLimit: 0,
+      dailyReviewLimit: 1,
+    );
+
+    expect(firstQueue.cards.map((item) => item.id), ['due']);
+    expect(secondQueue.cards.map((item) => item.id), ['due']);
+    final activity = await repository.activityForDay(
+      deckId: 'deck-a',
+      cards: [dueCard],
+      now: now,
+    );
+    expect(activity.reviewedCardIds, isEmpty);
+  });
+
   test('rolls allowance over at midnight and retains original deck activity',
       () async {
     final firstDay = DateTime(2026, 9, 1, 23, 59);

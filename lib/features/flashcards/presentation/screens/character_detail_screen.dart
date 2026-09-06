@@ -27,6 +27,7 @@ import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -331,17 +332,33 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   Flashcard _getCurrentCard() {
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
-    final globalCard = allCards.firstWhere(
+    final savedCard = allCards.firstWhere(
       (c) => c.id == widget.card.id,
       orElse: () => widget.card,
     );
-    return (globalCard.strokePaths.isEmpty &&
-            _hydratedCard != null &&
-            _hydratedCard!.strokePaths.isNotEmpty)
-        ? _hydratedCard!
-        : (globalCard.strokePaths.isEmpty && _hydratedCard != null)
-            ? _hydratedCard!
-            : globalCard;
+
+    // The routed card is the authoritative dictionary presentation. Search
+    // results may contain a newly localized definition for a saved card, so do
+    // not replace them wholesale with the persisted (often English) snapshot.
+    var current = widget.card.copyWith(
+      deckId: savedCard.deckId,
+      strokePaths: savedCard.strokePaths,
+      medianPaths: savedCard.medianPaths,
+      isFlipped: savedCard.isFlipped,
+      modeStats: savedCard.modeStats,
+      inkPoints: savedCard.inkPoints,
+      sourceSentence: savedCard.sourceSentence,
+      sourceContext: savedCard.sourceContext,
+    );
+
+    final hydrated = _hydratedCard;
+    if (current.strokePaths.isEmpty && hydrated != null) {
+      current = current.copyWith(
+        strokePaths: hydrated.strokePaths,
+        medianPaths: hydrated.medianPaths,
+      );
+    }
+    return current;
   }
 
   Widget _buildCharacterCard(
@@ -458,6 +475,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             ),
             textAlign: TextAlign.center,
           ),
+          if (DictionaryExpansionPanel.isAvailableFor(currentCard))
+            DictionaryExpansionPanel(
+              key: const ValueKey('character-detail-dictionary-expansion'),
+              card: currentCard,
+              isDark: isDark,
+              autoExpand: true,
+              presentation: DictionaryExpansionPresentation.full,
+            ),
         ],
       ),
     );
@@ -712,9 +737,10 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             GlobalBlurredBottomSheet.show(
               context,
               child: CharacterChatSheet(
-                hanzi: widget.card.hanzi,
-                pinyin: widget.card.pinyin,
-                definition: widget.card.definition,
+                hanzi: currentCard.hanzi,
+                pinyin: currentCard.pinyin,
+                definition: currentCard.definition,
+                definitionLanguage: currentCard.definitionLanguage,
               ),
             );
           },
@@ -1316,6 +1342,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   Widget _buildAiContextSection(BuildContext context, bool isDark) {
     final aiContextAsync = ref.watch(characterContextProvider(widget.card));
+    final showMemoryHook = Localizations.localeOf(context).languageCode == 'en';
 
     return aiContextAsync.when(
       data: (contextData) {
@@ -1331,13 +1358,15 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               isDark: isDark,
             ),
             const SizedBox(height: 12),
-            _buildInfoSection(
-              context,
-              title: AppLocalizations.of(context)!.aiMemoryHook,
-              icon: Icons.lightbulb,
-              content: contextData.mnemonic,
-            ),
-            const SizedBox(height: 16),
+            if (showMemoryHook) ...[
+              _buildInfoSection(
+                context,
+                title: AppLocalizations.of(context)!.aiMemoryHook,
+                icon: Icons.lightbulb,
+                content: contextData.mnemonic,
+              ),
+              const SizedBox(height: 16),
+            ],
             _buildInfoSection(
               context,
               title: AppLocalizations.of(context)!.exampleSentences,

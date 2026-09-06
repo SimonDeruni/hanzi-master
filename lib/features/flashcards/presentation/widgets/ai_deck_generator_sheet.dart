@@ -345,6 +345,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
 
                                 final aiDescription =
                                     AppLocalizations.of(context)!.generatedByAi;
+                                final failedToCreateDeck =
+                                    AppLocalizations.of(context)!
+                                        .failedToCreateDeck;
                                 final cards =
                                     await geminiService.generateDeckCards(
                                   topic: topic,
@@ -368,7 +371,11 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                         hanzi: cardMap['hanzi'] ?? '',
                                         pinyin: cardMap['pinyin'] ?? '',
                                         definition: cardMap['english'] ?? '',
-                                        hskLevel: 0,
+                                        definitionLanguage:
+                                            geminiService.targetLanguage,
+                                        hskLevel: int.tryParse(
+                                                cardMap['hskLevel'] ?? '') ??
+                                            0,
                                         strokePaths: const [],
                                         modeStats: const {},
                                       );
@@ -383,6 +390,13 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                               content: Text(
                                                   "Created ${newDeck.name} with ${cards.length} cards")));
                                     }
+                                  } else {
+                                    final error = ref
+                                        .read(deckControllerProvider)
+                                        .error
+                                        ?.toString();
+                                    throw StateError(
+                                        error ?? failedToCreateDeck);
                                   }
                                 }
                               } else {
@@ -416,7 +430,11 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                       hanzi: cardMap['hanzi'] ?? '',
                                       pinyin: cardMap['pinyin'] ?? '',
                                       definition: cardMap['english'] ?? '',
-                                      hskLevel: 0,
+                                      definitionLanguage:
+                                          geminiService.targetLanguage,
+                                      hskLevel: int.tryParse(
+                                              cardMap['hskLevel'] ?? '') ??
+                                          0,
                                       strokePaths: const [],
                                       modeStats: const {},
                                     );

@@ -20,8 +20,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explain
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
-import 'package:hanzi_master/features/flashcards/data/services/dictionary_expansion_service.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_expansion_provider.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_positioning.dart';
 
 // ---------------------------------------------------------------------------
@@ -64,6 +63,7 @@ Future<void> showQuickLook(
   QuickLookPresentation presentation = QuickLookPresentation.bottomSheet,
   Offset? anchorPosition,
   VoidCallback? onDismiss,
+  bool autoExpand = false,
 }) async {
   if (hanzi.isEmpty) return;
   if (presentation == QuickLookPresentation.readingPopover &&
@@ -74,6 +74,7 @@ Future<void> showQuickLook(
       contextText: contextText,
       card: card,
       anchorPosition: anchorPosition,
+      autoExpand: autoExpand,
     );
     if (shown) {
       onDismiss?.call();
@@ -88,11 +89,19 @@ Future<void> showQuickLook(
     useSafeArea: true,
     useRootNavigator: true,
     barrierColor: Colors.black.withValues(alpha: 0.16),
-    builder: (_) => GlobalBlurredBottomSheet(
-      child: _QuickLookSheet(
-        hanzi: hanzi,
-        contextText: contextText,
-        initialCard: card,
+    builder: (sheetContext) => ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(sheetContext).height * 0.72,
+      ),
+      child: GlobalBlurredBottomSheet(
+        child: SingleChildScrollView(
+          child: _QuickLookSheet(
+            hanzi: hanzi,
+            contextText: contextText,
+            initialCard: card,
+            autoExpand: autoExpand,
+          ),
+        ),
       ),
     ),
   );
@@ -105,6 +114,7 @@ Future<bool> _showAnchoredQuickLook(
   required Offset anchorPosition,
   String? contextText,
   Flashcard? card,
+  bool autoExpand = false,
 }) async {
   final mediaQuery = MediaQuery.of(context);
   final anchorRect = Rect.fromCircle(center: anchorPosition, radius: 12);
@@ -146,6 +156,7 @@ Future<bool> _showAnchoredQuickLook(
                 hanzi: hanzi,
                 contextText: contextText,
                 initialCard: card,
+                autoExpand: autoExpand,
               ),
             ),
           ),
@@ -192,18 +203,42 @@ class _QuickLookSheet extends ConsumerWidget {
   final String hanzi;
   final String? contextText;
   final Flashcard? initialCard;
+  final bool autoExpand;
   const _QuickLookSheet({
     required this.hanzi,
     this.contextText,
     this.initialCard,
+    this.autoExpand = false,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final asyncCard = initialCard == null
-        ? ref.watch(quickLookProvider(hanzi))
-        : AsyncValue<Flashcard?>.data(initialCard);
+    final wordId = initialCard?.dictionaryWordId;
+    final AsyncValue<Flashcard?> asyncCard;
+    if (wordId != null) {
+      asyncCard = ref.watch(dictionaryWordProvider(wordId)).whenData((fresh) {
+        final initial = initialCard;
+        if (fresh == null || initial == null) return initial;
+        // Keep the saved card identity/study state while refreshing all
+        // dictionary-owned fields for the currently selected language.
+        return initial.copyWith(
+          pinyin: fresh.pinyin,
+          definition: fresh.definition,
+          definitionLanguage: fresh.definitionLanguage,
+          dictionaryWordId: fresh.dictionaryWordId,
+          englishDefinition: fresh.englishDefinition,
+          localizedDefinitionQuality: fresh.localizedDefinitionQuality,
+          isExpansionEligible: fresh.isExpansionEligible,
+          sourceDefinitionHash: fresh.sourceDefinitionHash,
+        );
+      });
+    } else if (initialCard == null) {
+      asyncCard = ref.watch(quickLookProvider(hanzi));
+    } else {
+      // Custom and legacy cards have no stable global-dictionary identity.
+      asyncCard = AsyncValue<Flashcard?>.data(initialCard);
+    }
     final asyncCommon = ref.watch(commonWordsProvider(hanzi));
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final inDeck = allCards.any((c) => c.hanzi == hanzi);
@@ -220,6 +255,7 @@ class _QuickLookSheet extends ConsumerWidget {
               asyncCommon: asyncCommon,
               contextText: contextText,
               tappedHanzi: hanzi,
+              autoExpand: autoExpand,
             ),
     );
   }
@@ -351,6 +387,7 @@ class _FoundBody extends ConsumerWidget {
   final AsyncValue<List<Flashcard>> asyncCommon;
   final String? contextText;
   final String tappedHanzi;
+  final bool autoExpand;
 
   const _FoundBody({
     required this.card,
@@ -359,6 +396,7 @@ class _FoundBody extends ConsumerWidget {
     required this.asyncCommon,
     this.contextText,
     required this.tappedHanzi,
+    this.autoExpand = false,
   });
 
   @override
@@ -380,11 +418,13 @@ class _FoundBody extends ConsumerWidget {
             definition: card.definition,
           ),
 
-          if (card.isExpansionEligible &&
-              card.dictionaryWordId != null &&
-              card.sourceDefinitionHash != null &&
-              card.definitionLanguage != null)
-            _DictionaryExpansionPanel(card: card, isDark: isDark),
+          if (DictionaryExpansionPanel.isAvailableFor(card))
+            DictionaryExpansionPanel(
+              card: card,
+              isDark: isDark,
+              autoExpand: autoExpand,
+              presentation: DictionaryExpansionPresentation.compact,
+            ),
 
           // ── Compound words ───────────────────────────────────────────
           asyncCommon.maybeWhen(
@@ -519,8 +559,7 @@ class _FoundBody extends ConsumerWidget {
                         hasContext ? contextText!.trim() : null;
                     final effectivePinyin = hasContext
                         ? PinyinHelper.getPinyinE(effectiveSentence!,
-                            separator: ' ',
-                            format: PinyinFormat.WITH_TONE_MARK)
+                            separator: ' ', format: PinyinFormat.WITH_TONE_MARK)
                         : card.pinyin;
                     final effectiveTranslation =
                         hasContext ? null : card.definition;
@@ -636,212 +675,6 @@ class _FoundBody extends ConsumerWidget {
         ],
       ),
     );
-  }
-}
-
-class _DictionaryExpansionPanel extends ConsumerStatefulWidget {
-  final Flashcard card;
-  final bool isDark;
-
-  const _DictionaryExpansionPanel({required this.card, required this.isDark});
-
-  @override
-  ConsumerState<_DictionaryExpansionPanel> createState() =>
-      _DictionaryExpansionPanelState();
-}
-
-class _DictionaryExpansionPanelState
-    extends ConsumerState<_DictionaryExpansionPanel> {
-  late final DictionaryExpansionRequest _request;
-  bool _requested = false;
-  bool _checkingCache = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _request = DictionaryExpansionRequest(
-      wordId: widget.card.dictionaryWordId!,
-      languageCode: _languageCode(widget.card.definitionLanguage!),
-      sourceDefinitionHash: widget.card.sourceDefinitionHash!,
-    );
-    _loadCachedExpansion();
-  }
-
-  Future<void> _loadCachedExpansion() async {
-    final cached = await ref
-        .read(dictionaryExpansionServiceProvider)
-        .getCachedExpansion(_request);
-    if (!mounted) return;
-    setState(() {
-      _requested = cached != null;
-      _checkingCache = false;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_checkingCache) {
-      return const SizedBox.shrink();
-    }
-
-    if (!_requested) {
-      return _panel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _briefEntryLabel(Localizations.localeOf(context).languageCode),
-              style: TextStyle(
-                fontSize: 12,
-                color: widget.isDark ? Colors.white70 : Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 8),
-            OutlinedButton.icon(
-              key: const ValueKey('dictionary-expansion-button'),
-              onPressed: () => setState(() => _requested = true),
-              icon: const Icon(Icons.auto_awesome, size: 16),
-              label: Text(
-                _expandLabel(Localizations.localeOf(context).languageCode),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    final expansion = ref.watch(dictionaryExpansionProvider(_request));
-    return expansion.when(
-      loading: () => _panel(
-        child: const LinearProgressIndicator(minHeight: 2),
-      ),
-      error: (_, __) => _panel(
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                _errorLabel(Localizations.localeOf(context).languageCode),
-                style: TextStyle(
-                  fontSize: 12,
-                  color: widget.isDark ? Colors.white70 : Colors.black54,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () => ref.invalidate(
-                dictionaryExpansionProvider(_request),
-              ),
-              child: Text(AppLocalizations.of(context)!.retry),
-            ),
-          ],
-        ),
-      ),
-      data: (value) => _panel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _provenanceLabel(Localizations.localeOf(context).languageCode),
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                color: widget.isDark ? Colors.white70 : Colors.indigo,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Text(value.text, style: const TextStyle(fontSize: 14, height: 1.4)),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _panel({required Widget child}) => Container(
-        width: double.infinity,
-        margin: const EdgeInsets.only(top: 12),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.indigo.withValues(alpha: widget.isDark ? 0.14 : 0.06),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.indigo.withValues(alpha: 0.18)),
-        ),
-        child: child,
-      );
-
-  String _languageCode(String language) {
-    const codes = {
-      'French': 'fr',
-      'German': 'de',
-      'Spanish': 'es',
-      'Russian': 'ru',
-      'Italian': 'it',
-      'Portuguese': 'pt',
-      'Japanese': 'ja',
-      'Korean': 'ko',
-      'Vietnamese': 'vi',
-      'Indonesian': 'id',
-      'Arabic': 'ar',
-      'Hindi': 'hi',
-      'Thai': 'th',
-    };
-    return codes[language] ?? language.toLowerCase();
-  }
-
-  String _provenanceLabel(String locale) {
-    const labels = {
-      'ar': 'تفاصيل موسعة بالذكاء الاصطناعي',
-      'de': 'KI-erweiterter Wörterbucheintrag',
-      'es': 'Detalle ampliado por IA',
-      'fr': 'Détail enrichi par l’IA',
-      'hi': 'AI द्वारा विस्तृत शब्दकोश विवरण',
-      'id': 'Detail kamus yang diperluas AI',
-      'it': 'Dettaglio del dizionario ampliato dall’IA',
-      'ja': 'AIによる辞書の補足',
-      'ko': 'AI로 확장된 사전 설명',
-      'pt': 'Detalhe de dicionário expandido por IA',
-      'ru': 'Расширенная ИИ словарная статья',
-      'th': 'รายละเอียดพจนานุกรมที่ขยายโดย AI',
-      'vi': 'Chi tiết từ điển được AI mở rộng',
-      'zh': 'AI 扩展词典释义',
-    };
-    return labels[locale] ?? 'AI-expanded dictionary detail';
-  }
-
-  String _briefEntryLabel(String locale) {
-    const labels = {
-      'fr': 'Cette entrée est brève. Une explication détaillée est disponible.',
-      'de':
-          'Dieser Eintrag ist kurz. Eine ausführliche Erklärung ist verfügbar.',
-      'es': 'Esta entrada es breve. Hay una explicación detallada disponible.',
-      'it': 'Questa voce è breve. È disponibile una spiegazione dettagliata.',
-      'pt': 'Esta entrada é breve. Está disponível uma explicação detalhada.',
-    };
-    return labels[locale] ??
-        'This dictionary entry is brief. A detailed explanation is available.';
-  }
-
-  String _expandLabel(String locale) {
-    const labels = {
-      'fr': 'Développer en français',
-      'de': 'Auf Deutsch erweitern',
-      'es': 'Ampliar en español',
-      'it': 'Approfondisci in italiano',
-      'pt': 'Expandir em português',
-      'ja': '詳しい説明を見る',
-      'ko': '자세한 설명 보기',
-    };
-    return labels[locale] ?? 'Expand definition';
-  }
-
-  String _errorLabel(String locale) {
-    const labels = {
-      'fr': 'Impossible de charger l’explication.',
-      'de': 'Die Erklärung konnte nicht geladen werden.',
-      'es': 'No se pudo cargar la explicación.',
-      'it': 'Impossibile caricare la spiegazione.',
-      'pt': 'Não foi possível carregar a explicação.',
-    };
-    return labels[locale] ?? 'Unable to load the explanation.';
   }
 }
 

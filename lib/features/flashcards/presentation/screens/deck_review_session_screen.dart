@@ -231,49 +231,34 @@ class _DeckReviewSessionScreenState
 
     var card = _cardsToReview[_currentIndex];
 
-    // Check for AI characters without stroke data in Calligraphy Mode
-    if (widget.mode == StudyMode.calligraphy && card.strokePaths.isEmpty) {
-      setState(() => _isLoading = true);
-      final updatedCard = await ref
-          .read(flashcardControllerProvider.notifier)
-          .loadStrokesFor(card);
-      setState(() => _isLoading = false);
+    StudyMode actualMode = widget.mode;
 
-      if (!mounted) return;
-      if (updatedCard != null) {
-        card = updatedCard;
-        _cardsToReview[_currentIndex] = card;
+    // Check for AI characters or compound words without stroke data in Calligraphy Mode
+    if (widget.mode == StudyMode.calligraphy && card.strokePaths.isEmpty) {
+      if (card.hanzi.length == 1) {
+        setState(() => _isLoading = true);
+        final updatedCard = await ref
+            .read(flashcardControllerProvider.notifier)
+            .loadStrokesFor(card);
+        setState(() => _isLoading = false);
+
+        if (!mounted) return;
+        if (updatedCard != null) {
+          card = updatedCard;
+          _cardsToReview[_currentIndex] = card;
+        }
       }
 
       if (card.strokePaths.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                '${AppLocalizations.of(context)?.skippedNoStrokeData ?? 'Skipped'} (${card.hanzi})'),
-            duration: const Duration(seconds: 2),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-
-        // Remove from this session's review queue
-        setState(() {
-          _cardsToReview.removeAt(_currentIndex);
-        });
-
-        // Start next review immediately without incrementing index
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _startNextReview();
-        });
-        return;
+        // Multi-character word or character without vector stroke data:
+        // Gracefully fall back to Reading mode so the user can study this card!
+        actualMode = StudyMode.reading;
       }
     }
 
-    // We push the selected Mode UI. Currently we only have Calligraphy wired up fully.
-    // For other modes, we fallback to Calligraphy or show a placeholder.
-    int dueCount = 0;
-    int newCount = 0;
-    int learningCount = 0;
-
+    var dueCount = 0;
+    var newCount = 0;
+    var learningCount = 0;
     for (int i = _currentIndex; i < _cardsToReview.length; i++) {
       final stats = _cardsToReview[i].getStatsForMode(widget.mode);
       if (stats.isNew) {
@@ -286,8 +271,6 @@ class _DeckReviewSessionScreenState
     }
 
     Widget screenToPush;
-
-    StudyMode actualMode = widget.mode;
 
     switch (actualMode) {
       case StudyMode.calligraphy:
@@ -516,13 +499,34 @@ class _DeckReviewSessionScreenState
           localizations.studyNoEligibleCardsDescription,
         ),
     };
+
+    final canStudyAhead = !widget.studyAhead &&
+        (reason == StudyQueueEmptyReason.dailyLimitReached ||
+            reason == StudyQueueEmptyReason.caughtUp);
+
     return _buildMessageState(
       key: Key(keyName),
       icon: Icons.check_circle_outline,
       title: title,
       body: body,
-      actionLabel: localizations.back,
-      onAction: () => Navigator.pop(context),
+      actionLabel:
+          canStudyAhead ? localizations.studyAhead : localizations.back,
+      onAction: canStudyAhead
+          ? () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DeckReviewSessionScreen(
+                    deckId: widget.deckId,
+                    mode: widget.mode,
+                    studyAhead: true,
+                  ),
+                ),
+              );
+            }
+          : () => Navigator.pop(context),
+      secondaryActionLabel: canStudyAhead ? localizations.back : null,
+      onSecondaryAction: canStudyAhead ? () => Navigator.pop(context) : null,
     );
   }
 
@@ -533,6 +537,8 @@ class _DeckReviewSessionScreenState
     required String body,
     required String actionLabel,
     required VoidCallback onAction,
+    String? secondaryActionLabel,
+    VoidCallback? onSecondaryAction,
   }) {
     return Center(
       child: Padding(
@@ -549,7 +555,20 @@ class _DeckReviewSessionScreenState
             const SizedBox(height: 8),
             Text(body, textAlign: TextAlign.center),
             const SizedBox(height: 24),
-            FilledButton(onPressed: onAction, child: Text(actionLabel)),
+            if (secondaryActionLabel != null && onSecondaryAction != null) ...[
+              FilledButton.icon(
+                onPressed: onAction,
+                icon: const Icon(Icons.fast_forward_rounded),
+                label: Text(actionLabel),
+              ),
+              const SizedBox(height: 12),
+              OutlinedButton(
+                onPressed: onSecondaryAction,
+                child: Text(secondaryActionLabel),
+              ),
+            ] else ...[
+              FilledButton(onPressed: onAction, child: Text(actionLabel)),
+            ],
           ],
         ),
       ),

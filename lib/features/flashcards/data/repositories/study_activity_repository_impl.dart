@@ -134,8 +134,11 @@ class StudyActivityRepositoryImpl implements StudyActivityRepository {
 
       final introduced = activity.introducedCardIds.toSet()
         ..addAll(queue.newlyReservedCardIds);
-      final reviewed = activity.reviewedCardIds.toSet()
-        ..addAll(queue.reviewCardIdsToReserve);
+      // A queued review is not a completed review. Persist it only from
+      // recordReview after the user has actually graded the card. Otherwise,
+      // abandoning a session consumes the daily allowance and makes Review
+      // appear empty when it is reopened.
+      final reviewed = activity.reviewedCardIds.toSet();
       final modeKeys = activity.modeIntroductionKeys.toSet()
         ..addAll(queue.cardIdsToIntroduce.map((id) => '${mode.name}:$id'));
       await _box.put(

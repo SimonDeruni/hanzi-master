@@ -107,6 +107,31 @@ void main() {
     expect(find.text('Speak freely with AI & live tones'), findsOneWidget);
     expect(find.text('Understand Chinese around you'), findsNothing);
     expect(find.text('Scanner and translation screenshot'), findsNothing);
+    const screenshotAssets = [
+      'assets/images/paywall/paywall_read.png',
+      'assets/images/paywall/paywall_speak.png',
+      'assets/images/paywall/paywall_explore.png',
+      'assets/images/paywall/paywall_watch.png',
+      'assets/images/paywall/paywall_write.png',
+      'assets/images/paywall/paywall_web.png',
+    ];
+    for (final asset in screenshotAssets) {
+      final image = tester.widget<Image>(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Image &&
+              widget.image is AssetImage &&
+              (widget.image as AssetImage).assetName == asset,
+        ),
+      );
+      expect(image.fit, BoxFit.contain);
+    }
+    for (var index = 0; index < screenshotAssets.length; index++) {
+      final inset = tester.widget<Padding>(
+        find.byKey(ValueKey('paywall_screenshot_inset_$index')),
+      );
+      expect(inset.padding, const EdgeInsets.all(10));
+    }
     final characterStory = find.text('Understand every character');
     final videoStory = find.text('Learn through real videos');
     final handwritingStory = find.text('Master every stroke');

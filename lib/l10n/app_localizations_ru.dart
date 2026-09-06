@@ -1723,11 +1723,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get ancientPhilosophy => 'Древняя философия';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => 'Период Сражающихся царств';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      'Хань Фэй (ок. 280–233 гг. до н. э.) был царевичем царства Хань и главным мыслителем китайского легизма. Его труды в трактате «Хань Фэй-цзы», объединившие идеи закона, административных методов и власти, оказали глубокое влияние на политическую философию и институты императорского Китая.';
 
   @override
   String get articleSavedToMediaHub => 'Статья сохранена в Медиа-хабе!';
@@ -2529,7 +2529,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get serif => 'С засечками (Serif)';
 
   @override
-  String get shadow => 'Shadowing';
+  String get shadow => 'Шэдоуинг';
 
   @override
   String get shiNaianEpic =>
@@ -11547,16 +11547,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get travelSurvival => 'Путешествия и выживание';
 
   @override
-  String get label05MinDay => '05 Min / Day';
+  String get label05MinDay => '05 мин / день';
 
   @override
-  String get label10MinDay => '10 Min / Day';
+  String get label10MinDay => '10 мин / день';
 
   @override
-  String get label20MinDay => '20 Min / Day';
+  String get label20MinDay => '20 мин / день';
 
   @override
-  String get label30MinDay => '30 Min / Day';
+  String get label30MinDay => '30 мин / день';
 
   @override
   String get dynamicDecksStrokeAnalysis => 'Динамические колоды и анализ черт';
@@ -12152,7 +12152,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get videoLearningScreenshot => 'Скриншот: видеообучение';
 
   @override
-  String get turnAnyBookIntoA => 'Превратите любую книгу в урок';
+  String get turnAnyBookIntoA => 'Превратите любую книгу в урок и аудиокнигу';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12162,7 +12162,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bookReaderScreenshot => 'Скриншот: чтение книг';
 
   @override
-  String get speakWithTheRightRhythm => 'Говорите с правильным ритмом';
+  String get speakWithTheRightRhythm =>
+      'Общайтесь свободно с ИИ и живыми тонами';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12401,7 +12402,9 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось сохранить извлеченные слова: \$error';
 
   @override
-  String get youActualTargetExpected => 'Вы: \$actual  ·  Цель: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'Вы: $actual  ·  Цель: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'Улучшить локальный голос';
@@ -12562,4 +12565,289 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'например, любопытный двоюродный брат спрашивает о вашей карьере...';
+
+  @override
+  String get beginFirstLesson => 'Начать первый урок';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'ВАШ ПЕРВЫЙ УРОК  •  $current ИЗ $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'Сначала послушайте одну из самых известных строк китайской литературы. Пока запоминать не нужно.';
+
+  @override
+  String get onboardingFromGrandLibrary => 'Из Великой библиотеки';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'Искусство войны · Сунь-цзы';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · Глава 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'КЛАССИЧЕСКАЯ ЦИТАТА';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '«Знаешь врага и знаешь себя — и в ста битвах не познаешь опасности.»';
+
+  @override
+  String get onboardingNoticeMeaning => 'Знаешь врага и знаешь себя,';
+
+  @override
+  String get onboardingShadowMeaning => 'И в ста битвах не познаешь опасности.';
+
+  @override
+  String get onboardingPracticeThisLabel => 'ДЛЯ ПРАКТИКИ';
+
+  @override
+  String get onboardingFromArtOfWarLabel => 'ИЗ «ИСКУССТВА ВОЙНЫ»';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'ВАШЕ ПРОИЗНОШЕНИЕ';
+
+  @override
+  String get onboardingTapACharacter => 'Коснитесь иероглифа';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'Совпадает';
+
+  @override
+  String get onboardingCompareTones => 'Сравнить тоны';
+
+  @override
+  String get onboardingToneOneHigh => '1-й тон · высокий';
+
+  @override
+  String get onboardingToneTwoRising => '2-й тон · восходящий';
+
+  @override
+  String get onboardingToneThreeDipping => '3-й тон · нисходяще-восходящий';
+
+  @override
+  String get onboardingToneFourFalling => '4-й тон · нисходящий';
+
+  @override
+  String get onboardingToneNotDetected => 'не обнаружен';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone => 'Прекрасный третий тон.';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'Пусть четвёртый тон падает твёрдо и быстро.';
+
+  @override
+  String get onboardingFeedbackClearFourthTone =>
+      'Чёткий нисходящий четвёртый тон.';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone =>
+      'Уверенный нисходящий четвёртый тон.';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return 'Обведите $character ($pinyin, «$meaning»). Следуйте по полупрозрачной линии черт.';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count дня',
+      many: '$count дней',
+      few: '$count дня',
+      one: '$count день',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count недели',
+      many: '$count недель',
+      few: '$count недели',
+      one: '$count неделя',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count месяца',
+      many: '$count месяцев',
+      few: '$count месяца',
+      one: '$count месяц',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count года',
+      many: '$count лет',
+      few: '$count года',
+      one: '$count год',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return 'Начать бесплатный период ($period)';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return 'Оформить подписку за $price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'Выбранный продукт включает бесплатный пробный период. По его завершении подписка продлевается за $price / $period, если ее не отменить.';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'Обучение';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'Книги и аудиокниги студийного качества';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'Разговоры с ИИ и обратная связь по тонам в реальном времени';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'Интерактивное видео и веб-погружение';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'Разбор иероглифов и практика прописи';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'Колоды HSK и умное интервальное повторение';
+
+  @override
+  String get termsOfUseEula => 'Условия использования (EULA)';
+
+  @override
+  String get masterEveryStroke => 'Освойте каждый штрих';
+
+  @override
+  String get exploreTheChineseWeb => 'Исследуйте китайский интернет';
+
+  @override
+  String get tone1Description =>
+      'Держите тон высоким и ровным, как при пении ноты.';
+
+  @override
+  String get tone2Description =>
+      'Начните со среднего тона и поднимите его вверх, как при вопросе \'Что?\'';
+
+  @override
+  String get tone3Description =>
+      'Опустите голос низко, затем плавно поднимите его обратно.';
+
+  @override
+  String get tone4Description =>
+      'Резко и решительно понизьте тон, как при твердом \'Нет!\'';
+
+  @override
+  String get toneNeutralDescription =>
+      'Произносите мягко, кратко и без ударения.';
+
+  @override
+  String get toneDiagMatch1 =>
+      'В точку! Высота была высокой, ровной и стабильной.';
+
+  @override
+  String get toneDiagMatch2 => 'В точку! Подъем высоты был четким.';
+
+  @override
+  String get toneDiagMatch3 => 'В точку! Низкая нисходящая кривая была точной.';
+
+  @override
+  String get toneDiagMatch4 => 'В точку! Резкое падение было решительным.';
+
+  @override
+  String get toneDiagMatchDefault => 'В точку! Тон был произнесен точно.';
+
+  @override
+  String get toneDiag1vs2 =>
+      'Вы подняли высоту (2-й тон /). Держите голос ровным и высоким на протяжении всего слога (1-й тон ˉ).';
+
+  @override
+  String get toneDiag1vs3 =>
+      'Вы опустили голос (3-й тон ˇ). Держите высоту стабильной и высокой, не опускаясь (1-й тон ˉ).';
+
+  @override
+  String get toneDiag1vs4 =>
+      'Вы опустили высоту (4-й тон \\). Поддерживайте высокую, ровную высоту, как при пении ноты (1-й тон ˉ).';
+
+  @override
+  String get toneDiag2vs1 =>
+      'Вы остались ровным (1-й тон ˉ). Поднимите высоту вверх, как при вопросе \'Что?\' (2-й тон /).';
+
+  @override
+  String get toneDiag2vs3 =>
+      'Вы опустились слишком низко (3-й тон ˇ). Начните со среднего уровня и плавно поднимайтесь, не опускаясь до конца (2-й тон /).';
+
+  @override
+  String get toneDiag2vs4 =>
+      'Вы опустили высоту (4-й тон \\). Поднимитесь вверх, как при задавании вопроса (2-й тон /).';
+
+  @override
+  String get toneDiag3vs1 =>
+      'Вы остались высоким и ровным (1-й тон ˉ). Позвольте высоте опуститься низко в ваш грудной регистр, прежде чем подниматься (3-й тон ˇ).';
+
+  @override
+  String get toneDiag3vs2 =>
+      'Вы сразу поднялись (2-й тон /). Убедитесь, что сначала опустились низко, прежде чем снова подняться (3-й тон ˇ).';
+
+  @override
+  String get toneDiag3vs4 =>
+      'Вы резко упали, не поднимаясь (4-й тон \\). Позвольте высоте мягко отскочить вверх в конце (3-й тон ˇ).';
+
+  @override
+  String get toneDiag4vs1 =>
+      'Вы остались ровным (1-й тон ˉ). Резко и решительно опустите высоту, как при твердом \'Нет!\' (4-й тон \\).';
+
+  @override
+  String get toneDiag4vs2 =>
+      'Вы подняли высоту (2-й тон /). Начните высоко и резко опуститесь вниз (4-й тон \\).';
+
+  @override
+  String get toneDiag4vs3 =>
+      'Вы опустились и поднялись (3-й тон ˇ). Опуститесь прямо вниз, не поднимаясь обратно (4-й тон \\).';
+
+  @override
+  String get toneDiagListenDiff =>
+      'Послушайте 4 тона ниже, чтобы услышать разницу.';
 }

@@ -1721,11 +1721,11 @@ class AppLocalizationsIt extends AppLocalizations {
   String get ancientPhilosophy => 'Filosofia antica';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => 'Stati Combattenti';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      'Han Fei (c. 280–233 a.C.) era un principe dello Stato di Han e il principale pensatore del Legalismo cinese. Riunendo i concetti di legge, tecnica amministrativa e autorità, i suoi scritti nell\'Han Feizi influenzarono profondamente la filosofia politica e le istituzioni della Cina imperiale.';
 
   @override
   String get articleSavedToMediaHub => 'Articolo salvato nel Media Hub!';
@@ -12194,7 +12194,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get videoLearningScreenshot => 'Screenshot dell\'apprendimento video';
 
   @override
-  String get turnAnyBookIntoA => 'Trasforma qualsiasi libro in una lezione';
+  String get turnAnyBookIntoA =>
+      'Trasforma qualsiasi libro in una lezione e audiolibro';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12204,7 +12205,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get bookReaderScreenshot => 'Screenshot del lettore di libri';
 
   @override
-  String get speakWithTheRightRhythm => 'Parla con il giusto ritmo';
+  String get speakWithTheRightRhythm =>
+      'Parla liberamente con l\'IA e toni dal vivo';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12452,8 +12454,9 @@ class AppLocalizationsIt extends AppLocalizations {
       'Impossibile salvare le parole estratte: \$error';
 
   @override
-  String get youActualTargetExpected =>
-      'Tu: \$actual  ·  Obiettivo: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'Tu: $actual  ·  Obiettivo: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'Migliora la voce locale';
@@ -12614,4 +12617,286 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'ad es., Un cugino curioso che ti chiede della tua carriera...';
+
+  @override
+  String get beginFirstLesson => 'Inizia la prima lezione';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'LA TUA PRIMA LEZIONE  •  $current DI $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'Per prima cosa, ascolta uno dei versi più celebri della letteratura cinese. Per ora non serve memorizzare.';
+
+  @override
+  String get onboardingFromGrandLibrary => 'Dalla Grande Biblioteca';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'L\'Arte della Guerra · Sun Tzu';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · Capitolo 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'UN VERSO CLASSICO';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '«Conosci il nemico e conosci te stesso; in cento battaglie non sarai mai in pericolo.»';
+
+  @override
+  String get onboardingNoticeMeaning =>
+      'Conosci il nemico e conosci te stesso,';
+
+  @override
+  String get onboardingShadowMeaning =>
+      'In cento battaglie non sarai mai in pericolo.';
+
+  @override
+  String get onboardingPracticeThisLabel => 'TI ESERCITERAI SU QUESTO';
+
+  @override
+  String get onboardingFromArtOfWarLabel => 'DALL\'ARTE DELLA GUERRA';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'LA TUA PRONUNCIA';
+
+  @override
+  String get onboardingTapACharacter => 'Tocca un carattere';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'Corrisponde';
+
+  @override
+  String get onboardingCompareTones => 'Confronta i toni';
+
+  @override
+  String get onboardingToneOneHigh => 'tono 1 · alto';
+
+  @override
+  String get onboardingToneTwoRising => 'tono 2 · crescente';
+
+  @override
+  String get onboardingToneThreeDipping => 'tono 3 · modulato';
+
+  @override
+  String get onboardingToneFourFalling => 'tono 4 · decrescente';
+
+  @override
+  String get onboardingToneNotDetected => 'non rilevato';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone => 'Ottimo terzo tono modulato.';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'Lascia cadere il quarto tono con decisione e rapidità.';
+
+  @override
+  String get onboardingFeedbackClearFourthTone =>
+      'Quarto tono decrescente chiaro.';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone =>
+      'Quarto tono decrescente deciso.';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return 'Traccia $character ($pinyin, «$meaning»). Segui la traccia leggera dei tratti.';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count giorni',
+      one: '1 giorno',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count settimane',
+      one: '1 settimana',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count mesi',
+      one: '1 mese',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count anni',
+      one: '1 anno',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return 'Inizia la prova gratuita di $period';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return 'Abbonati a $price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'Il prodotto StoreKit selezionato include una prova gratuita idonea. Al termine della prova, si rinnoverà a $price per $period salvo annullamento.';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'Impara';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'Libri e audiolibri con qualità da studio';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'Conversazioni con l\'IA e feedback del tono in tempo reale';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'Video interattivi e immersione web';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'Approfondimenti sui caratteri e pratica della scrittura a mano';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'Mazzi HSK e ripetizione dilazionata intelligente';
+
+  @override
+  String get termsOfUseEula => 'Condizioni d\'uso (EULA)';
+
+  @override
+  String get masterEveryStroke => 'Padroneggia ogni tratto';
+
+  @override
+  String get exploreTheChineseWeb => 'Esplora il web cinese';
+
+  @override
+  String get tone1Description =>
+      'Mantieni il tono alto e costante come quando canti una nota.';
+
+  @override
+  String get tone2Description =>
+      'Inizia a metà e fai scivolare il tono verso l\'alto come quando chiedi \'Cosa?\'';
+
+  @override
+  String get tone3Description => 'Abbassa la voce, poi risali dolcemente.';
+
+  @override
+  String get tone4Description =>
+      'Abbassa il tono in modo netto e deciso, come un \'No!\' fermo.';
+
+  @override
+  String get toneNeutralDescription =>
+      'Pronuncia dolcemente, brevemente e senza enfasi.';
+
+  @override
+  String get toneDiagMatch1 =>
+      'Perfetto! L\'intonazione era alta, piatta e costante.';
+
+  @override
+  String get toneDiagMatch2 =>
+      'Perfetto! L\'aumento dell\'intonazione era chiaro.';
+
+  @override
+  String get toneDiagMatch3 =>
+      'Perfetto! La curva discendente bassa era precisa.';
+
+  @override
+  String get toneDiagMatch4 =>
+      'Perfetto! La caduta netta e discendente è stata decisiva.';
+
+  @override
+  String get toneDiagMatchDefault =>
+      'Perfetto! Il tono è stato pronunciato accuratamente.';
+
+  @override
+  String get toneDiag1vs2 =>
+      'Hai alzato l\'intonazione (2° tono /). Mantieni la voce piatta e alta per tutta la sillaba (1° tono ˉ).';
+
+  @override
+  String get toneDiag1vs3 =>
+      'Hai abbassato la voce (3° tono ˇ). Mantieni l\'intonazione stabile e alta senza abbassarla (1° tono ˉ).';
+
+  @override
+  String get toneDiag1vs4 =>
+      'Hai abbassato l\'intonazione (4° tono \\). Mantieni un\'intonazione alta e costante come se cantassi una nota (1° tono ˉ).';
+
+  @override
+  String get toneDiag2vs1 =>
+      'Sei rimasto piatto (1° tono ˉ). Fai scivolare l\'intonazione verso l\'alto come per chiedere \'Cosa?\' (2° tono /).';
+
+  @override
+  String get toneDiag2vs3 =>
+      'Sei sceso troppo in basso (3° tono ˇ). Inizia a metà livello e sali dolcemente senza toccare il fondo (2° tono /).';
+
+  @override
+  String get toneDiag2vs4 =>
+      'Hai abbassato l\'intonazione (4° tono \\). Sali verso l\'alto come se facessi una domanda (2° tono /).';
+
+  @override
+  String get toneDiag3vs1 =>
+      'Sei rimasto alto e piatto (1° tono ˉ). Lascia che l\'intonazione scenda in basso nel tuo registro di petto prima di risalire (3° tono ˇ).';
+
+  @override
+  String get toneDiag3vs2 =>
+      'Sei salito immediatamente (2° tono /). Assicurati di scendere prima in basso prima di risalire (3° tono ˇ).';
+
+  @override
+  String get toneDiag3vs4 =>
+      'Sei sceso bruscamente senza risalire (4° tono \\). Lascia che l\'intonazione rimbalzi delicatamente alla fine (3° tono ˇ).';
+
+  @override
+  String get toneDiag4vs1 =>
+      'Sei rimasto piatto (1° tono ˉ). Abbassa l\'intonazione in modo netto e deciso come un fermo \'No!\' (4° tono \\).';
+
+  @override
+  String get toneDiag4vs2 =>
+      'Hai alzato l\'intonazione (2° tono /). Inizia in alto e scendi bruscamente (4° tono \\).';
+
+  @override
+  String get toneDiag4vs3 =>
+      'Hai abbassato e alzato (3° tono ˇ). Scendi dritto senza risalire (4° tono \\).';
+
+  @override
+  String get toneDiagListenDiff =>
+      'Ascolta i 4 toni qui sotto per sentire la differenza.';
 }

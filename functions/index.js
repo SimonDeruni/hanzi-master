@@ -65,7 +65,10 @@ async function callGemini(source, languageCode) {
  * or prompt text.
  */
 exports.getDictionaryExpansionV1 = onCall(
-  { enforceAppCheck: true, secrets: [geminiApiKey], timeoutSeconds: 120 },
+  // Authentication, server-owned source records, eligibility, quotas, hashes,
+  // and strict output validation remain enforced. App Check enforcement stays
+  // off until every shipping iOS bundle is registered for App Attest.
+  { enforceAppCheck: false, secrets: [geminiApiKey], timeoutSeconds: 120 },
   async (request) => {
     if (!request.auth) throw new HttpsError("unauthenticated", "Sign in to request an expansion.");
 

@@ -414,7 +414,7 @@ class LocalTranslationService {
           final response = await client
               .post(
                 Uri.parse(
-                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$googleKey'),
+                    'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=$googleKey'),
                 headers: {'Content-Type': 'application/json'},
                 body: jsonEncode({
                   'contents': [

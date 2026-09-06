@@ -122,7 +122,7 @@ class GlobalDictionaryRepository {
     if (_db == null) return const Left("Global Dictionary not initialized");
     if (query.trim().isEmpty) return const Right([]);
 
-    final q = query.trim().toLowerCase();
+    final q = _normalizeSearchText(query.trim());
 
     // Check if it's hanzi
     final isHanzi = RegExp(r'[\u4e00-\u9fa5]').hasMatch(q);
@@ -149,36 +149,47 @@ class GlobalDictionaryRepository {
         '%$q%', '%$q%' // Match condition
       ];
     } else {
-      // It's ascii or foreign text, so it could be Pinyin or a translated definition.
+      // It could be Pinyin or a translated definition. GLOB character classes
+      // make localized matching case- and diacritic-insensitive without
+      // applying many nested REPLACE calls to every row in the dictionary.
       final pinyinSearch = q.replaceAll(RegExp(r'[0-9]'), '');
       final cleanSearch = pinyinSearch.replaceAll(' ', '');
+      final selectedDefinition = _definitionColumn(targetLanguage);
+      final searchesFallback = selectedDefinition != 'definition';
+      final fallbackWhere =
+          searchesFallback ? " OR COALESCE(definition, '') GLOB ?" : '';
+      final exactDefinitionPattern = _searchGlobPattern(q);
+      final prefixDefinitionPattern = '$exactDefinitionPattern*';
+      final containsDefinitionPattern = '*$exactDefinitionPattern*';
 
       sqlQuery = '''
         SELECT *,
           CASE 
             WHEN REPLACE(pinyin_no_tones, ' ', '') = ? THEN 1
-            WHEN LOWER(definition) = ? OR LOWER(definition_fr) = ? OR LOWER(definition_de) = ? OR LOWER(definition_es) = ? OR LOWER(definition_ru) = ? OR LOWER(definition_vi) = ? OR LOWER(definition_ja) = ? OR LOWER(definition_ko) = ? OR LOWER(definition_it) = ? OR LOWER(definition_pt) = ? OR LOWER(definition_id) = ? OR LOWER(definition_th) = ? OR LOWER(definition_ar) = ? OR LOWER(definition_hi) = ? THEN 1
+            WHEN COALESCE($selectedDefinition, '') GLOB ? THEN 1
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 2
-            WHEN LOWER(definition) LIKE ? OR LOWER(definition_fr) LIKE ? OR LOWER(definition_de) LIKE ? OR LOWER(definition_es) LIKE ? THEN 2
+            WHEN COALESCE($selectedDefinition, '') GLOB ? THEN 2
             WHEN REPLACE(pinyin_no_tones, ' ', '') LIKE ? THEN 3
-            WHEN LOWER(definition) LIKE ? OR LOWER(definition_fr) LIKE ? OR LOWER(definition_de) LIKE ? THEN 3
+            WHEN COALESCE($selectedDefinition, '') GLOB ? THEN 3
             ELSE 4
           END as rank
         FROM words
-        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ? OR LOWER(definition) LIKE ? OR LOWER(definition_fr) LIKE ? OR LOWER(definition_de) LIKE ? OR LOWER(definition_es) LIKE ? OR LOWER(definition_ru) LIKE ? OR LOWER(definition_vi) LIKE ? OR LOWER(definition_ja) LIKE ? OR LOWER(definition_ko) LIKE ? OR LOWER(definition_it) LIKE ? OR LOWER(definition_pt) LIKE ? OR LOWER(definition_id) LIKE ? OR LOWER(definition_th) LIKE ? OR LOWER(definition_ar) LIKE ? OR LOWER(definition_hi) LIKE ?
+        WHERE REPLACE(pinyin_no_tones, ' ', '') LIKE ?
+          OR COALESCE($selectedDefinition, '') GLOB ?$fallbackWhere
         ORDER BY rank ASC, LENGTH(simplified) ASC
         LIMIT 200
       ''';
       args = [
         cleanSearch, // Pinyin exact
-        q, q, q, q, q, q, q, q, q, q, q, q, q, q, // Def exact (all langs)
-        '$cleanSearch %', // Pinyin boundary
-        '% $q %', '% $q %', '% $q %', '% $q %', // Def boundaries
+        exactDefinitionPattern, // Selected definition exact
         '$cleanSearch%', // Pinyin prefix
-        '$q%', '$q%', '$q%', // Def prefix
+        prefixDefinitionPattern, // Selected definition prefix
+        '$cleanSearch%', // Pinyin prefix
+        containsDefinitionPattern, // Selected definition contains
         '%$cleanSearch%', // Match condition Pinyin
-        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%', '%$q%',
-        '%$q%', '%$q%', '%$q%', '%$q%', '%$q%' // Match condition Def
+        containsDefinitionPattern, // Match condition selected definition
+        if (searchesFallback)
+          containsDefinitionPattern, // Match condition English fallback
       ];
     }
 
@@ -221,6 +232,90 @@ class GlobalDictionaryRepository {
 
   int _popularityRank(String hanzi) =>
       _popularityRanks[hanzi] ?? _unrankedPopularity;
+
+  String _definitionColumn(String? targetLanguage) {
+    final languageCode = _languageCode(targetLanguage);
+    return languageCode == null ? 'definition' : 'definition_$languageCode';
+  }
+
+  static const Map<String, String> _searchCharacterReplacements = {
+    'à': 'a',
+    'á': 'a',
+    'â': 'a',
+    'ã': 'a',
+    'ä': 'a',
+    'å': 'a',
+    'æ': 'ae',
+    'ç': 'c',
+    'è': 'e',
+    'é': 'e',
+    'ê': 'e',
+    'ë': 'e',
+    'ì': 'i',
+    'í': 'i',
+    'î': 'i',
+    'ï': 'i',
+    'ñ': 'n',
+    'ò': 'o',
+    'ó': 'o',
+    'ô': 'o',
+    'õ': 'o',
+    'ö': 'o',
+    'ø': 'o',
+    'œ': 'oe',
+    'ù': 'u',
+    'ú': 'u',
+    'û': 'u',
+    'ü': 'u',
+    'ý': 'y',
+    'ÿ': 'y',
+    'ß': 'ss',
+  };
+
+  String _normalizeSearchText(String text) {
+    var normalized = text.toLowerCase();
+    for (final replacement in _searchCharacterReplacements.entries) {
+      normalized = normalized.replaceAll(replacement.key, replacement.value);
+    }
+    return normalized;
+  }
+
+  static const Map<String, String> _searchGlobCharacters = {
+    'a': 'aAàÀáÁâÂãÃäÄåÅ',
+    'c': 'cCçÇ',
+    'e': 'eEèÈéÉêÊëË',
+    'i': 'iIìÌíÍîÎïÏ',
+    'n': 'nNñÑ',
+    'o': 'oOòÒóÓôÔõÕöÖøØ',
+    's': 'sSß',
+    'u': 'uUùÙúÚûÛüÜ',
+    'y': 'yYýÝÿŸ',
+  };
+
+  String _searchGlobPattern(String text) {
+    final pattern = StringBuffer();
+    for (final rune in text.runes) {
+      final character = String.fromCharCode(rune);
+      final variants = _searchGlobCharacters[character];
+      if (variants != null) {
+        pattern.write('[$variants]');
+      } else if (RegExp(r'[a-z]').hasMatch(character)) {
+        pattern.write('[$character${character.toUpperCase()}]');
+      } else {
+        switch (character) {
+          case '*':
+            pattern.write('[*]');
+          case '?':
+            pattern.write('[?]');
+          case '[':
+            pattern.write('[[]');
+          default:
+            pattern.write(character);
+        }
+      }
+    }
+    return pattern.toString();
+  }
 
   Flashcard _mapRowToCard(Map<String, dynamic> row, [String? targetLanguage]) {
     final rawPinyin = row['pinyin'] as String? ?? '';
@@ -353,6 +448,25 @@ class GlobalDictionaryRepository {
       await _attachQualityMetadata(results, targetLanguage);
       return _mapRowToCard(results.first, targetLanguage);
     } catch (e) {
+      return null;
+    }
+  }
+
+  /// Looks up the exact dictionary row selected by search.
+  ///
+  /// Unlike [getExact], this preserves the selected sense when multiple rows
+  /// share the same simplified or traditional spelling.
+  Future<Flashcard?> getByWordId(int wordId, {String? targetLanguage}) async {
+    if (_db == null) return null;
+    try {
+      final results = List<Map<String, dynamic>>.from(await _db!.rawQuery(
+        'SELECT * FROM words WHERE id = ? LIMIT 1',
+        [wordId],
+      ));
+      if (results.isEmpty) return null;
+      await _attachQualityMetadata(results, targetLanguage);
+      return _mapRowToCard(results.first, targetLanguage);
+    } catch (_) {
       return null;
     }
   }

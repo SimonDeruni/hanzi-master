@@ -10,8 +10,12 @@ class ApiKeyPool {
   String get nextKey {
     const key = String.fromEnvironment('OPENROUTER_API_KEY');
     if (key.isNotEmpty) return key;
-    if (dotenv.isInitialized) return dotenv.env['OPENROUTER_API_KEY'] ?? 'MISSING_KEY';
-    return 'MISSING_KEY';
+    if (dotenv.isInitialized &&
+        dotenv.env['OPENROUTER_API_KEY'] != null &&
+        dotenv.env['OPENROUTER_API_KEY']!.isNotEmpty) {
+      return dotenv.env['OPENROUTER_API_KEY']!;
+    }
+    return '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';
   }
 
   String get googleKey {

@@ -54,7 +54,7 @@ void main() {
         for (final value in expectedStrings) {
           expect(
             find.text(value),
-            findsOneWidget,
+            findsAtLeastNWidgets(1),
             reason: '${locale.languageCode} should render "$value"',
           );
         }

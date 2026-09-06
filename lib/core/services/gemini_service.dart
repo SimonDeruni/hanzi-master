@@ -258,13 +258,16 @@ class GeminiService {
   final ApiKeyPool pool;
   final AnalyticsService analytics;
   final String targetLanguage;
-  final Ref ref;
+  final Ref? ref;
+  final http.Client? _httpClient;
 
   GeminiService(
       {required this.pool,
       required this.analytics,
       this.targetLanguage = 'English',
-      required this.ref});
+      this.ref,
+      http.Client? httpClient})
+      : _httpClient = httpClient;
 
   Future<void> _checkUsageLimit() async {
     // Limits removed because the app is now completely hard-paywalled.
@@ -279,6 +282,26 @@ class GeminiService {
     int maxTokens = 2048,
   }) async {
     await _checkUsageLimit();
+    final openRouterKey = pool.nextKey;
+    final googleKey = pool.googleKey;
+
+    if (!_isConfiguredKey(openRouterKey)) {
+      if (_isConfiguredKey(googleKey)) {
+        return _makeGoogleGeminiCall(
+          apiKey: googleKey,
+          model: model,
+          messages: messages,
+          jsonMode: jsonMode,
+          timeout: timeout,
+          maxTokens: maxTokens,
+        );
+      }
+      throw StateError(
+        'AI generation is not configured. Add OPENROUTER_API_KEY or '
+        'GEMINI_API_KEY to .env (or pass it with --dart-define), then fully '
+        'restart the app.',
+      );
+    }
     final body = {
       'model': model,
       'messages': messages,
@@ -292,27 +315,114 @@ class GeminiService {
       body['response_format'] = {'type': 'json_object'};
     }
 
-    final response = await http
-        .post(
-          Uri.parse(
-              'https://openrouter.ai/api/v1/chat/completions'),
-          headers: {
-            'Authorization': 'Bearer ${pool.nextKey}',
-            'Content-Type': 'application/json',
-            'HTTP-Referer': 'https://hanzimaster.app',
-            'X-Title': 'Hanzi Master',
-          },
-          body: jsonEncode(body),
-        )
-        .timeout(timeout ?? const Duration(seconds: 90));
+    final uri = Uri.parse('https://openrouter.ai/api/v1/chat/completions');
+    final headers = {
+      'Authorization': 'Bearer $openRouterKey',
+      'Content-Type': 'application/json',
+      'HTTP-Referer': 'https://hanzimaster.app',
+      'X-Title': 'Hanzi Master',
+    };
+    final request = _httpClient == null
+        ? http.post(uri, headers: headers, body: jsonEncode(body))
+        : _httpClient.post(uri, headers: headers, body: jsonEncode(body));
+    final response =
+        await request.timeout(timeout ?? const Duration(seconds: 90));
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
       return json['choices']?[0]?['message']?['content'] ?? '';
+    } else if (_isConfiguredKey(googleKey)) {
+      // Automatic failover to Google Gemini API
+      return _makeGoogleGeminiCall(
+        apiKey: googleKey,
+        model: model,
+        messages: messages,
+        jsonMode: jsonMode,
+        timeout: timeout,
+        maxTokens: maxTokens,
+      );
     } else {
       throw Exception(
           'OpenRouter Error ${response.statusCode}: ${response.body}');
     }
+  }
+
+  static bool _isConfiguredKey(String key) =>
+      key.trim().isNotEmpty && key != 'MISSING_KEY';
+
+  static String _resolveGoogleModel(String model) {
+    final rawModel = model.contains('/') ? model.split('/').last : model;
+    if (rawModel == 'gemini-2.5-flash' ||
+        rawModel == 'gemini-2.0-flash' ||
+        rawModel == 'gemini-1.5-flash') {
+      return 'gemini-3.6-flash';
+    }
+    return rawModel;
+  }
+
+  Future<String> _makeGoogleGeminiCall({
+    required String apiKey,
+    required String model,
+    required List<Map<String, dynamic>> messages,
+    required bool jsonMode,
+    required Duration? timeout,
+    required int maxTokens,
+  }) async {
+    final systemMessages = messages
+        .where((message) => message['role'] == 'system')
+        .map((message) => message['content']?.toString() ?? '')
+        .where((content) => content.isNotEmpty)
+        .join('\n\n');
+    final contents = messages
+        .where((message) => message['role'] != 'system')
+        .map((message) => {
+              'role': message['role'] == 'assistant' ? 'model' : 'user',
+              'parts': [
+                {'text': message['content']?.toString() ?? ''}
+              ],
+            })
+        .toList();
+    final body = <String, dynamic>{
+      'contents': contents,
+      if (systemMessages.isNotEmpty)
+        'systemInstruction': {
+          'parts': [
+            {'text': systemMessages}
+          ],
+        },
+      'generationConfig': {
+        'maxOutputTokens': maxTokens,
+        if (jsonMode) 'responseMimeType': 'application/json',
+      },
+    };
+    final googleModel = _resolveGoogleModel(model);
+    final uri = Uri.https(
+      'generativelanguage.googleapis.com',
+      '/v1beta/models/$googleModel:generateContent',
+      {'key': apiKey},
+    );
+    final request = _httpClient == null
+        ? http.post(uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(body))
+        : _httpClient.post(uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(body));
+    final response =
+        await request.timeout(timeout ?? const Duration(seconds: 90));
+
+    if (response.statusCode != 200) {
+      throw Exception('Gemini API Error ${response.statusCode}: ${response.body}');
+    }
+
+    final decoded = jsonDecode(utf8.decode(response.bodyBytes));
+    final candidates = decoded['candidates'];
+    if (candidates is! List || candidates.isEmpty) return '';
+    final parts = candidates.first['content']?['parts'];
+    if (parts is! List) return '';
+    return parts
+        .map((part) => part is Map ? part['text']?.toString() ?? '' : '')
+        .join();
   }
 
   Future<String> generateText(String prompt) async {
@@ -326,42 +436,122 @@ class GeminiService {
 
   Stream<String> streamOpenRouterText(String prompt) async* {
     await _checkUsageLimit();
-    final request = http.Request(
-      'POST',
-      Uri.parse(
-          'https://openrouter.ai/api/v1/chat/completions'),
-    );
-    request.headers.addAll({
-      'Authorization': 'Bearer ${pool.nextKey}',
-      'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://hanzimaster.app',
-      'X-Title': 'Hanzi Master',
-    });
-    request.body = jsonEncode({
-      'model': 'google/gemini-2.5-flash',
-      'messages': [
-        {'role': 'user', 'content': prompt}
-      ],
-      'max_tokens': 2048,
-      'stream': true,
-    });
+    final openRouterKey = pool.nextKey;
+    final googleKey = pool.googleKey;
 
-    final response = await http.Client().send(request);
-    if (response.statusCode != 200) {
-      final body = await response.stream.bytesToString();
-      throw Exception('OpenRouter Error ${response.statusCode}: $body');
+    if (_isConfiguredKey(openRouterKey)) {
+      try {
+        final request = http.Request(
+          'POST',
+          Uri.parse('https://openrouter.ai/api/v1/chat/completions'),
+        );
+        request.headers.addAll({
+          'Authorization': 'Bearer $openRouterKey',
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'https://hanzimaster.app',
+          'X-Title': 'Hanzi Master',
+        });
+        request.body = jsonEncode({
+          'model': 'google/gemini-2.5-flash',
+          'messages': [
+            {'role': 'user', 'content': prompt}
+          ],
+          'max_tokens': 2048,
+          'stream': true,
+        });
+
+        final client = _httpClient ?? http.Client();
+        final response = await client.send(request);
+        if (response.statusCode == 200) {
+          await for (final chunk in response.stream
+              .transform(utf8.decoder)
+              .transform(const LineSplitter())) {
+            if (chunk.startsWith('data: ') && !chunk.startsWith('data: [DONE]')) {
+              final data = chunk.substring(6);
+              try {
+                final json = jsonDecode(data);
+                final delta = json['choices']?[0]?['delta']?['content'];
+                if (delta != null && delta is String) {
+                  yield delta;
+                }
+              } catch (_) {}
+            }
+          }
+          return;
+        } else if (!_isConfiguredKey(googleKey)) {
+          final body = await response.stream.bytesToString();
+          throw Exception('OpenRouter Error ${response.statusCode}: $body');
+        }
+      } catch (e) {
+        if (!_isConfiguredKey(googleKey)) rethrow;
+      }
     }
 
-    await for (final chunk in response.stream
+    // Google Gemini Direct SSE Streaming Fallback
+    if (_isConfiguredKey(googleKey)) {
+      yield* _streamGoogleGeminiText(apiKey: googleKey, prompt: prompt);
+      return;
+    }
+
+    throw StateError(
+      'AI generation is not configured. Add OPENROUTER_API_KEY or '
+      'GEMINI_API_KEY to .env (or pass it with --dart-define), then fully '
+      'restart the app.',
+    );
+  }
+
+  Stream<String> _streamGoogleGeminiText({
+    required String apiKey,
+    required String prompt,
+  }) async* {
+    final uri = Uri.https(
+      'generativelanguage.googleapis.com',
+      '/v1beta/models/gemini-3.6-flash:streamGenerateContent',
+      {
+        'alt': 'sse',
+        'key': apiKey,
+      },
+    );
+
+    final request = http.Request('POST', uri);
+    request.headers['Content-Type'] = 'application/json';
+    request.body = jsonEncode({
+      'contents': [
+        {
+          'role': 'user',
+          'parts': [
+            {'text': prompt}
+          ],
+        }
+      ],
+      'generationConfig': {
+        'maxOutputTokens': 2048,
+      },
+    });
+
+    final client = _httpClient ?? http.Client();
+    final response = await client.send(request);
+    if (response.statusCode != 200) {
+      final body = await response.stream.bytesToString();
+      throw Exception('Gemini API Error ${response.statusCode}: $body');
+    }
+
+    await for (final line in response.stream
         .transform(utf8.decoder)
         .transform(const LineSplitter())) {
-      if (chunk.startsWith('data: ') && !chunk.startsWith('data: [DONE]')) {
-        final data = chunk.substring(6);
+      if (line.startsWith('data: ')) {
+        final dataStr = line.substring(6);
         try {
-          final json = jsonDecode(data);
-          final delta = json['choices']?[0]?['delta']?['content'];
-          if (delta != null && delta is String) {
-            yield delta;
+          final json = jsonDecode(dataStr);
+          final candidates = json['candidates'];
+          if (candidates is List && candidates.isNotEmpty) {
+            final parts = candidates.first['content']?['parts'];
+            if (parts is List && parts.isNotEmpty) {
+              final text = parts.first['text'];
+              if (text != null && text is String) {
+                yield text;
+              }
+            }
           }
         } catch (_) {}
       }
@@ -1007,17 +1197,17 @@ Context/Tone: ${contextTone.isEmpty ? "Standard" : contextTone}
 Please provide exactly $count words or short phrases that fit this criteria.
 Ensure that the vocabulary is natural and useful.
 
-Respond ONLY in valid JSON format as a list of objects with this exact structure.
+Respond ONLY in valid JSON format as an object with this exact structure.
 CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
-[
-  {
+{
+  "cards": [{
     "hanzi": "公司",
     "pinyin": "gōng sī",
     "english": "$targetLanguage translation (e.g., company)",
     "hskLevel": 3,
     "partOfSpeech": "noun"
-  }
-]
+  }]
+}
 
 IMPORTANT RULES for hskLevel and partOfSpeech:
 - hskLevel: Estimate the HSK level (1-6) based on the word's complexity. Use 1 for very basic words, 3-4 for intermediate, 5-6 for advanced. If unsure, use 3.
@@ -1041,18 +1231,8 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
         final json = jsonDecode(cleanText);
         analytics.logApiUsage(
             apiName: 'openrouter', feature: 'generate_deck', success: true);
-        if (json is List) {
-          return json
-              .map((item) => {
-                    'hanzi': item['hanzi'].toString(),
-                    'pinyin': item['pinyin'].toString(),
-                    'english': item['english'].toString(),
-                    'hskLevel':
-                        (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
-                    'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
-                  })
-              .toList();
-        }
+        final cards = parseGeneratedDeckCards(json);
+        if (cards.isNotEmpty) return cards;
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
@@ -1087,17 +1267,17 @@ The student already has the above words. Please generate exactly $count NEW Chin
 3. Do NOT overlap with or duplicate any of the existing words
 4. Are natural, useful, and commonly used
 
-Respond ONLY in valid JSON format as a list of objects with this exact structure.
+Respond ONLY in valid JSON format as an object with this exact structure.
 CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
-[
-  {
+{
+  "cards": [{
     "hanzi": "公司",
     "pinyin": "gōng sī",
     "english": "$targetLanguage translation (e.g., company)",
     "hskLevel": 3,
     "partOfSpeech": "noun"
-  }
-]
+  }]
+}
 
 IMPORTANT RULES for hskLevel and partOfSpeech:
 - hskLevel: Estimate the HSK level (1-6) based on the word's complexity. Use 1 for very basic words, 3-4 for intermediate, 5-6 for advanced. If unsure, use 3.
@@ -1121,18 +1301,8 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
         final json = jsonDecode(cleanText);
         analytics.logApiUsage(
             apiName: 'openrouter', feature: 'add_to_deck', success: true);
-        if (json is List) {
-          return json
-              .map((item) => {
-                    'hanzi': item['hanzi'].toString(),
-                    'pinyin': item['pinyin'].toString(),
-                    'english': item['english'].toString(),
-                    'hskLevel':
-                        (item['hskLevel'] as num?)?.toInt().toString() ?? '3',
-                    'partOfSpeech': item['partOfSpeech']?.toString() ?? '',
-                  })
-              .toList();
-        }
+        final cards = parseGeneratedDeckCards(json);
+        if (cards.isNotEmpty) return cards;
       }
       throw Exception("Empty response from OpenRouter");
     } catch (e) {
@@ -1140,6 +1310,44 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
           apiName: 'openrouter', feature: 'add_to_deck', success: false);
       rethrow;
     }
+  }
+
+  @visibleForTesting
+  static List<Map<String, String>> parseGeneratedDeckCards(Object? decoded) {
+    Object? rawCards = decoded;
+    if (decoded is Map) {
+      rawCards = decoded['cards'] ?? decoded['words'] ?? decoded['vocabulary'];
+    }
+    if (rawCards is! List) return const [];
+
+    final cards = <Map<String, String>>[];
+    for (final rawCard in rawCards) {
+      if (rawCard is! Map) continue;
+      final hanzi = rawCard['hanzi']?.toString().trim() ?? '';
+      final pinyin = rawCard['pinyin']?.toString().trim() ?? '';
+      final definition = (rawCard['english'] ?? rawCard['definition'])
+              ?.toString()
+              .trim() ??
+          '';
+      if (hanzi.isEmpty || pinyin.isEmpty || definition.isEmpty) continue;
+
+      final rawLevel = rawCard['hskLevel'];
+      final parsedLevel = rawLevel is num
+          ? rawLevel.toInt()
+          : int.tryParse(
+              RegExp(r'\d+').firstMatch(rawLevel?.toString() ?? '')?.group(0) ??
+                  '',
+            );
+      final hskLevel = (parsedLevel ?? 3).clamp(1, 6);
+      cards.add({
+        'hanzi': hanzi,
+        'pinyin': pinyin,
+        'english': definition,
+        'hskLevel': hskLevel.toString(),
+        'partOfSpeech': rawCard['partOfSpeech']?.toString().trim() ?? '',
+      });
+    }
+    return cards;
   }
 
   Future<AiStory> generateStory(

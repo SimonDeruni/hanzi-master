@@ -1713,11 +1713,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ancientPhilosophy => 'प्राचीन दर्शन';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => 'झगड़ते राज्य';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      'हान फेई (लगभग 280-233 ईसा पूर्व) हान राज्य के एक राजकुमार थे और चीनी लीगलिज़्म (कानूनवाद) के प्रमुख विचारक थे। कानून, प्रशासनिक तकनीक और सत्ता के विचारों को एक साथ लाते हुए, \'हान फेइज़ी\' में उनके लेखन ने साम्राज्यवादी चीन के राजनीतिक दर्शन और संस्थानों को गहराई से प्रभावित किया।';
 
   @override
   String get articleSavedToMediaHub => 'लेख मीडिया हब में सहेजा गया!';
@@ -12117,7 +12117,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get videoLearningScreenshot => 'वीडियो लर्निंग स्क्रीनशॉट';
 
   @override
-  String get turnAnyBookIntoA => 'किसी भी किताब को एक पाठ में बदलें';
+  String get turnAnyBookIntoA => 'किसी भी किताब को पाठ और ऑडियोबुक में बदलें';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12127,7 +12127,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bookReaderScreenshot => 'बुक रीडर स्क्रीनशॉट';
 
   @override
-  String get speakWithTheRightRhythm => 'सही लय के साथ बोलें';
+  String get speakWithTheRightRhythm => 'एआई और लाइव टोन के साथ खुलकर बोलें';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12364,7 +12364,9 @@ class AppLocalizationsHi extends AppLocalizations {
       'निकाल गए शब्दों को सहेजने में विफल: \$error';
 
   @override
-  String get youActualTargetExpected => 'आप: \$actual  ·  लक्ष्य: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'आप: $actual  ·  लक्ष्य: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'स्थानीय आवाज़ में सुधार करें';
@@ -12525,4 +12527,279 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'उदा., आपके करियर के बारे में पूछता एक जिज्ञासु चचेरा भाई...';
+
+  @override
+  String get beginFirstLesson => 'पहला पाठ आरंभ करें';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'आपका पहला पाठ  •  $total में से $current';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'सबसे पहले, चीनी साहित्य की प्रसिद्ध पंक्तियों में से एक सुनें। अभी याद करने की आवश्यकता नहीं है।';
+
+  @override
+  String get onboardingFromGrandLibrary => 'महान पुस्तकालय से';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'युद्ध कला · सन त्ज़ू';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · अध्याय 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'एक कालजयी पंक्ति';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '“शत्रु को जानें और स्वयं को जानें, तो आपको सौ युद्धों के परिणाम का भय नहीं होगा।”';
+
+  @override
+  String get onboardingNoticeMeaning => 'शत्रु को जानें और स्वयं को जानें,';
+
+  @override
+  String get onboardingShadowMeaning =>
+      'आप सौ युद्धों में भी कभी संकट में नहीं पड़ेंगे।';
+
+  @override
+  String get onboardingPracticeThisLabel => 'आप इसका अभ्यास करेंगे';
+
+  @override
+  String get onboardingFromArtOfWarLabel => '‘युद्ध कला’ से';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'आपका उच्चारण';
+
+  @override
+  String get onboardingTapACharacter => 'किसी अक्षर पर टैप करें';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'मिलान हुआ';
+
+  @override
+  String get onboardingCompareTones => 'स्वरों की तुलना करें';
+
+  @override
+  String get onboardingToneOneHigh => 'स्वर 1 · उच्च';
+
+  @override
+  String get onboardingToneTwoRising => 'स्वर 2 · आरोही';
+
+  @override
+  String get onboardingToneThreeDipping => 'स्वर 3 · उतरता-चढ़ता';
+
+  @override
+  String get onboardingToneFourFalling => 'स्वर 4 · अवरोही';
+
+  @override
+  String get onboardingToneNotDetected => 'पहचाना नहीं गया';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone =>
+      'तीसरा उतरता-चढ़ता स्वर उत्कृष्ट है।';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'चौथे स्वर को दृढ़ता और शीघ्रता से नीचे जाने दें।';
+
+  @override
+  String get onboardingFeedbackClearFourthTone => 'स्पष्ट अवरोही चौथा स्वर।';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone => 'सशक्त अवरोही चौथा स्वर।';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return '$character ($pinyin, “$meaning”) का आलेखन करें। धुंधले रेखा-मार्गदर्शक का अनुसरण करें।';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count दिन',
+      one: '1 दिन',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count सप्ताह',
+      one: '1 सप्ताह',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count महीने',
+      one: '1 महीना',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count वर्ष',
+      one: '1 वर्ष',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return '$period का नि:शुल्क परीक्षण शुरू करें';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return '$price / $period में सदस्यता लें';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'आपके चुने गए स्टोरकिट उत्पाद में एक योग्य नि:शुल्क परीक्षण शामिल है। परीक्षण के बाद, जब तक रद्द न किया जाए, यह $price प्रति $period की दर से नवीनीकृत हो जाता है।';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'सीखें';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'किताबें और स्टूडियो-गुणवत्ता वाली ऑडियोबुक्स';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'एआई बातचीत और लाइव टोन फ़ीडबैक';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'इंटरएक्टिव वीडियो और वेब इमर्शन';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'अक्षर अंतर्दृष्टि और हस्तलेखन अभ्यास';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'HSK डेक और स्मार्ट स्पेस्ड रिपीटीशन';
+
+  @override
+  String get termsOfUseEula => 'उपयोग की शर्तें (EULA)';
+
+  @override
+  String get masterEveryStroke => 'हर स्ट्रोक में महारत हासिल करें';
+
+  @override
+  String get exploreTheChineseWeb => 'चीनी वेब का अन्वेषण करें';
+
+  @override
+  String get tone1Description =>
+      'अपनी पिच को ऊँचा और स्थिर रखें जैसे कोई धुन गाते समय।';
+
+  @override
+  String get tone2Description =>
+      'बीच से शुरू करें और अपनी पिच को ऊपर की ओर खिसकाएँ जैसे \'क्या?\' पूछते समय।';
+
+  @override
+  String get tone3Description =>
+      'अपनी आवाज़ को नीचे ले जाएँ, फिर धीरे से वापस ऊपर उठाएँ।';
+
+  @override
+  String get tone4Description =>
+      'अपनी पिच को तेज़ी से और निर्णायक रूप से गिराएँ जैसे एक दृढ़ \'नहीं!\'।';
+
+  @override
+  String get toneNeutralDescription =>
+      'धीरे, संक्षेप में और बिना ज़ोर दिए उच्चारण करें।';
+
+  @override
+  String get toneDiagMatch1 => 'बिल्कुल सही! पिच ऊंची, सपाट और स्थिर थी।';
+
+  @override
+  String get toneDiagMatch2 => 'बिल्कुल सही! ऊपर की ओर पिच का उठना स्पष्ट था।';
+
+  @override
+  String get toneDiagMatch3 => 'बिल्कुल सही! निचला झुकाव वाला वक्र सटीक था।';
+
+  @override
+  String get toneDiagMatch4 => 'बिल्कुल सही! तेज गिरावट निर्णायक थी।';
+
+  @override
+  String get toneDiagMatchDefault => 'बिल्कुल सही! टोन का उच्चारण सटीक था।';
+
+  @override
+  String get toneDiag1vs2 =>
+      'आपने अपनी पिच बढ़ाई (दूसरा टोन /)। अपनी आवाज को पूरे शब्दांश में सपाट और ऊंचा रखें (पहला टोन ˉ)।';
+
+  @override
+  String get toneDiag1vs3 =>
+      'आपने अपनी आवाज नीचे की (तीसरा टोन ˇ)। अपनी पिच को बिना नीचे किए स्थिर और ऊंचा रखें (पहला टोन ˉ)।';
+
+  @override
+  String get toneDiag1vs4 =>
+      'आपने अपनी पिच गिराई (चौथा टोन \\)। एक नोट गाने की तरह एक उच्च, समतल पिच बनाए रखें (पहला टोन ˉ)।';
+
+  @override
+  String get toneDiag2vs1 =>
+      'आप सपाट रहे (पहला टोन ˉ)। अपनी पिच को ऊपर की ओर खिसकाएं जैसे \'क्या?\' पूछ रहे हों (दूसरा टोन /)।';
+
+  @override
+  String get toneDiag2vs3 =>
+      'आप बहुत गहरे नीचे गए (तीसरा टोन ˇ)। मध्य-स्तर से शुरू करें और बिना नीचे तक जाए सुचारू रूप से ऊपर उठें (दूसरा टोन /)।';
+
+  @override
+  String get toneDiag2vs4 =>
+      'आपने अपनी पिच गिराई (चौथा टोन \\)। एक प्रश्न पूछने की तरह ऊपर की ओर उठें (दूसरा टोन /)।';
+
+  @override
+  String get toneDiag3vs1 =>
+      'आप ऊंचे और सपाट रहे (पहला टोन ˉ)। ऊपर उठने से पहले अपनी पिच को अपनी छाती के रजिस्टर में नीचे गिरने दें (तीसरा टोन ˇ)।';
+
+  @override
+  String get toneDiag3vs2 =>
+      'आप तुरंत ऊपर उठे (दूसरा टोन /)। ऊपर उठने से पहले पहले नीचे तक झुकना सुनिश्चित करें (तीसरा टोन ˇ)।';
+
+  @override
+  String get toneDiag3vs4 =>
+      'आप बिना उठे तेजी से गिरे (चौथा टोन \\)। अंत में अपनी पिच को धीरे से ऊपर उछलने दें (तीसरा टोन ˇ)।';
+
+  @override
+  String get toneDiag4vs1 =>
+      'आप सपाट रहे (पहला टोन ˉ)। अपनी पिच को तेजी से और निर्णायक रूप से गिराएं जैसे एक दृढ़ \'नहीं!\' (चौथा टोन \\)।';
+
+  @override
+  String get toneDiag4vs2 =>
+      'आपने अपनी पिच बढ़ाई (दूसरा टोन /)। ऊंचा शुरू करें और तेजी से नीचे गिरें (चौथा टोन \\)।';
+
+  @override
+  String get toneDiag4vs3 =>
+      'आप नीचे झुके और ऊपर उठे (तीसरा टोन ˇ)। बिना ऊपर उठे सीधे नीचे गिरें (चौथा टोन \\)।';
+
+  @override
+  String get toneDiagListenDiff => 'अंतर सुनने के लिए नीचे दिए गए 4 टोन सुनें।';
 }

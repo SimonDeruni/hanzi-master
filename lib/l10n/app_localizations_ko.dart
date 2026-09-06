@@ -1664,11 +1664,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ancientPhilosophy => '고대 철학';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => '전국시대';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      '한비(기원전 약 280년~기원전 233년)는 한나라의 공자이자 중국 법가 사상을 대표하는 사상가였다. 법, 통치 기술, 권위의 개념을 모아 정리한 그의 저서 《한비자》는 중국 제국 시대의 정치 철학과 제도에 지대한 영향을 미쳤다.';
 
   @override
   String get articleSavedToMediaHub => '기사가 미디어 허브에 저장되었습니다!';
@@ -11805,7 +11805,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get videoLearningScreenshot => '영상 학습 스크린샷';
 
   @override
-  String get turnAnyBookIntoA => '모든 책을 레슨으로 활용하기';
+  String get turnAnyBookIntoA => '모든 책을 레슨과 오디오북으로 활용하기';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -11815,7 +11815,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get bookReaderScreenshot => '도서 리더 스크린샷';
 
   @override
-  String get speakWithTheRightRhythm => '올바른 리듬으로 말하기';
+  String get speakWithTheRightRhythm => 'AI 및 실시간 성조로 자유롭게 대화하기';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12040,7 +12040,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get failedToSaveExtractedWords2 => '추출된 단어 저장 실패: \$error';
 
   @override
-  String get youActualTargetExpected => '나: \$actual  ·  목표: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return '나: $actual  ·  목표: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => '로컬 음성 개선';
@@ -12191,4 +12193,260 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get roleplayCreatorPersonaPlaceholder => '예: 진로에 관해 묻는 호기심 많은 사촌...';
+
+  @override
+  String get beginFirstLesson => '첫 번째 수업 시작하기';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return '첫 번째 수업  •  $current / $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      '먼저 중국 문학에서 가장 널리 알려진 명구절을 들어보세요. 아직 암기할 필요는 없습니다.';
+
+  @override
+  String get onboardingFromGrandLibrary => '대서고에서';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => '손자병법 · 손자';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · 제3장';
+
+  @override
+  String get onboardingClassicLineLabel => '고전 명구';
+
+  @override
+  String get onboardingArtOfWarTranslation => '“적을 알고 나를 알면 백 번 싸워도 위태롭지 않다.”';
+
+  @override
+  String get onboardingNoticeMeaning => '적을 알고 나를 알면,';
+
+  @override
+  String get onboardingShadowMeaning => '백 번 싸워도 위태롭지 않다.';
+
+  @override
+  String get onboardingPracticeThisLabel => '연습할 구절';
+
+  @override
+  String get onboardingFromArtOfWarLabel => '손자병법 출전';
+
+  @override
+  String get onboardingYourPronunciationLabel => '나의 발음';
+
+  @override
+  String get onboardingTapACharacter => '한자를 탭하세요';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => '일치함';
+
+  @override
+  String get onboardingCompareTones => '성조 비교';
+
+  @override
+  String get onboardingToneOneHigh => '1성 · 높음';
+
+  @override
+  String get onboardingToneTwoRising => '2성 · 오름';
+
+  @override
+  String get onboardingToneThreeDipping => '3성 · 꺾임';
+
+  @override
+  String get onboardingToneFourFalling => '4성 · 내림';
+
+  @override
+  String get onboardingToneNotDetected => '감지되지 않음';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone => '3성의 꺾이는 성조를 훌륭하게 구현했습니다.';
+
+  @override
+  String get onboardingFeedbackFourthToneFall => '4성은 단호하고 빠르게 떨어뜨리듯 발음해 보세요.';
+
+  @override
+  String get onboardingFeedbackClearFourthTone => '명확하고 단호한 4성 발음입니다.';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone => '힘있고 명확한 4성 발음입니다.';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return '$character($pinyin, “$meaning”) 글자를 따라 써 보세요. 흐릿하게 표시된 획순 가이드를 따르시면 됩니다.';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count일',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count주',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count개월',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count년',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return '$period 무료 체험 시작';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return '$price / $period에 구독하기';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return '선택하신 상품에는 무료 체험 혜택이 포함되어 있습니다. 체험 기간이 끝나면 취소하지 않는 한 $period마다 $price로 자동 갱신됩니다.';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => '학습';
+
+  @override
+  String get booksAndStudioQualityAudiobooks => '도서 및 스튜디오 품질의 오디오북';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback => 'AI 대화 및 실시간 성조 피드백';
+
+  @override
+  String get interactiveVideoAndWebImmersion => '인터랙티브 동영상 및 웹 몰입 학습';
+
+  @override
+  String get characterInsightsAndHandwritingPractice => '글자 인사이트 및 손글씨 연습';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition => 'HSK 덱 및 스마트 간격 반복 학습';
+
+  @override
+  String get termsOfUseEula => '이용 약관 (EULA)';
+
+  @override
+  String get masterEveryStroke => '모든 획을 마스터하세요';
+
+  @override
+  String get exploreTheChineseWeb => '중국 웹을 탐색해보세요';
+
+  @override
+  String get tone1Description => '음표를 부르듯이 높고 안정적인 음조를 유지하세요.';
+
+  @override
+  String get tone2Description => '중간에서 시작하여 \'뭐라고요?\'라고 묻는 것처럼 음조를 위로 올리세요.';
+
+  @override
+  String get tone3Description => '목소리를 낮게 내렸다가 부드럽게 다시 올리세요.';
+
+  @override
+  String get tone4Description => '단호한 \'안 돼!\'처럼 음조를 날카롭고 단호하게 내리세요.';
+
+  @override
+  String get toneNeutralDescription => '부드럽고 짧게, 강조 없이 발음하세요.';
+
+  @override
+  String get toneDiagMatch1 => '정확해요! 음높이가 높고 평탄하며 안정적이었어요.';
+
+  @override
+  String get toneDiagMatch2 => '정확해요! 음높이 상승이 명확했어요.';
+
+  @override
+  String get toneDiagMatch3 => '정확해요! 낮은 하강 곡선이 정확했어요.';
+
+  @override
+  String get toneDiagMatch4 => '정확해요! 날카로운 하강이 단호했어요.';
+
+  @override
+  String get toneDiagMatchDefault => '정확해요! 성조가 정확하게 발음되었어요.';
+
+  @override
+  String get toneDiag1vs2 =>
+      '음높이가 올라갔어요 (2성 /). 음절 전체에서 목소리를 평탄하고 높게 유지하세요 (1성 ˉ).';
+
+  @override
+  String get toneDiag1vs3 =>
+      '목소리가 내려갔어요 (3성 ˇ). 음높이를 내리지 않고 안정적이고 높게 유지하세요 (1성 ˉ).';
+
+  @override
+  String get toneDiag1vs4 =>
+      '음높이가 내려갔어요 (4성 \\). 음을 노래하듯이 높고 평탄한 음높이를 유지하세요 (1성 ˉ).';
+
+  @override
+  String get toneDiag2vs1 =>
+      '평탄하게 유지했어요 (1성 ˉ). \'뭐라고?\' 묻듯이 음높이를 위로 미끄러뜨리세요 (2성 /).';
+
+  @override
+  String get toneDiag2vs3 =>
+      '너무 깊게 내려갔어요 (3성 ˇ). 중간 높이에서 시작하여 바닥을 치지 않고 부드럽게 올리세요 (2성 /).';
+
+  @override
+  String get toneDiag2vs4 => '음높이가 내려갔어요 (4성 \\). 질문하듯이 위로 올리세요 (2성 /).';
+
+  @override
+  String get toneDiag3vs1 =>
+      '높고 평탄하게 유지했어요 (1성 ˉ). 올라가기 전에 음높이를 가슴 소리까지 낮게 떨어뜨리세요 (3성 ˇ).';
+
+  @override
+  String get toneDiag3vs2 =>
+      '즉시 올라갔어요 (2성 /). 다시 올라가기 전에 먼저 낮게 내려가는지 확인하세요 (3성 ˇ).';
+
+  @override
+  String get toneDiag3vs4 =>
+      '올라가지 않고 급격히 내려갔어요 (4성 \\). 마지막에 음높이가 부드럽게 다시 튀어 오르도록 하세요 (3성 ˇ).';
+
+  @override
+  String get toneDiag4vs1 =>
+      '평탄하게 유지했어요 (1성 ˉ). 단호한 \'안 돼!\'처럼 음높이를 날카롭고 단호하게 내리세요 (4성 \\).';
+
+  @override
+  String get toneDiag4vs2 =>
+      '음높이가 올라갔어요 (2성 /). 높게 시작하여 날카롭게 아래로 내리세요 (4성 \\).';
+
+  @override
+  String get toneDiag4vs3 =>
+      '내려갔다가 올라갔어요 (3성 ˇ). 다시 올라가지 않고 곧바로 아래로 내리세요 (4성 \\).';
+
+  @override
+  String get toneDiagListenDiff => '아래 4가지 성조를 듣고 차이점을 확인하세요.';
 }

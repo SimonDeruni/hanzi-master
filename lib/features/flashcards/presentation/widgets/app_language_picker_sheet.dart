@@ -14,7 +14,6 @@ class AppLanguageOption {
 
 const appLanguageOptions = <AppLanguageOption>[
   AppLanguageOption(code: 'en', name: 'English', symbol: 'EN'),
-  AppLanguageOption(code: 'ar', name: 'العربية', symbol: 'ع'),
   AppLanguageOption(code: 'de', name: 'Deutsch', symbol: 'DE'),
   AppLanguageOption(code: 'es', name: 'Español', symbol: 'ES'),
   AppLanguageOption(code: 'fr', name: 'Français', symbol: 'FR'),

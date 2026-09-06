@@ -9,26 +9,28 @@ class DeckRepositoryImpl implements DeckRepository {
   final Box<DeckModel> _deckBox;
   final Uuid _uuid = const Uuid();
 
-  DeckRepositoryImpl(this._deckBox) {
-    _ensureDefaultDeck();
-  }
+  Box<DeckModel> get _box =>
+      _deckBox.isOpen ? _deckBox : Hive.box<DeckModel>('decks');
 
-  void _ensureDefaultDeck() {
-    if (!_deckBox.containsKey('default')) {
+  DeckRepositoryImpl(this._deckBox);
+
+  Future<void> _ensureDefaultDeck() async {
+    if (!_box.containsKey('default')) {
       final defaultDeck = DeckModel(
         id: 'default',
         name: 'The Main Library',
         description: 'Your primary collection of characters.',
         createdAt: DateTime.now(),
       );
-      _deckBox.put('default', defaultDeck);
+      await _box.put('default', defaultDeck);
     }
   }
 
   @override
   Future<Either<String, List<Deck>>> getDecks() async {
     try {
-      final decks = _deckBox.values.map((model) => model.toDomain()).toList();
+      await _ensureDefaultDeck();
+      final decks = _box.values.map((model) => model.toDomain()).toList();
       // Sort so 'default' is always first, then by creation date
       decks.sort((a, b) {
         if (a.id == 'default') return -1;
@@ -44,7 +46,8 @@ class DeckRepositoryImpl implements DeckRepository {
   @override
   Future<Either<String, Deck>> getDeckById(String id) async {
     try {
-      final model = _deckBox.get(id);
+      if (id == 'default') await _ensureDefaultDeck();
+      final model = _box.get(id);
       if (model != null) {
         return Right(model.toDomain());
       }
@@ -55,7 +58,8 @@ class DeckRepositoryImpl implements DeckRepository {
   }
 
   @override
-  Future<Either<String, Deck>> createDeck(String name, {String description = ''}) async {
+  Future<Either<String, Deck>> createDeck(String name,
+      {String description = ''}) async {
     try {
       final id = _uuid.v4();
       final deck = DeckModel(
@@ -64,7 +68,7 @@ class DeckRepositoryImpl implements DeckRepository {
         description: description,
         createdAt: DateTime.now(),
       );
-      await _deckBox.put(id, deck);
+      await _box.put(id, deck);
       return Right(deck.toDomain());
     } catch (e) {
       return Left('Failed to create deck: $e');
@@ -74,11 +78,11 @@ class DeckRepositoryImpl implements DeckRepository {
   @override
   Future<Either<String, Deck>> updateDeck(Deck deck) async {
     try {
-      if (!_deckBox.containsKey(deck.id)) {
+      if (!_box.containsKey(deck.id)) {
         return const Left('Deck not found');
       }
       final model = DeckModel.fromDomain(deck);
-      await _deckBox.put(deck.id, model);
+      await _box.put(deck.id, model);
       return Right(deck);
     } catch (e) {
       return Left('Failed to update deck: $e');
@@ -91,7 +95,7 @@ class DeckRepositoryImpl implements DeckRepository {
       if (id == 'default') {
         return const Left('Cannot delete the default deck');
       }
-      await _deckBox.delete(id);
+      await _box.delete(id);
       return const Right(null);
     } catch (e) {
       return Left('Failed to delete deck: $e');
@@ -104,7 +108,7 @@ class DeckRepositoryImpl implements DeckRepository {
       return Left('Invalid HSK level: $level');
     }
     final id = 'hsk$level';
-    final existing = _deckBox.get(id);
+    final existing = _box.get(id);
     if (existing != null) {
       return Right(existing.toDomain());
     }
@@ -130,7 +134,7 @@ class DeckRepositoryImpl implements DeckRepository {
       description: descs[level - 1],
       createdAt: DateTime.now(),
     );
-    await _deckBox.put(id, deck);
+    await _box.put(id, deck);
     return Right(deck.toDomain());
   }
 }

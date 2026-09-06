@@ -10,6 +10,7 @@ import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
+import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
@@ -180,6 +181,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }
 
   Future<bool> _showReminderProtectionDialog() async {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final dialogBg = isDark ? const Color(0xFF222223) : const Color(0xFFFDFCF0);
     final textColor =
@@ -212,7 +214,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    "Trial Reminder",
+                    l10n.trialReminder,
                     style: TextStyle(
                       color: textColor,
                       fontSize: 18,
@@ -224,7 +226,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               ],
             ),
             content: Text(
-              "Turn on notifications if you would like a reminder before your eligible trial expires. Your App Store subscription settings remain the source of truth.",
+              l10n.turnOnNotificationsIfYou,
               style: TextStyle(
                 color: textColor.withValues(alpha: 0.75),
                 fontSize: 14,
@@ -237,7 +239,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               TextButton(
                 onPressed: () => Navigator.of(ctx).pop(true),
                 child: Text(
-                  "Continue without reminder",
+                  l10n.continueWithoutReminder,
                   style: TextStyle(
                       color: textColor.withValues(alpha: 0.5), fontSize: 13),
                 ),
@@ -307,7 +309,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     }
   }
 
-  String _mockSelectedPackage = 'Yearly';
+  bool _mockIsAnnual = true;
 
   bool get _selectedHasEligibleTrial {
     if (_usingTestOfferings || _selectedPackage == null) return false;
@@ -321,61 +323,66 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }
 
   String _periodLabel(Package package) {
+    final l10n = AppLocalizations.of(context)!;
     final period = package.storeProduct.subscriptionPeriod;
     if (period != null) {
       final match = RegExp(r'^P(\d+)([DWMY])$').firstMatch(period);
       if (match != null) {
         final count = int.parse(match.group(1)!);
-        final unit = switch (match.group(2)) {
-          'D' => 'day',
-          'W' => 'week',
-          'M' => 'month',
-          'Y' => 'year',
-          _ => 'period',
+        return switch (match.group(2)) {
+          'D' => l10n.billingDays(count),
+          'W' => l10n.billingWeeks(count),
+          'M' => l10n.billingMonths(count),
+          'Y' => l10n.billingYears(count),
+          _ => l10n.billingPeriod,
         };
-        return count == 1 ? unit : '$count ${unit}s';
       }
     }
     return switch (package.packageType) {
-      PackageType.weekly => 'week',
-      PackageType.monthly => 'month',
-      PackageType.twoMonth => '2 months',
-      PackageType.threeMonth => '3 months',
-      PackageType.sixMonth => '6 months',
-      PackageType.annual => 'year',
-      _ => 'billing period',
+      PackageType.weekly => l10n.billingWeeks(1),
+      PackageType.monthly => l10n.billingMonths(1),
+      PackageType.twoMonth => l10n.billingMonths(2),
+      PackageType.threeMonth => l10n.billingMonths(3),
+      PackageType.sixMonth => l10n.billingMonths(6),
+      PackageType.annual => l10n.billingYears(1),
+      _ => l10n.billingPeriod,
     };
   }
 
   String get _purchaseButtonLabel {
+    final l10n = AppLocalizations.of(context)!;
     final package = _selectedPackage;
-    if (package == null) return 'Choose a subscription';
+    if (package == null) return l10n.chooseASubscription;
     if (_selectedHasEligibleTrial) {
       final period = package.storeProduct.introductoryPrice?.period ??
           package.storeProduct.defaultOption?.freePhase?.billingPeriod?.iso8601;
       return period == null
-          ? 'Start free trial'
-          : 'Start ${_humanizeIsoPeriod(period)} free trial';
+          ? l10n.startFreeTrial
+          : l10n.startPeriodFreeTrial(_humanizeIsoPeriod(period));
     }
-    return 'Subscribe for ${package.storeProduct.priceString} / ${_periodLabel(package)}';
+    return l10n.subscribeForPricePeriod(
+      package.storeProduct.priceString,
+      _periodLabel(package),
+    );
   }
 
   String _humanizeIsoPeriod(String period) {
+    final l10n = AppLocalizations.of(context)!;
     final match = RegExp(r'^P(\d+)([DWMY])$').firstMatch(period);
     if (match == null) return period;
     final count = int.parse(match.group(1)!);
-    final unit = switch (match.group(2)) {
-      'D' => 'day',
-      'W' => 'week',
-      'M' => 'month',
-      'Y' => 'year',
-      _ => 'period',
+    return switch (match.group(2)) {
+      'D' => l10n.billingDays(count),
+      'W' => l10n.billingWeeks(count),
+      'M' => l10n.billingMonths(count),
+      'Y' => l10n.billingYears(count),
+      _ => l10n.billingPeriod,
     };
-    return '$count $unit${count == 1 ? '' : 's'}';
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark
         ? OnboardingDesign.backgroundDark
@@ -422,7 +429,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                               if (_offeringsError != null) ...[
                                 const SizedBox(height: 16),
                                 Text(
-                                  _offeringsError!,
+                                  AppLocalizations.of(context)!
+                                      .subscriptionsAreTemporarilyUnavailablePl,
                                   key: const Key('paywall_offerings_error'),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -431,14 +439,16 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                                 ),
                                 TextButton(
                                   onPressed: _fetchOfferings,
-                                  child: const Text('Retry'),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.retry,
+                                  ),
                                 ),
                                 OutlinedButton(
                                   key: const Key(
                                       'paywall_temporary_premium_button'),
                                   onPressed: _continueWithTemporaryPremium,
-                                  child: const Text(
-                                      'Continue with temporary Premium'),
+                                  child: Text(AppLocalizations.of(context)!
+                                      .continueWithTemporaryPremium),
                                 ),
                               ],
                               if (_offeringsError == null) ...[
@@ -446,85 +456,78 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                                 _buildExploreHeading(textColor),
                                 const SizedBox(height: 24),
                                 _buildFeatureStory(
-                                  category: 'READ',
-                                  title:
-                                      'Turn any book into a lesson & audiobook',
+                                  category: l10n.read,
+                                  title: l10n.turnAnyBookIntoA,
                                   description:
-                                      'Read naturally with instant definitions and pinyin, or listen along with human-like studio audiobooks.',
+                                      l10n.readNaturallyWithPronunciationDefinition,
                                   icon: Icons.auto_stories_outlined,
                                   imageAsset:
                                       'assets/images/paywall/paywall_read.png',
-                                  placeholderLabel: 'Book reader and audiobook',
+                                  placeholderLabel: l10n.bookReaderScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 0,
                                 ),
                                 _buildFeatureStory(
-                                  category: 'SPEAK',
-                                  title: 'Speak freely with AI & live tones',
-                                  description:
-                                      'Engage in real-time spoken conversations with instant feedback on pronunciation and tone accuracy.',
+                                  category: l10n.shadow,
+                                  title: l10n.speakWithTheRightRhythm,
+                                  description: l10n.shadowNativeAudioAndVisualize,
                                   icon: Icons.graphic_eq,
                                   imageAsset:
                                       'assets/images/paywall/paywall_speak.png',
                                   placeholderLabel:
-                                      'AI voice roleplay and tones',
+                                      l10n.shadowingAndTonesScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 1,
                                 ),
                                 _buildFeatureStory(
-                                  category: 'EXPLORE',
-                                  title: 'Understand every character',
+                                  category: l10n.explore,
+                                  title: l10n.understandEveryCharacter,
                                   description:
-                                      'Explore meaning, pronunciation, components, stroke order, and useful vocabulary in one place.',
+                                      l10n.exploreMeaningPronunciationComponentsStr,
                                   icon: Icons.search,
                                   imageAsset:
                                       'assets/images/paywall/paywall_explore.png',
                                   placeholderLabel:
-                                      'Character dictionary and anatomy',
+                                      l10n.characterDictionaryScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 2,
                                 ),
                                 _buildFeatureStory(
-                                  category: 'WATCH',
-                                  title: 'Learn through real videos',
-                                  description:
-                                      'Follow interactive subtitles, look up words instantly, and turn every video into a lesson.',
+                                  category: l10n.learn,
+                                  title: l10n.learnThroughRealVideos,
+                                  description: l10n.followInteractiveSubtitlesLookUp,
                                   icon: Icons.play_circle_outline,
                                   imageAsset:
                                       'assets/images/paywall/paywall_watch.png',
-                                  placeholderLabel:
-                                      'Video learning and subtitles',
+                                  placeholderLabel: l10n.videoLearningScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 3,
                                 ),
                                 _buildFeatureStory(
-                                  category: 'WRITE',
-                                  title: 'Master every stroke',
-                                  description:
-                                      'Practice characters with guided stroke order and instant handwriting feedback.',
+                                  category: l10n.write,
+                                  title: l10n.masterEveryStroke,
+                                  description: l10n.dynamicDecksStrokeAnalysis,
                                   icon: Icons.gesture,
                                   imageAsset:
                                       'assets/images/paywall/paywall_write.png',
                                   placeholderLabel:
-                                      'Handwriting practice and guide',
+                                      l10n.guidedHandwritingPractice,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 4,
                                 ),
                                 _buildFeatureStory(
-                                  category: 'WEB',
-                                  title: 'Explore the Chinese web',
-                                  description:
-                                      'Browse Chinese websites with instant word lookups, translation, and tools that turn any article into a lesson.',
+                                  category: l10n.web,
+                                  title: l10n.exploreTheChineseWeb,
+                                  description: l10n.theWebExplorerAllowsYou,
                                   icon: Icons.language,
                                   imageAsset:
                                       'assets/images/paywall/paywall_web.png',
-                                  placeholderLabel:
-                                      'Web explorer and live lookup',
+                                  placeholderLabel: l10n.webExplorer,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 5,
@@ -539,7 +542,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                   right: 8,
                   child: IconButton(
                     key: const Key('paywall_close_button'),
-                    tooltip: 'Close purchase offer',
+                    tooltip: l10n.closePurchaseOffer,
                     onPressed: _isPurchasing ? null : _closePaywall,
                     icon: const Icon(Icons.close),
                     color: textColor,
@@ -578,9 +581,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           child: Image.asset('assets/images/mascot.png', fit: BoxFit.contain),
         ),
         const SizedBox(height: 10),
-        const Text(
-          'SinoSpark Premium',
-          style: TextStyle(
+        Text(
+          AppLocalizations.of(context)!.sinospark_premium,
+          style: const TextStyle(
             color: Color(0xFF8B2E2E),
             fontSize: 11,
             fontWeight: FontWeight.bold,
@@ -589,7 +592,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         ),
         const SizedBox(height: 8),
         Text(
-          'Learn Chinese without limits',
+          AppLocalizations.of(context)!.learnChineseWithoutLimits,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor,
@@ -601,7 +604,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         ),
         const SizedBox(height: 10),
         Text(
-          'Watch, read, speak, and understand Chinese with one complete learning companion.',
+          AppLocalizations.of(context)!.watchReadSpeakAndUnderstand,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor.withValues(alpha: 0.65),
@@ -662,7 +665,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     return Column(
       children: [
         Text(
-          'See what Premium unlocks',
+          AppLocalizations.of(context)!.seeWhatPremiumUnlocks,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor,
@@ -673,7 +676,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         ),
         const SizedBox(height: 8),
         Text(
-          'Scroll to explore the complete learning experience',
+          AppLocalizations.of(context)!.scrollToExploreTheComplete,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor.withValues(alpha: 0.55),
@@ -776,30 +779,36 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              imageAsset,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-              errorBuilder: (context, error, stackTrace) {
-                final previewColor = index.isEven
-                    ? const Color(0xFF8B2E2E)
-                    : const Color(0xFF4C6673);
-                return DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        previewColor.withValues(alpha: isDark ? 0.30 : 0.13),
-                        surface,
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                    child: Icon(icon, color: accentColor, size: 48),
-                  ),
-                );
-              },
+            Padding(
+              key: ValueKey('paywall_screenshot_inset_$index'),
+              padding: const EdgeInsets.all(10),
+              child: LtrSanctuary(
+                child: Image.asset(
+                  imageAsset,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.center,
+                  errorBuilder: (context, error, stackTrace) {
+                    final previewColor = index.isEven
+                        ? const Color(0xFF8B2E2E)
+                        : const Color(0xFF4C6673);
+                    return DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            previewColor.withValues(alpha: isDark ? 0.30 : 0.13),
+                            surface,
+                          ],
+                        ),
+                      ),
+                      child: Center(
+                        child: Icon(icon, color: accentColor, size: 48),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
             Positioned(
               top: 0,
@@ -826,14 +835,15 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }
 
   Widget _buildEverythingIncluded(Color textColor, Color accentColor) {
-    const features = [
-      (Icons.auto_stories_outlined, 'Books and studio-quality audiobooks'),
-      (Icons.graphic_eq, 'AI conversations and live tone feedback'),
-      (Icons.play_circle_outline, 'Interactive video and web immersion'),
-      (Icons.gesture, 'Character insights and handwriting practice'),
-      (Icons.school_outlined, 'HSK decks and smart spaced repetition'),
-      (Icons.insights_outlined, 'Progress and streak tracking'),
-      (Icons.document_scanner_outlined, 'Scanner and live translation'),
+    final l10n = AppLocalizations.of(context)!;
+    final features = [
+      (Icons.auto_stories_outlined, l10n.booksAndStudioQualityAudiobooks),
+      (Icons.graphic_eq, l10n.aiConversationsAndLiveToneFeedback),
+      (Icons.play_circle_outline, l10n.interactiveVideoAndWebImmersion),
+      (Icons.gesture, l10n.characterInsightsAndHandwritingPractice),
+      (Icons.school_outlined, l10n.hskDecksAndSmartSpacedRepetition),
+      (Icons.insights_outlined, l10n.progressAndStreakTracking),
+      (Icons.document_scanner_outlined, l10n.scannerAndLiveTranslation),
     ];
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -848,7 +858,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Everything included',
+            l10n.everythingIncluded,
             style: TextStyle(
               color: textColor,
               fontFamily: 'Serif',
@@ -901,7 +911,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           key: const Key('paywall_restore_button'),
           onPressed: _restorePurchases,
           child: Text(
-            AppLocalizations.of(context)!.restore,
+            AppLocalizations.of(context)!.restorePurchases,
             style: TextStyle(
               color: textColor.withValues(alpha: 0.62),
               fontSize: 12,
@@ -913,7 +923,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           key: const Key('paywall_terms_button'),
           onPressed: () => _launchURL('https://sinospark.app/terms.html'),
           child: Text(
-            'Terms of Use (EULA)',
+            AppLocalizations.of(context)!.termsOfUseEula,
             style: TextStyle(
               color: textColor.withValues(alpha: 0.62),
               fontSize: 12,
@@ -925,7 +935,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           key: const Key('paywall_privacy_button'),
           onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
           child: Text(
-            'Privacy Policy',
+            AppLocalizations.of(context)!.privacyPolicy,
             style: TextStyle(
               color: textColor.withValues(alpha: 0.62),
               fontSize: 12,
@@ -992,7 +1002,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                       ? CircularProgressIndicator(color: btnTextColor)
                       : Text(
                           _usingTestOfferings
-                              ? 'Test product unavailable'
+                              ? AppLocalizations.of(context)!.testProductUnavailable
                               : _purchaseButtonLabel,
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -1007,7 +1017,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           ),
           const SizedBox(height: 7),
           Text(
-            'Payment is charged to your App Store account. Subscriptions renew automatically unless canceled at least 24 hours before the end of the current period.',
+            AppLocalizations.of(context)!.paymentIsChargedToYour2,
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
@@ -1037,9 +1047,10 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Your selected StoreKit product includes an eligible free trial. '
-              'After the trial, it renews for ${_selectedPackage!.storeProduct.priceString} '
-              'per ${_periodLabel(_selectedPackage!)} unless canceled.',
+              AppLocalizations.of(context)!.eligibleTrialRenewalNotice(
+                    _selectedPackage!.storeProduct.priceString,
+                    _periodLabel(_selectedPackage!),
+                  ),
               style: TextStyle(color: textColor, height: 1.3),
             ),
           ),
@@ -1050,11 +1061,15 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
   Widget _buildMockPackageCard(String title, String price, bool isAnnual,
       Color textColor, Color accentColor) {
-    final isSelected = _mockSelectedPackage == title;
-    return _buildPackageCardUI(title, price, isAnnual ? 'year' : 'month',
+    final isSelected = _mockIsAnnual == isAnnual;
+    final l10n = AppLocalizations.of(context)!;
+    return _buildPackageCardUI(
+        title,
+        price,
+        isAnnual ? l10n.billingYears(1) : l10n.billingMonths(1),
         isAnnual, isSelected, textColor, accentColor, () {
       HapticFeedback.selectionClick();
-      setState(() => _mockSelectedPackage = title);
+      setState(() => _mockIsAnnual = isAnnual);
     });
   }
 
@@ -1149,7 +1164,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             ),
             const SizedBox(height: 6),
             Text(
-              "$price / $period",
+              AppLocalizations.of(context)!.pricePerPeriod(price, period),
               style: TextStyle(
                 color: textColor,
                 fontSize: 18,

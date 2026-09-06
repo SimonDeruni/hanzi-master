@@ -72,6 +72,18 @@ class DeckSelectionSheet extends ConsumerWidget {
                             if (newDeck != null && context.mounted) {
                               _addCardsToDeck(context, ref, newDeck.id,
                                   newDeck.localizedName(context));
+                            } else if (context.mounted) {
+                              final error = ref
+                                  .read(deckControllerProvider)
+                                  .error
+                                  ?.toString();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(error ??
+                                      AppLocalizations.of(context)!
+                                          .failedToCreateDeck),
+                                ),
+                              );
                             }
                           }
                         },

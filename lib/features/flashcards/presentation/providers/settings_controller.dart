@@ -1,5 +1,7 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/core/localization/app_locale_policy.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 
 // 1. THE STATE CLASS (What we remember)
@@ -94,7 +96,9 @@ class SettingsController extends StateNotifier<SettingsState> {
           isHardMode: prefs.getBool(_keyHardMode) ?? false,
           autoPlayAudio: prefs.getBool(_keyAutoPlay) ?? false,
           strictGrading: prefs.getBool(_keyStrictGrading) ?? false,
-          locale: prefs.getString(_keyLocale) ?? 'en',
+          locale: resolvePreferredAppLocale([
+            Locale(prefs.getString(_keyLocale) ?? fallbackAppLocaleCode),
+          ]),
           showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
           enableHaptics: prefs.getBool(_keyHaptics) ?? true,
           useEnglishDefinitions:

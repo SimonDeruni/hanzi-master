@@ -88,15 +88,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       await prefs.setInt('user_drive', _selectedDrive);
       final minutes = _selectedRitual == 0
           ? 5
-          : (_selectedRitual == 1
-              ? 10
-              : (_selectedRitual == 2 ? 20 : 30));
+          : (_selectedRitual == 1 ? 10 : (_selectedRitual == 2 ? 20 : 30));
       await prefs.setInt('daily_ritual_minutes', minutes);
       final targetHsk = _selectedMastery == 0
           ? 1
-          : (_selectedMastery == 1
-              ? 2
-              : (_selectedMastery == 2 ? 3 : 5));
+          : (_selectedMastery == 1 ? 2 : (_selectedMastery == 2 ? 3 : 5));
       await prefs.setInt('target_hsk_level', targetHsk);
     } catch (e) {
       debugPrint('Failed to persist onboarding choices: $e');
@@ -209,6 +205,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildWelcomePage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
       child: Column(
@@ -221,7 +218,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ).animate().scale(duration: 400.ms).fadeIn(),
           const SizedBox(height: 36),
           Text(
-            "Your Path to\nChinese Fluency",
+            l10n.yourPathTonchineseFluency,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -232,7 +229,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ).animate().fadeIn(delay: 300.ms).slideY(),
           const SizedBox(height: 24),
           Text(
-            "Answer 3 quick questions so our AI can craft\na curriculum that fits your life.",
+            l10n.answer3QuickQuestionsSoOurAiCanCraf,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: isDark ? Colors.white54 : Colors.black54,
@@ -241,7 +238,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
           ).animate().fadeIn(delay: 600.ms),
           const Spacer(),
-          _buildPrimaryButton("Let's Begin", _nextPage),
+          _buildPrimaryButton(l10n.letsBegin, _nextPage),
         ],
       ),
     );
@@ -249,25 +246,26 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildMasteryPage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final options = [
       {
-        "title": "Brand New",
-        "subtitle": "I've never studied Chinese before.",
+        "title": l10n.brandNew,
+        "subtitle": l10n.iveNeverStudiedChineseBefore,
         "icon": Icons.child_care_outlined
       },
       {
-        "title": "Elementary",
-        "subtitle": "I know basic characters and phrases.",
+        "title": l10n.elementary,
+        "subtitle": l10n.iKnowBasicCharactersAndPhrases,
         "icon": Icons.auto_stories_outlined
       },
       {
-        "title": "Intermediate",
-        "subtitle": "I can hold conversations and read.",
+        "title": l10n.intermediate,
+        "subtitle": l10n.iCanHoldConversationsAndRead,
         "icon": Icons.school_outlined
       },
       {
-        "title": "Advanced",
-        "subtitle": "I want to refine and perfect my skills.",
+        "title": l10n.advanced,
+        "subtitle": l10n.iWantToRefineAndPerfectMySkills,
         "icon": Icons.psychology_outlined
       },
     ];
@@ -278,7 +276,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "What is your level\nwith Chinese?",
+            l10n.whatIsYourLevelnwithChinese,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
@@ -288,7 +286,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ).animate().fadeIn().slideY(),
           const SizedBox(height: 8),
           Text(
-            "Choose the path that fits your depth.",
+            l10n.chooseThePathThatFitsYourDepth,
             style: TextStyle(
                 color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
           ).animate().fadeIn(delay: 200.ms),
@@ -317,7 +315,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
           ),
           _buildPrimaryButton(
-            "Confirm Selection",
+            l10n.confirmSelection,
             _selectedMastery != -1 ? _nextPage : null,
           ),
           const SizedBox(height: 12),
@@ -328,11 +326,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildDrivePage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final options = [
-      {"title": "Business &\nCareer", "icon": Icons.work_outline},
-      {"title": "Travel &\nSurvival", "icon": Icons.location_on_outlined},
-      {"title": "HSK\nCertification", "icon": Icons.workspace_premium_outlined},
-      {"title": "Cultural\nAppreciation", "icon": Icons.palette_outlined},
+      {"title": l10n.onboardingBusinessCareerMulti, "icon": Icons.work_outline},
+      {
+        "title": l10n.onboardingTravelSurvivalMulti,
+        "icon": Icons.location_on_outlined
+      },
+      {
+        "title": l10n.onboardingHskCertificationMulti,
+        "icon": Icons.workspace_premium_outlined
+      },
+      {
+        "title": l10n.onboardingCulturalAppreciationMulti,
+        "icon": Icons.palette_outlined
+      },
     ];
 
     return Padding(
@@ -341,7 +349,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "What drives your study?",
+            l10n.whatDrivesYourStudy,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
@@ -351,7 +359,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ).animate().fadeIn().slideY(),
           const SizedBox(height: 8),
           Text(
-            "Purpose fuels the brush's motion.",
+            l10n.purposeFuelsTheBrushsMotion,
             style: TextStyle(
                 color: isDark ? Colors.white54 : Colors.black54, fontSize: 16),
           ).animate().fadeIn(delay: 200.ms),
@@ -384,7 +392,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
           ),
           _buildPrimaryButton(
-            "Next",
+            l10n.next,
             _selectedDrive != -1 ? _nextPage : null,
           ),
           const SizedBox(height: 12),
@@ -395,11 +403,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildRitualPage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final options = [
-      {"title": "05", "subtitle": "Minutes / Day"},
-      {"title": "10", "subtitle": "Minutes / Day"},
-      {"title": "20", "subtitle": "Minutes / Day"},
-      {"title": "30", "subtitle": "Minutes / Day"},
+      {"title": "05", "subtitle": l10n.minutesDay},
+      {"title": "10", "subtitle": l10n.minutesDay},
+      {"title": "20", "subtitle": l10n.minutesDay},
+      {"title": "30", "subtitle": l10n.minutesDay},
     ];
 
     return Padding(
@@ -408,7 +417,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Set your daily ritual.",
+            l10n.setYourDailyRitual,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
@@ -418,7 +427,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ).animate().fadeIn().slideY(),
           const SizedBox(height: 8),
           Text(
-            "\"Consistency is the ink that builds the character.\"",
+            l10n.consistencyIsTheInkThat,
             style: TextStyle(
                 color: isDark ? Colors.white54 : Colors.black54,
                 fontSize: 16,
@@ -452,14 +461,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               Icon(Icons.hourglass_empty, color: Colors.red[700]),
               const SizedBox(height: 8),
               Text(
-                "You can adjust your ritual any time.",
+                l10n.youCanAdjustYourRitualAnyTime,
                 style: TextStyle(
                     color: isDark ? Colors.white38 : Colors.black38,
                     fontSize: 12),
               ),
               const SizedBox(height: 16),
               _buildPrimaryButton(
-                "Build My Path",
+                l10n.buildMyPath,
                 _selectedRitual != -1 ? _nextPage : null,
               ),
             ],
@@ -472,21 +481,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildCalibrationPage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
-    String masteryText = "Brand New";
-    if (_selectedMastery == 1) masteryText = "Elementary";
-    if (_selectedMastery == 2) masteryText = "Intermediate";
-    if (_selectedMastery == 3) masteryText = "Advanced";
+    String masteryText = l10n.brandNew;
+    if (_selectedMastery == 1) masteryText = l10n.elementary;
+    if (_selectedMastery == 2) masteryText = l10n.intermediate;
+    if (_selectedMastery == 3) masteryText = l10n.advanced;
 
-    String driveText = "Business & Career";
-    if (_selectedDrive == 1) driveText = "Travel & Survival";
-    if (_selectedDrive == 2) driveText = "HSK Certification";
-    if (_selectedDrive == 3) driveText = "Cultural Appreciation";
+    String driveText = l10n.businessCareer;
+    if (_selectedDrive == 1) driveText = l10n.travelSurvival;
+    if (_selectedDrive == 2) driveText = l10n.hskCertification;
+    if (_selectedDrive == 3) driveText = l10n.culturalAppreciation;
 
-    String ritualText = "05 Min / Day";
-    if (_selectedRitual == 1) ritualText = "10 Min / Day";
-    if (_selectedRitual == 2) ritualText = "20 Min / Day";
-    if (_selectedRitual == 3) ritualText = "30 Min / Day";
+    String ritualText = l10n.label05MinDay;
+    if (_selectedRitual == 1) ritualText = l10n.label10MinDay;
+    if (_selectedRitual == 2) ritualText = l10n.label20MinDay;
+    if (_selectedRitual == 3) ritualText = l10n.label30MinDay;
 
     final percentInt = (_calibrationProgress * 100).toInt();
 
@@ -497,8 +507,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         children: [
           Text(
             _calibrationComplete
-                ? "Your Plan is Ready"
-                : "Crafting Your Curriculum",
+                ? l10n.yourPlanIsReady
+                : l10n.craftingYourCurriculum,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -513,8 +523,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
           Text(
             _calibrationComplete
-                ? "PERSONALIZED PATH INITIALIZED"
-                : "CALIBRATING AI NEURAL MASTERS...",
+                ? l10n.personalizedPathInitialized
+                : l10n.calibratingAiNeuralMasters,
             style: TextStyle(
               color: isDark ? Colors.white54 : Colors.black54,
               fontSize: 11,
@@ -550,8 +560,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   children: [
                     Text(
                       _calibrationComplete
-                          ? "Calibration Complete"
-                          : "Synthesizing Modules...",
+                          ? l10n.calibrationComplete
+                          : l10n.synthesizingModules,
                       style: TextStyle(
                         color: isDark ? Colors.white70 : Colors.black87,
                         fontSize: 13,
@@ -591,8 +601,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               children: [
                 _buildCalibrationStep(
                   icon: Icons.person_outline,
-                  title: AppLocalizations.of(context)?.masteryLevel ??
-                      "Mastery Level",
+                  title: l10n.masteryLevel,
                   value: masteryText,
                   isDone: _calibrationProgress >= 0.35,
                   isDark: isDark,
@@ -600,8 +609,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.flag_outlined,
-                  title: AppLocalizations.of(context)?.targetObjective ??
-                      "Target Objective",
+                  title: l10n.targetObjective,
                   value: driveText,
                   isDone: _calibrationProgress >= 0.70,
                   isDark: isDark,
@@ -609,8 +617,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.access_time,
-                  title: AppLocalizations.of(context)?.dailyPractice ??
-                      "Daily Practice",
+                  title: l10n.dailyPractice,
                   value: ritualText,
                   isDone: _calibrationProgress >= 0.99,
                   isDark: isDark,
@@ -618,9 +625,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 10),
                 _buildCalibrationStep(
                   icon: Icons.auto_awesome,
-                  title: AppLocalizations.of(context)?.aiSpacedRepetition ??
-                      "AI Spaced Repetition",
-                  value: "Dynamic Decks & Stroke Analysis",
+                  title: l10n.aiSpacedRepetition,
+                  value: l10n.dynamicDecksStrokeAnalysis,
                   isDone: _calibrationComplete,
                   isDark: isDark,
                 ),
@@ -630,7 +636,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           const SizedBox(height: 16),
           if (_calibrationComplete)
             _buildPrimaryButton(
-              "Begin First Lesson",
+              l10n.beginFirstLesson,
               _launchMiniLesson,
             ).animate().fadeIn(duration: 300.ms),
           const SizedBox(height: 12),

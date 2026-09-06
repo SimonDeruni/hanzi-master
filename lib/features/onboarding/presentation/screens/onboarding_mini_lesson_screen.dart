@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
@@ -19,6 +20,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
 /// not write lesson progress, SRS data, streaks, or book progress.
@@ -42,17 +44,16 @@ class _OnboardingMiniLessonScreenState
   static const _passage = '知彼知己者，百战不殆。';
   static const _shadowSentence = '百战不殆。';
   static const _shadowPinyin = 'bǎi zhàn bù dài';
-  static const _shadowMeaning =
-      'You will not be imperiled in a hundred battles.';
   static const _onboardingSpeechRate = 0.42;
-  static const _titles = [
-    'Listen',
-    'Notice',
-    'Shadow',
-    'Four tones',
-    'Write',
-    'Recap'
-  ];
+
+  List<String> _titles(AppLocalizations l10n) => [
+        l10n.listen,
+        l10n.notice,
+        l10n.shadow,
+        l10n.fourTones,
+        l10n.write,
+        l10n.recap,
+      ];
 
   int _step = 0;
   bool _busy = false;
@@ -175,7 +176,8 @@ class _OnboardingMiniLessonScreenState
         setState(() {
           _speakingText = null;
           _speakingCharacterIndex = null;
-          _message = 'Audio is unavailable. You can still read and continue.';
+          _message = AppLocalizations.of(context)!
+              .audioIsUnavailableYouCan;
         });
       }
     } finally {
@@ -229,12 +231,13 @@ class _OnboardingMiniLessonScreenState
           }
           if (mounted) setState(() => _recording = true);
         } else if (mounted) {
-          setState(() => _message =
-              'Microphone access was not granted. You can use the quiet option below.');
+          setState(() => _message = AppLocalizations.of(context)!
+              .microphoneAccessWasNotGranted);
         }
       } catch (_) {
         if (mounted) {
-          setState(() => _message = 'Recording is unavailable right now.');
+          setState(() => _message =
+              AppLocalizations.of(context)!.recordingIsUnavailableRightNow);
         }
       } finally {
         if (mounted) setState(() => _busy = false);
@@ -245,7 +248,7 @@ class _OnboardingMiniLessonScreenState
     setState(() {
       _recording = false;
       _busy = true;
-      _message = 'Listening to your tones…';
+      _message = AppLocalizations.of(context)!.listeningToYourTones;
     });
     String? path;
     try {
@@ -269,10 +272,10 @@ class _OnboardingMiniLessonScreenState
         _words = _demoWords;
       }
       if (mounted) _goTo(3);
-    } catch (error) {
+    } catch (_) {
       if (mounted) {
         setState(() {
-          _message = error.toString().replaceFirst('Exception: ', '');
+          _message = AppLocalizations.of(context)!.weCouldNotScoreThat;
         });
       }
     } finally {
@@ -285,14 +288,15 @@ class _OnboardingMiniLessonScreenState
     }
   }
 
-  List<Map<String, dynamic>> get _demoWords => const [
+  List<Map<String, dynamic>> get _demoWords => [
         {
           'word': '百',
           'pinyin': 'bǎi',
           'expectedTone': 3,
           'actualTone': 3,
           'isCorrect': true,
-          'feedback': 'Great dipping third tone.',
+          'feedback':
+              AppLocalizations.of(context)!.onboardingFeedbackGreatThirdTone,
         },
         {
           'word': '战',
@@ -300,7 +304,8 @@ class _OnboardingMiniLessonScreenState
           'expectedTone': 4,
           'actualTone': 2,
           'isCorrect': false,
-          'feedback': 'Let the fourth tone fall firmly and quickly.',
+          'feedback':
+              AppLocalizations.of(context)!.onboardingFeedbackFourthToneFall,
         },
         {
           'word': '不',
@@ -308,7 +313,8 @@ class _OnboardingMiniLessonScreenState
           'expectedTone': 4,
           'actualTone': 4,
           'isCorrect': true,
-          'feedback': 'Clear falling fourth tone.',
+          'feedback':
+              AppLocalizations.of(context)!.onboardingFeedbackClearFourthTone,
         },
         {
           'word': '殆',
@@ -316,7 +322,8 @@ class _OnboardingMiniLessonScreenState
           'expectedTone': 4,
           'actualTone': 4,
           'isCorrect': true,
-          'feedback': 'Strong falling fourth tone.',
+          'feedback':
+              AppLocalizations.of(context)!.onboardingFeedbackStrongFourthTone,
         },
       ];
 
@@ -328,7 +335,7 @@ class _OnboardingMiniLessonScreenState
   void _goTo(int step) {
     ref.read(analyticsServiceProvider).logEvent(
       'onboarding_mini_lesson_step',
-      parameters: {'step': _titles[step].toLowerCase().replaceAll(' ', '_')},
+      parameters: {'step': step},
     );
     setState(() {
       _step = step;
@@ -378,6 +385,8 @@ class _OnboardingMiniLessonScreenState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final titles = _titles(l10n);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final ink = isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
     return Scaffold(
@@ -400,7 +409,7 @@ class _OnboardingMiniLessonScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'YOUR FIRST LESSON  •  ${_step + 1} OF ${_titles.length}',
+                      l10n.onboardingLessonProgress(_step + 1, titles.length),
                       key: const Key('onboarding_lesson_eyebrow'),
                       style: TextStyle(
                         color: Colors.red[700],
@@ -413,7 +422,7 @@ class _OnboardingMiniLessonScreenState
                     AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),
                       child: Text(
-                        _titles[_step],
+                        titles[_step],
                         key: ValueKey('lesson-title-$_step'),
                         textAlign: TextAlign.left,
                         style: TextStyle(
@@ -470,14 +479,17 @@ class _OnboardingMiniLessonScreenState
   Widget _buildProgressIndicator(bool isDark) {
     return Row(
       key: const Key('onboarding_lesson_progress'),
-      children: List.generate(_titles.length, (index) {
+      children:
+          List.generate(_titles(AppLocalizations.of(context)!).length, (index) {
         final isReached = index <= _step;
         return Expanded(
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             height: 6,
             margin: EdgeInsets.only(
-              right: index == _titles.length - 1 ? 0 : 8,
+              right: index == _titles(AppLocalizations.of(context)!).length - 1
+                  ? 0
+                  : 8,
             ),
             decoration: BoxDecoration(
               color: isReached
@@ -494,109 +506,107 @@ class _OnboardingMiniLessonScreenState
   }
 
   Widget _buildStep(Color ink, bool isDark) {
+    final l10n = AppLocalizations.of(context)!;
     switch (_step) {
       case 0:
         return _lessonColumn(
           ink,
-          instruction:
-              'First, hear one of the best-known lines in Chinese literature. No memorizing yet.',
+          instruction: l10n.onboardingListenInstruction,
           child: _listenCard(ink),
-          primaryLabel: _busy ? 'Loading audio…' : 'Listen to the passage',
+          primaryLabel: _busy ? l10n.loadingAudio : l10n.listenToThePassage,
           primaryIcon: Icons.headphones,
           onPrimary: _busy ? null : () => _play(_passage),
-          secondaryLabel: 'Continue',
+          secondaryLabel: l10n.continueAction,
           onSecondary: () => _goTo(1),
         );
       case 1:
         return _lessonColumn(
           ink,
-          instruction:
-              'Notice how the characters, sound, and meaning move together.',
+          instruction: l10n.noticeHowMeaningSoundAnd,
           child: _noticeCard(ink),
-          primaryLabel: 'Shadow one sentence',
+          primaryLabel: l10n.shadowOneSentence,
           primaryIcon: Icons.arrow_forward,
           onPrimary: () => _goTo(2),
         );
       case 2:
         return _lessonColumn(
           ink,
-          instruction:
-              'Listen once, then say the highlighted part with the same rhythm.',
+          instruction: l10n.listenOnceThenHoldThe,
           child: _shadowCard(ink),
           primaryLabel:
-              _recording ? 'Stop and check my tones' : 'Use microphone',
+              _recording ? l10n.stopAndCheckMyTones : l10n.useMicrophone,
           primaryIcon: _recording ? Icons.stop_circle_outlined : Icons.mic_none,
           onPrimary: _busy ? null : _toggleRecording,
-          secondaryLabel: "I can't speak right now",
+          secondaryLabel: l10n.iCanTSpeakRight,
           onSecondary: _quietPath,
         );
       case 3:
         return _lessonColumn(
           ink,
-          instruction:
-              'See how each spoken character matched the target, then compare any tone.',
+          instruction: l10n.tapACharacterToCompare,
           child: _toneResultsCard(ink),
-          primaryLabel: 'Try handwriting',
+          primaryLabel: l10n.tryHandwriting,
           primaryIcon: Icons.draw_outlined,
           onPrimary: () => _goTo(4),
         );
       case 4:
         return _lessonColumn(
           ink,
-          instruction: 'Trace 好 (hǎo, “good”). Follow the faint stroke guide.',
+          instruction: l10n.onboardingTraceInstruction('好', 'hǎo', l10n.good),
           child: SizedBox(
             height: 310,
-            child: _strokes.isEmpty
-                ? Center(
-                    child: Text('好',
-                        style: TextStyle(
-                            fontSize: 150, color: ink.withValues(alpha: .18))))
-                : OnboardingPracticeCanvas(
-                    strokePaths: _strokes,
-                    medianPaths: _medianPaths,
-                    isFlipped: _isFlipped,
-                    currentStrokeIndex: _currentStrokeIndex,
-                    userPointsNotifier: _userPointsNotifier,
-                    onStrokeComplete: () {
-                      HapticsManager.light();
-                      _userPointsNotifier.value = [];
-                      final validStrokes = _strokes
-                          .where((s) => s != '__CHAR_SEPARATOR__')
-                          .toList();
-                      if (_currentStrokeIndex < validStrokes.length - 1) {
-                        setState(() => _currentStrokeIndex++);
-                      } else {
-                        HapticsManager.success();
-                        if (!widget.disableExternalServicesForTesting) {
-                          _audioService.playCharacter('好');
-                        }
-                        Future.delayed(const Duration(milliseconds: 600), () {
-                          if (mounted) {
-                            _goTo(5);
+            child: LtrSanctuary(
+              child: _strokes.isEmpty
+                  ? Center(
+                      child: Text('好',
+                          style: TextStyle(
+                              fontSize: 150, color: ink.withValues(alpha: .18))))
+                  : OnboardingPracticeCanvas(
+                      strokePaths: _strokes,
+                      medianPaths: _medianPaths,
+                      isFlipped: _isFlipped,
+                      currentStrokeIndex: _currentStrokeIndex,
+                      userPointsNotifier: _userPointsNotifier,
+                      onStrokeComplete: () {
+                        HapticsManager.light();
+                        _userPointsNotifier.value = [];
+                        final validStrokes = _strokes
+                            .where((s) => s != '__CHAR_SEPARATOR__')
+                            .toList();
+                        if (_currentStrokeIndex < validStrokes.length - 1) {
+                          setState(() => _currentStrokeIndex++);
+                        } else {
+                          HapticsManager.success();
+                          if (!widget.disableExternalServicesForTesting) {
+                            _audioService.playCharacter('好');
                           }
-                        });
-                      }
-                    },
+                          Future.delayed(const Duration(milliseconds: 600), () {
+                            if (mounted) {
+                              _goTo(5);
+                            }
+                          });
+                        }
+                      },
+                    ),
                   ),
           ),
-          primaryLabel: 'See what you learned',
+          primaryLabel: l10n.seeWhatYouLearned,
           primaryIcon: Icons.check,
           onPrimary: () => _goTo(5),
         );
       default:
         return _lessonColumn(
           ink,
-          instruction:
-              'In a few minutes, you used the same loop that powers your lessons.',
-          child: const Column(
+          instruction: l10n.inAFewMinutesYou,
+          child: Column(
             children: [
-              _RecapRow(Icons.headphones, 'Listened to Chinese in context'),
-              _RecapRow(Icons.record_voice_over, 'Shadowed a sentence'),
-              _RecapRow(Icons.graphic_eq, 'Compared Mandarin tones'),
-              _RecapRow(Icons.gesture, 'Practiced a real character'),
+              _RecapRow(Icons.headphones, l10n.listenedToChineseInContext),
+              _RecapRow(Icons.record_voice_over, l10n.shadowedASentence),
+              _RecapRow(Icons.graphic_eq, l10n.comparedMandarinTones),
+              _RecapRow(Icons.gesture, l10n.practicedARealCharacter),
             ],
           ),
-          primaryLabel: 'Continue',
+          primaryLabel: l10n.continueAction,
           primaryIcon: Icons.arrow_forward,
           onPrimary: _finish,
         );
@@ -640,7 +650,7 @@ class _OnboardingMiniLessonScreenState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'From the Grand Library',
+                    AppLocalizations.of(context)!.onboardingFromGrandLibrary,
                     style: TextStyle(
                       fontSize: 11,
                       letterSpacing: 0.8,
@@ -660,7 +670,7 @@ class _OnboardingMiniLessonScreenState
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    'The Art of War · Sun Tzu',
+                    AppLocalizations.of(context)!.onboardingArtOfWarTitleAuthor,
                     style: TextStyle(
                       fontSize: 13,
                       color: ink.withValues(alpha: .62),
@@ -668,7 +678,7 @@ class _OnboardingMiniLessonScreenState
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    '谋攻篇 · Chapter 3',
+                    AppLocalizations.of(context)!.onboardingArtOfWarChapter,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -690,7 +700,7 @@ class _OnboardingMiniLessonScreenState
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'A CLASSIC LINE',
+              AppLocalizations.of(context)!.onboardingClassicLineLabel,
               style: TextStyle(
                 color: Colors.red[700],
                 fontSize: 11,
@@ -700,18 +710,20 @@ class _OnboardingMiniLessonScreenState
             ),
             const SizedBox(height: 18),
             Center(
-              child: OnboardingSpeakingText(
-                text: _passage,
-                activeIndex:
-                    _speakingText == _passage ? _speakingCharacterIndex : null,
-                color: ink,
-                fontSize: 29,
-                height: 1.5,
+              child: LtrSanctuary(
+                child: OnboardingSpeakingText(
+                  text: _passage,
+                  activeIndex:
+                      _speakingText == _passage ? _speakingCharacterIndex : null,
+                  color: ink,
+                  fontSize: 29,
+                  height: 1.5,
+                ),
               ),
             ),
             const SizedBox(height: 14),
             Text(
-              '“Know the enemy and know yourself, and you need not fear the result of a hundred battles.”',
+              AppLocalizations.of(context)!.onboardingArtOfWarTranslation,
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 14,
@@ -736,7 +748,7 @@ class _OnboardingMiniLessonScreenState
               ink,
               chinese: '知彼知己者，',
               pinyin: 'zhī bǐ zhī jǐ zhě',
-              meaning: 'Know the enemy and know yourself,',
+              meaning: AppLocalizations.of(context)!.onboardingNoticeMeaning,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 18),
@@ -746,7 +758,7 @@ class _OnboardingMiniLessonScreenState
               ink,
               chinese: _shadowSentence,
               pinyin: _shadowPinyin,
-              meaning: _shadowMeaning,
+              meaning: AppLocalizations.of(context)!.onboardingShadowMeaning,
               isPracticeTarget: true,
             ),
             _sourceAttribution(ink),
@@ -775,7 +787,7 @@ class _OnboardingMiniLessonScreenState
           children: [
             if (isPracticeTarget) ...[
               Text(
-                'YOU’LL PRACTICE THIS',
+                AppLocalizations.of(context)!.onboardingPracticeThisLabel,
                 style: TextStyle(
                   color: Colors.red[700],
                   fontSize: 10,
@@ -785,22 +797,29 @@ class _OnboardingMiniLessonScreenState
               ),
               const SizedBox(height: 9),
             ],
-            Text(
-              chinese,
-              style: TextStyle(
-                fontFamily: 'NotoSerifSC',
-                fontSize: 27,
-                height: 1.35,
-                color: ink,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              pinyin,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.red[700],
+            LtrSanctuary(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    chinese,
+                    style: TextStyle(
+                      fontFamily: 'NotoSerifSC',
+                      fontSize: 27,
+                      height: 1.35,
+                      color: ink,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    pinyin,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red[700],
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 5),
@@ -823,7 +842,7 @@ class _OnboardingMiniLessonScreenState
         child: Column(
           children: [
             Text(
-              'FROM THE ART OF WAR',
+              AppLocalizations.of(context)!.onboardingFromArtOfWarLabel,
               style: TextStyle(
                 color: Colors.red[700],
                 fontSize: 10,
@@ -831,27 +850,32 @@ class _OnboardingMiniLessonScreenState
                 letterSpacing: 1,
               ),
             ),
-            const SizedBox(height: 16),
-            OnboardingSpeakingText(
-              text: _shadowSentence,
-              activeIndex: _speakingText == _shadowSentence
-                  ? _speakingCharacterIndex
-                  : null,
-              color: ink,
-              fontSize: 38,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              _shadowPinyin,
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w600,
-                color: Colors.red[700],
+            LtrSanctuary(
+              child: Column(
+                children: [
+                  OnboardingSpeakingText(
+                    text: _shadowSentence,
+                    activeIndex: _speakingText == _shadowSentence
+                        ? _speakingCharacterIndex
+                        : null,
+                    color: ink,
+                    fontSize: 38,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    _shadowPinyin,
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red[700],
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 7),
             Text(
-              _shadowMeaning,
+              AppLocalizations.of(context)!.onboardingShadowMeaning,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, color: ink.withValues(alpha: .64)),
             ),
@@ -859,7 +883,7 @@ class _OnboardingMiniLessonScreenState
             OutlinedButton.icon(
               onPressed: _busy ? null : () => _play(_shadowSentence),
               icon: const Icon(Icons.volume_up_outlined),
-              label: const Text('Hear it again'),
+              label: Text(AppLocalizations.of(context)!.hearItAgain),
               style: OutlinedButton.styleFrom(
                 foregroundColor: ink,
                 side: BorderSide(color: ink.withValues(alpha: .22)),
@@ -892,7 +916,8 @@ class _OnboardingMiniLessonScreenState
             children: [
               Expanded(
                 child: Text(
-                  'YOUR PRONUNCIATION',
+                  AppLocalizations.of(context)!
+                      .onboardingYourPronunciationLabel,
                   style: TextStyle(
                     color: Colors.red[700],
                     fontSize: 10,
@@ -905,7 +930,7 @@ class _OnboardingMiniLessonScreenState
                   size: 16, color: ink.withValues(alpha: .45)),
               const SizedBox(width: 5),
               Text(
-                'Tap a character',
+                AppLocalizations.of(context)!.onboardingTapACharacter,
                 style: TextStyle(
                   fontSize: 11,
                   color: ink.withValues(alpha: .52),
@@ -914,74 +939,76 @@ class _OnboardingMiniLessonScreenState
             ],
           ),
           const SizedBox(height: 16),
-          Row(
-            children: List.generate(_words.length, (index) {
-              final word = _words[index];
-              final wordExpected = (word['expectedTone'] as num?)?.toInt() ?? 0;
-              final wordActual = (word['actualTone'] as num?)?.toInt() ?? 0;
-              final wordCorrect =
-                  wordExpected == wordActual && wordExpected != 0;
-              final isSelected = index == selectedIndex;
-              final wordColor =
-                  wordCorrect ? Colors.green.shade700 : Colors.orange.shade800;
-              return Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    right: index == _words.length - 1 ? 0 : 6,
-                  ),
-                  child: InkWell(
-                    key: Key('tone_character_${word['word']}'),
-                    borderRadius: BorderRadius.circular(14),
-                    onTap: () => setState(() => _selectedToneIndex = index),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 180),
-                      padding: const EdgeInsets.symmetric(vertical: 11),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? wordColor.withValues(alpha: .1)
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
+          LtrSanctuary(
+            child: Row(
+              children: List.generate(_words.length, (index) {
+                final word = _words[index];
+                final wordExpected = (word['expectedTone'] as num?)?.toInt() ?? 0;
+                final wordActual = (word['actualTone'] as num?)?.toInt() ?? 0;
+                final wordCorrect =
+                    wordExpected == wordActual && wordExpected != 0;
+                final isSelected = index == selectedIndex;
+                final wordColor =
+                    wordCorrect ? Colors.green.shade700 : Colors.orange.shade800;
+                return Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      right: index == _words.length - 1 ? 0 : 6,
+                    ),
+                    child: InkWell(
+                      key: Key('tone_character_${word['word']}'),
+                      borderRadius: BorderRadius.circular(14),
+                      onTap: () => setState(() => _selectedToneIndex = index),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 180),
+                        padding: const EdgeInsets.symmetric(vertical: 11),
+                        decoration: BoxDecoration(
                           color: isSelected
-                              ? wordColor.withValues(alpha: .55)
-                              : ink.withValues(alpha: .1),
+                              ? wordColor.withValues(alpha: .1)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: isSelected
+                                ? wordColor.withValues(alpha: .55)
+                                : ink.withValues(alpha: .1),
+                          ),
                         ),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            word['word'].toString(),
-                            style: TextStyle(
-                              fontFamily: 'NotoSerifSC',
-                              fontSize: 29,
-                              color: ink,
+                        child: Column(
+                          children: [
+                            Text(
+                              word['word'].toString(),
+                              style: TextStyle(
+                                fontFamily: 'NotoSerifSC',
+                                fontSize: 29,
+                                color: ink,
+                              ),
                             ),
-                          ),
-                          Text(
-                            (word['pinyin'] ?? '').toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.fade,
-                            softWrap: false,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: ink.withValues(alpha: .62),
+                            Text(
+                              (word['pinyin'] ?? '').toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.fade,
+                              softWrap: false,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: ink.withValues(alpha: .62),
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 5),
-                          Icon(
-                            wordCorrect
-                                ? Icons.check_circle
-                                : Icons.error_outline,
-                            size: 17,
-                            color: wordColor,
-                          ),
-                        ],
+                            const SizedBox(height: 5),
+                            Icon(
+                              wordCorrect
+                                  ? Icons.check_circle
+                                  : Icons.error_outline,
+                              size: 17,
+                              color: wordColor,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+            ),
           ),
           const SizedBox(height: 18),
           Container(
@@ -997,7 +1024,10 @@ class _OnboardingMiniLessonScreenState
                 Row(
                   children: [
                     Text(
-                      '${selected['word']} · ${selected['pinyin'] ?? ''}',
+                      AppLocalizations.of(context)!.onboardingWordAndPinyin(
+                        selected['word'].toString(),
+                        (selected['pinyin'] ?? '').toString(),
+                      ),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -1006,7 +1036,9 @@ class _OnboardingMiniLessonScreenState
                     ),
                     const Spacer(),
                     Text(
-                      correct ? 'Matched' : 'Try again',
+                      correct
+                          ? AppLocalizations.of(context)!.onboardingToneMatched
+                          : AppLocalizations.of(context)!.tryAgain,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
@@ -1017,7 +1049,10 @@ class _OnboardingMiniLessonScreenState
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'You: ${_toneName(actual)}  ·  Target: ${_toneName(expected)}',
+                  AppLocalizations.of(context)!.youActualTargetExpected(
+                    _toneName(actual),
+                    _toneName(expected),
+                  ),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -1046,7 +1081,8 @@ class _OnboardingMiniLessonScreenState
                       feedback: (selected['feedback'] ?? '').toString(),
                     ),
                     icon: const Icon(Icons.graphic_eq, size: 18),
-                    label: const Text('Compare tones'),
+                    label: Text(
+                        AppLocalizations.of(context)!.onboardingCompareTones),
                     style: TextButton.styleFrom(
                       foregroundColor: statusColor,
                       padding: EdgeInsets.zero,
@@ -1062,11 +1098,11 @@ class _OnboardingMiniLessonScreenState
   }
 
   String _toneName(int tone) => switch (tone) {
-        1 => 'tone 1 · high',
-        2 => 'tone 2 · rising',
-        3 => 'tone 3 · dipping',
-        4 => 'tone 4 · falling',
-        _ => 'not detected',
+        1 => AppLocalizations.of(context)!.onboardingToneOneHigh,
+        2 => AppLocalizations.of(context)!.onboardingToneTwoRising,
+        3 => AppLocalizations.of(context)!.onboardingToneThreeDipping,
+        4 => AppLocalizations.of(context)!.onboardingToneFourFalling,
+        _ => AppLocalizations.of(context)!.onboardingToneNotDetected,
       };
 
   Widget _lessonColumn(
@@ -1159,47 +1195,50 @@ class OnboardingSpeakingText extends StatelessWidget {
     return Semantics(
       label: text,
       child: ExcludeSemantics(
-        child: Text.rich(
-          TextSpan(
-            children: List.generate(text.length, (index) {
-              final isActive = index == activeIndex;
-              return WidgetSpan(
-                alignment: PlaceholderAlignment.middle,
-                child: AnimatedContainer(
-                  key: ValueKey('onboarding_spoken_character_$index'),
-                  duration: const Duration(milliseconds: 120),
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  decoration: BoxDecoration(
-                    color: isActive
-                        ? Colors.amber.withValues(alpha: 0.42)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: isActive
-                        ? [
-                            BoxShadow(
-                              color: Colors.amber.withValues(alpha: 0.38),
-                              blurRadius: 12,
-                              spreadRadius: 2,
-                            ),
-                          ]
-                        : null,
-                  ),
-                  child: Text(
-                    text[index],
-                    style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
-                      fontSize: fontSize,
-                      height: height,
-                      color: isActive ? Colors.deepOrange.shade700 : color,
-                      fontWeight:
-                          isActive ? FontWeight.w700 : FontWeight.normal,
+        child: LtrSanctuary(
+          child: Text.rich(
+            TextSpan(
+              children: List.generate(text.length, (index) {
+                final isActive = index == activeIndex;
+                return WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: AnimatedContainer(
+                    key: ValueKey('onboarding_spoken_character_$index'),
+                    duration: const Duration(milliseconds: 120),
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    decoration: BoxDecoration(
+                      color: isActive
+                          ? Colors.amber.withValues(alpha: 0.42)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: isActive
+                          ? [
+                              BoxShadow(
+                                color: Colors.amber.withValues(alpha: 0.38),
+                                blurRadius: 12,
+                                spreadRadius: 2,
+                              ),
+                            ]
+                          : null,
+                    ),
+                    child: Text(
+                      text[index],
+                      style: TextStyle(
+                        fontFamily: 'NotoSerifSC',
+                        fontSize: fontSize,
+                        height: height,
+                        color: isActive ? Colors.deepOrange.shade700 : color,
+                        fontWeight:
+                            isActive ? FontWeight.w700 : FontWeight.normal,
+                      ),
                     ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+            ),
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
           ),
-          textAlign: TextAlign.center,
         ),
       ),
     );

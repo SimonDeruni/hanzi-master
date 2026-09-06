@@ -92,8 +92,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
     final asyncFlashcards = ref.watch(flashcardControllerProvider);
     final asyncDecks = ref.watch(deckControllerProvider);
-    final masterResults =
-        ref.watch(masterSearchProvider(_searchQuery)).valueOrNull ?? [];
+    final asyncMasterResults = ref.watch(masterSearchProvider(_searchQuery));
 
     return Scaffold(
       body: CalligraphyBackground(
@@ -163,7 +162,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
               searchQuery: _searchQuery,
               asyncFlashcards: asyncFlashcards,
               asyncDecks: asyncDecks,
-              masterResults: masterResults,
+              asyncMasterResults: asyncMasterResults,
             ),
           ],
         ),
@@ -188,15 +187,67 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
     required String searchQuery,
     required AsyncValue<List<Flashcard>> asyncFlashcards,
     required AsyncValue<List<Deck>> asyncDecks,
-    required List<Flashcard> masterResults,
+    required AsyncValue<List<Flashcard>> asyncMasterResults,
   }) {
     return asyncFlashcards.when(
       data: (flashcards) {
-        final libraryMap = {for (var card in flashcards) card.hanzi: card};
+        if (searchQuery.isNotEmpty && asyncMasterResults.isLoading) {
+          return const [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          ];
+        }
+        if (searchQuery.isNotEmpty && asyncMasterResults.hasError) {
+          return [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.search_off,
+                          size: 48, color: Colors.grey),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'Dictionary search failed. Please try again.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        onPressed: () => ref.invalidate(
+                          masterSearchProvider(searchQuery),
+                        ),
+                        icon: const Icon(Icons.refresh, size: 16),
+                        label: Text(AppLocalizations.of(context)!.retry),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ];
+        }
+        final masterResults = asyncMasterResults.valueOrNull ?? const [];
+        final libraryByWordId = <int, Flashcard>{
+          for (final card in flashcards)
+            if (card.dictionaryWordId != null) card.dictionaryWordId!: card,
+        };
+        final legacyLibraryByHanzi = <String, Flashcard>{
+          for (final card in flashcards)
+            if (card.dictionaryWordId == null) card.hanzi: card,
+        };
 
         // 1. Map master results, replacing with library versions if they exist to keep streak data
         final List<Flashcard> unifiedResults = masterResults.map((masterCard) {
-          final libraryCard = libraryMap[masterCard.hanzi];
+          final libraryCard = masterCard.dictionaryWordId == null
+              ? legacyLibraryByHanzi[masterCard.hanzi]
+              : libraryByWordId[masterCard.dictionaryWordId] ??
+                  legacyLibraryByHanzi[masterCard.hanzi];
           if (libraryCard == null) return masterCard;
 
           // Keep the saved card's identity and study progress, but display the
@@ -558,11 +609,18 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
           // Card items
           for (final card in cards) {
-            final isInLibrary = libraryMap.containsKey(card.hanzi);
+            final isInLibrary = card.dictionaryWordId == null
+                ? legacyLibraryByHanzi.containsKey(card.hanzi)
+                : libraryByWordId.containsKey(card.dictionaryWordId) ||
+                    legacyLibraryByHanzi.containsKey(card.hanzi);
             items.add(
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-                child: _DictionaryItem(card: card, isInLibrary: isInLibrary),
+                child: _DictionaryItem(
+                  key: ValueKey(card.id),
+                  card: card,
+                  isInLibrary: isInLibrary,
+                ),
               ),
             );
           }
@@ -603,7 +661,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                 children: [
                   const Icon(Icons.error_outline, size: 48, color: Colors.grey),
                   const SizedBox(height: 16),
-                  Text(AppLocalizations.of(context)!.unableToLoadThisSectionPleaseTryAgain,
+                  Text(
+                      AppLocalizations.of(context)!
+                          .unableToLoadThisSectionPleaseTryAgain,
                       textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.grey, fontSize: 14)),
                   const SizedBox(height: 16),
@@ -993,9 +1053,13 @@ String _extractDefinitionGroupKey(String definition) {
 }
 
 class _DictionaryItem extends ConsumerStatefulWidget {
-  final dynamic card;
+  final Flashcard card;
   final bool isInLibrary;
-  const _DictionaryItem({required this.card, this.isInLibrary = false});
+  const _DictionaryItem({
+    super.key,
+    required this.card,
+    this.isInLibrary = false,
+  });
 
   @override
   ConsumerState<_DictionaryItem> createState() => _DictionaryItemState();
@@ -1008,16 +1072,30 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
   @override
   void initState() {
     super.initState();
+    _syncCard();
+    _hydrateIfMissing();
+  }
+
+  @override
+  void didUpdateWidget(covariant _DictionaryItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.card != widget.card) {
+      _syncCard();
+      _hydrateIfMissing();
+    }
+  }
+
+  void _syncCard() {
     _pinyin = widget.card.pinyin;
     _definition = widget.card.definition;
-    _hydrateIfMissing();
   }
 
   Future<void> _hydrateIfMissing() async {
     if (_pinyin.trim().isEmpty || _definition.trim().isEmpty) {
+      final requestedHanzi = widget.card.hanzi;
       final repo = ref.read(globalDictionaryRepositoryProvider);
-      final dictCard = await repo.getExact(widget.card.hanzi);
-      if (dictCard != null && mounted) {
+      final dictCard = await repo.getExact(requestedHanzi);
+      if (dictCard != null && mounted && widget.card.hanzi == requestedHanzi) {
         setState(() {
           _pinyin = dictCard.pinyin;
           _definition = dictCard.definition;
@@ -1111,32 +1189,44 @@ class _DictionaryItemState extends ConsumerState<_DictionaryItem> {
                   ),
                   if (widget.card.isExpansionEligible) ...[
                     const SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.auto_awesome,
-                          size: 12,
-                          color: isDark
-                              ? Colors.indigo.shade200
-                              : Colors.indigo.shade600,
-                        ),
-                        const SizedBox(width: 4),
-                        Flexible(
-                          child: Text(
-                            _expansionAvailableLabel(
-                              Localizations.localeOf(context).languageCode,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: isDark
-                                  ? Colors.indigo.shade200
-                                  : Colors.indigo.shade600,
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        HapticsManager.light();
+                        showQuickLook(
+                          context,
+                          widget.card.hanzi,
+                          card: widget.card,
+                          autoExpand: true,
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.auto_awesome,
+                            size: 12,
+                            color: isDark
+                                ? Colors.indigo.shade200
+                                : Colors.indigo.shade600,
+                          ),
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: Text(
+                              _expansionAvailableLabel(
+                                Localizations.localeOf(context).languageCode,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: isDark
+                                    ? Colors.indigo.shade200
+                                    : Colors.indigo.shade600,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ],

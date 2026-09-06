@@ -11795,19 +11795,19 @@ abstract class AppLocalizations {
   /// No description provided for @yourPathTonchineseFluency.
   ///
   /// In en, this message translates to:
-  /// **'Your Path to\\nChinese Fluency'**
+  /// **'Your Path to\nChinese Fluency'**
   String get yourPathTonchineseFluency;
 
   /// No description provided for @answer3QuickQuestionsSoOurAiCanCraf.
   ///
   /// In en, this message translates to:
-  /// **'Answer 3 quick questions so our AI can craft\\na curriculum that fits your life.'**
+  /// **'Answer 3 quick questions so our AI can craft\na curriculum that fits your life.'**
   String get answer3QuickQuestionsSoOurAiCanCraf;
 
   /// No description provided for @whatIsYourLevelnwithChinese.
   ///
   /// In en, this message translates to:
-  /// **'What is your level\\nwith Chinese?'**
+  /// **'What is your level\nwith Chinese?'**
   String get whatIsYourLevelnwithChinese;
 
   /// No description provided for @chooseThePathThatFitsYourDepth.
@@ -22379,7 +22379,7 @@ abstract class AppLocalizations {
   /// No description provided for @turnAnyBookIntoA.
   ///
   /// In en, this message translates to:
-  /// **'Turn any book into a lesson'**
+  /// **'Turn any book into a lesson & audiobook'**
   String get turnAnyBookIntoA;
 
   /// No description provided for @readNaturallyWithPronunciationDefinition.
@@ -22397,7 +22397,7 @@ abstract class AppLocalizations {
   /// No description provided for @speakWithTheRightRhythm.
   ///
   /// In en, this message translates to:
-  /// **'Speak with the right rhythm'**
+  /// **'Speak freely with AI & live tones'**
   String get speakWithTheRightRhythm;
 
   /// No description provided for @shadowNativeAudioAndVisualize.
@@ -22826,11 +22826,11 @@ abstract class AppLocalizations {
   /// **'Failed to save extracted words: \$error'**
   String get failedToSaveExtractedWords2;
 
-  /// No description provided for @youActualTargetExpected.
+  /// Comparison between user tone and target tone in onboarding
   ///
   /// In en, this message translates to:
-  /// **'You: \$actual  ·  Target: \$expected'**
-  String get youActualTargetExpected;
+  /// **'You: {actual}  ·  Target: {expected}'**
+  String youActualTargetExpected(String actual, String expected);
 
   /// No description provided for @improveTheLocalVoice.
   ///
@@ -23107,6 +23107,409 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'e.g., A curious cousin asking about your career...'**
   String get roleplayCreatorPersonaPlaceholder;
+
+  /// Button to launch the first mini lesson from onboarding calibration
+  ///
+  /// In en, this message translates to:
+  /// **'Begin First Lesson'**
+  String get beginFirstLesson;
+
+  /// Progress header in onboarding mini lesson
+  ///
+  /// In en, this message translates to:
+  /// **'YOUR FIRST LESSON  •  {current} OF {total}'**
+  String onboardingLessonProgress(Object current, Object total);
+
+  /// Instruction for step 0 listening in onboarding mini lesson
+  ///
+  /// In en, this message translates to:
+  /// **'First, hear one of the best-known lines in Chinese literature. No memorizing yet.'**
+  String get onboardingListenInstruction;
+
+  /// Eyebrow pill for source library excerpt
+  ///
+  /// In en, this message translates to:
+  /// **'From the Grand Library'**
+  String get onboardingFromGrandLibrary;
+
+  /// Book title and author for Sun Tzu Art of War excerpt
+  ///
+  /// In en, this message translates to:
+  /// **'The Art of War · Sun Tzu'**
+  String get onboardingArtOfWarTitleAuthor;
+
+  /// Chapter subtitle for Art of War excerpt
+  ///
+  /// In en, this message translates to:
+  /// **'谋攻篇 · Chapter 3'**
+  String get onboardingArtOfWarChapter;
+
+  /// Passage eyebrow tag in mini lesson
+  ///
+  /// In en, this message translates to:
+  /// **'A CLASSIC LINE'**
+  String get onboardingClassicLineLabel;
+
+  /// Translation of the famous Art of War proverb
+  ///
+  /// In en, this message translates to:
+  /// **'“Know the enemy and know yourself, and you need not fear the result of a hundred battles.”'**
+  String get onboardingArtOfWarTranslation;
+
+  /// Meaning of the first clause in Art of War excerpt
+  ///
+  /// In en, this message translates to:
+  /// **'Know the enemy and know yourself,'**
+  String get onboardingNoticeMeaning;
+
+  /// Meaning of the second clause in Art of War excerpt
+  ///
+  /// In en, this message translates to:
+  /// **'You will not be imperiled in a hundred battles.'**
+  String get onboardingShadowMeaning;
+
+  /// Target practice pill in mini lesson
+  ///
+  /// In en, this message translates to:
+  /// **'YOU’LL PRACTICE THIS'**
+  String get onboardingPracticeThisLabel;
+
+  /// Attribution badge in shadow step
+  ///
+  /// In en, this message translates to:
+  /// **'FROM THE ART OF WAR'**
+  String get onboardingFromArtOfWarLabel;
+
+  /// Tone inspector card title
+  ///
+  /// In en, this message translates to:
+  /// **'YOUR PRONUNCIATION'**
+  String get onboardingYourPronunciationLabel;
+
+  /// Tone inspector card hint
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a character'**
+  String get onboardingTapACharacter;
+
+  /// Word and pinyin display in tone inspector
+  ///
+  /// In en, this message translates to:
+  /// **'{word} · {pinyin}'**
+  String onboardingWordAndPinyin(String word, String pinyin);
+
+  /// Tone match badge
+  ///
+  /// In en, this message translates to:
+  /// **'Matched'**
+  String get onboardingToneMatched;
+
+  /// Button to compare tones
+  ///
+  /// In en, this message translates to:
+  /// **'Compare tones'**
+  String get onboardingCompareTones;
+
+  /// Tone 1 high description
+  ///
+  /// In en, this message translates to:
+  /// **'tone 1 · high'**
+  String get onboardingToneOneHigh;
+
+  /// Tone 2 rising description
+  ///
+  /// In en, this message translates to:
+  /// **'tone 2 · rising'**
+  String get onboardingToneTwoRising;
+
+  /// Tone 3 dipping description
+  ///
+  /// In en, this message translates to:
+  /// **'tone 3 · dipping'**
+  String get onboardingToneThreeDipping;
+
+  /// Tone 4 falling description
+  ///
+  /// In en, this message translates to:
+  /// **'tone 4 · falling'**
+  String get onboardingToneFourFalling;
+
+  /// Tone not detected label
+  ///
+  /// In en, this message translates to:
+  /// **'not detected'**
+  String get onboardingToneNotDetected;
+
+  /// Feedback message for third tone
+  ///
+  /// In en, this message translates to:
+  /// **'Great dipping third tone.'**
+  String get onboardingFeedbackGreatThirdTone;
+
+  /// Feedback message for fourth tone falling
+  ///
+  /// In en, this message translates to:
+  /// **'Let the fourth tone fall firmly and quickly.'**
+  String get onboardingFeedbackFourthToneFall;
+
+  /// Feedback message for clear fourth tone
+  ///
+  /// In en, this message translates to:
+  /// **'Clear falling fourth tone.'**
+  String get onboardingFeedbackClearFourthTone;
+
+  /// Feedback message for strong fourth tone
+  ///
+  /// In en, this message translates to:
+  /// **'Strong falling fourth tone.'**
+  String get onboardingFeedbackStrongFourthTone;
+
+  /// Instruction for tracing characters in onboarding mini-lesson
+  ///
+  /// In en, this message translates to:
+  /// **'Trace {character} ({pinyin}, “{meaning}”). Follow the faint stroke guide.'**
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning);
+
+  /// Days duration plural
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{day} other{{count} days}}'**
+  String billingDays(int count);
+
+  /// Weeks duration plural
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{week} other{{count} weeks}}'**
+  String billingWeeks(int count);
+
+  /// Months duration plural
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{month} other{{count} months}}'**
+  String billingMonths(int count);
+
+  /// Years duration plural
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{year} other{{count} years}}'**
+  String billingYears(int count);
+
+  /// Start free trial with period parameter
+  ///
+  /// In en, this message translates to:
+  /// **'Start {period} free trial'**
+  String startPeriodFreeTrial(String period);
+
+  /// Subscribe for price per period
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe for {price} / {period}'**
+  String subscribeForPricePeriod(String price, String period);
+
+  /// StoreKit trial terms explanation
+  ///
+  /// In en, this message translates to:
+  /// **'Your selected StoreKit product includes an eligible free trial. After the trial, it renews for {price} per {period} unless canceled.'**
+  String eligibleTrialRenewalNotice(String price, String period);
+
+  /// Price per period display
+  ///
+  /// In en, this message translates to:
+  /// **'{price} / {period}'**
+  String pricePerPeriod(String price, String period);
+
+  /// Learn feature tab or category label
+  ///
+  /// In en, this message translates to:
+  /// **'Learn'**
+  String get learn;
+
+  /// No description provided for @booksAndStudioQualityAudiobooks.
+  ///
+  /// In en, this message translates to:
+  /// **'Books and studio-quality audiobooks'**
+  String get booksAndStudioQualityAudiobooks;
+
+  /// No description provided for @aiConversationsAndLiveToneFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'AI conversations and live tone feedback'**
+  String get aiConversationsAndLiveToneFeedback;
+
+  /// No description provided for @interactiveVideoAndWebImmersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Interactive video and web immersion'**
+  String get interactiveVideoAndWebImmersion;
+
+  /// No description provided for @characterInsightsAndHandwritingPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Character insights and handwriting practice'**
+  String get characterInsightsAndHandwritingPractice;
+
+  /// No description provided for @hskDecksAndSmartSpacedRepetition.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK decks and smart spaced repetition'**
+  String get hskDecksAndSmartSpacedRepetition;
+
+  /// No description provided for @termsOfUseEula.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use (EULA)'**
+  String get termsOfUseEula;
+
+  /// No description provided for @masterEveryStroke.
+  ///
+  /// In en, this message translates to:
+  /// **'Master every stroke'**
+  String get masterEveryStroke;
+
+  /// No description provided for @exploreTheChineseWeb.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore the Chinese web'**
+  String get exploreTheChineseWeb;
+
+  /// No description provided for @tone1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your pitch high and steady like singing a note.'**
+  String get tone1Description;
+
+  /// No description provided for @tone2Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Start in the middle and slide your pitch upward like asking \'What?\''**
+  String get tone2Description;
+
+  /// No description provided for @tone3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Dip your voice down low, then rise gently back up.'**
+  String get tone3Description;
+
+  /// No description provided for @tone4Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop your pitch sharply and decisively like a firm \'No!\''**
+  String get tone4Description;
+
+  /// No description provided for @toneNeutralDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Pronounce softly, briefly, and without emphasis.'**
+  String get toneNeutralDescription;
+
+  /// No description provided for @toneDiagMatch1.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Pitch was high, flat, and steady.'**
+  String get toneDiagMatch1;
+
+  /// No description provided for @toneDiagMatch2.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Upward pitch rise was clear.'**
+  String get toneDiagMatch2;
+
+  /// No description provided for @toneDiagMatch3.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Low dipping curve was accurate.'**
+  String get toneDiagMatch3;
+
+  /// No description provided for @toneDiagMatch4.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Sharp falling drop was decisive.'**
+  String get toneDiagMatch4;
+
+  /// No description provided for @toneDiagMatchDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Spot on! Tone was pronounced accurately.'**
+  String get toneDiagMatchDefault;
+
+  /// No description provided for @toneDiag1vs2.
+  ///
+  /// In en, this message translates to:
+  /// **'You rose your pitch (2nd tone /). Keep your voice flat and high across the whole syllable (1st tone ˉ).'**
+  String get toneDiag1vs2;
+
+  /// No description provided for @toneDiag1vs3.
+  ///
+  /// In en, this message translates to:
+  /// **'You dipped your voice (3rd tone ˇ). Keep your pitch steady and high without dipping (1st tone ˉ).'**
+  String get toneDiag1vs3;
+
+  /// No description provided for @toneDiag1vs4.
+  ///
+  /// In en, this message translates to:
+  /// **'You dropped your pitch (4th tone \\). Sustain a high, level pitch like singing a note (1st tone ˉ).'**
+  String get toneDiag1vs4;
+
+  /// No description provided for @toneDiag2vs1.
+  ///
+  /// In en, this message translates to:
+  /// **'You stayed flat (1st tone ˉ). Slide your pitch upward like asking \'What?\' (2nd tone /).'**
+  String get toneDiag2vs1;
+
+  /// No description provided for @toneDiag2vs3.
+  ///
+  /// In en, this message translates to:
+  /// **'You dipped too deep (3rd tone ˇ). Start mid-level and rise smoothly without bottoming out (2nd tone /).'**
+  String get toneDiag2vs3;
+
+  /// No description provided for @toneDiag2vs4.
+  ///
+  /// In en, this message translates to:
+  /// **'You dropped your pitch (4th tone \\). Rise upward like asking a question (2nd tone /).'**
+  String get toneDiag2vs4;
+
+  /// No description provided for @toneDiag3vs1.
+  ///
+  /// In en, this message translates to:
+  /// **'You stayed high and flat (1st tone ˉ). Let your pitch drop low into your chest register before rising (3rd tone ˇ).'**
+  String get toneDiag3vs1;
+
+  /// No description provided for @toneDiag3vs2.
+  ///
+  /// In en, this message translates to:
+  /// **'You rose immediately (2nd tone /). Make sure to dip down low first before rising back up (3rd tone ˇ).'**
+  String get toneDiag3vs2;
+
+  /// No description provided for @toneDiag3vs4.
+  ///
+  /// In en, this message translates to:
+  /// **'You dropped sharply without rising (4th tone \\). Allow your pitch to bounce gently back up at the end (3rd tone ˇ).'**
+  String get toneDiag3vs4;
+
+  /// No description provided for @toneDiag4vs1.
+  ///
+  /// In en, this message translates to:
+  /// **'You stayed flat (1st tone ˉ). Drop your pitch sharply and decisively like a firm \'No!\' (4th tone \\).'**
+  String get toneDiag4vs1;
+
+  /// No description provided for @toneDiag4vs2.
+  ///
+  /// In en, this message translates to:
+  /// **'You rose your pitch (2nd tone /). Start high and snap sharply downward (4th tone \\).'**
+  String get toneDiag4vs2;
+
+  /// No description provided for @toneDiag4vs3.
+  ///
+  /// In en, this message translates to:
+  /// **'You dipped and rose (3rd tone ˇ). Drop straight down without rising back up (4th tone \\).'**
+  String get toneDiag4vs3;
+
+  /// No description provided for @toneDiagListenDiff.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to the 4 tones below to hear the difference.'**
+  String get toneDiagListenDiff;
 }
 
 class _AppLocalizationsDelegate

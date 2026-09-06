@@ -1661,11 +1661,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get ancientPhilosophy => '古代哲学';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => '戦国時代';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      '韓非（紀元前280年頃〜紀元前233年）は、韓の公子であり、中国の法家思想を代表する思想家でした。法、行政技術（術）、権威（勢）の概念を統合した著書『韓非子』は、中国帝国期の政治哲学や制度に深い影響を与えました。';
 
   @override
   String get articleSavedToMediaHub => '記事をメディアハブに保存しました！';
@@ -2624,7 +2624,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get voice => '音声：';
 
   @override
-  String get web => 'Web';
+  String get web => 'ウェブ';
 
   @override
   String get wedLoveToHearFromYou => 'ご意見・ご感想を\nぜひお聞かせください。';
@@ -11778,7 +11778,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get videoLearningScreenshot => '動画学習のスクリーンショット';
 
   @override
-  String get turnAnyBookIntoA => 'あらゆる本をレッスンに';
+  String get turnAnyBookIntoA => 'あらゆる本をレッスン＆オーディオブックに';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -11788,7 +11788,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get bookReaderScreenshot => 'ブックリーダーのスクリーンショット';
 
   @override
-  String get speakWithTheRightRhythm => '正しいリズムで話す';
+  String get speakWithTheRightRhythm => 'AIとリアルタイム声調で自由に会話';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12012,7 +12012,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get failedToSaveExtractedWords2 => '抽出された単語の保存に失敗しました: \$error';
 
   @override
-  String get youActualTargetExpected => 'あなた: \$actual  ·  目標: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'あなた: $actual  ·  お手本: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'ローカル音声を改善する';
@@ -12164,4 +12166,255 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       '例：あなたのキャリアについて尋ねる好奇心旺盛ないとこ...';
+
+  @override
+  String get beginFirstLesson => '最初のレッスンを始める';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return '最初のレッスン  •  $current / $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'まずは、中国文学の名篇から響く一節をお聴きください。まだ暗記する必要はありません。';
+
+  @override
+  String get onboardingFromGrandLibrary => '古典文庫より';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => '『孫子』 · 孫武';
+
+  @override
+  String get onboardingArtOfWarChapter => '謀攻篇 · 第三章';
+
+  @override
+  String get onboardingClassicLineLabel => '至高の一句';
+
+  @override
+  String get onboardingArtOfWarTranslation => '「彼を知り己を知れば、百戦危うからず。」';
+
+  @override
+  String get onboardingNoticeMeaning => '彼を知り己を知れば、';
+
+  @override
+  String get onboardingShadowMeaning => '百戦してあやうからず。';
+
+  @override
+  String get onboardingPracticeThisLabel => '練習する文字';
+
+  @override
+  String get onboardingFromArtOfWarLabel => '『孫子』より';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'あなたの発音';
+
+  @override
+  String get onboardingTapACharacter => '文字をタップ';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => '一致';
+
+  @override
+  String get onboardingCompareTones => '声調を比較';
+
+  @override
+  String get onboardingToneOneHigh => '第1声 · 高平調';
+
+  @override
+  String get onboardingToneTwoRising => '第2声 · 昇調';
+
+  @override
+  String get onboardingToneThreeDipping => '第3声 · 屈曲調';
+
+  @override
+  String get onboardingToneFourFalling => '第4声 · 降調';
+
+  @override
+  String get onboardingToneNotDetected => '検出されませんでした';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone => '見事な第3声（屈曲調）です。';
+
+  @override
+  String get onboardingFeedbackFourthToneFall => '第4声は力強く、素早く下降させましょう。';
+
+  @override
+  String get onboardingFeedbackClearFourthTone => '明瞭な第4声（降調）です。';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone => '力強い第4声（降調）です。';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return '薄い運筆ガイドに沿って「$character」（$pinyin・「$meaning」）をなぞりましょう。';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count日',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count週間',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countヶ月',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count年',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return '$period間の無料体験を開始';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return '対象の無料体験が含まれています。体験期間終了後は、キャンセルされない限り $period ごとに $price で自動更新されます。';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => '学ぶ';
+
+  @override
+  String get booksAndStudioQualityAudiobooks => '書籍とスタジオ品質のオーディオブック';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback => 'AI会話とライブ声調フィードバック';
+
+  @override
+  String get interactiveVideoAndWebImmersion => 'インタラクティブ動画とWebイマージョン';
+
+  @override
+  String get characterInsightsAndHandwritingPractice => '文字のインサイトと手書き練習';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition => 'HSKデッキとスマート間隔反復学習';
+
+  @override
+  String get termsOfUseEula => '利用規約 (EULA)';
+
+  @override
+  String get masterEveryStroke => 'すべての筆画をマスターする';
+
+  @override
+  String get exploreTheChineseWeb => '中国のウェブを探索する';
+
+  @override
+  String get tone1Description => '音符を歌うように、高くて安定したピッチを保ちます。';
+
+  @override
+  String get tone2Description => '真ん中から始めて、「何？」と尋ねるようにピッチを上げます。';
+
+  @override
+  String get tone3Description => '声を低く下げてから、ゆっくりと元に戻します。';
+
+  @override
+  String get tone4Description => 'きっぱりとした「だめ！」のように、ピッチを鋭く決定的に下げます。';
+
+  @override
+  String get toneNeutralDescription => '柔らかく、短く、強調せずに発音します。';
+
+  @override
+  String get toneDiagMatch1 => '完璧です！音の高さは高く、平坦で安定していました。';
+
+  @override
+  String get toneDiagMatch2 => '完璧です！音の高さの上昇が明確でした。';
+
+  @override
+  String get toneDiagMatch3 => '完璧です！低い下降曲線が正確でした。';
+
+  @override
+  String get toneDiagMatch4 => '完璧です！鋭い下降が決定打でした。';
+
+  @override
+  String get toneDiagMatchDefault => '完璧です！声調は正確に発音されました。';
+
+  @override
+  String get toneDiag1vs2 => '音の高さが上がりました（2声 /）。音節全体で声を平坦に高く保ちましょう（1声 ˉ）。';
+
+  @override
+  String get toneDiag1vs3 => '声が下がりました（3声 ˇ）。音の高さが下がらないように、安定して高く保ちましょう（1声 ˉ）。';
+
+  @override
+  String get toneDiag1vs4 =>
+      '音の高さが下がりました（4声 \\）。音符を歌うように、高く平坦な音の高さを維持しましょう（1声 ˉ）。';
+
+  @override
+  String get toneDiag2vs1 =>
+      '平坦なままでした（1声 ˉ）。「何？」と尋ねるように、音の高さを上にスライドさせましょう（2声 /）。';
+
+  @override
+  String get toneDiag2vs3 =>
+      '下がりすぎました（3声 ˇ）。中程度の高さから始めて、底に触れずにスムーズに上昇させましょう（2声 /）。';
+
+  @override
+  String get toneDiag2vs4 => '音の高さが下がりました（4声 \\）。質問するように上に上げましょう（2声 /）。';
+
+  @override
+  String get toneDiag3vs1 =>
+      '高く平坦なままでした（1声 ˉ）。上がる前に、音の高さを胸のレジスターまで低く下げましょう（3声 ˇ）。';
+
+  @override
+  String get toneDiag3vs2 => 'すぐに上がりました（2声 /）。上がる前に、まず低く下がるようにしましょう（3声 ˇ）。';
+
+  @override
+  String get toneDiag3vs4 =>
+      '上がらずに急激に下がりました（4声 \\）。最後に音の高さが優しく跳ね返るようにしましょう（3声 ˇ）。';
+
+  @override
+  String get toneDiag4vs1 =>
+      '平坦なままでした（1声 ˉ）。きっぱりと「いいえ！」と言うように、音の高さを鋭く決定的に下げましょう（4声 \\）。';
+
+  @override
+  String get toneDiag4vs2 => '音の高さが上がりました（2声 /）。高く始めて、鋭く下に下げましょう（4声 \\）。';
+
+  @override
+  String get toneDiag4vs3 => '下がって上がりました（3声 ˇ）。上がらずにまっすぐ下に下げましょう（4声 \\）。';
+
+  @override
+  String get toneDiagListenDiff => '以下の4つの声調を聞いて違いを確認してください。';
 }

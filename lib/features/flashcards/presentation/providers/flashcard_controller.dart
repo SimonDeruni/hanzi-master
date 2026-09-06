@@ -1,4 +1,5 @@
 import 'package:hanzi_master/core/providers.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
@@ -14,7 +15,10 @@ class FlashcardController extends _$FlashcardController {
 
   Future<List<Flashcard>> getCardsForDeck(String deckId) async {
     final allCards = state.valueOrNull ?? await _loadFlashcards();
-    return allCards.where((c) => c.deckId == deckId || (deckId == 'default' && c.deckId.isEmpty)).toList();
+    return allCards
+        .where((c) =>
+            c.deckId == deckId || (deckId == 'default' && c.deckId.isEmpty))
+        .toList();
   }
 
   /// One-time initialization logic
@@ -29,7 +33,7 @@ class FlashcardController extends _$FlashcardController {
     return result.fold((error) => [], (cards) {
       final validCards = <Flashcard>[];
       final badCards = <Flashcard>[];
-      
+
       final cjkRegex = RegExp(r'[\u4e00-\u9fff\u3400-\u4dbf]');
       for (final c in cards) {
         if (c.hanzi.trim().isEmpty || !cjkRegex.hasMatch(c.hanzi)) {
@@ -65,7 +69,7 @@ class FlashcardController extends _$FlashcardController {
     } else {
       await repository.saveFlashcard(card);
     }
-    ref.invalidateSelf(); 
+    ref.invalidateSelf();
   }
 
   Future<void> deleteFlashcard(String id) async {
@@ -88,14 +92,16 @@ class FlashcardController extends _$FlashcardController {
     ref.invalidateSelf();
   }
 
-  Future<void> reviewFlashcard(Flashcard card, int rating, [StudyMode mode = StudyMode.reading]) async {
+  Future<void> reviewFlashcard(Flashcard card, int rating,
+      [StudyMode mode = StudyMode.reading]) async {
     final updatedCard = card.processReview(rating, mode);
     final repository = ref.read(flashcardRepositoryProvider);
     await repository.saveFlashcard(updatedCard);
     ref.invalidateSelf();
   }
 
-  Future<void> editFlashcard(Flashcard originalCard, String hanzi, String pinyin, String definition) async {
+  Future<void> editFlashcard(Flashcard originalCard, String hanzi,
+      String pinyin, String definition) async {
     final updatedCard = originalCard.copyWith(
       hanzi: hanzi,
       pinyin: pinyin,
@@ -106,33 +112,51 @@ class FlashcardController extends _$FlashcardController {
     ref.invalidateSelf();
   }
 
-  Future<void> importHsk1() async {
+  Future<Either<String, void>> importHsk1() async {
     state = const AsyncValue.loading();
     final repository = ref.read(flashcardRepositoryProvider);
     final result = await repository.importHsk1();
-    result.fold(
-      (failure) => state = AsyncValue.error(failure, StackTrace.current),
-      (_) => ref.invalidateSelf(),
+    return result.fold(
+      (failure) {
+        state = AsyncValue.error(failure, StackTrace.current);
+        return Left(failure);
+      },
+      (_) {
+        ref.invalidateSelf();
+        return const Right(null);
+      },
     );
   }
 
-  Future<void> importLevel(int level) async {
+  Future<Either<String, void>> importLevel(int level) async {
     state = const AsyncValue.loading();
     final repository = ref.read(flashcardRepositoryProvider);
     final result = await repository.importLevel(level);
-    result.fold(
-      (failure) => state = AsyncValue.error(failure, StackTrace.current),
-      (_) => ref.invalidateSelf(),
+    return result.fold(
+      (failure) {
+        state = AsyncValue.error(failure, StackTrace.current);
+        return Left(failure);
+      },
+      (_) {
+        ref.invalidateSelf();
+        return const Right(null);
+      },
     );
   }
 
-  Future<void> uninstallLevel(int level) async {
+  Future<Either<String, void>> uninstallLevel(int level) async {
     state = const AsyncValue.loading();
     final repository = ref.read(flashcardRepositoryProvider);
     final result = await repository.deleteFlashcardsByLevel(level);
-    result.fold(
-      (failure) => state = AsyncValue.error(failure, StackTrace.current),
-      (_) => ref.invalidateSelf(),
+    return result.fold(
+      (failure) {
+        state = AsyncValue.error(failure, StackTrace.current);
+        return Left(failure);
+      },
+      (_) {
+        ref.invalidateSelf();
+        return const Right(null);
+      },
     );
   }
 
@@ -146,7 +170,9 @@ class FlashcardController extends _$FlashcardController {
         // Manually update the card in the list to avoid full reload
         final currentList = state.valueOrNull ?? [];
         if (currentList.isNotEmpty) {
-          final newList = currentList.map((c) => c.id == updatedCard.id ? updatedCard : c).toList();
+          final newList = currentList
+              .map((c) => c.id == updatedCard.id ? updatedCard : c)
+              .toList();
           state = AsyncValue.data(newList);
         } else {
           // If list was empty (unlikely if we clicked a card), fallback to reload
@@ -166,7 +192,7 @@ class FlashcardController extends _$FlashcardController {
   Future<void> clearAllStrokes() async {
     final repository = ref.read(flashcardRepositoryProvider);
     final result = await repository.getFlashcards();
-    
+
     await result.fold(
       (failure) => null,
       (cards) async {
@@ -176,7 +202,7 @@ class FlashcardController extends _$FlashcardController {
         }
       },
     );
-    
+
     ref.invalidateSelf();
   }
 }

@@ -8,6 +8,10 @@ const admin = require("firebase-admin");
 const { sourceHash, SUPPORTED_LANGUAGES } = require("../dictionary-expansion");
 
 const sqlitePath = process.argv[2];
+const eligibleOnly = process.argv.includes("--eligible-only");
+const dryRun = process.argv.includes("--dry-run");
+const wordIdArg = process.argv.find((value) => value.startsWith("--word-id="));
+const selectedWordId = wordIdArg ? wordIdArg.slice("--word-id=".length) : null;
 if (!sqlitePath) {
   console.error("Usage: node scripts/import-dictionary-sources.js <dictionary.sqlite>");
   process.exitCode = 2;
@@ -27,15 +31,22 @@ function readRows(path) {
     `cols=${JSON.stringify(columns)}`,
     "available={r[1] for r in db.execute('pragma table_info(words)')}",
     "selected=[c for c in cols if c in available]",
-    "sql='select '+','.join('\\\"'+c+'\\\"' for c in selected)+' from words order by id'",
     "has_quality=db.execute(\"select 1 from sqlite_master where type='table' and name='localized_definition_quality'\").fetchone() is not None",
-    "for row in db.execute(sql).fetchall():",
+    `selected_word_id=${selectedWordId == null ? "None" : JSON.stringify(selectedWordId)}`,
+    `eligible_only=${eligibleOnly ? "True" : "False"}`,
+    "where=[]",
+    "params=[]",
+    "if selected_word_id is not None: where.append('id=?'); params.append(selected_word_id)",
+    "if eligible_only and has_quality: where.append('exists (select 1 from localized_definition_quality q where q.word_id=words.id and q.expansion_eligible=1)')",
+    "sql='select '+','.join('\\\"'+c+'\\\"' for c in selected)+' from words'+((' where '+ ' and '.join(where)) if where else '')+' order by id'",
+    "for row in db.execute(sql, params).fetchall():",
     " d=dict(row)",
-    " d['_quality']=[dict(q) for q in db.execute('select language_code, score, expansion_eligible, hex(source_definition_hash) as source_definition_hash, scoring_version, reasons from localized_definition_quality where word_id=?', (d['id'],))] if has_quality else []",
+    ` d['_quality']=[dict(q) for q in db.execute('select language_code, score, expansion_eligible, hex(source_definition_hash) as source_definition_hash, scoring_version, reasons from localized_definition_quality where word_id=?${eligibleOnly ? " and expansion_eligible=1" : ""}', (d['id'],))] if has_quality else []`,
     " print(json.dumps(d, ensure_ascii=False), flush=True)",
   ].join("\n");
   return spawn(process.env.PYTHON || "python", ["-c", program, path], {
     stdio: ["ignore", "pipe", "inherit"],
+    env: { ...process.env, PYTHONIOENCODING: "utf-8" },
   });
 }
 
@@ -90,7 +101,7 @@ async function main() {
       imported++;
     }
     pending = [];
-    await batch.commit();
+    if (!dryRun) await batch.commit();
     if (imported % 1000 === 0) console.log(`Imported ${imported} sources`);
   }
 

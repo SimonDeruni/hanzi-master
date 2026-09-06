@@ -1715,11 +1715,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get ancientPhilosophy => 'Filsafat Kuno';
 
   @override
-  String get warringStates => 'Warring States';
+  String get warringStates => 'Negara-Negara Berperang';
 
   @override
   String get hanFeiLegalism =>
-      'Han Fei (c. 280–233 BCE) was a prince of the state of Han and the foremost thinker of Chinese Legalism. Drawing together the ideas of law, administrative technique, and authority, his writings in the Han Feizi profoundly influenced the political philosophy and institutions of imperial China.';
+      'Han Fei (sekitar 280–233 SM) adalah seorang pangeran dari negara Han dan pemikir terkemuka Legalisme Tiongkok. Menggabungkan gagasan tentang hukum, teknik administrasi, dan otoritas, tulisan-tulisannya dalam Han Feizi sangat memengaruhi filsafat politik dan institusi kekaisaran Tiongkok.';
 
   @override
   String get articleSavedToMediaHub =>
@@ -12135,7 +12135,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get videoLearningScreenshot => 'Tangkapan layar pembelajaran video';
 
   @override
-  String get turnAnyBookIntoA => 'Ubah buku apa pun menjadi pelajaran';
+  String get turnAnyBookIntoA =>
+      'Ubah buku apa pun menjadi pelajaran & buku audio';
 
   @override
   String get readNaturallyWithPronunciationDefinition =>
@@ -12145,7 +12146,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get bookReaderScreenshot => 'Tangkapan layar pembaca buku';
 
   @override
-  String get speakWithTheRightRhythm => 'Bicara dengan ritme yang tepat';
+  String get speakWithTheRightRhythm =>
+      'Bicara bebas dengan AI & nada langsung';
 
   @override
   String get shadowNativeAudioAndVisualize =>
@@ -12381,7 +12383,9 @@ class AppLocalizationsId extends AppLocalizations {
       'Gagal menyimpan kata yang diekstrak: \$error';
 
   @override
-  String get youActualTargetExpected => 'Anda: \$actual  ·  Target: \$expected';
+  String youActualTargetExpected(String actual, String expected) {
+    return 'Anda: $actual  ·  Target: $expected';
+  }
 
   @override
   String get improveTheLocalVoice => 'Tingkatkan suara lokal';
@@ -12542,4 +12546,281 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get roleplayCreatorPersonaPlaceholder =>
       'mis., Sepupu yang penasaran dan bertanya tentang karier Anda...';
+
+  @override
+  String get beginFirstLesson => 'Mulai Pelajaran Pertama';
+
+  @override
+  String onboardingLessonProgress(Object current, Object total) {
+    return 'PELAJARAN PERTAMA ANDA  •  $current DARI $total';
+  }
+
+  @override
+  String get onboardingListenInstruction =>
+      'Pertama, dengarkan salah satu bait paling terkenal dalam sastra Tionghoa. Belum perlu menghafal.';
+
+  @override
+  String get onboardingFromGrandLibrary => 'Dari Perpustakaan Agung';
+
+  @override
+  String get onboardingArtOfWarTitleAuthor => 'Seni Perang · Sun Tzu';
+
+  @override
+  String get onboardingArtOfWarChapter => '谋攻篇 · Bab 3';
+
+  @override
+  String get onboardingClassicLineLabel => 'BAIT KLASIK';
+
+  @override
+  String get onboardingArtOfWarTranslation =>
+      '“Kenali musuhmu dan kenali dirimu sendiri, maka engkau tidak perlu takut dalam seratus pertempuran.”';
+
+  @override
+  String get onboardingNoticeMeaning =>
+      'Kenali musuhmu dan kenali dirimu sendiri,';
+
+  @override
+  String get onboardingShadowMeaning =>
+      'Engkau tidak akan terancam bahaya dalam seratus pertempuran.';
+
+  @override
+  String get onboardingPracticeThisLabel => 'ANDA AKAN MELATIH INI';
+
+  @override
+  String get onboardingFromArtOfWarLabel => 'DARI SENI PERANG';
+
+  @override
+  String get onboardingYourPronunciationLabel => 'PELAFALAN ANDA';
+
+  @override
+  String get onboardingTapACharacter => 'Ketuk aksara';
+
+  @override
+  String onboardingWordAndPinyin(String word, String pinyin) {
+    return '$word · $pinyin';
+  }
+
+  @override
+  String get onboardingToneMatched => 'Sesuai';
+
+  @override
+  String get onboardingCompareTones => 'Bandingkan nada';
+
+  @override
+  String get onboardingToneOneHigh => 'nada 1 · tinggi';
+
+  @override
+  String get onboardingToneTwoRising => 'nada 2 · naik';
+
+  @override
+  String get onboardingToneThreeDipping => 'nada 3 · meliuk';
+
+  @override
+  String get onboardingToneFourFalling => 'nada 4 · turun';
+
+  @override
+  String get onboardingToneNotDetected => 'tidak terdeteksi';
+
+  @override
+  String get onboardingFeedbackGreatThirdTone =>
+      'Nada ketiga meliuk yang sangat baik.';
+
+  @override
+  String get onboardingFeedbackFourthToneFall =>
+      'Biarkan nada keempat turun dengan tegas dan cepat.';
+
+  @override
+  String get onboardingFeedbackClearFourthTone =>
+      'Nada keempat turun yang jelas.';
+
+  @override
+  String get onboardingFeedbackStrongFourthTone =>
+      'Nada keempat turun yang kuat.';
+
+  @override
+  String onboardingTraceInstruction(
+      String character, String pinyin, String meaning) {
+    return 'Telusuri $character ($pinyin, “$meaning”). Ikuti panduan goresan samar.';
+  }
+
+  @override
+  String billingDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hari',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minggu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bulan',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String billingYears(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tahun',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String startPeriodFreeTrial(String period) {
+    return 'Mulai uji coba gratis $period';
+  }
+
+  @override
+  String subscribeForPricePeriod(String price, String period) {
+    return 'Berlangganan seharga $price / $period';
+  }
+
+  @override
+  String eligibleTrialRenewalNotice(String price, String period) {
+    return 'Produk StoreKit yang Anda pilih mencakup uji coba gratis yang memenuhi syarat. Setelah masa uji coba, langganan diperbarui seharga $price per $period kecuali dibatalkan.';
+  }
+
+  @override
+  String pricePerPeriod(String price, String period) {
+    return '$price / $period';
+  }
+
+  @override
+  String get learn => 'Belajar';
+
+  @override
+  String get booksAndStudioQualityAudiobooks =>
+      'Buku dan buku audio berkualitas studio';
+
+  @override
+  String get aiConversationsAndLiveToneFeedback =>
+      'Percakapan AI dan umpan balik nada langsung';
+
+  @override
+  String get interactiveVideoAndWebImmersion =>
+      'Video interaktif dan imersi web';
+
+  @override
+  String get characterInsightsAndHandwritingPractice =>
+      'Wawasan karakter dan latihan menulis tangan';
+
+  @override
+  String get hskDecksAndSmartSpacedRepetition =>
+      'Dek HSK dan pengulangan berjarak pintar';
+
+  @override
+  String get termsOfUseEula => 'Syarat Penggunaan (EULA)';
+
+  @override
+  String get masterEveryStroke => 'Kuasai setiap goresan';
+
+  @override
+  String get exploreTheChineseWeb => 'Jelajahi web Tiongkok';
+
+  @override
+  String get tone1Description =>
+      'Pertahankan nada Anda tinggi dan stabil seperti menyanyikan sebuah not.';
+
+  @override
+  String get tone2Description =>
+      'Mulai dari tengah dan geser nada Anda ke atas seperti bertanya \'Apa?\'';
+
+  @override
+  String get tone3Description =>
+      'Turunkan suara Anda rendah, lalu naikkan kembali perlahan.';
+
+  @override
+  String get tone4Description =>
+      'Jatuhkan nada Anda dengan tajam dan tegas seperti \'Tidak!\' yang mantap.';
+
+  @override
+  String get toneNeutralDescription =>
+      'Ucapkan dengan lembut, singkat, dan tanpa penekanan.';
+
+  @override
+  String get toneDiagMatch1 => 'Tepat sekali! Nada tinggi, datar, dan stabil.';
+
+  @override
+  String get toneDiagMatch2 => 'Tepat sekali! Kenaikan nada jelas.';
+
+  @override
+  String get toneDiagMatch3 => 'Tepat sekali! Kurva menurun rendah akurat.';
+
+  @override
+  String get toneDiagMatch4 =>
+      'Tepat sekali! Penurunan tajam sangat menentukan.';
+
+  @override
+  String get toneDiagMatchDefault =>
+      'Tepat sekali! Nada diucapkan dengan akurat.';
+
+  @override
+  String get toneDiag1vs2 =>
+      'Anda menaikkan nada (nada ke-2 /). Pertahankan suara Anda datar dan tinggi di seluruh suku kata (nada ke-1 ˉ).';
+
+  @override
+  String get toneDiag1vs3 =>
+      'Anda menurunkan suara Anda (nada ke-3 ˇ). Pertahankan nada Anda stabil dan tinggi tanpa menurun (nada ke-1 ˉ).';
+
+  @override
+  String get toneDiag1vs4 =>
+      'Anda menurunkan nada Anda (nada ke-4 \\). Pertahankan nada tinggi dan rata seperti menyanyikan sebuah not (nada ke-1 ˉ).';
+
+  @override
+  String get toneDiag2vs1 =>
+      'Anda tetap datar (nada ke-1 ˉ). Geser nada Anda ke atas seperti bertanya \'Apa?\' (nada ke-2 /).';
+
+  @override
+  String get toneDiag2vs3 =>
+      'Anda terlalu dalam menurun (nada ke-3 ˇ). Mulai dari tingkat menengah dan naik dengan mulus tanpa menyentuh dasar (nada ke-2 /).';
+
+  @override
+  String get toneDiag2vs4 =>
+      'Anda menurunkan nada Anda (nada ke-4 \\). Naik ke atas seperti mengajukan pertanyaan (nada ke-2 /).';
+
+  @override
+  String get toneDiag3vs1 =>
+      'Anda tetap tinggi dan datar (nada ke-1 ˉ). Biarkan nada Anda turun rendah ke register dada Anda sebelum naik (nada ke-3 ˇ).';
+
+  @override
+  String get toneDiag3vs2 =>
+      'Anda langsung naik (nada ke-2 /). Pastikan untuk turun rendah terlebih dahulu sebelum naik kembali (nada ke-3 ˇ).';
+
+  @override
+  String get toneDiag3vs4 =>
+      'Anda turun tajam tanpa naik (nada ke-4 \\). Biarkan nada Anda memantul lembut kembali di akhir (nada ke-3 ˇ).';
+
+  @override
+  String get toneDiag4vs1 =>
+      'Anda tetap datar (nada ke-1 ˉ). Turunkan nada Anda dengan tajam dan tegas seperti \'Tidak!\' yang tegas (nada ke-4 \\).';
+
+  @override
+  String get toneDiag4vs2 =>
+      'Anda menaikkan nada Anda (nada ke-2 /). Mulai tinggi dan turun tajam ke bawah (nada ke-4 \\).';
+
+  @override
+  String get toneDiag4vs3 =>
+      'Anda menurun dan naik (nada ke-3 ˇ). Turun lurus ke bawah tanpa naik kembali (nada ke-4 \\).';
+
+  @override
+  String get toneDiagListenDiff =>
+      'Dengarkan 4 nada di bawah untuk mendengar perbedaannya.';
 }

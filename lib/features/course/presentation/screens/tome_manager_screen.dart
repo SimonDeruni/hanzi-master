@@ -107,43 +107,37 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     final List<Map<String, dynamic>> catalog = [
       {
         'id': 'hsk1',
-        AppLocalizations.of(context)!.title:
-            AppLocalizations.of(context)!.hsk1Foundation,
+        'title': AppLocalizations.of(context)!.hsk1Foundation,
         'cards': AppLocalizations.of(context)!.hsk_154_cards,
         'level': 1
       },
       {
         'id': 'hsk2',
-        AppLocalizations.of(context)!.title:
-            AppLocalizations.of(context)!.hsk2Elementary,
+        'title': AppLocalizations.of(context)!.hsk2Elementary,
         'cards': AppLocalizations.of(context)!.hsk_162_cards,
         'level': 2
       },
       {
         'id': 'hsk3',
-        AppLocalizations.of(context)!.title:
-            AppLocalizations.of(context)!.hsk3Intermediate,
+        'title': AppLocalizations.of(context)!.hsk3Intermediate,
         'cards': AppLocalizations.of(context)!.hsk_299_cards,
         'level': 3
       },
       {
         'id': 'hsk4',
-        AppLocalizations.of(context)!.title:
-            AppLocalizations.of(context)!.hsk4UpperIntermediate,
+        'title': AppLocalizations.of(context)!.hsk4UpperIntermediate,
         'cards': AppLocalizations.of(context)!.hsk_602_cards,
         'level': 4
       },
       {
         'id': 'hsk5',
-        AppLocalizations.of(context)!.title:
-            AppLocalizations.of(context)!.hsk5Advanced,
+        'title': AppLocalizations.of(context)!.hsk5Advanced,
         'cards': AppLocalizations.of(context)!.hsk_1300_cards,
         'level': 5
       },
       {
         'id': 'hsk6',
-        AppLocalizations.of(context)!.title:
-            AppLocalizations.of(context)!.hsk6Mastery,
+        'title': AppLocalizations.of(context)!.hsk6Mastery,
         'cards': AppLocalizations.of(context)!.hsk_2500_cards,
         'level': 6
       },
@@ -155,21 +149,28 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     Future<void> installTome(Map<String, dynamic> tome) async {
       try {
         HapticsManager.medium();
-        await ref
+        final importResult = await ref
             .read(flashcardControllerProvider.notifier)
             .importLevel(tome['level'] as int);
-        final flashcardState = ref.read(flashcardControllerProvider);
-        if (flashcardState.hasError) throw Exception(flashcardState.error);
-        await ref
+        importResult.fold(
+          (error) => throw StateError(error),
+          (_) {},
+        );
+        final deckResult = await ref
             .read(deckRepositoryProvider)
             .ensureHSKDeckExists(tome['level'] as int);
+        deckResult.fold(
+          (error) => throw StateError(error),
+          (_) {},
+        );
         ref.invalidate(deckControllerProvider);
         HapticsManager.success();
         if (context.mounted) {
+          final tomeTitle = tome['title'] ?? 'HSK ${tome['level']}';
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                  "${l10n?.successfullyInstalled ?? AppLocalizations.of(context)!.installed} ${tome['title']}"),
+                  "${l10n?.successfullyInstalled ?? AppLocalizations.of(context)!.installed} $tomeTitle"),
               backgroundColor: const Color(0xFF1A1A1B),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
@@ -190,6 +191,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     }
 
     Future<void> uninstallTome(Map<String, dynamic> tome) async {
+      final tomeTitle = tome['title'] ?? 'HSK ${tome['level']}';
       final bool? confirm = await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -198,7 +200,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: Text(
-            "${l10n?.rescindTitle ?? AppLocalizations.of(context)!.remove} ${tome['title']}?",
+            "${l10n?.rescindTitle ?? AppLocalizations.of(context)!.remove} $tomeTitle?",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
@@ -236,9 +238,13 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       if (confirm != true) return;
       try {
         HapticsManager.light();
-        await ref
+        final uninstallResult = await ref
             .read(flashcardControllerProvider.notifier)
             .uninstallLevel(tome['level'] as int);
+        uninstallResult.fold(
+          (error) => throw StateError(error),
+          (_) {},
+        );
         await ref
             .read(deckRepositoryProvider)
             .deleteDeck('hsk${tome['level']}');
@@ -247,7 +253,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                  "${l10n?.removedLibrary ?? AppLocalizations.of(context)!.removed} ${tome['title']}."),
+                  "${l10n?.removedLibrary ?? AppLocalizations.of(context)!.removed} $tomeTitle."),
               backgroundColor: const Color(0xFF1A1A1B),
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
@@ -281,8 +287,11 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
               physics: const BouncingScrollPhysics(),
               slivers: [
                 GlobalSliverAppBar(
-                  title: AppLocalizations.of(context)?.hskCollections ?? "HSK Collections",
-                  subtitle: AppLocalizations.of(context)?.officialStandardVocabularyTiers ?? "Official standard vocabulary tiers",
+                  title: AppLocalizations.of(context)?.hskCollections ??
+                      "HSK Collections",
+                  subtitle: AppLocalizations.of(context)
+                          ?.officialStandardVocabularyTiers ??
+                      "Official standard vocabulary tiers",
                   showBackButton: true,
                 ),
 

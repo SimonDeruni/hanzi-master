@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void main() {
   testWidgets('quiet path completes all six preview steps', (tester) async {
@@ -12,6 +13,8 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: OnboardingMiniLessonScreen(
             disableExternalServicesForTesting: true,
             onComplete: () => completed = true,

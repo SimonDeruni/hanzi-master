@@ -6,10 +6,21 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
+import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class TutorialLessonScreen extends ConsumerStatefulWidget {
-  const TutorialLessonScreen({super.key});
+  const TutorialLessonScreen({
+    super.key,
+    this.initialCardOneForTesting,
+    this.initialCardWaterForTesting,
+  });
+
+  @visibleForTesting
+  final Flashcard? initialCardOneForTesting;
+
+  @visibleForTesting
+  final Flashcard? initialCardWaterForTesting;
 
   @override
   ConsumerState<TutorialLessonScreen> createState() =>
@@ -27,7 +38,14 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   @override
   void initState() {
     super.initState();
-    _loadRealDataFromRepository();
+    if (widget.initialCardOneForTesting != null &&
+        widget.initialCardWaterForTesting != null) {
+      _cardOne = widget.initialCardOneForTesting;
+      _cardWater = widget.initialCardWaterForTesting;
+      _isLoading = false;
+    } else {
+      _loadRealDataFromRepository();
+    }
   }
 
   @override
@@ -100,6 +118,8 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
       );
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor:
           isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -118,13 +138,15 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             _buildIntroStep(),
-            _buildDrawingStep("THE HORIZONTAL STROKE",
-                "This is ONE (Yī). Always draw from Left to Right.", _cardOne!),
+            _buildDrawingStep(
+                l10n.theHorizontalStroke,
+                l10n.tutorialOneExplanation,
+                _cardOne!),
             _buildRadicalExplanationStep(),
             _buildConstellationExplanationStep(),
             _buildDrawingStep(
-                "THE RADICAL",
-                "This is the full character WATER (Shuǐ).\n\nWhen used as a left-side component, it shapeshifts into '氵' (Three Drops)!",
+                l10n.theRadical,
+                l10n.tutorialWaterExplanation,
                 _cardWater!),
             _buildFinaleStep(),
           ],
@@ -138,6 +160,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     final isDark = theme.brightness == Brightness.dark;
     final inkColor = theme.colorScheme.onSurface;
     final buttonColor = isDark ? Colors.amber.shade300 : Colors.amber.shade800;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(32.0),
@@ -146,9 +169,9 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         children: [
           const Icon(Icons.auto_awesome, size: 80, color: Colors.amber),
           const SizedBox(height: 32),
-          const Text(
-            "INDEPENDENT STARS",
-            style: TextStyle(
+          Text(
+            l10n.independentStars,
+            style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.amber,
@@ -156,13 +179,13 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
           ),
           const SizedBox(height: 48),
           Text(
-            "Not every character has a parent Radical. Some are unique pictographs or stand alone.",
+            l10n.notEveryCharacterHas,
             style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
           Text(
-            "On the map, we group these independent characters into CONSTELLATIONS (✨).",
+            l10n.onTheMapWe,
             style: TextStyle(
               fontSize: 18,
               height: 1.5,
@@ -192,6 +215,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     final isDark = theme.brightness == Brightness.dark;
     final inkColor = theme.colorScheme.onSurface;
     final primaryColor = theme.colorScheme.primary;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(32.0),
@@ -199,7 +223,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "WHAT ARE RADICALS?",
+            l10n.whatAreRadicals,
             style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -207,30 +231,32 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                 letterSpacing: 2),
           ),
           const SizedBox(height: 48),
-          // Visual Decomposition
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildComponentBox("氵", "Water", Colors.cyan),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("+",
-                    style:
-                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-              ),
-              _buildComponentBox("工", "Work", Colors.grey),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text("=",
-                    style:
-                        TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-              ),
-              _buildComponentBox("江", "River", Colors.indigo),
-            ],
+          // Visual Decomposition (Protected LTR so 氵 + 工 = 江 does not invert)
+          LtrSanctuary(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildComponentBox("氵", l10n.water, Colors.cyan),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("+",
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                ),
+                _buildComponentBox("工", l10n.work, Colors.grey),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("=",
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                ),
+                _buildComponentBox("江", l10n.river, Colors.indigo),
+              ],
+            ),
           ),
           const SizedBox(height: 48),
           Text(
-            "Hanzi are built from building blocks called RADICALS.\n\nThey give the character its core meaning or theme.",
+            l10n.tutorialRadicalsExplanation,
             style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
@@ -280,6 +306,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     final isDark = theme.brightness == Brightness.dark;
     final inkColor = theme.colorScheme.onSurface;
     final primaryColor = theme.colorScheme.primary;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.all(32.0),
@@ -288,7 +315,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         children: [
           const Icon(Icons.auto_stories, size: 80, color: Colors.amber),
           const SizedBox(height: 32),
-          Text(AppLocalizations.of(context)!.theScrollOfOrigin,
+          Text(l10n.theScrollOfOrigin,
               style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -296,7 +323,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                   letterSpacing: 2)),
           const SizedBox(height: 24),
           Text(
-            "Hanzi are not just letters. They are pictures frozen in time.\n\nTo master them, you must learn to trace their flow.",
+            l10n.tutorialLettersExplanation,
             style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
@@ -309,7 +336,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                     isDark ? const Color(0xFF1A1A1B) : Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: Text(AppLocalizations.of(context)!.iAmReady),
+            child: Text(l10n.iAmReady),
           ),
         ],
       ),
@@ -342,9 +369,11 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
             child: SizedBox(
               width: 300,
               height: 300,
-              child: _TutorialCanvasWrapper(
-                card: card,
-                onComplete: _nextPage,
+              child: LtrSanctuary(
+                child: _TutorialCanvasWrapper(
+                  card: card,
+                  onComplete: _nextPage,
+                ),
               ),
             ),
           ),
@@ -359,6 +388,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
     final isDark = theme.brightness == Brightness.dark;
     final inkColor = theme.colorScheme.onSurface;
     final successColor = isDark ? Colors.green.shade300 : Colors.green;
+    final l10n = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -367,7 +397,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
         children: [
           Icon(Icons.check_circle, size: 80, color: successColor),
           const SizedBox(height: 32),
-          Text(AppLocalizations.of(context)!.youAreAScholar,
+          Text(l10n.youAreAScholar,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -375,7 +405,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                   letterSpacing: 2)),
           const SizedBox(height: 24),
           Text(
-            "The Galaxy Map awaits.\nMaster the Suns (Radicals) to unlock the Planets (Characters).",
+            l10n.tutorialGalaxyExplanation,
             style: TextStyle(fontSize: 18, height: 1.5, color: inkColor),
             textAlign: TextAlign.center,
           ),
@@ -388,7 +418,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
                     isDark ? const Color(0xFF1A1A1B) : Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            child: Text(AppLocalizations.of(context)!.enterTheScroll),
+            child: Text(l10n.enterTheScroll),
           ),
         ],
       ),

@@ -71,3 +71,15 @@ final quickLookProvider =
     sourceDefinitionHash: dictionaryCard.sourceDefinitionHash,
   );
 });
+
+/// Resolves a specific search result in the active definition language.
+/// Dictionary word IDs distinguish entries that share the same Hanzi.
+final dictionaryWordProvider =
+    FutureProvider.family<Flashcard?, int>((ref, wordId) async {
+  final targetLanguage = ref.watch(translationLanguageProvider);
+  final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
+  return dictionaryRepo.getByWordId(
+    wordId,
+    targetLanguage: targetLanguage,
+  );
+});

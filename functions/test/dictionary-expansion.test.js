@@ -41,6 +41,8 @@ test("canonical source and prompt are exclusively server-derived", () => {
   const prompt = buildPrompt(source, "fr");
   assert.match(prompt, /French/);
   assert.match(prompt, /to study/);
+  assert.match(prompt, /at most 3 sentences/);
+  assert.match(prompt, /no more than 2 examples/);
   assert.throws(() => canonicalSource({ definition: "" }), /definition/);
 });
 
@@ -48,6 +50,10 @@ test("strictly validates structured provider output", () => {
   assert.equal(validateOutput(valid), valid);
   assert.throws(() => validateOutput({ ...valid, surprise: true }), /shape/);
   assert.throws(() => validateOutput({ ...valid, examples: [] }), /fields/);
+  assert.throws(() => validateOutput({
+    ...valid,
+    examples: [valid.examples[0], valid.examples[0], valid.examples[0]],
+  }), /fields/);
   assert.throws(() => validateOutput({ ...valid, examples: [{ chinese: "中文", pinyin: "zhōngwén" }] }), /example/);
   assert.throws(() => validateOutput({ ...valid, definition: " padded " }), /fields/);
 });

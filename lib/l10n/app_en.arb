@@ -2107,9 +2107,9 @@
   "aNewWordAndStoryWaitingForYourDaily": "A new Word and Story waiting for your daily ritual.",
   "gentlePromptsBeforeCharactersFadeFr": "Gentle prompts before characters fade from your memory.",
   "receiveAReminder2DaysBeforeYourFree": "Receive a reminder 2 days before your free trial ends.",
-  "yourPathTonchineseFluency": "Your Path to\\nChinese Fluency",
-  "answer3QuickQuestionsSoOurAiCanCraf": "Answer 3 quick questions so our AI can craft\\na curriculum that fits your life.",
-  "whatIsYourLevelnwithChinese": "What is your level\\nwith Chinese?",
+  "yourPathTonchineseFluency": "Your Path to\nChinese Fluency",
+  "answer3QuickQuestionsSoOurAiCanCraf": "Answer 3 quick questions so our AI can craft\na curriculum that fits your life.",
+  "whatIsYourLevelnwithChinese": "What is your level\nwith Chinese?",
   "chooseThePathThatFitsYourDepth": "Choose the path that fits your depth.",
   "whatDrivesYourStudy": "What drives your study?",
   "purposeFuelsTheBrush": "Purpose fuels the brush",
@@ -3871,10 +3871,10 @@
   "learnThroughRealVideos": "Learn through real videos",
   "followInteractiveSubtitlesLookUp": "Follow interactive subtitles, look up words instantly, and turn every video into a lesson.",
   "videoLearningScreenshot": "Video learning screenshot",
-  "turnAnyBookIntoA": "Turn any book into a lesson",
+  "turnAnyBookIntoA": "Turn any book into a lesson & audiobook",
   "readNaturallyWithPronunciationDefinition": "Read naturally with pronunciation, definitions, and translation available whenever you need them.",
   "bookReaderScreenshot": "Book reader screenshot",
-  "speakWithTheRightRhythm": "Speak with the right rhythm",
+  "speakWithTheRightRhythm": "Speak freely with AI & live tones",
   "shadowNativeAudioAndVisualize": "Shadow native audio and visualize all four tones as your pronunciation improves.",
   "shadowingAndTonesScreenshot": "Shadowing and tones screenshot",
   "understandEveryCharacter": "Understand every character",
@@ -3960,7 +3960,7 @@
   "simplifyFailedE": "Simplify failed: $e",
   "translationFailedE": "Translation failed: $e",
   "failedToSaveExtractedWords2": "Failed to save extracted words: $error",
-  "youActualTargetExpected": "You: $actual  ·  Target: $expected",
+  "youActualTargetExpected": "You: {actual}  ·  Target: {expected}",
   "improveTheLocalVoice": "Improve the local voice",
   "higherQualityOfflineMandarin": "Higher-quality offline Mandarin",
   "removeDownload": "Remove download?",
@@ -4042,5 +4042,267 @@
   "springAndAutumn": "Spring and Autumn period",
   "westernHan": "Western Han",
   "roleplayCreatorContextPlaceholder": "e.g., A lively banquet celebrating in Shanghai...",
-  "roleplayCreatorPersonaPlaceholder": "e.g., A curious cousin asking about your career..."
+  "roleplayCreatorPersonaPlaceholder": "e.g., A curious cousin asking about your career...",
+  "beginFirstLesson": "Begin First Lesson",
+  "@beginFirstLesson": {
+    "description": "Button to launch the first mini lesson from onboarding calibration"
+  },
+  "onboardingLessonProgress": "YOUR FIRST LESSON  •  {current} OF {total}",
+  "@onboardingLessonProgress": {
+    "description": "Progress header in onboarding mini lesson",
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "onboardingListenInstruction": "First, hear one of the best-known lines in Chinese literature. No memorizing yet.",
+  "@onboardingListenInstruction": {
+    "description": "Instruction for step 0 listening in onboarding mini lesson"
+  },
+  "onboardingFromGrandLibrary": "From the Grand Library",
+  "@onboardingFromGrandLibrary": {
+    "description": "Eyebrow pill for source library excerpt"
+  },
+  "onboardingArtOfWarTitleAuthor": "The Art of War · Sun Tzu",
+  "@onboardingArtOfWarTitleAuthor": {
+    "description": "Book title and author for Sun Tzu Art of War excerpt"
+  },
+  "onboardingArtOfWarChapter": "谋攻篇 · Chapter 3",
+  "@onboardingArtOfWarChapter": {
+    "description": "Chapter subtitle for Art of War excerpt"
+  },
+  "onboardingClassicLineLabel": "A CLASSIC LINE",
+  "@onboardingClassicLineLabel": {
+    "description": "Passage eyebrow tag in mini lesson"
+  },
+  "onboardingArtOfWarTranslation": "“Know the enemy and know yourself, and you need not fear the result of a hundred battles.”",
+  "@onboardingArtOfWarTranslation": {
+    "description": "Translation of the famous Art of War proverb"
+  },
+  "onboardingNoticeMeaning": "Know the enemy and know yourself,",
+  "@onboardingNoticeMeaning": {
+    "description": "Meaning of the first clause in Art of War excerpt"
+  },
+  "onboardingShadowMeaning": "You will not be imperiled in a hundred battles.",
+  "@onboardingShadowMeaning": {
+    "description": "Meaning of the second clause in Art of War excerpt"
+  },
+  "onboardingPracticeThisLabel": "YOU’LL PRACTICE THIS",
+  "@onboardingPracticeThisLabel": {
+    "description": "Target practice pill in mini lesson"
+  },
+  "onboardingFromArtOfWarLabel": "FROM THE ART OF WAR",
+  "@onboardingFromArtOfWarLabel": {
+    "description": "Attribution badge in shadow step"
+  },
+  "onboardingYourPronunciationLabel": "YOUR PRONUNCIATION",
+  "@onboardingYourPronunciationLabel": {
+    "description": "Tone inspector card title"
+  },
+  "onboardingTapACharacter": "Tap a character",
+  "@onboardingTapACharacter": {
+    "description": "Tone inspector card hint"
+  },
+  "onboardingWordAndPinyin": "{word} · {pinyin}",
+  "@onboardingWordAndPinyin": {
+    "description": "Word and pinyin display in tone inspector",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      },
+      "pinyin": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingToneMatched": "Matched",
+  "@onboardingToneMatched": {
+    "description": "Tone match badge"
+  },
+  "onboardingCompareTones": "Compare tones",
+  "@onboardingCompareTones": {
+    "description": "Button to compare tones"
+  },
+  "onboardingToneOneHigh": "tone 1 · high",
+  "@onboardingToneOneHigh": {
+    "description": "Tone 1 high description"
+  },
+  "onboardingToneTwoRising": "tone 2 · rising",
+  "@onboardingToneTwoRising": {
+    "description": "Tone 2 rising description"
+  },
+  "onboardingToneThreeDipping": "tone 3 · dipping",
+  "@onboardingToneThreeDipping": {
+    "description": "Tone 3 dipping description"
+  },
+  "onboardingToneFourFalling": "tone 4 · falling",
+  "@onboardingToneFourFalling": {
+    "description": "Tone 4 falling description"
+  },
+  "onboardingToneNotDetected": "not detected",
+  "@onboardingToneNotDetected": {
+    "description": "Tone not detected label"
+  },
+  "onboardingFeedbackGreatThirdTone": "Great dipping third tone.",
+  "@onboardingFeedbackGreatThirdTone": {
+    "description": "Feedback message for third tone"
+  },
+  "onboardingFeedbackFourthToneFall": "Let the fourth tone fall firmly and quickly.",
+  "@onboardingFeedbackFourthToneFall": {
+    "description": "Feedback message for fourth tone falling"
+  },
+  "onboardingFeedbackClearFourthTone": "Clear falling fourth tone.",
+  "@onboardingFeedbackClearFourthTone": {
+    "description": "Feedback message for clear fourth tone"
+  },
+  "onboardingFeedbackStrongFourthTone": "Strong falling fourth tone.",
+  "@onboardingFeedbackStrongFourthTone": {
+    "description": "Feedback message for strong fourth tone"
+  },
+  "onboardingTraceInstruction": "Trace {character} ({pinyin}, “{meaning}”). Follow the faint stroke guide.",
+  "@onboardingTraceInstruction": {
+    "description": "Instruction for tracing characters in onboarding mini-lesson",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      },
+      "pinyin": {
+        "type": "String"
+      },
+      "meaning": {
+        "type": "String"
+      }
+    }
+  },
+  "@youActualTargetExpected": {
+    "description": "Comparison between user tone and target tone in onboarding",
+    "placeholders": {
+      "actual": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "billingDays": "{count, plural, =1{day} other{{count} days}}",
+  "@billingDays": {
+    "description": "Days duration plural",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "billingWeeks": "{count, plural, =1{week} other{{count} weeks}}",
+  "@billingWeeks": {
+    "description": "Weeks duration plural",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "billingMonths": "{count, plural, =1{month} other{{count} months}}",
+  "@billingMonths": {
+    "description": "Months duration plural",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "billingYears": "{count, plural, =1{year} other{{count} years}}",
+  "@billingYears": {
+    "description": "Years duration plural",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "startPeriodFreeTrial": "Start {period} free trial",
+  "@startPeriodFreeTrial": {
+    "description": "Start free trial with period parameter",
+    "placeholders": {
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "subscribeForPricePeriod": "Subscribe for {price} / {period}",
+  "@subscribeForPricePeriod": {
+    "description": "Subscribe for price per period",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "eligibleTrialRenewalNotice": "Your selected StoreKit product includes an eligible free trial. After the trial, it renews for {price} per {period} unless canceled.",
+  "@eligibleTrialRenewalNotice": {
+    "description": "StoreKit trial terms explanation",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "pricePerPeriod": "{price} / {period}",
+  "@pricePerPeriod": {
+    "description": "Price per period display",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "learn": "Learn",
+  "@learn": {
+    "description": "Learn feature tab or category label"
+  },
+  "booksAndStudioQualityAudiobooks": "Books and studio-quality audiobooks",
+  "aiConversationsAndLiveToneFeedback": "AI conversations and live tone feedback",
+  "interactiveVideoAndWebImmersion": "Interactive video and web immersion",
+  "characterInsightsAndHandwritingPractice": "Character insights and handwriting practice",
+  "hskDecksAndSmartSpacedRepetition": "HSK decks and smart spaced repetition",
+  "termsOfUseEula": "Terms of Use (EULA)",
+  "masterEveryStroke": "Master every stroke",
+  "exploreTheChineseWeb": "Explore the Chinese web",
+  "tone1Description": "Keep your pitch high and steady like singing a note.",
+  "tone2Description": "Start in the middle and slide your pitch upward like asking 'What?'",
+  "tone3Description": "Dip your voice down low, then rise gently back up.",
+  "tone4Description": "Drop your pitch sharply and decisively like a firm 'No!'",
+  "toneNeutralDescription": "Pronounce softly, briefly, and without emphasis.",
+  "toneDiagMatch1": "Spot on! Pitch was high, flat, and steady.",
+  "toneDiagMatch2": "Spot on! Upward pitch rise was clear.",
+  "toneDiagMatch3": "Spot on! Low dipping curve was accurate.",
+  "toneDiagMatch4": "Spot on! Sharp falling drop was decisive.",
+  "toneDiagMatchDefault": "Spot on! Tone was pronounced accurately.",
+  "toneDiag1vs2": "You rose your pitch (2nd tone /). Keep your voice flat and high across the whole syllable (1st tone ˉ).",
+  "toneDiag1vs3": "You dipped your voice (3rd tone ˇ). Keep your pitch steady and high without dipping (1st tone ˉ).",
+  "toneDiag1vs4": "You dropped your pitch (4th tone \\). Sustain a high, level pitch like singing a note (1st tone ˉ).",
+  "toneDiag2vs1": "You stayed flat (1st tone ˉ). Slide your pitch upward like asking 'What?' (2nd tone /).",
+  "toneDiag2vs3": "You dipped too deep (3rd tone ˇ). Start mid-level and rise smoothly without bottoming out (2nd tone /).",
+  "toneDiag2vs4": "You dropped your pitch (4th tone \\). Rise upward like asking a question (2nd tone /).",
+  "toneDiag3vs1": "You stayed high and flat (1st tone ˉ). Let your pitch drop low into your chest register before rising (3rd tone ˇ).",
+  "toneDiag3vs2": "You rose immediately (2nd tone /). Make sure to dip down low first before rising back up (3rd tone ˇ).",
+  "toneDiag3vs4": "You dropped sharply without rising (4th tone \\). Allow your pitch to bounce gently back up at the end (3rd tone ˇ).",
+  "toneDiag4vs1": "You stayed flat (1st tone ˉ). Drop your pitch sharply and decisively like a firm 'No!' (4th tone \\).",
+  "toneDiag4vs2": "You rose your pitch (2nd tone /). Start high and snap sharply downward (4th tone \\).",
+  "toneDiag4vs3": "You dipped and rose (3rd tone ˇ). Drop straight down without rising back up (4th tone \\).",
+  "toneDiagListenDiff": "Listen to the 4 tones below to hear the difference."
 }

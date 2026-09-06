@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
-import 'package:hanzi_master/features/flashcards/data/models/review_stats_model.dart';
 import 'package:hanzi_master/features/flashcards/data/models/deck_model.dart';
 import 'package:hanzi_master/features/flashcards/data/models/daily_deck_activity_model.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
@@ -31,6 +30,8 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/app_reload_boundary.dart';
+import 'package:hanzi_master/core/hive_adapter_registry.dart';
+import 'package:hanzi_master/core/localization/app_locale_policy.dart';
 
 void main() {
   final binding = WidgetsFlutterBinding.ensureInitialized();
@@ -128,24 +129,14 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
 
     // 1. Initialize SharedPreferences
     final prefs = await SharedPreferences.getInstance();
+    await initializeAppLocale(
+      preferences: prefs,
+      preferredLocales: WidgetsBinding.instance.platformDispatcher.locales,
+    );
 
     // 2. Initialize Hive & DB
     await Hive.initFlutter();
-    if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(FlashcardModelAdapter());
-    }
-    if (!Hive.isAdapterRegistered(1)) {
-      Hive.registerAdapter(ReviewStatsModelAdapter());
-    }
-    if (!Hive.isAdapterRegistered(2)) {
-      Hive.registerAdapter(DeckModelAdapter());
-    }
-    if (!Hive.isAdapterRegistered(3)) {
-      Hive.registerAdapter(DailyDeckActivityModelAdapter());
-    }
-    if (!Hive.isAdapterRegistered(4)) {
-      Hive.registerAdapter(SavedArticleAdapter());
-    }
+    registerHiveAdapters();
 
     await LocalTranslationService.init();
 
@@ -371,7 +362,7 @@ class HanziMasterApp extends ConsumerWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: AppLocalizations.supportedLocales,
+          supportedLocales: activeSupportedLocales,
           home: const AppStartupFlow(),
         ),
       ),

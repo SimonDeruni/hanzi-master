@@ -3,14 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+
+Widget _onboardingApp({Locale locale = const Locale('en')}) => ProviderScope(
+      child: MaterialApp(
+        locale: locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: const OnboardingScreen(),
+      ),
+    );
 
 void main() {
   testWidgets('questionnaire uses the shared onboarding top inset',
       (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(
-        child: MaterialApp(home: OnboardingScreen()),
-      ),
+      _onboardingApp(),
     );
     await tester.pumpAndSettle();
 
@@ -28,9 +36,7 @@ void main() {
   testWidgets('Build My Path transitions into the connected mini lesson',
       (tester) async {
     await tester.pumpWidget(
-      const ProviderScope(
-        child: MaterialApp(home: OnboardingScreen()),
-      ),
+      _onboardingApp(),
     );
     await tester.pumpAndSettle();
 
@@ -63,5 +69,15 @@ void main() {
     expect(find.text('YOUR FIRST LESSON  •  1 OF 6'), findsOneWidget);
     expect(find.text('Listen'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('questionnaire starts in the selected non-English app locale',
+      (tester) async {
+    await tester.pumpWidget(_onboardingApp(locale: const Locale('fr')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Votre parcours vers la\nmaîtrise du chinois'), findsOneWidget);
+    expect(find.text("C'est parti"), findsOneWidget);
+    expect(find.text('Your Path to\nChinese Fluency'), findsNothing);
   });
 }

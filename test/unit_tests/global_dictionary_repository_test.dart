@@ -76,6 +76,33 @@ void main() {
       french: 'Bonjour',
       spanish: 'Hola',
     );
+    await _insertWord(
+      database,
+      id: 4,
+      hanzi: '学校',
+      pinyin: 'xue2 xiao4',
+      definition: 'school',
+      french: 'École',
+      spanish: 'Escuela',
+    );
+    await _insertWord(
+      database,
+      id: 5,
+      hanzi: '行动',
+      pinyin: 'xing2 dong4',
+      definition: 'action',
+      french: 'Action',
+      spanish: 'Acción',
+    );
+    await _insertWord(
+      database,
+      id: 8,
+      hanzi: '测试',
+      pinyin: 'ce4 shi4',
+      definition: 'test; testing',
+      french: 'test; essai',
+      spanish: 'prueba',
+    );
 
     repository = GlobalDictionaryRepository.forTesting(
       database,
@@ -107,7 +134,7 @@ void main() {
   test('keeps stronger text relevance ahead of popularity', () async {
     await _insertWord(
       database,
-      id: 4,
+      id: 6,
       hanzi: '问候',
       pinyin: 'wen4 hou4',
       definition: 'greeting',
@@ -125,6 +152,37 @@ void main() {
     );
 
     expect(cards.first.hanzi, '问候');
+  });
+
+  test('French search ignores case and diacritics', () async {
+    for (final query in ['école', 'ECOLE']) {
+      final result = await repository.search(query, targetLanguage: 'French');
+      final cards = result.fold((error) => fail(error), (cards) => cards);
+
+      expect(cards.map((card) => card.hanzi), contains('学校'));
+    }
+  });
+
+  test('Spanish search ignores diacritics', () async {
+    final result = await repository.search(
+      'accion',
+      targetLanguage: 'Spanish',
+    );
+    final cards = result.fold((error) => fail(error), (cards) => cards);
+
+    expect(cards.map((card) => card.hanzi), contains('行动'));
+  });
+
+  test('finds a general French definition search such as test', () async {
+    final result = await repository.search(
+      'test',
+      targetLanguage: 'French',
+    );
+    final cards = result.fold((error) => fail(error), (cards) => cards);
+
+    expect(cards.map((card) => card.hanzi), contains('测试'));
+    expect(cards.firstWhere((card) => card.hanzi == '测试').definition,
+        'test; essai');
   });
 
   test('attaches localized definition quality metadata', () async {
@@ -152,6 +210,27 @@ void main() {
       '101112131415161718191a1b1c1d1e1f',
     );
     expect(card.sourceDefinitionHash, matches(RegExp(r'^[0-9a-f]{64}$')));
+  });
+
+  test('word ID lookup preserves the selected sense and language', () async {
+    await _insertWord(
+      database,
+      id: 7,
+      hanzi: '喂',
+      pinyin: 'wei4',
+      definition: 'to feed',
+      french: 'nourrir',
+      spanish: 'alimentar',
+    );
+
+    final card = await repository.getByWordId(7, targetLanguage: 'French');
+
+    expect(card, isNotNull);
+    expect(card!.dictionaryWordId, 7);
+    expect(card.pinyin, 'wèi');
+    expect(card.definition, 'nourrir');
+    expect(card.definitionLanguage, 'French');
+    expect(card.englishDefinition, 'to feed');
   });
 
   test('dictionary search provider uses the multilingual repository and locale',

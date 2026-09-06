@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/character_chat_sheet.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -130,4 +131,74 @@ void main() {
       findsNothing,
     );
   });
+
+  testWidgets(
+      'CharacterChatSheet queries translator with hanzi and displays translated French definition',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({
+      'app_locale': 'fr',
+      'translation_target_language': 'French',
+      'use_english_definitions': false,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    await tester.binding.setSurfaceSize(const Size(1000, 1200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    String? passedHanzi;
+    final mockTranslationService = _MockFrenchTranslationService(
+      onTranslate: (def, hanzi) {
+        passedHanzi = hanzi;
+        if (hanzi == '专注') {
+          return 'se concentrer / concentré';
+        }
+        return def;
+      },
+    );
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(preferences),
+          translationLanguageProvider.overrideWith(
+              (ref) => TranslationLanguageNotifier(preferences, appLocale: 'fr')),
+          localTranslationServiceProvider
+              .overrideWithValue(mockTranslationService),
+        ],
+        child: MaterialApp(
+          locale: const Locale('fr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: CharacterChatSheet(
+              hanzi: '专注',
+              pinyin: 'zhuānzhù',
+              definition: 'to focus; to direct attention',
+              messageSender: (_) async => 'OK',
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(passedHanzi, '专注');
+    expect(find.text('se concentrer / concentré'), findsOneWidget);
+  });
+}
+
+class _MockFrenchTranslationService extends LocalTranslationService {
+  final String Function(String definition, String? hanzi) onTranslate;
+
+  _MockFrenchTranslationService({required this.onTranslate})
+      : super(targetLanguage: 'French');
+
+  @override
+  Future<String> translateEnglishDefinition(String definition,
+          {String? hanzi}) async =>
+      onTranslate(definition, hanzi);
 }
