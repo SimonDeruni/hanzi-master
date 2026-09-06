@@ -1280,8 +1280,11 @@ Provide your short, professional linguistic analysis directly to the student:
   }
 
   Widget _buildCenterPlaceholder(ThemeData theme) {
-    final char = widget.scenario.personaName.isNotEmpty
-        ? widget.scenario.personaName[0]
+    final personaName = widget.scenario.localizedPersonaName(
+      Localizations.localeOf(context),
+    );
+    final char = personaName.isNotEmpty
+        ? personaName[0]
         : (widget.scenario.title.isNotEmpty ? widget.scenario.title[0] : '悟');
     return Container(
       decoration: BoxDecoration(

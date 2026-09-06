@@ -19,6 +19,7 @@ import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/features/echo_hall/domain/logic/generated_scenario_parser.dart';
+import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -72,11 +73,14 @@ class _ScenarioSelectionScreenState
     }
     if (_searchQuery.isNotEmpty) {
       final query = _searchQuery.toLowerCase();
+      final locale = Localizations.localeOf(context);
       scenarios = scenarios.where((s) {
         return s.title.toLowerCase().contains(query) ||
             s.description.toLowerCase().contains(query) ||
-            s.personaName.toLowerCase().contains(query) ||
-            s.quests.any((q) => q.toLowerCase().contains(query));
+            s.localizedPersonaName(locale).toLowerCase().contains(query) ||
+            s
+                .localizedQuests(locale)
+                .any((q) => q.toLowerCase().contains(query));
       }).toList();
     }
     return scenarios;
@@ -561,8 +565,12 @@ class _ScenarioSelectionScreenState
                                 : null,
                             child: !scenario.hasAvatar
                                 ? Text(
-                                    scenario.personaName.isNotEmpty
-                                        ? scenario.personaName[0]
+                                    scenario
+                                            .localizedPersonaName(
+                                                Localizations.localeOf(context))
+                                            .isNotEmpty
+                                        ? scenario.localizedPersonaName(
+                                            Localizations.localeOf(context))[0]
                                         : (scenario.title.isNotEmpty
                                             ? scenario.title[0]
                                             : '悟'),
@@ -653,7 +661,8 @@ class _ScenarioSelectionScreenState
                   children: [
                     // Persona Name (Hero)
                     Text(
-                      scenario.personaName,
+                      scenario.localizedPersonaName(
+                          Localizations.localeOf(context)),
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 15,
@@ -735,7 +744,8 @@ class _ScenarioSelectionScreenState
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          AppLocalizations.of(context)?.tapToRoleplay ?? "Tap to roleplay",
+                          AppLocalizations.of(context)?.tapToRoleplay ??
+                              "Tap to roleplay",
                           style: TextStyle(
                             fontSize: 10.5,
                             fontWeight: FontWeight.bold,
@@ -875,8 +885,12 @@ class _ScenarioSelectionScreenState
                             : const Color(0xFFF0EAE1)),
                     child: !scenario.hasAvatar
                         ? Text(
-                            scenario.personaName.isNotEmpty
-                                ? scenario.personaName[0]
+                            scenario
+                                    .localizedPersonaName(
+                                        Localizations.localeOf(context))
+                                    .isNotEmpty
+                                ? scenario.localizedPersonaName(
+                                    Localizations.localeOf(context))[0]
                                 : (scenario.title.isNotEmpty
                                     ? scenario.title[0]
                                     : '悟'),
@@ -898,7 +912,9 @@ class _ScenarioSelectionScreenState
                                   ? Colors.white
                                   : const Color(0xFF1A1A1B))),
                       const SizedBox(height: 2),
-                      Text(scenario.personaName,
+                      Text(
+                          scenario.localizedPersonaName(
+                              Localizations.localeOf(context)),
                           style: TextStyle(
                               fontSize: 14,
                               color: isDark ? Colors.white54 : Colors.black54)),
@@ -972,7 +988,9 @@ class _ScenarioSelectionScreenState
                             ? Colors.white.withValues(alpha: 0.7)
                             : Colors.black.withValues(alpha: 0.6),
                         height: 1.4))),
-            if (scenario.quests.isNotEmpty)
+            if (scenario
+                .localizedQuests(Localizations.localeOf(context))
+                .isNotEmpty)
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
@@ -991,47 +1009,54 @@ class _ScenarioSelectionScreenState
                                   fontSize: 12))
                         ]),
                         const SizedBox(height: 10),
-                        ...scenario.quests.map((q) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      margin: const EdgeInsets.only(
-                                          top: 6, right: 10),
-                                      width: 6,
-                                      height: 6,
-                                      decoration: BoxDecoration(
-                                          color: isDark
-                                              ? Colors.white54
-                                              : Colors.black38,
-                                          shape: BoxShape.circle)),
-                                  Expanded(
-                                      child: RegExp(r'[\u4e00-\u9fa5]')
-                                              .hasMatch(q)
-                                          ? TranslatedText(
-                                              q,
-                                              style: TextStyle(
-                                                  color: isDark
-                                                      ? Colors.white.withValues(
-                                                          alpha: 0.7)
-                                                      : Colors.black.withValues(
-                                                          alpha: 0.6),
-                                                  fontSize: 14,
-                                                  height: 1.3),
-                                            )
-                                          : Text(
-                                              q,
-                                              style: TextStyle(
-                                                  color: isDark
-                                                      ? Colors.white.withValues(
-                                                          alpha: 0.7)
-                                                      : Colors.black.withValues(
-                                                          alpha: 0.6),
-                                                  fontSize: 14,
-                                                  height: 1.3),
-                                            )),
-                                ]))),
+                        ...scenario
+                            .localizedQuests(Localizations.localeOf(context))
+                            .map((q) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 6, right: 10),
+                                          width: 6,
+                                          height: 6,
+                                          decoration: BoxDecoration(
+                                              color: isDark
+                                                  ? Colors.white54
+                                                  : Colors.black38,
+                                              shape: BoxShape.circle)),
+                                      Expanded(
+                                          child: RegExp(r'[\u4e00-\u9fa5]')
+                                                  .hasMatch(q)
+                                              ? TranslatedText(
+                                                  q,
+                                                  style: TextStyle(
+                                                      color: isDark
+                                                          ? Colors.white
+                                                              .withValues(
+                                                                  alpha: 0.7)
+                                                          : Colors.black
+                                                              .withValues(
+                                                                  alpha: 0.6),
+                                                      fontSize: 14,
+                                                      height: 1.3),
+                                                )
+                                              : Text(
+                                                  q,
+                                                  style: TextStyle(
+                                                      color: isDark
+                                                          ? Colors.white
+                                                              .withValues(
+                                                                  alpha: 0.7)
+                                                          : Colors.black
+                                                              .withValues(
+                                                                  alpha: 0.6),
+                                                      fontSize: 14,
+                                                      height: 1.3),
+                                                )),
+                                    ]))),
                       ])),
             const SizedBox(height: 24),
             Padding(
@@ -1164,6 +1189,9 @@ class _ScenarioSelectionScreenState
 
   Future<void> _generateFromDeck({Deck? preselectedDeck}) async {
     final l10n = AppLocalizations.of(context)!;
+    final interfaceLanguage = LocalizedScenarioContent.languageName(
+      Localizations.localeOf(context),
+    );
 
     Deck? selectedDeck = preselectedDeck;
 
@@ -1203,17 +1231,17 @@ class _ScenarioSelectionScreenState
       final hskLevel = hskMatch != null ? int.parse(hskMatch.group(1)!) : 1;
 
       final prompt =
-          '''You are a creative writer and immersive roleplay designer. Create a rich, 100% in-character Chinese conversational roleplay scenario based on these vocabulary words:
+          '''You are an expert language learning scenario designer and immersive roleplay designer. Create a rich, 100% in-character Chinese conversational roleplay scenario based on these vocabulary words:
 $wordsList
 
 Requirements:
-1. Scenario Title: A specific, clear English title that directly matches what is happening in the scene (e.g. "Dinner with Dad", "Ordering at a Chengdu Teahouse", "Buying Tea at the Market", "Meeting an Old Classmate").
-2. Scenario Description: 2-3 sentences in English setting the exact fictional scene, who the persona is, and what situation you are in.
-3. Persona Name: A realistic Chinese character name and title (e.g. "Mei Ling (美玲)", "Master Zhao (赵师傅)", "Auntie Chen (陈阿姨)", "Dr. Wang (王医生)").
+1. Scenario Title: A specific, clear title in $interfaceLanguage that directly matches what is happening in the scene.
+2. Scenario Description: 2-3 sentences in $interfaceLanguage setting the exact fictional scene, who the persona is, and what situation you are in.
+3. Persona Name: A realistic Chinese name in pinyin and Hanzi. Express any role or honorific in $interfaceLanguage as well (for example, "Chén āyí (陈阿姨) — auntie" localized into $interfaceLanguage).
 4. In-Character Opening Line: An authentic in-character opening line in natural Chinese spoken directly to start the situation (e.g. "爸，今天晚饭你想吃点什么？" or "你好！欢迎光临，请问几位？").
    CRITICAL 4TH-WALL RULE: NEVER break character or the 4th wall! NEVER say "Ready to practice?", "Let's practice Chinese", "Are you ready?", or mention studying, language learning, lessons, or practicing. The persona must talk directly as a real person in that scenario.
 5. Opening Line English Translation: English translation of that opening line.
-6. 3 Quest Objectives in ENGLISH: 3 concrete, conversational goals in ENGLISH for the user to achieve in character (e.g. ["Discuss what to have for dinner", "Suggest watching a movie afterwards", "Ask if they would like tea"]). ALL 3 MUST be in English.
+6. 3 Quest Objectives in $interfaceLanguage: 3 concrete, conversational goals in $interfaceLanguage for the user to achieve in character. ALL 3 MUST be in $interfaceLanguage.
 7. Detailed System Prompt: An immersive character prompt. MUST include: "You are {personaName}. Your ONLY role is {personaName}. Stay 100% in character as {personaName} in the situation: '{title}'. NEVER break character, never act like a chatbot or language teacher, never mention language learning or practicing Chinese. Respond naturally in spoken Mandarin suited for HSK $hskLevel. Keep responses concise (1-3 sentences) and conversational."
 
 Respond ONLY in valid JSON format with NO markdown formatting:

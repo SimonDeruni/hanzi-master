@@ -2095,7 +2095,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'यदि AI को कोई असंगति मिलती है, तो वह पूछेगा \'क्या आपका मतलब था...?\'. आप दोबारा बोले बिना अपने मूल ऑडियो का पुनः मूल्यांकन कराने के लिए \'हाँ, मुझे फिर से रेट करें!\' पर टैप कर सकते हैं।';
+      'अगर ट्रांसक्रिप्ट आपकी कही बात से मेल नहीं खाता, तो अपनी इच्छित पंक्ति चुनें और मूल रिकॉर्डिंग को दोबारा बोले बिना फिर से जाँचने के लिए “हाँ, फिर से अंक दें!” पर टैप करें।';
 
   @override
   String get install => 'इंस्टॉल करें';
@@ -2715,7 +2715,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get whatHappensToMyChatHistory => 'मेरे चैट इतिहास का क्या होता है?';
 
   @override
-  String get whatIfAiMishears => 'यदि AI मेरी बात गलत सुन ले तो क्या होगा?';
+  String get whatIfAiMishears =>
+      'अगर AI मेरी बात का गलत अर्थ निकाले तो मैं क्या करूँ?';
 
   @override
   String get whichCharacterIs => 'यह कौन सा वर्ण है:';
@@ -2770,7 +2771,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'आपकी Echo Hall बातचीत आपके डिवाइस पर स्थानीय रूप से संग्रहीत की जाती है ताकि आप कभी भी उनकी समीक्षा कर सकें। हम अपने AI मॉडल को प्रशिक्षित करने के लिए आपकी व्यक्तिगत बातचीत का उपयोग नहीं करते हैं।';
+      'आपके द्वारा सेव किया गया रोलप्ले वार्तालाप इतिहास बाद में देखने के लिए आपके डिवाइस पर ही रहता है। हम आपकी निजी बातचीत का उपयोग अपने AI मॉडल को प्रशिक्षित करने के लिए नहीं करते।';
 
   @override
   String get zhOnly => 'केवल चीनी (ZH)';
@@ -2989,7 +2990,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'नहीं। जब आप Echo Hall, Scholar\'s Verdict, या Shadowing Studio का उपयोग करते हैं, तो उच्चारण स्कोर उत्पन्न करने के लिए आपके ऑडियो का वास्तविक समय में सुरक्षित मूल्यांकन किया जाता है और उसके तुरंत बाद उसे हटा दिया जाता है। हम आपकी प्रगति को ट्रैक करने के लिए केवल संख्यात्मक रेटिंग संग्रहीत करते हैं।';
+      'उच्चारण आकलन के लिए भेजी गई रिकॉर्डिंग सुरक्षित रूप से प्रोसेस की जाती हैं और प्रोसेसिंग पूरी होने के बाद SinoSpark उन्हें नहीं रखता। आपके द्वारा सेव किया गया रोलप्ले इतिहास आपके डिवाइस पर रह सकता है और ऐप में हटाया जा सकता है।';
 
   @override
   String get notification_settings => 'सूचना सेटिंग्स';
@@ -11734,7 +11735,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'AI स्टोरीज़ और इको हॉल की आवाज़ें उन्नत न्यूरल टेक्स्ट-टू-स्पीच मॉडल द्वारा संचालित हैं। वे विशेष रूप से प्रामाणिक चीनी उच्चारण, उचित भावनात्मक उतार-चढ़ाव और प्राकृतिक गति प्रदान करने के लिए ट्यून की गई हैं।';
+      'AI कहानियाँ और रोलप्ले उन्नत टेक्स्ट-टू-स्पीच मॉडल से बनी कृत्रिम आवाज़ों का उपयोग करते हैं, जिन्हें स्पष्ट और स्वाभाविक चीनी उच्चारण के लिए तैयार किया गया है। कुछ सुविधाओं में डिवाइस की स्थानीय आवाज़ भी उपलब्ध हो सकती है।';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12516,4 +12517,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get westernHan => '??????? ???';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      '???., ????? ??? ???? ????? ?? ????? ???...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      '???., ???? ????? ?? ???? ??? ????? ?? ???????? ????? ???...';
 }

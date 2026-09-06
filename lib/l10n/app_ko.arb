@@ -675,7 +675,7 @@
   "hskSimplifySubtitles": "HSK 맞춤 자막 평이화",
   "hskVocabularyCollections": "HSK 어휘 컬렉션",
   "i": "나",
-  "ifTheAgain": "AI가 의도와의 차이를 감지하면 '혹시 ...을(를) 말씀하시려 했나요?'라고 묻습니다. 이때 '예, 다시 평가해 주세요!'를 누르면 다시 말할 필요 없이 기존 녹음으로 즉시 재채점을 받을 수 있습니다.",
+  "ifTheAgain": "전사 내용이 실제로 말한 내용과 다르면 의도한 문장을 선택한 뒤 “예, 다시 채점해 주세요!”를 탭하세요. 다시 말하지 않아도 원래 녹음을 재평가할 수 있습니다.",
   "install": "설치",
   "just": "단 $",
   "keyword": "키워드",
@@ -875,7 +875,7 @@
   "welcomeBack": "다시 오신 것을 환영합니다",
   "whatDoesThisMean": "무슨 뜻인가요?",
   "whatHappensToMyChatHistory": "채팅 대화 기록은 어떻게 관리되나요?",
-  "whatIfAiMishears": "AI가 제 발음을 잘못 인식하면 어떻게 되나요?",
+  "whatIfAiMishears": "AI가 제 말을 잘못 해석하면 어떻게 하나요?",
   "whichCharacterIs": "다음 설명에 해당하는 글자는 무엇인가요:",
   "wikipedia": "위키백과",
   "wordsSavedAndSrsScheduled": "단어가 저장되고 SRS 복습 주기가 등록되었습니다!",
@@ -897,7 +897,7 @@
     }
   },
   "youMustAccount": "계정을 생성하려면 이용약관 및 개인정보 처리방침에 동의해야 합니다.",
-  "yourEchoModels": "Echo Hall의 대화 내용은 기기 로컬에만 안전하게 저장되어 언제든 다시 들을 수 있습니다. 사용자의 개인 음성 대화는 AI 모델 학습에 사용되지 않습니다.",
+  "yourEchoModels": "저장한 롤플레잉 대화 기록은 나중에 복습할 수 있도록 기기에 로컬로 보관됩니다. 개인 대화를 AI 모델 학습에 사용하지 않습니다.",
   "zhOnly": "중국어 전용",
   "roleplay": "롤플레잉",
   "your_path_for_is_ready": "「{deckName}」을(를) 위한 맞춤 학습 경로가 준비되었습니다!",
@@ -971,7 +971,7 @@
   "hsk_vocabulary": "HSK {hskLevel}급 필수 어휘",
   "feature_request": "기능 제안",
   "do_you_keep_or_store_my": "내 음성 녹음 데이터가 서버에 저장되나요?",
-  "no_when_you_use_echo_hall": "아니요. Echo Hall, 학자의 판정, 섀도잉 스튜디오를 사용할 때 음성은 발음 평가를 위해 실시간으로 안전하게 처리된 직후 즉시 파기됩니다. 오직 학습 진도 관리를 위한 점수 수치만 저장됩니다.",
+  "no_when_you_use_echo_hall": "발음 평가를 위해 제출한 녹음은 안전하게 처리되며 처리가 끝난 뒤 SinoSpark가 보관하지 않습니다. 저장하도록 선택한 롤플레잉 기록은 기기에 남을 수 있으며 앱에서 삭제할 수 있습니다.",
   "speaking_pronunciation": "스피킹 및 발음",
   "how_is_my_pronunciation_scored": "발음 점수는 어떻게 채점되나요?",
   "the_ai_evaluates_your_speech_across": "AI가 다음 3가지 요소를 종합 평가합니다:\n• 정확도: 각 음절을 올바르게 발음했는가\n• 완성도: 누락되거나 건너뛴 단어가 없는가\n• 유창성: 자연스러운 호흡과 올바른 성조로 발화했는가\n원어민 발음 모델과 비교하여 100점 만점으로 점수를 환산합니다.",
@@ -3682,7 +3682,7 @@
   "poetryPainting": "시화",
   "contactSinosparkCom": "contact@sinospark.com",
   "shadowingStudioIsADedicated": "섀도잉 스튜디오는 원어민 따라 말하기를 연습하는 전용 공간입니다. 문장을 듣고 녹음한 후, 파형과 발음 점수를 비교하여 억양을 교정할 수 있습니다.",
-  "theVoicesInAIStories": "AI 스토리와 에코 홀의 목소리는 최첨단 신경망 음성 합성(Neural TTS) 모델을 기반으로 합니다. 원어민의 성조와 억양, 자연스러운 감정 표현 및 속도를 제공하도록 정교하게 조율되었습니다.",
+  "theVoicesInAIStories": "AI 스토리와 롤플레잉은 명확하고 자연스러운 중국어 발음에 맞게 조정된 고급 음성 합성 모델의 합성 음성을 사용합니다. 일부 기능에서는 기기의 로컬 음성도 사용할 수 있습니다.",
   "theWebExplorerAllowsYou": "웹 탐색기를 사용하여 모든 중국어 웹사이트를 탐색할 수 있습니다. 어려운 단어를 발견하면 탭하여 퀵 룩 카드를 열고 병음, 번역, HSK 등급을 즉시 확인해보세요.",
   "zenModeStripsAwayDistracting": "선(Zen) 모드는 기사의 산만한 웹 요소, 광고, 복잡한 레이아웃을 제거하여 텍스트에만 집중할 수 있는 깔끔한 서예 스타일의 독서 환경을 제공합니다.",
   "weUseAnIntelligentAlgorithm": "지능형 알고리즘을 통해 단어를 잊어버릴 시점을 예측합니다. 어려운 단어는 더 자주 나타나고, 잘 아는 단어는 나중에 복습하도록 일정이 조정됩니다.",
@@ -3954,5 +3954,7 @@
   "russianLiterature": "??? ??",
   "spanishLiterature": "??? ??",
   "springAndAutumn": "?? ??",
-  "westernHan": "??"
+  "westernHan": "??",
+  "roleplayCreatorContextPlaceholder": "?: ????? ??? ??? ?? ??...",
+  "roleplayCreatorPersonaPlaceholder": "?: ??? ?? ?? ??? ?? ??..."
 }

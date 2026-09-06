@@ -525,8 +525,11 @@ class AudioService extends background_audio.BaseAudioHandler {
 
   static const String _defaultAzureVoice = 'zh-CN-YunxiNeural';
 
-  Future<bool> playSentence(String sentence,
-      {String voiceName = 'Fenrir'}) async {
+  Future<bool> playSentence(
+    String sentence, {
+    String voiceName = 'Fenrir',
+    double? speechRate,
+  }) async {
     final generation = ++_playbackGeneration;
     if (!_isInitialized) await init();
     if (generation != _playbackGeneration || _isDisposed) return false;
@@ -540,11 +543,15 @@ class AudioService extends background_audio.BaseAudioHandler {
     if (voiceName == 'local') {
       debugPrint(
           '[AudioService] User selected local on-device voice — skipping Azure');
-      return await _playLocalTTS(sentence, generation);
+      return await _playLocalTTS(sentence, generation, speechRate: speechRate);
     }
 
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
-    final hash = _hashText('$voiceName:$sentence');
+    final effectiveSpeechRate = speechRate ?? _speechRate;
+    final cacheIdentity = speechRate == null
+        ? '$voiceName:$sentence'
+        : '$voiceName:rate=$effectiveSpeechRate:$sentence';
+    final hash = _hashText(cacheIdentity);
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
 
@@ -597,6 +604,7 @@ class AudioService extends background_audio.BaseAudioHandler {
       try {
         final result = await _fetchCloudTTS(sentence,
             azureVoice: azureVoice,
+            speechRate: effectiveSpeechRate,
             cacheFile: cacheFile,
             boundaryFile: boundaryFile);
         if (result != null && result.success && result.audio.isNotEmpty) {
@@ -623,11 +631,15 @@ class AudioService extends background_audio.BaseAudioHandler {
     }
 
     // Fallback: local on-device TTS if quota is reached or Azure is offline
-    return await _playLocalTTS(sentence, generation);
+    return await _playLocalTTS(sentence, generation, speechRate: speechRate);
   }
 
   /// Plays the sentence through local on-device TTS (flutter_tts).
-  Future<bool> _playLocalTTS(String sentence, int generation) async {
+  Future<bool> _playLocalTTS(
+    String sentence,
+    int generation, {
+    double? speechRate,
+  }) async {
     if (generation != _playbackGeneration) return false;
     try {
       final ttsResult = await _runEngineOperation<dynamic>(() async {
@@ -636,7 +648,7 @@ class AudioService extends background_audio.BaseAudioHandler {
         if (_preferredLocalVoice case final voice?) {
           await _tts.setVoice(voice.platformArguments);
         }
-        await _tts.setSpeechRate(_speechRate);
+        await _tts.setSpeechRate(speechRate ?? _speechRate);
         _localTtsGeneration = generation;
         return _tts.speak(sentence);
       });
@@ -900,6 +912,7 @@ class AudioService extends background_audio.BaseAudioHandler {
     String azureVoice = 'zh-CN-YunxiNeural',
     String pitchRange = '+15%',
     int rateAdjustment = 0,
+    double? speechRate,
     String? phoneme,
     File? cacheFile,
     File? boundaryFile,
@@ -916,8 +929,11 @@ class AudioService extends background_audio.BaseAudioHandler {
         .replaceAll('<', '&lt;')
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;');
-    final num rateValue = math.max(-50,
-        math.min(200, ((_speechRate - 0.5) * 200).round() + rateAdjustment));
+    final effectiveSpeechRate = speechRate ?? _speechRate;
+    final num rateValue = math.max(
+        -50,
+        math.min(
+            200, ((effectiveSpeechRate - 0.5) * 200).round() + rateAdjustment));
     final rateStr = rateValue >= 0 ? '+$rateValue%' : '$rateValue%';
 
     // Ultra-clean standard SSML with zero style extensions to guarantee 200 OK across all Azure endpoints

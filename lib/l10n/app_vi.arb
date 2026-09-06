@@ -662,7 +662,7 @@
   "hskSimplifySubtitles": "Đơn giản hóa phụ đề theo HSK",
   "hskVocabularyCollections": "Bộ sưu tập từ vựng HSK",
   "i": "Tôi",
-  "ifTheAgain": "Nếu AI phát hiện sự không khớp, hệ thống sẽ hỏi 'Ý bạn có phải là...?'. Bạn có thể nhấn 'Có, hãy chấm lại!' để đánh giá lại tệp ghi âm ban đầu theo đúng ý định mà không cần nói lại.",
+  "ifTheAgain": "Nếu bản chép lời không khớp với lời bạn nói, hãy chọn cụm từ bạn muốn nói rồi nhấn “Có, hãy chấm lại!” để đánh giá lại bản ghi âm ban đầu mà không cần nói lại.",
   "install": "Cài đặt",
   "just": "Chỉ $",
   "keyword": "từ khóa",
@@ -862,7 +862,7 @@
   "welcomeBack": "Chào mừng bạn trở lại",
   "whatDoesThisMean": "Điều này có nghĩa là gì?",
   "whatHappensToMyChatHistory": "Lịch sử trò chuyện của tôi được quản lý ra sao?",
-  "whatIfAiMishears": "Nếu AI nghe nhầm điều tôi muốn nói thì sao?",
+  "whatIfAiMishears": "Tôi nên làm gì nếu AI hiểu sai lời mình nói?",
   "whichCharacterIs": "Chữ Hán nào tương ứng với:",
   "wikipedia": "Wikipedia",
   "wordsSavedAndSrsScheduled": "Đã lưu từ vựng và lên lịch lặp lại ngắt quãng (SRS)!",
@@ -884,7 +884,7 @@
     }
   },
   "youMustAccount": "Bạn cần đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư để tạo tài khoản.",
-  "yourEchoModels": "Các đoạn hội thoại Echo Hall chỉ được lưu cục bộ trên thiết bị của bạn để bạn ôn tập bất cứ lúc nào. Chúng tôi không dùng giọng nói cá nhân của bạn để huấn luyện mô hình AI.",
+  "yourEchoModels": "Lịch sử hội thoại Nhập vai mà bạn lưu chỉ nằm trên thiết bị để bạn có thể xem lại. Chúng tôi không dùng các cuộc trò chuyện cá nhân của bạn để huấn luyện mô hình AI.",
   "zhOnly": "Chỉ tiếng Trung (ZH)",
   "roleplay": "Nhập vai",
   "your_path_for_is_ready": "Lộ trình cho bộ «{deckName}» đã sẵn sàng!",
@@ -958,7 +958,7 @@
   "hsk_vocabulary": "Từ vựng HSK {hskLevel}",
   "feature_request": "Yêu cầu tính năng",
   "do_you_keep_or_store_my": "Ứng dụng có lưu trữ các đoạn ghi âm giọng nói của tôi không?",
-  "no_when_you_use_echo_hall": "Không. Khi bạn sử dụng Echo Hall, Phán Quyết của Học Giả hoặc Phòng Luyện Shadowing, âm thanh của bạn được chấm điểm bảo mật theo thời gian thực rồi xóa ngay lập tức. Chúng tôi chỉ lưu lại điểm số để theo dõi tiến trình học tập của bạn.",
+  "no_when_you_use_echo_hall": "Bản ghi gửi để đánh giá phát âm được xử lý an toàn và SinoSpark không lưu giữ sau khi xử lý xong. Lịch sử Nhập vai mà bạn chọn lưu có thể vẫn nằm trên thiết bị và có thể được xóa trong ứng dụng.",
   "speaking_pronunciation": "Khả năng nói & Phát âm",
   "how_is_my_pronunciation_scored": "Điểm phát âm của tôi được tính như thế nào?",
   "the_ai_evaluates_your_speech_across": "AI đánh giá giọng nói của bạn qua 3 tiêu chí:\n• Độ chính xác: Bạn có phát âm đúng từng âm tiết không?\n• Độ hoàn thiện: Bạn có bỏ sót từ nào không?\n• Độ lưu loát: Bạn có ngắt nghỉ tự nhiên và đúng thanh điệu không?\nHệ thống so sánh với giọng người bản xứ để đưa ra thang điểm 100.",
@@ -3670,7 +3670,7 @@
   "poetryPainting": "thơ-họa",
   "contactSinosparkCom": "contact@sinospark.com",
   "shadowingStudioIsADedicated": "Shadowing Studio là không gian chuyên biệt để luyện tập bắt chước người bản ngữ. Bạn hãy nghe một cụm từ, ghi âm lại giọng mình và so sánh sóng âm cũng như điểm phát âm để hoàn thiện ngữ điệu.",
-  "theVoicesInAIStories": "Giọng đọc trong AI Stories và Echo Hall được hỗ trợ bởi các mô hình chuyển văn bản thành giọng nói (TTS) thần kinh tiên tiến. Chúng được tinh chỉnh đặc biệt để mang lại giọng đọc bản ngữ chân thực, cảm xúc phù hợp và nhịp điệu tự nhiên.",
+  "theVoicesInAIStories": "Truyện AI và Nhập vai sử dụng giọng tổng hợp do các mô hình chuyển văn bản thành giọng nói tiên tiến tạo ra, được tinh chỉnh để phát âm tiếng Trung rõ ràng và tự nhiên. Một số tính năng cũng có thể dùng giọng cục bộ của thiết bị.",
   "theWebExplorerAllowsYou": "Web Explorer cho phép bạn duyệt bất kỳ trang web tiếng Trung nào. Khi gặp từ khó, chỉ cần chạm vào từ đó để mở thẻ Quick Look, cung cấp ngay phiên âm Pinyin, bản dịch và cấp độ HSK.",
   "zenModeStripsAwayDistracting": "Zen Mode loại bỏ các yếu tố gây xao nhãng, quảng cáo và bố cục phức tạp trên trang web, mang đến cho bạn môi trường đọc thư pháp tinh gọn, tập trung hoàn toàn vào văn bản.",
   "weUseAnIntelligentAlgorithm": "Chúng tôi sử dụng thuật toán thông minh để dự đoán thời điểm bạn sắp quên một từ. Những từ bạn thấy khó sẽ xuất hiện thường xuyên hơn, trong khi những từ bạn đã nắm vững sẽ được lên lịch ôn tập xa hơn trong tương lai.",
@@ -3942,5 +3942,7 @@
   "russianLiterature": "V?n h?c Nga",
   "spanishLiterature": "V?n h?c T?y Ban Nha",
   "springAndAutumn": "Th?i Xu?n Thu",
-  "westernHan": "T?y H?n"
+  "westernHan": "T?y H?n",
+  "roleplayCreatorContextPlaceholder": "v? d?: M?t b?a ti?c ?n m?ng s?i ??ng ? Th??ng H?i...",
+  "roleplayCreatorPersonaPlaceholder": "v? d?: M?t ng??i anh em h? t? m? h?i v? s? nghi?p c?a b?n..."
 }

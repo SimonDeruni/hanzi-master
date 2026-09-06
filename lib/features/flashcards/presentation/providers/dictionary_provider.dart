@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -58,10 +59,12 @@ class MasterDictionary extends _$MasterDictionary {
       }
 
       // 2. Load HSK 2
-      final hsk2String = await rootBundle.loadString('assets/data/hsk2_bundle.json');
+      final hsk2String =
+          await rootBundle.loadString('assets/data/hsk2_bundle.json');
       if (hsk2String.isNotEmpty) {
         final Map<String, dynamic> hsk2Bundle = json.decode(hsk2String);
-        final List<dynamic> vocabulary = hsk2Bundle['vocabulary'] as List<dynamic>;
+        final List<dynamic> vocabulary =
+            hsk2Bundle['vocabulary'] as List<dynamic>;
         for (var item in vocabulary) {
           final entry = DictionaryEntry(
             hanzi: item['hanzi'],
@@ -84,7 +87,8 @@ class MasterDictionary extends _$MasterDictionary {
   /// Lookup a word/character in the master dictionary
   DictionaryEntry? lookup(String hanzi) {
     // Check user library first via the flashcard controller
-    final libraryCards = ref.read(flashcardControllerProvider).valueOrNull ?? [];
+    final libraryCards =
+        ref.read(flashcardControllerProvider).valueOrNull ?? [];
     Flashcard? libMatch;
     for (final c in libraryCards) {
       if (c.hanzi == hanzi) {
@@ -136,9 +140,14 @@ class MasterDictionary extends _$MasterDictionary {
   }
 }
 
-final masterSearchProvider = FutureProvider.family<List<Flashcard>, String>((ref, query) async {
+final masterSearchProvider =
+    FutureProvider.family<List<Flashcard>, String>((ref, query) async {
   if (query.isEmpty) return [];
-  final repository = ref.read(flashcardRepositoryProvider);
-  final result = await repository.searchAll(query);
+  final targetLanguage = ref.watch(translationLanguageProvider);
+  final repository = ref.read(globalDictionaryRepositoryProvider);
+  final result = await repository.search(
+    query,
+    targetLanguage: targetLanguage,
+  );
   return result.fold((l) => [], (r) => r);
 });

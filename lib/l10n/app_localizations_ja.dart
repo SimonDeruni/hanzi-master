@@ -2037,7 +2037,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'AIが意図の不一致を検知した場合、「〜と言おうとしましたか？」と尋ねます。「はい、再判定してください！」をタップすると、再度発話することなく元の録音から即座に再評価を受けられます。';
+      '文字起こしが発言内容と異なる場合は、意図したフレーズを選び、「はい、再採点してください」をタップしてください。話し直さずに元の録音を再評価できます。';
 
   @override
   String get install => 'インストール';
@@ -2639,7 +2639,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get whatHappensToMyChatHistory => 'チャット履歴はどう管理されますか？';
 
   @override
-  String get whatIfAiMishears => 'AIが意図した言葉を聞き間違えた場合は？';
+  String get whatIfAiMishears => 'AIが発言を誤って解釈した場合はどうすればよいですか？';
 
   @override
   String get whichCharacterIs => '次の説明に当てはまる漢字はどれですか：';
@@ -2692,7 +2692,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'エコーホールでの会話データはお使いの端末にのみ安全にローカル保存されます。個人の会話音声がAIモデルの再学習に使用されることはありません。';
+      '保存したロールプレイの会話履歴は、後から確認できるよう端末内に保存されます。個人的な会話をAIモデルの学習に使用することはありません。';
 
   @override
   String get zhOnly => '中国語のみ';
@@ -2905,7 +2905,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'いいえ。エコーホール、学者の判定、シャドーイングスタジオをご利用の際、音声データは発音スコア算出のためリアルタイムで安全に評価された後、直ちに破棄されます。学習進捗を記録するために保存されるのは数値スコアのみです。';
+      '発音評価のために送信された録音は安全に処理され、処理完了後にSinoSparkが保持することはありません。保存を選択したロールプレイ履歴は端末に残る場合があり、アプリ内で削除できます。';
 
   @override
   String get notification_settings => '通知設定';
@@ -11414,7 +11414,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'AIストーリーやEcho Hallの音声には、高度なニューラル音声合成（TTS）モデルが採用されています。自然なネイティブの発音、適切な感情表現、心地よいペースを実現するよう調整されています。';
+      'AIストーリーとロールプレイでは、高度な音声合成モデルによる合成音声を使用し、明瞭で自然な中国語の発音になるよう調整しています。一部の機能では端末内の音声も利用できます。';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12157,4 +12157,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get westernHan => '??';
+
+  @override
+  String get roleplayCreatorContextPlaceholder => '????????????????????...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      '??????????????????????????...';
 }

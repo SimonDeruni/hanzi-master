@@ -857,7 +857,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final isStoryMode = widget.isStoryMode;
     final l10n = AppLocalizations.of(context);
     final aiIsReadingText = l10n?.aiIsReading ?? 'AI is reading...';
-    final safeAiIsReadingText = aiIsReadingText.replaceAll("'", "\\'").replaceAll('"', '\\"');
+    final safeAiIsReadingText =
+        aiIsReadingText.replaceAll("'", "\\'").replaceAll('"', '\\"');
 
     // Theme-aware colors
     final bgColor = darkMode ? '#1A1A1B' : '#FDFCF0';
@@ -1128,14 +1129,44 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   Future<void> _runAutoSimplify(int level) async {
+    if (_isProcessingAi) return;
     setState(() => _isProcessingAi = true);
 
     try {
-      final text = await _controller
-          .runJavaScriptReturningResult('document.body.innerText');
+      final rawText = await _controller.runJavaScriptReturningResult('''
+        (function() {
+          const selectors = [
+            'article',
+            '[role="main"]',
+            'main',
+            '.article-body',
+            '.article-content',
+            '.post-content',
+            '.entry-content'
+          ];
+          let root = null;
+          for (const selector of selectors) {
+            const candidate = document.querySelector(selector);
+            if (candidate && candidate.innerText.trim().length >= 200) {
+              root = candidate;
+              break;
+            }
+          }
+          root = root || document.body;
+          const copy = root.cloneNode(true);
+          copy.querySelectorAll(
+            'script, style, nav, aside, footer, form, button, [aria-hidden="true"]'
+          ).forEach((node) => node.remove());
+          return copy.innerText.replace(/\\n{3,}/g, '\\n\\n').trim();
+        })()
+      ''');
+      final text = _decodeJavaScriptString(rawText);
+      if (text.trim().length < 20) {
+        throw Exception('No readable article text was found on this page.');
+      }
+
       final gemini = ref.read(geminiServiceProvider);
-      final simplifiedStory =
-          await gemini.simplifyTextToHsk(text.toString(), level);
+      final simplifiedStory = await gemini.simplifyTextToHsk(text, level);
 
       if (!mounted) return;
 
@@ -1155,6 +1186,20 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         setState(() => _isProcessingAi = false);
       }
     }
+  }
+
+  String _decodeJavaScriptString(Object value) {
+    var text = value.toString();
+    for (var attempt = 0; attempt < 2; attempt++) {
+      try {
+        final decoded = jsonDecode(text);
+        if (decoded is! String) break;
+        text = decoded;
+      } on FormatException {
+        break;
+      }
+    }
+    return text.trim();
   }
 
   void _onHanziTapped(String message) {
@@ -1706,9 +1751,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
             child: Stack(
               children: [
                 WebViewWidget(key: _webViewKey, controller: _controller),
-                if (_isProcessingAi && _isZenMode)
+                if (_isProcessingAi)
                   Container(
-                    color: Colors.white.withValues(alpha: 0.9),
+                    color: Theme.of(context).colorScheme.surface.withValues(
+                          alpha: 0.92,
+                        ),
                     child: Center(
                       child: AiProgressBar(
                           label: AppLocalizations.of(context)!.aiIsThinking),
@@ -2332,8 +2379,8 @@ class _ExtractedWordsReviewSheetState
                     backgroundColor: Colors.orange.shade800,
                     foregroundColor: Colors.white,
                     elevation: 0,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 14, horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14)),
                   ),
@@ -2364,8 +2411,8 @@ class _ExtractedWordsReviewSheetState
                     backgroundColor: Colors.indigo,
                     foregroundColor: Colors.white,
                     elevation: 0,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 14, horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14)),
                   ),

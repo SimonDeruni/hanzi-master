@@ -730,7 +730,7 @@
   "hskSimplifySubtitles": "HSK向け字幕平易化",
   "hskVocabularyCollections": "HSK語彙コレクション",
   "i": "私",
-  "ifTheAgain": "AIが意図の不一致を検知した場合、「〜と言おうとしましたか？」と尋ねます。「はい、再判定してください！」をタップすると、再度発話することなく元の録音から即座に再評価を受けられます。",
+  "ifTheAgain": "文字起こしが発言内容と異なる場合は、意図したフレーズを選び、「はい、再採点してください」をタップしてください。話し直さずに元の録音を再評価できます。",
   "install": "インストール",
   "just": "わずか $",
   "keyword": "キーワード",
@@ -930,7 +930,7 @@
   "welcomeBack": "おかえりなさい",
   "whatDoesThisMean": "これはどういう意味ですか？",
   "whatHappensToMyChatHistory": "チャット履歴はどう管理されますか？",
-  "whatIfAiMishears": "AIが意図した言葉を聞き間違えた場合は？",
+  "whatIfAiMishears": "AIが発言を誤って解釈した場合はどうすればよいですか？",
   "whichCharacterIs": "次の説明に当てはまる漢字はどれですか：",
   "wikipedia": "ウィキペディア",
   "wordsSavedAndSrsScheduled": "単語を保存し、SRS復習スケジュールを設定しました！",
@@ -952,7 +952,7 @@
     }
   },
   "youMustAccount": "アカウントを作成するには、利用規約とプライバシーポリシーに同意する必要があります。",
-  "yourEchoModels": "エコーホールでの会話データはお使いの端末にのみ安全にローカル保存されます。個人の会話音声がAIモデルの再学習に使用されることはありません。",
+  "yourEchoModels": "保存したロールプレイの会話履歴は、後から確認できるよう端末内に保存されます。個人的な会話をAIモデルの学習に使用することはありません。",
   "zhOnly": "中国語のみ",
   "roleplay": "ロールプレイ",
   "your_path_for_is_ready": "「{deckName}」の学習パスが完成しました！",
@@ -1025,7 +1025,7 @@
   "hsk_vocabulary": "HSK {hskLevel}級の語彙",
   "feature_request": "機能リクエスト",
   "do_you_keep_or_store_my": "私の音声録音データは保存されますか？",
-  "no_when_you_use_echo_hall": "いいえ。エコーホール、学者の判定、シャドーイングスタジオをご利用の際、音声データは発音スコア算出のためリアルタイムで安全に評価された後、直ちに破棄されます。学習進捗を記録するために保存されるのは数値スコアのみです。",
+  "no_when_you_use_echo_hall": "発音評価のために送信された録音は安全に処理され、処理完了後にSinoSparkが保持することはありません。保存を選択したロールプレイ履歴は端末に残る場合があり、アプリ内で削除できます。",
   "speaking_pronunciation": "スピーキングと発音",
   "how_is_my_pronunciation_scored": "発音はどのように採点されますか？",
   "the_ai_evaluates_your_speech_across": "AIは以下の3つの観点から音声を評価します：\n• 正確性：各音節を正確に発音できているか\n• 完全性：単語の抜け落ちや読み飛ばしがないか\n• 流暢さ：自然な間（ポーズ）を取り、正しい声調で話せているか\n音声をネイティブモデルと比較し、100点満点でスコアを算出します。",
@@ -3734,7 +3734,7 @@
   "poetryPainting": "詩画",
   "contactSinosparkCom": "contact@sinospark.com",
   "shadowingStudioIsADedicated": "シャドーイングスタジオは、ネイティブの発音を模倣して練習するための専用機能です。フレーズを聴いて自分の声を録音し、波形や発音スコアを比較してアクセントを磨くことができます。",
-  "theVoicesInAIStories": "AIストーリーやEcho Hallの音声には、高度なニューラル音声合成（TTS）モデルが採用されています。自然なネイティブの発音、適切な感情表現、心地よいペースを実現するよう調整されています。",
+  "theVoicesInAIStories": "AIストーリーとロールプレイでは、高度な音声合成モデルによる合成音声を使用し、明瞭で自然な中国語の発音になるよう調整しています。一部の機能では端末内の音声も利用できます。",
   "theWebExplorerAllowsYou": "Webエクスプローラーでは、任意の中国語ウェブサイトを閲覧できます。難しい単語をタップするだけでクイックルックカードが開き、ピンイン、意味、HSKレベルが瞬時に表示されます。",
   "zenModeStripsAwayDistracting": "禅モードは、記事から余分なウェブ要素や広告、複雑なレイアウトを取り除き、テキストだけに集中できるシンプルで美しい読書環境を提供します。",
   "weUseAnIntelligentAlgorithm": "単語を忘れそうになるタイミングを予測するスマートなアルゴリズムを使用しています。苦手な単語は頻繁に出題され、よく覚えている単語は復習間隔が長く設定されます。",
@@ -4006,5 +4006,7 @@
   "russianLiterature": "?????",
   "spanishLiterature": "??????",
   "springAndAutumn": "????",
-  "westernHan": "??"
+  "westernHan": "??",
+  "roleplayCreatorContextPlaceholder": "????????????????????...",
+  "roleplayCreatorPersonaPlaceholder": "??????????????????????????..."
 }

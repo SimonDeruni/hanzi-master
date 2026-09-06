@@ -2117,7 +2117,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'Si l\'IA détecte une divergence, elle demandera \'Vouliez-vous dire...?\'. Vous pouvez appuyer sur le bouton \'Oui, réévaluez-moi !\' pour réévaluer instantanément votre audio original par rapport à votre véritable intention sans avoir à reparler.';
+      'Si la transcription ne correspond pas à vos propos, sélectionnez la phrase voulue, puis touchez « Oui, réévaluez-moi ! » pour réévaluer l’enregistrement initial sans avoir à parler de nouveau.';
 
   @override
   String get install => 'Installer';
@@ -2746,7 +2746,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get whatIfAiMishears =>
-      'Et si l\'IA comprend mal ce que je voulais dire ?';
+      'Que faire si l’IA interprète mal mes propos ?';
 
   @override
   String get whichCharacterIs => 'Quel caractère est :';
@@ -2801,7 +2801,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'Vos conversations Echo Hall sont stockées localement sur votre appareil afin que vous puissiez les consulter à tout moment. Nous n\'utilisons pas vos conversations personnelles pour entraîner nos modèles d\'IA.';
+      'L’historique des conversations de Jeu de rôle que vous enregistrez reste stocké localement sur votre appareil pour que vous puissiez le consulter. Nous n’utilisons pas vos conversations personnelles pour entraîner nos modèles d’IA.';
 
   @override
   String get zhOnly => 'ZH uniquement';
@@ -3021,7 +3021,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'Non. Lorsque vous utilisez Echo Hall, l\'Évaluation de l\'Érudit ou le Studio de Shadowing, votre enregistrement audio est analysé en temps réel pour calculer votre score, puis immédiatement supprimé. Nous ne conservons que vos notes chiffrées afin de suivre votre progression.';
+      'Les enregistrements envoyés pour l’évaluation de la prononciation sont traités de manière sécurisée et ne sont pas conservés par SinoSpark une fois le traitement terminé. L’historique de Jeu de rôle que vous choisissez d’enregistrer peut rester sur votre appareil et être supprimé dans l’app.';
 
   @override
   String get notification_settings => 'Paramètres de notification';
@@ -11805,7 +11805,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'Les voix dans Histoires IA et le Pavillon de l\'Écho utilisent des modèles avancés de synthèse vocale neuronale. Elles sont spécialement réglées pour offrir un accent chinois natif authentique, des intonations expressives et un rythme naturel.';
+      'Les Histoires IA et le Jeu de rôle utilisent des voix de synthèse générées par des modèles avancés de synthèse vocale, optimisés pour une prononciation chinoise claire et naturelle. Une voix locale de l’appareil peut aussi être proposée dans certaines fonctionnalités.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12523,18 +12523,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get translateAction => 'Traduire';
 
   @override
-  String get checkingDownload => 'V?rification du t?l?chargement';
+  String get checkingDownload => 'Vérification du téléchargement';
 
   @override
   String downloadingBook(int percent) {
-    return 'T?l?chargement : $percent %';
+    return 'Téléchargement : $percent %';
   }
 
   @override
-  String get retryDownload => 'R?essayer le t?l?chargement';
+  String get retryDownload => 'Réessayer le téléchargement';
 
   @override
-  String get downloadBook => 'T?l?charger le livre';
+  String get downloadBook => 'Télécharger le livre';
 
   @override
   String continueChapter(int chapter) {
@@ -12543,11 +12543,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get downloadBookError =>
-      'Impossible de t?l?charger ce livre. V?rifiez votre connexion et r?essayez.';
+      'Impossible de télécharger ce livre. Vérifiez votre connexion et réessayez.';
 
   @override
   String downloadBookOffline(int count) {
-    return 'T?l?chargez le livre pour lire ses $count chapitres hors ligne.';
+    return 'Téléchargez le livre pour lire ses $count chapitres hors ligne.';
   }
 
   @override
@@ -12555,51 +12555,59 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count po?mes',
-      one: '1 po?me',
+      other: '$count poèmes',
+      one: '1 poème',
     );
     return '$_temp0';
   }
 
   @override
-  String get americanLiterature => 'Litt?rature am?ricaine';
+  String get americanLiterature => 'Littérature américaine';
 
   @override
   String get ancientChina => 'Chine antique';
 
   @override
-  String get britishLiterature => 'Litt?rature britannique';
+  String get britishLiterature => 'Littérature britannique';
 
   @override
-  String get frenchLiterature => 'Litt?rature fran?aise';
+  String get frenchLiterature => 'Littérature française';
 
   @override
-  String get germanLiterature => 'Litt?rature allemande';
+  String get germanLiterature => 'Littérature allemande';
 
   @override
-  String get italianLiterature => 'Litt?rature italienne';
+  String get italianLiterature => 'Littérature italienne';
 
   @override
   String get jinDynasty => 'Dynastie Jin';
 
   @override
-  String get preQinEra => '?poque pr?-Qin';
+  String get preQinEra => 'Époque pré-Qin';
 
   @override
   String get qingDynasty => 'Dynastie Qing';
 
   @override
-  String get republicOfChinaEra => 'R?publique de Chine';
+  String get republicOfChinaEra => 'République de Chine';
 
   @override
-  String get russianLiterature => 'Litt?rature russe';
+  String get russianLiterature => 'Littérature russe';
 
   @override
-  String get spanishLiterature => 'Litt?rature espagnole';
+  String get spanishLiterature => 'Littérature espagnole';
 
   @override
-  String get springAndAutumn => 'P?riode des Printemps et Automnes';
+  String get springAndAutumn => 'Période des Printemps et Automnes';
 
   @override
   String get westernHan => 'Han occidentaux';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      'p. ex., Un banquet anim? pour c?l?brer ? Shanghai...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      'p. ex., Un cousin curieux qui pose des questions sur votre carri?re...';
 }

@@ -148,11 +148,11 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
                       ],
                     ),
                     // Quests Overlay
-                    if (widget.scenario.quests.isNotEmpty)
+                    if (widget.scenario.localizedQuests(Localizations.localeOf(context)).isNotEmpty)
                       Positioned(
                         top: 240, // Below expanded app bar
                         right: 12,
-                        child: _QuestsFloatingButton(quests: widget.scenario.quests),
+                        child: _QuestsFloatingButton(quests: widget.scenario.localizedQuests(Localizations.localeOf(context))),
                       ),
                   ],
                 ),
@@ -209,7 +209,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     }
 
     // Refined Monogram
-    final char = widget.scenario.personaName.isNotEmpty ? widget.scenario.personaName[0].toUpperCase() : '?';
+    final personaName = widget.scenario.localizedPersonaName(Localizations.localeOf(context));
+    final char = personaName.isNotEmpty ? personaName[0].toUpperCase() : '?';
     return SafeArea(
       bottom: false,
       child: Container(

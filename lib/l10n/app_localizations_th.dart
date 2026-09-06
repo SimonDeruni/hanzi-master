@@ -2080,7 +2080,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'หาก AI ตรวจพบเสียงที่ไม่ตรงกัน ระบบจะถามว่า \'คุณตั้งใจจะพูดว่า... ใช่หรือไม่?\' คุณสามารถแตะปุ่ม \'ใช่ ให้คะแนนฉันใหม่!\' เพื่อประเมินเสียงบันทึกเดิมของคุณใหม่ได้ทันทีโดยไม่ต้องพูดซ้ำ';
+      'หากข้อความถอดเสียงไม่ตรงกับสิ่งที่คุณพูด ให้เลือกวลีที่ต้องการแล้วแตะ “ใช่ ให้คะแนนฉันใหม่!” เพื่อประเมินไฟล์บันทึกเดิมอีกครั้งโดยไม่ต้องพูดซ้ำ';
 
   @override
   String get install => 'ติดตั้ง';
@@ -2696,8 +2696,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'จะเกิดอะไรขึ้นกับประวัติการแชทของฉัน?';
 
   @override
-  String get whatIfAiMishears =>
-      'จะเกิดอะไรขึ้นหาก AI ได้ยินคำที่ฉันต้องการจะพูดผิดไป?';
+  String get whatIfAiMishears => 'ฉันควรทำอย่างไรหาก AI ตีความคำพูดของฉันผิด?';
 
   @override
   String get whichCharacterIs => 'ตัวอักษรใดคือ:';
@@ -2752,7 +2751,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'บทสนทนาใน Echo Hall ของคุณจะถูกเก็บไว้ในอุปกรณ์ของคุณ เพื่อให้คุณสามารถทบทวนได้ตลอดเวลา เราจะไม่นำบทสนทนาส่วนตัวของคุณไปใช้ในการฝึกฝนโมเดล AI ของเรา';
+      'ประวัติการสนทนาในโหมดจำลองบทบาทที่คุณบันทึกไว้จะเก็บอยู่ในอุปกรณ์ เพื่อให้กลับมาทบทวนได้ เราไม่นำบทสนทนาส่วนตัวของคุณไปใช้ฝึกโมเดล AI';
 
   @override
   String get zhOnly => 'ภาษาจีนเท่านั้น';
@@ -2970,7 +2969,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'ไม่ เมื่อคุณใช้งาน Echo Hall, Scholar\'s Verdict หรือ Shadowing Studio ไฟล์เสียงของคุณจะได้รับการประเมินแบบเรียลไทม์อย่างปลอดภัยเพื่อสร้างคะแนนการออกเสียง และจะถูกลบทิ้งทันทีหลังจากนั้น เราจะจัดเก็บเฉพาะคะแนนตัวเลขเพื่อติดตามความคืบหน้าของคุณเท่านั้น';
+      'ไฟล์บันทึกที่ส่งไปประเมินการออกเสียงจะได้รับการประมวลผลอย่างปลอดภัย และ SinoSpark จะไม่เก็บไว้หลังประมวลผลเสร็จ ประวัติโหมดจำลองบทบาทที่คุณเลือกบันทึกอาจคงอยู่ในอุปกรณ์และลบได้ภายในแอป';
 
   @override
   String get notification_settings => 'การตั้งค่าการแจ้งเตือน';
@@ -11693,7 +11692,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'เสียงใน AI Stories และ Echo Hall ขับเคลื่อนด้วยโมเดล Neural Text-to-Speech ขั้นสูง ซึ่งปรับแต่งมาโดยเฉพาะเพื่อให้ได้สำเนียงจีนที่เป็นธรรมชาติ การใส่อารมณ์ที่เหมาะสม และจังหวะการพูดที่ลื่นไหล';
+      'เรื่องราว AI และโหมดจำลองบทบาทใช้เสียงสังเคราะห์จากโมเดลแปลงข้อความเป็นเสียงขั้นสูง ซึ่งปรับให้มีการออกเสียงภาษาจีนที่ชัดเจนและเป็นธรรมชาติ บางฟีเจอร์อาจใช้เสียงภายในอุปกรณ์ได้ด้วย';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12471,4 +12470,12 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get westernHan => '??????????????????';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      '???? ?????????????????????????????????...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      '???? ?????????????????????????????????????????????????...';
 }

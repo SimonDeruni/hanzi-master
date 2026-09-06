@@ -2107,7 +2107,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'Se l\'IA rileva una discrepanza, ti chiederà: «Intendevi dire...?». Puoi toccare il pulsante «Sì, rivalutami!» per valutare nuovamente l\'audio originale senza dover parlare di nuovo.';
+      'Se la trascrizione non corrisponde a ciò che hai detto, seleziona la frase desiderata e tocca “Sì, rivalutami!” per valutare di nuovo la registrazione originale senza dover ripetere.';
 
   @override
   String get install => 'Installa';
@@ -2736,7 +2736,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get whatIfAiMishears =>
-      'Cosa succede se l\'IA capisce male ciò che intendevo dire?';
+      'Cosa posso fare se l’IA interpreta male ciò che ho detto?';
 
   @override
   String get whichCharacterIs => 'Quale carattere corrisponde a:';
@@ -2791,7 +2791,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'Le tue conversazioni in Echo Hall sono salvate localmente sul dispositivo in modo da poterle riascoltare in qualsiasi momento. I tuoi dialoghi personali non vengono mai utilizzati per addestrare i nostri modelli di intelligenza artificiale.';
+      'La cronologia delle conversazioni di Gioco di ruolo che salvi rimane localmente sul dispositivo, così puoi rivederla. Non usiamo le tue conversazioni personali per addestrare i nostri modelli di IA.';
 
   @override
   String get zhOnly => 'Solo Cinese (ZH)';
@@ -3010,7 +3010,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'No. Quando utilizzi Echo Hall, il Verdetto dell\'Erudito o lo Studio di Shadowing, il tuo audio viene analizzato in modo sicuro in tempo reale per calcolare il punteggio di pronuncia e viene immediatamente eliminato. Conserviamo esclusivamente le metriche numeriche per monitorare i tuoi progressi.';
+      'Le registrazioni inviate per la valutazione della pronuncia vengono elaborate in modo sicuro e SinoSpark non le conserva al termine dell’elaborazione. La cronologia di Gioco di ruolo che scegli di salvare può rimanere sul dispositivo ed essere eliminata nell’app.';
 
   @override
   String get notification_settings => 'Impostazioni notifiche';
@@ -11806,7 +11806,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'Le voci in Storie AI e Echo Hall sono basate su avanzati modelli Neural Text-to-Speech. Sono ottimizzate per offrire accenti cinesi madrelingua autentici, un\'adeguata flessione emotiva e un ritmo naturale.';
+      'Storie IA e Gioco di ruolo usano voci sintetiche generate da modelli avanzati di sintesi vocale, ottimizzati per una pronuncia cinese chiara e naturale. In alcune funzioni può essere disponibile anche la voce locale del dispositivo.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12606,4 +12606,12 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get westernHan => 'Han occidentali';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      'ad es., Un vivace banchetto di festa a Shanghai...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      'ad es., Un cugino curioso che ti chiede della tua carriera...';
 }

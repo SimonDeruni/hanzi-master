@@ -657,7 +657,7 @@
   "hskSimplifySubtitles": "Sederhanakan Subtitel HSK",
   "hskVocabularyCollections": "Koleksi Kosakata HSK",
   "i": "Saya",
-  "ifTheAgain": "Jika AI mendeteksi perbedaan, sistem akan bertanya 'Apakah maksud Anda...?'. Anda dapat mengetuk tombol 'Ya, Nilai Ulang Saya!' untuk mengevaluasi kembali rekaman audio asli Anda secara instan tanpa harus berbicara lagi.",
+  "ifTheAgain": "Jika transkripsi tidak sesuai dengan ucapan Anda, pilih frasa yang dimaksud lalu ketuk “Ya, Nilai Ulang!” untuk menilai kembali rekaman asli tanpa perlu berbicara lagi.",
   "install": "Instal",
   "just": "Hanya $",
   "keyword": "Kata Kunci",
@@ -857,7 +857,7 @@
   "welcomeBack": "Selamat Datang Kembali",
   "whatDoesThisMean": "Apa artinya ini?",
   "whatHappensToMyChatHistory": "Apa yang terjadi dengan riwayat obrolan saya?",
-  "whatIfAiMishears": "Bagaimana jika AI salah mendengar apa yang saya maksud?",
+  "whatIfAiMishears": "Apa yang dapat saya lakukan jika AI salah memahami ucapan saya?",
   "whichCharacterIs": "Karakter manakah yang:",
   "wikipedia": "Wikipedia",
   "wordsSavedAndSrsScheduled": "Kata berhasil disimpan dan jadwal SRS telah dibuat!",
@@ -879,7 +879,7 @@
     }
   },
   "youMustAccount": "Anda harus menyetujui Ketentuan Layanan dan Kebijakan Privasi untuk membuat akun.",
-  "yourEchoModels": "Percakapan Echo Hall Anda disimpan secara lokal di perangkat Anda sehingga Anda dapat meninjaunya kapan saja. Kami tidak menggunakan percakapan pribadi Anda untuk melatih model AI kami.",
+  "yourEchoModels": "Riwayat percakapan Bermain Peran yang Anda simpan tetap tersimpan secara lokal di perangkat agar dapat ditinjau kembali. Kami tidak menggunakan percakapan pribadi Anda untuk melatih model AI kami.",
   "zhOnly": "Hanya Mandarin (ZH)",
   "roleplay": "Bermain Peran",
   "your_path_for_is_ready": "Jalur belajar Anda untuk «{deckName}» sudah siap!",
@@ -953,7 +953,7 @@
   "hsk_vocabulary": "Kosakata HSK {hskLevel}",
   "feature_request": "Saran Fitur",
   "do_you_keep_or_store_my": "Apakah Anda menyimpan rekaman suara saya?",
-  "no_when_you_use_echo_hall": "Tidak. Saat Anda menggunakan Echo Hall, Penilaian Cendekiawan, atau Studio Shadowing, audio Anda dievaluasi secara aman secara real-time untuk menghasilkan skor pengucapan lalu segera dihapus. Kami hanya menyimpan nilai numerik untuk melacak kemajuan belajar Anda.",
+  "no_when_you_use_echo_hall": "Rekaman yang dikirim untuk penilaian pelafalan diproses dengan aman dan tidak disimpan oleh SinoSpark setelah pemrosesan selesai. Riwayat Bermain Peran yang Anda pilih untuk disimpan dapat tetap berada di perangkat dan dapat dihapus di aplikasi.",
   "speaking_pronunciation": "Berbicara & Pengucapan",
   "how_is_my_pronunciation_scored": "Bagaimana pengucapan saya dinilai?",
   "the_ai_evaluates_your_speech_across": "AI mengevaluasi ucapan Anda berdasarkan tiga aspek:\n• Akurasi: Apakah Anda melafalkan suku kata dengan benar?\n• Kelengkapan: Apakah ada kata yang terlewatkan?\n• Kelancaran: Apakah Anda berhenti sejenak secara alami dan menerapkan nada dengan tepat?\nAI membandingkan rekaman Anda dengan standar penutur asli untuk memberikan skor dari 100.",
@@ -3665,7 +3665,7 @@
   "poetryPainting": "puisi-lukisan",
   "contactSinosparkCom": "contact@sinospark.com",
   "shadowingStudioIsADedicated": "Shadowing Studio adalah ruang khusus untuk berlatih menirukan penutur asli. Anda dapat mendengarkan frasa, merekam diri saat mengulangnya, serta membandingkan bentuk gelombang dan skor pengucapan untuk menyempurnakan aksen Anda.",
-  "theVoicesInAIStories": "Suara dalam AI Stories dan Echo Hall didukung oleh model Neural Text-to-Speech canggih. Suara ini dirancang khusus untuk memberikan aksen Mandarin asli yang otentik, infleksi emosional yang tepat, dan ritme yang alami.",
+  "theVoicesInAIStories": "Cerita AI dan Bermain Peran menggunakan suara sintetis dari model teks-ke-ucapan canggih yang disetel untuk pelafalan bahasa Mandarin yang jelas dan alami. Suara lokal perangkat juga mungkin tersedia pada fitur tertentu.",
   "theWebExplorerAllowsYou": "Web Explorer memungkinkan Anda menjelajahi situs web berbahasa Mandarin apa pun. Saat menemukan kata yang sulit, cukup ketuk untuk membuka kartu Intip Cepat yang menyediakan Pinyin, terjemahan, dan tingkat HSK secara instan.",
   "zenModeStripsAwayDistracting": "Mode Zen menghilangkan elemen web yang mengganggu, iklan, dan tata letak artikel yang rumit, menyajikan lingkungan membaca kaligrafi yang bersih dan berfokus sepenuhnya pada teks.",
   "weUseAnIntelligentAlgorithm": "Kami menggunakan algoritma cerdas yang memprediksi kapan Anda hampir melupakan suatu kata. Kata-kata yang sulit bagi Anda akan muncul lebih sering, sementara kata-kata yang sudah dikuasai akan dijadwalkan lebih jauh di masa mendatang.",
@@ -3937,5 +3937,7 @@
   "russianLiterature": "Sastra Rusia",
   "spanishLiterature": "Sastra Spanyol",
   "springAndAutumn": "Periode Musim Semi dan Gugur",
-  "westernHan": "Han Barat"
+  "westernHan": "Han Barat",
+  "roleplayCreatorContextPlaceholder": "mis., Jamuan meriah untuk merayakan sesuatu di Shanghai...",
+  "roleplayCreatorPersonaPlaceholder": "mis., Sepupu yang penasaran dan bertanya tentang karier Anda..."
 }

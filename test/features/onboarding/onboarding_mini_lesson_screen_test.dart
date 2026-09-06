@@ -37,20 +37,37 @@ void main() {
       tester.getSize(find.byKey(const Key('onboarding_primary_button'))).height,
       OnboardingDesign.primaryButtonHeight,
     );
+    expect(find.bySemanticsLabel('知彼知己者，百战不殆。'), findsOneWidget);
+    expect(find.text('《孙子兵法》'), findsOneWidget);
+    expect(find.text('The Art of War · Sun Tzu'), findsOneWidget);
+    expect(find.byKey(const Key('onboarding_listen_card')), findsOneWidget);
+    await tester.ensureVisible(find.text('Continue'));
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
     expect(find.text('Notice'), findsOneWidget);
     expect(find.text('YOUR FIRST LESSON  •  2 OF 6'), findsOneWidget);
+    expect(find.text('zhī bǐ zhī jǐ zhě'), findsOneWidget);
+    expect(find.text('YOU’LL PRACTICE THIS'), findsOneWidget);
+    expect(find.byKey(const Key('onboarding_notice_card')), findsOneWidget);
 
+    await tester.ensureVisible(find.text('Shadow one sentence'));
     await tester.tap(find.text('Shadow one sentence'));
     await tester.pumpAndSettle();
     expect(find.text('Shadow'), findsOneWidget);
+    expect(find.bySemanticsLabel('百战不殆。'), findsOneWidget);
+    expect(find.text('bǎi zhàn bù dài'), findsOneWidget);
+    expect(find.byKey(const Key('onboarding_shadow_card')), findsOneWidget);
     expect(find.text("I can't speak right now"), findsOneWidget);
 
+    await tester.ensureVisible(find.text("I can't speak right now"));
     await tester.tap(find.text("I can't speak right now"));
     await tester.pumpAndSettle();
     expect(find.text('Four tones'), findsOneWidget);
-    expect(find.text('You: 2  ·  Target: 3'), findsOneWidget);
+    expect(
+        find.byKey(const Key('onboarding_tone_results_card')), findsOneWidget);
+    expect(find.text('You: tone 2 · rising  ·  Target: tone 4 · falling'),
+        findsOneWidget);
+    expect(find.text('Compare tones'), findsOneWidget);
 
     await tester.ensureVisible(find.text('Try handwriting'));
     await tester.tap(find.text('Try handwriting'));
@@ -109,5 +126,34 @@ void main() {
       tester.widget<AspectRatio>(find.byType(AspectRatio).first).aspectRatio,
       1,
     );
+  });
+
+  testWidgets('spoken character is visually highlighted', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: OnboardingSpeakingText(
+            text: '我打开窗户。',
+            activeIndex: 2,
+            color: Colors.black,
+            fontSize: 34,
+          ),
+        ),
+      ),
+    );
+
+    final active = tester.widget<AnimatedContainer>(
+      find.byKey(const ValueKey('onboarding_spoken_character_2')),
+    );
+    final inactive = tester.widget<AnimatedContainer>(
+      find.byKey(const ValueKey('onboarding_spoken_character_1')),
+    );
+    final activeDecoration = active.decoration! as BoxDecoration;
+    final inactiveDecoration = inactive.decoration! as BoxDecoration;
+
+    expect(activeDecoration.color, isNot(Colors.transparent));
+    expect(activeDecoration.boxShadow, isNotEmpty);
+    expect(inactiveDecoration.color, Colors.transparent);
+    expect(inactiveDecoration.boxShadow, isNull);
   });
 }

@@ -2093,7 +2093,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'Nếu AI phát hiện sự không khớp, hệ thống sẽ hỏi \'Ý bạn có phải là...?\'. Bạn có thể nhấn \'Có, hãy chấm lại!\' để đánh giá lại tệp ghi âm ban đầu theo đúng ý định mà không cần nói lại.';
+      'Nếu bản chép lời không khớp với lời bạn nói, hãy chọn cụm từ bạn muốn nói rồi nhấn “Có, hãy chấm lại!” để đánh giá lại bản ghi âm ban đầu mà không cần nói lại.';
 
   @override
   String get install => 'Cài đặt';
@@ -2713,7 +2713,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Lịch sử trò chuyện của tôi được quản lý ra sao?';
 
   @override
-  String get whatIfAiMishears => 'Nếu AI nghe nhầm điều tôi muốn nói thì sao?';
+  String get whatIfAiMishears => 'Tôi nên làm gì nếu AI hiểu sai lời mình nói?';
 
   @override
   String get whichCharacterIs => 'Chữ Hán nào tương ứng với:';
@@ -2768,7 +2768,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'Các đoạn hội thoại Echo Hall chỉ được lưu cục bộ trên thiết bị của bạn để bạn ôn tập bất cứ lúc nào. Chúng tôi không dùng giọng nói cá nhân của bạn để huấn luyện mô hình AI.';
+      'Lịch sử hội thoại Nhập vai mà bạn lưu chỉ nằm trên thiết bị để bạn có thể xem lại. Chúng tôi không dùng các cuộc trò chuyện cá nhân của bạn để huấn luyện mô hình AI.';
 
   @override
   String get zhOnly => 'Chỉ tiếng Trung (ZH)';
@@ -2986,7 +2986,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'Không. Khi bạn sử dụng Echo Hall, Phán Quyết của Học Giả hoặc Phòng Luyện Shadowing, âm thanh của bạn được chấm điểm bảo mật theo thời gian thực rồi xóa ngay lập tức. Chúng tôi chỉ lưu lại điểm số để theo dõi tiến trình học tập của bạn.';
+      'Bản ghi gửi để đánh giá phát âm được xử lý an toàn và SinoSpark không lưu giữ sau khi xử lý xong. Lịch sử Nhập vai mà bạn chọn lưu có thể vẫn nằm trên thiết bị và có thể được xóa trong ứng dụng.';
 
   @override
   String get notification_settings => 'Cài đặt thông báo';
@@ -11743,7 +11743,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'Giọng đọc trong AI Stories và Echo Hall được hỗ trợ bởi các mô hình chuyển văn bản thành giọng nói (TTS) thần kinh tiên tiến. Chúng được tinh chỉnh đặc biệt để mang lại giọng đọc bản ngữ chân thực, cảm xúc phù hợp và nhịp điệu tự nhiên.';
+      'Truyện AI và Nhập vai sử dụng giọng tổng hợp do các mô hình chuyển văn bản thành giọng nói tiên tiến tạo ra, được tinh chỉnh để phát âm tiếng Trung rõ ràng và tự nhiên. Một số tính năng cũng có thể dùng giọng cục bộ của thiết bị.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12522,4 +12522,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get westernHan => 'T?y H?n';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      'v? d?: M?t b?a ti?c ?n m?ng s?i ??ng ? Th??ng H?i...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      'v? d?: M?t ng??i anh em h? t? m? h?i v? s? nghi?p c?a b?n...';
 }

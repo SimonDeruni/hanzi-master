@@ -18,8 +18,10 @@ class YoutubeRepository {
   static final Map<String, _CachedResult> _cache = {};
   static const _cacheTtl = Duration(minutes: 10);
 
-  // Cache for hasChineseCaptions results
-  static final Map<String, _CachedBool> _captionCheckCache = {};
+  // Keep generic and Chinese-specific checks separate. Sharing these values can
+  // make a video with, for example, only French captions look Chinese-capable.
+  static final Map<String, _CachedBool> _anyCaptionCheckCache = {};
+  static final Map<String, _CachedBool> _chineseCaptionCheckCache = {};
   static const _captionCheckCacheTtl = Duration(hours: 1);
 
   // Transcript cache
@@ -29,10 +31,18 @@ class YoutubeRepository {
   /// Creates a fresh YoutubeExplode instance.
   YoutubeExplode _createYoutubeExplode() => YoutubeExplode();
 
-  /// Searches YouTube for videos matching [query] that have softcoded Chinese subtitles.
-  Future<List<YoutubeVideo>> searchVideos(String query) async {
+  /// Searches YouTube for videos matching [query] that have usable subtitles.
+  ///
+  /// Automatic category feeds can set [preferChineseCaptions] to rank videos
+  /// with Chinese caption tracks first and reject unrelated foreign-language
+  /// results. Free-form searches remain flexible.
+  Future<List<YoutubeVideo>> searchVideos(
+    String query, {
+    bool preferChineseCaptions = false,
+  }) async {
+    final cacheKey = '${preferChineseCaptions ? 'zh' : 'any'}:$query';
     // Check cache first
-    final cached = _cache[query];
+    final cached = _cache[cacheKey];
     if (cached != null &&
         DateTime.now().difference(cached.timestamp) < _cacheTtl) {
       debugPrint(
@@ -53,7 +63,9 @@ class YoutubeRepository {
         }
 
         final candidates = rawVideos.map(_videoToModel).toList();
-        videos = await filterWithSubtitlesOnly(candidates, max: 15);
+        videos = preferChineseCaptions
+            ? await filterForChineseDiscovery(candidates, max: 15)
+            : await filterWithSubtitlesOnly(candidates, max: 15);
       } finally {
         yt.close();
       }
@@ -64,7 +76,7 @@ class YoutubeRepository {
     }
 
     if (videos.isNotEmpty) {
-      _cache[query] = _CachedResult(
+      _cache[cacheKey] = _CachedResult(
         videos: videos,
         timestamp: DateTime.now(),
       );
@@ -100,7 +112,7 @@ class YoutubeRepository {
   /// Lightweight check: returns true if the video has any closed captions available (manual or auto-generated).
   Future<bool> hasCaptions(String videoId) async {
     try {
-      final cached = _captionCheckCache[videoId];
+      final cached = _anyCaptionCheckCache[videoId];
       if (cached != null &&
           DateTime.now().difference(cached.timestamp) < _captionCheckCacheTtl) {
         return cached.value;
@@ -111,8 +123,13 @@ class YoutubeRepository {
         final manifest = await yt.videos.closedCaptions.getManifest(videoId);
         final hasCc = manifest.tracks.isNotEmpty;
 
-        _captionCheckCache[videoId] = _CachedBool(
+        _anyCaptionCheckCache[videoId] = _CachedBool(
           value: hasCc,
+          timestamp: DateTime.now(),
+        );
+        _chineseCaptionCheckCache[videoId] = _CachedBool(
+          value: manifest.tracks
+              .any((track) => _isChineseLanguage(track.language.code)),
           timestamp: DateTime.now(),
         );
 
@@ -147,10 +164,53 @@ class YoutubeRepository {
     return verified;
   }
 
+  /// Prefers videos with Chinese captions for automatic discovery feeds.
+  ///
+  /// To avoid making the feed unnecessarily sparse, a video with captions in
+  /// another language may still be used as a fallback when its title or channel
+  /// contains Chinese text. Unrelated foreign-language videos are excluded.
+  Future<List<YoutubeVideo>> filterForChineseDiscovery(
+    List<YoutubeVideo> candidates, {
+    int max = 30,
+  }) async {
+    final chineseCaptioned = <YoutubeVideo>[];
+    final chineseMetadataFallbacks = <YoutubeVideo>[];
+    const chunkSize = 6;
+
+    for (var i = 0; i < candidates.length; i += chunkSize) {
+      final chunk = candidates.skip(i).take(chunkSize).toList();
+      final checks = await Future.wait(chunk.map((video) async {
+        if (await hasChineseCaptions(video.id)) {
+          return (video: video, hasChineseCaptions: true, hasCaptions: true);
+        }
+        return (
+          video: video,
+          hasChineseCaptions: false,
+          hasCaptions: await hasCaptions(video.id),
+        );
+      }));
+
+      for (final check in checks) {
+        if (check.hasChineseCaptions) {
+          chineseCaptioned.add(check.video);
+        } else if (check.hasCaptions &&
+            _containsChineseText(
+                '${check.video.title} ${check.video.channelTitle}')) {
+          chineseMetadataFallbacks.add(check.video);
+        }
+      }
+    }
+
+    return <YoutubeVideo>[
+      ...chineseCaptioned,
+      ...chineseMetadataFallbacks,
+    ].take(max).toList();
+  }
+
   /// Lightweight check: returns true if the video has Chinese captions.
   Future<bool> hasChineseCaptions(String videoId) async {
     try {
-      final cached = _captionCheckCache[videoId];
+      final cached = _chineseCaptionCheckCache[videoId];
       if (cached != null &&
           DateTime.now().difference(cached.timestamp) < _captionCheckCacheTtl) {
         return cached.value;
@@ -162,8 +222,12 @@ class YoutubeRepository {
         final hasChinese =
             manifest.tracks.any((t) => _isChineseLanguage(t.language.code));
 
-        _captionCheckCache[videoId] = _CachedBool(
+        _chineseCaptionCheckCache[videoId] = _CachedBool(
           value: hasChinese,
+          timestamp: DateTime.now(),
+        );
+        _anyCaptionCheckCache[videoId] = _CachedBool(
+          value: manifest.tracks.isNotEmpty,
           timestamp: DateTime.now(),
         );
 
@@ -518,6 +582,9 @@ class YoutubeRepository {
     final lower = langCode.toLowerCase();
     return lower.startsWith('zh') || lower == 'cmn' || lower == 'yue';
   }
+
+  static bool _containsChineseText(String text) =>
+      RegExp(r'[\u3400-\u4DBF\u4E00-\u9FFF]').hasMatch(text);
 
   /// Score tracks so manual standard Chinese character tracks are prioritized
   /// over generic tracks or auto-generated tracks.

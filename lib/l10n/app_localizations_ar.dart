@@ -2070,7 +2070,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'إذا اكتشف الذكاء الاصطناعي عدم تطابق، فسيسأل \'هل قصدت أن تقول...؟\'. يمكنك النقر على زر \'نعم، أعد تقييمي!\' لإعادة تقييم صوتك الأصلي فوراً مقابل نيتك الحقيقية دون الحاجة للتحدث مرة أخرى.';
+      'إذا لم يطابق النص المنسوخ ما قلته، فاختر العبارة المقصودة ثم اضغط على «نعم، أعد تقييمي!» لإعادة تقييم التسجيل الأصلي دون الحاجة إلى التحدث مرة أخرى.';
 
   @override
   String get install => 'تثبيت';
@@ -2687,7 +2687,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get whatIfAiMishears =>
-      'ماذا لو أخطأ الذكاء الاصطناعي في فهم ما قصدت قوله؟';
+      'ماذا أفعل إذا أساء الذكاء الاصطناعي فهم كلامي؟';
 
   @override
   String get whichCharacterIs => 'أي رمز هو:';
@@ -2742,7 +2742,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'محادثات قاعة الصدى الخاصة بك تُخزَّن محلياً على جهازك لتتمكن من مراجعتها في أي وقت. نحن لا نستخدم محادثاتك الشخصية لتدريب نماذج الذكاء الاصطناعي الخاصة بنا.';
+      'يُحفظ سجل محادثات لعب الأدوار محليًا على جهازك لتتمكن من مراجعته. لا نستخدم محادثاتك الشخصية لتدريب نماذج الذكاء الاصطناعي الخاصة بنا.';
 
   @override
   String get zhOnly => 'الصينية فقط';
@@ -2958,7 +2958,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'لا. عندما تستخدم قاعة الصدى، أو تقييم العالِم، أو استوديو المحاكاة الصوتية (Shadowing)، يتم تقييم تسجيلك الصوتي بشكل آمن في الوقت الفعلي لتحديد درجة النطق ثم حذفه فورًا. نحن نحتفظ فقط بالدرجات الرقمية لتتبع تقدمك.';
+      'تُعالج التسجيلات المرسلة لتقييم النطق بأمان ولا تحتفظ بها SinoSpark بعد اكتمال المعالجة. قد يبقى سجل محادثات لعب الأدوار الذي تختار حفظه على جهازك، ويمكنك حذفه من داخل التطبيق.';
 
   @override
   String get notification_settings => 'إعدادات الإشعارات';
@@ -11647,7 +11647,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'الأصوات في قصص الذكاء الاصطناعي وقاعة الصدى مدعومة بنماذج تحويل النص إلى كلام العصبية المتقدمة. تم ضبطها خصيصًا لتوفير لهجات صينية أصلية، ونبرات عاطفية مناسبة، ووتيرة طبيعية.';
+      'تستخدم قصص الذكاء الاصطناعي ولعب الأدوار أصواتًا اصطناعية تُنشئها نماذج متقدمة لتحويل النص إلى كلام، وهي مصممة لتقديم نطق صيني واضح وطبيعي. وقد يتوفر أيضًا صوت الجهاز المحلي في بعض الميزات.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12424,4 +12424,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get westernHan => '??? ???????';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      '????: ????? ???????? ????? ??????? ?? ??????...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      '????: ???? ????? ????? ?? ?????? ???????...';
 }

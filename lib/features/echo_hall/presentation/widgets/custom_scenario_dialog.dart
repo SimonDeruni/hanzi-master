@@ -10,6 +10,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
 
 class _RandomPersonaPreset {
   final String topic;
@@ -503,6 +504,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
 
   Future<void> _createScenario() async {
     final title = _titleController.text.trim();
+    final locale = Localizations.localeOf(context);
     if (title.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -545,16 +547,16 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
           "Hello! Welcome here, what shall we chat about today?";
       String? initialPinyin =
           "Nǐ hǎo! Huānyíng lái dào zhèlǐ, jīntiān wǒmen liáo xiē shénme ne?";
-      List<String> quests = [
-        "Greet your conversation partner",
-        "Discuss $title",
-        "Ask a question in Chinese"
-      ];
+      List<String> quests =
+          LocalizedScenarioContent.customScenarioQuests(locale, title);
 
       try {
         final gemini = ref.read(geminiServiceProvider);
+        final interfaceLanguage = LocalizedScenarioContent.languageName(
+          locale,
+        );
         final aiPrompt =
-            '''You are a creative writer and immersive roleplay designer. Create a 100% in-character opening line and 3 English quest goals for a roleplay scenario:
+            '''You are a creative writer and immersive roleplay designer. Create a 100% in-character opening line and 3 $interfaceLanguage quest goals for a roleplay scenario:
 Topic: $title
 Context: $desc
 Persona: $prompt
@@ -567,7 +569,7 @@ Respond ONLY in valid JSON format:
   "greeting": "in-character opening line in Chinese (1 natural sentence)",
   "greetingEnglish": "English translation",
   "greetingPinyin": "Pinyin with tone marks",
-  "quests": ["Goal 1 in English", "Goal 2 in English", "Goal 3 in English"]
+  "quests": ["Goal 1 in $interfaceLanguage", "Goal 2 in $interfaceLanguage", "Goal 3 in $interfaceLanguage"]
 }''';
         final response = await gemini.generateText(aiPrompt);
         final clean =
@@ -632,6 +634,7 @@ Respond ONLY in valid JSON format:
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
     final maxHeight = MediaQuery.of(context).size.height * 0.88;
 
@@ -689,7 +692,7 @@ Respond ONLY in valid JSON format:
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  "Design custom AI roleplay & conversation",
+                                  l10n.designCustomAiRoleplay,
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: isDark
@@ -727,7 +730,7 @@ Respond ONLY in valid JSON format:
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
-                                    "Random",
+                                    l10n.random,
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -748,15 +751,15 @@ Respond ONLY in valid JSON format:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "Scenario Topic",
-                            style: TextStyle(
+                          Text(
+                            l10n.scenarioTopic,
+                            style: const TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           GestureDetector(
                             onTap: _randomizePersona,
                             child: Text(
-                              "🎲 Surprise Me",
+                              l10n.surpriseMe2,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -789,29 +792,30 @@ Respond ONLY in valid JSON format:
                       const SizedBox(height: 24),
 
                       // Difficulty Selector
-                      const Text(
-                        "Target Difficulty",
-                        style: TextStyle(
+                      Text(
+                        l10n.targetDifficulty,
+                        style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 10),
                       Row(
                         children: [
-                          _buildDifficultySegment(0, "Beginner", "HSK 1-2"),
+                          _buildDifficultySegment(0, l10n.beginner, "HSK 1-2"),
                           const SizedBox(width: 8),
-                          _buildDifficultySegment(1, "Intermediate", "HSK 3-4"),
+                          _buildDifficultySegment(
+                              1, l10n.intermediate, "HSK 3-4"),
                           const SizedBox(width: 8),
-                          _buildDifficultySegment(2, "Advanced", "HSK 5-6"),
+                          _buildDifficultySegment(2, l10n.advanced, "HSK 5-6"),
                           const SizedBox(width: 8),
-                          _buildDifficultySegment(3, "Native", "Master"),
+                          _buildDifficultySegment(3, l10n.native, l10n.master),
                         ],
                       ),
                       const SizedBox(height: 24),
 
                       // Context / Setting Field
-                      const Text(
-                        "Context & Setting (Optional)",
-                        style: TextStyle(
+                      Text(
+                        l10n.contextSettingOptional,
+                        style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 10),
@@ -820,8 +824,7 @@ Respond ONLY in valid JSON format:
                         hintText: '',
                         maxLines: 2,
                         decoration: InputDecoration(
-                          hintText:
-                              "e.g., A lively banquet celebrating in Shanghai...",
+                          hintText: l10n.roleplayCreatorContextPlaceholder,
                           filled: true,
                           fillColor: isDark
                               ? Colors.white.withValues(alpha: 0.05)
@@ -839,15 +842,15 @@ Respond ONLY in valid JSON format:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "AI Character / Persona (Optional)",
-                            style: TextStyle(
+                          Text(
+                            l10n.aiCharacterPersonaOptional,
+                            style: const TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           GestureDetector(
                             onTap: _randomizePersona,
                             child: Text(
-                              "🎲 Roll Character",
+                              l10n.rollCharacter2,
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -865,8 +868,7 @@ Respond ONLY in valid JSON format:
                         hintText: '',
                         maxLines: 2,
                         decoration: InputDecoration(
-                          hintText:
-                              "e.g., A curious cousin asking about your career...",
+                          hintText: l10n.roleplayCreatorPersonaPlaceholder,
                           filled: true,
                           fillColor: isDark
                               ? Colors.white.withValues(alpha: 0.05)

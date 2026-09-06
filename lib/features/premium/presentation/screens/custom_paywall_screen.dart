@@ -827,12 +827,13 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
   Widget _buildEverythingIncluded(Color textColor, Color accentColor) {
     const features = [
-      (Icons.gesture, 'Guided handwriting practice'),
-      (Icons.document_scanner_outlined, 'Scanner and live translation'),
-      (Icons.school_outlined, 'HSK 1–6 and AI decks'),
-      (Icons.psychology_outlined, 'Smart spaced repetition'),
+      (Icons.auto_stories_outlined, 'Books and studio-quality audiobooks'),
+      (Icons.graphic_eq, 'AI conversations and live tone feedback'),
+      (Icons.play_circle_outline, 'Interactive video and web immersion'),
+      (Icons.gesture, 'Character insights and handwriting practice'),
+      (Icons.school_outlined, 'HSK decks and smart spaced repetition'),
       (Icons.insights_outlined, 'Progress and streak tracking'),
-      (Icons.download_for_offline_outlined, 'Learning tools in one place'),
+      (Icons.document_scanner_outlined, 'Scanner and live translation'),
     ];
     final isDark = Theme.of(context).brightness == Brightness.dark;
 

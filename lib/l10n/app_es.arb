@@ -669,7 +669,7 @@
   "hskSimplifySubtitles": "Simplificar subtítulos con HSK",
   "hskVocabularyCollections": "Colecciones de vocabulario HSK",
   "i": "Yo",
-  "ifTheAgain": "Si la IA detecta una discrepancia, preguntará '¿Querías decir...?'. Puedes tocar el botón '¡Sí, recaliíficame!' para reevaluar instantáneamente tu audio original según tu verdadera intención sin tener que hablar de nuevo.",
+  "ifTheAgain": "Si la transcripción no coincide con lo que dijiste, selecciona la frase que querías decir y toca «¡Sí, vuelve a evaluarme!» para evaluar de nuevo la grabación original sin tener que repetirla.",
   "install": "Instalar",
   "just": "Solo $",
   "keyword": "Palabra clave",
@@ -869,7 +869,7 @@
   "welcomeBack": "Bienvenido de nuevo",
   "whatDoesThisMean": "¿Qué significa esto?",
   "whatHappensToMyChatHistory": "¿Qué pasa con mi historial de chat?",
-  "whatIfAiMishears": "¿Qué pasa si la IA entiende mal lo que quise decir?",
+  "whatIfAiMishears": "¿Qué puedo hacer si la IA interpreta mal lo que dije?",
   "whichCharacterIs": "¿Qué carácter es:",
   "wikipedia": "Wikipedia",
   "wordsSavedAndSrsScheduled": "¡Palabras guardadas y repaso espaciado (SRS) programado!",
@@ -891,7 +891,7 @@
     }
   },
   "youMustAccount": "Debes aceptar los Términos de servicio y la Política de privacidad para crear una cuenta.",
-  "yourEchoModels": "Tus conversaciones de Echo Hall se almacenan localmente en tu dispositivo para que puedas revisarlas en cualquier momento. No usamos tus conversaciones personales para entrenar nuestros modelos de IA.",
+  "yourEchoModels": "El historial de conversaciones de Juego de rol que guardes permanece localmente en tu dispositivo para que puedas revisarlo. No usamos tus conversaciones personales para entrenar nuestros modelos de IA.",
   "zhOnly": "Solo chino (ZH)",
   "roleplay": "Juego de rol",
   "your_path_for_is_ready": "¡Tu ruta para «{deckName}» está lista!",
@@ -965,7 +965,7 @@
   "hsk_vocabulary": "Vocabulario HSK {hskLevel}",
   "feature_request": "Sugerir función",
   "do_you_keep_or_store_my": "¿Guardan o almacenan mis grabaciones de voz?",
-  "no_when_you_use_echo_hall": "No. Cuando usas Echo Hall, Veredicto del Erudito o Estudio de Shadowing, tu audio se evalúa de forma segura en tiempo real para generar una puntuación de pronunciación y se descarta inmediatamente después. Solo almacenamos tus calificaciones numéricas para registrar tu progreso.",
+  "no_when_you_use_echo_hall": "Las grabaciones enviadas para evaluar la pronunciación se procesan de forma segura y SinoSpark no las conserva una vez finalizado el procesamiento. El historial de Juego de rol que decidas guardar puede permanecer en tu dispositivo y puedes eliminarlo en la app.",
   "speaking_pronunciation": "Expresión oral y pronunciación",
   "how_is_my_pronunciation_scored": "¿Cómo se evalúa mi pronunciación?",
   "the_ai_evaluates_your_speech_across": "La IA evalúa tu habla en tres aspectos:\n• Precisión: ¿articulaste las sílabas correctas?\n• Integridad: ¿omitiste o pasaste por alto alguna palabra?\n• Fluidez: ¿hiciste pausas naturales y empleaste los tonos adecuados?\nCompara tu audio con modelos nativos para generar una puntuación sobre 100.",
@@ -3677,7 +3677,7 @@
   "poetryPainting": "poesía y pintura",
   "contactSinosparkCom": "contact@sinospark.com",
   "shadowingStudioIsADedicated": "Shadowing Studio es un espacio dedicado a practicar la imitación de hablantes nativos. Escuchas una frase, te grabas repitiéndola y comparas las ondas de voz y las puntuaciones de pronunciación para perfeccionar tu acento.",
-  "theVoicesInAIStories": "Las voces en Historias IA y Echo Hall utilizan modelos avanzados de texto a voz neuronal. Están ajustadas específicamente para ofrecer acentos chinos nativos auténticos, una inflexión emocional adecuada y un ritmo natural.",
+  "theVoicesInAIStories": "Historias con IA y Juego de rol usan voces sintéticas generadas por modelos avanzados de texto a voz, ajustados para ofrecer una pronunciación china clara y natural. En algunas funciones también puede estar disponible la voz local del dispositivo.",
   "theWebExplorerAllowsYou": "El Explorador Web te permite navegar por cualquier sitio web chino. Cuando encuentres una palabra difícil, solo tócala para abrir la tarjeta de Vista Rápida, que ofrece pinyin, traducción y nivel de HSK al instante.",
   "zenModeStripsAwayDistracting": "El Modo Zen elimina los elementos web distractores, anuncios y diseños complejos de los artículos, ofreciéndote un entorno de lectura caligráfico y limpio centrado puramente en el texto.",
   "weUseAnIntelligentAlgorithm": "Utilizamos un algoritmo inteligente que predice cuándo estás a punto de olvidar una palabra. Las palabras con las que tienes dificultad aparecerán con mayor frecuencia, mientras que las que dominas se programarán para más adelante.",
@@ -3949,5 +3949,7 @@
   "russianLiterature": "Literatura rusa",
   "spanishLiterature": "Literatura espa?ola",
   "springAndAutumn": "Per?odo de Primaveras y Oto?os",
-  "westernHan": "Han occidental"
+  "westernHan": "Han occidental",
+  "roleplayCreatorContextPlaceholder": "p. ej., Un animado banquete de celebración en Shanghái...",
+  "roleplayCreatorPersonaPlaceholder": "p. ej., Un primo curioso que pregunta por tu carrera..."
 }

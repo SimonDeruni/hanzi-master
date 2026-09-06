@@ -2110,7 +2110,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'Wenn die KI eine Abweichung feststellt, fragt sie: \'Meintest du...?\'. Du kannst auf \'Ja, neu bewerten!\' tippen, um deine Audioaufnahme sofort anhand deiner eigentlichen Absicht neu bewerten zu lassen, ohne erneut sprechen zu müssen.';
+      'Wenn das Transkript nicht dem Gesagten entspricht, wähle die beabsichtigte Formulierung und tippe auf „Ja, neu bewerten!“. Die ursprüngliche Aufnahme wird dann ohne erneutes Sprechen neu bewertet.';
 
   @override
   String get install => 'Installieren';
@@ -2737,7 +2737,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get whatIfAiMishears =>
-      'Was passiert, wenn die KI mich falsch versteht?';
+      'Was kann ich tun, wenn die KI mich falsch versteht?';
 
   @override
   String get whichCharacterIs => 'Welches Zeichen ist:';
@@ -2792,7 +2792,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'Deine Echo-Hall-Gespräche werden lokal auf deinem Gerät gespeichert, damit du sie jederzeit überprüfen kannst. Wir verwenden deine persönlichen Gespräche nicht, um unsere KI-Modelle zu trainieren.';
+      'Dein gespeicherter Rollenspiel-Gesprächsverlauf bleibt zur späteren Wiederholung lokal auf deinem Gerät. Wir verwenden deine persönlichen Gespräche nicht zum Trainieren unserer KI-Modelle.';
 
   @override
   String get zhOnly => 'Nur Chinesisch (ZH)';
@@ -3013,7 +3013,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'Nein. Wenn du Echo Hall, das Urteil des Gelehrten oder das Shadowing-Studio nutzt, werden deine Aufnahmen in Echtzeit sicher ausgewertet, um deine Aussprache zu bewerten, und danach sofort gelöscht. Wir speichern nur deine numerischen Bewertungen, um deinen Lernfortschritt zu verfolgen.';
+      'Aufnahmen, die du zur Aussprachebewertung sendest, werden sicher verarbeitet und nach Abschluss der Verarbeitung nicht von SinoSpark gespeichert. Rollenspiel-Verläufe, die du speicherst, können auf deinem Gerät verbleiben und lassen sich in der App löschen.';
 
   @override
   String get notification_settings => 'Benachrichtigungseinstellungen';
@@ -11795,7 +11795,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'Die Stimmen in KI-Geschichten und in der Echo-Halle nutzen fortschrittliche neuronale Text-zu-Sprache-Modelle. Sie sind speziell darauf abgestimmt, authentische chinesische Akzente, passende emotionale Färbung und ein natürliches Sprechtempo zu bieten.';
+      'KI-Geschichten und Rollenspiel verwenden synthetische Stimmen aus fortschrittlichen Text-zu-Sprache-Modellen, die auf eine klare, natürliche chinesische Aussprache abgestimmt sind. In einigen Funktionen kann auch die lokale Gerätestimme verfügbar sein.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12587,4 +12587,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get westernHan => 'Westliche Han-Dynastie';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      'z. B. ein lebhaftes Festbankett in Shanghai...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      'z. B. ein neugieriger Cousin, der nach deiner Karriere fragt...';
 }

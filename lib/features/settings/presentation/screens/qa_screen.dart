@@ -7,6 +7,7 @@ class QAScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
@@ -22,7 +23,7 @@ class QAScreen extends ConsumerWidget {
       backgroundColor: bgColor,
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context)!.knowledgeBase,
+          l10n.knowledgeBase,
           style: TextStyle(
             color: textColor,
             fontWeight: FontWeight.w600,
@@ -38,77 +39,73 @@ class QAScreen extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
         physics: const BouncingScrollPhysics(),
         children: [
-          _buildHeader(textColor, accentColor),
+          _buildHeader(
+            title: l10n.howCanWeHelpYou,
+            subtitle: l10n.everythingYouNeedToKnowAboutHanziMa,
+            textColor: textColor,
+            accentColor: accentColor,
+          ),
           const SizedBox(height: 32),
           _buildCategory(
-            title: AppLocalizations.of(context)!.privacyAndAudio,
+            title: l10n.privacyAndAudio,
             icon: Icons.security_outlined,
             cardColor: cardColor,
             textColor: textColor,
             accentColor: accentColor,
             items: [
               _FaqItem(
-                question: AppLocalizations.of(context)!.do_you_keep_or_store_my,
-                answer: AppLocalizations.of(context)!.no_when_you_use_echo_hall,
+                question: l10n.do_you_keep_or_store_my,
+                answer: l10n.no_when_you_use_echo_hall,
               ),
               _FaqItem(
-                question:
-                    AppLocalizations.of(context)!.whatHappensToMyChatHistory,
-                answer: AppLocalizations.of(context)!.yourEchoModels,
+                question: l10n.whatHappensToMyChatHistory,
+                answer: l10n.yourEchoModels,
               ),
             ],
           ),
           _buildCategory(
-            title: AppLocalizations.of(context)!.speaking_pronunciation,
+            title: l10n.speaking_pronunciation,
             icon: Icons.mic_none_outlined,
             cardColor: cardColor,
             textColor: textColor,
             accentColor: accentColor,
             items: [
               _FaqItem(
-                question: AppLocalizations.of(context)!
-                    .how_is_my_pronunciation_scored,
-                answer:
-                    "The AI evaluates your speech across three dimensions:\n• Accuracy: Did you articulate the correct syllables?\n• Completeness: Did you skip or miss any words?\n• Fluency: Did you pause naturally and use the correct tones?\nIt compares your audio against native models to generate a score out of 100.",
+                question: l10n.how_is_my_pronunciation_scored,
+                answer: l10n.the_ai_evaluates_your_speech_across,
               ),
               _FaqItem(
-                question: AppLocalizations.of(context)!.whatIfAiMishears,
-                answer: AppLocalizations.of(context)!.ifTheAgain,
+                question: l10n.whatIfAiMishears,
+                answer: l10n.ifTheAgain,
               ),
               _FaqItem(
-                question:
-                    AppLocalizations.of(context)!.what_is_shadowing_studio,
-                answer:
-                    "Shadowing Studio is a dedicated space to practice mimicking native speakers. You listen to a phrase, record yourself repeating it, and compare the waveforms and pronunciation scores to refine your accent.",
+                question: l10n.what_is_shadowing_studio,
+                answer: l10n.shadowingStudioIsADedicated,
               ),
               _FaqItem(
-                question: "Who are the voices speaking in the app?",
-                answer:
-                    "The voices in AI Stories and Echo Hall are powered by advanced Neural Text-to-Speech models. They are specifically tuned to provide authentic native Chinese accents, appropriate emotional inflection, and natural pacing.",
+                question: l10n.whoAreTheVoicesSpeakingInTheApp,
+                answer: l10n.theVoicesInAIStories,
               ),
             ],
           ),
           _buildCategory(
-            title: "Reading & Vocabulary",
+            title: l10n.readingVocabulary,
             icon: Icons.menu_book_outlined,
             cardColor: cardColor,
             textColor: textColor,
             accentColor: accentColor,
             items: [
               _FaqItem(
-                question: "How does the Web Explorer work?",
-                answer:
-                    "The Web Explorer allows you to browse any Chinese website. When you encounter a difficult word, simply tap it to open the Quick Look card, which provides instant pinyin, translation, and HSK level.",
+                question: l10n.howDoesTheWebExplorerWork,
+                answer: l10n.theWebExplorerAllowsYou,
               ),
               _FaqItem(
-                question: "What is Zen Mode?",
-                answer:
-                    "Zen Mode strips away distracting web elements, ads, and complex layouts from articles, presenting you with a clean, calligraphic reading environment focused purely on the text.",
+                question: l10n.whatIsZenMode,
+                answer: l10n.zenModeStripsAwayDistracting,
               ),
               _FaqItem(
-                question: "How does the Flashcard spaced-repetition work?",
-                answer:
-                    "We use an intelligent algorithm that predicts when you are about to forget a word. Words you struggle with will appear more frequently, while words you know well will be scheduled further into the future.",
+                question: l10n.howDoesTheFlashcardSpacedrepetition,
+                answer: l10n.weUseAnIntelligentAlgorithm,
               ),
             ],
           ),
@@ -118,7 +115,12 @@ class QAScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(Color textColor, Color accentColor) {
+  Widget _buildHeader({
+    required String title,
+    required String subtitle,
+    required Color textColor,
+    required Color accentColor,
+  }) {
     return Column(
       children: [
         Icon(
@@ -128,7 +130,7 @@ class QAScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          "How can we help you?",
+          title,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w600,
@@ -139,7 +141,7 @@ class QAScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          "Everything you need to know about Hanzi Master, its features, and your privacy.",
+          subtitle,
           style: TextStyle(
             fontSize: 14,
             color: textColor.withValues(alpha: 0.6),

@@ -2041,7 +2041,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'AI가 의도와의 차이를 감지하면 \'혹시 ...을(를) 말씀하시려 했나요?\'라고 묻습니다. 이때 \'예, 다시 평가해 주세요!\'를 누르면 다시 말할 필요 없이 기존 녹음으로 즉시 재채점을 받을 수 있습니다.';
+      '전사 내용이 실제로 말한 내용과 다르면 의도한 문장을 선택한 뒤 “예, 다시 채점해 주세요!”를 탭하세요. 다시 말하지 않아도 원래 녹음을 재평가할 수 있습니다.';
 
   @override
   String get install => '설치';
@@ -2645,7 +2645,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get whatHappensToMyChatHistory => '채팅 대화 기록은 어떻게 관리되나요?';
 
   @override
-  String get whatIfAiMishears => 'AI가 제 발음을 잘못 인식하면 어떻게 되나요?';
+  String get whatIfAiMishears => 'AI가 제 말을 잘못 해석하면 어떻게 하나요?';
 
   @override
   String get whichCharacterIs => '다음 설명에 해당하는 글자는 무엇인가요:';
@@ -2698,7 +2698,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'Echo Hall의 대화 내용은 기기 로컬에만 안전하게 저장되어 언제든 다시 들을 수 있습니다. 사용자의 개인 음성 대화는 AI 모델 학습에 사용되지 않습니다.';
+      '저장한 롤플레잉 대화 기록은 나중에 복습할 수 있도록 기기에 로컬로 보관됩니다. 개인 대화를 AI 모델 학습에 사용하지 않습니다.';
 
   @override
   String get zhOnly => '중국어 전용';
@@ -2912,7 +2912,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      '아니요. Echo Hall, 학자의 판정, 섀도잉 스튜디오를 사용할 때 음성은 발음 평가를 위해 실시간으로 안전하게 처리된 직후 즉시 파기됩니다. 오직 학습 진도 관리를 위한 점수 수치만 저장됩니다.';
+      '발음 평가를 위해 제출한 녹음은 안전하게 처리되며 처리가 끝난 뒤 SinoSpark가 보관하지 않습니다. 저장하도록 선택한 롤플레잉 기록은 기기에 남을 수 있으며 앱에서 삭제할 수 있습니다.';
 
   @override
   String get notification_settings => '알림 설정';
@@ -11439,7 +11439,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'AI 스토리와 에코 홀의 목소리는 최첨단 신경망 음성 합성(Neural TTS) 모델을 기반으로 합니다. 원어민의 성조와 억양, 자연스러운 감정 표현 및 속도를 제공하도록 정교하게 조율되었습니다.';
+      'AI 스토리와 롤플레잉은 명확하고 자연스러운 중국어 발음에 맞게 조정된 고급 음성 합성 모델의 합성 음성을 사용합니다. 일부 기능에서는 기기의 로컬 음성도 사용할 수 있습니다.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12185,4 +12185,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get westernHan => '??';
+
+  @override
+  String get roleplayCreatorContextPlaceholder => '?: ????? ??? ??? ?? ??...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder => '?: ??? ?? ?? ??? ?? ??...';
 }

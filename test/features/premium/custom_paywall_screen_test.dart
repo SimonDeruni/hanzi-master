@@ -84,6 +84,22 @@ void main() {
     expect(find.text(r'$9.99 / month'), findsOneWidget);
     expect(find.text(r'$59.99 / year'), findsOneWidget);
     expect(find.text('SinoSpark Premium'), findsOneWidget);
+    expect(find.text('Books and studio-quality audiobooks'), findsOneWidget);
+    expect(
+      find.text('AI conversations and live tone feedback'),
+      findsOneWidget,
+    );
+    expect(find.text('Interactive video and web immersion'), findsOneWidget);
+    expect(
+      find.text('Character insights and handwriting practice'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('HSK decks and smart spaced repetition'),
+      findsOneWidget,
+    );
+    expect(find.text('Progress and streak tracking'), findsOneWidget);
+    expect(find.text('Scanner and live translation'), findsOneWidget);
     expect(find.text('Master every stroke'), findsOneWidget);
     expect(find.text('Explore the Chinese web'), findsOneWidget);
     expect(

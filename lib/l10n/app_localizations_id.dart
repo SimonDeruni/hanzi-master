@@ -2097,7 +2097,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get ifTheAgain =>
-      'Jika AI mendeteksi perbedaan, sistem akan bertanya \'Apakah maksud Anda...?\'. Anda dapat mengetuk tombol \'Ya, Nilai Ulang Saya!\' untuk mengevaluasi kembali rekaman audio asli Anda secara instan tanpa harus berbicara lagi.';
+      'Jika transkripsi tidak sesuai dengan ucapan Anda, pilih frasa yang dimaksud lalu ketuk “Ya, Nilai Ulang!” untuk menilai kembali rekaman asli tanpa perlu berbicara lagi.';
 
   @override
   String get install => 'Instal';
@@ -2718,7 +2718,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get whatIfAiMishears =>
-      'Bagaimana jika AI salah mendengar apa yang saya maksud?';
+      'Apa yang dapat saya lakukan jika AI salah memahami ucapan saya?';
 
   @override
   String get whichCharacterIs => 'Karakter manakah yang:';
@@ -2773,7 +2773,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get yourEchoModels =>
-      'Percakapan Echo Hall Anda disimpan secara lokal di perangkat Anda sehingga Anda dapat meninjaunya kapan saja. Kami tidak menggunakan percakapan pribadi Anda untuk melatih model AI kami.';
+      'Riwayat percakapan Bermain Peran yang Anda simpan tetap tersimpan secara lokal di perangkat agar dapat ditinjau kembali. Kami tidak menggunakan percakapan pribadi Anda untuk melatih model AI kami.';
 
   @override
   String get zhOnly => 'Hanya Mandarin (ZH)';
@@ -2991,7 +2991,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get no_when_you_use_echo_hall =>
-      'Tidak. Saat Anda menggunakan Echo Hall, Penilaian Cendekiawan, atau Studio Shadowing, audio Anda dievaluasi secara aman secara real-time untuk menghasilkan skor pengucapan lalu segera dihapus. Kami hanya menyimpan nilai numerik untuk melacak kemajuan belajar Anda.';
+      'Rekaman yang dikirim untuk penilaian pelafalan diproses dengan aman dan tidak disimpan oleh SinoSpark setelah pemrosesan selesai. Riwayat Bermain Peran yang Anda pilih untuk disimpan dapat tetap berada di perangkat dan dapat dihapus di aplikasi.';
 
   @override
   String get notification_settings => 'Pengaturan Notifikasi';
@@ -11751,7 +11751,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get theVoicesInAIStories =>
-      'Suara dalam AI Stories dan Echo Hall didukung oleh model Neural Text-to-Speech canggih. Suara ini dirancang khusus untuk memberikan aksen Mandarin asli yang otentik, infleksi emosional yang tepat, dan ritme yang alami.';
+      'Cerita AI dan Bermain Peran menggunakan suara sintetis dari model teks-ke-ucapan canggih yang disetel untuk pelafalan bahasa Mandarin yang jelas dan alami. Suara lokal perangkat juga mungkin tersedia pada fitur tertentu.';
 
   @override
   String get theWebExplorerAllowsYou =>
@@ -12534,4 +12534,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get westernHan => 'Han Barat';
+
+  @override
+  String get roleplayCreatorContextPlaceholder =>
+      'mis., Jamuan meriah untuk merayakan sesuatu di Shanghai...';
+
+  @override
+  String get roleplayCreatorPersonaPlaceholder =>
+      'mis., Sepupu yang penasaran dan bertanya tentang karier Anda...';
 }

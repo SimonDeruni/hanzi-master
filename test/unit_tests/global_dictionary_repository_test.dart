@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -151,6 +152,18 @@ void main() {
       '101112131415161718191a1b1c1d1e1f',
     );
     expect(card.sourceDefinitionHash, matches(RegExp(r'^[0-9a-f]{64}$')));
+  });
+
+  test('dictionary search provider uses the multilingual repository and locale',
+      () {
+    final source = File(
+      'lib/features/flashcards/presentation/providers/dictionary_provider.dart',
+    ).readAsStringSync();
+
+    expect(source, contains('ref.watch(translationLanguageProvider)'));
+    expect(source, contains('ref.read(globalDictionaryRepositoryProvider)'));
+    expect(source, contains('targetLanguage: targetLanguage'));
+    expect(source, isNot(contains('repository.searchAll(query)')));
   });
 }
 

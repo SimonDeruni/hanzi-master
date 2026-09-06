@@ -7,6 +7,7 @@ import 'channel_videos_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
+import '../../data/video_category_queries.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
@@ -54,10 +55,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       localizations.techAndGadgets: [],
     };
     _categoryQueries = {
-      localizations.lifestyleAndVlog: localizations.vlog,
-      localizations.gamingAndEsports: localizations.unknown2,
-      localizations.foodAndCooking: localizations.unknown3,
-      localizations.techAndGadgets: localizations.unknown4,
+      localizations.lifestyleAndVlog: VideoCategoryQueries.lifestyle,
+      localizations.gamingAndEsports: VideoCategoryQueries.gaming,
+      localizations.foodAndCooking: VideoCategoryQueries.food,
+      localizations.techAndGadgets: VideoCategoryQueries.technology,
     };
     for (final key in _categoryQueries.keys) {
       _categoryStates[key] = _CategoryLoadState.loading;
@@ -72,7 +73,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     // Launch all categories in parallel, but update UI as each completes
     final futures = _categoryQueries.entries.map((entry) async {
       try {
-        final results = await repository.searchVideos(entry.value);
+        final results = await repository.searchVideos(
+          entry.value,
+          preferChineseCaptions: true,
+        );
         if (mounted) {
           setState(() {
             _categories[entry.key] = results;
@@ -139,7 +143,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
 
     try {
       final repository = ref.read(youtubeRepositoryProvider);
-      final results = await repository.searchVideos(query);
+      final results = await repository.searchVideos(
+        query,
+        preferChineseCaptions: true,
+      );
       if (mounted) {
         setState(() {
           _categories[categoryKey] = results;

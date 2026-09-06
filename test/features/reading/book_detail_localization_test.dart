@@ -20,6 +20,30 @@ void main() {
       expect(l10n.hanFeiLegalism, contains('principal penseur du légisme'));
     });
 
+    test('French reading and download labels preserve accented characters', () {
+      final l10n = AppLocalizationsFr();
+
+      expect(l10n.checkingDownload, 'Vérification du téléchargement');
+      expect(l10n.downloadingBook(42), 'Téléchargement : 42 %');
+      expect(l10n.retryDownload, 'Réessayer le téléchargement');
+      expect(l10n.downloadBook, 'Télécharger le livre');
+      expect(
+        l10n.downloadBookError,
+        'Impossible de télécharger ce livre. Vérifiez votre connexion et '
+        'réessayez.',
+      );
+      expect(
+        l10n.downloadBookOffline(12),
+        'Téléchargez le livre pour lire ses 12 chapitres hors ligne.',
+      );
+      expect(l10n.poemCount(1), '1 poème');
+      expect(l10n.poemCount(2), '2 poèmes');
+      expect(l10n.frenchLiterature, 'Littérature française');
+      expect(l10n.preQinEra, 'Époque pré-Qin');
+      expect(l10n.republicOfChinaEra, 'République de Chine');
+      expect(l10n.springAndAutumn, 'Période des Printemps et Automnes');
+    });
+
     test('reported English labels are not hard-coded in the detail screen', () {
       final source = File(
         'lib/features/reading/presentation/screens/book_detail_screen.dart',

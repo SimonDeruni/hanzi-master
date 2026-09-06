@@ -1380,65 +1380,165 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
   }
 
   Future<AiStory> simplifyTextToHsk(String sourceText, int hskLevel) async {
-    final prompt = '''
-You are an expert Chinese teacher and translator.
-The user has provided a complex text. Rewrite and simplify the entire meaning of the text so that it strictly only uses HSK $hskLevel vocabulary. 
-Keep the core narrative and main ideas intact, but adjust the grammar and vocabulary to fit the target level.
-
-IMPORTANT: Preserve the full length of the original article. Do NOT shorten it — rewrite EVERY paragraph at the target HSK level. The output must cover all the content of the source text.
-
-Source Text:
-"""
-$sourceText
-"""
-
-Respond ONLY in valid JSON format with this exact structure:
-CRITICAL: Put the $targetLanguage translation in the "english" JSON key!
-{
-  "sentences": [
-    {
-      "chinese": "The full simplified sentence in Chinese...",
-      "english": "The $targetLanguage translation of the sentence...",
-      "words": [
-        {
-           "hanzi": "The word or character in Chinese",
-           "pinyin": "The pinyin for this specific word",
-           "meaning": "The contextual $targetLanguage meaning of this word"
-        }
-      ]
+    final normalizedSource =
+        sourceText.replaceAll(RegExp(r'\n{3,}'), '\n\n').trim();
+    if (normalizedSource.isEmpty) {
+      throw ArgumentError.value(sourceText, 'sourceText', 'Cannot be empty');
     }
-  ]
-}
-
-Make sure every single character in the 'chinese' sentence is represented in the 'words' array in order! If a word is multiple characters, group them into one object.
-''';
 
     try {
-      final text = await makeOpenRouterCall(
-        model: 'deepseek/deepseek-chat',
-        messages: [
-          {'role': 'user', 'content': prompt}
-        ],
-        jsonMode: true,
-        maxTokens: 8192,
-      );
+      final chunks = splitArticleIntoChunks(normalizedSource);
+      final sentences = <AiSentence>[];
 
-      if (text.isNotEmpty) {
-        final cleanText = text
-            .replaceAll(RegExp(r'^```json\n', multiLine: true), '')
-            .replaceAll(RegExp(r'^```\n?', multiLine: true), '');
-        final json = jsonDecode(cleanText);
-        analytics.logApiUsage(
-            apiName: 'openrouter', feature: 'simplify_text', success: true);
-        return AiStory.fromJson(json);
+      // Process a few bounded chunks at once. Future.wait preserves their order.
+      for (var start = 0; start < chunks.length; start += 3) {
+        final end = math.min(start + 3, chunks.length);
+        final stories = await Future.wait(
+          chunks.sublist(start, end).map(
+                (chunk) => _simplifyArticleChunk(chunk, hskLevel),
+              ),
+        );
+        for (final story in stories) {
+          sentences.addAll(story.sentences);
+        }
       }
-      throw Exception("Empty response from DeepSeek API");
+
+      analytics.logApiUsage(
+          apiName: 'openrouter', feature: 'simplify_text', success: true);
+      return AiStory(sentences: sentences);
     } catch (e) {
       analytics.logApiUsage(
           apiName: 'openrouter', feature: 'simplify_text', success: false);
       rethrow;
     }
   }
+
+  @visibleForTesting
+  static List<String> splitArticleIntoChunks(String sourceText,
+      {int maxCharacters = 1800}) {
+    if (maxCharacters < 100) {
+      throw ArgumentError.value(
+          maxCharacters, 'maxCharacters', 'Must be at least 100');
+    }
+
+    final paragraphs = sourceText
+        .replaceAll('\r\n', '\n')
+        .split(RegExp(r'\n{2,}'))
+        .map((paragraph) => paragraph.trim())
+        .where((paragraph) => paragraph.isNotEmpty);
+    final pieces = <String>[];
+
+    for (final paragraph in paragraphs) {
+      var remaining = paragraph;
+      while (remaining.length > maxCharacters) {
+        var splitAt = maxCharacters;
+        final minimumSplit = (maxCharacters * 0.6).floor();
+        for (var index = maxCharacters; index >= minimumSplit; index--) {
+          if ('。！？!?；;\n'.contains(remaining[index - 1])) {
+            splitAt = index;
+            break;
+          }
+        }
+        pieces.add(remaining.substring(0, splitAt).trim());
+        remaining = remaining.substring(splitAt).trim();
+      }
+      if (remaining.isNotEmpty) pieces.add(remaining);
+    }
+
+    final chunks = <String>[];
+    var current = '';
+    for (final piece in pieces) {
+      final candidate = current.isEmpty ? piece : '$current\n\n$piece';
+      if (candidate.length <= maxCharacters) {
+        current = candidate;
+      } else {
+        if (current.isNotEmpty) chunks.add(current);
+        current = piece;
+      }
+    }
+    if (current.isNotEmpty) chunks.add(current);
+    return chunks;
+  }
+
+  Future<AiStory> _simplifyArticleChunk(String sourceText, int hskLevel,
+      {bool isRetry = false}) async {
+    const minimumPreservedLengthRatio = 0.85;
+    final sourceChineseLength = _countChineseCharacters(sourceText);
+    final prompt = '''
+You are an expert Chinese teacher. Rewrite this section of a Chinese article using HSK $hskLevel vocabulary and grammar.
+
+STRICT PRESERVATION RULES:
+- Rewrite EVERY paragraph and EVERY fact in the source. Do not summarize, omit, merge, or add information.
+- Keep the result approximately the same size as the source. Target 90–110% of the source's Chinese character count.
+- Preserve paragraph and sentence order.
+- Return only the rewritten article section, not commentary.
+${isRetry ? '- Your previous result was too short. Expand this rewrite so no source content is lost.' : ''}
+
+Source section:
+"""
+$sourceText
+"""
+
+Respond ONLY with valid JSON using this structure:
+{
+  "sentences": [
+    {
+      "chinese": "A complete simplified Chinese sentence",
+      "english": "The $targetLanguage translation",
+      "words": [
+        {
+          "hanzi": "Chinese word",
+          "pinyin": "word pinyin",
+          "meaning": "contextual $targetLanguage meaning"
+        }
+      ]
+    }
+  ]
+}
+Represent all Chinese text in each sentence's words array in order. Group multi-character words; punctuation may be omitted.
+''';
+
+    final text = await makeOpenRouterCall(
+      model: 'deepseek/deepseek-chat',
+      messages: [
+        {'role': 'user', 'content': prompt}
+      ],
+      jsonMode: true,
+      maxTokens: 8192,
+    );
+    if (text.isEmpty) {
+      throw Exception('Empty response from DeepSeek API');
+    }
+
+    final cleanText = text
+        .replaceAll(RegExp(r'^```json\s*'), '')
+        .replaceAll(RegExp(r'\s*```$'), '')
+        .trim();
+    final decoded = jsonDecode(cleanText);
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('Simplification returned invalid JSON.');
+    }
+    final story = AiStory.fromJson(decoded);
+    if (story.sentences.isEmpty ||
+        story.sentences.every((sentence) => sentence.chinese.trim().isEmpty)) {
+      throw const FormatException('Simplification returned an empty article.');
+    }
+
+    final outputChineseLength = _countChineseCharacters(
+        story.sentences.map((sentence) => sentence.chinese).join());
+    if (sourceChineseLength >= 100 &&
+        outputChineseLength < sourceChineseLength * minimumPreservedLengthRatio) {
+      if (!isRetry) {
+        return _simplifyArticleChunk(sourceText, hskLevel, isRetry: true);
+      }
+      throw const FormatException(
+          'Simplification omitted too much of the source article.');
+    }
+    return story;
+  }
+
+  static int _countChineseCharacters(String text) =>
+      RegExp(r'[\u3400-\u9fff]').allMatches(text).length;
 
   Future<List<Map<String, dynamic>>> generateCulturalMemes(
       List<String> transcriptLines) async {
