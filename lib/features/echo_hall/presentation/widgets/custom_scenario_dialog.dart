@@ -751,11 +751,14 @@ Respond ONLY in valid JSON format:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            l10n.scenarioTopic,
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                          Expanded(
+                            child: Text(
+                              l10n.scenarioTopic,
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
                           ),
+                          const SizedBox(width: 8),
                           GestureDetector(
                             onTap: _randomizePersona,
                             child: Text(
@@ -842,11 +845,14 @@ Respond ONLY in valid JSON format:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            l10n.aiCharacterPersonaOptional,
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                          Expanded(
+                            child: Text(
+                              l10n.aiCharacterPersonaOptional,
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
                           ),
+                          const SizedBox(width: 8),
                           GestureDetector(
                             onTap: _randomizePersona,
                             child: Text(

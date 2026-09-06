@@ -4831,7 +4831,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiCharacterPersonaOptional =>
-      'Personnage / Persona IA (Facultatif)';
+      'Personnage IA / Profil (Facultatif)';
 
   @override
   String get aQuietBambooCourtyardTeahouseInChen =>
@@ -7161,7 +7161,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get designCustomAiRoleplay =>
-      'Concevoir une expérience de jeu de rôle et conversation IA personnalisée';
+      'Concevez un jeu de rôle et une conversation IA sur mesure.';
 
   @override
   String get practiceFlashcardVocabulary =>
@@ -7683,7 +7683,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get eGALivelyBanquet => 'ex. Un banquet animé célébré à Shanghai...';
 
   @override
-  String get rollCharacter2 => '🎲 Tirer un personnage';
+  String get rollCharacter2 => '🎲 Personnage aléatoire';
 
   @override
   String get eGACuriousCousin =>
@@ -12605,9 +12605,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get roleplayCreatorContextPlaceholder =>
-      'p. ex., Un banquet anim? pour c?l?brer ? Shanghai...';
+      'p. ex., Un banquet animé pour célébrer à Shanghai...';
 
   @override
   String get roleplayCreatorPersonaPlaceholder =>
-      'p. ex., Un cousin curieux qui pose des questions sur votre carri?re...';
+      'p. ex., Un cousin curieux qui pose des questions sur votre carrière...';
 }

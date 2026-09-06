@@ -1,6 +1,6 @@
-import 'dart:io';
+﻿import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,11 +9,8 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../../../core/services/audio_service.dart';
 import '../../../../core/services/gemini_service.dart';
-import '../../../../core/services/pitch_detector_service.dart';
-import '../../../../core/services/local_translation_service.dart';
-import 'package:lpinyin/lpinyin.dart';
+import '../../../../core/widgets/translated_definition.dart';
 
-import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -23,6 +20,9 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/character_
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import '../../../echo_hall/presentation/widgets/tone_comparison_sheet.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
 
@@ -53,11 +53,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
   bool _isSessionStarted = false;
   ShadowingMode _selectedMode = ShadowingMode.theme;
-  String _selectedTheme = "HSK 1";
+  String _selectedTheme = 'HSK 1';
   String? _selectedDeckId;
   String _customWordInput = "";
+  final TextEditingController _customWordController = TextEditingController();
+  List<Flashcard> _dictionaryResults = [];
+  Timer? _searchDebounce;
 
   bool _isLoadingNextPhrase = false;
+  bool _isStartingSession = false;
   int _sentenceCount = 0;
   Map<String, String>? _currentPhrase;
   bool _isRecording = false;
@@ -65,20 +69,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   bool _isStopping = false; // Prevents re-entry during stop→grade→reset cycle
   Map<String, dynamic>? _lastGrade;
 
-  // Tone Graph State (hidden for V1 MVP)
-  // ignore: unused_field
-  List<double?> _userPitch = [];
-  // ignore: unused_field
-  List<double?> _idealPitch = [];
-  // ignore: unused_field
-  double? _highlightStart;
-  // ignore: unused_field
-  double? _highlightEnd;
-  final _pitchService = PitchDetectorService();
+  // Session State
   final List<Map<String, dynamic>> _weakCharacters = [];
   final List<String> _phraseHistory = [];
-  // ignore: unused_field
-  Map<String, dynamic>? _selectedWordDetail; // null = no detail sheet open
   String? _errorMessage;
   String? _recordingPath;
   DateTime? _recordingStartTime;
@@ -88,7 +81,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   // Haptic feedback has been added in global widgets where possible.
 
   void _exitSession() {
-    if ((widget.initialContextSentence != null && widget.initialContextSentence!.isNotEmpty) ||
+    if ((widget.initialContextSentence != null &&
+            widget.initialContextSentence!.isNotEmpty) ||
         widget.initialHanzi != null) {
       Navigator.pop(context);
     } else {
@@ -121,33 +115,20 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   void initState() {
     super.initState();
     if (widget.initialContextSentence != null &&
-        widget.initialContextSentence!.trim().isNotEmpty) {
-      final sentence = widget.initialContextSentence!.trim();
-      final sentencePinyin = (widget.initialPinyin != null &&
-              widget.initialPinyin!.trim().isNotEmpty &&
-              widget.initialPinyin!.trim().split(' ').length > 1)
-          ? widget.initialPinyin!.trim()
-          : PinyinHelper.getPinyinE(sentence,
-              separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
-
-      final hasValidSentenceTranslation = widget.initialTranslation != null &&
-          widget.initialTranslation!.trim().isNotEmpty &&
-          (sentence.length <= 4 ||
-              widget.initialTranslation!.trim().split(' ').length > 3);
-
+        widget.initialContextSentence!.isNotEmpty) {
       _selectedMode = ShadowingMode.customSentence;
-      _customWordInput = sentence;
+      _customWordInput = widget.initialContextSentence!;
       _isSessionStarted = true;
-      _currentPhrase = {
-        "hanzi": sentence,
-        "pinyin": sentencePinyin,
-        "english": hasValidSentenceTranslation
-            ? widget.initialTranslation!.trim()
-            : "Translating sentence...",
-      };
-
-      if (!hasValidSentenceTranslation) {
-        _resolveSentenceTranslation(sentence);
+      if (widget.initialPinyin != null || widget.initialTranslation != null) {
+        _currentPhrase = {
+          "hanzi": widget.initialContextSentence!,
+          "pinyin": widget.initialPinyin ?? "",
+          "english": widget.initialTranslation ?? "",
+        };
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _fetchNextPhrase();
+        });
       }
     } else if (widget.initialHanzi != null) {
       _selectedMode = ShadowingMode.customWord;
@@ -191,62 +172,43 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     }
     _audioRecorder.dispose();
     _pulseController.dispose();
+    _searchDebounce?.cancel();
+    _customWordController.dispose();
     super.dispose();
   }
 
-  Future<void> _resolveSentenceTranslation(String sentence) async {
-    try {
-      final translationService = ref.read(localTranslationServiceProvider);
-      final translated = await translationService.translate(sentence);
-      if (mounted &&
-          _currentPhrase != null &&
-          _currentPhrase!['hanzi'] == sentence &&
-          translated.trim().isNotEmpty) {
-        setState(() {
-          _currentPhrase = {
-            ..._currentPhrase!,
-            'english': translated.trim(),
-          };
-        });
-        return;
-      }
-    } catch (e) {
-      debugPrint("LocalTranslationService error in ShadowingStudio: $e");
+  void _onSearchChanged(String query) {
+    _searchDebounce?.cancel();
+    if (query.trim().isEmpty) {
+      setState(() => _dictionaryResults = []);
+      return;
     }
-
-    try {
-      final geminiService = ref.read(geminiServiceProvider);
-      final phrase = await geminiService.generateShadowingPhrase(
-        ShadowingMode.customSentence.toString(),
-        "Exact Sentence: $sentence",
-      );
-      if (mounted &&
-          _currentPhrase != null &&
-          _currentPhrase!['hanzi'] == sentence) {
+    _searchDebounce = Timer(const Duration(milliseconds: 250), () async {
+      final repo = ref.read(globalDictionaryRepositoryProvider);
+      final result = await repo.search(query);
+      if (mounted) {
         setState(() {
-          _currentPhrase = {
-            ..._currentPhrase!,
-            if (phrase['english'] != null && phrase['english']!.isNotEmpty)
-              'english': phrase['english']!,
-            if ((_currentPhrase!['pinyin'] == null ||
-                    _currentPhrase!['pinyin']!.isEmpty) &&
-                phrase['pinyin'] != null)
-              'pinyin': phrase['pinyin']!,
-          };
+          _dictionaryResults = result.getOrElse((_) => []);
         });
       }
-    } catch (e) {
-      debugPrint("Gemini fallback translation error in ShadowingStudio: $e");
-    }
+    });
   }
 
   Future<void> _startSession() async {
+    if (_isStartingSession) return;
     setState(() {
-      _isSessionStarted = true;
+      _isStartingSession = true;
       _errorMessage = null;
     });
-    if (_currentPhrase == null) {
-      await _fetchNextPhrase();
+    try {
+      if (_currentPhrase == null) {
+        await _fetchNextPhrase();
+      }
+      if (mounted && _currentPhrase != null) {
+        setState(() => _isSessionStarted = true);
+      }
+    } finally {
+      if (mounted) setState(() => _isStartingSession = false);
     }
   }
 
@@ -254,8 +216,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     setState(() {
       _isLoadingNextPhrase = true;
       _lastGrade = null;
-      _userPitch = [];
-      _idealPitch = [];
       _errorMessage = null;
       _sentenceCount++;
       // Cleanse any stuck recording/grading states when transitioning
@@ -431,32 +391,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       try {
         final bytes = await file.readAsBytes();
 
-        final pitchArray = await _pitchService.extractPitchContour(bytes);
-
         final geminiService = ref.read(geminiServiceProvider);
         final grade = await geminiService.gradeAudio(
           bytes,
           _currentPhrase!['hanzi']!,
           _currentPhrase!['pinyin']!,
         );
-        List<double?> actualIdealPitch = [];
-        try {
-          final audioService = ref.read(audioServiceProvider);
-          final audioBytes = await audioService
-              .getSentenceAudioBytes(_currentPhrase!['hanzi'] ?? '');
-          if (audioBytes != null) {
-            actualIdealPitch =
-                await _pitchService.extractPitchContour(audioBytes);
-          }
-        } catch (e) {
-          debugPrint('Failed to extract ideal pitch: $e');
-        }
 
         if (mounted) {
           setState(() {
             _lastGrade = grade;
-            _userPitch = pitchArray;
-            _idealPitch = actualIdealPitch;
             _isGrading = false;
 
             if (grade['words'] != null) {
@@ -522,6 +466,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
         context: context,
+      useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -614,8 +559,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             _exitSession();
                           },
                           child: Text(AppLocalizations.of(context)!.skip,
-                              style:
-                                  const TextStyle(color: Colors.grey, fontSize: 16)),
+                              style: const TextStyle(
+                                  color: Colors.grey, fontSize: 16)),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -635,7 +580,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   _showDeckSelectionDialog(
                                       context, isDark, selectedWords.toList());
                                 },
-                          child: Text(AppLocalizations.of(context)!.addSelectedToDeck,
+                          child: Text(
+                              AppLocalizations.of(context)!.addSelectedToDeck,
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -658,6 +604,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
         context: context,
+      useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -678,9 +625,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                           color: isDark ? Colors.white : Colors.black)),
                   const SizedBox(height: 16),
                   SwitchListTile(
-                    title: Text(
-                        AppLocalizations.of(context)!.applySessionGradesToSpacedRepetition,
-                        style: const TextStyle(fontSize: 14)),
+                    title: const Text(
+                        "Apply session grades to Spaced Repetition (Speaking Mode)",
+                        style: TextStyle(fontSize: 14)),
                     activeThumbColor: Colors.orange,
                     value: applySrs,
                     onChanged: (val) => setModalState(() => applySrs = val),
@@ -691,13 +638,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     const Center(
                         child: CircularProgressIndicator(color: Colors.orange)),
                   if (decksAsync.hasValue && decksAsync.value!.isEmpty)
-                    Text(AppLocalizations.of(context)!.noDecksFound),
+                    Text(AppLocalizations.of(context)!.no_decks_found),
                   if (decksAsync.hasValue && decksAsync.value!.isNotEmpty)
                     ...decksAsync.value!.map((deck) => ListTile(
                           title: Text(deck.name,
                               style: TextStyle(
                                   color: isDark ? Colors.white : Colors.black)),
-                          subtitle: Text(AppLocalizations.of(context)!.exportToThisDeck,
+                          subtitle: Text(
+                              AppLocalizations.of(context)!.exportToThisDeck,
                               style: TextStyle(
                                   color: isDark
                                       ? Colors.white54
@@ -717,7 +665,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     title: Text(AppLocalizations.of(context)!.createNewDeck,
                         style: const TextStyle(
                             color: Colors.orange, fontWeight: FontWeight.bold)),
-                    subtitle: Text(AppLocalizations.of(context)!.makeACustomCollection,
+                    subtitle: Text(
+                        AppLocalizations.of(context)!.makeACustomCollection,
                         style: TextStyle(
                             color: isDark ? Colors.white54 : Colors.black54)),
                     trailing:
@@ -750,7 +699,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             controller: controller,
             style: TextStyle(color: isDark ? Colors.white : Colors.black),
             decoration: InputDecoration(
-              hintText: "E.g. Anime Vocab",
+              hintText: AppLocalizations.of(context)!.egAnimeVocab,
               hintStyle:
                   TextStyle(color: isDark ? Colors.white54 : Colors.black54),
               enabledBorder: const UnderlineInputBorder(
@@ -785,8 +734,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       context, newDeck, applySrs, wordsToAdd);
                 }
               },
-              child: const Text("Create",
-                  style: TextStyle(
+              child: Text(AppLocalizations.of(context)!.createAction,
+                  style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold)),
             ),
           ],
@@ -799,7 +748,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       List<String> wordsToAdd) async {
     final flashcardController = ref.read(flashcardControllerProvider.notifier);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Saving ${wordsToAdd.length} words to ${deck.name}...")));
+        content: Text(AppLocalizations.of(context)!
+            .saving_words_to(wordsToAdd.length, deck.name))));
 
     for (String hanzi in wordsToAdd) {
       // Check if word exists in deck
@@ -849,259 +799,404 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       }
     }
 
-    if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context)!.wordsSavedAndSrsScheduled)));
-    }
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text(AppLocalizations.of(context)!.wordsSavedAndSrsScheduled)));
+  }
+
+  // Accent color matching the rest of the app (Explore / Roleplay / Echo Hall)
+  static const Color _accentGold = Color(0xFFFFB300);
+  static const Color _accentGoldLight = Color(0xFFFFD54F);
+
+  Widget _buildSectionLabel({
+    required IconData icon,
+    required String title,
+    required bool isDark,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: _accentGold),
+          const SizedBox(width: 8),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              letterSpacing: 0.3,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSegmentModeTab({
+    required ShadowingMode mode,
+    required IconData icon,
+    required String label,
+    required bool isDark,
+  }) {
+    final isSelected = _selectedMode == mode;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          if (_selectedMode != mode) {
+            setState(() => _selectedMode = mode);
+            HapticFeedback.selectionClick();
+          }
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOutQuart,
+          decoration: BoxDecoration(
+            color: isSelected
+                ? _accentGold.withValues(alpha: isDark ? 0.25 : 0.15)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: isSelected
+                ? Border.all(
+                    color: _accentGold.withValues(alpha: 0.4), width: 1)
+                : null,
+          ),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon,
+                  size: 15,
+                  color: isSelected
+                      ? _accentGold
+                      : (isDark ? Colors.white54 : Colors.black38)),
+              const SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: isSelected
+                        ? (isDark ? _accentGoldLight : const Color(0xFF1A1A1B))
+                        : (isDark ? Colors.white54 : Colors.black38),
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                    fontSize: 11,
+                    letterSpacing: 0.2,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildConfigCard({
+    required bool isDark,
+    required String label,
+    required Widget child,
+  }) {
+    final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.black.withValues(alpha: 0.06),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: isDark ? Colors.white38 : Colors.black45,
+                letterSpacing: 0.8,
+              ),
+            ),
+            const SizedBox(height: 6),
+            child,
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
-    final l10n = AppLocalizations.of(context)!;
+    final bgColor = Theme.of(context).colorScheme.surface;
+    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
 
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-      body: CalligraphyBackground(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Header
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+      backgroundColor: bgColor,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // ── Header Bar ────────────────────────────────────────
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Row(
+                children: [
+                  if (widget.showBackButton)
                     IconButton(
-                      icon: Icon(Icons.arrow_back,
-                          color:
-                              isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                      icon: const Icon(Icons.arrow_back_ios, size: 20),
+                      color: primaryText,
                       onPressed: () => Navigator.pop(context),
+                    )
+                  else
+                    const SizedBox(width: 48),
+                  const Spacer(),
+                  Text(
+                    'Shadowing Studio',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: primaryText,
+                      letterSpacing: 0.5,
                     ),
-                  ],
+                  ),
+                  const Spacer(),
+                  const SizedBox(width: 48),
+                ],
+              ),
+            ),
+
+            // ── Hero Icon ─────────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: _accentGold.withValues(alpha: isDark ? 0.1 : 0.06),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.graphic_eq_rounded,
+                  size: 56,
+                  color: isDark ? _accentGoldLight : _accentGold,
                 ),
               ),
+            ),
 
-              // Hero Section
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      Container(
-                        padding: const EdgeInsets.all(24),
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? Colors.orange.withValues(alpha: 0.1)
-                              : Colors.orange.withValues(alpha: 0.05),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          Icons.record_voice_over,
-                          size: 80,
-                          color: isDark
-                              ? Colors.orange.shade300
-                              : Colors.orange.shade600,
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      Text(
-                        l10n.shadowingStudio,
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w900,
-                          color:
-                              isDark ? Colors.white : const Color(0xFF1A1A1B),
-                          letterSpacing: 0.5,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        l10n.masterYourMandarinPronunciationnbyM,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: isDark ? Colors.white70 : Colors.black54,
-                          height: 1.5,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+            const SizedBox(height: 20),
 
-                      // Mode Selection
-                      const SizedBox(height: 24),
-                      Text(
-                        l10n.practiceMode1,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 2,
-                          color: isDark ? Colors.white54 : Colors.black54,
-                        ),
+            // ── Subtitle ──────────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                'Master your Mandarin pronunciation\nby mimicking native speech.',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: isDark ? Colors.white60 : Colors.black54,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            // ── Scrollable Content ────────────────────────────────
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 24),
+
+                    // ── Mode Selector Section ─────────────────────
+                    _buildSectionLabel(
+                      icon: Icons.tune_rounded,
+                      title: 'Practice Mode',
+                      isDark: isDark,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Primary modes: segmented pill row
+                    Container(
+                      height: 46,
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? const Color(0xFF2C2C2E)
+                            : Colors.black.withValues(alpha: 0.04),
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      const SizedBox(height: 16),
-                      Wrap(
-                        spacing: 12,
-                        runSpacing: 12,
-                        alignment: WrapAlignment.center,
+                      child: Row(
                         children: [
-                          ChoiceChip(
-                            label: Text(l10n.freeFlow),
-                            selected: _selectedMode == ShadowingMode.freeFlow,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.freeFlow),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.freeFlow,
+                            icon: Icons.mic_none_rounded,
+                            label: AppLocalizations.of(context)!.freeFlow,
+                            isDark: isDark,
                           ),
-                          ChoiceChip(
-                            label: Text(l10n.thematic),
-                            selected: _selectedMode == ShadowingMode.theme,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.theme),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
+                          const SizedBox(width: 2),
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.theme,
+                            icon: Icons.auto_stories_rounded,
+                            label: AppLocalizations.of(context)!.theme,
+                            isDark: isDark,
                           ),
-                          ChoiceChip(
-                            label: Text(l10n.deckFlashcards),
-                            selected: _selectedMode == ShadowingMode.deck,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.deck),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
+                          const SizedBox(width: 2),
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.deck,
+                            icon: Icons.style_rounded,
+                            label: AppLocalizations.of(context)!.deck,
+                            isDark: isDark,
                           ),
-                          ChoiceChip(
-                            label: Text(l10n.customWord),
-                            selected: _selectedMode == ShadowingMode.customWord,
-                            onSelected: (val) => setState(
-                                () => _selectedMode = ShadowingMode.customWord),
-                            selectedColor: Colors.orange.shade200,
-                            backgroundColor: isDark
-                                ? Colors.grey.shade900
-                                : Colors.grey.shade200,
+                          const SizedBox(width: 2),
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.customWord,
+                            icon: Icons.text_fields_rounded,
+                            label: AppLocalizations.of(context)!.customWord,
+                            isDark: isDark,
                           ),
                         ],
                       ),
-                      if (_selectedMode == ShadowingMode.customWord) ...[
-                        const SizedBox(height: 16),
-                        Builder(builder: (context) {
-                          final asyncCards =
-                              ref.watch(flashcardControllerProvider);
-                          final allCards = asyncCards.valueOrNull ?? [];
-                          final options =
-                              allCards.map((c) => c.hanzi).toSet().toList();
+                    ),
 
-                          return Autocomplete<String>(
-                            optionsBuilder:
-                                (TextEditingValue textEditingValue) {
-                              if (textEditingValue.text.isEmpty) {
-                                return options.take(10);
-                              }
-                              return options.where((String option) =>
-                                  option.contains(textEditingValue.text));
-                            },
-                            onSelected: (String selection) =>
-                                setState(() => _customWordInput = selection),
-                            fieldViewBuilder: (context, textEditingController,
-                                focusNode, onFieldSubmitted) {
-                              return HanziTextField(
-                                controller: textEditingController,
-                                focusNode: focusNode,
-                                decoration: InputDecoration(
-                                  hintText: "Search library or type custom",
-                                  filled: true,
-                                  fillColor:
-                                      isDark ? Colors.grey[900] : Colors.white,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide.none),
-                                ),
-                                style: TextStyle(
-                                    color:
-                                        isDark ? Colors.white : Colors.black),
-                                onChanged: (val) =>
-                                    setState(() => _customWordInput = val),
-                              );
-                            },
-                            optionsViewBuilder:
-                                (context, onSelected, optionsView) {
-                              return Align(
-                                alignment: Alignment.topLeft,
-                                child: Material(
-                                  elevation: 4,
+                    const SizedBox(height: 24),
+
+                    // ── Configuration Section ─────────────────────
+                    _buildSectionLabel(
+                      icon: Icons.settings_rounded,
+                      title: AppLocalizations.of(context)!.configuration,
+                      isDark: isDark,
+                    ),
+                    const SizedBox(height: 10),
+
+                    if (_selectedMode == ShadowingMode.customWord) ...[
+                      _buildConfigCard(
+                        isDark: isDark,
+                        label: AppLocalizations.of(context)!.chinese_character,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            HanziTextField(
+                              controller: _customWordController,
+                              decoration: InputDecoration(
+                                hintText: AppLocalizations.of(context)!
+                                    .searchDictionaryOrTypeCustom,
+                                filled: true,
+                                fillColor: isDark
+                                    ? const Color(0xFF2C2C2E)
+                                    : const Color(0xFFF5F5F5),
+                                border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  color: Colors.transparent,
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 64,
-                                    constraints:
-                                        const BoxConstraints(maxHeight: 250),
-                                    decoration: BoxDecoration(
-                                      color: isDark
-                                          ? Colors.grey[850]
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(
-                                          color: isDark
-                                              ? Colors.white12
-                                              : Colors.black12),
-                                    ),
-                                    child: ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      itemCount: optionsView.length,
-                                      itemBuilder: (context, index) {
-                                        final option =
-                                            optionsView.elementAt(index);
-                                        final cardList = allCards
-                                            .where((c) => c.hanzi == option);
-                                        final card = cardList.isNotEmpty
-                                            ? cardList.first
-                                            : null;
-                                        return ListTile(
-                                          title: Text(option,
-                                              style: TextStyle(
-                                                  color: isDark
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold)),
-                                          subtitle: card != null
-                                              ? Text(
-                                                  "${card.pinyin} - ${card.definition}",
-                                                  style: TextStyle(
-                                                      color: isDark
-                                                          ? Colors.white70
-                                                          : Colors.black54),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis)
-                                              : null,
-                                          onTap: () => onSelected(option),
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                  borderSide: BorderSide.none,
                                 ),
-                              );
-                            },
-                          );
-                        }),
-                      ],
-                      if (_selectedMode == ShadowingMode.theme) ...[
-                        const SizedBox(height: 16),
-                        DropdownButtonHideUnderline(
+                              ),
+                              style: TextStyle(
+                                  color: isDark ? Colors.white : Colors.black),
+                              onChanged: (val) {
+                                setState(() => _customWordInput = val);
+                                _onSearchChanged(val);
+                              },
+                            ),
+                            if (_dictionaryResults.isNotEmpty)
+                              Container(
+                                width: double.infinity,
+                                constraints:
+                                    const BoxConstraints(maxHeight: 250),
+                                margin: const EdgeInsets.only(top: 4),
+                                decoration: BoxDecoration(
+                                  color:
+                                      isDark ? Colors.grey[850] : Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                      color: isDark
+                                          ? Colors.white12
+                                          : Colors.black12),
+                                ),
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  itemCount: _dictionaryResults.length,
+                                  itemBuilder: (context, index) {
+                                    final card = _dictionaryResults[index];
+                                    return ListTile(
+                                      title: Text(card.hanzi,
+                                          style: TextStyle(
+                                              color: isDark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
+                                      subtitle: Row(
+                                        children: [
+                                          Text(
+                                            '${PinyinUtils.convertNumericToMarks(card.pinyin)} - ',
+                                            style: TextStyle(
+                                                color: isDark
+                                                    ? Colors.white70
+                                                    : Colors.black54),
+                                          ),
+                                          Expanded(
+                                            child: TranslatedDefinition(
+                                              definition: card.definition,
+                                              originalStyle: TextStyle(
+                                                  color: isDark
+                                                      ? Colors.white70
+                                                      : Colors.black54),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          _customWordInput = card.hanzi;
+                                          _customWordController.text =
+                                              card.hanzi;
+                                          _dictionaryResults = [];
+                                        });
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
+                    if (_selectedMode == ShadowingMode.theme) ...[
+                      _buildConfigCard(
+                        isDark: isDark,
+                        label: AppLocalizations.of(context)!.hsk_level,
+                        child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: _selectedTheme,
+                            isExpanded: true,
                             dropdownColor:
-                                isDark ? Colors.grey[900] : Colors.white,
+                                isDark ? const Color(0xFF2C2C2E) : Colors.white,
+                            style: TextStyle(
+                              color: isDark
+                                  ? Colors.white
+                                  : const Color(0xFF1A1A1B),
+                              fontSize: 15,
+                            ),
                             items: [
-                              "HSK 1",
+                              AppLocalizations.of(context)!.hsk1,
                               "HSK 2",
                               "HSK 3",
                               "HSK 4",
@@ -1119,20 +1214,31 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             },
                           ),
                         ),
-                      ],
-                      if (_selectedMode == ShadowingMode.deck) ...[
-                        const SizedBox(height: 16),
-                        ref.watch(deckControllerProvider).when(
+                      ),
+                    ],
+                    if (_selectedMode == ShadowingMode.deck) ...[
+                      _buildConfigCard(
+                        isDark: isDark,
+                        label: AppLocalizations.of(context)!.flashcardDeckTitle,
+                        child: ref.watch(deckControllerProvider).when(
                               data: (decks) {
                                 if (decks.isEmpty) {
-                                  return const Text("No decks found.");
+                                  return Text(AppLocalizations.of(context)!
+                                      .no_decks_found);
                                 }
                                 return DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     value: _selectedDeckId ?? decks.first.id,
+                                    isExpanded: true,
                                     dropdownColor: isDark
-                                        ? Colors.grey[900]
+                                        ? const Color(0xFF2C2C2E)
                                         : Colors.white,
+                                    style: TextStyle(
+                                      color: isDark
+                                          ? Colors.white
+                                          : const Color(0xFF1A1A1B),
+                                      fontSize: 15,
+                                    ),
                                     items: decks
                                         .map((d) => DropdownMenuItem(
                                             value: d.id, child: Text(d.name)))
@@ -1145,84 +1251,60 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   ),
                                 );
                               },
-                              loading: () => const CircularProgressIndicator(
-                                  strokeWidth: 2),
-                              error: (e, st) =>
-                                  const Text("Error loading decks"),
+                              loading: () => const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child:
+                                      CircularProgressIndicator(strokeWidth: 2),
+                                ),
+                              ),
+                              error: (e, st) => Text(
+                                  AppLocalizations.of(context)!
+                                      .error_loading_decks),
                             ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
-
-              // Start Button Area
-              Container(
-                padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      (isDark
-                              ? const Color(0xFF1A1A1A)
-                              : const Color(0xFFFDF5E6))
-                          .withValues(alpha: 0.0),
-                      isDark
-                          ? const Color(0xFF1A1A1A)
-                          : const Color(0xFFFDF5E6),
-                    ],
-                  ),
-                ),
-                child: Container(
-                  height: 64,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFF9800), Color(0xFFF57C00)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(32),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.orange.withValues(alpha: 0.4),
-                        blurRadius: 16,
-                        offset: const Offset(0, 8),
                       ),
                     ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: _startSession,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.mic, size: 28, color: Colors.white),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            l10n.sTARTSESSION,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+
+            // Start Button Area
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
+              child: FilledButton.icon(
+                key: const Key('shadowing_start_session'),
+                onPressed: _isStartingSession ? null : _startSession,
+                icon: _isStartingSession
+                    ? const SizedBox.square(
+                        dimension: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.mic, size: 24),
+                label: Text(
+                  _isStartingSession ? 'STARTING…' : 'START SESSION',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                style: FilledButton.styleFrom(
+                  backgroundColor: _accentGold,
+                  foregroundColor: Colors.black,
+                  minimumSize: const Size(double.infinity, 56),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -1238,7 +1320,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       child: Scaffold(
         backgroundColor: widget.isCompact
             ? Colors.transparent
-            : (isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0)),
+            : Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -1270,7 +1352,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        AppLocalizations.of(context)!.shadowingStudio,
+                                        "Shadowing Studio",
                                         style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
@@ -1279,7 +1361,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                                 : const Color(0xFF1A1A1B)),
                                       ),
                                       Text(
-                                        (_selectedMode == ShadowingMode.customWord || _selectedMode == ShadowingMode.customSentence)
+                                        (_selectedMode ==
+                                                    ShadowingMode.customWord ||
+                                                _selectedMode ==
+                                                    ShadowingMode
+                                                        .customSentence)
                                             ? "Single Phrase Practice"
                                             : "Endless AI Stream • Sentence $_sentenceCount",
                                         style: const TextStyle(
@@ -1300,8 +1386,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             child: Column(
                               children: [
                                 Text(_errorMessage!,
-                                    style: const TextStyle(color: Colors.red), textAlign: TextAlign.center),
-                                if (_errorMessage!.contains("Failed to generate phrase")) ...[
+                                    style: const TextStyle(color: Colors.red),
+                                    textAlign: TextAlign.center),
+                                if (_errorMessage!
+                                    .contains("Failed to generate phrase")) ...[
                                   const SizedBox(height: 8),
                                   ElevatedButton.icon(
                                     onPressed: () {
@@ -1313,7 +1401,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                       }
                                     },
                                     icon: const Icon(Icons.refresh, size: 16),
-                                    label: const Text("Retry"),
+                                    label: Text(
+                                        AppLocalizations.of(context)!.retry),
                                   ),
                                 ]
                               ],
@@ -1327,7 +1416,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   child: CircularProgressIndicator(
                                       color: Colors.orange))
                               : _currentPhrase == null
-                                  ? const Center(child: Text("Ready to start."))
+                                  ? Center(
+                                      child: Text(AppLocalizations.of(context)!
+                                          .readyToStart))
                                   : _buildPhraseCard(isDark),
                         ),
 
@@ -1389,42 +1480,44 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                             return Transform.scale(
                                               scale: _pulseAnimation.value,
                                               child: Container(
-                                              width: widget.isCompact ? 64 : 80,
-                                              height:
-                                                  widget.isCompact ? 64 : 80,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: _isRecording
-                                                    ? Colors.red
-                                                    : (isDark
-                                                        ? Colors.orange.shade800
-                                                        : Colors.orange),
-                                                boxShadow: [
-                                                  if (_isRecording)
-                                                    BoxShadow(
-                                                        color: Colors.red
-                                                            .withValues(
-                                                                alpha: 0.5),
-                                                        blurRadius: 20,
-                                                        spreadRadius: 5)
-                                                  else
-                                                    BoxShadow(
-                                                        color: Colors.orange
-                                                            .withValues(
-                                                                alpha: 0.3),
-                                                        blurRadius: 10,
-                                                        spreadRadius: 2),
-                                                ],
+                                                width:
+                                                    widget.isCompact ? 64 : 80,
+                                                height:
+                                                    widget.isCompact ? 64 : 80,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: _isRecording
+                                                      ? Colors.red
+                                                      : (isDark
+                                                          ? Colors
+                                                              .orange.shade800
+                                                          : Colors.orange),
+                                                  boxShadow: [
+                                                    if (_isRecording)
+                                                      BoxShadow(
+                                                          color: Colors.red
+                                                              .withValues(
+                                                                  alpha: 0.5),
+                                                          blurRadius: 20,
+                                                          spreadRadius: 5)
+                                                    else
+                                                      BoxShadow(
+                                                          color: Colors.orange
+                                                              .withValues(
+                                                                  alpha: 0.3),
+                                                          blurRadius: 10,
+                                                          spreadRadius: 2),
+                                                  ],
+                                                ),
+                                                child: Icon(Icons.mic,
+                                                    size: widget.isCompact
+                                                        ? 28
+                                                        : 36,
+                                                    color: Colors.white),
                                               ),
-                                              child: Icon(Icons.mic,
-                                                  size: widget.isCompact
-                                                      ? 28
-                                                      : 36,
-                                                  color: Colors.white),
-                                            ),
-                                          );
-                                        },
-                                      ),
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
 
@@ -1435,9 +1528,19 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                         color: isDark
                                             ? Colors.white70
                                             : Colors.black54,
-                                        icon: Icon((_selectedMode == ShadowingMode.customWord || _selectedMode == ShadowingMode.customSentence) ? Icons.check_circle_outline : Icons.skip_next),
+                                        icon: Icon((_selectedMode ==
+                                                    ShadowingMode.customWord ||
+                                                _selectedMode ==
+                                                    ShadowingMode
+                                                        .customSentence)
+                                            ? Icons.check_circle_outline
+                                            : Icons.skip_next),
                                         onPressed: () {
-                                          if (_selectedMode == ShadowingMode.customWord || _selectedMode == ShadowingMode.customSentence) {
+                                          if (_selectedMode ==
+                                                  ShadowingMode.customWord ||
+                                              _selectedMode ==
+                                                  ShadowingMode
+                                                      .customSentence) {
                                             Navigator.of(context).pop();
                                           } else {
                                             _fetchNextPhrase();
@@ -1470,228 +1573,171 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
-  Widget _buildHanziPhraseView(bool isDark) {
-    final hanziText = _currentPhrase!['hanzi'] ?? '';
-    final targetHanzi = widget.initialHanzi?.trim();
-    final fontSize = _getHanziFontSize(hanziText.length);
-    final defaultColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
-    final baseStyle = TextStyle(
-      fontSize: fontSize,
-      color: defaultColor,
-      fontWeight: FontWeight.w500,
-      fontFamily: 'NotoSerifSC',
-      height: 1.35,
-    );
-
-    if (targetHanzi == null ||
-        targetHanzi.isEmpty ||
-        !hanziText.contains(targetHanzi)) {
-      return Text(
-        hanziText,
-        style: baseStyle,
-        textAlign: TextAlign.center,
-      );
-    }
-
-    final highlightColor =
-        isDark ? const Color(0xFF818CF8) : const Color(0xFF4F46E5);
-    final highlightBg =
-        highlightColor.withValues(alpha: isDark ? 0.28 : 0.16);
-
-    final spans = <InlineSpan>[];
-    int lastEnd = 0;
-    for (final match
-        in RegExp(RegExp.escape(targetHanzi)).allMatches(hanziText)) {
-      if (match.start > lastEnd) {
-        spans.add(TextSpan(
-          text: hanziText.substring(lastEnd, match.start),
-          style: baseStyle,
-        ));
-      }
-      spans.add(TextSpan(
-        text: match.group(0),
-        style: baseStyle.copyWith(
-          color: highlightColor,
-          backgroundColor: highlightBg,
-          fontWeight: FontWeight.bold,
-        ),
-      ));
-      lastEnd = match.end;
-    }
-    if (lastEnd < hanziText.length) {
-      spans.add(TextSpan(
-        text: hanziText.substring(lastEnd),
-        style: baseStyle,
-      ));
-    }
-
-    return Text.rich(
-      TextSpan(children: spans),
-      textAlign: TextAlign.center,
-    );
-  }
-
   Widget _buildPhraseCard(bool isDark) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Center(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // If we have a grade, show it above the text!
-              if (_lastGrade != null)
-                Container(
-                  margin: const EdgeInsets.only(bottom: 32),
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.grey[900] : Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                      color:
-                          _lastGrade!['score'] >= 80 ? Colors.green : Colors.orange,
-                      width: 2,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // If we have a grade, show it above the text!
+          if (_lastGrade != null)
+            Container(
+              margin: const EdgeInsets.only(bottom: 32),
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: isDark ? Colors.grey[900] : Colors.white,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color:
+                      _lastGrade!['score'] >= 80 ? Colors.green : Colors.orange,
+                  width: 2,
+                ),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    "Score: ${_lastGrade!['score']}/100",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: _lastGrade!['score'] >= 80
+                          ? Colors.green
+                          : Colors.orange,
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  Text(
+                    _lastGrade!['overallFeedback'] ?? "",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: isDark ? Colors.white70 : Colors.black87),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+
+          // The Phrase
+          if (_lastGrade == null || _lastGrade!['words'] == null) ...[
+            Text(
+              _currentPhrase!['pinyin']!,
+              style: TextStyle(
+                fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length),
+                color: isDark ? Colors.white70 : Colors.black87,
+                fontStyle: FontStyle.italic,
+                letterSpacing: 1.2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              _currentPhrase!['hanzi']!,
+              style: TextStyle(
+                fontSize: _getHanziFontSize(_currentPhrase!['hanzi']!.length),
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                fontWeight: FontWeight.w500,
+                fontFamily: 'NotoSerifSC',
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ] else ...[
+            // Breakdown view
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 4,
+              children: (_lastGrade!['words'] as List).map<Widget>((item) {
+                final isCorrect = item['isCorrect'] ?? false;
+                final isPartial = item['isPartial'] ?? false;
+                final isOmitted = item['isOmitted'] ?? false;
+
+                Color color;
+                if (isOmitted) {
+                  color = Colors.grey;
+                } else if (isCorrect) {
+                  color = Colors.green;
+                } else if (isPartial) {
+                  color = Colors.orange;
+                } else {
+                  color = Colors.red;
+                }
+
+                return GestureDetector(
+                  onTap: () =>
+                      _showWordDetailSheet(context, isDark, item, color),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Score: ${_lastGrade!['score']}/100",
+                        item['pinyin'] ?? "",
                         style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: _lastGrade!['score'] >= 80
-                              ? Colors.green
-                              : Colors.orange,
-                        ),
+                            fontSize: _getPinyinFontSize(
+                                    _currentPhrase!['hanzi']!.length) *
+                                0.8,
+                            color: color,
+                            fontStyle: FontStyle.italic),
                       ),
-                      const SizedBox(height: 8),
                       Text(
-                        _lastGrade!['overallFeedback'] ?? "",
+                        item['word'] ?? "",
                         style: TextStyle(
-                            fontSize: 16,
-                            color: isDark ? Colors.white70 : Colors.black87),
-                        textAlign: TextAlign.center,
+                          fontSize: _getHanziFontSize(
+                              _currentPhrase!['hanzi']!.length),
+                          color: color,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'NotoSerifSC',
+                        ),
                       ),
                     ],
                   ),
-                ),
+                );
+              }).toList(),
+            ),
+          ],
 
-              // The Phrase
-              if (_lastGrade == null || _lastGrade!['words'] == null) ...[
-                Text(
-                  _currentPhrase!['pinyin']!,
-                  style: TextStyle(
-                    fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length),
-                    color: isDark ? Colors.white70 : Colors.black87,
-                    fontStyle: FontStyle.italic,
-                    letterSpacing: 1.2,
+          // Tone Graph is hidden for V1 MVP as requested by user
+          /*
+          if (_lastGrade != null && _userPitch.isNotEmpty) ...[
+            const SizedBox(height: 24),
+            Container(
+              height: 120,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.black26 : Colors.black.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: const Size(double.infinity, 120),
+                    painter: ToneGraphPainter(
+                      idealPitch: _idealPitch,
+                      userPitch: _userPitch,
+                      isLive: false,
+                      highlightStart: _highlightStart,
+                      highlightEnd: _highlightEnd,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-                _buildHanziPhraseView(isDark),
-              ] else ...[
-                // Breakdown view
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 4,
-                  children: (_lastGrade!['words'] as List).map<Widget>((item) {
-                    final isCorrect = item['isCorrect'] ?? false;
-                    final isPartial = item['isPartial'] ?? false;
-                    final isOmitted = item['isOmitted'] ?? false;
-                    final wordText = item['word'] as String? ?? '';
-                    final isTargetWord = widget.initialHanzi != null &&
-                        widget.initialHanzi!.isNotEmpty &&
-                        wordText.contains(widget.initialHanzi!);
+                  const Positioned(
+                    top: 8, left: 16,
+                    child: Text(AppLocalizations.of(context)!.toneGraph, style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  )
+                ],
+              ),
+            ),
+          ],
+          */
 
-                    Color color;
-                    if (isOmitted) {
-                      color = Colors.grey;
-                    } else if (isCorrect) {
-                      color = Colors.green;
-                    } else if (isPartial) {
-                      color = Colors.orange;
-                    } else {
-                      color = Colors.red;
-                    }
-
-                    return GestureDetector(
-                      onTap: () =>
-                          _showWordDetailSheet(context, isDark, item, color),
-                      child: Container(
-                        padding: isTargetWord
-                            ? const EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 2)
-                            : EdgeInsets.zero,
-                        decoration: isTargetWord
-                            ? BoxDecoration(
-                                color: (isDark
-                                        ? const Color(0xFF818CF8)
-                                        : const Color(0xFF4F46E5))
-                                    .withValues(alpha: 0.14),
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color: (isDark
-                                          ? const Color(0xFF818CF8)
-                                          : const Color(0xFF4F46E5))
-                                      .withValues(alpha: 0.5),
-                                  width: 1.5,
-                                ),
-                              )
-                            : null,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              item['pinyin'] ?? "",
-                              style: TextStyle(
-                                  fontSize: _getPinyinFontSize(
-                                          _currentPhrase!['hanzi']!.length) *
-                                      0.8,
-                                  color: color,
-                                  fontStyle: FontStyle.italic),
-                            ),
-                            Text(
-                              wordText,
-                              style: TextStyle(
-                                fontSize: _getHanziFontSize(
-                                    _currentPhrase!['hanzi']!.length),
-                                color: color,
-                                fontWeight: isTargetWord
-                                    ? FontWeight.bold
-                                    : FontWeight.w500,
-                                fontFamily: 'NotoSerifSC',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ],
-
-              if (_currentPhrase!['english'] != null &&
-                  _currentPhrase!['english']!.isNotEmpty) ...[
-                const SizedBox(height: 24),
-                Text(
-                  _currentPhrase!['english']!,
-                  style: TextStyle(
-                    fontSize: widget.isCompact ? 15 : 18,
-                    color: isDark ? Colors.white54 : Colors.black54,
-                    fontStyle: FontStyle.italic,
-                    fontFamily: 'serif',
-                    height: 1.35,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ],
+          const SizedBox(height: 24),
+          Text(
+            _currentPhrase!['english']!,
+            style: TextStyle(
+              fontSize: widget.isCompact ? 16 : 20,
+              color: isDark ? Colors.white54 : Colors.black54,
+              fontStyle: FontStyle.italic,
+              fontFamily: 'serif',
+            ),
+            textAlign: TextAlign.center,
           ),
-        ),
+        ],
       ),
     );
   }
@@ -1717,6 +1763,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor:
           isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -1797,36 +1844,111 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 if (wordData['phonemes'] != null &&
                     (wordData['phonemes'] as List).isNotEmpty) ...[
                   const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.touch_app_outlined,
+                          size: 14,
+                          color: isDark
+                              ? Colors.orange.shade300
+                              : Colors.orange.shade800),
+                      const SizedBox(width: 4),
+                      Text(
+                        "Tap any syllable to audition all 4 tones:",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: isDark
+                              ? Colors.orange.shade300
+                              : Colors.orange.shade800,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
                   Center(
                     child: Wrap(
                       spacing: 8,
                       runSpacing: 8,
                       alignment: WrapAlignment.center,
-                      children: (wordData['phonemes'] as List).map<Widget>((p) {
+                      children: (wordData['phonemes'] as List)
+                          .asMap()
+                          .entries
+                          .map<Widget>((entry) {
+                        final idx = entry.key;
+                        final p = entry.value;
                         final acc = (p['accuracy'] as num).toInt();
                         final color = acc >= 80
                             ? Colors.green
                             : (acc >= 60 ? Colors.orange : Colors.red);
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: color.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(8),
-                            border:
-                                Border.all(color: color.withValues(alpha: 0.5)),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(p['phoneme'],
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: color)),
-                              const SizedBox(height: 4),
-                              Text("$acc",
-                                  style: TextStyle(fontSize: 12, color: color)),
-                            ],
+                        final phonemeStr =
+                            (p['phoneme'] ?? '').toString().trim();
+
+                        int tone = 1;
+                        String pinyinBase = phonemeStr;
+                        final match = RegExp(
+                                r'^([a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+)\s*(\d)?$')
+                            .firstMatch(phonemeStr);
+                        if (match != null) {
+                          pinyinBase = match.group(1) ?? phonemeStr;
+                          if (match.group(2) != null) {
+                            tone = int.tryParse(match.group(2)!) ??
+                                PinyinUtils.getTone(pinyinBase);
+                          } else {
+                            tone = PinyinUtils.getTone(pinyinBase);
+                          }
+                        } else {
+                          tone = PinyinUtils.getTone(phonemeStr);
+                        }
+
+                        final char = (word.length > idx) ? word[idx] : word;
+                        final pinyinMarked = PinyinUtils.convertNumericToMarks(
+                            '$pinyinBase$tone');
+
+                        return InkWell(
+                          onTap: () {
+                            ToneComparisonSheet.show(
+                              context,
+                              character: char,
+                              pinyin: pinyinMarked,
+                              expectedTone: tone,
+                              actualTone: acc >= 80 ? tone : (tone % 4 + 1),
+                              feedback: feedback,
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: color.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  color: color.withValues(alpha: 0.6)),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(p['phoneme']?.toString() ?? '',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: color)),
+                                    const SizedBox(width: 4),
+                                    Icon(Icons.volume_up_outlined,
+                                        size: 12, color: color),
+                                  ],
+                                ),
+                                const SizedBox(height: 2),
+                                Text("$acc%",
+                                    style: TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600,
+                                        color: color)),
+                              ],
+                            ),
                           ),
                         );
                       }).toList(),
@@ -1854,11 +1976,80 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     audioService.playSentence(word);
                   },
                   icon: const Icon(Icons.volume_up),
-                  label: const Text("Listen to this word"),
+                  label: Text(AppLocalizations.of(context)!.listenToThisWord),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Compare 4 Tones button
+                ElevatedButton.icon(
+                  onPressed: () {
+                    final phonemes = (wordData['phonemes'] as List?) ?? [];
+                    if (phonemes.isNotEmpty) {
+                      final firstPhoneme = phonemes.first;
+                      final phonemeStr = (firstPhoneme[
+                                  AppLocalizations.of(context)!.phoneme] ??
+                              '')
+                          .toString()
+                          .trim();
+                      int tone = 1;
+                      String pinyinBase = phonemeStr;
+                      final match = RegExp(
+                              r'^([a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+)\s*(\d)?$')
+                          .firstMatch(phonemeStr);
+                      if (match != null) {
+                        pinyinBase = match.group(1) ?? phonemeStr;
+                        if (match.group(2) != null) {
+                          tone = int.tryParse(match.group(2)!) ??
+                              PinyinUtils.getTone(pinyinBase);
+                        } else {
+                          tone = PinyinUtils.getTone(pinyinBase);
+                        }
+                      } else {
+                        tone = PinyinUtils.getTone(phonemeStr);
+                      }
+                      final char = word.isNotEmpty ? word[0] : word;
+                      final pinyinMarked =
+                          PinyinUtils.convertNumericToMarks('$pinyinBase$tone');
+                      final acc =
+                          (firstPhoneme['accuracy'] as num?)?.toInt() ?? 100;
+                      ToneComparisonSheet.show(
+                        context,
+                        character: char,
+                        pinyin: pinyinMarked,
+                        expectedTone: tone,
+                        actualTone: acc >= 80 ? tone : (tone % 4 + 1),
+                        feedback: feedback,
+                      );
+                    } else {
+                      final pinyinStr = (wordData['pinyin'] ?? '').toString();
+                      final tone = PinyinUtils.getTone(pinyinStr);
+                      ToneComparisonSheet.show(
+                        context,
+                        character: word.isNotEmpty ? word[0] : word,
+                        pinyin: pinyinStr,
+                        expectedTone: tone,
+                        actualTone: tone,
+                        feedback: feedback,
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.tune),
+                  label: Text(AppLocalizations.of(context)!.compare4Tones),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.black.withValues(alpha: 0.05),
+                    foregroundColor: isDark ? Colors.white : Colors.black87,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    elevation: 0,
+                    side: BorderSide(
+                        color: isDark ? Colors.white24 : Colors.black12),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
                   ),
@@ -1884,7 +2075,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 CharacterDetailScreen(card: fakeCard)));
                   },
                   icon: const Icon(Icons.menu_book),
-                  label: const Text("Study Character"),
+                  label: Text(AppLocalizations.of(context)!.studyCharacter),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     foregroundColor: wordColor,

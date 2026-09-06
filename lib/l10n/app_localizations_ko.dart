@@ -12187,8 +12187,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get westernHan => '??';
 
   @override
-  String get roleplayCreatorContextPlaceholder => '?: ????? ??? ??? ?? ??...';
+  String get roleplayCreatorContextPlaceholder => '예: 상하이에서 열리는 활기찬 축하 연회...';
 
   @override
-  String get roleplayCreatorPersonaPlaceholder => '?: ??? ?? ?? ??? ?? ??...';
+  String get roleplayCreatorPersonaPlaceholder => '예: 진로에 관해 묻는 호기심 많은 사촌...';
 }

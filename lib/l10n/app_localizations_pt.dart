@@ -12576,7 +12576,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get roleplayCreatorContextPlaceholder =>
-      'ex.: Um animado banquete de celebra??o em Xangai...';
+      'ex.: Um animado banquete de celebração em Xangai...';
 
   @override
   String get roleplayCreatorPersonaPlaceholder =>

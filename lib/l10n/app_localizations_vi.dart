@@ -12525,9 +12525,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get roleplayCreatorContextPlaceholder =>
-      'v? d?: M?t b?a ti?c ?n m?ng s?i ??ng ? Th??ng H?i...';
+      'ví dụ: Một bữa tiệc ăn mừng sôi động ở Thượng Hải...';
 
   @override
   String get roleplayCreatorPersonaPlaceholder =>
-      'v? d?: M?t ng??i anh em h? t? m? h?i v? s? nghi?p c?a b?n...';
+      'ví dụ: Một người anh em họ tò mò hỏi về sự nghiệp của bạn...';
 }
