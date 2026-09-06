@@ -187,4 +187,46 @@ void main() {
       expect(service.requests, isEmpty);
     });
   }
+
+  for (final languageCase in <({String locale, String langCode, String language, String text})>[
+    (locale: 'fr', langCode: 'fr', language: 'French', text: 'force'),
+    (locale: 'de', langCode: 'de', language: 'German', text: 'Kraft'),
+    (locale: 'es', langCode: 'es', language: 'Spanish', text: 'fuerza'),
+    (locale: 'ru', langCode: 'ru', language: 'Russian', text: 'сила'),
+    (locale: 'ja', langCode: 'ja', language: 'Japanese', text: '力'),
+  ]) {
+    testWidgets(
+        'does not retranslate when definitionLanguage is code ${languageCase.langCode}',
+        (tester) async {
+      SharedPreferences.setMockInitialValues(
+          {'app_locale': languageCase.locale});
+      final prefs = await SharedPreferences.getInstance();
+      final service = _FakeTranslationService();
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          localTranslationServiceProvider.overrideWithValue(service),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: MaterialApp(
+            home: Scaffold(
+              body: TranslatedDefinition(
+                definition: languageCase.text,
+                definitionLanguage: languageCase.langCode,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.text(languageCase.text), findsOneWidget);
+      expect(service.requests, isEmpty);
+    });
+  }
 }

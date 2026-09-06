@@ -155,7 +155,7 @@ void main() {
     expect(find.textContaining('Day 7'), findsNothing);
   });
 
-  testWidgets('benefits lead the offer and legal actions need no scrolling',
+  testWidgets('plans lead the offer and legal actions need no scrolling',
       (tester) async {
     tester.view.physicalSize = const Size(390, 700);
     tester.view.devicePixelRatio = 1;
@@ -176,8 +176,8 @@ void main() {
     expect(benefits, findsOneWidget);
     expect(monthlyPlan, findsOneWidget);
     expect(
-      tester.getTopLeft(benefits).dy,
-      lessThan(tester.getTopLeft(monthlyPlan).dy),
+      tester.getTopLeft(monthlyPlan).dy,
+      lessThan(tester.getTopLeft(benefits).dy),
     );
 
     for (final key in [

@@ -244,6 +244,40 @@ void main() {
     expect(source, contains('targetLanguage: targetLanguage'));
     expect(source, isNot(contains('repository.searchAll(query)')));
   });
+
+  test('getExact prioritizes common word and lowercase pinyin over surname',
+      () async {
+    await _insertWord(
+      database,
+      id: 100,
+      hanzi: '力',
+      pinyin: 'Li4',
+      definition: 'surname Li',
+      french: 'force',
+      spanish: 'fuerza',
+    );
+    await _insertWord(
+      database,
+      id: 101,
+      hanzi: '力',
+      pinyin: 'li4',
+      definition: 'power; force; strength; ability; strenuously',
+      french: 'force',
+      spanish: 'fuerza',
+    );
+
+    final cardFr = await repository.getExact('力', targetLanguage: 'French');
+    expect(cardFr, isNotNull);
+    expect(cardFr!.pinyin, 'lì');
+    expect(cardFr.definition, 'force');
+    expect(cardFr.definitionLanguage, 'French');
+
+    final cardEs = await repository.getExact('力', targetLanguage: 'Spanish');
+    expect(cardEs, isNotNull);
+    expect(cardEs!.pinyin, 'lì');
+    expect(cardEs.definition, 'fuerza');
+    expect(cardEs.definitionLanguage, 'Spanish');
+  });
 }
 
 Future<void> _insertWord(

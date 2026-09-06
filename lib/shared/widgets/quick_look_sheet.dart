@@ -333,11 +333,13 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
         mainAxisSize: MainAxisSize.min,
         children: [
           _CharacterHero(
-              hanzi: widget.hanzi,
-              isDark: widget.isDark,
-              pinyin: _pinyin,
-              hskLevel: 0,
-              definition: _definition),
+            hanzi: widget.hanzi,
+            isDark: widget.isDark,
+            pinyin: _pinyin,
+            hskLevel: 0,
+            definition: _definition,
+            definitionLanguage: 'English',
+          ),
           const SizedBox(height: 16),
           if (_isLoadingAi)
             const SizedBox(
@@ -416,6 +418,7 @@ class _FoundBody extends ConsumerWidget {
             pinyin: card.pinyin,
             hskLevel: card.hskLevel,
             definition: card.definition,
+            definitionLanguage: card.definitionLanguage,
           ),
 
           if (DictionaryExpansionPanel.isAvailableFor(card))
@@ -446,7 +449,7 @@ class _FoundBody extends ConsumerWidget {
                       ),
                       const SizedBox(width: 7),
                       Text(
-                        'Also seen in',
+                        AppLocalizations.of(context)!.alsoSeenIn,
                         style: TextStyle(
                           fontSize: 11.5,
                           fontWeight: FontWeight.w600,
@@ -532,7 +535,7 @@ class _FoundBody extends ConsumerWidget {
                 child: _ActionButton(
                   label: inDeck
                       ? AppLocalizations.of(context)!.inDeckCheck
-                      : 'Add to Deck',
+                      : AppLocalizations.of(context)!.addToDeckPlus,
                   icon: inDeck ? Icons.check : Icons.add,
                   isPrimary: false,
                   isDisabled: false, // Make it always clickable
@@ -688,6 +691,7 @@ class _CharacterHero extends StatelessWidget {
   final int hskLevel;
   final bool isDark;
   final String definition;
+  final String? definitionLanguage;
 
   const _CharacterHero({
     required this.hanzi,
@@ -695,6 +699,7 @@ class _CharacterHero extends StatelessWidget {
     required this.hskLevel,
     required this.isDark,
     required this.definition,
+    this.definitionLanguage,
   });
 
   @override
@@ -793,10 +798,11 @@ class _CharacterHero extends StatelessWidget {
                           ),
                         const SizedBox(height: 6),
 
-                        // English definition integrated into the card
+                        // Definition integrated into the card
                         if (definition.isNotEmpty)
                           TranslatedDefinition(
                             definition: definition,
+                            definitionLanguage: definitionLanguage,
                             hanzi: hanzi,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -906,6 +912,7 @@ class _ActionButton extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         height: 46,
+        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isPrimary
@@ -944,6 +951,8 @@ class _ActionButton extends StatelessWidget {
             Text(
               label,
               textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,

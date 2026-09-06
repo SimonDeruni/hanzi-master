@@ -1,4 +1,4 @@
-﻿import 'dart:io';
+import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -466,7 +466,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
         context: context,
-      useRootNavigator: true,
+        useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -604,7 +604,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     showModalBottomSheet(
         context: context,
-      useRootNavigator: true,
+        useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
@@ -841,54 +841,52 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required bool isDark,
   }) {
     final isSelected = _selectedMode == mode;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          if (_selectedMode != mode) {
-            setState(() => _selectedMode = mode);
-            HapticFeedback.selectionClick();
-          }
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOutQuart,
-          decoration: BoxDecoration(
-            color: isSelected
-                ? _accentGold.withValues(alpha: isDark ? 0.25 : 0.15)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
-            border: isSelected
-                ? Border.all(
-                    color: _accentGold.withValues(alpha: 0.4), width: 1)
-                : null,
-          ),
-          alignment: Alignment.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon,
-                  size: 15,
+    return GestureDetector(
+      onTap: () {
+        if (_selectedMode != mode) {
+          setState(() => _selectedMode = mode);
+          HapticFeedback.selectionClick();
+        }
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOutQuart,
+        decoration: BoxDecoration(
+          color: isSelected
+              ? _accentGold.withValues(alpha: isDark ? 0.25 : 0.15)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          border: isSelected
+              ? Border.all(color: _accentGold.withValues(alpha: 0.4), width: 1)
+              : null,
+        ),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon,
+                size: 15,
+                color: isSelected
+                    ? _accentGold
+                    : (isDark ? Colors.white54 : Colors.black38)),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                label,
+                style: TextStyle(
                   color: isSelected
-                      ? _accentGold
-                      : (isDark ? Colors.white54 : Colors.black38)),
-              const SizedBox(width: 4),
-              Flexible(
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    color: isSelected
-                        ? (isDark ? _accentGoldLight : const Color(0xFF1A1A1B))
-                        : (isDark ? Colors.white54 : Colors.black38),
-                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                    fontSize: 11,
-                    letterSpacing: 0.2,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                      ? (isDark ? _accentGoldLight : const Color(0xFF1A1A1B))
+                      : (isDark ? Colors.white54 : Colors.black38),
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  fontSize: 11,
+                  letterSpacing: 0.2,
                 ),
+                maxLines: 2,
+                textAlign: TextAlign.center,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -944,6 +942,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   Widget _buildHubUI(BuildContext context, bool isDark) {
     final bgColor = Theme.of(context).colorScheme.surface;
     final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -965,17 +964,18 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     )
                   else
                     const SizedBox(width: 48),
-                  const Spacer(),
-                  Text(
-                    'Shadowing Studio',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: primaryText,
-                      letterSpacing: 0.5,
+                  Expanded(
+                    child: Text(
+                      l10n.shadowingStudio,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        color: primaryText,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
-                  const Spacer(),
                   const SizedBox(width: 48),
                 ],
               ),
@@ -1004,7 +1004,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(
-                'Master your Mandarin pronunciation\nby mimicking native speech.',
+                l10n.masterYourMandarinPronunciationnbyM,
                 style: TextStyle(
                   fontSize: 15,
                   color: isDark ? Colors.white60 : Colors.black54,
@@ -1026,14 +1026,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     // ── Mode Selector Section ─────────────────────
                     _buildSectionLabel(
                       icon: Icons.tune_rounded,
-                      title: 'Practice Mode',
+                      title: l10n.practiceMode,
                       isDark: isDark,
                     ),
                     const SizedBox(height: 10),
 
-                    // Primary modes: segmented pill row
+                    // Primary modes: responsive segmented pill grid
                     Container(
-                      height: 46,
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: isDark
@@ -1041,33 +1040,36 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             : Colors.black.withValues(alpha: 0.04),
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Row(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4,
+                        childAspectRatio: 3.2,
                         children: [
                           _buildSegmentModeTab(
                             mode: ShadowingMode.freeFlow,
                             icon: Icons.mic_none_rounded,
-                            label: AppLocalizations.of(context)!.freeFlow,
+                            label: l10n.freeFlow,
                             isDark: isDark,
                           ),
-                          const SizedBox(width: 2),
                           _buildSegmentModeTab(
                             mode: ShadowingMode.theme,
                             icon: Icons.auto_stories_rounded,
-                            label: AppLocalizations.of(context)!.theme,
+                            label: l10n.thematic,
                             isDark: isDark,
                           ),
-                          const SizedBox(width: 2),
                           _buildSegmentModeTab(
                             mode: ShadowingMode.deck,
                             icon: Icons.style_rounded,
-                            label: AppLocalizations.of(context)!.deck,
+                            label: l10n.deckFlashcards,
                             isDark: isDark,
                           ),
-                          const SizedBox(width: 2),
                           _buildSegmentModeTab(
                             mode: ShadowingMode.customWord,
                             icon: Icons.text_fields_rounded,
-                            label: AppLocalizations.of(context)!.customWord,
+                            label: l10n.customWord,
                             isDark: isDark,
                           ),
                         ],
@@ -1195,17 +1197,19 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   : const Color(0xFF1A1A1B),
                               fontSize: 15,
                             ),
-                            items: [
-                              AppLocalizations.of(context)!.hsk1,
-                              "HSK 2",
-                              "HSK 3",
-                              "HSK 4",
-                              "HSK 5",
-                              "HSK 6",
-                              "Native"
+                            items: <(String, String)>[
+                              ('HSK 1', l10n.hsk1),
+                              ('HSK 2', l10n.hsk2),
+                              ('HSK 3', l10n.hsk3),
+                              ('HSK 4', l10n.hsk4),
+                              ('HSK 5', l10n.hsk5),
+                              ('HSK 6', l10n.hsk6),
+                              ('Native', l10n.native),
                             ]
                                 .map((theme) => DropdownMenuItem(
-                                    value: theme, child: Text(theme)))
+                                      value: theme.$1,
+                                      child: Text(theme.$2),
+                                    ))
                                 .toList(),
                             onChanged: (val) {
                               if (val != null) {
@@ -1286,7 +1290,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       )
                     : const Icon(Icons.mic, size: 24),
                 label: Text(
-                  _isStartingSession ? 'STARTING…' : 'START SESSION',
+                  _isStartingSession ? l10n.sTARTING : l10n.startSession,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

@@ -419,13 +419,13 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                             children: [
                               _buildHero(textColor),
                               const SizedBox(height: 24),
-                              _buildEverythingIncluded(textColor, accentColor),
-                              const SizedBox(height: 24),
                               _buildPackages(textColor, accentColor),
                               if (_selectedHasEligibleTrial) ...[
                                 const SizedBox(height: 12),
                                 _buildTrialNotice(textColor, accentColor),
                               ],
+                              const SizedBox(height: 24),
+                              _buildEverythingIncluded(textColor, accentColor),
                               if (_offeringsError != null) ...[
                                 const SizedBox(height: 16),
                                 Text(
@@ -759,10 +759,15 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? const Color(0xFF252526) : Colors.white;
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final cardWidth = (screenWidth * 0.70).clamp(240.0, 320.0);
 
-    return AspectRatio(
-      aspectRatio: 1.35,
-      child: Container(
+    return Center(
+      child: SizedBox(
+        width: cardWidth,
+        child: AspectRatio(
+          aspectRatio: 1170 / 2532,
+          child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: surface,
@@ -831,7 +836,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           ],
         ),
       ),
-    );
+    ),
+  ),
+);
   }
 
   Widget _buildEverythingIncluded(Color textColor, Color accentColor) {
@@ -903,46 +910,75 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   }
 
   Widget _buildLegalLinks(Color textColor) {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        TextButton(
-          key: const Key('paywall_restore_button'),
-          onPressed: _restorePurchases,
-          child: Text(
-            AppLocalizations.of(context)!.restorePurchases,
-            style: TextStyle(
-              color: textColor.withValues(alpha: 0.62),
-              fontSize: 12,
+    final linkStyle = TextStyle(
+      color: textColor.withValues(alpha: 0.62),
+      fontSize: 11,
+      fontWeight: FontWeight.w500,
+    );
+    final buttonStyle = TextButton.styleFrom(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      minimumSize: Size.zero,
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: VisualDensity.compact,
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 3),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 2,
+        runSpacing: 1,
+        children: [
+          TextButton(
+            key: const Key('paywall_restore_button'),
+            onPressed: _restorePurchases,
+            style: buttonStyle,
+            child: Text(
+              AppLocalizations.of(context)!.restorePurchases,
+              style: linkStyle,
             ),
           ),
-        ),
-        Text('•', style: TextStyle(color: textColor.withValues(alpha: 0.3))),
-        TextButton(
-          key: const Key('paywall_terms_button'),
-          onPressed: () => _launchURL('https://sinospark.app/terms.html'),
-          child: Text(
-            AppLocalizations.of(context)!.termsOfUseEula,
-            style: TextStyle(
-              color: textColor.withValues(alpha: 0.62),
-              fontSize: 12,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Text(
+              '•',
+              style: TextStyle(
+                color: textColor.withValues(alpha: 0.35),
+                fontSize: 10,
+              ),
             ),
           ),
-        ),
-        Text('•', style: TextStyle(color: textColor.withValues(alpha: 0.3))),
-        TextButton(
-          key: const Key('paywall_privacy_button'),
-          onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
-          child: Text(
-            AppLocalizations.of(context)!.privacyPolicy,
-            style: TextStyle(
-              color: textColor.withValues(alpha: 0.62),
-              fontSize: 12,
+          TextButton(
+            key: const Key('paywall_terms_button'),
+            onPressed: () => _launchURL('https://sinospark.app/terms.html'),
+            style: buttonStyle,
+            child: Text(
+              AppLocalizations.of(context)!.termsOfUseEula,
+              style: linkStyle,
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Text(
+              '•',
+              style: TextStyle(
+                color: textColor.withValues(alpha: 0.35),
+                fontSize: 10,
+              ),
+            ),
+          ),
+          TextButton(
+            key: const Key('paywall_privacy_button'),
+            onPressed: () => _launchURL('https://sinospark.app/privacy.html'),
+            style: buttonStyle,
+            child: Text(
+              AppLocalizations.of(context)!.privacyPolicy,
+              style: linkStyle,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -971,9 +1007,9 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       ),
       padding: EdgeInsets.fromLTRB(
         20,
-        12,
+        10,
         20,
-        10 + MediaQuery.paddingOf(context).bottom,
+        8 + MediaQuery.paddingOf(context).bottom,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -1015,7 +1051,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 7),
+          const SizedBox(height: 5),
           Text(
             AppLocalizations.of(context)!.paymentIsChargedToYour2,
             textAlign: TextAlign.center,

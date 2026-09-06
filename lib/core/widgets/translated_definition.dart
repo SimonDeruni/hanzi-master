@@ -88,9 +88,45 @@ class _TranslatedDefinitionState extends ConsumerState<TranslatedDefinition> {
     });
   }
 
+  static String _normalizeLanguage(String lang) {
+    final cleaned = lang.trim().toLowerCase();
+    const map = {
+      'en': 'english',
+      'english': 'english',
+      'fr': 'french',
+      'french': 'french',
+      'es': 'spanish',
+      'spanish': 'spanish',
+      'de': 'german',
+      'german': 'german',
+      'it': 'italian',
+      'italian': 'italian',
+      'ja': 'japanese',
+      'japanese': 'japanese',
+      'ko': 'korean',
+      'korean': 'korean',
+      'pt': 'portuguese',
+      'portuguese': 'portuguese',
+      'ru': 'russian',
+      'russian': 'russian',
+      'hi': 'hindi',
+      'hindi': 'hindi',
+      'ar': 'arabic',
+      'arabic': 'arabic',
+      'id': 'indonesian',
+      'indonesian': 'indonesian',
+      'vi': 'vietnamese',
+      'vietnamese': 'vietnamese',
+      'th': 'thai',
+      'thai': 'thai',
+    };
+    final prefix = cleaned.split(RegExp('[-_]')).first;
+    return map[cleaned] ?? map[prefix] ?? cleaned;
+  }
+
   bool _sameLanguage(String? source, String target) {
     if (source == null || source.trim().isEmpty) return false;
-    return source.trim().toLowerCase() == target.trim().toLowerCase();
+    return _normalizeLanguage(source) == _normalizeLanguage(target);
   }
 
   @override

@@ -261,7 +261,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get readingRoom => 'Sala de lectura';
 
   @override
-  String get shadowingStudio => 'Estudio de Shadowing';
+  String get shadowingStudio => 'Estudio de repetición';
 
   @override
   String get errorPrefix => 'Error: ';

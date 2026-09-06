@@ -173,14 +173,15 @@ class LocalTranslationService {
         hanzi.trim().isNotEmpty &&
         dictionaryRepository != null) {
       try {
-        final offlineDef = await dictionaryRepository!.getExactDefinition(
+        final card = await dictionaryRepository!.getExact(
           hanzi.trim(),
           targetLanguage: targetLanguage,
         );
-        if (offlineDef != null &&
-            offlineDef.trim().isNotEmpty &&
-            offlineDef.trim() != definition.trim()) {
-          return offlineDef.trim();
+        if (card != null &&
+            card.definition.trim().isNotEmpty &&
+            card.definitionLanguage != null &&
+            card.definitionLanguage!.toLowerCase() != 'english') {
+          return card.definition.trim();
         }
       } catch (e) {
         debugPrint(

@@ -28,7 +28,7 @@ void main() {
     );
 
     for (final text in <String>[
-      'Studio de Répétition',
+      'Studio de répétition',
       'Maîtrisez votre prononciation du mandarin\nen imitant des locuteurs natifs.',
       'Mode de pratique',
       'Flux libre',
@@ -52,5 +52,49 @@ void main() {
     ]) {
       expect(find.text(text), findsNothing);
     }
+
+    expect(tester.takeException(), isNull);
   });
+
+  for (final locale in AppLocalizations.supportedLocales) {
+    testWidgets(
+      'Shadowing Studio configuration renders in ${locale.languageCode}',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(430, 1200));
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+
+        final l10n = await AppLocalizations.delegate.load(locale);
+        await tester.pumpWidget(
+          ProviderScope(
+            child: MaterialApp(
+              locale: locale,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: const ShadowingStudioScreen(),
+            ),
+          ),
+        );
+
+        for (final text in <String>[
+          l10n.shadowingStudio,
+          l10n.masterYourMandarinPronunciationnbyM,
+          l10n.practiceMode,
+          l10n.freeFlow,
+          l10n.thematic,
+          l10n.deckFlashcards,
+          l10n.customWord,
+          l10n.startSession,
+        ]) {
+          expect(find.text(text), findsOneWidget);
+        }
+
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 }

@@ -441,10 +441,27 @@ class GlobalDictionaryRepository {
     if (_db == null || hanzi.trim().isEmpty) return null;
     try {
       final results = List<Map<String, dynamic>>.from(await _db!.rawQuery(
-        'SELECT * FROM words WHERE simplified = ? OR traditional = ? LIMIT 1',
+        'SELECT * FROM words WHERE simplified = ? OR traditional = ?',
         [hanzi.trim(), hanzi.trim()],
       ));
       if (results.isEmpty) return null;
+      if (results.length > 1) {
+        final langCol = _definitionColumn(targetLanguage);
+        results.sort((a, b) {
+          int score(Map<String, dynamic> r) {
+            int s = 0;
+            final pinyin = r['pinyin'] as String? ?? '';
+            final def = (r['definition'] as String? ?? '').toLowerCase();
+            final loc = r[langCol] as String?;
+            if (!def.startsWith('surname ')) s += 50;
+            if (pinyin.isNotEmpty && pinyin[0] == pinyin[0].toLowerCase()) s += 30;
+            if (loc != null && loc.trim().isNotEmpty) s += 20;
+            s += (r['definition'] as String? ?? '').length.clamp(0, 10);
+            return s;
+          }
+          return score(b).compareTo(score(a));
+        });
+      }
       await _attachQualityMetadata(results, targetLanguage);
       return _mapRowToCard(results.first, targetLanguage);
     } catch (e) {

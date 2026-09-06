@@ -263,7 +263,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get readingRoom => 'Salle de Lecture';
 
   @override
-  String get shadowingStudio => 'Studio de Répétition';
+  String get shadowingStudio => 'Studio de répétition';
 
   @override
   String get errorPrefix => 'Erreur: ';
@@ -3234,7 +3234,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dailyReviewLimit => 'Limite de révision quotidienne';
 
   @override
-  String get practiceMode => 'Mode Entraînement';
+  String get practiceMode => 'Mode de pratique';
 
   @override
   String get liziqi => 'Li Ziqi : Fleurs de soie';
