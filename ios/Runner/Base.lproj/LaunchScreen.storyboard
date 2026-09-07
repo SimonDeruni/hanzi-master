@@ -17,44 +17,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="LaunchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="tWc-Dq-wcI"/>
-                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pos-it-ion">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4"/>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn Chinese with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrn-Ch-nse">
-                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="16"/>
-                                <color key="textColor" red="0.35294117647058826" green="0.2627450980392157" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SinoSpark" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sno-Sp-rk">
-                                <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="26"/>
-                                <color key="textColor" red="0.5490196078431373" green="0.11372549019607843" blue="0.09411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4"></imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.9882352941176471" green="0.7372549019607844" blue="0.011764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3T2-ad-Qdv"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Pos-it-ion" secondAttribute="bottom" id="6pM-as-cot"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="width" constant="220" id="Mas-cot-wd"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="width" secondItem="YRO-k0-Ey4" secondAttribute="height" multiplier="304:281" id="Mas-cot-ar"/>
-                            <constraint firstItem="Pos-it-ion" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pos-top-00"/>
-                            <constraint firstItem="Pos-it-ion" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.44" id="Pos-hei-44"/>
-                            <constraint firstItem="Pos-it-ion" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pos-lea-00"/>
-                            <constraint firstItem="Pos-it-ion" firstAttribute="width" constant="1" id="Pos-wid-01"/>
-                            <constraint firstItem="Lrn-Ch-nse" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="Txt-ld-ge1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lrn-Ch-nse" secondAttribute="trailing" constant="24" id="Txt-tr-ge1"/>
-                            <constraint firstItem="Lrn-Ch-nse" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Txt-cn-tr1"/>
-                            <constraint firstItem="Sno-Sp-rk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="Txt-ld-ge2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Sno-Sp-rk" secondAttribute="trailing" constant="24" id="Txt-tr-ge2"/>
-                            <constraint firstItem="Sno-Sp-rk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Txt-cn-tr2"/>
-                            <constraint firstItem="Sno-Sp-rk" firstAttribute="top" secondItem="Lrn-Ch-nse" secondAttribute="bottom" constant="4" id="Txt-vs-pc4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Sno-Sp-rk" secondAttribute="bottom" constant="44" id="Txt-bt-44"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="3T2-ad-Qdv"/>
                             <constraint firstItem="tWc-Dq-wcI" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="RPx-PI-7Xg"/>
                             <constraint firstItem="tWc-Dq-wcI" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="SdS-ul-q2q"/>
                             <constraint firstAttribute="trailing" secondItem="tWc-Dq-wcI" secondAttribute="trailing" id="Swv-Gf-Rwn"/>
+                            <constraint firstAttribute="trailing" secondItem="YRO-k0-Ey4" secondAttribute="trailing" id="TQA-XW-tRk"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="duK-uY-Gun"/>
                             <constraint firstItem="tWc-Dq-wcI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="kV7-tw-vXt"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="xPn-NY-SIU"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -64,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="304" height="281"/>
+        <image name="LaunchImage" width="1024" height="1024"/>
         <image name="LaunchBackground" width="1" height="1"/>
     </resources>
 </document>

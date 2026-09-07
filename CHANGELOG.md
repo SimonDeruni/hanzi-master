@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-07] Build Bump & Multi-Language Localization Hygiene (Build #531)
+- **Version Bump:** Bumped build version to `1.0.0+531` for App Store submission preparation.
+- **Multilingual AR Scan & Placeholder Parity:** Verified `{count} caractères trouvés` interpolation fix across all 14 supported languages and confirmed `foundNCharacters` returns dynamic count string (`$count`).
+- **Hygiene & Verification:** Full project `dart analyze lib/ test/` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+
 ### [2026-09-07] Exhaustive 14-Language ARB Placeholder Audit & ICU Syntax Standardization (Build #530)
 - **14-Language ARB Placeholder Audit:** Audited all 14 localization files (`app_en.arb`, `app_fr.arb`, `app_de.arb`, `app_es.arb`, `app_it.arb`, `app_pt.arb`, `app_ru.arb`, `app_ja.arb`, `app_ko.arb`, `app_vi.arb`, `app_id.arb`, `app_hi.arb`, `app_th.arb`, `app_ar.arb`).
 - **ICU Placeholder Syntax Conversion:** Identified and corrected 32 placeholder keys formatted with parentheses `(variable)` (e.g. `(count) caractères trouvés` in French ARB rendering literal `"(count)"` on screen) to standard Flutter ICU `{variable}` format (`{count} caractères trouvés`, `{name}`, `{streak}`, `{points}`, `{rate}`, `{current}`, `{total}`, `{deckName}`, `{title}`, `{level}`, `{grade}`, `{char}`, `{error}`).
