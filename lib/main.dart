@@ -296,7 +296,10 @@ class StartupErrorScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset('assets/images/mascot.png', width: 150),
+                Image.asset(
+                  'assets/images/mascot_android12_splash.png',
+                  width: 150,
+                ),
                 const SizedBox(height: 24),
                 Text(
                   timedOut
