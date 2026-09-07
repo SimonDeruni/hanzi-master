@@ -6,6 +6,41 @@ import 'package:hanzi_master/features/live_translate/presentation/screens/shadow
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void main() {
+  testWidgets('English subtitle uses a line break instead of visible slash-n',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(430, 1200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: MaterialApp(
+          locale: Locale('en'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ShadowingStudioScreen(),
+        ),
+      ),
+    );
+
+    expect(
+      find.text(
+        'Master your Mandarin pronunciation\nby mimicking native speech.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text(
+        r'Master your Mandarin pronunciation\nby mimicking native speech.',
+      ),
+      findsNothing,
+    );
+  });
+
   testWidgets('Shadowing Studio configuration is localized in French',
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(430, 1200));

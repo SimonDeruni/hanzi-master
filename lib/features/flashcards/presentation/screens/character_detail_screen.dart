@@ -331,6 +331,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // ---------------------------------------------------------------------------
 
   Flashcard _getCurrentCard() {
+    final targetLanguage = ref.watch(translationLanguageProvider);
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final savedCard = allCards.firstWhere(
       (c) => c.id == widget.card.id,
@@ -350,6 +351,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       sourceSentence: savedCard.sourceSentence,
       sourceContext: savedCard.sourceContext,
     );
+
+    // A routed dictionary card can outlive the locale in which it was loaded.
+    // Prefer its canonical English definition after switching back to English
+    // instead of continuing to display the stale localized definition.
+    final englishDefinition = current.englishDefinition?.trim();
+    if (targetLanguage.toLowerCase() == 'english' &&
+        englishDefinition != null &&
+        englishDefinition.isNotEmpty) {
+      current = current.copyWith(
+        definition: englishDefinition,
+        definitionLanguage: 'English',
+      );
+    }
 
     final hydrated = _hydratedCard;
     if (current.strokePaths.isEmpty && hydrated != null) {

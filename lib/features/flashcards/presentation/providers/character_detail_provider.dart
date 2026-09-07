@@ -28,7 +28,10 @@ final commonWordsProvider =
 // Provider to fetch Gemini context for a specific character
 final characterContextProvider =
     FutureProvider.family<GeminiContext?, Flashcard>((ref, card) async {
-  final geminiService = ref.read(geminiServiceProvider);
+  // Establish an explicit dependency so an open detail view refreshes its
+  // localized AI content as soon as the app language changes.
+  ref.watch(translationLanguageProvider);
+  final geminiService = ref.watch(geminiServiceProvider);
   return await geminiService.generateContext(card.hanzi, card.hskLevel);
 });
 

@@ -152,6 +152,57 @@ void main() {
     expect(translationService.requests, isEmpty);
   });
 
+  testWidgets('shows canonical English after opening a French dictionary card',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({'app_locale': 'en'});
+    final preferences = await SharedPreferences.getInstance();
+    const frenchDefinition = 'une personne';
+    const englishDefinition = 'a person';
+    const card = Flashcard(
+      id: 'global_1',
+      hanzi: '人',
+      pinyin: 'rén',
+      definition: frenchDefinition,
+      definitionLanguage: 'French',
+      dictionaryWordId: 1,
+      englishDefinition: englishDefinition,
+      hskLevel: 1,
+      strokePaths: ['M 0 0'],
+      modeStats: {},
+    );
+
+    await tester.binding.setSurfaceSize(const Size(1000, 1200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(preferences),
+          flashcardControllerProvider.overrideWith(
+            () => _InMemoryFlashcardController(const [card]),
+          ),
+          commonWordsProvider.overrideWith((ref, character) async => const []),
+          characterContextProvider.overrideWith((ref, card) async => null),
+        ],
+        child: const MaterialApp(
+          locale: Locale('en'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: CharacterDetailScreen(card: card),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text(englishDefinition), findsOneWidget);
+    expect(find.text(frenchDefinition), findsNothing);
+  });
+
   testWidgets('separates compound words from contextual character content',
       (tester) async {
     SharedPreferences.setMockInitialValues({'app_locale': 'fr'});

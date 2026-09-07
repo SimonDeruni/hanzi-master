@@ -1167,22 +1167,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'Hide stroke guide at streak: (streak)';
+    return 'Hide stroke guide at streak: $streak';
   }
 
   @override
   String inkPoints(Object points) {
-    return '(points) Ink Points';
+    return '$points Ink Points';
   }
 
   @override
   String speechRateMultiplier(Object rate) {
-    return '(rate)x';
+    return '${rate}x';
   }
 
   @override
   String animationSpeedMultiplier(Object rate) {
-    return '(rate)x';
+    return '${rate}x';
   }
 
   @override
@@ -1205,7 +1205,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'Follow the blue guide to draw stroke (current) of (total)';
+    return 'Follow the blue guide to draw stroke $current of $total';
   }
 
   @override
@@ -1216,17 +1216,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return 'Added (hanzi) to (deckName)';
+    return 'Added $hanzi to $deckName';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return 'Removed (hanzi) from deck';
+    return 'Removed $hanzi from deck';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return 'Skipped \"(hanzi)\" - No stroke data available for this AI character.';
+    return 'Skipped \"$hanzi\" - No stroke data available for this AI character.';
   }
 
   @override
@@ -1309,7 +1309,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String storyTitleHsk(Object level, Object title) {
-    return '(title) (HSK (level))';
+    return '$title (HSK $level)';
   }
 
   @override
@@ -1317,12 +1317,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return 'Created (name) with (count) cards!';
+    return 'Created $name with $count cards!';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'Grade: (grade)';
+    return 'Grade: $grade';
   }
 
   @override
@@ -1366,7 +1366,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String addedCharToLibrary(Object char) {
-    return 'Added (char) to Library';
+    return 'Added $char to Library';
   }
 
   @override
@@ -1422,7 +1422,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String addedToLibrary(Object hanzi) {
-    return 'Added \'(hanzi)\' to your Library';
+    return 'Added \'$hanzi\' to your Library';
   }
 
   @override
@@ -1430,7 +1430,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'Failed to generate story:\\n(error)';
+    return 'Failed to generate story:\\n$error';
   }
 
   @override
@@ -2802,7 +2802,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String analysis_failed(Object error) {
-    return 'Analysis Failed: (error)';
+    return 'Analysis Failed: $error';
   }
 
   @override
@@ -2866,17 +2866,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String error_creating_scenario(Object error) {
-    return 'Error creating scenario: (error)';
+    return 'Error creating scenario: $error';
   }
 
   @override
   String error_fetching_translation_for(Object error) {
-    return 'Error fetching translation for : (error)';
+    return 'Error fetching translation for : $error';
   }
 
   @override
   String error_loading_chapters(Object error) {
-    return 'Error loading chapters: (error)';
+    return 'Error loading chapters: $error';
   }
 
   @override
@@ -2884,17 +2884,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String error_loading_microreads(Object error) {
-    return 'Error loading micro-reads: (error)';
+    return 'Error loading micro-reads: $error';
   }
 
   @override
   String error_loading_novels(Object error) {
-    return 'Error loading novels: (error)';
+    return 'Error loading novels: $error';
   }
 
   @override
   String error_loading_poetry(Object error) {
-    return 'Error loading poetry: (error)';
+    return 'Error loading poetry: $error';
   }
 
   @override
@@ -2908,7 +2908,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String extraction_failed(Object error) {
-    return 'Extraction Failed: \\(error)';
+    return 'Extraction Failed: \\$error';
   }
 
   @override
@@ -2916,17 +2916,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String failed_to_generate_scenario(Object error) {
-    return 'Failed to generate scenario: (error)';
+    return 'Failed to generate scenario: $error';
   }
 
   @override
   String failed_to_generate_story(Object error) {
-    return 'Failed to generate story:\\n(error)';
+    return 'Failed to generate story:\\n$error';
   }
 
   @override
   String failed_to_load_context(Object error) {
-    return 'Failed to load context: (error)rr';
+    return 'Failed to load context: ${error}rr';
   }
 
   @override
@@ -3022,7 +3022,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String revenuecat_error(Object error) {
-    return 'RevenueCat Error: (error)';
+    return 'RevenueCat Error: $error';
   }
 
   @override
@@ -3051,7 +3051,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String simplify_failed(Object error) {
-    return 'Simplify Failed: (error)';
+    return 'Simplify Failed: $error';
   }
 
   @override
@@ -3084,7 +3084,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String translation_failed(Object error) {
-    return 'Translation Failed: (error)';
+    return 'Translation Failed: $error';
   }
 
   @override
@@ -3146,7 +3146,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String error(Object error) {
-    return 'Error: (error)';
+    return 'Error: $error';
   }
 
   @override
@@ -3274,12 +3274,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String failedToSaveExtractedWords(Object error) {
-    return 'Failed to save extracted words: (error)';
+    return 'Failed to save extracted words: $error';
   }
 
   @override
   String addToDeck(Object count) {
-    return 'Add to Deck ((count))';
+    return 'Add to Deck $count';
   }
 
   @override
@@ -3314,7 +3314,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String cards(Object count) {
-    return '(count) cards';
+    return '$count cards';
   }
 
   @override
@@ -5506,7 +5506,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get masterYourMandarinPronunciationnbyM =>
-      'Master your Mandarin pronunciation\\nby mimicking native speech.';
+      'Master your Mandarin pronunciation\nby mimicking native speech.';
 
   @override
   String get aiIsGradingYourPronunciation =>

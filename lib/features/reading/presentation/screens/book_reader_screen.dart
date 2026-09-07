@@ -144,7 +144,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             progress.chapterIndex.clamp(0, widget.chapters.length - 1);
         _currentReadingSentenceIndex =
             _clampSentenceIndex(progress.sentenceIndex);
-        _resetSentenceKeys();
+        _anchorSentenceIndex = _currentReadingSentenceIndex;
+        _mountedSentenceContexts.clear();
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _restoreReadingPosition();
@@ -158,10 +159,13 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   final Set<int> _revealedTranslations = {};
   double _fontSize = 20.0;
   final ScrollController _scrollController = ScrollController();
-  List<GlobalKey> _sentenceKeys = [];
+  final GlobalKey _centerSliverKey = GlobalKey();
+  final Map<int, BuildContext> _mountedSentenceContexts = {};
+  int _anchorSentenceIndex = 0;
   int _currentReadingSentenceIndex = 0;
   Timer? _progressSaveDebounce;
   bool _isRestoringPosition = false;
+  bool _positionUpdateScheduled = false;
 
   // Synchronized Neural Audiobook State
   bool _isAudiobookActive = false;
@@ -184,7 +188,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         widget.initialChapterIndex.clamp(0, widget.chapters.length - 1);
     _currentReadingSentenceIndex =
         _clampSentenceIndex(widget.initialSentenceIndex);
-    _resetSentenceKeys();
+    _anchorSentenceIndex = _currentReadingSentenceIndex;
     _scrollController.addListener(_handleReadingScroll);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
@@ -254,30 +258,40 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     return sentenceIndex.clamp(0, sentenceCount - 1);
   }
 
-  void _resetSentenceKeys() {
-    _sentenceKeys = List.generate(
-      widget.chapters[_currentIndex].sentences.length,
-      (_) => GlobalKey(),
-    );
+  void _registerSentenceContext(int index, BuildContext context) {
+    _mountedSentenceContexts[index] = context;
+    _scheduleReadingPositionUpdate();
+  }
+
+  void _unregisterSentenceContext(int index, BuildContext context) {
+    if (identical(_mountedSentenceContexts[index], context)) {
+      _mountedSentenceContexts.remove(index);
+    }
+  }
+
+  void _scheduleReadingPositionUpdate() {
+    if (_positionUpdateScheduled) return;
+    _positionUpdateScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _positionUpdateScheduled = false;
+      if (mounted) _handleReadingScroll();
+    });
   }
 
   void _restoreReadingPosition() {
-    // Sync audio index with reading index when restoring position.
     _currentAudioSentenceIndex = _currentReadingSentenceIndex;
-    if (_sentenceKeys.isEmpty || _currentReadingSentenceIndex == 0) return;
     _isRestoringPosition = true;
-    final targetContext =
-        _sentenceKeys[_currentReadingSentenceIndex].currentContext;
-    if (targetContext != null) {
-      Scrollable.ensureVisible(
-        targetContext,
-        alignment: 0.08,
-        duration: const Duration(milliseconds: 450),
-        curve: Curves.easeInOutQuart,
-      ).whenComplete(() => _isRestoringPosition = false);
-    } else {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_scrollController.hasClients) {
+        _isRestoringPosition = false;
+        return;
+      }
+      final position = _scrollController.position;
+      _scrollController.jumpTo(
+        _currentReadingSentenceIndex == 0 ? position.minScrollExtent : 0,
+      );
       _isRestoringPosition = false;
-    }
+    });
   }
 
   void _showResumeToastIfRestored() {
@@ -287,7 +301,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
     final chapter = widget.chapters[_currentIndex];
     final chapterNum = chapter.chapterIndex;
-    final sentNum = _currentReadingSentenceIndex + 1;
+    final sentNum =
+        chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1;
     final totalChapters = widget.chapters.length;
     final totalSentences = chapter.sentences.length;
 
@@ -322,21 +337,26 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   }
 
   void _handleReadingScroll() {
-    if (_isRestoringPosition || _sentenceKeys.isEmpty) return;
+    if (_isRestoringPosition || _mountedSentenceContexts.isEmpty) return;
 
     const readingLineY = 190.0;
-    int visibleSentenceIndex = 0;
-    for (var index = 0; index < _sentenceKeys.length; index++) {
-      final context = _sentenceKeys[index].currentContext;
-      final renderBox = context?.findRenderObject() as RenderBox?;
+    var visibleSentenceIndex = _currentReadingSentenceIndex;
+    var closestDistance = double.infinity;
+    for (final entry in _mountedSentenceContexts.entries) {
+      final renderBox = entry.value.findRenderObject() as RenderBox?;
       if (renderBox == null || !renderBox.hasSize) continue;
       final top = renderBox.localToGlobal(Offset.zero).dy;
       final bottom = top + renderBox.size.height;
       if (top <= readingLineY && bottom > readingLineY) {
-        visibleSentenceIndex = index;
+        visibleSentenceIndex = entry.key;
         break;
       }
-      if (top < readingLineY) visibleSentenceIndex = index;
+      final distance =
+          top > readingLineY ? top - readingLineY : readingLineY - bottom;
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        visibleSentenceIndex = entry.key;
+      }
     }
 
     if (visibleSentenceIndex == _currentReadingSentenceIndex) return;
@@ -388,7 +408,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             progress.chapterIndex.clamp(0, widget.chapters.length - 1);
         _currentReadingSentenceIndex =
             _clampSentenceIndex(progress.sentenceIndex);
-        _resetSentenceKeys();
+        _anchorSentenceIndex = _currentReadingSentenceIndex;
+        _mountedSentenceContexts.clear();
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _restoreReadingPosition();
@@ -1043,10 +1064,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         _currentIndex--;
         _currentReadingSentenceIndex = 0;
         _currentAudioSentenceIndex = 0;
-        _resetSentenceKeys();
+        _anchorSentenceIndex = 0;
+        _mountedSentenceContexts.clear();
         _revealedTranslations.clear();
       });
-      _scrollToTop();
+      _restoreReadingPosition();
       _saveProgress();
     }
   }
@@ -1058,10 +1080,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         _currentIndex++;
         _currentReadingSentenceIndex = 0;
         _currentAudioSentenceIndex = 0;
-        _resetSentenceKeys();
+        _anchorSentenceIndex = 0;
+        _mountedSentenceContexts.clear();
         _revealedTranslations.clear();
       });
-      _scrollToTop();
+      _restoreReadingPosition();
       _saveProgress();
     }
   }
@@ -1073,7 +1096,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         _currentIndex = targetIdx;
         _currentReadingSentenceIndex = _clampSentenceIndex(sentenceIndex);
         _currentAudioSentenceIndex = _currentReadingSentenceIndex;
-        _resetSentenceKeys();
+        _anchorSentenceIndex = _currentReadingSentenceIndex;
+        _mountedSentenceContexts.clear();
         _revealedTranslations.clear();
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -1091,7 +1115,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   void _scrollToTop() {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
-        0,
+        _scrollController.position.minScrollExtent,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
@@ -1523,7 +1547,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             Text(
               widget.book.category.contains('Poetry')
                   ? 'Classical Verse'
-                  : 'Ch.${chapter.chapterIndex}/${widget.chapters.length} · Sent.${_currentReadingSentenceIndex + 1}/${chapter.sentences.length}',
+                  : 'Ch.${chapter.chapterIndex}/${widget.chapters.length} · Sent.${chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1}/${chapter.sentences.length}',
               style: TextStyle(
                 fontSize: 11,
                 color: isDark ? Colors.white54 : Colors.black54,
@@ -1666,7 +1690,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Sentence ${_currentReadingSentenceIndex + 1} of ${chapter.sentences.length}',
+                        'Sentence ${chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1} of ${chapter.sentences.length}',
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
@@ -1706,15 +1730,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
           ),
           // Chapter Content
           Expanded(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Chapter Header
-                  Center(
+            child: Builder(
+              builder: (context) {
+                Widget buildChapterHeader() {
+                  return Center(
                     child: Column(
                       children: [
                         Text(
@@ -1752,18 +1771,21 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                         ],
                       ],
                     ),
-                  ),
+                  );
+                }
 
-                  // Sentences
-                  ...chapter.sentences.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    final sentence = entry.value;
-                    final isRevealed = _revealedTranslations.contains(index);
-                    final isAudioActiveSentence = _isAudiobookActive &&
-                        _currentAudioSentenceIndex == index;
+                Widget buildSentence(int index) {
+                  final sentence = chapter.sentences[index];
+                  final isRevealed = _revealedTranslations.contains(index);
+                  final isAudioActiveSentence =
+                      _isAudiobookActive && _currentAudioSentenceIndex == index;
 
-                    return GestureDetector(
-                      key: _sentenceKeys[index],
+                  return _MountedSentence(
+                    key: ValueKey('${chapter.id}:$index'),
+                    index: index,
+                    onMount: _registerSentenceContext,
+                    onUnmount: _unregisterSentenceContext,
+                    child: GestureDetector(
                       onTap: () {
                         HapticsManager.light();
                         setState(() {
@@ -2031,10 +2053,50 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           ],
                         ),
                       ),
-                    );
-                  }),
-                ],
-              ),
+                    ),
+                  );
+                }
+
+                final precedingChildCount = _anchorSentenceIndex + 1;
+                return CustomScrollView(
+                  key: ValueKey('${chapter.id}:$_anchorSentenceIndex'),
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  center: _centerSliverKey,
+                  anchor: 0.08,
+                  slivers: [
+                    SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, reverseIndex) {
+                            final sentenceIndex =
+                                _anchorSentenceIndex - reverseIndex - 1;
+                            if (sentenceIndex >= 0) {
+                              return buildSentence(sentenceIndex);
+                            }
+                            return buildChapterHeader();
+                          },
+                          childCount: precedingChildCount,
+                        ),
+                      ),
+                    ),
+                    SliverPadding(
+                      key: _centerSliverKey,
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, childIndex) => buildSentence(
+                            _anchorSentenceIndex + childIndex,
+                          ),
+                          childCount:
+                              chapter.sentences.length - _anchorSentenceIndex,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
 
@@ -2288,6 +2350,52 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       ),
     );
   }
+}
+
+class _MountedSentence extends StatefulWidget {
+  final int index;
+  final Widget child;
+  final void Function(int index, BuildContext context) onMount;
+  final void Function(int index, BuildContext context) onUnmount;
+
+  const _MountedSentence({
+    super.key,
+    required this.index,
+    required this.child,
+    required this.onMount,
+    required this.onUnmount,
+  });
+
+  @override
+  State<_MountedSentence> createState() => _MountedSentenceState();
+}
+
+class _MountedSentenceState extends State<_MountedSentence> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) widget.onMount(widget.index, context);
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant _MountedSentence oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.index != widget.index) {
+      oldWidget.onUnmount(oldWidget.index, context);
+      widget.onMount(widget.index, context);
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.onUnmount(widget.index, context);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 class _RubyToken {

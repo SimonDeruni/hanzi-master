@@ -993,7 +993,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String partner(Object lang) {
-    return 'Partenaire ((lang))';
+    return 'Partenaire $lang';
   }
 
   @override
@@ -1181,22 +1181,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'Masquer le guide de traits à la série: (streak)';
+    return 'Masquer le guide de traits à la série: $streak';
   }
 
   @override
   String inkPoints(Object points) {
-    return '(points) Points d\'Encre';
+    return '$points Points d\'Encre';
   }
 
   @override
   String speechRateMultiplier(Object rate) {
-    return '(rate)x';
+    return '${rate}x';
   }
 
   @override
   String animationSpeedMultiplier(Object rate) {
-    return '(rate)x';
+    return '${rate}x';
   }
 
   @override
@@ -1220,7 +1220,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'Suivez le guide bleu pour dessiner le trait (current) sur (total)';
+    return 'Suivez le guide bleu pour dessiner le trait $current sur $total';
   }
 
   @override
@@ -1231,17 +1231,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return '(hanzi) ajouté à (deckName)';
+    return '$hanzi ajouté à $deckName';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return '(hanzi) retiré du paquet';
+    return '$hanzi retiré du paquet';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return 'Ignoré \"(hanzi)\" - Aucune donnée de trait disponible pour ce caractère d\'IA.';
+    return 'Ignoré \"$hanzi\" - Aucune donnée de trait disponible pour ce caractère d\'IA.';
   }
 
   @override
@@ -1326,7 +1326,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String storyTitleHsk(Object level, Object title) {
-    return '(title) (HSK (level))';
+    return '$title (HSK $level)';
   }
 
   @override
@@ -1334,12 +1334,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return '(name) créé avec (count) cartes !';
+    return '$name créé avec $count cartes !';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'Note : (grade)';
+    return 'Note : $grade';
   }
 
   @override
@@ -1384,7 +1384,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String addedCharToLibrary(Object char) {
-    return '(char) ajouté à la bibliothèque';
+    return '$char ajouté à la bibliothèque';
   }
 
   @override
@@ -1441,7 +1441,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String addedToLibrary(Object hanzi) {
-    return '\'(hanzi)\' ajouté à votre bibliothèque';
+    return '\'$hanzi\' ajouté à votre bibliothèque';
   }
 
   @override
@@ -1449,7 +1449,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'Échec de la génération de l\'histoire :\n(error)';
+    return 'Échec de la génération de l\'histoire :\n$error';
   }
 
   @override
@@ -1646,7 +1646,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String foundNCharacters(int count) {
-    return '(count) caractères trouvés';
+    return '$count caractères trouvés';
   }
 
   @override

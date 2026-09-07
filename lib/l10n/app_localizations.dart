@@ -2321,25 +2321,25 @@ abstract class AppLocalizations {
   /// No description provided for @hideStrokeGuideStreak.
   ///
   /// In en, this message translates to:
-  /// **'Hide stroke guide at streak: (streak)'**
+  /// **'Hide stroke guide at streak: {streak}'**
   String hideStrokeGuideStreak(Object streak);
 
   /// No description provided for @inkPoints.
   ///
   /// In en, this message translates to:
-  /// **'(points) Ink Points'**
+  /// **'{points} Ink Points'**
   String inkPoints(Object points);
 
   /// No description provided for @speechRateMultiplier.
   ///
   /// In en, this message translates to:
-  /// **'(rate)x'**
+  /// **'{rate}x'**
   String speechRateMultiplier(Object rate);
 
   /// No description provided for @animationSpeedMultiplier.
   ///
   /// In en, this message translates to:
-  /// **'(rate)x'**
+  /// **'{rate}x'**
   String animationSpeedMultiplier(Object rate);
 
   /// No description provided for @supportAndFeedback.
@@ -2381,7 +2381,7 @@ abstract class AppLocalizations {
   /// No description provided for @followGuideStroke.
   ///
   /// In en, this message translates to:
-  /// **'Follow the blue guide to draw stroke (current) of (total)'**
+  /// **'Follow the blue guide to draw stroke {current} of {total}'**
   String followGuideStroke(Object current, Object total);
 
   /// No description provided for @skipCurrentStroke.
@@ -2399,19 +2399,19 @@ abstract class AppLocalizations {
   /// No description provided for @addedToDeck.
   ///
   /// In en, this message translates to:
-  /// **'Added (hanzi) to (deckName)'**
+  /// **'Added {hanzi} to {deckName}'**
   String addedToDeck(Object deckName, Object hanzi);
 
   /// No description provided for @removedFromDeck.
   ///
   /// In en, this message translates to:
-  /// **'Removed (hanzi) from deck'**
+  /// **'Removed {hanzi} from deck'**
   String removedFromDeck(Object hanzi);
 
   /// No description provided for @skippedNoStrokeData.
   ///
   /// In en, this message translates to:
-  /// **'Skipped \"(hanzi)\" - No stroke data available for this AI character.'**
+  /// **'Skipped \"{hanzi}\" - No stroke data available for this AI character.'**
   String skippedNoStrokeData(Object hanzi);
 
   /// No description provided for @startingSession.
@@ -2561,7 +2561,7 @@ abstract class AppLocalizations {
   /// No description provided for @storyTitleHsk.
   ///
   /// In en, this message translates to:
-  /// **'(title) (HSK (level))'**
+  /// **'{title} (HSK {level})'**
   String storyTitleHsk(Object level, Object title);
 
   /// No description provided for @pleaseEnterTopic.
@@ -2573,13 +2573,13 @@ abstract class AppLocalizations {
   /// No description provided for @createdDeckCards.
   ///
   /// In en, this message translates to:
-  /// **'Created (name) with (count) cards!'**
+  /// **'Created {name} with {count} cards!'**
   String createdDeckCards(Object count, Object name);
 
   /// No description provided for @gradeResult.
   ///
   /// In en, this message translates to:
-  /// **'Grade: (grade)'**
+  /// **'Grade: {grade}'**
   String gradeResult(Object grade);
 
   /// No description provided for @listeningMode.
@@ -2663,7 +2663,7 @@ abstract class AppLocalizations {
   /// No description provided for @addedCharToLibrary.
   ///
   /// In en, this message translates to:
-  /// **'Added (char) to Library'**
+  /// **'Added {char} to Library'**
   String addedCharToLibrary(Object char);
 
   /// No description provided for @scoreText.
@@ -2771,7 +2771,7 @@ abstract class AppLocalizations {
   /// No description provided for @addedToLibrary.
   ///
   /// In en, this message translates to:
-  /// **'Added \'(hanzi)\' to your Library'**
+  /// **'Added \'{hanzi}\' to your Library'**
   String addedToLibrary(Object hanzi);
 
   /// No description provided for @generateNewStory.
@@ -2783,7 +2783,7 @@ abstract class AppLocalizations {
   /// No description provided for @failedToGenerateStory.
   ///
   /// In en, this message translates to:
-  /// **'Failed to generate story:\\n(error)'**
+  /// **'Failed to generate story:\\n{error}'**
   String failedToGenerateStory(Object error);
 
   /// No description provided for @detail.
@@ -5339,7 +5339,7 @@ abstract class AppLocalizations {
   /// No description provided for @analysis_failed.
   ///
   /// In en, this message translates to:
-  /// **'Analysis Failed: (error)'**
+  /// **'Analysis Failed: {error}'**
   String analysis_failed(Object error);
 
   /// No description provided for @analyzing_pronunciation_with_gemini_ai.
@@ -5441,19 +5441,19 @@ abstract class AppLocalizations {
   /// No description provided for @error_creating_scenario.
   ///
   /// In en, this message translates to:
-  /// **'Error creating scenario: (error)'**
+  /// **'Error creating scenario: {error}'**
   String error_creating_scenario(Object error);
 
   /// No description provided for @error_fetching_translation_for.
   ///
   /// In en, this message translates to:
-  /// **'Error fetching translation for : (error)'**
+  /// **'Error fetching translation for : {error}'**
   String error_fetching_translation_for(Object error);
 
   /// No description provided for @error_loading_chapters.
   ///
   /// In en, this message translates to:
-  /// **'Error loading chapters: (error)'**
+  /// **'Error loading chapters: {error}'**
   String error_loading_chapters(Object error);
 
   /// No description provided for @error_loading_decks.
@@ -5465,19 +5465,19 @@ abstract class AppLocalizations {
   /// No description provided for @error_loading_microreads.
   ///
   /// In en, this message translates to:
-  /// **'Error loading micro-reads: (error)'**
+  /// **'Error loading micro-reads: {error}'**
   String error_loading_microreads(Object error);
 
   /// No description provided for @error_loading_novels.
   ///
   /// In en, this message translates to:
-  /// **'Error loading novels: (error)'**
+  /// **'Error loading novels: {error}'**
   String error_loading_novels(Object error);
 
   /// No description provided for @error_loading_poetry.
   ///
   /// In en, this message translates to:
-  /// **'Error loading poetry: (error)'**
+  /// **'Error loading poetry: {error}'**
   String error_loading_poetry(Object error);
 
   /// No description provided for @etymology.
@@ -5501,7 +5501,7 @@ abstract class AppLocalizations {
   /// No description provided for @extraction_failed.
   ///
   /// In en, this message translates to:
-  /// **'Extraction Failed: \\(error)'**
+  /// **'Extraction Failed: \\{error}'**
   String extraction_failed(Object error);
 
   /// No description provided for @failed_to_download.
@@ -5513,19 +5513,19 @@ abstract class AppLocalizations {
   /// No description provided for @failed_to_generate_scenario.
   ///
   /// In en, this message translates to:
-  /// **'Failed to generate scenario: (error)'**
+  /// **'Failed to generate scenario: {error}'**
   String failed_to_generate_scenario(Object error);
 
   /// No description provided for @failed_to_generate_story.
   ///
   /// In en, this message translates to:
-  /// **'Failed to generate story:\\n(error)'**
+  /// **'Failed to generate story:\\n{error}'**
   String failed_to_generate_story(Object error);
 
   /// No description provided for @failed_to_load_context.
   ///
   /// In en, this message translates to:
-  /// **'Failed to load context: (error)rr'**
+  /// **'Failed to load context: {error}rr'**
   String failed_to_load_context(Object error);
 
   /// No description provided for @feature_request.
@@ -5681,7 +5681,7 @@ abstract class AppLocalizations {
   /// No description provided for @revenuecat_error.
   ///
   /// In en, this message translates to:
-  /// **'RevenueCat Error: (error)'**
+  /// **'RevenueCat Error: {error}'**
   String revenuecat_error(Object error);
 
   /// No description provided for @review_tomorrow.
@@ -5729,7 +5729,7 @@ abstract class AppLocalizations {
   /// No description provided for @simplify_failed.
   ///
   /// In en, this message translates to:
-  /// **'Simplify Failed: (error)'**
+  /// **'Simplify Failed: {error}'**
   String simplify_failed(Object error);
 
   /// No description provided for @sinospark_premium.
@@ -5789,7 +5789,7 @@ abstract class AppLocalizations {
   /// No description provided for @translation_failed.
   ///
   /// In en, this message translates to:
-  /// **'Translation Failed: (error)'**
+  /// **'Translation Failed: {error}'**
   String translation_failed(Object error);
 
   /// No description provided for @type_in.
@@ -5891,7 +5891,7 @@ abstract class AppLocalizations {
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'Error: (error)'**
+  /// **'Error: {error}'**
   String error(Object error);
 
   /// No description provided for @aiSmartContext.
@@ -6125,13 +6125,13 @@ abstract class AppLocalizations {
   /// No description provided for @failedToSaveExtractedWords.
   ///
   /// In en, this message translates to:
-  /// **'Failed to save extracted words: (error)'**
+  /// **'Failed to save extracted words: {error}'**
   String failedToSaveExtractedWords(Object error);
 
   /// No description provided for @addToDeck.
   ///
   /// In en, this message translates to:
-  /// **'Add to Deck ((count))'**
+  /// **'Add to Deck {count}'**
   String addToDeck(Object count);
 
   /// No description provided for @dailyDiscoveryDrop.
@@ -6197,7 +6197,7 @@ abstract class AppLocalizations {
   /// No description provided for @cards.
   ///
   /// In en, this message translates to:
-  /// **'(count) cards'**
+  /// **'{count} cards'**
   String cards(Object count);
 
   /// No description provided for @nWaMendsTheHeavens.
@@ -10061,7 +10061,7 @@ abstract class AppLocalizations {
   /// No description provided for @masterYourMandarinPronunciationnbyM.
   ///
   /// In en, this message translates to:
-  /// **'Master your Mandarin pronunciation\\nby mimicking native speech.'**
+  /// **'Master your Mandarin pronunciation\nby mimicking native speech.'**
   String get masterYourMandarinPronunciationnbyM;
 
   /// No description provided for @aiIsGradingYourPronunciation.

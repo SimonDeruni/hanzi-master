@@ -13,6 +13,7 @@ import '../../../../core/widgets/translated_definition.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -272,7 +273,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     if (_currentPhrase == null) return;
     HapticFeedback.lightImpact();
     final audioService = ref.read(audioServiceProvider);
-    await audioService.playSentence(_currentPhrase!['hanzi']!);
+    final speechRate = ref.read(settingsProvider).speechRate;
+    await audioService.playSentence(
+      _currentPhrase!['hanzi']!,
+      speechRate: speechRate,
+    );
   }
 
   Future<void> _startRecording() async {

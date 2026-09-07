@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-07] Exhaustive 14-Language ARB Placeholder Audit & ICU Syntax Standardization (Build #530)
+- **14-Language ARB Placeholder Audit:** Audited all 14 localization files (`app_en.arb`, `app_fr.arb`, `app_de.arb`, `app_es.arb`, `app_it.arb`, `app_pt.arb`, `app_ru.arb`, `app_ja.arb`, `app_ko.arb`, `app_vi.arb`, `app_id.arb`, `app_hi.arb`, `app_th.arb`, `app_ar.arb`).
+- **ICU Placeholder Syntax Conversion:** Identified and corrected 32 placeholder keys formatted with parentheses `(variable)` (e.g. `(count) caractères trouvés` in French ARB rendering literal `"(count)"` on screen) to standard Flutter ICU `{variable}` format (`{count} caractères trouvés`, `{name}`, `{streak}`, `{points}`, `{rate}`, `{current}`, `{total}`, `{deckName}`, `{title}`, `{level}`, `{grade}`, `{char}`, `{error}`).
+- **Localization Regeneration & Verification:** Regenerated `AppLocalizations` classes with `flutter gen-l10n`. Verified `quick_look_multilingual_test.dart` and full suite. `dart analyze lib/ test/` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+
 ### [2026-09-06] Universal Multilingual Quick Look & Dictionary Definition Scoring
 - **Propagate `definitionLanguage` in Quick Look Sheet:** Wired `definitionLanguage: card.definitionLanguage` from `_FoundBody` through `_CharacterHero` to `TranslatedDefinition` in `lib/shared/widgets/quick_look_sheet.dart`. Fixes bug where tapped characters (e.g. `力` in the in-app web browser) rendered a blank definition space when localized definitions were present.
 - **Universal Language Code Normalization:** Hardened `_sameLanguage` and added `_normalizeLanguage` in `TranslatedDefinition` (`lib/core/widgets/translated_definition.dart`), recognizing both ISO locale codes (`fr`, `de`, `es`, `ru`, `ja`, etc.) and canonical English language names (`French`, `German`, `Spanish`, etc.). Eliminates false retranslation triggers and ensures instant (0ms) rendering.

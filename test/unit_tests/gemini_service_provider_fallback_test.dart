@@ -8,6 +8,24 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
 void main() {
+  test('character context cache keys are scoped by output language', () {
+    final englishKey = GeminiService.contextCacheKey(
+      targetLanguage: 'English',
+      hanzi: '人',
+      hskLevel: 1,
+    );
+    final frenchKey = GeminiService.contextCacheKey(
+      targetLanguage: 'French',
+      hanzi: '人',
+      hskLevel: 1,
+    );
+
+    expect(englishKey, 'context_v2:english:人:1');
+    expect(frenchKey, 'context_v2:french:人:1');
+    expect(englishKey, isNot(frenchKey));
+    expect(englishKey, isNot('人_1'));
+  });
+
   test('uses Gemini directly when the OpenRouter key is missing', () async {
     late http.Request capturedRequest;
     final service = GeminiService(

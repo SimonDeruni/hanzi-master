@@ -1161,22 +1161,22 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String hideStrokeGuideStreak(Object streak) {
-    return 'ซ่อนเส้นนำลำดับขีดเมื่อฝึกต่อเนื่อง: (streak)';
+    return 'ซ่อนเส้นนำลำดับขีดเมื่อฝึกต่อเนื่อง: $streak';
   }
 
   @override
   String inkPoints(Object points) {
-    return '(points) แต้มน้ำหมึก';
+    return '$points แต้มน้ำหมึก';
   }
 
   @override
   String speechRateMultiplier(Object rate) {
-    return '(rate)x';
+    return '${rate}x';
   }
 
   @override
   String animationSpeedMultiplier(Object rate) {
-    return '(rate)x';
+    return '${rate}x';
   }
 
   @override
@@ -1199,7 +1199,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String followGuideStroke(Object current, Object total) {
-    return 'ลากเส้นตามเส้นสีน้ำเงินเพื่อเขียนขีดที่ (current) จากทั้งหมด (total)';
+    return 'ลากเส้นตามเส้นสีน้ำเงินเพื่อเขียนขีดที่ $current จากทั้งหมด $total';
   }
 
   @override
@@ -1210,17 +1210,17 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String addedToDeck(Object deckName, Object hanzi) {
-    return 'เพิ่ม (hanzi) ลงใน (deckName) แล้ว';
+    return 'เพิ่ม $hanzi ลงใน $deckName แล้ว';
   }
 
   @override
   String removedFromDeck(Object hanzi) {
-    return 'ลบ (hanzi) ออกจากสำรับแล้ว';
+    return 'ลบ $hanzi ออกจากสำรับแล้ว';
   }
 
   @override
   String skippedNoStrokeData(Object hanzi) {
-    return 'ข้าม \"(hanzi)\" - ไม่มีข้อมูลลำดับขีดสำหรับตัวอักษร AI นี้';
+    return 'ข้าม \"$hanzi\" - ไม่มีข้อมูลลำดับขีดสำหรับตัวอักษร AI นี้';
   }
 
   @override
@@ -1304,7 +1304,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String storyTitleHsk(Object level, Object title) {
-    return '(title) (HSK (level))';
+    return '$title (HSK $level)';
   }
 
   @override
@@ -1312,12 +1312,12 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String createdDeckCards(Object count, Object name) {
-    return 'สร้าง (name) พร้อมการ์ด (count) ใบเรียบร้อยแล้ว!';
+    return 'สร้าง $name พร้อมการ์ด $count ใบเรียบร้อยแล้ว!';
   }
 
   @override
   String gradeResult(Object grade) {
-    return 'ผลการประเมิน: (grade)';
+    return 'ผลการประเมิน: $grade';
   }
 
   @override
@@ -1362,7 +1362,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String addedCharToLibrary(Object char) {
-    return 'เพิ่ม (char) ลงในคลังแล้ว';
+    return 'เพิ่ม $char ลงในคลังแล้ว';
   }
 
   @override
@@ -1418,7 +1418,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String addedToLibrary(Object hanzi) {
-    return 'เพิ่ม \'(hanzi)\' ลงในคลังของคุณแล้ว';
+    return 'เพิ่ม \'$hanzi\' ลงในคลังของคุณแล้ว';
   }
 
   @override
@@ -1426,7 +1426,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String failedToGenerateStory(Object error) {
-    return 'สร้างนิทานไม่สำเร็จ:\n(error)';
+    return 'สร้างนิทานไม่สำเร็จ:\n$error';
   }
 
   @override
@@ -2795,7 +2795,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String analysis_failed(Object error) {
-    return 'การวิเคราะห์ล้มเหลว: (error)';
+    return 'การวิเคราะห์ล้มเหลว: $error';
   }
 
   @override
@@ -2860,17 +2860,17 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String error_creating_scenario(Object error) {
-    return 'เกิดข้อผิดพลาดในการสร้างสถานการณ์: (error)';
+    return 'เกิดข้อผิดพลาดในการสร้างสถานการณ์: $error';
   }
 
   @override
   String error_fetching_translation_for(Object error) {
-    return 'เกิดข้อผิดพลาดในการดึงคำแปลสำหรับ : (error)';
+    return 'เกิดข้อผิดพลาดในการดึงคำแปลสำหรับ : $error';
   }
 
   @override
   String error_loading_chapters(Object error) {
-    return 'เกิดข้อผิดพลาดในการโหลดบทเรียน: (error)';
+    return 'เกิดข้อผิดพลาดในการโหลดบทเรียน: $error';
   }
 
   @override
@@ -2878,17 +2878,17 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String error_loading_microreads(Object error) {
-    return 'เกิดข้อผิดพลาดในการโหลดบทอ่านสั้น: (error)';
+    return 'เกิดข้อผิดพลาดในการโหลดบทอ่านสั้น: $error';
   }
 
   @override
   String error_loading_novels(Object error) {
-    return 'เกิดข้อผิดพลาดในการโหลดนวนิยาย: (error)';
+    return 'เกิดข้อผิดพลาดในการโหลดนวนิยาย: $error';
   }
 
   @override
   String error_loading_poetry(Object error) {
-    return 'เกิดข้อผิดพลาดในการโหลดบทกวี: (error)';
+    return 'เกิดข้อผิดพลาดในการโหลดบทกวี: $error';
   }
 
   @override
@@ -2903,7 +2903,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String extraction_failed(Object error) {
-    return 'การสกัดข้อความล้มเหลว: (error)';
+    return 'การสกัดข้อความล้มเหลว: $error';
   }
 
   @override
@@ -2911,17 +2911,17 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String failed_to_generate_scenario(Object error) {
-    return 'เกิดข้อผิดพลาดในการสร้างสถานการณ์: (error)';
+    return 'เกิดข้อผิดพลาดในการสร้างสถานการณ์: $error';
   }
 
   @override
   String failed_to_generate_story(Object error) {
-    return 'สร้างนิทานไม่สำเร็จ:\n(error)';
+    return 'สร้างนิทานไม่สำเร็จ:\n$error';
   }
 
   @override
   String failed_to_load_context(Object error) {
-    return 'โหลดบริบทไม่สำเร็จ: (error)rr';
+    return 'โหลดบริบทไม่สำเร็จ: ${error}rr';
   }
 
   @override
@@ -3017,7 +3017,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String revenuecat_error(Object error) {
-    return 'ข้อผิดพลาดจาก RevenueCat: (error)';
+    return 'ข้อผิดพลาดจาก RevenueCat: $error';
   }
 
   @override
@@ -3046,7 +3046,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String simplify_failed(Object error) {
-    return 'การปรับให้อ่านง่ายล้มเหลว: (error)';
+    return 'การปรับให้อ่านง่ายล้มเหลว: $error';
   }
 
   @override
@@ -3079,7 +3079,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String translation_failed(Object error) {
-    return 'การแปลล้มเหลว: (error)';
+    return 'การแปลล้มเหลว: $error';
   }
 
   @override
@@ -3142,7 +3142,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String error(Object error) {
-    return 'ข้อผิดพลาด: (error)';
+    return 'ข้อผิดพลาด: $error';
   }
 
   @override
@@ -3270,12 +3270,12 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String failedToSaveExtractedWords(Object error) {
-    return 'บันทึกคำที่สกัดได้ไม่สำเร็จ: (error)';
+    return 'บันทึกคำที่สกัดได้ไม่สำเร็จ: $error';
   }
 
   @override
   String addToDeck(Object count) {
-    return 'เพิ่มลงสำรับ ((count))';
+    return 'เพิ่มลงสำรับ $count';
   }
 
   @override
@@ -3310,7 +3310,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String cards(Object count) {
-    return '(count) ใบ';
+    return '$count ใบ';
   }
 
   @override

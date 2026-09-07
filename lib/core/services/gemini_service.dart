@@ -269,6 +269,16 @@ class GeminiService {
       http.Client? httpClient})
       : _httpClient = httpClient;
 
+  @visibleForTesting
+  static String contextCacheKey({
+    required String targetLanguage,
+    required String hanzi,
+    required int hskLevel,
+  }) {
+    final normalizedLanguage = targetLanguage.trim().toLowerCase();
+    return 'context_v2:$normalizedLanguage:$hanzi:$hskLevel';
+  }
+
   Future<void> _checkUsageLimit() async {
     // Limits removed because the app is now completely hard-paywalled.
     return;
@@ -775,7 +785,14 @@ CRITICAL: You MUST write your entire explanation in $targetLanguage.
   }
 
   Future<GeminiContext> generateContext(String hanzi, int hskLevel) async {
-    final cacheKey = '${hanzi}_$hskLevel';
+    // Context contains localized mnemonics, sentence translations, meanings,
+    // and look-alike explanations. Keep each language isolated and do not read
+    // legacy unscoped keys, which may contain content generated in any locale.
+    final cacheKey = contextCacheKey(
+      targetLanguage: targetLanguage,
+      hanzi: hanzi,
+      hskLevel: hskLevel,
+    );
     final box = Hive.box<String>('ai_cache');
 
     if (box.containsKey(cacheKey)) {

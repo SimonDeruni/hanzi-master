@@ -13,6 +13,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
+enum _InterpreterStatus {
+  ready,
+  listening,
+  partnerListening,
+  translating,
+  paused,
+  translationFailed,
+  error,
+}
+
 class TravelInterpreterScreen extends ConsumerStatefulWidget {
   const TravelInterpreterScreen({super.key});
 
@@ -24,7 +34,8 @@ class TravelInterpreterScreen extends ConsumerStatefulWidget {
 class _TravelInterpreterScreenState
     extends ConsumerState<TravelInterpreterScreen>
     with SingleTickerProviderStateMixin {
-  late String _status;
+  _InterpreterStatus _status = _InterpreterStatus.ready;
+  String? _errorDetails;
   bool _hasError = false;
   String? _recordingSide; // null = idle, 'a' = User mic, 'b' = Partner mic
   bool _isStopping = false;
@@ -52,11 +63,11 @@ class _TravelInterpreterScreenState
 
   bool _isSessionStarted = true;
   late AnimationController _pulseController;
+  String? _appLocaleCode;
 
   @override
   void initState() {
     super.initState();
-    _status = 'Ready';
     _sideALanguage = 'English';
     _sideBLanguage = 'Mandarin';
 
@@ -71,10 +82,88 @@ class _TravelInterpreterScreenState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final l10n = AppLocalizations.of(context);
-    if (l10n != null) {
-      if (_status == 'Ready') _status = l10n.ready;
+    final localeCode = Localizations.localeOf(context).languageCode;
+    if (_appLocaleCode != localeCode) {
+      _appLocaleCode = localeCode;
+      _sideALanguage = translationLanguageForLocale(localeCode);
     }
+  }
+
+  String _localizedLanguageName(AppLocalizations l10n, String language) {
+    switch (language) {
+      case 'Arabic':
+        return l10n.arabic;
+      case 'French':
+        return l10n.french;
+      case 'Spanish':
+        return l10n.spanish;
+      case 'German':
+        return l10n.german;
+      case 'Hindi':
+        return l10n.hindi;
+      case 'Indonesian':
+        return l10n.indonesian;
+      case 'Italian':
+        return l10n.italian;
+      case 'Japanese':
+        return l10n.japanese;
+      case 'Korean':
+        return l10n.korean;
+      case 'Portuguese':
+        return l10n.portuguese;
+      case 'Russian':
+        return l10n.russian;
+      case 'Thai':
+        return l10n.thai;
+      case 'Vietnamese':
+        return l10n.vietnamese;
+      case 'Mandarin':
+      case 'Chinese':
+        return l10n.mandarin;
+      default:
+        return l10n.english;
+    }
+  }
+
+  String _localizedStatus(AppLocalizations l10n) {
+    switch (_status) {
+      case _InterpreterStatus.listening:
+        return l10n.listening;
+      case _InterpreterStatus.partnerListening:
+        return l10n.partnerListening;
+      case _InterpreterStatus.translating:
+        return l10n.translating2;
+      case _InterpreterStatus.paused:
+        return l10n.paused;
+      case _InterpreterStatus.translationFailed:
+        return l10n.translationFailed;
+      case _InterpreterStatus.error:
+        return '${l10n.errorPrefix}${_errorDetails ?? ''}';
+      case _InterpreterStatus.ready:
+        return l10n.readyToInterpret;
+    }
+  }
+
+  String _speechLocaleForLanguage(String language) {
+    const localeIds = <String, String>{
+      'Arabic': 'ar_SA',
+      'Chinese': 'zh_CN',
+      'English': 'en_US',
+      'French': 'fr_FR',
+      'German': 'de_DE',
+      'Hindi': 'hi_IN',
+      'Indonesian': 'id_ID',
+      'Italian': 'it_IT',
+      'Japanese': 'ja_JP',
+      'Korean': 'ko_KR',
+      'Mandarin': 'zh_CN',
+      'Portuguese': 'pt_PT',
+      'Russian': 'ru_RU',
+      'Spanish': 'es_ES',
+      'Thai': 'th_TH',
+      'Vietnamese': 'vi_VN',
+    };
+    return localeIds[language] ?? 'en_US';
   }
 
   void _startSession() async {
@@ -90,9 +179,8 @@ class _TravelInterpreterScreenState
     final speechService = ref.read(speechServiceProvider);
     await speechService.init();
     if (mounted) {
-      final l10n = AppLocalizations.of(context);
       setState(() {
-        _status = l10n?.readyToInterpret ?? 'Ready to interpret';
+        _status = _InterpreterStatus.ready;
       });
     }
   }
@@ -105,8 +193,8 @@ class _TravelInterpreterScreenState
     setState(() {
       _recordingSide = sideId;
       _status = sideId == 'b'
-          ? AppLocalizations.of(context)!.partnerListening
-          : AppLocalizations.of(context)!.listening;
+          ? _InterpreterStatus.partnerListening
+          : _InterpreterStatus.listening;
 
       // Insert an empty draft message for the user's live transcription
       _messages.add(TranslationMessage(
@@ -119,20 +207,7 @@ class _TravelInterpreterScreenState
 
     final speechService = ref.read(speechServiceProvider);
 
-    String localeId = 'en_US';
-    if (lang == AppLocalizations.of(context)!.mandarin || lang == 'Chinese') {
-      localeId = 'zh_CN';
-    } else if (lang == 'Spanish') {
-      localeId = 'es_ES';
-    } else if (lang == 'French') {
-      localeId = 'fr_FR';
-    } else if (lang == 'German') {
-      localeId = 'de_DE';
-    } else if (lang == 'Japanese') {
-      localeId = 'ja_JP';
-    } else if (lang == 'Korean') {
-      localeId = 'ko_KR';
-    }
+    final localeId = _speechLocaleForLanguage(lang);
 
     try {
       await speechService.startListening(
@@ -178,7 +253,8 @@ class _TravelInterpreterScreenState
           if (mounted) {
             setState(() {
               _hasError = true;
-              _status = 'Speech error: $errorMsg';
+              _errorDetails = errorMsg;
+              _status = _InterpreterStatus.error;
             });
           }
         },
@@ -187,7 +263,9 @@ class _TravelInterpreterScreenState
       if (mounted) {
         setState(() {
           _recordingSide = null;
-          _status = "Microphone error: $e";
+          _hasError = true;
+          _errorDetails = e.toString();
+          _status = _InterpreterStatus.error;
           // Remove draft message on error
           if (_messages.isNotEmpty &&
               _messages.last.isUser &&
@@ -224,7 +302,7 @@ class _TravelInterpreterScreenState
     setState(() {
       _recordingSide = null;
       _isStopping = false;
-      if (!keepStatus) _status = "Paused";
+      if (!keepStatus) _status = _InterpreterStatus.paused;
     });
 
     // If finalResult never fired (e.g. session stopped before engine confirmed),
@@ -272,7 +350,9 @@ class _TravelInterpreterScreenState
         language: sourceLang,
       ));
       _isTranslatingText = true;
-      _status = "Translating...";
+      _hasError = false;
+      _errorDetails = null;
+      _status = _InterpreterStatus.translating;
     });
 
     try {
@@ -297,15 +377,18 @@ class _TravelInterpreterScreenState
           ));
           _isTranslatingText = false;
           _status = _recordingSide != null
-              ? AppLocalizations.of(context)!.listening
-              : "Paused";
+              ? (_recordingSide == 'b'
+                  ? _InterpreterStatus.partnerListening
+                  : _InterpreterStatus.listening)
+              : _InterpreterStatus.paused;
         });
       }
     } catch (e) {
       if (mounted) {
         setState(() {
           _isTranslatingText = false;
-          _status = "Translation failed";
+          _hasError = true;
+          _status = _InterpreterStatus.translationFailed;
         });
       }
     }
@@ -347,7 +430,7 @@ class _TravelInterpreterScreenState
                   padding:
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                   child: Text(
-                    "Type in $_sideBLanguage",
+                    '${AppLocalizations.of(context)!.type_in} ${_localizedLanguageName(AppLocalizations.of(context)!, _sideBLanguage)}',
                     style: const TextStyle(
                         color: Colors.white54,
                         fontSize: 16,
@@ -367,7 +450,7 @@ class _TravelInterpreterScreenState
                       style: const TextStyle(color: Colors.white, fontSize: 20),
                       decoration: InputDecoration(
                         hintText:
-                            AppLocalizations.of(context)!.type_your_message_in,
+                            '${AppLocalizations.of(context)!.type_your_message_in} ${_localizedLanguageName(AppLocalizations.of(context)!, _sideBLanguage)}',
                         hintStyle: const TextStyle(color: Colors.white24),
                         filled: true,
                         fillColor: Colors.white.withValues(alpha: 0.08),
@@ -446,7 +529,7 @@ class _TravelInterpreterScreenState
                 size: 80, color: Colors.blueAccent.withValues(alpha: 0.8)),
             const SizedBox(height: 32),
             Text(
-              "Travel Interpreter",
+              AppLocalizations.of(context)!.travelInterpreter,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 32,
@@ -458,7 +541,7 @@ class _TravelInterpreterScreenState
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 48.0),
               child: Text(
-                "Real-time bidirectional translation. Speak English or Mandarin, and it will instantly translate for you and your partner.",
+                AppLocalizations.of(context)!.realTimeSplitScreen,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
@@ -491,10 +574,10 @@ class _TravelInterpreterScreenState
                       ),
                     ],
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      "Start Session",
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.startSession,
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
@@ -545,7 +628,7 @@ class _TravelInterpreterScreenState
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        _status,
+                        _localizedStatus(AppLocalizations.of(context)!),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: _hasError
@@ -684,57 +767,71 @@ class _TravelInterpreterScreenState
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                // Side B language dropdown — locked to Partner (Mandarin/Chinese) only
-                                DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: _sideBLanguage,
-                                    icon: Icon(Icons.language,
-                                        color: isDark
-                                            ? Colors.white70
-                                            : Colors.black87),
-                                    dropdownColor: isDark
-                                        ? Colors.grey[900]
-                                        : Colors.white,
-                                    style: TextStyle(
-                                        color: isDark
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                    items: supportedPartnerLanguages
-                                        .map((lang) => DropdownMenuItem(
-                                            value: lang,
-                                            child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .partnerLang(lang))))
-                                        .toList(),
-                                    onChanged: (val) {
-                                      if (val != null) {
-                                        setState(() => _sideBLanguage = val);
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  // Side B language dropdown — locked to Partner (Mandarin/Chinese) only
+                                  Expanded(
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<String>(
+                                        isExpanded: true,
+                                        value: _sideBLanguage,
+                                        icon: Icon(Icons.language,
+                                            color: isDark
+                                                ? Colors.white70
+                                                : Colors.black87),
+                                        dropdownColor: isDark
+                                            ? Colors.grey[900]
+                                            : Colors.white,
+                                        style: TextStyle(
+                                            color: isDark
+                                                ? Colors.white
+                                                : Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                        items: supportedPartnerLanguages
+                                            .map((lang) => DropdownMenuItem(
+                                                value: lang,
+                                                child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .partnerLang(
+                                                            _localizedLanguageName(
+                                                                AppLocalizations
+                                                                    .of(
+                                                                        context)!,
+                                                                lang)),
+                                                    overflow:
+                                                        TextOverflow.ellipsis)))
+                                            .toList(),
+                                        onChanged: (val) {
+                                          if (val != null) {
+                                            setState(
+                                                () => _sideBLanguage = val);
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  // Side B keyboard button → triggers Pass the Phone overlay
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.keyboard,
+                                      color: isDark
+                                          ? Colors.white54
+                                          : Colors.black54,
+                                      size: 20,
+                                    ),
+                                    onPressed: () {
+                                      if (_recordingSide != null) {
+                                        _stopAudioStreaming();
                                       }
+                                      _showPartnerKeyboard();
                                     },
                                   ),
-                                ),
-                                const SizedBox(width: 8),
-                                // Side B keyboard button → triggers Pass the Phone overlay
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.keyboard,
-                                    color: isDark
-                                        ? Colors.white54
-                                        : Colors.black54,
-                                    size: 20,
-                                  ),
-                                  onPressed: () {
-                                    if (_recordingSide != null) {
-                                      _stopAudioStreaming();
-                                    }
-                                    _showPartnerKeyboard();
-                                  },
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             if (_recordingSide != null)
                               Row(
@@ -864,74 +961,87 @@ class _TravelInterpreterScreenState
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              // Side A language dropdown
-                              DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  value: _sideALanguage,
-                                  icon: Icon(Icons.language,
-                                      color: isDark
-                                          ? Colors.white70
-                                          : Colors.black87),
-                                  dropdownColor:
-                                      isDark ? Colors.grey[900] : Colors.white,
-                                  style: TextStyle(
-                                      color:
-                                          isDark ? Colors.white : Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                  items: supportedTranslationLanguages
-                                      .map((lang) => DropdownMenuItem(
-                                          value: lang,
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .youLang(lang))))
-                                      .toList(),
-                                  onChanged: (val) {
-                                    if (val != null) {
-                                      setState(() => _sideALanguage = val);
-                                    }
+                          Expanded(
+                            child: Row(
+                              children: [
+                                // Side A language dropdown
+                                Expanded(
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: _sideALanguage,
+                                      icon: Icon(Icons.language,
+                                          color: isDark
+                                              ? Colors.white70
+                                              : Colors.black87),
+                                      dropdownColor: isDark
+                                          ? Colors.grey[900]
+                                          : Colors.white,
+                                      style: TextStyle(
+                                          color: isDark
+                                              ? Colors.white
+                                              : Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      items: supportedTranslationLanguages
+                                          .map((lang) => DropdownMenuItem(
+                                              value: lang,
+                                              child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .youLang(
+                                                          _localizedLanguageName(
+                                                              AppLocalizations
+                                                                  .of(context)!,
+                                                              lang)),
+                                                  overflow:
+                                                      TextOverflow.ellipsis)))
+                                          .toList(),
+                                      onChanged: (val) {
+                                        if (val != null) {
+                                          setState(() => _sideALanguage = val);
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                // Side A keyboard toggle
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.keyboard,
+                                    color: _isSideAKeyboardMode
+                                        ? Colors.blueAccent
+                                        : (isDark
+                                            ? Colors.white54
+                                            : Colors.black54),
+                                    size: 20,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isSideAKeyboardMode =
+                                          !_isSideAKeyboardMode;
+                                      if (_isSideAKeyboardMode &&
+                                          _recordingSide != null) {
+                                        _stopAudioStreaming();
+                                      }
+                                    });
                                   },
                                 ),
-                              ),
-                              // Side A keyboard toggle
-                              IconButton(
-                                icon: Icon(
-                                  Icons.keyboard,
-                                  color: _isSideAKeyboardMode
-                                      ? Colors.blueAccent
-                                      : (isDark
-                                          ? Colors.white54
-                                          : Colors.black54),
-                                  size: 20,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    _isSideAKeyboardMode =
-                                        !_isSideAKeyboardMode;
-                                    if (_isSideAKeyboardMode &&
-                                        _recordingSide != null) {
-                                      _stopAudioStreaming();
-                                    }
-                                  });
-                                },
-                              ),
-                              if (_recordingSide != null)
-                                Row(
-                                  children: [
-                                    const Icon(Icons.circle,
-                                        color: Colors.redAccent, size: 12),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                        AppLocalizations.of(context)!
-                                            .youAreSpeaking,
-                                        style: const TextStyle(
-                                            color: Colors.redAccent,
-                                            fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                            ],
+                                if (_recordingSide != null)
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.circle,
+                                          color: Colors.redAccent, size: 12),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .youAreSpeaking,
+                                          style: const TextStyle(
+                                              color: Colors.redAccent,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                              ],
+                            ),
                           ),
                           Row(
                             children: [
@@ -979,10 +1089,14 @@ class _TravelInterpreterScreenState
                                 children: [
                                   Text(
                                     isFromSideA
-                                        ? AppLocalizations.of(context)!
-                                            .youLang(msg.language)
+                                        ? AppLocalizations.of(context)!.youLang(
+                                            _localizedLanguageName(
+                                                AppLocalizations.of(context)!,
+                                                msg.language))
                                         : AppLocalizations.of(context)!
-                                            .partnerLang(msg.language),
+                                            .partnerLang(_localizedLanguageName(
+                                                AppLocalizations.of(context)!,
+                                                msg.language)),
                                     style: TextStyle(
                                         color: isDark
                                             ? Colors.white38
@@ -1053,7 +1167,8 @@ class _TravelInterpreterScreenState
                                 color: isDark ? Colors.white : Colors.black,
                                 fontSize: 18),
                             decoration: InputDecoration(
-                              hintText: AppLocalizations.of(context)!.type_in,
+                              hintText:
+                                  '${AppLocalizations.of(context)!.type_in} ${_localizedLanguageName(AppLocalizations.of(context)!, _sideALanguage)}',
                               hintStyle: TextStyle(
                                   color:
                                       isDark ? Colors.white38 : Colors.black38),
