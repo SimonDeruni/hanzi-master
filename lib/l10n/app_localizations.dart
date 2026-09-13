@@ -4691,7 +4691,7 @@ abstract class AppLocalizations {
   /// No description provided for @score.
   ///
   /// In en, this message translates to:
-  /// **'Score:'**
+  /// **'Score: {score}/{total}'**
   String score(Object score, Object total);
 
   /// No description provided for @searchByPinyinOrMeaning.
@@ -23552,6 +23552,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.'**
   String get liveCallGoodPracticeFallback;
+
+  /// No description provided for @sentenceNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Sentence {number}'**
+  String sentenceNumber(Object number);
+
+  /// No description provided for @endlessAiStreamSentence.
+  ///
+  /// In en, this message translates to:
+  /// **'Endless AI Stream • Sentence {count}'**
+  String endlessAiStreamSentence(Object count);
 }
 
 class _AppLocalizationsDelegate

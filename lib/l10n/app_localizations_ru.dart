@@ -12876,4 +12876,14 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       'Хорошая тренировочная сессия. Продолжайте уделять внимание четкому контрасту тонов и естественному темпу беседы.';
+
+  @override
+  String sentenceNumber(Object number) {
+    return 'Предложение $number';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return 'Бесконечный поток ИИ • Предложение $count';
+  }
 }

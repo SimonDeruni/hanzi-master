@@ -12747,4 +12747,14 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       'جلسة تدريبية جيدة. استمر في التركيز على التباين الواضح في درجات النغمات والسرعة الطبيعية للمحادثة.';
+
+  @override
+  String sentenceNumber(Object number) {
+    return 'الجملة $number';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return 'بث ذكاء اصطناعي لا نهائي • جملة $count';
+  }
 }

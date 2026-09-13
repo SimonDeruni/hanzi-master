@@ -165,5 +165,105 @@ void main() {
       expect(timings[7].char, '演');
       expect(timings[7].hanziIndex, 7);
     });
+
+    test('cleanBoundaryWord strips non-spoken punctuation and whitespace', () {
+      expect(cleanBoundaryWord('“那蟒蛇'), '那蟒蛇');
+      expect(cleanBoundaryWord('随后”'), '随后');
+      expect(cleanBoundaryWord('《损》'), '损');
+      expect(cleanBoundaryWord('，世界！'), '世界');
+      expect(cleanBoundaryWord('  “你好”  '), '你好');
+      expect(cleanBoundaryWord('“'), '');
+      expect(cleanBoundaryWord(''), '');
+    });
+
+    test('handles attached quotes and repeated words monotonically without skipping', () {
+      const sentence = '在这一天，他走在街上，叫道：“益州险塞！”';
+      final boundaries = [
+        {
+          'Offset': 1000000,
+          'Duration': 2000000,
+          'Word': '在',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 3000000,
+          'Duration': 3000000,
+          'Word': '这一天',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 6000000,
+          'Duration': 1000000,
+          'Word': '，',
+          'BoundaryType': 'PunctuationBoundary',
+        },
+        {
+          'Offset': 7000000,
+          'Duration': 2000000,
+          'Word': '他',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 9000000,
+          'Duration': 2000000,
+          'Word': '走',
+          'BoundaryType': 'WordBoundary',
+        },
+        // Repeated word "在"
+        {
+          'Offset': 11000000,
+          'Duration': 2000000,
+          'Word': '在',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 13000000,
+          'Duration': 3000000,
+          'Word': '街上',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 16000000,
+          'Duration': 1000000,
+          'Word': '，',
+          'BoundaryType': 'PunctuationBoundary',
+        },
+        {
+          'Offset': 17000000,
+          'Duration': 3000000,
+          'Word': '叫道',
+          'BoundaryType': 'WordBoundary',
+        },
+        // Attached opening quote and dialogue
+        {
+          'Offset': 20000000,
+          'Duration': 1000000,
+          'Word': '：',
+          'BoundaryType': 'PunctuationBoundary',
+        },
+        {
+          'Offset': 21000000,
+          'Duration': 4000000,
+          'Word': '“益州',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 25000000,
+          'Duration': 3000000,
+          'Word': '险塞！”',
+          'BoundaryType': 'WordBoundary',
+        },
+      ];
+
+      final timings = buildSpokenCharTimings(text: sentence, boundaries: boundaries);
+      // Hanzi in text: 在(0) 这(1) 一(2) 天(3) 他(4) 走(5) 在(6) 街(7) 上(8) 叫(9) 道(10) 益(11) 州(12) 险(13) 塞(14)
+      expect(timings.length, 15);
+      expect(timings.map((t) => t.char).join(), '在这一天他走在街上叫道益州险塞');
+
+      // Verify every character is strictly contiguous (no holes, no jumps)
+      for (var i = 0; i < timings.length; i++) {
+        expect(timings[i].hanziIndex, i);
+      }
+    });
   });
 }

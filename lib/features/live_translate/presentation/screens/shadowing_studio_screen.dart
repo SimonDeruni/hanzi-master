@@ -306,8 +306,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text(
+            SnackBar(
+                content: Text(AppLocalizations.of(context)?.microphonePermissionDeniedEnableItI ??
                     "Microphone permission denied. Enable it in Settings to use Shadowing Studio.")),
           );
         }
@@ -491,7 +491,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Session Summary",
+                    AppLocalizations.of(context)?.sessionSummary ?? "Session Summary",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -500,7 +500,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Here are the characters you struggled with:",
+                    AppLocalizations.of(context)?.hereAreTheCharactersYouStruggledWit ??
+                        "Here are the characters you struggled with:",
                     style: TextStyle(
                         color: isDark ? Colors.white70 : Colors.black54),
                     textAlign: TextAlign.center,
@@ -1320,6 +1321,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   Widget _buildSessionUI(BuildContext context, bool isDark) {
+    final l10n = AppLocalizations.of(context);
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -1361,7 +1363,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Shadowing Studio",
+                                        l10n?.shadowingStudio ?? "Shadowing Studio",
                                         style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
@@ -1375,8 +1377,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                                 _selectedMode ==
                                                     ShadowingMode
                                                         .customSentence)
-                                            ? "Single Phrase Practice"
-                                            : "Endless AI Stream • Sentence $_sentenceCount",
+                                            ? (l10n?.singlePhrasePractice ??
+                                                "Single Phrase Practice")
+                                            : (l10n?.endlessAiStreamSentence(
+                                                    _sentenceCount) ??
+                                                "Endless AI Stream • Sentence $_sentenceCount"),
                                         style: const TextStyle(
                                             fontSize: 14,
                                             color: Colors.orange,
@@ -1441,21 +1446,23 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               children: [
                                 // Grading State
                                 if (_isGrading)
-                                  const Row(
+                                  Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                           width: 20,
                                           height: 20,
                                           child: CircularProgressIndicator(
                                               strokeWidth: 2,
                                               color: Colors.orange)),
-                                      SizedBox(width: 12),
+                                      const SizedBox(width: 12),
                                       Text(
-                                          "AI is grading your pronunciation...",
-                                          style: TextStyle(
-                                              color: Colors.orange,
-                                              fontSize: 16)),
+                                        l10n?.aiIsGradingYourPronunciation ??
+                                            "AI is grading your pronunciation...",
+                                        style: const TextStyle(
+                                            color: Colors.orange,
+                                            fontSize: 16),
+                                      ),
                                     ],
                                   ),
 
@@ -1560,7 +1567,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 ),
                                 SizedBox(height: widget.isCompact ? 8 : 16),
                                 Text(
-                                  "Hold mic to record. Release to grade.",
+                                  l10n?.holdMicToRecordReleaseToGrade ??
+                                      "Hold mic to record. Release to grade.",
                                   style: TextStyle(
                                       color: isDark
                                           ? Colors.white54
@@ -1582,7 +1590,28 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
+  String _getLocalizedOverallFeedback(String? feedback, AppLocalizations? l10n) {
+    if (feedback == null || feedback.isEmpty || l10n == null) {
+      return feedback ?? '';
+    }
+    switch (feedback) {
+      case 'Perfect pronunciation! Sounds like a native speaker.':
+        return l10n.perfectPronunciationSoundsLikeANati;
+      case 'Great job! A few minor tone inaccuracies.':
+        return l10n.greatJobAFewMinorToneInaccuracies;
+      case 'Not bad, but your tones need some work.':
+        return l10n.notBadButYourTonesNeedSomeWork;
+      case 'Keep practicing! Listen to the native audio and try again.':
+        return l10n.keepPracticingListenToTheNativeAudi;
+      case 'Good effort! Keep practicing.':
+        return l10n.goodEffortKeepPracticing;
+      default:
+        return feedback;
+    }
+  }
+
   Widget _buildPhraseCard(bool isDark) {
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Column(
@@ -1605,7 +1634,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               child: Column(
                 children: [
                   Text(
-                    "Score: ${_lastGrade!['score']}/100",
+                    l10n != null
+                        ? l10n.score(_lastGrade!['score'], 100)
+                        : "Score: ${_lastGrade!['score']}/100",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -1616,7 +1647,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    _lastGrade!['overallFeedback'] ?? "",
+                    _getLocalizedOverallFeedback(
+                        _lastGrade!['overallFeedback'], l10n),
                     style: TextStyle(
                         fontSize: 16,
                         color: isDark ? Colors.white70 : Colors.black87),
@@ -1759,15 +1791,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     final isPartial = wordData['isPartial'] ?? false;
     final isOmitted = wordData['isOmitted'] ?? false;
 
+    final l10n = AppLocalizations.of(context);
     String errorLabel;
     if (isOmitted) {
-      errorLabel = 'Omitted';
+      errorLabel = l10n?.omitted ?? 'Omitted';
     } else if (isCorrect) {
-      errorLabel = 'Correct';
+      errorLabel = l10n?.correct ?? 'Correct';
     } else if (isPartial) {
-      errorLabel = 'Partial';
+      errorLabel = l10n?.partial ?? 'Partial';
     } else {
-      errorLabel = 'Mispronounced';
+      errorLabel = l10n?.mispronounced ?? 'Mispronounced';
     }
 
     showModalBottomSheet(
@@ -1840,7 +1873,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   const SizedBox(height: 16),
                   Center(
                     child: Text(
-                      "Score: ${(wordData['accuracyScore'] as num).toInt()}/100",
+                      l10n != null
+                          ? l10n.score((wordData['accuracyScore'] as num).toInt(), 100)
+                          : "Score: ${(wordData['accuracyScore'] as num).toInt()}/100",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -1863,7 +1898,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               : Colors.orange.shade800),
                       const SizedBox(width: 4),
                       Text(
-                        "Tap any syllable to audition all 4 tones:",
+                        l10n?.tapAnySyllableToAuditionAll4Tones ??
+                            "Tap any syllable to audition all 4 tones:",
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

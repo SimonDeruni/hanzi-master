@@ -4015,5 +4015,7 @@
   "liveCallSessionCompletedFallback": "Sesi selesai. Pada latihan berikutnya, ucapkan kalimat lengkap untuk menerima diagnostik pengucapan dan nada yang mendalam.",
   "liveCallGoodStartPracticingWord": "Awal yang baik berlatih '{word}'. Pada sesi berikutnya, cobalah merangkai kalimat lengkap untuk melatih transisi nada dan kelancaran alami.",
   "liveCallSolidEffortFallback": "Upaya percakapan yang solid. Fokuslah menjaga nada ke-1 tetap tinggi dan rata (55) serta nada ke-4 tajam dan tegas (51) untuk meningkatkan kejelasan alami.",
-  "liveCallGoodPracticeFallback": "Sesi latihan yang bagus. Lanjutkan fokus pada kontras tinggi nada yang jelas dan tempo percakapan yang alami."
+  "liveCallGoodPracticeFallback": "Sesi latihan yang bagus. Lanjutkan fokus pada kontras tinggi nada yang jelas dan tempo percakapan yang alami.",
+  "sentenceNumber": "Kalimat {number}",
+  "endlessAiStreamSentence": "Streaming AI Tanpa Akhir • Kalimat {count}"
 }

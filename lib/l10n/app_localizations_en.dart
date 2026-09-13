@@ -2456,7 +2456,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String score(Object score, Object total) {
-    return 'Score:';
+    return 'Score: $score/$total';
   }
 
   @override
@@ -12772,4 +12772,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       'Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.';
+
+  @override
+  String sentenceNumber(Object number) {
+    return 'Sentence $number';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return 'Endless AI Stream • Sentence $count';
+  }
 }

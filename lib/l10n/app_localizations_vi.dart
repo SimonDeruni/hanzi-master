@@ -12833,4 +12833,14 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       'Buổi luyện tập tốt. Hãy tiếp tục tập trung vào sự phân biệt cao độ thanh điệu rõ ràng và nhịp điệu giao tiếp tự nhiên.';
+
+  @override
+  String sentenceNumber(Object number) {
+    return 'Câu $number';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return 'Luồng AI vô tận • Câu $count';
+  }
 }

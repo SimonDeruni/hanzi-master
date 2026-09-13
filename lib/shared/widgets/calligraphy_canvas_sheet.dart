@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_ca
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void showCalligraphyCanvas(BuildContext context, Flashcard card) {
   showDialog(
@@ -87,7 +88,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
         Icon(Icons.check_circle, size: 64, color: Colors.green.shade400),
         const SizedBox(height: 16),
         Text(
-          'Trace Complete!',
+          AppLocalizations.of(context)?.traceComplete ?? 'Trace Complete!',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -137,7 +138,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                     onPressed: () => Navigator.pop(context),
                   ),
                   Text(
-                    'Trace Character',
+                    AppLocalizations.of(context)?.traceCharacter ?? 'Trace Character',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

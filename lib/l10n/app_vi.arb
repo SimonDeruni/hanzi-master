@@ -4020,5 +4020,7 @@
   "liveCallSessionCompletedFallback": "Phiên luyện tập hoàn tất. Lần tới, hãy nói cả câu hoàn chỉnh để nhận chẩn đoán phát âm và thanh điệu chi tiết.",
   "liveCallGoodStartPracticingWord": "Khởi đầu tốt khi luyện tập '{word}'. Trong buổi tiếp theo, hãy thử ghép các câu hoàn chỉnh để rèn luyện sự chuyển đổi thanh điệu và độ lưu loát tự nhiên.",
   "liveCallSolidEffortFallback": "Nỗ lực giao tiếp rất tốt. Hãy chú ý giữ thanh 1 cao và đều (55), thanh 4 dứt khoát và đi xuống (51) để phát âm tự nhiên và rõ ràng hơn.",
-  "liveCallGoodPracticeFallback": "Buổi luyện tập tốt. Hãy tiếp tục tập trung vào sự phân biệt cao độ thanh điệu rõ ràng và nhịp điệu giao tiếp tự nhiên."
+  "liveCallGoodPracticeFallback": "Buổi luyện tập tốt. Hãy tiếp tục tập trung vào sự phân biệt cao độ thanh điệu rõ ràng và nhịp điệu giao tiếp tự nhiên.",
+  "sentenceNumber": "Câu {number}",
+  "endlessAiStreamSentence": "Luồng AI vô tận • Câu {count}"
 }

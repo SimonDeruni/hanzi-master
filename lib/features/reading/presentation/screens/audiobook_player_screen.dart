@@ -122,15 +122,11 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         _currentSentenceIndex = location.sentenceIndex;
         _isPlaying = location.playing;
         if (changed) {
-          _currentSpokenCharIndex = -1;
-          _currentSpokenCharEnd = 0;
+          _currentSpokenCharIndex = 0;
+          _currentSpokenCharEnd = 1;
+          _currentSentenceTimings = const [];
           _totalDurationMs = 0;
           _ensureSentenceKeys();
-          _rebuildSentenceTimings();
-          if (_currentSentenceTimings.isNotEmpty) {
-            _currentSpokenCharIndex = 0;
-            _currentSpokenCharEnd = 1;
-          }
         }
       });
       if (changed) {
@@ -170,7 +166,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       if (!mounted) return;
       setState(() {
         _rebuildSentenceTimings();
-        if (_currentSentenceTimings.isNotEmpty && _currentSpokenCharIndex < 0) {
+        if (_currentSentenceTimings.isNotEmpty) {
           _currentSpokenCharIndex = 0;
           _currentSpokenCharEnd = 1;
         }
@@ -427,15 +423,11 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       final requestGeneration = ++_audioRequestGeneration;
       setState(() {
         _currentSentenceIndex = sentenceIdx;
-        _currentSpokenCharIndex = -1;
-        _currentSpokenCharEnd = 0;
+        _currentSpokenCharIndex = 0;
+        _currentSpokenCharEnd = 1;
+        _currentSentenceTimings = const [];
         _totalDurationMs = 0;
         _isPlaying = true;
-        _rebuildSentenceTimings();
-        if (_currentSentenceTimings.isNotEmpty) {
-          _currentSpokenCharIndex = 0;
-          _currentSpokenCharEnd = 1;
-        }
       });
       _saveProgress();
       _scrollToSentence(sentenceIdx);
@@ -766,7 +758,15 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       } else if (_scrollController.hasClients) {
         final estOffset = (index * 160.0)
             .clamp(0.0, _scrollController.position.maxScrollExtent);
-        _scrollController.jumpTo(estOffset);
+        if (animate) {
+          _scrollController.animateTo(
+            estOffset,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOutQuart,
+          );
+        } else {
+          _scrollController.jumpTo(estOffset);
+        }
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted || index >= _sentenceKeys.length) return;
           final retryCtx = _sentenceKeys[index].currentContext;
@@ -881,7 +881,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                           : const Color(0xFF8B0000)),
                   const SizedBox(width: 8),
                   Text(
-                    'Sleep Timer',
+                    AppLocalizations.of(context)?.sleepTimer ?? 'Sleep Timer',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -891,7 +891,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                 ],
               ),
               const SizedBox(height: 16),
-              _buildSleepTile(ctx, 'Off', null, primaryText,
+              _buildSleepTile(ctx, AppLocalizations.of(context)?.off ?? 'Off', null, primaryText,
                   isSelected:
                       _sleepSecondsRemaining == null && !_stopAtEndOfChapter,
                   isDark: isDark),
@@ -1436,7 +1436,10 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                         Row(
                           children: [
                             Text(
-                              'Sentence ${_currentSentenceIndex + 1} / $totalSentences',
+                              AppLocalizations.of(context)!.sentenceXOfY(
+                                _currentSentenceIndex + 1,
+                                totalSentences,
+                              ),
                               style: TextStyle(
                                 fontSize: 10.5,
                                 fontWeight: FontWeight.w600,
@@ -1445,7 +1448,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                             ),
                             const Spacer(),
                             Text(
-                              'Book ${(bookProgress * 100).round()}%',
+                              AppLocalizations.of(context)!.bookPercentRead(
+                                (bookProgress * 100).round(),
+                              ),
                               style: TextStyle(
                                 fontSize: 10.5,
                                 fontWeight: FontWeight.bold,
@@ -1592,7 +1597,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                       duration:
                                           const Duration(milliseconds: 150),
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 3, vertical: 2),
+                                          horizontal: 4, vertical: 2),
+                                      transform: isCharSpoken
+                                          ? Matrix4.diagonal3Values(
+                                              1.06, 1.06, 1.0)
+                                          : Matrix4.identity(),
+                                      transformAlignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         color: isQuickLookSelected
                                             ? (isDark
@@ -1602,11 +1612,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                     .withValues(alpha: 0.16))
                                             : (isCharSpoken
                                                 ? (isDark
-                                                    ? Colors.amber.shade700
-                                                        .withValues(alpha: 0.5)
-                                                    : const Color(0xFFD4AF37)
-                                                        .withValues(
-                                                            alpha: 0.35))
+                                                    ? const Color(0xFFD97706)
+                                                        .withValues(alpha: 0.35)
+                                                    : const Color(0xFFFEF3C7))
                                                 : Colors.transparent),
                                         borderRadius: BorderRadius.circular(6),
                                         border: Border.all(
@@ -1616,11 +1624,37 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                   : const Color(0xFF4F46E5))
                                               : (isCharSpoken
                                                   ? (isDark
-                                                      ? Colors.amber.shade300
-                                                      : const Color(0xFF8B0000))
+                                                      ? const Color(0xFFFBBF24)
+                                                      : const Color(0xFFD4AF37))
                                                   : Colors.transparent),
-                                          width: isQuickLookSelected ? 1.5 : 1,
+                                          width: isQuickLookSelected
+                                              ? 1.5
+                                              : (isCharSpoken ? 1.2 : 1.0),
                                         ),
+                                        boxShadow: isCharSpoken
+                                            ? [
+                                                BoxShadow(
+                                                  color: (isDark
+                                                          ? const Color(
+                                                              0xFFFBBF24)
+                                                          : const Color(
+                                                              0xFFD4AF37))
+                                                      .withValues(alpha: 0.40),
+                                                  blurRadius: 8,
+                                                  spreadRadius: 1,
+                                                ),
+                                              ]
+                                            : (isQuickLookSelected
+                                                ? [
+                                                    BoxShadow(
+                                                      color: const Color(
+                                                              0xFF6366F1)
+                                                          .withValues(
+                                                              alpha: 0.35),
+                                                      blurRadius: 8,
+                                                    ),
+                                                  ]
+                                                : null),
                                       ),
                                       constraints: BoxConstraints(
                                           minWidth: isActive ? 24.0 : 18.0),
@@ -1646,8 +1680,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                       : const Color(0xFF3730A3))
                                                   : (isCharSpoken
                                                       ? (isDark
-                                                          ? Colors
-                                                              .amber.shade200
+                                                          ? const Color(
+                                                              0xFFFDE68A)
                                                           : const Color(
                                                               0xFF8B0000))
                                                       : (isActive
@@ -1656,12 +1690,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                                   ? Colors
                                                                       .white70
                                                                   : const Color(
-                                                                      0xFF4A4036))
+                                                                      0xFF5A5248))
                                                               : (isDark
                                                                   ? Colors
-                                                                      .white38
+                                                                      .white60
                                                                   : const Color(
-                                                                      0xFF8C827A)))
+                                                                      0xFF5A5248)))
                                                           : (isDark
                                                               ? Colors.white24
                                                               : const Color(
@@ -1689,22 +1723,21 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                       : const Color(0xFF1E1B4B))
                                                   : (isCharSpoken
                                                       ? (isDark
-                                                          ? Colors
-                                                              .amber.shade100
+                                                          ? const Color(
+                                                              0xFFFFFBEB)
                                                           : const Color(
                                                               0xFF8B0000))
                                                       : (isActive
                                                           ? (isPastChar
                                                               ? primaryText
-                                                              : (isDark
-                                                                  ? Colors
-                                                                      .white70
-                                                                  : const Color(
-                                                                      0xFF333333)))
+                                                                  .withValues(
+                                                                      alpha:
+                                                                          0.75)
+                                                              : primaryText)
                                                           : (isDark
                                                               ? Colors.white38
                                                               : const Color(
-                                                                  0xFF8C827A)))),
+                                                                  0xFF7A7067)))),
                                               fontFamily: 'NotoSerifSC',
                                               height: 1.2,
                                             ),
@@ -1848,7 +1881,10 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                             ),
                           ),
                           Text(
-                            'Sentence ${_currentSentenceIndex + 1} of ${chapter.sentences.length}',
+                            AppLocalizations.of(context)!.sentenceXOfY(
+                              _currentSentenceIndex + 1,
+                              chapter.sentences.length,
+                            ),
                             style: TextStyle(
                               fontSize: 11.5,
                               fontWeight: FontWeight.w600,

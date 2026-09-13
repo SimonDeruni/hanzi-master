@@ -102,16 +102,44 @@ class SpokenCharTiming {
       '$char[hanzi=$hanziIndex]: ${startMs.toStringAsFixed(1)}-${endMs.toStringAsFixed(1)}ms';
 }
 
+/// Strips leading and trailing non-spoken punctuation and whitespace from boundary words.
+String cleanBoundaryWord(String word) {
+  if (word.isEmpty) return word;
+  final runes = word.runes.toList();
+  var start = 0;
+  while (start < runes.length) {
+    final c = String.fromCharCode(runes[start]);
+    if (_nonSpokenCharacters.contains(c) || c.trim().isEmpty) {
+      start++;
+    } else {
+      break;
+    }
+  }
+  var end = runes.length;
+  while (end > start) {
+    final c = String.fromCharCode(runes[end - 1]);
+    if (_nonSpokenCharacters.contains(c) || c.trim().isEmpty) {
+      end--;
+    } else {
+      break;
+    }
+  }
+  if (start >= end) return '';
+  return String.fromCharCodes(runes.sublist(start, end));
+}
+
 /// Constructs a list of [SpokenCharTiming] by aligning Azure Speech boundary events
-/// with the characters in [text]. Handles multi-character compound words and punctuation gaps.
+/// with the characters in [text]. Handles multi-character compound words, attached quotes,
+/// repeated words, and punctuation gaps with monotonic bounded lookahead.
 List<SpokenCharTiming> buildSpokenCharTimings({
   required String text,
   required List<Map<String, dynamic>> boundaries,
 }) {
   if (text.isEmpty || boundaries.isEmpty) return const [];
 
-  // Map textOffset -> hanziIndex for all spoken Hanzi in text
+  // Map textOffset -> hanziIndex and character for all spoken Hanzi in text
   final hanziIndexByOffset = <int, int>{};
+  final hanziCharByOffset = <int, String>{};
   int hanziCounter = 0;
   int offset = 0;
   for (final rune in text.runes) {
@@ -120,6 +148,7 @@ List<SpokenCharTiming> buildSpokenCharTimings({
         _nonSpokenCharacters.contains(c) || RegExp(r'^\d+$').hasMatch(c);
     if (!isNonSpoken) {
       hanziIndexByOffset[offset] = hanziCounter;
+      hanziCharByOffset[offset] = c;
       hanziCounter++;
     }
     offset += c.length;
@@ -129,12 +158,21 @@ List<SpokenCharTiming> buildSpokenCharTimings({
   int searchPos = 0;
 
   for (final b in boundaries) {
-    final word = (b['Word'] ?? b['text']?['Text'] ?? '').toString();
+    final rawWord = (b['Word'] ?? b['text']?['Text'] ?? '').toString();
     final boundaryType = (b['BoundaryType'] ??
             b['text']?['BoundaryType'] ??
             b['Type'] ??
             '')
         .toString();
+    if (rawWord.isEmpty) continue;
+
+    // Azure emits SentenceBoundary containing the whole sentence; ignore
+    if (boundaryType == 'SentenceBoundary') continue;
+
+    // Punctuation boundaries represent pauses; do not map as spoken Hanzi characters
+    if (boundaryType == 'PunctuationBoundary') continue;
+
+    final word = cleanBoundaryWord(rawWord);
     if (word.isEmpty) continue;
 
     final offsetTicks = b['Offset'];
@@ -150,15 +188,35 @@ List<SpokenCharTiming> buildSpokenCharTimings({
                 : int.tryParse(durTicks.toString()) ?? 0) /
             10000.0);
 
-    // Azure emits SentenceBoundary containing the whole sentence; ignore to prevent searchPos jumping to text.length
-    if (boundaryType == 'SentenceBoundary') continue;
+    // Advance searchPos past any non-spoken punctuation or whitespace in text
+    while (searchPos < text.length) {
+      final c = text[searchPos];
+      if (_nonSpokenCharacters.contains(c) || c.trim().isEmpty) {
+        searchPos++;
+      } else {
+        break;
+      }
+    }
 
-    final foundAt = text.indexOf(word, searchPos);
+    int foundAt = -1;
+    if (text.startsWith(word, searchPos)) {
+      foundAt = searchPos;
+    } else {
+      // Bounded local search: inspect at most 6 characters ahead.
+      // This strictly prevents jumping across sentences when words repeat (e.g. '在', '他', '的', '了').
+      final maxLookahead = (searchPos + 6).clamp(searchPos, text.length);
+      final localSub = text.substring(searchPos, maxLookahead);
+      final localIdx = localSub.indexOf(word);
+      if (localIdx != -1) {
+        foundAt = searchPos + localIdx;
+      }
+    }
+
+    // Word does not match locally (e.g. speech quirk or pronunciation gap)
+    // DO NOT search the whole sentence! Leave searchPos in place so subsequent words can match.
     if (foundAt == -1) continue;
-    searchPos = foundAt + word.length;
 
-    // Punctuation boundaries represent pauses; do not map as spoken Hanzi characters
-    if (boundaryType == 'PunctuationBoundary') continue;
+    searchPos = foundAt + word.length;
 
     // Extract spoken Hanzi within this word boundary
     final wordHanziOffsets = <int>[];
@@ -176,7 +234,8 @@ List<SpokenCharTiming> buildSpokenCharTimings({
     final charDuration = durMs / wordHanziOffsets.length;
     for (var i = 0; i < wordHanziOffsets.length; i++) {
       final charOffset = wordHanziOffsets[i];
-      final charStr = text.substring(charOffset, charOffset + 1);
+      final charStr = hanziCharByOffset[charOffset] ??
+          text.substring(charOffset, charOffset + 1);
       final hanziIdx = hanziIndexByOffset[charOffset]!;
       final cStart = offsetMs + (i * charDuration);
       final cEnd = offsetMs + ((i + 1) * charDuration);

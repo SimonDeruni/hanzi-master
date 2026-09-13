@@ -12475,4 +12475,14 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       '좋은 연습 세션이었습니다. 명확한 성조 높낮이 대비와 자연스러운 대화 속도에 계속 집중해보세요.';
+
+  @override
+  String sentenceNumber(Object number) {
+    return '문장 $number';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return '무한 AI 스트림 • 문장 $count';
+  }
 }

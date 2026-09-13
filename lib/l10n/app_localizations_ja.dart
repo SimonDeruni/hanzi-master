@@ -12443,4 +12443,14 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       '良い練習セッションでした。声調の高低差を明確にし、自然な会話のテンポを意識していきましょう。';
+
+  @override
+  String sentenceNumber(Object number) {
+    return '第$number文';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return 'AIエンドレスストリーム • 第$count文';
+  }
 }

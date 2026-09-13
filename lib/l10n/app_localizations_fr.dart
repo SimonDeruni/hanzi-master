@@ -12922,4 +12922,14 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get liveCallGoodPracticeFallback =>
       'Bonne session de pratique. Continuez à vous concentrer sur le contraste net des tons et un rythme de conversation naturel.';
+
+  @override
+  String sentenceNumber(Object number) {
+    return 'Phrase $number';
+  }
+
+  @override
+  String endlessAiStreamSentence(Object count) {
+    return 'Flux continu d\'IA • Phrase $count';
+  }
 }

@@ -17,6 +17,7 @@ import 'package:http/http.dart' as http;
 import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/core/services/local_tts_voice.dart';
+import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
 import '../utils/pinyin_utils.dart';
 
 final audioServiceProvider = Provider<AudioService>((ref) {
@@ -544,6 +545,8 @@ class AudioService extends background_audio.BaseAudioHandler {
     double? speechRate,
   }) async {
     final generation = ++_playbackGeneration;
+    _currentBoundaries = [];
+    _currentBoundaryIndex = 0;
     if (!_isInitialized) await init();
     if (generation != _playbackGeneration || _isDisposed) return false;
     await _runEngineOperation(() async {
@@ -934,7 +937,7 @@ class AudioService extends background_audio.BaseAudioHandler {
     final normalized = <Map<String, dynamic>>[];
     int searchPos = 0;
     for (final b in rawBoundaries) {
-      final word = (b['text']?['Text'] ?? b['Word'] ?? '').toString();
+      final rawWord = (b['text']?['Text'] ?? b['Word'] ?? '').toString();
       final boundaryType = (b['text']?['BoundaryType'] ??
               b['BoundaryType'] ??
               b['Type'] ??
@@ -953,10 +956,33 @@ class AudioService extends background_audio.BaseAudioHandler {
                   : int.tryParse(durTicks.toString()) ?? 0) /
               10000.0);
 
+      final word = cleanBoundaryWord(rawWord);
       int textOffset = -1;
-      int wordLen = word.length;
+      int wordLen = word.isNotEmpty ? word.length : rawWord.length;
+
       if (word.isNotEmpty) {
-        final foundAt = text.indexOf(word, searchPos);
+        // Advance searchPos past any non-spoken punctuation or whitespace in text
+        while (searchPos < text.length) {
+          final c = text[searchPos];
+          if (cleanBoundaryWord(c).isEmpty || c.trim().isEmpty) {
+            searchPos++;
+          } else {
+            break;
+          }
+        }
+
+        int foundAt = -1;
+        if (text.startsWith(word, searchPos)) {
+          foundAt = searchPos;
+        } else {
+          final maxLookahead = (searchPos + 6).clamp(searchPos, text.length);
+          final localSub = text.substring(searchPos, maxLookahead);
+          final localIdx = localSub.indexOf(word);
+          if (localIdx != -1) {
+            foundAt = searchPos + localIdx;
+          }
+        }
+
         if (foundAt != -1) {
           textOffset = foundAt;
           searchPos = foundAt + word.length;
@@ -970,7 +996,7 @@ class AudioService extends background_audio.BaseAudioHandler {
         'Duration': durTicks,
         'OffsetMs': offsetMs,
         'DurationMs': durMs,
-        'Word': word,
+        'Word': word.isNotEmpty ? word : rawWord,
         'BoundaryType': boundaryType,
       });
     }

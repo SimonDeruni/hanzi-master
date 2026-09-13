@@ -477,9 +477,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
   void _showPlaybackFailure() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
+      SnackBar(
         content: Text(
-            'Audio could not start. Check your connection and device voice settings.'),
+            AppLocalizations.of(context)?.audio_could_not_start_check_your ??
+                'Audio could not start. Check your connection and device voice settings.'),
       ),
     );
   }
@@ -606,7 +607,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           size: 14, color: Colors.orange.shade400),
                       const SizedBox(width: 4),
                       Text(
-                        'Weekly Azure quota reached — switching to local voice',
+                        AppLocalizations.of(context)?.weeklyAzureQuotaReachedSwitching ??
+                            'Weekly Azure quota reached — switching to local voice',
                         style: TextStyle(
                             fontSize: 12,
                             color: isDark
@@ -785,7 +787,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           : const Color(0xFF8B0000)),
                   const SizedBox(width: 8),
                   Text(
-                    '定时关闭 · Sleep Timer',
+                    AppLocalizations.of(context)?.sleepTimer2 ??
+                        '定时关闭 · Sleep Timer',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -795,7 +798,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                 ],
               ),
               const SizedBox(height: 16),
-              _buildSleepTimerTile(ctx, 'Off', null, isDark, primaryText,
+              _buildSleepTimerTile(ctx,
+                  AppLocalizations.of(context)?.off ?? 'Off', null, isDark, primaryText,
                   isSelected:
                       _sleepSecondsRemaining == null && !_stopAtEndOfChapter),
               _buildSleepTimerTile(ctx, '15 Minutes', 15, isDark, primaryText,
@@ -911,7 +915,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Studio Voice Allowance',
+                        AppLocalizations.of(context)?.studioVoiceAllowance ??
+                            'Studio Voice Allowance',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -919,7 +924,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                         ),
                       ),
                       Text(
-                        'Weekly High-Definition AI Recitation',
+                        AppLocalizations.of(context)?.weeklyHighdefinitionAiRecitation ??
+                            'Weekly High-Definition AI Recitation',
                         style: TextStyle(
                           fontSize: 11.5,
                           color: isDark ? Colors.white54 : Colors.black54,
@@ -992,7 +998,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             color: isDark ? Colors.white70 : Colors.black87),
                         const SizedBox(width: 6),
                         Text(
-                          'Resets every Monday at 00:00',
+                          AppLocalizations.of(context)?.resetsEveryMondayAt0000 ??
+                              'Resets every Monday at 00:00',
                           style: TextStyle(
                             fontSize: 12.5,
                             fontWeight: FontWeight.bold,
@@ -1003,7 +1010,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'When your weekly 4-hour Studio allowance is used, the app automatically switches to On-Device Voice for unlimited, free listening without interruption.',
+                      AppLocalizations.of(context)?.whenYourWeekly4hourStudioAllowanceI ??
+                          'When your weekly 4-hour Studio allowance is used, the app automatically switches to On-Device Voice for unlimited, free listening without interruption.',
                       style: TextStyle(
                         fontSize: 11.5,
                         height: 1.4,
@@ -1374,7 +1382,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '目录 · Table of Contents',
+                        AppLocalizations.of(context)?.tableOfContents2 ??
+                            '目录 · Table of Contents',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -1697,7 +1706,12 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Sentence ${chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1} of ${chapter.sentences.length}',
+                        AppLocalizations.of(context)!.sentenceXOfY(
+                          chapter.sentences.isEmpty
+                              ? 0
+                              : _currentReadingSentenceIndex + 1,
+                          chapter.sentences.length,
+                        ),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
@@ -1841,7 +1855,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Sentence ${index + 1}',
+                                  AppLocalizations.of(context)!
+                                      .sentenceNumber(index + 1),
                                   style: TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
@@ -2158,7 +2173,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    'Sentence ${_currentAudioSentenceIndex + 1} / ${chapter.sentences.length}',
+                                    AppLocalizations.of(context)!.sentenceXOfY(
+                                      _currentAudioSentenceIndex + 1,
+                                      chapter.sentences.length,
+                                    ),
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -2170,7 +2188,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                       Text(
                                         quotaService.hasQuotaRemaining
                                             ? 'Studio Voice: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
-                                            : 'On-Device Voice (4h weekly used)',
+                                            : (AppLocalizations.of(context)?.ondeviceVoice4hWeeklyUsed ??
+                                                'On-Device Voice (4h weekly used)'),
                                         style: TextStyle(
                                           fontSize: 10.5,
                                           color: quotaService.hasQuotaRemaining

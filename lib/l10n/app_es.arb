@@ -4027,5 +4027,7 @@
   "liveCallSessionCompletedFallback": "Sesión completada. En tu próxima práctica, habla con oraciones completas para recibir diagnósticos detallados de pronunciación y tonos.",
   "liveCallGoodStartPracticingWord": "Buen comienzo practicando '{word}'. En tu próxima sesión, intenta unir oraciones completas para practicar las transiciones de tono y la fluidez natural.",
   "liveCallSolidEffortFallback": "Buen esfuerzo de conversación. Concéntrate en mantener los primeros tonos altos y estables (55) y los cuartos tonos firmes y decisivos (51) para mejorar tu claridad natural.",
-  "liveCallGoodPracticeFallback": "Buena sesión de práctica. Continúa enfocándote en los contrastes claros de tono y en el ritmo natural de la conversación."
+  "liveCallGoodPracticeFallback": "Buena sesión de práctica. Continúa enfocándote en los contrastes claros de tono y en el ritmo natural de la conversación.",
+  "sentenceNumber": "Frase {number}",
+  "endlessAiStreamSentence": "Flujo continuo de IA • Frase {count}"
 }

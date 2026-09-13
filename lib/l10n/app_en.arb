@@ -851,7 +851,7 @@
   "scanAnother": "Scan Another",
   "scenarioRemoved": "Scenario removed",
   "scenarioSavedFindInCustomTab": "Scenario saved! Find it in the Custom tab.",
-  "score": "Score:",
+  "score": "Score: {score}/{total}",
   "searchByPinyinOrMeaning": "Search by pinyin or meaning...",
   "searchByTitleOrTag": "Search by title or tag...",
   "searchDictionaryOrTypeCustom": "Search dictionary or type custom",
@@ -4337,5 +4337,7 @@
   "liveCallGoodPracticeFallback": "Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.",
   "@liveCallGoodPracticeFallback": {
     "description": "Live call localized string for liveCallGoodPracticeFallback"
-  }
+  },
+  "sentenceNumber": "Sentence {number}",
+  "endlessAiStreamSentence": "Endless AI Stream • Sentence {count}"
 }
