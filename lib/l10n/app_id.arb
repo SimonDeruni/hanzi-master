@@ -4008,5 +4008,12 @@
   "toneDiag4vs1": "Anda tetap datar (nada ke-1 ˉ). Turunkan nada Anda dengan tajam dan tegas seperti 'Tidak!' yang tegas (nada ke-4 \\).",
   "toneDiag4vs2": "Anda menaikkan nada Anda (nada ke-2 /). Mulai tinggi dan turun tajam ke bawah (nada ke-4 \\).",
   "toneDiag4vs3": "Anda menurun dan naik (nada ke-3 ˇ). Turun lurus ke bawah tanpa naik kembali (nada ke-4 \\).",
-  "toneDiagListenDiff": "Dengarkan 4 nada di bawah untuk mendengar perbedaannya."
+  "toneDiagListenDiff": "Dengarkan 4 nada di bawah untuk mendengar perbedaannya.",
+  "liveCallSpeaking": "Sedang berbicara...",
+  "toneAccurate": "Nada Tepat",
+  "toneNeedsWork": "Nada Perlu Latihan",
+  "liveCallSessionCompletedFallback": "Sesi selesai. Pada latihan berikutnya, ucapkan kalimat lengkap untuk menerima diagnostik pengucapan dan nada yang mendalam.",
+  "liveCallGoodStartPracticingWord": "Awal yang baik berlatih '{word}'. Pada sesi berikutnya, cobalah merangkai kalimat lengkap untuk melatih transisi nada dan kelancaran alami.",
+  "liveCallSolidEffortFallback": "Upaya percakapan yang solid. Fokuslah menjaga nada ke-1 tetap tinggi dan rata (55) serta nada ke-4 tajam dan tegas (51) untuk meningkatkan kejelasan alami.",
+  "liveCallGoodPracticeFallback": "Sesi latihan yang bagus. Lanjutkan fokus pada kontras tinggi nada yang jelas dan tempo percakapan yang alami."
 }

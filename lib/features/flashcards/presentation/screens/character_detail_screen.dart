@@ -370,6 +370,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       current = current.copyWith(
         strokePaths: hydrated.strokePaths,
         medianPaths: hydrated.medianPaths,
+        isFlipped: hydrated.isFlipped,
       );
     }
     return current;

@@ -12802,4 +12802,30 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get toneDiagListenDiff => 'अंतर सुनने के लिए नीचे दिए गए 4 टोन सुनें।';
+
+  @override
+  String get liveCallSpeaking => 'बोल रहा है...';
+
+  @override
+  String get toneAccurate => 'सटीक टोन';
+
+  @override
+  String get toneNeedsWork => 'टोन पर अभ्यास चाहिए';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'सत्र पूरा हुआ। अपने अगले अभ्यास में, विस्तृत उच्चारण और टोन विश्लेषण प्राप्त करने के लिए पूरे वाक्य बोलें।';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return '\'$word\' के साथ अभ्यास की अच्छी शुरुआत। अपने अगले सत्र में, टोन के बदलाव और स्वाभाविक प्रवाह का अभ्यास करने के लिए पूरे वाक्य बोलने का प्रयास करें।';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'शानदार बातचीत का प्रयास। स्वाभाविक स्पष्टता बढ़ाने के लिए पहली टोन को ऊंचा और स्थिर (55) तथा चौथी टोन को तेज व निर्णायक (51) रखने पर ध्यान दें।';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'अच्छा अभ्यास सत्र। टोन के स्पष्ट उतार-चढ़ाव और स्वाभाविक संवादात्मक गति पर ध्यान केंद्रित करना जारी रखें।';
 }

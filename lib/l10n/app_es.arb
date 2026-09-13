@@ -4020,5 +4020,12 @@
   "toneDiag4vs1": "Te mantuviste plano (1er tono ˉ). Baja tu tono de forma brusca y decisiva como un '¡No!' firme (4º tono \\).",
   "toneDiag4vs2": "Subiste el tono (2º tono /). Empieza alto y baja bruscamente (4º tono \\).",
   "toneDiag4vs3": "Bajaste y subiste (3er tono ˇ). Baja directamente sin volver a subir (4º tono \\).",
-  "toneDiagListenDiff": "Escucha los 4 tonos a continuación para oír la diferencia."
+  "toneDiagListenDiff": "Escucha los 4 tonos a continuación para oír la diferencia.",
+  "liveCallSpeaking": "Hablando...",
+  "toneAccurate": "Tono correcto",
+  "toneNeedsWork": "Tono a mejorar",
+  "liveCallSessionCompletedFallback": "Sesión completada. En tu próxima práctica, habla con oraciones completas para recibir diagnósticos detallados de pronunciación y tonos.",
+  "liveCallGoodStartPracticingWord": "Buen comienzo practicando '{word}'. En tu próxima sesión, intenta unir oraciones completas para practicar las transiciones de tono y la fluidez natural.",
+  "liveCallSolidEffortFallback": "Buen esfuerzo de conversación. Concéntrate en mantener los primeros tonos altos y estables (55) y los cuartos tonos firmes y decisivos (51) para mejorar tu claridad natural.",
+  "liveCallGoodPracticeFallback": "Buena sesión de práctica. Continúa enfocándote en los contrastes claros de tono y en el ritmo natural de la conversación."
 }

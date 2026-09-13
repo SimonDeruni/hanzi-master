@@ -4013,5 +4013,12 @@
   "toneDiag4vs1": "Bạn giữ bằng phẳng (thanh 1 ˉ). Hạ cao độ mạnh và dứt khoát như một tiếng 'Không!' kiên quyết (thanh 4 \\).",
   "toneDiag4vs2": "Bạn đã nâng cao độ (thanh 2 /). Bắt đầu cao và hạ mạnh xuống (thanh 4 \\).",
   "toneDiag4vs3": "Bạn đã hạ và tăng (thanh 3 ˇ). Hạ thẳng xuống mà không tăng trở lại (thanh 4 \\).",
-  "toneDiagListenDiff": "Nghe 4 thanh điệu dưới đây để nghe sự khác biệt."
+  "toneDiagListenDiff": "Nghe 4 thanh điệu dưới đây để nghe sự khác biệt.",
+  "liveCallSpeaking": "Đang nói...",
+  "toneAccurate": "Thanh điệu chuẩn",
+  "toneNeedsWork": "Cần luyện thanh điệu",
+  "liveCallSessionCompletedFallback": "Phiên luyện tập hoàn tất. Lần tới, hãy nói cả câu hoàn chỉnh để nhận chẩn đoán phát âm và thanh điệu chi tiết.",
+  "liveCallGoodStartPracticingWord": "Khởi đầu tốt khi luyện tập '{word}'. Trong buổi tiếp theo, hãy thử ghép các câu hoàn chỉnh để rèn luyện sự chuyển đổi thanh điệu và độ lưu loát tự nhiên.",
+  "liveCallSolidEffortFallback": "Nỗ lực giao tiếp rất tốt. Hãy chú ý giữ thanh 1 cao và đều (55), thanh 4 dứt khoát và đi xuống (51) để phát âm tự nhiên và rõ ràng hơn.",
+  "liveCallGoodPracticeFallback": "Buổi luyện tập tốt. Hãy tiếp tục tập trung vào sự phân biệt cao độ thanh điệu rõ ràng và nhịp điệu giao tiếp tự nhiên."
 }

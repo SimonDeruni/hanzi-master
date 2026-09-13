@@ -4043,5 +4043,12 @@
   "toneDiag4vs1": "Você ficou plano (1º tom ˉ). Abaixe seu tom de forma acentuada e decisiva como um 'Não!' firme (4º tom \\).",
   "toneDiag4vs2": "Você subiu o tom (2º tom /). Comece alto e desça bruscamente (4º tom \\).",
   "toneDiag4vs3": "Você desceu e subiu (3º tom ˇ). Desça direto sem subir novamente (4º tom \\).",
-  "toneDiagListenDiff": "Ouça os 4 tons abaixo para ouvir a diferença."
+  "toneDiagListenDiff": "Ouça os 4 tons abaixo para ouvir a diferença.",
+  "liveCallSpeaking": "Falando...",
+  "toneAccurate": "Tom correto",
+  "toneNeedsWork": "Tom precisa melhorar",
+  "liveCallSessionCompletedFallback": "Sessão concluída. Na próxima prática, fale frases completas para receber diagnósticos detalhados de pronúncia e tons.",
+  "liveCallGoodStartPracticingWord": "Bom começo praticando '{word}'. Na próxima sessão, tente encadear frases completas para praticar as transições de tom e a fluidez natural.",
+  "liveCallSolidEffortFallback": "Ótimo esforço na conversa. Concentre-se em manter os 1ºs tons altos e firmes (55) e os 4ºs tons rápidos e decisivos (51) para aprimorar a clareza natural.",
+  "liveCallGoodPracticeFallback": "Boa sessão de prática. Continue focando nos contrastes nítidos de tom e em um ritmo de conversa natural."
 }

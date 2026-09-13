@@ -22,6 +22,8 @@ import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:lpinyin/lpinyin.dart';
 
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+
 enum LiveCallState {
   connecting,
   idle,
@@ -29,6 +31,19 @@ enum LiveCallState {
   thinking,
   speaking,
   error,
+}
+
+enum LiveCallStatusKey {
+  ready,
+  connectedSpeakNow,
+  initErrorCheckPermissions,
+  listening,
+  microphoneErrorRetry,
+  thinking,
+  speaking,
+  connectionInterruptedSpeakAgain,
+  callPausedReviewingTones,
+  pausedTakeABreak,
 }
 
 class LiveCallMessage {
@@ -103,7 +118,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   final AudioPlayer _voicePlayer = AudioPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
   LiveCallState _callState = LiveCallState.idle;
-  String _callStatus = "Ready";
+  LiveCallStatusKey _statusKey = LiveCallStatusKey.ready;
   bool _hasError = false;
 
   final List<LiveCallMessage> _transcript = [];
@@ -142,13 +157,39 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _initCall();
   }
 
-  void _setCallState(LiveCallState newState, String statusText) {
+  void _setCallState(LiveCallState newState, LiveCallStatusKey statusKey) {
     if (_isDisposed || !mounted) return;
     setState(() {
       _callState = newState;
-      _callStatus = statusText;
+      _statusKey = statusKey;
       _hasError = newState == LiveCallState.error;
     });
+  }
+
+  String _getLocalizedCallStatus(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (_statusKey) {
+      case LiveCallStatusKey.ready:
+        return l10n.ready;
+      case LiveCallStatusKey.connectedSpeakNow:
+        return l10n.connectedSpeakNow;
+      case LiveCallStatusKey.initErrorCheckPermissions:
+        return l10n.initializationErrorCheckPermissions;
+      case LiveCallStatusKey.listening:
+        return l10n.listening;
+      case LiveCallStatusKey.microphoneErrorRetry:
+        return l10n.microphoneErrorTapToRetry;
+      case LiveCallStatusKey.thinking:
+        return l10n.thinking;
+      case LiveCallStatusKey.speaking:
+        return l10n.liveCallSpeaking;
+      case LiveCallStatusKey.connectionInterruptedSpeakAgain:
+        return l10n.connectionInterruptedPleaseSpeakAga;
+      case LiveCallStatusKey.callPausedReviewingTones:
+        return l10n.callPausedReviewingTones;
+      case LiveCallStatusKey.pausedTakeABreak:
+        return l10n.pausedTakeABreak;
+    }
   }
 
   Future<void> _configureAudioSessionForCall({bool speaker = true}) async {
@@ -226,12 +267,12 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
         }
       });
 
-      _setCallState(LiveCallState.idle, "Connected! Speak now.");
+      _setCallState(LiveCallState.idle, LiveCallStatusKey.connectedSpeakNow);
       _startListening();
     } catch (e) {
       debugPrint("LiveCall: Init failed: $e");
       _setCallState(
-          LiveCallState.error, "Initialization error. Check permissions.");
+          LiveCallState.error, LiveCallStatusKey.initErrorCheckPermissions);
     }
   }
 
@@ -279,7 +320,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       );
 
       _isStartingListening = false;
-      _setCallState(LiveCallState.listening, "Listening...");
+      _setCallState(LiveCallState.listening, LiveCallStatusKey.listening);
 
       // Monitor voice activity level without running any secondary on-device STT plugin
       _amplitudeSub = _turnRecorder
@@ -317,7 +358,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     } catch (e) {
       debugPrint("LiveCall: Could not start recorder: $e");
       _isStartingListening = false;
-      _setCallState(LiveCallState.error, "Microphone error. Tap to retry.");
+      _setCallState(LiveCallState.error, LiveCallStatusKey.microphoneErrorRetry);
     }
   }
 
@@ -327,7 +368,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     _silenceDebounceTimer?.cancel();
     _amplitudeSub?.cancel();
 
-    _setCallState(LiveCallState.thinking, "Thinking...");
+    _setCallState(LiveCallState.thinking, LiveCallStatusKey.thinking);
     setState(() => _audioLevel = 0);
 
     String? audioPath = _currentTurnAudioPath;
@@ -466,10 +507,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   }
 
   Future<void> _handleUserInputAndRespondContinued(String text) async {
-    _setCallState(LiveCallState.thinking, "Thinking...");
+    _setCallState(LiveCallState.thinking, LiveCallStatusKey.thinking);
 
     try {
       final gemini = ref.read(geminiServiceProvider);
+      final targetLang = ref.read(translationLanguageProvider);
 
       final scenario = widget.scenario;
       final hardenedSystemPrompt = '''${scenario.systemPrompt}
@@ -484,8 +526,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 - RULE 3: Keep your responses conversational, natural, and concise (1-2 spoken sentences) so the audio call flows smoothly.
 
 CRITICAL FORMAT REQUIREMENT: You MUST format EVERY response with exactly 3 parts separated by "|||":
-Chinese Response|||Pinyin Response|||English Translation
-Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào nǐ.|||Hello! Very nice to meet you.''';
+Chinese Response|||Pinyin Response|||$targetLang Translation
+CRITICAL TRANSLATION REQUIREMENT: The 3rd part MUST be translated directly into $targetLang (NOT English unless $targetLang is English).
+Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào nǐ.|||[Natural translation directly in $targetLang]''';
 
       final messages = [
         {
@@ -548,6 +591,16 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
         } catch (_) {}
       }
 
+      // 🛡️ Fail-safe: If translation is omitted, translate to target language
+      if (translation == null || translation.isEmpty) {
+        try {
+          translation = await ref
+              .read(localTranslationServiceProvider)
+              .translate(aiText)
+              .timeout(const Duration(milliseconds: 700));
+        } catch (_) {}
+      }
+
       // Store the exact text sent to TTS first. This guarantees that the user
       // can read everything the AI says, even if synthesis/playback fails.
       setState(() {
@@ -560,7 +613,7 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       });
       _scrollToBottom();
 
-      _setCallState(LiveCallState.speaking, "Speaking...");
+      _setCallState(LiveCallState.speaking, LiveCallStatusKey.speaking);
 
       await _configureAudioSessionForCall(speaker: _isSpeaker);
       final audioService = ref.read(audioServiceProvider);
@@ -588,8 +641,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       debugPrint("LiveCall error: $e");
       if (mounted && !_isDisposed) {
         _isHandlingTurn = false;
-        _setCallState(
-            LiveCallState.idle, "Connection interrupted. Please speak again.");
+        _setCallState(LiveCallState.idle,
+            LiveCallStatusKey.connectionInterruptedSpeakAgain);
         if (!_isMuted && !_isEndingCall) {
           Future<void>.delayed(
               const Duration(milliseconds: 700), _startListening);
@@ -598,7 +651,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
     }
   }
 
-  Future<void> _finishAiTurn({String status = "Connected! Speak now."}) async {
+  Future<void> _finishAiTurn(
+      {LiveCallStatusKey status = LiveCallStatusKey.connectedSpeakNow}) async {
     if (_isDisposed || !mounted || _isEndingCall) return;
     _isHandlingTurn = false;
     _setCallState(LiveCallState.idle, status);
@@ -656,7 +710,7 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
 
     if (mounted) {
       setState(() => _audioLevel = 0);
-      _setCallState(LiveCallState.idle, "Call Paused (Reviewing Tones)");
+      _setCallState(LiveCallState.idle, LiveCallStatusKey.callPausedReviewingTones);
     }
 
     if (!mounted) return;
@@ -692,7 +746,7 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       _amplitudeSub?.cancel();
       _hasDetectedSpeech = false;
       _isStartingListening = false;
-      _setCallState(LiveCallState.idle, "Paused - Take a break");
+      _setCallState(LiveCallState.idle, LiveCallStatusKey.pausedTakeABreak);
       try {
         if (await _turnRecorder.isRecording()) {
           await _turnRecorder.stop();
@@ -710,7 +764,7 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
         debugPrint('LiveCall: Could not pause background audio: $e');
       }
     } else {
-      _setCallState(LiveCallState.idle, "Connected! Speak now.");
+      _setCallState(LiveCallState.idle, LiveCallStatusKey.connectedSpeakNow);
       try {
         await _voicePlayer.resume();
       } catch (e) {
@@ -769,7 +823,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
     setState(() => _isAnalyzing = true);
     _startAnalyzeStatusCycle();
 
-    final verdict = await _generateFinalVerdict();
+    final l10n = AppLocalizations.of(context)!;
+    final verdict = await _generateFinalVerdict(l10n);
 
     if (mounted) {
       _analyzeStatusTimer?.cancel();
@@ -786,19 +841,19 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
     }
   }
 
-  Future<String> _generateFinalVerdict() async {
+  Future<String> _generateFinalVerdict(AppLocalizations l10n) async {
     try {
       final userMessages =
           _transcript.where((m) => m.role == ChatRole.user).toList();
       if (userMessages.isEmpty) {
-        return "Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.";
+        return l10n.liveCallSessionCompletedFallback;
       }
 
       // If user only spoke a single short word or 1 phrase
       if (userMessages.length == 1 &&
           userMessages.first.text.trim().length <= 4) {
         final word = userMessages.first.text.trim();
-        return "Good start practicing '$word'. In your next session, try stringing full sentences together to practice tone transitions and natural flow.";
+        return l10n.liveCallGoodStartPracticingWord(word);
       }
 
       // Calculate real Azure pronunciation performance
@@ -825,14 +880,18 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
           weakWords.isNotEmpty ? weakWords.take(4).toSet().join(", ") : null;
 
       final gemini = ref.read(geminiServiceProvider);
+      final targetLang = ref.read(translationLanguageProvider);
       final transcriptStr = _transcript
           .map((m) =>
               "${m.role == ChatRole.user ? 'STUDENT' : 'COACH'}: ${m.text}")
           .join("\n");
 
-      const systemPrompt = '''
+      final systemPrompt = '''
 You are an expert, professional Mandarin Chinese pronunciation coach and phonetic linguist in the Hanzi Master app.
-Provide a concise, professional linguistic evaluation (2-3 sentences, under 50 words) directly to the learner.
+Provide a concise, professional linguistic evaluation (2-3 sentences, under 50 words) directly to the learner in $targetLang.
+
+CRITICAL LANGUAGE REQUIREMENT:
+You MUST write your ENTIRE feedback directly in $targetLang.
 
 STRICT GUIDELINES:
 1. Tone: Professional, pedagogical, constructive, and direct.
@@ -867,12 +926,12 @@ Provide your short, professional linguistic analysis directly to the student:
           lower.contains("as an ai") ||
           lower.contains("recording") ||
           lower.contains("intended")) {
-        return "Solid conversational effort. Focus on keeping 1st tones high and steady (55) and 4th tones sharp and decisive (51) to enhance native clarity.";
+        return l10n.liveCallSolidEffortFallback;
       }
 
       return response;
     } catch (e) {
-      return "Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.";
+      return l10n.liveCallGoodPracticeFallback;
     }
   }
 
@@ -1036,7 +1095,7 @@ Provide your short, professional linguistic analysis directly to the student:
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                _callStatus,
+                                _getLocalizedCallStatus(context),
                                 style: TextStyle(
                                   color: _callState == LiveCallState.error
                                       ? Colors.redAccent
@@ -1394,11 +1453,12 @@ class _LiveTranscriptBubble extends StatelessWidget {
                       : (isMedium
                           ? const Color(0xFFF59E0B)
                           : const Color(0xFFEF4444));
+                  final l10n = AppLocalizations.of(context)!;
                   final label = isGood
-                      ? "Tone Accurate • $score%"
+                      ? "${l10n.toneAccurate} • $score%"
                       : (isMedium
-                          ? "Tone Needs Work • $score%"
-                          : "Pronunciation • $score%");
+                          ? "${l10n.toneNeedsWork} • $score%"
+                          : "${l10n.pronunciation} • $score%");
                   return Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -1451,10 +1511,10 @@ class _LiveTranscriptBubble extends StatelessWidget {
                     color: Colors.white.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                         height: 8,
                         child: CircularProgressIndicator(
@@ -1462,10 +1522,10 @@ class _LiveTranscriptBubble extends StatelessWidget {
                           color: Colors.white70,
                         ),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
-                        "Azure Assessment...",
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.azureAssessment,
+                        style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 9.5,
                         ),

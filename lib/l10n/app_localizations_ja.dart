@@ -12417,4 +12417,30 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get toneDiagListenDiff => '以下の4つの声調を聞いて違いを確認してください。';
+
+  @override
+  String get liveCallSpeaking => '話しています…';
+
+  @override
+  String get toneAccurate => '声調 正確';
+
+  @override
+  String get toneNeedsWork => '声調 要練習';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'セッション完了。次の練習では、完全な文章で話すと詳しい発音と声調の診断を受けられます。';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return '「$word」の良い練習ができました。次のセッションでは、声調の移り変わりや自然な抑揚を意識して、完全な文章で話してみましょう。';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'しっかりとした会話の練習ができました。第1声は高く平らに（55）、第4声は鋭く下げる（51）ことを意識すると、より自然でクリアな発音になります。';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      '良い練習セッションでした。声調の高低差を明確にし、自然な会話のテンポを意識していきましょう。';
 }

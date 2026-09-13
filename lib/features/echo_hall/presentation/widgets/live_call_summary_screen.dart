@@ -125,26 +125,33 @@ class LiveCallSummaryScreen extends StatelessWidget {
             children: [
               Icon(Icons.graphic_eq, color: accentColor, size: 20),
               const SizedBox(width: 8),
-              Text(
-                "AZURE PRONUNCIATION ASSESSMENT",
-                style: theme.textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  color: accentColor,
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context)!.azurePronunciationAssessment,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: accentColor,
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMetricItem(
-                  "Overall Score", "$avgScore%", accentColor, theme),
-              _buildMetricItem("Tone Accuracy", "$avgAcc%",
-                  theme.colorScheme.primary, theme),
-              _buildMetricItem(
-                  "Fluency", "$avgFlu%", const Color(0xFF3B82F6), theme),
+              Expanded(
+                child: _buildMetricItem(
+                    AppLocalizations.of(context)!.overallScore, "$avgScore%", accentColor, theme),
+              ),
+              Expanded(
+                child: _buildMetricItem(AppLocalizations.of(context)!.toneAccuracy, "$avgAcc%",
+                    theme.colorScheme.primary, theme),
+              ),
+              Expanded(
+                child: _buildMetricItem(
+                    AppLocalizations.of(context)!.fluency, "$avgFlu%", const Color(0xFF3B82F6), theme),
+              ),
             ],
           ),
         ],
@@ -166,6 +173,9 @@ class LiveCallSummaryScreen extends StatelessWidget {
         const SizedBox(height: 2),
         Text(
           label,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             fontSize: 11,
@@ -197,9 +207,11 @@ class LiveCallSummaryScreen extends StatelessWidget {
             children: [
               Icon(Icons.psychology_outlined, color: theme.colorScheme.primary),
               const SizedBox(width: 12),
-              Text(AppLocalizations.of(context)!.linguisticAnalysis,
-                  style: theme.textTheme.titleMedium
-                      ?.copyWith(fontWeight: FontWeight.bold)),
+              Expanded(
+                child: Text(AppLocalizations.of(context)!.linguisticAnalysis,
+                    style: theme.textTheme.titleMedium
+                        ?.copyWith(fontWeight: FontWeight.bold)),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -237,7 +249,10 @@ class LiveCallSummaryScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                isUser ? "YOU" : "SCHOLAR",
+                (isUser
+                        ? AppLocalizations.of(context)!.youLabel
+                        : AppLocalizations.of(context)!.scholar)
+                    .toUpperCase(),
                 style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.4)),
               ),
@@ -249,11 +264,15 @@ class LiveCallSummaryScreen extends StatelessWidget {
                   color: theme.colorScheme.primary.withValues(alpha: 0.5),
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  "Tap to review",
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.5),
-                    fontSize: 10,
+                Flexible(
+                  child: Text(
+                    AppLocalizations.of(context)!.tapToReview,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.primary.withValues(alpha: 0.5),
+                      fontSize: 10,
+                    ),
                   ),
                 ),
               ],

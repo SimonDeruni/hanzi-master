@@ -12807,4 +12807,30 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get toneDiagListenDiff =>
       'Nghe 4 thanh điệu dưới đây để nghe sự khác biệt.';
+
+  @override
+  String get liveCallSpeaking => 'Đang nói...';
+
+  @override
+  String get toneAccurate => 'Thanh điệu chuẩn';
+
+  @override
+  String get toneNeedsWork => 'Cần luyện thanh điệu';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'Phiên luyện tập hoàn tất. Lần tới, hãy nói cả câu hoàn chỉnh để nhận chẩn đoán phát âm và thanh điệu chi tiết.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'Khởi đầu tốt khi luyện tập \'$word\'. Trong buổi tiếp theo, hãy thử ghép các câu hoàn chỉnh để rèn luyện sự chuyển đổi thanh điệu và độ lưu loát tự nhiên.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'Nỗ lực giao tiếp rất tốt. Hãy chú ý giữ thanh 1 cao và đều (55), thanh 4 dứt khoát và đi xuống (51) để phát âm tự nhiên và rõ ràng hơn.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'Buổi luyện tập tốt. Hãy tiếp tục tập trung vào sự phân biệt cao độ thanh điệu rõ ràng và nhịp điệu giao tiếp tự nhiên.';
 }

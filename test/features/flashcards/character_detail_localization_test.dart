@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/characte
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/character_detail_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -290,4 +291,90 @@ void main() {
     // DrawingCanvas schedules a one-shot delayed animation after settling.
     await tester.pump(const Duration(seconds: 3));
   });
+
+  testWidgets('hydrated strokes preserve isFlipped on DrawingCanvas',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({'app_locale': 'en'});
+    final preferences = await SharedPreferences.getInstance();
+
+    const unhydrated = Flashcard(
+      id: 'hao_card',
+      hanzi: '好',
+      pinyin: 'hǎo',
+      definition: 'good',
+      hskLevel: 1,
+      strokePaths: [],
+      medianPaths: [],
+      isFlipped: false,
+      modeStats: {},
+    );
+
+    const hydrated = Flashcard(
+      id: 'hao_card',
+      hanzi: '好',
+      pinyin: 'hǎo',
+      definition: 'good',
+      hskLevel: 1,
+      strokePaths: ['M 10 10 L 50 50'],
+      medianPaths: [
+        [Offset(10, 10), Offset(50, 50)]
+      ],
+      isFlipped: true,
+      modeStats: {},
+    );
+
+    await tester.binding.setSurfaceSize(const Size(1000, 1200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(preferences),
+          localTranslationServiceProvider
+              .overrideWithValue(_NoOpTranslationService()),
+          flashcardControllerProvider.overrideWith(
+            () => _HydratingController(unhydrated, hydrated),
+          ),
+          commonWordsProvider.overrideWith((ref, character) async => const []),
+          characterContextProvider.overrideWith(
+            (ref, card) async => GeminiContext(
+              mnemonic: 'Good character',
+              sentences: [],
+              lookAlikes: [],
+            ),
+          ),
+        ],
+        child: const MaterialApp(
+          locale: Locale('en'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: CharacterDetailScreen(card: unhydrated),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final canvas = tester.widget<DrawingCanvas>(find.byType(DrawingCanvas));
+    expect(canvas.isFlipped, isTrue);
+    expect(canvas.strokePaths, hydrated.strokePaths);
+
+    await tester.pump(const Duration(seconds: 3));
+  });
+}
+
+class _HydratingController extends FlashcardController {
+  _HydratingController(this.initialCard, this.hydratedCard);
+  final Flashcard initialCard;
+  final Flashcard hydratedCard;
+
+  @override
+  Future<List<Flashcard>> build() async => [initialCard];
+
+  @override
+  Future<Flashcard?> loadStrokesFor(Flashcard card) async => hydratedCard;
 }

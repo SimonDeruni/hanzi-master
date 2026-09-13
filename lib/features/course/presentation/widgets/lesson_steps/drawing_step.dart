@@ -99,6 +99,7 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
                     child: DrawingCanvas(
                       strokePaths: widget.card.strokePaths,
                       medianPaths: widget.card.medianPaths,
+                      isFlipped: widget.card.isFlipped,
                       showAnimation: showAnimation,
                       showReference: showReference,
                       showGuideLines: showGuideLines,

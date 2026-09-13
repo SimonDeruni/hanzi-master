@@ -12881,4 +12881,30 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get toneDiagListenDiff =>
       'Höre dir die 4 Töne unten an, um den Unterschied zu hören.';
+
+  @override
+  String get liveCallSpeaking => 'Spricht...';
+
+  @override
+  String get toneAccurate => 'Ton korrekt';
+
+  @override
+  String get toneNeedsWork => 'Ton verbesserungswürdig';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'Sitzung abgeschlossen. Sprechen Sie bei der nächsten Übung ganze Sätze, um detaillierte Aussprache- und Tondiagnosen zu erhalten.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'Guter Einstieg mit der Übung von „$word“. Versuche bei der nächsten Sitzung, ganze Sätze aneinanderzureihen, um Tonübergänge und natürlichen Redefluss zu üben.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'Guter Gesprächseinsatz. Achte darauf, den 1. Ton hoch und gleichmäßig (55) und den 4. Ton scharf und fallend (51) zu halten, um die Klarheit zu verbessern.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'Gute Übungseinheit. Achte weiterhin auf klare Tonkontraste und ein natürliches Gesprächstempo.';
 }

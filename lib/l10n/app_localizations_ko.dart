@@ -12449,4 +12449,30 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get toneDiagListenDiff => '아래 4가지 성조를 듣고 차이점을 확인하세요.';
+
+  @override
+  String get liveCallSpeaking => '말하는 중...';
+
+  @override
+  String get toneAccurate => '정확한 성조';
+
+  @override
+  String get toneNeedsWork => '성조 연습 필요';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      '세션이 완료되었습니다. 다음 연습에서는 완전한 문장으로 말하여 상세한 발음 및 성조 진단을 받아보세요.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return '\'$word\'을(를) 연습하는 좋은 출발입니다. 다음 세션에서는 완전한 문장을 이어서 말해보며 성조 전환과 자연스러운 흐름을 연습해보세요.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      '훌륭한 대화 연습이었습니다. 제1성은 높고 평평하게(55), 제4성은 날카롭고 단호하게 내려(51) 연습하면 원어민에 가까운 명확성을 갖출 수 있습니다.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      '좋은 연습 세션이었습니다. 명확한 성조 높낮이 대비와 자연스러운 대화 속도에 계속 집중해보세요.';
 }

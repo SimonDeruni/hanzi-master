@@ -12899,4 +12899,30 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get toneDiagListenDiff =>
       'Ascolta i 4 toni qui sotto per sentire la differenza.';
+
+  @override
+  String get liveCallSpeaking => 'Sta parlando...';
+
+  @override
+  String get toneAccurate => 'Tono corretto';
+
+  @override
+  String get toneNeedsWork => 'Tono da migliorare';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'Sessione completata. Nella tua prossima pratica, pronuncia frasi complete per ricevere una diagnosi dettagliata di pronuncia e toni.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'Ottimo inizio con la pratica di \'$word\'. Nella prossima sessione, prova a comporre frasi complete per allenare il passaggio tra i toni e la naturalezza del parlato.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'Ottimo impegno nella conversazione. Concentrati sul mantenere il 1° tono alto e costante (55) e il 4° tono netto e deciso (51) per migliorare la chiarezza naturale.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'Buona sessione di pratica. Continua a concentrarti sul contrasto chiaro tra i toni e sul ritmo naturale della conversazione.';
 }

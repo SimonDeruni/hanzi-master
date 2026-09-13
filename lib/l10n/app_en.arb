@@ -4304,5 +4304,38 @@
   "toneDiag4vs1": "You stayed flat (1st tone ˉ). Drop your pitch sharply and decisively like a firm 'No!' (4th tone \\).",
   "toneDiag4vs2": "You rose your pitch (2nd tone /). Start high and snap sharply downward (4th tone \\).",
   "toneDiag4vs3": "You dipped and rose (3rd tone ˇ). Drop straight down without rising back up (4th tone \\).",
-  "toneDiagListenDiff": "Listen to the 4 tones below to hear the difference."
+  "toneDiagListenDiff": "Listen to the 4 tones below to hear the difference.",
+  "liveCallSpeaking": "Speaking...",
+  "@liveCallSpeaking": {
+    "description": "Live call localized string for liveCallSpeaking"
+  },
+  "toneAccurate": "Tone Accurate",
+  "@toneAccurate": {
+    "description": "Live call localized string for toneAccurate"
+  },
+  "toneNeedsWork": "Tone Needs Work",
+  "@toneNeedsWork": {
+    "description": "Live call localized string for toneNeedsWork"
+  },
+  "liveCallSessionCompletedFallback": "Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.",
+  "@liveCallSessionCompletedFallback": {
+    "description": "Live call localized string for liveCallSessionCompletedFallback"
+  },
+  "liveCallGoodStartPracticingWord": "Good start practicing '{word}'. In your next session, try stringing full sentences together to practice tone transitions and natural flow.",
+  "@liveCallGoodStartPracticingWord": {
+    "description": "Linguistic diagnostic encouraging full sentence practice with word parameter",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "liveCallSolidEffortFallback": "Solid conversational effort. Focus on keeping 1st tones high and steady (55) and 4th tones sharp and decisive (51) to enhance native clarity.",
+  "@liveCallSolidEffortFallback": {
+    "description": "Live call localized string for liveCallSolidEffortFallback"
+  },
+  "liveCallGoodPracticeFallback": "Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.",
+  "@liveCallGoodPracticeFallback": {
+    "description": "Live call localized string for liveCallGoodPracticeFallback"
+  }
 }

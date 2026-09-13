@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-08] Character Drawing Canvas Orientation Restoration
+- **Preserve `isFlipped` on Stroke Hydration:** Fixed character stroke paths rendering upside-down in `CharacterDetailScreen` by copying `isFlipped: hydrated.isFlipped` in `_getCurrentCard()`.
+- **Course Drawing Step Wiring:** Propagated `isFlipped: widget.card.isFlipped` to `DrawingCanvas` in `DrawingStep`.
+- **Automated Verification:** Added regression test `hydrated strokes preserve isFlipped on DrawingCanvas` in `character_detail_localization_test.dart`. `dart analyze lib/ test/` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-08] Live Call & Call Summary Exhaustive 14-Language Localization
+- **UI & Metric Localization in Call Summary:** Localized all UI elements in `LiveCallSummaryScreen` (*"Verdict du Savant"* / *Call Summary*), including the Azure Pronunciation Assessment banner (`l10n.azurePronunciationAssessment`), metric score labels (`overallScore`, `toneAccuracy`, `fluency`), speaker identifiers (`youLabel`, `scholar`), and the pronunciation review trigger (`tapToReview`).
+- **Live Call Status & Tone Grade Badges:** Replaced hardcoded status strings in `LiveCallScreen` with `LiveCallStatusKey` enum and localized dynamic status resolver (`_getLocalizedCallStatus`), covering all call states (`ready`, `connectedSpeakNow`, `initErrorCheckPermissions`, `listening`, `microphoneErrorRetry`, `thinking`, `speaking`, `connectionInterruptedSpeakAgain`, `callPausedReviewingTones`, `pausedTakeABreak`). Localized tone assessment badges (`toneAccurate`, `toneNeedsWork`, `pronunciation`) and Azure analysis status (`azureAssessment`).
+- **Multilingual AI Responses & Feedback:** Bound Gemini AI roleplay response translations (`CRITICAL FORMAT REQUIREMENT: Chinese Response|||Pinyin Response|||$targetLang Translation`) and verdict evaluation prompt instructions (`CRITICAL LANGUAGE REQUIREMENT: You MUST write your ENTIRE feedback directly in $targetLang`) to active user locale with `LocalTranslationService` fallback, preventing English text leakage in non-English locales.
+- **14-Language ARB Parity:** Populated `app_*.arb` across all 14 languages with 7 new keys: `liveCallSpeaking`, `toneAccurate`, `toneNeedsWork`, `liveCallSessionCompletedFallback`, `liveCallGoodStartPracticingWord`, `liveCallSolidEffortFallback`, and `liveCallGoodPracticeFallback`.
+- **Layout Hardening & Overflow Prevention:** Wrapped banners and metric rows with `Expanded` / `Flexible` and center alignment to prevent RenderFlex overflow on longer text in German, French, and Russian.
+- **Verification & Hygiene:** Added `test/features/echo_hall/live_call_localization_test.dart` verifying French, German, Spanish, and Russian rendering. All 26 Echo Hall tests pass. `dart analyze lib/ test/` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+
 ### [2026-09-07] Build Bump & Multi-Language Localization Hygiene (Build #531)
 - **Version Bump:** Bumped build version to `1.0.0+531` for App Store submission preparation.
 - **Multilingual AR Scan & Placeholder Parity:** Verified `{count} caractères trouvés` interpolation fix across all 14 supported languages and confirmed `foundNCharacters` returns dynamic count string (`$count`).

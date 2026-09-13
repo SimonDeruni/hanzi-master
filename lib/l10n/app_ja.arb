@@ -4077,5 +4077,12 @@
   "toneDiag4vs1": "平坦なままでした（1声 ˉ）。きっぱりと「いいえ！」と言うように、音の高さを鋭く決定的に下げましょう（4声 \\）。",
   "toneDiag4vs2": "音の高さが上がりました（2声 /）。高く始めて、鋭く下に下げましょう（4声 \\）。",
   "toneDiag4vs3": "下がって上がりました（3声 ˇ）。上がらずにまっすぐ下に下げましょう（4声 \\）。",
-  "toneDiagListenDiff": "以下の4つの声調を聞いて違いを確認してください。"
+  "toneDiagListenDiff": "以下の4つの声調を聞いて違いを確認してください。",
+  "liveCallSpeaking": "話しています…",
+  "toneAccurate": "声調 正確",
+  "toneNeedsWork": "声調 要練習",
+  "liveCallSessionCompletedFallback": "セッション完了。次の練習では、完全な文章で話すと詳しい発音と声調の診断を受けられます。",
+  "liveCallGoodStartPracticingWord": "「{word}」の良い練習ができました。次のセッションでは、声調の移り変わりや自然な抑揚を意識して、完全な文章で話してみましょう。",
+  "liveCallSolidEffortFallback": "しっかりとした会話の練習ができました。第1声は高く平らに（55）、第4声は鋭く下げる（51）ことを意識すると、より自然でクリアな発音になります。",
+  "liveCallGoodPracticeFallback": "良い練習セッションでした。声調の高低差を明確にし、自然な会話のテンポを意識していきましょう。"
 }

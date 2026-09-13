@@ -12850,4 +12850,30 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get toneDiagListenDiff =>
       'Послушайте 4 тона ниже, чтобы услышать разницу.';
+
+  @override
+  String get liveCallSpeaking => 'Говорит...';
+
+  @override
+  String get toneAccurate => 'Тон точный';
+
+  @override
+  String get toneNeedsWork => 'Тон требует работы';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'Сессия завершена. На следующем занятии произносите полные предложения, чтобы получить подробную диагностику произношения и тонов.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'Хорошее начало с практики «$word». На следующем занятии попробуйте связывать полные предложения, чтобы отработать переходы тонов и естественную плавность речи.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'Отличная разговорная практика. Сфокусируйтесь на том, чтобы удерживать 1-й тон высоким и ровным (55), а 4-й — четким и нисходящим (51) для естественной четкости речи.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'Хорошая тренировочная сессия. Продолжайте уделять внимание четкому контрасту тонов и естественному темпу беседы.';
 }

@@ -12823,4 +12823,30 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get toneDiagListenDiff =>
       'Dengarkan 4 nada di bawah untuk mendengar perbedaannya.';
+
+  @override
+  String get liveCallSpeaking => 'Sedang berbicara...';
+
+  @override
+  String get toneAccurate => 'Nada Tepat';
+
+  @override
+  String get toneNeedsWork => 'Nada Perlu Latihan';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'Sesi selesai. Pada latihan berikutnya, ucapkan kalimat lengkap untuk menerima diagnostik pengucapan dan nada yang mendalam.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'Awal yang baik berlatih \'$word\'. Pada sesi berikutnya, cobalah merangkai kalimat lengkap untuk melatih transisi nada dan kelancaran alami.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'Upaya percakapan yang solid. Fokuslah menjaga nada ke-1 tetap tinggi dan rata (55) serta nada ke-4 tajam dan tegas (51) untuk meningkatkan kejelasan alami.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'Sesi latihan yang bagus. Lanjutkan fokus pada kontras tinggi nada yang jelas dan tempo percakapan yang alami.';
 }

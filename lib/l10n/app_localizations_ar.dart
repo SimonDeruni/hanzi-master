@@ -12721,4 +12721,30 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get toneDiagListenDiff =>
       'استمع إلى النغمات الأربع أدناه لسماع الفرق.';
+
+  @override
+  String get liveCallSpeaking => 'جارٍ التحدث...';
+
+  @override
+  String get toneAccurate => 'نغمة دقيقة';
+
+  @override
+  String get toneNeedsWork => 'النغمة تحتاج إلى تحسين';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'اكتملت الجلسة. في تمرينك القادم، تحدث بجمل كاملة لتلقي تشخيص مفصل للنطق والنغمات.';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'بداية موفقة في التدرب على \'$word\'. في جلستك القادمة، حاول تكوين جمل كاملة للتدرب على الانتقال بين النغمات والانسيابية الطبيعية.';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'جهد محادثة رائع. ركز على إبقاء النغمة الأولى عالية ومستقرة (55) والنغمة الرابعة حادة وحاسمة (51) لتعزيز وضوح النطق الطبيعي.';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'جلسة تدريبية جيدة. استمر في التركيز على التباين الواضح في درجات النغمات والسرعة الطبيعية للمحادثة.';
 }

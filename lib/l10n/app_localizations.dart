@@ -23510,6 +23510,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Listen to the 4 tones below to hear the difference.'**
   String get toneDiagListenDiff;
+
+  /// Live call localized string for liveCallSpeaking
+  ///
+  /// In en, this message translates to:
+  /// **'Speaking...'**
+  String get liveCallSpeaking;
+
+  /// Live call localized string for toneAccurate
+  ///
+  /// In en, this message translates to:
+  /// **'Tone Accurate'**
+  String get toneAccurate;
+
+  /// Live call localized string for toneNeedsWork
+  ///
+  /// In en, this message translates to:
+  /// **'Tone Needs Work'**
+  String get toneNeedsWork;
+
+  /// Live call localized string for liveCallSessionCompletedFallback
+  ///
+  /// In en, this message translates to:
+  /// **'Session completed. In your next practice, speak complete sentences to receive detailed pronunciation and tone diagnostics.'**
+  String get liveCallSessionCompletedFallback;
+
+  /// Linguistic diagnostic encouraging full sentence practice with word parameter
+  ///
+  /// In en, this message translates to:
+  /// **'Good start practicing \'{word}\'. In your next session, try stringing full sentences together to practice tone transitions and natural flow.'**
+  String liveCallGoodStartPracticingWord(String word);
+
+  /// Live call localized string for liveCallSolidEffortFallback
+  ///
+  /// In en, this message translates to:
+  /// **'Solid conversational effort. Focus on keeping 1st tones high and steady (55) and 4th tones sharp and decisive (51) to enhance native clarity.'**
+  String get liveCallSolidEffortFallback;
+
+  /// Live call localized string for liveCallGoodPracticeFallback
+  ///
+  /// In en, this message translates to:
+  /// **'Good practice session. Continue focusing on clear tone pitch contrasts and natural conversational pacing.'**
+  String get liveCallGoodPracticeFallback;
 }
 
 class _AppLocalizationsDelegate

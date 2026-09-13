@@ -12752,4 +12752,30 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get toneDiagListenDiff => 'ฟัง 4 วรรณยุกต์ด้านล่างเพื่อฟังความแตกต่าง';
+
+  @override
+  String get liveCallSpeaking => 'กำลังพูด...';
+
+  @override
+  String get toneAccurate => 'วรรณยุกต์ถูกต้อง';
+
+  @override
+  String get toneNeedsWork => 'ต้องปรับปรุงวรรณยุกต์';
+
+  @override
+  String get liveCallSessionCompletedFallback =>
+      'จบการฝึกซ้อม ในการฝึกครั้งต่อไป กรุณาพูดเป็นประโยคที่สมบูรณ์เพื่อรับการวินิจฉัยการออกเสียงและวรรณยุกต์อย่างละเอียด';
+
+  @override
+  String liveCallGoodStartPracticingWord(String word) {
+    return 'เริ่มต้นฝึกฝน \'$word\' ได้ดี ในเซสชันถัดไป ลองผูกประโยคยาวขึ้นเพื่อฝึกการเชื่อมต่อวรรณยุกต์และความลื่นไหลอย่างเป็นธรรมชาติ';
+  }
+
+  @override
+  String get liveCallSolidEffortFallback =>
+      'ความพยายามในการสนทนาที่ยอดเยี่ยม เน้นการออกเสียงวรรณยุกต์ที่ 1 ให้สูงและสม่ำเสมอ (55) และวรรณยุกต์ที่ 4 ให้หนักแน่นเฉียบคม (51) เพื่อความชัดเจนอย่างเป็นธรรมชาติ';
+
+  @override
+  String get liveCallGoodPracticeFallback =>
+      'เซสชันการฝึกซ้อมที่ดี ฝึกฝนความแตกต่างของระดับเสียงวรรณยุกต์และจังหวะการสนทนาที่เป็นธรรมชาติอย่างต่อเนื่อง';
 }
