@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../../domain/models/media_briefing.dart';
 
 class PremiumAiPrepCard extends StatefulWidget {
@@ -82,8 +83,20 @@ class _PremiumAiPrepCardState extends State<PremiumAiPrepCard> {
                 spacing: 6,
                 runSpacing: 6,
                 children: widget.briefing.hardWords.take(6).map((w) {
+                  Offset? tapPosition;
                   return GestureDetector(
-                    onTap: () => widget.onWordTapped(w),
+                    onTapDown: (details) => tapPosition = details.globalPosition,
+                    onTap: () {
+                      widget.onWordTapped(w);
+                      if (tapPosition != null) {
+                        showQuickLook(
+                          context,
+                          w,
+                          presentation: QuickLookPresentation.readingPopover,
+                          anchorPosition: tapPosition,
+                        );
+                      }
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 4),

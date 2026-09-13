@@ -191,6 +191,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                                 await showQuickLook(
                                   context,
                                   char,
+                                  contextText: widget.line.text,
                                   presentation: QuickLookPresentation.readingPopover,
                                   anchorPosition: anchorPosition,
                                   onDismiss: () {

@@ -33,4 +33,71 @@ void main() {
       expect(range?.end, 2);
     });
   });
+
+  group('buildSpokenCharTimings and findActiveTiming', () {
+    test('accurately builds timings and looks up active character through pauses', () {
+      const sentence = '你好世界，春暖花开。';
+      final boundaries = [
+        {
+          'Offset': 500000,
+          'Duration': 8500000,
+          'text': {'Text': '你好世界', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 10000000,
+          'Duration': 2125000,
+          'text': {'Text': '，', 'BoundaryType': 'PunctuationBoundary'},
+        },
+        {
+          'Offset': 12125000,
+          'Duration': 8250000,
+          'text': {'Text': '春暖花开', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 20500000,
+          'Duration': 1125000,
+          'text': {'Text': '。', 'BoundaryType': 'PunctuationBoundary'},
+        },
+      ];
+
+      final timings = buildSpokenCharTimings(text: sentence, boundaries: boundaries);
+      expect(timings.length, 8);
+
+      // Verify character mapping and bounds
+      expect(timings[0].char, '你');
+      expect(timings[0].hanziIndex, 0);
+      expect(timings[0].startMs, 50.0);
+      expect(timings[0].endMs, 262.5);
+
+      expect(timings[1].char, '好');
+      expect(timings[1].hanziIndex, 1);
+
+      expect(timings[2].char, '世');
+      expect(timings[2].hanziIndex, 2);
+
+      expect(timings[3].char, '界');
+      expect(timings[3].hanziIndex, 3);
+      expect(timings[3].endMs, 900.0);
+
+      expect(timings[4].char, '春');
+      expect(timings[4].hanziIndex, 4);
+      expect(timings[4].startMs, 1212.5);
+
+      // Lookup tests at various playback positions
+      // 100ms -> '你'
+      expect(findActiveTiming(timings, 100.0)?.char, '你');
+      // 300ms -> '好'
+      expect(findActiveTiming(timings, 300.0)?.char, '好');
+      // 700ms -> '界'
+      expect(findActiveTiming(timings, 700.0)?.char, '界');
+      // 1050ms (during comma pause) -> remains on last spoken character '界'
+      expect(findActiveTiming(timings, 1050.0)?.char, '界');
+      // 1220ms -> '春'
+      expect(findActiveTiming(timings, 1220.0)?.char, '春');
+      // 1500ms -> '暖'
+      expect(findActiveTiming(timings, 1500.0)?.char, '暖');
+      // Past end -> '开'
+      expect(findActiveTiming(timings, 3000.0)?.char, '开');
+    });
+  });
 }

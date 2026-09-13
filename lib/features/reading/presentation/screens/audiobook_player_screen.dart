@@ -54,7 +54,11 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   StreamSubscription? _durationSub;
   StreamSubscription? _errorSub;
   StreamSubscription? _wordBoundarySub;
+  StreamSubscription? _boundariesLoadedSub;
   LocalTtsVoice? _localVoice;
+
+  List<SpokenCharTiming> _currentSentenceTimings = const [];
+  List<GlobalKey> _sentenceKeys = [];
 
   // Cache for parsed ruby sentence tokens (Chinese char + Pinyin syllable)
   final Map<String, List<_RubyToken>> _rubyCache = {};
@@ -70,6 +74,32 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   int? _sleepSecondsRemaining;
   bool _stopAtEndOfChapter = false;
 
+  void _ensureSentenceKeys() {
+    if (widget.chapters.isEmpty) return;
+    final count = widget.chapters[_currentChapterIndex].sentences.length;
+    if (_sentenceKeys.length != count) {
+      _sentenceKeys = List.generate(count, (_) => GlobalKey());
+    }
+  }
+
+  void _rebuildSentenceTimings() {
+    if (widget.chapters.isEmpty) {
+      _currentSentenceTimings = const [];
+      return;
+    }
+    final chapter = widget.chapters[_currentChapterIndex];
+    if (_currentSentenceIndex >= chapter.sentences.length) {
+      _currentSentenceTimings = const [];
+      return;
+    }
+    final sentence = chapter.sentences[_currentSentenceIndex].chinese;
+    final boundaries = ref.read(audioServiceProvider).currentBoundaries;
+    _currentSentenceTimings = buildSpokenCharTimings(
+      text: sentence,
+      boundaries: boundaries,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -77,6 +107,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     _currentChapterIndex =
         widget.initialChapterIndex.clamp(0, widget.chapters.length - 1);
     _currentSentenceIndex = widget.initialSentenceIndex;
+    _ensureSentenceKeys();
+    _rebuildSentenceTimings();
 
     final audioService = ref.read(audioServiceProvider);
 
@@ -93,6 +125,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           _currentSpokenCharIndex = 0;
           _currentSpokenCharEnd = 1;
           _totalDurationMs = 0;
+          _ensureSentenceKeys();
+          _rebuildSentenceTimings();
         }
       });
       if (changed) {
@@ -110,13 +144,34 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     });
 
     _positionSub = audioService.onPositionChanged.listen((position) {
-      if (mounted && _isPlaying) {
+      if (!mounted || !_isPlaying) return;
+      if (_currentSentenceTimings.isNotEmpty) {
+        final active = findActiveTiming(
+          _currentSentenceTimings,
+          position.inMilliseconds.toDouble(),
+        );
+        if (active != null && active.hanziIndex != _currentSpokenCharIndex) {
+          setState(() {
+            _currentSpokenCharIndex = active.hanziIndex;
+            _currentSpokenCharEnd = active.hanziIndex + 1;
+          });
+        }
+      } else {
         _updateSpokenCharIndex(position.inMilliseconds);
       }
     });
 
+    _boundariesLoadedSub =
+        audioService.onBoundariesLoaded.listen((boundaries) {
+      if (!mounted) return;
+      setState(() {
+        _rebuildSentenceTimings();
+      });
+    });
+
     _wordBoundarySub = audioService.onWordBoundary.listen((boundary) {
       if (!mounted || !_isPlaying || widget.chapters.isEmpty) return;
+      if (_currentSentenceTimings.isNotEmpty) return;
       final chapter = widget.chapters[_currentChapterIndex];
       if (_currentSentenceIndex >= chapter.sentences.length) return;
       final start = boundary['TextOffset'];
@@ -199,6 +254,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     _durationSub?.cancel();
     _errorSub?.cancel();
     _wordBoundarySub?.cancel();
+    _boundariesLoadedSub?.cancel();
     _saveProgress();
     // Persist last reading session (audiobook)
     ref.read(bookRepositoryProvider).saveReadingSession(
@@ -360,6 +416,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         _currentSpokenCharEnd = 1;
         _totalDurationMs = 0;
         _isPlaying = true;
+        _rebuildSentenceTimings();
       });
       _saveProgress();
       _scrollToSentence(sentenceIdx);
@@ -372,7 +429,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       final started =
           await audioService.playAudiobookAt(_currentChapterIndex, sentenceIdx);
       if (!mounted || requestGeneration != _audioRequestGeneration) return;
-      if (!started) {
+      if (started) {
+        _rebuildSentenceTimings();
+      } else {
         setState(() => _isPlaying = false);
         _showPlaybackFailure();
         return;
@@ -667,18 +726,49 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   }
 
   void _scrollToSentence(int index, {bool animate = true}) {
-    if (!_scrollController.hasClients) return;
-    final targetOffset = (index * 130.0 - 140.0)
-        .clamp(0.0, _scrollController.position.maxScrollExtent);
-    if (animate) {
-      _scrollController.animateTo(
-        targetOffset,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOutQuart,
-      );
-    } else {
-      _scrollController.jumpTo(targetOffset);
+    if (widget.chapters.isEmpty) return;
+    final chapter = widget.chapters[_currentChapterIndex];
+    if (index < 0 || index >= chapter.sentences.length) return;
+    _ensureSentenceKeys();
+
+    void performScroll() {
+      if (!mounted || index >= _sentenceKeys.length) return;
+      final ctx = _sentenceKeys[index].currentContext;
+      if (ctx != null) {
+        Scrollable.ensureVisible(
+          ctx,
+          duration: animate
+              ? const Duration(milliseconds: 350)
+              : Duration.zero,
+          curve: Curves.easeInOutQuart,
+          alignment: 0.25,
+          alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
+        );
+      } else if (_scrollController.hasClients) {
+        final estOffset = (index * 160.0)
+            .clamp(0.0, _scrollController.position.maxScrollExtent);
+        _scrollController.jumpTo(estOffset);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted || index >= _sentenceKeys.length) return;
+          final retryCtx = _sentenceKeys[index].currentContext;
+          if (retryCtx != null) {
+            Scrollable.ensureVisible(
+              retryCtx,
+              duration: animate
+                  ? const Duration(milliseconds: 250)
+                  : Duration.zero,
+              curve: Curves.easeInOutQuart,
+              alignment: 0.25,
+              alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
+            );
+          }
+        });
+      }
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) performScroll();
+    });
   }
 
   void _cyclePlaybackSpeed() {
@@ -1091,6 +1181,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                           _currentChapterIndex = idx;
                           _currentSentenceIndex = 0;
                           _currentSpokenCharIndex = 0;
+                          _ensureSentenceKeys();
+                          _rebuildSentenceTimings();
                         });
                         await _playSentenceAt(0);
                       },
@@ -1387,6 +1479,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                       final tokens = _getRubyTokens(sentence.chinese);
 
                       return GestureDetector(
+                        key: _sentenceKeys[idx],
                         onTap: () async {
                           HapticsManager.selection();
                           await _playSentenceAt(idx);

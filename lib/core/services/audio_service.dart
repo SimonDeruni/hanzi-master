@@ -118,8 +118,16 @@ class AudioService extends background_audio.BaseAudioHandler {
       StreamController.broadcast();
   Stream<String> get onPlaybackError => _errorController.stream;
 
+  final StreamController<List<Map<String, dynamic>>>
+      _boundariesLoadedController = StreamController.broadcast();
+  Stream<List<Map<String, dynamic>>> get onBoundariesLoaded =>
+      _boundariesLoadedController.stream;
+
   List<Map<String, dynamic>> _currentBoundaries = [];
   int _currentBoundaryIndex = 0;
+
+  List<Map<String, dynamic>> get currentBoundaries =>
+      List.unmodifiable(_currentBoundaries);
 
   double _speechRate = 0.5;
 
@@ -172,25 +180,30 @@ class AudioService extends background_audio.BaseAudioHandler {
 
     _player.onPositionChanged.listen((position) {
       _broadcastPlaybackState(position: position);
-      if (_currentBoundaries.isEmpty ||
-          _currentBoundaryIndex >= _currentBoundaries.length) {
+      if (_currentBoundaries.isEmpty) {
         return;
       }
 
       final currentMs = position.inMilliseconds;
-      // Azure offset is in 100-ns ticks. 1 ms = 10000 ticks.
-      final nextBoundary = _currentBoundaries[_currentBoundaryIndex];
-      final offsetTicks = nextBoundary['Offset'];
-      if (offsetTicks == null) return;
+      while (_currentBoundaryIndex < _currentBoundaries.length) {
+        final nextBoundary = _currentBoundaries[_currentBoundaryIndex];
+        final offsetTicks = nextBoundary['Offset'];
+        if (offsetTicks == null) {
+          _currentBoundaryIndex++;
+          continue;
+        }
 
-      final boundaryMs = (offsetTicks is int
-              ? offsetTicks
-              : int.tryParse(offsetTicks.toString()) ?? 0) /
-          10000;
+        final boundaryMs = (offsetTicks is int
+                ? offsetTicks
+                : int.tryParse(offsetTicks.toString()) ?? 0) /
+            10000;
 
-      if (currentMs >= boundaryMs) {
-        _wordBoundaryController.add(nextBoundary);
-        _currentBoundaryIndex++;
+        if (currentMs >= boundaryMs) {
+          _wordBoundaryController.add(nextBoundary);
+          _currentBoundaryIndex++;
+        } else {
+          break;
+        }
       }
     });
 
@@ -571,9 +584,12 @@ class AudioService extends background_audio.BaseAudioHandler {
             final jsonStr = await boundaryFile.readAsString();
             final list = jsonDecode(jsonStr) as List<dynamic>;
             _currentBoundaries = list.cast<Map<String, dynamic>>();
+            _boundariesLoadedController.add(_currentBoundaries);
           } catch (_) {
             // Ignore corrupted boundary cache
           }
+        } else {
+          _boundariesLoadedController.add(const []);
         }
         try {
           if (generation != _playbackGeneration) return false;
@@ -905,15 +921,67 @@ class AudioService extends background_audio.BaseAudioHandler {
     return true;
   }
 
-  /// Fetches premium TTS audio from Azure Cognitive Services via REST API.
-  /// Uses audio-16khz-128kbitrate-mono-mp3 for highest Neural fidelity and rapid transfer.
-  Future<CloudTtsResult?> _fetchCloudTTS(
+  String _generateHexUuid() {
+    final rand = math.Random();
+    const chars = '0123456789abcdef';
+    return List.generate(32, (_) => chars[rand.nextInt(16)]).join();
+  }
+
+  List<Map<String, dynamic>> _normalizeBoundaries(
+    String text,
+    List<Map<String, dynamic>> rawBoundaries,
+  ) {
+    final normalized = <Map<String, dynamic>>[];
+    int searchPos = 0;
+    for (final b in rawBoundaries) {
+      final word = (b['text']?['Text'] ?? b['Word'] ?? '').toString();
+      final boundaryType = (b['text']?['BoundaryType'] ??
+              b['BoundaryType'] ??
+              b['Type'] ??
+              '')
+          .toString();
+      final offsetTicks = b['Offset'];
+      final durTicks = b['Duration'];
+      final double offsetMs = (b['OffsetMs'] as num?)?.toDouble() ??
+          ((offsetTicks is int
+                  ? offsetTicks
+                  : int.tryParse(offsetTicks.toString()) ?? 0) /
+              10000.0);
+      final double durMs = (b['DurationMs'] as num?)?.toDouble() ??
+          ((durTicks is int
+                  ? durTicks
+                  : int.tryParse(durTicks.toString()) ?? 0) /
+              10000.0);
+
+      int textOffset = -1;
+      int wordLen = word.length;
+      if (word.isNotEmpty) {
+        final foundAt = text.indexOf(word, searchPos);
+        if (foundAt != -1) {
+          textOffset = foundAt;
+          searchPos = foundAt + word.length;
+        }
+      }
+
+      normalized.add({
+        'TextOffset': textOffset,
+        'WordLength': wordLen,
+        'Offset': offsetTicks,
+        'Duration': durTicks,
+        'OffsetMs': offsetMs,
+        'DurationMs': durMs,
+        'Word': word,
+        'BoundaryType': boundaryType,
+      });
+    }
+    return normalized;
+  }
+
+  Future<CloudTtsResult?> _fetchCloudTTSWithWebSocket(
     String text, {
     String azureVoice = 'zh-CN-YunxiNeural',
-    String pitchRange = '+15%',
     int rateAdjustment = 0,
     double? speechRate,
-    String? phoneme,
     File? cacheFile,
     File? boundaryFile,
   }) async {
@@ -936,7 +1004,196 @@ class AudioService extends background_audio.BaseAudioHandler {
             200, ((effectiveSpeechRate - 0.5) * 200).round() + rateAdjustment));
     final rateStr = rateValue >= 0 ? '+$rateValue%' : '$rateValue%';
 
-    // Ultra-clean standard SSML with zero style extensions to guarantee 200 OK across all Azure endpoints
+    final ssml =
+        '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN"><voice name="$azureVoice"><prosody rate="$rateStr">$safeText</prosody></voice></speak>';
+
+    final cid = _generateHexUuid();
+    final reqId = _generateHexUuid();
+    final url =
+        'wss://$region.tts.speech.microsoft.com/cognitiveservices/websocket/v1?Ocp-Apim-Subscription-Key=$apiKey&X-ConnectionId=$cid';
+
+    debugPrint(
+        '[AudioService] Requesting Azure WebSocket TTS ($azureVoice) for: $text');
+
+    WebSocket? ws;
+    try {
+      ws = await WebSocket.connect(
+        url,
+        headers: {
+          'User-Agent': 'HanziMasterApp',
+          'Origin': 'https://cognitiveservices.azure.com',
+        },
+      ).timeout(const Duration(seconds: 8));
+
+      final now = DateTime.now().toUtc().toIso8601String();
+
+      // 1. speech.config
+      final cfg = {
+        'context': {
+          'system': {
+            'name': 'SpeechSDK',
+            'version': '1.30.0',
+            'build': 'Dart',
+            'lang': 'Dart',
+          },
+          'os': {'platform': 'Dart', 'name': Platform.operatingSystem},
+        }
+      };
+      ws.add(
+          'Path: speech.config\r\nX-Timestamp: $now\r\nContent-Type: application/json; charset=utf-8\r\n\r\n${jsonEncode(cfg)}');
+
+      // 2. synthesis.context with boundary options enabled
+      final ctx = {
+        'synthesis': {
+          'audio': {
+            'outputFormat': 'audio-24khz-48kbitrate-mono-mp3',
+            'metadataOptions': {
+              'bookmarkEnabled': true,
+              'wordBoundaryEnabled': true,
+              'sentenceBoundaryEnabled': true,
+              'punctuationBoundaryEnabled': true,
+            }
+          }
+        }
+      };
+      ws.add(
+          'Path: synthesis.context\r\nX-RequestId: $reqId\r\nX-Timestamp: $now\r\nContent-Type: application/json; charset=utf-8\r\n\r\n${jsonEncode(ctx)}');
+
+      // 3. ssml
+      ws.add(
+          'Path: ssml\r\nX-RequestId: $reqId\r\nX-Timestamp: $now\r\nContent-Type: application/ssml+xml\r\n\r\n$ssml');
+
+      final audioChunks = <List<int>>[];
+      final rawBoundaries = <Map<String, dynamic>>[];
+      final completer = Completer<void>();
+
+      ws.listen(
+        (message) {
+          if (message is String) {
+            if (message.contains('Path:audio.metadata')) {
+              final idx = message.indexOf('\r\n\r\n');
+              if (idx != -1) {
+                try {
+                  final body = message.substring(idx + 4);
+                  final data = jsonDecode(body) as Map<String, dynamic>;
+                  final metadataList = data['Metadata'] as List<dynamic>?;
+                  if (metadataList != null) {
+                    for (final m in metadataList) {
+                      if (m is Map<String, dynamic>) {
+                        final type = m['Type'];
+                        if (type == 'WordBoundary' ||
+                            type == 'PunctuationBoundary') {
+                          rawBoundaries.add(m['Data'] as Map<String, dynamic>);
+                        }
+                      }
+                    }
+                  }
+                } catch (_) {}
+              }
+            } else if (message.contains('Path:turn.end')) {
+              if (!completer.isCompleted) completer.complete();
+            }
+          } else if (message is List<int>) {
+            // Binary message: 2-byte header length + header text + audio
+            if (message.length > 2) {
+              final headerLen = (message[0] << 8) | message[1];
+              if (message.length > 2 + headerLen) {
+                final audioBytes = message.sublist(2 + headerLen);
+                audioChunks.add(audioBytes);
+              }
+            }
+          }
+        },
+        onError: (e) {
+          if (!completer.isCompleted) completer.completeError(e);
+        },
+        onDone: () {
+          if (!completer.isCompleted) completer.complete();
+        },
+      );
+
+      await completer.future.timeout(const Duration(seconds: 12));
+      await ws.close();
+
+      final totalAudioBytes =
+          audioChunks.fold<int>(0, (sum, chunk) => sum + chunk.length);
+      if (totalAudioBytes == 0) {
+        debugPrint('[AudioService] Azure WebSocket returned 0 audio bytes');
+        return null;
+      }
+
+      final audio = Uint8List(totalAudioBytes);
+      var writeOffset = 0;
+      for (final chunk in audioChunks) {
+        audio.setRange(writeOffset, writeOffset + chunk.length, chunk);
+        writeOffset += chunk.length;
+      }
+
+      // Normalize boundaries with sentence alignment
+      final normalizedBoundaries = _normalizeBoundaries(text, rawBoundaries);
+
+      // Save to cache file if provided
+      if (cacheFile != null) {
+        if (!await cacheFile.parent.exists()) {
+          await cacheFile.parent.create(recursive: true);
+        }
+        await cacheFile.writeAsBytes(audio, flush: true);
+      }
+
+      // Save boundaries to boundaryFile
+      if (boundaryFile != null && normalizedBoundaries.isNotEmpty) {
+        if (!await boundaryFile.parent.exists()) {
+          await boundaryFile.parent.create(recursive: true);
+        }
+        await boundaryFile.writeAsString(jsonEncode(normalizedBoundaries),
+            flush: true);
+      }
+
+      _currentBoundaries = normalizedBoundaries;
+      _currentBoundaryIndex = 0;
+      _boundariesLoadedController.add(_currentBoundaries);
+
+      return CloudTtsResult(
+        audio: audio,
+        boundaries: normalizedBoundaries,
+        success: true,
+      );
+    } catch (e) {
+      debugPrint(
+          '[AudioService] Azure WebSocket TTS failed: $e, falling back to REST');
+      try {
+        await ws?.close();
+      } catch (_) {}
+      return null;
+    }
+  }
+
+  Future<CloudTtsResult?> _fetchCloudTTSViaRest(
+    String text, {
+    String azureVoice = 'zh-CN-YunxiNeural',
+    int rateAdjustment = 0,
+    double? speechRate,
+    File? cacheFile,
+  }) async {
+    final apiKey = _pool.azureSpeechKey;
+    final region = _pool.azureSpeechRegion;
+    if (apiKey.isEmpty || region.isEmpty || apiKey == 'MISSING_KEY') {
+      debugPrint('[AudioService] Azure key missing, skipping cloud TTS');
+      return null;
+    }
+
+    final safeText = text
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
+    final effectiveSpeechRate = speechRate ?? _speechRate;
+    final num rateValue = math.max(
+        -50,
+        math.min(
+            200, ((effectiveSpeechRate - 0.5) * 200).round() + rateAdjustment));
+    final rateStr = rateValue >= 0 ? '+$rateValue%' : '$rateValue%';
+
     final ssml =
         '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="zh-CN"><voice name="$azureVoice"><prosody rate="$rateStr">$safeText</prosody></voice></speak>';
 
@@ -944,7 +1201,7 @@ class AudioService extends background_audio.BaseAudioHandler {
         'https://$region.tts.speech.microsoft.com/cognitiveservices/v1');
 
     debugPrint(
-        '[AudioService] Requesting Azure Neural TTS ($azureVoice) for: $text');
+        '[AudioService] Requesting Azure REST TTS ($azureVoice) for: $text');
 
     try {
       final client = http.Client();
@@ -962,13 +1219,9 @@ class AudioService extends background_audio.BaseAudioHandler {
             )
             .timeout(const Duration(seconds: 10));
 
-        debugPrint(
-            '[AudioService] Azure TTS response: ${response.statusCode} (${response.bodyBytes.length} bytes)');
-
         if (response.statusCode == 200 && response.bodyBytes.isNotEmpty) {
           final audio = response.bodyBytes;
 
-          // Save to cache file
           final tmpFile = cacheFile ??
               File(
                   '${_cacheDir!.path}/tts_cache/tmp_${DateTime.now().millisecondsSinceEpoch}.mp3');
@@ -977,9 +1230,9 @@ class AudioService extends background_audio.BaseAudioHandler {
           }
           await tmpFile.writeAsBytes(audio, flush: true);
 
-          // REST API doesn't provide word boundaries; boundaries list stays empty
           _currentBoundaries = [];
           _currentBoundaryIndex = 0;
+          _boundariesLoadedController.add(const []);
 
           return CloudTtsResult(
             audio: audio,
@@ -988,19 +1241,61 @@ class AudioService extends background_audio.BaseAudioHandler {
           );
         } else {
           debugPrint(
-              '[AudioService] Azure TTS failed with status ${response.statusCode}: ${response.body}');
+              '[AudioService] Azure REST TTS failed: ${response.statusCode}');
           return null;
         }
       } finally {
         client.close();
       }
-    } on TimeoutException {
-      debugPrint('[AudioService] Azure TTS request timed out (10s)');
-      return null;
     } catch (e) {
-      debugPrint('[AudioService] Azure TTS request error: $e');
+      debugPrint('[AudioService] Azure REST TTS error: $e');
       return null;
     }
+  }
+
+  Future<CloudTtsResult?> _fetchCloudTTS(
+    String text, {
+    String azureVoice = 'zh-CN-YunxiNeural',
+    String pitchRange = '+15%',
+    int rateAdjustment = 0,
+    double? speechRate,
+    String? phoneme,
+    File? cacheFile,
+    File? boundaryFile,
+  }) async {
+    // If phoneme is specified (tone audition) or custom pitch, use REST
+    if (phoneme != null || pitchRange != '+15%') {
+      return _fetchCloudTTSViaRest(
+        text,
+        azureVoice: azureVoice,
+        rateAdjustment: rateAdjustment,
+        speechRate: speechRate,
+        cacheFile: cacheFile,
+      );
+    }
+
+    // Try WebSocket with exact boundaries first
+    final wsResult = await _fetchCloudTTSWithWebSocket(
+      text,
+      azureVoice: azureVoice,
+      rateAdjustment: rateAdjustment,
+      speechRate: speechRate,
+      cacheFile: cacheFile,
+      boundaryFile: boundaryFile,
+    );
+
+    if (wsResult != null && wsResult.success && wsResult.audio.isNotEmpty) {
+      return wsResult;
+    }
+
+    // Fallback to REST API
+    return _fetchCloudTTSViaRest(
+      text,
+      azureVoice: azureVoice,
+      rateAdjustment: rateAdjustment,
+      speechRate: speechRate,
+      cacheFile: cacheFile,
+    );
   }
 
   @override
@@ -1089,6 +1384,7 @@ class AudioService extends background_audio.BaseAudioHandler {
     _audioPlayer?.dispose();
     _fallbackTts?.stop();
     _wordBoundaryController.close();
+    _boundariesLoadedController.close();
     _completeController.close();
     _errorController.close();
     _audiobookLocationController.close();

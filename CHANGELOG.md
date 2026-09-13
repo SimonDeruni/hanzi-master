@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-08] Audiobook Azure Speech Exact Timing Synchronization & Sentence Auto-Scroll Lock
+- **Azure Speech WebSocket Protocol & Exact Metadata Timestamps:** Upgraded `AudioService` cloud TTS synthesis from legacy REST (which returned opaque MP3 bytes with 0 timing metadata) to native Azure Speech WebSocket (`wss://.../cognitiveservices/websocket/v1`), enabling `wordBoundaryEnabled`, `sentenceBoundaryEnabled`, and `punctuationBoundaryEnabled` synthesis. Captures real-time `audio.metadata` frames containing microsecond-precise `WordBoundary` and `PunctuationBoundary` offsets.
+- **Word & Character Timing Alignment Engine:** Built `SpokenCharTiming`, `buildSpokenCharTimings`, and `findActiveTiming` in `lib/features/reading/domain/logic/spoken_text_highlight.dart`. Seamlessly maps Azure word/compound boundaries and punctuation pauses to individual Chinese characters, guaranteeing exact character-by-character coloration synchronized with the voice. Eliminates audio/visual drift and prevents rushing during commas, semicolons, and sentence pauses.
+- **Boundary Persistence & Offline Caching:** Preserves normalized JSON boundaries alongside cached MP3 audio files (`$hash.json` and `$hash.mp3`), providing 0-latency instant replay with full character boundary alignment offline without redundant network requests. Transparent fallback to REST and local TTS if offline or WebSocket interrupted.
+- **Dynamic Auto-Scroll Precision & "Jump Above" Elimination:** Replaced static linear offset calculation (`index * 130 - 140`) in `AudiobookPlayerScreen._scrollToSentence` with dynamic per-sentence `GlobalKey` tracking and `Scrollable.ensureVisible(..., alignment: 0.25, curve: Curves.easeInOutQuart)`. Dynamically adapts to multi-line Ruby Pinyin and localized translations of variable height, keeping the active spoken sentence reliably visible and centered in the upper third of the viewport without upward snapping or viewport loss.
+- **Automated Verification:** Added unit and widget test suite `test/features/reading/audiobook_synchronization_test.dart` and expanded `test/unit_tests/spoken_text_highlight_test.dart` verifying boundary alignment, pause holding, JSON roundtrip, and scroll centering. Full project `dart analyze lib/ test/` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-08] YouTube Video Subtitle Screen Floating QuickLook Exclusivity
+- **Eliminate Redundant Bottom Sheet QuickLook:** Removed `showQuickLook(context, word)` call from `SmartMediaDeskScreen._onWordTapped`, preventing the duplicate bottom sheet from spawning when characters are tapped in the transcript.
+- **Floating QuickLook for AI Prep Card:** Upgraded `PremiumAiPrepCard` hard word chips to record `tapPosition` and trigger `QuickLookPresentation.readingPopover`, providing consistent floating popovers across all video vocabulary targets.
+- **Contextual Transcript Sentence Ingestion:** Passed `contextText: widget.line.text` to `showQuickLook` in `PremiumTranscriptLine`.
+- **Automated Verification:** Added `test/features/media/transcript_quick_look_test.dart` verifying that tapping transcript characters and AI prep chips opens exclusively the floating reading popover and never the modal bottom sheet. `dart analyze lib/ test/` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
 ### [2026-09-08] Character Drawing Canvas Orientation Restoration
 - **Preserve `isFlipped` on Stroke Hydration:** Fixed character stroke paths rendering upside-down in `CharacterDetailScreen` by copying `isFlipped: hydrated.isFlipped` in `_getCurrentCard()`.
 - **Course Drawing Step Wiring:** Propagated `isFlipped: widget.card.isFlipped` to `DrawingCanvas` in `DrawingStep`.

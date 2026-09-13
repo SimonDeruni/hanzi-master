@@ -10,7 +10,6 @@ import '../../domain/models/video_transcript.dart';
 import '../../domain/models/media_briefing.dart';
 import '../../domain/models/youtube_video.dart';
 import '../../../../core/services/gemini_service.dart';
-import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
@@ -516,7 +515,6 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   void _onWordTapped(String word) {
     _playerController.pauseVideo();
-    showQuickLook(context, word);
   }
 
   void _replayLine(Duration start) {
