@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-13] Build Bump (Build #533)
+- **Version Bump:** Bumped build version to `1.0.0+533` in `pubspec.yaml`.
+
 ### [2026-09-13] Standalone Desktop Web PC Audiobook Player
 - **Dedicated Desktop Web Player (`web_audiobook/`):** Created a standalone, calligraphic desktop web application specifically optimized for PC browsers with zero mobile codebase modifications (`lib/` untouched).
 - **Zen & Ink Aesthetics & Dark Mode:** Designed around authentic Xuan paper (`#FDFCF0`), Carbon Ink (`#1A1A1B`), Chinese Cinnabar Red (`#8B0000`), and Emperor's Gold (`#D4AF37`) palette, with instant toggle to Ink Stone Dark Mode (`#121113`).
