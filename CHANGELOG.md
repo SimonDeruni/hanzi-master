@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-13] Standalone Desktop Web PC Audiobook Player
+- **Dedicated Desktop Web Player (`web_audiobook/`):** Created a standalone, calligraphic desktop web application specifically optimized for PC browsers with zero mobile codebase modifications (`lib/` untouched).
+- **Zen & Ink Aesthetics & Dark Mode:** Designed around authentic Xuan paper (`#FDFCF0`), Carbon Ink (`#1A1A1B`), Chinese Cinnabar Red (`#8B0000`), and Emperor's Gold (`#D4AF37`) palette, with instant toggle to Ink Stone Dark Mode (`#121113`).
+- **Real-Time Azure Speech WebSocket Streaming:** Connected directly from browser JavaScript to Azure Cognitive Services WebSocket (`wss://germanywestcentral.tts.speech.microsoft.com/...`), receiving binary MP3 chunks and `audio.metadata` word boundary frames for real-time character-by-character synchronized highlighting (`#D4AF37` gold badge/glow). Seamless fallback to browser Web Speech API.
+- **Ruby Pinyin & Spoken Pause Holding:** Renders Ruby pinyin aligned above each Hanzi character, holding highlight naturally across punctuation pauses without jumping ahead.
+- **QuickLook Floating Dictionary Popover:** Integrated interactive character tap popover displaying large calligraphic glyph, pinyin with audio pronunciation, HSK level badge, English definitions, and clipboard copy.
+- **Complete Grand Library Catalog & Chapter Navigation:** Built collapsible sidebar with search filter, access to all 86 classical Chinese books (`assets/data/books/`), chapter selector, and custom JSON book drag-and-drop loader.
+- **1-Click Local Server & Batch Launcher:** Added `web_audiobook/serve.py` (CORS-enabled local HTTP server with automatic browser opening) and `start_audiobook.bat` for instant 1-click execution.
+
 ### [2026-09-08] Audiobook Azure Speech Exact Timing Synchronization & Sentence Auto-Scroll Lock
 - **Azure Speech WebSocket Protocol & Exact Metadata Timestamps:** Upgraded `AudioService` cloud TTS synthesis from legacy REST (which returned opaque MP3 bytes with 0 timing metadata) to native Azure Speech WebSocket (`wss://.../cognitiveservices/websocket/v1`), enabling `wordBoundaryEnabled`, `sentenceBoundaryEnabled`, and `punctuationBoundaryEnabled` synthesis. Captures real-time `audio.metadata` frames containing microsecond-precise `WordBoundary` and `PunctuationBoundary` offsets.
 - **Word & Character Timing Alignment Engine:** Built `SpokenCharTiming`, `buildSpokenCharTimings`, and `findActiveTiming` in `lib/features/reading/domain/logic/spoken_text_highlight.dart`. Seamlessly maps Azure word/compound boundaries and punctuation pauses to individual Chinese characters, guaranteeing exact character-by-character coloration synchronized with the voice. Eliminates audio/visual drift and prevents rushing during commas, semicolons, and sentence pauses.

@@ -1,0 +1,35 @@
+# GitLab CI/CD Pipeline for Hanzi Master
+# Includes automated code hygiene verification and GitLab Pages deployment for the Web Audiobook Player
+
+stages:
+  - lint
+  - deploy
+
+# 1. Automated Flutter Hygiene Analysis
+flutter_analyze:
+  stage: lint
+  image: ghcr.io/cirruslabs/flutter:latest
+  before_script:
+    - flutter doctor -v
+  script:
+    - flutter pub get
+    - flutter analyze
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  allow_failure: true
+
+# 2. Deploy Web Audiobook Player to GitLab Pages
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir -p public
+    - cp -r web_audiobook/* public/
+    - mkdir -p public/assets/data
+    - cp -r assets/data/* public/assets/data/
+    - ls -la public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
