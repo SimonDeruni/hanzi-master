@@ -150,6 +150,9 @@ List<SpokenCharTiming> buildSpokenCharTimings({
                 : int.tryParse(durTicks.toString()) ?? 0) /
             10000.0);
 
+    // Azure emits SentenceBoundary containing the whole sentence; ignore to prevent searchPos jumping to text.length
+    if (boundaryType == 'SentenceBoundary') continue;
+
     final foundAt = text.indexOf(word, searchPos);
     if (foundAt == -1) continue;
     searchPos = foundAt + word.length;

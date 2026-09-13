@@ -47,17 +47,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       return _rubyCache[chinese]!;
     }
 
-    final pinyinString = PinyinHelper.getPinyinE(
-      chinese,
-      separator: ' ',
-      format: PinyinFormat.WITH_TONE_MARK,
-    );
-    final pinyinList =
-        pinyinString.split(' ').where((s) => s.isNotEmpty).toList();
-
-    final tokens = <_RubyToken>[];
-    int pinyinIdx = 0;
-    int hanziIdx = 0;
     const punctuation = {
       '，',
       '。',
@@ -95,6 +84,24 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       '{',
       '}'
     };
+
+    final pinyinString = PinyinHelper.getPinyinE(
+      chinese,
+      separator: ' ',
+      format: PinyinFormat.WITH_TONE_MARK,
+    );
+    // Filter out punctuation and numbers so pinyinList only contains actual spoken syllables
+    final pinyinList = pinyinString
+        .split(' ')
+        .where((s) =>
+            s.isNotEmpty &&
+            !punctuation.contains(s) &&
+            !RegExp(r'^\d+$').hasMatch(s))
+        .toList();
+
+    final tokens = <_RubyToken>[];
+    int pinyinIdx = 0;
+    int hanziIdx = 0;
 
     for (final char in chinese.characters) {
       final isPunctuation =

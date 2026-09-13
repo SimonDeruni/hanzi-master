@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-13] Build Bump (Build #534)
+- **Version Bump:** Bumped build version to `1.0.0+534` in `pubspec.yaml`.
+
+### [2026-09-13] Audiobook Recitation Coloration & Ruby Pinyin Centering Alignment Fix
+- **Pinyin Punctuation Desynchronization Fix:** Pre-filtered punctuation tokens and symbols from `pinyinList` in `parseRubyTokens` (`web_audiobook/index.html`, `web_audiobook/build_html.py`) and `_getRubyTokens` (`audiobook_player_screen.dart`, `book_reader_screen.dart`). Eliminates the bug where punctuation marks consumed no pinyin tokens, causing all subsequent pinyin syllables to shift +1 index onto the next adjacent character.
+- **Ruby Text Centering & Min-Width Constraint:** Enforced `text-align: center`, `width: 100%`, and `min-width: 1.25em` across `.ruby-char`, `.pinyin`, and `.hanzi` in CSS, as well as `CrossAxisAlignment.center`, `TextAlign.center`, and minimum container width constraints in Flutter mobile widgets. Prevents wide multi-letter syllables (e.g. `chuang`) from overflowing into neighboring character columns.
+- **Azure WebSocket Header Metadata Matching (Web Player):** Relaxed the WebSocket text header detection from strict `'Path: audio.metadata'` (which failed because Azure transmits no whitespace after the colon) to `'audio.metadata'`, restoring real-time `WordBoundary` parsing and character-level coloration during playback.
+- **Azure SentenceBoundary Collision Shield (Web & Mobile):** Ignored whole-sentence `SentenceBoundary` frames prior to advancing `searchPos` in `buildSpokenCharTimings`, ensuring that `searchPos` does not prematurely jump to the end of the text and discard subsequent word boundaries.
+- **Sentence Transition State Machine & Fallback Linear Highlighting:** Cleanly reset `_currentSpokenCharIndex = -1` upon sentence transition in `AudiobookPlayerScreen` and dynamically synchronized boundaries on `onBoundariesLoaded`. Implemented fallback active character estimation during audio playback if timing boundaries are delayed or missing.
+- **Automated Verification:** Added regression test in `test/unit_tests/spoken_text_highlight_test.dart` verifying `SentenceBoundary` filtering and character alignment. Full project `flutter analyze` reports **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
 ### [2026-09-13] Build Bump (Build #533)
 - **Version Bump:** Bumped build version to `1.0.0+533` in `pubspec.yaml`.
 

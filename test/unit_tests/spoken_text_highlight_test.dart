@@ -99,5 +99,71 @@ void main() {
       // Past end -> '开'
       expect(findActiveTiming(timings, 3000.0)?.char, '开');
     });
+
+    test('ignores SentenceBoundary packets and maintains character alignment', () {
+      const sentence = '不自出力，以《损》推演。';
+      final boundaries = [
+        {
+          'Offset': 500000,
+          'Duration': 33875000,
+          'text': {'Text': '不自出力，以《损》推演。', 'BoundaryType': 'SentenceBoundary'},
+        },
+        {
+          'Offset': 500000,
+          'Duration': 2125000,
+          'text': {'Text': '不', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 2625000,
+          'Duration': 1375000,
+          'text': {'Text': '自', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 4125000,
+          'Duration': 4375000,
+          'text': {'Text': '出力', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 9500000,
+          'Duration': 1875000,
+          'text': {'Text': '，', 'BoundaryType': 'PunctuationBoundary'},
+        },
+        {
+          'Offset': 11375000,
+          'Duration': 3000000,
+          'text': {'Text': '以', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 14375000,
+          'Duration': 4750000,
+          'text': {'Text': '损', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 20875000,
+          'Duration': 5250000,
+          'text': {'Text': '推演', 'BoundaryType': 'WordBoundary'},
+        },
+        {
+          'Offset': 26250000,
+          'Duration': 1125000,
+          'text': {'Text': '。', 'BoundaryType': 'PunctuationBoundary'},
+        },
+      ];
+
+      final timings = buildSpokenCharTimings(text: sentence, boundaries: boundaries);
+      // 8 spoken characters: 不(1) + 自(1) + 出力(2) + 以(1) + 损(1) + 推演(2) = 8
+      expect(timings.length, 8);
+      expect(timings.map((t) => t.char).join(), '不自出力以损推演');
+      expect(timings[0].char, '不');
+      expect(timings[0].hanziIndex, 0);
+      expect(timings[4].char, '以');
+      expect(timings[4].hanziIndex, 4);
+      expect(timings[5].char, '损');
+      expect(timings[5].hanziIndex, 5);
+      expect(timings[6].char, '推');
+      expect(timings[6].hanziIndex, 6);
+      expect(timings[7].char, '演');
+      expect(timings[7].hanziIndex, 7);
+    });
   });
 }

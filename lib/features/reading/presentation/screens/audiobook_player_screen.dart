@@ -122,11 +122,15 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         _currentSentenceIndex = location.sentenceIndex;
         _isPlaying = location.playing;
         if (changed) {
-          _currentSpokenCharIndex = 0;
-          _currentSpokenCharEnd = 1;
+          _currentSpokenCharIndex = -1;
+          _currentSpokenCharEnd = 0;
           _totalDurationMs = 0;
           _ensureSentenceKeys();
           _rebuildSentenceTimings();
+          if (_currentSentenceTimings.isNotEmpty) {
+            _currentSpokenCharIndex = 0;
+            _currentSpokenCharEnd = 1;
+          }
         }
       });
       if (changed) {
@@ -166,6 +170,10 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       if (!mounted) return;
       setState(() {
         _rebuildSentenceTimings();
+        if (_currentSentenceTimings.isNotEmpty && _currentSpokenCharIndex < 0) {
+          _currentSpokenCharIndex = 0;
+          _currentSpokenCharEnd = 1;
+        }
       });
     });
 
@@ -307,17 +315,6 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       return _rubyCache[chinese]!;
     }
 
-    final pinyinString = PinyinHelper.getPinyinE(
-      chinese,
-      separator: ' ',
-      format: PinyinFormat.WITH_TONE_MARK,
-    );
-    final pinyinList =
-        pinyinString.split(' ').where((s) => s.isNotEmpty).toList();
-
-    final tokens = <_RubyToken>[];
-    int pinyinIdx = 0;
-    int hanziIdx = 0;
     const punctuation = {
       '，',
       '。',
@@ -355,6 +352,24 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       '{',
       '}'
     };
+
+    final pinyinString = PinyinHelper.getPinyinE(
+      chinese,
+      separator: ' ',
+      format: PinyinFormat.WITH_TONE_MARK,
+    );
+    // Filter out punctuation and numbers so pinyinList only contains actual spoken syllables
+    final pinyinList = pinyinString
+        .split(' ')
+        .where((s) =>
+            s.isNotEmpty &&
+            !punctuation.contains(s) &&
+            !RegExp(r'^\d+$').hasMatch(s))
+        .toList();
+
+    final tokens = <_RubyToken>[];
+    int pinyinIdx = 0;
+    int hanziIdx = 0;
 
     for (final char in chinese.characters) {
       final isPunctuation =
@@ -412,11 +427,15 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       final requestGeneration = ++_audioRequestGeneration;
       setState(() {
         _currentSentenceIndex = sentenceIdx;
-        _currentSpokenCharIndex = 0;
-        _currentSpokenCharEnd = 1;
+        _currentSpokenCharIndex = -1;
+        _currentSpokenCharEnd = 0;
         _totalDurationMs = 0;
         _isPlaying = true;
         _rebuildSentenceTimings();
+        if (_currentSentenceTimings.isNotEmpty) {
+          _currentSpokenCharIndex = 0;
+          _currentSpokenCharEnd = 1;
+        }
       });
       _saveProgress();
       _scrollToSentence(sentenceIdx);
@@ -1603,12 +1622,17 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                           width: isQuickLookSelected ? 1.5 : 1,
                                         ),
                                       ),
+                                      constraints: BoxConstraints(
+                                          minWidth: isActive ? 24.0 : 18.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           // Pinyin syllable directly above Hanzi
                                           Text(
                                             token.pinyin,
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontSize: isActive ? 12.5 : 10.5,
                                               fontWeight:
@@ -1649,6 +1673,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                           // Chinese Hanzi Character
                                           Text(
                                             token.char,
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontSize: isActive ? 22 : 17,
                                               fontWeight:

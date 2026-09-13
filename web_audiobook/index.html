@@ -553,7 +553,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding: 3px 4px;
+      text-align: center;
+      min-width: 1.25em;
+      padding: 3px 3px;
       border-radius: 6px;
       border: 1px solid transparent;
       cursor: pointer;
@@ -575,6 +577,9 @@
       margin-bottom: 2px;
       letter-spacing: 0.2px;
       user-select: none;
+      text-align: center;
+      width: 100%;
+      white-space: nowrap;
       transition: color 0.15s ease;
     }
 
@@ -588,6 +593,8 @@
       font-weight: 600;
       color: var(--text-primary);
       line-height: 1.15;
+      text-align: center;
+      width: 100%;
       transition: color 0.15s ease, transform 0.15s ease;
     }
 
@@ -1327,7 +1334,9 @@
 
     // Pinyin & Ruby Tokenizer
     function parseRubyTokens(chinese, pinyinStr) {
-      const pinyinList = (pinyinStr || '').trim().split(/\s+/).filter(Boolean);
+      const rawList = (pinyinStr || '').trim().split(/\s+/).filter(Boolean);
+      // Filter out punctuation marks and non-word tokens so pinyinList aligns 1:1 with spoken Hanzi
+      const pinyinList = rawList.filter(token => !NON_SPOKEN_SET.has(token) && !/^[\p{P}\p{S}\d]+$/u.test(token));
       const tokens = [];
       let pinyinIdx = 0;
       let hanziIdx = 0;
@@ -1369,6 +1378,9 @@
         const word = (b.Word || (b.text && b.text.Text) || '').toString();
         const boundaryType = (b.BoundaryType || (b.text && b.text.BoundaryType) || b.Type || '').toString();
         if (!word) continue;
+
+        // Skip full-sentence boundary so searchPos does not jump to end of sentence
+        if (boundaryType === 'SentenceBoundary') continue;
 
         const offsetMs = Number(b.OffsetMs || (b.Offset / 10000.0) || 0);
         const durMs = Number(b.DurationMs || (b.Duration / 10000.0) || 0);
@@ -1446,6 +1458,22 @@
             if (active && active.hanziIndex !== state.currentSpokenHanziIndex) {
               state.currentSpokenHanziIndex = active.hanziIndex;
               updateCharacterHighlights();
+            }
+          } else {
+            const curChap = state.currentBook && state.currentBook.chapters[state.currentChapterIndex];
+            const curSent = curChap && curChap.sentences[state.currentSentenceIndex];
+            const durMs = (el.htmlAudio.duration || 0) * 1000;
+            if (durMs > 0 && curSent) {
+              const tokens = parseRubyTokens(curSent.chinese, curSent.pinyin);
+              const hanziCount = tokens.filter(t => !t.isPunctuation).length;
+              if (hanziCount > 0) {
+                const fraction = Math.min(1.0, Math.max(0.0, posMs / durMs));
+                const targetIdx = Math.min(hanziCount - 1, Math.floor(fraction * hanziCount));
+                if (targetIdx !== state.currentSpokenHanziIndex) {
+                  state.currentSpokenHanziIndex = targetIdx;
+                  updateCharacterHighlights();
+                }
+              }
             }
           }
         });
@@ -1547,13 +1575,14 @@
             }
 
             if (typeof evt.data === 'string') {
-              if (evt.data.includes('Path: audio.metadata')) {
+              if (evt.data.includes('audio.metadata')) {
                 try {
                   const body = evt.data.split('\r\n\r\n')[1];
                   const data = JSON.parse(body);
                   if (data && data.Metadata) {
                     for (const m of data.Metadata) {
-                      if (m.Type === 'WordBoundary') {
+                      const bType = m.Type || (m.Data && (m.Data.BoundaryType || (m.Data.text && m.Data.text.BoundaryType)));
+                      if (bType === 'WordBoundary') {
                         boundaries.push(m.Data);
                       }
                     }
@@ -1561,7 +1590,7 @@
                 } catch (e) {
                   console.error('Metadata parse error:', e);
                 }
-              } else if (evt.data.includes('Path: turn.end')) {
+              } else if (evt.data.includes('turn.end')) {
                 ws.close();
                 if (audioChunks.length === 0) {
                   reject(new Error('No audio chunks received'));
