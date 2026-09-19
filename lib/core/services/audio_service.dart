@@ -557,6 +557,7 @@ class AudioService extends background_audio.BaseAudioHandler {
     String sentence, {
     String voiceName = 'Fenrir',
     double? speechRate,
+    double? playbackRate,
   }) async {
     final generation = ++_playbackGeneration;
     _currentBoundaries = [];
@@ -569,11 +570,15 @@ class AudioService extends background_audio.BaseAudioHandler {
     });
     if (generation != _playbackGeneration || _isDisposed) return false;
 
+    final effectivePlaybackRate =
+        playbackRate ?? (_audiobookActive ? _playbackRate : 1.0);
+
     // If user explicitly selected local voice, skip Azure entirely
     if (voiceName == 'local') {
       debugPrint(
           '[AudioService] User selected local on-device voice — skipping Azure');
-      return await _playLocalTTS(sentence, generation, speechRate: speechRate);
+      return await _playLocalTTS(sentence, generation,
+          speechRate: speechRate, playbackRate: effectivePlaybackRate);
     }
 
     final azureVoice = _azureVoiceMap[voiceName] ?? _defaultAzureVoice;
@@ -620,7 +625,7 @@ class AudioService extends background_audio.BaseAudioHandler {
           final byteLength = await cacheFile.length();
           await _runEngineOperation(() async {
             if (generation != _playbackGeneration) return;
-            await _player.setPlaybackRate(_playbackRate);
+            await _player.setPlaybackRate(effectivePlaybackRate);
             await _player.play(DeviceFileSource(cacheFile.path));
           });
           if (generation != _playbackGeneration) return false;
@@ -656,7 +661,7 @@ class AudioService extends background_audio.BaseAudioHandler {
           if (generation != _playbackGeneration) return false;
           await _runEngineOperation(() async {
             if (generation != _playbackGeneration) return;
-            await _player.setPlaybackRate(_playbackRate);
+            await _player.setPlaybackRate(effectivePlaybackRate);
             await _player.play(DeviceFileSource(cacheFile.path));
           });
           if (generation != _playbackGeneration) return false;
@@ -674,7 +679,8 @@ class AudioService extends background_audio.BaseAudioHandler {
     }
 
     // Fallback: local on-device TTS if quota is reached or Azure is offline
-    return await _playLocalTTS(sentence, generation, speechRate: speechRate);
+    return await _playLocalTTS(sentence, generation,
+        speechRate: speechRate, playbackRate: effectivePlaybackRate);
   }
 
   /// Plays the sentence through local on-device TTS (flutter_tts).
@@ -682,6 +688,7 @@ class AudioService extends background_audio.BaseAudioHandler {
     String sentence,
     int generation, {
     double? speechRate,
+    double? playbackRate,
   }) async {
     if (generation != _playbackGeneration) return false;
     try {
@@ -692,7 +699,7 @@ class AudioService extends background_audio.BaseAudioHandler {
           await _tts.setVoice(voice.platformArguments);
         }
         await _tts.setSpeechRate(speechRate ??
-            (_speechRate * _playbackRate).clamp(0.1, 1.0));
+            (_speechRate * (playbackRate ?? 1.0)).clamp(0.1, 1.0));
         _localTtsGeneration = generation;
         return _tts.speak(sentence);
       });

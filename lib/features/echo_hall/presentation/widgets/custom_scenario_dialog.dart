@@ -593,6 +593,13 @@ Respond ONLY in valid JSON format:
             separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
       }
 
+      final (pickedAvatar, pickedVoice) =
+          ConversationScenario.pickAvatarAndVoice(
+        personaName,
+        title,
+        description: desc,
+      );
+
       final scenario = ConversationScenario(
         id: scenarioId,
         title: title,
@@ -604,11 +611,12 @@ Respond ONLY in valid JSON format:
             ? "You are $personaName. Your ONLY role is $personaName. The user is practicing spoken Chinese in the scenario: $title. ${desc.isNotEmpty ? 'Setting: $desc.' : ''} Reply in natural Mandarin suited for HSK $targetHsk. NEVER break character, never act like a generic AI."
             : "You are $personaName. Your ONLY role is $personaName. The user is practicing spoken Chinese in the scenario: $title. Reply in natural Mandarin suited for HSK $targetHsk. NEVER break character.",
         targetHskLevel: targetHsk,
-        avatarAssetPath: 'none',
+        avatarAssetPath: pickedAvatar,
         personaName: personaName,
         backgroundAudioPath: null,
         quests: quests,
         isCustom: true,
+        voiceName: pickedVoice,
       );
 
       if (mounted) {

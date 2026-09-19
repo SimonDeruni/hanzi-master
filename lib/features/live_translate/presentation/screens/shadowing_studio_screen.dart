@@ -13,7 +13,6 @@ import '../../../../core/widgets/translated_definition.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
@@ -35,14 +34,28 @@ class ShadowingStudioScreen extends ConsumerStatefulWidget {
   final String? initialContextSentence;
   final bool isCompact;
   final bool showBackButton;
-  const ShadowingStudioScreen(
-      {super.key,
-      this.initialHanzi,
-      this.initialPinyin,
-      this.initialTranslation,
-      this.initialContextSentence,
-      this.isCompact = false,
-      this.showBackButton = true});
+  final bool startSessionImmediately;
+  final ShadowingMode? initialSelectedMode;
+  final String? initialSelectedTheme;
+  final String? initialSelectedDeckId;
+  final String? initialCustomWordInput;
+  final Map<String, String>? initialPhrase;
+
+  const ShadowingStudioScreen({
+    super.key,
+    this.initialHanzi,
+    this.initialPinyin,
+    this.initialTranslation,
+    this.initialContextSentence,
+    this.isCompact = false,
+    this.showBackButton = true,
+    this.startSessionImmediately = false,
+    this.initialSelectedMode,
+    this.initialSelectedTheme,
+    this.initialSelectedDeckId,
+    this.initialCustomWordInput,
+    this.initialPhrase,
+  });
 
   @override
   ConsumerState<ShadowingStudioScreen> createState() =>
@@ -78,6 +91,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   String? _recordingPath;
   DateTime? _recordingStartTime;
 
+  double _playbackSpeed = 0.8;
+
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
   // Haptic feedback has been added in global widgets where possible.
@@ -85,7 +100,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   void _exitSession() {
     if ((widget.initialContextSentence != null &&
             widget.initialContextSentence!.isNotEmpty) ||
-        widget.initialHanzi != null) {
+        widget.initialHanzi != null ||
+        widget.startSessionImmediately ||
+        (widget.showBackButton && Navigator.of(context).canPop())) {
       Navigator.pop(context);
     } else {
       setState(() {
@@ -116,7 +133,29 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   @override
   void initState() {
     super.initState();
-    if (widget.initialContextSentence != null &&
+    if (widget.startSessionImmediately || widget.initialPhrase != null) {
+      _isSessionStarted = true;
+      if (widget.initialSelectedMode != null) {
+        _selectedMode = widget.initialSelectedMode!;
+      }
+      if (widget.initialSelectedTheme != null) {
+        _selectedTheme = widget.initialSelectedTheme!;
+      }
+      if (widget.initialSelectedDeckId != null) {
+        _selectedDeckId = widget.initialSelectedDeckId;
+      }
+      if (widget.initialCustomWordInput != null) {
+        _customWordInput = widget.initialCustomWordInput!;
+      }
+      if (widget.initialPhrase != null) {
+        _currentPhrase = Map<String, String>.from(widget.initialPhrase!);
+        _sentenceCount = 1;
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _fetchNextPhrase();
+        });
+      }
+    } else if (widget.initialContextSentence != null &&
         widget.initialContextSentence!.isNotEmpty) {
       _selectedMode = ShadowingMode.customSentence;
       _customWordInput = widget.initialContextSentence!;
@@ -209,7 +248,25 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         await _fetchNextPhrase();
       }
       if (mounted && _currentPhrase != null) {
-        setState(() => _isSessionStarted = true);
+        if (!widget.showBackButton) {
+          final phraseToPass = _currentPhrase;
+          _currentPhrase = null;
+          await Navigator.of(context, rootNavigator: true).push(
+            SwipeBackRoute(
+              builder: (context) => ShadowingStudioScreen(
+                showBackButton: true,
+                startSessionImmediately: true,
+                initialSelectedMode: _selectedMode,
+                initialSelectedTheme: _selectedTheme,
+                initialSelectedDeckId: _selectedDeckId,
+                initialCustomWordInput: _customWordInput,
+                initialPhrase: phraseToPass,
+              ),
+            ),
+          );
+        } else {
+          setState(() => _isSessionStarted = true);
+        }
       }
     } finally {
       if (mounted) setState(() => _isStartingSession = false);
@@ -276,10 +333,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     if (_currentPhrase == null) return;
     HapticFeedback.lightImpact();
     final audioService = ref.read(audioServiceProvider);
-    final speechRate = ref.read(settingsProvider).speechRate;
+    final mappedRate = _playbackSpeed == 0.8 ? 0.40 : 0.50;
     await audioService.playSentence(
       _currentPhrase!['hanzi']!,
-      speechRate: speechRate,
+      voiceName: 'Kore',
+      speechRate: mappedRate,
+      playbackRate: 1.0,
     );
   }
 
@@ -1407,6 +1466,71 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
+  Widget _buildSpeedToggle(bool isDark) {
+    final isSlow = (_playbackSpeed == 0.8);
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        key: const Key('shadowing_speed_toggle'),
+        borderRadius: BorderRadius.circular(20),
+        onTap: () {
+          HapticFeedback.selectionClick();
+          setState(() {
+            _playbackSpeed = isSlow ? 1.0 : 0.8;
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: isSlow
+                ? (isDark
+                    ? const Color(0xFFD97706).withValues(alpha: 0.25)
+                    : const Color(0xFFFEF3C7))
+                : (isDark
+                    ? Colors.white10
+                    : Colors.black.withValues(alpha: 0.05)),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isSlow
+                  ? (isDark
+                      ? const Color(0xFFF59E0B)
+                      : const Color(0xFFD4AF37))
+                  : (isDark ? Colors.white24 : Colors.black12),
+              width: 1.2,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.speed_rounded,
+                size: 16,
+                color: isSlow
+                    ? (isDark
+                        ? const Color(0xFFFBBF24)
+                        : const Color(0xFFB45309))
+                    : (isDark ? Colors.white70 : Colors.black54),
+              ),
+              const SizedBox(width: 4),
+              Text(
+                '${_playbackSpeed.toStringAsFixed(1)}x',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: isSlow
+                      ? (isDark
+                          ? const Color(0xFFFBBF24)
+                          : const Color(0xFFB45309))
+                      : (isDark ? Colors.white70 : Colors.black54),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildSessionUI(BuildContext context, bool isDark) {
     final l10n = AppLocalizations.of(context);
     return PopScope(
@@ -1477,6 +1601,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                     ],
                                   ),
                                 ),
+                                const SizedBox(width: 8),
+                                _buildSpeedToggle(isDark),
                               ],
                             ),
                           ),
@@ -2096,7 +2222,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 ElevatedButton.icon(
                   onPressed: () {
                     final audioService = ref.read(audioServiceProvider);
-                    audioService.playSentence(word);
+                    audioService.playSentence(
+                      word,
+                      voiceName: 'Kore',
+                      speechRate: 0.40,
+                      playbackRate: 1.0,
+                    );
                   },
                   icon: const Icon(Icons.volume_up),
                   label: Text(AppLocalizations.of(context)!.listenToThisWord),

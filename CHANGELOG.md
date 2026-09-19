@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-19] Avatar-Voice Gender Parity, Shadowing Studio Speed & Immersive Full-Screen Architecture (Build #544)
+- **Echo Hall Avatar and Voice Gender Parity:**
+  - Resolved gender mismatch across AI personas, specifically pairing male doctor avatar `doctor_avatar.png` (Dr. Zhang in `doctor_1`) with male Azure neural voice `Charon` (`zh-CN-YunyangNeural`) instead of female voice `Aoede`.
+  - Implemented centralized `ConversationScenario.pickAvatarAndVoice(persona, title, {description})` with robust regex word boundaries (`femaleWordRegex`, `maleWordRegex`) and Chinese glyph markers, eliminating false sub-string matches (e.g. `brother` triggering `her`).
+  - Unified dynamic avatar and voice assignment across `ScenarioSelectionScreen` and `CustomScenarioDialog`, ensuring custom scenarios and deck-generated scenarios preserve appropriate avatar assets (`hasAvatar` updated to support non-default avatars).
+- **Shadowing Studio Voice Speed Calibration & Audio Isolation:**
+  - Calibrated default native Azure TTS shadowing speech rate to a measured, learner-friendly pace (`speechRate: 0.40`, equivalent to `-20%` prosody rate) using clear educational voice `Kore`.
+  - Added interactive speed toggle pill (`0.8x` / `1.0x`) in the session top bar with smooth haptic feedback and dynamic rate switching.
+  - Isolated single-sentence audio playback in `AudioService.playSentence` with explicit `playbackRate: 1.0` override, preventing audiobook playback speeds (e.g. 1.25x/1.5x) from bleeding into shadowing or tutor pronunciation.
+- **Shadowing Studio Full-Screen Immersive Session:**
+  - Added immersive full-screen modal presentation via `Navigator.of(context, rootNavigator: true).push(SwipeBackRoute(...))` when launching a session from `AiHubScreen`.
+  - Hides the bottom navigation bar and segment tabs during active practice, restoring full-screen immersion with an intuitive exit down-arrow and swipe-to-dismiss gesture.
+- **Automated Verification:**
+  - Added test suites `test/features/echo_hall/avatar_voice_gender_match_test.dart` (5/5 tests passing) and `test/features/live_translate/shadowing_studio_voice_speed_test.dart` (2/2 tests passing). All 33 echo hall and 21 live translate tests pass.
+  - Verified Total Hygiene State with `dart analyze lib test` reporting **0 errors, 0 warnings, 0 infos**. Bumped build number to `1.0.0+544`.
+
 ### [2026-09-19] Build Version Bump & Remote Synchronization (Build #543)
 - **Version Bump**: Bumped build number to `1.0.0+543` in `pubspec.yaml`.
 - **GitLab Master Synchronization**: Synchronized latest release containing Smart Media Desk localized subtitles and Closed Captions UI parity to `gitlab master` and `origin master`.

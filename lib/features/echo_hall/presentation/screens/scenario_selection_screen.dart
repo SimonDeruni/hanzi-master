@@ -1131,66 +1131,8 @@ class _ScenarioSelectionScreenState
 
   bool _isGenerating = false;
 
-  (String, String) _pickAvatarAndVoice(String persona, String title) {
-    final text = '$persona $title'.toLowerCase();
-    if (text.contains('waiter') ||
-        text.contains('restaurant') ||
-        text.contains('food') ||
-        text.contains('chef') ||
-        text.contains('tea') ||
-        text.contains('cafe') ||
-        text.contains('cook') ||
-        text.contains('dish')) {
-      return ('assets/mascot/waiter_avatar.png', 'Fenrir');
-    }
-    if (text.contains('taxi') ||
-        text.contains('driver') ||
-        text.contains('traffic') ||
-        text.contains('car') ||
-        text.contains('train') ||
-        text.contains('airport') ||
-        text.contains('station')) {
-      return ('assets/mascot/taxi_driver_avatar.png', 'Charon');
-    }
-    if (text.contains('market') ||
-        text.contains('shop') ||
-        text.contains('store') ||
-        text.contains('vendor') ||
-        text.contains('buy') ||
-        text.contains('cloth') ||
-        text.contains('seller') ||
-        text.contains('price')) {
-      return ('assets/mascot/market_vendor_avatar.png', 'Kore');
-    }
-    if (text.contains('doctor') ||
-        text.contains('clinic') ||
-        text.contains('hospital') ||
-        text.contains('nurse') ||
-        text.contains('health') ||
-        text.contains('medicine') ||
-        text.contains('fever')) {
-      return ('assets/mascot/doctor_avatar.png', 'Aoede');
-    }
-    if (text.contains('job') ||
-        text.contains('interview') ||
-        text.contains('manager') ||
-        text.contains('boss') ||
-        text.contains('office') ||
-        text.contains('company') ||
-        text.contains('work')) {
-      return ('assets/mascot/interviewer_avatar.png', 'Puck');
-    }
-    if (text.contains('guide') ||
-        text.contains('tour') ||
-        text.contains('museum') ||
-        text.contains('park') ||
-        text.contains('hike') ||
-        text.contains('travel') ||
-        text.contains('hotel')) {
-      return ('assets/mascot/guide_avatar.png', 'Aoede');
-    }
-    return ('assets/mascot/friend_avatar.png', 'Aoede');
-  }
+  (String, String) _pickAvatarAndVoice(String persona, String title) =>
+      ConversationScenario.pickAvatarAndVoice(persona, title);
 
   Future<void> _generateFromDeck({Deck? preselectedDeck}) async {
     final l10n = AppLocalizations.of(context)!;
@@ -1285,7 +1227,7 @@ Respond ONLY in valid JSON format with NO markdown formatting:
         initialPinyin: initialPin,
         systemPrompt: generated.systemPrompt,
         targetHskLevel: hskLevel,
-        avatarAssetPath: 'none',
+        avatarAssetPath: avatarPath,
         personaName: generated.personaName,
         quests: generated.quests,
         deckId: deck.id,

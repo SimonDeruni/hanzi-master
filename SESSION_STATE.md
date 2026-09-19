@@ -1,10 +1,12 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Build Version Bump & GitLab Synchronization — Build #543
-- **Status:** 🟢 COMPLETED
-- **Hygiene:** 0 errors, 0 warnings, 0 infos (verified via `dart analyze lib test`).
+- **Objective:** Avatar-Voice Gender Parity, Shadowing Studio Voice Speed Calibration & Full-Screen Session Architecture (Build #544)
+- **Status:** 🟢 CLEAN
+- **Hygiene:** 0 errors, 0 warnings, 0 infos.
 - **Locked Files:** None
+
+- [x] **Avatar-Voice Gender Parity, Shadowing Studio Speed & Immersive Full-Screen Architecture (2026-09-19 16:15):** (1) Resolved avatar and voice gender mismatch in Echo Hall, specifically pairing Dr. Zhang in `doctor_1` (`doctor_avatar.png`) with male Azure voice `Charon` (`zh-CN-YunyangNeural`) instead of female `Aoede`; (2) Implemented robust gender keyword detection in `ConversationScenario.pickAvatarAndVoice` using regex word boundaries for English tokens and substring matching for Chinese characters, preventing false sub-string matches like `brother` triggering `her`; (3) Preserved custom avatars in `ConversationScenario` by updating `hasAvatar` and passing dynamically picked avatars through `ScenarioSelectionScreen` and `CustomScenarioDialog`; (4) Calibrated Azure TTS voice speed in `ShadowingStudioScreen` to a measured `0.8x` baseline (`speechRate: 0.40`) using natural educator voice `Kore`, and added an interactive `0.8x` / `1.0x` speed toggle in the top bar with haptic feedback; (5) Guarded `AudioService.playSentence` with explicit `playbackRate: 1.0` override, preventing audiobook speeds (e.g. 1.25x/1.5x) from bleeding into single-sentence pronunciation; (6) Added full-screen immersive presentation when launching a session from `AiHubScreen` via `rootNavigator: true` and `SwipeBackRoute`, hiding bottom navigation and segment tabs during practice; (7) Added automated test suites in `avatar_voice_gender_match_test.dart` (5/5 passing) and `shadowing_studio_voice_speed_test.dart` (2/2 passing); (8) Total Hygiene State: `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)**. Bumped build to `1.0.0+544`.
 
 - [x] **Build Version Bump & Remote Synchronization (2026-09-19 15:10):** (1) Bumped build version to `1.0.0+543` in `pubspec.yaml`; (2) Synchronized complete media subtitle localization and Closed Captions UI parity to `gitlab master` and `origin master`; (3) Verified `dart analyze lib test` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
 

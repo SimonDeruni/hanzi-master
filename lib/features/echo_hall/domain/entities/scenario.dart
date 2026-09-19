@@ -40,13 +40,197 @@ class ConversationScenario {
   });
 
   bool get hasAvatar =>
-      avatarAssetPath.isNotEmpty && avatarAssetPath != 'none' && !isCustom;
+      avatarAssetPath.isNotEmpty && avatarAssetPath != 'none';
 
   String get resolvedAvatarAssetPath {
     if (hasAvatar) {
       return avatarAssetPath;
     }
     return 'none';
+  }
+
+  /// Picks an avatar asset and an Azure voice guaranteed to have matching gender
+  /// and thematic relevance based on persona keywords and scenario title.
+  static (String, String) pickAvatarAndVoice(
+    String persona,
+    String title, {
+    String? description,
+  }) {
+    final text = '$persona $title ${description ?? ''}'.toLowerCase();
+
+    // Check for explicit female markers (word boundaries for Latin, contains for Chinese)
+    final femaleWordRegex = RegExp(
+      r'\b(female|woman|women|girl|lady|ladies|waitress|hostess|actress|queen|princess|mother|mom|mommy|mama|sister|daughter|aunt|auntie|grandma|grandmother|wife|girlfriend|ms|mrs|miss|madam|madame|nurse|she|her|hers)\b',
+      caseSensitive: false,
+    );
+    final hasFemaleChinese = text.contains('女') ||
+        text.contains('阿姨') ||
+        text.contains('妈妈') ||
+        text.contains('母亲') ||
+        text.contains('姐姐') ||
+        text.contains('妹妹') ||
+        text.contains('奶奶') ||
+        text.contains('外婆') ||
+        text.contains('婆婆') ||
+        text.contains('女士') ||
+        text.contains('小姐') ||
+        text.contains('太太') ||
+        text.contains('妻子') ||
+        text.contains('老婆') ||
+        text.contains('女友') ||
+        text.contains('姑娘') ||
+        text.contains('护士');
+    final isFemale = femaleWordRegex.hasMatch(text) || hasFemaleChinese;
+
+    // Check for explicit male markers (word boundaries for Latin, contains for Chinese)
+    final maleWordRegex = RegExp(
+      r'\b(male|man|men|boy|guy|guys|waiter|actor|king|prince|father|dad|daddy|papa|brother|son|uncle|grandpa|grandfather|husband|boyfriend|mr|sir|gentleman|he|him|his)\b',
+      caseSensitive: false,
+    );
+    final hasMaleChinese = text.contains('男') ||
+        text.contains('爸爸') ||
+        text.contains('父亲') ||
+        text.contains('叔叔') ||
+        text.contains('伯伯') ||
+        text.contains('哥哥') ||
+        text.contains('弟弟') ||
+        text.contains('爷爷') ||
+        text.contains('外公') ||
+        text.contains('先生') ||
+        text.contains('丈夫') ||
+        text.contains('老公') ||
+        text.contains('男友') ||
+        text.contains('师傅') ||
+        text.contains('小伙') ||
+        text.contains('大爷') ||
+        text.contains('兄弟');
+    final isMale = !isFemale && (maleWordRegex.hasMatch(text) || hasMaleChinese);
+
+    // 1. Food / Restaurant / Cafe
+    if (text.contains('waiter') ||
+        text.contains('waitress') ||
+        text.contains('restaurant') ||
+        text.contains('food') ||
+        text.contains('chef') ||
+        text.contains('tea') ||
+        text.contains('cafe') ||
+        text.contains('coffee') ||
+        text.contains('barista') ||
+        text.contains('cook') ||
+        text.contains('dish')) {
+      if (isFemale ||
+          text.contains('waitress') ||
+          text.contains('barista') ||
+          text.contains('cafe') ||
+          text.contains('coffee')) {
+        return ('assets/mascot/friend_avatar.png', 'Aoede');
+      }
+      return ('assets/mascot/waiter_avatar.png', 'Fenrir');
+    }
+
+    // 2. Transport / Driving
+    if (text.contains('taxi') ||
+        text.contains('driver') ||
+        text.contains('traffic') ||
+        text.contains('car') ||
+        text.contains('train') ||
+        text.contains('airport') ||
+        text.contains('station')) {
+      if (isFemale) {
+        return ('assets/mascot/guide_avatar.png', 'Aoede');
+      }
+      return ('assets/mascot/taxi_driver_avatar.png', 'Charon');
+    }
+
+    // 3. Market / Shopping / Vendor / Street Food
+    if (text.contains('market') ||
+        text.contains('shop') ||
+        text.contains('store') ||
+        text.contains('vendor') ||
+        text.contains('buy') ||
+        text.contains('cloth') ||
+        text.contains('seller') ||
+        text.contains('price') ||
+        text.contains('bargain') ||
+        text.contains('dumpling') ||
+        text.contains('street food')) {
+      if (isMale) {
+        return ('assets/mascot/waiter_avatar.png', 'Fenrir');
+      }
+      return ('assets/mascot/market_vendor_avatar.png', 'Kore');
+    }
+
+    // 4. Medical / Health / Doctor / Clinic
+    if (text.contains('doctor') ||
+        text.contains('clinic') ||
+        text.contains('hospital') ||
+        text.contains('nurse') ||
+        text.contains('health') ||
+        text.contains('medicine') ||
+        text.contains('fever')) {
+      if (isFemale || text.contains('nurse')) {
+        return ('assets/mascot/guide_avatar.png', 'Kore');
+      }
+      return ('assets/mascot/doctor_avatar.png', 'Charon');
+    }
+
+    // 5. Job / Interview / Office / Business
+    if (text.contains('job') ||
+        text.contains('interview') ||
+        text.contains('manager') ||
+        text.contains('boss') ||
+        text.contains('office') ||
+        text.contains('company') ||
+        text.contains('work') ||
+        text.contains('colleague')) {
+      if (isFemale) {
+        return ('assets/mascot/friend_avatar.png', 'Aoede');
+      }
+      return ('assets/mascot/interviewer_avatar.png', 'Puck');
+    }
+
+    // 6. Tourism / Guide / Museum / Outdoors
+    if (text.contains('guide') ||
+        text.contains('tour') ||
+        text.contains('museum') ||
+        text.contains('park') ||
+        text.contains('hike') ||
+        text.contains('travel') ||
+        text.contains('hotel')) {
+      if (isMale) {
+        return ('assets/mascot/taxi_driver_avatar.png', 'Charon');
+      }
+      return ('assets/mascot/guide_avatar.png', 'Aoede');
+    }
+
+    // 7. General Persona Fallbacks by Gender
+    if (isFemale) {
+      if (text.contains('grandma') ||
+          text.contains('aunt') ||
+          text.contains('mother') ||
+          text.contains('mom') ||
+          text.contains('阿姨') ||
+          text.contains('奶奶') ||
+          text.contains('外婆')) {
+        return ('assets/mascot/market_vendor_avatar.png', 'Kore');
+      }
+      return ('assets/mascot/friend_avatar.png', 'Aoede');
+    }
+
+    if (isMale) {
+      if (text.contains('grandpa') ||
+          text.contains('uncle') ||
+          text.contains('boss') ||
+          text.contains('master') ||
+          text.contains('大爷') ||
+          text.contains('师傅')) {
+        return ('assets/mascot/interviewer_avatar.png', 'Puck');
+      }
+      return ('assets/mascot/waiter_avatar.png', 'Fenrir');
+    }
+
+    // Neutral default: friendly female barista
+    return ('assets/mascot/friend_avatar.png', 'Aoede');
   }
 
   String localizedPersonaName(Locale locale) =>
@@ -172,7 +356,7 @@ List<ConversationScenario> getDefaultScenarios(BuildContext context) {
       backgroundAssetPath: 'assets/environments/clinic.jpg',
       personaName: persona('doctor_1'),
       quests: quests('doctor_1'),
-      voiceName: 'Aoede',
+      voiceName: 'Charon',
     ),
     ConversationScenario(
       id: 'intro_1',
