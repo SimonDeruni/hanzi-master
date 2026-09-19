@@ -21,6 +21,7 @@ import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
@@ -89,15 +90,22 @@ class LiveCallMessage {
 
 class LiveCallScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
+  final bool disableExternalServicesForTesting;
+  final bool simulatePermissionDeniedForTesting;
 
-  const LiveCallScreen({super.key, required this.scenario});
+  const LiveCallScreen({
+    super.key,
+    required this.scenario,
+    this.disableExternalServicesForTesting = false,
+    this.simulatePermissionDeniedForTesting = false,
+  });
 
   @override
   ConsumerState<LiveCallScreen> createState() => _LiveCallScreenState();
 }
 
 class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
   late AnimationController _analyzePulseController;
@@ -118,6 +126,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
 
   final AudioPlayer _voicePlayer = AudioPlayer();
   final AudioPlayer _bgPlayer = AudioPlayer();
+  StreamSubscription? _playerCompleteSub;
   LiveCallState _callState = LiveCallState.idle;
   LiveCallStatusKey _statusKey = LiveCallStatusKey.ready;
   bool _hasError = false;
@@ -141,6 +150,7 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -155,6 +165,22 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       duration: const Duration(seconds: 3),
     )..repeat();
 
+    _initCall();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed &&
+        _callState == LiveCallState.error &&
+        _statusKey == LiveCallStatusKey.initErrorCheckPermissions) {
+      _retryInit();
+    }
+  }
+
+  void _retryInit() {
+    if (_isDisposed || !mounted) return;
+    _setCallState(LiveCallState.idle, LiveCallStatusKey.ready);
     _initCall();
   }
 
@@ -243,30 +269,65 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   }
 
   Future<void> _initCall() async {
-    final consent = await AiConsentSheet.ensureConsent(context);
-    if (!consent || !mounted) {
-      if (mounted) Navigator.of(context).pop();
+    if (widget.simulatePermissionDeniedForTesting) {
+      _setCallState(
+          LiveCallState.error, LiveCallStatusKey.initErrorCheckPermissions);
       return;
     }
-    try {
-      await _configureAudioSessionForCall(speaker: _isSpeaker);
 
-      if (widget.scenario.backgroundAudioPath != null) {
+    if (!widget.disableExternalServicesForTesting) {
+      final consent = await AiConsentSheet.ensureConsent(context);
+      if (!consent || !mounted) {
+        if (mounted) Navigator.of(context).pop();
+        return;
+      }
+    }
+
+    try {
+      if (!widget.disableExternalServicesForTesting) {
+        await _configureAudioSessionForCall(speaker: _isSpeaker);
+      }
+
+      if (widget.scenario.backgroundAudioPath != null &&
+          !widget.disableExternalServicesForTesting) {
         if (widget.scenario.backgroundAudioPath!.startsWith('/') ||
             widget.scenario.backgroundAudioPath!.contains(':\\')) {
-          await _bgPlayer.setReleaseMode(ReleaseMode.loop);
-          await _bgPlayer.setVolume(0.3); // Ambient volume
-          await _bgPlayer
-              .play(DeviceFileSource(widget.scenario.backgroundAudioPath!));
+          try {
+            await _bgPlayer.setReleaseMode(ReleaseMode.loop);
+            await _bgPlayer.setVolume(0.3); // Ambient volume
+            await _bgPlayer
+                .play(DeviceFileSource(widget.scenario.backgroundAudioPath!));
+          } catch (e) {
+            debugPrint("LiveCall: Background audio play error: $e");
+          }
         }
       }
 
-      final hasPermission = await _turnRecorder.hasPermission();
-      if (!hasPermission) {
-        throw StateError('Microphone permission required');
+      // Proactive permission verification with system dialog request
+      bool hasPermission = false;
+      if (!widget.disableExternalServicesForTesting) {
+        try {
+          hasPermission = await _turnRecorder.hasPermission();
+        } catch (_) {}
+
+        if (!hasPermission) {
+          try {
+            final status = await Permission.microphone.request();
+            hasPermission = status.isGranted;
+          } catch (_) {}
+        }
       }
 
-      _voicePlayer.onPlayerComplete.listen((_) {
+      if (!hasPermission) {
+        if (mounted && !_isDisposed) {
+          _setCallState(
+              LiveCallState.error, LiveCallStatusKey.initErrorCheckPermissions);
+        }
+        return;
+      }
+
+      _playerCompleteSub?.cancel();
+      _playerCompleteSub = _voicePlayer.onPlayerComplete.listen((_) {
         if (mounted && !_isDisposed && !_isEndingCall && !_isMuted) {
           _isHandlingTurn = false;
           _startListening();
@@ -274,7 +335,9 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
       });
 
       _setCallState(LiveCallState.idle, LiveCallStatusKey.connectedSpeakNow);
-      _startListening();
+      if (!widget.disableExternalServicesForTesting) {
+        _startListening();
+      }
     } catch (e) {
       debugPrint("LiveCall: Init failed: $e");
       _setCallState(
@@ -787,9 +850,12 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _isDisposed = true;
+    _playerCompleteSub?.cancel();
     _silenceDebounceTimer?.cancel();
     _amplitudeSub?.cancel();
+    _listeningWatchdog?.cancel();
     _turnRecorder.dispose();
     _voicePlayer.stop();
     _voicePlayer.dispose();
@@ -1116,32 +1182,113 @@ Provide your short, professional linguistic analysis directly to the student:
                                   fontSize: 16,
                                 ),
                               ),
-                              if (_hasError)
+                              if (_hasError) ...[
+                                if (_statusKey ==
+                                    LiveCallStatusKey
+                                        .initErrorCheckPermissions)
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, left: 32.0, right: 32.0),
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .microphoneAccessWasNotGranted,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 13,
+                                        height: 1.4,
+                                      ),
+                                    ),
+                                  ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 16.0),
-                                  child: ElevatedButton.icon(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.redAccent,
-                                      foregroundColor: Colors.white,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24, vertical: 12),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30)),
-                                      elevation: 8,
-                                    ),
-                                    icon:
-                                        const Icon(Icons.arrow_back, size: 20),
-                                    label: Text(
-                                      AppLocalizations.of(context)!
-                                          .returnToMenu,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                    onPressed: () => Navigator.pop(context),
+                                  child: Wrap(
+                                    alignment: WrapAlignment.center,
+                                    spacing: 12,
+                                    runSpacing: 10,
+                                    children: [
+                                      if (_statusKey ==
+                                          LiveCallStatusKey
+                                              .initErrorCheckPermissions)
+                                        ElevatedButton.icon(
+                                          key: const Key(
+                                              'live_call_open_settings_button'),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                const Color(0xFFD4AF37),
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 12),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30)),
+                                            elevation: 6,
+                                          ),
+                                          icon: const Icon(Icons.settings,
+                                              size: 18),
+                                          label: Text(
+                                            AppLocalizations.of(context)!
+                                                .settingsTitle,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                          onPressed: () async {
+                                            await openAppSettings();
+                                          },
+                                        ),
+                                      ElevatedButton.icon(
+                                        key: const Key(
+                                            'live_call_retry_button'),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white24,
+                                          foregroundColor: Colors.white,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 12),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30)),
+                                          elevation: 4,
+                                        ),
+                                        icon: const Icon(Icons.refresh,
+                                            size: 18),
+                                        label: Text(
+                                          AppLocalizations.of(context)!
+                                              .tryAgain,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14),
+                                        ),
+                                        onPressed: _retryInit,
+                                      ),
+                                      ElevatedButton.icon(
+                                        key: const Key(
+                                            'live_call_return_menu_button'),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.redAccent,
+                                          foregroundColor: Colors.white,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 12),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30)),
+                                          elevation: 6,
+                                        ),
+                                        icon: const Icon(Icons.arrow_back,
+                                            size: 18),
+                                        label: Text(
+                                          AppLocalizations.of(context)!
+                                              .returnToMenu,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14),
+                                        ),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                    ],
                                   ),
                                 ),
+                              ],
                             ],
                           ),
                         ),
@@ -1149,60 +1296,61 @@ Provide your short, professional linguistic analysis directly to the student:
                         const Spacer(),
 
                         // Transcript Overlay
-                        Container(
-                          height: 290,
-                          margin: const EdgeInsets.symmetric(horizontal: 18),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 8),
-                          decoration: BoxDecoration(
-                            color:
-                                const Color(0xFF1E293B).withValues(alpha: 0.4),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.12),
-                              width: 1.0,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.25),
-                                blurRadius: 16,
-                                offset: const Offset(0, 4),
+                        if (!_hasError || _transcript.isNotEmpty) ...[
+                          Container(
+                            height: 290,
+                            margin: const EdgeInsets.symmetric(horizontal: 18),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 8),
+                            decoration: BoxDecoration(
+                              color:
+                                  const Color(0xFF1E293B).withValues(alpha: 0.4),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.12),
+                                width: 1.0,
                               ),
-                            ],
-                          ),
-                          child: ShaderMask(
-                            shaderCallback: (rect) {
-                              return const LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.black,
-                                  Colors.black,
-                                  Colors.transparent
-                                ],
-                                stops: [0.0, 0.08, 0.92, 1.0],
-                              ).createShader(rect);
-                            },
-                            blendMode: BlendMode.dstIn,
-                            child: ListView.builder(
-                              controller: _scrollController,
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              itemCount: _transcript.length,
-                              itemBuilder: (context, index) {
-                                final msg = _transcript[index];
-                                return _LiveTranscriptBubble(
-                                  message: msg,
-                                  theme: theme,
-                                  subtitleMode: _subtitleMode,
-                                  onCharacterTap: _handleCharacterTap,
-                                );
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.25),
+                                  blurRadius: 16,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: ShaderMask(
+                              shaderCallback: (rect) {
+                                return const LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black,
+                                    Colors.black,
+                                    Colors.transparent
+                                  ],
+                                  stops: [0.0, 0.08, 0.92, 1.0],
+                                ).createShader(rect);
                               },
+                              blendMode: BlendMode.dstIn,
+                              child: ListView.builder(
+                                controller: _scrollController,
+                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                itemCount: _transcript.length,
+                                itemBuilder: (context, index) {
+                                  final msg = _transcript[index];
+                                  return _LiveTranscriptBubble(
+                                    message: msg,
+                                    theme: theme,
+                                    subtitleMode: _subtitleMode,
+                                    onCharacterTap: _handleCharacterTap,
+                                  );
+                                },
+                              ),
                             ),
                           ),
-                        ),
-
-                        const SizedBox(height: 24),
+                          const SizedBox(height: 24),
+                        ],
 
                         AnimatedBuilder(
                           animation: _pulseAnimation,
