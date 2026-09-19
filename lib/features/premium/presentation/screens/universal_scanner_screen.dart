@@ -22,6 +22,7 @@ import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/deck_selection_sheet.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../../shared/widgets/tappable_hanzi_text.dart';
+import '../../../../shared/widgets/ai_consent_sheet.dart';
 import '../widgets/ar_bounding_box_painter.dart';
 import '../widgets/interactive_image_overlay.dart';
 
@@ -91,6 +92,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     _geminiService = ref.read(geminiServiceProvider);
     _visionService = ref.read(visionServiceProvider);
     _ocrService = OcrService(geminiService: _geminiService);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final consented = await AiConsentSheet.ensureConsent(context);
+      if (!consented && mounted) {
+        Navigator.of(context).pop();
+      }
+    });
     _initializeCamera();
   }
 
@@ -522,6 +529,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   }
 
   Future<void> _processExtractedText(String text) async {
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
+
     HapticsManager.success();
 
     if (widget.intent == CameraIntent.textExtraction) {
@@ -781,6 +791,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         _isLookingUp) {
       return;
     }
+
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
 
     HapticsManager.light();
     setState(() {

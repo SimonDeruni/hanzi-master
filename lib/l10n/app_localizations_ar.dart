@@ -11926,7 +11926,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'لم يتم منح الوصول إلى الميكروفون. يمكنك استخدام الخيار الهادئ أدناه.';
+      'لم يتم منح الوصول إلى الميكروفون. يمكنك تفعيله من الإعدادات.';
 
   @override
   String get recordingIsUnavailableRightNow => 'التسجيل غير متاح حالياً.';
@@ -12756,5 +12756,78 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'بث ذكاء اصطناعي لا نهائي • جملة $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'ممارسة الذكاء الاصطناعي والخصوصية';
+
+  @override
+  String get aiConsentSubtitle =>
+      'يستخدم Hanzi Master خدمات ذكاء اصطناعي آمنة تابعة لجهات خارجية لتقييم النطق الصوتي وتمثيل الأدوار في المحادثة وأدوات الدراسة.';
+
+  @override
+  String get aiConsentDataSentTitle => 'البيانات المرسلة';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'التسجيلات الصوتية، ونصوص الكلام المنطوق، ومطالبات الدراسة.';
+
+  @override
+  String get aiConsentProvidersTitle =>
+      'خدمات الذكاء الاصطناعي للجهات الخارجية';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (تقييم النطق والتوليف الصوتي)\n• Google Gemini & DeepSeek (الحوار التحادثي وتوليد البطاقات)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'ضمانات الخصوصية';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'يتم تشفير بياناتك أثناء النقل، ومعالجتها مؤقتًا، ولا يتم بيعها أبدًا، ولا تُستخدم أبدًا لتدريب نماذج الذكاء الاصطناعي العامة.';
+
+  @override
+  String get aiConsentAgree => 'الموافقة واستخدام الذكاء الاصطناعي';
+
+  @override
+  String get aiConsentLearnMore => 'معرفة المزيد';
+
+  @override
+  String get viewPlans => 'عرض الخطط';
+
+  @override
+  String get authInvalidCredentials =>
+      'البريد الإلكتروني أو كلمة المرور غير صحيحة. إذا لم يكن لديك حساب، يُرجى التسجيل.';
+
+  @override
+  String get authInvalidEmail => 'يُرجى إدخال عنوان بريد إلكتروني صالح.';
+
+  @override
+  String get authEmailAlreadyInUse =>
+      'يوجد حساب بالفعل بهذا البريد الإلكتروني.';
+
+  @override
+  String get authWeakPassword =>
+      'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.';
+
+  @override
+  String get authTooManyRequests =>
+      'محاولات فاشلة كثيرة جداً. يُرجى المحاولة مرة أخرى لاحقاً.';
+
+  @override
+  String get authNetworkError =>
+      'خطأ في الشبكة. يُرجى التحقق من اتصالك بالإنترنت.';
+
+  @override
+  String get subscriptionRequired => 'الاشتراك مطلوب';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'يلزم وجود اشتراك نشط في SinoSpark للوصول إلى جميع الدروس والكتب وأدوات الصوت المدعومة بالذكاء الاصطناعي.';
+
+  @override
+  String signedInAs(String email) {
+    return 'تم تسجيل الدخول باسم $email';
   }
 }

@@ -11973,7 +11973,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'ไม่ได้รับอนุญาตให้เข้าถึงไมโครโฟน คุณสามารถเลือกโหมดเงียบด้านล่างได้';
+      'ไม่ได้รับอนุญาตให้เข้าถึงไมโครโฟน คุณสามารถเปิดใช้งานได้ในการตั้งค่า';
 
   @override
   String get recordingIsUnavailableRightNow =>
@@ -12787,5 +12787,75 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'สตรีม AI ต่อเนื่อง • ประโยคที่ $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'การฝึกฝนด้วย AI และความเป็นส่วนตัว';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master ใช้บริการ AI ของบุคคลที่สามที่ปลอดภัยสำหรับการประเมินการออกเสียง การแสดงบทบาทสมมติในการสนทนา และเครื่องมือการเรียนรู้';
+
+  @override
+  String get aiConsentDataSentTitle => 'ข้อมูลที่ส่ง';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'การบันทึกเสียงพูด การถอดเสียงพูด และข้อความแจ้งการเรียนรู้';
+
+  @override
+  String get aiConsentProvidersTitle => 'บริการ AI ของบุคคลที่สาม';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (การประเมินการออกเสียงและการสังเคราะห์เสียง)\n• Google Gemini & DeepSeek (การสนทนาและการสร้างสำรับ)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'การรับประกันความเป็นส่วนตัว';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'ข้อมูลของคุณจะได้รับการเข้ารหัสระหว่างส่ง ประมวลผลชั่วคราว ไม่มีการขาย และไม่เคยถูกนำไปใช้ในการฝึกฝนโมเดล AI สาธารณะ';
+
+  @override
+  String get aiConsentAgree => 'ยินยอมและใช้ AI';
+
+  @override
+  String get aiConsentLearnMore => 'เรียนรู้เพิ่มเติม';
+
+  @override
+  String get viewPlans => 'ดูแผนบริการ';
+
+  @override
+  String get authInvalidCredentials =>
+      'อีเมลหรือรหัสผ่านไม่ถูกต้อง หากคุณยังไม่มีบัญชี โปรดลงทะเบียน';
+
+  @override
+  String get authInvalidEmail => 'โปรดป้อนที่อยู่อีเมลที่ถูกต้อง';
+
+  @override
+  String get authEmailAlreadyInUse => 'มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว';
+
+  @override
+  String get authWeakPassword => 'รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร';
+
+  @override
+  String get authTooManyRequests =>
+      'การพยายามล้มเหลวหลายครั้งเกินไป โปรดลองใหม่อีกครั้งในภายหลัง';
+
+  @override
+  String get authNetworkError =>
+      'ข้อผิดพลาดของเครือข่าย โปรดตรวจสอบการเชื่อมต่อของคุณ';
+
+  @override
+  String get subscriptionRequired => 'จำเป็นต้องสมัครสมาชิก';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'จำเป็นต้องเป็นสมาชิก SinoSpark ที่ใช้งานอยู่เพื่อเข้าถึงบทเรียน หนังสือ และเครื่องมือเสียง AI ทั้งหมด';
+
+  @override
+  String signedInAs(String email) {
+    return 'ลงชื่อเข้าใช้ในชื่อ $email';
   }
 }

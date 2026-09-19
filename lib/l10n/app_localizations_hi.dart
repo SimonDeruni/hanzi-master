@@ -5314,7 +5314,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'प्रगति सिंक करने के लिए खाता बनाएं';
 
   @override
-  String get signOut => 'साइन आउट करें';
+  String get signOut => 'साइन आउट';
 
   @override
   String get account => 'खाता';
@@ -12017,7 +12017,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'माइक्रोफ़ोन की अनुमति नहीं मिली। आप नीचे दिए गए शांत विकल्प का उपयोग कर सकते हैं।';
+      'माइक्रोफ़ोन की अनुमति नहीं मिली। आप इसे सेटिंग्स में सक्षम कर सकते हैं।';
 
   @override
   String get recordingIsUnavailableRightNow => 'रिकॉर्डिंग अभी उपलब्ध नहीं है।';
@@ -12837,5 +12837,75 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'अंतहीन एआई स्ट्रीम • वाक्य $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'एआई अभ्यास और गोपनीयता';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master आवाज उच्चारण मूल्यांकन, संवाद रोलप्ले और अध्ययन उपकरणों के लिए सुरक्षित तृतीय-पक्ष एआई सेवाओं का उपयोग करता है।';
+
+  @override
+  String get aiConsentDataSentTitle => 'प्रेषित डेटा';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'वॉयस ऑडियो रिकॉर्डिंग, बोले गए भाषण के प्रतिलेख और अध्ययन संकेत।';
+
+  @override
+  String get aiConsentProvidersTitle => 'तृतीय-पक्ष एआई सेवाएं';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (उच्चारण मूल्यांकन और आवाज संश्लेषण)\n• Google Gemini & DeepSeek (बातचीत संवाद और डेक निर्माण)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'गोपनीयता की गारंटी';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'आपका डेटा ट्रांसिट में एन्क्रिप्टेड है, अल्पकालिक रूप से संसाधित होता है, कभी बेचा नहीं जाता है, और कभी भी सार्वजनिक एआई मॉडल को प्रशिक्षित करने के लिए उपयोग नहीं किया जाता है।';
+
+  @override
+  String get aiConsentAgree => 'सहमत हों और AI का उपयोग करें';
+
+  @override
+  String get aiConsentLearnMore => 'और जानें';
+
+  @override
+  String get viewPlans => 'योजनाएं देखें';
+
+  @override
+  String get authInvalidCredentials =>
+      'गलत ईमेल या पासवर्ड। यदि आपका कोई खाता नहीं है, तो कृपया साइन अप करें।';
+
+  @override
+  String get authInvalidEmail => 'कृपया एक मान्य ईमेल पता दर्ज करें।';
+
+  @override
+  String get authEmailAlreadyInUse =>
+      'इस ईमेल पते से पहले से ही एक खाता मौजूद है।';
+
+  @override
+  String get authWeakPassword => 'पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।';
+
+  @override
+  String get authTooManyRequests =>
+      'बहुत अधिक विफल प्रयास। कृपया बाद में पुन: प्रयास करें।';
+
+  @override
+  String get authNetworkError => 'नेटवर्क त्रुटि। कृपया अपना कनेक्शन जांचें।';
+
+  @override
+  String get subscriptionRequired => 'सदस्यता आवश्यक है';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'सभी पाठों, पुस्तकों और AI ध्वनि उपकरणों तक पहुंचने के लिए एक सक्रिय SinoSpark सदस्यता आवश्यक है।';
+
+  @override
+  String signedInAs(String email) {
+    return '$email के रूप में साइन इन हैं';
   }
 }

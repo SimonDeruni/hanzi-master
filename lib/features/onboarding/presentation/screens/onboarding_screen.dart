@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
+import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -206,41 +207,93 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Widget _buildWelcomePage() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Spacer(),
-          Image.asset(
-            'assets/images/mascot_android12_splash.png',
-            height: 195,
-          ).animate().scale(duration: 400.ms).fadeIn(),
-          const SizedBox(height: 36),
-          Text(
-            l10n.yourPathTonchineseFluency,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-              fontSize: 36,
-              fontFamily: 'Serif',
-              height: 1.3,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isCompact = constraints.maxHeight < 600;
+        return SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: IntrinsicHeight(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 32.0,
+                  vertical: isCompact ? 16.0 : 24.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    Container(
+                      decoration: isDark
+                          ? BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFFD4AF37)
+                                      .withValues(alpha: 0.18),
+                                  blurRadius: 36,
+                                  spreadRadius: 8,
+                                ),
+                              ],
+                            )
+                          : null,
+                      child: Image.asset(
+                        'assets/images/mascot.png',
+                        height: isCompact ? 140 : 190,
+                        fit: BoxFit.contain,
+                      ),
+                    ).animate().scale(duration: 400.ms).fadeIn(),
+                    SizedBox(height: isCompact ? 16 : 36),
+                    Text(
+                      l10n.yourPathTonchineseFluency,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        fontSize: isCompact ? 28 : 36,
+                        fontFamily: 'Serif',
+                        height: 1.3,
+                      ),
+                    ).animate().fadeIn(delay: 300.ms).slideY(),
+                    SizedBox(height: isCompact ? 12 : 24),
+                    Text(
+                      l10n.answer3QuickQuestionsSoOurAiCanCraf,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.black54,
+                        fontSize: isCompact ? 14 : 16,
+                        height: 1.5,
+                      ),
+                    ).animate().fadeIn(delay: 600.ms),
+                    const Spacer(),
+                    _buildPrimaryButton(l10n.letsBegin, _nextPage),
+                    const SizedBox(height: 8),
+                    TextButton(
+                      key: const Key('onboarding_already_have_account_button'),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                const AuthScreen(requireSubscription: true),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        l10n.alreadyHaveAccountSignIn,
+                        style: TextStyle(
+                          color: isDark ? Colors.white70 : Colors.black54,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ).animate().fadeIn(delay: 300.ms).slideY(),
-          const SizedBox(height: 24),
-          Text(
-            l10n.answer3QuickQuestionsSoOurAiCanCraf,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: isDark ? Colors.white54 : Colors.black54,
-              fontSize: 16,
-              height: 1.5,
-            ),
-          ).animate().fadeIn(delay: 600.ms),
-          const Spacer(),
-          _buildPrimaryButton(l10n.letsBegin, _nextPage),
-        ],
-      ),
+          ),
+        );
+      },
     );
   }
 

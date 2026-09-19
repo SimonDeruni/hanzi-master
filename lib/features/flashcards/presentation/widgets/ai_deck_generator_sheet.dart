@@ -8,11 +8,14 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
   const AiDeckGeneratorSheet({super.key});
 
-  static void show(BuildContext context) {
+  static Future<void> show(BuildContext context) async {
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !context.mounted) return;
     GlobalBlurredBottomSheet.show(
       context,
       child: const AiDeckGeneratorSheet(),
@@ -309,13 +312,12 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                     onPressed: _isGenerating
                         ? null
                         : () async {
+                            final l10n = AppLocalizations.of(context)!;
                             final topic = _topicController.text.trim();
                             if (topic.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                      content: Text(
-                                          AppLocalizations.of(context)!
-                                              .pleaseEnterTopic)));
+                                      content: Text(l10n.pleaseEnterTopic)));
                               return;
                             }
 
@@ -323,10 +325,13 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                       content: Text(
-                                          AppLocalizations.of(context)!
-                                              .please_select_a_deck_to_add)));
+                                          l10n.please_select_a_deck_to_add)));
                               return;
                             }
+
+                            final consent =
+                                await AiConsentSheet.ensureConsent(context);
+                            if (!consent || !mounted) return;
 
                             setState(() => _isGenerating = true);
                             try {
@@ -343,11 +348,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                                         ? "Intermediate (HSK 3-4)"
                                         : "Advanced (HSK 5-6)";
 
-                                final aiDescription =
-                                    AppLocalizations.of(context)!.generatedByAi;
+                                final aiDescription = l10n.generatedByAi;
                                 final failedToCreateDeck =
-                                    AppLocalizations.of(context)!
-                                        .failedToCreateDeck;
+                                    l10n.failedToCreateDeck;
                                 final cards =
                                     await geminiService.generateDeckCards(
                                   topic: topic,

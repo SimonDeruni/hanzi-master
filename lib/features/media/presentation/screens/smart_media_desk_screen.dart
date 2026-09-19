@@ -14,6 +14,8 @@ import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
@@ -250,45 +252,58 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
         }
         final gemini = ref.read(geminiServiceProvider);
 
-        // Track briefing
-        gemini
-            .generateVideoBriefing(widget.video.title, transcript.lines)
-            .then((b) {
-          if (mounted) {
-            setState(() {
-              _briefing = b;
+        final prefs = await SharedPreferences.getInstance();
+        final hasAiConsent = prefs.getBool(AiConsentSheet.prefKey) == true;
+
+        if (hasAiConsent) {
+          // Track briefing
+          gemini
+              .generateVideoBriefing(widget.video.title, transcript.lines)
+              .then((b) {
+            if (mounted) {
+              setState(() {
+                _briefing = b;
+                _briefingReady = true;
+                _updateLoadingStep();
+              });
+            }
+          }).catchError((Object e) {
+            debugPrint('Briefing error: $e');
+            if (mounted) {
               _briefingReady = true;
               _updateLoadingStep();
-            });
-          }
-        }).catchError((Object e) {
-          debugPrint('Briefing error: $e');
-          if (mounted) {
-            _briefingReady = true;
-            _updateLoadingStep();
-          }
-        });
+            }
+          });
 
-        // Track memes
-        gemini
-            .generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
-            .then((m) {
+          // Track memes
+          gemini
+              .generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
+              .then((m) {
+            if (mounted) {
+              setState(() {
+                _culturalMemes = m;
+                _memesReady = true;
+                _updateLoadingStep();
+              });
+            }
+          }).catchError((Object e) {
+            debugPrint('Memes error: $e');
+            if (mounted) {
+              _memesReady = true;
+              _updateLoadingStep();
+            }
+          });
+
+          _translateIncrementally(transcript, gemini);
+        } else {
           if (mounted) {
             setState(() {
-              _culturalMemes = m;
+              _briefingReady = true;
               _memesReady = true;
               _updateLoadingStep();
             });
           }
-        }).catchError((Object e) {
-          debugPrint('Memes error: $e');
-          if (mounted) {
-            _memesReady = true;
-            _updateLoadingStep();
-          }
-        });
-
-        _translateIncrementally(transcript, gemini);
+        }
       } else {
         // Captions failed — fall back to YouTube native captions via the player
         if (mounted) {
@@ -368,6 +383,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
     if (selectedLevel == null) {
       // Revert toggle visually if they cancel
+      setState(() => _isHskSimplified = false);
+      return;
+    }
+
+    if (!mounted) return;
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) {
       setState(() => _isHskSimplified = false);
       return;
     }

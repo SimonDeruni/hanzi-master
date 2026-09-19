@@ -13,6 +13,7 @@ import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -30,7 +31,12 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final consented = await AiConsentSheet.ensureConsent(context);
+      if (!consented && mounted) {
+        Navigator.of(context).pop();
+        return;
+      }
       ref.read(conversationControllerProvider.notifier).startScenario(widget.scenario);
     });
   }

@@ -131,6 +131,20 @@ class AudioService extends background_audio.BaseAudioHandler {
       List.unmodifiable(_currentBoundaries);
 
   double _speechRate = 0.5;
+  double _playbackRate = 1.0;
+
+  double get playbackRate => _playbackRate;
+
+  Future<void> setPlaybackRate(double rate) async {
+    _playbackRate = rate.clamp(0.5, 2.0);
+    try {
+      await _player.setPlaybackRate(_playbackRate);
+    } catch (_) {}
+    _broadcastPlaybackState();
+  }
+
+  @override
+  Future<void> setSpeed(double speed) => setPlaybackRate(speed);
 
   LocalTtsVoice? get preferredLocalVoice => _preferredLocalVoice;
 
@@ -296,7 +310,7 @@ class AudioService extends background_audio.BaseAudioHandler {
       processingState: processingState,
       playing: _audiobookPlaying,
       updatePosition: position,
-      speed: 1.0,
+      speed: _playbackRate,
       queueIndex: _audiobookIndex >= 0 ? _audiobookIndex : null,
     ));
   }
@@ -579,10 +593,17 @@ class AudioService extends background_audio.BaseAudioHandler {
     // Validate cached file (must exist and be > 500 bytes to not be an error payload)
     if (await cacheFile.exists()) {
       final length = await cacheFile.length();
-      if (length > 500) {
+      final hasBoundary = await boundaryFile.exists();
+      // Auto-heal orphaned cache: if audio was cached without boundary metadata
+      // and quota is available, delete the orphan and synthesize fresh with boundaries.
+      if (!hasBoundary && _quotaService.hasQuotaRemaining) {
+        try {
+          await cacheFile.delete();
+        } catch (_) {}
+      } else if (length > 500) {
         _currentBoundaries = [];
         _currentBoundaryIndex = 0;
-        if (await boundaryFile.exists()) {
+        if (hasBoundary) {
           try {
             final jsonStr = await boundaryFile.readAsString();
             final list = jsonDecode(jsonStr) as List<dynamic>;
@@ -599,7 +620,7 @@ class AudioService extends background_audio.BaseAudioHandler {
           final byteLength = await cacheFile.length();
           await _runEngineOperation(() async {
             if (generation != _playbackGeneration) return;
-            await _player.setPlaybackRate(1.0);
+            await _player.setPlaybackRate(_playbackRate);
             await _player.play(DeviceFileSource(cacheFile.path));
           });
           if (generation != _playbackGeneration) return false;
@@ -628,11 +649,14 @@ class AudioService extends background_audio.BaseAudioHandler {
             boundaryFile: boundaryFile);
         if (result != null && result.success && result.audio.isNotEmpty) {
           if (generation != _playbackGeneration) return false;
+          _currentBoundaries = result.boundaries;
+          _currentBoundaryIndex = 0;
+          _boundariesLoadedController.add(_currentBoundaries);
           await _quotaService.recordSpeech(sentence);
           if (generation != _playbackGeneration) return false;
           await _runEngineOperation(() async {
             if (generation != _playbackGeneration) return;
-            await _player.setPlaybackRate(1.0);
+            await _player.setPlaybackRate(_playbackRate);
             await _player.play(DeviceFileSource(cacheFile.path));
           });
           if (generation != _playbackGeneration) return false;
@@ -667,7 +691,8 @@ class AudioService extends background_audio.BaseAudioHandler {
         if (_preferredLocalVoice case final voice?) {
           await _tts.setVoice(voice.platformArguments);
         }
-        await _tts.setSpeechRate(speechRate ?? _speechRate);
+        await _tts.setSpeechRate(speechRate ??
+            (_speechRate * _playbackRate).clamp(0.1, 1.0));
         _localTtsGeneration = generation;
         return _tts.speak(sentence);
       });
@@ -695,7 +720,12 @@ class AudioService extends background_audio.BaseAudioHandler {
     final cacheFile = File('${_cacheDir!.path}/tts_cache/$hash.mp3');
     final boundaryFile = File('${_cacheDir!.path}/tts_cache/$hash.json');
 
-    if (await cacheFile.exists()) return;
+    if (await cacheFile.exists()) {
+      if (await boundaryFile.exists()) return;
+      try {
+        await cacheFile.delete();
+      } catch (_) {}
+    }
 
     try {
       final result = await _fetchCloudTTS(sentence,
@@ -1175,10 +1205,6 @@ class AudioService extends background_audio.BaseAudioHandler {
             flush: true);
       }
 
-      _currentBoundaries = normalizedBoundaries;
-      _currentBoundaryIndex = 0;
-      _boundariesLoadedController.add(_currentBoundaries);
-
       return CloudTtsResult(
         audio: audio,
         boundaries: normalizedBoundaries,
@@ -1255,10 +1281,6 @@ class AudioService extends background_audio.BaseAudioHandler {
             await tmpFile.parent.create(recursive: true);
           }
           await tmpFile.writeAsBytes(audio, flush: true);
-
-          _currentBoundaries = [];
-          _currentBoundaryIndex = 0;
-          _boundariesLoadedController.add(const []);
 
           return CloudTtsResult(
             audio: audio,

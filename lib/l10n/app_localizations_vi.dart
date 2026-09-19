@@ -12025,7 +12025,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'Quyền truy cập micrô chưa được cấp. Bạn có thể sử dụng tùy chọn yên tĩnh bên dưới.';
+      'Quyền truy cập micrô chưa được cấp. Bạn có thể bật trong Cài đặt.';
 
   @override
   String get recordingIsUnavailableRightNow =>
@@ -12842,5 +12842,75 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'Luồng AI vô tận • Câu $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'Thực hành AI & Quyền riêng tư';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master sử dụng các dịch vụ AI bên thứ ba an toàn để đánh giá phát âm giọng nói, nhập vai đối thoại và các công cụ học tập.';
+
+  @override
+  String get aiConsentDataSentTitle => 'Dữ liệu được truyền';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'Bản ghi âm giọng nói, bản ghi lời nói và gợi ý học tập.';
+
+  @override
+  String get aiConsentProvidersTitle => 'Dịch vụ AI bên thứ ba';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (đánh giá phát âm & tổng hợp giọng nói)\n• Google Gemini & DeepSeek (đối thoại đàm thoại & tạo bộ thẻ)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'Bảo đảm quyền riêng tư';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'Dữ liệu của bạn được mã hóa khi truyền tải, xử lý tạm thời, không bao giờ bị bán và không bao giờ được dùng để huấn luyện mô hình AI công cộng.';
+
+  @override
+  String get aiConsentAgree => 'Đồng ý & Sử dụng AI';
+
+  @override
+  String get aiConsentLearnMore => 'Tìm hiểu thêm';
+
+  @override
+  String get viewPlans => 'Xem các gói';
+
+  @override
+  String get authInvalidCredentials =>
+      'Email hoặc mật khẩu không chính xác. Nếu chưa có tài khoản, vui lòng đăng ký.';
+
+  @override
+  String get authInvalidEmail => 'Vui lòng nhập địa chỉ email hợp lệ.';
+
+  @override
+  String get authEmailAlreadyInUse =>
+      'Đã có tài khoản tồn tại với địa chỉ email này.';
+
+  @override
+  String get authWeakPassword => 'Mật khẩu phải có ít nhất 6 ký tự.';
+
+  @override
+  String get authTooManyRequests =>
+      'Quá nhiều lần thử không thành công. Vui lòng thử lại sau.';
+
+  @override
+  String get authNetworkError => 'Lỗi mạng. Vui lòng kiểm tra kết nối của bạn.';
+
+  @override
+  String get subscriptionRequired => 'Yêu cầu đăng ký';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'Cần có gói thành viên SinoSpark đang hoạt động để truy cập tất cả các bài học, sách và công cụ giọng nói AI.';
+
+  @override
+  String signedInAs(String email) {
+    return 'Đã đăng nhập với tư cách $email';
   }
 }

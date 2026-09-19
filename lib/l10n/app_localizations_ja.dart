@@ -5103,7 +5103,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get createAccountToSyncProgress => 'アカウントを作成して進捗をクラウド同期';
 
   @override
-  String get signOut => 'サインアウト';
+  String get signOut => 'ログアウト';
 
   @override
   String get account => 'アカウント';
@@ -11685,7 +11685,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'マイクへのアクセスが許可されていません。以下の静音オプションをご利用いただけます。';
+      'マイクへのアクセスが許可されていません。「設定」から有効にできます。';
 
   @override
   String get recordingIsUnavailableRightNow => '現在、録音を利用できません。';
@@ -12452,5 +12452,72 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'AIエンドレスストリーム • 第$count文';
+  }
+
+  @override
+  String get aiConsentTitle => 'AI練習とプライバシー';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Masterは音声発音評価、対話ロールプレイ、学習ツールに安全なサードパーティAIサービスを使用しています。';
+
+  @override
+  String get aiConsentDataSentTitle => '送信されるデータ';
+
+  @override
+  String get aiConsentDataSentBody => '音声録音、発話テキスト、学習用プロンプト。';
+
+  @override
+  String get aiConsentProvidersTitle => 'サードパーティAIサービス';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech（発音評価・音声合成）\n• Google Gemini & DeepSeek（会話対話・単語帳生成）';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'プライバシー保証';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'データは送信時に暗号化され、一時的にのみ処理され、販売されることはなく、公開AIモデルの学習に使用されることもありません。';
+
+  @override
+  String get aiConsentAgree => '同意してAIを使用';
+
+  @override
+  String get aiConsentLearnMore => '詳細を見る';
+
+  @override
+  String get viewPlans => 'プランを見る';
+
+  @override
+  String get authInvalidCredentials =>
+      'メールアドレスまたはパスワードが正しくありません。アカウントをお持ちでない場合は登録してください。';
+
+  @override
+  String get authInvalidEmail => '有効なメールアドレスを入力してください。';
+
+  @override
+  String get authEmailAlreadyInUse => 'このメールアドレスのアカウントは既に存在します。';
+
+  @override
+  String get authWeakPassword => 'パスワードは6文字以上にする必要があります。';
+
+  @override
+  String get authTooManyRequests => '試行回数が多すぎます。後でもう一度お試しください。';
+
+  @override
+  String get authNetworkError => 'ネットワークエラー。接続を確認してください。';
+
+  @override
+  String get subscriptionRequired => 'サブスクリプションが必要です';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'すべてのレッスン、書籍、AI音声ツールにアクセスするには、SinoSparkの有効なメンバーシップが必要です。';
+
+  @override
+  String signedInAs(String email) {
+    return '$email としてログイン中';
   }
 }

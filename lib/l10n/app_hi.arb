@@ -1648,7 +1648,7 @@
   "library1": "पुस्तकालय",
   "youAreAPremiumMember": "आप एक प्रीमियम सदस्य हैं",
   "createAccountToSyncProgress": "प्रगति सिंक करने के लिए खाता बनाएं",
-  "signOut": "साइन आउट करें",
+  "signOut": "साइन आउट",
   "account": "खाता",
   "guestScholar": "अतिथि विद्वान",
   "localAccount": "स्थानीय खाता",
@@ -3782,7 +3782,7 @@
   "recap": "पुनरावलोकन",
   "playbackDidNotStart": "प्लेबैक शुरू नहीं हुआ",
   "audioIsUnavailableYouCan": "ऑडियो उपलब्ध नहीं है। आप पढ़ना जारी रख सकते हैं।",
-  "microphoneAccessWasNotGranted": "माइक्रोफ़ोन की अनुमति नहीं मिली। आप नीचे दिए गए शांत विकल्प का उपयोग कर सकते हैं।",
+  "microphoneAccessWasNotGranted": "माइक्रोफ़ोन की अनुमति नहीं मिली। आप इसे सेटिंग्स में सक्षम कर सकते हैं।",
   "recordingIsUnavailableRightNow": "रिकॉर्डिंग अभी उपलब्ध नहीं है।",
   "listeningToYourTones": "आपके टोन सुने जा रहे हैं…",
   "noRecording": "कोई रिकॉर्डिंग नहीं",
@@ -4047,5 +4047,33 @@
   "liveCallSolidEffortFallback": "शानदार बातचीत का प्रयास। स्वाभाविक स्पष्टता बढ़ाने के लिए पहली टोन को ऊंचा और स्थिर (55) तथा चौथी टोन को तेज व निर्णायक (51) रखने पर ध्यान दें।",
   "liveCallGoodPracticeFallback": "अच्छा अभ्यास सत्र। टोन के स्पष्ट उतार-चढ़ाव और स्वाभाविक संवादात्मक गति पर ध्यान केंद्रित करना जारी रखें।",
   "sentenceNumber": "वाक्य {number}",
-  "endlessAiStreamSentence": "अंतहीन एआई स्ट्रीम • वाक्य {count}"
+  "endlessAiStreamSentence": "अंतहीन एआई स्ट्रीम • वाक्य {count}",
+  "aiConsentTitle": "एआई अभ्यास और गोपनीयता",
+  "aiConsentSubtitle": "Hanzi Master आवाज उच्चारण मूल्यांकन, संवाद रोलप्ले और अध्ययन उपकरणों के लिए सुरक्षित तृतीय-पक्ष एआई सेवाओं का उपयोग करता है।",
+  "aiConsentDataSentTitle": "प्रेषित डेटा",
+  "aiConsentDataSentBody": "वॉयस ऑडियो रिकॉर्डिंग, बोले गए भाषण के प्रतिलेख और अध्ययन संकेत।",
+  "aiConsentProvidersTitle": "तृतीय-पक्ष एआई सेवाएं",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (उच्चारण मूल्यांकन और आवाज संश्लेषण)\n• Google Gemini & DeepSeek (बातचीत संवाद और डेक निर्माण)",
+  "aiConsentGuaranteesTitle": "गोपनीयता की गारंटी",
+  "aiConsentGuaranteesBody": "आपका डेटा ट्रांसिट में एन्क्रिप्टेड है, अल्पकालिक रूप से संसाधित होता है, कभी बेचा नहीं जाता है, और कभी भी सार्वजनिक एआई मॉडल को प्रशिक्षित करने के लिए उपयोग नहीं किया जाता है।",
+  "aiConsentAgree": "सहमत हों और AI का उपयोग करें",
+  "aiConsentLearnMore": "और जानें",
+  "viewPlans": "योजनाएं देखें",
+  "authInvalidCredentials": "गलत ईमेल या पासवर्ड। यदि आपका कोई खाता नहीं है, तो कृपया साइन अप करें।",
+  "authInvalidEmail": "कृपया एक मान्य ईमेल पता दर्ज करें।",
+  "authEmailAlreadyInUse": "इस ईमेल पते से पहले से ही एक खाता मौजूद है।",
+  "authWeakPassword": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
+  "authTooManyRequests": "बहुत अधिक विफल प्रयास। कृपया बाद में पुन: प्रयास करें।",
+  "authNetworkError": "नेटवर्क त्रुटि। कृपया अपना कनेक्शन जांचें।",
+  "subscriptionRequired": "सदस्यता आवश्यक है",
+  "subscriptionRequiredDesc": "सभी पाठों, पुस्तकों और AI ध्वनि उपकरणों तक पहुंचने के लिए एक सक्रिय SinoSpark सदस्यता आवश्यक है।",
+  "signedInAs": "{email} के रूप में साइन इन हैं",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

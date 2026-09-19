@@ -265,5 +265,77 @@ void main() {
         expect(timings[i].hanziIndex, i);
       }
     });
+
+    test('isNonSpokenCharacter accurately identifies classical brackets, fullwidth symbols, and Chinese characters', () {
+      expect(isNonSpokenCharacter('「'), isTrue);
+      expect(isNonSpokenCharacter('」'), isTrue);
+      expect(isNonSpokenCharacter('『'), isTrue);
+      expect(isNonSpokenCharacter('』'), isTrue);
+      expect(isNonSpokenCharacter('【'), isTrue);
+      expect(isNonSpokenCharacter('】'), isTrue);
+      expect(isNonSpokenCharacter('〈'), isTrue);
+      expect(isNonSpokenCharacter('〉'), isTrue);
+      expect(isNonSpokenCharacter('·'), isTrue);
+      expect(isNonSpokenCharacter('～'), isTrue);
+      expect(isNonSpokenCharacter(' '), isTrue);
+      expect(isNonSpokenCharacter('1'), isTrue);
+      expect(isNonSpokenCharacter('９'), isTrue);
+
+      // Spoken Hanzi characters MUST return false
+      expect(isNonSpokenCharacter('好'), isFalse);
+      expect(isNonSpokenCharacter('道'), isFalse);
+      expect(isNonSpokenCharacter('一'), isFalse);
+      expect(isNonSpokenCharacter('中'), isFalse);
+    });
+
+    test('handles classical corner brackets and middle dots in text boundaries', () {
+      const sentence = '子曰：「学而时习之，不亦说乎？」';
+      final boundaries = [
+        {
+          'Offset': 1000000,
+          'Duration': 2000000,
+          'Word': '子曰',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 3000000,
+          'Duration': 1000000,
+          'Word': '：',
+          'BoundaryType': 'PunctuationBoundary',
+        },
+        {
+          'Offset': 4000000,
+          'Duration': 4000000,
+          'Word': '「学而',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 8000000,
+          'Duration': 4000000,
+          'Word': '时习之',
+          'BoundaryType': 'WordBoundary',
+        },
+        {
+          'Offset': 12000000,
+          'Duration': 1000000,
+          'Word': '，',
+          'BoundaryType': 'PunctuationBoundary',
+        },
+        {
+          'Offset': 13000000,
+          'Duration': 6000000,
+          'Word': '不亦说乎？」',
+          'BoundaryType': 'WordBoundary',
+        },
+      ];
+
+      final timings = buildSpokenCharTimings(text: sentence, boundaries: boundaries);
+      // Hanzi: 子(0) 曰(1) 学(2) 而(3) 时(4) 习(5) 之(6) 不(7) 亦(8) 说(9) 乎(10)
+      expect(timings.length, 11);
+      expect(timings.map((t) => t.char).join(), '子曰学而时习之不亦说乎');
+      for (var i = 0; i < timings.length; i++) {
+        expect(timings[i].hanziIndex, i);
+      }
+    });
   });
 }

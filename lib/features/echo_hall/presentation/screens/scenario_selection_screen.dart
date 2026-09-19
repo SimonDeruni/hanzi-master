@@ -20,6 +20,7 @@ import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/features/echo_hall/domain/logic/generated_scenario_parser.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -110,6 +111,8 @@ class _ScenarioSelectionScreenState
     if (!mounted) return;
     if (existing != null) {
       if (widget.showBackButton) {
+        final consent = await AiConsentSheet.ensureConsent(context);
+        if (!consent || !mounted) return;
         Navigator.of(context).pushReplacement(SwipeBackRoute(
             builder: (context) => ConversationScreen(scenario: existing)));
       } else {
@@ -305,6 +308,8 @@ class _ScenarioSelectionScreenState
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
       child: InkWell(
         onTap: () async {
+          final consent = await AiConsentSheet.ensureConsent(context);
+          if (!consent || !mounted) return;
           final newScenario = await CustomScenarioDialog.show(context);
           if (newScenario != null) {
             await ref
@@ -1216,7 +1221,10 @@ class _ScenarioSelectionScreenState
       selectedDeck = decks.firstWhere((d) => d.name == picked);
     }
 
+    if (!mounted) return;
     if (_isGenerating) return;
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) return;
     setState(() => _isGenerating = true);
 
     try {
@@ -1309,8 +1317,10 @@ Respond ONLY in valid JSON format with NO markdown formatting:
     }
   }
 
-  void _startScenario(
-      BuildContext context, ConversationScenario scenario, bool isVoice) {
+  Future<void> _startScenario(
+      BuildContext context, ConversationScenario scenario, bool isVoice) async {
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !context.mounted) return;
     HapticsManager.medium();
     if (isVoice) {
       Navigator.of(context).push(SwipeBackRoute(

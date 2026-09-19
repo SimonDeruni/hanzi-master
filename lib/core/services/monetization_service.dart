@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:google_api_availability/google_api_availability.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/api_key_pool.dart';
@@ -19,8 +20,27 @@ class MonetizationService {
     _developerBackdoorUnlocked = true;
   }
 
-  static void unlockDeveloperBackdoor() {
-    grantTemporaryPremiumAccess();
+  /// Unlocks developer / demo mode and persists it across app restarts.
+  static Future<void> unlockDeveloperBackdoor() async {
+    _developerBackdoorUnlocked = true;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('demo_account_unlocked', true);
+      await prefs.setBool('has_seen_onboarding', true);
+    } catch (e) {
+      debugPrint('Failed to persist demo account unlock: $e');
+    }
+  }
+
+  /// Locks developer / demo mode and removes persistent credentials on logout.
+  static Future<void> lockDeveloperBackdoor() async {
+    _developerBackdoorUnlocked = false;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('demo_account_unlocked');
+    } catch (e) {
+      debugPrint('Failed to clear demo account unlock: $e');
+    }
   }
 
   static Future<void> init() async {
@@ -73,6 +93,14 @@ class MonetizationService {
 
   static Future<bool> checkPremiumStatus({bool rethrowErrors = false}) async {
     if (_developerBackdoorUnlocked) return true;
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (prefs.getBool('demo_account_unlocked') == true) {
+        _developerBackdoorUnlocked = true;
+        return true;
+      }
+    } catch (_) {}
 
     try {
       if (_activeProvider == PaymentProvider.revenueCat) {

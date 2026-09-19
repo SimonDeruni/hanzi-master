@@ -12033,7 +12033,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'Akses mikrofon tidak diberikan. Anda dapat menggunakan opsi hening di bawah.';
+      'Akses mikrofon tidak diberikan. Anda dapat mengaktifkannya di Pengaturan.';
 
   @override
   String get recordingIsUnavailableRightNow =>
@@ -12858,5 +12858,75 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'Streaming AI Tanpa Akhir • Kalimat $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'Latihan AI & Privasi';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master menggunakan layanan AI pihak ketiga yang aman untuk penilaian pengucapan suara, bermain peran percakapan, dan alat belajar.';
+
+  @override
+  String get aiConsentDataSentTitle => 'Data yang Ditransmisikan';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'Rekaman audio suara, transkripsi ucapan, dan petunjuk belajar.';
+
+  @override
+  String get aiConsentProvidersTitle => 'Layanan AI Pihak Ketiga';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (penilaian pengucapan & sintesis suara)\n• Google Gemini & DeepSeek (dialog percakapan & pembuatan dek)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'Jaminan Privasi';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'Data Anda dienkripsi saat transit, diproses secara sementara, tidak pernah dijual, dan tidak pernah digunakan untuk melatih model AI publik.';
+
+  @override
+  String get aiConsentAgree => 'Setuju & Gunakan AI';
+
+  @override
+  String get aiConsentLearnMore => 'Pelajari Lebih Lanjut';
+
+  @override
+  String get viewPlans => 'Lihat Paket';
+
+  @override
+  String get authInvalidCredentials =>
+      'Email atau kata sandi salah. Jika belum memiliki akun, silakan daftar.';
+
+  @override
+  String get authInvalidEmail => 'Silakan masukkan alamat email yang valid.';
+
+  @override
+  String get authEmailAlreadyInUse => 'Akun sudah ada dengan alamat email ini.';
+
+  @override
+  String get authWeakPassword => 'Kata sandi minimal harus 6 karakter.';
+
+  @override
+  String get authTooManyRequests =>
+      'Terlalu banyak percobaan gagal. Silakan coba lagi nanti.';
+
+  @override
+  String get authNetworkError =>
+      'Kesalahan jaringan. Silakan periksa koneksi Anda.';
+
+  @override
+  String get subscriptionRequired => 'Langganan Diperlukan';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'Keanggotaan aktif SinoSpark diperlukan untuk mengakses semua pelajaran, buku, dan alat suara AI.';
+
+  @override
+  String signedInAs(String email) {
+    return 'Masuk sebagai $email';
   }
 }

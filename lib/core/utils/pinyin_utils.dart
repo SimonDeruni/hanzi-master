@@ -40,18 +40,27 @@ class PinyinUtils {
     'ü1': 'ǖ', 'ü2': 'ǘ', 'ü3': 'ǚ', 'ü4': 'ǜ',
   };
 
-  /// Converts numeric pinyin (e.g. "jian4", "lu:4") to tone marks (e.g. "jiàn", "lǜ")
+  /// Converts numeric pinyin (e.g. "jian4", "lu:4", "lv4") to tone marks (e.g. "jiàn", "lǜ")
   static String convertNumericToMarks(String text) {
-    // CC-CEDICT uses u: or v for ü
-    String processed = text
-        .replaceAll('u:', 'ü')
-        .replaceAll('U:', 'Ü')
-        .replaceAll('v', 'ü')
-        .replaceAll('V', 'Ü');
-    
-    return processed.replaceAllMapped(RegExp(r'([a-zA-ZüÜ]+)([1-5])'), (match) {
+    // Only convert pinyin syllables followed by numbers 1-5 (e.g. jian4 -> jiàn, lv4 -> lǜ, lu:4 -> lǜ).
+    // NEVER do a blanket replace of 'v' -> 'ü' across the entire input string, which corrupts
+    // non-pinyin words in French, Spanish, English, etc. (e.g. "vous", "voir", "niveau").
+    return text.replaceAllMapped(RegExp(r'([a-zA-ZüÜ:]+)([1-5])'), (match) {
       String word = match.group(1)!;
       int tone = int.parse(match.group(2)!);
+
+      // CC-CEDICT and common pinyin input uses u: or v for ü (e.g. lv, nv, lu:, nu:)
+      word = word
+          .replaceAll('u:', 'ü')
+          .replaceAll('U:', 'Ü')
+          .replaceAllMapped(
+            RegExp(r'(?<=[lnLN])v', caseSensitive: false),
+            (m) => m.group(0) == 'V' ? 'Ü' : 'ü',
+          )
+          .replaceAllMapped(
+            RegExp(r'^v$', caseSensitive: false),
+            (m) => m.group(0) == 'V' ? 'Ü' : 'ü',
+          );
       
       if (tone == 5) return word; // Neutral tone has no mark
       

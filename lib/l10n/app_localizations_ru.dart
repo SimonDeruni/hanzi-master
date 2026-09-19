@@ -12051,7 +12051,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'Нет доступа к микрофону. Вы можете использовать тихий режим ниже.';
+      'Нет доступа к микрофону. Вы можете включить его в Настройках.';
 
   @override
   String get recordingIsUnavailableRightNow => 'Запись сейчас недоступна.';
@@ -12885,5 +12885,77 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'Бесконечный поток ИИ • Предложение $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'ИИ-практика и конфиденциальность';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master использует сторонние ИИ-сервисы для оценки произношения, диалоговых ролевых игр и учебных инструментов.';
+
+  @override
+  String get aiConsentDataSentTitle => 'Передаваемые данные';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'Голосовые аудиозаписи, расшифровки речи и учебные текстовые запросы.';
+
+  @override
+  String get aiConsentProvidersTitle => 'Сторонние ИИ-сервисы';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (оценка произношения и синтез речи)\n• Google Gemini и DeepSeek (разговорные диалоги и генерация колод)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'Гарантии конфиденциальности';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'Ваши данные шифруются при передаче, обрабатываются временно, никогда не продаются и не используются для обучения общедоступных моделей ИИ.';
+
+  @override
+  String get aiConsentAgree => 'Согласиться и использовать ИИ';
+
+  @override
+  String get aiConsentLearnMore => 'Узнать больше';
+
+  @override
+  String get viewPlans => 'Посмотреть тарифы';
+
+  @override
+  String get authInvalidCredentials =>
+      'Неверный адрес эл. почты или пароль. Если у вас нет аккаунта, зарегистрируйтесь.';
+
+  @override
+  String get authInvalidEmail =>
+      'Пожалуйста, введите действительный адрес эл. почты.';
+
+  @override
+  String get authEmailAlreadyInUse =>
+      'Аккаунт с таким адресом эл. почты уже существует.';
+
+  @override
+  String get authWeakPassword => 'Пароль должен содержать не менее 6 символов.';
+
+  @override
+  String get authTooManyRequests =>
+      'Слишком много неудачных попыток. Пожалуйста, повторите попытку позже.';
+
+  @override
+  String get authNetworkError =>
+      'Ошибка сети. Проверьте подключение к интернету.';
+
+  @override
+  String get subscriptionRequired => 'Требуется подписка';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'Для доступа ко всем урокам, книгам и голосовым инструментам ИИ требуется активная подписка SinoSpark.';
+
+  @override
+  String signedInAs(String email) {
+    return 'Вы вошли как $email';
   }
 }

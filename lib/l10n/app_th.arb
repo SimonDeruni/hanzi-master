@@ -3841,7 +3841,7 @@
   "recap": "สรุปบทเรียน",
   "playbackDidNotStart": "ไม่สามารถเล่นเสียงได้",
   "audioIsUnavailableYouCan": "ไม่มีไฟล์เสียง คุณยังสามารถอ่านและเรียนต่อได้",
-  "microphoneAccessWasNotGranted": "ไม่ได้รับอนุญาตให้เข้าถึงไมโครโฟน คุณสามารถเลือกโหมดเงียบด้านล่างได้",
+  "microphoneAccessWasNotGranted": "ไม่ได้รับอนุญาตให้เข้าถึงไมโครโฟน คุณสามารถเปิดใช้งานได้ในการตั้งค่า",
   "recordingIsUnavailableRightNow": "ไม่สามารถบันทึกเสียงได้ในขณะนี้",
   "listeningToYourTones": "กำลังฟังเสียงวรรณยุกต์ของคุณ...",
   "noRecording": "ไม่มีการบันทึกเสียง",
@@ -4106,5 +4106,33 @@
   "liveCallSolidEffortFallback": "ความพยายามในการสนทนาที่ยอดเยี่ยม เน้นการออกเสียงวรรณยุกต์ที่ 1 ให้สูงและสม่ำเสมอ (55) และวรรณยุกต์ที่ 4 ให้หนักแน่นเฉียบคม (51) เพื่อความชัดเจนอย่างเป็นธรรมชาติ",
   "liveCallGoodPracticeFallback": "เซสชันการฝึกซ้อมที่ดี ฝึกฝนความแตกต่างของระดับเสียงวรรณยุกต์และจังหวะการสนทนาที่เป็นธรรมชาติอย่างต่อเนื่อง",
   "sentenceNumber": "ประโยคที่ {number}",
-  "endlessAiStreamSentence": "สตรีม AI ต่อเนื่อง • ประโยคที่ {count}"
+  "endlessAiStreamSentence": "สตรีม AI ต่อเนื่อง • ประโยคที่ {count}",
+  "aiConsentTitle": "การฝึกฝนด้วย AI และความเป็นส่วนตัว",
+  "aiConsentSubtitle": "Hanzi Master ใช้บริการ AI ของบุคคลที่สามที่ปลอดภัยสำหรับการประเมินการออกเสียง การแสดงบทบาทสมมติในการสนทนา และเครื่องมือการเรียนรู้",
+  "aiConsentDataSentTitle": "ข้อมูลที่ส่ง",
+  "aiConsentDataSentBody": "การบันทึกเสียงพูด การถอดเสียงพูด และข้อความแจ้งการเรียนรู้",
+  "aiConsentProvidersTitle": "บริการ AI ของบุคคลที่สาม",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (การประเมินการออกเสียงและการสังเคราะห์เสียง)\n• Google Gemini & DeepSeek (การสนทนาและการสร้างสำรับ)",
+  "aiConsentGuaranteesTitle": "การรับประกันความเป็นส่วนตัว",
+  "aiConsentGuaranteesBody": "ข้อมูลของคุณจะได้รับการเข้ารหัสระหว่างส่ง ประมวลผลชั่วคราว ไม่มีการขาย และไม่เคยถูกนำไปใช้ในการฝึกฝนโมเดล AI สาธารณะ",
+  "aiConsentAgree": "ยินยอมและใช้ AI",
+  "aiConsentLearnMore": "เรียนรู้เพิ่มเติม",
+  "viewPlans": "ดูแผนบริการ",
+  "authInvalidCredentials": "อีเมลหรือรหัสผ่านไม่ถูกต้อง หากคุณยังไม่มีบัญชี โปรดลงทะเบียน",
+  "authInvalidEmail": "โปรดป้อนที่อยู่อีเมลที่ถูกต้อง",
+  "authEmailAlreadyInUse": "มีบัญชีที่ใช้อีเมลนี้อยู่แล้ว",
+  "authWeakPassword": "รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร",
+  "authTooManyRequests": "การพยายามล้มเหลวหลายครั้งเกินไป โปรดลองใหม่อีกครั้งในภายหลัง",
+  "authNetworkError": "ข้อผิดพลาดของเครือข่าย โปรดตรวจสอบการเชื่อมต่อของคุณ",
+  "subscriptionRequired": "จำเป็นต้องสมัครสมาชิก",
+  "subscriptionRequiredDesc": "จำเป็นต้องเป็นสมาชิก SinoSpark ที่ใช้งานอยู่เพื่อเข้าถึงบทเรียน หนังสือ และเครื่องมือเสียง AI ทั้งหมด",
+  "signedInAs": "ลงชื่อเข้าใช้ในชื่อ {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

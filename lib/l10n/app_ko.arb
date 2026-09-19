@@ -3769,7 +3769,7 @@
   "recap": "정리",
   "playbackDidNotStart": "재생이 시작되지 않았습니다",
   "audioIsUnavailableYouCan": "오디오를 사용할 수 없습니다. 글을 읽고 계속 진행하실 수 있습니다.",
-  "microphoneAccessWasNotGranted": "마이크 접근 권한이 허용되지 않았습니다. 아래의 무음 옵션을 이용하실 수 있습니다.",
+  "microphoneAccessWasNotGranted": "마이크 접근 권한이 허용되지 않았습니다. 설정에서 활성화할 수 있습니다.",
   "recordingIsUnavailableRightNow": "지금은 녹음을 사용할 수 없습니다.",
   "listeningToYourTones": "성조를 듣고 있습니다…",
   "noRecording": "녹음 없음",
@@ -4034,5 +4034,33 @@
   "liveCallSolidEffortFallback": "훌륭한 대화 연습이었습니다. 제1성은 높고 평평하게(55), 제4성은 날카롭고 단호하게 내려(51) 연습하면 원어민에 가까운 명확성을 갖출 수 있습니다.",
   "liveCallGoodPracticeFallback": "좋은 연습 세션이었습니다. 명확한 성조 높낮이 대비와 자연스러운 대화 속도에 계속 집중해보세요.",
   "sentenceNumber": "문장 {number}",
-  "endlessAiStreamSentence": "무한 AI 스트림 • 문장 {count}"
+  "endlessAiStreamSentence": "무한 AI 스트림 • 문장 {count}",
+  "aiConsentTitle": "AI 학습 및 개인정보 보호",
+  "aiConsentSubtitle": "Hanzi Master는 음성 발음 평가, 대화 롤플레잉 및 학습 도구를 위해 안전한 타사 AI 서비스를 사용합니다.",
+  "aiConsentDataSentTitle": "전송되는 데이터",
+  "aiConsentDataSentBody": "음성 오디오 녹음, 구어 텍스트 변환 및 학습 프롬프트.",
+  "aiConsentProvidersTitle": "타사 AI 서비스",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (발음 평가 및 음성 합성)\n• Google Gemini & DeepSeek (대화형 다이얼로그 및 덱 생성)",
+  "aiConsentGuaranteesTitle": "개인정보 보호 보장",
+  "aiConsentGuaranteesBody": "귀하의 데이터는 전송 중 암호화되며, 일시적으로만 처리되고, 판매되지 않으며, 공개 AI 모델 훈련에 사용되지 않습니다.",
+  "aiConsentAgree": "동의하고 AI 사용",
+  "aiConsentLearnMore": "자세히 알아보기",
+  "viewPlans": "요금제 보기",
+  "authInvalidCredentials": "이메일 또는 비밀번호가 올바르지 않습니다. 계정이 없다면 회원가입을 해주세요.",
+  "authInvalidEmail": "올바른 이메일 주소를 입력해 주세요.",
+  "authEmailAlreadyInUse": "이 이메일 주소로 등록된 계정이 이미 존재합니다.",
+  "authWeakPassword": "비밀번호는 최소 6자 이상이어야 합니다.",
+  "authTooManyRequests": "로그인 시도가 너무 많습니다. 나중에 다시 시도해 주세요.",
+  "authNetworkError": "네트워크 오류입니다. 연결을 확인해 주세요.",
+  "subscriptionRequired": "구독이 필요합니다",
+  "subscriptionRequiredDesc": "모든 레슨, 도서 및 AI 음성 도구를 이용하려면 유효한 SinoSpark 구독이 필요합니다.",
+  "signedInAs": "{email} 계정으로 로그인됨",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

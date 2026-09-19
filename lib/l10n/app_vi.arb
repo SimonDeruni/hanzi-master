@@ -3757,7 +3757,7 @@
   "recap": "Tóm tắt",
   "playbackDidNotStart": "Không thể phát âm thanh",
   "audioIsUnavailableYouCan": "Âm thanh hiện không khả dụng. Bạn vẫn có thể đọc và tiếp tục.",
-  "microphoneAccessWasNotGranted": "Quyền truy cập micrô chưa được cấp. Bạn có thể sử dụng tùy chọn yên tĩnh bên dưới.",
+  "microphoneAccessWasNotGranted": "Quyền truy cập micrô chưa được cấp. Bạn có thể bật trong Cài đặt.",
   "recordingIsUnavailableRightNow": "Tính năng ghi âm hiện không khả dụng.",
   "listeningToYourTones": "Đang lắng nghe thanh điệu của bạn…",
   "noRecording": "Không có bản ghi âm",
@@ -4022,5 +4022,33 @@
   "liveCallSolidEffortFallback": "Nỗ lực giao tiếp rất tốt. Hãy chú ý giữ thanh 1 cao và đều (55), thanh 4 dứt khoát và đi xuống (51) để phát âm tự nhiên và rõ ràng hơn.",
   "liveCallGoodPracticeFallback": "Buổi luyện tập tốt. Hãy tiếp tục tập trung vào sự phân biệt cao độ thanh điệu rõ ràng và nhịp điệu giao tiếp tự nhiên.",
   "sentenceNumber": "Câu {number}",
-  "endlessAiStreamSentence": "Luồng AI vô tận • Câu {count}"
+  "endlessAiStreamSentence": "Luồng AI vô tận • Câu {count}",
+  "aiConsentTitle": "Thực hành AI & Quyền riêng tư",
+  "aiConsentSubtitle": "Hanzi Master sử dụng các dịch vụ AI bên thứ ba an toàn để đánh giá phát âm giọng nói, nhập vai đối thoại và các công cụ học tập.",
+  "aiConsentDataSentTitle": "Dữ liệu được truyền",
+  "aiConsentDataSentBody": "Bản ghi âm giọng nói, bản ghi lời nói và gợi ý học tập.",
+  "aiConsentProvidersTitle": "Dịch vụ AI bên thứ ba",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (đánh giá phát âm & tổng hợp giọng nói)\n• Google Gemini & DeepSeek (đối thoại đàm thoại & tạo bộ thẻ)",
+  "aiConsentGuaranteesTitle": "Bảo đảm quyền riêng tư",
+  "aiConsentGuaranteesBody": "Dữ liệu của bạn được mã hóa khi truyền tải, xử lý tạm thời, không bao giờ bị bán và không bao giờ được dùng để huấn luyện mô hình AI công cộng.",
+  "aiConsentAgree": "Đồng ý & Sử dụng AI",
+  "aiConsentLearnMore": "Tìm hiểu thêm",
+  "viewPlans": "Xem các gói",
+  "authInvalidCredentials": "Email hoặc mật khẩu không chính xác. Nếu chưa có tài khoản, vui lòng đăng ký.",
+  "authInvalidEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
+  "authEmailAlreadyInUse": "Đã có tài khoản tồn tại với địa chỉ email này.",
+  "authWeakPassword": "Mật khẩu phải có ít nhất 6 ký tự.",
+  "authTooManyRequests": "Quá nhiều lần thử không thành công. Vui lòng thử lại sau.",
+  "authNetworkError": "Lỗi mạng. Vui lòng kiểm tra kết nối của bạn.",
+  "subscriptionRequired": "Yêu cầu đăng ký",
+  "subscriptionRequiredDesc": "Cần có gói thành viên SinoSpark đang hoạt động để truy cập tất cả các bài học, sách và công cụ giọng nói AI.",
+  "signedInAs": "Đã đăng nhập với tư cách {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

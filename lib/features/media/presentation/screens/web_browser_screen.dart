@@ -25,6 +25,7 @@ import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
@@ -964,6 +965,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   Future<void> _runAnalyzeArticle() async {
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
+
     setState(() => _isProcessingAi = true);
 
     try {
@@ -1047,6 +1051,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   Future<void> _runAddAllUnknowns() async {
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
+
     setState(() => _isProcessingAi = true);
 
     try {
@@ -1130,6 +1137,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
   Future<void> _runAutoSimplify(int level) async {
     if (_isProcessingAi) return;
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
+
     setState(() => _isProcessingAi = true);
 
     try {
@@ -1270,6 +1280,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   Future<void> _startTranslation(String sentence) async {
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
+
     setState(() {
       _isTranslating = true;
       _activeTranslation = null;

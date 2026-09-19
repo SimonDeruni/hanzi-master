@@ -977,6 +977,25 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               style: linkStyle,
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Text(
+              '•',
+              style: TextStyle(
+                color: textColor.withValues(alpha: 0.35),
+                fontSize: 10,
+              ),
+            ),
+          ),
+          TextButton(
+            key: const Key('paywall_sign_in_button'),
+            onPressed: _closePaywall,
+            style: buttonStyle,
+            child: Text(
+              AppLocalizations.of(context)!.signIn,
+              style: linkStyle,
+            ),
+          ),
         ],
       ),
     );

@@ -3760,7 +3760,7 @@
   "recap": "Récap",
   "playbackDidNotStart": "La lecture n'a pas démarré",
   "audioIsUnavailableYouCan": "L'audio est indisponible. Vous pouvez toujours lire et continuer.",
-  "microphoneAccessWasNotGranted": "L'accès au microphone n'a pas été autorisé. Vous pouvez utiliser l'option silencieuse ci-dessous.",
+  "microphoneAccessWasNotGranted": "L'accès au microphone n'a pas été accordé. Vous pouvez l'activer dans les Réglages.",
   "recordingIsUnavailableRightNow": "L'enregistrement est indisponible pour le moment.",
   "listeningToYourTones": "Écoute de vos tons…",
   "noRecording": "Aucun enregistrement",
@@ -4023,5 +4023,33 @@
   "liveCallSolidEffortFallback": "Bel effort de conversation. Concentrez-vous sur le 1er ton bien haut et stable (55) et le 4e ton net et descendant (51) pour gagner en clarté naturelle.",
   "liveCallGoodPracticeFallback": "Bonne session de pratique. Continuez à vous concentrer sur le contraste net des tons et un rythme de conversation naturel.",
   "sentenceNumber": "Phrase {number}",
-  "endlessAiStreamSentence": "Flux continu d'IA • Phrase {count}"
+  "endlessAiStreamSentence": "Flux continu d'IA • Phrase {count}",
+  "aiConsentTitle": "Fonctionnalités IA et Confidentialité",
+  "aiConsentSubtitle": "Hanzi Master utilise des services d'IA tiers sécurisés pour l'évaluation vocale de la prononciation, les dialogues et les outils d'apprentissage.",
+  "aiConsentDataSentTitle": "Données transmises",
+  "aiConsentDataSentBody": "Enregistrements vocaux, transcriptions de parole et requêtes d'étude.",
+  "aiConsentProvidersTitle": "Services d'IA tiers",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (évaluation de la prononciation et synthèse vocale)\n• Google Gemini & DeepSeek (dialogues interactifs et génération de listes)",
+  "aiConsentGuaranteesTitle": "Garanties de confidentialité",
+  "aiConsentGuaranteesBody": "Vos données sont chiffrées en transit, traitées de manière éphémère, jamais vendues et jamais utilisées pour entraîner des modèles publics d'IA.",
+  "aiConsentAgree": "Accepter et utiliser l'IA",
+  "aiConsentLearnMore": "En savoir plus",
+  "viewPlans": "Voir les forfaits",
+  "authInvalidCredentials": "E-mail ou mot de passe incorrect. Si vous n'avez pas de compte, veuillez vous inscrire.",
+  "authInvalidEmail": "Veuillez entrer une adresse e-mail valide.",
+  "authEmailAlreadyInUse": "Un compte existe déjà avec cette adresse e-mail.",
+  "authWeakPassword": "Le mot de passe doit comporter au moins 6 caractères.",
+  "authTooManyRequests": "Trop de tentatives infructueuses. Veuillez réessayer plus tard.",
+  "authNetworkError": "Erreur réseau. Veuillez vérifier votre connexion.",
+  "subscriptionRequired": "Abonnement requis",
+  "subscriptionRequiredDesc": "Un abonnement actif à SinoSpark est requis pour accéder à toutes les leçons, aux livres et aux outils vocaux d'IA.",
+  "signedInAs": "Connecté en tant que {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

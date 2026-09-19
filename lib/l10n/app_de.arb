@@ -3707,7 +3707,7 @@
   "recap": "Zusammenfassung",
   "playbackDidNotStart": "Wiedergabe wurde nicht gestartet",
   "audioIsUnavailableYouCan": "Audio ist nicht verfügbar. Du kannst trotzdem lesen und fortfahren.",
-  "microphoneAccessWasNotGranted": "Mikrofonzugriff wurde nicht gewährt. Du kannst die stille Option unten nutzen.",
+  "microphoneAccessWasNotGranted": "Mikrofonzugriff wurde nicht gewährt. Du kannst ihn in den Einstellungen aktivieren.",
   "recordingIsUnavailableRightNow": "Aufnahme ist momentan nicht verfügbar.",
   "listeningToYourTones": "Höre auf deine Töne…",
   "noRecording": "Keine Aufnahme",
@@ -3972,5 +3972,33 @@
   "liveCallSolidEffortFallback": "Guter Gesprächseinsatz. Achte darauf, den 1. Ton hoch und gleichmäßig (55) und den 4. Ton scharf und fallend (51) zu halten, um die Klarheit zu verbessern.",
   "liveCallGoodPracticeFallback": "Gute Übungseinheit. Achte weiterhin auf klare Tonkontraste und ein natürliches Gesprächstempo.",
   "sentenceNumber": "Satz {number}",
-  "endlessAiStreamSentence": "Endloser KI-Stream • Satz {count}"
+  "endlessAiStreamSentence": "Endloser KI-Stream • Satz {count}",
+  "aiConsentTitle": "KI-Übungen & Datenschutz",
+  "aiConsentSubtitle": "Hanzi Master nutzt sichere KI-Dienste von Drittanbietern für Aussprachebewertung, Dialog-Rollenspiele und Lernwerkzeuge.",
+  "aiConsentDataSentTitle": "Übertragene Daten",
+  "aiConsentDataSentBody": "Sprachaufnahmen, gesprochene Transkripte und Textanfragen.",
+  "aiConsentProvidersTitle": "KI-Dienste von Drittanbietern",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (Aussprachebewertung & Sprachsynthese)\n• Google Gemini & DeepSeek (Konversationsdialoge & Deck-Generierung)",
+  "aiConsentGuaranteesTitle": "Datenschutzgarantien",
+  "aiConsentGuaranteesBody": "Ihre Daten werden während der Übertragung verschlüsselt, flüchtig verarbeitet, niemals verkauft und niemals zum Trainieren öffentlicher KI-Modelle verwendet.",
+  "aiConsentAgree": "KI zustimmen & verwenden",
+  "aiConsentLearnMore": "Mehr erfahren",
+  "viewPlans": "Pläne ansehen",
+  "authInvalidCredentials": "Falsche E-Mail oder falsches Passwort. Wenn Sie noch kein Konto haben, registrieren Sie sich bitte.",
+  "authInvalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "authEmailAlreadyInUse": "Ein Konto mit dieser E-Mail-Adresse existiert bereits.",
+  "authWeakPassword": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+  "authTooManyRequests": "Zu viele fehlgeschlagene Versuche. Bitte versuchen Sie es später erneut.",
+  "authNetworkError": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+  "subscriptionRequired": "Abonnement erforderlich",
+  "subscriptionRequiredDesc": "Ein aktives SinoSpark-Abonnement ist erforderlich, um auf alle Lektionen, Bücher und KI-Sprachwerkzeuge zuzugreifen.",
+  "signedInAs": "Angemeldet als {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
@@ -60,10 +61,17 @@ void main() {
     expect(find.bySemanticsLabel('百战不殆。'), findsOneWidget);
     expect(find.text('bǎi zhàn bù dài'), findsOneWidget);
     expect(find.byKey(const Key('onboarding_shadow_card')), findsOneWidget);
-    expect(find.text("I can't speak right now"), findsOneWidget);
+    expect(find.text("I can't speak right now"), findsNothing);
 
-    await tester.ensureVisible(find.text("I can't speak right now"));
-    await tester.tap(find.text("I can't speak right now"));
+    // Tap Continue to proceed to recording
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    // Tap Stop and check my tones to finish shadowing
+    expect(find.text('Stop and check my tones'), findsOneWidget);
+    await tester.ensureVisible(find.text('Stop and check my tones'));
+    await tester.tap(find.text('Stop and check my tones'));
     await tester.pumpAndSettle();
     expect(find.text('Four tones'), findsOneWidget);
     expect(
@@ -159,4 +167,64 @@ void main() {
     expect(inactiveDecoration.color, Colors.transparent);
     expect(inactiveDecoration.boxShadow, isNull);
   });
+
+  testWidgets(
+      'microphone permission denial displays notification, settings link, and allows continuing',
+      (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          audioRecordingServiceProvider.overrideWithValue(
+            _FakeDeniedAudioRecordingService(),
+          ),
+        ],
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: OnboardingMiniLessonScreen(
+            disableExternalServicesForTesting: false,
+            onComplete: () {},
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Step 0 -> Step 1
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    // Step 1 -> Step 2
+    await tester.ensureVisible(find.text('Shadow one sentence'));
+    await tester.tap(find.text('Shadow one sentence'));
+    await tester.pumpAndSettle();
+
+    // Step 2: Ensure pre-permission screen only has "Continue" and NO "I can't speak now" or "Use microphone"
+    expect(find.text('Continue'), findsOneWidget);
+    expect(find.text("I can't speak right now"), findsNothing);
+    expect(find.text('Use microphone'), findsNothing);
+
+    // Tap Continue to request microphone permission
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    // After denial: displays notification that microphone access was not granted and Settings link
+    expect(find.text('Microphone access was not granted. You can enable it in Settings.'), findsOneWidget);
+    expect(find.text('Settings'), findsOneWidget);
+    expect(find.text('Continue'), findsOneWidget);
+
+    // Tapping Continue gracefully advances forward to Four Tones using quiet demo path
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Four tones'), findsOneWidget);
+  });
+}
+
+class _FakeDeniedAudioRecordingService extends AudioRecordingService {
+  @override
+  Future<bool> requestPermission() async => false;
 }

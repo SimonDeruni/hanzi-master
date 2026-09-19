@@ -22,6 +22,8 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_positioning.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -305,6 +307,17 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
   }
 
   Future<void> _fetchAiDefinition() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool(AiConsentSheet.prefKey) != true) {
+      if (mounted) {
+        setState(() {
+          _definition = 'Not found in dictionary.';
+          _isLoadingAi = false;
+        });
+      }
+      return;
+    }
+
     try {
       final aiDef =
           await ref.read(geminiServiceProvider).defineWord(widget.hanzi);

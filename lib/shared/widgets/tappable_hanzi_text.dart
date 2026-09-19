@@ -229,9 +229,12 @@ class _TappableMarkdownHanziTextState
   /// - Converts line-start `* ` or `- ` bullets to `• `
   /// - Strips orphan single asterisks left at end of words (e.g. 我们*)
   static String _preprocessText(String text) {
+    // Strip leading markdown headers (#, ##, ###) so they never render as literal hashes.
+    final noHeaders =
+        text.replaceAll(RegExp(r'^[ \t]*#{1,6}\s*', multiLine: true), '');
     // Convert line-start bullet markers to Unicode bullet.
     // Matches ^ (start of line) optionally followed by spaces, then * or -, then a space.
-    return text.replaceAllMapped(
+    return noHeaders.replaceAllMapped(
       RegExp(r'^[ \t]*[\*\-]( |$)', multiLine: true),
       (m) => '• ',
     );

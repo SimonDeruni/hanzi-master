@@ -3849,7 +3849,7 @@
   "recap": "خلاصة",
   "playbackDidNotStart": "لم يبدأ التشغيل",
   "audioIsUnavailableYouCan": "الصوت غير متاح. يمكنك القراءة والمتابعة.",
-  "microphoneAccessWasNotGranted": "لم يتم منح الوصول إلى الميكروفون. يمكنك استخدام الخيار الهادئ أدناه.",
+  "microphoneAccessWasNotGranted": "لم يتم منح الوصول إلى الميكروفون. يمكنك تفعيله من الإعدادات.",
   "recordingIsUnavailableRightNow": "التسجيل غير متاح حالياً.",
   "listeningToYourTones": "جاري الاستماع لنغماتك…",
   "noRecording": "لا يوجد تسجيل",
@@ -4114,5 +4114,33 @@
   "liveCallSolidEffortFallback": "جهد محادثة رائع. ركز على إبقاء النغمة الأولى عالية ومستقرة (55) والنغمة الرابعة حادة وحاسمة (51) لتعزيز وضوح النطق الطبيعي.",
   "liveCallGoodPracticeFallback": "جلسة تدريبية جيدة. استمر في التركيز على التباين الواضح في درجات النغمات والسرعة الطبيعية للمحادثة.",
   "sentenceNumber": "الجملة {number}",
-  "endlessAiStreamSentence": "بث ذكاء اصطناعي لا نهائي • جملة {count}"
+  "endlessAiStreamSentence": "بث ذكاء اصطناعي لا نهائي • جملة {count}",
+  "aiConsentTitle": "ممارسة الذكاء الاصطناعي والخصوصية",
+  "aiConsentSubtitle": "يستخدم Hanzi Master خدمات ذكاء اصطناعي آمنة تابعة لجهات خارجية لتقييم النطق الصوتي وتمثيل الأدوار في المحادثة وأدوات الدراسة.",
+  "aiConsentDataSentTitle": "البيانات المرسلة",
+  "aiConsentDataSentBody": "التسجيلات الصوتية، ونصوص الكلام المنطوق، ومطالبات الدراسة.",
+  "aiConsentProvidersTitle": "خدمات الذكاء الاصطناعي للجهات الخارجية",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (تقييم النطق والتوليف الصوتي)\n• Google Gemini & DeepSeek (الحوار التحادثي وتوليد البطاقات)",
+  "aiConsentGuaranteesTitle": "ضمانات الخصوصية",
+  "aiConsentGuaranteesBody": "يتم تشفير بياناتك أثناء النقل، ومعالجتها مؤقتًا، ولا يتم بيعها أبدًا، ولا تُستخدم أبدًا لتدريب نماذج الذكاء الاصطناعي العامة.",
+  "aiConsentAgree": "الموافقة واستخدام الذكاء الاصطناعي",
+  "aiConsentLearnMore": "معرفة المزيد",
+  "viewPlans": "عرض الخطط",
+  "authInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. إذا لم يكن لديك حساب، يُرجى التسجيل.",
+  "authInvalidEmail": "يُرجى إدخال عنوان بريد إلكتروني صالح.",
+  "authEmailAlreadyInUse": "يوجد حساب بالفعل بهذا البريد الإلكتروني.",
+  "authWeakPassword": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+  "authTooManyRequests": "محاولات فاشلة كثيرة جداً. يُرجى المحاولة مرة أخرى لاحقاً.",
+  "authNetworkError": "خطأ في الشبكة. يُرجى التحقق من اتصالك بالإنترنت.",
+  "subscriptionRequired": "الاشتراك مطلوب",
+  "subscriptionRequiredDesc": "يلزم وجود اشتراك نشط في SinoSpark للوصول إلى جميع الدروس والكتب وأدوات الصوت المدعومة بالذكاء الاصطناعي.",
+  "signedInAs": "تم تسجيل الدخول باسم {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

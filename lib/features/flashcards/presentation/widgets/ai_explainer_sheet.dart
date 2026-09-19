@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class _FollowUpChip {
   final String label;
@@ -58,11 +59,11 @@ class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
         animation: _anims[i],
         builder: (_, __) => Container(
           margin: const EdgeInsets.symmetric(horizontal: 3),
-          width: 7,
-          height: 7,
+          width: 6,
+          height: 6,
           decoration: BoxDecoration(
+            color: const Color(0xFF1A1A1B).withValues(alpha: _anims[i].value),
             shape: BoxShape.circle,
-            color: Colors.blueAccent.withValues(alpha: _anims[i].value),
           ),
         ),
       )),
@@ -76,7 +77,10 @@ class AiExplainerSheet extends ConsumerStatefulWidget {
 
   const AiExplainerSheet({super.key, required this.word, required this.sentence});
 
-  static void show(BuildContext context, AiWord word, AiSentence sentence) {
+  static Future<void> show(BuildContext context, AiWord word, AiSentence sentence) async {
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !context.mounted) return;
+
     GlobalBlurredBottomSheet.show(
       context,
       child: AiExplainerSheet(word: word, sentence: sentence),
@@ -129,6 +133,9 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
     if (text.trim().isEmpty) return;
     
     if (!isInitial) {
+      final consented = await AiConsentSheet.ensureConsent(context);
+      if (!consented || !mounted) return;
+
       setState(() {
         _messages.add(_ChatMessage(text: text, isUser: true));
         _isLoading = true;

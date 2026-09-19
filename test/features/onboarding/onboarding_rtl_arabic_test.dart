@@ -103,9 +103,13 @@ void main() {
       await tester.tap(find.text(l10n.shadowOneSentence));
       await tester.pumpAndSettle();
 
-      // Advance through quiet path to Step 3 (Tone Results)
-      await tester.ensureVisible(find.text(l10n.iCanTSpeakRight));
-      await tester.tap(find.text(l10n.iCanTSpeakRight));
+      // Advance through Step 2 (Shadow) via Continue -> Stop and check my tones
+      await tester.ensureVisible(find.text(l10n.continueAction));
+      await tester.tap(find.text(l10n.continueAction));
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.text(l10n.stopAndCheckMyTones));
+      await tester.tap(find.text(l10n.stopAndCheckMyTones));
       await tester.pumpAndSettle();
 
       // Step 3: Verify the multi-character tone sentence pill row is protected LTR

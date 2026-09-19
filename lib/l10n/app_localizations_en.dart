@@ -11956,7 +11956,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      'Microphone access was not granted. You can use the quiet option below.';
+      'Microphone access was not granted. You can enable it in Settings.';
 
   @override
   String get recordingIsUnavailableRightNow =>
@@ -12781,5 +12781,75 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return 'Endless AI Stream • Sentence $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'AI Practice & Privacy';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.';
+
+  @override
+  String get aiConsentDataSentTitle => 'Data Transmitted';
+
+  @override
+  String get aiConsentDataSentBody =>
+      'Voice audio recordings, spoken speech transcripts, and study prompts.';
+
+  @override
+  String get aiConsentProvidersTitle => 'Third-Party AI Services';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (pronunciation evaluation & voice synthesis)\n• Google Gemini & DeepSeek (conversational dialogue & deck generation)';
+
+  @override
+  String get aiConsentGuaranteesTitle => 'Privacy Guarantees';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      'Your data is encrypted in transit, processed ephemerally, never sold, and never used to train public AI models.';
+
+  @override
+  String get aiConsentAgree => 'Agree to Use AI';
+
+  @override
+  String get aiConsentLearnMore => 'Learn More';
+
+  @override
+  String get viewPlans => 'View Plans';
+
+  @override
+  String get authInvalidCredentials =>
+      'Incorrect email or password. If you do not have an account, please sign up.';
+
+  @override
+  String get authInvalidEmail => 'Please enter a valid email address.';
+
+  @override
+  String get authEmailAlreadyInUse =>
+      'An account already exists with this email address.';
+
+  @override
+  String get authWeakPassword => 'Password must be at least 6 characters.';
+
+  @override
+  String get authTooManyRequests =>
+      'Too many failed attempts. Please try again later.';
+
+  @override
+  String get authNetworkError => 'Network error. Please check your connection.';
+
+  @override
+  String get subscriptionRequired => 'Subscription Required';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      'An active SinoSpark membership is required to access all lessons, books, and AI speech tools.';
+
+  @override
+  String signedInAs(String email) {
+    return 'Signed in as $email';
   }
 }

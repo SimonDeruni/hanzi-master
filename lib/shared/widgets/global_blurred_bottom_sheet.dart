@@ -1,4 +1,4 @@
-﻿import 'dart:ui';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class GlobalBlurredBottomSheet extends StatelessWidget {
@@ -52,7 +52,7 @@ class GlobalBlurredBottomSheet extends StatelessWidget {
               ),
             ),
           ),
-          child,
+          Flexible(child: child),
         ],
       ),
     );

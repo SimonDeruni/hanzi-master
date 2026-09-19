@@ -8,6 +8,7 @@ import 'package:hanzi_master/core/providers/ai_job_queue_provider.dart';
 import 'package:hanzi_master/core/services/curriculum_engine.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
@@ -99,6 +100,9 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                       );
                     } else {
                       if (isGenerating) return;
+
+                      final consented = await AiConsentSheet.ensureConsent(context);
+                      if (!consented || !context.mounted) return;
 
                       // Add to background queue
                       ref.read(aiJobQueueProvider.notifier).addJob(jobId);

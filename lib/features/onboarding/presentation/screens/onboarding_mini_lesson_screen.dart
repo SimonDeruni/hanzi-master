@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
@@ -59,6 +61,7 @@ class _OnboardingMiniLessonScreenState
   bool _busy = false;
   bool _recording = false;
   String? _message;
+  bool _micPermissionDenied = false;
   List<Map<String, dynamic>> _words = const [];
   List<String> _strokes = const [];
   List<List<Offset>> _medianPaths = const [];
@@ -224,16 +227,25 @@ class _OnboardingMiniLessonScreenState
         _message = null;
       });
       try {
-        if (widget.disableExternalServicesForTesting ||
-            await _recorder.requestPermission()) {
-          if (!widget.disableExternalServicesForTesting) {
-            await _recorder.startRecording('onboarding_shadow');
+        final hasPerm = widget.disableExternalServicesForTesting ||
+            await _recorder.requestPermission();
+        if (!hasPerm) {
+          if (mounted) {
+            setState(() {
+              _micPermissionDenied = true;
+              _message = AppLocalizations.of(context)!
+                  .microphoneAccessWasNotGranted;
+            });
           }
-          if (mounted) setState(() => _recording = true);
-        } else if (mounted) {
-          setState(() => _message = AppLocalizations.of(context)!
-              .microphoneAccessWasNotGranted);
+          return;
         }
+        if (!widget.disableExternalServicesForTesting) {
+          if (!mounted) return;
+          final consent = await AiConsentSheet.ensureConsent(context);
+          if (!consent || !mounted) return;
+          await _recorder.startRecording('onboarding_shadow');
+        }
+        if (mounted) setState(() => _recording = true);
       } catch (_) {
         if (mounted) {
           setState(() => _message =
@@ -340,6 +352,7 @@ class _OnboardingMiniLessonScreenState
     setState(() {
       _step = step;
       _message = null;
+      _micPermissionDenied = false;
       if (step == 3) {
         final firstNeedsWork = _words.indexWhere((word) {
           final expected = (word['expectedTone'] as num?)?.toInt() ?? 0;
@@ -534,11 +547,14 @@ class _OnboardingMiniLessonScreenState
           instruction: l10n.listenOnceThenHoldThe,
           child: _shadowCard(ink),
           primaryLabel:
-              _recording ? l10n.stopAndCheckMyTones : l10n.useMicrophone,
-          primaryIcon: _recording ? Icons.stop_circle_outlined : Icons.mic_none,
-          onPrimary: _busy ? null : _toggleRecording,
-          secondaryLabel: l10n.iCanTSpeakRight,
-          onSecondary: _quietPath,
+              _recording ? l10n.stopAndCheckMyTones : l10n.continueAction,
+          primaryIcon:
+              _recording ? Icons.stop_circle_outlined : Icons.arrow_forward,
+          onPrimary: _busy
+              ? null
+              : (_micPermissionDenied ? _quietPath : _toggleRecording),
+          secondaryLabel: _micPermissionDenied ? l10n.settingsTitle : null,
+          onSecondary: _micPermissionDenied ? () => openAppSettings() : null,
         );
       case 3:
         return _lessonColumn(
@@ -1128,9 +1144,25 @@ class _OnboardingMiniLessonScreenState
         child,
         if (_message != null) ...[
           const SizedBox(height: 16),
-          Text(_message!,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.orange.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.orange.withValues(alpha: 0.28)),
+            ),
+            child: Text(
+              _message!,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.orange)),
+              style: TextStyle(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.orange.shade300
+                    : Colors.deepOrange.shade800,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
         ],
         const SizedBox(height: 32),
         SizedBox(

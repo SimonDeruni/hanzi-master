@@ -23,6 +23,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 enum LiveCallState {
   connecting,
@@ -242,6 +243,11 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   }
 
   Future<void> _initCall() async {
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
     try {
       await _configureAudioSessionForCall(speaker: _isSpeaker);
 

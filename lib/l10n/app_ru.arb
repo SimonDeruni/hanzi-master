@@ -3771,7 +3771,7 @@
   "recap": "Итоги",
   "playbackDidNotStart": "Воспроизведение не началось",
   "audioIsUnavailableYouCan": "Аудио недоступно. Вы можете читать текст и продолжать.",
-  "microphoneAccessWasNotGranted": "Нет доступа к микрофону. Вы можете использовать тихий режим ниже.",
+  "microphoneAccessWasNotGranted": "Нет доступа к микрофону. Вы можете включить его в Настройках.",
   "recordingIsUnavailableRightNow": "Запись сейчас недоступна.",
   "listeningToYourTones": "Слушаем ваши тоны…",
   "noRecording": "Запись отсутствует",
@@ -4036,5 +4036,33 @@
   "liveCallSolidEffortFallback": "Отличная разговорная практика. Сфокусируйтесь на том, чтобы удерживать 1-й тон высоким и ровным (55), а 4-й — четким и нисходящим (51) для естественной четкости речи.",
   "liveCallGoodPracticeFallback": "Хорошая тренировочная сессия. Продолжайте уделять внимание четкому контрасту тонов и естественному темпу беседы.",
   "sentenceNumber": "Предложение {number}",
-  "endlessAiStreamSentence": "Бесконечный поток ИИ • Предложение {count}"
+  "endlessAiStreamSentence": "Бесконечный поток ИИ • Предложение {count}",
+  "aiConsentTitle": "ИИ-практика и конфиденциальность",
+  "aiConsentSubtitle": "Hanzi Master использует сторонние ИИ-сервисы для оценки произношения, диалоговых ролевых игр и учебных инструментов.",
+  "aiConsentDataSentTitle": "Передаваемые данные",
+  "aiConsentDataSentBody": "Голосовые аудиозаписи, расшифровки речи и учебные текстовые запросы.",
+  "aiConsentProvidersTitle": "Сторонние ИИ-сервисы",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (оценка произношения и синтез речи)\n• Google Gemini и DeepSeek (разговорные диалоги и генерация колод)",
+  "aiConsentGuaranteesTitle": "Гарантии конфиденциальности",
+  "aiConsentGuaranteesBody": "Ваши данные шифруются при передаче, обрабатываются временно, никогда не продаются и не используются для обучения общедоступных моделей ИИ.",
+  "aiConsentAgree": "Согласиться и использовать ИИ",
+  "aiConsentLearnMore": "Узнать больше",
+  "viewPlans": "Посмотреть тарифы",
+  "authInvalidCredentials": "Неверный адрес эл. почты или пароль. Если у вас нет аккаунта, зарегистрируйтесь.",
+  "authInvalidEmail": "Пожалуйста, введите действительный адрес эл. почты.",
+  "authEmailAlreadyInUse": "Аккаунт с таким адресом эл. почты уже существует.",
+  "authWeakPassword": "Пароль должен содержать не менее 6 символов.",
+  "authTooManyRequests": "Слишком много неудачных попыток. Пожалуйста, повторите попытку позже.",
+  "authNetworkError": "Ошибка сети. Проверьте подключение к интернету.",
+  "subscriptionRequired": "Требуется подписка",
+  "subscriptionRequiredDesc": "Для доступа ко всем урокам, книгам и голосовым инструментам ИИ требуется активная подписка SinoSpark.",
+  "signedInAs": "Вы вошли как {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

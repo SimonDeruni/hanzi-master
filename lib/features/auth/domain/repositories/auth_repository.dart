@@ -28,10 +28,14 @@ class AuthRepository {
       false;
 
   Future<UserCredential> signIn(String email, String password) async {
-    return await _auth.signInWithEmailAndPassword(
+    final credential = await _auth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
+    if (credential.user != null) {
+      await MonetizationService.identifyUser(credential.user!.uid);
+    }
+    return credential;
   }
 
   Future<UserCredential> signUp(
@@ -41,6 +45,9 @@ class AuthRepository {
       password: password,
     );
     await credential.user?.updateDisplayName(name);
+    if (credential.user != null) {
+      await MonetizationService.identifyUser(credential.user!.uid);
+    }
     return credential;
   }
 
@@ -53,6 +60,7 @@ class AuthRepository {
     } catch (_) {}
     await GoogleSignIn.instance.signOut();
     await MonetizationService.clearUserIdentity();
+    await MonetizationService.lockDeveloperBackdoor();
     await _auth.signOut();
   }
 
@@ -96,6 +104,7 @@ class AuthRepository {
     await callable.call<void>();
 
     await MonetizationService.clearUserIdentity();
+    await MonetizationService.lockDeveloperBackdoor();
 
     if (providerIds.contains('google.com')) {
       try {
@@ -162,7 +171,11 @@ class AuthRepository {
       final credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
       );
-      return await _auth.signInWithCredential(credential);
+      final userCredential = await _auth.signInWithCredential(credential);
+      if (userCredential.user != null) {
+        await MonetizationService.identifyUser(userCredential.user!.uid);
+      }
+      return userCredential;
     } catch (e) {
       rethrow;
     }
@@ -185,7 +198,11 @@ class AuthRepository {
           accessToken: appleCredential.authorizationCode,
         );
 
-        return await _auth.signInWithCredential(credential);
+        final userCredential = await _auth.signInWithCredential(credential);
+        if (userCredential.user != null) {
+          await MonetizationService.identifyUser(userCredential.user!.uid);
+        }
+        return userCredential;
       } catch (e) {
         if (e is SignInWithAppleAuthorizationException &&
             e.code == AuthorizationErrorCode.canceled) {
@@ -195,7 +212,11 @@ class AuthRepository {
       }
     } else {
       final appleProvider = AppleAuthProvider();
-      return await _auth.signInWithProvider(appleProvider);
+      final userCredential = await _auth.signInWithProvider(appleProvider);
+      if (userCredential.user != null) {
+        await MonetizationService.identifyUser(userCredential.user!.uid);
+      }
+      return userCredential;
     }
   }
 }

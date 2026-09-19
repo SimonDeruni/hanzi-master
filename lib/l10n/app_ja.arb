@@ -1688,7 +1688,7 @@
   "library1": "ライブラリ",
   "youAreAPremiumMember": "プレミアム会員です",
   "createAccountToSyncProgress": "アカウントを作成して進捗をクラウド同期",
-  "signOut": "サインアウト",
+  "signOut": "ログアウト",
   "account": "アカウント",
   "guestScholar": "ゲスト探求者",
   "localAccount": "ローカルアカウント",
@@ -3821,7 +3821,7 @@
   "recap": "おさらい",
   "playbackDidNotStart": "再生が開始されませんでした",
   "audioIsUnavailableYouCan": "音声を利用できません。このまま読み進めることができます。",
-  "microphoneAccessWasNotGranted": "マイクへのアクセスが許可されていません。以下の静音オプションをご利用いただけます。",
+  "microphoneAccessWasNotGranted": "マイクへのアクセスが許可されていません。「設定」から有効にできます。",
   "recordingIsUnavailableRightNow": "現在、録音を利用できません。",
   "listeningToYourTones": "声調を聴き取っています…",
   "noRecording": "録音なし",
@@ -4086,5 +4086,33 @@
   "liveCallSolidEffortFallback": "しっかりとした会話の練習ができました。第1声は高く平らに（55）、第4声は鋭く下げる（51）ことを意識すると、より自然でクリアな発音になります。",
   "liveCallGoodPracticeFallback": "良い練習セッションでした。声調の高低差を明確にし、自然な会話のテンポを意識していきましょう。",
   "sentenceNumber": "第{number}文",
-  "endlessAiStreamSentence": "AIエンドレスストリーム • 第{count}文"
+  "endlessAiStreamSentence": "AIエンドレスストリーム • 第{count}文",
+  "aiConsentTitle": "AI練習とプライバシー",
+  "aiConsentSubtitle": "Hanzi Masterは音声発音評価、対話ロールプレイ、学習ツールに安全なサードパーティAIサービスを使用しています。",
+  "aiConsentDataSentTitle": "送信されるデータ",
+  "aiConsentDataSentBody": "音声録音、発話テキスト、学習用プロンプト。",
+  "aiConsentProvidersTitle": "サードパーティAIサービス",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech（発音評価・音声合成）\n• Google Gemini & DeepSeek（会話対話・単語帳生成）",
+  "aiConsentGuaranteesTitle": "プライバシー保証",
+  "aiConsentGuaranteesBody": "データは送信時に暗号化され、一時的にのみ処理され、販売されることはなく、公開AIモデルの学習に使用されることもありません。",
+  "aiConsentAgree": "同意してAIを使用",
+  "aiConsentLearnMore": "詳細を見る",
+  "viewPlans": "プランを見る",
+  "authInvalidCredentials": "メールアドレスまたはパスワードが正しくありません。アカウントをお持ちでない場合は登録してください。",
+  "authInvalidEmail": "有効なメールアドレスを入力してください。",
+  "authEmailAlreadyInUse": "このメールアドレスのアカウントは既に存在します。",
+  "authWeakPassword": "パスワードは6文字以上にする必要があります。",
+  "authTooManyRequests": "試行回数が多すぎます。後でもう一度お試しください。",
+  "authNetworkError": "ネットワークエラー。接続を確認してください。",
+  "subscriptionRequired": "サブスクリプションが必要です",
+  "subscriptionRequiredDesc": "すべてのレッスン、書籍、AI音声ツールにアクセスするには、SinoSparkの有効なメンバーシップが必要です。",
+  "signedInAs": "{email} としてログイン中",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

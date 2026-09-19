@@ -1634,7 +1634,7 @@
   "library1": "Biblioteca",
   "youAreAPremiumMember": "Sei un membro Premium",
   "createAccountToSyncProgress": "Crea un account per sincronizzare i progressi",
-  "signOut": "Disconnetti",
+  "signOut": "Esci",
   "account": "Account",
   "guestScholar": "Studioso ospite",
   "localAccount": "Account locale",
@@ -3770,7 +3770,7 @@
   "recap": "Riepilogo",
   "playbackDidNotStart": "La riproduzione non si è avviata",
   "audioIsUnavailableYouCan": "L'audio non è disponibile. Puoi comunque leggere e continuare.",
-  "microphoneAccessWasNotGranted": "L'accesso al microfono non è stato consentito. Puoi usare l'opzione silenziosa qui sotto.",
+  "microphoneAccessWasNotGranted": "L'accesso al microfono non è stato consentito. Puoi abilitarlo in Impostazioni.",
   "recordingIsUnavailableRightNow": "La registrazione non è disponibile al momento.",
   "listeningToYourTones": "Ascolto dei tuoi toni…",
   "noRecording": "Nessuna registrazione",
@@ -4035,5 +4035,33 @@
   "liveCallSolidEffortFallback": "Ottimo impegno nella conversazione. Concentrati sul mantenere il 1° tono alto e costante (55) e il 4° tono netto e deciso (51) per migliorare la chiarezza naturale.",
   "liveCallGoodPracticeFallback": "Buona sessione di pratica. Continua a concentrarti sul contrasto chiaro tra i toni e sul ritmo naturale della conversazione.",
   "sentenceNumber": "Frase {number}",
-  "endlessAiStreamSentence": "Flusso continuo di IA • Frase {count}"
+  "endlessAiStreamSentence": "Flusso continuo di IA • Frase {count}",
+  "aiConsentTitle": "Esercizi IA e Privacy",
+  "aiConsentSubtitle": "Hanzi Master utilizza servizi di IA di terze parti sicuri per la valutazione della pronuncia, i giochi di ruolo e gli strumenti di studio.",
+  "aiConsentDataSentTitle": "Dati trasmessi",
+  "aiConsentDataSentBody": "Registrazioni vocali, trascrizioni del parlato e richieste di studio.",
+  "aiConsentProvidersTitle": "Servizi di IA di terze parti",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (valutazione della pronuncia e sintesi vocale)\n• Google Gemini e DeepSeek (dialoghi di conversazione e generazione di mazzi)",
+  "aiConsentGuaranteesTitle": "Garanzie sulla privacy",
+  "aiConsentGuaranteesBody": "I tuoi dati sono crittografati in transito, elaborati in modo effimero, mai venduti e mai utilizzati per addestrare modelli IA pubblici.",
+  "aiConsentAgree": "Accetta e usa l'IA",
+  "aiConsentLearnMore": "Scopri di più",
+  "viewPlans": "Visualizza piani",
+  "authInvalidCredentials": "Email o password non corretti. Se non hai un account, registrati.",
+  "authInvalidEmail": "Inserisci un indirizzo email valido.",
+  "authEmailAlreadyInUse": "Un account esiste già con questo indirizzo email.",
+  "authWeakPassword": "La password deve contenere almeno 6 caratteri.",
+  "authTooManyRequests": "Troppi tentativi falliti. Riprova più tardi.",
+  "authNetworkError": "Errore di rete. Controlla la tua connessione.",
+  "subscriptionRequired": "Abbonamento richiesto",
+  "subscriptionRequiredDesc": "È richiesto un abbonamento attivo a SinoSpark per accedere a tutte le lezioni, ai libri e agli strumenti vocali IA.",
+  "signedInAs": "Connesso come {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

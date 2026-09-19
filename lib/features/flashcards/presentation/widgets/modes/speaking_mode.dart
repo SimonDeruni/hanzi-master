@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class SpeakingModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -53,6 +54,9 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
   }
 
   Future<void> _startRecording() async {
+    final consented = await AiConsentSheet.ensureConsent(context);
+    if (!consented || !mounted) return;
+
     final audioService = ref.read(audioRecordingServiceProvider);
     final hasPerm = await audioService.requestPermission();
     if (!hasPerm) {

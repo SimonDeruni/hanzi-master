@@ -23,6 +23,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import '../../../echo_hall/presentation/widgets/tone_comparison_sheet.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
@@ -197,6 +198,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
   Future<void> _startSession() async {
     if (_isStartingSession) return;
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) return;
     setState(() {
       _isStartingSession = true;
       _errorMessage = null;
@@ -284,6 +287,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     if (_isRecording || _isGrading || _isStopping) {
       return; // Prevent double-tap / rapid restart / re-entry
     }
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) return;
     try {
       if (await _audioRecorder.hasPermission()) {
         HapticFeedback.heavyImpact();
@@ -821,15 +826,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required bool isDark,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4),
+      padding: const EdgeInsets.only(bottom: 2),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: _accentGold),
-          const SizedBox(width: 8),
+          Icon(icon, size: 16, color: _accentGold),
+          const SizedBox(width: 6),
           Text(
             title,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 13,
               fontWeight: FontWeight.w700,
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               letterSpacing: 0.3,
@@ -861,18 +866,18 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           color: isSelected
               ? _accentGold.withValues(alpha: isDark ? 0.25 : 0.15)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(10),
           border: isSelected
               ? Border.all(color: _accentGold.withValues(alpha: 0.4), width: 1)
               : null,
         ),
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon,
-                size: 15,
+                size: 14,
                 color: isSelected
                     ? _accentGold
                     : (isDark ? Colors.white54 : Colors.black38)),
@@ -905,13 +910,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }) {
     final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 6),
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
           color: cardBg,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: isDark
                 ? Colors.white.withValues(alpha: 0.08)
@@ -920,8 +925,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
             ),
           ],
         ),
@@ -931,13 +936,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             Text(
               label,
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 10.5,
                 fontWeight: FontWeight.w600,
                 color: isDark ? Colors.white38 : Colors.black45,
                 letterSpacing: 0.8,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 4),
             child,
           ],
         ),
@@ -957,9 +962,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // ── Header Bar ────────────────────────────────────────
-            const SizedBox(height: 20),
+            const SizedBox(height: 4),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               child: Row(
                 children: [
                   if (widget.showBackButton)
@@ -975,8 +980,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       l10n.shadowingStudio,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800,
                         color: primaryText,
                         letterSpacing: 0.5,
                       ),
@@ -989,22 +994,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
             // ── Hero Icon ─────────────────────────────────────────
             Padding(
-              padding: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.only(top: 4),
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: _accentGold.withValues(alpha: isDark ? 0.1 : 0.06),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   Icons.graphic_eq_rounded,
-                  size: 56,
+                  size: 38,
                   color: isDark ? _accentGoldLight : _accentGold,
                 ),
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
 
             // ── Subtitle ──────────────────────────────────────────
             Padding(
@@ -1012,22 +1017,26 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               child: Text(
                 l10n.masterYourMandarinPronunciationnbyM,
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 13,
                   color: isDark ? Colors.white60 : Colors.black54,
-                  height: 1.5,
+                  height: 1.35,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
 
-            // ── Scrollable Content ────────────────────────────────
+            // ── Content ───────────────────────────────────────────
             Expanded(
               child: SingleChildScrollView(
+                physics: _selectedMode == ShadowingMode.customWord &&
+                        _dictionaryResults.isNotEmpty
+                    ? const BouncingScrollPhysics()
+                    : const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 12),
 
                     // ── Mode Selector Section ─────────────────────
                     _buildSectionLabel(
@@ -1035,7 +1044,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       title: l10n.practiceMode,
                       isDark: isDark,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 6),
 
                     // Primary modes: responsive segmented pill grid
                     Container(
@@ -1044,7 +1053,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         color: isDark
                             ? const Color(0xFF2C2C2E)
                             : Colors.black.withValues(alpha: 0.04),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                       child: GridView.count(
                         crossAxisCount: 2,
@@ -1052,7 +1061,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         physics: const NeverScrollableScrollPhysics(),
                         mainAxisSpacing: 4,
                         crossAxisSpacing: 4,
-                        childAspectRatio: 3.2,
+                        childAspectRatio: 3.5,
                         children: [
                           _buildSegmentModeTab(
                             mode: ShadowingMode.freeFlow,
@@ -1082,7 +1091,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 12),
 
                     // ── Configuration Section ─────────────────────
                     _buildSectionLabel(
@@ -1090,7 +1099,24 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       title: AppLocalizations.of(context)!.configuration,
                       isDark: isDark,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 6),
+
+                    if (_selectedMode == ShadowingMode.freeFlow) ...[
+                      _buildConfigCard(
+                        isDark: isDark,
+                        label: l10n.practiceMode,
+                        child: Text(
+                          l10n.freeFlowConversationalPractice,
+                          style: TextStyle(
+                            color: isDark
+                                ? Colors.white70
+                                : const Color(0xFF1A1A1B),
+                            fontSize: 13,
+                            height: 1.3,
+                          ),
+                        ),
+                      ),
+                    ],
 
                     if (_selectedMode == ShadowingMode.customWord) ...[
                       _buildConfigCard(
@@ -1277,7 +1303,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                     ],
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 4),
                   ],
                 ),
               ),
@@ -1285,30 +1311,30 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
             // Start Button Area
             Padding(
-              padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 12),
               child: FilledButton.icon(
                 key: const Key('shadowing_start_session'),
                 onPressed: _isStartingSession ? null : _startSession,
                 icon: _isStartingSession
                     ? const SizedBox.square(
-                        dimension: 22,
+                        dimension: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Icon(Icons.mic, size: 24),
+                    : const Icon(Icons.mic, size: 22),
                 label: Text(
                   _isStartingSession ? l10n.sTARTING : l10n.startSession,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 1.2,
+                    letterSpacing: 1.0,
                   ),
                 ),
                 style: FilledButton.styleFrom(
                   backgroundColor: _accentGold,
                   foregroundColor: Colors.black,
-                  minimumSize: const Size(double.infinity, 56),
+                  minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(14),
                   ),
                   elevation: 0,
                 ),
@@ -1317,6 +1343,67 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildHanziPhraseView(bool isDark) {
+    final hanziText = _currentPhrase!['hanzi'] ?? '';
+    final targetHanzi = widget.initialHanzi?.trim();
+    final fontSize = _getHanziFontSize(hanziText.length);
+    final defaultColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final baseStyle = TextStyle(
+      fontSize: fontSize,
+      color: defaultColor,
+      fontWeight: FontWeight.w500,
+      fontFamily: 'NotoSerifSC',
+      height: 1.35,
+    );
+
+    if (targetHanzi == null ||
+        targetHanzi.isEmpty ||
+        !hanziText.contains(targetHanzi)) {
+      return Text(
+        hanziText,
+        style: baseStyle,
+        textAlign: TextAlign.center,
+      );
+    }
+
+    final highlightColor =
+        isDark ? const Color(0xFF818CF8) : const Color(0xFF4F46E5);
+    final highlightBg =
+        highlightColor.withValues(alpha: isDark ? 0.28 : 0.16);
+
+    final spans = <InlineSpan>[];
+    int lastEnd = 0;
+    for (final match
+        in RegExp(RegExp.escape(targetHanzi)).allMatches(hanziText)) {
+      if (match.start > lastEnd) {
+        spans.add(TextSpan(
+          text: hanziText.substring(lastEnd, match.start),
+          style: baseStyle,
+        ));
+      }
+      spans.add(TextSpan(
+        text: match.group(0),
+        style: baseStyle.copyWith(
+          color: highlightColor,
+          backgroundColor: highlightBg,
+          fontWeight: FontWeight.bold,
+        ),
+      ));
+      lastEnd = match.end;
+    }
+    if (lastEnd < hanziText.length) {
+      spans.add(TextSpan(
+        text: hanziText.substring(lastEnd),
+        style: baseStyle,
+      ));
+    }
+
+    return Text.rich(
+      TextSpan(children: spans),
+      textAlign: TextAlign.center,
     );
   }
 
@@ -1671,16 +1758,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            Text(
-              _currentPhrase!['hanzi']!,
-              style: TextStyle(
-                fontSize: _getHanziFontSize(_currentPhrase!['hanzi']!.length),
-                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                fontWeight: FontWeight.w500,
-                fontFamily: 'NotoSerifSC',
-              ),
-              textAlign: TextAlign.center,
-            ),
+            _buildHanziPhraseView(isDark),
           ] else ...[
             // Breakdown view
             Wrap(

@@ -12,6 +12,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 enum _InterpreterStatus {
   ready,
@@ -167,6 +168,9 @@ class _TravelInterpreterScreenState
   }
 
   void _startSession() async {
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) return;
+
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('has_seen_travel_hub', true);
 
@@ -187,6 +191,9 @@ class _TravelInterpreterScreenState
 
   Future<void> _startAudioStreaming(String sideId) async {
     if (_recordingSide != null || _isStopping) return;
+
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) return;
 
     final lang = sideId == 'a' ? _sideALanguage : _sideBLanguage;
 

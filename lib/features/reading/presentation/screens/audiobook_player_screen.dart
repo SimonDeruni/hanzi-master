@@ -56,6 +56,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   StreamSubscription? _wordBoundarySub;
   StreamSubscription? _boundariesLoadedSub;
   LocalTtsVoice? _localVoice;
+  DateTime? _lastWordBoundaryTime;
 
   List<SpokenCharTiming> _currentSentenceTimings = const [];
   List<GlobalKey> _sentenceKeys = [];
@@ -111,6 +112,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     _rebuildSentenceTimings();
 
     final audioService = ref.read(audioServiceProvider);
+    _playbackSpeed = audioService.playbackRate;
 
     _audioCompleteSub =
         audioService.onAudiobookLocationChanged.listen((location) {
@@ -126,6 +128,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           _currentSpokenCharEnd = 1;
           _currentSentenceTimings = const [];
           _totalDurationMs = 0;
+          _lastWordBoundaryTime = null;
           _ensureSentenceKeys();
         }
       });
@@ -157,7 +160,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           });
         }
       } else {
-        _updateSpokenCharIndex(position.inMilliseconds);
+        final timeSinceBoundary = _lastWordBoundaryTime == null
+            ? 999999
+            : DateTime.now().difference(_lastWordBoundaryTime!).inMilliseconds;
+        if (timeSinceBoundary > 1500) {
+          _updateSpokenCharIndex(position.inMilliseconds);
+        }
       }
     });
 
@@ -166,10 +174,6 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       if (!mounted) return;
       setState(() {
         _rebuildSentenceTimings();
-        if (_currentSentenceTimings.isNotEmpty) {
-          _currentSpokenCharIndex = 0;
-          _currentSpokenCharEnd = 1;
-        }
       });
     });
 
@@ -187,6 +191,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         start + length,
       );
       if (range == null) return;
+      _lastWordBoundaryTime = DateTime.now();
       setState(() {
         _currentSpokenCharIndex = range.start;
         _currentSpokenCharEnd = range.end;
@@ -311,56 +316,15 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       return _rubyCache[chinese]!;
     }
 
-    const punctuation = {
-      '，',
-      '。',
-      '！',
-      '？',
-      '、',
-      '“',
-      '”',
-      '‘',
-      '’',
-      '：',
-      '；',
-      '《',
-      '》',
-      '（',
-      '）',
-      '—',
-      '…',
-      ' ',
-      '\n',
-      '\r',
-      '\t',
-      ',',
-      '!',
-      '?',
-      '.',
-      ':',
-      ';',
-      "'",
-      '"',
-      '(',
-      ')',
-      '[',
-      ']',
-      '{',
-      '}'
-    };
-
     final pinyinString = PinyinHelper.getPinyinE(
       chinese,
       separator: ' ',
       format: PinyinFormat.WITH_TONE_MARK,
     );
-    // Filter out punctuation and numbers so pinyinList only contains actual spoken syllables
+    // Filter out non-spoken characters so pinyinList only contains actual spoken syllables
     final pinyinList = pinyinString
         .split(' ')
-        .where((s) =>
-            s.isNotEmpty &&
-            !punctuation.contains(s) &&
-            !RegExp(r'^\d+$').hasMatch(s))
+        .where((s) => s.isNotEmpty && !isNonSpokenCharacter(s))
         .toList();
 
     final tokens = <_RubyToken>[];
@@ -368,8 +332,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     int hanziIdx = 0;
 
     for (final char in chinese.characters) {
-      final isPunctuation =
-          punctuation.contains(char) || RegExp(r'^\d+$').hasMatch(char);
+      final isPunctuation = isNonSpokenCharacter(char);
       if (isPunctuation) {
         tokens.add(_RubyToken(
             char: char, pinyin: '', isPunctuation: true, hanziIndex: -1));
@@ -427,6 +390,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         _currentSpokenCharEnd = 1;
         _currentSentenceTimings = const [];
         _totalDurationMs = 0;
+        _lastWordBoundaryTime = null;
         _isPlaying = true;
       });
       _saveProgress();
@@ -803,6 +767,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         _playbackSpeed = 1.0;
       }
     });
+    unawaited(ref.read(audioServiceProvider).setPlaybackRate(_playbackSpeed));
   }
 
   void _setSleepTimer(int? minutes, {bool endOfChapter = false}) {
@@ -1600,7 +1565,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                           horizontal: 4, vertical: 2),
                                       transform: isCharSpoken
                                           ? Matrix4.diagonal3Values(
-                                              1.06, 1.06, 1.0)
+                                              1.05, 1.05, 1.0)
                                           : Matrix4.identity(),
                                       transformAlignment: Alignment.center,
                                       decoration: BoxDecoration(
@@ -1617,20 +1582,14 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                     : const Color(0xFFFEF3C7))
                                                 : Colors.transparent),
                                         borderRadius: BorderRadius.circular(6),
-                                        border: Border.all(
-                                          color: isQuickLookSelected
-                                              ? (isDark
-                                                  ? const Color(0xFF818CF8)
-                                                  : const Color(0xFF4F46E5))
-                                              : (isCharSpoken
-                                                  ? (isDark
-                                                      ? const Color(0xFFFBBF24)
-                                                      : const Color(0xFFD4AF37))
-                                                  : Colors.transparent),
-                                          width: isQuickLookSelected
-                                              ? 1.5
-                                              : (isCharSpoken ? 1.2 : 1.0),
-                                        ),
+                                        border: isQuickLookSelected
+                                            ? Border.all(
+                                                color: isDark
+                                                    ? const Color(0xFF818CF8)
+                                                    : const Color(0xFF4F46E5),
+                                                width: 1.5,
+                                              )
+                                            : null,
                                         boxShadow: isCharSpoken
                                             ? [
                                                 BoxShadow(
@@ -1639,9 +1598,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                               0xFFFBBF24)
                                                           : const Color(
                                                               0xFFD4AF37))
-                                                      .withValues(alpha: 0.40),
-                                                  blurRadius: 8,
-                                                  spreadRadius: 1,
+                                                      .withValues(alpha: 0.35),
+                                                  blurRadius: 6,
+                                                  spreadRadius: 0,
                                                 ),
                                               ]
                                             : (isQuickLookSelected
@@ -1651,7 +1610,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                               0xFF6366F1)
                                                           .withValues(
                                                               alpha: 0.35),
-                                                      blurRadius: 8,
+                                                      blurRadius: 6,
                                                     ),
                                                   ]
                                                 : null),

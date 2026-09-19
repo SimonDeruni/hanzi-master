@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 // ---------------------------------------------------------------------------
 // Data models
@@ -265,6 +266,8 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
 
   Future<void> _sendMessage(String text) async {
     if (text.trim().isEmpty) return;
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !mounted) return;
     final l10n = AppLocalizations.of(context)!;
     setState(() {
       _messages.add(ChatMessage(text: text, isUser: true));

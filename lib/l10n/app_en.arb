@@ -3841,7 +3841,7 @@
   "recap": "Recap",
   "playbackDidNotStart": "Playback did not start",
   "audioIsUnavailableYouCan": "Audio is unavailable. You can still read and continue.",
-  "microphoneAccessWasNotGranted": "Microphone access was not granted. You can use the quiet option below.",
+  "microphoneAccessWasNotGranted": "Microphone access was not granted. You can enable it in Settings.",
   "recordingIsUnavailableRightNow": "Recording is unavailable right now.",
   "listeningToYourTones": "Listening to your tones…",
   "noRecording": "No recording",
@@ -4339,5 +4339,33 @@
     "description": "Live call localized string for liveCallGoodPracticeFallback"
   },
   "sentenceNumber": "Sentence {number}",
-  "endlessAiStreamSentence": "Endless AI Stream • Sentence {count}"
+  "endlessAiStreamSentence": "Endless AI Stream • Sentence {count}",
+  "aiConsentTitle": "AI Practice & Privacy",
+  "aiConsentSubtitle": "Hanzi Master uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.",
+  "aiConsentDataSentTitle": "Data Transmitted",
+  "aiConsentDataSentBody": "Voice audio recordings, spoken speech transcripts, and study prompts.",
+  "aiConsentProvidersTitle": "Third-Party AI Services",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (pronunciation evaluation & voice synthesis)\n• Google Gemini & DeepSeek (conversational dialogue & deck generation)",
+  "aiConsentGuaranteesTitle": "Privacy Guarantees",
+  "aiConsentGuaranteesBody": "Your data is encrypted in transit, processed ephemerally, never sold, and never used to train public AI models.",
+  "aiConsentAgree": "Agree to Use AI",
+  "aiConsentLearnMore": "Learn More",
+  "viewPlans": "View Plans",
+  "authInvalidCredentials": "Incorrect email or password. If you do not have an account, please sign up.",
+  "authInvalidEmail": "Please enter a valid email address.",
+  "authEmailAlreadyInUse": "An account already exists with this email address.",
+  "authWeakPassword": "Password must be at least 6 characters.",
+  "authTooManyRequests": "Too many failed attempts. Please try again later.",
+  "authNetworkError": "Network error. Please check your connection.",
+  "subscriptionRequired": "Subscription Required",
+  "subscriptionRequiredDesc": "An active SinoSpark membership is required to access all lessons, books, and AI speech tools.",
+  "signedInAs": "Signed in as {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -8,42 +8,29 @@ class SpokenHanziRange {
 }
 
 const _nonSpokenCharacters = {
-  '，',
-  '。',
-  '！',
-  '？',
-  '、',
-  '“',
-  '”',
-  '‘',
-  '’',
-  '：',
-  '；',
-  '《',
-  '》',
-  '（',
-  '）',
-  '—',
-  '…',
-  ' ',
-  '\n',
-  '\r',
-  '\t',
-  ',',
-  '!',
-  '?',
-  '.',
-  ':',
-  ';',
-  "'",
-  '"',
-  '(',
-  ')',
-  '[',
-  ']',
-  '{',
-  '}',
+  '，', '。', '！', '？', '、', '：', '；',
+  '《', '》', '（', '）', '—', '…', ' ', '\n', '\r', '\t',
+  ',', '!', '?', '.', ':', ';', "'", '"', '(', ')', '[', ']', '{', '}',
+  // Classical Chinese corner brackets, quotes, lenticular brackets, and title marks
+  '「', '」', '『', '』', '【', '】', '〔', '〕', '〈', '〉',
+  // Quotation marks and typographical quotes
+  '“', '”', '‘', '’', '‚', '‛', '„', '‟',
+  // Separators, middle dots, tildes, dashes, slashes, and fullwidth variants
+  '·', '・', '～', '~', '–', '-', '―', '/', '\\', '|',
+  '［', '］', '｛', '｝',
+  // Small form variants
+  '﹐', '﹑', '﹒', '﹖', '﹗', '︰', '﹔', '﹤', '﹥',
 };
+
+final _unicodeNonSpokenRegex =
+    RegExp(r'^[\p{P}\p{S}\p{Z}\p{C}\p{N}]+$', unicode: true);
+
+/// Determines whether a character is non-spoken punctuation, symbols, whitespace, or digits.
+bool isNonSpokenCharacter(String char) {
+  if (char.isEmpty) return true;
+  if (_nonSpokenCharacters.contains(char)) return true;
+  return _unicodeNonSpokenRegex.hasMatch(char);
+}
 
 /// Converts the UTF-16 offsets reported by platform TTS engines into the
 /// punctuation-free Hanzi indexes used by the audiobook ruby renderer.
@@ -63,8 +50,7 @@ SpokenHanziRange? spokenHanziRangeForOffsets(
   for (final rune in text.runes) {
     final character = String.fromCharCode(rune);
     final characterEnd = sourceOffset + character.length;
-    final isNonSpoken = _nonSpokenCharacters.contains(character) ||
-        RegExp(r'^\d+$').hasMatch(character);
+    final isNonSpoken = isNonSpokenCharacter(character);
 
     if (!isNonSpoken && characterEnd > start && sourceOffset < boundedEnd) {
       first ??= hanziIndex;
@@ -109,7 +95,7 @@ String cleanBoundaryWord(String word) {
   var start = 0;
   while (start < runes.length) {
     final c = String.fromCharCode(runes[start]);
-    if (_nonSpokenCharacters.contains(c) || c.trim().isEmpty) {
+    if (isNonSpokenCharacter(c)) {
       start++;
     } else {
       break;
@@ -118,7 +104,7 @@ String cleanBoundaryWord(String word) {
   var end = runes.length;
   while (end > start) {
     final c = String.fromCharCode(runes[end - 1]);
-    if (_nonSpokenCharacters.contains(c) || c.trim().isEmpty) {
+    if (isNonSpokenCharacter(c)) {
       end--;
     } else {
       break;
@@ -144,8 +130,7 @@ List<SpokenCharTiming> buildSpokenCharTimings({
   int offset = 0;
   for (final rune in text.runes) {
     final c = String.fromCharCode(rune);
-    final isNonSpoken =
-        _nonSpokenCharacters.contains(c) || RegExp(r'^\d+$').hasMatch(c);
+    final isNonSpoken = isNonSpokenCharacter(c);
     if (!isNonSpoken) {
       hanziIndexByOffset[offset] = hanziCounter;
       hanziCharByOffset[offset] = c;
@@ -191,7 +176,7 @@ List<SpokenCharTiming> buildSpokenCharTimings({
     // Advance searchPos past any non-spoken punctuation or whitespace in text
     while (searchPos < text.length) {
       final c = text[searchPos];
-      if (_nonSpokenCharacters.contains(c) || c.trim().isEmpty) {
+      if (isNonSpokenCharacter(c)) {
         searchPos++;
       } else {
         break;

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 Widget _onboardingApp({Locale locale = const Locale('en')}) => ProviderScope(
@@ -79,5 +80,21 @@ void main() {
     expect(find.text('Votre parcours vers la\nmaîtrise du chinois'), findsOneWidget);
     expect(find.text("C'est parti"), findsOneWidget);
     expect(find.text('Your Path to\nChinese Fluency'), findsNothing);
+  });
+
+  testWidgets('tapping already have an account on welcome page navigates to AuthScreen',
+      (tester) async {
+    await tester.pumpWidget(_onboardingApp());
+    await tester.pumpAndSettle();
+
+    final button =
+        find.byKey(const Key('onboarding_already_have_account_button'));
+    expect(button, findsOneWidget);
+    expect(find.text('Already have an account? Sign in'), findsOneWidget);
+
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AuthScreen), findsOneWidget);
   });
 }

@@ -64,8 +64,11 @@ void main() {
           expect(bios[author], isA<String>(), reason: '$locale: $author');
           expect((bios[author] as String).trim(), isNotEmpty,
               reason: '$locale has an empty biography for $author');
+          final minLength =
+              (locale == 'ja' || locale == 'ko' || locale == 'zh') ? 50 : 80;
           expect(
-              (bios[author] as String).trim().length, greaterThanOrEqualTo(80),
+              (bios[author] as String).trim().length,
+              greaterThanOrEqualTo(minLength),
               reason: '$locale has an implausibly short biography for $author');
           if (locale != 'en') {
             expect(

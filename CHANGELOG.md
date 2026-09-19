@@ -4,6 +4,109 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-19] Apple Review Guideline 2.1(a) Reviewer Demo Account & Paywall Bypass Architecture
+- **Reviewer Demo Account Interception:** Resolved Apple App Store review rejection under Guideline 2.1(a) (Information Needed - App Completeness & Review Access) by creating an automated, zero-friction demo credential bypass in `AuthScreen` (`lib/features/auth/presentation/screens/auth_screen.dart`). Reviewers entering `apple.review@sinospark.app` (or aliases `apple.review@sinospark.com`, `demo@sinospark.app`) with password `AppleReview2026!` immediately unlock full application access, bypassing store purchase requirements.
+- **Cold-Start & Restart Persistence:** Updated `MonetizationService` (`lib/core/services/monetization_service.dart`) to persist `demo_account_unlocked = true` and `has_seen_onboarding = true` in `SharedPreferences` upon reviewer login. On subsequent app launches, `_SubscriptionGate` automatically recognizes the persistent unlock and routes directly to `MainNavigationScreen()`, guaranteeing reviewers are never locked back out when closing or restarting the app.
+- **Clean Logout Lifecycle:** Implemented `MonetizationService.lockDeveloperBackdoor()` and integrated it with `AuthRepository.signOut()` and `AuthScreen._signOut()`, ensuring persistent demo tokens are cleanly evicted when the reviewer or user signs out.
+- **Paywall Direct "Sign In" Action:** Added a dedicated "Sign In" (`AppLocalizations.of(context)!.signIn`) action to the sticky footer legal bar on `CustomPaywallScreen` (`lib/features/premium/presentation/screens/custom_paywall_screen.dart`) alongside Restore Purchases, Terms of Use (EULA), and Privacy Policy, enabling reviewers and existing subscribers to access `AuthScreen` directly without needing to search for dismissal controls.
+- **Onboarding Welcome Screen Returning User Entry:** Added a responsive "Already have an account? Sign in" (`l10n.alreadyHaveAccountSignIn`) button directly beneath the primary action on Page 0 (Welcome) of `OnboardingScreen` (`lib/features/onboarding/presentation/screens/onboarding_screen.dart`), allowing reviewers on fresh installs to log in immediately without having to complete the 4-step onboarding questionnaire.
+- **Small-Viewport Layout Resilience:** Re-architected `_buildWelcomePage` in `OnboardingScreen` using `LayoutBuilder`, `SingleChildScrollView`, and adaptive asset scaling, eliminating flex overflows on compact device viewports and landscape orientations.
+- **Comprehensive Automated Verification:** Added unit and widget tests in `test/features/auth/auth_screen_localization_test.dart`, `test/features/premium/custom_paywall_screen_test.dart`, and `test/features/onboarding/onboarding_screen_layout_test.dart` (all 34 tests pass across auth, premium, and onboarding). `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+
+### [2026-09-19] Apple Review Guideline 5.1.1(iv) Microphone Permission Architecture & Settings Guidance
+- **Pre-Permission Bypass Elimination:** Resolved Apple App Store review rejection under Guideline 5.1.1(iv) (Data Collection and Storage - Microphone Permission) by permanently removing the pre-permission bypass button (*"I can't speak right now"* / `l10n.iCanTSpeakRight`) from Onboarding Step 2 (`OnboardingMiniLessonScreen`), guaranteeing the user proceeds directly to the system permission request when choosing to continue.
+- **Button Copy Alignment:** Configured the primary action button to *"Continue"* (`l10n.continueAction`) with a forward navigation icon (`Icons.arrow_forward`), eliminating any *"Use Microphone"* label before the system prompt.
+- **Direct System Prompt Invocation:** Re-architected `_toggleRecording()` to invoke native `_recorder.requestPermission()` immediately without intervening modal delays, preserving user autonomy over the iOS system dialog (`[Don't Allow]` / `[OK]`).
+- **Post-Denial Settings Guidance & Non-Blocking Progression:** If the user chooses "Don't Allow", `_micPermissionDenied` displays a clear notification banner (`l10n.microphoneAccessWasNotGranted`), a direct link to the iOS Settings app via `openAppSettings()` (`l10n.settingsTitle`), and enables the user to tap "Continue" (`_quietPath()`) to proceed to Step 3 with demo data, guaranteeing users are never stuck in onboarding if they decline microphone access.
+- **14-Language Notification Alignment:** Updated `microphoneAccessWasNotGranted` across all 14 `.arb` language files to state *"Microphone access was not granted. You can enable it in Settings."* / *"L'accès au microphone n'a pas été accordé. Vous pouvez l'activer dans les Réglages."*.
+- **Automated Verification & Hygiene:** Expanded automated widget test coverage in `test/features/onboarding/onboarding_mini_lesson_screen_test.dart` verifying the full permission denial flow, settings link, and quiet path progression (all 14 onboarding tests pass). `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+
+### [2026-09-19] Account Gatekeeper Architecture, Paywall Close Loop Elimination & 14-Language Parity (Apple Review Compliance)
+- **Account Gatekeeper Flow for 100% Subscription Apps:** Resolved infinite navigation loop and user confusion when closing the paywall on a subscription-only app. When an authenticated user with no active subscription closes (`X`) the paywall, `AuthScreen` (`lib/features/auth/presentation/screens/auth_screen.dart`) now renders a dedicated **Account Gatekeeper View**:
+  - Displays user status: `"Signed in as {email}"` (`l10n.signedInAs`).
+  - Displays status badge: `"No active subscription found"` (`l10n.noActiveSubscriptionFound`).
+  - Explains gating: `"An active SinoSpark membership is required to access all lessons, books, and AI speech tools."` (`l10n.subscriptionRequiredDesc`).
+  - Provides clear, direct actions: **[View Plans]** (`_viewPlans`), **[Restore Purchases]** (`_restorePurchases`), and **[Sign Out]** (`_signOut`).
+- **Elimination of Auth / Paywall Infinite Loop:**
+  - Tapping `X` on `CustomPaywallScreen` leads directly to the subscription gate without asking an already signed-in user to re-enter their credentials.
+  - Tapping **[View Plans]** transitions smoothly to `CustomPaywallScreen`.
+  - Tapping **[Sign Out]** cleanly disconnects the user session and presents the login/registration form for switching accounts.
+- **Post-Sign-Up Subscription Gating:** Fixed post-sign-up routing so newly registered users without an active plan are routed to `CustomPaywallScreen` to select a package rather than prematurely accessing `MainNavigationScreen`.
+- **Exhaustive 14-Language Gatekeeper Localization:** Added 4 new keys (`subscriptionRequired`, `subscriptionRequiredDesc`, `signedInAs`, `signOut`) across all 14 `.arb` files (`en`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ja`, `ko`, `vi`, `id`, `hi`, `th`, `ar`) and regenerated `AppLocalizations`.
+- **Functional EULA & Privacy Links on Auth & Gatekeeper:** Added `_buildLegalLinks` and `_launchURL` in `AuthScreen` linking to `https://sinospark.app/terms.html` and `https://sinospark.app/privacy.html` across both the Account Gatekeeper view and the registration/login form, guaranteeing full functional compliance with Apple App Review Guidelines for auto-renewable subscriptions.
+- **Comprehensive Verification:** Expanded `test/features/auth/auth_screen_localization_test.dart` and verified all 17 auth and premium test suites pass 100%. `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+
+### [2026-09-19] Auth Screen Exhaustive 14-Language Localization & Active Restore / View Plans Wiring
+- **Full 14-Language UI Localization for Auth:** Replaced all remaining hardcoded English strings in `AuthScreen` (`lib/features/auth/presentation/screens/auth_screen.dart`) with `AppLocalizations`:
+  - Input field labels: `"Name"` $\rightarrow$ `l10n.nameLabel`, `"Email"` $\rightarrow$ `l10n.emailLabel`, `"Password"` $\rightarrow$ `l10n.passwordLabel` (*"Mot de passe"* in French).
+  - Submit button: `"Sign In"` $\rightarrow$ `l10n.signIn` (*"Se connecter"* in French) and `"Create Account"` $\rightarrow$ `l10n.createAccount` (*"Créer un compte"* in French).
+  - Navigation toggle: `"Don't have an account? Sign up"` $\rightarrow$ `l10n.dontHaveAccountSignUp` (*"Pas de compte ? Inscrivez-vous"* in French) and `"Already have an account? Sign in"` $\rightarrow$ `l10n.alreadyHaveAccountSignIn` (*"Déjà un compte ? Connectez-vous"* in French).
+  - Screen title: `"Begin Your Journey"` $\rightarrow$ `l10n.beginYourJourney` (*"Commencez votre voyage"* in French).
+  - Paywall links: `"View Plans"` $\rightarrow$ `l10n.viewPlans` (*"Voir les forfaits"* in French) and `l10n.restore` (*"Restaurer"* in French).
+- **Active Wiring for "Restaurer" & "Voir les forfaits":**
+  - Replaced empty lambda `onPressed: () {}` on "Restaurer" with `_restorePurchases()` calling `MonetizationService.restorePurchases()`, complete with loading spinner, navigation on success, and localized `noActiveSubscriptionFound` feedback on failure.
+  - Replaced broken `Navigator.of(context).pop()` on "View Plans" with `_viewPlans()` featuring resilient navigation stack checking: checks `canPop()` to return to the previous screen or smoothly falls back to `pushReplacement(CustomPaywallScreen)` when the previous route stack was wiped by paywall close.
+- **Missing Keys Added Across All 14 ARBs:** Added 7 new keys (`viewPlans`, `authInvalidCredentials`, `authInvalidEmail`, `authEmailAlreadyInUse`, `authWeakPassword`, `authTooManyRequests`, `authNetworkError`) across all 14 `.arb` files and regenerated `AppLocalizations`.
+- **Friendly, Localized Error Handling for Firebase Auth:** Replaced Firebase's raw technical error message (*"The supplied auth credential is malformed or has expired."*) by mapping `FirebaseAuthException` codes (`invalid-credential`, `user-not-found`, `wrong-password`) to `l10n.authInvalidCredentials` (*"E-mail ou mot de passe incorrect. Si vous n'avez pas de compte, veuillez vous inscrire."* in French). Also provided localized messages for malformed emails, weak passwords, already-in-use emails, network timeouts, and excessive attempts.
+- **Verification & Total Hygiene:** Added widget test suite `test/features/auth/auth_screen_localization_test.dart` verifying French/English rendering, paywall navigation, and 14-language dictionary presence for `viewPlans` and `restore` (all 9 auth tests pass). Full project analysis `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
+### [2026-09-19] Apple Review 5.1.1/5.1.2 AI Consent Architecture, Pinyin Latin Preservation & Dictionary Ranking Repair
+- **Reusable In-App AI Consent Modal (`AiConsentSheet`):** Built a reusable calligraphic modal component in `lib/shared/widgets/ai_consent_sheet.dart` complying with Apple App Store Review Guidelines 5.1.1(i) (Data Collection) and 5.1.2(i) (Data Use & Sharing). Displays clear upfront disclosure of data transmitted (voice recordings, spoken speech transcripts, practice prompts), named third-party AI recipients (Microsoft Azure AI Speech, Google Gemini, DeepSeek via OpenRouter), and privacy guarantees (encrypted in transit, processed ephemerally, never sold, never used for training).
+- **Universal Gating Across All AI Features:** Persists user consent to `SharedPreferences` (`has_agreed_to_ai_privacy`). Intercepts and guards every AI surface across the app before recording, transmission, or generation:
+  - Onboarding Step 2 (`OnboardingMiniLessonScreen._toggleRecording`) prior to microphone recording and Azure Speech pronunciation assessment.
+  - Shadowing Studio (`ShadowingStudioScreen._startSession` and `_startRecording`).
+  - Echo Hall Scenarios (`ScenarioSelectionScreen._startScenario`, `_generateFromDeck`, and `CustomScenarioDialog`).
+  - Echo Hall Roleplay Conversation (`ConversationScreen` on entry).
+  - Echo Hall Live Call (`LiveCallScreen._initCall`).
+  - Flashcards Speaking Study Mode (`SpeakingModeWidget._startRecording`) prior to microphone recording and audio grading.
+  - Flashcards Grammar Explainer (`AiExplainerSheet.show` and `_sendMessage`).
+  - AI Deck Generator (`AiDeckGeneratorSheet.show` and generate callback).
+  - Character Chat (`CharacterChatSheet._sendMessage`).
+  - Universal Camera & Object Scanner (`UniversalScannerScreen` on entry, `_processExtractedText`, and `_deepAnalyzeScene`).
+  - Travel Interpreter (`TravelInterpreterScreen._startSession` and `_startAudioStreaming`).
+  - In-App Web Browser (`WebBrowserScreen._runAnalyzeArticle`, `_runAddAllUnknowns`, `_runAutoSimplify`, and `_startTranslation`).
+  - Smart Media Desk (`SmartMediaDeskScreen._simplifyTranscript` and consent-checked background briefings/memes).
+  - Scholar's Library Quick Look (`QuickLookSheet._NotFoundBody._fetchAiDefinition`).
+  - AI Curriculum Path Generator (`CourseSelectionScreen`).
+  - Nuance Comparison (`NuanceCompareSheet.show` and streaming loader).
+- **14-Language Parity & App Store Review Readiness:** Translated and added dedicated localization keys to all 14 `.arb` language files (`en`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ja`, `ko`, `vi`, `id`, `hi`, `th`, `ar`), regenerated `AppLocalizations`, and linked "Learn More" directly to `AiDataPrivacyScreen`.
+- **Button Copy Refinement for Apple Review:**
+  - **AI Permission Consent Action:** Refined primary button copy from generic "Agree & Continue" / "Accepter et continuer" to explicit "Agree to Use AI" / "Accepter et utiliser l'IA" (and localized across all 14 languages) to obtain clear, unambiguous user consent before transmitting data to third-party AI services, directly addressing Guidelines 5.1.1(i) and 5.1.2(i).
+  - **Microphone Pre-Prompt Action:** In Onboarding Step 2 (`OnboardingMiniLessonScreen`), changed the action button from "Use microphone" (`l10n.useMicrophone`) to "Continue" (`l10n.continueAction`), directly satisfying Apple Guideline 5.1.1 pre-permission requirement forbidding buttons labeled "Use Microphone" before the system prompt.
+- **Pinyin Numeric Conversion French & Latin Letter Preservation:** Fixed bug in `PinyinUtils.convertNumericToMarks` where a global string replace of `'v' -> 'ü'` indiscriminately mutated non-pinyin French and Latin words (*"vous"* -> *"üous"*, *"pouvez"* -> *"pouüez"*, *"voir"* -> *"üoir"*, *"niveau"* -> *"niüeau"*). Restricted `v -> ü` and `u: -> ü` replacements exclusively to valid numeric pinyin syllables matching `([a-zA-ZüÜ:]+)([1-5])`.
+- **Nuance Comparison Markdown Header Parsing:** Handled `###` headers in `NuanceCompareSheet._buildFormattedContent` and `TappableMarkdownHanziText._preprocessText`, eliminating literal `###` markers on screen.
+- **Dictionary "Wei" Duplication & "Ni Hao" Ranking Repair:** (1) Diagnosed and corrected 4 duplicate definitions of `喂` in `assets/data/dictionary.db` where bulk table joins assigned the phone greeting definition (*"Bonjour"* / *"Hola"*) across entries meaning *"to feed"* or *"hey"*; (2) Seeded essential conversational foundation phrases (`你好`, `您好`, `谢谢`, `再见`, etc.) at rank 0 in `GlobalDictionaryRepository._loadPopularityRanks`, ensuring `你好` consistently outranks homophones and obscure characters in multilingual search.
+- **Automated Verification & Total Hygiene:** Added comprehensive test suite `test/features/settings/ai_consent_sheet_test.dart` (6/6 passed, including dismissal without consent). Verified onboarding (13/13) and live translate (20/20) suites pass. `dart analyze lib test` confirmed **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-16] Shadowing Studio Hub Responsive Sizing & Scroll Elimination
+- **Viewport Dimension Optimization:** Eliminated unintended vertical overflow and awkward 20-40px scrolling in the Shadowing Studio ("Studio de répétition") hub screen by resizing and tightening vertical margins across all elements:
+  - Header: reduced font size from 20 to 18 and vertical padding from 4 to 2.
+  - Hero Icon: reduced circle padding from 20 to 12, icon size from 56 to 38, and bottom spacing from 20 to 8.
+  - Subtitle: reduced font size from 15 to 13 and line-height from 1.5 to 1.35.
+  - Practice Mode Selector Grid: adjusted `childAspectRatio` from 3.2 to 3.5, reduced tab horizontal/vertical padding from (8, 8) to (6, 4), and reduced label padding.
+  - Configuration Cards: reduced vertical padding from 14 to 8, border radius from 16 to 14, shadow offset from 4 to 2, and label font size from 11 to 10.5.
+  - Start Session Button: reduced outer padding from `(32, 16, 32, 32)` to `(24, 8, 24, 12)` and button height from 56 to 50.
+- **Scroll Physics Lock:** Configured `SingleChildScrollView.physics` to `NeverScrollableScrollPhysics()` by default so the hub screen cannot be dragged or scrolled on mobile screens (iPhone SE, iPhone 13/14/15/16). Enabled dynamic scrolling (`BouncingScrollPhysics`) only when the `customWord` search dropdown contains active dictionary search results.
+- **Target Hanzi Context Highlighting:** Wired `_buildHanziPhraseView(isDark)` into `_buildSessionUI`, ensuring target characters and words are highlighted in Scholar Indigo (`#4F46E5` light, `#818CF8` dark) with bold weight and background pill when launched with context sentences.
+- **Verification & Total Hygiene:** Added automated widget test `shadowing_studio_scroll_test.dart` verifying non-scrollable behavior and simultaneous visibility of Mode and Configuration sections on phone viewports. Verified all 23 live translate and context tests pass. Full project `flutter analyze` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+
+### [2026-09-16] iPhone Audiobook Universal Punctuation, Playback Speed & Cache Auto-Healing
+- **Audiobook Playback Speed Synchronization:** Added `_playbackRate`, `playbackRate` getter, and `setPlaybackRate(double rate)` (with `setSpeed` override) to `AudioService`. Connected `_playbackSpeed` in `AudiobookPlayerScreen` (`_cyclePlaybackSpeed` and `initState`) to dynamically set the audio player rate (`0.75x`, `1.0x`, `1.25x`, `1.5x`) and broadcast the updated rate to system lock screen media controls, while proportionally scaling fallback on-device TTS speed.
+- **Universal Unicode Punctuation Standard:** Replaced the hardcoded 36-character punctuation map with `isNonSpokenCharacter(char)` in `spoken_text_highlight.dart`, combining canonical Chinese punctuation sets (classical corner brackets `「...」`, `『...』`, lenticular brackets `【...】`, title brackets `〈...〉`, middle dots `·`, tildes `～`, dashes `―`) with Unicode category matching (`\p{P}\p{S}\p{Z}\p{C}\p{N}`). Standardized `_getRubyTokens` in both `AudiobookPlayerScreen` and `BookReaderScreen` to use `isNonSpokenCharacter`, eliminating +1 index pinyin shifts and timing misalignments across all 62 library books containing classical bracket syntax.
+- **Orphaned Audio Cache Auto-Healing:** Detected orphaned audio cache files (`$hash.mp3` present without corresponding `$hash.json` boundary metadata) in `AudioService.playSentence` and `prefetchSentence`. Automatically evicts the orphaned audio file when weekly quota is available, ensuring a fresh WebSocket synthesis captures full millisecond word boundaries.
+- **Verification & Total Hygiene:** Added unit tests verifying classical brackets and middle dot boundary alignment in `spoken_text_highlight_test.dart` (10/10 pass). Verified all 56 reading tests pass and all 13 onboarding tests pass. Full project `flutter analyze` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+
+### [2026-09-16] iPhone Audiobook Speech Synchronization & Grey Box Elimination
+- **Background Prefetch Isolation & Timing Integrity:** Decoupled `_fetchCloudTTSWithWebSocket` and `_fetchCloudTTSViaRest` in `AudioService` from modifying `_currentBoundaries` and emitting `onBoundariesLoaded`. Background prefetching of sentence $N+1$ now writes audio and boundary files to disk without polluting or resetting the active playback state of sentence $N$.
+- **Cache-Miss Boundary Emission:** Guaranteed that on the very first synthesis of a sentence from Azure Neural TTS, `_currentBoundaries` is immediately populated with `result.boundaries` and emitted via `_boundariesLoadedController.add`, eliminating the empty-timing fallback void that caused drift and desynchronization.
+- **Elimination of Mobile "Grey Box" Lerp Artifact:** Removed `border: Border.all` on spoken characters in `AudiobookPlayerScreen`'s `AnimatedContainer`. In Flutter, interpolating a border against `Colors.transparent` (`0x00000000`, transparent black) visually generates a desaturated greyish-brown rectangular frame over warm Xuan paper (`#F7EBD9`). Spoken characters are now illuminated seamlessly without borders using radiant golden silk (`Color(0xFFFEF3C7)` light, `Color(0xFFD97706)` dark), diffuse golden glow (`BoxShadow` with `#D4AF37`), and Imperial Cinnabar Red (`#8B0000`) / luminous Warm Gold (`#FFFBEB`) text with a gentle 1.05x optical scale lift.
+- **Position & Word Boundary Concurrency Shield:** Synchronized `_positionSub` and `_wordBoundarySub` in `AudiobookPlayerScreen` with timestamp protection (`_lastWordBoundaryTime`), strictly preventing linear position estimation from clobbering live word boundaries.
+- **Test Suite & Total Hygiene:** Verified all 12 audiobook synchronization and timing unit tests pass (`test/features/reading/audiobook_synchronization_test.dart`, `test/unit_tests/spoken_text_highlight_test.dart`), all 56 reading tests pass, and all 13 onboarding tests pass. Full project `flutter analyze` reports **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+
+### [2026-09-16] Onboarding Welcome Screen Transparent Mascot Integration
+- **Transparent Mascot (`mascot.png`) Integration:** Replaced the opaque yellow-boxed `mascot_android12_splash.png` on Page 0 (Welcome) of `OnboardingScreen` with the canonical transparent `mascot.png` asset.
+- **Zen & Ink Ambient Backlight:** Added soft circular dark mode illumination (`BoxShadow` with Emperor's gold `#D4AF37` at 18% opacity, blur radius 36) behind the transparent silhouette in dark mode (`#1A1A1B`), while letting warm Xuan paper (`#FDFCF0`) breathe cleanly in light mode without harsh yellow boundaries.
+
 ### [2026-09-13] Build Bump (Build #535) & GitLab Master Sync
 - **Version Bump:** Bumped build version to `1.0.0+535` in `pubspec.yaml`.
 - **GitLab Master Sync:** Committed and synchronized multi-screen 14-language localization and iPhone calligraphic illumination to GitLab master.
@@ -780,6 +883,11 @@ All notable changes to this project will be documented in this file.
   - Overhauled Scholar's Verdict linguistic critique into a direct, professional Mandarin pronunciation coach persona.
 
 ## [Unreleased]
+
+### [2026-09-19] Fix: Blank Page After Reviewer Demo Login (Build #536)
+- Fixed Apple Review Guideline 2.1(a) rejection "blank page after login": after `unlockDeveloperBackdoor()`, the bypass now navigates to `AppStartupFlow` instead of `MainNavigationScreen` directly, allowing all providers (flashcard controller, Hive boxes) to initialize through the normal boot path.
+- Bumped build to `1.0.0+536`.
+
 - **Professional Linguistic Analysis Prompt (Eliminated Archaic Metaphors)**:
   - Overhauled `_generateFinalVerdict` in `live_call_screen.dart` to adopt an expert, professional Mandarin pronunciation coach persona.
   - Eliminated cheesy/archaic roleplay tropes ("soar like a crane", "gentle stream", "brush and ink", "my student") in favor of concrete, actionable phonetic analysis on tone pitch contours and conversational rhythm. Bumped build to `1.0.0+155`.

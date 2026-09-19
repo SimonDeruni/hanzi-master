@@ -63,6 +63,26 @@ void main() {
     expect(closeButton, findsNothing);
   });
 
+  testWidgets('tapping sign in on paywall navigates to auth screen',
+      (tester) async {
+    await tester.pumpWidget(
+      _testApp(
+        home: const CustomPaywallScreen(
+          useMockOfferingsForTesting: true,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    final signInButton = find.byKey(const Key('paywall_sign_in_button'));
+    expect(signInButton, findsOneWidget);
+
+    await tester.tap(signInButton);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AuthScreen), findsOneWidget);
+  });
+
   testWidgets('purchase offer contains subscription and legal disclosures',
       (tester) async {
     await tester.pumpWidget(
@@ -184,6 +204,7 @@ void main() {
       'paywall_restore_button',
       'paywall_terms_button',
       'paywall_privacy_button',
+      'paywall_sign_in_button',
     ]) {
       final action = find.byKey(Key(key));
       expect(action, findsOneWidget);

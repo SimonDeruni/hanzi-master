@@ -22199,7 +22199,7 @@ abstract class AppLocalizations {
   /// No description provided for @microphoneAccessWasNotGranted.
   ///
   /// In en, this message translates to:
-  /// **'Microphone access was not granted. You can use the quiet option below.'**
+  /// **'Microphone access was not granted. You can enable it in Settings.'**
   String get microphoneAccessWasNotGranted;
 
   /// No description provided for @recordingIsUnavailableRightNow.
@@ -23564,6 +23564,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Endless AI Stream • Sentence {count}'**
   String endlessAiStreamSentence(Object count);
+
+  /// No description provided for @aiConsentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Practice & Privacy'**
+  String get aiConsentTitle;
+
+  /// No description provided for @aiConsentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanzi Master uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.'**
+  String get aiConsentSubtitle;
+
+  /// No description provided for @aiConsentDataSentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Transmitted'**
+  String get aiConsentDataSentTitle;
+
+  /// No description provided for @aiConsentDataSentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice audio recordings, spoken speech transcripts, and study prompts.'**
+  String get aiConsentDataSentBody;
+
+  /// No description provided for @aiConsentProvidersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Third-Party AI Services'**
+  String get aiConsentProvidersTitle;
+
+  /// No description provided for @aiConsentProvidersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'• Microsoft Azure AI Speech (pronunciation evaluation & voice synthesis)\n• Google Gemini & DeepSeek (conversational dialogue & deck generation)'**
+  String get aiConsentProvidersBody;
+
+  /// No description provided for @aiConsentGuaranteesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Guarantees'**
+  String get aiConsentGuaranteesTitle;
+
+  /// No description provided for @aiConsentGuaranteesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data is encrypted in transit, processed ephemerally, never sold, and never used to train public AI models.'**
+  String get aiConsentGuaranteesBody;
+
+  /// No description provided for @aiConsentAgree.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree to Use AI'**
+  String get aiConsentAgree;
+
+  /// No description provided for @aiConsentLearnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get aiConsentLearnMore;
+
+  /// No description provided for @viewPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'View Plans'**
+  String get viewPlans;
+
+  /// No description provided for @authInvalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect email or password. If you do not have an account, please sign up.'**
+  String get authInvalidCredentials;
+
+  /// No description provided for @authInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get authInvalidEmail;
+
+  /// No description provided for @authEmailAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'An account already exists with this email address.'**
+  String get authEmailAlreadyInUse;
+
+  /// No description provided for @authWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters.'**
+  String get authWeakPassword;
+
+  /// No description provided for @authTooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many failed attempts. Please try again later.'**
+  String get authTooManyRequests;
+
+  /// No description provided for @authNetworkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Network error. Please check your connection.'**
+  String get authNetworkError;
+
+  /// No description provided for @subscriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription Required'**
+  String get subscriptionRequired;
+
+  /// No description provided for @subscriptionRequiredDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'An active SinoSpark membership is required to access all lessons, books, and AI speech tools.'**
+  String get subscriptionRequiredDesc;
+
+  /// Label indicating which user email is currently signed in
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String signedInAs(String email);
 }
 
 class _AppLocalizationsDelegate

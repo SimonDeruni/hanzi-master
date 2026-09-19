@@ -11711,7 +11711,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get microphoneAccessWasNotGranted =>
-      '마이크 접근 권한이 허용되지 않았습니다. 아래의 무음 옵션을 이용하실 수 있습니다.';
+      '마이크 접근 권한이 허용되지 않았습니다. 설정에서 활성화할 수 있습니다.';
 
   @override
   String get recordingIsUnavailableRightNow => '지금은 녹음을 사용할 수 없습니다.';
@@ -12484,5 +12484,72 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String endlessAiStreamSentence(Object count) {
     return '무한 AI 스트림 • 문장 $count';
+  }
+
+  @override
+  String get aiConsentTitle => 'AI 학습 및 개인정보 보호';
+
+  @override
+  String get aiConsentSubtitle =>
+      'Hanzi Master는 음성 발음 평가, 대화 롤플레잉 및 학습 도구를 위해 안전한 타사 AI 서비스를 사용합니다.';
+
+  @override
+  String get aiConsentDataSentTitle => '전송되는 데이터';
+
+  @override
+  String get aiConsentDataSentBody => '음성 오디오 녹음, 구어 텍스트 변환 및 학습 프롬프트.';
+
+  @override
+  String get aiConsentProvidersTitle => '타사 AI 서비스';
+
+  @override
+  String get aiConsentProvidersBody =>
+      '• Microsoft Azure AI Speech (발음 평가 및 음성 합성)\n• Google Gemini & DeepSeek (대화형 다이얼로그 및 덱 생성)';
+
+  @override
+  String get aiConsentGuaranteesTitle => '개인정보 보호 보장';
+
+  @override
+  String get aiConsentGuaranteesBody =>
+      '귀하의 데이터는 전송 중 암호화되며, 일시적으로만 처리되고, 판매되지 않으며, 공개 AI 모델 훈련에 사용되지 않습니다.';
+
+  @override
+  String get aiConsentAgree => '동의하고 AI 사용';
+
+  @override
+  String get aiConsentLearnMore => '자세히 알아보기';
+
+  @override
+  String get viewPlans => '요금제 보기';
+
+  @override
+  String get authInvalidCredentials =>
+      '이메일 또는 비밀번호가 올바르지 않습니다. 계정이 없다면 회원가입을 해주세요.';
+
+  @override
+  String get authInvalidEmail => '올바른 이메일 주소를 입력해 주세요.';
+
+  @override
+  String get authEmailAlreadyInUse => '이 이메일 주소로 등록된 계정이 이미 존재합니다.';
+
+  @override
+  String get authWeakPassword => '비밀번호는 최소 6자 이상이어야 합니다.';
+
+  @override
+  String get authTooManyRequests => '로그인 시도가 너무 많습니다. 나중에 다시 시도해 주세요.';
+
+  @override
+  String get authNetworkError => '네트워크 오류입니다. 연결을 확인해 주세요.';
+
+  @override
+  String get subscriptionRequired => '구독이 필요합니다';
+
+  @override
+  String get subscriptionRequiredDesc =>
+      '모든 레슨, 도서 및 AI 음성 도구를 이용하려면 유효한 SinoSpark 구독이 필요합니다.';
+
+  @override
+  String signedInAs(String email) {
+    return '$email 계정으로 로그인됨';
   }
 }

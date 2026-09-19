@@ -3752,7 +3752,7 @@
   "recap": "Rangkuman",
   "playbackDidNotStart": "Pemutaran tidak dimulai",
   "audioIsUnavailableYouCan": "Audio tidak tersedia. Anda tetap dapat membaca dan melanjutkan.",
-  "microphoneAccessWasNotGranted": "Akses mikrofon tidak diberikan. Anda dapat menggunakan opsi hening di bawah.",
+  "microphoneAccessWasNotGranted": "Akses mikrofon tidak diberikan. Anda dapat mengaktifkannya di Pengaturan.",
   "recordingIsUnavailableRightNow": "Perekaman tidak tersedia saat ini.",
   "listeningToYourTones": "Mendengarkan nada Anda…",
   "noRecording": "Tidak ada rekaman",
@@ -4017,5 +4017,33 @@
   "liveCallSolidEffortFallback": "Upaya percakapan yang solid. Fokuslah menjaga nada ke-1 tetap tinggi dan rata (55) serta nada ke-4 tajam dan tegas (51) untuk meningkatkan kejelasan alami.",
   "liveCallGoodPracticeFallback": "Sesi latihan yang bagus. Lanjutkan fokus pada kontras tinggi nada yang jelas dan tempo percakapan yang alami.",
   "sentenceNumber": "Kalimat {number}",
-  "endlessAiStreamSentence": "Streaming AI Tanpa Akhir • Kalimat {count}"
+  "endlessAiStreamSentence": "Streaming AI Tanpa Akhir • Kalimat {count}",
+  "aiConsentTitle": "Latihan AI & Privasi",
+  "aiConsentSubtitle": "Hanzi Master menggunakan layanan AI pihak ketiga yang aman untuk penilaian pengucapan suara, bermain peran percakapan, dan alat belajar.",
+  "aiConsentDataSentTitle": "Data yang Ditransmisikan",
+  "aiConsentDataSentBody": "Rekaman audio suara, transkripsi ucapan, dan petunjuk belajar.",
+  "aiConsentProvidersTitle": "Layanan AI Pihak Ketiga",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (penilaian pengucapan & sintesis suara)\n• Google Gemini & DeepSeek (dialog percakapan & pembuatan dek)",
+  "aiConsentGuaranteesTitle": "Jaminan Privasi",
+  "aiConsentGuaranteesBody": "Data Anda dienkripsi saat transit, diproses secara sementara, tidak pernah dijual, dan tidak pernah digunakan untuk melatih model AI publik.",
+  "aiConsentAgree": "Setuju & Gunakan AI",
+  "aiConsentLearnMore": "Pelajari Lebih Lanjut",
+  "viewPlans": "Lihat Paket",
+  "authInvalidCredentials": "Email atau kata sandi salah. Jika belum memiliki akun, silakan daftar.",
+  "authInvalidEmail": "Silakan masukkan alamat email yang valid.",
+  "authEmailAlreadyInUse": "Akun sudah ada dengan alamat email ini.",
+  "authWeakPassword": "Kata sandi minimal harus 6 karakter.",
+  "authTooManyRequests": "Terlalu banyak percobaan gagal. Silakan coba lagi nanti.",
+  "authNetworkError": "Kesalahan jaringan. Silakan periksa koneksi Anda.",
+  "subscriptionRequired": "Langganan Diperlukan",
+  "subscriptionRequiredDesc": "Keanggotaan aktif SinoSpark diperlukan untuk mengakses semua pelajaran, buku, dan alat suara AI.",
+  "signedInAs": "Masuk sebagai {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

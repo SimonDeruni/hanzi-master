@@ -13,6 +13,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 enum BookPinyinMode { all, ghost, none }
@@ -47,56 +48,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       return _rubyCache[chinese]!;
     }
 
-    const punctuation = {
-      '，',
-      '。',
-      '！',
-      '？',
-      '、',
-      '“',
-      '”',
-      '‘',
-      '’',
-      '：',
-      '；',
-      '《',
-      '》',
-      '（',
-      '）',
-      '—',
-      '…',
-      ' ',
-      '\n',
-      '\r',
-      '\t',
-      ',',
-      '!',
-      '?',
-      '.',
-      ':',
-      ';',
-      "'",
-      '"',
-      '(',
-      ')',
-      '[',
-      ']',
-      '{',
-      '}'
-    };
-
     final pinyinString = PinyinHelper.getPinyinE(
       chinese,
       separator: ' ',
       format: PinyinFormat.WITH_TONE_MARK,
     );
-    // Filter out punctuation and numbers so pinyinList only contains actual spoken syllables
+    // Filter out non-spoken characters so pinyinList only contains actual spoken syllables
     final pinyinList = pinyinString
         .split(' ')
-        .where((s) =>
-            s.isNotEmpty &&
-            !punctuation.contains(s) &&
-            !RegExp(r'^\d+$').hasMatch(s))
+        .where((s) => s.isNotEmpty && !isNonSpokenCharacter(s))
         .toList();
 
     final tokens = <_RubyToken>[];
@@ -104,8 +64,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     int hanziIdx = 0;
 
     for (final char in chinese.characters) {
-      final isPunctuation =
-          punctuation.contains(char) || RegExp(r'^\d+$').hasMatch(char);
+      final isPunctuation = isNonSpokenCharacter(char);
       if (isPunctuation) {
         tokens.add(_RubyToken(
             char: char, pinyin: '', isPunctuation: true, hanziIndex: -1));

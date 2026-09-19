@@ -1651,7 +1651,7 @@
   "library1": "Biblioteca",
   "youAreAPremiumMember": "Você é um membro Premium",
   "createAccountToSyncProgress": "Crie uma conta para sincronizar o progresso",
-  "signOut": "Sair da conta",
+  "signOut": "Sair",
   "account": "Conta",
   "guestScholar": "Estudioso Convidado",
   "localAccount": "Conta local",
@@ -3787,7 +3787,7 @@
   "recap": "Resumo",
   "playbackDidNotStart": "A reprodução não foi iniciada",
   "audioIsUnavailableYouCan": "O áudio está indisponível. Você ainda pode ler e continuar.",
-  "microphoneAccessWasNotGranted": "O acesso ao microfone não foi concedido. Você pode usar a opção silenciosa abaixo.",
+  "microphoneAccessWasNotGranted": "O acesso ao microfone não foi concedido. Você pode ativá-lo nos Ajustes.",
   "recordingIsUnavailableRightNow": "A gravação não está disponível no momento.",
   "listeningToYourTones": "Ouvindo seus tons…",
   "noRecording": "Sem gravação",
@@ -4052,5 +4052,33 @@
   "liveCallSolidEffortFallback": "Ótimo esforço na conversa. Concentre-se em manter os 1ºs tons altos e firmes (55) e os 4ºs tons rápidos e decisivos (51) para aprimorar a clareza natural.",
   "liveCallGoodPracticeFallback": "Boa sessão de prática. Continue focando nos contrastes nítidos de tom e em um ritmo de conversa natural.",
   "sentenceNumber": "Frase {number}",
-  "endlessAiStreamSentence": "Fluxo contínuo de IA • Frase {count}"
+  "endlessAiStreamSentence": "Fluxo contínuo de IA • Frase {count}",
+  "aiConsentTitle": "Prática com IA e Privacidade",
+  "aiConsentSubtitle": "O Hanzi Master usa serviços de IA de terceiros seguros para avaliação de pronúncia, diálogos de interpretação de papéis e ferramentas de estudo.",
+  "aiConsentDataSentTitle": "Dados transmitidos",
+  "aiConsentDataSentBody": "Gravações de voz, transcrições de fala e solicitações de estudo.",
+  "aiConsentProvidersTitle": "Serviços de IA de terceiros",
+  "aiConsentProvidersBody": "• Microsoft Azure AI Speech (avaliação de pronúncia e síntese de voz)\n• Google Gemini e DeepSeek (diálogos de conversação e geração de baralhos)",
+  "aiConsentGuaranteesTitle": "Garantias de privacidade",
+  "aiConsentGuaranteesBody": "Seus dados são criptografados em trânsito, processados de forma efêmera, nunca vendidos e nunca usados para treinar modelos públicos de IA.",
+  "aiConsentAgree": "Concordar e usar IA",
+  "aiConsentLearnMore": "Saiba mais",
+  "viewPlans": "Ver planos",
+  "authInvalidCredentials": "E-mail ou senha incorretos. Se não tiver uma conta, cadastre-se.",
+  "authInvalidEmail": "Por favor, insira um e-mail válido.",
+  "authEmailAlreadyInUse": "Já existe uma conta com este endereço de e-mail.",
+  "authWeakPassword": "A senha deve ter pelo menos 6 caracteres.",
+  "authTooManyRequests": "Muitas tentativas com falha. Tente novamente mais tarde.",
+  "authNetworkError": "Erro de rede. Verifique sua conexão.",
+  "subscriptionRequired": "Assinatura necessária",
+  "subscriptionRequiredDesc": "É necessária uma assinatura ativa do SinoSpark para acessar todas as lições, livros e ferramentas de voz por IA.",
+  "signedInAs": "Conectado como {email}",
+  "@signedInAs": {
+    "description": "Label indicating which user email is currently signed in",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

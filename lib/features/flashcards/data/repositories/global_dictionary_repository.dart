@@ -91,6 +91,27 @@ class GlobalDictionaryRepository {
   Future<Map<String, int>> _loadPopularityRanks() async {
     final ranks = <String, int>{};
 
+    // Seed high-priority everyday Chinese foundation phrases at rank 0
+    // so essential words like 你好 (hello), 谢谢 (thank you), 再见 (goodbye)
+    // always outrank obscure homophones or rare characters.
+    const foundationPhrases = [
+      '你好',
+      '您好',
+      '谢谢',
+      '不客气',
+      '再见',
+      '对不起',
+      '没关系',
+      '早上好',
+      '晚上好',
+      '晚安',
+      '请问',
+      '欢迎',
+    ];
+    for (final phrase in foundationPhrases) {
+      ranks[phrase] = 0;
+    }
+
     try {
       final assets = await Future.wait([
         rootBundle.loadString('assets/data/hsk1.json'),

@@ -9,6 +9,8 @@ import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+
 class NuanceCompareSheet extends ConsumerStatefulWidget {
   final List<Map<String, String>> words;
   final String groupLabel;
@@ -19,11 +21,13 @@ class NuanceCompareSheet extends ConsumerStatefulWidget {
     required this.groupLabel,
   });
 
-  static void show(
+  static Future<void> show(
     BuildContext context, {
     required List<Map<String, String>> words,
     required String groupLabel,
-  }) {
+  }) async {
+    final consent = await AiConsentSheet.ensureConsent(context);
+    if (!consent || !context.mounted) return;
     GlobalBlurredBottomSheet.show(
       context,
       child: NuanceCompareSheet(words: words, groupLabel: groupLabel),
@@ -319,6 +323,25 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
 
     for (var block in blocks) {
       if (block.trim().isEmpty) continue;
+
+      // Handle Markdown headers (###, ##, #) gracefully
+      final headerMatch = RegExp(r'^(#{1,6})\s+(.*)$').firstMatch(block.trim());
+      if (headerMatch != null) {
+        final headerText = headerMatch.group(2) ?? '';
+        children.add(Padding(
+          padding: const EdgeInsets.only(top: 14, bottom: 6),
+          child: Text(
+            headerText,
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
+              letterSpacing: 0.3,
+            ),
+          ),
+        ));
+        continue;
+      }
 
       // Highlight Targets at start of bullets
       for (var w in widget.words) {
