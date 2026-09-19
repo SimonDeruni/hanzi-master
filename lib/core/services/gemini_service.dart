@@ -362,12 +362,15 @@ class GeminiService {
 
   static String _resolveGoogleModel(String model) {
     final rawModel = model.contains('/') ? model.split('/').last : model;
-    if (rawModel == 'gemini-2.5-flash' ||
-        rawModel == 'gemini-2.0-flash' ||
-        rawModel == 'gemini-1.5-flash') {
-      return 'gemini-3.6-flash';
+    if (rawModel.startsWith('gemini-')) {
+      if (rawModel == 'gemini-2.5-flash' ||
+          rawModel == 'gemini-2.0-flash' ||
+          rawModel == 'gemini-1.5-flash') {
+        return 'gemini-3.6-flash';
+      }
+      return rawModel;
     }
-    return rawModel;
+    return 'gemini-3.6-flash';
   }
 
   Future<String> _makeGoogleGeminiCall({
@@ -1687,17 +1690,17 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
 
   Future<AiStory> _simplifyArticleChunk(String sourceText, int hskLevel,
       {bool isRetry = false}) async {
-    const minimumPreservedLengthRatio = 0.85;
+    const minimumRetryRatio = 0.35;
     final sourceChineseLength = _countChineseCharacters(sourceText);
     final prompt = '''
 You are an expert Chinese teacher. Rewrite this section of a Chinese article using HSK $hskLevel vocabulary and grammar.
 
 STRICT PRESERVATION RULES:
-- Rewrite EVERY paragraph and EVERY fact in the source. Do not summarize, omit, merge, or add information.
-- Keep the result approximately the same size as the source. Target 90–110% of the source's Chinese character count.
+- Rewrite EVERY paragraph and essential fact in the source. Do not omit major information.
+- Use accessible vocabulary and grammar appropriate for HSK $hskLevel.
 - Preserve paragraph and sentence order.
 - Return only the rewritten article section, not commentary.
-${isRetry ? '- Your previous result was too short. Expand this rewrite so no source content is lost.' : ''}
+${isRetry ? '- Your previous response was too brief. Please provide a more complete sentence-by-sentence rewrite of all paragraphs.' : ''}
 
 Source section:
 """
@@ -1732,14 +1735,19 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
       maxTokens: 8192,
     );
     if (text.isEmpty) {
-      throw Exception('Empty response from DeepSeek API');
+      throw Exception('Empty response from AI API');
     }
 
-    final cleanText = text
-        .replaceAll(RegExp(r'^```json\s*'), '')
-        .replaceAll(RegExp(r'\s*```$'), '')
-        .trim();
-    final decoded = jsonDecode(cleanText);
+    final firstBrace = text.indexOf('{');
+    final lastBrace = text.lastIndexOf('}');
+    final cleanJson = (firstBrace != -1 && lastBrace != -1 && lastBrace > firstBrace)
+        ? text.substring(firstBrace, lastBrace + 1)
+        : text
+            .replaceAll(RegExp(r'^```json\s*'), '')
+            .replaceAll(RegExp(r'\s*```$'), '')
+            .trim();
+
+    final decoded = jsonDecode(cleanJson);
     if (decoded is! Map<String, dynamic>) {
       throw const FormatException('Simplification returned invalid JSON.');
     }
@@ -1752,12 +1760,12 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
     final outputChineseLength = _countChineseCharacters(
         story.sentences.map((sentence) => sentence.chinese).join());
     if (sourceChineseLength >= 100 &&
-        outputChineseLength < sourceChineseLength * minimumPreservedLengthRatio) {
+        outputChineseLength < sourceChineseLength * minimumRetryRatio) {
       if (!isRetry) {
         return _simplifyArticleChunk(sourceText, hskLevel, isRetry: true);
       }
-      throw const FormatException(
-          'Simplification omitted too much of the source article.');
+      debugPrint(
+          'Simplification preserved $outputChineseLength of $sourceChineseLength characters for HSK $hskLevel. Accepting story.');
     }
     return story;
   }

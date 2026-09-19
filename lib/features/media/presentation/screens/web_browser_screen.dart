@@ -1188,8 +1188,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       );
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Simplify failed: $e")));
+        final cleanError = e
+            .toString()
+            .replaceFirst(RegExp(r'^(FormatException|Exception):\s*'), '');
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Simplify failed: $cleanError")));
       }
     } finally {
       if (mounted) {
@@ -1723,10 +1726,15 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 );
                               } catch (e) {
                                 if (mounted) {
+                                  final cleanError = e
+                                      .toString()
+                                      .replaceFirst(
+                                          RegExp(r'^(FormatException|Exception):\s*'),
+                                          '');
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                           content:
-                                              Text("Simplify failed: $e")));
+                                              Text("Simplify failed: $cleanError")));
                                 }
                               } finally {
                                 if (mounted) {

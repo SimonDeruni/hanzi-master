@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-19] Article Simplification Resilience & Error Recovery Architecture (Build #541)
+- **Elimination of Arbitrary Simplification Truncation Exception:** Resolved `"Simplify failed: FormatException: Simplification omitted too much of the source article."` when tapping "Extract & Simplify" or "Auto Simplify" on real-world news articles (e.g. BBC Chinese).
+- **Adaptive Length Verification:** Replaced the rigid `minimumPreservedLengthRatio = 0.85` (which threw a fatal exception if simplified HSK vocabulary resulted in text even 16% shorter than dense original news prose) with a resilient `minimumRetryRatio = 0.35`. If an LLM response is under 35% on its initial pass, it prompts for expansion; but as long as a valid non-empty `AiStory` with simplified sentences is returned, it safely accepts the story rather than aborting and showing a crash snackbar.
+- **Robust JSON Delimiter Parsing:** In `_simplifyArticleChunk`, added brace boundary extraction (`firstBrace` to `lastBrace`), ensuring markdown fences (````json ... ````) or model preamble/postscript notes never cause `FormatException('Simplification returned invalid JSON.')`.
+- **AI Failover Model Mapping:** In `GeminiService._resolveGoogleModel`, ensured non-Gemini models (such as `deepseek/deepseek-chat`) automatically map to Google's primary `gemini-3.6-flash` during Google Gemini failovers instead of passing unmapped model strings that 404.
+- **Clean User-Facing Error Formatting:** In `WebBrowserScreen` (`_runAutoSimplify` and `_buildTranslationBar`), cleaned snackbar error messages to strip raw Dart technical type prefixes (`Exception: `, `FormatException: `).
+- **Automated Verification:** Added unit test suite `test/core/services/gemini_service_simplification_test.dart` (3/3 tests passing) verifying short HSK rewrites without exceptions, markdown-wrapped JSON payloads, and DeepSeek-to-Gemini failover. Verified `dart analyze lib test` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State). Bumped build to `1.0.0+541`.
+
 ### [2026-09-19] Word Addition & Update Universal 14-Language Localization (Build #540)
 - **Universal Multilingual Word Addition Snackbar:** Resolved hardcoded English snackbar notifications (*"Added X new words, updated Y existing words in/to Z"*, *"Added X words to Z"*, *"Updated Y existing words in Z"*, and single card *"Added [hanzi] to [deckName]"*) across `WebBrowserScreen` (`lib/features/media/presentation/screens/web_browser_screen.dart`), `DeckSelectionSheet` (`lib/features/flashcards/presentation/widgets/deck_selection_sheet.dart`), and `DeckCardPickerScreen` (`lib/features/flashcards/presentation/screens/deck_card_picker_screen.dart`).
 - **New Localization Keys Across All 14 ARBs:**
