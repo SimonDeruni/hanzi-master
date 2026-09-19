@@ -12981,4 +12981,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String signedInAs(String email) {
     return 'Conectado como $email';
   }
+
+  @override
+  String get battle => 'Batalla';
 }

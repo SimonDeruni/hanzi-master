@@ -12969,4 +12969,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String signedInAs(String email) {
     return 'Conectado como $email';
   }
+
+  @override
+  String get battle => 'Batalha';
 }

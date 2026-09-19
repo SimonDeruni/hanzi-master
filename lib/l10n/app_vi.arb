@@ -4050,5 +4050,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "battle": "Trận chiến"
 }

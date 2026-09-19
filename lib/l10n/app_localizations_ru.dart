@@ -12958,4 +12958,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String signedInAs(String email) {
     return 'Вы вошли как $email';
   }
+
+  @override
+  String get battle => 'Битва';
 }

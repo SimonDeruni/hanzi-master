@@ -12908,4 +12908,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String signedInAs(String email) {
     return '$email के रूप में साइन इन हैं';
   }
+
+  @override
+  String get battle => 'युद्ध';
 }

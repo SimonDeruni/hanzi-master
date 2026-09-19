@@ -12913,4 +12913,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String signedInAs(String email) {
     return 'Đã đăng nhập với tư cách $email';
   }
+
+  @override
+  String get battle => 'Trận chiến';
 }

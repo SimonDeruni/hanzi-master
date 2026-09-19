@@ -107,10 +107,10 @@ class _OnboardingMiniLessonScreenState
   Future<void> _loadBundledStrokes() async {
     try {
       const initialCard = Flashcard(
-        id: 'onboarding_hao',
-        hanzi: '好',
-        pinyin: 'hǎo',
-        definition: 'good',
+        id: 'onboarding_zhan',
+        hanzi: '战',
+        pinyin: 'zhàn',
+        definition: 'battle',
         deckId: 'onboarding',
         hskLevel: 1,
         strokePaths: [],
@@ -132,7 +132,7 @@ class _OnboardingMiniLessonScreenState
     try {
       final raw = await rootBundle.loadString('assets/data/hsk1_strokes.json');
       final data = jsonDecode(raw) as Map<String, dynamic>;
-      final entry = data['好'] as Map<String, dynamic>?;
+      final entry = data['战'] as Map<String, dynamic>?;
       if (mounted && entry != null) {
         final medianPaths = (entry['medians'] as List).map((median) {
           final points = (median as List)
@@ -568,13 +568,13 @@ class _OnboardingMiniLessonScreenState
       case 4:
         return _lessonColumn(
           ink,
-          instruction: l10n.onboardingTraceInstruction('好', 'hǎo', l10n.good),
+          instruction: l10n.onboardingTraceInstruction('战', 'zhàn', l10n.battle),
           child: SizedBox(
             height: 310,
             child: LtrSanctuary(
               child: _strokes.isEmpty
                   ? Center(
-                      child: Text('好',
+                      child: Text('战',
                           style: TextStyle(
                               fontSize: 150, color: ink.withValues(alpha: .18))))
                   : OnboardingPracticeCanvas(
@@ -594,7 +594,7 @@ class _OnboardingMiniLessonScreenState
                         } else {
                           HapticsManager.success();
                           if (!widget.disableExternalServicesForTesting) {
-                            _audioService.playCharacter('好');
+                            _audioService.playCharacter('战');
                           }
                           Future.delayed(const Duration(milliseconds: 600), () {
                             if (mounted) {

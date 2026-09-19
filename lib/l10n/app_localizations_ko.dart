@@ -12552,4 +12552,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String signedInAs(String email) {
     return '$email 계정으로 로그인됨';
   }
+
+  @override
+  String get battle => '전투';
 }

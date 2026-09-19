@@ -12830,4 +12830,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String signedInAs(String email) {
     return 'تم تسجيل الدخول باسم $email';
   }
+
+  @override
+  String get battle => 'معركة';
 }

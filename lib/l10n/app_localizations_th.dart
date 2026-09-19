@@ -12858,4 +12858,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String signedInAs(String email) {
     return 'ลงชื่อเข้าใช้ในชื่อ $email';
   }
+
+  @override
+  String get battle => 'การต่อสู้';
 }

@@ -12929,4 +12929,7 @@ class AppLocalizationsId extends AppLocalizations {
   String signedInAs(String email) {
     return 'Masuk sebagai $email';
   }
+
+  @override
+  String get battle => 'Pertempuran';
 }

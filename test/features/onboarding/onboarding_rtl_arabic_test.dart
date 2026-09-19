@@ -124,9 +124,9 @@ void main() {
       await tester.pumpAndSettle();
 
       // Step 4: Verify the practice canvas / character is guarded by LtrSanctuary
-      final charHaoFinder = find.text('好');
-      expect(charHaoFinder, findsOneWidget);
-      final canvasContext = tester.element(charHaoFinder);
+      final charZhanFinder = find.text('战');
+      expect(charZhanFinder, findsOneWidget);
+      final canvasContext = tester.element(charZhanFinder);
       expect(Directionality.of(canvasContext), TextDirection.ltr);
     });
 

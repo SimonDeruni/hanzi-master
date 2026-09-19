@@ -4063,5 +4063,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "battle": "Battaglia"
 }

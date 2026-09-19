@@ -4367,5 +4367,9 @@
         "type": "String"
       }
     }
+  },
+  "battle": "Battle",
+  "@battle": {
+    "description": "Meaning of the character 战 (zhàn) in onboarding"
   }
 }

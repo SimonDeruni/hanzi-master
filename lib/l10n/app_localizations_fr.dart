@@ -13004,4 +13004,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String signedInAs(String email) {
     return 'Connecté en tant que $email';
   }
+
+  @override
+  String get battle => 'Bataille';
 }

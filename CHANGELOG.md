@@ -884,6 +884,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### [2026-09-19] Onboarding Mini-Lesson Character Parity & Stroke Alignment (Build #537)
+- **Resolved Onboarding Disconnect (战 vs. 好)**: Fixed pedagogical disconnect in `OnboardingMiniLessonScreen` where Steps 1–3 focused on the Sun Tzu passage (`百战不殆。`) and highlighted `战` (`zhàn`, 4th tone) in tone comparison, but Step 4 ("Write") abruptly switched to tracing `好` (`hǎo`, "good").
+- **Aligned Step 4 to 战 (zhàn, "Battle")**: Replaced all references to `好` with `战` across `OnboardingMiniLessonScreen` (instruction, practice canvas, audio playback, and stroke loader).
+- **Bundled Offline Stroke Data for 战**: Downloaded and bundled skeletal paths and median vectors (9 strokes, 9 medians) directly into `assets/data/hsk1_strokes.json`, guaranteeing instantaneous, zero-latency offline loading for the handwriting step on any connection.
+- **14-Language Localization Parity**: Added localized key `battle` across all 14 `.arb` files (`Battle`, `Bataille`, `Schlacht`, `Batalla`, `Battaglia`, `Batalha`, `Битва`, `戦い`, `전투`, `معركة`, `युद्ध`, `Pertempuran`, `การต่อสู้`, `Trận chiến`), regenerated `AppLocalizations`, and updated RTL regression tests.
+- Bumped build to `1.0.0+537`.
+
 ### [2026-09-19] Fix: Blank Page After Reviewer Demo Login (Build #536)
 - Fixed Apple Review Guideline 2.1(a) rejection "blank page after login": after `unlockDeveloperBackdoor()`, the bypass now navigates to `AppStartupFlow` instead of `MainNavigationScreen` directly, allowing all providers (flashcard controller, Hive boxes) to initialize through the normal boot path.
 - Bumped build to `1.0.0+536`.

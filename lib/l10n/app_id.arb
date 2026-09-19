@@ -4045,5 +4045,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "battle": "Pertempuran"
 }

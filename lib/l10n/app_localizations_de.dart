@@ -12990,4 +12990,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String signedInAs(String email) {
     return 'Angemeldet als $email';
   }
+
+  @override
+  String get battle => 'Schlacht';
 }

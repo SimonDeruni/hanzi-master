@@ -1,10 +1,12 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Fix: Blank Page After Reviewer Demo Login — Build #536
+- **Objective:** Onboarding Mini-Lesson Character Parity & Stroke Alignment — Build #537
 - **Status:** 🟢 COMPLETED
 - **Hygiene:** 0 errors, 0 warnings, 0 infos (verified via `dart analyze lib test`).
 - **Locked Files:** None
+
+- [x] **Onboarding Mini-Lesson Character Parity & Stroke Alignment (2026-09-19 14:30):** (1) Resolved pedagogical disconnect in `OnboardingMiniLessonScreen` where Steps 1–3 focused on the Sun Tzu passage (`百战不殆。`) and highlighted `战` (`zhàn`, 4th tone) in tone comparison, but Step 4 ("Write") abruptly switched to tracing `好` (`hǎo`, "good"); (2) Aligned Step 4 writing canvas, instruction label (`l10n.onboardingTraceInstruction('战', 'zhàn', l10n.battle)`), ghost watermark text, and completion audio pronunciation to `战` (`zhàn`); (3) Bundled official HanziWriter stroke paths and median vectors (9 skeletal strokes, 9 medians) directly into `assets/data/hsk1_strokes.json`, ensuring immediate offline handwriting preview on fresh installs without network calls; (4) Added localized `battle` definition key across all 14 `.arb` language files and regenerated `AppLocalizations`; (5) Updated regression test in `onboarding_rtl_arabic_test.dart` to assert `'战'` on Step 4; (6) Verified all 15 onboarding tests pass and `dart analyze lib test` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State). Bumped build to `1.0.0+537`.
 
 - [x] **Fix: Blank Page After Reviewer Demo Login & Build Bump #536 (2026-09-19 10:07):** Apple rejected under Guideline 2.1(a) again — reviewers logged in with demo credentials but saw a blank/stuck page. Root cause: `pushAndRemoveUntil` navigated directly to `MainNavigationScreen`, which watches `flashcardControllerProvider` and renders an infinite loading spinner when Hive has no data (reviewer has no real account). Fix: bypass now navigates to `AppStartupFlow` instead, which re-runs the normal boot flow (`_SubscriptionGate` → `MainNavigationScreen`) with all providers properly initialized. Added `import 'package:hanzi_master/main.dart'` to `auth_screen.dart`. Bumped build to `1.0.0+536`. `dart analyze lib test` → **No issues found!**
 

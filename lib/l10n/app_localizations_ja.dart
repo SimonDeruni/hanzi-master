@@ -12520,4 +12520,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String signedInAs(String email) {
     return '$email としてログイン中';
   }
+
+  @override
+  String get battle => '戦い';
 }

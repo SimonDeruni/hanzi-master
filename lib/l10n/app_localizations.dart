@@ -23684,6 +23684,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Signed in as {email}'**
   String signedInAs(String email);
+
+  /// Meaning of the character 战 (zhàn) in onboarding
+  ///
+  /// In en, this message translates to:
+  /// **'Battle'**
+  String get battle;
 }
 
 class _AppLocalizationsDelegate

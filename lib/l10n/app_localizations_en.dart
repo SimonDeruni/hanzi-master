@@ -12852,4 +12852,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String signedInAs(String email) {
     return 'Signed in as $email';
   }
+
+  @override
+  String get battle => 'Battle';
 }

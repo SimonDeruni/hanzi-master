@@ -4080,5 +4080,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "battle": "Batalha"
 }

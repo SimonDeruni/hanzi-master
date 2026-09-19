@@ -4000,5 +4000,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "battle": "Schlacht"
 }
