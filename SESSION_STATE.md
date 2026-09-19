@@ -1,10 +1,13 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Smart Media Desk Localized Subtitles & UI Parity Architecture — Build #542
+- **Objective:** Build Version Bump & GitLab Synchronization — Build #543
 - **Status:** 🟢 COMPLETED
 - **Hygiene:** 0 errors, 0 warnings, 0 infos (verified via `dart analyze lib test`).
 - **Locked Files:** None
+
+- [x] **Build Version Bump & Remote Synchronization (2026-09-19 15:10):** (1) Bumped build version to `1.0.0+543` in `pubspec.yaml`; (2) Synchronized complete media subtitle localization and Closed Captions UI parity to `gitlab master` and `origin master`; (3) Verified `dart analyze lib test` reports **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
 
 - [x] **Smart Media Desk Localized Subtitles & UI Parity Architecture (2026-09-19 15:05):** (1) Resolved subtitles displaying in English on non-English locales by replacing hardcoded `language: 'English'` in `SmartMediaDeskScreen._translateIncrementally` (`lib/features/media/presentation/screens/smart_media_desk_screen.dart`) with `language: ref.read(translationLanguageProvider)`; (2) Added reactive language switching support in `SmartMediaDeskScreen` using `ref.listen<String>(translationLanguageProvider)` and generational token guarding (`_translationGeneration`), re-translating existing transcripts to the newly chosen language without race conditions; (3) Replaced hardcoded `"[ Translating... ]"` placeholder in `PremiumTranscriptLine` (`lib/features/media/presentation/widgets/premium_transcript_line.dart`) with localized `AppLocalizations.of(context)?.translating` (e.g. `"[ Traduction... ]"` in French); (4) Replaced `showEnglish` with `showTranslation` (*"Afficher la traduction"*) in `PremiumVideoTopBar` (`lib/features/media/presentation/widgets/premium_video_top_bar.dart`) Closed Captions menu; (5) Localized dynamic desk loading states using typed `_MediaLoadingStep` enum and `l10n.fetchingSubtitles`, `l10n.generatingAiBriefing`, `l10n.translatingSubtitles`; (6) Added automated test suite `test/features/media/subtitle_localization_test.dart` (5/5 tests passing); (7) Total Hygiene State: `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)**. Bumped build to `1.0.0+542`.
 
