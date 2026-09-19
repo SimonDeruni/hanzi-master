@@ -287,6 +287,7 @@ class FlashcardModel extends HiveObject {
       hanzi: json['hanzi'] ?? '',
       pinyin: PinyinUtils.convertNumericToMarks(json['pinyin'] ?? ''),
       definition: json['definition'] ?? '',
+      definitionLanguage: json['definitionLanguage'] as String? ?? 'English',
       hskLevel: json['hskLevel'] ?? 1,
       strokePaths: [],
       nextReviewDate: DateTime.now(),

@@ -234,6 +234,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                       child: TranslatedDefinition(
                                         definition: widget.card.definition,
                                         hanzi: widget.card.hanzi,
+                                        definitionLanguage: widget.card.definitionLanguage,
                                         originalStyle:
                                             const TextStyle(fontSize: 18),
                                         textAlign: TextAlign.center,

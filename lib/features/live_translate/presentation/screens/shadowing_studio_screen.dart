@@ -1972,9 +1972,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           */
 
           const SizedBox(height: 24),
-          Text(
-            _currentPhrase!['english']!,
-            style: TextStyle(
+          TranslatedDefinition(
+            definition: _currentPhrase!['english']!,
+            hanzi: _currentPhrase!['hanzi'],
+            definitionLanguage: 'English',
+            originalStyle: TextStyle(
               fontSize: widget.isCompact ? 16 : 20,
               color: isDark ? Colors.white54 : Colors.black54,
               fontStyle: FontStyle.italic,

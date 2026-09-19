@@ -132,6 +132,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   TranslatedDefinition(
                                     definition: widget.card.definition,
                                     hanzi: widget.card.hanzi,
+                                    definitionLanguage: widget.card.definitionLanguage,
                                     originalStyle:
                                         const TextStyle(fontSize: 20),
                                     textAlign: TextAlign.center,

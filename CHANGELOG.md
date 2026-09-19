@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-19] Localized Translations in Shadowing Studio & All Study Modes (Build #545)
+- **Shadowing Studio Sentence Translation Localization:**
+  - Replaced raw `Text(_currentPhrase!['english']!)` with `TranslatedDefinition` widget at the phrase display site in `shadowing_studio_screen.dart`, passing `definitionLanguage: 'English'` and `hanzi:` for SQLite-accelerated translation lookup.
+  - Shadowing Studio AI-generated phrases are now automatically translated into the user's configured app language (French, German, Spanish, etc.) via `LocalTranslationService`, the same pipeline used elsewhere in the app.
+- **HSK Deck Download — All Study Modes Now Localize Definitions:**
+  - Fixed `FlashcardModel.fromJson()` to set `definitionLanguage: json['definitionLanguage'] as String? ?? 'English'`, marking all HSK-bundled cards as English-sourced so `TranslatedDefinition` knows to translate them.
+  - Propagated `definitionLanguage:` parameter to `TranslatedDefinition` in all six missing call sites: `deck_detail_screen.dart` (added `hanzi:` + `definitionLanguage:`), `reading_mode.dart`, `listening_mode.dart`, `speaking_mode.dart`, and both usages in `recall_mode.dart`.
+  - HSK deck cards now display translated definitions (e.g. French, German) in the Deck browser, Reading, Listening, Speaking, and Recall study modes.
+- **Verification:**
+  - `dart analyze lib test` → **No issues found! (0 errors, 0 warnings, 0 infos)**. Bumped build to `1.0.0+545`.
+
 ### [2026-09-19] Avatar-Voice Gender Parity, Shadowing Studio Speed & Immersive Full-Screen Architecture (Build #544)
 - **Echo Hall Avatar and Voice Gender Parity:**
   - Resolved gender mismatch across AI personas, specifically pairing male doctor avatar `doctor_avatar.png` (Dr. Zhang in `doctor_1`) with male Azure neural voice `Charon` (`zh-CN-YunyangNeural`) instead of female voice `Aoede`.

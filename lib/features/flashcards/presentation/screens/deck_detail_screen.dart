@@ -881,6 +881,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                   const SizedBox(height: 6),
                   TranslatedDefinition(
                     definition: card.definition,
+                    hanzi: card.hanzi,
+                    definitionLanguage: card.definitionLanguage,
                     originalStyle: TextStyle(
                       fontSize: 16,
                       color: isDark ? Colors.white : Colors.black87,

@@ -359,6 +359,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
               child: TranslatedDefinition(
                 definition: widget.card.definition,
                 hanzi: widget.card.hanzi,
+                definitionLanguage: widget.card.definitionLanguage,
                 originalStyle: TextStyle(
                   fontSize: 22,
                   color: isDark ? Colors.white70 : Colors.black54,
@@ -471,6 +472,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 TranslatedDefinition(
                   definition: widget.card.definition,
                   hanzi: widget.card.hanzi,
+                  definitionLanguage: widget.card.definitionLanguage,
                   originalStyle: TextStyle(
                     fontSize: 16,
                     color: isDark ? Colors.white38 : Colors.black38,
