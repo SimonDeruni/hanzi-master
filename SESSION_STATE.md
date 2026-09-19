@@ -1,10 +1,12 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Localized Translations in Shadowing Studio & All Study Modes (Build #545)
+- **Objective:** Fix QuickLook Localization — Cards Always Show Correct Language (Build #547)
 - **Status:** 🟢 CLEAN
 - **Hygiene:** 0 errors, 0 warnings, 0 infos.
 - **Locked Files:** None
+
+- [x] **Fix: QuickLook Localization — Cards Always Show Correct Language (2026-09-19 16:44):** Two root-cause bugs fixed in `quickLookProvider` (`character_detail_provider.dart`): (1) The provider short-circuited and returned the locally-saved Hive card when `dictionaryWordId`, `definitionLanguage`, and `sourceDefinitionHash` were all set, regardless of the user's active language — causing non-English users to always see stale English definitions; fixed by scoping the early-return to English users only; (2) The enrichment `copyWith` never copied `definition` itself, so English text got tagged as the target language (e.g. `definitionLanguage: 'French'`), making `TranslatedDefinition._sameLanguage()` return `true` and silently skip translation entirely; fixed by adding `pinyin` and `definition` to `copyWith`. Total Hygiene State: `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)**. Bumped build to `1.0.0+547`.
 
 - [x] **Localized Translations in Shadowing Studio & All Study Modes (2026-09-19 16:30):** (1) Fixed `FlashcardModel.fromJson()` to set `definitionLanguage: json['definitionLanguage'] as String? ?? 'English'`, so all HSK-bundled cards are correctly marked as English-source, enabling `TranslatedDefinition` to invoke `LocalTranslationService` for non-English users; (2) Fixed `deck_detail_screen.dart` `TranslatedDefinition` to pass `hanzi: card.hanzi` and `definitionLanguage: card.definitionLanguage` (previously missing both), unblocking the SQLite dictionary fast-path; (3) Added `definitionLanguage: widget.card.definitionLanguage` to `TranslatedDefinition` in `reading_mode.dart`, `listening_mode.dart`, `speaking_mode.dart`, and both usages in `recall_mode.dart`; (4) Replaced raw `Text(_currentPhrase!['english']!)` in `shadowing_studio_screen.dart` with `TranslatedDefinition(definition:..., hanzi:..., definitionLanguage: 'English', ...)`, localizing the AI-generated phrase translation into the user's selected language; (5) Total Hygiene State: `dart analyze lib test` confirmed **No issues found! (0 errors, 0 warnings, 0 infos)**. Bumped build to `1.0.0+545`.
 

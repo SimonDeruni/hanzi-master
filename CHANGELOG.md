@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-19] Fix: QuickLook Localization — Cards Always Show Correct Language (Build #547)
+- **Root Cause — Bug #1 (`quickLookProvider` early-return short-circuit):**
+  - `quickLookProvider` was returning the locally-saved card immediately when it had `dictionaryWordId`, `definitionLanguage`, and `sourceDefinitionHash` all set — regardless of the user's active language. For non-English users, this meant the QuickLook sheet (and the deck card list) always showed the stale English definition stored in Hive, even though the global dictionary had a localized version ready.
+  - **Fix:** The early-return now only fires for English users. Non-English users always hit `GlobalDictionaryRepository.getExact(hanzi, targetLanguage:)` to fetch the correctly-localized definition.
+- **Root Cause — Bug #2 (`copyWith` missing `definition`):**
+  - Even when `quickLookProvider` did fall through to the dictionary, the enrichment `copyWith` only copied metadata fields (`definitionLanguage`, `dictionaryWordId`, etc.) but **not `definition` itself**. This produced the worst failure mode: English text (`"to speak"`) tagged as `definitionLanguage: 'French'`, causing `TranslatedDefinition._sameLanguage()` to return `true` and silently skip translation — showing raw English.
+  - **Fix:** `copyWith` now includes `pinyin: dictionaryCard.pinyin` and `definition: dictionaryCard.definition` so the displayed text and the language tag are always in sync.
+- **Affected file:** `lib/features/flashcards/presentation/providers/character_detail_provider.dart` (`quickLookProvider`).
+- **Verification:** `dart analyze lib test` → **No issues found! (0 errors, 0 warnings, 0 infos)**. Bumped build to `1.0.0+547`.
+
 ### [2026-09-19] Localized Translations in Shadowing Studio & All Study Modes (Build #545)
 - **Shadowing Studio Sentence Translation Localization:**
   - Replaced raw `Text(_currentPhrase!['english']!)` with `TranslatedDefinition` widget at the phrase display site in `shadowing_studio_screen.dart`, passing `definitionLanguage: 'English'` and `hanzi:` for SQLite-accelerated translation lookup.

@@ -40,24 +40,36 @@ final quickLookProvider =
     FutureProvider.family<Flashcard?, String>((ref, hanzi) async {
   if (hanzi.trim().isEmpty) return null;
 
-  // Watch local library so it updates automatically when added
+  // Watch local library so it updates automatically when added.
   final libraryCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
+  final targetLanguage = ref.watch(translationLanguageProvider);
+  final isEnglishTarget = targetLanguage.toLowerCase() == 'english';
+
   Flashcard? localMatch;
   try {
     localMatch = libraryCards.firstWhere((c) => c.hanzi == hanzi);
-    if (localMatch.dictionaryWordId != null &&
+    // For English users the saved card is always sufficient — skip the DB
+    // round-trip. For every other language we must hit the dictionary to
+    // obtain a correctly-localized definition; never short-circuit here
+    // because the saved card may have a stale English definition even when
+    // definitionLanguage/sourceDefinitionHash look complete.
+    if (isEnglishTarget &&
+        localMatch.dictionaryWordId != null &&
         localMatch.definitionLanguage != null &&
         localMatch.sourceDefinitionHash != null) {
       return localMatch;
     }
   } catch (_) {
-    // Not found locally
+    // Not found locally.
   }
 
-  // Fall back to the global dictionary. Legacy saved cards did not persist
-  // dictionary provenance, so enrich them without replacing study progress or
-  // the user's saved definition.
-  final targetLanguage = ref.watch(translationLanguageProvider);
+  // Consult the global dictionary. For non-English users this is the primary
+  // path: the repository returns the definition column for [targetLanguage]
+  // and sets definitionLanguage accordingly. We always copy definition +
+  // pinyin so TranslatedDefinition sees text that honestly matches the
+  // reported definitionLanguage (previously only metadata was copied, causing
+  // English text to be tagged as the target language and silently skipping
+  // translation).
   final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
   final dictionaryCard =
       await dictionaryRepo.getExact(hanzi, targetLanguage: targetLanguage);
@@ -66,6 +78,8 @@ final quickLookProvider =
   }
 
   return localMatch.copyWith(
+    pinyin: dictionaryCard.pinyin,
+    definition: dictionaryCard.definition,
     definitionLanguage: dictionaryCard.definitionLanguage,
     dictionaryWordId: dictionaryCard.dictionaryWordId,
     englishDefinition: dictionaryCard.englishDefinition,
