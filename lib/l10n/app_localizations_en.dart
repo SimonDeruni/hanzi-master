@@ -12855,4 +12855,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get battle => 'Battle';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return 'Added $addedCount new words, updated $updatedCount existing words to $deckName';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return 'Added $count words to $deckName';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return 'Updated $count existing words in $deckName';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return 'Added $hanzi to $deckName';
+  }
 }

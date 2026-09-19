@@ -2250,14 +2250,20 @@ class _ExtractedWordsReviewSheetState
     }
 
     if (mounted) {
+      final l10n = AppLocalizations.of(context);
       String message;
       if (updatedCount > 0 && addedCount > 0) {
-        message =
-            'Added $addedCount new words, updated $updatedCount existing words in $deckName';
+        message = l10n != null
+            ? l10n.addedWordsAndUpdatedWords(addedCount, updatedCount, deckName)
+            : 'Added $addedCount new words, updated $updatedCount existing words to $deckName';
       } else if (updatedCount > 0) {
-        message = 'Updated $updatedCount existing words in $deckName';
+        message = l10n != null
+            ? l10n.updatedWordsInDeck(updatedCount, deckName)
+            : 'Updated $updatedCount existing words in $deckName';
       } else {
-        message = 'Added $addedCount words to $deckName';
+        message = l10n != null
+            ? l10n.addedWordsToDeck(addedCount, deckName)
+            : 'Added $addedCount words to $deckName';
       }
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(message), backgroundColor: Colors.green));

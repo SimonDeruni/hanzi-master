@@ -23690,6 +23690,31 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Battle'**
   String get battle;
+
+  /// Notification when words are added and updated in a deck
+  ///
+  /// In en, this message translates to:
+  /// **'Added {addedCount} new words, updated {updatedCount} existing words to {deckName}'**
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName);
+
+  /// Notification when words are added to a deck
+  ///
+  /// In en, this message translates to:
+  /// **'Added {count} words to {deckName}'**
+  String addedWordsToDeck(int count, String deckName);
+
+  /// Notification when words are updated in a deck
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {count} existing words in {deckName}'**
+  String updatedWordsInDeck(int count, String deckName);
+
+  /// Notification when a single card is added to a deck
+  ///
+  /// In en, this message translates to:
+  /// **'Added {hanzi} to {deckName}'**
+  String addedCardToDeck(String hanzi, String deckName);
 }
 
 class _AppLocalizationsDelegate

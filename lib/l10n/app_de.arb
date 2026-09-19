@@ -4001,5 +4001,9 @@
       }
     }
   },
-  "battle": "Schlacht"
+  "battle": "Schlacht",
+  "addedWordsAndUpdatedWords": "{addedCount} neue Wörter hinzugefügt, {updatedCount} bestehende Wörter in „{deckName}“ aktualisiert",
+  "addedWordsToDeck": "{count} Wörter zu „{deckName}“ hinzugefügt",
+  "updatedWordsInDeck": "{count} bestehende Wörter in „{deckName}“ aktualisiert",
+  "addedCardToDeck": "„{hanzi}“ wurde zu „{deckName}“ hinzugefügt"
 }

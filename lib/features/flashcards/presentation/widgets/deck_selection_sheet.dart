@@ -226,6 +226,7 @@ class DeckSelectionSheet extends ConsumerWidget {
 
   void _addCardsToDeck(BuildContext context, WidgetRef ref, String deckId,
       String deckName) async {
+    final l10n = AppLocalizations.of(context);
     final controller = ref.read(flashcardControllerProvider.notifier);
     final messenger = ScaffoldMessenger.of(context);
     final navigator = Navigator.of(context);
@@ -262,11 +263,18 @@ class DeckSelectionSheet extends ConsumerWidget {
       }
 
       String message;
-      if (skippedCount > 0) {
-        message =
-            'Added $addedCount new words, updated $skippedCount existing words to $deckName';
+      if (skippedCount > 0 && addedCount > 0) {
+        message = l10n != null
+            ? l10n.addedWordsAndUpdatedWords(addedCount, skippedCount, deckName)
+            : 'Added $addedCount new words, updated $skippedCount existing words to $deckName';
+      } else if (skippedCount > 0) {
+        message = l10n != null
+            ? l10n.updatedWordsInDeck(skippedCount, deckName)
+            : 'Updated $skippedCount existing words in $deckName';
       } else {
-        message = 'Added $addedCount words to $deckName';
+        message = l10n != null
+            ? l10n.addedWordsToDeck(addedCount, deckName)
+            : 'Added $addedCount words to $deckName';
       }
       messenger.showSnackBar(
         SnackBar(
@@ -286,9 +294,12 @@ class DeckSelectionSheet extends ConsumerWidget {
         deckId: deckId,
       );
       await controller.addFlashcard(newCard);
+      final singleMessage = l10n != null
+          ? l10n.addedCardToDeck(card!.hanzi, deckName)
+          : 'Added ${card!.hanzi} to $deckName';
       messenger.showSnackBar(
         SnackBar(
-          content: Text("Added ${card!.hanzi} to $deckName"),
+          content: Text(singleMessage),
           backgroundColor: Colors.green,
         ),
       );

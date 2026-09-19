@@ -116,10 +116,14 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                                       .read(
                                           flashcardControllerProvider.notifier)
                                       .updateFlashcard(updatedCard);
+                                  final l10n = AppLocalizations.of(context);
+                                  final msg = l10n != null
+                                      ? l10n.addedCardToDeck(
+                                          card.hanzi, widget.deckName)
+                                      : 'Added ${card.hanzi} to ${widget.deckName}';
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text(
-                                          '${card.hanzi} ${AppLocalizations.of(context)?.addedToDeck ?? "added to"} ${widget.deckName}'),
+                                      content: Text(msg),
                                       duration: const Duration(seconds: 1),
                                       backgroundColor: Colors.green,
                                     ),

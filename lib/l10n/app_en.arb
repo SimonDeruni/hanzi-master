@@ -4371,5 +4371,56 @@
   "battle": "Battle",
   "@battle": {
     "description": "Meaning of the character 战 (zhàn) in onboarding"
+  },
+  "addedWordsAndUpdatedWords": "Added {addedCount} new words, updated {updatedCount} existing words to {deckName}",
+  "@addedWordsAndUpdatedWords": {
+    "description": "Notification when words are added and updated in a deck",
+    "placeholders": {
+      "addedCount": {
+        "type": "int"
+      },
+      "updatedCount": {
+        "type": "int"
+      },
+      "deckName": {
+        "type": "String"
+      }
+    }
+  },
+  "addedWordsToDeck": "Added {count} words to {deckName}",
+  "@addedWordsToDeck": {
+    "description": "Notification when words are added to a deck",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "deckName": {
+        "type": "String"
+      }
+    }
+  },
+  "updatedWordsInDeck": "Updated {count} existing words in {deckName}",
+  "@updatedWordsInDeck": {
+    "description": "Notification when words are updated in a deck",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "deckName": {
+        "type": "String"
+      }
+    }
+  },
+  "addedCardToDeck": "Added {hanzi} to {deckName}",
+  "@addedCardToDeck": {
+    "description": "Notification when a single card is added to a deck",
+    "placeholders": {
+      "hanzi": {
+        "type": "String"
+      },
+      "deckName": {
+        "type": "String"
+      }
+    }
   }
 }

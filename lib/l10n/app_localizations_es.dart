@@ -12984,4 +12984,25 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get battle => 'Batalla';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return 'Se añadieron $addedCount palabras nuevas y se actualizaron $updatedCount existentes en «$deckName»';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return 'Se añadieron $count palabras a «$deckName»';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return 'Se actualizaron $count palabras existentes en «$deckName»';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return '«$hanzi» añadido a «$deckName»';
+  }
 }

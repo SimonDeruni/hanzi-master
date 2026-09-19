@@ -4046,5 +4046,9 @@
       }
     }
   },
-  "battle": "Pertempuran"
+  "battle": "Pertempuran",
+  "addedWordsAndUpdatedWords": "Menambahkan {addedCount} kata baru, memperbarui {updatedCount} kata yang ada di «{deckName}»",
+  "addedWordsToDeck": "Menambahkan {count} kata ke «{deckName}»",
+  "updatedWordsInDeck": "Memperbarui {count} kata yang ada di «{deckName}»",
+  "addedCardToDeck": "Menambahkan «{hanzi}» ke «{deckName}»"
 }

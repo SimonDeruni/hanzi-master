@@ -12932,4 +12932,25 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get battle => 'Pertempuran';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return 'Menambahkan $addedCount kata baru, memperbarui $updatedCount kata yang ada di «$deckName»';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return 'Menambahkan $count kata ke «$deckName»';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return 'Memperbarui $count kata yang ada di «$deckName»';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return 'Menambahkan «$hanzi» ke «$deckName»';
+  }
 }

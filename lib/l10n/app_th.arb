@@ -4135,5 +4135,9 @@
       }
     }
   },
-  "battle": "การต่อสู้"
+  "battle": "การต่อสู้",
+  "addedWordsAndUpdatedWords": "เพิ่มคำศัพท์ใหม่ {addedCount} คำ และอัปเดตคำที่มีอยู่ {updatedCount} คำใน {deckName}",
+  "addedWordsToDeck": "เพิ่มคำศัพท์ {count} คำลงใน {deckName}",
+  "updatedWordsInDeck": "อัปเดตคำศัพท์ที่มีอยู่ {count} คำใน {deckName}",
+  "addedCardToDeck": "เพิ่ม {hanzi} ลงใน {deckName} แล้ว"
 }

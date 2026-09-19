@@ -4076,5 +4076,9 @@
       }
     }
   },
-  "battle": "युद्ध"
+  "battle": "युद्ध",
+  "addedWordsAndUpdatedWords": "{addedCount} नए शब्द जोड़े गए, «{deckName}» में {updatedCount} मौजूदा शब्द अपडेट किए गए",
+  "addedWordsToDeck": "«{deckName}» में {count} शब्द जोड़े गए",
+  "updatedWordsInDeck": "«{deckName}» में {count} मौजूदा शब्द अपडेट किए गए",
+  "addedCardToDeck": "{hanzi} को {deckName} में जोड़ा गया"
 }

@@ -4052,5 +4052,9 @@
       }
     }
   },
-  "battle": "Bataille"
+  "battle": "Bataille",
+  "addedWordsAndUpdatedWords": "Ajout de {addedCount} nouveaux mots, mise à jour de {updatedCount} mots existants dans {deckName}",
+  "addedWordsToDeck": "Ajout de {count} mots à {deckName}",
+  "updatedWordsInDeck": "Mise à jour de {count} mots existants dans {deckName}",
+  "addedCardToDeck": "{hanzi} ajouté à {deckName}"
 }

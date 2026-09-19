@@ -12961,4 +12961,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get battle => 'Битва';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return 'Добавлено $addedCount новых слов, обновлено $updatedCount существующих в «$deckName»';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return 'В «$deckName» добавлено слов: $count';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return 'В «$deckName» обновлено существующих слов: $count';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return 'Иероглиф «$hanzi» добавлен в колоду «$deckName»';
+  }
 }

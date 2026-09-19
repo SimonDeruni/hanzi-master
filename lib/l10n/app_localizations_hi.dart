@@ -12911,4 +12911,25 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get battle => 'युद्ध';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return '$addedCount नए शब्द जोड़े गए, «$deckName» में $updatedCount मौजूदा शब्द अपडेट किए गए';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return '«$deckName» में $count शब्द जोड़े गए';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return '«$deckName» में $count मौजूदा शब्द अपडेट किए गए';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return '$hanzi को $deckName में जोड़ा गया';
+  }
 }

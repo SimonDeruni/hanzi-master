@@ -4143,5 +4143,9 @@
       }
     }
   },
-  "battle": "معركة"
+  "battle": "معركة",
+  "addedWordsAndUpdatedWords": "تمت إضافة {addedCount} من الكلمات الجديدة وتحديث {updatedCount} من الكلمات الموجودة في {deckName}",
+  "addedWordsToDeck": "تمت إضافة {count} من الكلمات إلى {deckName}",
+  "updatedWordsInDeck": "تم تحديث {count} من الكلمات الموجودة في {deckName}",
+  "addedCardToDeck": "تمت إضافة {hanzi} إلى {deckName}"
 }

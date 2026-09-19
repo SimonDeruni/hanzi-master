@@ -4065,5 +4065,9 @@
       }
     }
   },
-  "battle": "Битва"
+  "battle": "Битва",
+  "addedWordsAndUpdatedWords": "Добавлено {addedCount} новых слов, обновлено {updatedCount} существующих в «{deckName}»",
+  "addedWordsToDeck": "В «{deckName}» добавлено слов: {count}",
+  "updatedWordsInDeck": "В «{deckName}» обновлено существующих слов: {count}",
+  "addedCardToDeck": "Иероглиф «{hanzi}» добавлен в колоду «{deckName}»"
 }

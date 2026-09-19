@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-19] Word Addition & Update Universal 14-Language Localization (Build #540)
+- **Universal Multilingual Word Addition Snackbar:** Resolved hardcoded English snackbar notifications (*"Added X new words, updated Y existing words in/to Z"*, *"Added X words to Z"*, *"Updated Y existing words in Z"*, and single card *"Added [hanzi] to [deckName]"*) across `WebBrowserScreen` (`lib/features/media/presentation/screens/web_browser_screen.dart`), `DeckSelectionSheet` (`lib/features/flashcards/presentation/widgets/deck_selection_sheet.dart`), and `DeckCardPickerScreen` (`lib/features/flashcards/presentation/screens/deck_card_picker_screen.dart`).
+- **New Localization Keys Across All 14 ARBs:**
+  - `addedWordsAndUpdatedWords(int addedCount, int updatedCount, String deckName)`:
+    - EN: *"Added {addedCount} new words, updated {updatedCount} existing words to {deckName}"*
+    - FR: *"Ajout de {addedCount} nouveaux mots, mise à jour de {updatedCount} mots existants dans {deckName}"*
+    - DE: *"{addedCount} neue Wörter hinzugefügt, {updatedCount} bestehende Wörter in „{deckName}“ aktualisiert"*
+    - ES: *"Se añadieron {addedCount} palabras nuevas y se actualizaron {updatedCount} existentes en «{deckName}»"*
+    - IT: *"Aggiunte {addedCount} nuove parole, aggiornate {updatedCount} parole esistenti in «{deckName}»"*
+    - PT: *"{addedCount} novas palavras adicionadas, {updatedCount} existentes atualizadas em «{deckName}»"*
+    - RU: *"Добавлено {addedCount} новых слов, обновлено {updatedCount} существующих в «{deckName}»"*
+    - JA: *"{addedCount}件の新しい単語を追加し、「{deckName}」の既存の{updatedCount}件の単語を更新しました"*
+    - KO: *"새 단어 {addedCount}개 추가, 「{deckName}」의 기존 단어 {updatedCount}개 업데이트됨"*
+    - VI: *"Đã thêm {addedCount} từ mới, cập nhật {updatedCount} từ hiện có vào «{deckName}»"*
+    - ID: *"Menambahkan {addedCount} kata baru, memperbarui {updatedCount} kata yang ada di «{deckName}»"*
+    - HI: *"{addedCount} नए शब्द जोड़े गए, «{deckName}» में {updatedCount} मौजूदा शब्द अपडेट किए गए"*
+    - TH: *"เพิ่มคำศัพท์ใหม่ {addedCount} คำ และอัปเดตคำที่มีอยู่ {updatedCount} คำใน {deckName}"*
+    - AR: *"تمت إضافة {addedCount} من الكلمات الجديدة وتحديث {updatedCount} من الكلمات الموجودة في {deckName}"*
+  - `addedWordsToDeck(int count, String deckName)`: localized cleanly into all 14 languages.
+  - `updatedWordsInDeck(int count, String deckName)`: localized cleanly into all 14 languages.
+  - `addedCardToDeck(String hanzi, String deckName)`: localized cleanly into all 14 languages.
+- **Closure Tear-Off Bug Fix:** In `DeckCardPickerScreen`, replaced uninvoked method tear-off reference in string interpolation (`${l10n.addedToDeck}`) with `l10n.addedCardToDeck(card.hanzi, widget.deckName)`.
+- **Automated Verification:** Added unit test suite `test/features/media/word_addition_localization_test.dart` asserting proper placeholder interpolation and French/English parity across all 14 locales (5/5 tests passing). Verified zero analyzer errors (`dart analyze lib test`: 0 errors, 0 warnings, 0 infos) (Total Hygiene State). Bumped build to `1.0.0+540`.
+
 ### [2026-09-19] Echo Hall Live Call Microphone Permission Negotiation & Recovery Architecture (Build #539)
 - **Active Native Permission Prompt:** In `LiveCallScreen` (`lib/features/echo_hall/presentation/screens/live_call_screen.dart`), replaced passive `hasPermission()` check with proactive permission negotiation using `Permission.microphone.request()`. For users logging in via the Apple Reviewer demo credentials (`apple.review@sinospark.app`) who bypass onboarding, entering Live Call now actively triggers the native iOS microphone authorization dialog (`[Don't Allow] [OK]`).
 - **Apple Guideline 5.1.1(iv) Recovery UI:** If microphone permission is denied or restricted, `LiveCallScreen` presents clear, actionable recovery guidance:

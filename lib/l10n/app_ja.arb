@@ -4115,5 +4115,9 @@
       }
     }
   },
-  "battle": "戦い"
+  "battle": "戦い",
+  "addedWordsAndUpdatedWords": "{addedCount}件の新しい単語を追加し、「{deckName}」の既存の{updatedCount}件の単語を更新しました",
+  "addedWordsToDeck": "「{deckName}」に{count}語を追加しました",
+  "updatedWordsInDeck": "「{deckName}」の既存の{count}語を更新しました",
+  "addedCardToDeck": "「{hanzi}」を「{deckName}」に追加しました"
 }

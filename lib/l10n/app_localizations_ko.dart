@@ -12555,4 +12555,25 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get battle => '전투';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return '새 단어 $addedCount개 추가, 「$deckName」의 기존 단어 $updatedCount개 업데이트됨';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return '「$deckName」에 단어 $count개가 추가되었습니다';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return '「$deckName」의 기존 단어 $count개가 업데이트되었습니다';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return '「$hanzi」을(를) 「$deckName」에 추가했습니다';
+  }
 }

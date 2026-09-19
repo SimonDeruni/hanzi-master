@@ -4051,5 +4051,9 @@
       }
     }
   },
-  "battle": "Trận chiến"
+  "battle": "Trận chiến",
+  "addedWordsAndUpdatedWords": "Đã thêm {addedCount} từ mới, cập nhật {updatedCount} từ hiện có vào «{deckName}»",
+  "addedWordsToDeck": "Đã thêm {count} từ vào «{deckName}»",
+  "updatedWordsInDeck": "Đã cập nhật {count} từ hiện có trong «{deckName}»",
+  "addedCardToDeck": "Đã thêm «{hanzi}» vào «{deckName}»"
 }

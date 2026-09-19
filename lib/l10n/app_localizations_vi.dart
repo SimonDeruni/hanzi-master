@@ -12916,4 +12916,25 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get battle => 'Trận chiến';
+
+  @override
+  String addedWordsAndUpdatedWords(
+      int addedCount, int updatedCount, String deckName) {
+    return 'Đã thêm $addedCount từ mới, cập nhật $updatedCount từ hiện có vào «$deckName»';
+  }
+
+  @override
+  String addedWordsToDeck(int count, String deckName) {
+    return 'Đã thêm $count từ vào «$deckName»';
+  }
+
+  @override
+  String updatedWordsInDeck(int count, String deckName) {
+    return 'Đã cập nhật $count từ hiện có trong «$deckName»';
+  }
+
+  @override
+  String addedCardToDeck(String hanzi, String deckName) {
+    return 'Đã thêm «$hanzi» vào «$deckName»';
+  }
 }
