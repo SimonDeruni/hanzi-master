@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../../domain/models/video_transcript.dart';
 
@@ -276,7 +277,9 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                             if (widget.showEnglish)
                               Expanded(
                                 child: Text(
-                                  widget.line.translation ?? "[ Translating... ]",
+                                  widget.line.translation ??
+                                      AppLocalizations.of(context)?.translating ??
+                                      "[ Translating... ]",
                                   style: const TextStyle(
                                     fontSize: 14, 
                                     fontStyle: FontStyle.italic,

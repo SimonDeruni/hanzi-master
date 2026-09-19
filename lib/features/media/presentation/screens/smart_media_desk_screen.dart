@@ -17,6 +17,13 @@ import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+
+enum _MediaLoadingStep {
+  fetchingSubtitles,
+  generatingBriefing,
+  translatingSubtitles,
+}
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   final YoutubeVideo video;
@@ -179,9 +186,21 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   MediaBriefing? _briefing;
 
   // Loading step tracking for dynamic status text
-  String _loadingStep = 'Fetching subtitles...';
+  _MediaLoadingStep _loadingStep = _MediaLoadingStep.fetchingSubtitles;
+  int _translationGeneration = 0;
   bool _briefingReady = false;
   bool _memesReady = false;
+
+  String _getLoadingStepText(AppLocalizations l10n) {
+    switch (_loadingStep) {
+      case _MediaLoadingStep.fetchingSubtitles:
+        return l10n.fetchingSubtitles;
+      case _MediaLoadingStep.generatingBriefing:
+        return l10n.generatingAiBriefing;
+      case _MediaLoadingStep.translatingSubtitles:
+        return l10n.translatingSubtitles;
+    }
+  }
 
   int _currentIndex = -1;
   Duration _currentPosition = Duration.zero;
@@ -233,7 +252,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   Future<void> _loadData() async {
     try {
       final repository = ref.read(youtubeRepositoryProvider);
-      if (mounted) setState(() => _loadingStep = 'Fetching subtitles...');
+      if (mounted) setState(() => _loadingStep = _MediaLoadingStep.fetchingSubtitles);
       var transcript = await repository.getTranscript(widget.video.id);
       if (transcript != null) {
         final cleanedLines = YoutubeRepository.deduplicateAndMergeLines(transcript.lines);
@@ -247,7 +266,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
             _lineKeys.addAll(
                 List.generate(transcript!.lines.length, (_) => GlobalKey()));
             _isLoading = false;
-            _loadingStep = 'Generating AI briefing...';
+            _loadingStep = _MediaLoadingStep.generatingBriefing;
           });
         }
         final gemini = ref.read(geminiServiceProvider);
@@ -326,9 +345,9 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   void _updateLoadingStep() {
     if (_briefingReady && _memesReady) {
-      _loadingStep = 'Translating subtitles...';
+      _loadingStep = _MediaLoadingStep.translatingSubtitles;
     } else if (_briefingReady || _memesReady) {
-      _loadingStep = 'Generating AI briefing...';
+      _loadingStep = _MediaLoadingStep.generatingBriefing;
     }
   }
 
@@ -415,24 +434,25 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   Future<void> _translateIncrementally(
       VideoTranscript transcript, GeminiService gemini) async {
+    final currentGen = ++_translationGeneration;
+    final targetLang = ref.read(translationLanguageProvider);
     const chunkSize = 20;
     final workingLines = List<TranscriptLine>.from(transcript.lines);
     for (int start = 0; start < workingLines.length; start += chunkSize) {
-      if (!mounted) return;
+      if (!mounted || currentGen != _translationGeneration) return;
       final end = (start + chunkSize).clamp(0, workingLines.length);
       try {
         final translated = await gemini.translateChunk(
             workingLines.sublist(start, end),
-            language: 'English');
+            language: targetLang);
+        if (!mounted || currentGen != _translationGeneration) return;
         for (int i = 0; i < translated.length; i++) {
           workingLines[start + i] = translated[i];
         }
-        if (mounted) {
-          setState(() {
-            _transcript = VideoTranscript(
-                videoId: transcript.videoId, lines: List.from(workingLines));
-          });
-        }
+        setState(() {
+          _transcript = VideoTranscript(
+              videoId: transcript.videoId, lines: List.from(workingLines));
+        });
       } catch (e) {
         debugPrint('Chunk translate error ($start-$end): $e');
       }
@@ -623,7 +643,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  _loadingStep,
+                  _getLoadingStepText(AppLocalizations.of(context)!),
                   style: const TextStyle(
                     color: Colors.black54,
                     fontWeight: FontWeight.w600,
@@ -735,6 +755,13 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<String>(translationLanguageProvider, (previous, next) {
+      if (previous != null && previous != next && _transcript != null) {
+        final gemini = ref.read(geminiServiceProvider);
+        _translateIncrementally(_transcript!, gemini);
+      }
+    });
+
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor:
