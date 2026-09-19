@@ -22,6 +22,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
@@ -76,6 +77,8 @@ class _OnboardingMiniLessonScreenState
   StreamSubscription<Duration>? _durationSubscription;
   StreamSubscription<void>? _completionSubscription;
   StreamSubscription<String>? _playbackErrorSubscription;
+  StreamSubscription<List<Map<String, dynamic>>>? _boundariesSubscription;
+  List<SpokenCharTiming> _currentTimings = const [];
   String? _speakingText;
   int? _speakingCharacterIndex;
   Duration _playbackDuration = Duration.zero;
@@ -92,6 +95,8 @@ class _OnboardingMiniLessonScreenState
     _durationSubscription = _audioService.onDurationChanged.listen((duration) {
       _playbackDuration = duration;
     });
+    _boundariesSubscription =
+        _audioService.onBoundariesLoaded.listen(_handleBoundariesLoaded);
     _completionSubscription =
         _audioService.onPlayerComplete.listen((_) => _clearSpeakingCharacter());
     _playbackErrorSubscription =
@@ -163,6 +168,7 @@ class _OnboardingMiniLessonScreenState
       _message = null;
       _speakingText = text;
       _speakingCharacterIndex = 0;
+      _currentTimings = const [];
       _playbackDuration = Duration.zero;
     });
     try {
@@ -173,14 +179,25 @@ class _OnboardingMiniLessonScreenState
           speechRate: _onboardingSpeechRate,
         );
         if (!started) throw Exception('Playback did not start');
+
+        final existingBoundaries = _audioService.currentBoundaries;
+        if (existingBoundaries.isNotEmpty) {
+          final timings = buildSpokenCharTimings(
+            text: text,
+            boundaries: existingBoundaries,
+          );
+          if (timings.isNotEmpty && mounted) {
+            setState(() => _currentTimings = timings);
+          }
+        }
       }
     } catch (_) {
       if (mounted) {
         setState(() {
           _speakingText = null;
           _speakingCharacterIndex = null;
-          _message = AppLocalizations.of(context)!
-              .audioIsUnavailableYouCan;
+          _currentTimings = const [];
+          _message = AppLocalizations.of(context)!.audioIsUnavailableYouCan;
         });
       }
     } finally {
@@ -188,25 +205,78 @@ class _OnboardingMiniLessonScreenState
     }
   }
 
+  void _handleBoundariesLoaded(List<Map<String, dynamic>> boundaries) {
+    final text = _speakingText;
+    if (!mounted || text == null || boundaries.isEmpty) return;
+    final timings = buildSpokenCharTimings(
+      text: text,
+      boundaries: boundaries,
+    );
+    if (timings.isNotEmpty) {
+      setState(() => _currentTimings = timings);
+    }
+  }
+
   void _handleWordBoundary(Map<String, dynamic> boundary) {
     final text = _speakingText;
     if (!mounted || text == null) return;
+    if (_currentTimings.isNotEmpty) return;
+
     final start = boundary['start'] ?? boundary['TextOffset'];
     final offset = start is int ? start : int.tryParse(start?.toString() ?? '');
     if (offset != null && offset >= 0 && offset < text.length) {
-      setState(() => _speakingCharacterIndex = offset);
+      final length = boundary['length'] ?? boundary['WordLength'] ?? 1;
+      final range = spokenHanziRangeForOffsets(
+        text,
+        offset,
+        offset + (length is int ? length : 1),
+      );
+      if (range != null) {
+        var hanziCounter = 0;
+        for (var i = 0; i < text.length; i++) {
+          if (!isNonSpokenCharacter(text[i])) {
+            if (hanziCounter == range.start) {
+              setState(() => _speakingCharacterIndex = i);
+              return;
+            }
+            hanziCounter++;
+          }
+        }
+      } else if (!isNonSpokenCharacter(text[offset])) {
+        setState(() => _speakingCharacterIndex = offset);
+      }
     }
   }
 
   void _handlePlaybackPosition(Duration position) {
     final text = _speakingText;
-    if (!mounted || text == null || _playbackDuration <= Duration.zero) return;
-    final progress =
-        (position.inMilliseconds / _playbackDuration.inMilliseconds)
-            .clamp(0.0, 0.999);
-    final index = (progress * text.length).floor();
-    if (index != _speakingCharacterIndex) {
-      setState(() => _speakingCharacterIndex = index);
+    if (!mounted || text == null) return;
+
+    if (_currentTimings.isNotEmpty) {
+      final active = findActiveTiming(
+        _currentTimings,
+        position.inMilliseconds.toDouble(),
+      );
+      if (active != null && active.textOffset != _speakingCharacterIndex) {
+        setState(() => _speakingCharacterIndex = active.textOffset);
+      }
+    } else if (_playbackDuration > Duration.zero) {
+      // Fallback only when Azure boundary metadata is unavailable:
+      // Monotonically interpolate across spoken Hanzi characters only (ignoring punctuation).
+      final spokenOffsets = <int>[];
+      for (var i = 0; i < text.length; i++) {
+        if (!isNonSpokenCharacter(text[i])) spokenOffsets.add(i);
+      }
+      if (spokenOffsets.isNotEmpty) {
+        final progress =
+            (position.inMilliseconds / _playbackDuration.inMilliseconds)
+                .clamp(0.0, 0.999);
+        final spokenIdx = (progress * spokenOffsets.length).floor();
+        final offset = spokenOffsets[spokenIdx];
+        if (offset != _speakingCharacterIndex) {
+          setState(() => _speakingCharacterIndex = offset);
+        }
+      }
     }
   }
 
@@ -215,6 +285,7 @@ class _OnboardingMiniLessonScreenState
     setState(() {
       _speakingText = null;
       _speakingCharacterIndex = null;
+      _currentTimings = const [];
       _playbackDuration = Duration.zero;
     });
   }
@@ -390,6 +461,7 @@ class _OnboardingMiniLessonScreenState
     _wordBoundarySubscription?.cancel();
     _positionSubscription?.cancel();
     _durationSubscription?.cancel();
+    _boundariesSubscription?.cancel();
     _completionSubscription?.cancel();
     _playbackErrorSubscription?.cancel();
     _userPointsNotifier.dispose();
@@ -1224,6 +1296,8 @@ class OnboardingSpeakingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Semantics(
       label: text,
       child: ExcludeSemantics(
@@ -1231,35 +1305,80 @@ class OnboardingSpeakingText extends StatelessWidget {
           child: Text.rich(
             TextSpan(
               children: List.generate(text.length, (index) {
-                final isActive = index == activeIndex;
+                final char = text[index];
+                final isPunctuation = isNonSpokenCharacter(char);
+                final isActive = !isPunctuation && index == activeIndex;
+
+                if (isPunctuation) {
+                  return WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child: AnimatedContainer(
+                      key: ValueKey('onboarding_spoken_character_$index'),
+                      duration: const Duration(milliseconds: 150),
+                      curve: Curves.easeInOutQuart,
+                      padding: const EdgeInsets.symmetric(horizontal: 1),
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
+                      child: Text(
+                        char,
+                        style: TextStyle(
+                          fontFamily: 'NotoSerifSC',
+                          fontSize: fontSize,
+                          height: height,
+                          color: isDark
+                              ? Colors.white38
+                              : const Color(0xFF7A7067),
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+
                 return WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: AnimatedContainer(
                     key: ValueKey('onboarding_spoken_character_$index'),
-                    duration: const Duration(milliseconds: 120),
-                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    duration: const Duration(milliseconds: 150),
+                    curve: Curves.easeInOutQuart,
+                    transform: isActive
+                        ? Matrix4.diagonal3Values(1.06, 1.06, 1.0)
+                        : Matrix4.identity(),
+                    transformAlignment: Alignment.center,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                    margin: const EdgeInsets.symmetric(horizontal: 1),
                     decoration: BoxDecoration(
                       color: isActive
-                          ? Colors.amber.withValues(alpha: 0.42)
+                          ? (isDark
+                              ? const Color(0xFFD97706).withValues(alpha: 0.35)
+                              : const Color(0xFFFEF3C7))
                           : Colors.transparent,
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(6),
                       boxShadow: isActive
                           ? [
                               BoxShadow(
-                                color: Colors.amber.withValues(alpha: 0.38),
-                                blurRadius: 12,
-                                spreadRadius: 2,
+                                color: (isDark
+                                        ? const Color(0xFFFBBF24)
+                                        : const Color(0xFFD4AF37))
+                                    .withValues(alpha: 0.35),
+                                blurRadius: 6,
+                                spreadRadius: 0,
                               ),
                             ]
                           : null,
                     ),
                     child: Text(
-                      text[index],
+                      char,
                       style: TextStyle(
                         fontFamily: 'NotoSerifSC',
                         fontSize: fontSize,
                         height: height,
-                        color: isActive ? Colors.deepOrange.shade700 : color,
+                        color: isActive
+                            ? (isDark
+                                ? const Color(0xFFFFFBEB)
+                                : const Color(0xFF8B0000))
+                            : color,
                         fontWeight:
                             isActive ? FontWeight.w700 : FontWeight.normal,
                       ),

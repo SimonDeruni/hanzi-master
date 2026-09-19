@@ -884,6 +884,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### [2026-09-19] Onboarding Recitation Alignment with Book Reader System (Build #538)
+- **Migrated Onboarding to Audiobook Recitation Engine**: Upgraded `OnboardingMiniLessonScreen` from the legacy linear interpolation (`progress * text.length`) to the production recitation engine powered by `spoken_text_highlight.dart` (`buildSpokenCharTimings()` and `findActiveTiming()`).
+- **Punctuation-Exempt Highlighting**: Leveraged `isNonSpokenCharacter()` to exempt classical Chinese punctuation (`，`, `。`, etc.) from being highlighted as spoken words. Speech pauses now hold the last spoken character gracefully.
+- **"Zen & Ink" Golden Silk Illumination**: Overhauled `OnboardingSpeakingText` character styling:
+  - **Light Mode**: Radiant Golden Silk tile background (`#FEF3C7`), bold **Imperial Cinnabar Red** text (`#8B0000`), Emperor's gold subtle glow (`#D4AF37`).
+  - **Dark Mode**: Amber Silk tile background (`#D97706` with 35% opacity), luminous **Warm Gold** text (`#FFFBEB`), ambient gold glow (`#FBBF24`).
+  - **Optical Scale Lift**: `1.06x` optical scale lift (`Matrix4.diagonal3Values(1.06, 1.06, 1.0)`) with `Curves.easeInOutQuart` (150ms).
+- **Stream Cohesion**: Wired `audioService.onBoundariesLoaded` and `onPositionChanged` to eliminate stream collision and ensure microsecond-exact speech synchronization.
+- Bumped build to `1.0.0+538`.
+
 ### [2026-09-19] Onboarding Mini-Lesson Character Parity & Stroke Alignment (Build #537)
 - **Resolved Onboarding Disconnect (战 vs. 好)**: Fixed pedagogical disconnect in `OnboardingMiniLessonScreen` where Steps 1–3 focused on the Sun Tzu passage (`百战不殆。`) and highlighted `战` (`zhàn`, 4th tone) in tone comparison, but Step 4 ("Write") abruptly switched to tracing `好` (`hǎo`, "good").
 - **Aligned Step 4 to 战 (zhàn, "Battle")**: Replaced all references to `好` with `战` across `OnboardingMiniLessonScreen` (instruction, practice canvas, audio playback, and stroke loader).
