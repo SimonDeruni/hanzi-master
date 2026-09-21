@@ -1,10 +1,12 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Zen & Ink 4 Core Animations Suite (3D Card Flip, Hanko Seal Stamp, Daily Goal Arc & Streak Flame, Pitch Contour Waveform Trace)
+- **Objective:** Build Bump & Remote Synchronization (Build #557)
 - **Status:** 🟢 COMPLETED
 - **Hygiene:** 0 errors, 0 warnings, 0 infos (Total Hygiene State).
 - **Locked Files:** None
+
+- [x] **Build Bump & Version Alignment (2026-09-21 17:45):** Bumped build version to `1.0.0+557` in `pubspec.yaml`, updated `CHANGELOG.md` and `ISSUES.md`, and synchronized repository to `gitlab master`. (Build `1.0.0+557`).
 
 - [x] **Zen & Ink Dynamic Animations Suite (2026-09-21 16:16):** (1) Flashcard Review 3D Perspective Card Flip: created `ZenFlipCard` (`lib/shared/widgets/zen_flip_card.dart`) with perspective matrix rotation (`Matrix4.rotationY`) over 350ms with `Curves.easeInOutQuart`, seamless $\pi/2$ face flipping, text counter-rotation, and Xuan parchment lighting shimmer; wired into `ReadingModeWidget` (`reading_mode.dart`) and `RecallModeWidget` (`recall_mode.dart`); (2) Card Rating (SM-2 Grading) Hanko Seal Stamp (印章): created `HankoSealStamp` (`lib/shared/widgets/hanko_seal_stamp.dart`) and upgraded `SwipeableFlashcard` (`lib/shared/widgets/swipeable_flashcard.dart`) to stamp authentic crimson double-line Chinese seals (`极佳`, `熟练`, `困难`, `重来`) with scale impact snap (`1.25 -> 1.0` over 130ms `Curves.easeOutBack`) and haptic feedback (`HapticsManager.medium()`) before sliding off-screen; (3) Home / Dashboard Daily Goal Arc Draw & Streak Flame: built `DailyGoalReviewRing` (`lib/features/progression/presentation/widgets/daily_goal_review_ring.dart`) drawing animated circular arc (0% to completion over 600ms `Curves.easeOutCubic`) in Emperor's Gold / Jade Emerald and `StreakFlameBadge` (`lib/features/progression/presentation/widgets/streak_flame_badge.dart`) with looping breathing glow halo in `DashboardScreen` (`HabitProgressCards` and `GlobalSliverAppBar`); (4) Shadowing Studio & Tone Comparison Pitch Contour Waveform Trace: built `CalligraphicPitchContour` (`lib/features/live_translate/presentation/widgets/calligraphic_pitch_contour.dart`) rendering progressive calligraphic brush traces over 750ms (`Curves.easeInOutQuart`) across Chao 5-level pitch grid; embedded in `ToneComparisonSheet` (`tone_comparison_sheet.dart`) header and mini badges in 4-tone matrix; upgraded `ToneGraphPainter` with calligraphic spline smoothing; (5) Total Hygiene & Verification: 11 unit and widget tests pass, `flutter analyze lib` reports **No issues found!** (0 errors, 0 warnings, 0 infos). Build `1.0.0+556`.
 

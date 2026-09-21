@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-21] Build Bump & Version Alignment (Build #557)
+- **Version Bump:** Bumped build version to `1.0.0+557` in `pubspec.yaml`.
+- **GitLab Master Synchronization:** Synchronized full Zen & Ink animations suite, paywall trial updates, localized screenshot assets, and onboarding polish to remote.
+
 ### [2026-09-21] Zen & Ink Dynamic Animations Suite (Build #556)
 - **Flashcard Review 3D Perspective Card Flip (Xuan Parchment Flip):**
   - Created reusable `ZenFlipCard` widget (`lib/shared/widgets/zen_flip_card.dart`) featuring 3D perspective rotation (`Matrix4.identity()..setEntry(3, 2, 0.0015)..rotateY(angle)`) over 350ms with `Curves.easeInOutQuart`.
