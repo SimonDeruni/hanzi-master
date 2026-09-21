@@ -12736,7 +12736,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Книги и аудиокниги студийного качества';
+      '86 классических книг и аудиокниги студийного качества';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12892,7 +12892,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master использует сторонние ИИ-сервисы для оценки произношения, диалоговых ролевых игр и учебных инструментов.';
+      'SinoSpark использует сторонние ИИ-сервисы для оценки произношения, диалоговых ролевых игр и учебных инструментов.';
 
   @override
   String get aiConsentDataSentTitle => 'Передаваемые данные';
@@ -12981,5 +12981,67 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return 'Иероглиф «$hanzi» добавлен в колоду «$deckName»';
+  }
+
+  @override
+  String get callCategory => 'ЖИВОЙ ЗВОНОК';
+
+  @override
+  String get aiCallFluencyTitle => 'ИИ-звонки для беглости речи';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Ведите реалистичные голосовые беседы с ИИ-репетиторами, получайте мгновенную оценку тонов и развивайте беглость устной речи.';
+
+  @override
+  String get decksCategory => 'КОЛОДЫ';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'Колоды с интервальным повторением';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Осваивайте HSK 1–6 и собственные колоды с научно доказанными алгоритмами интервального повторения.';
+
+  @override
+  String get booksCategory => 'КНИГИ';
+
+  @override
+  String get classicalBooksPoemsTitle =>
+      '86 классических книг и 100 стихотворений';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Погрузитесь в классическую литературу и поэзию с синхронизированным аудио и двуязычными примечаниями.';
+
+  @override
+  String get scanCategory => 'СКАНЕР';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'Сканируйте изображения и добавляйте карточки';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Наведите камеру на китайский текст, меню или вывески, чтобы мгновенно извлечь слова и сохранить их в свои колоды.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Умный словарь с порядком начертания черт';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Голосовые звонки с ИИ в реальном времени и оценка тонов';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Студия шедоуинга и наглядный анализ тонов';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Начать мои 7 дней бесплатно';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Затем $price / $period. Отмена в любое время в Настройках.';
   }
 }

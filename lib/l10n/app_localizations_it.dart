@@ -12782,7 +12782,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Libri e audiolibri con qualità da studio';
+      '86 libri classici e audiolibri con qualità da studio';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12941,7 +12941,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master utilizza servizi di IA di terze parti sicuri per la valutazione della pronuncia, i giochi di ruolo e gli strumenti di studio.';
+      'SinoSpark utilizza servizi di IA di terze parti sicuri per la valutazione della pronuncia, i giochi di ruolo e gli strumenti di studio.';
 
   @override
   String get aiConsentDataSentTitle => 'Dati trasmessi';
@@ -13030,5 +13030,66 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return '«$hanzi» aggiunto a «$deckName»';
+  }
+
+  @override
+  String get callCategory => 'CHIAMATA DAL VIVO';
+
+  @override
+  String get aiCallFluencyTitle => 'Chiamate IA per migliorare la fluidità';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Partecipa a conversazioni vocali realistiche con tutor IA, ricevi una valutazione istantanea dei toni e sviluppa scioltezza nel parlato.';
+
+  @override
+  String get decksCategory => 'MAZZI';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'Mazzi con ripetizione spaziata';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Padroneggia l\'HSK 1–6 e mazzi personalizzati con algoritmi di ripetizione spaziata scientificamente provati.';
+
+  @override
+  String get booksCategory => 'LIBRI';
+
+  @override
+  String get classicalBooksPoemsTitle => '86 libri classici e 100 poesie';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Immergiti nella letteratura e nella poesia senza tempo con audio sincronizzato e annotazioni bilingui.';
+
+  @override
+  String get scanCategory => 'SCANNER';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'Scansiona immagini e aggiungi carte al mazzo';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Punta la fotocamera su testi in cinese, menu o cartelli per estrarre istantaneamente parole e salvarle nei tuoi mazzi.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Dizionario intelligente con ordine dei tratti';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Chiamate vocali con IA dal vivo e valutazione istantanea dei toni';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Studio di shadowing e analisi visiva dei toni';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Inizia i miei 7 giorni gratuiti';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Poi $price / $period. Annulla in qualsiasi momento in Impostazioni.';
   }
 }

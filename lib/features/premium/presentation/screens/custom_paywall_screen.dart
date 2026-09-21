@@ -40,6 +40,22 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   bool _usingTestOfferings = false;
   String? _offeringsError;
   final Map<String, IntroEligibility> _introEligibility = {};
+  final Map<int, GlobalKey> _storyKeys = {
+    for (int i = 0; i < 9; i++) i: GlobalKey(),
+  };
+
+  void _scrollToFeatureStory(int index) {
+    HapticFeedback.selectionClick();
+    final targetContext = _storyKeys[index]?.currentContext;
+    if (targetContext != null) {
+      Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOutQuart,
+        alignment: 0.05,
+      );
+    }
+  }
 
   void _closePaywall() {
     HapticFeedback.selectionClick();
@@ -169,7 +185,28 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
 
       if (isPremium && mounted) {
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+          PageRouteBuilder<void>(
+            transitionDuration: const Duration(milliseconds: 600),
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const MainNavigationScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              final curved = CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOutQuart,
+              );
+              return FadeTransition(
+                opacity: curved,
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.03),
+                    end: Offset.zero,
+                  ).animate(curved),
+                  child: child,
+                ),
+              );
+            },
+          ),
           (route) => false,
         );
       }
@@ -282,7 +319,28 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       final isPremium = await MonetizationService.checkPremiumStatus();
       if (isPremium && mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MainNavigationScreen()),
+          PageRouteBuilder<void>(
+            transitionDuration: const Duration(milliseconds: 600),
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const MainNavigationScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              final curved = CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOutQuart,
+              );
+              return FadeTransition(
+                opacity: curved,
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.03),
+                    end: Offset.zero,
+                  ).animate(curved),
+                  child: child,
+                ),
+              );
+            },
+          ),
         );
       } else {
         if (mounted) {
@@ -315,9 +373,16 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     if (_usingTestOfferings || _selectedPackage == null) return false;
     final product = _selectedPackage!.storeProduct;
     final eligibility = _introEligibility[product.identifier];
+    if (eligibility?.status ==
+        IntroEligibilityStatus.introEligibilityStatusIneligible) {
+      return false;
+    }
+    final isAnnual = _selectedPackage!.packageType == PackageType.annual ||
+        product.identifier.toLowerCase().contains('annual');
     final hasFreeOffer = product.introductoryPrice?.price == 0 ||
         product.defaultOption?.freePhase != null;
-    return hasFreeOffer &&
+    return isAnnual ||
+        hasFreeOffer ||
         eligibility?.status ==
             IntroEligibilityStatus.introEligibilityStatusEligible;
   }
@@ -354,30 +419,12 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     final package = _selectedPackage;
     if (package == null) return l10n.chooseASubscription;
     if (_selectedHasEligibleTrial) {
-      final period = package.storeProduct.introductoryPrice?.period ??
-          package.storeProduct.defaultOption?.freePhase?.billingPeriod?.iso8601;
-      return period == null
-          ? l10n.startFreeTrial
-          : l10n.startPeriodFreeTrial(_humanizeIsoPeriod(period));
+      return l10n.startMy7DaysFreeTrial;
     }
     return l10n.subscribeForPricePeriod(
       package.storeProduct.priceString,
       _periodLabel(package),
     );
-  }
-
-  String _humanizeIsoPeriod(String period) {
-    final l10n = AppLocalizations.of(context)!;
-    final match = RegExp(r'^P(\d+)([DWMY])$').firstMatch(period);
-    if (match == null) return period;
-    final count = int.parse(match.group(1)!);
-    return switch (match.group(2)) {
-      'D' => l10n.billingDays(count),
-      'W' => l10n.billingWeeks(count),
-      'M' => l10n.billingMonths(count),
-      'Y' => l10n.billingYears(count),
-      _ => l10n.billingPeriod,
-    };
   }
 
   @override
@@ -461,36 +508,33 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                                   description:
                                       l10n.readNaturallyWithPronunciationDefinition,
                                   icon: Icons.auto_stories_outlined,
-                                  imageAsset:
-                                      'assets/images/paywall/paywall_read.png',
+                                  imageAsset: _getPaywallAsset(context, 'read'),
                                   placeholderLabel: l10n.bookReaderScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 0,
                                 ),
                                 _buildFeatureStory(
-                                  category: l10n.shadow,
-                                  title: l10n.speakWithTheRightRhythm,
-                                  description: l10n.shadowNativeAudioAndVisualize,
-                                  icon: Icons.graphic_eq,
-                                  imageAsset:
-                                      'assets/images/paywall/paywall_speak.png',
-                                  placeholderLabel:
-                                      l10n.shadowingAndTonesScreenshot,
+                                  category: l10n.callCategory,
+                                  title: l10n.aiCallFluencyTitle,
+                                  description: l10n.aiCallFluencyDesc,
+                                  icon: Icons.phone_in_talk_outlined,
+                                  imageAsset: _getPaywallAsset(context, 'call'),
+                                  placeholderLabel: l10n.aiCallFluencyTitle,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 1,
                                 ),
                                 _buildFeatureStory(
-                                  category: l10n.explore,
-                                  title: l10n.understandEveryCharacter,
+                                  category: l10n.shadow,
+                                  title: l10n.speakWithTheRightRhythm,
                                   description:
-                                      l10n.exploreMeaningPronunciationComponentsStr,
-                                  icon: Icons.search,
+                                      l10n.shadowNativeAudioAndVisualize,
+                                  icon: Icons.graphic_eq,
                                   imageAsset:
-                                      'assets/images/paywall/paywall_explore.png',
+                                      _getPaywallAsset(context, 'shadow'),
                                   placeholderLabel:
-                                      l10n.characterDictionaryScreenshot,
+                                      l10n.shadowingAndTonesScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 2,
@@ -498,39 +542,79 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                                 _buildFeatureStory(
                                   category: l10n.learn,
                                   title: l10n.learnThroughRealVideos,
-                                  description: l10n.followInteractiveSubtitlesLookUp,
+                                  description:
+                                      l10n.followInteractiveSubtitlesLookUp,
                                   icon: Icons.play_circle_outline,
                                   imageAsset:
-                                      'assets/images/paywall/paywall_watch.png',
-                                  placeholderLabel: l10n.videoLearningScreenshot,
+                                      _getPaywallAsset(context, 'watch'),
+                                  placeholderLabel:
+                                      l10n.videoLearningScreenshot,
                                   textColor: textColor,
                                   accentColor: accentColor,
                                   index: 3,
-                                ),
-                                _buildFeatureStory(
-                                  category: l10n.write,
-                                  title: l10n.masterEveryStroke,
-                                  description: l10n.dynamicDecksStrokeAnalysis,
-                                  icon: Icons.gesture,
-                                  imageAsset:
-                                      'assets/images/paywall/paywall_write.png',
-                                  placeholderLabel:
-                                      l10n.guidedHandwritingPractice,
-                                  textColor: textColor,
-                                  accentColor: accentColor,
-                                  index: 4,
                                 ),
                                 _buildFeatureStory(
                                   category: l10n.web,
                                   title: l10n.exploreTheChineseWeb,
                                   description: l10n.theWebExplorerAllowsYou,
                                   icon: Icons.language,
-                                  imageAsset:
-                                      'assets/images/paywall/paywall_web.png',
+                                  imageAsset: _getPaywallAsset(context, 'web'),
                                   placeholderLabel: l10n.webExplorer,
                                   textColor: textColor,
                                   accentColor: accentColor,
+                                  index: 4,
+                                ),
+                                _buildFeatureStory(
+                                  category: l10n.decksCategory,
+                                  title: l10n.decksSpacedRepetitionTitle,
+                                  description: l10n.decksSpacedRepetitionDesc,
+                                  icon: Icons.school_outlined,
+                                  imageAsset:
+                                      _getPaywallAsset(context, 'decks'),
+                                  placeholderLabel:
+                                      l10n.decksSpacedRepetitionTitle,
+                                  textColor: textColor,
+                                  accentColor: accentColor,
                                   index: 5,
+                                ),
+                                _buildFeatureStory(
+                                  category: l10n.booksCategory,
+                                  title: l10n.classicalBooksPoemsTitle,
+                                  description: l10n.classicalBooksPoemsDesc,
+                                  icon: Icons.menu_book_outlined,
+                                  imageAsset:
+                                      _getPaywallAsset(context, 'books'),
+                                  placeholderLabel:
+                                      l10n.classicalBooksPoemsTitle,
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 6,
+                                ),
+                                _buildFeatureStory(
+                                  category: l10n.scanCategory,
+                                  title: l10n.scannerScanCardsTitle,
+                                  description: l10n.scannerScanCardsDesc,
+                                  icon: Icons.document_scanner_outlined,
+                                  imageAsset: _getPaywallAsset(context, 'scan'),
+                                  placeholderLabel:
+                                      l10n.scannerScanCardsTitle,
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 7,
+                                ),
+                                _buildFeatureStory(
+                                  category: l10n.explore,
+                                  title: l10n.smartDictionaryStrokeOrderTitle,
+                                  description:
+                                      l10n.exploreMeaningPronunciationComponentsStr,
+                                  icon: Icons.search,
+                                  imageAsset:
+                                      _getPaywallAsset(context, 'dictionary'),
+                                  placeholderLabel:
+                                      l10n.characterDictionaryScreenshot,
+                                  textColor: textColor,
+                                  accentColor: accentColor,
+                                  index: 8,
                                 ),
                               ],
                             ],
@@ -690,6 +774,16 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     );
   }
 
+  String _getPaywallAsset(BuildContext context, String featureKey) {
+    final localeCode = Localizations.localeOf(context).languageCode;
+    const supportedLocales = {
+      'en', 'fr', 'de', 'es', 'it', 'pt', 'ru', 'ja', 'ko', 'vi', 'id', 'hi', 'th',
+    };
+    final effectiveLocale =
+        supportedLocales.contains(localeCode) ? localeCode : 'en';
+    return 'assets/images/paywall/$effectiveLocale/$featureKey.webp';
+  }
+
   Widget _buildFeatureStory({
     required String category,
     required String title,
@@ -701,7 +795,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     required Color accentColor,
     required int index,
   }) {
-    return Padding(
+    return Container(
+      key: _storyKeys[index],
       padding: const EdgeInsets.only(bottom: 38),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -716,7 +811,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           ),
           const SizedBox(height: 18),
           Text(
-            category,
+            category.toUpperCase(),
             style: const TextStyle(
               color: Color(0xFF8B2E2E),
               fontSize: 10,
@@ -844,13 +939,41 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
   Widget _buildEverythingIncluded(Color textColor, Color accentColor) {
     final l10n = AppLocalizations.of(context)!;
     final features = [
-      (Icons.auto_stories_outlined, l10n.booksAndStudioQualityAudiobooks),
-      (Icons.graphic_eq, l10n.aiConversationsAndLiveToneFeedback),
-      (Icons.play_circle_outline, l10n.interactiveVideoAndWebImmersion),
-      (Icons.gesture, l10n.characterInsightsAndHandwritingPractice),
-      (Icons.school_outlined, l10n.hskDecksAndSmartSpacedRepetition),
-      (Icons.insights_outlined, l10n.progressAndStreakTracking),
-      (Icons.document_scanner_outlined, l10n.scannerAndLiveTranslation),
+      (
+        Icons.auto_stories_outlined,
+        l10n.booksAndStudioQualityAudiobooks,
+        0,
+      ),
+      (
+        Icons.phone_in_talk_outlined,
+        l10n.liveAiVoiceCallsAndToneGrading,
+        1,
+      ),
+      (
+        Icons.graphic_eq,
+        l10n.shadowingStudioAndToneAnalysis,
+        2,
+      ),
+      (
+        Icons.play_circle_outline,
+        l10n.interactiveVideoAndWebImmersion,
+        3,
+      ),
+      (
+        Icons.gesture,
+        l10n.characterInsightsAndHandwritingPractice,
+        8,
+      ),
+      (
+        Icons.school_outlined,
+        l10n.hskDecksAndSmartSpacedRepetition,
+        5,
+      ),
+      (
+        Icons.document_scanner_outlined,
+        l10n.scannerAndLiveTranslation,
+        7,
+      ),
     ];
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -876,31 +999,53 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           const SizedBox(height: 16),
           ...features.map(
             (feature) => Padding(
-              padding: const EdgeInsets.only(bottom: 13),
-              child: Row(
-                children: [
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      color: accentColor.withValues(alpha: 0.13),
-                      borderRadius: BorderRadius.circular(9),
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  key: Key('paywall_perk_${feature.$3}'),
+                  onTap: () => _scrollToFeatureStory(feature.$3),
+                  borderRadius: BorderRadius.circular(12),
+                  splashColor: accentColor.withValues(alpha: 0.12),
+                  highlightColor: accentColor.withValues(alpha: 0.06),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 4,
                     ),
-                    child: Icon(feature.$1, color: accentColor, size: 17),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      feature.$2,
-                      style: TextStyle(
-                        color: textColor.withValues(alpha: 0.82),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: accentColor.withValues(alpha: 0.13),
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                          child: Icon(feature.$1, color: accentColor, size: 17),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            feature.$2,
+                            style: TextStyle(
+                              color: textColor.withValues(alpha: 0.82),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.check, color: accentColor, size: 18),
+                        const SizedBox(width: 4),
+                        Icon(
+                          Icons.chevron_right,
+                          color: textColor.withValues(alpha: 0.28),
+                          size: 16,
+                        ),
+                      ],
                     ),
                   ),
-                  Icon(Icons.check, color: accentColor, size: 18),
-                ],
+                ),
               ),
             ),
           ),
@@ -1070,6 +1215,22 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
               ),
             ),
           ),
+          if (_selectedHasEligibleTrial && _selectedPackage != null) ...[
+            const SizedBox(height: 7),
+            Text(
+              AppLocalizations.of(context)!.trialSubtextUnderCta(
+                _selectedPackage!.storeProduct.priceString,
+                _periodLabel(_selectedPackage!),
+              ),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: textColor.withValues(alpha: 0.72),
+                fontSize: 11.5,
+                fontWeight: FontWeight.w500,
+                height: 1.3,
+              ),
+            ),
+          ],
           const SizedBox(height: 5),
           Text(
             AppLocalizations.of(context)!.paymentIsChargedToYour2,

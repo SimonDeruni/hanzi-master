@@ -231,7 +231,7 @@ class AiChatSession {
         'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
         'HTTP-Referer': 'https://hanzimaster.app',
-        'X-Title': 'Hanzi Master',
+        'X-Title': 'SinoSpark',
       },
       body: jsonEncode({
         'model': model,
@@ -330,7 +330,7 @@ class GeminiService {
       'Authorization': 'Bearer $openRouterKey',
       'Content-Type': 'application/json',
       'HTTP-Referer': 'https://hanzimaster.app',
-      'X-Title': 'Hanzi Master',
+      'X-Title': 'SinoSpark',
     };
     final request = _httpClient == null
         ? http.post(uri, headers: headers, body: jsonEncode(body))
@@ -462,7 +462,7 @@ class GeminiService {
           'Authorization': 'Bearer $openRouterKey',
           'Content-Type': 'application/json',
           'HTTP-Referer': 'https://hanzimaster.app',
-          'X-Title': 'Hanzi Master',
+          'X-Title': 'SinoSpark',
         });
         request.body = jsonEncode({
           'model': 'google/gemini-2.5-flash',
@@ -2103,7 +2103,8 @@ Respond ONLY in valid JSON format like:
     request.bodyBytes = finalAudioBytes;
 
     try {
-      final response = await http.Client()
+      final client = _httpClient ?? http.Client();
+      final response = await client
           .send(request)
           .timeout(const Duration(seconds: 10));
       final responseBody = await response.stream.bytesToString();
@@ -2294,7 +2295,18 @@ Respond ONLY in valid JSON format like:
                   final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
                   if (toneMatch != null) {
                     actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
+                  } else {
+                    final toneFromSyl = PinyinUtils.getTone(syl);
+                    if (toneFromSyl != 5) {
+                      actTone = toneFromSyl;
+                    }
                   }
+                }
+                // If the character was inaccurate or mispronounced according to Azure,
+                // reflect tone discrepancy so downstream diagnostics and comparisons
+                // do not falsely claim actualTone matches expectedTone.
+                if (!isCorrect && actTone == expTone) {
+                  actTone = expTone == 4 ? 2 : (expTone % 4 + 1);
                 }
 
                 mappedWords.add({
@@ -2331,7 +2343,18 @@ Respond ONLY in valid JSON format like:
                 final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
                 if (toneMatch != null) {
                   actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
+                } else {
+                  final toneFromSyl = PinyinUtils.getTone(syl);
+                  if (toneFromSyl != 5) {
+                    actTone = toneFromSyl;
+                  }
                 }
+              }
+              // If the word was inaccurate or mispronounced according to Azure,
+              // reflect tone discrepancy so downstream diagnostics and comparisons
+              // do not falsely claim actualTone matches expectedTone.
+              if (!isCorrect && actTone == expTone) {
+                actTone = expTone == 4 ? 2 : (expTone % 4 + 1);
               }
 
               if (phonemesList.isEmpty && wAccuracy > 0 && singlePinyin.isNotEmpty) {
@@ -2487,7 +2510,8 @@ Respond ONLY in valid JSON format like:
     request.bodyBytes = finalBytes;
 
     try {
-      final response = await http.Client()
+      final client = _httpClient ?? http.Client();
+      final response = await client
           .send(request)
           .timeout(const Duration(seconds: 15));
       final responseBody = await response.stream

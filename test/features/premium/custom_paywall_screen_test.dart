@@ -104,9 +104,14 @@ void main() {
     expect(find.text(r'$9.99 / month'), findsOneWidget);
     expect(find.text(r'$59.99 / year'), findsOneWidget);
     expect(find.text('SinoSpark Premium'), findsOneWidget);
-    expect(find.text('Books and studio-quality audiobooks'), findsOneWidget);
+    expect(find.text('86 Classical books and studio-quality audiobooks'),
+        findsOneWidget);
     expect(
-      find.text('AI conversations and live tone feedback'),
+      find.text('Live AI voice calls and instant tone grading'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Shadowing studio and tone pitch analysis'),
       findsOneWidget,
     );
     expect(find.text('Interactive video and web immersion'), findsOneWidget);
@@ -118,22 +123,29 @@ void main() {
       find.text('HSK decks and smart spaced repetition'),
       findsOneWidget,
     );
-    expect(find.text('Progress and streak tracking'), findsOneWidget);
     expect(find.text('Scanner and live translation'), findsOneWidget);
-    expect(find.text('Master every stroke'), findsOneWidget);
+    expect(find.text('Progress and streak tracking'), findsNothing);
+    expect(find.text('AI Call to improve fluency'), findsOneWidget);
     expect(find.text('Explore the Chinese web'), findsOneWidget);
     expect(
         find.text('Turn any book into a lesson & audiobook'), findsOneWidget);
     expect(find.text('Speak freely with AI & live tones'), findsOneWidget);
+    expect(find.text('Decks with spaced repetition'), findsOneWidget);
+    expect(find.text('86 Classical books and 100 poems'), findsOneWidget);
+    expect(find.text('Scan images and add cards to deck'), findsOneWidget);
+    expect(find.text('Smart dictionary with stroke order'), findsOneWidget);
     expect(find.text('Understand Chinese around you'), findsNothing);
     expect(find.text('Scanner and translation screenshot'), findsNothing);
     const screenshotAssets = [
-      'assets/images/paywall/paywall_read.png',
-      'assets/images/paywall/paywall_speak.png',
-      'assets/images/paywall/paywall_explore.png',
-      'assets/images/paywall/paywall_watch.png',
-      'assets/images/paywall/paywall_write.png',
-      'assets/images/paywall/paywall_web.png',
+      'assets/images/paywall/en/read.webp',
+      'assets/images/paywall/en/call.webp',
+      'assets/images/paywall/en/shadow.webp',
+      'assets/images/paywall/en/watch.webp',
+      'assets/images/paywall/en/web.webp',
+      'assets/images/paywall/en/decks.webp',
+      'assets/images/paywall/en/books.webp',
+      'assets/images/paywall/en/scan.webp',
+      'assets/images/paywall/en/dictionary.webp',
     ];
     for (final asset in screenshotAssets) {
       final image = tester.widget<Image>(
@@ -152,18 +164,18 @@ void main() {
       );
       expect(inset.padding, const EdgeInsets.all(10));
     }
-    final characterStory = find.text('Understand every character');
+    final callStory = find.text('AI Call to improve fluency');
     final videoStory = find.text('Learn through real videos');
-    final handwritingStory = find.text('Master every stroke');
-    expect(characterStory, findsOneWidget);
+    final decksStory = find.text('Decks with spaced repetition');
+    expect(callStory, findsOneWidget);
     expect(videoStory, findsOneWidget);
     expect(
-      tester.getTopLeft(characterStory).dy,
+      tester.getTopLeft(callStory).dy,
       lessThan(tester.getTopLeft(videoStory).dy),
     );
     expect(
       tester.getTopLeft(videoStory).dy,
-      lessThan(tester.getTopLeft(handwritingStory).dy),
+      lessThan(tester.getTopLeft(decksStory).dy),
     );
     expect(find.text('Terms of Use (EULA)'), findsOneWidget);
     expect(find.text('Privacy Policy'), findsOneWidget);
@@ -237,4 +249,94 @@ void main() {
     expect(find.byType(CustomPaywallScreen), findsNothing);
     expect(await MonetizationService.checkPremiumStatus(), isTrue);
   });
+
+  testWidgets('paywall loads localized screenshot assets for French locale',
+      (tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: MaterialApp(
+          locale: Locale('fr'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: CustomPaywallScreen(
+            useMockOfferingsForTesting: true,
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    const expectedFrenchAssets = [
+      'assets/images/paywall/fr/read.webp',
+      'assets/images/paywall/fr/call.webp',
+      'assets/images/paywall/fr/shadow.webp',
+      'assets/images/paywall/fr/watch.webp',
+      'assets/images/paywall/fr/web.webp',
+      'assets/images/paywall/fr/decks.webp',
+      'assets/images/paywall/fr/books.webp',
+      'assets/images/paywall/fr/scan.webp',
+      'assets/images/paywall/fr/dictionary.webp',
+    ];
+    for (final asset in expectedFrenchAssets) {
+      expect(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Image &&
+              widget.image is AssetImage &&
+              (widget.image as AssetImage).assetName == asset,
+        ),
+        findsOneWidget,
+      );
+    }
+  });
+
+  testWidgets(
+      'tapping perk in everything included checklist scrolls to feature story',
+      (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      _testApp(
+        home: const CustomPaywallScreen(
+          useMockOfferingsForTesting: true,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    final perkCall = find.byKey(const Key('paywall_perk_1'));
+    expect(perkCall, findsOneWidget);
+
+    await tester.ensureVisible(perkCall);
+    await tester.pumpAndSettle();
+
+    final initialCallY =
+        tester.getTopLeft(find.text('AI Call to improve fluency')).dy;
+
+    await tester.tap(perkCall);
+    await tester.pumpAndSettle();
+
+    final scrolledCallY =
+        tester.getTopLeft(find.text('AI Call to improve fluency')).dy;
+    expect(scrolledCallY, lessThan(initialCallY));
+  });
+
+  test('14-language dictionary contains startMy7DaysFreeTrial and trialSubtextUnderCta', () {
+    for (final locale in AppLocalizations.supportedLocales) {
+      final l10n = lookupAppLocalizations(locale);
+      expect(l10n.startMy7DaysFreeTrial, isNotEmpty);
+      final subtext = l10n.trialSubtextUnderCta('CHF 50.00', '1 an');
+      expect(subtext, contains('CHF 50.00'));
+      expect(subtext, contains('1 an'));
+    }
+  });
 }
+

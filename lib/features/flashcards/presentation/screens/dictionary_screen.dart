@@ -429,8 +429,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        l10n?.hskCollections ??
-                                            "HSK Collections",
+                                        "Master Deck Library",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -439,8 +438,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
                                     Text(
-                                        l10n?.downloadOfficialHskCollections ??
-                                            "Download official HSK collections",
+                                        "Download official HSK & thematic decks",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme

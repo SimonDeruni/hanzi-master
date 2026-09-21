@@ -214,7 +214,7 @@ class LocalTranslationService {
                   'Authorization': 'Bearer $openRouterKey',
                   'Content-Type': 'application/json',
                   'HTTP-Referer': 'https://hanzimaster.app',
-                  'X-Title': 'Hanzi Master',
+                  'X-Title': 'SinoSpark',
                 },
                 body: jsonEncode({
                   'model': 'google/gemini-2.5-flash',
@@ -368,7 +368,7 @@ class LocalTranslationService {
                   'Authorization': 'Bearer $openRouterKey',
                   'Content-Type': 'application/json',
                   'HTTP-Referer': 'https://hanzimaster.app',
-                  'X-Title': 'Hanzi Master',
+                  'X-Title': 'SinoSpark',
                 },
                 body: jsonEncode({
                   'model': 'google/gemini-2.5-flash',

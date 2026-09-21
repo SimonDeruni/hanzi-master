@@ -6917,7 +6917,7 @@ abstract class AppLocalizations {
   /// No description provided for @hanziMaster1.
   ///
   /// In en, this message translates to:
-  /// **'Hanzi Master'**
+  /// **'SinoSpark'**
   String get hanziMaster1;
 
   /// No description provided for @strokesCannotBeEmpty.
@@ -7181,7 +7181,7 @@ abstract class AppLocalizations {
   /// No description provided for @xtitleHanziMaster.
   ///
   /// In en, this message translates to:
-  /// **'X-Title\': \'Hanzi Master'**
+  /// **'X-Title\': \'SinoSpark'**
   String get xtitleHanziMaster;
 
   /// No description provided for @noneYet.
@@ -11927,19 +11927,19 @@ abstract class AppLocalizations {
   /// No description provided for @calibratingAiNeuralMasters.
   ///
   /// In en, this message translates to:
-  /// **'CALIBRATING AI NEURAL MASTERS...'**
+  /// **'PREPARING YOUR PERSONAL CURRICULUM...'**
   String get calibratingAiNeuralMasters;
 
   /// No description provided for @calibrationComplete.
   ///
   /// In en, this message translates to:
-  /// **'Calibration Complete'**
+  /// **'Curriculum Ready'**
   String get calibrationComplete;
 
   /// No description provided for @synthesizingModules.
   ///
   /// In en, this message translates to:
-  /// **'Synthesizing Modules...'**
+  /// **'Setting up your custom syllabus...'**
   String get synthesizingModules;
 
   /// No description provided for @oneAndWater.
@@ -12545,7 +12545,7 @@ abstract class AppLocalizations {
   /// No description provided for @everythingYouNeedToKnowAboutHanziMa.
   ///
   /// In en, this message translates to:
-  /// **'Everything you need to know about Hanzi Master, its features, and your privacy.'**
+  /// **'Everything you need to know about SinoSpark, its features, and your privacy.'**
   String get everythingYouNeedToKnowAboutHanziMa;
 
   /// No description provided for @whoAreTheVoicesSpeakingInTheApp.
@@ -23328,7 +23328,7 @@ abstract class AppLocalizations {
   /// No description provided for @booksAndStudioQualityAudiobooks.
   ///
   /// In en, this message translates to:
-  /// **'Books and studio-quality audiobooks'**
+  /// **'86 Classical books and studio-quality audiobooks'**
   String get booksAndStudioQualityAudiobooks;
 
   /// No description provided for @aiConversationsAndLiveToneFeedback.
@@ -23574,7 +23574,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiConsentSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hanzi Master uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.'**
+  /// **'SinoSpark uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.'**
   String get aiConsentSubtitle;
 
   /// No description provided for @aiConsentDataSentTitle.
@@ -23715,6 +23715,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Added {hanzi} to {deckName}'**
   String addedCardToDeck(String hanzi, String deckName);
+
+  /// No description provided for @callCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE CALL'**
+  String get callCategory;
+
+  /// No description provided for @aiCallFluencyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Call to improve fluency'**
+  String get aiCallFluencyTitle;
+
+  /// No description provided for @aiCallFluencyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Engage in realistic voice conversations with AI tutors, receive instant tone grading, and build spoken fluency.'**
+  String get aiCallFluencyDesc;
+
+  /// No description provided for @decksCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'DECKS'**
+  String get decksCategory;
+
+  /// No description provided for @decksSpacedRepetitionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Decks with spaced repetition'**
+  String get decksSpacedRepetitionTitle;
+
+  /// No description provided for @decksSpacedRepetitionDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Master HSK 1–6 and custom decks with scientifically proven spaced repetition algorithms.'**
+  String get decksSpacedRepetitionDesc;
+
+  /// No description provided for @booksCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'BOOKS'**
+  String get booksCategory;
+
+  /// No description provided for @classicalBooksPoemsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'86 Classical books and 100 poems'**
+  String get classicalBooksPoemsTitle;
+
+  /// No description provided for @classicalBooksPoemsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Immerse yourself in timeless literature and poetry with synchronized audio and bilingual annotations.'**
+  String get classicalBooksPoemsDesc;
+
+  /// No description provided for @scanCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'SCANNER'**
+  String get scanCategory;
+
+  /// No description provided for @scannerScanCardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan images and add cards to deck'**
+  String get scannerScanCardsTitle;
+
+  /// No description provided for @scannerScanCardsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Point your camera at any Chinese text, menus, or signs to instantly extract words and save them to your decks.'**
+  String get scannerScanCardsDesc;
+
+  /// No description provided for @smartDictionaryStrokeOrderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart dictionary with stroke order'**
+  String get smartDictionaryStrokeOrderTitle;
+
+  /// No description provided for @liveAiVoiceCallsAndToneGrading.
+  ///
+  /// In en, this message translates to:
+  /// **'Live AI voice calls and instant tone grading'**
+  String get liveAiVoiceCallsAndToneGrading;
+
+  /// No description provided for @shadowingStudioAndToneAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowing studio and tone pitch analysis'**
+  String get shadowingStudioAndToneAnalysis;
+
+  /// Button label for starting 7-day free trial on paywall
+  ///
+  /// In en, this message translates to:
+  /// **'Start my 7-day free trial'**
+  String get startMy7DaysFreeTrial;
+
+  /// Subtle subtext displayed underneath the paywall free trial CTA button
+  ///
+  /// In en, this message translates to:
+  /// **'Then {price} / {period}. Cancel anytime in Settings.'**
+  String trialSubtextUnderCta(String price, String period);
 }
 
 class _AppLocalizationsDelegate

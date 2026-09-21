@@ -47,11 +47,11 @@ void main() {
     await tester.pump();
     await tester.tap(find.text('Confirm Selection'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Business &\nCareer'));
+    await tester.tap(find.text('Business & Career'));
     await tester.pump();
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('05'));
+    await tester.tap(find.text('5'));
     await tester.pump();
     await tester.tap(find.text('Build My Path'));
     await tester.pump();

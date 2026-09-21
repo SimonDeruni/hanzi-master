@@ -308,9 +308,11 @@ class _ScenarioSelectionScreenState
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
       child: InkWell(
         onTap: () async {
+          FocusManager.instance.primaryFocus?.unfocus();
           final consent = await AiConsentSheet.ensureConsent(context);
           if (!consent || !mounted) return;
           final newScenario = await CustomScenarioDialog.show(context);
+          FocusManager.instance.primaryFocus?.unfocus();
           if (newScenario != null) {
             await ref
                 .read(savedScenariosProvider.notifier)
@@ -844,6 +846,8 @@ class _ScenarioSelectionScreenState
   }
 
   void _showScenarioDetailSheet(ConversationScenario scenario) {
+    FocusScope.of(context).unfocus();
+    FocusManager.instance.primaryFocus?.unfocus();
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final savedScenarios = ref.read(savedScenariosProvider);

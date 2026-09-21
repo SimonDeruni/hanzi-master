@@ -3724,7 +3724,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'DefaultFirebaseOptions are not supported for this platform.';
 
   @override
-  String get hanziMaster1 => 'Hanzi Master';
+  String get hanziMaster1 => 'SinoSpark';
 
   @override
   String get strokesCannotBeEmpty => 'Strokes cannot be empty.';
@@ -3866,7 +3866,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Echo Hall remains silent. Try your breath again.';
 
   @override
-  String get xtitleHanziMaster => 'X-Title\': \'Hanzi Master';
+  String get xtitleHanziMaster => 'X-Title\': \'SinoSpark';
 
   @override
   String get noneYet => 'None yet.';
@@ -6532,13 +6532,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get personalizedPathInitialized => 'PERSONALIZED PATH INITIALIZED';
 
   @override
-  String get calibratingAiNeuralMasters => 'CALIBRATING AI NEURAL MASTERS...';
+  String get calibratingAiNeuralMasters =>
+      'PREPARING YOUR PERSONAL CURRICULUM...';
 
   @override
-  String get calibrationComplete => 'Calibration Complete';
+  String get calibrationComplete => 'Curriculum Ready';
 
   @override
-  String get synthesizingModules => 'Synthesizing Modules...';
+  String get synthesizingModules => 'Setting up your custom syllabus...';
 
   @override
   String get oneAndWater => 'One\' and \'Water';
@@ -6870,7 +6871,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get everythingYouNeedToKnowAboutHanziMa =>
-      'Everything you need to know about Hanzi Master, its features, and your privacy.';
+      'Everything you need to know about SinoSpark, its features, and your privacy.';
 
   @override
   String get whoAreTheVoicesSpeakingInTheApp =>
@@ -12633,7 +12634,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Books and studio-quality audiobooks';
+      '86 Classical books and studio-quality audiobooks';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12788,7 +12789,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.';
+      'SinoSpark uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.';
 
   @override
   String get aiConsentDataSentTitle => 'Data Transmitted';
@@ -12875,5 +12876,65 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return 'Added $hanzi to $deckName';
+  }
+
+  @override
+  String get callCategory => 'LIVE CALL';
+
+  @override
+  String get aiCallFluencyTitle => 'AI Call to improve fluency';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Engage in realistic voice conversations with AI tutors, receive instant tone grading, and build spoken fluency.';
+
+  @override
+  String get decksCategory => 'DECKS';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'Decks with spaced repetition';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Master HSK 1–6 and custom decks with scientifically proven spaced repetition algorithms.';
+
+  @override
+  String get booksCategory => 'BOOKS';
+
+  @override
+  String get classicalBooksPoemsTitle => '86 Classical books and 100 poems';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Immerse yourself in timeless literature and poetry with synchronized audio and bilingual annotations.';
+
+  @override
+  String get scanCategory => 'SCANNER';
+
+  @override
+  String get scannerScanCardsTitle => 'Scan images and add cards to deck';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Point your camera at any Chinese text, menus, or signs to instantly extract words and save them to your decks.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Smart dictionary with stroke order';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Live AI voice calls and instant tone grading';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Shadowing studio and tone pitch analysis';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Start my 7-day free trial';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Then $price / $period. Cancel anytime in Settings.';
   }
 }

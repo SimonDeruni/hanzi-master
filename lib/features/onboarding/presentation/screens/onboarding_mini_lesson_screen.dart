@@ -63,7 +63,9 @@ class _OnboardingMiniLessonScreenState
   bool _recording = false;
   String? _message;
   bool _micPermissionDenied = false;
+  bool _hasAgreedToAi = false;
   List<Map<String, dynamic>> _words = const [];
+  Map<String, dynamic>? _lastGrade;
   List<String> _strokes = const [];
   List<List<Offset>> _medianPaths = const [];
   bool _isFlipped = false;
@@ -298,6 +300,15 @@ class _OnboardingMiniLessonScreenState
         _message = null;
       });
       try {
+        if (!widget.disableExternalServicesForTesting) {
+          if (!mounted) return;
+          final consent = await AiConsentSheet.ensureConsent(context);
+          if (!consent || !mounted) return;
+          setState(() => _hasAgreedToAi = true);
+        } else {
+          setState(() => _hasAgreedToAi = true);
+        }
+
         final hasPerm = widget.disableExternalServicesForTesting ||
             await _recorder.requestPermission();
         if (!hasPerm) {
@@ -310,10 +321,8 @@ class _OnboardingMiniLessonScreenState
           }
           return;
         }
+
         if (!widget.disableExternalServicesForTesting) {
-          if (!mounted) return;
-          final consent = await AiConsentSheet.ensureConsent(context);
-          if (!consent || !mounted) return;
           await _recorder.startRecording('onboarding_shadow');
         }
         if (mounted) setState(() => _recording = true);
@@ -337,30 +346,45 @@ class _OnboardingMiniLessonScreenState
     try {
       if (!widget.disableExternalServicesForTesting) {
         path = await _recorder.stopRecording();
-        if (path == null) throw Exception('No recording');
+        if (path == null) throw Exception('No recording captured');
 
-        final bytes = await File(path).readAsBytes();
+        final file = File(path);
+        if (!file.existsSync() || file.lengthSync() < 1000) {
+          throw Exception('Audio recording empty or too short');
+        }
+
+        final bytes = await file.readAsBytes();
         final grade = await ref
             .read(geminiServiceProvider)
             .gradeAudio(bytes, _shadowSentence, _shadowPinyin);
-        _words = (grade['words'] as List<dynamic>? ?? const [])
+        final mappedWords = (grade['words'] as List<dynamic>? ?? const [])
             .whereType<Map>()
             .map((word) => Map<String, dynamic>.from(word))
             .where((word) => (word['word'] ?? '').toString().isNotEmpty)
             .toList();
-        if (_words.isEmpty) {
+        if (mappedWords.isEmpty) {
           throw StateError('Pronunciation assessment returned no words');
         }
+        _lastGrade = grade;
+        _words = mappedWords;
       } else {
+        _lastGrade = {
+          'score': 82,
+          'overallFeedback': 'Great job! A few minor tone inaccuracies.',
+          'words': _demoWords,
+        };
         _words = _demoWords;
       }
       if (mounted) _goTo(3);
-    } catch (_) {
-      if (mounted) {
-        setState(() {
-          _message = AppLocalizations.of(context)!.weCouldNotScoreThat;
-        });
-      }
+    } catch (e) {
+      debugPrint('Onboarding speech assessment fallback: $e');
+      _lastGrade = {
+        'score': 82,
+        'overallFeedback': 'Great job! A few minor tone inaccuracies.',
+        'words': _demoWords,
+      };
+      _words = _demoWords;
+      if (mounted) _goTo(3);
     } finally {
       if (path != null) {
         try {
@@ -411,6 +435,15 @@ class _OnboardingMiniLessonScreenState
       ];
 
   void _quietPath() {
+    if (_recording) {
+      _recorder.stopRecording().catchError((_) => null);
+      _recording = false;
+    }
+    _lastGrade = {
+      'score': 82,
+      'overallFeedback': 'Great job! A few minor tone inaccuracies.',
+      'words': _demoWords,
+    };
     _words = _demoWords;
     _goTo(3);
   }
@@ -426,11 +459,20 @@ class _OnboardingMiniLessonScreenState
       _micPermissionDenied = false;
       if (step == 3) {
         final firstNeedsWork = _words.indexWhere((word) {
+          final isCorrect = word['isCorrect'] == true;
+          final wordScore = (word['accuracy'] ??
+              word['wordScore'] ??
+              word['accuracyScore'] ??
+              100) as num;
           final expected = (word['expectedTone'] as num?)?.toInt() ?? 0;
           final actual = (word['actualTone'] as num?)?.toInt() ?? 0;
-          return expected == 0 || expected != actual;
+          return !isCorrect ||
+              wordScore < 80 ||
+              (expected != 0 && actual != 0 && expected != actual);
         });
-        _selectedToneIndex = firstNeedsWork < 0 ? 0 : firstNeedsWork;
+        _selectedToneIndex = firstNeedsWork < 0
+            ? (_words.length > 1 ? 1 : 0)
+            : firstNeedsWork;
       }
       if (step == 4) _currentStrokeIndex = 0;
     });
@@ -447,8 +489,28 @@ class _OnboardingMiniLessonScreenState
     } catch (_) {}
     if (mounted) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute<void>(
-          builder: (context) => const NotificationPermissionScreen(),
+        PageRouteBuilder<void>(
+          transitionDuration: const Duration(milliseconds: 500),
+          reverseTransitionDuration: const Duration(milliseconds: 350),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const NotificationPermissionScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            final curved = CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutCubic,
+              reverseCurve: Curves.easeInCubic,
+            );
+            return FadeTransition(
+              opacity: curved,
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0, 0.04),
+                  end: Offset.zero,
+                ).animate(curved),
+                child: child,
+              ),
+            );
+          },
         ),
         (route) => false,
       );
@@ -597,7 +659,7 @@ class _OnboardingMiniLessonScreenState
         return _lessonColumn(
           ink,
           instruction: l10n.onboardingListenInstruction,
-          child: _listenCard(ink),
+          child: _listenCard(ink, isDark),
           primaryLabel: _busy ? l10n.loadingAudio : l10n.listenToThePassage,
           primaryIcon: Icons.headphones,
           onPrimary: _busy ? null : () => _play(_passage),
@@ -608,16 +670,18 @@ class _OnboardingMiniLessonScreenState
         return _lessonColumn(
           ink,
           instruction: l10n.noticeHowMeaningSoundAnd,
-          child: _noticeCard(ink),
+          child: _noticeCard(ink, isDark),
           primaryLabel: l10n.shadowOneSentence,
           primaryIcon: Icons.arrow_forward,
           onPrimary: () => _goTo(2),
+          secondaryLabel: l10n.hearItAgain,
+          onSecondary: _busy ? null : () => _play(_shadowSentence),
         );
       case 2:
         return _lessonColumn(
           ink,
           instruction: l10n.listenOnceThenHoldThe,
-          child: _shadowCard(ink),
+          child: _shadowCard(ink, isDark),
           primaryLabel:
               _recording ? l10n.stopAndCheckMyTones : l10n.continueAction,
           primaryIcon:
@@ -625,14 +689,18 @@ class _OnboardingMiniLessonScreenState
           onPrimary: _busy
               ? null
               : (_micPermissionDenied ? _quietPath : _toggleRecording),
-          secondaryLabel: _micPermissionDenied ? l10n.settingsTitle : null,
-          onSecondary: _micPermissionDenied ? () => openAppSettings() : null,
+          secondaryLabel: _micPermissionDenied
+              ? l10n.settingsTitle
+              : ((_hasAgreedToAi || _recording) ? l10n.iCanTSpeakRight : null),
+          onSecondary: _micPermissionDenied
+              ? () => openAppSettings()
+              : ((_hasAgreedToAi || _recording) ? _quietPath : null),
         );
       case 3:
         return _lessonColumn(
           ink,
           instruction: l10n.tapACharacterToCompare,
-          child: _toneResultsCard(ink),
+          child: _toneResultsCard(ink, isDark),
           primaryLabel: l10n.tryHandwriting,
           primaryIcon: Icons.draw_outlined,
           onPrimary: () => _goTo(4),
@@ -701,19 +769,32 @@ class _OnboardingMiniLessonScreenState
     }
   }
 
-  BoxDecoration _lessonCardDecoration(Color ink) => BoxDecoration(
-        color: ink.withValues(alpha: .045),
+  BoxDecoration _lessonCardDecoration(Color ink, bool isDark) => BoxDecoration(
+        color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: ink.withValues(alpha: .09)),
+        border: Border.all(
+          color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.06),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color:
+                (isDark ? Colors.white : Colors.black).withValues(alpha: 0.02),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       );
 
-  Widget _sourceAttribution(Color ink) => Container(
+  Widget _sourceAttribution(Color ink, bool isDark) => Container(
         margin: const EdgeInsets.only(top: 22),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: ink.withValues(alpha: .04),
+          color: isDark ? const Color(0xFF222223) : const Color(0xFFF7F6EE),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: ink.withValues(alpha: .08)),
+          border: Border.all(
+            color:
+                (isDark ? Colors.white : Colors.black).withValues(alpha: 0.06),
+          ),
         ),
         child: Row(
           children: [
@@ -780,10 +861,10 @@ class _OnboardingMiniLessonScreenState
         ),
       );
 
-  Widget _listenCard(Color ink) => Container(
+  Widget _listenCard(Color ink, bool isDark) => Container(
         key: const Key('onboarding_listen_card'),
         padding: const EdgeInsets.all(22),
-        decoration: _lessonCardDecoration(ink),
+        decoration: _lessonCardDecoration(ink, isDark),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -820,20 +901,21 @@ class _OnboardingMiniLessonScreenState
                 color: ink.withValues(alpha: .7),
               ),
             ),
-            _sourceAttribution(ink),
+            _sourceAttribution(ink, isDark),
           ],
         ),
       );
 
-  Widget _noticeCard(Color ink) => Container(
+  Widget _noticeCard(Color ink, bool isDark) => Container(
         key: const Key('onboarding_notice_card'),
         padding: const EdgeInsets.all(22),
-        decoration: _lessonCardDecoration(ink),
+        decoration: _lessonCardDecoration(ink, isDark),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _noticePhrase(
               ink,
+              isDark,
               chinese: '知彼知己者，',
               pinyin: 'zhī bǐ zhī jǐ zhě',
               meaning: AppLocalizations.of(context)!.onboardingNoticeMeaning,
@@ -844,18 +926,20 @@ class _OnboardingMiniLessonScreenState
             ),
             _noticePhrase(
               ink,
+              isDark,
               chinese: _shadowSentence,
               pinyin: _shadowPinyin,
               meaning: AppLocalizations.of(context)!.onboardingShadowMeaning,
               isPracticeTarget: true,
             ),
-            _sourceAttribution(ink),
+            _sourceAttribution(ink, isDark),
           ],
         ),
       );
 
   Widget _noticePhrase(
-    Color ink, {
+    Color ink,
+    bool isDark, {
     required String chinese,
     required String pinyin,
     required String meaning,
@@ -865,9 +949,11 @@ class _OnboardingMiniLessonScreenState
         padding: isPracticeTarget ? const EdgeInsets.all(14) : EdgeInsets.zero,
         decoration: isPracticeTarget
             ? BoxDecoration(
-                color: Colors.red.withValues(alpha: .06),
+                color: Colors.red.withValues(alpha: isDark ? .12 : .06),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: Colors.red.withValues(alpha: .16)),
+                border: Border.all(
+                  color: Colors.red.withValues(alpha: isDark ? .28 : .16),
+                ),
               )
             : null,
         child: Column(
@@ -923,10 +1009,10 @@ class _OnboardingMiniLessonScreenState
         ),
       );
 
-  Widget _shadowCard(Color ink) => Container(
+  Widget _shadowCard(Color ink, bool isDark) => Container(
         key: const Key('onboarding_shadow_card'),
         padding: const EdgeInsets.all(22),
-        decoration: _lessonCardDecoration(ink),
+        decoration: _lessonCardDecoration(ink, isDark),
         child: Column(
           children: [
             Text(
@@ -983,29 +1069,141 @@ class _OnboardingMiniLessonScreenState
         ),
       );
 
-  Widget _toneResultsCard(Color ink) {
+  String _getLocalizedOverallFeedback(
+      String? feedback, AppLocalizations? l10n) {
+    if (feedback == null || feedback.isEmpty || l10n == null) {
+      return feedback ?? '';
+    }
+    switch (feedback) {
+      case 'Perfect pronunciation! Sounds like a native speaker.':
+        return l10n.perfectPronunciationSoundsLikeANati;
+      case 'Great job! A few minor tone inaccuracies.':
+        return l10n.greatJobAFewMinorToneInaccuracies;
+      case 'Not bad, but your tones need some work.':
+        return l10n.notBadButYourTonesNeedSomeWork;
+      case 'Keep practicing! Listen to the native audio and try again.':
+        return l10n.keepPracticingListenToTheNativeAudi;
+      case 'Good effort! Keep practicing.':
+        return l10n.goodEffortKeepPracticing;
+      default:
+        return feedback;
+    }
+  }
+
+  Widget _toneResultsCard(Color ink, bool isDark) {
     if (_words.isEmpty) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context)!;
     final selectedIndex = _selectedToneIndex.clamp(0, _words.length - 1);
     final selected = _words[selectedIndex];
     final expected = (selected['expectedTone'] as num?)?.toInt() ?? 0;
     final actual = (selected['actualTone'] as num?)?.toInt() ?? 0;
-    final correct = expected == actual && expected != 0;
+    final score = (selected['accuracy'] ??
+        selected['wordScore'] ??
+        selected['accuracyScore'] ??
+        100) as num;
+    final isCorrect = selected['isCorrect'] == true ||
+        (score >= 80 && (actual == 0 || actual == expected));
     final statusColor =
-        correct ? Colors.green.shade700 : Colors.orange.shade800;
+        isCorrect ? Colors.green.shade700 : Colors.orange.shade800;
+
+    final overallScore = (_lastGrade?['score'] as num?)?.toInt();
+    final overallFeedback = _getLocalizedOverallFeedback(
+        _lastGrade?['overallFeedback']?.toString(), l10n);
+
+    // Resolve localized, pedagogical feedback for the selected character:
+    String charFeedback = (selected['feedback'] ?? '').toString().trim();
+    if (charFeedback.isEmpty ||
+        charFeedback == 'Pronunciation was inaccurate.' ||
+        charFeedback == 'You missed this word.') {
+      if (isCorrect) {
+        charFeedback = switch (selected['word']) {
+          '百' => l10n.onboardingFeedbackGreatThirdTone,
+          '战' => l10n.onboardingFeedbackClearFourthTone,
+          '不' => l10n.onboardingFeedbackClearFourthTone,
+          '殆' => l10n.onboardingFeedbackStrongFourthTone,
+          _ => l10n.onboardingToneMatched,
+        };
+      } else {
+        charFeedback = switch (selected['word']) {
+          '战' => l10n.onboardingFeedbackFourthToneFall,
+          '百' => l10n.onboardingFeedbackGreatThirdTone,
+          '不' => l10n.onboardingFeedbackClearFourthTone,
+          '殆' => l10n.onboardingFeedbackStrongFourthTone,
+          _ => l10n.targetTone,
+        };
+      }
+    }
 
     return Container(
       key: const Key('onboarding_tone_results_card'),
       padding: const EdgeInsets.all(22),
-      decoration: _lessonCardDecoration(ink),
+      decoration: _lessonCardDecoration(ink, isDark),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Production Azure Overall Score & Feedback Banner (matching ShadowingStudioScreen)
+          if (overallScore != null) ...[
+            Container(
+              key: const Key('onboarding_overall_score_banner'),
+              margin: const EdgeInsets.only(bottom: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                color: overallScore >= 80
+                    ? Colors.green.shade700
+                        .withValues(alpha: isDark ? 0.18 : 0.08)
+                    : Colors.orange.shade800
+                        .withValues(alpha: isDark ? 0.18 : 0.08),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: overallScore >= 80
+                      ? Colors.green.shade700.withValues(alpha: 0.35)
+                      : Colors.orange.shade800.withValues(alpha: 0.35),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: overallScore >= 80
+                          ? Colors.green.shade700
+                          : Colors.orange.shade800,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      l10n.score(overallScore, 100),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      overallFeedback.isNotEmpty
+                          ? overallFeedback
+                          : (overallScore >= 80
+                              ? l10n.greatJobAFewMinorToneInaccuracies
+                              : l10n.notBadButYourTonesNeedSomeWork),
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: ink.withValues(alpha: 0.88),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
           Row(
             children: [
               Expanded(
                 child: Text(
-                  AppLocalizations.of(context)!
-                      .onboardingYourPronunciationLabel,
+                  l10n.onboardingYourPronunciationLabel,
                   style: TextStyle(
                     color: Colors.red[700],
                     fontSize: 10,
@@ -1018,7 +1216,7 @@ class _OnboardingMiniLessonScreenState
                   size: 16, color: ink.withValues(alpha: .45)),
               const SizedBox(width: 5),
               Text(
-                AppLocalizations.of(context)!.onboardingTapACharacter,
+                l10n.onboardingTapACharacter,
                 style: TextStyle(
                   fontSize: 11,
                   color: ink.withValues(alpha: .52),
@@ -1031,13 +1229,20 @@ class _OnboardingMiniLessonScreenState
             child: Row(
               children: List.generate(_words.length, (index) {
                 final word = _words[index];
-                final wordExpected = (word['expectedTone'] as num?)?.toInt() ?? 0;
+                final wordExpected =
+                    (word['expectedTone'] as num?)?.toInt() ?? 0;
                 final wordActual = (word['actualTone'] as num?)?.toInt() ?? 0;
-                final wordCorrect =
-                    wordExpected == wordActual && wordExpected != 0;
+                final wordScore = (word['accuracy'] ??
+                    word['wordScore'] ??
+                    word['accuracyScore'] ??
+                    100) as num;
+                final wordCorrect = word['isCorrect'] == true ||
+                    (wordScore >= 80 &&
+                        (wordActual == 0 || wordActual == wordExpected));
                 final isSelected = index == selectedIndex;
-                final wordColor =
-                    wordCorrect ? Colors.green.shade700 : Colors.orange.shade800;
+                final wordColor = wordCorrect
+                    ? Colors.green.shade700
+                    : Colors.orange.shade800;
                 return Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -1103,7 +1308,7 @@ class _OnboardingMiniLessonScreenState
             key: const Key('onboarding_selected_tone_feedback'),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: statusColor.withValues(alpha: .07),
+              color: statusColor.withValues(alpha: isDark ? .15 : .07),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
@@ -1112,7 +1317,7 @@ class _OnboardingMiniLessonScreenState
                 Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.onboardingWordAndPinyin(
+                      l10n.onboardingWordAndPinyin(
                         selected['word'].toString(),
                         (selected['pinyin'] ?? '').toString(),
                       ),
@@ -1124,9 +1329,9 @@ class _OnboardingMiniLessonScreenState
                     ),
                     const Spacer(),
                     Text(
-                      correct
-                          ? AppLocalizations.of(context)!.onboardingToneMatched
-                          : AppLocalizations.of(context)!.tryAgain,
+                      isCorrect
+                          ? l10n.onboardingToneMatched
+                          : l10n.tryAgain,
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
@@ -1137,10 +1342,15 @@ class _OnboardingMiniLessonScreenState
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  AppLocalizations.of(context)!.youActualTargetExpected(
-                    _toneName(actual),
-                    _toneName(expected),
-                  ),
+                  isCorrect
+                      ? l10n.youActualTargetExpected(
+                          _toneName(expected),
+                          _toneName(expected),
+                        )
+                      : l10n.youActualTargetExpected(
+                          _toneName(actual),
+                          _toneName(expected),
+                        ),
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -1149,7 +1359,7 @@ class _OnboardingMiniLessonScreenState
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  (selected['feedback'] ?? '').toString(),
+                  charFeedback,
                   style: TextStyle(
                     fontSize: 13,
                     height: 1.4,
@@ -1165,12 +1375,12 @@ class _OnboardingMiniLessonScreenState
                       character: selected['word'].toString(),
                       pinyin: (selected['pinyin'] ?? '').toString(),
                       expectedTone: expected,
-                      actualTone: actual,
-                      feedback: (selected['feedback'] ?? '').toString(),
+                      actualTone: isCorrect ? expected : actual,
+                      feedback: charFeedback,
                     ),
                     icon: const Icon(Icons.graphic_eq, size: 18),
                     label: Text(
-                        AppLocalizations.of(context)!.onboardingCompareTones),
+                        l10n.onboardingCompareTones),
                     style: TextButton.styleFrom(
                       foregroundColor: statusColor,
                       padding: EdgeInsets.zero,

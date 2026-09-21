@@ -353,7 +353,7 @@ class HanziMasterApp extends ConsumerWidget {
         },
         child: MaterialApp(
           onGenerateTitle: (context) =>
-              AppLocalizations.of(context)?.hanziMaster ?? 'Hanzi Master',
+              AppLocalizations.of(context)?.hanziMaster ?? 'SinoSpark',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

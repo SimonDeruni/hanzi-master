@@ -13,6 +13,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/dictionary
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/features/progression/presentation/widgets/today_insight_card.dart';
+import 'package:hanzi_master/features/progression/presentation/widgets/daily_goal_review_ring.dart';
+import 'package:hanzi_master/features/progression/presentation/widgets/streak_flame_badge.dart';
 import 'package:hanzi_master/features/progression/data/study_progress_service.dart';
 import 'package:hanzi_master/features/progression/domain/study_progress.dart';
 import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
@@ -90,6 +92,9 @@ class DashboardScreen extends ConsumerWidget {
       }
     }
 
+    final streak =
+        ref.watch(studyProgressProvider).valueOrNull?.currentStreak ?? 0;
+
     return Scaffold(
       body: CalligraphyBackground(
         child: CustomScrollView(
@@ -97,7 +102,18 @@ class DashboardScreen extends ConsumerWidget {
             // --- STANDARD HEADER ---
             GlobalSliverAppBar(
               title: l10n?.dashboardTitle ?? "Dashboard",
-              actions: const [],
+              actions: [
+                if (streak > 0)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Center(
+                      child: StreakFlameBadge(
+                        streak: streak,
+                        label: l10n?.dayStreakCount(streak) ?? '$streak Days',
+                      ),
+                    ),
+                  ),
+              ],
             ),
 
             // --- TODAY'S WORD (CROPPED & COMPACT) ---
@@ -923,18 +939,37 @@ class HabitProgressCards extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                LinearProgressIndicator(
-                  value: progress.dailyGoalProgress,
-                  minHeight: 9,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                const SizedBox(height: 9),
-                Text(
-                  progress.todayCards >= progress.dailyCardGoal
-                      ? l10n.goalCompleteAnythingMoreIs
-                      : l10n.aSmallAchievableTargetNo,
-                  style: theme.textTheme.bodySmall,
+                const SizedBox(height: 14),
+                Row(
+                  children: [
+                    DailyGoalReviewRing(
+                      progress: progress.dailyGoalProgress,
+                      todayCards: progress.todayCards,
+                      goalCards: progress.dailyCardGoal,
+                      size: 72,
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            progress.todayCards >= progress.dailyCardGoal
+                                ? l10n.goalCompleteAnythingMoreIs
+                                : l10n.aSmallAchievableTargetNo,
+                            style: theme.textTheme.bodySmall
+                                ?.copyWith(height: 1.35),
+                          ),
+                          const SizedBox(height: 10),
+                          LinearProgressIndicator(
+                            value: progress.dailyGoalProgress,
+                            minHeight: 7,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -959,9 +994,9 @@ class HabitProgressCards extends StatelessWidget {
                     ),
                     const Spacer(),
                     if (progress.currentStreak > 0)
-                      Text(
-                        l10n.dayStreakCount(progress.currentStreak),
-                        style: theme.textTheme.labelLarge,
+                      StreakFlameBadge(
+                        streak: progress.currentStreak,
+                        label: l10n.dayStreakCount(progress.currentStreak),
                       ),
                   ],
                 ),

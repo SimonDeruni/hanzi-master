@@ -885,15 +885,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required bool isDark,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
           Icon(icon, size: 16, color: _accentGold),
-          const SizedBox(width: 6),
+          const SizedBox(width: 8),
           Text(
             title,
             style: TextStyle(
-              fontSize: 13,
+              fontSize: 13.5,
               fontWeight: FontWeight.w700,
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               letterSpacing: 0.3,
@@ -919,45 +919,250 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 240),
         curve: Curves.easeInOutQuart,
         decoration: BoxDecoration(
           color: isSelected
-              ? _accentGold.withValues(alpha: isDark ? 0.25 : 0.15)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          border: isSelected
-              ? Border.all(color: _accentGold.withValues(alpha: 0.4), width: 1)
-              : null,
+              ? _accentGold.withValues(alpha: isDark ? 0.22 : 0.12)
+              : (isDark ? const Color(0xFF222226) : Colors.white),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: isSelected
+                ? _accentGold
+                : (isDark
+                    ? Colors.white.withValues(alpha: 0.08)
+                    : Colors.black.withValues(alpha: 0.06)),
+            width: isSelected ? 1.5 : 1.0,
+          ),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: _accentGold.withValues(alpha: isDark ? 0.25 : 0.15),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ]
+              : [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: isDark ? 0.15 : 0.03),
+                    blurRadius: 4,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
         ),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon,
-                size: 14,
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
                 color: isSelected
-                    ? _accentGold
-                    : (isDark ? Colors.white54 : Colors.black38)),
-            const SizedBox(width: 4),
-            Flexible(
+                    ? _accentGold.withValues(alpha: isDark ? 0.3 : 0.2)
+                    : (isDark
+                        ? Colors.white.withValues(alpha: 0.06)
+                        : Colors.black.withValues(alpha: 0.04)),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(
+                icon,
+                size: 18,
+                color: isSelected
+                    ? (isDark ? _accentGoldLight : const Color(0xFFB45309))
+                    : (isDark ? Colors.white60 : Colors.black45),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
               child: Text(
                 label,
                 style: TextStyle(
                   color: isSelected
                       ? (isDark ? _accentGoldLight : const Color(0xFF1A1A1B))
-                      : (isDark ? Colors.white54 : Colors.black38),
-                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                  fontSize: 11,
+                      : (isDark ? Colors.white70 : const Color(0xFF4A4A4D)),
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                  fontSize: 12,
                   letterSpacing: 0.2,
+                  height: 1.2,
                 ),
                 maxLines: 2,
-                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildFeaturePill({
+    required IconData icon,
+    required String label,
+    required bool isDark,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.05)
+            : const Color(0xFFF7F5EE),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.08)
+              : Colors.black.withValues(alpha: 0.06),
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 13, color: _accentGold),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: isDark ? Colors.white60 : Colors.black54,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStudioGuideCard(BuildContext context, bool isDark) {
+    final l10n = AppLocalizations.of(context)!;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF202024) : const Color(0xFFFAF8F2),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: _accentGold.withValues(alpha: isDark ? 0.25 : 0.2),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: _accentGold.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.auto_awesome_rounded,
+                  size: 15,
+                  color: _accentGold,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  l10n.shadowingStudioAndToneAnalysis,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w700,
+                    color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                    letterSpacing: 0.2,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.shadowNativeAudioAndVisualize,
+            style: TextStyle(
+              fontSize: 12,
+              color: isDark ? Colors.white60 : Colors.black54,
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _buildPillarStep(
+                  step: '1',
+                  label: l10n.play,
+                  icon: Icons.headphones_rounded,
+                  isDark: isDark,
+                ),
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: _buildPillarStep(
+                  step: '2',
+                  label: l10n.shadowing,
+                  icon: Icons.mic_rounded,
+                  isDark: isDark,
+                ),
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: _buildPillarStep(
+                  step: '3',
+                  label: l10n.toneAccuracy,
+                  icon: Icons.analytics_outlined,
+                  isDark: isDark,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPillarStep({
+    required String step,
+    required String label,
+    required IconData icon,
+    required bool isDark,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      decoration: BoxDecoration(
+        color: isDark ? Colors.white.withValues(alpha: 0.04) : Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.06)
+              : Colors.black.withValues(alpha: 0.05),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 16, color: _accentGold),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 10.5,
+              fontWeight: FontWeight.w600,
+              color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }
@@ -967,44 +1172,54 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required String label,
     required Widget child,
   }) {
-    final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: cardBg,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.08)
-                : Colors.black.withValues(alpha: 0.06),
+    final cardBg = isDark ? const Color(0xFF202024) : Colors.white;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.08)
+              : Colors.black.withValues(alpha: 0.06),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10.5,
-                fontWeight: FontWeight.w600,
-                color: isDark ? Colors.white38 : Colors.black45,
-                letterSpacing: 0.8,
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 12,
+                decoration: BoxDecoration(
+                  color: _accentGold,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            child,
-          ],
-        ),
+              const SizedBox(width: 6),
+              Text(
+                label.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: isDark ? _accentGoldLight : const Color(0xFF8C6B10),
+                  letterSpacing: 0.9,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          child,
+        ],
       ),
     );
   }
@@ -1039,7 +1254,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       l10n.shadowingStudio,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 19,
                         fontWeight: FontWeight.w800,
                         color: primaryText,
                         letterSpacing: 0.5,
@@ -1051,19 +1266,31 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               ),
             ),
 
-            // ── Hero Icon ─────────────────────────────────────────
+            // ── Hero Icon with Concentric Calligraphic Aura ────────
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: _accentGold.withValues(alpha: isDark ? 0.1 : 0.06),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.graphic_eq_rounded,
-                  size: 38,
-                  color: isDark ? _accentGoldLight : _accentGold,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: _accentGold.withValues(alpha: isDark ? 0.25 : 0.2),
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: _accentGold.withValues(alpha: isDark ? 0.15 : 0.08),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.graphic_eq_rounded,
+                      size: 34,
+                      color: isDark ? _accentGoldLight : _accentGold,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -1076,8 +1303,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               child: Text(
                 l10n.masterYourMandarinPronunciationnbyM,
                 style: TextStyle(
-                  fontSize: 13,
-                  color: isDark ? Colors.white60 : Colors.black54,
+                  fontSize: 13.5,
+                  color: isDark ? Colors.white70 : Colors.black54,
                   height: 1.35,
                 ),
                 textAlign: TextAlign.center,
@@ -1095,7 +1322,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 14),
 
                     // ── Mode Selector Section ─────────────────────
                     _buildSectionLabel(
@@ -1103,54 +1330,43 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       title: l10n.practiceMode,
                       isDark: isDark,
                     ),
-                    const SizedBox(height: 6),
 
-                    // Primary modes: responsive segmented pill grid
-                    Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? const Color(0xFF2C2C2E)
-                            : Colors.black.withValues(alpha: 0.04),
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        mainAxisSpacing: 4,
-                        crossAxisSpacing: 4,
-                        childAspectRatio: 3.5,
-                        children: [
-                          _buildSegmentModeTab(
-                            mode: ShadowingMode.freeFlow,
-                            icon: Icons.mic_none_rounded,
-                            label: l10n.freeFlow,
-                            isDark: isDark,
-                          ),
-                          _buildSegmentModeTab(
-                            mode: ShadowingMode.theme,
-                            icon: Icons.auto_stories_rounded,
-                            label: l10n.thematic,
-                            isDark: isDark,
-                          ),
-                          _buildSegmentModeTab(
-                            mode: ShadowingMode.deck,
-                            icon: Icons.style_rounded,
-                            label: l10n.deckFlashcards,
-                            isDark: isDark,
-                          ),
-                          _buildSegmentModeTab(
-                            mode: ShadowingMode.customWord,
-                            icon: Icons.text_fields_rounded,
-                            label: l10n.customWord,
-                            isDark: isDark,
-                          ),
-                        ],
-                      ),
+                    GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                      childAspectRatio: 2.35,
+                      children: [
+                        _buildSegmentModeTab(
+                          mode: ShadowingMode.freeFlow,
+                          icon: Icons.mic_none_rounded,
+                          label: l10n.freeFlow,
+                          isDark: isDark,
+                        ),
+                        _buildSegmentModeTab(
+                          mode: ShadowingMode.theme,
+                          icon: Icons.auto_stories_rounded,
+                          label: l10n.thematic,
+                          isDark: isDark,
+                        ),
+                        _buildSegmentModeTab(
+                          mode: ShadowingMode.deck,
+                          icon: Icons.style_rounded,
+                          label: l10n.deckFlashcards,
+                          isDark: isDark,
+                        ),
+                        _buildSegmentModeTab(
+                          mode: ShadowingMode.customWord,
+                          icon: Icons.text_fields_rounded,
+                          label: l10n.customWord,
+                          isDark: isDark,
+                        ),
+                      ],
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 14),
 
                     // ── Configuration Section ─────────────────────
                     _buildSectionLabel(
@@ -1158,21 +1374,47 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       title: AppLocalizations.of(context)!.configuration,
                       isDark: isDark,
                     ),
-                    const SizedBox(height: 6),
 
                     if (_selectedMode == ShadowingMode.freeFlow) ...[
                       _buildConfigCard(
                         isDark: isDark,
                         label: l10n.practiceMode,
-                        child: Text(
-                          l10n.freeFlowConversationalPractice,
-                          style: TextStyle(
-                            color: isDark
-                                ? Colors.white70
-                                : const Color(0xFF1A1A1B),
-                            fontSize: 13,
-                            height: 1.3,
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.freeFlowConversationalPractice,
+                              style: TextStyle(
+                                color: isDark
+                                    ? Colors.white70
+                                    : const Color(0xFF2C2C2E),
+                                fontSize: 13,
+                                height: 1.35,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Wrap(
+                              spacing: 6,
+                              runSpacing: 6,
+                              children: [
+                                _buildFeaturePill(
+                                  icon: Icons.check_circle_outline_rounded,
+                                  label: l10n.toneAccuracy,
+                                  isDark: isDark,
+                                ),
+                                _buildFeaturePill(
+                                  icon: Icons.graphic_eq_rounded,
+                                  label: l10n.pronunciationAssessment,
+                                  isDark: isDark,
+                                ),
+                                _buildFeaturePill(
+                                  icon: Icons.speed_rounded,
+                                  label: '0.8x / 1.0x',
+                                  isDark: isDark,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -1362,7 +1604,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                     ],
 
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 14),
+
+                    // ── Studio Pedagogical Highlights Card ────────
+                    _buildStudioGuideCard(context, isDark),
+
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -1370,7 +1617,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
             // Start Button Area
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 8, 24, 12),
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 14),
               child: FilledButton.icon(
                 key: const Key('shadowing_start_session'),
                 onPressed: _isStartingSession ? null : _startSession,
@@ -1383,17 +1630,17 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 label: Text(
                   _isStartingSession ? l10n.sTARTING : l10n.startSession,
                   style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1.0,
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.8,
                   ),
                 ),
                 style: FilledButton.styleFrom(
                   backgroundColor: _accentGold,
-                  foregroundColor: Colors.black,
-                  minimumSize: const Size(double.infinity, 50),
+                  foregroundColor: const Color(0xFF1A1A1B),
+                  minimumSize: const Size(double.infinity, 54),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   elevation: 0,
                 ),

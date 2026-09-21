@@ -1425,7 +1425,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get undo => 'ANNULER';
 
   @override
-  String get hanziMaster => 'Maître Hanzi';
+  String get hanziMaster => 'SinoSpark';
 
   @override
   String get unlockForever => 'Débloquer à vie - 9,99 \$';
@@ -2545,7 +2545,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get serif => 'Empattement';
 
   @override
-  String get shadow => 'Ombre';
+  String get shadow => 'Répétition';
 
   @override
   String get shiNaianEpic =>
@@ -3783,7 +3783,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'DefaultFirebaseOptions n\'est pas pris en charge sur cette plateforme.';
 
   @override
-  String get hanziMaster1 => 'Hanzi Master';
+  String get hanziMaster1 => 'SinoSpark';
 
   @override
   String get strokesCannotBeEmpty => 'Les traits ne peuvent pas être vides.';
@@ -3926,7 +3926,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'La Salle de l\'Écho reste silencieuse. Reprenez votre souffle et réessayez.';
 
   @override
-  String get xtitleHanziMaster => 'Hanzi Master';
+  String get xtitleHanziMaster => 'SinoSpark';
 
   @override
   String get noneYet => 'Aucun pour l\'instant.';
@@ -6966,7 +6966,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get everythingYouNeedToKnowAboutHanziMa =>
-      'Tout ce que vous devez savoir sur Hanzi Master, ses fonctionnalités et votre confidentialité.';
+      'Tout ce que vous devez savoir sur SinoSpark, ses fonctionnalités et votre confidentialité.';
 
   @override
   String get whoAreTheVoicesSpeakingInTheApp =>
@@ -12779,7 +12779,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Livres et livres audio de qualité studio';
+      '86 livres classiques et livres audio de qualité studio';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12938,7 +12938,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master utilise des services d\'IA tiers sécurisés pour l\'évaluation vocale de la prononciation, les dialogues et les outils d\'apprentissage.';
+      'SinoSpark utilise des services d\'IA tiers sécurisés pour l\'évaluation vocale de la prononciation, les dialogues et les outils d\'apprentissage.';
 
   @override
   String get aiConsentDataSentTitle => 'Données transmises';
@@ -13027,5 +13027,66 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return '$hanzi ajouté à $deckName';
+  }
+
+  @override
+  String get callCategory => 'APPEL EN DIRECT';
+
+  @override
+  String get aiCallFluencyTitle => 'Appels IA pour améliorer votre fluidité';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Participez à des conversations vocales réalistes avec des tuteurs IA, recevez une notation instantanée des tons et développez votre aisance orale.';
+
+  @override
+  String get decksCategory => 'DECKS';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'Decks avec répétition espacée';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Maîtrisez le HSK 1–6 et vos decks personnalisés grâce à des algorithmes de répétition espacée scientifiquement prouvés.';
+
+  @override
+  String get booksCategory => 'LIVRES';
+
+  @override
+  String get classicalBooksPoemsTitle => '86 livres classiques et 100 poèmes';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Plongez dans une littérature intemporelle avec audio synchronisé et annotations bilingues.';
+
+  @override
+  String get scanCategory => 'SCANNER';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'Scannez des images et ajoutez des cartes';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Pointez votre appareil photo sur du texte chinois, des menus ou des panneaux pour extraire instantanément des mots et les ajouter à vos decks.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Dictionnaire intelligent avec ordre d\'écriture';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Appels vocaux IA en direct et évaluation des tons';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Studio de répétition et analyse visuelle des tons';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Commencer mes 7 jours gratuits';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Puis $price / $period. Annulez à tout moment dans Réglages.';
   }
 }

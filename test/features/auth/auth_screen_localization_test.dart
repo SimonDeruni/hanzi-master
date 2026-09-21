@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/premium/presentation/screens/custom_paywal
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 
 class _FakeUser extends Fake implements User {
   @override
@@ -40,10 +41,13 @@ Widget _buildAuthScreen({
   bool requireSubscription = false,
   User? currentUser,
   NavigatorObserver? navigatorObserver,
+  SharedPreferences? sharedPreferences,
 }) {
   return ProviderScope(
     overrides: [
       currentUserProvider.overrideWithValue(currentUser),
+      if (sharedPreferences != null)
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
     ],
     child: MaterialApp(
       navigatorObservers: [
@@ -252,6 +256,7 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
       addTearDown(() => tester.view.resetPhysicalSize());
       SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
 
       await MonetizationService.lockDeveloperBackdoor();
       expect(await MonetizationService.checkPremiumStatus(), isFalse);
@@ -263,6 +268,7 @@ void main() {
           locale: const Locale('en'),
           requireSubscription: true,
           navigatorObserver: navObserver,
+          sharedPreferences: prefs,
         ),
       );
       await tester.pumpAndSettle();
@@ -283,7 +289,6 @@ void main() {
 
       // Check that demo backdoor is unlocked and persisted
       expect(await MonetizationService.checkPremiumStatus(), isTrue);
-      final prefs = await SharedPreferences.getInstance();
       expect(prefs.getBool('demo_account_unlocked'), isTrue);
       expect(prefs.getBool('has_seen_onboarding'), isTrue);
 
@@ -295,6 +300,80 @@ void main() {
       await MonetizationService.lockDeveloperBackdoor();
       expect(await MonetizationService.checkPremiumStatus(), isFalse);
       expect(prefs.getBool('demo_account_unlocked'), isNull);
+    });
+
+    testWidgets(
+        'legal links adaptively wrap and center without overflow on mobile in French',
+        (tester) async {
+      tester.view.physicalSize = const Size(390, 844);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
+
+      await tester.pumpWidget(
+        _buildAuthScreen(
+          locale: const Locale('fr'),
+          requireSubscription: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final termsButton = find.byKey(const Key('auth_terms_button'));
+      final privacyButton = find.byKey(const Key('auth_privacy_button'));
+
+      expect(termsButton, findsOneWidget);
+      expect(privacyButton, findsOneWidget);
+
+      // Verify privacy button does not overflow to the right
+      final privacyRect = tester.getRect(privacyButton);
+      expect(privacyRect.right, lessThanOrEqualTo(390.0));
+      expect(privacyRect.left, greaterThanOrEqualTo(0.0));
+
+      // Verify terms button is also within bounds
+      final termsRect = tester.getRect(termsButton);
+      expect(termsRect.right, lessThanOrEqualTo(390.0));
+      expect(termsRect.left, greaterThanOrEqualTo(0.0));
+
+      // Since wrapped on mobile in French, terms is above privacy
+      expect(termsRect.bottom, lessThanOrEqualTo(privacyRect.top));
+
+      // Both are centered on screen (screen center is 195.0)
+      expect((termsRect.center.dx - 195.0).abs(), lessThan(20.0));
+      expect((privacyRect.center.dx - 195.0).abs(), lessThan(20.0));
+    });
+
+    testWidgets(
+        'legal links render side-by-side with horizontal spacing on wide screens',
+        (tester) async {
+      tester.view.physicalSize = const Size(800, 1200);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
+
+      await tester.pumpWidget(
+        _buildAuthScreen(
+          locale: const Locale('fr'),
+          requireSubscription: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final termsButton = find.byKey(const Key('auth_terms_button'));
+      final privacyButton = find.byKey(const Key('auth_privacy_button'));
+
+      expect(termsButton, findsOneWidget);
+      expect(privacyButton, findsOneWidget);
+
+      final termsRect = tester.getRect(termsButton);
+      final privacyRect = tester.getRect(privacyButton);
+
+      // On wide screen they fit on one line: vertical centers align
+      expect((termsRect.center.dy - privacyRect.center.dy).abs(), lessThan(2.0));
+
+      // Side-by-side with horizontal space
+      expect(termsRect.right, lessThan(privacyRect.left));
+
+      // Entire row is within bounds
+      expect(termsRect.left, greaterThanOrEqualTo(0.0));
+      expect(privacyRect.right, lessThanOrEqualTo(800.0));
     });
   });
 }

@@ -4,9 +4,11 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
+import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -27,6 +29,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   double _calibrationProgress = 0.0;
   bool _calibrationComplete = false;
   Timer? _calibrationTimer;
+  Timer? _autoAdvanceTimer;
 
   void _nextPage() {
     HapticsManager.light();
@@ -95,9 +98,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ? 1
           : (_selectedMastery == 1 ? 2 : (_selectedMastery == 2 ? 3 : 5));
       await prefs.setInt('target_hsk_level', targetHsk);
+
+      // Pre-seed the appropriate HSK tier and thematic deck based on user choices
+      await ref.read(flashcardControllerProvider.notifier).preseedOnboardingDecks(
+            masteryLevel: _selectedMastery >= 0 ? _selectedMastery : 0,
+            drive: _selectedDrive >= 0 ? _selectedDrive : 0,
+          );
     } catch (e) {
       debugPrint('Failed to persist onboarding choices: $e');
     }
+  }
+
+  void _autoAdvance() {
+    _autoAdvanceTimer?.cancel();
+    _autoAdvanceTimer = Timer(const Duration(milliseconds: 260), () {
+      if (mounted) _nextPage();
+    });
   }
 
   void _launchMiniLesson() {
@@ -131,6 +147,19 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
+  void _skipToLibrary() async {
+    HapticsManager.light();
+    _completeOnboarding();
+    if (mounted) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute<void>(
+          builder: (context) => const NotificationPermissionScreen(),
+        ),
+        (route) => false,
+      );
+    }
+  }
+
   void _completeOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('has_seen_onboarding', true);
@@ -138,6 +167,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   void dispose() {
+    _autoAdvanceTimer?.cancel();
     _calibrationTimer?.cancel();
     _pageController.dispose();
     super.dispose();
@@ -359,6 +389,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     setState(() {
                       _selectedMastery = index;
                     });
+                    _autoAdvance();
                   },
                 )
                     .animate()
@@ -381,17 +412,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
     final options = [
-      {"title": l10n.onboardingBusinessCareerMulti, "icon": Icons.work_outline},
+      {"title": l10n.businessCareer, "icon": Icons.work_outline},
       {
-        "title": l10n.onboardingTravelSurvivalMulti,
+        "title": l10n.travelSurvival,
         "icon": Icons.location_on_outlined
       },
       {
-        "title": l10n.onboardingHskCertificationMulti,
+        "title": l10n.hskCertification,
         "icon": Icons.workspace_premium_outlined
       },
       {
-        "title": l10n.onboardingCulturalAppreciationMulti,
+        "title": l10n.culturalAppreciation,
         "icon": Icons.palette_outlined
       },
     ];
@@ -418,17 +449,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ).animate().fadeIn(delay: 200.ms),
           const SizedBox(height: 24),
           Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 0.95,
-              ),
+            child: ListView.separated(
               itemCount: options.length,
+              separatorBuilder: (c, i) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 bool isSelected = _selectedDrive == index;
-                return _buildGridSelectionCard(
+                return _buildSelectionCard(
                   title: options[index]["title"] as String,
                   icon: options[index]["icon"] as IconData,
                   isSelected: isSelected,
@@ -436,11 +462,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     setState(() {
                       _selectedDrive = index;
                     });
+                    _autoAdvance();
                   },
                 )
                     .animate()
                     .fadeIn(delay: Duration(milliseconds: 300 + (100 * index)))
-                    .scale();
+                    .slideX();
               },
             ),
           ),
@@ -458,7 +485,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
     final options = [
-      {"title": "05", "subtitle": l10n.minutesDay},
+      {"title": "5", "subtitle": l10n.minutesDay},
       {"title": "10", "subtitle": l10n.minutesDay},
       {"title": "20", "subtitle": l10n.minutesDay},
       {"title": "30", "subtitle": l10n.minutesDay},
@@ -501,6 +528,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     setState(() {
                       _selectedRitual = index;
                     });
+                    _autoAdvance();
                   },
                 )
                     .animate()
@@ -687,11 +715,28 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          if (_calibrationComplete)
+          if (_calibrationComplete) ...[
             _buildPrimaryButton(
               l10n.beginFirstLesson,
               _launchMiniLesson,
             ).animate().fadeIn(duration: 300.ms),
+            const SizedBox(height: 8),
+            TextButton(
+              key: const Key('onboarding_skip_lesson_button'),
+              onPressed: _skipToLibrary,
+              style: TextButton.styleFrom(
+                foregroundColor: isDark ? Colors.white54 : Colors.black54,
+                padding: const EdgeInsets.symmetric(vertical: 8),
+              ),
+              child: const Text(
+                'Explore Library Directly',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ).animate().fadeIn(delay: 200.ms),
+          ],
           const SizedBox(height: 12),
         ],
       ),
@@ -706,7 +751,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required bool isDark,
   }) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.easeInOutQuart,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         color: isDone
@@ -723,12 +769,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       ),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: isDone
-                ? Colors.red[700]
-                : (isDark ? Colors.white24 : Colors.black26),
-            size: 22,
+          AnimatedScale(
+            scale: isDone ? 1.0 : 0.75,
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeOutBack,
+            child: Icon(
+              icon,
+              color: isDone
+                  ? Colors.red[700]
+                  : (isDark ? Colors.white24 : Colors.black26),
+              size: 22,
+            ),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -743,30 +794,54 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   ),
                 ),
                 const SizedBox(height: 2),
-                Text(
-                  value,
-                  style: TextStyle(
-                    color: isDone
-                        ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
-                        : (isDark ? Colors.white38 : Colors.black38),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  transitionBuilder: (child, animation) {
+                    final slide = Tween<Offset>(
+                      begin: const Offset(0, 0.35),
+                      end: Offset.zero,
+                    ).animate(CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeOutCubic,
+                    ));
+                    return FadeTransition(
+                      opacity: animation,
+                      child: SlideTransition(position: slide, child: child),
+                    );
+                  },
+                  child: Text(
+                    value,
+                    key: ValueKey('$title-$isDone'),
+                    style: TextStyle(
+                      color: isDone
+                          ? (isDark ? Colors.white : const Color(0xFF1A1A1B))
+                          : (isDark ? Colors.white38 : Colors.black38),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 400),
+            transitionBuilder: (child, animation) => ScaleTransition(
+              scale: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeOutBack,
+              ),
+              child: FadeTransition(opacity: animation, child: child),
+            ),
             child: isDone
                 ? Icon(Icons.check_circle,
                     color: Colors.green[600],
                     size: 20,
-                    key: const ValueKey("done"))
+                    key: const ValueKey('done'))
                 : SizedBox(
                     width: 16,
                     height: 16,
-                    key: const ValueKey("loading"),
+                    key: const ValueKey('loading'),
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
                       color: isDark ? Colors.white24 : Colors.black26,
@@ -777,6 +852,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       ),
     );
   }
+
 
   Widget _buildRitualCard({
     required String title,
@@ -793,59 +869,64 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
+      child: AnimatedScale(
+        scale: isSelected ? 1.03 : 1.0,
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? selectedBg
-              : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
+        curve: Curves.easeOutBack,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          decoration: BoxDecoration(
             color: isSelected
                 ? selectedBg
-                : (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.05),
-            width: 1.5,
-          ),
-          boxShadow: [
-            if (!isSelected)
-              BoxShadow(
-                color: (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.02),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              )
-          ],
-        ),
-        child: Row(
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                color: isSelected
-                    ? selectedText
-                    : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                fontSize: 24,
-                fontFamily: 'Serif',
-              ),
+                : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: isSelected
+                  ? selectedBg
+                  : (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.05),
+              width: 1.5,
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(
-                subtitle,
+            boxShadow: [
+              if (!isSelected)
+                BoxShadow(
+                  color: (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.02),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                )
+            ],
+          ),
+          child: Row(
+            children: [
+              Text(
+                title,
                 style: TextStyle(
                   color: isSelected
                       ? selectedText
-                      : (isDark ? Colors.white54 : Colors.black54),
-                  fontSize: 16,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                  fontSize: 24,
+                  fontFamily: 'Serif',
                 ),
               ),
-            ),
-            if (isSelected)
-              Icon(Icons.check_circle_outline, color: selectedText),
-          ],
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  subtitle,
+                  style: TextStyle(
+                    color: isSelected
+                        ? selectedText
+                        : (isDark ? Colors.white54 : Colors.black54),
+                    fontSize: 16,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
+              ),
+              if (isSelected)
+                Icon(Icons.check_circle_outline, color: selectedText),
+            ],
+          ),
         ),
       ),
     );
@@ -853,7 +934,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _buildSelectionCard({
     required String title,
-    required String subtitle,
+    String? subtitle,
     required IconData icon,
     required bool isSelected,
     required VoidCallback onTap,
@@ -866,136 +947,101 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
+      child: AnimatedScale(
+        scale: isSelected ? 1.03 : 1.0,
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? selectedBg
-              : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
+        curve: Curves.easeOutBack,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          decoration: BoxDecoration(
             color: isSelected
                 ? selectedBg
-                : (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.05),
-            width: 1.5,
-          ),
-          boxShadow: [
-            if (!isSelected)
-              BoxShadow(
-                color: (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.02),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              )
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: isSelected
-                          ? selectedText
-                          : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      color: isSelected
-                          ? selectedText
-                          : (isDark ? Colors.white54 : Colors.black54),
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              icon,
+                : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
               color: isSelected
-                  ? selectedText
-                  : (isDark ? Colors.white38 : Colors.black38),
-              size: 28,
+                  ? selectedBg
+                  : (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.05),
+              width: 1.5,
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGridSelectionCard({
-    required String title,
-    required IconData icon,
-    required bool isSelected,
-    required VoidCallback onTap,
-  }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final selectedBg =
-        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final selectedText =
-        isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
-
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? selectedBg
-              : (isDark ? const Color(0xFF2A2A2B) : Colors.white),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isSelected
-                ? selectedBg
-                : (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.05),
-            width: 1.5,
+            boxShadow: [
+              if (!isSelected)
+                BoxShadow(
+                  color: (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.02),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                )
+            ],
           ),
-          boxShadow: [
-            if (!isSelected)
-              BoxShadow(
-                color: (isDark ? Colors.white : Colors.black)
-                    .withValues(alpha: 0.02),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              )
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: isSelected
-                  ? selectedText
-                  : (isDark ? Colors.white38 : Colors.black38),
-              size: 32,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: isSelected
-                    ? selectedText
-                    : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                height: 1.3,
+          child: Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? selectedText.withValues(alpha: 0.12)
+                      : (isDark
+                          ? Colors.white.withValues(alpha: 0.08)
+                          : const Color(0xFF1A1A1B).withValues(alpha: 0.05)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  icon,
+                  color: isSelected
+                      ? selectedText
+                      : (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
+                  size: 22,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: isSelected
+                            ? selectedText
+                            : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (subtitle != null && subtitle.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          color: isSelected
+                              ? selectedText
+                              : (isDark ? Colors.white54 : Colors.black54),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              if (isSelected)
+                Icon(
+                  Icons.check_circle,
+                  color: isDark ? const Color(0xFFD4AF37) : selectedText,
+                  size: 22,
+                )
+              else
+                Icon(
+                  Icons.chevron_right,
+                  color: isDark ? Colors.white24 : Colors.black26,
+                  size: 20,
+                ),
+            ],
+          ),
         ),
       ),
     );

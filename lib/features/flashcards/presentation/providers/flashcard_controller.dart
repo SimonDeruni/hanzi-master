@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:hanzi_master/features/course/data/thematic_decks_data.dart';
+import 'package:hanzi_master/features/flashcards/data/models/flashcard_model.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 
@@ -204,6 +207,91 @@ class FlashcardController extends _$FlashcardController {
     );
 
     ref.invalidateSelf();
+  }
+
+  /// Import a curated thematic collection (Travel, Business, Culture, Studies).
+  Future<Either<String, void>> importThematicDeck(String thematicId) async {
+    try {
+      final definition = ThematicDecksData.collections.firstWhere(
+        (d) => d.id == thematicId,
+        orElse: () => throw ArgumentError('Unknown thematic deck: $thematicId'),
+      );
+
+      final box = ref.read(hiveBoxProvider);
+      final entries = <String, FlashcardModel>{};
+      for (int i = 0; i < definition.vocabulary.length; i++) {
+        final item = definition.vocabulary[i];
+        final id = '${thematicId}_${(i + 1).toString().padLeft(3, '0')}';
+        entries[id] = FlashcardModel(
+          id: id,
+          hanzi: item['hanzi']!,
+          pinyin: item['pinyin']!,
+          definition: item['definition']!,
+          hskLevel: 0,
+          nextReviewDate: DateTime.now(),
+          interval: 0,
+          easeFactor: 2.5,
+          streak: 0,
+          strokePaths: [],
+          deckId: thematicId,
+          definitionLanguage: 'English',
+        );
+      }
+      await box.putAll(entries);
+      await ref.read(deckRepositoryProvider).ensureThematicDeckExists(
+            thematicId,
+            name: definition.title,
+            description: definition.description,
+          );
+      ref.invalidateSelf();
+      return const Right(null);
+    } catch (e) {
+      return Left('Failed to import thematic deck: $e');
+    }
+  }
+
+  /// Uninstall a thematic collection and remove its cards.
+  Future<Either<String, void>> uninstallThematicDeck(String thematicId) async {
+    try {
+      final box = ref.read(hiveBoxProvider);
+      final keysToDelete = <dynamic>[];
+      for (final card in box.values) {
+        if (card.deckId == thematicId) {
+          keysToDelete.add(card.id);
+        }
+      }
+      await box.deleteAll(keysToDelete);
+      await ref.read(deckRepositoryProvider).deleteDeck(thematicId);
+      ref.invalidateSelf();
+      return const Right(null);
+    } catch (e) {
+      return Left('Failed to uninstall thematic deck: $e');
+    }
+  }
+
+  /// Pre-seeds relevant decks based on the learner's onboarding survey choices.
+  Future<void> preseedOnboardingDecks({
+    required int masteryLevel,
+    required int drive,
+  }) async {
+    try {
+      // 1. Install corresponding HSK tier
+      final hskTier = masteryLevel == 0 ? 1 : (masteryLevel == 1 ? 2 : (masteryLevel == 2 ? 3 : 5));
+      await importLevel(hskTier);
+      await ref.read(deckRepositoryProvider).ensureHSKDeckExists(hskTier);
+
+      // 2. Install goal/drive thematic deck
+      String? thematicId;
+      if (drive == 0) thematicId = 'thematic_business';
+      if (drive == 1) thematicId = 'thematic_travel';
+      if (drive == 3) thematicId = 'thematic_culture';
+
+      if (thematicId != null) {
+        await importThematicDeck(thematicId);
+      }
+    } catch (e) {
+      debugPrint('Warning: Deck pre-seeding failed: $e');
+    }
   }
 }
 

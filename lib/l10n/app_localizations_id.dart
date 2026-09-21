@@ -12708,7 +12708,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Buku dan buku audio berkualitas studio';
+      '86 buku klasik dan buku audio berkualitas studio';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12865,7 +12865,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master menggunakan layanan AI pihak ketiga yang aman untuk penilaian pengucapan suara, bermain peran percakapan, dan alat belajar.';
+      'SinoSpark menggunakan layanan AI pihak ketiga yang aman untuk penilaian pengucapan suara, bermain peran percakapan, dan alat belajar.';
 
   @override
   String get aiConsentDataSentTitle => 'Data yang Ditransmisikan';
@@ -12952,5 +12952,66 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return 'Menambahkan «$hanzi» ke «$deckName»';
+  }
+
+  @override
+  String get callCategory => 'PANGGILAN LANGSUNG';
+
+  @override
+  String get aiCallFluencyTitle => 'Panggilan AI untuk kelancaran bicara';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Ikuti percakapan suara nyata dengan tutor AI, dapatkan penilaian nada instan, dan bangun kelancaran berbicara.';
+
+  @override
+  String get decksCategory => 'DEK KARTU';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'Dek dengan pengulangan berjarak';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Kuasai HSK 1–6 dan dek kustom dengan algoritma pengulangan berjarak yang terbukti secara ilmiah.';
+
+  @override
+  String get booksCategory => 'BUKU';
+
+  @override
+  String get classicalBooksPoemsTitle => '86 buku klasik dan 100 puisi';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Nikmati karya sastra dan puisi abadi dengan audio tersinkronisasi dan anotasi dwibahasa.';
+
+  @override
+  String get scanCategory => 'PEMINDAI';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'Pindai gambar dan tambahkan kartu ke dek';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Arahkan kamera ke teks bahasa Mandarin, menu, atau tanda untuk mengekstrak kata secara instan dan menyimpannya ke dek Anda.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Kamus pintar dengan urutan goresan';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Panggilan suara AI langsung dan penilaian nada instan';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Studio shadowing dan analisis visual nada suara';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Mulai 7 hari uji coba gratis saya';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Lalu $price / $period. Batalkan kapan saja di Pengaturan.';
   }
 }

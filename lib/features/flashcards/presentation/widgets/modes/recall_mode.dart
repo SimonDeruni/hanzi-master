@@ -13,6 +13,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/widgets/zen_flip_card.dart';
 
 class RecallModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -106,14 +107,16 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
                 child: _showScratchpad
                     ? _buildScratchpad(isDark, borderColor)
-                    : _isRevealed
-                        ? SwipeableFlashcard(
-                            isSwipeEnabled: !_showScratchpad,
-                            onSwiped: (grade) => Navigator.pop(context, grade),
-                            child: _buildRevealedCard(
-                                isDark, cardColor, borderColor),
-                          )
-                        : _buildHiddenCard(isDark, cardColor, borderColor),
+                    : SwipeableFlashcard(
+                        isSwipeEnabled: _isRevealed && !_showScratchpad,
+                        onSwiped: (grade) => Navigator.pop(context, grade),
+                        child: ZenFlipCard(
+                          isFlipped: _isRevealed,
+                          onTap: !_isRevealed ? _reveal : null,
+                          front: _buildHiddenCard(isDark, cardColor, borderColor),
+                          back: _buildRevealedCard(isDark, cardColor, borderColor),
+                        ),
+                      ),
               ),
             )
                 .animate()

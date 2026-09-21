@@ -3722,7 +3722,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'แพลตฟอร์มนี้ไม่รองรับ DefaultFirebaseOptions';
 
   @override
-  String get hanziMaster1 => 'Hanzi Master';
+  String get hanziMaster1 => 'SinoSpark';
 
   @override
   String get strokesCannotBeEmpty => 'เส้นลำดับขีดต้องไม่ว่างเปล่า';
@@ -3864,7 +3864,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'ห้องสะท้อนเสียงยังคงเงียบงัน ลองเปล่งเสียงอีกครั้ง';
 
   @override
-  String get xtitleHanziMaster => 'X-ชื่อเรื่อง: Hanzi Master';
+  String get xtitleHanziMaster => 'X-ชื่อเรื่อง: SinoSpark';
 
   @override
   String get noneYet => 'ยังไม่มี';
@@ -6876,7 +6876,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get everythingYouNeedToKnowAboutHanziMa =>
-      'ทุกสิ่งที่คุณจำเป็นต้องรู้เกี่ยวกับ Hanzi Master ฟีเจอร์ต่างๆ และความเป็นส่วนตัวของคุณ';
+      'ทุกสิ่งที่คุณจำเป็นต้องรู้เกี่ยวกับ SinoSpark ฟีเจอร์ต่างๆ และความเป็นส่วนตัวของคุณ';
 
   @override
   String get whoAreTheVoicesSpeakingInTheApp =>
@@ -8213,7 +8213,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get h6rjzyquxA => 'เริ่มบทเรียน';
 
   @override
-  String get pLMX26aiIvX5phl8n87NqTbaeXK2HHm => 'ยินดีต้อนรับสู่ Hanzi Master';
+  String get pLMX26aiIvX5phl8n87NqTbaeXK2HHm => 'ยินดีต้อนรับสู่ SinoSpark';
 
   @override
   String get eightHundred => 'รัศมีแปดร้อยเมตร';
@@ -12641,7 +12641,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'หนังสือและหนังสือเสียงคุณภาพระดับสตูดิโอ';
+      'หนังสือคลาสสิก 86 เล่มและหนังสือเสียงคุณภาพระดับสตูดิโอ';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12794,7 +12794,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master ใช้บริการ AI ของบุคคลที่สามที่ปลอดภัยสำหรับการประเมินการออกเสียง การแสดงบทบาทสมมติในการสนทนา และเครื่องมือการเรียนรู้';
+      'SinoSpark ใช้บริการ AI ของบุคคลที่สามที่ปลอดภัยสำหรับการประเมินการออกเสียง การแสดงบทบาทสมมติในการสนทนา และเครื่องมือการเรียนรู้';
 
   @override
   String get aiConsentDataSentTitle => 'ข้อมูลที่ส่ง';
@@ -12881,5 +12881,67 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return 'เพิ่ม $hanzi ลงใน $deckName แล้ว';
+  }
+
+  @override
+  String get callCategory => 'โทรแบบสด';
+
+  @override
+  String get aiCallFluencyTitle => 'โทรคุยกับ AI เพื่อพัฒนาความคล่องแคล่ว';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'สนทนาด้วยเสียงเสมือนจริงกับครูฝึก AI รับการประเมินวรรณยุกต์ทันที และสร้างความมั่นใจในการพูด';
+
+  @override
+  String get decksCategory => 'สำรับคำศัพท์';
+
+  @override
+  String get decksSpacedRepetitionTitle =>
+      'สำรับคำศัพท์พร้อมระบบทบทวนตามระยะเวลา';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'พิชิต HSK 1–6 และสำรับที่คุณกำหนดเองด้วยอัลกอริทึมการทบทวนแบบเว้นระยะที่ได้รับการพิสูจน์ทางวิทยาศาสตร์';
+
+  @override
+  String get booksCategory => 'หนังสือ';
+
+  @override
+  String get classicalBooksPoemsTitle =>
+      'วรรณกรรมคลาสสิก 86 เล่มและบทกวี 100 บท';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'ดื่มด่ำกับวรรณกรรมและบทกวีคลาสสิกพร้อมเสียงบรรยายที่ตรงกันและคำอธิบายสองภาษา';
+
+  @override
+  String get scanCategory => 'สแกนเนอร์';
+
+  @override
+  String get scannerScanCardsTitle => 'สแกนภาพและเพิ่มการ์ดลงในสำรับ';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'เล็งกล้องของคุณไปที่ข้อความภาษาจีน เมนูอาหาร หรือป้าย เพื่อแยกคำศัพท์ทันทีและบันทึกลงในสำรับของคุณ';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'พจนานุกรมอัจฉริยะพร้อมลำดับขีด';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'การโทรด้วยเสียงกับ AI สดและการประเมินวรรณยุกต์ทันที';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'สตูดิโอฝึกพูดตามและการวิเคราะห์ระดับเสียงวรรณยุกต์';
+
+  @override
+  String get startMy7DaysFreeTrial => 'เริ่มทดลองใช้ฟรี 7 วันของฉัน';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'จากนั้น $price / $period ยกเลิกได้ตลอดเวลาในการตั้งค่า';
   }
 }

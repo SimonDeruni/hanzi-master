@@ -12320,7 +12320,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get learn => '学ぶ';
 
   @override
-  String get booksAndStudioQualityAudiobooks => '書籍とスタジオ品質のオーディオブック';
+  String get booksAndStudioQualityAudiobooks => '86冊の古典書籍とスタジオ品質のオーディオブック';
 
   @override
   String get aiConversationsAndLiveToneFeedback => 'AI会話とライブ声調フィードバック';
@@ -12459,7 +12459,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Masterは音声発音評価、対話ロールプレイ、学習ツールに安全なサードパーティAIサービスを使用しています。';
+      'SinoSparkは音声発音評価、対話ロールプレイ、学習ツールに安全なサードパーティAIサービスを使用しています。';
 
   @override
   String get aiConsentDataSentTitle => '送信されるデータ';
@@ -12543,5 +12543,62 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return '「$hanzi」を「$deckName」に追加しました';
+  }
+
+  @override
+  String get callCategory => 'ライブ通話';
+
+  @override
+  String get aiCallFluencyTitle => '流暢さを高めるAI通話';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'AIチューターと実践的な音声会話を行い、リアルタイムで声調判定を受け、スピーキングの流暢さを向上させます。';
+
+  @override
+  String get decksCategory => '単語帳';
+
+  @override
+  String get decksSpacedRepetitionTitle => '間隔反復学習対応の単語帳';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      '科学的に実証された間隔反復アルゴリズムで、HSK 1〜6級およびカスタム単語帳をマスターします。';
+
+  @override
+  String get booksCategory => '書籍';
+
+  @override
+  String get classicalBooksPoemsTitle => '古典名作86冊と詩100選';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      '音声同期と二言語対訳注釈で、時代を超えた名作文学や漢詩の世界に没入できます。';
+
+  @override
+  String get scanCategory => 'スキャナー';
+
+  @override
+  String get scannerScanCardsTitle => '画像をスキャンして単語帳に追加';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'カメラを中国語のテキスト、メニュー、看板に向けるだけで、瞬時に単語を抽出して単語帳に保存できます。';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle => '筆順付きスマート辞書';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading => 'ライブAI音声通話とリアルタイム声調判定';
+
+  @override
+  String get shadowingStudioAndToneAnalysis => 'シャドーイングスタジオと声調ピッチの視覚分析';
+
+  @override
+  String get startMy7DaysFreeTrial => '7日間の無料体験を開始';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'その後は$periodあたり$price。設定からいつでも解約可能。';
   }
 }

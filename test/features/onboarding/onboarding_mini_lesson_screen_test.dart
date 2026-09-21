@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void main() {
@@ -70,12 +72,17 @@ void main() {
 
     // Tap Stop and check my tones to finish shadowing
     expect(find.text('Stop and check my tones'), findsOneWidget);
+    expect(find.text("I can't speak right now"), findsOneWidget);
     await tester.ensureVisible(find.text('Stop and check my tones'));
     await tester.tap(find.text('Stop and check my tones'));
     await tester.pumpAndSettle();
     expect(find.text('Four tones'), findsOneWidget);
     expect(
         find.byKey(const Key('onboarding_tone_results_card')), findsOneWidget);
+    expect(find.byKey(const Key('onboarding_overall_score_banner')),
+        findsOneWidget);
+    expect(find.text('Score: 82/100'), findsOneWidget);
+    expect(find.text('Great job! A few minor tone inaccuracies.'), findsOneWidget);
     expect(find.text('You: tone 2 · rising  ·  Target: tone 4 · falling'),
         findsOneWidget);
     expect(find.text('Compare tones'), findsOneWidget);
@@ -171,6 +178,9 @@ void main() {
   testWidgets(
       'microphone permission denial displays notification, settings link, and allows continuing',
       (tester) async {
+    SharedPreferences.setMockInitialValues({
+      AiConsentSheet.prefKey: true,
+    });
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
@@ -222,9 +232,129 @@ void main() {
 
     expect(find.text('Four tones'), findsOneWidget);
   });
+
+  testWidgets(
+      'shadowing step allows skipping via "I can\'t speak right now" after tapping continue',
+      (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: OnboardingMiniLessonScreen(
+            disableExternalServicesForTesting: true,
+            onComplete: () {},
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Step 0 -> Step 1
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    // Step 1 -> Step 2
+    await tester.ensureVisible(find.text('Shadow one sentence'));
+    await tester.tap(find.text('Shadow one sentence'));
+    await tester.pumpAndSettle();
+
+    // Pre-continue: skip button is not shown
+    expect(find.text("I can't speak right now"), findsNothing);
+
+    // Tap Continue -> AI consent / recording mode
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    // Skip button is now visible
+    expect(find.text("I can't speak right now"), findsOneWidget);
+
+    // Tapping skip immediately advances to Four Tones
+    await tester.ensureVisible(find.text("I can't speak right now"));
+    await tester.tap(find.text("I can't speak right now"));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Four tones'), findsOneWidget);
+  });
+
+  testWidgets(
+      'AI consent sheet is presented before microphone permission request',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    var permissionRequested = false;
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          audioRecordingServiceProvider.overrideWithValue(
+            _SpyAudioRecordingService(onRequestPermission: () {
+              permissionRequested = true;
+            }),
+          ),
+        ],
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: OnboardingMiniLessonScreen(
+            disableExternalServicesForTesting: false,
+            onComplete: () {},
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Step 0 -> Step 1
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+
+    // Step 1 -> Step 2
+    await tester.ensureVisible(find.text('Shadow one sentence'));
+    await tester.tap(find.text('Shadow one sentence'));
+    await tester.pumpAndSettle();
+
+    // Tap Continue on Step 2
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    // Consent sheet is shown FIRST; mic permission has NOT been requested yet!
+    expect(find.byType(AiConsentSheet), findsOneWidget);
+    expect(permissionRequested, isFalse);
+
+    // Agree to AI
+    final agreeButton = find.text('Agree to Use AI');
+    expect(agreeButton, findsOneWidget);
+    await tester.tap(agreeButton);
+    await tester.pumpAndSettle();
+
+    // After agreeing, microphone permission is requested SECOND!
+    expect(permissionRequested, isTrue);
+  });
 }
 
 class _FakeDeniedAudioRecordingService extends AudioRecordingService {
   @override
   Future<bool> requestPermission() async => false;
+}
+
+class _SpyAudioRecordingService extends AudioRecordingService {
+  _SpyAudioRecordingService({required this.onRequestPermission});
+  final VoidCallback onRequestPermission;
+
+  @override
+  Future<bool> requestPermission() async {
+    onRequestPermission();
+    return true;
+  }
+
+  @override
+  Future<void> startRecording(String filename) async {}
+
+  @override
+  Future<String?> stopRecording() async => null;
 }

@@ -1294,7 +1294,7 @@
   "readingVocabulary1": "Reading & Vocabulary",
   "defaultfirebaseoptionsHaveNotBeenCo": "DefaultFirebaseOptions have not been configured for linux -",
   "defaultfirebaseoptionsAreNotSupport": "DefaultFirebaseOptions are not supported for this platform.",
-  "hanziMaster1": "Hanzi Master",
+  "hanziMaster1": "SinoSpark",
   "strokesCannotBeEmpty": "Strokes cannot be empty.",
   "wrongStartPoint": "Wrong start point.",
   "rightShapeButWrongPlace": "Right shape, but wrong place!",
@@ -1338,7 +1338,7 @@
   "englishTranslationForTheSuggestion": "English translation for the suggestion.",
   "scholarsCritique": "Scholar's Critique",
   "theEchoHallRemainsSilentTryYourBrea": "The Echo Hall remains silent. Try your breath again.",
-  "xtitleHanziMaster": "X-Title': 'Hanzi Master",
+  "xtitleHanziMaster": "X-Title': 'SinoSpark",
   "noneYet": "None yet.",
   "exactSentence": "Exact Sentence:",
   "englishTranslation": "English translation",
@@ -2129,9 +2129,9 @@
   "yourPlanIsReady": "Your Plan is Ready",
   "craftingYourCurriculum": "Crafting Your Curriculum",
   "personalizedPathInitialized": "PERSONALIZED PATH INITIALIZED",
-  "calibratingAiNeuralMasters": "CALIBRATING AI NEURAL MASTERS...",
-  "calibrationComplete": "Calibration Complete",
-  "synthesizingModules": "Synthesizing Modules...",
+  "calibratingAiNeuralMasters": "PREPARING YOUR PERSONAL CURRICULUM...",
+  "calibrationComplete": "Curriculum Ready",
+  "synthesizingModules": "Setting up your custom syllabus...",
   "oneAndWater": "One' and 'Water",
   "theHorizontalStroke": "THE HORIZONTAL STROKE",
   "theRadical": "THE RADICAL",
@@ -2232,7 +2232,7 @@
   "insteadOfAFixedHskLevelTheFlowState": "Instead of a fixed HSK level, the Flow State Engine analyzes your Flashcard Library.\\n\\n",
   "we": "We",
   "howCanWeHelpYou": "How can we help you?",
-  "everythingYouNeedToKnowAboutHanziMa": "Everything you need to know about Hanzi Master, its features, and your privacy.",
+  "everythingYouNeedToKnowAboutHanziMa": "Everything you need to know about SinoSpark, its features, and your privacy.",
   "whoAreTheVoicesSpeakingInTheApp": "Who are the voices speaking in the app?",
   "howDoesTheWebExplorerWork": "How does the Web Explorer work?",
   "whatIsZenMode": "What is Zen Mode?",
@@ -4274,7 +4274,7 @@
   "@learn": {
     "description": "Learn feature tab or category label"
   },
-  "booksAndStudioQualityAudiobooks": "Books and studio-quality audiobooks",
+  "booksAndStudioQualityAudiobooks": "86 Classical books and studio-quality audiobooks",
   "aiConversationsAndLiveToneFeedback": "AI conversations and live tone feedback",
   "interactiveVideoAndWebImmersion": "Interactive video and web immersion",
   "characterInsightsAndHandwritingPractice": "Character insights and handwriting practice",
@@ -4341,7 +4341,7 @@
   "sentenceNumber": "Sentence {number}",
   "endlessAiStreamSentence": "Endless AI Stream • Sentence {count}",
   "aiConsentTitle": "AI Practice & Privacy",
-  "aiConsentSubtitle": "Hanzi Master uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.",
+  "aiConsentSubtitle": "SinoSpark uses secure third-party AI services to power voice pronunciation scoring, dialogue roleplay, and study tools.",
   "aiConsentDataSentTitle": "Data Transmitted",
   "aiConsentDataSentBody": "Voice audio recordings, spoken speech transcripts, and study prompts.",
   "aiConsentProvidersTitle": "Third-Party AI Services",
@@ -4422,5 +4422,36 @@
         "type": "String"
       }
     }
+  },
+  "callCategory": "LIVE CALL",
+  "aiCallFluencyTitle": "AI Call to improve fluency",
+  "aiCallFluencyDesc": "Engage in realistic voice conversations with AI tutors, receive instant tone grading, and build spoken fluency.",
+  "decksCategory": "DECKS",
+  "decksSpacedRepetitionTitle": "Decks with spaced repetition",
+  "decksSpacedRepetitionDesc": "Master HSK 1–6 and custom decks with scientifically proven spaced repetition algorithms.",
+  "booksCategory": "BOOKS",
+  "classicalBooksPoemsTitle": "86 Classical books and 100 poems",
+  "classicalBooksPoemsDesc": "Immerse yourself in timeless literature and poetry with synchronized audio and bilingual annotations.",
+  "scanCategory": "SCANNER",
+  "scannerScanCardsTitle": "Scan images and add cards to deck",
+  "scannerScanCardsDesc": "Point your camera at any Chinese text, menus, or signs to instantly extract words and save them to your decks.",
+  "smartDictionaryStrokeOrderTitle": "Smart dictionary with stroke order",
+  "liveAiVoiceCallsAndToneGrading": "Live AI voice calls and instant tone grading",
+  "shadowingStudioAndToneAnalysis": "Shadowing studio and tone pitch analysis",
+  "startMy7DaysFreeTrial": "Start my 7-day free trial",
+  "trialSubtextUnderCta": "Then {price} / {period}. Cancel anytime in Settings.",
+  "@trialSubtextUnderCta": {
+    "description": "Subtle subtext displayed underneath the paywall free trial CTA button",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "@startMy7DaysFreeTrial": {
+    "description": "Button label for starting 7-day free trial on paywall"
   }
 }

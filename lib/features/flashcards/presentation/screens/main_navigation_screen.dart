@@ -89,9 +89,16 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
+      body: Stack(
+        fit: StackFit.expand,
+        children: List.generate(_screens.length, (index) {
+          final isActive = index == _selectedIndex;
+          return _KeepAliveTab(
+            key: ValueKey(index),
+            isActive: isActive,
+            child: _screens[index],
+          );
+        }),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -144,6 +151,40 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Keeps a tab screen alive and cross-fades it in/out via [AnimatedOpacity].
+class _KeepAliveTab extends StatefulWidget {
+  const _KeepAliveTab({
+    super.key,
+    required this.child,
+    required this.isActive,
+  });
+  final Widget child;
+  final bool isActive;
+
+  @override
+  State<_KeepAliveTab> createState() => _KeepAliveTabState();
+}
+
+class _KeepAliveTabState extends State<_KeepAliveTab>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeInOutQuart,
+      opacity: widget.isActive ? 1.0 : 0.0,
+      child: IgnorePointer(
+        ignoring: !widget.isActive,
+        child: widget.child,
       ),
     );
   }

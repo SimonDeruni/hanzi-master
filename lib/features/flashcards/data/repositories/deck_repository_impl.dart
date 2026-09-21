@@ -137,4 +137,24 @@ class DeckRepositoryImpl implements DeckRepository {
     await _box.put(id, deck);
     return Right(deck.toDomain());
   }
+
+  @override
+  Future<Either<String, Deck>> ensureThematicDeckExists(
+    String id, {
+    required String name,
+    required String description,
+  }) async {
+    final existing = _box.get(id);
+    if (existing != null) {
+      return Right(existing.toDomain());
+    }
+    final deck = DeckModel(
+      id: id,
+      name: name,
+      description: description,
+      createdAt: DateTime.now(),
+    );
+    await _box.put(id, deck);
+    return Right(deck.toDomain());
+  }
 }

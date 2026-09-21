@@ -49,6 +49,14 @@ class _EmptyDeckRepository implements DeckRepository {
   @override
   Future<Either<String, Deck>> ensureHSKDeckExists(int level) async =>
       const Left('Not supported in this test');
+
+  @override
+  Future<Either<String, Deck>> ensureThematicDeckExists(
+    String id, {
+    required String name,
+    required String description,
+  }) async =>
+      const Left('Not supported in this test');
 }
 
 class _NoOpTranslationService extends LocalTranslationService {

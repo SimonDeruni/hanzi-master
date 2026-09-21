@@ -12690,7 +12690,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'किताबें और स्टूडियो-गुणवत्ता वाली ऑडियोबुक्स';
+      '86 क्लासिक किताबें और स्टूडियो-गुणवत्ता वाली ऑडियोबुक्स';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12844,7 +12844,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master आवाज उच्चारण मूल्यांकन, संवाद रोलप्ले और अध्ययन उपकरणों के लिए सुरक्षित तृतीय-पक्ष एआई सेवाओं का उपयोग करता है।';
+      'SinoSpark आवाज उच्चारण मूल्यांकन, संवाद रोलप्ले और अध्ययन उपकरणों के लिए सुरक्षित तृतीय-पक्ष एआई सेवाओं का उपयोग करता है।';
 
   @override
   String get aiConsentDataSentTitle => 'प्रेषित डेटा';
@@ -12931,5 +12931,67 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return '$hanzi को $deckName में जोड़ा गया';
+  }
+
+  @override
+  String get callCategory => 'लाइव कॉल';
+
+  @override
+  String get aiCallFluencyTitle => 'प्रवाह सुधारने के लिए एआई कॉल';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'एआई ट्यूटर के साथ वास्तविक आवाज में बातचीत करें, तुरंत टोन ग्रेडिंग प्राप्त करें और बोलने का प्रवाह बनाएं।';
+
+  @override
+  String get decksCategory => 'डेक';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'स्पैस्ड रिपीटिशन वाले डेक';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'वैज्ञानिक रूप से सिद्ध स्पैस्ड रिपीटिशन एल्गोरिदम के साथ HSK 1-6 और कस्टम डेक में महारत हासिल करें।';
+
+  @override
+  String get booksCategory => 'किताबें';
+
+  @override
+  String get classicalBooksPoemsTitle => '86 क्लासिक किताबें और 100 कविताएं';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'सिंक्रनाइज़ किए गए ऑडियो और द्विभाषी व्याख्याओं के साथ कालजयी साहित्य और कविता में खो जाएं।';
+
+  @override
+  String get scanCategory => 'स्कैनर';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'चित्र स्कैन करें और डेक में कार्ड जोड़ें';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'शब्दों को तुरंत निकालने और अपने डेक में सहेजने के लिए अपने कैमरे को किसी भी चीनी टेक्स्ट, मेनू या साइन पर ले जाएं।';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'स्ट्रोक ऑर्डर के साथ स्मार्ट डिक्शनरी';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'लाइव एआई वॉयस कॉल और तुरंत टोन ग्रेडिंग';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'शैडोइंग स्टूडियो और विज़ुअल टोन पिच विश्लेषण';
+
+  @override
+  String get startMy7DaysFreeTrial =>
+      'मेरे 7 दिन का निःशुल्क परीक्षण शुरू करें';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'फिर $price / $period। सेटिंग्स में कभी भी रद्द करें।';
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
 
 class SwipeableFlashcard extends StatefulWidget {
   final Widget child;
@@ -17,99 +18,173 @@ class SwipeableFlashcard extends StatefulWidget {
   State<SwipeableFlashcard> createState() => _SwipeableFlashcardState();
 }
 
-class _SwipeableFlashcardState extends State<SwipeableFlashcard> {
+class _SwipeableFlashcardState extends State<SwipeableFlashcard>
+    with TickerProviderStateMixin {
   Offset _panOffset = Offset.zero;
-  bool _isSwiping = false;
+  bool _isAnimatingStamp = false;
+
+  // Stamp impact animation
+  late AnimationController _stampController;
+  late Animation<double> _stampScaleAnimation;
+  HankoSealData? _activeSeal;
+
+  // Slide off-screen animation
+  late AnimationController _slideController;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _stampController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 130),
+    );
+    _stampScaleAnimation = Tween<double>(begin: 1.25, end: 1.0).animate(
+      CurvedAnimation(parent: _stampController, curve: Curves.easeOutBack),
+    );
+
+    _slideController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+    _slideAnimation = Tween<Offset>(begin: Offset.zero, end: Offset.zero)
+        .animate(_slideController);
+  }
+
+  @override
+  void dispose() {
+    _stampController.dispose();
+    _slideController.dispose();
+    super.dispose();
+  }
 
   void _onPanStart(DragStartDetails details) {
-    if (!widget.isSwipeEnabled) return;
-    setState(() => _isSwiping = true);
+    if (!widget.isSwipeEnabled || _isAnimatingStamp) return;
   }
 
   void _onPanUpdate(DragUpdateDetails details) {
-    if (!widget.isSwipeEnabled) return;
-    setState(() => _panOffset += details.delta);
+    if (!widget.isSwipeEnabled || _isAnimatingStamp) return;
+    setState(() {
+      _panOffset += details.delta;
+      _activeSeal = _resolveSealFromOffset(_panOffset);
+    });
   }
 
-  void _onPanEnd(DragEndDetails details) {
-    if (!widget.isSwipeEnabled) return;
-    
-    setState(() => _isSwiping = false);
-    
+  HankoSealData? _resolveSealFromOffset(Offset offset) {
+    if (offset.dx < -50) return HankoSealData.again;
+    if (offset.dx > 50) return HankoSealData.good;
+    if (offset.dy < -50) return HankoSealData.easy;
+    if (offset.dy > 50) return HankoSealData.hard;
+    return null;
+  }
+
+  Future<void> _onPanEnd(DragEndDetails details) async {
+    if (!widget.isSwipeEnabled || _isAnimatingStamp) return;
+
+    int? resolvedGrade;
+    Offset exitDirection = Offset.zero;
+
     // Thresholds
     if (_panOffset.dx < -120) {
-      widget.onSwiped(0); // Again
+      resolvedGrade = 0; // Again
+      exitDirection = const Offset(-600, 0);
     } else if (_panOffset.dx > 120) {
-      widget.onSwiped(4); // Good
+      resolvedGrade = 4; // Good
+      exitDirection = const Offset(600, 0);
     } else if (_panOffset.dy < -120) {
-      widget.onSwiped(5); // Easy
+      resolvedGrade = 5; // Easy
+      exitDirection = const Offset(0, -600);
     } else if (_panOffset.dy > 120) {
-      widget.onSwiped(2); // Hard
+      resolvedGrade = 2; // Hard
+      exitDirection = const Offset(0, 600);
+    }
+
+    if (resolvedGrade != null) {
+      _isAnimatingStamp = true;
+      _activeSeal = HankoSealData.fromGrade(resolvedGrade);
+
+      // Phase 1: Stamp impact animation (1.25 -> 1.0 with haptic tap)
+      await _stampController.forward(from: 0.0);
+      await HapticsManager.medium();
+
+      // Brief tactile pause so user perceives the stamped seal
+      await Future.delayed(const Duration(milliseconds: 90));
+
+      if (!mounted) return;
+
+      // Phase 2: Slide off screen
+      _slideAnimation = Tween<Offset>(
+        begin: _panOffset,
+        end: _panOffset + exitDirection,
+      ).animate(
+        CurvedAnimation(
+          parent: _slideController,
+          curve: Curves.easeInOutQuart,
+        ),
+      );
+
+      await _slideController.forward(from: 0.0);
+
+      if (mounted) {
+        widget.onSwiped(resolvedGrade);
+      }
     } else {
-      // Spring back
-      setState(() => _panOffset = Offset.zero);
+      // Spring back to center
+      setState(() {
+        _panOffset = Offset.zero;
+        _activeSeal = null;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final double rotateAngle = _panOffset.dx * 0.002;
-    
-    // Add overlays based on pan offset
-    String overlayText = "";
-    Color overlayColor = Colors.transparent;
-    
-    if (_panOffset.dx < -50) { overlayText = "AGAIN"; overlayColor = Colors.red; }
-    else if (_panOffset.dx > 50) { overlayText = "GOOD"; overlayColor = Colors.green; }
-    else if (_panOffset.dy < -50) { overlayText = "EASY"; overlayColor = Colors.blue; }
-    else if (_panOffset.dy > 50) { overlayText = "HARD"; overlayColor = Colors.orange; }
 
     return GestureDetector(
       onPanStart: _onPanStart,
       onPanUpdate: _onPanUpdate,
       onPanEnd: _onPanEnd,
-      child: AnimatedContainer(
-        duration: _isSwiping ? Duration.zero : 300.ms,
-        curve: Curves.easeOutBack,
-        transform: Matrix4.translationValues(_panOffset.dx, _panOffset.dy, 0)
-          ..rotateZ(rotateAngle),
-        child: Stack(
-          children: [
-            widget.child,
-            if (overlayText.isNotEmpty)
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: overlayColor.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  child: Center(
-                    child: Transform.rotate(
-                      angle: -0.2,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: overlayColor, width: 4),
-                          borderRadius: BorderRadius.circular(12),
-                          color: isDark ? Colors.black87 : Colors.white.withValues(alpha: 0.9),
-                        ),
-                        child: Text(
-                          overlayText,
-                          style: TextStyle(
-                            fontSize: 48,
-                            fontWeight: FontWeight.w900,
-                            color: overlayColor,
-                            letterSpacing: 4,
-                          ),
-                        ),
-                      ),
+      child: AnimatedBuilder(
+        animation: Listenable.merge([_slideController, _stampController]),
+        builder: (context, _) {
+          final currentOffset = _isAnimatingStamp && _slideController.isAnimating
+              ? _slideAnimation.value
+              : _panOffset;
+
+          final double currentScale = _isAnimatingStamp
+              ? _stampScaleAnimation.value
+              : 1.18;
+
+          final double currentOpacity = _isAnimatingStamp
+              ? 1.0
+              : (_activeSeal != null ? 0.85 : 0.0);
+
+          return Transform(
+            transform: Matrix4.translationValues(
+              currentOffset.dx,
+              currentOffset.dy,
+              0,
+            )..rotateZ(rotateAngle),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                widget.child,
+                // Hanko Seal Stamp in upper corner
+                if (_activeSeal != null)
+                  Positioned(
+                    top: 24,
+                    right: 24,
+                    child: HankoSealStamp(
+                      data: _activeSeal!,
+                      scale: currentScale,
+                      opacity: currentOpacity,
                     ),
                   ),
-                ),
-              ),
-          ],
-        ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

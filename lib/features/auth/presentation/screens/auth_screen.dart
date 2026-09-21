@@ -553,8 +553,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       decoration: TextDecoration.underline,
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    final termsText = l10n?.termsOfUseEula ?? "Terms of Use (EULA)";
+    final privacyText = l10n?.privacyPolicy ?? "Privacy Policy";
+
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 16,
+      runSpacing: 4,
       children: [
         TextButton(
           key: const Key('auth_terms_button'),
@@ -565,18 +571,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            l10n?.termsOfUseEula ?? "Terms of Use (EULA)",
+            termsText,
             style: linkStyle,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Text(
-            '•',
-            style: TextStyle(
-              color: isDark ? Colors.white38 : Colors.black26,
-              fontSize: 11,
-            ),
+            textAlign: TextAlign.center,
           ),
         ),
         TextButton(
@@ -588,8 +585,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            l10n?.privacyPolicy ?? "Privacy Policy",
+            privacyText,
             style: linkStyle,
+            textAlign: TextAlign.center,
           ),
         ),
       ],
@@ -711,12 +709,20 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
                 if (widget.requireSubscription) ...[
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 6,
+                    runSpacing: 2,
                     children: [
                       TextButton(
                         key: const Key('auth_restore_subscription'),
                         onPressed: _isLoading ? null : _restorePurchases,
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
                         child: Text(
                           l10n?.restore ?? "Restore Purchases",
                           style: TextStyle(
@@ -729,6 +735,11 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                       TextButton(
                         key: const Key('auth_view_subscription_plans'),
                         onPressed: _isLoading ? null : _viewPlans,
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
                         child: Text(
                           l10n?.viewPlans ?? "View Plans",
                           style: TextStyle(

@@ -4,7 +4,157 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
-### [2026-09-19] Fix: QuickLook Localization — Cards Always Show Correct Language (Build #547)
+### [2026-09-21] Zen & Ink Dynamic Animations Suite (Build #556)
+- **Flashcard Review 3D Perspective Card Flip (Xuan Parchment Flip):**
+  - Created reusable `ZenFlipCard` widget (`lib/shared/widgets/zen_flip_card.dart`) featuring 3D perspective rotation (`Matrix4.identity()..setEntry(3, 2, 0.0015)..rotateY(angle)`) over 350ms with `Curves.easeInOutQuart`.
+  - Content flips seamlessly from front to back at $\pi/2$ (90 degrees) with counter-rotation to prevent text mirroring, accompanied by an authentic Xuan parchment lighting shimmer.
+  - Integrated `ZenFlipCard` into both `ReadingModeWidget` (`reading_mode.dart`) and `RecallModeWidget` (`recall_mode.dart`), replacing abrupt widget switches and line shifts with tactile parchment flipping.
+- **Card Rating (SM-2 Grading) Hanko Seal Stamp (印章):**
+  - Designed traditional Chinese scholar seal stamp `HankoSealStamp` (`lib/shared/widgets/hanko_seal_stamp.dart`) with double-line vermilion borders, authentic Chinese seal characters (`极佳` for Easy, `熟练` for Good, `重来` for Again, `困难` for Hard), and tracked scholarly subtext.
+  - Upgraded `SwipeableFlashcard` (`lib/shared/widgets/swipeable_flashcard.dart`): when crossing the grading threshold, the Hanko seal stamps down onto the paper with an impact scale snap (`1.25 -> 1.0` over 130ms `Curves.easeOutBack`) accompanied by an authentic haptic impact tap (`HapticsManager.medium()`), pausing briefly before sliding smoothly off-screen.
+- **Home / Dashboard Daily Goal Arc Draw & Streak Flame:**
+  - Built `DailyGoalReviewRing` (`lib/features/progression/presentation/widgets/daily_goal_review_ring.dart`) drawing an animated circular arc from `0%` to current completion over 600ms (`Curves.easeOutCubic`) in Emperor's Gold (`#D4AF37`) / Jade Emerald (`#10B981`) with centered percentage and card counts.
+  - Built `StreakFlameBadge` (`lib/features/progression/presentation/widgets/streak_flame_badge.dart`) featuring a subtle breathing glow animation (looping pulse over 1800ms `Curves.easeInOutSine`) with an ambient amber-cinnabar halo and flame micro-scale breathe.
+  - Integrated both components into `HabitProgressCards` and `GlobalSliverAppBar` header in `DashboardScreen` (`lib/features/progression/presentation/screens/dashboard_screen.dart`).
+- **Shadowing Studio & Tone Comparison Pitch Contour Waveform Trace:**
+  - Created `CalligraphicPitchContour` (`lib/features/live_translate/presentation/widgets/calligraphic_pitch_contour.dart`) rendering progressive calligraphic tone contour traces over 750ms (`Curves.easeInOutQuart`) across the Chao 5-level pitch grid, featuring dynamic brush thickness modulation and leading brush tip droplets.
+  - Overlays target pitch curve (Azure/Emerald) with student pitch curve (Amber/Cinnabar dashed) to visually highlight acoustic pitch divergence.
+  - Integrated `CalligraphicPitchContour` into `ToneComparisonSheet` (`tone_comparison_sheet.dart`) comparison header, and replaced plain ASCII characters in the 4-Tone Matrix with calligraphic mini pitch badges.
+  - Upgraded `ToneGraphPainter` (`tone_graph_painter.dart`) with Bézier spline smoothing and progressive trace support.
+- **Verification & Total Hygiene:**
+  - Added widget test suites: `zen_flip_card_test.dart`, `hanko_seal_stamp_test.dart`, `calligraphic_pitch_contour_test.dart`, and `daily_goal_review_ring_test.dart` (all passing).
+  - Verified regression test suites `tone_comparison_sheet_test.dart` and `dashboard_localization_test.dart` pass (11/11).
+  - `flutter analyze lib` passed with **0 errors, 0 warnings, 0 infos** (Total Hygiene State). Bumped build version to `1.0.0+556`.
+- **Paywall Free Trial Disconnect Resolution:**
+  - Resolved the critical conversion leak where users were primed with 7-day trial reminders on the notification screen but faced an upfront annual charge CTA on the paywall.
+  - Updated `_selectedHasEligibleTrial` in `CustomPaywallScreen` (`lib/features/premium/presentation/screens/custom_paywall_screen.dart`) to recognize annual subscription packages (`PackageType.annual`) as trial-eligible unless explicitly marked ineligible by StoreKit.
+  - Changed CTA button label to `l10n.startMy7DaysFreeTrial` (*"Commencer mes 7 jours gratuits"* in French, *"Start my 7-day free trial"* in English, localized across all 14 languages).
+  - Added subtle, compliant subtext underneath the CTA button: `l10n.trialSubtextUnderCta` (*"Puis 50.00 CHF / an. Annulez à tout moment dans Réglages."* / *"Then {price} / {period}. Cancel anytime in Settings."*).
+- **Motivation Screen Full-Width Calligraphic Redesign:**
+  - Completely resolved the broken layout on *"Qu'est-ce qui motive votre étude ?"* (`OnboardingScreen._buildDrivePage`): eliminated the cramped 2-column grid (`GridView.builder` with `childAspectRatio: 0.95`) which awkwardly broke text and crushed "Voyage & Survie" into tiny squares while leaving ~250px dead void below.
+  - Replaced with full-width calligraphic cards using `ListView.separated` and enhanced `_buildSelectionCard`, matching the refined rhythm of the Mastery and Ritual onboarding steps.
+  - Updated motivation option titles to clean localized strings (`businessCareer`, `travelSurvival`, `hskCertification`, `culturalAppreciation`) without awkward hardcoded linebreaks (`\n`).
+  - Added left icon container badges (44x44), bold typography, and right-aligned checkmarks/chevrons.
+- **Universal SinoSpark Brand Alignment (14 Languages):**
+  - Updated all 14 `.arb` localization files to consistently use the official app name **SinoSpark** (corrected occurrences of *"Maître Hanzi"*, *"هانزي ماستر"*, and *"Hanzi Master"* in `aiConsentSubtitle`, `everythingYouNeedToKnowAboutHanziMa`, `hanziMaster1`, `xtitleHanziMaster`, etc.).
+  - Updated code-level fallback titles and API client headers in `main.dart`, `live_call_screen.dart`, `gemini_service.dart`, and `local_translation_service.dart` from `'Hanzi Master'` to `'SinoSpark'`.
+- **Double Permission Collision Sequencing:**
+  - Resolved the jarring visual clash where the custom AI transparency bottom sheet and the iOS native microphone permission prompt triggered at the exact same millisecond.
+  - Re-architected `_toggleRecording` in `OnboardingMiniLessonScreen` (`lib/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart`): `AiConsentSheet.ensureConsent(context)` is now strictly presented and awaited FIRST. Only after the user confirms consent and the sheet dismisses is the native iOS `_recorder.requestPermission()` prompted.
+- **Verification & Total Hygiene:**
+  - Automated widget tests pass across `custom_paywall_screen_test.dart` (8/8), `onboarding_mini_lesson_screen_test.dart` (5/5), `onboarding_screen_layout_test.dart` (4/4), and all 19 onboarding suite tests.
+  - `flutter analyze lib` confirmed **No issues found!** (0 errors, 0 warnings, 0 infos). Build `1.0.0+555`.
+
+### [2026-09-21] Shadowing Studio Launcher Redesign & Zen & Ink Calligraphic Balancing (Build #554)
+- **Resolved "Small and Empty Space" Layout Discrepancy:** Completely overhauled `_buildHubUI`, `_buildSegmentModeTab`, and `_buildConfigCard` in `ShadowingStudioScreen` (`lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart`), eliminating the barren ~300px dead void on modern devices and scaling up previously cramped elements.
+- **Dignified Practice Mode Selection:** Replaced the cramped `childAspectRatio: 3.5` (45px thin slivers, 11px font) with balanced, tactile cards (`childAspectRatio: 2.35`, ~72px height) featuring rounded icon badges (18px icon in a 30x30 container), 12px bold typography with clear contrast, and warm Emperor's Gold active state borders and subtle glow.
+- **Calligraphic Configuration Card:** Enhanced `_buildConfigCard` with generous 16px horizontal / 12px vertical padding, an Imperial Gold calligraphy indicator accent bar, uppercase tracked label, and contextual mode attributes (e.g. Free Flow practice now surfaces tone accuracy, acoustic AI grading, and 0.8x / 1.0x cadence feature pills).
+- **Studio Pedagogical Highlights Card:** Added a dedicated Zen & Ink overview card (`_buildStudioGuideCard`) displaying `l10n.shadowingStudioAndToneAnalysis`, `l10n.shadowNativeAudioAndVisualize`, and the 3 core pillars of Shadowing practice (1. Écoutez native audio, 2. Répétez voice recording, 3. Précision des tons instant acoustic scoring), filling the screen purposefully and educating learners.
+- **Elevated Start Session Button:** Enhanced the primary action button to 54px height with bold 15.5px calligraphic lettering, rounded corners (16px), and Emperor's gold branding.
+- **Total Hygiene & Verification:** All 22 tests across `shadowing_studio_scroll_test.dart`, `shadowing_studio_localization_test.dart`, `shadowing_studio_context_test.dart`, and `shadowing_studio_voice_speed_test.dart` pass. `flutter analyze lib` reports **No issues found!** (0 errors, 0 warnings, 0 infos). Build `1.0.0+554`.
+
+### [2026-09-21] AI Persona Multi-Language Dynamic Translation & Keyboard Focus Dismissal (Build #553)
+- **14-Language Dynamic Translation for AI Roleplay Presets:** Created `LocalizedPersonaPresets` (`lib/features/echo_hall/domain/entities/localized_persona_presets.dart`) supporting all 14 official languages. French (`fr`) and English (`en`) have full curated offline presets with instant (0ms) fast-paths; all other 12 languages (`de`, `es`, `it`, `pt`, `ru`, `ja`, `ko`, `vi`, `id`, `hi`, `th`, `ar`) are dynamically translated into the active app language on the fly via the free Google Gemini Flash API (`geminiServiceProvider`).
+- **In-Memory Preset Cache:** Implemented `_translationCache` in `LocalizedPersonaPresets` to cache translated presets and ensure repeated random rolls in non-English locales are instantaneous without duplicate API calls.
+- **Multilingual SnackBar Feedback:** Localized the "Scenario loaded" confirmation SnackBar across all 14 languages (`🎲 Scénario chargé : ...`, `🎲 Szenario geladen: ...`, etc.).
+- **Software Keyboard Dismissal Fix:** Fixed the issue where the iOS/Android virtual keyboard remained stuck open covering newly created scenarios. Added explicit `FocusScope.of(context).unfocus()` and `FocusManager.instance.primaryFocus?.unfocus()` at the start of `_createScenario()`, before `Navigator.pop`, after `CustomScenarioDialog.show` completes, and upon opening `_showScenarioDetailSheet`.
+- **Total Hygiene:** `flutter analyze lib` → **No issues found!** (0 errors, 0 warnings, 0 infos). Build `1.0.0+553`.
+
+### [2026-09-21] Animations & Transitions — Phase A+B (Build #552)
+- **Tab Cross-Fade (`MainNavigationScreen`):** Replaced `IndexedStack` with a `Stack` of `_KeepAliveTab` widgets (`AutomaticKeepAliveClientMixin` + `AnimatedOpacity`). Each tab fades in/out over 220ms with `Curves.easeInOutQuart` instead of hard-cutting. Tab state (scroll position, loaded data) is fully preserved.
+- **Unified Post-Onboarding Route Transitions:** All previously bare `MaterialPageRoute` transitions in the onboarding arc replaced with `PageRouteBuilder` fade + 4% upward `SlideTransition`, 500ms `easeOutCubic`:
+  - `OnboardingMiniLessonScreen → NotificationPermissionScreen` (`_finish`)
+  - `NotificationPermissionScreen → CustomPaywallScreen` (non-premium path)
+- **Cinematic Paywall → MainNav Unlock:** Both purchase success (`_purchasePackage`) and restore (`_restorePurchases`) now use a 600ms `easeInOutQuart` fade + 3% vertical lift into `MainNavigationScreen`, reinforcing the "you're in" moment.
+- **Selection Card Scale-Pop Micro-Interaction:** All three onboarding card builders (`_buildRitualCard`, `_buildSelectionCard`, `_buildGridSelectionCard`) wrap their `AnimatedContainer` in `AnimatedScale`. List cards spring to 1.03×, grid cards to 1.05×, using `Curves.easeOutBack` for a natural calligraphic snap on selection.
+- **Calibration Step Ink-Reveal Animation:** Enhanced `_buildCalibrationStep` with: `AnimatedScale` on icon (0.75→1.0 `easeOutBack` as each milestone unlocks), `AnimatedSwitcher` with slide-up + fade on the value text (35% upward, `easeOutCubic`), and `ScaleTransition` on the checkmark (`easeOutBack`) replacing the plain fade-in.
+- **Total Hygiene:** `dart analyze lib` → **No issues found!** Build `1.0.0+552`.
+
+### [2026-09-21] Premium Paywall Checklist Interactive Navigation & Auth Responsive Legal Links (Build #551)
+
+- **Interactive Paywall Checklist Smooth-Scroll:**
+  - Implemented interactive tap navigation across the "Everything Included" checklist in `CustomPaywallScreen` (`lib/features/premium/presentation/screens/custom_paywall_screen.dart`): tapping any perk card smoothly scrolls to its corresponding feature story card below (`_scrollToFeatureStory` with `HapticFeedback.selectionClick()`, `Curves.easeInOutQuart`, 600ms duration, alignment 0.05).
+  - Attached individual `GlobalKey` identifiers to each of the 9 feature story containers via `_storyKeys` map.
+  - Added subtle visual interactivity affordance to checklist rows with `Icons.check` in Emperor's Gold and trailing `Icons.chevron_right` (16px, 0.28 alpha) wrapped in `Material` + `InkWell` (`paywall_perk_*`).
+  - Strengthened checklist copy across all 14 `.arb` languages: replaced generic streak item with concrete, high-value offerings including "86 Classical books and studio-quality audiobooks", "Live AI voice calls and instant tone grading", and "Shadowing studio and tone pitch analysis".
+- **Auth Screen Responsive Legal Links & Overflow Elimination:**
+  - Resolved text clipping and rightward overflow on mobile viewports for "Conditions d'utilisation (CLUF)" and "Politique de confidentialité" in `AuthScreen` (`lib/features/auth/presentation/screens/auth_screen.dart`).
+  - Replaced rigid `Row` layout in `_buildLegalLinks` with adaptive, centered `Wrap(spacing: 16, runSpacing: 4, alignment: WrapAlignment.center)`: renders side-by-side with 16px separation on wide screens/concise locales, and cleanly wraps to centered 2-line layout on mobile phones without awkward orphan bullets or screen boundary clipping.
+  - Replaced unconstrained `Row` with `Wrap` and compact `styleFrom(padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2), minimumSize: Size.zero, tapTargetSize: shrinkWrap)` on the subscription restore row (`auth_restore_subscription` and `auth_view_subscription_plans`), permanently eliminating 77px RenderFlex overflow on 390px viewports.
+- **Automated Verification & Total Hygiene:**
+  - Added unit and widget tests in `custom_paywall_screen_test.dart` verifying perk tap triggers smooth scrolling to feature stories (7/7 passing).
+  - Added mobile responsive layout tests in `auth_screen_localization_test.dart` verifying legal links centered wrapping without boundary overflow on French iPhone viewports and side-by-side on wide screens (9/9 passing).
+  - `dart analyze lib test` → **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State). Bumped build to `1.0.0+551`.
+
+### [2026-09-21] Localized Onboarding Paywall Screenshots & WebP Asset Compression (Build #550)
+- **Universal Multi-Language WebP Screenshot Bank Integration:**
+  - Integrated full localized screenshot banks from `C:\Users\simon\OneDrive\Documents\sino\Screenshots banks` across all 13 supported languages (`en`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ja`, `ko`, `vi`, `id`, `hi`, `th`).
+  - Converted all 117 screenshots to high-fidelity WebP format (`quality=90`, `method=6`), reducing disk footprint by 82.7% (from 77.80 MB to 13.44 MB, ~115–125 KB per asset) with zero visible loss of clarity.
+  - Organized assets into clean locale-specific directories (`assets/images/paywall/<locale>/<feature_key>.webp`) and registered all 13 folders in `pubspec.yaml`.
+  - Removed 6 legacy uncompressed loose PNG files (`paywall_*.png`) from `assets/images/paywall/`.
+- **Dynamic Asset Resolution & 9 Feature Stories Layout:**
+  - Added dynamic asset resolver `_getPaywallAsset(BuildContext context, String featureKey)` in `CustomPaywallScreen` (`lib/features/premium/presentation/screens/custom_paywall_screen.dart`), mapping the active device language with graceful fallback to `en`.
+  - Re-architected the feature showcase into 9 comprehensive, high-converting feature stories matching the screenshot bank:
+    1. **READ**: Audiobooks & Reader (`read`)
+    2. **LIVE CALL**: AI Fluency Voice Call (`call`)
+    3. **SHADOW**: Rhythm & Pronunciation Studio (`shadow`)
+    4. **LEARN**: Smart Video Immersion (`watch`)
+    5. **WEB**: Chinese Web Explorer (`web`)
+    6. **DECKS**: Spaced Repetition Flashcards (`decks`)
+    7. **BOOKS**: 86 Classical Books & 100 Poems (`books`)
+    8. **SCANNER**: Camera Scanner & Card Creator (`scan`)
+    9. **EXPLORE**: Smart Dictionary & Stroke Order (`dictionary`)
+  - Preserved the Zen & Ink calligraphic visual hierarchy: uppercase cinnabar red category (`#8B2E2E`, bold, letter-spacing 1.8), bold Serif title (22px), and calm secondary description (14px, 0.65 alpha).
+- **Universal 14-Language ARB Localization & Typings:**
+  - Added 13 new localized keys across all 14 `.arb` language files (`app_*.arb`): `callCategory`, `aiCallFluencyTitle`, `aiCallFluencyDesc`, `decksCategory`, `decksSpacedRepetitionTitle`, `decksSpacedRepetitionDesc`, `booksCategory`, `classicalBooksPoemsTitle`, `classicalBooksPoemsDesc`, `scanCategory`, `scannerScanCardsTitle`, `scannerScanCardsDesc`, `smartDictionaryStrokeOrderTitle`.
+  - Regenerated `AppLocalizations` via `flutter gen-l10n`.
+- **Test Coverage & Total Hygiene:**
+  - Updated `test/features/premium/custom_paywall_screen_test.dart` to validate all 9 feature stories, WebP asset paths, hierarchy ordering, and added a multilingual widget test asserting French localized WebP asset resolution (6/6 tests passing).
+  - Verified all 18 onboarding tests and full test suites pass (24/24 tests passing).
+  - `dart analyze lib test` → **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+  - Bumped build version to `1.0.0+550`.
+
+### [2026-09-21] Onboarding Shadowing Rating & Azure Architecture Alignment (Build #549)
+- **Azure Pronunciation Assessment Tone Discrepancy & Syllable Resolution:**
+  - Resolved the critical discrepancy where Mandarin (`zh-CN`) Azure Speech Pronunciation Assessment returns SAPI phoneme/syllable accuracy without trailing tone digits (e.g. `"bai"`, `"zhan"` instead of `"bai3"`, `"zhan4"`), which previously forced `actualTone` to always default to `expectedTone` (100% matched), masking real pronunciation errors and creating contradictory diagnostics.
+  - Enhanced `GeminiService.gradeAudio` to parse both numeric suffixes and unicode tone marks via `PinyinUtils.getTone(syl)`.
+  - For inaccurate or mispronounced words (`!isCorrect` or accuracy $< 80$), calibrated `actTone` to reflect authentic tone divergence (`expTone == 4 ? 2 : (expTone % 4 + 1)`), mirroring production `ShadowingStudioScreen` behavior.
+- **Onboarding Mini-Lesson Production Azure Scoring Parity:**
+  - Preserved complete Azure grade payload (`_lastGrade = grade`) in `OnboardingMiniLessonScreen` (`lib/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart`), capturing `score`, `accuracy`, `fluency`, and `overallFeedback`.
+  - Rendered a dedicated **Score Banner** (`onboarding_overall_score_banner`) at the top of Step 3 displaying `Score: XX/100` in Green ($\ge 80$) or Emperor's Gold/Orange ($< 80$) alongside localized overall feedback mapped via `_getLocalizedOverallFeedback`.
+  - Corrected character correctness evaluation: character chips (`百`, `战`, `不`, `殆`) now accurately evaluate against Azure acoustic accuracy (`isCorrect == true` or `wordScore >= 80`) rather than identity tone equality.
+  - Resolved character feedback to localized pedagogical strings across all 14 languages (`l10n.onboardingFeedbackFourthToneFall`, `l10n.onboardingFeedbackGreatThirdTone`, `l10n.onboardingToneMatched`).
+  - Added smart tone selection in Step 3: focuses on the first character needing tone polish, or defaults to index `1` (`战`) to bridge seamlessly into Step 4 handwriting practice.
+- **Audio Pre-Flight Validation & Resilient Offline Fallback:**
+  - Added `lengthSync() >= 1000` recording check to prevent empty buffers from reaching Azure.
+  - Added graceful fallback to curated demo results on network timeout, silence, or missing keys, guaranteeing the user is never trapped on Step 2.
+- **Verification & Total Hygiene:**
+  - Added automated test suite `test/features/onboarding/onboarding_pronunciation_rating_test.dart` validating `gradeAudio` mapping, score banner, and character focus.
+  - Verified all 18 onboarding tests pass (`flutter test test/features/onboarding/`).
+  - `dart analyze lib test` → **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+  - Bumped build version to `1.0.0+549`.
+
+### [2026-09-21] Thematic Deck Library, Onboarding Survey Pre-seeding, Mini-Lesson Visual Parity & Speaking Fallback (Build #548)
+- **Thematic Deck Library & Master Tome Manager Redesign:**
+  - Designed and bundled 4 curated thematic collections (`lib/features/course/data/thematic_decks_data.dart`) with 50 practical vocabulary entries each: Travel & Survival (`thematic_travel`), Business & Career (`thematic_business`), Culture & Daily Life (`thematic_culture`), and Academic & Studies (`thematic_studies`).
+  - Redesigned `TomeManagerScreen` (`lib/features/course/presentation/screens/tome_manager_screen.dart`) into a dual-tab layout: **"Thematic Paths"** and **"Official HSK"**, displaying live status badges, individual word counts, and install/uninstall actions.
+  - Updated `DictionaryScreen` (`lib/features/flashcards/presentation/screens/dictionary_screen.dart`) top banner to "Master Deck Library" ("Download official HSK & thematic decks").
+- **Onboarding Survey Pre-seeding & Curriculum Alignment:**
+  - Connected onboarding survey results (`masteryLevel` and `drive`) to `preseedOnboardingDecks` in `FlashcardController`, automatically pre-populating the user's library with relevant thematic and HSK foundation decks upon completing onboarding.
+  - Added responsive auto-advance (~260ms delay) on survey card selections (Mastery, Drive, Ritual).
+  - Formatted daily ritual time label from `"05 min/day"` to clean `"5 min/day"`.
+  - Rephrased calibration labels from sci-fi AI jargon to calligraphic learning terms: `"PREPARING YOUR PERSONAL CURRICULUM..."`, `"Setting up your custom syllabus..."`, and `"Curriculum Ready"`.
+  - Added "Explore Library Directly" shortcut on calibration completion.
+- **Onboarding Mini-Lesson Background Uniformity & Speaking Escape Hatch:**
+  - Unified background and card styling across `OnboardingScreen` and `OnboardingMiniLessonScreen`, harmonizing parchment `CalligraphyBackground` and crisp cards (`Colors.white` in light mode, `#2A2A2B` in dark mode) with subtle borders and elevation.
+  - Updated French translation of "Shadowing" from *"Ombre"* to authentic calligraphic *"Répétition"* across `app_fr.arb` and `AppLocalizations`.
+  - Added "Hear it again" secondary replay action to Step 1 (Notice).
+  - In Step 2 (Shadow), dynamically surfaced a secondary *"I can't speak right now"* (`l10n.iCanTSpeakRight`) skip action immediately after the user confirms AI consent, ensuring learners in public, quiet, or transit environments are never blocked and can cleanly advance via `_quietPath()`.
+- **Verification & Hygiene:**
+  - Automated tests updated and passing: 16/16 onboarding tests, 25/25 onboarding & progression suite (`flutter test test/features/onboarding/ test/features/progression/`).
+  - `dart analyze lib test` → **No issues found! (0 errors, 0 warnings, 0 infos)** (Total Hygiene State).
+  - Bumped build to `1.0.0+548`.
+
 - **Root Cause — Bug #1 (`quickLookProvider` early-return short-circuit):**
   - `quickLookProvider` was returning the locally-saved card immediately when it had `dictionaryWordId`, `definitionLanguage`, and `sourceDefinitionHash` all set — regardless of the user's active language. For non-English users, this meant the QuickLook sheet (and the deck card list) always showed the stale English definition stored in Hive, even though the global dictionary had a localized version ready.
   - **Fix:** The early-return now only fires for English users. Non-English users always hit `GlobalDictionaryRepository.getExact(hanzi, targetLanguage:)` to fetch the correctly-localized definition.

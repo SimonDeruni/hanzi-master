@@ -3,8 +3,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _MockAudioService extends Fake implements AudioService {
   String? lastPlayedSentence;
@@ -35,11 +37,14 @@ void main() {
       addTearDown(() => tester.binding.setSurfaceSize(null));
 
       final mockAudioService = _MockAudioService();
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
 
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
             audioServiceProvider.overrideWithValue(mockAudioService),
+            sharedPreferencesProvider.overrideWithValue(prefs),
           ],
           child: const MaterialApp(
             locale: Locale('en'),
@@ -99,9 +104,15 @@ void main() {
       await tester.binding.setSurfaceSize(const Size(430, 932));
       addTearDown(() => tester.binding.setSurfaceSize(null));
 
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+
       await tester.pumpWidget(
-        const ProviderScope(
-          child: MaterialApp(
+        ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+          ],
+          child: const MaterialApp(
             locale: Locale('en'),
             localizationsDelegates: [
               AppLocalizations.delegate,

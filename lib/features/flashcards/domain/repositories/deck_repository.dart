@@ -19,4 +19,11 @@ abstract class DeckRepository {
 
   /// Ensure an HSK deck (hsk1–hsk6) with fixed ID exists. Creates it if missing.
   Future<Either<String, Deck>> ensureHSKDeckExists(int level);
+
+  /// Ensure a thematic deck with fixed ID exists. Creates it if missing.
+  Future<Either<String, Deck>> ensureThematicDeckExists(
+    String id, {
+    required String name,
+    required String description,
+  });
 }

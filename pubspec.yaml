@@ -1,7 +1,7 @@
 name: hanzi_master
 description: A mobile-first Chinese learning application.
 publish_to: 'none'
-version: 1.0.0+548
+version: 1.0.0+556
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -109,7 +109,19 @@ flutter:
     - assets/data/
     - assets/data/l10n/
     - assets/images/
-    - assets/images/paywall/
+    - assets/images/paywall/en/
+    - assets/images/paywall/fr/
+    - assets/images/paywall/de/
+    - assets/images/paywall/es/
+    - assets/images/paywall/it/
+    - assets/images/paywall/pt/
+    - assets/images/paywall/ru/
+    - assets/images/paywall/ja/
+    - assets/images/paywall/ko/
+    - assets/images/paywall/vi/
+    - assets/images/paywall/id/
+    - assets/images/paywall/hi/
+    - assets/images/paywall/th/
     - assets/images/books/
     - assets/images/poetry/
     - assets/images/mandarin_bean/

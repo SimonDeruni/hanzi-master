@@ -12693,7 +12693,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Sách và sách nói chất lượng phòng thu';
+      '86 cuốn sách kinh điển và sách nói chất lượng phòng thu';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12849,7 +12849,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master sử dụng các dịch vụ AI bên thứ ba an toàn để đánh giá phát âm giọng nói, nhập vai đối thoại và các công cụ học tập.';
+      'SinoSpark sử dụng các dịch vụ AI bên thứ ba an toàn để đánh giá phát âm giọng nói, nhập vai đối thoại và các công cụ học tập.';
 
   @override
   String get aiConsentDataSentTitle => 'Dữ liệu được truyền';
@@ -12936,5 +12936,66 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return 'Đã thêm «$hanzi» vào «$deckName»';
+  }
+
+  @override
+  String get callCategory => 'CUỘC GỌI TRỰC TIẾP';
+
+  @override
+  String get aiCallFluencyTitle => 'Cuộc gọi AI nâng cao độ lưu loát';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Tham gia các cuộc trò chuyện giọng nói thực tế với gia sư AI, nhận chấm điểm thanh điệu tức thì và xây dựng sự tự tin khi nói.';
+
+  @override
+  String get decksCategory => 'BỘ THẺ';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'Bộ thẻ với lặp lại ngắt quãng';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Làm chủ HSK 1–6 và các bộ thẻ tùy chỉnh với thuật toán lặp lại ngắt quãng đã được chứng minh khoa học.';
+
+  @override
+  String get booksCategory => 'SÁCH';
+
+  @override
+  String get classicalBooksPoemsTitle =>
+      '86 cuốn sách kinh điển và 100 bài thơ';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Đắm mình vào văn học và thơ ca kinh điển với âm thanh đồng bộ và chú thích song ngữ.';
+
+  @override
+  String get scanCategory => 'MÁY QUÉT';
+
+  @override
+  String get scannerScanCardsTitle => 'Quét hình ảnh và thêm thẻ vào bộ';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Hướng máy ảnh vào văn bản tiếng Trung, thực đơn hoặc biển hiệu để trích xuất từ ngay lập tức và lưu vào bộ thẻ của bạn.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Từ điển thông minh kèm thứ tự nét';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Cuộc gọi thoại AI trực tiếp và chấm điểm thanh điệu tức thì';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Phòng luyện Shadowing và phân tích trực quan cao độ thanh điệu';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Bắt đầu 7 ngày dùng thử miễn phí';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Sau đó $price / $period. Hủy bất cứ lúc nào trong Cài đặt.';
   }
 }

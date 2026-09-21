@@ -12764,7 +12764,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'Bücher und Hörbücher in Studioqualität';
+      '86 klassische Bücher und Hörbücher in Studioqualität';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12923,7 +12923,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master nutzt sichere KI-Dienste von Drittanbietern für Aussprachebewertung, Dialog-Rollenspiele und Lernwerkzeuge.';
+      'SinoSpark nutzt sichere KI-Dienste von Drittanbietern für Aussprachebewertung, Dialog-Rollenspiele und Lernwerkzeuge.';
 
   @override
   String get aiConsentDataSentTitle => 'Übertragene Daten';
@@ -13013,5 +13013,68 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return '„$hanzi“ wurde zu „$deckName“ hinzugefügt';
+  }
+
+  @override
+  String get callCategory => 'LIVE-ANRUF';
+
+  @override
+  String get aiCallFluencyTitle => 'KI-Anrufe für mehr Sprachgewandtheit';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'Führe realistische Sprachgespräche mit KI-Tutoren, erhalte sofortige Tonbewertungen und verbessere deine Sprechfertigkeit.';
+
+  @override
+  String get decksCategory => 'KARTENDECKS';
+
+  @override
+  String get decksSpacedRepetitionTitle =>
+      'Decks mit automatischer Wiederholung';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'Meistere HSK 1–6 und eigene Decks mit wissenschaftlich fundierten Algorithmen zur verteilten Wiederholung.';
+
+  @override
+  String get booksCategory => 'BÜCHER';
+
+  @override
+  String get classicalBooksPoemsTitle =>
+      '86 klassische Bücher und 100 Gedichte';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'Tauche ein in zeitlose Literatur und Poesie mit synchronisiertem Audio und zweisprachigen Anmerkungen.';
+
+  @override
+  String get scanCategory => 'SCANNER';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'Bilder scannen und Karten zum Deck hinzufügen';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'Richte deine Kamera auf chinesische Texte, Speisekarten oder Schilder, um Wörter sofort zu erfassen und in deinen Decks zu speichern.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle =>
+      'Intelligentes Wörterbuch mit Strichfolge';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'Live-KI-Sprachanrufe und sofortige Tonbewertung';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'Shadowing-Studio und visuelle Tonhöhenanalyse';
+
+  @override
+  String get startMy7DaysFreeTrial => 'Meine 7 kostenlosen Tage starten';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'Danach $price / $period. Jederzeit in den Einstellungen kündbar.';
   }
 }

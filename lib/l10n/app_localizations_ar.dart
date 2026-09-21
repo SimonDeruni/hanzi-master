@@ -1396,7 +1396,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get undo => 'تراجع';
 
   @override
-  String get hanziMaster => 'هانزي ماستر';
+  String get hanziMaster => 'SinoSpark';
 
   @override
   String get unlockForever => 'فتح دائم - \$9.99';
@@ -3700,7 +3700,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'DefaultFirebaseOptions غير مدعومة على هذه المنصة.';
 
   @override
-  String get hanziMaster1 => 'هانزي ماستر';
+  String get hanziMaster1 => 'SinoSpark';
 
   @override
   String get strokesCannotBeEmpty => 'لا يمكن أن تكون خطوط الحرف فارغة.';
@@ -3840,7 +3840,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'قاعة الصدى لا تزال صامتة. خذ نفسًا وحاول مجددًا.';
 
   @override
-  String get xtitleHanziMaster => 'Hanzi Master';
+  String get xtitleHanziMaster => 'SinoSpark';
 
   @override
   String get noneYet => 'لا يوجد حتى الآن.';
@@ -12612,7 +12612,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get booksAndStudioQualityAudiobooks =>
-      'كتب وكتب صوتية بجودة الاستوديو';
+      '86 كتاباً كلاسيكياً وكتب صوتية بجودة الاستوديو';
 
   @override
   String get aiConversationsAndLiveToneFeedback =>
@@ -12763,7 +12763,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'يستخدم Hanzi Master خدمات ذكاء اصطناعي آمنة تابعة لجهات خارجية لتقييم النطق الصوتي وتمثيل الأدوار في المحادثة وأدوات الدراسة.';
+      'يستخدم SinoSpark خدمات ذكاء اصطناعي آمنة تابعة لجهات خارجية لتقييم النطق الصوتي وتمثيل الأدوار في المحادثة وأدوات الدراسة.';
 
   @override
   String get aiConsentDataSentTitle => 'البيانات المرسلة';
@@ -12853,5 +12853,65 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return 'تمت إضافة $hanzi إلى $deckName';
+  }
+
+  @override
+  String get callCategory => 'مكالمة مباشرة';
+
+  @override
+  String get aiCallFluencyTitle => 'مكالمات الذكاء الاصطناعي لتحسين الطلاقة';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'شارك في محادثات صوتية واقعية مع معلمي الذكاء الاصطناعي، واحصل على تقييم فوري للنغمات، واكتسب طلاقة التحدث.';
+
+  @override
+  String get decksCategory => 'مجموعات البطاقات';
+
+  @override
+  String get decksSpacedRepetitionTitle => 'مجموعات مع التكرار المتباعد';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      'أتقن مستويات HSK 1–6 والمجموعات المخصصة باستخدام خوارزميات التكرار المتباعد المثبتة علمياً.';
+
+  @override
+  String get booksCategory => 'الكتب';
+
+  @override
+  String get classicalBooksPoemsTitle => '86 كتاباً كلاسيكياً و100 قصيدة';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      'انغمس في الأدب والشعر الخالد مع صوت متزامن وتعليقات توضيحية ثنائية اللغة.';
+
+  @override
+  String get scanCategory => 'الماسح الضوئي';
+
+  @override
+  String get scannerScanCardsTitle =>
+      'امسح الصور ضوئياً وأضف بطاقات إلى مجموعتك';
+
+  @override
+  String get scannerScanCardsDesc =>
+      'وجّه كاميرتك نحو أي نص صيني أو قوائم طعام أو لافتات لاستخراج الكلمات فوراً وحفظها في مجموعاتك.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle => 'قاموس ذكي مع ترتيب ضربات الخط';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading =>
+      'مكالمات صوتية مباشرة بالذكاء الاصطناعي وتقييم فوري للنغمات';
+
+  @override
+  String get shadowingStudioAndToneAnalysis =>
+      'استوديو محاكاة النطق وتحليل النغمات بصرياً';
+
+  @override
+  String get startMy7DaysFreeTrial => 'ابدأ تجربتي المجانية لمدة 7 أيام';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return 'ثم $price / $period. يمكنك الإلغاء في أي وقت من الإعدادات.';
   }
 }

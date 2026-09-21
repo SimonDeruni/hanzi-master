@@ -12347,7 +12347,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get learn => '학습';
 
   @override
-  String get booksAndStudioQualityAudiobooks => '도서 및 스튜디오 품질의 오디오북';
+  String get booksAndStudioQualityAudiobooks => '고전 도서 86권 및 스튜디오 품질의 오디오북';
 
   @override
   String get aiConversationsAndLiveToneFeedback => 'AI 대화 및 실시간 성조 피드백';
@@ -12491,7 +12491,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get aiConsentSubtitle =>
-      'Hanzi Master는 음성 발음 평가, 대화 롤플레잉 및 학습 도구를 위해 안전한 타사 AI 서비스를 사용합니다.';
+      'SinoSpark는 음성 발음 평가, 대화 롤플레잉 및 학습 도구를 위해 안전한 타사 AI 서비스를 사용합니다.';
 
   @override
   String get aiConsentDataSentTitle => '전송되는 데이터';
@@ -12575,5 +12575,62 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String addedCardToDeck(String hanzi, String deckName) {
     return '「$hanzi」을(를) 「$deckName」에 추가했습니다';
+  }
+
+  @override
+  String get callCategory => '라이브 통화';
+
+  @override
+  String get aiCallFluencyTitle => '유창성을 기르는 AI 음성 통화';
+
+  @override
+  String get aiCallFluencyDesc =>
+      'AI 튜터와 현실적인 음성 대화를 나누고, 즉각적인 성조 평가를 받아 자연스러운 회화 유창성을 기르세요.';
+
+  @override
+  String get decksCategory => '단어장';
+
+  @override
+  String get decksSpacedRepetitionTitle => '간격 반복 학습 단어장';
+
+  @override
+  String get decksSpacedRepetitionDesc =>
+      '과학적으로 입증된 간격 반복 알고리즘으로 HSK 1~6급 및 맞춤형 단어장을 정복하세요.';
+
+  @override
+  String get booksCategory => '도서';
+
+  @override
+  String get classicalBooksPoemsTitle => '고전 도서 86권 및 시 100편';
+
+  @override
+  String get classicalBooksPoemsDesc =>
+      '동기화된 오디오와 이중 언어 해설과 함께 시대를 초월한 고전 문학과 시를 탐독하세요.';
+
+  @override
+  String get scanCategory => '스캐너';
+
+  @override
+  String get scannerScanCardsTitle => '이미지 스캔 및 단어장 카드 추가';
+
+  @override
+  String get scannerScanCardsDesc =>
+      '카메라로 중국어 텍스트, 메뉴판, 표지판을 비추면 즉시 단어를 추출하여 단어장에 저장합니다.';
+
+  @override
+  String get smartDictionaryStrokeOrderTitle => '획순 지원 스마트 사전';
+
+  @override
+  String get liveAiVoiceCallsAndToneGrading => '실시간 AI 음성 통화 및 즉각적인 성조 평가';
+
+  @override
+  String get shadowingStudioAndToneAnalysis => '섀도잉 스튜디오 및 성조 피치 시각 분석';
+
+  @override
+  String get startMy7DaysFreeTrial => '7일 무료 체험 시작하기';
+
+  @override
+  String trialSubtextUnderCta(String price, String period) {
+    return '이후 $period당 $price. 설정에서 언제든지 취소 가능.';
   }
 }

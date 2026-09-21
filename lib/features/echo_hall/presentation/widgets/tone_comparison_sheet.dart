@@ -5,6 +5,7 @@ import '../../../../core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/features/live_translate/presentation/widgets/calligraphic_pitch_contour.dart';
 
 class ToneComparisonSheet extends ConsumerStatefulWidget {
   final String character;
@@ -374,6 +375,50 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
           ),
           const SizedBox(height: 14),
 
+          // Calligraphic Pitch Contour Waveform Trace (Zen & Ink)
+          Container(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? Colors.white.withValues(alpha: 0.04)
+                  : const Color(0xFFFBFBF9),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: theme.colorScheme.outlineVariant.withValues(alpha: 0.35),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.brush,
+                      size: 13,
+                      color: isDark ? Colors.white60 : Colors.black54,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      AppLocalizations.of(context)?.toneGraph ?? "Tone Graph",
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: isDark ? Colors.white60 : Colors.black54,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                CalligraphicPitchContour(
+                  expectedTone: widget.expectedTone,
+                  actualTone: widget.actualTone,
+                  height: 110,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+
           // Diagnostic Guidance Card
           Container(
             width: double.infinity,
@@ -513,7 +558,7 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               // Pitch Contour Badge (Protected LTR so pitch curve orientation never inverts)
               LtrSanctuary(
                 child: Container(
-                  width: 38,
+                  width: 44,
                   height: 38,
                   decoration: BoxDecoration(
                     color: existsInChinese
@@ -522,20 +567,25 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
-                    child: Text(
-                      pitchIcon,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: !existsInChinese
-                            ? onSurface.withValues(alpha: 0.3)
-                            : (isExpected
-                                ? const Color(0xFF3B82F6)
-                                : (isActual
-                                    ? const Color(0xFFF59E0B)
-                                    : onSurface.withValues(alpha: 0.6))),
-                      ),
-                    ),
+                    child: existsInChinese
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 5),
+                            child: CalligraphicPitchContour(
+                              expectedTone: tone,
+                              height: 28,
+                              isCompact: true,
+                              autoAnimate: isPlaying,
+                            ),
+                          )
+                        : Text(
+                            pitchIcon,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: onSurface.withValues(alpha: 0.3),
+                            ),
+                          ),
                   ),
                 ),
               ),
