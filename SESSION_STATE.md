@@ -1,10 +1,12 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Build Bump & Remote Synchronization (Build #557)
+- **Objective:** Master Deck Library Horizontal Shelves & Calligraphic Book Parity (Build #558)
 - **Status:** 🟢 COMPLETED
 - **Hygiene:** 0 errors, 0 warnings, 0 infos (Total Hygiene State).
 - **Locked Files:** None
+
+- [x] **Master Deck Library Horizontal Shelves & Calligraphic Book Parity (2026-09-21 19:25):** (1) Replaced flat 2-tab view in `TomeManagerScreen` (`lib/features/course/presentation/screens/tome_manager_screen.dart`) with categorized horizontal scrolling shelves mirroring `BookCatalogScreen`, featuring 6 dedicated categories: Official HSK Curriculum (HSK 1–6), Culture & Heritage (Culture & Daily Life, TCM & Healing, Festivals & Folklore, Philosophy & Idioms), Sports & Martial Arts (Wushu & Tai Chi, Ball Games, Fitness Training, Winter Sports), Education & Academics (Academic & Studies, Science & Tech, Chinese Linguistics), Travel & City Life (Survival Chinese, Dining Out, Shopping), and Business & Professional (Career & Negotiation, Workplace Communication, Finance & Global Trade); (2) Created `CalligraphicDeckCover` (`lib/features/course/presentation/widgets/calligraphic_deck_cover.dart`) featuring book spine binding with Emperor's gold stitches, genre gradients, Hanzi watermark, center Xuan parchment plaque with gold border, card count badge, and "SAVED" ribbon when installed; (3) Added `ZenSearchBar` filtering decks by keyword and Hanzi query, category filter pills (`ALL`, `Official HSK`, `Culture`, `Sports`, `Education`, `Travel`, `Business`), and "Master Bookshelf Status" card tracking installed collections; (4) Added `_showDeckPreviewSheet` bottom modal on card tap displaying deck description, sample vocabulary chips (Hanzi, Pinyin, definition), and 1-tap install/remove action; (5) Added unit and widget test suite `tome_manager_shelf_test.dart` (6/6 tests passing); (6) Total Hygiene State: `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos**. Build `1.0.0+558`.
 
 - [x] **Build Bump & Version Alignment (2026-09-21 17:45):** Bumped build version to `1.0.0+557` in `pubspec.yaml`, updated `CHANGELOG.md` and `ISSUES.md`, and synchronized repository to `gitlab master`. (Build `1.0.0+557`).
 

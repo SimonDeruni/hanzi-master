@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
+import '../../../../core/presentation/widgets/zen_search_bar.dart';
 import '../../../../core/providers.dart';
+import '../../../../shared/widgets/bouncing_button.dart';
 import '../../../../shared/widgets/global_sliver_app_bar.dart';
 import '../../../flashcards/domain/entities/deck.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
@@ -10,18 +12,29 @@ import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../data/thematic_decks_data.dart';
+import '../widgets/calligraphic_deck_cover.dart';
 
 class _HskCollection {
   final int level;
   final String title;
+  final String titleHanzi;
   final String cardCount;
   final Color color;
+  final List<Color> gradientColors;
+  final String watermarkHanzi;
+  final String description;
+  final List<Map<String, String>> sampleWords;
 
   const _HskCollection({
     required this.level,
     required this.title,
+    required this.titleHanzi,
     required this.cardCount,
     required this.color,
+    required this.gradientColors,
+    required this.watermarkHanzi,
+    required this.description,
+    required this.sampleWords,
   });
 }
 
@@ -35,44 +48,145 @@ class TomeManagerScreen extends ConsumerStatefulWidget {
 class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
   int? _busyHskLevel;
   String? _busyThematicId;
-  int _selectedTab = 0; // 0 = Thematic, 1 = Official HSK
+  String _selectedCategory = 'ALL';
+  final TextEditingController _searchController = TextEditingController();
+
+  static const List<String> _categoryFilterKeys = [
+    'ALL',
+    'Official HSK',
+    'Culture',
+    'Sports',
+    'Education',
+    'Travel',
+    'Business',
+  ];
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   List<_HskCollection> _collections(AppLocalizations l10n) => [
         _HskCollection(
           level: 1,
           title: l10n.foundation,
+          titleHanzi: '一级·基础',
           cardCount: l10n.hsk_154_cards,
           color: const Color(0xFF15803D),
+          gradientColors: const [Color(0xFF15803D), Color(0xFF052E16)],
+          watermarkHanzi: '壹',
+          description: 'Master 154 foundational Hanzi, fundamental daily greetings, numbers, and basic sentence patterns.',
+          sampleWords: const [
+            {"hanzi": "你", "pinyin": "nǐ", "definition": "you"},
+            {"hanzi": "好", "pinyin": "hǎo", "definition": "good; well"},
+            {"hanzi": "谢谢", "pinyin": "xiè xie", "definition": "thank you"},
+            {"hanzi": "再见", "pinyin": "zài jiàn", "definition": "goodbye"},
+            {"hanzi": "中国", "pinyin": "zhōng guó", "definition": "China"},
+            {"hanzi": "朋友", "pinyin": "péng you", "definition": "friend"},
+            {"hanzi": "喝茶", "pinyin": "hē chá", "definition": "drink tea"},
+            {"hanzi": "高兴", "pinyin": "gāo xìng", "definition": "happy; glad"},
+          ],
         ),
         _HskCollection(
           level: 2,
           title: l10n.elementary,
+          titleHanzi: '二级·初级',
           cardCount: l10n.hsk_162_cards,
           color: const Color(0xFF0F766E),
+          gradientColors: const [Color(0xFF0F766E), Color(0xFF042F2E)],
+          watermarkHanzi: '贰',
+          description: 'Master 162 elementary words for practical everyday communication and routine interactions.',
+          sampleWords: const [
+            {"hanzi": "准备", "pinyin": "zhǔn bèi", "definition": "prepare; get ready"},
+            {"hanzi": "介绍", "pinyin": "jiè shào", "definition": "introduce; recommend"},
+            {"hanzi": "时间", "pinyin": "shí jiān", "definition": "time; period"},
+            {"hanzi": "帮助", "pinyin": "bāng zhù", "definition": "help; assist"},
+            {"hanzi": "希望", "pinyin": "xī wàng", "definition": "hope; wish"},
+            {"hanzi": "欢迎", "pinyin": "huān yíng", "definition": "welcome"},
+            {"hanzi": "身体", "pinyin": "shēn tǐ", "definition": "body; health"},
+            {"hanzi": "跑步", "pinyin": "pǎo bù", "definition": "run; jog"},
+          ],
         ),
         _HskCollection(
           level: 3,
           title: l10n.intermediate,
+          titleHanzi: '三级·中级',
           cardCount: l10n.hsk_299_cards,
           color: const Color(0xFFB45309),
+          gradientColors: const [Color(0xFFB45309), Color(0xFF451A03)],
+          watermarkHanzi: '叁',
+          description: 'Master 299 intermediate words to comfortably converse in academic, social, and travel settings.',
+          sampleWords: const [
+            {"hanzi": "解决", "pinyin": "jiě jué", "definition": "resolve; solve"},
+            {"hanzi": "影响", "pinyin": "yǐng xiǎng", "definition": "influence; effect"},
+            {"hanzi": "提高", "pinyin": "tí gāo", "definition": "improve; raise"},
+            {"hanzi": "习惯", "pinyin": "xí guàn", "definition": "habit; custom"},
+            {"hanzi": "机会", "pinyin": "jī huì", "definition": "opportunity; chance"},
+            {"hanzi": "选择", "pinyin": "xuǎn zé", "definition": "choose; choice"},
+            {"hanzi": "努力", "pinyin": "nǔ lì", "definition": "diligent; hard-working"},
+            {"hanzi": "完成", "pinyin": "wán chéng", "definition": "complete; finish"},
+          ],
         ),
         _HskCollection(
           level: 4,
           title: l10n.upperIntermediate,
+          titleHanzi: '四级·进阶',
           cardCount: l10n.hsk_602_cards,
           color: const Color(0xFFBE123C),
+          gradientColors: const [Color(0xFFBE123C), Color(0xFF4C0519)],
+          watermarkHanzi: '肆',
+          description: 'Master 602 upper-intermediate words for fluent discussion with native speakers across diverse topics.',
+          sampleWords: const [
+            {"hanzi": "坚持", "pinyin": "jiān chí", "definition": "persist; persevere"},
+            {"hanzi": "甚至", "pinyin": "shèn zhì", "definition": "even; so much that"},
+            {"hanzi": "交流", "pinyin": "jiāo liú", "definition": "exchange; communicate"},
+            {"hanzi": "关键", "pinyin": "guān jiàn", "definition": "crucial; key"},
+            {"hanzi": "态度", "pinyin": "tài du", "definition": "attitude; demeanor"},
+            {"hanzi": "经验", "pinyin": "jīng yàn", "definition": "experience"},
+            {"hanzi": "适应", "pinyin": "shì yìng", "definition": "adapt; adjust to"},
+            {"hanzi": "根据", "pinyin": "gēn jù", "definition": "according to; basis"},
+          ],
         ),
         _HskCollection(
           level: 5,
           title: l10n.advanced,
+          titleHanzi: '五级·高级',
           cardCount: l10n.hsk_1300_cards,
           color: const Color(0xFF4338CA),
+          gradientColors: const [Color(0xFF4338CA), Color(0xFF1E1B4B)],
+          watermarkHanzi: '伍',
+          description: 'Master 1,300 advanced words to read Chinese newspapers, magazines, and appreciate films.',
+          sampleWords: const [
+            {"hanzi": "综合", "pinyin": "zōng hé", "definition": "comprehensive; synthesize"},
+            {"hanzi": "逻辑", "pinyin": "luó ji", "definition": "logic"},
+            {"hanzi": "优势", "pinyin": "yōu shì", "definition": "advantage; superiority"},
+            {"hanzi": "趋势", "pinyin": "qū shì", "definition": "trend; tendency"},
+            {"hanzi": "本质", "pinyin": "běn zhì", "definition": "essence; nature"},
+            {"hanzi": "概念", "pinyin": "gài niàn", "definition": "concept; notion"},
+            {"hanzi": "比例", "pinyin": "bǐ lì", "definition": "proportion; scale"},
+            {"hanzi": "把握", "pinyin": "bǎ wò", "definition": "grasp; hold; certainty"},
+          ],
         ),
         _HskCollection(
           level: 6,
           title: l10n.mastery,
+          titleHanzi: '六级·精通',
           cardCount: l10n.hsk_2500_cards,
           color: const Color(0xFF6D28D9),
+          gradientColors: const [Color(0xFF6D28D9), Color(0xFF2E1065)],
+          watermarkHanzi: '陆',
+          description: 'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.',
+          sampleWords: const [
+            {"hanzi": "领悟", "pinyin": "lǐng wù", "definition": "comprehend; grasp"},
+            {"hanzi": "造诣", "pinyin": "zào yì", "definition": "scholarly attainment"},
+            {"hanzi": "渊博", "pinyin": "yuān bó", "definition": "broad and profound"},
+            {"hanzi": "博大精深", "pinyin": "bó dà jīng shēn", "definition": "wide-ranging and profound"},
+            {"hanzi": "琢磨", "pinyin": "zhuó mó", "definition": "ponder; deliberate"},
+            {"hanzi": "精益求精", "pinyin": "jīng yì qiú jīng", "definition": "strive for perfection"},
+            {"hanzi": "千方百计", "pinyin": "qiān fāng bǎi jì", "definition": "by every possible means"},
+            {"hanzi": "锲而不舍", "pinyin": "qiè ér bù shě", "definition": "persevere relentlessly"},
+          ],
         ),
       ];
 
@@ -273,6 +387,314 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       );
   }
 
+  void _showDeckPreviewSheet({
+    required BuildContext context,
+    required String title,
+    required String titleHanzi,
+    required String subtitle,
+    required String description,
+    required String watermarkHanzi,
+    required List<Color> gradientColors,
+    required String badgeText,
+    required Color color,
+    required List<Map<String, String>> sampleWords,
+    required bool isInstalled,
+    required bool isBusy,
+    required VoidCallback onInstall,
+    required VoidCallback onUninstall,
+  }) {
+    HapticsManager.light();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bgColor = isDark ? const Color(0xFF1E1E24) : const Color(0xFFFDFCF0);
+    final cardBg = isDark ? const Color(0xFF28282E) : Colors.white;
+    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
+        ),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          border: Border.all(
+            color: isDark ? Colors.white12 : const Color(0xFFD4AF37).withValues(alpha: 0.3),
+            width: 1,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.3),
+              blurRadius: 20,
+              offset: const Offset(0, -4),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Drag Handle
+            Center(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 8),
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.white24 : Colors.black12,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+
+            Flexible(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header Banner with Calligraphic Deck Cover
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CalligraphicDeckCover(
+                          title: title,
+                          titleHanzi: titleHanzi,
+                          watermarkHanzi: watermarkHanzi,
+                          gradientColors: gradientColors,
+                          badgeText: badgeText,
+                          isInstalled: isInstalled,
+                          width: 110,
+                          height: 155,
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                                decoration: BoxDecoration(
+                                  color: color.withValues(alpha: 0.12),
+                                  borderRadius: BorderRadius.circular(6),
+                                  border: Border.all(
+                                    color: color.withValues(alpha: 0.3),
+                                    width: 0.8,
+                                  ),
+                                ),
+                                child: Text(
+                                  titleHanzi,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: color,
+                                    fontFamily: 'NotoSerifSC',
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                title,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: primaryText,
+                                  letterSpacing: 0.3,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                subtitle,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark ? Colors.white60 : Colors.black54,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: isInstalled
+                                      ? const Color(0xFF10B981).withValues(alpha: 0.12)
+                                      : Colors.amber.withValues(alpha: 0.12),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      isInstalled ? Icons.check_circle_rounded : Icons.library_add_rounded,
+                                      size: 13,
+                                      color: isInstalled ? const Color(0xFF10B981) : Colors.amber.shade800,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      isInstalled ? 'Installed on Bookshelf' : 'Available for Download',
+                                      style: TextStyle(
+                                        fontSize: 10.5,
+                                        fontWeight: FontWeight.bold,
+                                        color: isInstalled ? const Color(0xFF10B981) : Colors.amber.shade800,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 16),
+                    // Description
+                    Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: 13,
+                        height: 1.45,
+                        color: isDark ? Colors.white70 : const Color(0xFF374151),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+                    // Sample Vocabulary Section
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.menu_book_rounded,
+                          size: 16,
+                          color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          'Sample Vocabulary (${sampleWords.length} preview words)',
+                          style: TextStyle(
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.bold,
+                            color: primaryText,
+                            letterSpacing: 0.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Vocabulary Cards
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: sampleWords.take(12).map((word) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                          decoration: BoxDecoration(
+                            color: cardBg,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.07),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    word['hanzi'] ?? '',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: primaryText,
+                                      fontFamily: 'NotoSerifSC',
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    word['pinyin'] ?? '',
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                      color: color,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                word['definition'] ?? '',
+                                style: TextStyle(
+                                  fontSize: 10.5,
+                                  color: isDark ? Colors.white60 : Colors.black54,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+
+                    const SizedBox(height: 28),
+
+                    // Primary Action Button
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: isBusy
+                          ? const Center(child: CircularProgressIndicator())
+                          : isInstalled
+                              ? OutlinedButton.icon(
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: const Color(0xFFDC2626),
+                                    side: const BorderSide(color: Color(0xFFDC2626), width: 1.2),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(sheetContext);
+                                    onUninstall();
+                                  },
+                                  icon: const Icon(Icons.delete_outline_rounded, size: 18),
+                                  label: const Text(
+                                    'Remove from Bookshelf',
+                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              : FilledButton.icon(
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: color,
+                                    foregroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                    elevation: 2,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(sheetContext);
+                                    onInstall();
+                                  },
+                                  icon: const Icon(Icons.download_rounded, size: 18),
+                                  label: const Text(
+                                    'Download & Install Deck',
+                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -280,111 +702,351 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     const thematicDecks = ThematicDecksData.collections;
     final asyncDecks = ref.watch(deckControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final cardBg = isDark ? const Color(0xFF1E1E24) : Colors.white;
 
     return Scaffold(
       body: CalligraphyBackground(
         child: asyncDecks.when(
           data: (decks) {
             final installedHskCount = collections
-                .where(
-                  (collection) => _isLevelInstalled(collection.level, decks),
-                )
+                .where((collection) => _isLevelInstalled(collection.level, decks))
                 .length;
 
             final installedThematicCount = thematicDecks
-                .where(
-                  (thematic) => _isThematicInstalled(thematic.id, decks),
-                )
+                .where((thematic) => _isThematicInstalled(thematic.id, decks))
                 .length;
 
             final totalInstalled = installedHskCount + installedThematicCount;
             final totalAvailable = collections.length + thematicDecks.length;
+
+            final query = _searchController.text.trim().toLowerCase();
+
+            // Filter HSK
+            final filteredHsk = collections.where((c) {
+              if (_selectedCategory != 'ALL' && _selectedCategory != 'Official HSK') {
+                return false;
+              }
+              if (query.isEmpty) return true;
+              return c.title.toLowerCase().contains(query) ||
+                  c.titleHanzi.toLowerCase().contains(query) ||
+                  c.description.toLowerCase().contains(query) ||
+                  c.cardCount.toLowerCase().contains(query) ||
+                  c.sampleWords.any((w) =>
+                      (w['hanzi']?.toLowerCase().contains(query) ?? false) ||
+                      (w['pinyin']?.toLowerCase().contains(query) ?? false) ||
+                      (w['definition']?.toLowerCase().contains(query) ?? false));
+            }).toList();
+
+            // Filter Thematic by category and search
+            final filteredThematic = thematicDecks.where((t) {
+              if (_selectedCategory != 'ALL' && _selectedCategory != t.category) {
+                return false;
+              }
+              if (query.isEmpty) return true;
+              return t.title.toLowerCase().contains(query) ||
+                  t.titleHanzi.toLowerCase().contains(query) ||
+                  t.description.toLowerCase().contains(query) ||
+                  t.category.toLowerCase().contains(query) ||
+                  t.vocabulary.any((w) =>
+                      (w['hanzi']?.toLowerCase().contains(query) ?? false) ||
+                      (w['pinyin']?.toLowerCase().contains(query) ?? false) ||
+                      (w['definition']?.toLowerCase().contains(query) ?? false));
+            }).toList();
+
+            // Group thematic by categories
+            final cultureDecks = filteredThematic.where((t) => t.category == 'Culture').toList();
+            final sportsDecks = filteredThematic.where((t) => t.category == 'Sports').toList();
+            final educationDecks = filteredThematic.where((t) => t.category == 'Education').toList();
+            final travelDecks = filteredThematic.where((t) => t.category == 'Travel').toList();
+            final businessDecks = filteredThematic.where((t) => t.category == 'Business').toList();
+
+            final bool hasAnyResults = filteredHsk.isNotEmpty ||
+                cultureDecks.isNotEmpty ||
+                sportsDecks.isNotEmpty ||
+                educationDecks.isNotEmpty ||
+                travelDecks.isNotEmpty ||
+                businessDecks.isNotEmpty;
 
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
                 const GlobalSliverAppBar(
                   title: "Master Deck Library",
-                  subtitle: "Standard HSK tiers and curated thematic collections",
+                  subtitle: "Curated collections across HSK, culture, sports, & academics",
                   showBackButton: true,
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
-                  sliver: SliverList.list(
-                    children: [
-                      _DownloadSummary(
-                        installedCount: totalInstalled,
-                        totalCount: totalAvailable,
-                        label: "Installed Collections",
-                      ),
-                      const SizedBox(height: 16),
-                      // Segment switcher
-                      Container(
-                        height: 48,
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: isDark
-                              ? const Color(0xFF2C2C2E)
-                              : Colors.black.withValues(alpha: 0.04),
-                          borderRadius: BorderRadius.circular(14),
+
+                // Top Controls: Search Bar, Status Card, and Category Filter Pills
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Zen Search Bar
+                        ZenSearchBar(
+                          controller: _searchController,
+                          hintText: "Search decks, topics, or Hanzi words...",
+                          onChanged: (_) => setState(() {}),
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: _buildSegmentButton(
-                                index: 0,
-                                label: "Thematic Paths (${thematicDecks.length})",
-                                isSelected: _selectedTab == 0,
-                                isDark: isDark,
-                              ),
-                            ),
-                            Expanded(
-                              child: _buildSegmentButton(
-                                index: 1,
-                                label: "Official HSK (${collections.length})",
-                                isSelected: _selectedTab == 1,
-                                isDark: isDark,
-                              ),
-                            ),
-                          ],
+
+                        const SizedBox(height: 12),
+
+                        // Download / Bookshelf Status Card
+                        _BookshelfSummaryCard(
+                          installedCount: totalInstalled,
+                          totalCount: totalAvailable,
+                          isDark: isDark,
+                          cardBg: cardBg,
+                          primaryText: primaryText,
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      if (_selectedTab == 0) ...[
-                        ...thematicDecks.map(
-                          (thematic) => Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: _ThematicRow(
-                              thematic: thematic,
-                              installed: _isThematicInstalled(thematic.id, decks),
-                              busy: _busyThematicId == thematic.id,
-                              actionsDisabled: _busyThematicId != null || _busyHskLevel != null,
-                              onInstall: () => _installThematic(thematic),
-                              onUninstall: () => _uninstallThematic(thematic),
-                            ),
+
+                        const SizedBox(height: 12),
+
+                        // Horizontal Category Filter Pills (like BookCatalogScreen)
+                        SizedBox(
+                          height: 34,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: _categoryFilterKeys.length,
+                            separatorBuilder: (_, __) => const SizedBox(width: 8),
+                            itemBuilder: (context, index) {
+                              final catKey = _categoryFilterKeys[index];
+                              final isSelected = _selectedCategory == catKey;
+                              return GestureDetector(
+                                onTap: () {
+                                  HapticsManager.light();
+                                  setState(() => _selectedCategory = catKey);
+                                },
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 180),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? (isDark ? Colors.amber.shade700 : const Color(0xFF2C2C2E))
+                                        : cardBg,
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: isSelected
+                                          ? Colors.transparent
+                                          : (isDark ? Colors.white12 : Colors.black12),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      catKey,
+                                      style: TextStyle(
+                                        color: isSelected
+                                            ? Colors.white
+                                            : (isDark ? Colors.white70 : Colors.black87),
+                                        fontSize: 11,
+                                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      ] else ...[
-                        ...collections.map(
-                          (collection) => Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: _CollectionRow(
-                              collection: collection,
-                              installed: _isLevelInstalled(
-                                collection.level,
-                                decks,
-                              ),
-                              busy: _busyHskLevel == collection.level,
-                              actionsDisabled: _busyHskLevel != null || _busyThematicId != null,
+                        const SizedBox(height: 6),
+                      ],
+                    ),
+                  ),
+                ),
+
+                if (!hasAnyResults)
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.search_off_rounded,
+                            size: 48,
+                            color: isDark ? Colors.white30 : Colors.black26,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'No decks found matching "$query"',
+                            style: TextStyle(
+                              color: isDark ? Colors.white54 : Colors.black54,
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextButton(
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() => _selectedCategory = 'ALL');
+                            },
+                            child: const Text('Reset filters'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                else ...[
+                  // ==========================================
+                  // 1. OFFICIAL HSK SHELF ROW
+                  // ==========================================
+                  if (filteredHsk.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategoryShelf(
+                        title: 'Official HSK Curriculum',
+                        titleHanzi: '官方HSK分级',
+                        subtitle: 'Official Chinese proficiency standards (HSK 1 - 6)',
+                        icon: Icons.workspace_premium_rounded,
+                        accentColor: const Color(0xFF0F766E),
+                        itemCount: filteredHsk.length,
+                        isDark: isDark,
+                        cardBg: cardBg,
+                        primaryText: primaryText,
+                        itemBuilder: (context, index) {
+                          final collection = filteredHsk[index];
+                          final isInstalled = _isLevelInstalled(collection.level, decks);
+                          final isBusy = _busyHskLevel == collection.level;
+
+                          return _buildShelfCard(
+                            title: l10n.hskLevel(collection.level.toString()),
+                            titleHanzi: collection.titleHanzi,
+                            subtitle: '${collection.title} · ${collection.cardCount}',
+                            description: collection.description,
+                            watermarkHanzi: collection.watermarkHanzi,
+                            gradientColors: collection.gradientColors,
+                            badgeText: 'HSK ${collection.level}',
+                            accentColor: collection.color,
+                            isInstalled: isInstalled,
+                            isBusy: isBusy,
+                            actionsDisabled: _busyHskLevel != null || _busyThematicId != null,
+                            isDark: isDark,
+                            cardBg: cardBg,
+                            primaryText: primaryText,
+                            onTapCard: () => _showDeckPreviewSheet(
+                              context: context,
+                              title: l10n.hskLevel(collection.level.toString()),
+                              titleHanzi: collection.titleHanzi,
+                              subtitle: '${collection.title} · ${collection.cardCount}',
+                              description: collection.description,
+                              watermarkHanzi: collection.watermarkHanzi,
+                              gradientColors: collection.gradientColors,
+                              badgeText: 'HSK ${collection.level}',
+                              color: collection.color,
+                              sampleWords: collection.sampleWords,
+                              isInstalled: isInstalled,
+                              isBusy: isBusy,
                               onInstall: () => _installCollection(collection),
                               onUninstall: () => _uninstallCollection(collection),
                             ),
-                          ),
-                        ),
-                      ],
-                    ],
+                            onInstall: () => _installCollection(collection),
+                            onUninstall: () => _uninstallCollection(collection),
+                          );
+                        },
+                      ),
+                    ),
+
+                  // ==========================================
+                  // 2. CULTURE & HERITAGE SHELF ROW
+                  // ==========================================
+                  if (cultureDecks.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildThematicShelf(
+                        title: 'Culture & Heritage',
+                        titleHanzi: '文化与传统',
+                        subtitle: 'Traditional arts, TCM wellness, tea, and festivals',
+                        icon: Icons.palette_rounded,
+                        accentColor: const Color(0xFFB91C1C),
+                        decks: cultureDecks,
+                        installedDecks: decks,
+                        isDark: isDark,
+                        cardBg: cardBg,
+                        primaryText: primaryText,
+                      ),
+                    ),
+
+                  // ==========================================
+                  // 3. SPORTS & MARTIAL ARTS SHELF ROW
+                  // ==========================================
+                  if (sportsDecks.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildThematicShelf(
+                        title: 'Sports & Martial Arts',
+                        titleHanzi: '运动与竞技',
+                        subtitle: 'Wushu Kung Fu, ball games, gym, and athletics',
+                        icon: Icons.sports_martial_arts_rounded,
+                        accentColor: const Color(0xFF0F766E),
+                        decks: sportsDecks,
+                        installedDecks: decks,
+                        isDark: isDark,
+                        cardBg: cardBg,
+                        primaryText: primaryText,
+                      ),
+                    ),
+
+                  // ==========================================
+                  // 4. EDUCATION & ACADEMICS SHELF ROW
+                  // ==========================================
+                  if (educationDecks.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildThematicShelf(
+                        title: 'Education & Academics',
+                        titleHanzi: '教育与学术',
+                        subtitle: 'University research, science, tech, and linguistics',
+                        icon: Icons.school_rounded,
+                        accentColor: const Color(0xFF4338CA),
+                        decks: educationDecks,
+                        installedDecks: decks,
+                        isDark: isDark,
+                        cardBg: cardBg,
+                        primaryText: primaryText,
+                      ),
+                    ),
+
+                  // ==========================================
+                  // 5. TRAVEL & CITY LIFE SHELF ROW
+                  // ==========================================
+                  if (travelDecks.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildThematicShelf(
+                        title: 'Travel & City Life',
+                        titleHanzi: '旅行与出行',
+                        subtitle: 'Survival Chinese, Chinese dining, shopping, and metro',
+                        icon: Icons.flight_takeoff_rounded,
+                        accentColor: const Color(0xFF0284C7),
+                        decks: travelDecks,
+                        installedDecks: decks,
+                        isDark: isDark,
+                        cardBg: cardBg,
+                        primaryText: primaryText,
+                      ),
+                    ),
+
+                  // ==========================================
+                  // 6. BUSINESS & PROFESSIONAL SHELF ROW
+                  // ==========================================
+                  if (businessDecks.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildThematicShelf(
+                        title: 'Business & Professional',
+                        titleHanzi: '商务与职场',
+                        subtitle: 'Contracts, negotiation, workplace, and global finance',
+                        icon: Icons.business_center_rounded,
+                        accentColor: const Color(0xFFD97706),
+                        decks: businessDecks,
+                        installedDecks: decks,
+                        isDark: isDark,
+                        cardBg: cardBg,
+                        primaryText: primaryText,
+                      ),
+                    ),
+
+                  const SliverToBoxAdapter(
+                    child: SizedBox(height: 36),
                   ),
-                ),
+                ],
               ],
             );
           },
@@ -402,302 +1064,465 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     );
   }
 
-  Widget _buildSegmentButton({
-    required int index,
-    required String label,
-    required bool isSelected,
+  Widget _buildThematicShelf({
+    required String title,
+    required String titleHanzi,
+    required String subtitle,
+    required IconData icon,
+    required Color accentColor,
+    required List<ThematicDeckDefinition> decks,
+    required List<Deck> installedDecks,
     required bool isDark,
+    required Color cardBg,
+    required Color primaryText,
   }) {
-    return GestureDetector(
-      onTap: () {
-        HapticsManager.light();
-        setState(() => _selectedTab = index);
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? (isDark ? const Color(0xFF1E1E24) : Colors.white)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
-                  ),
-                ]
-              : null,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-            color: isSelected
-                ? (isDark ? Colors.white : Colors.black87)
-                : (isDark ? Colors.white54 : Colors.black54),
+    return _buildCategoryShelf(
+      title: title,
+      titleHanzi: titleHanzi,
+      subtitle: subtitle,
+      icon: icon,
+      accentColor: accentColor,
+      itemCount: decks.length,
+      isDark: isDark,
+      cardBg: cardBg,
+      primaryText: primaryText,
+      itemBuilder: (context, index) {
+        final thematic = decks[index];
+        final isInstalled = _isThematicInstalled(thematic.id, installedDecks);
+        final isBusy = _busyThematicId == thematic.id;
+
+        return _buildShelfCard(
+          title: thematic.title,
+          titleHanzi: thematic.titleHanzi,
+          subtitle: '${thematic.vocabulary.length} words · ${thematic.category}',
+          description: thematic.description,
+          watermarkHanzi: thematic.watermarkHanzi,
+          gradientColors: thematic.gradientColors,
+          badgeText: '${thematic.vocabulary.length} 词',
+          accentColor: thematic.color,
+          isInstalled: isInstalled,
+          isBusy: isBusy,
+          actionsDisabled: _busyHskLevel != null || _busyThematicId != null,
+          isDark: isDark,
+          cardBg: cardBg,
+          primaryText: primaryText,
+          onTapCard: () => _showDeckPreviewSheet(
+            context: context,
+            title: thematic.title,
+            titleHanzi: thematic.titleHanzi,
+            subtitle: '${thematic.vocabulary.length} words · ${thematic.category}',
+            description: thematic.description,
+            watermarkHanzi: thematic.watermarkHanzi,
+            gradientColors: thematic.gradientColors,
+            badgeText: '${thematic.vocabulary.length} 词',
+            color: thematic.color,
+            sampleWords: thematic.vocabulary,
+            isInstalled: isInstalled,
+            isBusy: isBusy,
+            onInstall: () => _installThematic(thematic),
+            onUninstall: () => _uninstallThematic(thematic),
           ),
+          onInstall: () => _installThematic(thematic),
+          onUninstall: () => _uninstallThematic(thematic),
+        );
+      },
+    );
+  }
+
+  Widget _buildCategoryShelf({
+    required String title,
+    required String titleHanzi,
+    required String subtitle,
+    required IconData icon,
+    required Color accentColor,
+    required int itemCount,
+    required bool isDark,
+    required Color cardBg,
+    required Color primaryText,
+    required Widget Function(BuildContext, int) itemBuilder,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 14, bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Shelf Header
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: accentColor.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(icon, size: 16, color: accentColor),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            title,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: primaryText,
+                              letterSpacing: 0.3,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            titleHanzi,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: accentColor,
+                              fontFamily: 'NotoSerifSC',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: isDark ? Colors.white54 : Colors.black45,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    '$itemCount decks',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white60 : Colors.black54,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // Horizontal Shelf Row
+          SizedBox(
+            height: 255,
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              itemCount: itemCount,
+              separatorBuilder: (_, __) => const SizedBox(width: 14),
+              itemBuilder: itemBuilder,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildShelfCard({
+    required String title,
+    required String titleHanzi,
+    required String subtitle,
+    required String description,
+    required String watermarkHanzi,
+    required List<Color> gradientColors,
+    required String badgeText,
+    required Color accentColor,
+    required bool isInstalled,
+    required bool isBusy,
+    required bool actionsDisabled,
+    required bool isDark,
+    required Color cardBg,
+    required Color primaryText,
+    required VoidCallback onTapCard,
+    required VoidCallback onInstall,
+    required VoidCallback onUninstall,
+  }) {
+    return BouncingButton(
+      scaleFactor: 0.96,
+      onPressed: onTapCard,
+      child: Container(
+        width: 172,
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isInstalled
+                ? accentColor.withValues(alpha: 0.5)
+                : (isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.07)),
+            width: isInstalled ? 1.4 : 1.0,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.28 : 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Top Cover (height 148)
+            CalligraphicDeckCover(
+              title: title,
+              titleHanzi: titleHanzi,
+              watermarkHanzi: watermarkHanzi,
+              gradientColors: gradientColors,
+              badgeText: badgeText,
+              badgeColor: accentColor,
+              isInstalled: isInstalled,
+              width: double.infinity,
+              height: 148,
+            ),
+
+            // Bottom Text & Action Info (height 105)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: primaryText,
+                            fontFamily: 'NotoSerifSC',
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          description,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: primaryText.withValues(alpha: 0.65),
+                            height: 1.15,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // Action Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Word Count Badge
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: accentColor.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Text(
+                            badgeText,
+                            style: TextStyle(
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.bold,
+                              color: accentColor,
+                            ),
+                          ),
+                        ),
+
+                        // Action Button (Install / Delete)
+                        if (isBusy)
+                          const SizedBox.square(
+                            dimension: 22,
+                            child: Padding(
+                              padding: EdgeInsets.all(3),
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                          )
+                        else if (isInstalled)
+                          GestureDetector(
+                            onTap: actionsDisabled ? null : onUninstall,
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                color: Colors.red.withValues(alpha: 0.1),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.delete_outline_rounded,
+                                size: 16,
+                                color: Color(0xFFDC2626),
+                              ),
+                            ),
+                          )
+                        else
+                          GestureDetector(
+                            onTap: actionsDisabled ? null : onInstall,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: accentColor,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: accentColor.withValues(alpha: 0.35),
+                                    blurRadius: 4,
+                                    offset: const Offset(0, 1),
+                                  ),
+                                ],
+                              ),
+                              child: const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(Icons.download_rounded, size: 12, color: Colors.white),
+                                  SizedBox(width: 3),
+                                  Text(
+                                    'Get',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10.5,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 0.3,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _DownloadSummary extends StatelessWidget {
+class _BookshelfSummaryCard extends StatelessWidget {
   final int installedCount;
   final int totalCount;
-  final String label;
+  final bool isDark;
+  final Color cardBg;
+  final Color primaryText;
 
-  const _DownloadSummary({
+  const _BookshelfSummaryCard({
     required this.installedCount,
     required this.totalCount,
-    required this.label,
+    required this.isDark,
+    required this.cardBg,
+    required this.primaryText,
   });
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
+    final progress = totalCount > 0 ? (installedCount / totalCount).clamp(0.0, 1.0) : 0.0;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: colors.surfaceContainerLow,
+        color: cardBg,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: colors.outlineVariant),
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.download_done_rounded, color: colors.primary),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-            ),
-          ),
-          Text(
-            '$installedCount / $totalCount',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: colors.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+        border: Border.all(
+          color: isDark ? Colors.white12 : const Color(0xFFD4AF37).withValues(alpha: 0.35),
+          width: 1.0,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _ThematicRow extends StatelessWidget {
-  final ThematicDeckDefinition thematic;
-  final bool installed;
-  final bool busy;
-  final bool actionsDisabled;
-  final VoidCallback onInstall;
-  final VoidCallback onUninstall;
-
-  const _ThematicRow({
-    required this.thematic,
-    required this.installed,
-    required this.busy,
-    required this.actionsDisabled,
-    required this.onInstall,
-    required this.onUninstall,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colors = theme.colorScheme;
-    final l10n = AppLocalizations.of(context)!;
-
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: installed
-              ? thematic.color.withValues(alpha: 0.45)
-              : colors.outlineVariant,
-        ),
-      ),
-      child: Row(
+      child: Column(
         children: [
-          Container(
-            width: 46,
-            height: 46,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: thematic.color.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: Icon(
-              thematic.icon,
-              color: thematic.color,
-              size: 26,
-            ),
-          ),
-          const SizedBox(width: 13),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  thematic.title,
-                  style: theme.textTheme.titleMedium?.copyWith(
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFD4AF37).withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.auto_stories_rounded,
+                  size: 16,
+                  color: Color(0xFFD4AF37),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Master Bookshelf Status',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: primaryText,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    Text(
+                      '$installedCount of $totalCount collections installed offline',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: isDark ? Colors.white54 : Colors.black45,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF10B981).withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  '${(progress * 100).toInt()}%',
+                  style: const TextStyle(
+                    fontSize: 11.5,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF10B981),
                   ),
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  '${thematic.vocabulary.length} words · ${thematic.description}',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colors.onSurfaceVariant,
-                  ),
-                ),
-              ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 5,
+              backgroundColor: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
+              valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFD4AF37)),
             ),
           ),
-          const SizedBox(width: 10),
-          if (busy)
-            const SizedBox.square(
-              dimension: 32,
-              child: Padding(
-                padding: EdgeInsets.all(6),
-                child: CircularProgressIndicator(strokeWidth: 2.5),
-              ),
-            )
-          else if (installed)
-            IconButton.outlined(
-              tooltip: l10n.uninstall,
-              onPressed: actionsDisabled ? null : onUninstall,
-              icon: const Icon(Icons.delete_outline_rounded),
-              color: colors.error,
-            )
-          else
-            FilledButton(
-              onPressed: actionsDisabled ? null : onInstall,
-              style: FilledButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                minimumSize: const Size(0, 42),
-                backgroundColor: thematic.color,
-              ),
-              child: Text(l10n.install),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CollectionRow extends StatelessWidget {
-  final _HskCollection collection;
-  final bool installed;
-  final bool busy;
-  final bool actionsDisabled;
-  final VoidCallback onInstall;
-  final VoidCallback onUninstall;
-
-  const _CollectionRow({
-    required this.collection,
-    required this.installed,
-    required this.busy,
-    required this.actionsDisabled,
-    required this.onInstall,
-    required this.onUninstall,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colors = theme.colorScheme;
-    final l10n = AppLocalizations.of(context)!;
-
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: installed
-              ? collection.color.withValues(alpha: 0.45)
-              : colors.outlineVariant,
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 46,
-            height: 46,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: collection.color.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: Text(
-              '${collection.level}',
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: collection.color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(width: 13),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.hskLevel(collection.level.toString()),
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  '${collection.title} · ${collection.cardCount}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colors.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 10),
-          if (busy)
-            const SizedBox.square(
-              dimension: 32,
-              child: Padding(
-                padding: EdgeInsets.all(6),
-                child: CircularProgressIndicator(strokeWidth: 2.5),
-              ),
-            )
-          else if (installed)
-            IconButton.outlined(
-              tooltip: l10n.uninstall,
-              onPressed: actionsDisabled ? null : onUninstall,
-              icon: const Icon(Icons.delete_outline_rounded),
-              color: colors.error,
-            )
-          else
-            FilledButton(
-              onPressed: actionsDisabled ? null : onInstall,
-              style: FilledButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                minimumSize: const Size(0, 42),
-              ),
-              child: Text(l10n.install),
-            ),
         ],
       ),
     );

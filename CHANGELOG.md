@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - 2026-08-31
 
+### [2026-09-21] Master Deck Library Horizontal Shelves & Calligraphic Book Parity (Build #558)
+- **Horizontal Shelf Architecture (Book Screen Parity):**
+  - Completely redesigned `TomeManagerScreen` (`lib/features/course/presentation/screens/tome_manager_screen.dart`) from a flat 2-tab view into categorized horizontal scrolling rows matching the design language of `BookCatalogScreen`.
+  - Created 6 dedicated category shelves: (1) **Official HSK Curriculum** (HSK 1–6), (2) **Culture & Heritage** (Culture & Daily Life, TCM & Healing, Festivals & Folklore, Philosophy & Idioms), (3) **Sports & Martial Arts** (Wushu & Tai Chi, Ball Games, Fitness Training, Winter Sports), (4) **Education & Academics** (Academic & Studies, Science & Tech, Chinese Linguistics), (5) **Travel & City Life** (Survival Chinese, Dining Out, Shopping), and (6) **Business & Professional** (Career & Negotiation, Workplace Communication, Finance & Global Trade).
+- **Calligraphic Deck Cover (`CalligraphicDeckCover`):**
+  - Created `CalligraphicDeckCover` (`lib/features/course/presentation/widgets/calligraphic_deck_cover.dart`) mirroring `CalligraphicBookCover`: traditional book spine with Emperor's gold binding stitches, genre-specific gradient, translucent Hanzi watermark, center Xuan parchment plaque with gold borders, card count badge, and "SAVED" ribbon when installed.
+- **Search & Filter Controls:**
+  - Integrated `ZenSearchBar` with real-time keyword and Hanzi query filtering across all decks.
+  - Added horizontal category filter pills (`ALL`, `Official HSK`, `Culture`, `Sports`, `Education`, `Travel`, `Business`) for quick category isolation.
+  - Added "Master Bookshelf Status" card with animated progress indicator tracking installed offline collections.
+- **Vocabulary Preview Modal:**
+  - Implemented `_showDeckPreviewSheet` bottom modal triggered on card tap: surfaces deck description, word count, sample vocabulary preview chips with Hanzi, Pinyin, and definition, and direct download/remove actions.
+- **Verification & Total Hygiene:**
+  - Added unit and widget test suite `test/features/course/tome_manager_shelf_test.dart` (6/6 tests passing).
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State). Build `1.0.0+558`.
+
 ### [2026-09-21] Build Bump & Version Alignment (Build #557)
 - **Version Bump:** Bumped build version to `1.0.0+557` in `pubspec.yaml`.
 - **GitLab Master Synchronization:** Synchronized full Zen & Ink animations suite, paywall trial updates, localized screenshot assets, and onboarding polish to remote.
