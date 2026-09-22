@@ -84,7 +84,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Paramètres du paquet'), findsOneWidget);
+    expect(find.text('Paramètres du deck'), findsOneWidget);
     expect(
       find.text('Appuyez sur la valeur pour saisir une limite exacte.'),
       findsNWidgets(2),

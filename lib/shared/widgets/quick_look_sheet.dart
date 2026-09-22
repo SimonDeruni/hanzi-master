@@ -24,6 +24,8 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary
 import 'package:hanzi_master/shared/widgets/quick_look_positioning.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers — clean raw CC-CEDICT strings before display
@@ -143,7 +145,7 @@ Future<bool> _showAnchoredQuickLook(
     barrierDismissible: true,
     barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
     barrierColor: Colors.black.withValues(alpha: 0.16),
-    transitionDuration: const Duration(milliseconds: 180),
+    transitionDuration: ZenMotion.swap,
     pageBuilder: (dialogContext, _, __) => Stack(
       children: [
         Positioned(
@@ -166,7 +168,7 @@ Future<bool> _showAnchoredQuickLook(
       ],
     ),
     transitionBuilder: (_, animation, __, child) => FadeTransition(
-      opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+      opacity: CurvedAnimation(parent: animation, curve: ZenMotion.enter),
       child: ScaleTransition(
         scale: Tween<double>(begin: 0.97, end: 1).animate(animation),
         alignment:
@@ -276,7 +278,7 @@ class _LoadingBody extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 56),
       child: Center(
-        child: CircularProgressIndicator(color: Colors.indigo, strokeWidth: 2),
+        child: ZenLoader(color: Colors.indigo, strokeWidth: 2),
       ),
     );
   }
@@ -923,7 +925,7 @@ class _ActionButton extends StatelessWidget {
     return BouncingButton(
       onPressed: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
+        duration: ZenMotion.of(context, ZenMotion.swap),
         height: 46,
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
         alignment: Alignment.center,

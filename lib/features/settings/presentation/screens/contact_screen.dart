@@ -1,3 +1,4 @@
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -84,10 +85,11 @@ class _ContactScreenState extends State<ContactScreen> {
     };
 
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor: AppTheme.surfaceOf(context),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppTheme.surfaceOf(context),
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         elevation: 0,
         iconTheme: IconThemeData(
             color: isDark ? Colors.white : const Color(0xFF1A1A1B)),
@@ -119,7 +121,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF252526) : Colors.white,
+                    color: AppTheme.cardBgOf(context),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
@@ -138,7 +140,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       icon: Icon(Icons.keyboard_arrow_down_rounded,
                           color: isDark ? Colors.white54 : Colors.black54),
                       dropdownColor:
-                          isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                          AppTheme.cardBgOf(context),
                       borderRadius: BorderRadius.circular(16),
                       style: TextStyle(
                         fontSize: 16,
@@ -170,7 +172,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF252526) : Colors.white,
+                      color: AppTheme.cardBgOf(context),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
@@ -220,7 +222,7 @@ class _ContactScreenState extends State<ContactScreen> {
                           isDark ? const Color(0xFF1A1A1B) : Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                     ),
                     child: Text(

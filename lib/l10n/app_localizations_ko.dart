@@ -12198,6 +12198,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get beginFirstLesson => '첫 번째 수업 시작하기';
 
   @override
+  String get exploreLibraryDirectly => '라이브러리 바로 둘러보기';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return '첫 번째 수업  •  $current / $total';
   }
@@ -12633,4 +12636,69 @@ class AppLocalizationsKo extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return '이후 $period당 $price. 설정에서 언제든지 취소 가능.';
   }
+
+  @override
+  String get deckLibraryTitle => '덱 라이브러리';
+
+  @override
+  String get deckLibrarySubtitle => 'HSK, 문화, 스포츠, 학술 분야의 엄선된 컬렉션';
+
+  @override
+  String get downloadOfficialDecks => '공식 HSK 및 주제별 덱 다운로드';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$total개 중 $selected개 단어 선택됨';
+  }
+
+  @override
+  String get comparisonLabel => '비교';
+
+  @override
+  String get ambientSoundscape => '배경 음향';
+
+  @override
+  String get ambientSoundscapeDesc => '독서와 듣기를 위한 차분한 배경 분위기';
+
+  @override
+  String get ambientSoundscapeOff => '끄기 (무음)';
+
+  @override
+  String get soundscapeCourtyardRain => '안뜰의 빗소리';
+
+  @override
+  String get soundscapeGuqinWind => '고금과 대나무 바람';
+
+  @override
+  String get soundscapeMidnightZen => '한밤의 명상';
+
+  @override
+  String get ambientVolume => '배경 음량';
+
+  @override
+  String get rateSinoSpark => 'SinoSpark 평가하기';
+
+  @override
+  String get rateSinoSparkDesc => 'App Store에서 리뷰 남기기';
+
+  @override
+  String get sendFeedback => '피드백 보내기';
+
+  @override
+  String get sendFeedbackDesc => '개선 의견이나 문제점 보고하기';
+
+  @override
+  String get enjoyingAppTitle => 'SinoSpark가 마음에 드시나요?';
+
+  @override
+  String get enjoyingAppSubtitle => '지금까지의 중국어 학습 여정은 어떠셨나요?';
+
+  @override
+  String get ratingLovingIt => '네, 아주 좋아요!';
+
+  @override
+  String get ratingCouldBeBetter => '아쉬운 점이 있어요';
+
+  @override
+  String get dictionarySearchFailed => '사전 검색에 실패했습니다. 다시 시도해 주세요.';
 }

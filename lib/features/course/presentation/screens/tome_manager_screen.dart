@@ -11,8 +11,11 @@ import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/utils/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
+import '../../../../shared/utils/hero_transition.dart';
+import '../../../../shared/widgets/zen_filter_pill.dart';
 import '../../data/thematic_decks_data.dart';
 import '../widgets/calligraphic_deck_cover.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class _HskCollection {
   final int level;
@@ -402,6 +405,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     required bool isBusy,
     required VoidCallback onInstall,
     required VoidCallback onUninstall,
+    String? heroId,
   }) {
     HapticsManager.light();
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -460,15 +464,22 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CalligraphicDeckCover(
-                          title: title,
-                          titleHanzi: titleHanzi,
-                          watermarkHanzi: watermarkHanzi,
-                          gradientColors: gradientColors,
-                          badgeText: badgeText,
-                          isInstalled: isInstalled,
-                          width: 110,
-                          height: 155,
+                        HeroTransition.wrap(
+                          context: sheetContext,
+                          tag: heroId == null
+                              ? '__nohero__'
+                              : HeroTransition.heroTag('deck_shelf', heroId),
+                          enabled: heroId != null,
+                          child: CalligraphicDeckCover(
+                            title: title,
+                            titleHanzi: titleHanzi,
+                            watermarkHanzi: watermarkHanzi,
+                            gradientColors: gradientColors,
+                            badgeText: badgeText,
+                            isInstalled: isInstalled,
+                            width: 110,
+                            height: 155,
+                          ),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -645,7 +656,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       width: double.infinity,
                       height: 50,
                       child: isBusy
-                          ? const Center(child: CircularProgressIndicator())
+                          ? const Center(child: ZenLoader())
                           : isInstalled
                               ? OutlinedButton.icon(
                                   style: OutlinedButton.styleFrom(
@@ -771,9 +782,9 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                const GlobalSliverAppBar(
-                  title: "Master Deck Library",
-                  subtitle: "Curated collections across HSK, culture, sports, & academics",
+                GlobalSliverAppBar(
+                  title: AppLocalizations.of(context)!.deckLibraryTitle,
+                  subtitle: AppLocalizations.of(context)!.deckLibrarySubtitle,
                   showBackButton: true,
                 ),
 
@@ -815,38 +826,13 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             itemBuilder: (context, index) {
                               final catKey = _categoryFilterKeys[index];
                               final isSelected = _selectedCategory == catKey;
-                              return GestureDetector(
-                                onTap: () {
-                                  HapticsManager.light();
-                                  setState(() => _selectedCategory = catKey);
-                                },
-                                child: AnimatedContainer(
-                                  duration: const Duration(milliseconds: 180),
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: isSelected
-                                        ? (isDark ? Colors.amber.shade700 : const Color(0xFF2C2C2E))
-                                        : cardBg,
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: isSelected
-                                          ? Colors.transparent
-                                          : (isDark ? Colors.white12 : Colors.black12),
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      catKey,
-                                      style: TextStyle(
-                                        color: isSelected
-                                            ? Colors.white
-                                            : (isDark ? Colors.white70 : Colors.black87),
-                                        fontSize: 11,
-                                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                              return ZenFilterPill(
+                                label: catKey,
+                                isSelected: isSelected,
+                                isDark: isDark,
+                                background: cardBg,
+                                onTap: () =>
+                                    setState(() => _selectedCategory = catKey),
                               );
                             },
                           ),
@@ -911,6 +897,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                           final isBusy = _busyHskLevel == collection.level;
 
                           return _buildShelfCard(
+                            heroId: 'hsk-${collection.level}',
                             title: l10n.hskLevel(collection.level.toString()),
                             titleHanzi: collection.titleHanzi,
                             subtitle: '${collection.title} · ${collection.cardCount}',
@@ -927,6 +914,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             primaryText: primaryText,
                             onTapCard: () => _showDeckPreviewSheet(
                               context: context,
+                              heroId: 'hsk-${collection.level}',
                               title: l10n.hskLevel(collection.level.toString()),
                               titleHanzi: collection.titleHanzi,
                               subtitle: '${collection.title} · ${collection.cardCount}',
@@ -1050,7 +1038,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
               ],
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: ZenLoader()),
           error: (error, stackTrace) => _LoadError(
             message: l10n.failedToLoadCollections,
             retryLabel: l10n.retry,
@@ -1092,6 +1080,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
         final isBusy = _busyThematicId == thematic.id;
 
         return _buildShelfCard(
+          heroId: 'thematic-${thematic.id}',
           title: thematic.title,
           titleHanzi: thematic.titleHanzi,
           subtitle: '${thematic.vocabulary.length} words · ${thematic.category}',
@@ -1108,6 +1097,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           primaryText: primaryText,
           onTapCard: () => _showDeckPreviewSheet(
             context: context,
+            heroId: 'thematic-${thematic.id}',
             title: thematic.title,
             titleHanzi: thematic.titleHanzi,
             subtitle: '${thematic.vocabulary.length} words · ${thematic.category}',
@@ -1252,6 +1242,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     required VoidCallback onTapCard,
     required VoidCallback onInstall,
     required VoidCallback onUninstall,
+    String? heroId,
   }) {
     return BouncingButton(
       scaleFactor: 0.96,
@@ -1279,16 +1270,23 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Top Cover (height 148)
-            CalligraphicDeckCover(
-              title: title,
-              titleHanzi: titleHanzi,
-              watermarkHanzi: watermarkHanzi,
-              gradientColors: gradientColors,
-              badgeText: badgeText,
-              badgeColor: accentColor,
-              isInstalled: isInstalled,
-              width: double.infinity,
-              height: 148,
+            HeroTransition.wrap(
+              context: context,
+              tag: heroId == null
+                  ? '__nohero__'
+                  : HeroTransition.heroTag('deck_shelf', heroId),
+              enabled: heroId != null,
+              child: CalligraphicDeckCover(
+                title: title,
+                titleHanzi: titleHanzi,
+                watermarkHanzi: watermarkHanzi,
+                gradientColors: gradientColors,
+                badgeText: badgeText,
+                badgeColor: accentColor,
+                isInstalled: isInstalled,
+                width: double.infinity,
+                height: 148,
+              ),
             ),
 
             // Bottom Text & Action Info (height 105)
@@ -1331,19 +1329,25 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Word Count Badge
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: accentColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Text(
-                            badgeText,
-                            style: TextStyle(
-                              fontSize: 9.5,
-                              fontWeight: FontWeight.bold,
-                              color: accentColor,
+                        // Flexible: the word-count badge yields width to the
+                        // install/delete action instead of overflowing the row.
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: accentColor.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              badgeText,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 9.5,
+                                fontWeight: FontWeight.bold,
+                                color: accentColor,
+                              ),
                             ),
                           ),
                         ),

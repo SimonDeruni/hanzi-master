@@ -65,7 +65,13 @@ void main() {
     final service = BookDownloadService(
       client: MockClient((request) async {
         expect(request.url.toString(), 'https://books.example/test_book.json');
-        return http.Response(payload, 200);
+        // `http.Response` encodes with latin1 unless a charset is declared, and
+        // this payload is Chinese - so state the encoding the real CDN serves.
+        return http.Response(
+          payload,
+          200,
+          headers: const {'content-type': 'application/json; charset=utf-8'},
+        );
       }),
       supportDirectoryProvider: () async => directory,
       baseUrl: 'https://books.example/',

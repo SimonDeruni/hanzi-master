@@ -18,6 +18,8 @@ import 'mission_briefing_sheet.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/tutorial_lesson_screen.dart';
 import 'radical_detail_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class UnitHeader extends StatelessWidget {
   final CourseUnit unit;
@@ -629,7 +631,7 @@ class MapNode extends ConsumerWidget {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content:
                 Text("${l10n?.divingInto ?? "Diving into"} ${comp.hanzi}..."),
-            duration: const Duration(milliseconds: 500)));
+            duration: ZenMotion.toast));
       }
 
       if (context.mounted) {
@@ -889,7 +891,7 @@ class _IconNode extends StatelessWidget {
                 onTap: onTap,
                 borderRadius: BorderRadius.circular(size / 2),
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
+                  duration: ZenMotion.of(context, ZenMotion.quick),
                   width: size,
                   height: size,
                   decoration: BoxDecoration(
@@ -1076,7 +1078,7 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
           const SizedBox(height: 16),
           Expanded(
             child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(child: ZenLoader())
                 : (_radicals.isEmpty
                     ? Center(
                         child: Text(l10n?.noRadicalDataAvailable ??

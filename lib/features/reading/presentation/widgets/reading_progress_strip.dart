@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class ReadingProgressStrip extends StatelessWidget {
   final int totalSentences;
@@ -30,7 +31,7 @@ class ReadingProgressStrip extends StatelessWidget {
               } else if (i == currentSentenceIndex) {
                 return TweenAnimationBuilder<double>(
                   tween: Tween(begin: 0.3, end: 1.0),
-                  duration: const Duration(milliseconds: 800),
+                  duration: ZenMotion.of(context, ZenMotion.page),
                   builder: (context, value, child) {
                     return _dot(activeColor.withValues(alpha: value), 3.0, 8.0);
                   },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 class AiProgressBar extends StatefulWidget {
   final String? label;
@@ -20,10 +22,24 @@ class _AiProgressBarState extends State<AiProgressBar>
   @override
   void initState() {
     super.initState();
+    // The repeat itself is deferred to didChangeDependencies, which is the only
+    // place the platform "Reduce Motion" setting can be read.
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat();
+      duration: ZenMotion.ambient,
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: hold the sheen mid-bar instead of sweeping forever.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      loop: true,
+      staticValue: 0.5,
+    ).apply();
   }
 
   @override

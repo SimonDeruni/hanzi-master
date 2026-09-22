@@ -77,6 +77,29 @@ flutter gen-l10n
 dart analyze lib/l10n/
 ```
 
+### Step 5: Verify the Layout Survives the Translation
+A string can be perfectly translated and still break the UI: German, French,
+Spanish, Italian, Portuguese, Russian, Vietnamese and Thai expand a label by up
+to ~2x English (worst cases 5-9x). Run the locale sweep every time `.arb` files
+change:
+
+```bash
+flutter test test/core/locale_layout_guard_test.dart
+```
+
+The sweep in `test/support/locale_layout_harness.dart` renders widgets across the
+worst-case locales x viewports (390x844, 320x568) x text scales (1.0x, 2.0x) and
+**fails on any overflow**. If it reports one, do not silence it: make the
+offending text flexible (see `docs/UI_UX_STANDARDS.md` -> "Localization Layout
+Budget"). Audit scripts live in `scratch/`:
+
+| Script | Purpose |
+|---|---|
+| `scratch/arb_expansion_audit.py` | Per-locale expansion ratios + the worst expanding keys |
+| `scratch/fixed_width_text_audit.py` | Containers that size text by pixel, non-flexible button rows |
+| `scratch/layout_l10n_audit.py` | Untranslated UI literals (the ratchet baseline) |
+| `scratch/fix_mojibake.py` | Byte-exact repairs for cp1252-decoded UTF-8 in `lib/` |
+
 ---
 
 ## 🛡️ 5. Critical Best Practices
@@ -90,3 +113,8 @@ dart analyze lib/l10n/
    ```
 2. **Always ensure UTF-8 encoding without double-encoding**:
    * Use standard UTF-8 string encoding when generating `.arb` files to prevent Mojibake (`Ã¨` vs `è`).
+3. **Budget the layout for the longest language, not English**:
+   * Design every label, button and row for **2.0x the English width**, and never
+     fix the height of a box containing text (Hindi/Thai/Arabic line boxes are
+     taller). See `docs/UI_UX_STANDARDS.md` -> "Localization Layout Budget".
+

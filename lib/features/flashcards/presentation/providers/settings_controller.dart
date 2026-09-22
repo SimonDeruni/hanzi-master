@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/core/localization/app_locale_policy.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
 
 // 1. THE STATE CLASS (What we remember)
 class SettingsState {
@@ -20,6 +21,7 @@ class SettingsState {
   final String locale;
   final bool showPinyinInSpeaking;
   final bool enableHaptics;
+  final bool enableSoundEffects;
   final bool useEnglishDefinitions;
 
   // Audiobook voice selection
@@ -39,6 +41,7 @@ class SettingsState {
     this.locale = 'en',
     this.showPinyinInSpeaking = true,
     this.enableHaptics = true,
+    this.enableSoundEffects = true,
     this.useEnglishDefinitions = false,
     this.audiobookVoice = 'Fenrir',
   });
@@ -56,6 +59,7 @@ class SettingsState {
     String? locale,
     bool? showPinyinInSpeaking,
     bool? enableHaptics,
+    bool? enableSoundEffects,
     bool? useEnglishDefinitions,
     String? audiobookVoice,
   }) {
@@ -74,6 +78,7 @@ class SettingsState {
       locale: locale ?? this.locale,
       showPinyinInSpeaking: showPinyinInSpeaking ?? this.showPinyinInSpeaking,
       enableHaptics: enableHaptics ?? this.enableHaptics,
+      enableSoundEffects: enableSoundEffects ?? this.enableSoundEffects,
       useEnglishDefinitions:
           useEnglishDefinitions ?? this.useEnglishDefinitions,
       audiobookVoice: audiobookVoice ?? this.audiobookVoice,
@@ -101,11 +106,13 @@ class SettingsController extends StateNotifier<SettingsState> {
           ]),
           showPinyinInSpeaking: prefs.getBool(_keyPinyinSpeaking) ?? true,
           enableHaptics: prefs.getBool(_keyHaptics) ?? true,
+          enableSoundEffects: prefs.getBool(_keySoundEffects) ?? true,
           useEnglishDefinitions:
               prefs.getBool(_keyUseEnglishDefinitions) ?? false,
           audiobookVoice: prefs.getString(_keyAudiobookVoice) ?? 'Fenrir',
         )) {
     HapticsManager.setEnabled(state.enableHaptics);
+    ZenSoundService.instance.setEnabled(state.enableSoundEffects);
   }
 
   static const _keyTheme = 'is_dark_mode';
@@ -120,6 +127,7 @@ class SettingsController extends StateNotifier<SettingsState> {
   static const _keyLocale = 'app_locale';
   static const _keyPinyinSpeaking = 'pinyin_speaking';
   static const _keyHaptics = 'enable_haptics';
+  static const _keySoundEffects = 'enable_sound_effects';
   static const _keyUseEnglishDefinitions = 'use_english_definitions';
   static const _keyAudiobookVoice = 'audiobook_voice';
 
@@ -182,6 +190,12 @@ class SettingsController extends StateNotifier<SettingsState> {
     await prefs.setBool(_keyHaptics, value);
     state = state.copyWith(enableHaptics: value);
     HapticsManager.setEnabled(value);
+  }
+
+  Future<void> toggleSoundEffects(bool value) async {
+    await prefs.setBool(_keySoundEffects, value);
+    state = state.copyWith(enableSoundEffects: value);
+    ZenSoundService.instance.setEnabled(value);
   }
 
   Future<void> toggleUseEnglishDefinitions(bool value) async {

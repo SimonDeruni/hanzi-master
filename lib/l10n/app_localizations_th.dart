@@ -2155,7 +2155,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get mastery => 'ความเชี่ยวชาญ';
 
   @override
-  String get maybeLater => 'ไว้วันหลัง';
+  String get maybeLater => 'ไว้คราวหลัง';
 
   @override
   String get memes => 'มีม';
@@ -12486,6 +12486,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get beginFirstLesson => 'เริ่มบทเรียนแรก';
 
   @override
+  String get exploreLibraryDirectly => 'สำรวจคลังโดยตรง';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'บทเรียนแรกของคุณ  •  $current จาก $total';
   }
@@ -12944,4 +12947,74 @@ class AppLocalizationsTh extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'จากนั้น $price / $period ยกเลิกได้ตลอดเวลาในการตั้งค่า';
   }
+
+  @override
+  String get deckLibraryTitle => 'คลังชุดคำศัพท์';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'คอลเลกชันคัดสรรครอบคลุม HSK วัฒนธรรม กีฬา และวิชาการ';
+
+  @override
+  String get downloadOfficialDecks =>
+      'ดาวน์โหลดชุดคำศัพท์ HSK และชุดตามหัวข้ออย่างเป็นทางการ';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return 'เลือกแล้ว $selected จาก $total คำ';
+  }
+
+  @override
+  String get comparisonLabel => 'การเปรียบเทียบ';
+
+  @override
+  String get ambientSoundscape => 'เสียงบรรยากาศ';
+
+  @override
+  String get ambientSoundscapeDesc =>
+      'บรรยากาศที่ผ่อนคลายสำหรับการอ่านและการฟัง';
+
+  @override
+  String get ambientSoundscapeOff => 'ปิด (เงียบ)';
+
+  @override
+  String get soundscapeCourtyardRain => 'สายฝนในลานบ้าน';
+
+  @override
+  String get soundscapeGuqinWind => 'กู่ฉินและสายลมไผ่';
+
+  @override
+  String get soundscapeMidnightZen => 'ความสงบยามค่ำคืน';
+
+  @override
+  String get ambientVolume => 'ระดับเสียงบรรยากาศ';
+
+  @override
+  String get rateSinoSpark => 'ให้คะแนน SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'แบ่งปันความคิดเห็นใน App Store';
+
+  @override
+  String get sendFeedback => 'ส่งความคิดเห็น';
+
+  @override
+  String get sendFeedbackDesc => 'ช่วยเราปรับปรุงหรือรายงานปัญหา';
+
+  @override
+  String get enjoyingAppTitle => 'ชอบ SinoSpark ไหม?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'การเดินทางเรียนภาษาจีนของคุณเป็นอย่างไรบ้าง?';
+
+  @override
+  String get ratingLovingIt => 'ใช่ ชอบมาก!';
+
+  @override
+  String get ratingCouldBeBetter => 'ยังมีจุดที่ควรปรับปรุง';
+
+  @override
+  String get dictionarySearchFailed =>
+      'การค้นหาพจนานุกรมล้มเหลว โปรดลองอีกครั้ง';
 }

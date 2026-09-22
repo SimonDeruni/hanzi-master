@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 class BouncingButton extends StatefulWidget {
   final Widget child;
@@ -12,7 +14,7 @@ class BouncingButton extends StatefulWidget {
     required this.child,
     required this.onPressed,
     this.scaleFactor = 0.95,
-    this.duration = const Duration(milliseconds: 100),
+    this.duration = ZenMotion.tap,
   });
 
   @override
@@ -28,7 +30,7 @@ class _BouncingButtonState extends State<BouncingButton> with SingleTickerProvid
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _scaleAnimation = Tween<double>(begin: 1.0, end: widget.scaleFactor).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _controller, curve: ZenMotion.natural),
     );
   }
 
@@ -41,7 +43,8 @@ class _BouncingButtonState extends State<BouncingButton> with SingleTickerProvid
   void _onTapDown(TapDownDetails details) {
     if (widget.onPressed != null) {
       HapticsManager.light();
-      _controller.forward();
+      // Reduced motion: the haptic and the action stay, the squash does not.
+      if (!context.reduceMotion) _controller.forward();
     }
   }
 
@@ -60,14 +63,21 @@ class _BouncingButtonState extends State<BouncingButton> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
-      child: ScaleTransition(
-        scale: _scaleAnimation,
-        child: widget.child,
+    // Exposed as a button to assistive tech: the bare GestureDetector below has
+    // no semantics of its own, so without this the tap target is invisible to
+    // screen readers.
+    return Semantics(
+      button: true,
+      enabled: widget.onPressed != null,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapDown: widget.onPressed == null ? null : _onTapDown,
+        onTapUp: widget.onPressed == null ? null : _onTapUp,
+        onTapCancel: widget.onPressed == null ? null : _onTapCancel,
+        child: ScaleTransition(
+          scale: _scaleAnimation,
+          child: widget.child,
+        ),
       ),
     );
   }

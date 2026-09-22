@@ -10,6 +10,10 @@ import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/core/providers/app_language_controller.dart';
 
 import '../widgets/app_language_picker_sheet.dart';
+import 'package:hanzi_master/core/services/app_rating_service.dart';
+import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
+import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -67,6 +71,17 @@ class SettingsScreen extends ConsumerWidget {
                 value: settings.enableHaptics,
                 onChanged: (val) {
                   ref.read(settingsProvider.notifier).toggleHaptics(val);
+                },
+              ),
+              _buildDivider(),
+              _buildSwitchTile(
+                icon: Icons.music_note,
+                iconColor: Colors.amber,
+                title: "Sound Effects",
+                subtitle: "Soft paper, wooden seal, and calligraphy sounds",
+                value: settings.enableSoundEffects,
+                onChanged: (val) {
+                  ref.read(settingsProvider.notifier).toggleSoundEffects(val);
                 },
               ),
               _buildDivider(),
@@ -165,6 +180,65 @@ class SettingsScreen extends ConsumerWidget {
                     .oneOptionalDailyPracticeReminder),
                 trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 onTap: () => _showNotificationSettings(context, ref),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          _buildSectionHeader(
+            l10n?.supportAndFeedback ??
+                AppLocalizations.of(context)!.supportAndFeedback,
+            theme,
+            color: Colors.amber.shade700,
+          ),
+          _buildSettingsCard(
+            context: context,
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.amber.withValues(alpha: 0.1),
+                  child: const Icon(Icons.star_rounded, color: Colors.amber),
+                ),
+                title: Text(
+                  l10n?.rateSinoSpark ??
+                      AppLocalizations.of(context)!.rateSinoSpark,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                subtitle: Text(
+                  l10n?.rateSinoSparkDesc ??
+                      AppLocalizations.of(context)!.rateSinoSparkDesc,
+                ),
+                trailing: const Icon(Icons.open_in_new_rounded,
+                    size: 18, color: Colors.grey),
+                onTap: () async {
+                  HapticsManager.light();
+                  await ref.read(appRatingServiceProvider).openStoreListing();
+                },
+              ),
+              _buildDivider(),
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blue.withValues(alpha: 0.1),
+                  child: const Icon(Icons.mail_outline_rounded,
+                      color: Colors.blue),
+                ),
+                title: Text(
+                  l10n?.sendFeedback ??
+                      AppLocalizations.of(context)!.sendFeedback,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                subtitle: Text(
+                  l10n?.sendFeedbackDesc ??
+                      AppLocalizations.of(context)!.sendFeedbackDesc,
+                ),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                onTap: () {
+                  HapticsManager.light();
+                  Navigator.of(context).push(
+                    SwipeBackRoute<void>(
+                      builder: (_) => const ContactScreen(),
+                    ),
+                  );
+                },
               ),
             ],
           ),

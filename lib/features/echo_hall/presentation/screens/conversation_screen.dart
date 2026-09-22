@@ -14,6 +14,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class ConversationScreen extends ConsumerStatefulWidget {
   final ConversationScenario scenario;
@@ -65,8 +66,8 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent + 200, // buffer for new message
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
+        duration: ZenMotion.quick,
+        curve: ZenMotion.enter,
       );
     }
   }
@@ -86,7 +87,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(isSaved ? 'Scenario removed' : 'Scenario saved! Find it in the Custom tab.'),
-            duration: const Duration(seconds: 2),
+            duration: ZenMotion.toast,
             behavior: SnackBarBehavior.floating,
           ),
         );

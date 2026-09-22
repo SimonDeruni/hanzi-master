@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 class ShimmerSkeleton extends StatefulWidget {
   final double? width;
@@ -20,7 +22,8 @@ class ShimmerSkeleton extends StatefulWidget {
   State<ShimmerSkeleton> createState() => _ShimmerSkeletonState();
 }
 
-class _ShimmerSkeletonState extends State<ShimmerSkeleton> with SingleTickerProviderStateMixin {
+class _ShimmerSkeletonState extends State<ShimmerSkeleton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -29,11 +32,24 @@ class _ShimmerSkeletonState extends State<ShimmerSkeleton> with SingleTickerProv
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+      duration: ZenMotion.ambient,
     );
+    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
+      CurvedAnimation(parent: _controller, curve: ZenMotion.breathe),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Rest at a mid-shimmer value when motion is reduced, so the skeleton is
+    // still visibly a placeholder without pulsing forever.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      staticValue: 0.5,
+      loop: true,
+    ).apply();
   }
 
   @override

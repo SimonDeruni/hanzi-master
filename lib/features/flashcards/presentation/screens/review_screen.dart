@@ -18,6 +18,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'dart:ui' as ui;
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum ReviewState { practice, feedback, complete }
 
@@ -603,12 +604,18 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                                                 blurRadius: 8)
                                           ]),
                                       child: Center(
-                                        child: Text(
-                                          _score.toStringAsFixed(0),
-                                          style: TextStyle(
-                                              fontSize: 32,
-                                              fontWeight: FontWeight.bold,
-                                              color: themeColor.shade700),
+                                        // The score scales down rather than
+                                        // overflowing its circular badge when
+                                        // the system text size is increased.
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            _score.toStringAsFixed(0),
+                                            style: TextStyle(
+                                                fontSize: 32,
+                                                fontWeight: FontWeight.bold,
+                                                color: themeColor.shade700),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -927,12 +934,12 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                   ), // closes Container 455
                 )
                     .animate() // closes SwipeableFlashcard 450
-                    .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                    .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
                     .slideY(
                         begin: 0.1,
                         end: 0,
-                        duration: 500.ms,
-                        curve: Curves.easeOutCubic),
+                        duration: ZenMotion.page,
+                        curve: ZenMotion.enter),
               ), // closes Padding 448
             ), // closes Expanded 447
 

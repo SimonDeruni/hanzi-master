@@ -10,11 +10,15 @@ import 'package:hanzi_master/features/reading/presentation/providers/book_provid
 import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
-import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
+import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
+import 'package:hanzi_master/core/services/zen_ambient_service.dart';
+import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/services/app_rating_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum BookPinyinMode { all, ghost, none }
 
@@ -204,6 +208,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     _audioCompleteSub?.cancel();
     _audioErrorSub?.cancel();
     unawaited(ref.read(audioServiceProvider).stop());
+    unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
     _scrollController.dispose();
     super.dispose();
   }
@@ -292,7 +297,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             ],
           ),
           behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 3),
+          duration: ZenMotion.toast,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -1050,6 +1055,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   void _goToNextChapter() {
     if (_currentIndex < widget.chapters.length - 1) {
       HapticsManager.medium();
+      ref.read(appRatingServiceProvider).triggerSentimentPromptIfEligible(
+            context,
+            trigger: 'chapter_complete',
+          );
       setState(() {
         _currentIndex++;
         _currentReadingSentenceIndex = 0;
@@ -1090,8 +1099,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         _scrollController.position.minScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
+        duration: ZenMotion.quick,
+        curve: ZenMotion.enter,
       );
     }
   }
@@ -1125,7 +1134,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(l10n?.bookmarkRemoved ?? "书签已移除 · Bookmark removed"),
-            duration: const Duration(seconds: 2),
+            duration: ZenMotion.toast,
           ),
         );
       }
@@ -1147,7 +1156,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             content: Text(l10n != null
                 ? "${l10n.bookmarkAdded}: 第${chapter.chapterIndex}回"
                 : "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
-            duration: const Duration(seconds: 2),
+            duration: ZenMotion.toast,
           ),
         );
       }
@@ -1402,16 +1411,21 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
-                                child: Text(
-                                  '${ch.chapterIndex}',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: isCurrent
-                                        ? Colors.white
-                                        : (isDark
-                                            ? Colors.white70
-                                            : Colors.black87),
+                                // The chapter number scales down instead of
+                                // clipping inside this 32px badge.
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    '${ch.chapterIndex}',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: isCurrent
+                                          ? Colors.white
+                                          : (isDark
+                                              ? Colors.white70
+                                              : Colors.black87),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1542,6 +1556,28 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               tooltip: AppLocalizations.of(context)!.audiobookPlayer,
               onPressed: _openFullscreenAudiobookPlayer,
             ),
+          // Ambient Soundscape Button (soothing background music while reading)
+          Consumer(
+            builder: (context, ref, _) {
+              final ambient = ref.watch(zenAmbientServiceProvider);
+              final isSoundscapeActive =
+                  ambient.track != SoundscapeTrack.off && ambient.isPlaying;
+              return IconButton(
+                icon: Icon(
+                  isSoundscapeActive
+                      ? Icons.spa_rounded
+                      : Icons.spa_outlined,
+                  size: 21,
+                  color: isSoundscapeActive
+                      ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
+                      : primaryText,
+                ),
+                tooltip: AppLocalizations.of(context)?.ambientSoundscape ??
+                    'Ambient Soundscape',
+                onPressed: () => ZenSoundscapeSheet.show(context),
+              );
+            },
+          ),
           // Bookmark Toggle
           IconButton(
             icon: Icon(
@@ -1909,7 +1945,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                   },
                                   behavior: HitTestBehavior.opaque,
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 150),
+                                    duration: ZenMotion.of(context, ZenMotion.swap),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 3, vertical: 2),
                                     decoration: BoxDecoration(
@@ -2200,6 +2236,32 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             tooltip: AppLocalizations.of(context)!.sleepTimer,
                             onPressed: () => _showSleepTimerModal(
                                 context, isDark, cardBg, primaryText),
+                          ),
+                          // Ambient Soundscape Button
+                          Consumer(
+                            builder: (context, ref, _) {
+                              final ambient = ref.watch(zenAmbientServiceProvider);
+                              final isSoundscapeActive =
+                                  ambient.track != SoundscapeTrack.off &&
+                                      ambient.isPlaying;
+                              return IconButton(
+                                icon: Icon(
+                                  isSoundscapeActive
+                                      ? Icons.spa_rounded
+                                      : Icons.spa_outlined,
+                                  size: 20,
+                                  color: isSoundscapeActive
+                                      ? (isDark
+                                          ? Colors.amber.shade400
+                                          : const Color(0xFF8B0000))
+                                      : (isDark ? Colors.white60 : Colors.black54),
+                                ),
+                                tooltip: AppLocalizations.of(context)
+                                        ?.ambientSoundscape ??
+                                    'Ambient Soundscape',
+                                onPressed: () => ZenSoundscapeSheet.show(context),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: const Icon(Icons.skip_previous, size: 22),

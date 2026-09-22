@@ -1,0 +1,132 @@
+============================================================================================================
+A. CONTAINER WIDTH <= 130px AROUND LOCALIZED TEXT  (22)
+   These CANNOT hold an expanded locale label.
+============================================================================================================
+  lib/features/course/presentation/screens/radical_lesson_screen.dart:348  Container(width: 90)  child: Center( child: Text(char, style: TextStyle( fontSize: 44, fontWeight: FontWeight.bold, col
+  lib/features/course/presentation/widgets/mission_briefing_sheet.dart:245  Container(width: 60)  child: Center( child: Text( card.hanzi, style: TextStyle( fontSize: 28, fontWeight: FontWeight.bo
+  lib/features/course/presentation/widgets/radical_detail_sheet.dart:308  Container(width: 100)  child: Column( mainAxisSize: MainAxisSize.min, children: [ Text( node.hanzi, style: TextStyle( fo
+  lib/features/echo_hall/presentation/screens/conversation_screen.dart:234  Container(width: 100)  child: Center( child: Text( char, style: const TextStyle( color: Colors.white, fontSize: 48, font
+  lib/features/echo_hall/presentation/screens/conversation_screen.dart:682  Container(width: 72)  child: Center(child: Text(word.word, style: theme.textTheme.displaySmall?.copyWith(color: color, 
+  lib/features/echo_hall/presentation/screens/live_call_screen.dart:1861  SizedBox(width: 64)  child: Text( label, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis, st
+  lib/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart:218  Container(width: 56)  child: Center( child: LtrSanctuary( child: Text( widget.character, style: TextStyle( fontSize: 30
+  lib/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart:560  Container(width: 44)  child: Center( child: existsInChinese ? Padding( padding: const EdgeInsets.symmetric( horizontal:
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:1013  Container(width: 26)  child: Center( // The stroke number scales down instead of // clipping inside this 26px circle. c
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:1164  Container(width: 60)  child: Center( child: Text(comp['radical']?.toString() ?? '', style: const TextStyle( fontSize: 3
+  lib/features/flashcards/presentation/screens/deck_detail_screen.dart:842  Container(width: 72)  child: FittedBox( fit: BoxFit.scaleDown, child: Text( card.hanzi, style: TextStyle( fontSize: 36,
+  lib/features/flashcards/presentation/screens/dictionary_screen.dart:1137  SizedBox(width: 80)  child: FittedBox( fit: BoxFit.scaleDown, alignment: Alignment.centerLeft, child: Text( widget.car
+  lib/features/flashcards/presentation/screens/dictionary_screen.dart:728  Container(width: 120)  child: Column( mainAxisAlignment: MainAxisAlignment.center, children: [ FittedBox( fit: BoxFit.sc
+  lib/features/flashcards/presentation/screens/radical_detail_screen.dart:134  Container(width: 100)  child: Center( child: Text( widget.radicalChar, style: const TextStyle( fontSize: 64, fontWeight:
+  lib/features/flashcards/presentation/screens/review_screen.dart:594  Container(width: 80)  child: Center( // The score scales down rather than // overflowing its circular badge when // the
+  lib/features/flashcards/presentation/widgets/app_language_picker_sheet.dart:117  Container(width: 40)  child: Text( language.symbol, style: TextStyle( color: accent, fontSize: language.symbol.length >
+  lib/features/media/presentation/screens/channel_videos_screen.dart:402  SizedBox(width: 64)  child: Text( title, maxLines: 1, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, st
+  lib/features/media/presentation/screens/media_search_screen.dart:708  SizedBox(width: 64)  child: Text( title, maxLines: 1, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, st
+  lib/features/onboarding/presentation/screens/tutorial_lesson_screen.dart:282  Container(width: 70)  child: Center( child: Text(hanzi, style: TextStyle( fontSize: 32, fontWeight: FontWeight.bold, co
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1558  Container(width: 64)  child: FittedBox( fit: BoxFit.scaleDown, child: Padding( padding: const EdgeInsets.all(4), child:
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1828  Container(width: 56)  child: FittedBox( fit: BoxFit.scaleDown, child: Padding( padding: const EdgeInsets.all(4), child:
+  lib/features/reading/presentation/screens/book_reader_screen.dart:1391  Container(width: 32)  child: Center( // The chapter number scales down instead of // clipping inside this 32px badge. c
+
+============================================================================================================
+B. CONTAINER HEIGHT <= 48px AROUND LOCALIZED TEXT  (8)
+   Vertical clip risk for Devanagari / Thai / Arabic (taller line boxes).
+============================================================================================================
+  lib/features/course/presentation/screens/tome_manager_screen.dart:808  SizedBox(height: 34)  child: ListView.separated( scrollDirection: Axis.horizontal, physics: const BouncingScrollPhysics
+  lib/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart:560  Container(height: 38)  child: Center( child: existsInChinese ? Padding( padding: const EdgeInsets.symmetric( horizontal:
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:1013  Container(height: 26)  child: Center( // The stroke number scales down instead of // clipping inside this 26px circle. c
+  lib/features/flashcards/presentation/widgets/app_language_picker_sheet.dart:117  Container(height: 40)  child: Text( language.symbol, style: TextStyle( color: accent, fontSize: language.symbol.length >
+  lib/features/reading/presentation/screens/book_catalog_screen.dart:298  SizedBox(height: 34)  child: ListView.separated( scrollDirection: Axis.horizontal, physics: const BouncingScrollPhysics
+  lib/features/reading/presentation/screens/book_catalog_screen.dart:359  SizedBox(height: 34)  child: ListView.separated( scrollDirection: Axis.horizontal, physics: const BouncingScrollPhysics
+  lib/features/reading/presentation/screens/book_reader_screen.dart:1391  Container(height: 32)  child: Center( // The chapter number scales down instead of // clipping inside this 32px badge. c
+  lib/shared/widgets/quick_look_sheet.dart:478  SizedBox(height: 36)  child: ListView.separated( scrollDirection: Axis.horizontal, itemCount: words.take(5).length, sep
+
+============================================================================================================
+C. BUTTONS IN A Row WITH NO Expanded/Flexible/Wrap  (44)
+   An expanded locale label makes the whole Row overflow horizontally.
+============================================================================================================
+  lib/features/course/presentation/widgets/lesson_steps/discovery_step.dart:117  Button
+        Row( mainAxisAlignment: MainAxisAlignment.center, children: [ IconButton( onPressed: () => ref.read(audioServicePro
+  lib/features/echo_hall/presentation/screens/live_call_screen.dart:1414  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ _CallControlButton( icon: _isMuted ? Icons.play_
+  lib/features/echo_hall/presentation/screens/live_call_screen.dart:1414  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ _CallControlButton( icon: _isMuted ? Icons.play_
+  lib/features/echo_hall/presentation/screens/live_call_screen.dart:1414  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ _CallControlButton( icon: _isMuted ? Icons.play_
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:169  Button
+        Row( children: [ IconButton( icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), onPressed: () => Navigat
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:938  Button
+        Row( mainAxisSize: MainAxisSize.min, children: [ Container( padding: const EdgeInsets.symmetric( horizontal: 10, ve
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:938  TextButton
+        Row( mainAxisSize: MainAxisSize.min, children: [ Container( padding: const EdgeInsets.symmetric( horizontal: 10, ve
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:938  TextButton
+        Row( mainAxisSize: MainAxisSize.min, children: [ Container( padding: const EdgeInsets.symmetric( horizontal: 10, ve
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:461  Button
+        Row( mainAxisAlignment: MainAxisAlignment.center, children: [ PinyinText( text: currentCard.pinyin, style: const Te
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:946  Button
+        Row( crossAxisAlignment: CrossAxisAlignment.center, children: [ IconButton( onPressed: () => setState(() { _isPlayi
+  lib/features/flashcards/presentation/screens/radical_detail_screen.dart:116  Button
+        Row( children: [ IconButton( icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : const Color(0xFF1A1A1B)), 
+  lib/features/flashcards/presentation/screens/review_screen.dart:369  Button
+        Row( children: [ Text(_currentCard.hanzi, style: const TextStyle( fontSize: 48, fontWeight: FontWeight.bold, color:
+  lib/features/flashcards/presentation/widgets/word_detail_dialog.dart:170  Button
+        Row( crossAxisAlignment: CrossAxisAlignment.center, children: [ Text( widget.word.hanzi, style: TextStyle( fontFami
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart:1914  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ // Play Button IconButton( iconSize: widget.isCo
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart:1914  Button 
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ // Play Button IconButton( iconSize: widget.isCo
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart:1914  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ // Play Button IconButton( iconSize: widget.isCo
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:523  Button
+        Row( children: [ IconButton( icon: Icon(Icons.arrow_back, color: isDark ? Colors.white : Colors.black), onPressed: 
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:1053  Button
+        Row( children: [ IconButton( icon: Icon(Icons.camera_alt, color: isDark ? Colors.white : Colors.black87), onPressed
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:1053  Button
+        Row( children: [ IconButton( icon: Icon(Icons.camera_alt, color: isDark ? Colors.white : Colors.black87), onPressed
+  lib/features/media/presentation/screens/media_hub_screen.dart:193  Button
+        Row( mainAxisSize: MainAxisSize.min, children: [ IconButton( icon: const Icon(Icons.delete_outline, color: Colors.r
+  lib/features/media/presentation/screens/web_browser_screen.dart:1399  Button
+        Row( mainAxisSize: MainAxisSize.min, children: [ IconButton( icon: Icon(_isTranslationBlurred ? Icons.visibility_of
+  lib/features/media/presentation/screens/web_browser_screen.dart:1399  Button
+        Row( mainAxisSize: MainAxisSize.min, children: [ IconButton( icon: Icon(_isTranslationBlurred ? Icons.visibility_of
+  lib/features/media/presentation/screens/web_browser_screen.dart:2402  TextButton.icon
+        Row( children: [ TextButton.icon( onPressed: _isCreating ? null : () => setState(() => _selected = List.generate(wi
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:996  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ IconButton( icon: const Icon(Icons.close, color
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:996  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ IconButton( icon: const Icon(Icons.close, color
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1043  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ IconButton( icon: const Icon(Icons.close, color
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1230  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ // Left Side: Gallery Button or spacing if (!_is
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1230  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ // Left Side: Gallery Button or spacing if (!_is
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1230  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ // Left Side: Gallery Button or spacing if (!_is
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1498  ElevatedButton.icon
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ Text( l10n.foundNCharacters(_matchedCharacters.
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1702  TextButton.icon
+        Row( children: [ TextButton.icon( onPressed: () { setState(() { if (_selectedWordIndices.length == _matchedCharacte
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1702  ElevatedButton.icon
+        Row( children: [ TextButton.icon( onPressed: () { setState(() { if (_selectedWordIndices.length == _matchedCharacte
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1865  TextButton
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ // Speed Button TextButton( onPressed: _cyclePl
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1865  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ // Speed Button TextButton( onPressed: _cyclePl
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1865  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ // Speed Button TextButton( onPressed: _cyclePl
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1865  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ // Speed Button TextButton( onPressed: _cyclePl
+  lib/features/reading/presentation/screens/book_reader_screen.dart:1818  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ Text( AppLocalizations.of(context)! .sentenceNu
+  lib/features/reading/presentation/screens/book_reader_screen.dart:2273  ElevatedButton.icon
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ ElevatedButton.icon( onPressed: _currentIndex >
+  lib/features/reading/presentation/screens/reading_room_screen.dart:377  TextButton
+        Row( children: [ // TODO: localize Text(AppLocalizations.of(context)!.recentBookmarks, style: const TextStyle( font
+  lib/features/reading/presentation/screens/story_reader_screen.dart:308  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ Text( AppLocalizations.of(context)!.summary, st
+  lib/features/reading/presentation/screens/story_reader_screen.dart:891  TextButton.icon
+        Row( mainAxisAlignment: MainAxisAlignment.spaceAround, children: [ TextButton.icon( icon: const Icon(Icons.article,
+  lib/features/reading/presentation/screens/story_reader_screen.dart:891  TextButton.icon
+        Row( mainAxisAlignment: MainAxisAlignment.spaceAround, children: [ TextButton.icon( icon: const Icon(Icons.article,
+  lib/shared/widgets/calligraphy_canvas_sheet.dart:133  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ IconButton( icon: Icon(Icons.close, color: text
+  lib/shared/widgets/calligraphy_canvas_sheet.dart:133  Button
+        Row( mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [ IconButton( icon: Icon(Icons.close, color: text

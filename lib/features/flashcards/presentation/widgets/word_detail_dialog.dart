@@ -14,6 +14,7 @@ import 'package:hanzi_master/core/services/character_lookup_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
@@ -238,7 +239,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
               if (_isLoadingCard)
                 const SizedBox(
                   height: 180,
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: ZenLoader()),
                 )
               else if (_flashcard != null && _flashcard!.strokePaths.isNotEmpty)
                 Center(

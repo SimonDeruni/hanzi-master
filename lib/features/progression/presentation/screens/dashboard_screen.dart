@@ -23,6 +23,9 @@ import 'package:hanzi_master/features/premium/presentation/screens/universal_sca
 import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/services/app_rating_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
@@ -33,6 +36,22 @@ class DashboardScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
+
+    // Check streak milestones (e.g. 3-day or 7-day streak) for gentle rating evaluation
+    ref.listen<AsyncValue<StudyProgress>>(studyProgressProvider, (prev, next) {
+      final streak = next.valueOrNull?.currentStreak ?? 0;
+      if (streak >= 3) {
+        final milestone = streak >= 7 ? 'streak_7' : 'streak_3';
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (context.mounted) {
+            ref.read(appRatingServiceProvider).triggerSentimentPromptIfEligible(
+                  context,
+                  trigger: milestone,
+                );
+          }
+        });
+      }
+    });
 
     // 1. Fetch Flashcard Data
     final rawCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
@@ -92,9 +111,6 @@ class DashboardScreen extends ConsumerWidget {
       }
     }
 
-    final streak =
-        ref.watch(studyProgressProvider).valueOrNull?.currentStreak ?? 0;
-
     return Scaffold(
       body: CalligraphyBackground(
         child: CustomScrollView(
@@ -102,18 +118,6 @@ class DashboardScreen extends ConsumerWidget {
             // --- STANDARD HEADER ---
             GlobalSliverAppBar(
               title: l10n?.dashboardTitle ?? "Dashboard",
-              actions: [
-                if (streak > 0)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Center(
-                      child: StreakFlameBadge(
-                        streak: streak,
-                        label: l10n?.dayStreakCount(streak) ?? '$streak Days',
-                      ),
-                    ),
-                  ),
-              ],
             ),
 
             // --- TODAY'S WORD (CROPPED & COMPACT) ---
@@ -174,12 +178,12 @@ class DashboardScreen extends ConsumerWidget {
                   ],
                 )
                     .animate(delay: 150.ms)
-                    .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                    .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
                     .slideY(
                         begin: 0.05,
                         end: 0,
-                        duration: 600.ms,
-                        curve: Curves.easeOutCubic),
+                        duration: ZenMotion.page,
+                        curve: ZenMotion.enter),
               ),
             ),
 
@@ -192,7 +196,7 @@ class DashboardScreen extends ConsumerWidget {
                 child: ref.watch(studyProgressProvider).when(
                       loading: () => const SizedBox(
                         height: 120,
-                        child: Center(child: CircularProgressIndicator()),
+                        child: Center(child: ZenLoader()),
                       ),
                       error: (_, __) => const SizedBox.shrink(),
                       data: (progress) =>
@@ -277,12 +281,12 @@ class DashboardScreen extends ConsumerWidget {
                   ),
                 )
                     .animate(delay: 150.ms)
-                    .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                    .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
                     .slideY(
                         begin: 0.05,
                         end: 0,
-                        duration: 600.ms,
-                        curve: Curves.easeOutCubic),
+                        duration: ZenMotion.page,
+                        curve: ZenMotion.enter),
               ),
             ),
 
@@ -352,12 +356,12 @@ class DashboardScreen extends ConsumerWidget {
                 ),
               )
                   .animate(delay: 300.ms)
-                  .fade(duration: 600.ms, curve: Curves.easeOutCubic)
+                  .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
                   .slideY(
                       begin: 0.05,
                       end: 0,
-                      duration: 600.ms,
-                      curve: Curves.easeOutCubic),
+                      duration: ZenMotion.page,
+                      curve: ZenMotion.enter),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 24)),

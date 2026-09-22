@@ -52,13 +52,10 @@ void main() {
       ),
     );
 
-    expect(find.text('Comment pouvons-nous vous aider ?'), findsOneWidget);
-    expect(
-      find.text(
-        'Tout ce que vous devez savoir sur Hanzi Master, ses fonctionnalités et votre confidentialité.',
-      ),
-      findsOneWidget,
-    );
+    // Read the expectation from the generated localizations rather than
+    // hardcoding it: literals drift whenever copy or branding changes.
+    final l10n = await AppLocalizations.delegate.load(const Locale('fr'));
+    expect(find.text(l10n.everythingYouNeedToKnowAboutHanziMa), findsOneWidget);
     expect(find.text('Confidentialité et audio'), findsOneWidget);
     expect(find.text('Expression orale et prononciation'), findsOneWidget);
     expect(find.text('How can we help you?'), findsNothing);
@@ -72,7 +69,6 @@ void main() {
     await tester
         .tap(find.text('Que faire si l’IA interprète mal mes propos ?'));
     await tester.pumpAndSettle();
-
     expect(
       find.textContaining('Si la transcription ne correspond pas'),
       findsOneWidget,

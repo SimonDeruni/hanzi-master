@@ -1189,7 +1189,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'Hỗ trợ & Góp ý';
+  String get supportAndFeedback => 'Hỗ trợ & Phản hồi';
 
   @override
   String get reportBug => 'Báo lỗi';
@@ -12538,6 +12538,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get beginFirstLesson => 'Bắt đầu bài học đầu tiên';
 
   @override
+  String get exploreLibraryDirectly => 'Khám phá thư viện trực tiếp';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'BÀI HỌC ĐẦU TIÊN  •  $current / $total';
   }
@@ -12998,4 +13001,73 @@ class AppLocalizationsVi extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'Sau đó $price / $period. Hủy bất cứ lúc nào trong Cài đặt.';
   }
+
+  @override
+  String get deckLibraryTitle => 'Thư viện bộ thẻ';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'Bộ sưu tập chọn lọc về HSK, văn hóa, thể thao và học thuật';
+
+  @override
+  String get downloadOfficialDecks =>
+      'Tải bộ thẻ HSK chính thức và theo chủ đề';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return 'Đã chọn $selected trong $total từ';
+  }
+
+  @override
+  String get comparisonLabel => 'SO SÁNH';
+
+  @override
+  String get ambientSoundscape => 'Âm thanh nền';
+
+  @override
+  String get ambientSoundscapeDesc => 'Không gian êm dịu để đọc và nghe';
+
+  @override
+  String get ambientSoundscapeOff => 'Tắt (Im lặng)';
+
+  @override
+  String get soundscapeCourtyardRain => 'Mưa rơi sân đình';
+
+  @override
+  String get soundscapeGuqinWind => 'Cổ cầm & Gió trúc';
+
+  @override
+  String get soundscapeMidnightZen => 'Thiền đêm thanh tịnh';
+
+  @override
+  String get ambientVolume => 'Âm lượng nền';
+
+  @override
+  String get rateSinoSpark => 'Đánh giá SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'Chia sẻ đánh giá trên App Store';
+
+  @override
+  String get sendFeedback => 'Gửi phản hồi';
+
+  @override
+  String get sendFeedbackDesc => 'Giúp chúng tôi cải thiện hoặc báo lỗi';
+
+  @override
+  String get enjoyingAppTitle => 'Bạn có thích SinoSpark không?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'Hành trình học tiếng Trung của bạn đến nay thế nào?';
+
+  @override
+  String get ratingLovingIt => 'Vâng, rất thích!';
+
+  @override
+  String get ratingCouldBeBetter => 'Có thể tốt hơn';
+
+  @override
+  String get dictionarySearchFailed =>
+      'Tìm kiếm từ điển không thành công. Vui lòng thử lại.';
 }

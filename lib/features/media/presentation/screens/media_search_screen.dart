@@ -9,6 +9,8 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
 import '../../data/video_category_queries.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class MediaSearchScreen extends ConsumerStatefulWidget {
   const MediaSearchScreen({super.key});
@@ -214,12 +216,12 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // â”€â”€ Channel quick-access row â”€â”€
+            // ── Channel quick-access row ──
             const SizedBox(height: 8),
             _buildChannelRow(),
             const SizedBox(height: 12),
 
-            // â”€â”€ Pill Search Bar (matching reference) â”€â”€
+            // ── Pill Search Bar (matching reference) ──
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
@@ -760,13 +762,27 @@ class _SkeletonCardState extends State<_SkeletonCard>
   @override
   void initState() {
     super.initState();
+    // The repeat is deferred to didChangeDependencies, which is the only place
+    // the platform "Reduce Motion" setting can be read.
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+      duration: ZenMotion.ambient,
     );
+    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
+      CurvedAnimation(parent: _controller, curve: ZenMotion.natural),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: hold the placeholder mid-grey instead of shimmering.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      loop: true,
+      staticValue: 0.5,
+    ).apply();
   }
 
   @override

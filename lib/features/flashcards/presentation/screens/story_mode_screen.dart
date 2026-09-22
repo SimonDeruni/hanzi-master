@@ -11,6 +11,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/features/reading/domain/entities/graded_story.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
@@ -374,7 +375,7 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                             }
                                           },
                                           child: AnimatedContainer(
-                                            duration: const Duration(milliseconds: 150),
+                                            duration: ZenMotion.of(context, ZenMotion.swap),
                                             padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
                                             decoration: BoxDecoration(
                                               color: isQuickLookSelected
@@ -568,12 +569,19 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          AppLocalizations.of(context)!.fullTranslation,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: isDark ? Colors.white : Colors.black87,
+                                        // Expanded: the localized title yields
+                                        // space instead of pushing the close
+                                        // button off screen.
+                                        Expanded(
+                                          child: Text(
+                                            AppLocalizations.of(context)!.fullTranslation,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: isDark ? Colors.white : Colors.black87,
+                                            ),
                                           ),
                                         ),
                                         IconButton(

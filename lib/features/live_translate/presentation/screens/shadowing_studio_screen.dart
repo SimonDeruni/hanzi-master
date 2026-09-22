@@ -23,7 +23,11 @@ import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import '../../../echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
 
@@ -74,6 +78,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   final TextEditingController _customWordController = TextEditingController();
   List<Flashcard> _dictionaryResults = [];
   Timer? _searchDebounce;
+  bool _isSearchFocused = false;
 
   bool _isLoadingNextPhrase = false;
   bool _isStartingSession = false;
@@ -184,10 +189,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
     _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: ZenMotion.ambientFast,
     );
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _pulseController, curve: ZenMotion.natural),
     );
   }
 
@@ -365,7 +370,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         );
         setState(() {
           _isRecording = true;
-          _pulseController.repeat(reverse: true);
+          // Reduced motion: mark recording without a breathing pulse.
+          if (!context.reduceMotion) {
+            _pulseController.repeat(reverse: true);
+          }
         });
       } else {
         if (mounted) {
@@ -706,7 +714,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   const Divider(),
                   if (decksAsync.isLoading)
                     const Center(
-                        child: CircularProgressIndicator(color: Colors.orange)),
+                        child: ZenLoader(color: Colors.orange)),
                   if (decksAsync.hasValue && decksAsync.value!.isEmpty)
                     Text(AppLocalizations.of(context)!.no_decks_found),
                   if (decksAsync.hasValue && decksAsync.value!.isNotEmpty)
@@ -875,9 +883,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             Text(AppLocalizations.of(context)!.wordsSavedAndSrsScheduled)));
   }
 
-  // Accent color matching the rest of the app (Explore / Roleplay / Echo Hall)
-  static const Color _accentGold = Color(0xFFFFB300);
-  static const Color _accentGoldLight = Color(0xFFFFD54F);
+  // ── Book-screen parity tokens ───────────────────────────────────────────────
+  // Sourced from [AppTheme] so every screen shares one visual vocabulary.
+  static const Color _bookBgDark = AppTheme.surfaceDark;
+  static const Color _bookBgLight = AppTheme.surfaceLight;
+  static const Color _bookCardBgDark = AppTheme.cardBgDark;
+  static const Color _bookCardBgLight = AppTheme.cardBgLight;
+  static const Color _bookAccentDark = AppTheme.accentDark;
+  static const Color _bookAccentLight = AppTheme.accentLight;
+  static const IconData _configCardIcon = Icons.settings_rounded;
 
   Widget _buildSectionLabel({
     required IconData icon,
@@ -885,18 +899,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required bool isDark,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
-          Icon(icon, size: 16, color: _accentGold),
+          Icon(
+            icon,
+            size: 20,
+            color: isDark ? _bookAccentDark : _bookAccentLight,
+          ),
           const SizedBox(width: 8),
           Text(
             title,
             style: TextStyle(
-              fontSize: 13.5,
-              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-              letterSpacing: 0.3,
             ),
           ),
         ],
@@ -911,6 +928,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required bool isDark,
   }) {
     final isSelected = _selectedMode == mode;
+    final accent = isDark ? _bookAccentDark : _bookAccentLight;
     return GestureDetector(
       onTap: () {
         if (_selectedMode != mode) {
@@ -919,70 +937,50 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 240),
-        curve: Curves.easeInOutQuart,
+        duration: ZenMotion.of(context, ZenMotion.swap),
+        curve: ZenMotion.natural,
         decoration: BoxDecoration(
           color: isSelected
-              ? _accentGold.withValues(alpha: isDark ? 0.22 : 0.12)
-              : (isDark ? const Color(0xFF222226) : Colors.white),
+              ? accent.withValues(alpha: 0.12)
+              : (isDark ? _bookCardBgDark : _bookCardBgLight),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: isSelected
-                ? _accentGold
+                ? accent
                 : (isDark
-                    ? Colors.white.withValues(alpha: 0.08)
+                    ? Colors.white10
                     : Colors.black.withValues(alpha: 0.06)),
-            width: isSelected ? 1.5 : 1.0,
+            width: isSelected ? 1.3 : 1.0,
           ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: _accentGold.withValues(alpha: isDark ? 0.25 : 0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
-              : [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: isDark ? 0.15 : 0.03),
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
-                  ),
-                ],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? _accentGold.withValues(alpha: isDark ? 0.3 : 0.2)
-                    : (isDark
-                        ? Colors.white.withValues(alpha: 0.06)
-                        : Colors.black.withValues(alpha: 0.04)),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(
-                icon,
-                size: 18,
-                color: isSelected
-                    ? (isDark ? _accentGoldLight : const Color(0xFFB45309))
-                    : (isDark ? Colors.white60 : Colors.black45),
-              ),
+            Icon(
+              icon,
+              size: 20,
+              color: isSelected
+                  ? accent
+                  : (isDark ? Colors.white60 : Colors.black45),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 6),
             Expanded(
               child: Text(
                 label,
                 style: TextStyle(
                   color: isSelected
-                      ? (isDark ? _accentGoldLight : const Color(0xFF1A1A1B))
-                      : (isDark ? Colors.white70 : const Color(0xFF4A4A4D)),
-                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
-                  fontSize: 12,
-                  letterSpacing: 0.2,
+                      ? accent
+                      : (isDark ? Colors.white70 : const Color(0xFF2C2C2E)),
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
+                  fontSize: 12.5,
                   height: 1.2,
                 ),
                 maxLines: 2,
@@ -999,31 +997,28 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required IconData icon,
     required String label,
     required bool isDark,
+    Color? color,
   }) {
+    // Matches the book-screen badge vocabulary (pill radius, tinted fill+border).
+    final badgeColor = color ?? (isDark ? _bookAccentDark : _bookAccentLight);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: isDark
-            ? Colors.white.withValues(alpha: 0.05)
-            : const Color(0xFFF7F5EE),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.08)
-              : Colors.black.withValues(alpha: 0.06),
-        ),
+        color: badgeColor.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: badgeColor.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 13, color: _accentGold),
+          Icon(icon, size: 13, color: badgeColor),
           const SizedBox(width: 4),
           Text(
             label,
             style: TextStyle(
               fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white60 : Colors.black54,
+              fontWeight: FontWeight.bold,
+              color: badgeColor,
             ),
           ),
         ],
@@ -1035,19 +1030,20 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     final l10n = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF202024) : const Color(0xFFFAF8F2),
-        borderRadius: BorderRadius.circular(16),
+        color: isDark ? _bookCardBgDark : _bookCardBgLight,
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: _accentGold.withValues(alpha: isDark ? 0.25 : 0.2),
-          width: 1,
+          color: isDark
+              ? Colors.white10
+              : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
             blurRadius: 8,
-            offset: const Offset(0, 2),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -1057,26 +1053,26 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: _accentGold.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(8),
+                  color: (isDark ? _bookAccentDark : _bookAccentLight)
+                      .withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.auto_awesome_rounded,
-                  size: 15,
-                  color: _accentGold,
+                  size: 22,
+                  color: isDark ? _bookAccentDark : _bookAccentLight,
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   l10n.shadowingStudioAndToneAnalysis,
                   style: TextStyle(
-                    fontSize: 12.5,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                    letterSpacing: 0.2,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -1084,16 +1080,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             l10n.shadowNativeAudioAndVisualize,
             style: TextStyle(
-              fontSize: 12,
-              color: isDark ? Colors.white60 : Colors.black54,
-              height: 1.35,
+              fontSize: 14,
+              color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
+              height: 1.55,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Row(
             children: [
               Expanded(
@@ -1136,27 +1132,31 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required bool isDark,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withValues(alpha: 0.04) : Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        color: isDark ? _bookCardBgDark : _bookCardBgLight,
+        borderRadius: BorderRadius.circular(14),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.06)
-              : Colors.black.withValues(alpha: 0.05),
+              ? Colors.white10
+              : Colors.black.withValues(alpha: 0.06),
         ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: _accentGold),
-          const SizedBox(height: 4),
+          Icon(
+            icon,
+            size: 18,
+            color: isDark ? _bookAccentDark : _bookAccentLight,
+          ),
+          const SizedBox(height: 6),
           Text(
             label,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 10.5,
-              fontWeight: FontWeight.w600,
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
               color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
             ),
             maxLines: 1,
@@ -1172,23 +1172,23 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     required String label,
     required Widget child,
   }) {
-    final cardBg = isDark ? const Color(0xFF202024) : Colors.white;
+    final cardBg = isDark ? _bookCardBgDark : _bookCardBgLight;
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: cardBg,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.08)
+              ? Colors.white10
               : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
             blurRadius: 10,
-            offset: const Offset(0, 2),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -1197,27 +1197,26 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         children: [
           Row(
             children: [
-              Container(
-                width: 3,
-                height: 12,
-                decoration: BoxDecoration(
-                  color: _accentGold,
-                  borderRadius: BorderRadius.circular(2),
-                ),
+              Icon(
+                _configCardIcon,
+                size: 20,
+                color: isDark ? _bookAccentDark : _bookAccentLight,
               ),
-              const SizedBox(width: 6),
-              Text(
-                label.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  color: isDark ? _accentGoldLight : const Color(0xFF8C6B10),
-                  letterSpacing: 0.9,
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  label.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: isDark ? _bookAccentDark : _bookAccentLight,
+                    letterSpacing: 0.9,
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
           child,
         ],
       ),
@@ -1225,8 +1224,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   Widget _buildHubUI(BuildContext context, bool isDark) {
-    final bgColor = Theme.of(context).colorScheme.surface;
-    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final bgColor = isDark ? _bookBgDark : _bookBgLight;
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -1235,94 +1233,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // ── Header Bar ────────────────────────────────────────
-            const SizedBox(height: 4),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              child: Row(
-                children: [
-                  if (widget.showBackButton)
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, size: 20),
-                      color: primaryText,
-                      onPressed: () => Navigator.pop(context),
-                    )
-                  else
-                    const SizedBox(width: 48),
-                  Expanded(
-                    child: Text(
-                      l10n.shadowingStudio,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.w800,
-                        color: primaryText,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 48),
-                ],
-              ),
-            ),
-
-            // ── Hero Icon with Concentric Calligraphic Aura ────────
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Center(
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: _accentGold.withValues(alpha: isDark ? 0.25 : 0.2),
-                      width: 1.5,
-                    ),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: _accentGold.withValues(alpha: isDark ? 0.15 : 0.08),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.graphic_eq_rounded,
-                      size: 34,
-                      color: isDark ? _accentGoldLight : _accentGold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 8),
-
-            // ── Subtitle ──────────────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                l10n.masterYourMandarinPronunciationnbyM,
-                style: TextStyle(
-                  fontSize: 13.5,
-                  color: isDark ? Colors.white70 : Colors.black54,
-                  height: 1.35,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-
-            // ── Content ───────────────────────────────────────────
+            // ── Content (starts directly with Practice Mode) ──────
             Expanded(
               child: SingleChildScrollView(
-                physics: _selectedMode == ShadowingMode.customWord &&
-                        _dictionaryResults.isNotEmpty
-                    ? const BouncingScrollPhysics()
-                    : const NeverScrollableScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 12),
 
                     // ── Mode Selector Section ─────────────────────
                     _buildSectionLabel(
@@ -1335,9 +1254,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       crossAxisCount: 2,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
-                      childAspectRatio: 2.35,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 2.0,
                       children: [
                         _buildSegmentModeTab(
                           mode: ShadowingMode.freeFlow,
@@ -1388,11 +1307,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 color: isDark
                                     ? Colors.white70
                                     : const Color(0xFF2C2C2E),
-                                fontSize: 13,
-                                height: 1.35,
+                                fontSize: 14,
+                                height: 1.55,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 12),
                             Wrap(
                               spacing: 6,
                               runSpacing: 6,
@@ -1401,16 +1320,25 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   icon: Icons.check_circle_outline_rounded,
                                   label: l10n.toneAccuracy,
                                   isDark: isDark,
+                                  color: isDark
+                                      ? Colors.green.shade300
+                                      : Colors.teal.shade700,
                                 ),
                                 _buildFeaturePill(
                                   icon: Icons.graphic_eq_rounded,
                                   label: l10n.pronunciationAssessment,
                                   isDark: isDark,
+                                  color: isDark
+                                      ? Colors.blue.shade300
+                                      : Colors.indigo.shade700,
                                 ),
                                 _buildFeaturePill(
                                   icon: Icons.speed_rounded,
                                   label: '0.8x / 1.0x',
                                   isDark: isDark,
+                                  color: isDark
+                                      ? Colors.purple.shade300
+                                      : Colors.deepPurple.shade700,
                                 ),
                               ],
                             ),
@@ -1426,41 +1354,79 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            HanziTextField(
-                              controller: _customWordController,
-                              decoration: InputDecoration(
-                                hintText: AppLocalizations.of(context)!
-                                    .searchDictionaryOrTypeCustom,
-                                filled: true,
-                                fillColor: isDark
-                                    ? const Color(0xFF2C2C2E)
-                                    : const Color(0xFFF5F5F5),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              style: TextStyle(
-                                  color: isDark ? Colors.white : Colors.black),
-                              onChanged: (val) {
-                                setState(() => _customWordInput = val);
-                                _onSearchChanged(val);
+                            Focus(
+                              onFocusChange: (hasFocus) {
+                                if (hasFocus != _isSearchFocused) {
+                                  setState(() => _isSearchFocused = hasFocus);
+                                }
                               },
+                              child: HanziTextField(
+                                controller: _customWordController,
+                                showClearButton: true,
+                                textInputAction: TextInputAction.search,
+                                prefixIcon: Icon(
+                                  Icons.search_rounded,
+                                  size: 20,
+                                  color: isDark ? Colors.white54 : Colors.black45,
+                                ),
+                                decoration: InputDecoration(
+                                  hintText: AppLocalizations.of(context)!
+                                      .searchDictionaryOrTypeCustom,
+                                  hintStyle: TextStyle(
+                                    color:
+                                        isDark ? Colors.white38 : Colors.black38,
+                                    fontSize: 14,
+                                  ),
+                                  filled: true,
+                                  fillColor: isDark
+                                      ? const Color(0xFF2C2C2E)
+                                      : Colors.white,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 14),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide(
+                                      color: isDark
+                                          ? Colors.white24
+                                          : Colors.black26,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                    borderSide: BorderSide(
+                                      color: isDark
+                                          ? _bookAccentDark
+                                          : _bookAccentLight,
+                                      width: 1.3,
+                                    ),
+                                  ),
+                                ),
+                                style: TextStyle(
+                                  color: isDark ? Colors.white : Colors.black,
+                                  fontSize: 16,
+                                ),
+                                onChanged: (val) {
+                                  setState(() => _customWordInput = val);
+                                  _onSearchChanged(val);
+                                },
+                              ),
                             ),
                             if (_dictionaryResults.isNotEmpty)
                               Container(
                                 width: double.infinity,
                                 constraints:
                                     const BoxConstraints(maxHeight: 250),
-                                margin: const EdgeInsets.only(top: 4),
+                                margin: const EdgeInsets.only(top: 8),
                                 decoration: BoxDecoration(
-                                  color:
-                                      isDark ? Colors.grey[850] : Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
+                                  color: isDark
+                                      ? _bookCardBgDark
+                                      : _bookCardBgLight,
+                                  borderRadius: BorderRadius.circular(14),
                                   border: Border.all(
                                       color: isDark
-                                          ? Colors.white12
-                                          : Colors.black12),
+                                          ? Colors.white10
+                                          : Colors.black
+                                              .withValues(alpha: 0.06)),
                                 ),
                                 child: ListView.builder(
                                   padding: EdgeInsets.zero,
@@ -1618,31 +1584,54 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             // Start Button Area
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 14),
-              child: FilledButton.icon(
-                key: const Key('shadowing_start_session'),
-                onPressed: _isStartingSession ? null : _startSession,
-                icon: _isStartingSession
-                    ? const SizedBox.square(
-                        dimension: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Icon(Icons.mic, size: 22),
-                label: Text(
-                  _isStartingSession ? l10n.sTARTING : l10n.startSession,
-                  style: const TextStyle(
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 0.8,
+              child: SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: ElevatedButton(
+                  key: const Key('shadowing_start_session'),
+                  onPressed: _isStartingSession ? null : _startSession,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isDark
+                        ? Colors.amber.shade700
+                        : const Color(0xFF1A1A1B),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 4,
                   ),
-                ),
-                style: FilledButton.styleFrom(
-                  backgroundColor: _accentGold,
-                  foregroundColor: const Color(0xFF1A1A1B),
-                  minimumSize: const Size(double.infinity, 54),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (_isStartingSession)
+                        const SizedBox(
+                          width: 22,
+                          height: 22,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      else
+                        const Icon(Icons.mic, size: 22),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          _isStartingSession
+                              ? l10n.sTARTING
+                              : l10n.startSession,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
-                  elevation: 0,
                 ),
               ),
             ),
@@ -1887,7 +1876,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         Expanded(
                           child: _isLoadingNextPhrase
                               ? const Center(
-                                  child: CircularProgressIndicator(
+                                  child: ZenLoader(
                                       color: Colors.orange))
                               : _currentPhrase == null
                                   ? Center(

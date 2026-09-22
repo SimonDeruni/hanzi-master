@@ -128,15 +128,20 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
               children: [
                 const Icon(Icons.edit_note, color: Colors.indigo),
                 const SizedBox(width: 8),
-                Text(
-                  AppLocalizations.of(context)!.reviewAiCard,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
+                // Expanded replaces the old Spacer, letting the localized dialog
+                // title wrap instead of overflowing.
+                Expanded(
+                  child: Text(
+                    AppLocalizations.of(context)!.reviewAiCard,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () => Navigator.pop(context),

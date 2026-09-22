@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class CrossReferenceText extends ConsumerStatefulWidget {
   final String text;
@@ -76,7 +77,7 @@ class _CrossReferenceTextState extends ConsumerState<CrossReferenceText> {
               ),
             ],
           ),
-          duration: const Duration(seconds: 3),
+          duration: ZenMotion.toast,
           action: SnackBarAction(
             label: AppLocalizations.of(context)!.detail,
             onPressed: () {

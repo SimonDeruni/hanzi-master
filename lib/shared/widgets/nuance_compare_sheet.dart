@@ -10,6 +10,8 @@ import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class NuanceCompareSheet extends ConsumerStatefulWidget {
   final List<Map<String, String>> words;
@@ -174,10 +176,23 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
   void _enterChatMode() {
     final gemini = ref.read(geminiServiceProvider);
     final wordNames = widget.words.map((w) => w['hanzi'] ?? '').join(', ');
-    _chatSession = gemini.startCharacterChat(wordNames, 'en');
+    // Carry the user's language through instead of hardcoding English.
+    final langCode = Localizations.localeOf(context).languageCode;
+    _chatSession = gemini.startCharacterChat(wordNames, langCode);
     setState(() {
+      // Seed the transcript with the comparison that was just shown, so
+      // "continue the discussion" opens with the context still visible rather
+      // than an empty panel.
+      if (_streamedText.trim().isNotEmpty && _chatMessages.isEmpty) {
+        _chatMessages.add(_ChatMessage(
+          isUser: false,
+          text: _streamedText.trim(),
+          isContext: true,
+        ));
+      }
       _isChatMode = true;
     });
+    _scrollToBottom();
   }
 
   Future<void> _sendChatMessage(String text) async {
@@ -213,8 +228,8 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
+          duration: ZenMotion.quick,
+          curve: ZenMotion.enter,
         );
       }
     });
@@ -314,11 +329,8 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
   Widget _buildFormattedContent(String rawText, ThemeData theme, bool isDark) {
     if (rawText.isEmpty) return const SizedBox.shrink();
 
-    // Fix Numerical Pinyin
-    String processed = PinyinUtils.convertNumericToMarks(rawText);
-
     // Split by newlines
-    final blocks = processed.split('\n');
+    final blocks = rawText.split('\n');
     final children = <Widget>[];
 
     for (var block in blocks) {
@@ -327,7 +339,10 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
       // Handle Markdown headers (###, ##, #) gracefully
       final headerMatch = RegExp(r'^(#{1,6})\s+(.*)$').firstMatch(block.trim());
       if (headerMatch != null) {
-        final headerText = headerMatch.group(2) ?? '';
+        var headerText = headerMatch.group(2) ?? '';
+        // Convert pinyin only inside headings/lines that are predominantly
+        // Chinese, so English prose and numbers are never rewritten.
+        headerText = _normalizePinyin(headerText);
         children.add(Padding(
           padding: const EdgeInsets.only(top: 14, bottom: 6),
           child: Text(
@@ -343,23 +358,20 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
         continue;
       }
 
-      // Highlight Targets at start of bullets
-      for (var w in widget.words) {
-        final hanzi = w['hanzi'];
-        if (hanzi != null && hanzi.isNotEmpty && block.startsWith('* $hanzi')) {
-          block = block.replaceFirst('* $hanzi', '* **$hanzi**');
-        } else if (hanzi != null &&
-            hanzi.isNotEmpty &&
-            block.startsWith('- $hanzi')) {
-          block = block.replaceFirst('- $hanzi', '- **$hanzi**');
-        } else if (hanzi != null &&
-            hanzi.isNotEmpty &&
-            block.startsWith('• $hanzi')) {
-          block = block.replaceFirst('• $hanzi', '• **$hanzi**');
-        } else if (hanzi != null &&
-            hanzi.isNotEmpty &&
-            block.startsWith(hanzi)) {
-          block = block.replaceFirst(hanzi, '**$hanzi**');
+      // Highlight the first word this bullet is about, without letting an
+      // earlier substitution change what a later word matches. Computed from
+      // the original line, then applied once.
+      final leadingWord = _leadingWordOf(block);
+      if (leadingWord != null) {
+        final escaped = RegExp.escape(leadingWord);
+        final bullet = RegExp(r'^([\*\-•]\s+)').firstMatch(block.trim());
+        if (bullet != null) {
+          block = block.replaceFirst(
+              RegExp('^([\\*\\-•]\\s+)$escaped'),
+              '${bullet.group(1)}**$leadingWord**');
+        } else {
+          block = block.replaceFirst(
+              RegExp('^$escaped'), '**$leadingWord**');
         }
       }
 
@@ -405,6 +417,32 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: children,
     );
+  }
+
+  /// Converts numeric pinyin (ni3 hao3 -> nǐ hǎo) in text that actually
+  /// contains Chinese, leaving English prose and numbers untouched.
+  ///
+  /// Running the converter over the whole AI response rewrote digits in
+  /// ordinary sentences, which made output look corrupted.
+  String _normalizePinyin(String text) {
+    final hasChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(text);
+    if (!hasChinese) return text;
+    return PinyinUtils.convertNumericToMarks(text);
+  }
+
+  /// Returns the word this bullet/line is about, if any.
+  ///
+  /// Picks the FIRST configured word that appears right after any bullet
+  /// marker or at the start of the line. Determined from the untouched text so
+  /// highlighting is order-independent.
+  String? _leadingWordOf(String block) {
+    final stripped = block.trim().replaceFirst(RegExp(r'^[\*\-•]\s+'), '');
+    for (final w in widget.words) {
+      final hanzi = w['hanzi'];
+      if (hanzi == null || hanzi.isEmpty) continue;
+      if (stripped.startsWith(hanzi)) return hanzi;
+    }
+    return null;
   }
 
   Widget _buildContent(ThemeData theme, bool isDark) {
@@ -624,6 +662,53 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                   );
                 }
                 final msg = _chatMessages[index];
+                if (msg.isContext) {
+                  // The carried-over comparison: shown as reference content so
+                  // the user can still read what they are continuing from.
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.menu_book_outlined,
+                                size: 14,
+                                color: isDark
+                                    ? Colors.white54
+                                    : Colors.black45),
+                            const SizedBox(width: 6),
+                            Text(
+                              AppLocalizations.of(context)!.comparisonLabel,
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.5,
+                                color: isDark
+                                    ? Colors.white54
+                                    : Colors.black45,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: isDark
+                                ? Colors.white.withValues(alpha: 0.04)
+                                : Colors.black.withValues(alpha: 0.03),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: _buildFormattedContent(
+                              msg.text, theme, isDark),
+                        ),
+                        const Divider(height: 24),
+                      ],
+                    ),
+                  );
+                }
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Align(
@@ -721,10 +806,24 @@ class _PulsingCursorAnimatedState extends State<_PulsingCursorAnimated>
   @override
   void initState() {
     super.initState();
+    // The repeat is deferred to didChangeDependencies, which is the only place
+    // the platform "Reduce Motion" setting can be read.
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
-    )..repeat(reverse: true);
+      duration: ZenMotion.ambientFast,
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: the caret holds full opacity instead of blinking.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      loop: true,
+      staticValue: 1.0,
+    ).apply();
   }
 
   @override
@@ -755,5 +854,14 @@ class _PulsingCursorAnimatedState extends State<_PulsingCursorAnimated>
 class _ChatMessage {
   final bool isUser;
   final String text;
-  const _ChatMessage({required this.isUser, required this.text});
+
+  /// True for the seeded comparison carried over from the one-shot view. It is
+  /// rendered as formatted reference content, not as a chat bubble.
+  final bool isContext;
+
+  const _ChatMessage({
+    required this.isUser,
+    required this.text,
+    this.isContext = false,
+  });
 }

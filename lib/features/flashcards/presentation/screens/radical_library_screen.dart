@@ -8,6 +8,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -99,11 +100,17 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                       onPressed: () => Navigator.pop(context),
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      AppLocalizations.of(context)!.radicalsIndex,
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                    // Expanded: the localized header yields space instead of
+                    // pushing past the right edge of the sheet.
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)!.radicalsIndex,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        ),
                       ),
                     ),
                   ],
@@ -134,7 +141,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               Expanded(
                 child: _isLoading
                     ? const Center(
-                        child: CircularProgressIndicator(color: Colors.indigo))
+                        child: ZenLoader(color: Colors.indigo))
                     : _filteredKeys.isEmpty
                         ? Center(
                             child: Text(

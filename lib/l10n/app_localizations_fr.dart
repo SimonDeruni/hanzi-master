@@ -804,7 +804,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get story => 'Histoire';
 
   @override
-  String get thisDeckIsEmpty => 'Ce paquet est vide.';
+  String get thisDeckIsEmpty => 'Ce deck est vide.';
 
   @override
   String get tapTheAddCards => 'Appuyez sur le bouton Ajouter des cartes!';
@@ -887,7 +887,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get usingYourDecksVocabulary =>
-      'En utilisant le vocabulaire de votre paquet';
+      'En utilisant le vocabulaire de votre deck';
 
   @override
   String get tryAgain => 'Réessayer';
@@ -906,7 +906,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Gemini Flash structure votre histoire...';
 
   @override
-  String get aiDeckGenerator => 'Générateur de paquets IA';
+  String get aiDeckGenerator => 'Générateur de decks IA';
 
   @override
   String get whatDoYouWant => 'Que voulez-vous apprendre?';
@@ -933,14 +933,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get scholarsDesk => 'Bureau du savant';
 
   @override
-  String get chooseADeck => 'Choisissez un paquet';
+  String get chooseADeck => 'Choisissez un deck';
 
   @override
   String get whereWouldYouLike =>
       'Où souhaitez-vous enregistrer ce caractère ?';
 
   @override
-  String get addToDefaultStudy => 'Ajouter au paquet d\'étude par défaut';
+  String get addToDefaultStudy => 'Ajouter au deck d\'étude par défaut';
 
   @override
   String get ifOffItsOnly =>
@@ -1200,7 +1200,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'Support et commentaires';
+  String get supportAndFeedback => 'Support et retours';
 
   @override
   String get reportBug => 'Signaler un bug';
@@ -1236,7 +1236,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String removedFromDeck(Object hanzi) {
-    return '$hanzi retiré du paquet';
+    return '$hanzi retiré du deck';
   }
 
   @override
@@ -1255,7 +1255,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get studyQueuePreviewDescription =>
-      'Votre session est basée sur le programme du jour et les limites du paquet.';
+      'Votre session est basée sur le programme du jour et les limites du deck.';
 
   @override
   String get notNow => 'Pas maintenant';
@@ -1264,7 +1264,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get newLabel => 'Nouveau';
 
   @override
-  String get studyDeckEmpty => 'Ce paquet est vide';
+  String get studyDeckEmpty => 'Ce deck est vide';
 
   @override
   String get studyDeckEmptyDescription =>
@@ -1275,7 +1275,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get studyDailyLimitReachedDescription =>
-      'Vous avez utilisé votre quota de nouvelles cartes ou de révisions pour ce paquet aujourd\'hui.';
+      'Vous avez utilisé votre quota de nouvelles cartes ou de révisions pour ce deck aujourd\'hui.';
 
   @override
   String get studyCaughtUpDescription =>
@@ -1679,7 +1679,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aStructuralComponent => 'Un composant structurel.';
 
   @override
-  String get addSelectedToDeck => 'Ajouter la selection au paquet';
+  String get addSelectedToDeck => 'Ajouter la sélection au deck';
 
   @override
   String addTo(Object target) {
@@ -1877,7 +1877,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get days => 'jours';
 
   @override
-  String get deck => 'Paquet';
+  String get deck => 'Deck';
 
   @override
   String get deckName => 'Nom du deck';
@@ -5539,7 +5539,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Vous devez fournir une carte ou des cartes';
 
   @override
-  String get deckSettings => 'Paramètres du paquet';
+  String get deckSettings => 'Paramètres du deck';
 
   @override
   String get saveSettings => 'Enregistrer les paramètres';
@@ -7808,7 +7808,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get apply => 'Appliquer';
 
   @override
-  String get selectDeck => 'Sélectionner le paquet';
+  String get selectDeck => 'Sélectionner le deck';
 
   @override
   String get azureSpeechKeysNotConfigured =>
@@ -12424,7 +12424,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get thematic => 'Thématique';
 
   @override
-  String get deckFlashcards => 'Paquet (Cartes mémoire)';
+  String get deckFlashcards => 'Deck (Cartes mémoire)';
 
   @override
   String get searchLibraryOrTypeCustom =>
@@ -12616,6 +12616,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get beginFirstLesson => 'Commencer la première leçon';
+
+  @override
+  String get exploreLibraryDirectly => 'Explorer directement la bibliothèque';
 
   @override
   String onboardingLessonProgress(Object current, Object total) {
@@ -13089,4 +13092,75 @@ class AppLocalizationsFr extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'Puis $price / $period. Annulez à tout moment dans Réglages.';
   }
+
+  @override
+  String get deckLibraryTitle => 'Bibliothèque de decks';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'Collections sélectionnées : HSK, culture, sport et études';
+
+  @override
+  String get downloadOfficialDecks =>
+      'Télécharger les decks officiels HSK et thématiques';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$selected sur $total mots sélectionnés';
+  }
+
+  @override
+  String get comparisonLabel => 'COMPARAISON';
+
+  @override
+  String get ambientSoundscape => 'Ambiance sonore';
+
+  @override
+  String get ambientSoundscapeDesc =>
+      'Atmosphère apaisante pour la lecture et l\'écoute';
+
+  @override
+  String get ambientSoundscapeOff => 'Désactivé (Silencieux)';
+
+  @override
+  String get soundscapeCourtyardRain => 'Pluie de cour';
+
+  @override
+  String get soundscapeGuqinWind => 'Guqin & Vent de bambou';
+
+  @override
+  String get soundscapeMidnightZen => 'Méditation nocturne';
+
+  @override
+  String get ambientVolume => 'Volume d\'ambiance';
+
+  @override
+  String get rateSinoSpark => 'Noter SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'Partagez votre avis sur l\'App Store';
+
+  @override
+  String get sendFeedback => 'Envoyer un message';
+
+  @override
+  String get sendFeedbackDesc =>
+      'Aidez-nous à nous améliorer ou signalez un problème';
+
+  @override
+  String get enjoyingAppTitle => 'Vous appréciez SinoSpark ?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'Comment se passe votre apprentissage du chinois jusqu\'ici ?';
+
+  @override
+  String get ratingLovingIt => 'Oui, j\'adore !';
+
+  @override
+  String get ratingCouldBeBetter => 'Pourrait être mieux';
+
+  @override
+  String get dictionarySearchFailed =>
+      'La recherche dans le dictionnaire a échoué. Veuillez réessayer.';
 }

@@ -16,6 +16,7 @@ import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/zen_ambient_service.dart';
 
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -32,6 +33,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/app_reload_boundary.dart';
 import 'package:hanzi_master/core/hive_adapter_registry.dart';
 import 'package:hanzi_master/core/localization/app_locale_policy.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 void main() {
   final binding = WidgetsFlutterBinding.ensureInitialized();
@@ -129,6 +131,7 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
 
     // 1. Initialize SharedPreferences
     final prefs = await SharedPreferences.getInstance();
+    await ZenAmbientService.instance.init(prefs: prefs);
     await initializeAppLocale(
       preferences: prefs,
       preferredLocales: WidgetsBinding.instance.platformDispatcher.locales,
@@ -266,7 +269,7 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
         if (_firstFrameReleased) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Scaffold(body: Center(child: CircularProgressIndicator())),
+            home: Scaffold(body: Center(child: ZenLoader())),
           );
         }
         return const SizedBox.shrink();
@@ -420,7 +423,7 @@ class _SubscriptionGateState extends State<_SubscriptionGate> {
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(child: ZenLoader()),
           );
         }
         if (snapshot.hasError) {

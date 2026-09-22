@@ -1192,7 +1192,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'Dukungan & Umpan Balik';
+  String get supportAndFeedback => 'Dukungan & Masukan';
 
   @override
   String get reportBug => 'Laporkan Bug';
@@ -12551,6 +12551,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get beginFirstLesson => 'Mulai Pelajaran Pertama';
 
   @override
+  String get exploreLibraryDirectly => 'Jelajahi Perpustakaan Langsung';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'PELAJARAN PERTAMA ANDA  •  $current DARI $total';
   }
@@ -13014,4 +13017,73 @@ class AppLocalizationsId extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'Lalu $price / $period. Batalkan kapan saja di Pengaturan.';
   }
+
+  @override
+  String get deckLibraryTitle => 'Perpustakaan Dek';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'Koleksi pilihan seputar HSK, budaya, olahraga, dan akademik';
+
+  @override
+  String get downloadOfficialDecks => 'Unduh dek resmi HSK dan tematik';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$selected dari $total kata dipilih';
+  }
+
+  @override
+  String get comparisonLabel => 'PERBANDINGAN';
+
+  @override
+  String get ambientSoundscape => 'Latar Suara Menenangkan';
+
+  @override
+  String get ambientSoundscapeDesc =>
+      'Suasana santai untuk membaca & mendengarkan';
+
+  @override
+  String get ambientSoundscapeOff => 'Mati (Hening)';
+
+  @override
+  String get soundscapeCourtyardRain => 'Hujan di Halaman';
+
+  @override
+  String get soundscapeGuqinWind => 'Guqin & Angin Bambu';
+
+  @override
+  String get soundscapeMidnightZen => 'Zen Tengah Malam';
+
+  @override
+  String get ambientVolume => 'Volume Latar';
+
+  @override
+  String get rateSinoSpark => 'Beri Nilai SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'Bagikan ulasan Anda di App Store';
+
+  @override
+  String get sendFeedback => 'Kirim Masukan';
+
+  @override
+  String get sendFeedbackDesc => 'Bantu kami berkembang atau laporkan kendala';
+
+  @override
+  String get enjoyingAppTitle => 'Menikmati SinoSpark?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'Bagaimana perjalanan belajar bahasa Mandarin Anda sejauh ini?';
+
+  @override
+  String get ratingLovingIt => 'Ya, saya suka!';
+
+  @override
+  String get ratingCouldBeBetter => 'Bisa lebih baik';
+
+  @override
+  String get dictionarySearchFailed =>
+      'Pencarian kamus gagal. Silakan coba lagi.';
 }

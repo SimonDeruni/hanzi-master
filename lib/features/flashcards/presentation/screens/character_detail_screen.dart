@@ -28,6 +28,8 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -60,25 +62,54 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // --- Pill Tab Navigation ---
   final ScrollController _scrollController = ScrollController();
   int _activeTabIndex = 0;
-  List<String> get _tabLabels {
-    final l10n = AppLocalizations.of(context)!;
-    return [l10n.strokes, l10n.anatomy, l10n.notes, l10n.words, l10n.context];
-  }
 
+  /// Section keys, in display order. The pill bar is built from this same list
+  /// so a pill can never point at a section that is not rendered.
   final GlobalKey _strokesKey = GlobalKey();
   final GlobalKey _anatomyKey = GlobalKey();
   final GlobalKey _notesKey = GlobalKey();
   final GlobalKey _wordsKey = GlobalKey();
   final GlobalKey _contextKey = GlobalKey();
 
-  List<GlobalKey> get _sectionKeys =>
-      [_strokesKey, _anatomyKey, _notesKey, _wordsKey, _contextKey];
+  /// Whether the "Common Words" section will actually render content.
+  ///
+  /// The pill for this tab is hidden until words are available, otherwise
+  /// tapping it scrolled to a zero-height placeholder and appeared broken.
+  bool get _hasCommonWords =>
+      ref.watch(commonWordsProvider(widget.card.hanzi)).maybeWhen(
+            data: (words) => words.isNotEmpty,
+            orElse: () => false,
+          );
+
+  /// True when the optional sections resolved to nothing and were hidden.
+  bool get _hasAnatomy => _anatomyComponents.isNotEmpty;
+
+  List<String> get _tabLabels {
+    final l10n = AppLocalizations.of(context)!;
+    return [
+      l10n.strokes,
+      l10n.anatomy,
+      l10n.notes,
+      if (_hasCommonWords) l10n.words,
+      l10n.context,
+    ];
+  }
+
+  /// Keys matching [_tabLabels]: pills only exist for visible sections.
+  List<GlobalKey> get _visibleSectionKeys => [
+        _strokesKey,
+        if (_hasAnatomy) _anatomyKey,
+        _notesKey,
+        if (_hasCommonWords) _wordsKey,
+        _contextKey,
+      ];
 
   void _onScroll() {
     if (!mounted) return;
+    final keys = _visibleSectionKeys;
     int newActive = 0;
-    for (int i = 0; i < _sectionKeys.length; i++) {
-      final ctx = _sectionKeys[i].currentContext;
+    for (int i = 0; i < keys.length; i++) {
+      final ctx = keys[i].currentContext;
       if (ctx == null) continue;
       final box = ctx.findRenderObject() as RenderBox?;
       if (box == null) continue;
@@ -93,12 +124,14 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   void _scrollToSection(int index) {
-    final ctx = _sectionKeys[index].currentContext;
+    final keys = _visibleSectionKeys;
+    if (index < 0 || index >= keys.length) return;
+    final ctx = keys[index].currentContext;
     if (ctx == null) return;
     Scrollable.ensureVisible(
       ctx,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOutQuart,
+      duration: ZenMotion.entrance,
+      curve: ZenMotion.natural,
       alignment: 0.05,
     );
     setState(() => _activeTabIndex = index);
@@ -400,7 +433,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 width: canvasSize,
                 child: _isLoadingStrokes
                     ? const Center(
-                        child: CircularProgressIndicator(color: Colors.indigo))
+                        child: ZenLoader(color: Colors.indigo))
                     : currentCard.strokePaths.isEmpty
                         ? Center(
                             child: Text(
@@ -531,19 +564,21 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     return Column(
       children: [
         KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
-        if (_anatomyComponents.isNotEmpty) ...[
+        if (_hasAnatomy) ...[
           KeyedSubtree(
               key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
-        ] else ...[
-          KeyedSubtree(key: _anatomyKey, child: const SizedBox.shrink()),
         ],
         const SizedBox(height: 16),
         KeyedSubtree(
             key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
         const SizedBox(height: 16),
-        KeyedSubtree(
-            key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
-        const SizedBox(height: 16),
+        // Only mounted when it has content, so the matching pill is the only
+        // way to reach it and can never scroll to an empty placeholder.
+        if (_hasCommonWords) ...[
+          KeyedSubtree(
+              key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
+          const SizedBox(height: 16),
+        ],
         KeyedSubtree(
             key: _contextKey, child: _buildAiContextSection(context, isDark)),
       ],
@@ -801,8 +836,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           return GestureDetector(
             onTap: () => _scrollToSection(i),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeInOutQuart,
+              duration: ZenMotion.of(context, ZenMotion.swap),
+              curve: ZenMotion.natural,
               margin: const EdgeInsets.only(right: 8),
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
               decoration: BoxDecoration(
@@ -1028,17 +1063,22 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                                 ),
                               ),
                               child: Center(
-                                child: Text(
-                                  "$strokeNum",
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : (isActiveChar
-                                            ? Colors.indigo
-                                            : Colors.indigo
-                                                .withValues(alpha: 0.5)),
+                                // The stroke number scales down instead of
+                                // clipping inside this 26px circle.
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    "$strokeNum",
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : (isActiveChar
+                                              ? Colors.indigo
+                                              : Colors.indigo
+                                                  .withValues(alpha: 0.5)),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1075,8 +1115,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               onTap: () {
                 setState(() => _activeAnatomyIndex = idx);
                 _pageController.animateToPage(idx,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut);
+                    duration: ZenMotion.quick,
+                    curve: ZenMotion.natural);
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 6),
@@ -1262,8 +1302,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   Widget _buildCommonWordsSection(BuildContext context, bool isDark) {
-    if (widget.card.hanzi.length > 1) return const SizedBox.shrink();
-
+    // Works for any card length: for a multi-character card this lists other
+    // words sharing the character, which is the useful reading.
     final commonWordsAsync = ref.watch(commonWordsProvider(widget.card.hanzi));
 
     return commonWordsAsync.when(
@@ -1350,7 +1390,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           ),
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => const Center(child: ZenLoader()),
       error: (e, st) => Text("Error: $e"),
     );
   }

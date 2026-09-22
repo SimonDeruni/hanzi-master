@@ -5,11 +5,14 @@ import 'package:hanzi_master/features/reading/presentation/providers/book_provid
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/services/bundled_author_biography_service.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 String _localizedBookCategory(AppLocalizations l10n, String category) {
   switch (category) {
@@ -163,11 +166,15 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      // Calligraphic Book Cover
-                      CalligraphicBookCover(
-                        book: book,
-                        width: 135,
-                        height: 190,
+                      // Calligraphic Book Cover (shared element with the catalog)
+                      HeroTransition.wrap(
+                        context: context,
+                        tag: HeroTransition.heroTag('book_catalog', book.id),
+                        child: CalligraphicBookCover(
+                          book: book,
+                          width: 135,
+                          height: 190,
+                        ),
                       ),
                       const SizedBox(height: 16),
 
@@ -405,8 +412,10 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           !book.category.contains('Poetry')) ...[
                         const SizedBox(height: 10),
                         SizedBox(
+                          // No fixed height: the localized label may wrap to a
+                          // second line in German/Russian/Thai, so the button
+                          // grows to fit instead of clipping.
                           width: double.infinity,
-                          height: 46,
                           child: OutlinedButton.icon(
                             onPressed: () {
                               HapticsManager.medium();
@@ -623,19 +632,22 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                       final primaryTextLocal =
                           isDarkLocal ? Colors.white : const Color(0xFF1A1A1B);
 
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          color: isCurrent
-                              ? (isDarkLocal
-                                  ? Colors.amber.withValues(alpha: 0.15)
-                                  : const Color(0xFFF2ECE1))
-                              : cardBgLocal,
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(
+                      return StaggeredListItem(
+                        index: index,
+                        delay: const Duration(milliseconds: 30),
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          decoration: BoxDecoration(
                             color: isCurrent
                                 ? (isDarkLocal
-                                    ? Colors.amber.shade500
+                                    ? Colors.amber.withValues(alpha: 0.15)
+                                    : const Color(0xFFF2ECE1))
+                                : cardBgLocal,
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: isCurrent
+                                  ? (isDarkLocal
+                                      ? Colors.amber.shade500
                                     : const Color(0xFF8B0000))
                                 : (isDarkLocal
                                     ? Colors.white10
@@ -712,6 +724,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                           trailing:
                               const Icon(Icons.arrow_forward_ios, size: 14),
                         ),
+                      ),
                       );
                     },
                     childCount: chapters.length,
@@ -723,7 +736,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
             ],
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: ZenLoader()),
         error: (e, _) => Center(child: Text("Error: $e")),
       ),
     );

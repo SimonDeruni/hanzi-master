@@ -3,11 +3,14 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/zen_ambient_service.dart';
+import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
 import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/domain/entities/study_mode.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class StoryReaderScreen extends ConsumerStatefulWidget {
   final StoryBlueprint blueprint;
@@ -272,6 +275,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     _boundarySub?.cancel();
     _completionSub?.cancel();
     unawaited(ref.read(audioServiceProvider).stop());
+    unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
     super.dispose();
   }
 
@@ -418,6 +422,30 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
+            // Ambient Soundscape Button
+            Consumer(
+              builder: (context, ref, _) {
+                final ambient = ref.watch(zenAmbientServiceProvider);
+                final isSoundscapeActive =
+                    ambient.track != SoundscapeTrack.off && ambient.isPlaying;
+                return IconButton(
+                  icon: Icon(
+                    isSoundscapeActive
+                        ? Icons.spa_rounded
+                        : Icons.spa_outlined,
+                    size: 21,
+                    color: isSoundscapeActive
+                        ? (isDark
+                            ? Colors.amber.shade400
+                            : const Color(0xFF8B0000))
+                        : (isDark ? Colors.white70 : Colors.black87),
+                  ),
+                  tooltip: AppLocalizations.of(context)?.ambientSoundscape ??
+                      'Ambient Soundscape',
+                  onPressed: () => ZenSoundscapeSheet.show(context),
+                );
+              },
+            ),
             if (!_isSaved && state.currentStory != null) ...[
               TextButton.icon(
                 icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
@@ -473,7 +501,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                         const CircularProgressIndicator(color: Colors.indigo),
                         const SizedBox(height: 24),
                         AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 500),
+                          duration: ZenMotion.of(context, ZenMotion.page),
                           child: Text(
                             _loadingMessages[_loadingStep],
                             key: ValueKey<int>(_loadingStep),
@@ -727,8 +755,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                         }
                                                       },
                                                       child: AnimatedContainer(
-                                                        duration: const Duration(
-                                                            milliseconds: 150),
+                                                        duration: ZenMotion.of(context, ZenMotion.swap),
                                                         padding:
                                                             const EdgeInsets
                                                                 .symmetric(

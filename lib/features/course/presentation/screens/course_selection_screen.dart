@@ -9,6 +9,7 @@ import 'package:hanzi_master/core/services/curriculum_engine.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
@@ -162,7 +163,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
               },
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: ZenLoader()),
           error: (err, stack) =>
               Center(child: Text("${l10n?.errorPrefix ?? 'Error: '}$err")),
         ),

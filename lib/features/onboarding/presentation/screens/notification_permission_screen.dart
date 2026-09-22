@@ -7,6 +7,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class NotificationPermissionScreen extends ConsumerStatefulWidget {
   const NotificationPermissionScreen({super.key});
@@ -69,15 +70,15 @@ class _NotificationPermissionScreenState
       Navigator.pushAndRemoveUntil(
         context,
         PageRouteBuilder<void>(
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 350),
+          transitionDuration: ZenMotion.of(context, ZenMotion.page),
+          reverseTransitionDuration: ZenMotion.pageReverse,
           pageBuilder: (context, animation, secondaryAnimation) =>
               const CustomPaywallScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             final curved = CurvedAnimation(
               parent: animation,
-              curve: Curves.easeOutCubic,
-              reverseCurve: Curves.easeInCubic,
+              curve: ZenMotion.enter,
+              reverseCurve: ZenMotion.natural,
             );
             return FadeTransition(
               opacity: curved,
@@ -213,7 +214,7 @@ class _NotificationPermissionScreenState
                             ),
                           ),
                           child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 180),
+                            duration: ZenMotion.of(context, ZenMotion.swap),
                             child: _isRequesting
                                 ? SizedBox(
                                     key: const ValueKey('loading'),
@@ -292,7 +293,7 @@ class _NotificationIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: ZenMotion.of(context, ZenMotion.swap),
         width: 88,
         height: 88,
         decoration: BoxDecoration(
@@ -301,7 +302,7 @@ class _NotificationIllustration extends StatelessWidget {
           border: Border.all(color: colors.border),
         ),
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 180),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           child: Icon(
             isConfigured
                 ? Icons.check_circle_outline_rounded

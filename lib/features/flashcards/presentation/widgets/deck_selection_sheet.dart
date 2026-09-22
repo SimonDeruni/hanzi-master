@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:uuid/uuid.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class DeckSelectionSheet extends ConsumerWidget {
   final Flashcard? card;
@@ -18,9 +19,9 @@ class DeckSelectionSheet extends ConsumerWidget {
       : assert(
             card != null || cards != null, 'Must provide either card or cards');
 
-  static Future<void> show(BuildContext context,
+  static Future<bool?> show(BuildContext context,
       {Flashcard? card, List<Flashcard>? cards, VoidCallback? onAdded}) {
-    return GlobalBlurredBottomSheet.show(
+    return GlobalBlurredBottomSheet.show<bool>(
       context,
       child: DeckSelectionSheet(card: card, cards: cards, onAdded: onAdded),
     );
@@ -192,7 +193,7 @@ class DeckSelectionSheet extends ConsumerWidget {
                 ),
               );
             },
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: ZenLoader()),
             error: (err, stack) => Text("Error: $err"),
           ),
         ],
@@ -305,7 +306,9 @@ class DeckSelectionSheet extends ConsumerWidget {
       );
     }
 
-    navigator.pop();
+    // `true` signals a successful add; dismissal leaves this null so callers can
+    // tell "words were saved" apart from "the user backed out".
+    navigator.pop(true);
     if (onAdded != null) onAdded!();
   }
 }

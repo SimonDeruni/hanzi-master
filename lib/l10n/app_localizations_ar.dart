@@ -12439,6 +12439,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get beginFirstLesson => 'ابدأ الدرس الأول';
 
   @override
+  String get exploreLibraryDirectly => 'استكشف المكتبة مباشرة';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'درسك الأول  •  $current من $total';
   }
@@ -12914,4 +12917,72 @@ class AppLocalizationsAr extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'ثم $price / $period. يمكنك الإلغاء في أي وقت من الإعدادات.';
   }
+
+  @override
+  String get deckLibraryTitle => 'مكتبة المجموعات';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'مجموعات منسقة عبر HSK والثقافة والرياضة والدراسة';
+
+  @override
+  String get downloadOfficialDecks => 'نزّل مجموعات HSK الرسمية والموضوعية';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$selected من $total كلمة محددة';
+  }
+
+  @override
+  String get comparisonLabel => 'مقارنة';
+
+  @override
+  String get ambientSoundscape => 'المشهد الصوتي المحيط';
+
+  @override
+  String get ambientSoundscapeDesc => 'أجواء مهدئة للقراءة والاستماع';
+
+  @override
+  String get ambientSoundscapeOff => 'إيقاف (صامت)';
+
+  @override
+  String get soundscapeCourtyardRain => 'مطر الفناء';
+
+  @override
+  String get soundscapeGuqinWind => 'الغوتشين ورياح الخيزران';
+
+  @override
+  String get soundscapeMidnightZen => 'تأمل منتصف الليل';
+
+  @override
+  String get ambientVolume => 'مستوى صوت الخلفية';
+
+  @override
+  String get rateSinoSpark => 'تقييم SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'شارك تجربتك في متجر التطبيقات';
+
+  @override
+  String get sendFeedback => 'إرسال ملاحظات';
+
+  @override
+  String get sendFeedbackDesc => 'ساعدنا على التحسين أو أبلغ عن مشكلة';
+
+  @override
+  String get enjoyingAppTitle => 'هل يعجبك SinoSpark؟';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'كيف تسير رحلتك في تعلم اللغة الصينية حتى الآن؟';
+
+  @override
+  String get ratingLovingIt => 'نعم، يعجبني جداً!';
+
+  @override
+  String get ratingCouldBeBetter => 'يمكن أن يكون أفضل';
+
+  @override
+  String get dictionarySearchFailed =>
+      'فشل البحث في القاموس. يرجى المحاولة مرة أخرى.';
 }

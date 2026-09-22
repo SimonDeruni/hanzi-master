@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart';
+import 'package:hanzi_master/features/live_translate/presentation/widgets/calligraphic_pitch_contour.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
@@ -174,9 +175,21 @@ void main() {
       expect(
           Directionality.of(tester.element(headerPinyin)), TextDirection.ltr);
 
-      // The pitch contour icons (e.g. Tone 1 '¯', Tone 2 '/', Tone 3 'v', Tone 4 '\') must be LTR
-      final pitchV = find.text('v').first;
-      expect(Directionality.of(tester.element(pitchV)), TextDirection.ltr);
+      // The pitch contour badges must be LTR so the curve never inverts.
+      // These used to be text glyphs (Tone 3 was 'v'); the Zen & Ink work
+      // replaced them with `CalligraphicPitchContour`, so this now asserts
+      // against the real widget instead of a removed glyph.
+      //
+      // All occurrences are checked, not just the first: the header graph was
+      // previously unwrapped while the compact badges were protected, and a
+      // plain `.first` finder silently passed straight over it.
+      final contours = find.byType(CalligraphicPitchContour);
+      expect(contours, findsWidgets);
+      for (var i = 0; i < tester.widgetList(contours).length; i++) {
+        expect(Directionality.of(tester.element(contours.at(i))),
+            TextDirection.ltr,
+            reason: 'Pitch contour #$i must be inside an LTR sanctuary');
+      }
     });
 
     testWidgets(

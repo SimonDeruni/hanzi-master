@@ -86,6 +86,29 @@ void main() {
     expect(result, RatingPromptResult.unavailable);
     expect(gateway.requestCount, 0);
   });
+
+  test('openStoreListing calls gateway to open store page', () async {
+    await service.openStoreListing();
+    expect(gateway.openStoreCount, 1);
+  });
+
+  test('milestone eligibility succeeds on first hit and prevents duplicate prompts', () async {
+    expect(await service.checkMilestoneEligibility('streak_3'), isTrue);
+    // Second check of same milestone must be false
+    expect(await service.checkMilestoneEligibility('streak_3'), isFalse);
+  });
+
+  test('milestone eligibility is blocked if already requested review', () async {
+    await service.requestReview();
+    expect(gateway.requestCount, 1);
+    expect(await service.checkMilestoneEligibility('streak_7'), isFalse);
+  });
+
+  test('onDismissSentiment initiates cooldown', () async {
+    expect(await service.shouldShowSentimentPrompt(), isTrue);
+    await service.onDismissSentiment();
+    expect(await service.shouldShowSentimentPrompt(), isFalse);
+  });
 }
 
 StudySessionSummary _summary({int cards = 10, int correct = 8}) {
@@ -112,6 +135,7 @@ class _FakeRatingPromptGateway implements RatingPromptGateway {
   bool available = true;
   bool throwWhenCheckingAvailability = false;
   int requestCount = 0;
+  int openStoreCount = 0;
 
   @override
   Future<bool> isAvailable() async {
@@ -121,4 +145,8 @@ class _FakeRatingPromptGateway implements RatingPromptGateway {
 
   @override
   Future<void> requestReview() async => requestCount++;
+
+  @override
+  Future<void> openStoreListing({String? appStoreId}) async =>
+      openStoreCount++;
 }

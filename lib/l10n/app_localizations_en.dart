@@ -12476,6 +12476,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get beginFirstLesson => 'Begin First Lesson';
 
   @override
+  String get exploreLibraryDirectly => 'Explore Library Directly';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'YOUR FIRST LESSON  •  $current OF $total';
   }
@@ -12937,4 +12940,73 @@ class AppLocalizationsEn extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'Then $price / $period. Cancel anytime in Settings.';
   }
+
+  @override
+  String get deckLibraryTitle => 'Deck Library';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'Curated collections across HSK, culture, sports, & academics';
+
+  @override
+  String get downloadOfficialDecks => 'Download official HSK & thematic decks';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$selected of $total words selected';
+  }
+
+  @override
+  String get comparisonLabel => 'COMPARISON';
+
+  @override
+  String get ambientSoundscape => 'Ambient Soundscape';
+
+  @override
+  String get ambientSoundscapeDesc =>
+      'Soothing background atmosphere for reading & listening';
+
+  @override
+  String get ambientSoundscapeOff => 'Off (Silent)';
+
+  @override
+  String get soundscapeCourtyardRain => 'Courtyard Rain';
+
+  @override
+  String get soundscapeGuqinWind => 'Guqin & Bamboo Wind';
+
+  @override
+  String get soundscapeMidnightZen => 'Midnight Zen Drone';
+
+  @override
+  String get ambientVolume => 'Background Volume';
+
+  @override
+  String get rateSinoSpark => 'Rate SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'Share your love on the App Store';
+
+  @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
+  String get sendFeedbackDesc => 'Help us improve or report an issue';
+
+  @override
+  String get enjoyingAppTitle => 'Enjoying SinoSpark?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'How has your Chinese learning journey been so far?';
+
+  @override
+  String get ratingLovingIt => 'Yes, loving it!';
+
+  @override
+  String get ratingCouldBeBetter => 'Could be better';
+
+  @override
+  String get dictionarySearchFailed =>
+      'Dictionary search failed. Please try again.';
 }

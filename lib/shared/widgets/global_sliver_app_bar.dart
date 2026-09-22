@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/profile_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 
@@ -24,8 +25,10 @@ class GlobalSliverAppBar extends ConsumerWidget {
     
     return SliverAppBar(
       automaticallyImplyLeading: showBackButton,
-      backgroundColor: theme.scaffoldBackgroundColor,
+      // Canonical surface so the header never differs from the body beneath it.
+      backgroundColor: AppTheme.surfaceOf(context),
       surfaceTintColor: Colors.transparent,
+      scrolledUnderElevation: 0,
       elevation: 0,
       pinned: true,
       centerTitle: false,

@@ -4047,6 +4047,10 @@
   "@beginFirstLesson": {
     "description": "Button to launch the first mini lesson from onboarding calibration"
   },
+  "exploreLibraryDirectly": "Explore Library Directly",
+  "@exploreLibraryDirectly": {
+    "description": "Button to skip onboarding lesson and go directly to the library"
+  },
   "onboardingLessonProgress": "YOUR FIRST LESSON  •  {current} OF {total}",
   "@onboardingLessonProgress": {
     "description": "Progress header in onboarding mini lesson",
@@ -4453,5 +4457,100 @@
   },
   "@startMy7DaysFreeTrial": {
     "description": "Button label for starting 7-day free trial on paywall"
-  }
+  },
+  "deckLibraryTitle": "Deck Library",
+  "@deckLibraryTitle": {
+    "description": "Title of the curated deck library screen and the button that opens it"
+  },
+  "deckLibrarySubtitle": "Curated collections across HSK, culture, sports, & academics",
+  "@deckLibrarySubtitle": {
+    "description": "Subtitle of the curated deck library screen"
+  },
+  "downloadOfficialDecks": "Download official HSK & thematic decks",
+  "@downloadOfficialDecks": {
+    "description": "Description on the button that opens the deck library"
+  },
+  "wordsSelectedCount": "{selected} of {total} words selected",
+  "@wordsSelectedCount": {
+    "description": "Selection summary in the extracted-words review sheet",
+    "placeholders": {
+      "selected": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "comparisonLabel": "COMPARISON",
+  "@comparisonLabel": {
+    "description": "Label above the seeded comparison content in the nuance chat view"
+  },
+  "ambientSoundscape": "Ambient Soundscape",
+  "@ambientSoundscape": {
+    "description": "ambientSoundscape label"
+  },
+  "ambientSoundscapeDesc": "Soothing background atmosphere for reading & listening",
+  "@ambientSoundscapeDesc": {
+    "description": "ambientSoundscapeDesc label"
+  },
+  "ambientSoundscapeOff": "Off (Silent)",
+  "@ambientSoundscapeOff": {
+    "description": "ambientSoundscapeOff label"
+  },
+  "soundscapeCourtyardRain": "Courtyard Rain",
+  "@soundscapeCourtyardRain": {
+    "description": "soundscapeCourtyardRain label"
+  },
+  "soundscapeGuqinWind": "Guqin & Bamboo Wind",
+  "@soundscapeGuqinWind": {
+    "description": "soundscapeGuqinWind label"
+  },
+  "soundscapeMidnightZen": "Midnight Zen Drone",
+  "@soundscapeMidnightZen": {
+    "description": "soundscapeMidnightZen label"
+  },
+  "ambientVolume": "Background Volume",
+  "@ambientVolume": {
+    "description": "ambientVolume label"
+  },
+  "@supportAndFeedback": {
+    "description": "supportAndFeedback label"
+  },
+  "rateSinoSpark": "Rate SinoSpark",
+  "@rateSinoSpark": {
+    "description": "rateSinoSpark label"
+  },
+  "rateSinoSparkDesc": "Share your love on the App Store",
+  "@rateSinoSparkDesc": {
+    "description": "rateSinoSparkDesc label"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "sendFeedback label"
+  },
+  "sendFeedbackDesc": "Help us improve or report an issue",
+  "@sendFeedbackDesc": {
+    "description": "sendFeedbackDesc label"
+  },
+  "enjoyingAppTitle": "Enjoying SinoSpark?",
+  "@enjoyingAppTitle": {
+    "description": "enjoyingAppTitle label"
+  },
+  "enjoyingAppSubtitle": "How has your Chinese learning journey been so far?",
+  "@enjoyingAppSubtitle": {
+    "description": "enjoyingAppSubtitle label"
+  },
+  "ratingLovingIt": "Yes, loving it!",
+  "@ratingLovingIt": {
+    "description": "ratingLovingIt label"
+  },
+  "ratingCouldBeBetter": "Could be better",
+  "@ratingCouldBeBetter": {
+    "description": "ratingCouldBeBetter label"
+  },
+  "@maybeLater": {
+    "description": "maybeLater label"
+  },
+  "dictionarySearchFailed": "Dictionary search failed. Please try again."
 }

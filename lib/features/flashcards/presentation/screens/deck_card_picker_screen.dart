@@ -5,6 +5,8 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class DeckCardPickerScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -124,7 +126,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(msg),
-                                      duration: const Duration(seconds: 1),
+                                      duration: ZenMotion.toast,
                                       backgroundColor: Colors.green,
                                     ),
                                   );
@@ -138,7 +140,7 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
             ],
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: ZenLoader()),
         error: (err, stack) => Center(child: Text("Error: $err")),
       ),
     );

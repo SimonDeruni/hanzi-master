@@ -429,17 +429,26 @@ class GlobalDictionaryRepository {
     if (_db == null) return const Left("Global Dictionary not initialized");
     if (character.trim().isEmpty) return const Right([]);
 
+    // Pull a wider candidate pool than we return: the dictionary has no
+    // frequency column, so meaningful ranking happens in Dart against the
+    // in-memory HSK rank table. Length-ordered SQL alone surfaced obscure
+    // two-character words instead of genuinely common ones.
     const sqlQuery = '''
       SELECT *
       FROM words 
       WHERE (simplified LIKE ? OR traditional LIKE ?)
         AND simplified != ?
         AND traditional != ?
-      ORDER BY LENGTH(simplified) ASC
       LIMIT ?
     ''';
 
-    final args = ['%$character%', '%$character%', character, character, limit];
+    final args = [
+      '%$character%',
+      '%$character%',
+      character,
+      character,
+      _wordCandidatePool,
+    ];
 
     try {
       final results = List<Map<String, dynamic>>.from(
@@ -447,14 +456,58 @@ class GlobalDictionaryRepository {
       );
       await _attachQualityMetadata(results, targetLanguage);
 
-      final List<Flashcard> cards = results.map<Flashcard>((row) {
-        return _mapRowToCard(row, targetLanguage);
-      }).toList();
+      results.sort(_compareWordRows);
+
+      final List<Flashcard> cards = _dedupeBySimplified(results)
+          .take(limit)
+          .map<Flashcard>((row) => _mapRowToCard(row, targetLanguage))
+          .toList();
 
       return Right(cards);
     } catch (e) {
       return Left("Failed to get common words: $e");
     }
+  }
+
+  /// Candidates fetched before ranking. Large enough to contain the HSK words
+  /// for common characters, small enough to stay cheap on every card open.
+  static const int _wordCandidatePool = 400;
+
+  /// Orders related words by usefulness:
+  ///   1. HSK level (1–6), so taught vocabulary wins over dictionary-only words
+  ///   2. shorter words, since 2-character words are the common compounds
+  ///   3. dictionary order, as a stable tie-breaker
+  int _compareWordRows(
+    Map<String, dynamic> left,
+    Map<String, dynamic> right,
+  ) {
+    final leftHanzi = left['simplified'] as String? ?? '';
+    final rightHanzi = right['simplified'] as String? ?? '';
+
+    final popularityComparison =
+        _popularityRank(leftHanzi).compareTo(_popularityRank(rightHanzi));
+    if (popularityComparison != 0) return popularityComparison;
+
+    final lengthComparison = leftHanzi.length.compareTo(rightHanzi.length);
+    if (lengthComparison != 0) return lengthComparison;
+
+    return (left['id'] as num).toInt().compareTo((right['id'] as num).toInt());
+  }
+
+  /// Drops duplicate `simplified` entries, keeping the best-ranked row.
+  ///
+  /// The dictionary stores simplified and traditional variants as separate rows,
+  /// so a word like 好吃 can appear twice and would otherwise be listed twice.
+  List<Map<String, dynamic>> _dedupeBySimplified(
+      List<Map<String, dynamic>> rows) {
+    final seen = <String>{};
+    final out = <Map<String, dynamic>>[];
+    for (final row in rows) {
+      final hanzi = row['simplified'] as String? ?? '';
+      if (hanzi.isEmpty || !seen.add(hanzi)) continue;
+      out.add(row);
+    }
+    return out;
   }
 
   /// Looks up a single character/word exactly. Fast single-row query.

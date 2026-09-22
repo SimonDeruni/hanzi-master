@@ -8,6 +8,8 @@ import 'smart_media_desk_screen.dart';
 import '../providers/show_progress_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 final showEpisodesProvider =
     FutureProvider.family<List<YoutubeVideo>, String>((ref, showId) {
@@ -77,19 +79,23 @@ class ShowDetailScreen extends ConsumerWidget {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  // Backdrop image
-                  CachedNetworkImage(
-                    imageUrl: show.thumbnailUrl,
-                    fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(
-                      color: isDark
-                          ? const Color(0xFF1A1A2E)
-                          : const Color(0xFFE8E4D9),
-                    ),
-                    errorWidget: (_, __, ___) => Container(
-                      color: isDark
-                          ? const Color(0xFF1A1A2E)
-                          : const Color(0xFFE8E4D9),
+                  // Backdrop image (shared element with the catalog card)
+                  HeroTransition.wrap(
+                    context: context,
+                    tag: HeroTransition.heroTag('show_catalog', show.id),
+                    child: CachedNetworkImage(
+                      imageUrl: show.thumbnailUrl,
+                      fit: BoxFit.cover,
+                      placeholder: (_, __) => Container(
+                        color: isDark
+                            ? const Color(0xFF1A1A2E)
+                            : const Color(0xFFE8E4D9),
+                      ),
+                      errorWidget: (_, __, ___) => Container(
+                        color: isDark
+                            ? const Color(0xFF1A1A2E)
+                            : const Color(0xFFE8E4D9),
+                      ),
                     ),
                   ),
                   // Gradient overlay
@@ -241,7 +247,7 @@ class ShowDetailScreen extends ConsumerWidget {
           episodesAsync.when(
             loading: () => SliverFillRemaining(
               child: Center(
-                child: CircularProgressIndicator(
+                child: ZenLoader(
                   color: isDark ? Colors.amber : const Color(0xFF8B6914),
                 ),
               ),
@@ -343,13 +349,18 @@ class _EpisodeTile extends ConsumerWidget {
             // Episode number
             SizedBox(
               width: 32,
-              child: Text(
-                '$episodeNumber',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: isDark ? Colors.grey[500] : Colors.grey.shade600,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              // The episode number scales down instead of clipping when the
+              // system text size is increased.
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '$episodeNumber',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: isDark ? Colors.grey[500] : Colors.grey.shade600,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

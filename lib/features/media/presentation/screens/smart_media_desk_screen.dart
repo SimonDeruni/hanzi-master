@@ -18,6 +18,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum _MediaLoadingStep {
   fetchingSubtitles,
@@ -34,7 +36,7 @@ class SmartMediaDeskScreen extends ConsumerStatefulWidget {
       _SmartMediaDeskScreenState();
 }
 
-// â”€â”€â”€ AI Task Progress Dot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── AI Task Progress Dot ─────────────────────────────────────────────────────
 
 class _AiTaskDot extends StatelessWidget {
   final String label;
@@ -75,7 +77,7 @@ class _AiTaskDot extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Skeleton Transcript Line â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Skeleton Transcript Line ─────────────────────────────────────────────────
 
 class _SkeletonTranscriptLine extends StatefulWidget {
   final int index;
@@ -94,13 +96,27 @@ class _SkeletonTranscriptLineState extends State<_SkeletonTranscriptLine>
   @override
   void initState() {
     super.initState();
+    // The repeat is deferred to didChangeDependencies, which is the only place
+    // the platform "Reduce Motion" setting can be read.
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+      duration: ZenMotion.ambient,
     );
+    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
+      CurvedAnimation(parent: _controller, curve: ZenMotion.natural),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: hold the placeholder mid-grey instead of shimmering.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      loop: true,
+      staticValue: 0.5,
+    ).apply();
   }
 
   @override
@@ -516,8 +532,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           if (key.currentContext != null) {
             Scrollable.ensureVisible(
               key.currentContext!,
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeInOutCubic,
+              duration: ZenMotion.swap,
+              curve: ZenMotion.natural,
               alignment:
                   0.35, // Keeps the active subtitle positioned beautifully at 35% down the viewport
             );
@@ -548,7 +564,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
           ),
         ],
       ),
-      duration: const Duration(seconds: 5),
+      duration: ZenMotion.toast,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: const EdgeInsets.only(bottom: 100, left: 16, right: 16),
@@ -611,15 +627,15 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       if (key.currentContext != null) {
         Scrollable.ensureVisible(
           key.currentContext!,
-          duration: const Duration(milliseconds: 250),
-          curve: Curves.easeInOutCubic,
+          duration: ZenMotion.swap,
+          curve: ZenMotion.natural,
           alignment: 0.35,
         );
       }
     }
   }
 
-  // â”€â”€â”€ Portrait Controls Widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ─── Portrait Controls Widget ──────────────────────────────────────────────
   // (inline private widget for the embedded control bar below the video)
 
   /// Skeleton transcript list + step indicator shown while data loads.
@@ -887,7 +903,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                 ),
               ),
 
-              // â”€â”€ Scrollable content â”€â”€
+              // ── Scrollable content ──
               Expanded(
                 child: _isLoading
                     ? _buildLoadingState()
@@ -999,7 +1015,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                           ),
               ),
 
-              // â”€â”€ Portrait Video Controls (docked at the BOTTOM of the screen) â”€â”€
+              // ── Portrait Video Controls (docked at the BOTTOM of the screen) ──
               _buildPortraitControls(),
             ],
           );
@@ -1027,7 +1043,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   }
 }
 
-// â”€â”€â”€ Portrait Video Controls (below video player) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Portrait Video Controls (below video player) ─────────────────────────
 
 /// Compact video controls bar shown below the video player in portrait mode.
 /// Includes: time labels, scrubber, play/pause, rewind 10s, forward 10s.
@@ -1149,8 +1165,10 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
             // Scrubber row: current time / slider / total time
             Row(
               children: [
-                SizedBox(
-                  width: 40,
+                // A minimum width lets the timestamp grow with the system text
+                // scale while the Expanded slider beside it absorbs the change.
+                ConstrainedBox(
+                  constraints: const BoxConstraints(minWidth: 40),
                   child: Text(
                     _fmt(currentDuration),
                     style: TextStyle(
@@ -1199,8 +1217,9 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 40,
+                // Mirrors the current-time label: minimum width, never fixed.
+                ConstrainedBox(
+                  constraints: const BoxConstraints(minWidth: 40),
                   child: Text(
                     _fmt(totalDuration),
                     textAlign: TextAlign.end,

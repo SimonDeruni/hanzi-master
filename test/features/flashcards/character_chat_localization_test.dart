@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/character_
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 
 class _NoOpTranslationService extends LocalTranslationService {
   _NoOpTranslationService() : super(targetLanguage: 'French');
@@ -82,7 +83,7 @@ void main() {
   testWidgets('origin story chip sends and displays the French prompt',
       (tester) async {
     String? sentMessage;
-    SharedPreferences.setMockInitialValues({'app_locale': 'fr'});
+    SharedPreferences.setMockInitialValues({'app_locale': 'fr', AiConsentSheet.prefKey: true});
     final preferences = await SharedPreferences.getInstance();
     await tester.binding.setSurfaceSize(const Size(1000, 1200));
     addTearDown(() => tester.binding.setSurfaceSize(null));

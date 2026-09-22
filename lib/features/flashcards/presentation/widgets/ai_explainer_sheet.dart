@@ -6,6 +6,8 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class _FollowUpChip {
   final String label;
@@ -30,19 +32,41 @@ class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
   late final List<AnimationController> _controllers;
   late final List<Animation<double>> _anims;
 
+  /// Cached platform motion preference, refreshed in didChangeDependencies.
+  bool _reduceMotion = false;
+
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(3, (i) => AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    )..repeat(reverse: true, period: Duration(milliseconds: 900 + i * 200)));
+    // The repeats are deferred to didChangeDependencies, which is the only
+    // place the platform "Reduce Motion" setting can be read.
+    _controllers = List.generate(
+        3,
+        (i) => AnimationController(
+              vsync: this,
+              duration: ZenMotion.page,
+            ));
     _anims = _controllers.map((c) => Tween(begin: 0.3, end: 1.0).animate(
-      CurvedAnimation(parent: c, curve: Curves.easeInOut),
+      CurvedAnimation(parent: c, curve: ZenMotion.natural),
     )).toList();
-    Future.delayed(const Duration(milliseconds: 0),  () { if (mounted) _controllers[0].forward(); });
-    Future.delayed(const Duration(milliseconds: 180), () { if (mounted) _controllers[1].forward(); });
-    Future.delayed(const Duration(milliseconds: 360), () { if (mounted) _controllers[2].forward(); });
+    Future.delayed(const Duration(milliseconds: 0),  () { if (mounted && !_reduceMotion) _controllers[0].forward(); });
+    Future.delayed(const Duration(milliseconds: 180), () { if (mounted && !_reduceMotion) _controllers[1].forward(); });
+    Future.delayed(const Duration(milliseconds: 360), () { if (mounted && !_reduceMotion) _controllers[2].forward(); });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _reduceMotion = context.reduceMotion;
+    // Reduced motion: the ink dots rest fully visible instead of cycling.
+    for (final c in _controllers) {
+      MotionResolution.resolve(
+        context,
+        controller: c,
+        loop: true,
+        staticValue: 1.0,
+      ).apply();
+    }
   }
 
   @override
@@ -178,8 +202,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 320),
-          curve: Curves.easeOut,
+          duration: ZenMotion.quick,
+          curve: ZenMotion.enter,
         );
       }
     });
@@ -235,16 +259,21 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
         children: [
           const Icon(Icons.auto_awesome, color: Colors.blueAccent, size: 18),
           const SizedBox(width: 8),
-          Text(
-            AppLocalizations.of(context)!.aiGrammarExplanation,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: textColor,
-              letterSpacing: 0.3,
+          // Expanded takes the space the old Spacer reserved, so a longer
+          // translation wraps instead of overflowing the header row.
+          Expanded(
+            child: Text(
+              AppLocalizations.of(context)!.aiGrammarExplanation,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: textColor,
+                letterSpacing: 0.3,
+              ),
             ),
           ),
-          const Spacer(),
           IconButton(
             icon: Icon(Icons.close, size: 20, color: textColor.withValues(alpha: 0.5)),
             onPressed: () => Navigator.pop(context),

@@ -1,10 +1,12 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 /// A Zen & Ink calligraphic pitch contour canvas.
 ///
 /// Draws the target tone contour curve progressively like an authentic
-/// Chinese brush stroke over 750ms with [Curves.easeInOutQuart], and
+/// Chinese brush stroke over 750ms with [ZenMotion.natural], and
 /// overlays the student's tone pitch to show acoustic divergence.
 class CalligraphicPitchContour extends StatefulWidget {
   final int expectedTone; // 1, 2, 3, 4 (or 0/5 for neutral)
@@ -21,7 +23,7 @@ class CalligraphicPitchContour extends StatefulWidget {
     this.height = 130,
     this.isCompact = false,
     this.autoAnimate = true,
-    this.duration = const Duration(milliseconds: 750),
+    this.duration = ZenMotion.page,
   });
 
   @override
@@ -44,7 +46,7 @@ class _CalligraphicPitchContourState extends State<CalligraphicPitchContour>
     );
     _animation = CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeInOutQuart,
+      curve: ZenMotion.natural,
     );
 
     if (widget.autoAnimate) {
@@ -53,11 +55,24 @@ class _CalligraphicPitchContourState extends State<CalligraphicPitchContour>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: present the finished contour instead of tracing it.
+    if (context.reduceMotion && _controller.value != 1.0) {
+      _controller.value = 1.0;
+    }
+  }
+
+  @override
   void didUpdateWidget(covariant CalligraphicPitchContour oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.expectedTone != oldWidget.expectedTone ||
         widget.actualTone != oldWidget.actualTone) {
-      _controller.forward(from: 0.0);
+      if (context.reduceMotion) {
+        _controller.value = 1.0;
+      } else {
+        _controller.forward(from: 0.0);
+      }
     }
   }
 
@@ -69,6 +84,11 @@ class _CalligraphicPitchContourState extends State<CalligraphicPitchContour>
 
   /// Triggers a re-trace animation (e.g. when auditioning tone audio)
   void retrace() {
+    // Reduced motion: snap to the finished contour.
+    if (context.reduceMotion) {
+      _controller.value = 1.0;
+      return;
+    }
     _controller.forward(from: 0.0);
   }
 

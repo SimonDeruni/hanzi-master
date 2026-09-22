@@ -10,7 +10,8 @@ import '../widgets/lesson_steps/drawing_step.dart';
 import '../widgets/lesson_steps/context_step.dart';
 
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class LessonScreen extends ConsumerWidget {
   final Flashcard card;
@@ -39,7 +40,7 @@ class LessonScreen extends ConsumerWidget {
             backgroundColor: Colors.indigoAccent,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            duration: const Duration(seconds: 3),
+            duration: ZenMotion.toast,
           ),
         );
       }
@@ -167,7 +168,7 @@ class LessonScreen extends ConsumerWidget {
           key: const ValueKey("context"),
           card: card,
           onComplete: () {
-            ref.read(audioServiceProvider).playCompleteSfx();
+            ZenSoundService.instance.playBellChime();
             ref.read(progressionProvider.notifier).addInkPoints(10);
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(

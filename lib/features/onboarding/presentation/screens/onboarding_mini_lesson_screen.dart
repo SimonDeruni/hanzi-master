@@ -24,6 +24,7 @@ import 'package:hanzi_master/features/onboarding/presentation/screens/notificati
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 /// A self-contained preview of the app's learning loop. It deliberately does
 /// not write lesson progress, SRS data, streaks, or book progress.
@@ -490,15 +491,15 @@ class _OnboardingMiniLessonScreenState
     if (mounted) {
       Navigator.of(context).pushAndRemoveUntil(
         PageRouteBuilder<void>(
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 350),
+          transitionDuration: ZenMotion.of(context, ZenMotion.page),
+          reverseTransitionDuration: ZenMotion.pageReverse,
           pageBuilder: (context, animation, secondaryAnimation) =>
               const NotificationPermissionScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             final curved = CurvedAnimation(
               parent: animation,
-              curve: Curves.easeOutCubic,
-              reverseCurve: Curves.easeInCubic,
+              curve: ZenMotion.enter,
+              reverseCurve: ZenMotion.natural,
             );
             return FadeTransition(
               opacity: curved,
@@ -567,7 +568,7 @@ class _OnboardingMiniLessonScreenState
                     ),
                     const SizedBox(height: 8),
                     AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 250),
+                      duration: ZenMotion.of(context, ZenMotion.swap),
                       child: Text(
                         titles[_step],
                         key: ValueKey('lesson-title-$_step'),
@@ -587,11 +588,11 @@ class _OnboardingMiniLessonScreenState
               ),
               Expanded(
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 350),
+                  duration: ZenMotion.of(context, ZenMotion.pageReverse),
                   transitionBuilder: (child, animation) {
                     final curvedAnimation = CurvedAnimation(
                       parent: animation,
-                      curve: Curves.easeOutCubic,
+                      curve: ZenMotion.enter,
                     );
                     return FadeTransition(
                       opacity: curvedAnimation,
@@ -631,7 +632,7 @@ class _OnboardingMiniLessonScreenState
         final isReached = index <= _step;
         return Expanded(
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
+            duration: ZenMotion.of(context, ZenMotion.quick),
             height: 6,
             margin: EdgeInsets.only(
               right: index == _titles(AppLocalizations.of(context)!).length - 1
@@ -1253,7 +1254,7 @@ class _OnboardingMiniLessonScreenState
                       borderRadius: BorderRadius.circular(14),
                       onTap: () => setState(() => _selectedToneIndex = index),
                       child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 180),
+                        duration: ZenMotion.of(context, ZenMotion.swap),
                         padding: const EdgeInsets.symmetric(vertical: 11),
                         decoration: BoxDecoration(
                           color: isSelected
@@ -1524,8 +1525,8 @@ class OnboardingSpeakingText extends StatelessWidget {
                     alignment: PlaceholderAlignment.middle,
                     child: AnimatedContainer(
                       key: ValueKey('onboarding_spoken_character_$index'),
-                      duration: const Duration(milliseconds: 150),
-                      curve: Curves.easeInOutQuart,
+                      duration: ZenMotion.of(context, ZenMotion.swap),
+                      curve: ZenMotion.natural,
                       padding: const EdgeInsets.symmetric(horizontal: 1),
                       decoration:
                           const BoxDecoration(color: Colors.transparent),
@@ -1549,8 +1550,8 @@ class OnboardingSpeakingText extends StatelessWidget {
                   alignment: PlaceholderAlignment.middle,
                   child: AnimatedContainer(
                     key: ValueKey('onboarding_spoken_character_$index'),
-                    duration: const Duration(milliseconds: 150),
-                    curve: Curves.easeInOutQuart,
+                    duration: ZenMotion.of(context, ZenMotion.swap),
+                    curve: ZenMotion.natural,
                     transform: isActive
                         ? Matrix4.diagonal3Values(1.06, 1.06, 1.0)
                         : Matrix4.identity(),

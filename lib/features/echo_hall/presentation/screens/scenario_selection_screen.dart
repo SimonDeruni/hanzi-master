@@ -15,12 +15,14 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/features/echo_hall/domain/logic/generated_scenario_parser.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -156,7 +158,7 @@ class _ScenarioSelectionScreenState
     final isSearching = _searchQuery.isNotEmpty;
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: AppTheme.surfaceOf(context),
       body: Column(
         children: [
           if (widget.showBackButton)
@@ -319,23 +321,23 @@ class _ScenarioSelectionScreenState
                 .saveScenario(newScenario);
           }
         },
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+          padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
-            borderRadius: BorderRadius.circular(16),
+            // Book-screen card vocabulary.
+            color: AppTheme.cardBgOf(context),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: const Color(0xFFFFB300)
-                  .withValues(alpha: isDark ? 0.35 : 0.4),
-              width: 1.2,
+              color: isDark
+                  ? Colors.white10
+                  : Colors.black.withValues(alpha: 0.06),
             ),
             boxShadow: [
               BoxShadow(
-                color: (isDark ? Colors.black : const Color(0xFFFFB300))
-                    .withValues(alpha: isDark ? 0.25 : 0.08),
+                color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
                 blurRadius: 10,
-                offset: const Offset(0, 3),
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -344,13 +346,12 @@ class _ScenarioSelectionScreenState
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFB300)
-                      .withValues(alpha: isDark ? 0.2 : 0.12),
+                  color: AppTheme.accentOf(context).withValues(alpha: 0.12),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.auto_awesome,
-                  color: Color(0xFFFFB300),
+                  color: AppTheme.accentOf(context),
                   size: 22,
                 ),
               ),
@@ -364,18 +365,20 @@ class _ScenarioSelectionScreenState
                           'Create Custom Scenario',
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        fontSize: 15.5,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 0.2,
                       ),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 4),
                     Text(
                       AppLocalizations.of(context)?.designCustomAiRoleplay ??
                           'Design your own AI roleplay experience',
                       style: TextStyle(
-                        color: isDark ? Colors.white54 : Colors.black54,
-                        fontSize: 12,
+                        color: isDark
+                            ? Colors.white70
+                            : const Color(0xFF2C2C2E),
+                        fontSize: 14,
+                        height: 1.35,
                       ),
                     ),
                   ],
@@ -399,23 +402,23 @@ class _ScenarioSelectionScreenState
           const EdgeInsets.only(left: 16.0, right: 16.0, top: 4.0, bottom: 8.0),
       child: InkWell(
         onTap: _generateFromDeck,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+          padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1E1E22) : const Color(0xFFFDFCF0),
-            borderRadius: BorderRadius.circular(16),
+            // Book-screen card vocabulary.
+            color: AppTheme.cardBgOf(context),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: const Color(0xFFBA68C8)
-                  .withValues(alpha: isDark ? 0.35 : 0.4),
-              width: 1.2,
+              color: isDark
+                  ? Colors.white10
+                  : Colors.black.withValues(alpha: 0.06),
             ),
             boxShadow: [
               BoxShadow(
-                color: (isDark ? Colors.black : const Color(0xFFBA68C8))
-                    .withValues(alpha: isDark ? 0.25 : 0.08),
+                color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
                 blurRadius: 10,
-                offset: const Offset(0, 3),
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -424,13 +427,12 @@ class _ScenarioSelectionScreenState
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFBA68C8)
-                      .withValues(alpha: isDark ? 0.2 : 0.12),
+                  color: AppTheme.accentOf(context).withValues(alpha: 0.12),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.layers_rounded,
-                  color: Color(0xFFBA68C8),
+                  color: AppTheme.accentOf(context),
                   size: 22,
                 ),
               ),
@@ -444,19 +446,21 @@ class _ScenarioSelectionScreenState
                           'Generate from Deck',
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        fontSize: 15.5,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 0.2,
                       ),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 4),
                     Text(
                       AppLocalizations.of(context)
                               ?.practiceFlashcardVocabulary ??
                           'Practice flashcard vocabulary in a live dialogue',
                       style: TextStyle(
-                        color: isDark ? Colors.white54 : Colors.black54,
-                        fontSize: 12,
+                        color: isDark
+                            ? Colors.white70
+                            : const Color(0xFF2C2C2E),
+                        fontSize: 14,
+                        height: 1.35,
                       ),
                     ),
                   ],
@@ -750,15 +754,19 @@ class _ScenarioSelectionScreenState
                           color: Color(0xFFFFB300),
                         ),
                         const SizedBox(width: 4),
-                        Text(
-                          AppLocalizations.of(context)?.tapToRoleplay ??
-                              "Tap to roleplay",
-                          style: TextStyle(
-                            fontSize: 10.5,
-                            fontWeight: FontWeight.bold,
-                            color: isDark
-                                ? const Color(0xFFFFD54F)
-                                : const Color(0xFFB8860B),
+                        Flexible(
+                          child: Text(
+                            AppLocalizations.of(context)?.tapToRoleplay ??
+                                "Tap to roleplay",
+                            style: TextStyle(
+                              fontSize: 10.5,
+                              fontWeight: FontWeight.bold,
+                              color: isDark
+                                  ? const Color(0xFFFFD54F)
+                                  : const Color(0xFFB8860B),
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const Spacer(),
@@ -812,31 +820,11 @@ class _ScenarioSelectionScreenState
             final isSelected = _selectedCategory == cat;
             return Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: ChoiceChip(
-                label: Text(cat),
-                selected: isSelected,
-                onSelected: (val) {
-                  if (val) setState(() => _selectedCategory = cat);
-                },
-                selectedColor: const Color(0xFFFFB300)
-                    .withValues(alpha: isDark ? 0.25 : 0.15),
-                labelStyle: TextStyle(
-                  color: isSelected
-                      ? (isDark
-                          ? const Color(0xFFFFD54F)
-                          : const Color(0xFF1A1A1B))
-                      : (isDark ? Colors.white70 : Colors.black87),
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  fontSize: 12.5,
-                ),
-                backgroundColor:
-                    isDark ? const Color(0xFF242426) : Colors.white,
-                side: BorderSide(
-                  color: isSelected
-                      ? const Color(0xFFFFB300).withValues(alpha: 0.6)
-                      : (isDark ? Colors.white12 : Colors.black12),
-                ),
-                showCheckmark: false,
+              child: ZenFilterPill(
+                label: cat,
+                isSelected: isSelected,
+                isDark: isDark,
+                onTap: () => setState(() => _selectedCategory = cat),
               ),
             );
           }).toList(),
@@ -933,15 +921,19 @@ class _ScenarioSelectionScreenState
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                          color: Colors.indigo
-                              .withValues(alpha: isDark ? 0.3 : 0.1),
+                          color: (isDark
+                                  ? Colors.amber
+                                  : const Color(0xFF8B0000))
+                              .withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
                           scenario.targetHskLevel == 0
                               ? 'Native'
                               : 'HSK ${scenario.targetHskLevel}',
-                          style: const TextStyle(
-                              color: Colors.indigo,
+                          style: TextStyle(
+                              color: isDark
+                                  ? Colors.amber.shade400
+                                  : const Color(0xFF8B0000),
                               fontSize: 12,
                               fontWeight: FontWeight.bold))),
                   if (scenario.isCustom) ...[
@@ -1072,46 +1064,94 @@ class _ScenarioSelectionScreenState
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(children: [
                   Expanded(
-                      child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.pop(ctx);
-                      HapticsManager.medium();
-                      _startScenario(context, scenario, true);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.primary,
-                        foregroundColor: theme.colorScheme.onPrimary,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        elevation: 0),
-                    icon: const Icon(Icons.mic, size: 22),
-                    label: Text(AppLocalizations.of(context)!.voiceCall,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15)),
-                  )),
+                    child: SizedBox(
+                      height: 52,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(ctx);
+                          HapticsManager.medium();
+                          _startScenario(context, scenario, true);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: isDark
+                              ? Colors.amber.shade700
+                              : const Color(0xFF1A1A1B),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          elevation: 4,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.mic, size: 22),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                AppLocalizations.of(context)!.voiceCall,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  letterSpacing: 0.5,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
-                      child: OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.pop(ctx);
-                      HapticsManager.light();
-                      _startScenario(context, scenario, false);
-                    },
-                    style: OutlinedButton.styleFrom(
-                        foregroundColor: isDark ? Colors.white : Colors.black87,
-                        side: BorderSide(
+                    child: SizedBox(
+                      height: 52,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.pop(ctx);
+                          HapticsManager.light();
+                          _startScenario(context, scenario, false);
+                        },
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: isDark
+                              ? AppTheme.accentDark
+                              : AppTheme.accentLight,
+                          side: BorderSide(
                             color: isDark
-                                ? Colors.white.withValues(alpha: 0.3)
-                                : Colors.black.withValues(alpha: 0.2)),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16))),
-                    icon: const Icon(Icons.chat_bubble_outline, size: 22),
-                    label: Text(AppLocalizations.of(context)!.textChat,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15)),
-                  )),
+                                ? AppTheme.accentDark
+                                : AppTheme.accentLight,
+                            width: 1.3,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.chat_bubble_outline, size: 22),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                AppLocalizations.of(context)!.textChat,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  letterSpacing: 0.5,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ])),
             const SizedBox(height: 12),
             TextButton.icon(
@@ -1121,10 +1161,25 @@ class _ScenarioSelectionScreenState
               },
               icon: Icon(isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                   size: 20,
-                  color: isBookmarked ? theme.colorScheme.primary : null),
-              label: Text(isBookmarked
-                  ? AppLocalizations.of(context)!.removeFromSaved
-                  : AppLocalizations.of(context)!.saveScenario),
+                  color: isBookmarked
+                      ? (isDark
+                          ? const Color(0xFFFFD54F)
+                          : const Color(0xFFD4AF37))
+                      : null),
+              label: Text(
+                isBookmarked
+                    ? AppLocalizations.of(context)!.removeFromSaved
+                    : AppLocalizations.of(context)!.saveScenario,
+                style: TextStyle(
+                  color: isBookmarked
+                      ? (isDark
+                          ? const Color(0xFFFFD54F)
+                          : const Color(0xFFD4AF37))
+                      : null,
+                  fontWeight:
+                      isBookmarked ? FontWeight.bold : FontWeight.normal,
+                ),
+              ),
             ),
             const SizedBox(height: 16),
           ]),

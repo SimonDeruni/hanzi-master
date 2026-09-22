@@ -8,6 +8,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 /// Displays all recent uploads from a specific YouTube channel.
 class ChannelVideosScreen extends ConsumerStatefulWidget {
@@ -148,7 +149,7 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
         elevation: 0,
         iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
         title: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 250),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           child: Row(
             key: ValueKey(_currentChannelId),
             children: [
@@ -242,7 +243,7 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
         final localizedPoints = snapshot.data ?? points;
 
         return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 250),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           child: Container(
             key: ValueKey('$_currentChannelId-$localeCode'),
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -371,7 +372,7 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
+                          duration: ZenMotion.of(context, ZenMotion.swap),
                           padding: const EdgeInsets.all(2),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,

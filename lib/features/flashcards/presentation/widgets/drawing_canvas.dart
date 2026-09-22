@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
 
 
 class DrawingCanvas extends StatefulWidget {
@@ -266,6 +267,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     setState(() => _gradingResult = result.score * 100.0);
     if (result.isMatch) {
       HapticsManager.success();
+      ZenSoundService.instance.playBrushStroke();
       final currentPoints = List<Offset?>.from(_userPoints);
       setState(() {
         _currentStrokeComplete = true;

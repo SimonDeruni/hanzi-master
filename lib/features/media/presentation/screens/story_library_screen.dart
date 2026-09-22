@@ -17,6 +17,8 @@ import 'package:hanzi_master/features/reading/presentation/screens/book_detail_s
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -150,7 +152,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         dynastyOrEra: 'Tang Dynasty',
         hskLevel: story.hskLevel,
         totalChapters: 1,
-        coverEmoji: 'ðŸ“œ',
+        coverEmoji: '📜',
         tags: story.keywords.isNotEmpty
             ? story.keywords
             : const ['Poetry', 'Classical', 'Verse'],
@@ -252,7 +254,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                 ),
                 child: Row(
                   children: [
-                    const Text('ðŸ›ï¸', style: TextStyle(fontSize: 28)),
+                    const Text('🏛️', style: TextStyle(fontSize: 28)),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -288,7 +290,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           Expanded(
             child: _isLoading && _allStories.isEmpty
                 ? const Center(
-                    child: CircularProgressIndicator(color: Color(0xFF8B0000)))
+                    child: ZenLoader(color: Color(0xFF8B0000)))
                 : RefreshIndicator(
                     onRefresh: _loadStories,
                     child: _buildLibraryContent(),
@@ -363,23 +365,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             children: _categories
                 .map((cat) => Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: ChoiceChip(
-                        label: Text(cat),
-                        selected: _selectedCategory == cat,
-                        onSelected: (selected) {
-                          if (selected) setState(() => _selectedCategory = cat);
-                        },
-                        selectedColor:
-                            isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        labelStyle: TextStyle(
-                          color: _selectedCategory == cat
-                              ? (isDark
-                                  ? const Color(0xFF1A1A1B)
-                                  : Colors.white)
-                              : (isDark
-                                  ? Colors.white70
-                                  : const Color(0xFF1A1A1B)),
-                        ),
+                      child: ZenFilterPill(
+                        label: cat,
+                        isSelected: _selectedCategory == cat,
+                        isDark: isDark,
+                        onTap: () => setState(() => _selectedCategory = cat),
                       ),
                     ))
                 .toList(),
@@ -392,29 +382,16 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             children: _hskLevels
                 .map((level) => Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: ChoiceChip(
-                        label: Text(level == -1
+                      child: ZenFilterPill(
+                        label: level == -1
                             ? 'All HSK'
                             : (level == 0
                                 ? AppLocalizations.of(context)!.native
-                                : 'HSK $level')),
-                        selected: _selectedHskLevel == level,
-                        onSelected: (selected) {
-                          if (selected) {
-                            setState(() => _selectedHskLevel = level);
-                          }
-                        },
-                        selectedColor:
-                            isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        labelStyle: TextStyle(
-                          color: _selectedHskLevel == level
-                              ? (isDark
-                                  ? const Color(0xFF1A1A1B)
-                                  : Colors.white)
-                              : (isDark
-                                  ? Colors.white70
-                                  : const Color(0xFF1A1A1B)),
-                        ),
+                                : 'HSK $level'),
+                        isSelected: _selectedHskLevel == level,
+                        isDark: isDark,
+                        onTap: () =>
+                            setState(() => _selectedHskLevel = level),
                       ),
                     ))
                 .toList(),

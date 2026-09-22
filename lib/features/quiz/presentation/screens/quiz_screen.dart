@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import '../../domain/entities/quiz_question.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class QuizScreen extends StatefulWidget {
   final List<Flashcard> availableCards;
@@ -192,7 +193,7 @@ class _QuizScreenState extends State<QuizScreen> {
       child: InkWell(
         onTap: () => _handleAnswer(option),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration: ZenMotion.of(context, ZenMotion.quick),
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
           decoration: BoxDecoration(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/progression_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 class InkStoneWidget extends ConsumerStatefulWidget {
   const InkStoneWidget({super.key});
@@ -18,7 +20,7 @@ class _InkStoneWidgetState extends ConsumerState<InkStoneWidget> with SingleTick
   void initState() {
     super.initState();
     _shakeController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 400));
+        vsync: this, duration: ZenMotion.entrance);
     _shakeAnimation = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 0.05), weight: 1),
       TweenSequenceItem(tween: Tween(begin: 0.05, end: -0.05), weight: 2),
@@ -39,7 +41,8 @@ class _InkStoneWidgetState extends ConsumerState<InkStoneWidget> with SingleTick
 
     // Trigger shake if points increased
     if (progression.inkPoints > _lastPoints && _lastPoints != 0) {
-      _shakeController.forward(from: 0.0);
+      // Reduced motion: the award lands without the celebratory shake.
+      if (!context.reduceMotion) _shakeController.forward(from: 0.0);
     }
     _lastPoints = progression.inkPoints;
 

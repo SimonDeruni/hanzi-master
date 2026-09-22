@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
   const AiDeckGeneratorSheet({super.key});
@@ -515,7 +516,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
       child: GestureDetector(
         onTap: () => setState(() => _difficultyIndex = index),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
             color: isSelected

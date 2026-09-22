@@ -53,6 +53,29 @@ class DailyDiscoveryRepository {
     'UCs_h_miBJ9r8-7fRH7VAWZw': 'Alin Food Walk',
   };
 
+  /// Upgrades a YouTube thumbnail to its highest available rendition.
+  ///
+  /// `hqdefault`/`0.jpg` are only 480x360, which pixelates in a full-bleed
+  /// header. `maxresdefault` is 1280x720 and is verified to exist before use,
+  /// falling back to `hqdefault` when the upload has no HD rendition.
+  static String _highResYoutubeImage(String videoId) =>
+      'https://img.youtube.com/vi/$videoId/maxresdefault.jpg';
+
+  static String _standardYoutubeImage(String videoId) =>
+      'https://img.youtube.com/vi/$videoId/hqdefault.jpg';
+
+  /// Returns true when the given YouTube thumbnail URL actually exists.
+  Future<bool> _youtubeThumbExists(String url) async {
+    try {
+      final head = await _client
+          .head(Uri.parse(url))
+          .timeout(const Duration(seconds: 3));
+      return head.statusCode == 200;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<({DailyMediaItem item, String videoId})> getDailyVideo({
     required List<String> shownVideoIds,
   }) async {
@@ -79,17 +102,22 @@ class DailyDiscoveryRepository {
     final pool = unseen.isNotEmpty ? unseen : candidates;
 
     for (final candidate in pool) {
-      final thumbUri = Uri.parse('https://img.youtube.com/vi/${candidate.videoId}/hqdefault.jpg');
+      final hdUrl = _highResYoutubeImage(candidate.videoId);
+      final sdUrl = _standardYoutubeImage(candidate.videoId);
       try {
-        final head = await _client.head(thumbUri).timeout(const Duration(seconds: 3));
-        if (head.statusCode != 200) continue;
+        // Prefer the 1280x720 rendition so the header is not pixelated; fall
+        // back to 480x360 when the upload has no HD thumbnail.
+        final hasHd = await _youtubeThumbExists(hdUrl);
+        final imageUrl = hasHd ? hdUrl : sdUrl;
+
+        if (!hasHd && !await _youtubeThumbExists(sdUrl)) continue;
 
         return (
           item: DailyMediaItem(
             title: candidate.title,
             subtitle: candidate.channelName,
             url: 'https://www.youtube.com/watch?v=${candidate.videoId}',
-            imageUrl: thumbUri.toString(),
+            imageUrl: imageUrl,
             tag: 'VIDEO OF THE DAY',
           ),
           videoId: candidate.videoId,
@@ -132,7 +160,7 @@ class DailyDiscoveryRepository {
       title: "李子柒 Liziqi: 大蒜的一生",
       subtitle: "The Life of Garlic - Traditional Chinese Life",
       url: "https://www.youtube.com/watch?v=gcShBujgsIQ",
-      imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/maxresdefault.jpg",
       tag: "2 MIN CULTURAL CONTEXT",
     ),
 
@@ -140,21 +168,21 @@ class DailyDiscoveryRepository {
       title: "Grace Mandarin: 50 Phrases",
       subtitle: "Essential Chinese Phrases for Beginners",
       url: "https://www.youtube.com/watch?v=vV0222xP9uM",
-      imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/vV0222xP9uM/hqdefault.jpg",
       tag: "ESSENTIALS",
     ),
     DailyMediaItem(
       title: "李子柒 Liziqi: 竹子家具",
       subtitle: "Making Bamboo Furniture",
       url: "https://www.youtube.com/watch?v=Yf0vP1tN8-w",
-      imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/Yf0vP1tN8-w/hqdefault.jpg",
       tag: "2 MIN CULTURAL CONTEXT",
     ),
     DailyMediaItem(
       title: "Peppa Pig Chinese: 泥坑",
       subtitle: "Muddy Puddles - Beginner Friendly",
       url: "https://www.youtube.com/watch?v=LqAObK1tE9w",
-      imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/hqdefault.jpg",
       tag: "LISTENING PRACTICE",
     ),
 
@@ -162,42 +190,42 @@ class DailyDiscoveryRepository {
       title: "Mandarin Corner: 300 Verbs",
       subtitle: "Most Common Chinese Verbs",
       url: "https://www.youtube.com/watch?v=_p-h-VdM-s0",
-      imageUrl: "https://img.youtube.com/vi/_p-h-VdM-s0/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/_p-h-VdM-s0/hqdefault.jpg",
       tag: "VIDEO OF THE DAY",
     ),
     DailyMediaItem(
       title: "Grace Mandarin: Order Food",
       subtitle: "How to order food in a Chinese restaurant",
       url: "https://www.youtube.com/watch?v=b4O0Z4qD-x8",
-      imageUrl: "https://img.youtube.com/vi/b4O0Z4qD-x8/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/b4O0Z4qD-x8/hqdefault.jpg",
       tag: "SOCIAL SKILLS",
     ),
     DailyMediaItem(
       title: "李子柒 Liziqi: 绢花",
       subtitle: "Silk Flowers - Traditional Craft",
       url: "https://www.youtube.com/watch?v=pY-5X9Z5O3E",
-      imageUrl: "https://img.youtube.com/vi/pY-5X9Z5O3E/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/pY-5X9Z5O3E/hqdefault.jpg",
       tag: "CULTURAL CONTEXT",
     ),
     DailyMediaItem(
       title: "Mandarin Corner: 学中文 看病",
       subtitle: "Going to the Doctor - Real Life Conversation",
       url: "https://www.youtube.com/watch?v=_cG3Vw1LhQ4",
-      imageUrl: "https://img.youtube.com/vi/_cG3Vw1LhQ4/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/_cG3Vw1LhQ4/hqdefault.jpg",
       tag: "REAL LIFE",
     ),
     DailyMediaItem(
       title: "Peppa Pig Chinese: 躲猫猫",
       subtitle: "Hide and Seek - Beginner Friendly",
       url: "https://www.youtube.com/watch?v=hB9K3G0mR3g",
-      imageUrl: "https://img.youtube.com/vi/hB9K3G0mR3g/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/hB9K3G0mR3g/hqdefault.jpg",
       tag: "LISTENING PRACTICE",
     ),
     DailyMediaItem(
       title: "小Lin说: 为什么GDP增长6%",
       subtitle: "Why 6% GDP Growth - Easy Chinese Economics",
       url: "https://www.youtube.com/watch?v=J0FvB1k9O8w",
-      imageUrl: "https://img.youtube.com/vi/J0FvB1k9O8w/0.jpg",
+      imageUrl: "https://img.youtube.com/vi/J0FvB1k9O8w/hqdefault.jpg",
       tag: "REAL WORLD",
     ),
   ];
@@ -292,6 +320,21 @@ class DailyDiscoveryRepository {
         uri.path.contains('/zhongwen/articles/');
   }
 
+  /// Upscales a BBC ichef image URL to a high-resolution rendition.
+  ///
+  /// The RSS feed advertises `media:thumbnail` at `width="240"`, which renders
+  /// visibly pixelated in the full-bleed article header. The ichef CDN is
+  /// width-addressable (`/ace/ws/{width}/...`), so we can request a genuinely
+  /// larger source image instead of upscaling a 240px bitmap.
+  static String _highResBbcImage(String url, {int width = 1024}) {
+    if (!url.contains('ichef.bbci.co.uk')) return url;
+    // Handles /ace/ws/240/, /ace/ws/240/cpsprodpb/, and legacy /news/ws/240/.
+    return url.replaceFirstMapped(
+      RegExp(r'(/(?:ace|news)/ws/)(\d+)(/)'),
+      (match) => '${match.group(1)}$width${match.group(3)}',
+    );
+  }
+
   DailyMediaItem _buildBbcArticle({
     required String title,
     required String link,
@@ -301,8 +344,24 @@ class DailyDiscoveryRepository {
       title: title,
       subtitle: 'BBC 中文',
       url: link.replaceFirst('/trad', '/simp'),
-      imageUrl: imageUrl ?? _bbcLogoUrl,
+      imageUrl: _highResBbcImage(imageUrl ?? _bbcLogoUrl),
       tag: 'ARTICLE OF THE DAY',
+    );
+  }
+
+  /// Test seam for [_buildBbcArticle] so the image-upscaling contract can be
+  /// verified without performing a network round trip.
+  @visibleForTesting
+  static DailyMediaItem debugBuildBbcArticle({
+    required String title,
+    required String link,
+    String? imageUrl,
+  }) {
+    final repo = DailyDiscoveryRepository();
+    return repo._buildBbcArticle(
+      title: title,
+      link: link,
+      imageUrl: imageUrl,
     );
   }
 }

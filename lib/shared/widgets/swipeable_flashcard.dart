@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 class SwipeableFlashcard extends StatefulWidget {
   final Widget child;
@@ -37,15 +40,15 @@ class _SwipeableFlashcardState extends State<SwipeableFlashcard>
     super.initState();
     _stampController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 130),
+      duration: ZenMotion.tap,
     );
     _stampScaleAnimation = Tween<double>(begin: 1.25, end: 1.0).animate(
-      CurvedAnimation(parent: _stampController, curve: Curves.easeOutBack),
+      CurvedAnimation(parent: _stampController, curve: ZenMotion.arrival),
     );
 
     _slideController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 200),
+      duration: ZenMotion.swap,
     );
     _slideAnimation = Tween<Offset>(begin: Offset.zero, end: Offset.zero)
         .animate(_slideController);
@@ -103,8 +106,21 @@ class _SwipeableFlashcardState extends State<SwipeableFlashcard>
       _isAnimatingStamp = true;
       _activeSeal = HankoSealData.fromGrade(resolvedGrade);
 
+      // Reduced motion: register the grade instantly instead of stamping a seal
+      // and sliding the card off screen.
+      if (context.reduceMotion) {
+        setState(() {
+          _isAnimatingStamp = false;
+          _activeSeal = null;
+          _panOffset = Offset.zero;
+        });
+        widget.onSwiped(resolvedGrade);
+        return;
+      }
+
       // Phase 1: Stamp impact animation (1.25 -> 1.0 with haptic tap)
       await _stampController.forward(from: 0.0);
+      ZenSoundService.instance.playSealStamp();
       await HapticsManager.medium();
 
       // Brief tactile pause so user perceives the stamped seal
@@ -119,7 +135,7 @@ class _SwipeableFlashcardState extends State<SwipeableFlashcard>
       ).animate(
         CurvedAnimation(
           parent: _slideController,
-          curve: Curves.easeInOutQuart,
+          curve: ZenMotion.natural,
         ),
       );
 

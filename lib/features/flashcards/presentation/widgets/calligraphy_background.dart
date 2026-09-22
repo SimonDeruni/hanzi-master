@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 
 class CalligraphyBackground extends StatelessWidget {
   final Widget child;
@@ -7,14 +8,14 @@ class CalligraphyBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: isDark 
-            ? const Color(0xFF1A1A1A) 
-            : const Color(0xFFFDF5E6), // Old Lace / Parchment
+        // Canonical surface: identical to the app bar / nav bar so there is no
+        // visible seam between the header and the body.
+        color: AppTheme.surfaceOf(context),
       ),
       child: Stack(
         children: [

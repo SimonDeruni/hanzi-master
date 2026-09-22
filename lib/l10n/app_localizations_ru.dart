@@ -1194,7 +1194,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'Поддержка и обратная связь';
+  String get supportAndFeedback => 'Поддержка и отзывы';
 
   @override
   String get reportBug => 'Сообщить об ошибке';
@@ -2182,7 +2182,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mastery => 'Уровень освоения';
 
   @override
-  String get maybeLater => 'Позже';
+  String get maybeLater => 'Может позже';
 
   @override
   String get memes => 'Мемы и тренды';
@@ -12570,6 +12570,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get beginFirstLesson => 'Начать первый урок';
 
   @override
+  String get exploreLibraryDirectly => 'Перейти сразу в библиотеку';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'ВАШ ПЕРВЫЙ УРОК  •  $current ИЗ $total';
   }
@@ -13044,4 +13047,75 @@ class AppLocalizationsRu extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'Затем $price / $period. Отмена в любое время в Настройках.';
   }
+
+  @override
+  String get deckLibraryTitle => 'Библиотека колод';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'Отобранные коллекции по HSK, культуре, спорту и учёбе';
+
+  @override
+  String get downloadOfficialDecks =>
+      'Скачать официальные колоды HSK и тематические';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return 'Выбрано $selected из $total слов';
+  }
+
+  @override
+  String get comparisonLabel => 'СРАВНЕНИЕ';
+
+  @override
+  String get ambientSoundscape => 'Фоновые звуки';
+
+  @override
+  String get ambientSoundscapeDesc =>
+      'Успокаивающая атмосфера для чтения и прослушивания';
+
+  @override
+  String get ambientSoundscapeOff => 'Выключено (Без звука)';
+
+  @override
+  String get soundscapeCourtyardRain => 'Дождь во внутреннем дворике';
+
+  @override
+  String get soundscapeGuqinWind => 'Гуцинь и бамбуковый ветер';
+
+  @override
+  String get soundscapeMidnightZen => 'Ночной дзен';
+
+  @override
+  String get ambientVolume => 'Громкость фона';
+
+  @override
+  String get rateSinoSpark => 'Оценить SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'Поделитесь мнением в App Store';
+
+  @override
+  String get sendFeedback => 'Отправить отзыв';
+
+  @override
+  String get sendFeedbackDesc =>
+      'Помогите нам стать лучше или сообщите об ошибке';
+
+  @override
+  String get enjoyingAppTitle => 'Нравится SinoSpark?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'Как продвигается ваше изучение китайского языка?';
+
+  @override
+  String get ratingLovingIt => 'Да, очень нравится!';
+
+  @override
+  String get ratingCouldBeBetter => 'Могло быть лучше';
+
+  @override
+  String get dictionarySearchFailed =>
+      'Не удалось выполнить поиск по словарю. Попробуйте ещё раз.';
 }

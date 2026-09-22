@@ -4,6 +4,7 @@ import 'package:hanzi_master/features/flashcards/data/services/dictionary_expans
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/dictionary_expansion_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_expand.dart';
 
 enum DictionaryExpansionPresentation { compact, full }
 
@@ -297,30 +298,34 @@ class _DictionaryExpansionTextState extends State<DictionaryExpansionText> {
   @override
   Widget build(BuildContext context) {
     final shouldOfferExpansion = widget.compact && widget.text.length > 140;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.text,
-          key: const ValueKey('dictionary-expansion-text'),
-          maxLines: widget.compact && !_expanded ? 2 : null,
-          overflow: widget.compact && !_expanded
-              ? TextOverflow.ellipsis
-              : TextOverflow.visible,
-          style: const TextStyle(fontSize: 14, height: 1.4),
-        ),
-        if (shouldOfferExpansion)
-          TextButton(
-            key: const ValueKey('dictionary-expansion-toggle'),
-            onPressed: () => setState(() => _expanded = !_expanded),
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.only(top: 4),
-              minimumSize: Size.zero,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
-            child: Text(_expanded ? 'Show less' : 'Show more'),
+    // ZenExpand eases the height change so "Show more" opens the panel instead
+    // of snapping it to its new size in a single frame.
+    return ZenExpand(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.text,
+            key: const ValueKey('dictionary-expansion-text'),
+            maxLines: widget.compact && !_expanded ? 2 : null,
+            overflow: widget.compact && !_expanded
+                ? TextOverflow.ellipsis
+                : TextOverflow.visible,
+            style: const TextStyle(fontSize: 14, height: 1.4),
           ),
-      ],
+          if (shouldOfferExpansion)
+            TextButton(
+              key: const ValueKey('dictionary-expansion-toggle'),
+              onPressed: () => setState(() => _expanded = !_expanded),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.only(top: 4),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(_expanded ? 'Show less' : 'Show more'),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/auth/presentation/providers/auth_controlle
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/delete_account_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -22,13 +23,14 @@ class ProfileScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor: AppTheme.surfaceOf(context),
       appBar: AppBar(
         title: Text(l10n.account),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: AppTheme.surfaceOf(context),
         iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
       ),
       body: ListView(
@@ -56,13 +58,14 @@ class ProfileScreen extends ConsumerWidget {
                 icon: Icons.workspace_premium_outlined,
                 title: l10n.sinospark_premium,
                 subtitle: l10n.youAreAPremiumMember,
-                accentColor: const Color(0xFFB7791F),
-                trailing: const Icon(
+                accentColor: AppTheme.accentOf(context),
+                // Status row: no destination, so it renders without a chevron or
+                // press ripple instead of looking like a dead button.
+                trailing: Icon(
                   Icons.check_circle_outline_rounded,
-                  color: Color(0xFFB7791F),
+                  color: AppTheme.accentOf(context),
                   size: 20,
                 ),
-                onTap: () {},
               ),
               _buildDivider(),
               _buildAccountTile(
@@ -173,13 +176,16 @@ class ProfileScreen extends ConsumerWidget {
     required IconData icon,
     required String title,
     required String subtitle,
-    required VoidCallback onTap,
+    VoidCallback? onTap,
     Color? accentColor,
     Widget? trailing,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final color =
-        accentColor ?? (isDark ? Colors.white70 : const Color(0xFF3F51B5));
+    // Only the ICON is tinted. The label always uses the on-surface ink colour so
+    // gold/red rows keep readable titles.
+    final iconColor = accentColor ?? AppTheme.accentOf(context);
+    final titleColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final isInteractive = onTap != null;
 
     return ListTile(
       key: key,
@@ -188,29 +194,33 @@ class ProfileScreen extends ConsumerWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(12),
+          color: iconColor.withValues(alpha: 0.12),
+          shape: BoxShape.circle,
         ),
-        child: Icon(icon, color: color, size: 22),
+        child: Icon(icon, color: iconColor, size: 22),
       ),
       title: Text(
         title,
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: accentColor,
+              color: titleColor,
               fontWeight: FontWeight.w600,
             ),
       ),
       subtitle: Text(
         subtitle,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark ? Colors.white54 : Colors.black54,
+              color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
             ),
       ),
+      // A row without a destination is a status row: no chevron, no ripple, so
+      // it never reads as a broken button.
       trailing: trailing ??
-          Icon(
-            Icons.chevron_right_rounded,
-            color: accentColor ?? (isDark ? Colors.white38 : Colors.black38),
-          ),
+          (isInteractive
+              ? Icon(
+                  Icons.chevron_right_rounded,
+                  color: isDark ? Colors.white38 : Colors.black38,
+                )
+              : null),
       onTap: onTap,
     );
   }
@@ -220,16 +230,24 @@ class ProfileScreen extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF252526) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        // Book-screen card vocabulary.
+        color: AppTheme.cardBgOf(context),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.08)
-              : const Color(0xFF1A1A1B).withValues(alpha: 0.08),
+              ? Colors.white10
+              : Colors.black.withValues(alpha: 0.06),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(18),
         child: Column(children: children),
       ),
     );
@@ -244,16 +262,23 @@ class ProfileScreen extends ConsumerWidget {
     final user = ref.watch(currentUserProvider);
     final l10n = AppLocalizations.of(context)!;
     final borderColor = isDark
-        ? Colors.white.withValues(alpha: 0.08)
-        : const Color(0xFF1A1A1B).withValues(alpha: 0.08);
+        ? Colors.white10
+        : Colors.black.withValues(alpha: 0.06);
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF252526) : Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        color: AppTheme.cardBgOf(context),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(color: borderColor),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -265,22 +290,22 @@ class ProfileScreen extends ConsumerWidget {
                 height: 56,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF3F51B5).withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(16),
+                  color: AppTheme.accentOf(context).withValues(alpha: 0.12),
+                  shape: BoxShape.circle,
                 ),
                 child: user?.photoURL != null
                     ? Image.network(
                         user!.photoURL!,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const Icon(
+                        errorBuilder: (_, __, ___) => Icon(
                           Icons.person_outline_rounded,
-                          color: Color(0xFF3F51B5),
+                          color: AppTheme.accentOf(context),
                           size: 28,
                         ),
                       )
-                    : const Icon(
+                    : Icon(
                         Icons.person_outline_rounded,
-                        color: Color(0xFF3F51B5),
+                        color: AppTheme.accentOf(context),
                         size: 28,
                       ),
               ),
@@ -316,44 +341,81 @@ class ProfileScreen extends ConsumerWidget {
           if (user == null)
             SizedBox(
               width: double.infinity,
-              height: 48,
-              child: FilledButton.icon(
+              height: 52,
+              child: ElevatedButton(
                 onPressed: () => Navigator.push(
                   context,
                   SwipeBackPageRoute(builder: (context) => const AuthScreen()),
                 ),
-                style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFF3F51B5),
+                style: ElevatedButton.styleFrom(
+                  // Book-screen primary button vocabulary.
+                  backgroundColor:
+                      isDark ? Colors.amber.shade700 : const Color(0xFF1A1A1B),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(16),
                   ),
+                  elevation: 4,
                 ),
-                icon: const Icon(Icons.login_rounded, size: 20),
-                label: Text(
-                  l10n.createAccountToSyncProgress,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.login_rounded, size: 20),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        l10n.createAccountToSyncProgress,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             )
           else
             SizedBox(
               width: double.infinity,
-              height: 48,
-              child: OutlinedButton.icon(
+              height: 52,
+              child: OutlinedButton(
                 onPressed: () => ref.read(authControllerProvider).signOut(),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor:
-                      isDark ? Colors.white70 : const Color(0xFF1A1A1B),
-                  side: BorderSide(color: borderColor),
+                  foregroundColor: AppTheme.accentOf(context),
+                  side: BorderSide(
+                    color: isDark
+                        ? AppTheme.accentDark
+                        : AppTheme.accentLight,
+                    width: 1.3,
+                  ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                icon: const Icon(Icons.logout_rounded, size: 20),
-                label: Text(
-                  l10n.signOut,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.logout_rounded, size: 20),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        l10n.signOut,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

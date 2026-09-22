@@ -10,7 +10,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/config/app_features.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class MediaHubScreen extends ConsumerWidget {
   final bool showBackButton;
@@ -26,17 +28,27 @@ class MediaHubScreen extends ConsumerWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            // 1. WEB EXPLORER - Prominent Hero Card
+            // 1. Daily Discovery Carousel (Article of the Day) — highest element
+            const SliverPadding(
+              padding: EdgeInsets.only(top: 16),
+              sliver: SliverToBoxAdapter(
+                child: _DailyDiscoveryCarousel(),
+              ),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+            // 2. WEB EXPLORER - Prominent Hero Card
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
                 child: _buildWebExplorerHeroCard(context),
               ),
             ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
-            // 2. Quick Bookmarks
+            // 3. Quick Bookmarks
             SliverToBoxAdapter(
               child: Padding(
                 padding:
@@ -83,16 +95,6 @@ class MediaHubScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-              ),
-            ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // 3. Daily Discovery Carousel (Article of the Day)
-            const SliverPadding(
-              padding: EdgeInsets.zero,
-              sliver: SliverToBoxAdapter(
-                child: _DailyDiscoveryCarousel(),
               ),
             ),
 
@@ -263,25 +265,6 @@ class MediaHubScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(24),
           child: Stack(
             children: [
-              // Subtle background calligraphic Hanzi watermark
-              const Positioned(
-                right: -12,
-                bottom: -28,
-                child: Opacity(
-                  opacity: 0.06,
-                  child: Text(
-                    'ç½‘',
-                    style: TextStyle(
-                      fontSize: 160,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'NotoSerifSC',
-                      color: Colors.white,
-                      height: 1,
-                    ),
-                  ),
-                ),
-              ),
-
               // Ambient Gold Glow
               Positioned(
                 top: -40,
@@ -367,32 +350,15 @@ class MediaHubScreen extends ConsumerWidget {
 
                     const SizedBox(height: 18),
 
-                    // Headline & source
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.webExplorer,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          '网页探索',
-                          style: TextStyle(
-                            color:
-                                const Color(0xFFFFD54F).withValues(alpha: 0.8),
-                            fontSize: 14,
-                            fontFamily: 'NotoSerifSC',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                    // Headline
+                    Text(
+                      AppLocalizations.of(context)!.webExplorer,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.2,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -662,7 +628,7 @@ class _DailyDiscoveryCarouselState
             },
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: ZenLoader()),
         error: (err, stack) => Center(
           child: Text(AppLocalizations.of(context)!.failedToLoadDailyContent),
         ),
@@ -676,24 +642,29 @@ class _DailyDiscoveryCarouselState
     required bool isCompleted,
     required VoidCallback onTap,
   }) {
-    final theme = Theme.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
-          color: Colors.black87,
+          borderRadius: BorderRadius.circular(18),
+          color: AppTheme.cardBgOf(context),
+          border: Border.all(
+            color: isDark
+                ? Colors.white10
+                : Colors.black.withValues(alpha: 0.06),
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
+              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(18),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -732,10 +703,18 @@ class _DailyDiscoveryCarouselState
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 6),
+                          horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(8),
+                        // Book-screen badge vocabulary.
+                        color: isCompleted
+                            ? Colors.green.withValues(alpha: 0.12)
+                            : AppTheme.accentFire.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isCompleted
+                              ? Colors.green.withValues(alpha: 0.3)
+                              : AppTheme.accentFire.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Text(
                         isCompleted
@@ -748,11 +727,11 @@ class _DailyDiscoveryCarouselState
                                 _ => item.tag,
                               },
                         style: TextStyle(
-                          color:
-                              isCompleted ? Colors.greenAccent : Colors.white,
+                          color: isCompleted
+                              ? Colors.greenAccent
+                              : AppTheme.accentFire,
                           fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                          letterSpacing: 1.0,
+                          fontSize: 11,
                         ),
                       ),
                     ),
@@ -763,7 +742,7 @@ class _DailyDiscoveryCarouselState
                           : item.title,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         height: 1.2,
                       ),
@@ -777,7 +756,7 @@ class _DailyDiscoveryCarouselState
                             item.tag == "VIDEO OF THE DAY"
                                 ? Icons.play_circle_fill
                                 : Icons.article,
-                            color: Colors.white.withValues(alpha: 0.8),
+                            color: Colors.white.withValues(alpha: 0.7),
                             size: 16),
                         const SizedBox(width: 6),
                         Expanded(
@@ -786,9 +765,9 @@ class _DailyDiscoveryCarouselState
                                 ? item.title
                                 : item.subtitle,
                             style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.6),
-                              fontSize: 13,
-                              fontStyle: FontStyle.italic,
+                              color: Colors.white.withValues(alpha: 0.7),
+                              fontSize: 14,
+                              height: 1.35,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -807,16 +786,17 @@ class _DailyDiscoveryCarouselState
   }
 
   Widget _buildCardPlaceholder(DailyMediaItem item) {
-    // Elegant warm dark slate gradient with soft icon backdrop matching Zen & Ink aesthetic
+    // Warm dark slate gradient with soft icon backdrop matching the Zen & Ink
+    // card palette used across the hub.
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF2E3440),
-            Color(0xFF1E222A),
-            Color(0xFF181A20),
+            Color(0xFF3A3229),
+            Color(0xFF262220),
+            Color(0xFF1E1E22),
           ],
         ),
       ),

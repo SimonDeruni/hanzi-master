@@ -6,6 +6,7 @@ import 'package:hanzi_master/core/services/notification_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_session_summary.dart';
 import 'package:hanzi_master/features/progression/data/study_progress_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
 
 class SessionSummaryScreen extends ConsumerStatefulWidget {
   const SessionSummaryScreen({super.key, required this.summary});
@@ -23,6 +24,7 @@ class _SessionSummaryScreenState extends ConsumerState<SessionSummaryScreen> {
   @override
   void initState() {
     super.initState();
+    ZenSoundService.instance.playBellChime();
     Future<void>(() async {
       try {
         final wasAdded = await ref
@@ -177,18 +179,42 @@ class _RatingBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
-        child: Row(children: [
-          SizedBox(width: 60, child: Text(label)),
-          Expanded(
-            child: LinearProgressIndicator(
-              value: count == 0 ? 0 : (count / 10).clamp(0, 1),
-              color: color,
-              backgroundColor: color.withValues(alpha: .12),
-              borderRadius: BorderRadius.circular(8),
-              minHeight: 8,
+        // A Table lets the localized label column grow with the language while
+        // the bar absorbs the remaining width - no fixed pixel widths, so the
+        // labels can never overflow in German, Russian, Vietnamese, etc.
+        child: Table(
+          columnWidths: const {
+            0: IntrinsicColumnWidth(), // label sizes itself to the translation
+            1: FlexColumnWidth(), // bar takes whatever space is left
+            2: IntrinsicColumnWidth(), // count sizes itself
+          },
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          children: [
+            TableRow(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  // Two lines are allowed before truncating, never overflow.
+                  child: Text(
+                    label,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: LinearProgressIndicator(
+                    value: count == 0 ? 0 : (count / 10).clamp(0, 1),
+                    color: color,
+                    backgroundColor: color.withValues(alpha: .12),
+                    borderRadius: BorderRadius.circular(8),
+                    minHeight: 8,
+                  ),
+                ),
+                Text('$count', textAlign: TextAlign.end),
+              ],
             ),
-          ),
-          SizedBox(width: 36, child: Text('$count', textAlign: TextAlign.end)),
-        ]),
+          ],
+        ),
       );
 }

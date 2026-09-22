@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 /// A Zen & Ink circular daily review ring that animates from 0% to current completion
-/// over 600ms using [Curves.easeOutCubic].
+/// over [ZenMotion.page] using [ZenMotion.enter], snapping straight to the
+/// final value when the platform asks for reduced motion.
 class DailyGoalReviewRing extends StatelessWidget {
   final double progress; // 0.0 to 1.0+
   final int todayCards;
@@ -16,7 +18,7 @@ class DailyGoalReviewRing extends StatelessWidget {
     required this.todayCards,
     required this.goalCards,
     this.size = 76.0,
-    this.duration = const Duration(milliseconds: 600),
+    this.duration = ZenMotion.page,
   });
 
   @override
@@ -30,8 +32,8 @@ class DailyGoalReviewRing extends StatelessWidget {
 
     return TweenAnimationBuilder<double>(
       tween: Tween<double>(begin: 0.0, end: targetProgress),
-      duration: duration,
-      curve: Curves.easeOutCubic,
+      duration: ZenMotion.of(context, duration),
+      curve: ZenMotion.enter,
       builder: (context, animatedValue, _) {
         final percent = (animatedValue * 100).round();
         final isComplete = animatedValue >= 1.0;

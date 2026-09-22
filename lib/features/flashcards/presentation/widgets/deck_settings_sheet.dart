@@ -142,15 +142,20 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
           children: [
             Icon(icon, color: color, size: 24),
             const SizedBox(width: 12),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+            // Expanded takes the free space that the old Spacer reserved, so a
+            // longer translation wraps instead of overflowing the row.
+            Expanded(
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                ),
               ),
             ),
-            const Spacer(),
             IconButton(
               tooltip: 'Decrease',
               onPressed: value <= 0 ? null : () => onChanged(value - 1),

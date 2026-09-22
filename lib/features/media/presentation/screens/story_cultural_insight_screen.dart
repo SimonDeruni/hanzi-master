@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class StoryCulturalInsightScreen extends ConsumerStatefulWidget {
   final LibraryStory story;
@@ -187,7 +188,7 @@ class _StoryCulturalInsightScreenState
       children: [
         const SizedBox(height: 32),
         Center(
-            child: CircularProgressIndicator(color: theme.colorScheme.primary)),
+            child: ZenLoader(color: theme.colorScheme.primary)),
         const SizedBox(height: 24),
         Center(
           child: Text(

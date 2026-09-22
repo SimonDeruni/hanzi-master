@@ -16,6 +16,7 @@ import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class SpeakingModeWidget extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -323,12 +324,12 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       ),
                     )
                         .animate()
-                        .fade(duration: 500.ms, curve: Curves.easeOutCubic)
+                        .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
                         .slideY(
                             begin: 0.1,
                             end: 0,
-                            duration: 500.ms,
-                            curve: Curves.easeOutCubic),
+                            duration: ZenMotion.page,
+                            curve: ZenMotion.enter),
                   ),
                 ),
               ),
@@ -389,7 +390,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                     onTapCancel: () => _stopRecording(),
                     child: AnimatedScale(
                       scale: _isRecording ? 0.95 : 1.0,
-                      duration: const Duration(milliseconds: 150),
+                      duration: ZenMotion.of(context, ZenMotion.swap),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32, vertical: 20),

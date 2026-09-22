@@ -8,6 +8,7 @@ import '../../../chat/domain/entities/chat_message.dart';
 import '../providers/conversation_controller.dart';
 import 'tone_comparison_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class PronunciationReportSheet extends ConsumerStatefulWidget {
   final GradedChatMessage message;
@@ -119,9 +120,15 @@ class _PronunciationReportSheetState
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Report',
-                style: theme.textTheme.titleLarge?.copyWith(color: onSurface),
+              // Expanded lets a longer localized title wrap rather than push
+              // the close button off the sheet.
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context)!.report,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleLarge?.copyWith(color: onSurface),
+                ),
               ),
               IconButton(
                 icon: Icon(Icons.close, color: subtitleColor),
@@ -296,7 +303,7 @@ class _PronunciationReportSheetState
     if (_isLoadingIntention) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 16.0),
-        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+        child: Center(child: ZenLoader(strokeWidth: 2)),
       );
     }
 
@@ -353,10 +360,14 @@ class _PronunciationReportSheetState
           ),
           const SizedBox(height: 12),
           if (_isRegrading)
-            const Center(child: CircularProgressIndicator())
+            const Center(child: ZenLoader())
           else
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            // Wrap (not Row): if a longer locale cannot fit both actions on one
+            // line they stack instead of overflowing the sheet.
+            Wrap(
+              alignment: WrapAlignment.end,
+              spacing: 8,
+              runSpacing: 4,
               children: [
                 TextButton(
                   onPressed: () {

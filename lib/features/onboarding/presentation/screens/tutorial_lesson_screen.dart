@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class TutorialLessonScreen extends ConsumerStatefulWidget {
   const TutorialLessonScreen({
@@ -79,7 +80,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
   void _nextPage() {
     if (_currentStep < 5) {
       _pageController.nextPage(
-          duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+          duration: ZenMotion.page, curve: ZenMotion.natural);
       setState(() => _currentStep++);
     } else {
       ref.read(settingsProvider.notifier).completeTutorial();

@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/read
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/recall_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/listening_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/speaking_mode.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class DeckReviewSessionScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -384,7 +385,7 @@ class _DeckReviewSessionScreenState
       appBar: AppBar(title: Text(localizations.studySession)),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: ZenLoader())
           : _loadError != null
               ? _buildMessageState(
                   key: const Key('study_session_error'),

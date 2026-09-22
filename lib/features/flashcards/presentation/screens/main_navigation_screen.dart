@@ -8,8 +8,11 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -81,7 +84,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       return const Scaffold(
         body: CalligraphyBackground(
           child: Center(
-            child: CircularProgressIndicator(color: Colors.brown),
+            child: ZenLoader(color: Colors.brown),
           ),
         ),
       );
@@ -102,7 +105,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          color: AppTheme.surfaceOf(context),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1),
@@ -117,12 +120,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             HapticsManager.light();
             _onNavigate(index);
           },
-          backgroundColor:
-              isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-          selectedItemColor:
-              isDark ? const Color(0xFFFF7A00) : const Color(0xFFFF7A00),
+          backgroundColor: AppTheme.surfaceOf(context),
+          selectedItemColor: AppTheme.accentFire,
           unselectedItemColor: isDark
-              ? const Color(0xFFFDFCF0).withValues(alpha: 0.4)
+              ? AppTheme.carbonInkDark.withValues(alpha: 0.4)
               : const Color(0xFF1A1A1B).withValues(alpha: 0.5),
           showUnselectedLabels: true,
           elevation: 0,
@@ -179,8 +180,8 @@ class _KeepAliveTabState extends State<_KeepAliveTab>
   Widget build(BuildContext context) {
     super.build(context);
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeInOutQuart,
+      duration: ZenMotion.of(context, ZenMotion.swap),
+      curve: ZenMotion.natural,
       opacity: widget.isActive ? 1.0 : 0.0,
       child: IgnorePointer(
         ignoring: !widget.isActive,

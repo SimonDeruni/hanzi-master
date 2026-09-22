@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 /// A Zen & Ink streak flame badge with a subtle breathing glow animation.
 ///
-/// Features a gentle pulse loop over 1800ms using [Curves.easeInOutSine],
-/// with an ambient cinnabar/amber halo glow.
+/// Features a gentle pulse loop over 1800ms using [ZenMotion.breathe],
+/// with an ambient cinnabar/amber halo glow. Honours the platform
+/// "Reduce Motion" setting by holding the glow at its resting intensity.
 class StreakFlameBadge extends StatefulWidget {
   final int streak;
   final String label;
@@ -30,13 +33,25 @@ class _StreakFlameBadgeState extends State<StreakFlameBadge>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1800),
-    )..repeat(reverse: true);
+      duration: ZenMotion.ambient,
+    );
 
     _glowAnimation = CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeInOutSine,
+      curve: ZenMotion.breathe,
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Under reduced motion the glow sits at mid-pulse instead of looping.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      staticValue: 0.5,
+      loop: true,
+    ).apply();
   }
 
   @override

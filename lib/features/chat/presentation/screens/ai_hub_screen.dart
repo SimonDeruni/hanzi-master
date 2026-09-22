@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class AiHubScreen extends ConsumerStatefulWidget {
   final int initialTabIndex;
@@ -29,10 +31,9 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
 
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: AppTheme.surfaceOf(context),
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -44,10 +45,13 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
                 height: 52,
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: isDark
-                      ? const Color(0xFF2C2C2E)
-                      : Colors.black.withValues(alpha: 0.04),
+                  color: isDark ? AppTheme.cardBgDark : AppTheme.cardBgLight,
                   borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: isDark
+                        ? Colors.white10
+                        : Colors.black.withValues(alpha: 0.06),
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -106,17 +110,18 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOutQuart,
+        duration: ZenMotion.of(context, ZenMotion.quick),
+        curve: ZenMotion.natural,
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color(0xFFFFB300).withValues(alpha: isDark ? 0.25 : 0.15)
+              ? (isDark ? AppTheme.accentDark : AppTheme.accentLight)
+                  .withValues(alpha: 0.12)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
           border: isSelected
               ? Border.all(
-                  color: const Color(0xFFFFB300).withValues(alpha: 0.4),
-                  width: 1,
+                  color: isDark ? AppTheme.accentDark : AppTheme.accentLight,
+                  width: 1.3,
                 )
               : null,
         ),
@@ -128,7 +133,7 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
               icon,
               size: 18,
               color: isSelected
-                  ? const Color(0xFFFFB300)
+                  ? (isDark ? AppTheme.accentDark : AppTheme.accentLight)
                   : (isDark ? Colors.white54 : Colors.black38),
             ),
             const SizedBox(width: 6),
@@ -136,9 +141,9 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
               label,
               style: TextStyle(
                 color: isSelected
-                    ? (isDark ? const Color(0xFFFFD54F) : const Color(0xFF1A1A1B))
+                    ? (isDark ? AppTheme.accentDark : AppTheme.accentLight)
                     : (isDark ? Colors.white54 : Colors.black38),
-                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                 fontSize: 13,
                 letterSpacing: 0.2,
               ),

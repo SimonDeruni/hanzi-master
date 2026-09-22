@@ -12,6 +12,7 @@ import '../widgets/custom_story_creator_sheet.dart';
 import '../widgets/continue_reading_card.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
   const ReadingRoomScreen({super.key});
@@ -534,7 +535,7 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
                       color:
                           isDark ? const Color(0xFF1A1A1B) : Colors.grey[100],
                       child: Center(
-                        child: CircularProgressIndicator(
+                        child: ZenLoader(
                           color: Colors.indigo.withValues(alpha: 0.5),
                           strokeWidth: 2,
                         ),

@@ -3,7 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import '../../domain/models/video_transcript.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class PremiumTranscriptLine extends StatefulWidget {
   final TranscriptLine line;
@@ -43,18 +45,47 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
 
+  /// Cached platform motion preference, refreshed in didChangeDependencies.
+  bool _reduceMotion = false;
+
   @override
   void initState() {
     super.initState();
     _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: ZenMotion.ambientFast,
     );
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _pulseController, curve: ZenMotion.natural),
     );
-    if (widget.isRecordingThisLine) {
-      _pulseController.repeat(reverse: true);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _reduceMotion = context.reduceMotion;
+    _syncPulse();
+  }
+
+  /// Starts the recording pulse only when motion is allowed.
+  ///
+  /// Under reduced motion the line keeps a static highlight at its natural
+  /// scale instead of breathing, so the "recording this line" state is still
+  /// signalled without movement.
+  void _syncPulse() {
+    if (widget.isRecordingThisLine && !_reduceMotion) {
+      if (!_pulseController.isAnimating) {
+        _pulseController.repeat(reverse: true);
+      }
+      return;
+    }
+    // Return to the resting frame whether we finished recording or are
+    // suppressing motion.
+    if (_pulseController.isAnimating) {
+      _pulseController.stop();
+    }
+    if (_pulseController.value != 0.0) {
+      _pulseController.value = 0.0;
     }
   }
 
@@ -62,12 +93,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
   void didUpdateWidget(PremiumTranscriptLine oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.isRecordingThisLine != oldWidget.isRecordingThisLine) {
-      if (widget.isRecordingThisLine) {
-        _pulseController.repeat(reverse: true);
-      } else {
-        _pulseController.stop();
-        _pulseController.value = 0.0;
-      }
+      _syncPulse();
     }
   }
 

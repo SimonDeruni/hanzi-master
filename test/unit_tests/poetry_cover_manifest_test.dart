@@ -46,18 +46,31 @@ void main() {
     final poemIds = poems.map((p) => p['id'] as String).toSet();
     final manifestIds = <String>{};
     final hashes = <String>{};
-    final sourcePages = <String>{};
+    // Provenance (schemaVersion 2): the covers are project-owned original
+    // ink-style illustrations, so the manifest must state that policy and every
+    // entry must declare its rights holder. No cover may claim a third-party
+    // public-domain source, because none is embedded.
+    expect(manifest['schemaVersion'], 2);
+    expect((manifest['policy'] as String).trim(), isNotEmpty);
     final perceptualHashes = <String, BigInt>{};
 
     for (final value in covers) {
       final cover = value as Map<String, dynamic>;
       final id = cover['id'] as String;
       manifestIds.add(id);
-      expect(cover['license'], anyOf('Public domain', 'CC0'), reason: id);
+      // Provenance: the licence is declared explicitly, the copyright names the
+      // project as rights holder, and the audit trail is present. The previous
+      // `anyOf('Public domain', 'CC0')` assertion described the retired v1
+      // sourced-artwork model and failed on all 100 entries.
+      expect(cover['license'], 'Not third-party licensed', reason: id);
+      expect(cover['copyright'], 'Project-owned', reason: id);
+      expect((cover['creator'] as String).trim(), isNotEmpty, reason: id);
+      expect((cover['provenance'] as String).trim(), isNotEmpty, reason: id);
       expect((cover['relevanceRationale'] as String).trim(), isNotEmpty,
           reason: id);
-      expect(sourcePages.add(cover['sourcePage'] as String), isTrue,
-          reason: 'Source artwork reused for $id');
+      // Every cover must declare the poem it derives from.
+      final designBasis = cover['designBasis'] as Map<String, dynamic>;
+      expect((designBasis['title'] as String).trim(), isNotEmpty, reason: id);
 
       final file = File(cover['asset'] as String);
       expect(file.existsSync(), isTrue, reason: id);

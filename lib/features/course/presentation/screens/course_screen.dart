@@ -9,6 +9,7 @@ import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 class CourseScreen extends ConsumerWidget {
   final String deckId;
   final String deckName;
@@ -121,7 +122,7 @@ class CourseScreen extends ConsumerWidget {
                   ],
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator(color: Colors.brown)),
+              loading: () => const Center(child: ZenLoader(color: Colors.brown)),
               error: (err, stack) => Center(child: Text("${l10n?.errorPrefix}$err", style: const TextStyle(color: Colors.red))),
             ),
           ),

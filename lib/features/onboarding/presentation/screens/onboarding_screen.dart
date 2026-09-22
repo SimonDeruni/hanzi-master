@@ -12,6 +12,7 @@ import 'package:hanzi_master/features/onboarding/presentation/screens/notificati
 import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -35,13 +36,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     HapticsManager.light();
     if (_currentPage < 3) {
       _pageController.nextPage(
-        duration: 400.ms,
-        curve: Curves.easeInOutQuart,
+        duration: ZenMotion.entrance,
+        curve: ZenMotion.natural,
       );
     } else if (_currentPage == 3) {
       _pageController.nextPage(
-        duration: 400.ms,
-        curve: Curves.easeInOutQuart,
+        duration: ZenMotion.entrance,
+        curve: ZenMotion.natural,
       );
       _runCalibration();
     }
@@ -120,8 +121,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     HapticsManager.medium();
     Navigator.of(context).push(
       PageRouteBuilder<void>(
-        transitionDuration: const Duration(milliseconds: 500),
-        reverseTransitionDuration: const Duration(milliseconds: 350),
+        transitionDuration: ZenMotion.of(context, ZenMotion.page),
+        reverseTransitionDuration: ZenMotion.pageReverse,
         pageBuilder: (context, animation, secondaryAnimation) =>
             OnboardingMiniLessonScreen(
           onComplete: _completeOnboarding,
@@ -129,8 +130,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           final entrance = CurvedAnimation(
             parent: animation,
-            curve: Curves.easeOutCubic,
-            reverseCurve: Curves.easeInCubic,
+            curve: ZenMotion.enter,
+            reverseCurve: ZenMotion.natural,
           );
           return FadeTransition(
             opacity: entrance,
@@ -217,7 +218,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       children: List.generate(4, (index) {
         final isActive = index == _currentPage;
         return AnimatedContainer(
-          duration: 300.ms,
+          duration: ZenMotion.of(context, ZenMotion.quick),
           margin: const EdgeInsets.symmetric(horizontal: 4),
           height: 6,
           width: isActive ? 24 : 6,
@@ -273,7 +274,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         height: isCompact ? 140 : 190,
                         fit: BoxFit.contain,
                       ),
-                    ).animate().scale(duration: 400.ms).fadeIn(),
+                    ).animate().scale(duration: ZenMotion.of(context, ZenMotion.entrance)).fadeIn(),
                     SizedBox(height: isCompact ? 16 : 36),
                     Text(
                       l10n.yourPathTonchineseFluency,
@@ -719,7 +720,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             _buildPrimaryButton(
               l10n.beginFirstLesson,
               _launchMiniLesson,
-            ).animate().fadeIn(duration: 300.ms),
+            ).animate().fadeIn(duration: ZenMotion.of(context, ZenMotion.quick)),
             const SizedBox(height: 8),
             TextButton(
               key: const Key('onboarding_skip_lesson_button'),
@@ -728,9 +729,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 foregroundColor: isDark ? Colors.white54 : Colors.black54,
                 padding: const EdgeInsets.symmetric(vertical: 8),
               ),
-              child: const Text(
-                'Explore Library Directly',
-                style: TextStyle(
+              child: Text(
+                l10n.exploreLibraryDirectly,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
@@ -751,8 +752,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required bool isDark,
   }) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 350),
-      curve: Curves.easeInOutQuart,
+      duration: ZenMotion.of(context, ZenMotion.pageReverse),
+      curve: ZenMotion.natural,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         color: isDone
@@ -771,8 +772,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         children: [
           AnimatedScale(
             scale: isDone ? 1.0 : 0.75,
-            duration: const Duration(milliseconds: 350),
-            curve: Curves.easeOutBack,
+            duration: ZenMotion.of(context, ZenMotion.pageReverse),
+            curve: ZenMotion.arrival,
             child: Icon(
               icon,
               color: isDone
@@ -795,14 +796,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
                 const SizedBox(height: 2),
                 AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
+                  duration: ZenMotion.of(context, ZenMotion.quick),
                   transitionBuilder: (child, animation) {
                     final slide = Tween<Offset>(
                       begin: const Offset(0, 0.35),
                       end: Offset.zero,
                     ).animate(CurvedAnimation(
                       parent: animation,
-                      curve: Curves.easeOutCubic,
+                      curve: ZenMotion.enter,
                     ));
                     return FadeTransition(
                       opacity: animation,
@@ -825,11 +826,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             ),
           ),
           AnimatedSwitcher(
-            duration: const Duration(milliseconds: 400),
+            duration: ZenMotion.of(context, ZenMotion.entrance),
             transitionBuilder: (child, animation) => ScaleTransition(
               scale: CurvedAnimation(
                 parent: animation,
-                curve: Curves.easeOutBack,
+                curve: ZenMotion.arrival,
               ),
               child: FadeTransition(opacity: animation, child: child),
             ),
@@ -871,10 +872,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       onTap: onTap,
       child: AnimatedScale(
         scale: isSelected ? 1.03 : 1.0,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeOutBack,
+        duration: ZenMotion.of(context, ZenMotion.swap),
+        curve: ZenMotion.arrival,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           decoration: BoxDecoration(
             color: isSelected
@@ -949,10 +950,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       onTap: onTap,
       child: AnimatedScale(
         scale: isSelected ? 1.03 : 1.0,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeOutBack,
+        duration: ZenMotion.of(context, ZenMotion.swap),
+        curve: ZenMotion.arrival,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
             color: isSelected

@@ -50,12 +50,6 @@ class _FakeDeckRepository implements DeckRepository {
     required String description,
   }) async =>
       Right(Deck(id: thematicId, name: name, description: description, createdAt: DateTime(2026, 1, 1)));
-
-  @override
-  Future<Either<String, List<Deck>>> getHSKDecks() async => const Right([]);
-
-  @override
-  Future<Either<String, List<Deck>>> getCustomDecks() async => const Right([]);
 }
 
 class _FakeDeckController extends StateNotifier<AsyncValue<List<Deck>>>
@@ -179,7 +173,9 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify Header & Status
-      expect(find.text('Master Deck Library'), findsOneWidget);
+      // The header was renamed from "Master Deck Library" to the localized
+      // "Deck Library" (l10n.deckLibraryTitle).
+      expect(find.text('Deck Library'), findsOneWidget);
       expect(find.text('Master Bookshelf Status'), findsOneWidget);
       expect(find.textContaining('collections installed offline'), findsOneWidget);
 

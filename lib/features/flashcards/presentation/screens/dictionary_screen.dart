@@ -34,6 +34,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
   const DictionaryScreen({super.key});
@@ -195,7 +196,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
           return const [
             SliverFillRemaining(
               hasScrollBody: false,
-              child: Center(child: CircularProgressIndicator()),
+              child: Center(child: ZenLoader()),
             ),
           ];
         }
@@ -212,10 +213,10 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                       const Icon(Icons.search_off,
                           size: 48, color: Colors.grey),
                       const SizedBox(height: 16),
-                      const Text(
-                        'Dictionary search failed. Please try again.',
+                      Text(
+                        AppLocalizations.of(context)!.dictionarySearchFailed,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey),
+                        style: const TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(height: 16),
                       ElevatedButton.icon(
@@ -429,7 +430,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        "Master Deck Library",
+                                        l10n?.deckLibraryTitle ??
+                                            "Deck Library",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -438,7 +440,8 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 4),
                                     Text(
-                                        "Download official HSK & thematic decks",
+                                        l10n?.downloadOfficialDecks ??
+                                            "Download official HSK & thematic decks",
                                         style: TextStyle(
                                             color: Theme.of(context)
                                                 .colorScheme
@@ -644,7 +647,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
         const SliverFillRemaining(
           hasScrollBody: false,
           child: Center(
-            child: CircularProgressIndicator(color: Colors.brown),
+            child: ZenLoader(color: Colors.brown),
           ),
         ),
       ],
@@ -908,7 +911,7 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) return const Center(child: CircularProgressIndicator());
+    if (_isLoading) return const Center(child: ZenLoader());
 
     final filteredRadicals = _radicals.entries.where((entry) {
       final query = widget.searchQuery.toLowerCase();

@@ -13,6 +13,8 @@ import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.
 import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/features/auth/presentation/screens/auth_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class CustomPaywallScreen extends ConsumerStatefulWidget {
   const CustomPaywallScreen({
@@ -50,8 +52,8 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
     if (targetContext != null) {
       Scrollable.ensureVisible(
         targetContext,
-        duration: const Duration(milliseconds: 600),
-        curve: Curves.easeInOutQuart,
+        duration: ZenMotion.page,
+        curve: ZenMotion.natural,
         alignment: 0.05,
       );
     }
@@ -186,14 +188,14 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       if (isPremium && mounted) {
         Navigator.of(context).pushAndRemoveUntil(
           PageRouteBuilder<void>(
-            transitionDuration: const Duration(milliseconds: 600),
+            transitionDuration: ZenMotion.of(context, ZenMotion.page),
             pageBuilder: (context, animation, secondaryAnimation) =>
                 const MainNavigationScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               final curved = CurvedAnimation(
                 parent: animation,
-                curve: Curves.easeInOutQuart,
+                curve: ZenMotion.natural,
               );
               return FadeTransition(
                 opacity: curved,
@@ -320,14 +322,14 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       if (isPremium && mounted) {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder<void>(
-            transitionDuration: const Duration(milliseconds: 600),
+            transitionDuration: ZenMotion.of(context, ZenMotion.page),
             pageBuilder: (context, animation, secondaryAnimation) =>
                 const MainNavigationScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               final curved = CurvedAnimation(
                 parent: animation,
-                curve: Curves.easeInOutQuart,
+                curve: ZenMotion.natural,
               );
               return FadeTransition(
                 opacity: curved,
@@ -458,7 +460,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                 Positioned.fill(
                   child: _isLoading
                       ? Center(
-                          child: CircularProgressIndicator(color: textColor))
+                          child: ZenLoader(color: textColor))
                       : SingleChildScrollView(
                           padding: const EdgeInsets.fromLTRB(20, 54, 20, 36),
                           child: Column(
@@ -1182,7 +1184,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             behavior: HitTestBehavior.opaque,
             onTap: canPurchase ? _purchasePackage : null,
             child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 180),
+              duration: ZenMotion.of(context, ZenMotion.swap),
               opacity: canPurchase ? 1 : 0.55,
               child: Container(
                 height: 54,
@@ -1330,7 +1332,7 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: ZenMotion.of(context, ZenMotion.swap),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         decoration: BoxDecoration(
           color: cardBg,

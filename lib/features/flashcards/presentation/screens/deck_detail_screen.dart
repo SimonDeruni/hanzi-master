@@ -24,6 +24,8 @@ import 'package:hanzi_master/features/flashcards/presentation/screens/deck_card_
 import 'package:hanzi_master/features/flashcards/presentation/screens/stats_screen.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
@@ -370,22 +372,14 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 Expanded(
                                   flex: 3,
                                   child: Container(
-                                    height: 56,
+                                    height: 54,
                                     decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        colors: [
-                                          Color(0xFF8E2DE2),
-                                          Color(0xFF4A00E0)
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
                                       borderRadius: BorderRadius.circular(16),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: const Color(0xFF4A00E0)
-                                              .withValues(alpha: 0.3),
-                                          blurRadius: 12,
+                                          color: Colors.black.withValues(
+                                              alpha: isDark ? 0.35 : 0.12),
+                                          blurRadius: 10,
                                           offset: const Offset(0, 4),
                                         ),
                                       ],
@@ -416,11 +410,14 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                         );
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent,
-                                        shadowColor: Colors.transparent,
+                                        backgroundColor: isDark
+                                            ? Colors.amber.shade700
+                                            : const Color(0xFF1A1A1B),
+                                        foregroundColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(16)),
+                                        elevation: 0,
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
@@ -435,6 +432,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                               style: const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
+                                                  letterSpacing: 0.5,
                                                   color: Colors.white)),
                                         ],
                                       ),
@@ -445,7 +443,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 Expanded(
                                   flex: 2,
                                   child: SizedBox(
-                                    height: 56,
+                                    height: 54,
                                     child: OutlinedButton(
                                       onPressed: () {
                                         if (deckCards.isEmpty) return;
@@ -467,19 +465,20 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       },
                                       style: OutlinedButton.styleFrom(
                                         foregroundColor: isDark
-                                            ? Colors.purple[300]
-                                            : Colors.purple[700],
+                                            ? const Color(0xFFFFD54F)
+                                            : const Color(0xFF1A1A1B),
                                         backgroundColor: isDark
                                             ? Colors.white
                                                 .withValues(alpha: 0.05)
-                                            : Colors.purple
-                                                .withValues(alpha: 0.05),
+                                            : Colors.black
+                                                .withValues(alpha: 0.03),
                                         side: BorderSide(
                                             color: isDark
-                                                ? Colors.purple[300]!
-                                                    .withValues(alpha: 0.5)
-                                                : Colors.purple[200]!,
-                                            width: 1.5),
+                                                ? const Color(0xFFFFD54F)
+                                                    .withValues(alpha: 0.4)
+                                                : Colors.black
+                                                    .withValues(alpha: 0.15),
+                                            width: 1.2),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(16)),
@@ -488,15 +487,19 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          const Icon(Icons.auto_awesome,
-                                              size: 18),
+                                          Icon(Icons.auto_awesome,
+                                              size: 18,
+                                              color: isDark
+                                                  ? const Color(0xFFFFD54F)
+                                                  : const Color(0xFF8B0000)),
                                           const SizedBox(width: 6),
                                           Text(
                                               AppLocalizations.of(context)!
                                                   .story,
                                               style: const TextStyle(
                                                   fontSize: 15,
-                                                  fontWeight: FontWeight.bold)),
+                                                  fontWeight: FontWeight.bold,
+                                                  letterSpacing: 0.3)),
                                         ],
                                       ),
                                     ),
@@ -506,7 +509,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                             ),
                             const SizedBox(height: 12),
                             SizedBox(
-                              height: 56,
+                              height: 54,
                               width: double.infinity,
                               child: OutlinedButton(
                                 onPressed: () {
@@ -520,35 +523,39 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 },
                                 style: OutlinedButton.styleFrom(
                                   foregroundColor: isDark
-                                      ? Colors.tealAccent[400]
-                                      : Colors.teal[700],
+                                      ? const Color(0xFFFFD54F)
+                                      : const Color(0xFF8B0000),
                                   backgroundColor: isDark
-                                      ? Colors.tealAccent[400]!
-                                          .withValues(alpha: 0.05)
-                                      : Colors.teal[700]!
-                                          .withValues(alpha: 0.05),
+                                      ? const Color(0xFFD4AF37)
+                                          .withValues(alpha: 0.08)
+                                      : const Color(0xFF9E2A2B)
+                                          .withValues(alpha: 0.06),
                                   side: BorderSide(
                                       color: isDark
-                                          ? Colors.tealAccent[400]!
-                                              .withValues(alpha: 0.5)
-                                          : Colors.teal[700]!
-                                              .withValues(alpha: 0.5),
-                                      width: 1.5),
+                                          ? const Color(0xFFD4AF37)
+                                              .withValues(alpha: 0.45)
+                                          : const Color(0xFF8B0000)
+                                              .withValues(alpha: 0.35),
+                                      width: 1.3),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16)),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Icon(Icons.record_voice_over,
-                                        size: 18),
-                                    const SizedBox(width: 6),
+                                    Icon(Icons.record_voice_over,
+                                        size: 19,
+                                        color: isDark
+                                            ? const Color(0xFFFFD54F)
+                                            : const Color(0xFF8B0000)),
+                                    const SizedBox(width: 8),
                                     Text(
                                         AppLocalizations.of(context)!
                                             .practiceInRoleplay,
                                         style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold)),
+                                            fontSize: 15.5,
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 0.3)),
                                   ],
                                 ),
                               ),
@@ -563,12 +570,24 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     pinned: true,
                     delegate: _SliverTabBarDelegate(
                       TabBar(
-                        labelColor:
-                            isDark ? Colors.purple[300] : Colors.purple[700],
-                        unselectedLabelColor: Colors.grey,
-                        indicatorColor:
-                            isDark ? Colors.purple[300] : Colors.purple[700],
-                        indicatorWeight: 3,
+                        labelColor: isDark
+                            ? const Color(0xFFFFD54F)
+                            : const Color(0xFF1A1A1B),
+                        unselectedLabelColor:
+                            isDark ? Colors.white38 : Colors.black38,
+                        indicatorColor: isDark
+                            ? const Color(0xFFFFD54F)
+                            : const Color(0xFF8B0000),
+                        indicatorWeight: 2.5,
+                        labelStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          letterSpacing: 0.5,
+                        ),
+                        unselectedLabelStyle: const TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                        ),
                         tabs: [
                           Tab(text: AppLocalizations.of(context)!.cardsTitle),
                           Tab(text: AppLocalizations.of(context)!.statistics),
@@ -769,9 +788,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                                             '${card.hanzi} ${AppLocalizations.of(context)?.removedFromDeck ?? "removed from deck"}'),
                                                         backgroundColor:
                                                             Colors.redAccent,
-                                                        duration:
-                                                            const Duration(
-                                                                seconds: 2),
+                                                        duration: ZenMotion.toast,
                                                         action: SnackBarAction(
                                                           label: AppLocalizations
                                                                   .of(context)!
@@ -806,7 +823,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
               ),
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: ZenLoader()),
           error: (err, stack) => Center(child: Text("Error: $err")),
         ),
       ),

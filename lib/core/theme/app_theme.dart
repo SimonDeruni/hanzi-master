@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'zen_motion.dart';
+
 /// Centralized Design System for SinoSpark
 /// Implements the "Zen & Ink" Aesthetic
 class AppTheme {
@@ -10,8 +12,37 @@ class AppTheme {
   static const Color xuanPaperLight = Color(0xFFFDFCF0); // Warm paper
   static const Color carbonInkLight = Color(0xFF1A1A1B); // Deep ink
   
-  static const Color xuanPaperDark = Color(0xFF1A1A1B); // Deep ink background
+  static const Color xuanPaperDark = Color(0xFF141416); // Canonical dark surface
   static const Color carbonInkDark = Color(0xFFFDFCF0); // White ink text
+
+  // --- Canonical Surface Tokens (single source of truth) ---
+  // Every screen — header, body and navigation — must use these so there is
+  // never a visible seam between the app bar and the content beneath it.
+  static const Color surfaceLight = xuanPaperLight; // #FDFCF0
+  static const Color surfaceDark = xuanPaperDark; // #141416
+  static const Color cardBgLight = Colors.white;
+  static const Color cardBgDark = Color(0xFF1E1E22);
+  static const Color accentLight = Color(0xFF8B0000); // Cinnabar
+  static const Color accentDark = Color(0xFFFFCA28); // amber.shade400
+  static const Color accentFire = Color(0xFFFF7A00); // Nav highlight / flame
+
+  /// Background for the current brightness. Use for Scaffold, AppBar and nav bar.
+  static Color surfaceOf(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? surfaceDark
+          : surfaceLight;
+
+  /// Card background for the current brightness.
+  static Color cardBgOf(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? cardBgDark
+          : cardBgLight;
+
+  /// Accent colour for the current brightness.
+  static Color accentOf(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? accentDark
+          : accentLight;
 
   static const Color primaryIndigo = Colors.indigo;
   static const Color primaryTeal = Colors.teal;
@@ -44,9 +75,39 @@ class AppTheme {
       bodySmall: TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.normal, color: mutedColor),
       
       // Labels: Buttons, Pinyin, Tags
-      labelLarge: TextStyle(fontFamily: _fontFamily, fontSize: 14, fontWeight: FontWeight.bold, color: textColor, letterSpacing: 1.0),
+      // Tracking kept deliberately low (0.2): the former 1.0 inflated every
+      // Latin/Cyrillic button label by ~10-15% and caused locale overflow.
+      labelLarge: TextStyle(fontFamily: _fontFamily, fontSize: 14, fontWeight: FontWeight.bold, color: textColor, letterSpacing: 0.2),
       labelMedium: TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.bold, color: mutedColor, letterSpacing: 0.5),
       labelSmall: TextStyle(fontFamily: _fontFamily, fontSize: 10, fontWeight: FontWeight.bold, color: mutedColor, letterSpacing: 0.5),
+    );
+  }
+
+  /// App-wide button geometry that survives every supported language.
+  ///
+  /// Locale audit (2026-09-22): German, French, Spanish, Italian, Portuguese,
+  /// Russian, Vietnamese and Thai expand a label by up to ~2x the English
+  /// width, so no button may ever be clamped to a fixed size. Only a minimum
+  /// touch target is declared here; the label itself decides the real width.
+  static ButtonStyle _localizedButtonGeometry({
+    double minHeight = 48,
+    EdgeInsetsGeometry padding =
+        const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+  }) {
+    return ButtonStyle(
+      // Minimum size only - `fixedSize`/`maximumSize` would clip long labels.
+      minimumSize: WidgetStatePropertyAll<Size>(Size(0, minHeight)),
+      // Content-sized padding keeps short and long labels equally comfortable.
+      padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(padding),
+      // Tracking is deliberately absent: `letterSpacing` inflated every Latin
+      // and Cyrillic label by roughly 10-15%, which caused the overflow.
+      textStyle: const WidgetStatePropertyAll<TextStyle>(
+        TextStyle(
+          fontFamily: _fontFamily,
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 
@@ -74,7 +135,8 @@ class AppTheme {
           color: carbonInkLight,
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          letterSpacing: 2,
+          // App bar titles are the longest localized strings on a screen.
+          letterSpacing: 0.5,
         ),
         iconTheme: IconThemeData(color: carbonInkLight),
       ),
@@ -103,12 +165,35 @@ class AppTheme {
           side: BorderSide(color: carbonInkLight.withValues(alpha: 0.1), width: 1),
         ),
       ),
+      // --- Localized Button Geometry (app-wide) ---
+      // Every button inherits a flexible minimum size, so a longer translated
+      // label can widen the button instead of overflowing its row.
+      filledButtonTheme: FilledButtonThemeData(
+        style: _localizedButtonGeometry(),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: _localizedButtonGeometry(),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _localizedButtonGeometry(),
+      ),
+      // Text buttons are frequently inline links, so they keep a lighter frame.
+      textButtonTheme: TextButtonThemeData(
+        style: _localizedButtonGeometry(
+          minHeight: 40,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        ),
+      ),
+      // Every push shares one Zen transition. iOS/macOS keep Cupertino because
+      // that builder provides the interactive edge-swipe back gesture.
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {
-          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: ZenPageTransitionsBuilder(),
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.windows: ZenPageTransitionsBuilder(),
           TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.linux: ZenPageTransitionsBuilder(),
+          TargetPlatform.fuchsia: ZenPageTransitionsBuilder(),
         },
       ),
     );
@@ -138,7 +223,8 @@ class AppTheme {
           color: carbonInkDark,
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          letterSpacing: 2,
+          // App bar titles are the longest localized strings on a screen.
+          letterSpacing: 0.5,
         ),
         iconTheme: IconThemeData(color: carbonInkDark),
       ),
@@ -167,12 +253,32 @@ class AppTheme {
           side: BorderSide(color: carbonInkDark.withValues(alpha: 0.1), width: 1),
         ),
       ),
+      // --- Localized Button Geometry (app-wide) ---
+      // Mirrors the light theme so both modes stay locale-safe.
+      filledButtonTheme: FilledButtonThemeData(
+        style: _localizedButtonGeometry(),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: _localizedButtonGeometry(),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _localizedButtonGeometry(),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: _localizedButtonGeometry(
+          minHeight: 40,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        ),
+      ),
+      // Mirrors the light theme so both modes share one page transition.
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {
-          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: ZenPageTransitionsBuilder(),
           TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.windows: ZenPageTransitionsBuilder(),
           TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.linux: ZenPageTransitionsBuilder(),
+          TargetPlatform.fuchsia: ZenPageTransitionsBuilder(),
         },
       ),
     );

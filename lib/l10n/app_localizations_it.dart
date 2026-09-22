@@ -12622,6 +12622,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get beginFirstLesson => 'Inizia la prima lezione';
 
   @override
+  String get exploreLibraryDirectly => 'Esplora direttamente la libreria';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'LA TUA PRIMA LEZIONE  •  $current DI $total';
   }
@@ -13092,4 +13095,74 @@ class AppLocalizationsIt extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'Poi $price / $period. Annulla in qualsiasi momento in Impostazioni.';
   }
+
+  @override
+  String get deckLibraryTitle => 'Libreria dei mazzi';
+
+  @override
+  String get deckLibrarySubtitle =>
+      'Collezioni curate su HSK, cultura, sport e studio';
+
+  @override
+  String get downloadOfficialDecks =>
+      'Scarica i mazzi ufficiali HSK e tematici';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$selected di $total parole selezionate';
+  }
+
+  @override
+  String get comparisonLabel => 'CONFRONTO';
+
+  @override
+  String get ambientSoundscape => 'Paesaggio sonoro';
+
+  @override
+  String get ambientSoundscapeDesc =>
+      'Atmosfera rilassante per leggere e ascoltare';
+
+  @override
+  String get ambientSoundscapeOff => 'Disattivato (Silenzioso)';
+
+  @override
+  String get soundscapeCourtyardRain => 'Pioggia nel cortile';
+
+  @override
+  String get soundscapeGuqinWind => 'Guqin e vento di bambù';
+
+  @override
+  String get soundscapeMidnightZen => 'Meditazione notturna';
+
+  @override
+  String get ambientVolume => 'Volume di sottofondo';
+
+  @override
+  String get rateSinoSpark => 'Valuta SinoSpark';
+
+  @override
+  String get rateSinoSparkDesc => 'Condividi la tua opinione su App Store';
+
+  @override
+  String get sendFeedback => 'Invia feedback';
+
+  @override
+  String get sendFeedbackDesc => 'Aiutaci a migliorare o segnala un problema';
+
+  @override
+  String get enjoyingAppTitle => 'Ti piace SinoSpark?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'Come sta andando il tuo percorso di apprendimento del cinese?';
+
+  @override
+  String get ratingLovingIt => 'Sì, lo adoro!';
+
+  @override
+  String get ratingCouldBeBetter => 'Potrebbe essere migliore';
+
+  @override
+  String get dictionarySearchFailed =>
+      'La ricerca nel dizionario non è riuscita. Riprova.';
 }

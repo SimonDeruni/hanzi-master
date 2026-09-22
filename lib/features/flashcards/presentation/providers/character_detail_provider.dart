@@ -5,10 +5,14 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 
-// Provider to fetch common words for a specific character
+// Provider to fetch common words for a specific character.
+//
+// Works for multi-character cards too: for 学习 it surfaces other words
+// containing 学, which is what makes the section useful outside single
+// characters. Ranking (HSK level first) happens in the repository.
 final commonWordsProvider =
     FutureProvider.family<List<Flashcard>, String>((ref, character) async {
-  if (character.isEmpty) return [];
+  if (character.trim().isEmpty) return [];
 
   final targetLanguage = ref.watch(translationLanguageProvider);
   final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
@@ -18,8 +22,7 @@ final commonWordsProvider =
   return result.fold(
     (l) => [],
     (words) => words
-        .where(
-            (word) => word.hanzi != character && word.hanzi.contains(character))
+        .where((word) => word.hanzi != character && word.hanzi.contains(character))
         .take(6)
         .toList(growable: false),
   );

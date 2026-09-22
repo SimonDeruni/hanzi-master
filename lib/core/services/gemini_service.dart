@@ -1689,25 +1689,44 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
   }
 
   Future<AiStory> _simplifyArticleChunk(String sourceText, int hskLevel,
-      {bool isRetry = false}) async {
-    const minimumRetryRatio = 0.35;
-    final sourceChineseLength = _countChineseCharacters(sourceText);
+      {bool isRetry = false,
+      int? sourceChineseLength,
+      int? sourceSentenceCount}) async {
+    // A faithful rewrite keeps ~all of the source. Anything below this ratio has
+    // dropped content (the model strips detail clauses rather than sentences).
+    const minimumRetryRatio = 0.90;
+    final sourceLength = sourceChineseLength ?? _countChineseCharacters(sourceText);
+    final terminators =
+        [String.fromCharCode(0x3002), String.fromCharCode(0xFF01), String.fromCharCode(0xFF1F)];
+    final sourceSentences = sourceSentenceCount ??
+        RegExp('[$terminators]').allMatches(sourceText).length;
+
     final prompt = '''
-You are an expert Chinese teacher. Rewrite this section of a Chinese article using HSK $hskLevel vocabulary and grammar.
+You are rewriting a Chinese article into easier Chinese (HSK $hskLevel vocabulary and grammar) for a learner.
 
-STRICT PRESERVATION RULES:
-- Rewrite EVERY paragraph and essential fact in the source. Do not omit major information.
-- Use accessible vocabulary and grammar appropriate for HSK $hskLevel.
-- Preserve paragraph and sentence order.
-- Return only the rewritten article section, not commentary.
-${isRetry ? '- Your previous response was too brief. Please provide a more complete sentence-by-sentence rewrite of all paragraphs.' : ''}
+THE SINGLE MOST IMPORTANT RULE - NEVER SHORTEN THE TEXT:
+The source has $sourceLength Chinese characters and $sourceSentences sentences. Because you are replacing difficult words with simpler ones, your rewrite should become LONGER, not shorter - aim for $sourceLength to ${sourceLength * 2} Chinese characters. Writing fewer than $sourceLength Chinese characters is a FAILURE.
 
-Source section:
+You are NOT a summariser. Do not summarise, condense, trim, merge or paraphrase anything away. Every sentence in the source must have a corresponding sentence (often two) in your rewrite.
+
+HOW TO WRITE EASIER CHINESE WITHOUT LOSING CONTENT:
+1. Replace each difficult word with an easy HSK $hskLevel word or a short easy phrase. A phrase is longer than the word it replaces - that is expected and good.
+2. Explain in-line: if a concept has no HSK $hskLevel word, keep the word and immediately add a short easy explanation of it.
+3. Split every long sentence into 2 or 3 short, simple sentences that keep the same meaning.
+4. Keep EVERY fact, number, name, place, example and reason. Every clause and every example in the source must still appear in your rewrite. Dropping an example or a sub-clause counts as failure.
+5. Do not add opinions or conclusions that were not in the source, and do not remove any that were.
+6. Preserve paragraph and sentence order.
+7. Return only the rewritten article, not commentary.
+
+Your rewrite must contain at least $sourceSentences sentences.
+${isRetry ? '\nYour previous attempt was too short and/or dropped content. Rewrite the WHOLE section again, covering every clause and example, and reaching at least $sourceLength Chinese characters.' : ''}
+
+Source article:
 """
 $sourceText
 """
 
-Respond ONLY with valid JSON using this structure:
+Answer with JSON only, in this exact shape:
 {
   "sentences": [
     {
@@ -1759,13 +1778,22 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
 
     final outputChineseLength = _countChineseCharacters(
         story.sentences.map((sentence) => sentence.chinese).join());
-    if (sourceChineseLength >= 100 &&
-        outputChineseLength < sourceChineseLength * minimumRetryRatio) {
+    if (sourceLength >= 100 &&
+        outputChineseLength < sourceLength * minimumRetryRatio) {
       if (!isRetry) {
-        return _simplifyArticleChunk(sourceText, hskLevel, isRetry: true);
+        // Retry once with the real numbers so the model knows its target.
+        return _simplifyArticleChunk(
+          sourceText,
+          hskLevel,
+          isRetry: true,
+          sourceChineseLength: sourceLength,
+          sourceSentenceCount: sourceSentences,
+        );
       }
-      debugPrint(
-          'Simplification preserved $outputChineseLength of $sourceChineseLength characters for HSK $hskLevel. Accepting story.');
+      // Never silently accept a truncated article: the reader would present a
+      // fraction of the source as if it were the whole thing.
+      throw const FormatException(
+          'Simplification dropped too much of the article.');
     }
     return story;
   }

@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_reference_text.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class ContextStep extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -105,7 +106,7 @@ class _ContextStepState extends ConsumerState<ContextStep> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(child: ZenLoader());
     }
 
     // Replace the target hanzi with an underscore blank for the challenge
@@ -155,10 +156,14 @@ class _ContextStepState extends ConsumerState<ContextStep> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  PinyinText(
-                    text: _pinyin,
-                    style: const TextStyle(fontSize: 18, color: Colors.indigo),
-                    textAlign: TextAlign.center,
+                  // Flexible: a long Pinyin sentence shrinks the label instead
+                  // of overflowing the row beside the audio button.
+                  Flexible(
+                    child: PinyinText(
+                      text: _pinyin,
+                      style: const TextStyle(fontSize: 18, color: Colors.indigo),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   IconButton(

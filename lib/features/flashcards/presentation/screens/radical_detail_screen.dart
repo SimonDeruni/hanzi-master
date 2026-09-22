@@ -11,6 +11,7 @@ import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
   final String radicalChar;
@@ -280,7 +281,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
               Expanded(
                 child: _isLoading
                     ? const Center(
-                        child: CircularProgressIndicator(color: Colors.indigo))
+                        child: ZenLoader(color: Colors.indigo))
                     : _filteredCharacters.isEmpty
                         ? Center(
                             child: Text(AppLocalizations.of(context)!

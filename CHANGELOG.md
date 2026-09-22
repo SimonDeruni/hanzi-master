@@ -2,7 +2,238 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+559] - 2026-09-22
+- **`[🚀 RELEASE]` Build Bump to 1.0.0+559**: Synchronized release delivering full reduced-motion accessibility compliance across all Tier 2 interface animations, Tier 2 Zen motion vocabulary uniformisation, organic Zen sound suite and ambient soundscapes, App Store rating optimization, and localization parity.
+
 ## [Unreleased] - 2026-08-31
+
+### [2026-09-22] Reduced-Motion Compliance Across Every Interface Animation
+- **`[✨ ADDED]` `ZenMotion.of(context, token)`** (`lib/core/theme/zen_motion.dart`): the single-line form of the standard's rule — returns `Duration.zero` when the platform asks for reduced motion, so a one-shot animation collapses to its end state. Controllers cannot use it (`initState` has no `BuildContext`); those are gated with the existing `MotionResolution`.
+- **`[🔧 FIXED]` Every Tier 2 animation now honours "Reduce Motion" — the accessibility gap is closed.** At session start only **21 of 61** animated files complied; the audit found **40 offenders**. Now **0 of 60 Tier 2 files** are non-compliant:
+  - **65 one-shot widgets + 5 route legs** collapsed via `ZenMotion.of(context, …)` across 33 files — `AnimatedContainer`, `AnimatedOpacity`, `AnimatedScale`, `AnimatedRotation`, `AnimatedCrossFade`, `AnimatedSwitcher`, `TweenAnimationBuilder`, `PageRouteBuilder`.
+  - **9 `flutter_animate` effect durations** collapsed the same way (`.fade/.slideY/.scale` etc.).
+  - **6 hand-rolled controllers** gated by hand: `BouncingButton` (keeps the haptic + action, drops the squash), `ZenFlipCard` (snaps to the target face), `SwipeableFlashcard` (registers the grade instantly instead of stamping and sliding), `InkStoneWidget` (award lands without the shake), `CalligraphicPitchContour` (shows the finished contour), `DailyGoalReviewRing` (`ZenMotion.of` on its `TweenAnimationBuilder`).
+- **`[🧪 TESTED]` The ratchet was replaced by a hard assertion.** `one-shot animations respect reduce motion` is now `every interface animation honours reduce motion` and demands an **empty** offender list instead of a shrinking baseline. Tier 1 files are **excluded** (not ratcheted), because the frozen canvas will never comply — previously that made a zero baseline unreachable. Added a widget test proving `ZenMotion.of` passes the token through normally and collapses it under reduce motion. 16/16 motion tests pass.
+- **`[🔄 SYNC]` Migrated with a second guarded codemod** (`scratch/honour_reduce_motion.py`). It deliberately excludes `AnimatedSize`, because `Duration.zero` makes `RenderAnimatedSize` re-dirty itself during layout and throw (a documented anti-pattern in `docs/ANTI_PATTERNS.md`); that widget keeps returning its child unwrapped, as `ZenExpand` does.
+- **`[🔧 FIXED]` Two pre-existing red tests:**
+  - `test/core/locale_layout_guard_test.dart`: the untranslated literal at `dictionary_screen.dart:216` is now the new `dictionarySearchFailed` key, added to all **14** `.arb` files and regenerated with `flutter gen-l10n`. **5/5 pass.**
+  - `test/unit_tests/book_download_service_test.dart`: the mock called `http.Response(payload, 200)` with a Chinese body; `http.Response` encodes **latin1** unless a charset is declared, so it threw `Contains invalid characters`. The mock now declares `content-type: application/json; charset=utf-8`. **4/4 pass.**
+- **`[⚖️ AUDITED]` `poetry_cover_manifest_test` partially repaired, and it exposed a real asset defect.** The test still asserted the retired v1 sourced-artwork contract (`license` must be `Public domain`/`CC0`, plus a `sourcePage` field that no longer exists) and therefore failed on **all 100** entries; the manifest is `schemaVersion 2` and its own `policy` states the covers are *"Project-owned original ink-style illustrations… No third-party image content is embedded."* The assertions now verify that declared policy (licence, `Project-owned` copyright, creator, provenance, and the poem link via `designBasis`) — **never fabricating a public-domain licence**. With those fixed, the test advanced to its next check and found **two perceptually near-duplicate covers**: `poetry_tang_d1d69a75` and `poetry_tang_4dc5fa06` (dHash distance 5, threshold >5). That is a genuine content defect requiring cover regeneration — **not** fixed, and the duplicate guard was **not** loosened.
+- **Verification:** `flutter analyze lib` and `flutter analyze test` = **0 issues**; `test/core` **61/61**, `test/shared` **36/36**, `test/features` **392/392** (flashcards+echo_hall 100, media+reading 121, onboarding+progression+premium+core 98, auth+course+live_translate+settings 73); `test/unit_tests` had no new failures. Zero regressions from the 33-file sweep.
+- **File(s):** `lib/core/theme/zen_motion.dart`, 33 swept call sites, 6 hand-gated widgets, `lib/l10n/app_*.arb` (14), `lib/l10n/app_localizations*.dart` (generated), `test/core/motion_vocabulary_test.dart`, `test/unit_tests/{book_download_service,poetry_cover_manifest}_test.dart`, `scratch/{unify_motion,honour_reduce_motion}.py`.
+
+### [2026-09-22] Tier 2 Motion Uniformisation: One Vocabulary for the Interface Chrome
+- **`[✨ ADDED]` Seven tokens + two curves in `ZenMotion`** (`lib/core/theme/zen_motion.dart`): `pageReverse` 350ms, `tap` 130ms, `toast` 2000ms, `ambientFast` 1000ms, `entrance` 400ms, `stagger` 50ms, `beat` 100ms, `shake` 500ms, plus the `enter` (`easeOutCubic`) and `breathe` (`easeInOutSine`) curves. The permitted vocabulary is now **five curves**, and the two frozen Tier 1 members (`strokeUnit`, `forStrokes`) are annotated read-only.
+- **`[🔧 FIXED]` Tabs and in-place swaps:** the 220ms bottom-nav cross-fade (`main_navigation_screen`) and both 300ms segmented controls (`explore_screen`, `ai_hub_screen`) now use `ZenMotion.swap`; six `AnimatedSwitcher`/`AnimatedCrossFade` durations (180/250/300/350/400/500ms) collapsed to the same token.
+- **`[🔧 FIXED]` Route legs:** 300/500/600ms pushes and 350ms reverses across the onboarding arc and the paywall now use `ZenMotion.page` / `ZenMotion.pageReverse`; the intentional 0ms unlock hard-swap is left explicit.
+- **`[🔧 FIXED]` Toast dwell:** 500/1000/2000/5000ms collapsed to `ZenMotion.toast` at **15 sites** in 11 files, covering both the `Duration(milliseconds:)` and `Duration(seconds:)` forms — a 500ms toast was unreadable against 2.08x locale expansion.
+- **`[🔧 FIXED]` Ambient loops:** six speeds (800/1000/1200/1800/2000/3000ms) collapsed to `ZenMotion.ambient` / `ZenMotion.ambientFast`.
+- **`[🔧 FIXED]` Curves:** 76 raw curve literals — including `easeOutCubic` (22x) and eight other strays — reduced to **1**, the Tier 1 canvas curve, which is now asserted read-only.
+- **`[🔧 FIXED]` Component defaults and duplicates:** `BouncingButton` 100ms, `ZenFlipCard` 350ms, `SwipeableFlashcard` 130/200ms, `StaggeredListItem` 400/50ms and the `ensureVisible`/`nextPage` scroll calls now source from the vocabulary; `LoadingSwap.animationDuration` and `ZenFilterPill.animationDuration` alias `ZenMotion.swap` and the third copy in `quick_look_sheet` is gone; the 320ms chat and 240ms shadowing orphans became `ZenMotion.quick`.
+- **`[🔧 FIXED]` Second dialect:** 20 `flutter_animate` `.ms` durations converged to tokens (30 -> 10 sites, the rest being `delay:` sequencing).
+- **`[🔧 FIXED]` Route convention:** two bare `MaterialPageRoute`s added by the rating task (`app_rating_service`, `settings_screen`) became `SwipeBackRoute`, restoring the ratchet to green and giving them the app's page transition.
+- **`[🔧 FIXED]` Final stragglers closed by hand:** `showGeneralDialog`'s `transitionDuration` in `quick_look_sheet` and `CachedNetworkImage`'s `fadeInDuration` in `cultural_context_screen` sat outside every widget anchor, so they were converted manually (180ms/200ms -> `ZenMotion.swap`). The Tier 2 sweep is now **complete**: the only animation-position literals left in `lib/` are the two inside the frozen Tier 1 canvas.
+- **`[🧪 TESTED]` Guard rails (`test/core/motion_vocabulary_test.dart`, 6 tests):** token contract (including the frozen Tier 1 values), a "calm" assertion that no interface motion is <130ms or >500ms, and **shrink-only ratchets** for raw curve literals (1), raw duration literals (123), the `.ms` dialect (10) and files animating without reduced-motion support (40) — plus a **growth floor** on adoption (240 references) and a **Tier 1 freeze assertion** on the Hero tag scheme and the canvas stroke budget. 15/15 motion tests pass.
+- **`[🔄 SYNC]` Migrated with a guarded codemod** (`scratch/unify_motion.py`): brace-matched spans so a `duration:` can only be rewritten inside the widget that owns it, depth checks so nested widgets are never mis-labelled, an explicit Tier 1 exclusion list, and a Hero-span guard.
+- **Evidence:** `ZenMotion` references **7 -> 244** across **4 -> 68 files**; raw `Duration(milliseconds:)` literals **179 -> 61**; checkouts `flutter analyze lib` = **0 errors, 0 warnings, 0 infos**.
+- **File(s):** `lib/core/theme/zen_motion.dart`, 60+ `lib/` call sites, `lib/shared/widgets/*`, `test/core/motion_vocabulary_test.dart`, `scratch/unify_motion.py`, `CHANGELOG.md`, `ISSUES.md`, `SESSION_STATE.md`.
+
+### [2026-09-22] App Store Rating Optimization (Happy Filter, Milestone Triggers & Settings Rate Button)
+- **The "Happy Filter" Sentiment Architecture (`lib/shared/widgets/zen_rating_sheet.dart`):**
+  - Created `ZenRatingSheet`, a calligraphic modal bottom sheet with Xuan paper (`#FDFCF0`) background, Emperor's Gold borders, and haptics.
+  - Implemented two-path sentiment routing:
+    - **"Yes, loving it!" (❤️):** Records positive sentiment and directly triggers Apple's native App Store 5-star review dialog (`InAppReview.requestReview()`).
+    - **"Could be better" (💬):** Routes to private in-app support (`ContactScreen`) with prefilled feedback category, catching issues privately and preventing public 1-star reviews.
+    - **"Maybe Later":** Dismisses the prompt and initiates a respectful 30-day cooldown.
+- **Milestone Trigger Integrations (High Satisfaction Moments):**
+  - **Streak Milestones (`lib/features/progression/presentation/screens/dashboard_screen.dart`):** Evaluates rating eligibility when user achieves a **3-day** or **7-day streak** milestone on the dashboard.
+  - **Chapter Completion (`lib/features/reading/presentation/screens/book_reader_screen.dart`):** Evaluates rating eligibility upon completing and advancing to the next book chapter.
+  - **Flashcard Study Summary (`lib/core/services/app_rating_service.dart`):** Preserved 3-qualifying-session rule with minimum 10 cards and 80% accuracy, guarded by 30-day cooldown and sentiment check.
+- **Settings Screen Direct Rating & Feedback Section (`lib/features/flashcards/presentation/screens/settings_screen.dart`):**
+  - Added dedicated **"Support & Feedback"** card before the Danger Zone:
+    - **"Rate SinoSpark"** (Star icon in Emperor's Gold): Directly opens the App Store listing via `InAppReview.openStoreListing()`.
+    - **"Send Feedback"** (Mail icon): Navigates to `ContactScreen` for direct contact and bug reporting.
+- **Universal 14-Language Parity:**
+  - Added 10 keys (`supportAndFeedback`, `rateSinoSpark`, `rateSinoSparkDesc`, `sendFeedback`, `sendFeedbackDesc`, `enjoyingAppTitle`, `enjoyingAppSubtitle`, `ratingLovingIt`, `ratingCouldBeBetter`, `maybeLater`) across all 14 `.arb` files and regenerated `AppLocalizations`.
+- **Verification & Total Hygiene State:**
+  - 10/10 rating tests passed in `test/core/services/app_rating_service_test.dart` and `test/shared/zen_rating_sheet_test.dart`.
+  - 29/29 settings tests passed in `test/features/settings/`.
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-22] Motion Governance: Tier 1 Frozen (P0), Tier 2 Uniformised (P1/P2)
+- **`[⚖️ AUDITED]` Motion drift quantified:** audited every motion site in `lib/` — 179 `Duration(milliseconds:)` literals, 72 `Duration(seconds:)` literals and 30 `flutter_animate` `.ms` shorthands — against `ZenMotion`, which is consumed in only 3 files (`ai_progress_bar`, `zen_expand`, `zen_loader`). 11 distinct curves are in use and only 2 are tokenised.
+- **`[🔄 SYNC]` Tier 1 declared FROZEN (P0), read-only:** the stroke/drawing animation (`drawing_canvas.dart`, `stroke_matcher.dart`, `CharacterLoader` median paths, `ZenMotion.forStrokes`) and the Hero flight animation (`hero_transition.dart` + every `Hero(` site). Rationale recorded: `docs/ROADMAP.MD` logs two P0 emergencies where the stroke animation was destroyed by a refactor, and Hero flights depend on collision-proof namespaced tags. **The word "animation" never includes Tier 1.**
+- **`[🔄 SYNC]` Tier 2 defined as the uniformisation target:** tab switches, sheets, dialogs, popovers, page pushes, toasts, buttons, expand/collapse, list entrances and ambient loops, expressed as a 16-row vocabulary table (interaction -> token -> duration -> curve). Documented feel: *classic, calm, satisfying*; exactly one permitted overshoot (rewards).
+- **`[✨ ADDED]` Seven missing tokens specified:** `pageReverse` 350ms, `toast` 2000ms, `tap` 130ms, `entrance` 400ms, `stagger` 50ms, `ambientFast` 1000ms, `shake` 500ms — plus the curve allowance narrowed to five (`natural`, `settle`, `enter`, `breathe`, `arrival`).
+- **`[🔧 FIXED]` (documentation) five drift classes named:** tab switching at 220ms beside 300ms; six `AnimatedSwitcher` durations (180/250/300/350/400/500ms); route pushes at 300/500/600ms plus a 0ms paywall unlock; snackbar dwell at 500/1000/2000/5000ms; ambient loops at six speeds (800-3000ms).
+- **`[🔄 SYNC]` Guard rails specified:** require `reduceMotion` in every file containing `Animated*`/`AnimationController`/`TweenAnimationBuilder` (the existing rule covers only `.repeat()` files), and ratchet raw `Duration`/`Curves` literals against a shrink-only baseline.
+- **File(s):** `docs/UI_UX_STANDARDS.md`, `docs/ANTI_PATTERNS.md`, `docs/ARCHITECTURAL_DECISIONS.md` (ADR 8), `GEMINI.md`, `CHANGELOG.md`, `ISSUES.md`, `SESSION_STATE.md`. No production code changed; `flutter analyze lib` = 0 issues.
+
+### [2026-09-21] Gentle Loading: Spinners Fade In, Panels Open Smoothly
+- **`ZenLoader` (`lib/shared/widgets/zen_loader.dart`, new):** a loading spinner that eases in with a small upward drift instead of appearing in a single frame (which read as a flicker on fast connections and a hard cut on slow ones). It forwards `color`, `backgroundColor`, `value`, `strokeWidth` and `semanticsLabel`, so any `CircularProgressIndicator` can be replaced by it directly, and takes an optional `label` caption for long waits.
+- **Adopted at all 45 full-section loader sites across 35 files** using a new guarded codemod, `scratch/adopt_zen_loader.py`, which only rewrites a spinner that sits directly inside a `Center`, validates every argument against what `ZenLoader` accepts (0 sites were skipped), adds the import, and refuses to rewrite the widget's own spinner. Touches `main.dart`, `dictionary_screen` (3), `book_catalog_screen` (3), `tome_manager_screen` (2), `character_detail_screen` (2), `daily_study_dashboard_screen` (2), `pronunciation_report_sheet` (2), `shadowing_studio_screen` (2) and 27 further screens/sheets. Tiny in-button spinners were deliberately left for `LoadingSwap`, which is a different pattern.
+- **`ZenFadeIn`:** fades content in that replaces a loader, so results ease in instead of snapping.
+- **`ZenExpand` (`lib/shared/widgets/zen_expand.dart`, new) + adopted in two shared widgets:** `translated_definition.dart` (used by the dictionary, reader and quick-look sheets) and `dictionary_expansion_panel.dart`. "Show more" previously flipped `maxLines` and resized the panel in one frame, jolting the rest of the screen; it now eases open.
+- **Bug found by the new tests:** passing `Duration.zero` to `AnimatedSize` for reduced motion throws *"A RenderAnimatedSize was mutated in its own performLayout implementation"*. `ZenExpand` now returns its child unwrapped when motion is reduced, and the hazard is documented as an anti-pattern.
+- **Guard rails:** new `test/shared/zen_loader_test.dart` (6 tests) covering the fade-in, the caption, the reduced-motion behaviour of both widgets (including that no `AnimatedSize` is created at all), and a static guard that no bare `Center(child: CircularProgressIndicator)` can return to `lib/`.
+- **Docs:** new "Loading States" section in `docs/UI_UX_STANDARDS.md`; three new entries in `docs/ANTI_PATTERNS.md` (bare section spinners, zero-duration `AnimatedSize`, jumping panels).
+- **Verification:** `flutter analyze lib` -> No issues found; targeted suites 30/30; full `flutter test` -> 574 passed / 4 failed, the 4 being the same pre-existing unrelated failures (book download service, poetry cover manifest, stroke matcher x2) - zero regressions across the 37 touched files.
+
+
+### [2026-09-22] Ambient Soundscape for Audiobook & Book Reading (14-Language Parity)
+- **Acoustic Design & Ambient Loops (`assets/audio/`):**
+  - Generated 3 seamless, organic, low-frequency 45-second 16-bit PCM background soundscape loops calibrated for unobtrusive reading immersion (<1100 Hz, zero harsh highs or sudden beats):
+    - `ambient_courtyard_rain.wav`: Gentle courtyard rainfall with soft filtered droplet ripples on stone.
+    - `ambient_guqin_wind.wav`: Traditional pentatonic Guqin plucks on the ancient Gong/Shang scale layered with a soft bamboo grove breeze.
+    - `ambient_midnight_zen.wav`: 432 Hz warm resonant drone with harmonic singing bowl overtones.
+- **Service & Audio Isolation Architecture (`lib/core/services/zen_ambient_service.dart`):**
+  - Created `ZenAmbientService` and Riverpod `zenAmbientServiceProvider` using dedicated player (`playerId: 'zen_ambient'`) with `ReleaseMode.loop` and audio session mode `mixWithOthers` + `AVAudioSessionCategory.ambient`, ensuring background music plays alongside spoken Chinese narration without interrupting Azure TTS or ducking sentence audio.
+  - Implemented seamless track selection (`off`, `courtyardRain`, `guqinWind`, `midnightZen`), master play/pause toggle, volume adjustment (5% to 50%), and persistence via `SharedPreferences` (`zen_soundscape_track`, `zen_soundscape_volume`).
+  - Added headless test environment guard (`_isTestEnv`) preventing `MissingPluginException` during automated test runs.
+- **Calligraphic Control Modal (`lib/shared/widgets/zen_soundscape_sheet.dart`):**
+  - Built calligraphic bottom sheet with drag handle, spa icon badge, master adaptive switch (`activeThumbColor`), track selection cards with "PLAYING" badge and Emperor's Gold borders, and an ambient volume slider.
+- **Reader & Audiobook Screen Integrations:**
+  - Integrated into `AudiobookPlayerScreen` (top action bar next to sleep timer), `BookReaderScreen` (both in top bar for silent reading and floating bar for narration), and `StoryReaderScreen` (top bar actions).
+  - Wired unawaited ambient pause when exiting readers (`dispose()`) and ambient stop when audiobook sleep timer finishes.
+- **Universal 14-Language Parity:**
+  - Added 7 keys (`ambientSoundscape`, `ambientSoundscapeDesc`, `ambientSoundscapeOff`, `soundscapeCourtyardRain`, `soundscapeGuqinWind`, `soundscapeMidnightZen`, `ambientVolume`) across all 14 `.arb` files (`en`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ar`, `hi`, `id`, `ja`, `ko`, `th`, `vi`) and regenerated `AppLocalizations`.
+- **Verification & Total Hygiene State:**
+  - 6/6 unit tests passed in `test/core/services/zen_ambient_service_test.dart`, 56/56 reading tests passed in `test/features/reading/`.
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-22] Organic Zen Sound Suite (Soft Low-Volume Calligraphic SFX)
+- **Acoustic Design & Synthesis (`assets/audio/`):**
+  - Designed and generated 4 custom 16-bit PCM audio waveforms engineered specifically to be soft, warm, and low in volume, avoiding any high-frequency piercing tones or metallic clicks:
+    - `zen_paper_flip.wav`: 140ms soft Xuan paper friction (<750Hz, calibrated volume 0.20).
+    - `zen_seal_stamp.wav`: 180ms wooden Hanko stamp thud (~120Hz fundamental, calibrated volume 0.26).
+    - `zen_brush_stroke.wav`: 220ms subtle wet ink brush sweep (<550Hz, calibrated volume 0.16).
+    - `zen_bell_chime.wav`: 2.0s serene bronze temple chime (432Hz fundamental, calibrated volume 0.22).
+- **Service & Audio Isolation (`lib/core/services/zen_sound_service.dart`):**
+  - Implemented `ZenSoundService` using a dedicated secondary `AudioPlayer` (`zen_sfx`) configured with `AVAudioSessionCategory.ambient` and `mixWithOthers` so sound effects never duck, pause, or clash with spoken Chinese audio or pronunciation assessments.
+  - Added test-environment guards (`FLUTTER_TEST`) ensuring headless widget tests execute cleanly without `MissingPluginException`.
+- **Interactions Wired:**
+  - `ZenFlipCard`: plays soft paper flip upon card rotation.
+  - `SwipeableFlashcard`: plays wooden seal thud upon stamping the Hanko seal.
+  - `DrawingCanvas`: plays whispery ink brush sweep upon finishing each calligraphy stroke.
+  - `SessionSummaryScreen` and `LessonScreen`: plays resonant bronze temple bell upon completing reviews and lessons.
+- **User Settings & Persistence:**
+  - Added `enableSoundEffects` setting in `SettingsController` (`settings_controller.dart`) and `SettingsScreen` (`settings_screen.dart`), persisted in `SharedPreferences`.
+- **Verification & Total Hygiene:**
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+  - 63/63 flashcard tests and 37/37 echo hall tests pass.
+
+### [2026-09-22] Deck Detail Action Buttons & Scenario Selection Sheet Calligraphic Uniformization
+- **Deck Detail Screen Action Buttons (`deck_detail_screen.dart`):**
+  - Eliminated the clash of three disparate color schemes on the deck screen (electric purple gradient, purple outline, and teal outline).
+  - Standardized the primary **"Review"** action button to the Book Screen standard: Deep Carbon Ink (`#1A1A1B`) in light mode, Emperor's Gold (`Colors.amber.shade700`) in dark mode, 54px height, 16px radius, with crisp white text.
+  - Standardized the secondary **"Story"** button with a soft Xuan parchment fill, Emperor's Gold / charcoal hairline border, and Cinnabar / Gold icon.
+  - Standardized the full-width **"Practice in Roleplay"** button: replaced teal styling with authentic Imperial Cinnabar Red (`#8B0000`) and Emperor's Gold tint and borders.
+  - Aligned TabBar underline indicators and active tab text from Material purple (`Colors.purple[700]`) to Emperor's Gold (`#FFD54F`) and Cinnabar (`#8B0000`).
+- **Echo Hall Roleplay Detail Sheet (`scenario_selection_screen.dart`):**
+  - Replaced legacy `Colors.indigo` difficulty badge with Imperial Cinnabar and Amber calligraphic pill badges.
+  - Updated bookmark toggle action icon and label to Emperor's Gold (`#FFD54F` / `#D4AF37`) instead of generic Material purple.
+- **Verification & Hygiene:**
+  - Verified unit and widget test suites across `test/features/echo_hall/` (37/37 pass) and `test/features/flashcards/` (63/63 pass).
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+- **Reduced motion (was honoured by only 3 of 18 looping animations):**
+  - Every remaining perpetual `.repeat()` was moved out of `initState` (which cannot read `MediaQuery`) into `didChangeDependencies`, resolved through `MotionResolution`: `ai_progress_bar`, `radical_lesson_screen` (decorative ink sweep rests off-frame at 0.0), `discovery_step` (mid-glow 0.5), `live_call_screen` (`_pulseController` at 0.0 = natural scale, `_analyzePulseController` at 1.0), `media_search_screen` and `smart_media_desk_screen` (mid-grey 0.5), `nuance_compare_sheet` (caret holds full opacity), and the three-dot `_InkDots` indicators in `ai_explainer_sheet` / `character_chat_sheet` (rest fully visible at 1.0, with their staggered `forward()` calls gated on the preference).
+  - `premium_transcript_line`: the recording pulse is now driven by a single `_syncPulse()` helper that consults a cached `_reduceMotion` flag, so start/stop/update all respect the setting.
+  - `streak_seal`: the `flutter_animate` flame (`onPlay: repeat`) returns the static badge under reduced motion.
+  - `shadowing_studio_screen`: the recording pulse is only started when motion is allowed.
+  - **Removed two dead perpetual tickers:** `travel_interpreter_screen` and `web_browser_screen` each created, repeated and disposed a `_pulseController` that was never read by any widget — pure per-frame work for no visual effect.
+- **`ZenMotion` tokens (`lib/core/theme/zen_motion.dart`, new):** one source of truth for the mandated feel — `quick` 300ms, `swap` 180ms, `page` 500ms, `forStrokes(n)` = strokes * 800ms, `ambient`, plus `natural` (`Curves.easeInOutQuart`) and `arrival` (`easeOutBack`). Previously the curve alone appeared as 26 scattered literals.
+- **One page transition for the whole app:** added `ZenPageTransitionsBuilder` (cross-fade + 3% lift, reduced-motion collapses to fade-only) and registered it in **both** themes for Android/Windows/Linux/Fuchsia, replacing the dated `FadeUpwardsPageTransitionsBuilder`. iOS/macOS deliberately keep `CupertinoPageTransitionsBuilder`, because that builder supplies the interactive edge-swipe back gesture that `SwipeBackRoute` (a `MaterialPageRoute` subclass with no custom transition) depends on — this single theme change therefore restyles all 89 route call-sites without touching one of them.
+- **Guard rails:** new `test/core/motion_guard_test.dart` (7/7 pass) — asserts the token contract against `docs/UI_UX_STANDARDS.md`, that both themes share the Zen transition, that every `.repeat()` site consults the motion preference, that the dated transition is gone, and ratchets bare `MaterialPageRoute` usage at a baseline of 23. Two runtime proofs: a perpetual sweep schedules **zero transient frames** under reduced motion, and does tick when motion is allowed.
+- **Docs:** rewrote the "Animations & Motion" section of `docs/UI_UX_STANDARDS.md` around `ZenMotion` + the reduced-motion rule, and added four motion anti-patterns to `docs/ANTI_PATTERNS.md` (loops without a motion check, loops started in `initState`, raw motion literals, overriding the platform transition).
+- **Verification:** `test/core/motion_guard_test.dart` 7/7; `flutter test` full suite re-run for regressions.
+
+
+### [2026-09-21] RTL Mirroring Bug: ToneComparisonSheet Header Pitch Graph Was Not LTR-Protected
+- **Bug found while repairing a stale test, and it was a real defect:**
+  - `ToneComparisonSheet` (`lib/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart`) wraps its compact pitch-contour badges (line ~559) in `LtrSanctuary`, but the **header tone graph** (`CalligraphicPitchContour`, line ~412) was **not** wrapped.
+  - A pitch contour is a *directional* curve, so under Arabic RTL the header graph was mirrored horizontally — showing the tone **rising where it should fall**. The compact badges were correct, so the same sheet displayed a right and a wrong curve simultaneously, which made it easy to miss.
+  - Wrapped the header graph in `LtrSanctuary` to match the badges.
+- **Why the existing test never caught it:** `test/features/onboarding/onboarding_rtl_arabic_test.dart` asserted `find.text('v')` for the Tone 3 glyph. That glyph no longer exists (the Zen & Ink work replaced the glyph badges with `CalligraphicPitchContour`), so the test was failing on a *missing* widget rather than testing direction. Rewrote it to iterate **all** `CalligraphicPitchContour` instances and assert each resolves to `TextDirection.ltr`.
+  - The `.first`-only form of this assertion would still have missed the bug, because it matched the unwrapped header graph first in tree order; asserting over every occurrence is what catches it.
+- `flutter test test/features/onboarding/onboarding_rtl_arabic_test.dart` = **5/5 passed** (previously failing).
+
+
+- **Reduced-Motion Accessibility (previously 0 support app-wide):**
+  - Added `MotionPreferences` (`lib/shared/utils/motion_preferences.dart`) exposing a `context.reduceMotion` extension over `MediaQueryData.disableAnimations` plus a `MotionResolution` helper that starts, freezes, or settles a controller to a static value.
+  - Fixed three **perpetual** loops that ran forever regardless of the OS "Reduce Motion" setting — `ShimmerSkeleton` (`repeat(reverse: true)`), `BreathingWidget`, and `StreakFlameBadge`'s glow halo. Each now rests at a static mid-value when motion is reduced, so the placeholder/glow is still visible without pulsing. This is an accessibility correctness fix (vestibular disorders), not styling.
+  - `HeroTransition.wrap` returns its child unwrapped under reduced motion, so card→detail navigation becomes a clean cut.
+  - `ZenFilterPill`, `LoadingSwap`, and `StaggeredListItem` all collapse to instant state changes.
+- **Shared-Element (Hero) Transitions — previously absent from every primary navigation path:**
+  - Added `HeroTransition` (`lib/shared/utils/hero_transition.dart`) with **namespaced tags** (`'<scope>::<id>'`). This is the critical safety detail: `Hero` tags must be unique per route, and shelf/catalog screens render the same card in multiple rails (horizontal shelf, "continue reading", category grid), so a naive tag would collide and throw at runtime. Namespacing by screen scope keeps duplicates distinct, and only the tapped card animates.
+  - Wired three previously static paths: **Book catalog → book detail** (`CalligraphicBookCover` flies from grid cell to 135×190 detail header), **Deck library → deck preview sheet** (`CalligraphicDeckCover`, via `showModalBottomSheet`), and **Show catalog → show detail** (thumbnail expands into the full-bleed backdrop).
+  - `flightShuttleBuilder` renders the destination child during flight so source-side chrome (bookmark badges, "SAVED" ribbons, CC chips) does not flash mid-animation.
+- **Unified filter pills:** `ChoiceChip` in `scenario_selection_screen` and `story_library_screen` (category + HSK row) swapped colour and label style in a single frame while `tome_manager_screen` already tweened over 180ms. Extracted the canonical animated pill as `ZenFilterPill` (`lib/shared/widgets/zen_filter_pill.dart`) and adopted it in all three screens, so selection now eases identically everywhere and carries haptics.
+- **`LoadingSwap`** (`lib/shared/widgets/loading_swap.dart`): cross-fades a button's idle icon into a progress spinner with a fixed footprint, replacing three snap `if/else` swaps in `web_browser_screen`. The constant-width `layoutBuilder` prevents adjacent `Text` in a `Row` from jittering mid-swap.
+- **Bug fixed — staggered list content could be stranded invisible:**
+  - `StaggeredListItem` drove its entrance with a bare `Future.delayed`. That callback is **not** driven by the ticker, so when it did not run (widget disposed mid-delay on a fast scroll, or a host settling the animation clock without draining pending timers) the item was left at **opacity 0.0 — permanently invisible row content**, the worst possible failure mode for a list. A follow-up attempt to simply cancel a `Timer` in `dispose` fixed the double-animation flash but not the stranding.
+  - Rewrote the delay as a **hold at the head of a `TweenSequence`** inside the controller's own timeline. The animation is now the single source of truth, so full opacity is always reached once it completes, and the orphaned-callback class of bug is impossible by construction.
+  - Applied `StaggeredListItem` to the previously static chapter list in `book_detail_screen` (one of 20 list screens with no entrance animation).
+- **Verification:**
+  - New widget suite `test/shared/motion_accessibility_test.dart` (15 tests) covering the reduced-motion flag, shimmer/breathing static settling, breathing still pulsing when motion is allowed, staggered immediate-reveal under reduced motion, the **"always reaches full opacity, never stranding content"** invariant, disposal safety, pill tap + shared duration + instant reduced-motion switch, and `LoadingSwap` icon/spinner swap with a stable footprint.
+  - Documented and worked around a real testing pitfall: `pumpAndSettle` times out against `CircularProgressIndicator` (it animates forever), so those assertions use fixed `pump(duration)`.
+  - `flutter test test/shared/ …` = **41/41 passed**; `flutter analyze` across the whole project = **No issues found! (0 errors, 0 warnings, 0 infos)**.
+
+### [2026-09-21] App-Wide Localized Button Geometry & Overflow Remediation
+- **Root cause:** buttons and text boxes were sized for English, so longer translations overflowed.
+  - Locale audit across all 14 `.arb` files: p95 expansion versus English is 1.79x-2.08x (Russian and Vietnamese 2.08x, Thai and Italian 2.00x, Portuguese 1.94x, French 1.93x, Spanish 1.90x, German 1.86x), with worst-case labels at 5-9x (e.g. `Puck` -> `Puck (männlich, sportlich)`).
+- **App-wide geometry fix (`lib/core/theme/app_theme.dart`):**
+  - Added `_localizedButtonGeometry()` and wired `filledButtonTheme`, `elevatedButtonTheme`, `outlinedButtonTheme` and `textButtonTheme` into **both** themes: a *minimum* size only (`Size(0, 48)` - never `fixedSize`/`maximumSize`), content-sized padding, and a label style with no tracking.
+  - `labelLarge` `letterSpacing` 1.0 -> 0.2 and the app bar title 2 -> 0.5, removing roughly 10-15% of width from every Latin/Cyrillic button label.
+- **Layout remediation (16 files):** `_RatingBar` in `session_summary_screen.dart` rebuilt with a `Table` + `IntrinsicColumnWidth()` (was `SizedBox(width: 60, child: Text(label))`); `translated_definition.dart` and the `smart_media_desk_screen.dart` timestamps now use `ConstrainedBox(minWidth:)`; numeric badges in `show_detail_screen.dart`, `review_screen.dart`, `character_detail_screen.dart` and `book_reader_screen.dart` use `FittedBox(scaleDown)`; the two-action row in `pronunciation_report_sheet.dart` is a `Wrap` (and its hardcoded `'Report'` now uses the existing `l10n.report`); `Spacer()` replaced by `Expanded` in six header rows; `_CallControlButton` labels in `live_call_screen.dart` constrained to 64px/2 lines; `tome_manager_screen.dart` badge and `context_step.dart` Pinyin wrapped in `Flexible`; fixed 46px button height removed in `book_detail_screen.dart`.
+- **Regression guard rails (new):**
+  - `test/support/locale_layout_harness.dart` - reusable locale x viewport x text-scale sweep whose `expectNoOverflow()` **fails** on `RenderFlex overflowed` instead of swallowing it (the pre-existing pattern hid these defects).
+  - `test/core/locale_layout_guard_test.dart` - bans `fixedSize` on buttons, requires an `overflow:`/`maxLines:` strategy on any fixed-width `Text`, ratchets untranslated UI literals (baseline 81) and asserts the button geometry contract. 5/5 tests pass.
+- **Encoding repairs:** byte-exact cp1252-decoded UTF-8 repaired in `story_library_screen.dart` (`ðŸ“œ` -> 📜, `ðŸ›ï¸` -> 🏛️) plus 201 box-drawing comment separators in `media_search_screen.dart` / `smart_media_desk_screen.dart` via the new `scratch/fix_mojibake.py`. Two doubly-encoded comment separators (`media_search_screen.dart:740,744`) are logged in `ISSUES.md` as cosmetic and not byte-exactly derivable.
+- **Docs:** new "Localization Layout Budget" section in `docs/UI_UX_STANDARDS.md`, four new entries in `docs/ANTI_PATTERNS.md`, and a new Step 5 in `docs/LOCALIZATION_PIPELINE.md` documenting the sweep command and the `scratch/` audit tooling.
+- **Verification:** `flutter analyze lib test` reports only 3 pre-existing warnings in untouched files. `flutter test` -> 523 passed / 6 failed, all 6 confirmed pre-existing: 5 reproduce on a pristine `HEAD` worktree (stroke_matcher x2, poetry cover manifest, ToneComparisonSheet RTL, book download service) and `tome_manager_shelf_test` fails because the uncommitted `tome_manager_screen.dart` refactor removed the `"Master Deck Library"` string that test asserts.
+
+### [2026-09-21] Nuance Comparison Sheet: Empty Chat History & Corrupted Output Fix
+- **"Continue the Discussion" Opened an Empty, Amnesiac Chat (`nuance_compare_sheet.dart`):**
+  - **Root cause:** `_enterChatMode()` constructed a brand-new `AiChatSession` via `startCharacterChat()` and never seeded `_chatMessages`, which only ever received entries from `_sendChatMessage()`. The chat panel therefore opened completely blank, and the AI had no memory of the comparison the user was continuing from.
+  - Seeded `_chatMessages` with the streamed comparison (guarded by `_streamedText.trim().isNotEmpty` and `_chatMessages.isEmpty` so empty/errored results and re-entries never duplicate it), then called `_scrollToBottom()` so the carried-over context is visible immediately.
+  - Added `isContext` to the `_ChatMessage` model and a dedicated render branch in `_buildChatView()` that draws the carried-over comparison as formatted reference content under a labelled divider rather than as an AI chat bubble.
+  - **Bonus fix:** the session language was hardcoded to `'en'`; it now derives from `Localizations.localeOf(context).languageCode`, so "continue the discussion" replies in the app's active language.
+- **"Weird" Comparison Output (`_buildFormattedContent`):**
+  - **Root cause 1:** `PinyinUtils.convertNumericToMarks()` was applied to the *entire* AI response, so the numeric→diacritic converter rewrote digits inside ordinary English prose and headings, making output look corrupted.
+  - Replaced with a `_normalizePinyin()` helper that only converts text actually containing Han characters (`[\u4e00-\u9fff]`); blocks are now split from the untouched `rawText`.
+  - **Root cause 2:** the highlight loop mutated `block` as it iterated `widget.words`, so a substitution made for an earlier word changed which `startsWith` check a later word matched — bolding was iteration-order dependent and inconsistent between runs.
+  - Replaced with `_leadingWordOf()`, which resolves the target word once from the raw line (handling `*`, `-`, and `•` bullets plus bare leading words) and applies a single `RegExp.escape`d replacement.
+- **Localization:**
+  - Added the `comparisonLabel` key to all 14 `.arb` files (EN "COMPARISON", FR "COMPARAISON", DE "VERGLEICH", ES "COMPARACIÓN", IT "CONFRONTO", PT "COMPARAÇÃO", RU "СРАВНЕНИЕ", AR "مقارنة", HI "तुलना", ID "PERBANDINGAN", JA "比較", KO "비교", TH "การเปรียบเทียบ", VI "SO SÁNH") and regenerated `lib/l10n/app_localizations*.dart` via `flutter gen-l10n`.
+- **Verification:**
+  - New source-based regression suite `test/shared/nuance_compare_sheet_test.dart` (11 tests) covering context seeding, no-duplicate/no-empty seeding, locale-driven language, `isContext` rendering, localized label, Han-gated pinyin conversion, untouched raw text, order-independent highlighting, regex escaping, and bullet bolding.
+  - Confirmed the tests genuinely fail (2 failures) when the formatting fix is reverted, then restored the fix — proving they guard the regression rather than merely documenting it.
+  - `flutter test` (nuance sheet + deck picker + QA localization) **33/33 passed**; `flutter analyze` on both changed files reports **No issues found!**
+
+### [2026-09-21] Web Explorer Hero Card Chinese Subtitle & Mojibake Watermark Removal
+- **Visual Glitch Resolution & Cleanliness:**
+  - Removed hardcoded Chinese text `'网页探索'` next to the title in `_buildWebExplorerHeroCard` (`lib/features/media/presentation/screens/media_hub_screen.dart`), leaving only the localized title (`EXPLORATEUR WEB` in French).
+  - Resolved the "weird thing" artifact behind the text: the watermark string was encoded with Mojibake as `'ç½‘'` instead of `网`, rendering as distorted overlapping Latin characters.
+  - Completely removed the corrupted watermark widget, ensuring a pristine card background with only the subtle ambient gold glow.
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-21] Paywall Screenshot Headline Removal & Phone Mockup Centering
+- **Universal Paywall Screenshot Headline Removal (Version B):**
+  - Processed all 117 WebP paywall screenshots across all 13 supported languages (`en`, `fr`, `de`, `es`, `it`, `pt`, `ru`, `ja`, `ko`, `vi`, `id`, `hi`, `th`).
+  - Erased pre-baked top marketing titles across all 9 showcase features (`read`, `call`, `shadow`, `watch`, `web`, `decks`, `books`, `scan`, `dictionary`).
+  - Centered the phone mockups vertically on the `(1284, 2778)` canvas with balanced margins.
+  - Re-encoded as high-fidelity WebP (`quality=90, method=6`), shrinking disk footprint from 13.44 MB down to 11.11 MB (-2.33 MB / 17.3%).
+  - Verified all 8 paywall tests pass in `test/features/premium/custom_paywall_screen_test.dart`.
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
+
+### [2026-09-21] Onboarding Calibration Screen Universal Localization
+- **14-Language Localization for "Explore Library Directly":**
+  - Added `exploreLibraryDirectly` key to all 14 `.arb` language files (English, French, Spanish, German, Italian, Portuguese, Russian, Arabic, Hindi, Indonesian, Japanese, Korean, Thai, Vietnamese).
+  - Regenerated Flutter localization classes (`flutter gen-l10n`).
+  - Replaced hardcoded string `'Explore Library Directly'` in `OnboardingScreen` with `l10n.exploreLibraryDirectly`.
+  - Added layout test assertion in `test/features/onboarding/onboarding_screen_layout_test.dart` (4/4 tests passing).
+  - `flutter analyze lib` verified **0 errors, 0 warnings, 0 infos** (Total Hygiene State).
 
 ### [2026-09-21] Master Deck Library Horizontal Shelves & Calligraphic Book Parity (Build #558)
 - **Horizontal Shelf Architecture (Book Screen Parity):**

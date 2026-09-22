@@ -12532,6 +12532,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get beginFirstLesson => 'पहला पाठ आरंभ करें';
 
   @override
+  String get exploreLibraryDirectly => 'सीधे लाइब्रेरी देखें';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return 'आपका पहला पाठ  •  $total में से $current';
   }
@@ -12994,4 +12997,72 @@ class AppLocalizationsHi extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'फिर $price / $period। सेटिंग्स में कभी भी रद्द करें।';
   }
+
+  @override
+  String get deckLibraryTitle => 'डेक लाइब्रेरी';
+
+  @override
+  String get deckLibrarySubtitle => 'HSK, संस्कृति, खेल और अकादमिक संग्रह';
+
+  @override
+  String get downloadOfficialDecks =>
+      'आधिकारिक HSK और थीम वाले डेक डाउनलोड करें';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$total में से $selected शब्द चुने गए';
+  }
+
+  @override
+  String get comparisonLabel => 'तुलना';
+
+  @override
+  String get ambientSoundscape => 'शांत पृष्ठभूमि संगीत';
+
+  @override
+  String get ambientSoundscapeDesc => 'पढ़ने और सुनने के लिए सुखदायक माहौल';
+
+  @override
+  String get ambientSoundscapeOff => 'बंद (शांत)';
+
+  @override
+  String get soundscapeCourtyardRain => 'आंगन की बारिश';
+
+  @override
+  String get soundscapeGuqinWind => 'गुकिन और बांस की हवा';
+
+  @override
+  String get soundscapeMidnightZen => 'मध्यरात्रि ध्यान';
+
+  @override
+  String get ambientVolume => 'पृष्ठभूमि की आवाज़';
+
+  @override
+  String get rateSinoSpark => 'SinoSpark को रेट करें';
+
+  @override
+  String get rateSinoSparkDesc => 'ऐप स्टोर पर अपनी राय साझा करें';
+
+  @override
+  String get sendFeedback => 'प्रतिक्रिया भेजें';
+
+  @override
+  String get sendFeedbackDesc => 'सुधार में मदद करें या समस्या की रिपोर्ट करें';
+
+  @override
+  String get enjoyingAppTitle => 'क्या आपको SinoSpark पसंद आ रहा है?';
+
+  @override
+  String get enjoyingAppSubtitle =>
+      'अब तक आपकी चीनी सीखने की यात्रा कैसी रही है?';
+
+  @override
+  String get ratingLovingIt => 'हाँ, बहुत पसंद आ रहा है!';
+
+  @override
+  String get ratingCouldBeBetter => 'और बेहतर हो सकता है';
+
+  @override
+  String get dictionarySearchFailed =>
+      'शब्दकोश खोज विफल रही। कृपया पुनः प्रयास करें।';
 }

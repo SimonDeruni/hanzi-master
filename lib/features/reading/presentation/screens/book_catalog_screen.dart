@@ -10,8 +10,11 @@ import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum ReadingRoomSection {
   novels,
@@ -260,7 +263,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: ZenMotion.of(context, ZenMotion.swap),
         decoration: BoxDecoration(
           color: isSelected
               ? (isDark ? const Color(0xFF3A3A3C) : Colors.white)
@@ -312,7 +315,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 setState(() => _selectedNovelCategory = catKey);
               },
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
+                duration: ZenMotion.of(context, ZenMotion.swap),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
@@ -373,7 +376,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 setState(() => _selectedHsk = val);
               },
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
+                duration: ZenMotion.of(context, ZenMotion.swap),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
@@ -501,7 +504,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       },
       loading: () => [
         const SliverFillRemaining(
-          child: Center(child: CircularProgressIndicator()),
+          child: Center(child: ZenLoader()),
         ),
       ],
       error: (e, _) => [
@@ -587,7 +590,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       },
       loading: () => [
         const SliverFillRemaining(
-          child: Center(child: CircularProgressIndicator()),
+          child: Center(child: ZenLoader()),
         ),
       ],
       error: (e, _) => [
@@ -673,7 +676,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       },
       loading: () => [
         const SliverFillRemaining(
-          child: Center(child: CircularProgressIndicator()),
+          child: Center(child: ZenLoader()),
         ),
       ],
       error: (e, _) => [
@@ -734,10 +737,14 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    CalligraphicBookCover(
-                      book: book,
-                      width: double.infinity,
-                      height: double.infinity,
+                    HeroTransition.wrap(
+                      context: context,
+                      tag: HeroTransition.heroTag('book_catalog', book.id),
+                      child: CalligraphicBookCover(
+                        book: book,
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
                     ),
                     Positioned(
                       top: 8,

@@ -6,12 +6,14 @@ import 'package:hanzi_master/features/media/domain/models/youtube_video.dart';
 import 'package:hanzi_master/features/media/presentation/providers/cultural_context_provider.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/smart_media_desk_screen.dart';
-import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class CulturalContextScreen extends ConsumerWidget {
   final DailyMediaItem mediaItem;
@@ -27,8 +29,13 @@ class CulturalContextScreen extends ConsumerWidget {
     final culturalContextAsync =
         ref.watch(culturalContextProvider(encodedParam));
 
+    // Keep the hero image substantial but never dominant: a fixed 350px header
+    // swallowed half the screen and forced a small source bitmap to upscale.
+    final heroHeight =
+        (MediaQuery.of(context).size.height * 0.32).clamp(200.0, 280.0);
+
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: AppTheme.surfaceOf(context),
       body: Column(
         children: [
           Expanded(
@@ -36,18 +43,27 @@ class CulturalContextScreen extends ConsumerWidget {
               physics: const BouncingScrollPhysics(),
               slivers: [
                 SliverAppBar(
-                  expandedHeight: 350,
+                  expandedHeight: heroHeight,
                   pinned: true,
-                  stretch: true,
-                  backgroundColor: theme.colorScheme.surface,
+                  // Disabled: stretching zoomed the bitmap and amplified blur.
+                  stretch: false,
+                  backgroundColor: AppTheme.surfaceOf(context),
+                  surfaceTintColor: Colors.transparent,
+                  scrolledUnderElevation: 0,
                   flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: const [StretchMode.zoomBackground],
                     background: Stack(
                       fit: StackFit.expand,
                       children: [
                         CachedNetworkImage(
                           imageUrl: mediaItem.imageUrl,
                           fit: BoxFit.cover,
+                          // Rendering at device pixel ratio keeps the bitmap
+                          // sharp instead of letting it decode undersized.
+                          filterQuality: FilterQuality.medium,
+                          memCacheWidth: (MediaQuery.of(context).size.width *
+                                  MediaQuery.of(context).devicePixelRatio)
+                              .round(),
+                          fadeInDuration: ZenMotion.swap,
                           placeholder: (context, url) =>
                               Container(color: Colors.black12),
                           errorWidget: (context, url, error) =>
@@ -62,7 +78,7 @@ class CulturalContextScreen extends ConsumerWidget {
                                 Colors.black.withValues(
                                     alpha: 0.5), // For status bar visibility
                                 Colors.transparent,
-                                theme.colorScheme.surface,
+                                AppTheme.surfaceOf(context),
                               ],
                               stops: const [0.0, 0.4, 1.0],
                             ),
@@ -75,7 +91,8 @@ class CulturalContextScreen extends ConsumerWidget {
                     icon: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.surface.withValues(alpha: 0.5),
+                        color:
+                            AppTheme.surfaceOf(context).withValues(alpha: 0.5),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(Icons.arrow_back,
@@ -92,18 +109,23 @@ class CulturalContextScreen extends ConsumerWidget {
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
+                              horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary
-                                .withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(100),
+                            // Book-screen badge vocabulary.
+                            color: AppTheme.accentOf(context)
+                                .withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: AppTheme.accentOf(context)
+                                  .withValues(alpha: 0.3),
+                            ),
                           ),
                           child: Text(
                             mediaItem.tag.toUpperCase(),
                             style: theme.textTheme.labelMedium?.copyWith(
-                              color: theme.colorScheme.primary,
+                              color: AppTheme.accentOf(context),
                               fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
+                              fontSize: 11,
                             ),
                           ),
                         ),
@@ -122,7 +144,7 @@ class CulturalContextScreen extends ConsumerWidget {
                               theme.textTheme.headlineMedium?.copyWith(
                             fontWeight: FontWeight.w900,
                             fontFamily: 'NotoSerifSC',
-                            color: theme.colorScheme.primary,
+                            color: AppTheme.accentOf(context),
                             height: 1.4,
                           ),
                         ),
@@ -130,7 +152,7 @@ class CulturalContextScreen extends ConsumerWidget {
                         Row(
                           children: [
                             Icon(Icons.auto_awesome,
-                                color: theme.colorScheme.primary, size: 24),
+                                color: AppTheme.accentOf(context), size: 24),
                             const SizedBox(width: 12),
                             Text(
                               AppLocalizations.of(context)!.culturalInsight,
@@ -154,7 +176,7 @@ class CulturalContextScreen extends ConsumerWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 const Center(
-                                    child: CircularProgressIndicator()),
+                                    child: ZenLoader()),
                                 const SizedBox(height: 24),
                                 Center(
                                   child: Text(
@@ -188,7 +210,7 @@ class CulturalContextScreen extends ConsumerWidget {
             padding: EdgeInsets.fromLTRB(
                 24, 16, 24, MediaQuery.of(context).padding.bottom + 16),
             decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
+              color: AppTheme.surfaceOf(context),
               boxShadow: [
                 BoxShadow(
                   color: isDark
@@ -199,76 +221,79 @@ class CulturalContextScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            child: BouncingButton(
-              onPressed: () async {
-                if (mediaItem.url.contains("youtube.com") ||
-                    mediaItem.url.contains("youtu.be")) {
-                  final videoId = _extractVideoId(mediaItem.url);
-                  if (videoId != null) {
-                    final video = YoutubeVideo(
-                      id: videoId,
-                      title: mediaItem.title,
-                      url: mediaItem.url,
-                      mediumThumbnailUrl: mediaItem.imageUrl,
-                      highThumbnailUrl: mediaItem.imageUrl,
-                      channelTitle: '',
-                    );
-                    if (!context.mounted) return;
+            child: SizedBox(
+              width: double.infinity,
+              height: 52,
+              child: ElevatedButton(
+                onPressed: () async {
+                  if (mediaItem.url.contains("youtube.com") ||
+                      mediaItem.url.contains("youtu.be")) {
+                    final videoId = _extractVideoId(mediaItem.url);
+                    if (videoId != null) {
+                      final video = YoutubeVideo(
+                        id: videoId,
+                        title: mediaItem.title,
+                        url: mediaItem.url,
+                        mediumThumbnailUrl: mediaItem.imageUrl,
+                        highThumbnailUrl: mediaItem.imageUrl,
+                        channelTitle: '',
+                      );
+                      if (!context.mounted) return;
+                      Navigator.pushReplacement(
+                        context,
+                        SwipeBackPageRoute(
+                          builder: (_) => SmartMediaDeskScreen(video: video),
+                        ),
+                      );
+                    } else {
+                      final uri = Uri.tryParse(mediaItem.url);
+                      if (uri != null) {
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(AppLocalizations.of(context)!
+                                  .unable_to_open_this_video_please)),
+                        );
+                      }
+                    }
+                  } else {
                     Navigator.pushReplacement(
                       context,
                       SwipeBackPageRoute(
-                        builder: (_) => SmartMediaDeskScreen(video: video),
+                        builder: (_) =>
+                            WebBrowserScreen(initialUrl: mediaItem.url),
                       ),
                     );
-                  } else {
-                    final uri = Uri.tryParse(mediaItem.url);
-                    if (uri != null) {
-                      launchUrl(uri, mode: LaunchMode.externalApplication);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text(AppLocalizations.of(context)!
-                                .unable_to_open_this_video_please)),
-                      );
-                    }
                   }
-                } else {
-                  Navigator.pushReplacement(
-                    context,
-                    SwipeBackPageRoute(
-                      builder: (_) =>
-                          WebBrowserScreen(initialUrl: mediaItem.url),
-                    ),
-                  );
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                      blurRadius: 15,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      isDark ? Colors.amber.shade700 : const Color(0xFF1A1A1B),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 4,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!.diveIntoFullContent,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: theme.colorScheme.onPrimary,
-                        fontWeight: FontWeight.bold,
+                    Flexible(
+                      child: Text(
+                        AppLocalizations.of(context)!.diveIntoFullContent,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Icon(Icons.arrow_forward,
-                        color: theme.colorScheme.onPrimary),
+                    const Icon(Icons.arrow_forward, size: 22),
                   ],
                 ),
               ),

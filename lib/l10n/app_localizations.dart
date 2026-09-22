@@ -2342,7 +2342,7 @@ abstract class AppLocalizations {
   /// **'{rate}x'**
   String animationSpeedMultiplier(Object rate);
 
-  /// No description provided for @supportAndFeedback.
+  /// supportAndFeedback label
   ///
   /// In en, this message translates to:
   /// **'Support & Feedback'**
@@ -4142,7 +4142,7 @@ abstract class AppLocalizations {
   /// **'Mastery'**
   String get mastery;
 
-  /// No description provided for @maybeLater.
+  /// maybeLater label
   ///
   /// In en, this message translates to:
   /// **'Maybe Later'**
@@ -23114,6 +23114,12 @@ abstract class AppLocalizations {
   /// **'Begin First Lesson'**
   String get beginFirstLesson;
 
+  /// Button to skip onboarding lesson and go directly to the library
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Library Directly'**
+  String get exploreLibraryDirectly;
+
   /// Progress header in onboarding mini lesson
   ///
   /// In en, this message translates to:
@@ -23817,6 +23823,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Then {price} / {period}. Cancel anytime in Settings.'**
   String trialSubtextUnderCta(String price, String period);
+
+  /// Title of the curated deck library screen and the button that opens it
+  ///
+  /// In en, this message translates to:
+  /// **'Deck Library'**
+  String get deckLibraryTitle;
+
+  /// Subtitle of the curated deck library screen
+  ///
+  /// In en, this message translates to:
+  /// **'Curated collections across HSK, culture, sports, & academics'**
+  String get deckLibrarySubtitle;
+
+  /// Description on the button that opens the deck library
+  ///
+  /// In en, this message translates to:
+  /// **'Download official HSK & thematic decks'**
+  String get downloadOfficialDecks;
+
+  /// Selection summary in the extracted-words review sheet
+  ///
+  /// In en, this message translates to:
+  /// **'{selected} of {total} words selected'**
+  String wordsSelectedCount(int selected, int total);
+
+  /// Label above the seeded comparison content in the nuance chat view
+  ///
+  /// In en, this message translates to:
+  /// **'COMPARISON'**
+  String get comparisonLabel;
+
+  /// ambientSoundscape label
+  ///
+  /// In en, this message translates to:
+  /// **'Ambient Soundscape'**
+  String get ambientSoundscape;
+
+  /// ambientSoundscapeDesc label
+  ///
+  /// In en, this message translates to:
+  /// **'Soothing background atmosphere for reading & listening'**
+  String get ambientSoundscapeDesc;
+
+  /// ambientSoundscapeOff label
+  ///
+  /// In en, this message translates to:
+  /// **'Off (Silent)'**
+  String get ambientSoundscapeOff;
+
+  /// soundscapeCourtyardRain label
+  ///
+  /// In en, this message translates to:
+  /// **'Courtyard Rain'**
+  String get soundscapeCourtyardRain;
+
+  /// soundscapeGuqinWind label
+  ///
+  /// In en, this message translates to:
+  /// **'Guqin & Bamboo Wind'**
+  String get soundscapeGuqinWind;
+
+  /// soundscapeMidnightZen label
+  ///
+  /// In en, this message translates to:
+  /// **'Midnight Zen Drone'**
+  String get soundscapeMidnightZen;
+
+  /// ambientVolume label
+  ///
+  /// In en, this message translates to:
+  /// **'Background Volume'**
+  String get ambientVolume;
+
+  /// rateSinoSpark label
+  ///
+  /// In en, this message translates to:
+  /// **'Rate SinoSpark'**
+  String get rateSinoSpark;
+
+  /// rateSinoSparkDesc label
+  ///
+  /// In en, this message translates to:
+  /// **'Share your love on the App Store'**
+  String get rateSinoSparkDesc;
+
+  /// sendFeedback label
+  ///
+  /// In en, this message translates to:
+  /// **'Send Feedback'**
+  String get sendFeedback;
+
+  /// sendFeedbackDesc label
+  ///
+  /// In en, this message translates to:
+  /// **'Help us improve or report an issue'**
+  String get sendFeedbackDesc;
+
+  /// enjoyingAppTitle label
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoying SinoSpark?'**
+  String get enjoyingAppTitle;
+
+  /// enjoyingAppSubtitle label
+  ///
+  /// In en, this message translates to:
+  /// **'How has your Chinese learning journey been so far?'**
+  String get enjoyingAppSubtitle;
+
+  /// ratingLovingIt label
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, loving it!'**
+  String get ratingLovingIt;
+
+  /// ratingCouldBeBetter label
+  ///
+  /// In en, this message translates to:
+  /// **'Could be better'**
+  String get ratingCouldBeBetter;
+
+  /// No description provided for @dictionarySearchFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary search failed. Please try again.'**
+  String get dictionarySearchFailed;
 }
 
 class _AppLocalizationsDelegate

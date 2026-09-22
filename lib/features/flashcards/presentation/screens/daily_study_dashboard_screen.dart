@@ -11,6 +11,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/flashcar
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class DailyStudyDashboardScreen extends ConsumerWidget {
   const DailyStudyDashboardScreen({super.key, required this.deck});
@@ -22,7 +23,7 @@ class DailyStudyDashboardScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.todayDashboard)),
       body: cardsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: ZenLoader()),
         error: (_, __) => Center(
             child: Text(AppLocalizations.of(context)!.studySessionLoadFailed)),
         data: (allCards) {
@@ -35,7 +36,7 @@ class DailyStudyDashboardScreen extends ConsumerWidget {
                 ),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: ZenLoader());
               }
               final metrics = DailyStudyMetrics.calculate(
                 cards: cards,

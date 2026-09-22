@@ -17,7 +17,10 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
+import 'package:hanzi_master/core/services/zen_ambient_service.dart';
+import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
   final BookModel book;
@@ -276,6 +279,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     ref.read(bookRepositoryProvider).recordReadingEvent();
     ++_audioRequestGeneration;
     unawaited(ref.read(audioServiceProvider).stop());
+    unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
     _scrollController.dispose();
     super.dispose();
   }
@@ -712,10 +716,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       if (ctx != null) {
         Scrollable.ensureVisible(
           ctx,
-          duration: animate
-              ? const Duration(milliseconds: 350)
-              : Duration.zero,
-          curve: Curves.easeInOutQuart,
+          duration: animate ? ZenMotion.quick : Duration.zero,
+          curve: ZenMotion.natural,
           alignment: 0.25,
           alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
         );
@@ -725,8 +727,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
         if (animate) {
           _scrollController.animateTo(
             estOffset,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOutQuart,
+            duration: ZenMotion.quick,
+            curve: ZenMotion.natural,
           );
         } else {
           _scrollController.jumpTo(estOffset);
@@ -737,10 +739,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           if (retryCtx != null) {
             Scrollable.ensureVisible(
               retryCtx,
-              duration: animate
-                  ? const Duration(milliseconds: 250)
-                  : Duration.zero,
-              curve: Curves.easeInOutQuart,
+              duration: animate ? ZenMotion.quick : Duration.zero,
+              curve: ZenMotion.natural,
               alignment: 0.25,
               alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
             );
@@ -797,6 +797,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
             _stopAtEndOfChapter = false;
           });
           unawaited(ref.read(audioServiceProvider).stop());
+          unawaited(ref.read(zenAmbientServiceProvider.notifier).stop());
         }
       });
     }
@@ -1376,6 +1377,28 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                         onPressed: () => _showSleepTimerModal(
                             context, isDark, cardBg, primaryText),
                       ),
+                      // Ambient Soundscape Button
+                      Builder(builder: (context) {
+                        final ambient = ref.watch(zenAmbientServiceProvider);
+                        final isSoundscapeActive =
+                            ambient.track != SoundscapeTrack.off &&
+                                ambient.isPlaying;
+                        return IconButton(
+                          icon: Icon(
+                            isSoundscapeActive
+                                ? Icons.spa_rounded
+                                : Icons.spa_outlined,
+                            size: 21,
+                            color: isSoundscapeActive
+                                ? activeAccent
+                                : secondaryText,
+                          ),
+                          tooltip: AppLocalizations.of(context)
+                                  ?.ambientSoundscape ??
+                              'Ambient Soundscape',
+                          onPressed: () => ZenSoundscapeSheet.show(context),
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -1475,7 +1498,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                         },
                         behavior: HitTestBehavior.opaque,
                         child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
+                          duration: ZenMotion.of(context, ZenMotion.quick),
                           margin: const EdgeInsets.symmetric(vertical: 8),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 14),
@@ -1559,8 +1582,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                     },
                                     behavior: HitTestBehavior.opaque,
                                     child: AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 150),
+                                      duration: ZenMotion.of(context, ZenMotion.swap),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 4, vertical: 2),
                                       transform: isCharSpoken

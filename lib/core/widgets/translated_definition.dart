@@ -5,6 +5,7 @@ import '../../features/flashcards/presentation/providers/settings_controller.dar
 import '../providers/translation_language_provider.dart';
 import '../services/local_translation_service.dart';
 import '../utils/definition_formatter.dart';
+import 'package:hanzi_master/shared/widgets/zen_expand.dart';
 
 enum DefinitionPresentation { plain, fullDetail }
 
@@ -215,55 +216,62 @@ class _FullDetailDefinitionState extends State<_FullDetailDefinition> {
         ? meanings
         : meanings.take(_collapsedMeaningCount).toList(growable: false);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        for (var index = 0; index < visibleMeanings.length; index++) ...[
-          if (index > 0) const SizedBox(height: 8),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 30,
-                child: Text(
-                  '${index + 1}',
-                  textAlign: TextAlign.end,
-                  style: widget.style?.copyWith(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primary
-                        .withValues(alpha: 0.75),
-                    fontWeight: FontWeight.w600,
+    // ZenExpand eases the height change, so revealing more meanings grows the
+    // list smoothly instead of jumping the rest of the screen.
+    return ZenExpand(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (var index = 0; index < visibleMeanings.length; index++) ...[
+            if (index > 0) const SizedBox(height: 8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // A minimum width (never a fixed one) lets a wider locale or a
+                // large system text scale grow the index while the Expanded
+                // meaning beside it absorbs the difference.
+                ConstrainedBox(
+                  constraints: const BoxConstraints(minWidth: 30),
+                  child: Text(
+                    '${index + 1}',
+                    textAlign: TextAlign.end,
+                    style: widget.style?.copyWith(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withValues(alpha: 0.75),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  visibleMeanings[index],
-                  style: widget.style,
-                  textAlign: TextAlign.start,
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    visibleMeanings[index],
+                    style: widget.style,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-        if (meanings.length > _collapsedMeaningCount) ...[
-          const SizedBox(height: 6),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton(
-              key: const ValueKey('definition-expansion-button'),
-              onPressed: () => setState(() => _expanded = !_expanded),
-              child: Text(_expanded
-                  ? _showFewerLabel(context)
-                  : _showMoreLabel(
-                      context, meanings.length - _collapsedMeaningCount)),
+              ],
             ),
-          ),
+          ],
+          if (meanings.length > _collapsedMeaningCount) ...[
+            const SizedBox(height: 6),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                key: const ValueKey('definition-expansion-button'),
+                onPressed: () => setState(() => _expanded = !_expanded),
+                child: Text(_expanded
+                    ? _showFewerLabel(context)
+                    : _showMoreLabel(
+                        context, meanings.length - _collapsedMeaningCount)),
+              ),
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 

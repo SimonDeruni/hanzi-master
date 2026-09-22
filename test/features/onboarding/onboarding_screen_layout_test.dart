@@ -63,6 +63,7 @@ void main() {
 
     expect(find.text('Your Plan is Ready'), findsOneWidget);
     expect(find.text('Begin First Lesson'), findsOneWidget);
+    expect(find.text('Explore Library Directly'), findsOneWidget);
 
     await tester.tap(find.text('Begin First Lesson'));
     await tester.pumpAndSettle();

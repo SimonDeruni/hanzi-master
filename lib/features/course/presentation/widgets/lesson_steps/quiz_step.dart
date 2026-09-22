@@ -5,6 +5,7 @@ import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum QuizMode { recognition, pinyin }
 
@@ -150,7 +151,7 @@ class _QuizStepState extends ConsumerState<QuizStep> {
     return GestureDetector(
       onTap: () => _handleSelection(option),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: ZenMotion.of(context, ZenMotion.swap),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(16),

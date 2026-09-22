@@ -10,6 +10,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
@@ -27,6 +28,8 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/loading_swap.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -54,11 +57,15 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   bool _isLoading = true;
   bool _isZenMode = false;
   bool _isProcessingAi = false;
+
+  /// Upper bound for reading the page's text via the JS bridge.
+  /// `runJavaScriptReturningResult` never completes if the injected script
+  /// throws, which would otherwise leave the AI progress overlay stuck forever.
+  static const Duration _articleTextTimeout = Duration(seconds: 20);
   String _selectedText = '';
   bool _isArticleSaved = false;
 
   ArticleInsight? _currentInsight;
-  late AnimationController _pulseController;
 
   // Translation Panel State
   AiSentence? _activeTranslation;
@@ -74,9 +81,6 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   @override
   void initState() {
     super.initState();
-    _pulseController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1))
-          ..repeat(reverse: true);
     _initTts();
     _urlController.text = widget.initialUrl;
     _controller = WebViewController()
@@ -105,25 +109,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
               _urlController.text = url;
             });
             _checkArticleSaved(url);
-            _injectHanziInterceptor();
-            // Auto-trigger Reading (Zen) Mode by default
-            Future.delayed(const Duration(milliseconds: 800), () {
-              if (mounted) {
-                if (!_isZenMode) {
-                  _toggleZenMode();
-                } else {
-                  final isDark =
-                      Theme.of(context).brightness == Brightness.dark;
-                  _applyZenMode(darkMode: isDark);
-                }
-              }
-            });
-            // Auto-trigger simplify if requested
-            if (widget.autoReadingMode) {
-              Future.delayed(const Duration(milliseconds: 1500), () {
-                if (mounted) _runAutoSimplify(3);
-              });
-            }
+            // Sequence the injections: Zen mode calls makeChineseTextClickable,
+            // which _injectHanziInterceptor defines after an async store read.
+            // Running them concurrently let Zen mode throw a TypeError that
+            // aborted its script mid-way.
+            unawaited(_preparePageForReading(url));
           },
         ),
       )
@@ -136,9 +126,35 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       ..loadRequest(Uri.parse(widget.initialUrl));
   }
 
+  /// Runs the post-load page setup in a safe order.
+  ///
+  /// The hanzi interceptor must finish before Zen mode, because Zen mode's
+  /// script calls `makeChineseTextClickable`, which the interceptor defines.
+  Future<void> _preparePageForReading(String url) async {
+    try {
+      await _injectHanziInterceptor();
+    } catch (e) {
+      debugPrint('Hanzi interceptor injection failed: $e');
+    }
+    if (!mounted) return;
+
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    if (!_isZenMode) {
+      await _toggleZenMode();
+    } else {
+      await _applyZenMode(darkMode: isDark);
+    }
+
+    // Auto-trigger simplify if requested, only once Zen mode has been applied.
+    if (widget.autoReadingMode) {
+      await Future.delayed(const Duration(milliseconds: 600));
+      if (!mounted) return;
+      await _runAutoSimplify(3);
+    }
+  }
+
   @override
   void dispose() {
-    _pulseController.dispose();
     _urlController.dispose();
     _boundarySub?.cancel();
     _ttsCompleteSub?.cancel();
@@ -603,12 +619,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
   void _showAiToolsMenu(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final bgColor = AppTheme.surfaceOf(context);
     final textColor = isDark ? Colors.white : Colors.black87;
-    final cardBg = isDark ? const Color(0xFF2A2A2B) : Colors.white;
-    final borderColor = isDark
-        ? Colors.white.withValues(alpha: 0.08)
-        : Colors.black.withValues(alpha: 0.06);
 
     showModalBottomSheet(
         context: context,
@@ -660,17 +672,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   // Extract to Deck card
                   _AiToolTile(
                     icon: Icons.playlist_add,
-                    iconColor: const Color(0xFF4A90D9),
-                    iconBgColor:
-                        const Color(0xFF4A90D9).withValues(alpha: 0.12),
                     title: AppLocalizations.of(context)?.extractToDeck ??
                         'Extract to Deck',
-                    subtitle:
+                    subtitle: AppLocalizations.of(context)
+                            ?.extractAllUnknownWords ??
                         'Extract all unknown words to a new flashcard deck',
-                    isDark: isDark,
-                    cardBg: cardBg,
-                    borderColor: borderColor,
-                    textColor: textColor,
                     onTap: () {
                       HapticsManager.medium();
                       Navigator.pop(ctx);
@@ -681,16 +687,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                   // Auto-Simplify card
                   _AiToolTile(
                     icon: Icons.auto_fix_high,
-                    iconColor: const Color(0xFFFFB300),
-                    iconBgColor:
-                        const Color(0xFFFFB300).withValues(alpha: 0.12),
                     title: AppLocalizations.of(context)?.autoSimplify ??
                         'Auto-Simplify',
-                    subtitle: 'Rewrite this article to match your HSK level',
-                    isDark: isDark,
-                    cardBg: cardBg,
-                    borderColor: borderColor,
-                    textColor: textColor,
+                    subtitle: AppLocalizations.of(context)
+                            ?.rewriteThisArticleToMatch ??
+                        'Rewrite this article to match your HSK level',
                     onTap: () {
                       HapticsManager.medium();
                       Navigator.pop(ctx);
@@ -782,13 +783,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     alignment: WrapAlignment.center,
                     children: List.generate(6, (index) {
                       final level = index + 1;
+                      final l10n = AppLocalizations.of(context)!;
                       final descriptions = [
-                        'Beginner',
-                        'Elementary',
-                        'Intermediate',
-                        'Upper-Intermediate',
-                        'Advanced',
-                        'Master',
+                        l10n.beginner,
+                        l10n.elementary,
+                        l10n.intermediate,
+                        l10n.upperIntermediate,
+                        l10n.advanced,
+                        l10n.master,
                       ];
                       return GestureDetector(
                         onTap: () {
@@ -841,20 +843,20 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         });
   }
 
-  void _toggleZenMode() {
+  Future<void> _toggleZenMode() async {
     setState(() {
       _isZenMode = !_isZenMode;
     });
 
     if (_isZenMode) {
       final isDark = Theme.of(context).brightness == Brightness.dark;
-      _applyZenMode(darkMode: isDark);
+      await _applyZenMode(darkMode: isDark);
     } else {
       _removeZenMode();
     }
   }
 
-  void _applyZenMode({bool darkMode = false}) {
+  Future<void> _applyZenMode({bool darkMode = false}) async {
     final isStoryMode = widget.isStoryMode;
     final l10n = AppLocalizations.of(context);
     final aiIsReadingText = l10n?.aiIsReading ?? 'AI is reading...';
@@ -940,14 +942,19 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       document.documentElement.style.height = 'auto';
       document.body.style.backgroundColor = '$bgColor';
       document.documentElement.style.backgroundColor = '$bgColor';
-      
-      window.makeChineseTextClickable(document.body);
+
+      // makeChineseTextClickable is defined by the async hanzi-interceptor
+      // injection. Guard it: an unguarded call throws a TypeError here, which
+      // aborts this whole script and leaves the page in a half-injected state.
+      if (typeof window.makeChineseTextClickable === 'function') {
+        window.makeChineseTextClickable(document.body);
+      }
     ''';
-    _controller.runJavaScript(js);
+    await _controller.runJavaScript(js);
 
     if (_currentInsight == null) {
       if (mounted && _isZenMode) {
-        _runAnalyzeArticle();
+        await _runAnalyzeArticle();
       }
     }
   }
@@ -958,10 +965,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     const js = '''
       if (window.zenModeBackup) {
         document.body.innerHTML = window.zenModeBackup;
-        window.makeChineseTextClickable(document.body);
+        if (typeof window.makeChineseTextClickable === 'function') {
+          window.makeChineseTextClickable(document.body);
+        }
       }
     ''';
-    _controller.runJavaScript(js);
+    unawaited(_controller.runJavaScript(js));
   }
 
   Future<void> _runAnalyzeArticle() async {
@@ -972,8 +981,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
     try {
       // Extract only what Gemini needs to save platform channel overhead
-      final text = await _controller.runJavaScriptReturningResult(
-          'document.body.innerText.substring(0, 3000)');
+      final text = await _controller
+          .runJavaScriptReturningResult(
+              'document.body.innerText.substring(0, 3000)')
+          .timeout(
+            _articleTextTimeout,
+            onTimeout: () => throw TimeoutException(
+                'Reading the page text timed out. Try reloading the article.'),
+          );
 
       // Use synchronous cached provider instead of hitting the database
       final allCards = ref.read(flashcardControllerProvider).value ?? [];
@@ -1087,41 +1102,72 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
 
       if (!mounted) return;
-      final selectedWords = await showModalBottomSheet<List<AiWord>>(
-        context: context,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-        builder: (context) =>
-            ExtractedWordsReviewSheet(deckName: deckName, words: newWords),
-      );
+      // Review ⇄ deck-picker loop.
+      //
+      // "Add to Deck" opens DeckSelectionSheet (checkpoint 2). If the user
+      // dismisses that picker instead of choosing a deck, we must return them to
+      // the review sheet (checkpoint 1) with their selection intact — otherwise
+      // the extracted words are silently lost.
+      List<AiWord> remaining = List<AiWord>.from(newWords);
+      while (remaining.isNotEmpty) {
+        if (!mounted) return;
+        final selectedWords = await showModalBottomSheet<List<AiWord>>(
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+          builder: (context) => ExtractedWordsReviewSheet(
+              deckName: deckName, words: remaining),
+        );
 
-      if (selectedWords == null || selectedWords.isEmpty) {
-        return;
-      }
+        // Dismissed the review sheet, or deselected everything: stop.
+        if (selectedWords == null || selectedWords.isEmpty) {
+          return;
+        }
 
-      final List<Flashcard> flashcards = selectedWords
-          .map((w) => Flashcard(
-                id: const Uuid().v4(),
-                deckId: '', // Will be assigned by DeckSelectionSheet
-                hanzi: w.hanzi,
-                pinyin: w.pinyin,
-                definition: w.meaning,
-                hskLevel: 0,
-                strokePaths: const [],
-                medianPaths: const [],
-                isFlipped: false,
-                modeStats: const {},
-                inkPoints: 0,
-              ))
-          .toList();
+        final List<Flashcard> flashcards = selectedWords
+            .map((w) => Flashcard(
+                  id: const Uuid().v4(),
+                  deckId: '', // Will be assigned by DeckSelectionSheet
+                  hanzi: w.hanzi,
+                  pinyin: w.pinyin,
+                  definition: w.meaning,
+                  hskLevel: 0,
+                  strokePaths: const [],
+                  medianPaths: const [],
+                  isFlipped: false,
+                  modeStats: const {},
+                  inkPoints: 0,
+                ))
+            .toList();
 
-      if (mounted) {
+        if (!mounted) return;
         setState(() => _isProcessingAi = false);
-        DeckSelectionSheet.show(
+        final added = await DeckSelectionSheet.show(
           context,
           cards: flashcards,
         );
+
+        if (added == true) {
+          // Words were saved — the flow is complete.
+          return;
+        }
+
+        // The picker was dismissed without saving. Reopen the review sheet for
+        // the words the user just tried to save, falling back to the full set if
+        // the list somehow no longer matches.
+        remaining = newWords
+            .where((w) => selectedWords.any((s) => s.hanzi == w.hanzi))
+            .toList();
+        if (remaining.isEmpty) remaining = List<AiWord>.from(newWords);
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content:
+                    Text(AppLocalizations.of(context)!.please_select_a_deck_to_add)),
+          );
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -1143,7 +1189,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     setState(() => _isProcessingAi = true);
 
     try {
-      final rawText = await _controller.runJavaScriptReturningResult('''
+      final rawText = await _controller
+          .runJavaScriptReturningResult('''
         (function() {
           const selectors = [
             'article',
@@ -1169,7 +1216,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           ).forEach((node) => node.remove());
           return copy.innerText.replace(/\\n{3,}/g, '\\n\\n').trim();
         })()
-      ''');
+      ''').timeout(
+        _articleTextTimeout,
+        onTimeout: () => throw TimeoutException(
+            'Reading the page text timed out. Try reloading the article.'),
+      );
       final text = _decodeJavaScriptString(rawText);
       if (text.trim().length < 20) {
         throw Exception('No readable article text was found on this page.');
@@ -1930,8 +1981,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 _showAiToolsMenu(context);
                               },
                         child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 250),
-                          curve: Curves.easeInOutQuad,
+                          duration: ZenMotion.of(context, ZenMotion.swap),
+                          curve: ZenMotion.natural,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
@@ -1953,23 +2004,18 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (_isProcessingAi)
-                                const SizedBox(
-                                  width: 16,
-                                  height: 16,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    color: Color(0xFFFFB300),
-                                  ),
-                                )
-                              else
-                                Icon(
+                              LoadingSwap(
+                                isLoading: _isProcessingAi,
+                                size: 16,
+                                spinnerColor: const Color(0xFFFFB300),
+                                icon: Icon(
                                   Icons.auto_awesome,
                                   size: 16,
                                   color: isDark
                                       ? const Color(0xFFFFD54F)
                                       : const Color(0xFFB8860B),
                                 ),
+                              ),
                               const SizedBox(width: 6),
                               Text(
                                 _isProcessingAi ? 'Processing…' : 'AI Tools',
@@ -2057,50 +2103,56 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
 class _AiToolTile extends StatelessWidget {
   final IconData icon;
-  final Color iconColor;
-  final Color iconBgColor;
   final String title;
   final String subtitle;
-  final bool isDark;
-  final Color cardBg;
-  final Color borderColor;
-  final Color textColor;
   final VoidCallback onTap;
 
   const _AiToolTile({
     required this.icon,
-    required this.iconColor,
-    required this.iconBgColor,
     required this.title,
     required this.subtitle,
-    required this.isDark,
-    required this.cardBg,
-    required this.borderColor,
-    required this.textColor,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: cardBg,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor),
+          // Book-screen card vocabulary.
+          color: AppTheme.cardBgOf(context),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: isDark
+                ? Colors.white10
+                : Colors.black.withValues(alpha: 0.06),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           children: [
-            // Icon circle
+            // Circular accent icon chip.
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: iconBgColor,
-                borderRadius: BorderRadius.circular(12),
+                color: AppTheme.accentOf(context).withValues(alpha: 0.12),
+                shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: iconColor, size: 24),
+              child: Icon(
+                icon,
+                color: AppTheme.accentOf(context),
+                size: 22,
+              ),
             ),
             const SizedBox(width: 14),
             // Text content
@@ -2111,17 +2163,20 @@ class _AiToolTile extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: 4),
                   Text(
                     subtitle,
                     style: TextStyle(
-                      fontSize: 12,
-                      color: isDark ? Colors.white54 : Colors.black45,
+                      fontSize: 14,
+                      height: 1.35,
+                      color: isDark
+                          ? Colors.white70
+                          : const Color(0xFF2C2C2E),
                     ),
                   ),
                 ],
@@ -2131,7 +2186,7 @@ class _AiToolTile extends StatelessWidget {
             Icon(
               Icons.chevron_right,
               size: 20,
-              color: isDark ? Colors.white38 : Colors.black26,
+              color: isDark ? Colors.white38 : Colors.black38,
             ),
           ],
         ),
@@ -2294,17 +2349,33 @@ class _ExtractedWordsReviewSheetState
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
+    final selectedCount = _selected.where((s) => s).length;
+    final allSelected = selectedCount == widget.words.length && _selected.isNotEmpty;
 
     return Container(
-      padding: const EdgeInsets.fromLTRB(24, 20, 24, 16),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1E1E) : const Color(0xFFFDFCF0),
+        // Canonical surface: sheet chrome matches the rest of the app.
+        color: AppTheme.surfaceOf(context),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Drag handle
+          Center(
+            child: Container(
+              width: 36,
+              height: 4,
+              decoration: BoxDecoration(
+                color: isDark ? Colors.white24 : Colors.black12,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2313,29 +2384,32 @@ class _ExtractedWordsReviewSheetState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.reviewExtractedDeck,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.indigo,
+                      l10n.reviewExtractedDeck,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: AppTheme.accentOf(context),
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       widget.deckName,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
+                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "${_selected.where((s) => s).length} of ${widget.words.length} words selected",
+                      l10n.wordsSelectedCount(selectedCount,
+                          widget.words.length),
                       style: TextStyle(
-                        color: isDark ? Colors.white54 : Colors.grey.shade700,
+                        color: isDark
+                            ? Colors.white70
+                            : const Color(0xFF2C2C2E),
                         fontSize: 14,
                       ),
                     ),
@@ -2345,123 +2419,133 @@ class _ExtractedWordsReviewSheetState
               IconButton(
                 icon: const Icon(Icons.close_rounded),
                 color: isDark ? Colors.white70 : Colors.black54,
-                tooltip: AppLocalizations.of(context)!.cancelAction,
+                tooltip: l10n.cancelAction,
                 onPressed:
                     _isCreating ? null : () => Navigator.pop(context, null),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: isDark ? Colors.white12 : Colors.grey.shade300,
+          const SizedBox(height: 12),
+          // Select all / none affordance
+          Row(
+            children: [
+              TextButton.icon(
+                onPressed: _isCreating
+                    ? null
+                    : () => setState(() => _selected =
+                        List.generate(widget.words.length, (_) => !allSelected)),
+                icon: Icon(
+                  allSelected
+                      ? Icons.check_box_outlined
+                      : Icons.check_box_outline_blank,
+                  size: 20,
                 ),
-                borderRadius: BorderRadius.circular(12),
-                color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+                label: Text(allSelected ? l10n.deselectAll : l10n.selectAll),
+                style: TextButton.styleFrom(
+                  foregroundColor: AppTheme.accentOf(context),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  visualDensity: VisualDensity.compact,
+                ),
               ),
-              child: ListView.separated(
-                itemCount: widget.words.length,
-                separatorBuilder: (context, index) => const Divider(height: 1),
-                itemBuilder: (context, index) {
-                  final word = widget.words[index];
-                  return CheckboxListTile(
-                    value: _selected[index],
-                    activeColor: Colors.indigo,
-                    title: Text(word.hanzi,
-                        style: const TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold)),
-                    subtitle: Row(
-                      children: [
-                        Text(
-                          '${PinyinUtils.convertNumericToMarks(word.pinyin)} - ',
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        Expanded(
-                          child: TranslatedDefinition(
-                            definition: word.meaning,
-                            originalStyle: const TextStyle(fontSize: 15),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onChanged: (val) {
-                      setState(() => _selected[index] = val ?? false);
-                    },
-                  );
-                },
-              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.only(bottom: 4),
+              itemCount: widget.words.length,
+              separatorBuilder: (context, index) =>
+                  const SizedBox(height: 8),
+              itemBuilder: (context, index) {
+                final word = widget.words[index];
+                final isSelected = _selected[index];
+                return _ExtractedWordCard(
+                  word: word,
+                  isSelected: isSelected,
+                  isDark: isDark,
+                  onTap: _isCreating
+                      ? null
+                      : () => setState(() => _selected[index] = !isSelected),
+                );
+              },
             ),
           ),
           const SizedBox(height: 16),
           Row(
             children: [
-              // "New Deck" button — direct creation with clean single-line label and icon
+              // "New Deck" button — secondary outlined action
               Expanded(
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange.shade800,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14)),
-                  ),
-                  onPressed: _isCreating ? null : () => _createNewDeck(),
-                  icon: _isCreating
-                      ? const SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(
-                              strokeWidth: 2, color: Colors.white))
-                      : const Icon(Icons.add_rounded, size: 20),
-                  label: Text(
-                    AppLocalizations.of(context)!.newDeck,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                child: SizedBox(
+                  height: 52,
+                  child: OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppTheme.accentOf(context),
+                      side: BorderSide(
+                        color: isDark
+                            ? AppTheme.accentDark
+                            : AppTheme.accentLight,
+                        width: 1.3,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: _isCreating ? null : () => _createNewDeck(),
+                    icon: LoadingSwap(
+                      isLoading: _isCreating,
+                      size: 20,
+                      icon: const Icon(Icons.add_rounded, size: 20),
+                    ),
+                    label: Text(
+                      l10n.newDeck,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 12),
-              // "Add to Deck" — returns selected words to caller
+              // "Add to Deck" — book-screen primary action
               Expanded(
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14)),
-                  ),
-                  onPressed: _isCreating
-                      ? null
-                      : () {
-                          final selectedWords = <AiWord>[];
-                          for (int i = 0; i < widget.words.length; i++) {
-                            if (_selected[i]) {
-                              selectedWords.add(widget.words[i]);
+                child: SizedBox(
+                  height: 52,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isDark
+                          ? Colors.amber.shade700
+                          : const Color(0xFF1A1A1B),
+                      foregroundColor: Colors.white,
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    onPressed: _isCreating
+                        ? null
+                        : () {
+                            final selectedWords = <AiWord>[];
+                            for (int i = 0; i < widget.words.length; i++) {
+                              if (_selected[i]) {
+                                selectedWords.add(widget.words[i]);
+                              }
                             }
-                          }
-                          Navigator.pop(context, selectedWords);
-                        },
-                  icon: const Icon(Icons.library_add_outlined, size: 20),
-                  label: Text(
-                    AppLocalizations.of(context)!.addToDeck1,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                            Navigator.pop(context, selectedWords);
+                          },
+                    icon: const Icon(Icons.library_add_outlined, size: 20),
+                    label: Text(
+                      l10n.addToDeck1,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
                 ),
@@ -2474,7 +2558,7 @@ class _ExtractedWordsReviewSheetState
               onPressed:
                   _isCreating ? null : () => Navigator.pop(context, null),
               child: Text(
-                AppLocalizations.of(context)!.cancelAction,
+                l10n.cancelAction,
                 style: TextStyle(
                   color: isDark ? Colors.white60 : Colors.black54,
                   fontSize: 15,
@@ -2484,6 +2568,116 @@ class _ExtractedWordsReviewSheetState
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// A single selectable extracted-word card in the review sheet.
+///
+/// Uses the book-screen card vocabulary (radius 18, card background, hairline
+/// border) and the canonical accent for its selection state.
+class _ExtractedWordCard extends StatelessWidget {
+  final AiWord word;
+  final bool isSelected;
+  final bool isDark;
+  final VoidCallback? onTap;
+
+  const _ExtractedWordCard({
+    required this.word,
+    required this.isSelected,
+    required this.isDark,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final accent = AppTheme.accentOf(context);
+    final borderColor = isSelected
+        ? accent
+        : (isDark
+            ? Colors.white10
+            : Colors.black.withValues(alpha: 0.06));
+
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: ZenMotion.of(context, ZenMotion.swap),
+        curve: ZenMotion.natural,
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? accent.withValues(alpha: 0.08)
+              : AppTheme.cardBgOf(context),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: borderColor,
+            width: isSelected ? 1.3 : 1.0,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Selection indicator
+            Icon(
+              isSelected
+                  ? Icons.check_circle_rounded
+                  : Icons.radio_button_unchecked_rounded,
+              color: isSelected
+                  ? accent
+                  : (isDark ? Colors.white38 : Colors.black26),
+              size: 22,
+            ),
+            const SizedBox(width: 12),
+            // Hanzi
+            Text(
+              word.hanzi,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Pinyin + definition
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    PinyinUtils.convertNumericToMarks(word.pinyin),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: accent,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 2),
+                  TranslatedDefinition(
+                    definition: word.meaning,
+                    originalStyle: TextStyle(
+                      fontSize: 14,
+                      height: 1.35,
+                      color: isDark
+                          ? Colors.white70
+                          : const Color(0xFF2C2C2E),
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

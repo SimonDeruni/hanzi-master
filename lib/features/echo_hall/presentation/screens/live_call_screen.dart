@@ -25,6 +25,8 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum LiveCallState {
   connecting,
@@ -151,21 +153,42 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    // The repeats are deferred to didChangeDependencies, which is the only
+    // place the platform "Reduce Motion" setting can be read.
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
-    )..repeat(reverse: true);
+    );
 
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _pulseController, curve: ZenMotion.natural),
     );
 
     _analyzePulseController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
-    )..repeat();
+    );
 
     _initCall();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: the call pulse rests at its natural (unscaled) size...
+    MotionResolution.resolve(
+      context,
+      controller: _pulseController,
+      loop: true,
+      staticValue: 0.0,
+    ).apply();
+    // ...and the analysing sweep holds a single static frame.
+    MotionResolution.resolve(
+      context,
+      controller: _analyzePulseController,
+      loop: true,
+      staticValue: 1.0,
+    ).apply();
   }
 
   @override
@@ -748,8 +771,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
+          duration: ZenMotion.quick,
+          curve: ZenMotion.enter,
         );
       }
     });
@@ -1041,7 +1064,7 @@ Provide your short, professional linguistic analysis directly to the student:
           ),
           SafeArea(
             child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 400),
+              duration: ZenMotion.of(context, ZenMotion.entrance),
               child: _isAnalyzing
                   ? Container(
                       key: const ValueKey('analyzing'),
@@ -1107,7 +1130,7 @@ Provide your short, professional linguistic analysis directly to the student:
                             ),
                             const SizedBox(height: 32),
                             AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 500),
+                              duration: ZenMotion.of(context, ZenMotion.page),
                               child: Text(
                                 _analyzeStatusText,
                                 key: ValueKey(_analyzeStatusText),
@@ -1841,7 +1864,7 @@ class _CallControlButton extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: ZenMotion.of(context, ZenMotion.swap),
             width: 60,
             height: 60,
             decoration: BoxDecoration(
@@ -1855,8 +1878,19 @@ class _CallControlButton extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Text(label,
-            style: const TextStyle(color: Colors.white70, fontSize: 12)),
+        // Constrained to the button width: a longer translation (French
+        // "Reprendre", German "Untertitel aus") wraps onto a second line
+        // instead of widening and overflowing the whole control row.
+        SizedBox(
+          width: 64,
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(color: Colors.white70, fontSize: 12),
+          ),
+        ),
       ],
     );
   }

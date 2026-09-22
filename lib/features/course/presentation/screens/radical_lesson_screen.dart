@@ -11,6 +11,9 @@ import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_mana
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class RadicalLessonScreen extends ConsumerStatefulWidget {
   final CourseNode sunNode;
@@ -126,7 +129,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   void _nextPage() async {
     if (_currentStep < 2) {
       _pageController.nextPage(
-          duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+          duration: ZenMotion.page, curve: ZenMotion.natural);
       setState(() => _currentStep++);
     } else {
       if (_radicalCard != null) {
@@ -142,7 +145,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     if (_isLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: ZenLoader()));
     }
 
     return Scaffold(
@@ -253,13 +256,13 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content:
                       Text(l10n?.wrongEssence ?? AppLocalizations.of(context)!.wrongEssence),
-                  duration: const Duration(milliseconds: 1000)));
+                  duration: ZenMotion.toast));
             }
           },
           builder: (context, candidates, rejects) {
             final bool isHovering = candidates.isNotEmpty;
             return AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: ZenMotion.of(context, ZenMotion.quick),
               width: 140,
               height: 140,
               decoration: BoxDecoration(
@@ -323,7 +326,7 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
         if (_forgeSuccess)
           TweenAnimationBuilder<double>(
             tween: Tween(begin: 0, end: 1),
-            duration: const Duration(milliseconds: 500),
+            duration: ZenMotion.of(context, ZenMotion.page),
             builder: (context, val, child) => Opacity(
               opacity: val,
               child: Transform.translate(
@@ -417,11 +420,11 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(
                           l10n?.notThatOne ?? AppLocalizations.of(context)!.notThatOne),
-                      duration: const Duration(milliseconds: 500)));
+                      duration: ZenMotion.toast));
                 }
               },
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
+                duration: ZenMotion.of(context, ZenMotion.quick),
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
@@ -469,11 +472,25 @@ class _HandPointerHintState extends State<_HandPointerHint>
   @override
   void initState() {
     super.initState();
+    // The repeat is deferred to didChangeDependencies, which is the only place
+    // the platform "Reduce Motion" setting can be read.
     _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2))
-          ..repeat();
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _animation = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+        .animate(CurvedAnimation(parent: _controller, curve: ZenMotion.natural));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: this sweeping ink gesture is decorative, so it rests at 0
+    // (off-frame and fully transparent) rather than frozen mid-flight.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      loop: true,
+      staticValue: 0.0,
+    ).apply();
   }
 
   @override

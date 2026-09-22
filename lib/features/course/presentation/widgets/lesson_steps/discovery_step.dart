@@ -6,6 +6,8 @@ import 'package:hanzi_master/core/services/speech_service.dart';
 import 'package:hanzi_master/core/services/echo_hall_service.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class DiscoveryStep extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -26,16 +28,31 @@ class _DiscoveryStepState extends ConsumerState<DiscoveryStep> with SingleTicker
   @override
   void initState() {
     super.initState();
+    // The repeat itself is deferred to didChangeDependencies, which is the only
+    // place the platform "Reduce Motion" setting can be read.
     _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    )..repeat(reverse: true);
+      duration: ZenMotion.ambientFast,
+    );
 
     Future.delayed(const Duration(milliseconds: 500), () {
       if (mounted) {
         ref.read(audioServiceProvider).playCharacter(widget.card.hanzi);
       }
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Reduced motion: rest at a mid-glow so the microphone affordance stays
+    // visible without pulsing.
+    MotionResolution.resolve(
+      context,
+      controller: _pulseController,
+      loop: true,
+      staticValue: 0.5,
+    ).apply();
   }
 
   @override

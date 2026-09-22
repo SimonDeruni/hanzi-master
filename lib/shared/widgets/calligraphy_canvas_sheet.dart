@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 void showCalligraphyCanvas(BuildContext context, Flashcard card) {
   showDialog(
@@ -169,7 +170,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                           clipBehavior: Clip.antiAlias,
                           child: CalligraphyBackground(
                             child: _isLoading
-                                ? const Center(child: CircularProgressIndicator())
+                                ? const Center(child: ZenLoader())
                                 : DrawingCanvas(
                                     strokePaths: _hydratedCard?.strokePaths ?? [],
                                     medianPaths: _hydratedCard?.medianPaths ?? [],

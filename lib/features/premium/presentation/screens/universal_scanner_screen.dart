@@ -25,6 +25,7 @@ import '../../../../shared/widgets/tappable_hanzi_text.dart';
 import '../../../../shared/widgets/ai_consent_sheet.dart';
 import '../widgets/ar_bounding_box_painter.dart';
 import '../widgets/interactive_image_overlay.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum CameraIntent { dictionary, translationHub, travelAR, textExtraction }
 
@@ -1302,7 +1303,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       onTap: onTap,
       borderRadius: BorderRadius.circular(30),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: ZenMotion.of(context, ZenMotion.swap),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isActive ? Colors.white : Colors.white.withValues(alpha: 0.15),
@@ -1786,7 +1787,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                         },
                         borderRadius: BorderRadius.circular(20),
                         child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
+                          duration: ZenMotion.of(context, ZenMotion.swap),
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: isSelected
@@ -1910,8 +1911,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             right: 24,
             child: TweenAnimationBuilder<double>(
               tween: Tween(begin: 0.0, end: 1.0),
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOutBack,
+              duration: ZenMotion.of(context, ZenMotion.quick),
+              curve: ZenMotion.arrival,
               builder: (context, value, child) {
                 return Transform.scale(
                   scale: value,

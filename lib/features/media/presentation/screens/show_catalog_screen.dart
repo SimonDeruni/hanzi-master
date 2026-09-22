@@ -6,6 +6,8 @@ import '../../../../core/presentation/widgets/zen_search_bar.dart';
 import 'show_detail_screen.dart';
 import '../providers/show_progress_provider.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 final showsProvider = FutureProvider<Map<ShowGenre, List<Show>>>((ref) {
   final repo = ref.watch(showRepositoryProvider);
@@ -40,7 +42,7 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
           isDark ? const Color(0xFF0A0A0B) : const Color(0xFFFDFCF0),
       body: showsAsync.when(
         loading: () => Center(
-          child: CircularProgressIndicator(
+          child: ZenLoader(
             color: isDark ? Colors.amber : const Color(0xFF8B6914),
           ),
         ),
@@ -315,41 +317,45 @@ class _ShowCard extends ConsumerWidget {
               // Thumbnail with bookmark badge
               Stack(
                 children: [
-                  Image.network(
-                    show.thumbnailUrl,
-                    height: 105,
-                    width: isWide ? double.infinity : 150,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      final uriMatch = RegExp(r'vi(?:_webp)?/([^/]+)/')
-                          .firstMatch(show.thumbnailUrl);
-                      if (uriMatch != null) {
-                        final vid = uriMatch.group(1)!;
-                        final fallbackUrl =
-                            'https://img.youtube.com/vi/$vid/hqdefault.jpg';
-                        if (fallbackUrl != show.thumbnailUrl) {
-                          return Image.network(
-                            fallbackUrl,
-                            height: 105,
-                            width: isWide ? double.infinity : 150,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) =>
-                                _buildPlaceholder(isDark, isWide),
-                          );
+                  HeroTransition.wrap(
+                    context: context,
+                    tag: HeroTransition.heroTag('show_catalog', show.id),
+                    child: Image.network(
+                      show.thumbnailUrl,
+                      height: 105,
+                      width: isWide ? double.infinity : 150,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        final uriMatch = RegExp(r'vi(?:_webp)?/([^/]+)/')
+                            .firstMatch(show.thumbnailUrl);
+                        if (uriMatch != null) {
+                          final vid = uriMatch.group(1)!;
+                          final fallbackUrl =
+                              'https://img.youtube.com/vi/$vid/hqdefault.jpg';
+                          if (fallbackUrl != show.thumbnailUrl) {
+                            return Image.network(
+                              fallbackUrl,
+                              height: 105,
+                              width: isWide ? double.infinity : 150,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) =>
+                                  _buildPlaceholder(isDark, isWide),
+                            );
+                          }
                         }
-                      }
-                      return _buildPlaceholder(isDark, isWide);
-                    },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        height: 105,
-                        width: isWide ? double.infinity : 150,
-                        color: isDark
-                            ? const Color(0xFF2C2C2E)
-                            : Colors.grey.shade200,
-                      );
-                    },
+                        return _buildPlaceholder(isDark, isWide);
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          height: 105,
+                          width: isWide ? double.infinity : 150,
+                          color: isDark
+                              ? const Color(0xFF2C2C2E)
+                              : Colors.grey.shade200,
+                        );
+                      },
+                    ),
                   ),
                   if (show.subtitleType == SubtitleType.soft)
                     Positioned(

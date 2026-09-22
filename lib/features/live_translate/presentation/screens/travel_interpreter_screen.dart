@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 enum _InterpreterStatus {
   ready,
@@ -63,7 +64,6 @@ class _TravelInterpreterScreenState
       _messages.where((msg) => msg.sideId == 'b').toList();
 
   bool _isSessionStarted = true;
-  late AnimationController _pulseController;
   String? _appLocaleCode;
 
   @override
@@ -71,11 +71,6 @@ class _TravelInterpreterScreenState
     super.initState();
     _sideALanguage = 'English';
     _sideBLanguage = 'Mandarin';
-
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..repeat(reverse: true);
 
     _initAudioAndConnect();
   }
@@ -504,12 +499,6 @@ class _TravelInterpreterScreenState
     );
   }
 
-  @override
-  void dispose() {
-    _pulseController.dispose();
-    super.dispose();
-  }
-
   Widget _buildHubUI(BuildContext context, bool isDark) {
     return Scaffold(
       backgroundColor:
@@ -691,7 +680,7 @@ class _TravelInterpreterScreenState
       onTapUp: (_) => _stopAudioStreaming(),
       onTapCancel: () => _stopAudioStreaming(),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: ZenMotion.of(context, ZenMotion.quick),
         width: 56,
         height: 56,
         decoration: BoxDecoration(
@@ -757,7 +746,7 @@ class _TravelInterpreterScreenState
                 child: RotatedBox(
                   quarterTurns: 2,
                   child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
+                    duration: ZenMotion.of(context, ZenMotion.page),
                     color: isDark
                         ? (_recordingSide != null
                             ? const Color(0xFF3E1F1F)
@@ -951,7 +940,7 @@ class _TravelInterpreterScreenState
               // Bottom Half (Side A - User)
               Expanded(
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
+                  duration: ZenMotion.of(context, ZenMotion.page),
                   color: isDark
                       ? (_recordingSide != null
                           ? const Color(0xFF152A3B)

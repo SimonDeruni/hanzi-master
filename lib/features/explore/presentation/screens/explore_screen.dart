@@ -5,6 +5,7 @@ import 'package:hanzi_master/features/media/presentation/screens/media_hub_scree
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class ExploreScreen extends ConsumerStatefulWidget {
   final int initialTabIndex;
@@ -121,8 +122,8 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOutQuart,
+        duration: ZenMotion.of(context, ZenMotion.quick),
+        curve: ZenMotion.natural,
         decoration: BoxDecoration(
           color: isSelected
               ? const Color(0xFFFFB300).withValues(alpha: isDark ? 0.25 : 0.15)

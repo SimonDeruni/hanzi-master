@@ -1,10 +1,14 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 /// A Zen & Ink 3D perspective flip card widget.
 ///
-/// Flips smoothly along the Y-axis over 350ms using [Curves.easeInOutQuart],
-/// delivering the tactile sensation of flipping Xuan parchment.
+/// Flips smoothly along the Y-axis over [ZenMotion.quick] using
+/// [ZenMotion.natural], delivering the tactile sensation of flipping Xuan
+/// parchment.
 class ZenFlipCard extends StatefulWidget {
   final Widget front;
   final Widget back;
@@ -18,8 +22,8 @@ class ZenFlipCard extends StatefulWidget {
     required this.front,
     required this.back,
     required this.isFlipped,
-    this.duration = const Duration(milliseconds: 350),
-    this.curve = Curves.easeInOutQuart,
+    this.duration = ZenMotion.quick,
+    this.curve = ZenMotion.natural,
     this.onTap,
   });
 
@@ -53,7 +57,11 @@ class _ZenFlipCardState extends State<ZenFlipCard>
       _controller.duration = widget.duration;
     }
     if (widget.isFlipped != oldWidget.isFlipped) {
-      if (widget.isFlipped) {
+      ZenSoundService.instance.playPaperFlip();
+      // Reduced motion: present the target face without the 3D rotation.
+      if (context.reduceMotion) {
+        _controller.value = widget.isFlipped ? 1.0 : 0.0;
+      } else if (widget.isFlipped) {
         _controller.forward();
       } else {
         _controller.reverse();

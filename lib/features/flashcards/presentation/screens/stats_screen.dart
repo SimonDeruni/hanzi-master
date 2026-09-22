@@ -1,6 +1,7 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../domain/entities/study_mode.dart';
 import '../providers/stats_controller.dart';
@@ -15,13 +16,15 @@ class StatsScreen extends ConsumerWidget {
     final StatsState stats = ref.watch(userStatsProvider(deckId: deckId));
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final bgColor = isDark ? Colors.grey[900]! : Colors.grey.shade100;
+    final bgColor = AppTheme.surfaceOf(context);
     final cardColor = isDark ? Colors.grey[850]! : Colors.white;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.myProgress),
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppTheme.surfaceOf(context),
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         elevation: 0,
       ),
       backgroundColor: bgColor,

@@ -12,6 +12,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_persona_presets.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 
 class CustomScenarioDialog extends ConsumerStatefulWidget {
@@ -91,7 +92,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
-          duration: const Duration(seconds: 2),
+          duration: ZenMotion.toast,
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -131,7 +132,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        duration: const Duration(seconds: 2),
+        duration: ZenMotion.toast,
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -609,7 +610,7 @@ Respond ONLY in valid JSON format:
           setState(() => _difficultyIndex = index);
         },
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: ZenMotion.of(context, ZenMotion.swap),
           padding: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
             color: isSelected

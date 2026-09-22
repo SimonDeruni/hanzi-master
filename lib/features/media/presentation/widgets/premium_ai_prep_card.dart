@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../../domain/models/media_briefing.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class PremiumAiPrepCard extends StatefulWidget {
   final MediaBriefing briefing;
@@ -64,8 +65,8 @@ class _PremiumAiPrepCardState extends State<PremiumAiPrepCard> {
                   // Expand/collapse chevron
                   AnimatedRotation(
                     turns: _expanded ? 0.5 : 0,
-                    duration: const Duration(milliseconds: 250),
-                    curve: Curves.easeInOutQuart,
+                    duration: ZenMotion.of(context, ZenMotion.swap),
+                    curve: ZenMotion.natural,
                     child: Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: Colors.grey[500],
@@ -152,8 +153,8 @@ class _PremiumAiPrepCardState extends State<PremiumAiPrepCard> {
               crossFadeState: _expanded
                   ? CrossFadeState.showSecond
                   : CrossFadeState.showFirst,
-              duration: const Duration(milliseconds: 280),
-              sizeCurve: Curves.easeInOutQuart,
+              duration: ZenMotion.of(context, ZenMotion.swap),
+              sizeCurve: ZenMotion.natural,
             ),
           ],
         ),

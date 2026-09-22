@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class QAScreen extends ConsumerWidget {
@@ -12,12 +13,11 @@ class QAScreen extends ConsumerWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     // Zen & Ink Mandate Colors
-    final bgColor = isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0);
+    final bgColor = AppTheme.surfaceOf(context);
     final textColor =
         isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final cardColor = isDark ? const Color(0xFF2A2A2B) : Colors.white;
-    final accentColor =
-        isDark ? Colors.blueGrey.shade300 : Colors.blueGrey.shade700;
+    final cardColor = AppTheme.cardBgOf(context);
+    final accentColor = AppTheme.accentOf(context);
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -187,7 +187,7 @@ class QAScreen extends ConsumerWidget {
           Container(
             decoration: BoxDecoration(
               color: cardColor,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.04),

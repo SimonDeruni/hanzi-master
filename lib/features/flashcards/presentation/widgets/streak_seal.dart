@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import '../providers/streak_controller.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class StreakSeal extends ConsumerWidget {
   const StreakSeal({super.key});
@@ -32,13 +34,14 @@ class StreakSeal extends ConsumerWidget {
                   color: Colors.white, size: 12),
             );
 
-            return streak > 0
-                ? flame
-                    .animate(
-                        onPlay: (controller) =>
-                            controller.repeat(reverse: true))
-                    .scaleXY(end: 1.1, duration: 1.seconds)
-                : flame;
+            // Reduced motion: show the static badge instead of a pulsing flame.
+            if (streak <= 0 || context.reduceMotion) {
+              return flame;
+            }
+            return flame
+                .animate(
+                    onPlay: (controller) => controller.repeat(reverse: true))
+                .scaleXY(end: 1.1, duration: ZenMotion.ambientFast);
           }),
           const SizedBox(width: 6),
           Text(

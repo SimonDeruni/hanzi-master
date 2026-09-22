@@ -1,0 +1,181 @@
+====================================================================================================
+1. BUTTONS WITH A HARD-CODED NUMERIC WIDTH  (these cannot grow with the locale)
+====================================================================================================
+  lib/features/auth/presentation/screens/auth_screen.dart:818   Button  width~2
+  lib/features/course/presentation/widgets/lesson_steps/context_step.dart:168   Button  width~8
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:956   Button  width~8
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:1127   OutlinedButton  width~12
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:472   Button  width~8
+  lib/features/flashcards/presentation/screens/deck_detail_screen.dart:449   OutlinedButton  width~12
+  lib/features/flashcards/presentation/widgets/word_detail_dialog.dart:202   Button  width~8
+  lib/features/flashcards/presentation/widgets/word_detail_dialog.dart:370   ElevatedButton  width~12
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart:641   ElevatedButton  width~16
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:825   Button  width~8
+  lib/features/media/presentation/screens/web_browser_screen.dart:1923   FilledButton.icon  width~12
+  lib/features/media/presentation/screens/web_browser_screen.dart:2490   ElevatedButton.icon  width~12
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1235   Button  width~1
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1732   ElevatedButton.icon  width~8
+  lib/features/progression/presentation/screens/dashboard_screen.dart:408   ElevatedButton  width~16
+  lib/features/progression/presentation/screens/dashboard_screen.dart:562   ElevatedButton  width~16
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1344   Button  width~4
+  lib/shared/widgets/quick_look_sheet.dart:366   ElevatedButton.icon  width~24
+  lib/shared/widgets/quick_look_sheet.dart:565   Button  width~6
+  lib/shared/widgets/quick_look_sheet.dart:639   Button  width~6
+  lib/shared/widgets/quick_look_sheet.dart:653   Button  width~6
+  lib/shared/widgets/quick_look_sheet.dart:674   Button  width~6
+  total: 22
+
+====================================================================================================
+2. BUTTONS IN A Row WITHOUT Expanded/Flexible  (overflow candidates)
+====================================================================================================
+  lib/features/course/presentation/widgets/lesson_steps/discovery_step.dart:120   Button
+  lib/features/echo_hall/presentation/screens/conversation_screen.dart:505   Button
+  lib/features/echo_hall/presentation/screens/live_call_screen.dart:1417   Button
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart:171   Button
+  lib/features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart:158   ElevatedButton.icon
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart:949   Button
+  lib/features/flashcards/presentation/screens/radical_detail_screen.dart:118   Button
+  lib/features/flashcards/presentation/screens/radical_library_screen.dart:95   Button
+  lib/features/flashcards/presentation/screens/story_mode_screen.dart:523   TextButton.icon
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart:1791   Button
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart:1919   Button
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:525   Button
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:626   Button
+  lib/features/live_translate/presentation/screens/travel_interpreter_screen.dart:1055   Button
+  lib/features/media/presentation/screens/media_hub_screen.dart:196   Button
+  lib/features/media/presentation/screens/web_browser_screen.dart:1402   Button
+  lib/features/media/presentation/screens/web_browser_screen.dart:1830   Button
+  lib/features/media/presentation/screens/web_browser_screen.dart:2404   TextButton.icon
+  lib/features/media/presentation/widgets/premium_video_top_bar.dart:40   Button
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:999   Button
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1046   Button
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1235   Button
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart:1704   TextButton.icon
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1244   Button
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart:1869   TextButton
+  lib/features/reading/presentation/screens/book_reader_screen.dart:2276   ElevatedButton.icon
+  lib/features/reading/presentation/screens/story_reader_screen.dart:894   TextButton.icon
+  lib/shared/widgets/calligraphy_canvas_sheet.dart:136   Button
+  total: 28
+
+====================================================================================================
+3. HARD-CODED USER-VISIBLE STRINGS  (never translated)
+====================================================================================================
+  lib/features/media/presentation/screens/web_browser_screen.dart  (8)
+      L801: 'HSK $level'
+      L1031: 'Analysis failed: $e'
+      L1147: 'Extraction failed: $e'
+      L1213: 'Simplify failed: $cleanError'
+      L1337: 'Translation failed: $e'
+      L1686: 'HSK $level'
+  lib/features/reading/presentation/screens/audiobook_player_screen.dart  (8)
+      L605: 'Local'
+      L637: 'Higher-quality offline Mandarin'
+      L650: 'On iPhone or iPad, open Settings → Accessibility → Spoken Content → Voices → Chinese → Mandarin Chinese, then download an Enhanced or Premium voice. Return here and SinoSpark will select the best installed voice automatically.'
+      L656: 'Apple manages these downloads in Settings, so the app cannot install them directly. Availability and download size vary by iOS version and device.'
+      L973: 'Voice Engine & Allowance'
+      L981: 'Studio HD vs. Unlimited Standard Voice'
+  lib/features/premium/presentation/screens/universal_scanner_screen.dart  (6)
+      L147: 'Camera permission required for live scanning.'
+      L888: 'Camera Access Required'
+      L896: 'Please enable camera access in your device settings to use this feature.'
+      L1622: 'HSK ${info.hskLevel}'
+      L1697: 'Scan Results'
+      L1946: 'Add to Deck (${_selectedWordIndices.length})'
+  lib/features/course/presentation/screens/tome_manager_screen.dart  (5)
+      L573: 'Sample Vocabulary (${sampleWords.length} preview words)'
+      L663: 'Remove from Bookshelf'
+      L682: 'Download & Install Deck'
+      L886: 'Reset filters'
+      L1486: 'Master Bookshelf Status'
+  lib/features/echo_hall/presentation/screens/conversation_screen.dart  (4)
+      L388: 'Grading...'
+      L415: 'score'
+      L605: 'Suggestion'
+      L780: 'QUESTS'
+  lib/main.dart  (4)
+      L315: 'Check your connection, then try again.'
+      L325: 'Try again'
+      L434: 'We could not check your subscription. Please try again.'
+      L441: 'Try again'
+  lib/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart  (3)
+      L393: 'Created ${newDeck.name} with ${cards.length} cards'
+      L463: 'Error: $e'
+      L629: 'Target Deck'
+  lib/features/flashcards/presentation/widgets/deck_selection_sheet.dart  (3)
+      L41: 'Choose a Deck'
+      L110: 'Create New Deck'
+      L196: 'Error: $err'
+  lib/features/course/presentation/widgets/lesson_steps/quiz_step.dart  (2)
+      L84: 'Select the character for:'
+      L102: 'Select the Pinyin for:'
+  lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart  (2)
+      L196: 'No scenarios found.'
+      L1310: 'We had trouble generating this scenario. Please try again.'
+  lib/features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart  (2)
+      L273: 'Good pronunciation, but can be better!'
+      L334: 'Did you mean to say...?'
+  lib/features/flashcards/presentation/screens/character_detail_screen.dart  (2)
+      L936: 'Drawing: ${chars[activeCharIdx]}'
+      L1359: 'Error: $e'
+  lib/features/flashcards/presentation/screens/dictionary_screen.dart  (2)
+      L215: 'Dictionary search failed. Please try again.'
+      L514: 'We ran into trouble loading the library. Please try again.'
+  lib/features/flashcards/presentation/widgets/modes/listening_mode.dart  (2)
+      L180: 'Tap to listen again'
+      L269: 'Swipe to Grade:'
+  lib/features/flashcards/presentation/widgets/modes/recall_mode.dart  (2)
+      L209: 'Swipe to Grade:'
+      L400: 'Context Clue'
+  lib/features/flashcards/presentation/widgets/modes/speaking_mode.dart  (2)
+      L470: 'AI Score: ${_feedbackResult!['
+      L495: 'Swipe to Grade:'
+  lib/features/flashcards/presentation/widgets/word_detail_dialog.dart  (2)
+      L95: 'Select Deck'
+      L193: 'Traditional Character'
+  lib/features/quiz/presentation/screens/quiz_screen.dart  (2)
+      L105: 'Question ${_currentIndex + 1}/${_questions.length}'
+      L232: 'Score: $_score / ${_questions.length}'
+  lib/features/reading/presentation/screens/reading_room_screen.dart  (2)
+      L170: 'HSK $level'
+      L274: 'Generate a custom AI story based on your interests'
+  lib/shared/widgets/nuance_compare_sheet.dart  (2)
+      L252: 'Nuances: ${widget.groupLabel}'
+      L589: 'Chat about: ${widget.groupLabel}'
+  lib/core/services/audio_service.dart  (1)
+      L923: 'tone_v4:$textToSpeak:${pinyin ?? '
+  lib/features/course/presentation/widgets/calligraphic_deck_cover.dart  (1)
+      L208: 'SAVED'
+  lib/features/flashcards/presentation/screens/deck_card_picker_screen.dart  (1)
+      L142: 'Error: $err'
+  lib/features/flashcards/presentation/screens/deck_detail_screen.dart  (1)
+      L810: 'Error: $err'
+  lib/features/flashcards/presentation/screens/radical_detail_screen.dart  (1)
+      L232: 'CHARACTERS WITH THIS RADICAL (${_matchingCharacters.length})'
+  lib/features/flashcards/presentation/screens/review_screen.dart  (1)
+      L428: 'Follow the guide stroke'
+  lib/features/flashcards/presentation/widgets/modes/reading_mode.dart  (1)
+      L194: 'Swipe to Grade:'
+  lib/features/live_translate/presentation/screens/shadowing_studio_screen.dart  (1)
+      L700: 'Apply session grades to Spaced Repetition (Speaking Mode)'
+  lib/features/media/presentation/screens/smart_media_desk_screen.dart  (1)
+      L393: 'HSK $level'
+  lib/features/media/presentation/screens/story_summary_screen.dart  (1)
+      L194: 'HSK ${widget.story.hskLevel}'
+  lib/features/monetization/presentation/screens/paywall_screen.dart  (1)
+      L75: 'Unlock SinoSpark Premium'
+  lib/features/premium/presentation/screens/paywall_sheet.dart  (1)
+      L42: 'Error presenting payment: $e'
+  lib/features/reading/presentation/screens/book_detail_screen.dart  (1)
+      L729: 'Error: $e'
+  lib/features/reading/presentation/screens/book_reader_screen.dart  (1)
+      L288: 'Resumed: Ch.$chapterNum/$totalChapters, Sent.$sentNum/$totalSentences'
+  lib/features/reading/presentation/widgets/custom_story_creator_sheet.dart  (1)
+      L206: 'HSK $level'
+  lib/features/reading/presentation/widgets/reading_progress_strip.dart  (1)
+      L45: 'Sent $currentSentenceIndex / $totalSentences'
+  total: 81 across 36 files
+
+====================================================================================================
+4. Fixed-height values found in lib/: 1200 (review those wrapping Text)
+====================================================================================================

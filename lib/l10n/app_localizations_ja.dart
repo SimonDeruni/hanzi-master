@@ -1157,7 +1157,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get supportAndFeedback => 'サポート＆フィードバック';
+  String get supportAndFeedback => 'サポートとフィードバック';
 
   @override
   String get reportBug => '不具合を報告';
@@ -2110,7 +2110,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get mastery => '習熟度';
 
   @override
-  String get maybeLater => 'あとで';
+  String get maybeLater => 'また後で';
 
   @override
   String get memes => 'ミーム・トレンド';
@@ -12171,6 +12171,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get beginFirstLesson => '最初のレッスンを始める';
 
   @override
+  String get exploreLibraryDirectly => '直接ライブラリを探索する';
+
+  @override
   String onboardingLessonProgress(Object current, Object total) {
     return '最初のレッスン  •  $current / $total';
   }
@@ -12601,4 +12604,69 @@ class AppLocalizationsJa extends AppLocalizations {
   String trialSubtextUnderCta(String price, String period) {
     return 'その後は$periodあたり$price。設定からいつでも解約可能。';
   }
+
+  @override
+  String get deckLibraryTitle => 'デッキライブラリ';
+
+  @override
+  String get deckLibrarySubtitle => 'HSK・文化・スポーツ・学術の厳選コレクション';
+
+  @override
+  String get downloadOfficialDecks => '公式HSKデッキとテーマ別デッキをダウンロード';
+
+  @override
+  String wordsSelectedCount(int selected, int total) {
+    return '$total 語中 $selected 語を選択中';
+  }
+
+  @override
+  String get comparisonLabel => '比較';
+
+  @override
+  String get ambientSoundscape => '環境音';
+
+  @override
+  String get ambientSoundscapeDesc => '読書とリスニングのための穏やかな環境音';
+
+  @override
+  String get ambientSoundscapeOff => 'オフ（消音）';
+
+  @override
+  String get soundscapeCourtyardRain => '中庭の雨';
+
+  @override
+  String get soundscapeGuqinWind => '古琴と竹林の風';
+
+  @override
+  String get soundscapeMidnightZen => '静夜の瞑想';
+
+  @override
+  String get ambientVolume => '環境音の音量';
+
+  @override
+  String get rateSinoSpark => 'SinoSparkを評価';
+
+  @override
+  String get rateSinoSparkDesc => 'App Storeでレビューを投稿';
+
+  @override
+  String get sendFeedback => 'フィードバックを送信';
+
+  @override
+  String get sendFeedbackDesc => '改善へのご意見や不具合を報告';
+
+  @override
+  String get enjoyingAppTitle => 'SinoSparkを気に入っていただけましたか？';
+
+  @override
+  String get enjoyingAppSubtitle => 'ここまでの中国語学習の体験はいかがですか？';
+
+  @override
+  String get ratingLovingIt => 'はい、とても気に入っています！';
+
+  @override
+  String get ratingCouldBeBetter => '改善してほしい点がある';
+
+  @override
+  String get dictionarySearchFailed => '辞書の検索に失敗しました。もう一度お試しください。';
 }

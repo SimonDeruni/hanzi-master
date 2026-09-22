@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/revenuecat_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class PaywallScreen extends ConsumerStatefulWidget {
   final VoidCallback? onClose;
@@ -64,7 +65,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
             : IconButton(icon: Icon(Icons.close, color: inkColor), onPressed: () => Navigator.of(context).pop(false)),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator(color: inkColor))
+          ? Center(child: ZenLoader(color: inkColor))
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(

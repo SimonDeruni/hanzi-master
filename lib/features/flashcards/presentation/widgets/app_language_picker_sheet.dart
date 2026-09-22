@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class AppLanguageOption {
   const AppLanguageOption({
@@ -147,7 +148,7 @@ class AppLanguagePickerSheet extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             AnimatedContainer(
-                              duration: const Duration(milliseconds: 180),
+                              duration: ZenMotion.of(context, ZenMotion.swap),
                               width: 26,
                               height: 26,
                               decoration: BoxDecoration(

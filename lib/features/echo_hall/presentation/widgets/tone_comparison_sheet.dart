@@ -409,10 +409,16 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                   ],
                 ),
                 const SizedBox(height: 6),
-                CalligraphicPitchContour(
-                  expectedTone: widget.expectedTone,
-                  actualTone: widget.actualTone,
-                  height: 110,
+                // Protected LTR: a pitch contour is a directional curve, so
+                // under RTL the graph would be mirrored horizontally and show
+                // the tone rising where it should fall. The compact badges below
+                // were already wrapped; this header graph was missed.
+                LtrSanctuary(
+                  child: CalligraphicPitchContour(
+                    expectedTone: widget.expectedTone,
+                    actualTone: widget.actualTone,
+                    height: 110,
+                  ),
                 ),
               ],
             ),

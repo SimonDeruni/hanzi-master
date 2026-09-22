@@ -7,6 +7,7 @@ import '../../domain/models/video_transcript.dart';
 import 'premium_video_top_bar.dart';
 import 'premium_video_bottom_bar.dart';
 import 'premium_subtitles_overlay.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class FullscreenMediaOverlay extends StatefulWidget {
   final YoutubePlayerController controller;
@@ -80,14 +81,14 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
 
     _feedbackAnimCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 350),
+      duration: ZenMotion.pageReverse,
     );
     _feedbackSlide = Tween<Offset>(
       begin: const Offset(0, -1.5),
       end: Offset.zero,
     ).animate(CurvedAnimation(
       parent: _feedbackAnimCtrl,
-      curve: Curves.easeOutQuart,
+      curve: ZenMotion.natural,
     ));
   }
 
@@ -302,7 +303,7 @@ class _FullscreenMediaOverlayState extends State<FullscreenMediaOverlay>
                     widget.onToggleRecord();
                   },
                   child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
+                    duration: ZenMotion.of(context, ZenMotion.swap),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 10),
                     decoration: BoxDecoration(

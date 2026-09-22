@@ -5,13 +5,16 @@
 > 2.  **Context:** Skip reading `docs/PROJECT_MAP.md` if the codebase structure is already known from recent turns.
 > 3.  **Governance:** Only read `docs/AI_PROTOCOL.md` if you need to clarify sync rules.
 > 4.  **Verification:** Run `flutter analyze` at the end of your task or before `notify_user` to ensure **Total Hygiene State**.
+> 5.  **Motion:** Before touching ANY animation, read `docs/UI_UX_STANDARDS.md` § Motion. **Tier 1 (stroke + Hero flights) is FROZEN.** The word "animation" always means Tier 2 interface motion.
 
 ---
 
 ## 🎨 1. The "Zen & Ink" Mandate (The Soul)
 Hanzi Master is NOT a "Material Design" app. It is a **Calligraphic Tool**.
 *   **Aesthetic:** Warm Xuan Paper (`#FDFCF0`), Deep Carbon Ink (`#1A1A1B`).
-*   **Motion:** Natural curves (`Curves.easeInOutQuart`), haptic micro-taps.
+*   **Motion:** One vocabulary in `ZenMotion` (`docs/UI_UX_STANDARDS.md` § Motion), haptic micro-taps.
+    *   **Tier 1 — FROZEN (P0):** the stroke/drawing animation and Hero flights. **Never touch.**
+    *   **Tier 2 — Uniformised (P1/P2):** tabs, sheets, dialogs, popovers, page pushes, toasts, buttons, expand/collapse, ambient loops.
 *   **Tone:** Teachable, calm, and professional.
 
 ---
@@ -49,6 +52,7 @@ There may be multiple AI agents working on this project simultaneously.
 *   **Active:** Hardening the architecture and governance (Governance PASSED).
 *   **Priority:** Encrypting Hive storage and finishing HSK 2.0 Tome support.
 *   **Mandate:** Do not touch `lib/core/stroke_matcher.dart` without an audit.
+*   **Mandate:** **Frozen Motion (Tier 1)** — the stroke/drawing animation and Hero flights are read-only. A request for "animation" means the Tier 2 interface chrome only.
 
 ---
 
