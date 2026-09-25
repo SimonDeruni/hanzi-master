@@ -315,6 +315,8 @@
   "scholarsDesk": "विद्वान की मेज",
   "chooseADeck": "एक डेक चुनें",
   "whereWouldYouLike": "आप इस वर्ण को कहाँ सहेजना चाहेंगे?",
+  "whereWouldYouLikeWords": "आप इन {count} शब्दों को कहाँ सहेजना चाहेंगे?",
+  "deckItemsCount": "{count} आइटम",
   "addToDefaultStudy": "डिफ़ॉल्ट अध्ययन डेक में जोड़ें",
   "ifOffItsOnly": "यदि बंद किया गया है, तो यह केवल सामान्य शब्दकोश में सहेजा जाएगा",
   "saveToLibrary": "पुस्तकालय में सहेजें",
@@ -4119,5 +4121,15 @@
   "enjoyingAppSubtitle": "अब तक आपकी चीनी सीखने की यात्रा कैसी रही है?",
   "ratingLovingIt": "हाँ, बहुत पसंद आ रहा है!",
   "ratingCouldBeBetter": "और बेहतर हो सकता है",
-  "dictionarySearchFailed": "शब्दकोश खोज विफल रही। कृपया पुनः प्रयास करें।"
+  "dictionarySearchFailed": "शब्दकोश खोज विफल रही। कृपया पुनः प्रयास करें।",
+  "tapToHearVoiceSample": "नमूना सुनने के लिए ▶ दबाएँ",
+  "soundEffects": "ध्वनि प्रभाव",
+  "soundEffectsDesc": "कोमल कागज़, लकड़ी की मुहर और सुलेख की ध्वनियाँ",
+  "generatingYourScenario": "आपका परिदृश्य बनाया जा रहा है…",
+  "failedToGenerateScenario": "यह परिदृश्य बनाना संभव नहीं हुआ। कृपया फिर कोशिश करें।",
+  "trickyCharacters": "कठिन अक्षर",
+  "strongestCharacters": "सबसे मज़बूत अक्षर",
+  "newThisWeek": "पिछले 7 दिनों में नए",
+  "averageAttemptsPerWord": "प्रति शब्द औसत प्रयास",
+  "noCardsYet": "इस डेक में अभी कोई कार्ड नहीं है"
 }

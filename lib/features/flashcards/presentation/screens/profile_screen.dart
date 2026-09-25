@@ -11,6 +11,8 @@ import 'package:hanzi_master/features/auth/presentation/screens/delete_account_s
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -33,124 +35,130 @@ class ProfileScreen extends ConsumerWidget {
         backgroundColor: AppTheme.surfaceOf(context),
         iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
       ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(24, 8, 24, 32),
-        children: [
-          _buildIdentityCard(context, ref, theme, isDark),
-          const SizedBox(height: 24),
-          _buildSectionHeader(l10n.account, theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              _buildAccountTile(
-                context: context,
-                icon: Icons.bar_chart_rounded,
-                title: l10n.learning_stats,
-                subtitle: l10n.view_your_learning_history_and_streaks,
-                onTap: () => Navigator.push(
-                  context,
-                  SwipeBackPageRoute(builder: (context) => const StatsScreen()),
-                ),
-              ),
-              _buildDivider(),
-              _buildAccountTile(
-                context: context,
-                icon: Icons.workspace_premium_outlined,
-                title: l10n.sinospark_premium,
-                subtitle: l10n.youAreAPremiumMember,
-                accentColor: AppTheme.accentOf(context),
-                // Status row: no destination, so it renders without a chevron or
-                // press ripple instead of looking like a dead button.
-                trailing: Icon(
-                  Icons.check_circle_outline_rounded,
-                  color: AppTheme.accentOf(context),
-                  size: 20,
-                ),
-              ),
-              _buildDivider(),
-              _buildAccountTile(
-                context: context,
-                icon: Icons.settings_outlined,
-                title: l10n.settingsTitle,
-                subtitle: l10n.preferences_audio_and_display,
-                onTap: () => Navigator.push(
-                  context,
-                  SwipeBackPageRoute(
-                    builder: (context) => const SettingsScreen(),
+      body: ZenFadeIn(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(24, 8, 24, 32),
+          children: [
+            StaggeredListItem(
+              index: 0,
+              child: _buildIdentityCard(context, ref, theme, isDark),
+            ),
+            const SizedBox(height: 24),
+            _buildSectionHeader(l10n.account, theme),
+            _buildSettingsCard(
+              context: context,
+              children: [
+                _buildAccountTile(
+                  context: context,
+                  icon: Icons.bar_chart_rounded,
+                  title: l10n.learning_stats,
+                  subtitle: l10n.view_your_learning_history_and_streaks,
+                  onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                        builder: (context) => const StatsScreen()),
                   ),
                 ),
-              ),
-              _buildDivider(),
-              _buildAccountTile(
-                context: context,
-                icon: Icons.support_agent_outlined,
-                title: l10n.helpAndSupport,
-                subtitle: l10n.contact_us_and_report_issues,
-                onTap: () => Navigator.push(
-                  context,
-                  SwipeBackPageRoute(
-                    builder: (context) => const ContactScreen(),
-                  ),
-                ),
-              ),
-              _buildDivider(),
-              _buildAccountTile(
-                context: context,
-                icon: Icons.forum_outlined,
-                title: l10n.qaFaq,
-                subtitle: l10n.audioPrivacyAndHowThingsWork,
-                onTap: () => Navigator.push(
-                  context,
-                  SwipeBackPageRoute(builder: (context) => const QAScreen()),
-                ),
-              ),
-              _buildDivider(),
-              _buildAccountTile(
-                key: const Key('ai-data-privacy-tile'),
-                context: context,
-                icon: Icons.policy_outlined,
-                title: l10n.aiDataPrivacyTitle,
-                subtitle: l10n.aiDataPrivacySettingsSubtitle,
-                onTap: () => Navigator.push(
-                  context,
-                  SwipeBackPageRoute(
-                    builder: (context) => const AiDataPrivacyScreen(),
-                  ),
-                ),
-              ),
-              if (user != null) ...[
                 _buildDivider(),
                 _buildAccountTile(
-                  key: const Key('delete-account-tile'),
                   context: context,
-                  icon: Icons.delete_forever_outlined,
-                  title: l10n.deleteAccount,
-                  subtitle: l10n.deleteAccountSubtitle,
-                  accentColor: const Color(0xFFC62828),
-                  onTap: () async {
-                    final controller = ref.read(authControllerProvider);
-                    final deleted = await Navigator.push<bool>(
-                      context,
-                      SwipeBackPageRoute(
-                        builder: (context) => DeleteAccountScreen(
-                          usesPassword: controller.currentUserUsesPassword,
-                        ),
-                      ),
-                    );
-                    if (deleted == true && context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(AppLocalizations.of(context)!
-                              .accountDeletedSuccessfully),
+                  icon: Icons.workspace_premium_outlined,
+                  title: l10n.sinospark_premium,
+                  subtitle: l10n.youAreAPremiumMember,
+                  accentColor: AppTheme.accentOf(context),
+                  // Status row: no destination, so it renders without a chevron or
+                  // press ripple instead of looking like a dead button.
+                  trailing: Icon(
+                    Icons.check_circle_outline_rounded,
+                    color: AppTheme.accentOf(context),
+                    size: 20,
+                  ),
+                ),
+                _buildDivider(),
+                _buildAccountTile(
+                  context: context,
+                  icon: Icons.settings_outlined,
+                  title: l10n.settingsTitle,
+                  subtitle: l10n.preferences_audio_and_display,
+                  onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                      builder: (context) => const SettingsScreen(),
+                    ),
+                  ),
+                ),
+                _buildDivider(),
+                _buildAccountTile(
+                  context: context,
+                  icon: Icons.support_agent_outlined,
+                  title: l10n.helpAndSupport,
+                  subtitle: l10n.contact_us_and_report_issues,
+                  onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                      builder: (context) => const ContactScreen(),
+                    ),
+                  ),
+                ),
+                _buildDivider(),
+                _buildAccountTile(
+                  context: context,
+                  icon: Icons.forum_outlined,
+                  title: l10n.qaFaq,
+                  subtitle: l10n.audioPrivacyAndHowThingsWork,
+                  onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(builder: (context) => const QAScreen()),
+                  ),
+                ),
+                _buildDivider(),
+                _buildAccountTile(
+                  key: const Key('ai-data-privacy-tile'),
+                  context: context,
+                  icon: Icons.policy_outlined,
+                  title: l10n.aiDataPrivacyTitle,
+                  subtitle: l10n.aiDataPrivacySettingsSubtitle,
+                  onTap: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                      builder: (context) => const AiDataPrivacyScreen(),
+                    ),
+                  ),
+                ),
+                if (user != null) ...[
+                  _buildDivider(),
+                  _buildAccountTile(
+                    key: const Key('delete-account-tile'),
+                    context: context,
+                    icon: Icons.delete_forever_outlined,
+                    title: l10n.deleteAccount,
+                    subtitle: l10n.deleteAccountSubtitle,
+                    accentColor: const Color(0xFFC62828),
+                    onTap: () async {
+                      final controller = ref.read(authControllerProvider);
+                      final deleted = await Navigator.push<bool>(
+                        context,
+                        SwipeBackPageRoute(
+                          builder: (context) => DeleteAccountScreen(
+                            usesPassword: controller.currentUserUsesPassword,
+                          ),
                         ),
                       );
-                    }
-                  },
-                ),
+                      if (deleted == true && context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .accountDeletedSuccessfully),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
               ],
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -234,9 +242,7 @@ class ProfileScreen extends ConsumerWidget {
         color: AppTheme.cardBgOf(context),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isDark
-              ? Colors.white10
-              : Colors.black.withValues(alpha: 0.06),
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
@@ -261,9 +267,8 @@ class ProfileScreen extends ConsumerWidget {
       BuildContext context, WidgetRef ref, ThemeData theme, bool isDark) {
     final user = ref.watch(currentUserProvider);
     final l10n = AppLocalizations.of(context)!;
-    final borderColor = isDark
-        ? Colors.white10
-        : Colors.black.withValues(alpha: 0.06);
+    final borderColor =
+        isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06);
 
     return Container(
       width: double.infinity,
@@ -388,9 +393,7 @@ class ProfileScreen extends ConsumerWidget {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppTheme.accentOf(context),
                   side: BorderSide(
-                    color: isDark
-                        ? AppTheme.accentDark
-                        : AppTheme.accentLight,
+                    color: isDark ? AppTheme.accentDark : AppTheme.accentLight,
                     width: 1.3,
                   ),
                   shape: RoundedRectangleBorder(

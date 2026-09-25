@@ -938,6 +938,16 @@ class AppLocalizationsPt extends AppLocalizations {
       'Onde você gostaria de salvar este caractere?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'Onde você gostaria de salvar estas $count palavras?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count itens';
+  }
+
+  @override
   String get addToDefaultStudy => 'Adicionar ao baralho de estudo padrão';
 
   @override
@@ -13126,4 +13136,36 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'A pesquisa no dicionário falhou. Tente novamente.';
+
+  @override
+  String get tapToHearVoiceSample => 'Toque em ▶ para ouvir uma amostra';
+
+  @override
+  String get soundEffects => 'Efeitos sonoros';
+
+  @override
+  String get soundEffectsDesc =>
+      'Papel suave, selo de madeira e sons de caligrafia';
+
+  @override
+  String get generatingYourScenario => 'Criando o seu cenário…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'Não conseguimos criar este cenário. Tente novamente.';
+
+  @override
+  String get trickyCharacters => 'Caracteres difíceis';
+
+  @override
+  String get strongestCharacters => 'Caracteres mais sólidos';
+
+  @override
+  String get newThisWeek => 'Novos nos últimos 7 dias';
+
+  @override
+  String get averageAttemptsPerWord => 'Tentativas médias por palavra';
+
+  @override
+  String get noCardsYet => 'Ainda não há cartões neste baralho';
 }

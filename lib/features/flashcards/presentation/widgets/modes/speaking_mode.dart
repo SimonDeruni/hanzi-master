@@ -7,6 +7,9 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/core/services/audio_recording_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
+import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/speaking_feedback_panel.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -14,6 +17,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
@@ -61,7 +65,8 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
     final audioService = ref.read(audioRecordingServiceProvider);
     final hasPerm = await audioService.requestPermission();
     if (!hasPerm) {
-      setState(() => _error = "Microphone permission required.");
+      setState(() =>
+          _error = AppLocalizations.of(context)!.microphonePermissionRequired);
       return;
     }
 
@@ -86,9 +91,10 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
         }
       });
     } catch (e) {
+      debugPrint('Speaking mode: could not start recording — $e');
       setState(() {
         _isRecording = false;
-        _error = "Failed to start recording: $e";
+        _error = AppLocalizations.of(context)!.recordingErrorPleaseTryAgain;
       });
     }
   }
@@ -125,14 +131,16 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
       } else {
         setState(() {
           _isProcessing = false;
-          _error = "Recording failed (no file).";
+          _error = AppLocalizations.of(context)!.recordingFailedNoFile;
         });
       }
     } catch (e) {
+      debugPrint('Speaking mode: could not grade the recording — $e');
       if (mounted) {
         setState(() {
           _isProcessing = false;
-          _error = "Error analyzing audio: $e";
+          _error =
+              AppLocalizations.of(context)!.couldNotProcessYourRecordingPleaseT;
         });
       }
     }
@@ -146,6 +154,10 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
   }
 
   Widget _buildColoredHanzi(bool isDark) {
+    const Color jade = Color(0xFF2E7D32);
+    final Color gold = isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+    final Color alert = isDark ? Colors.redAccent : const Color(0xFFC62828);
+
     if (_feedbackResult == null || _feedbackResult!['words'] == null) {
       return Text(
         widget.card.hanzi,
@@ -165,8 +177,9 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
       String wordText = w['word'];
       bool isCorrect = w['isCorrect'] == true;
       bool isPartial = w['isPartial'] == true;
-      Color color =
-          isCorrect ? Colors.green : (isPartial ? Colors.orange : Colors.red);
+      // Jade for a character that landed, gold for a shaky one, Cinnabar for a
+      // miss — the same reading the shadowing session gives the same verdicts.
+      Color color = isCorrect ? jade : (isPartial ? gold : alert);
 
       if (remainingHanzi.startsWith(wordText)) {
         spans.add(TextSpan(text: wordText, style: TextStyle(color: color)));
@@ -196,8 +209,18 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final theme = Theme.of(context);
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final Color accent = AppTheme.accentOf(context);
+    final Color muted = isDark ? Colors.white60 : const Color(0xFF6B655B);
+    final Color alert = isDark ? Colors.redAccent : const Color(0xFFC62828);
 
     final showPinyin = ref.watch(settingsProvider).showPinyinInSpeaking;
+
+    // The rating gesture must never be a dead end. A grade can fail (silence,
+    // no network, AI consent refused) and the learner is then left staring at a
+    // card they cannot rate; revealing the card — or hitting an error — unlocks
+    // the same swipe-to-grade the other four modes always have.
+    final bool canRate = _isRevealed || _feedbackResult != null || _error != null;
 
     return Scaffold(
       appBar: StudySessionAppBar(
@@ -226,7 +249,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: SwipeableFlashcard(
-                  isSwipeEnabled: _isRevealed || _feedbackResult != null,
+                  isSwipeEnabled: canRate,
                   onSwiped: (grade) => Navigator.pop(context, grade),
                   child: GestureDetector(
                     onTap: (!_isRevealed && !_isRecording && !_isProcessing)
@@ -267,11 +290,23 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                             Expanded(
                               flex: 1,
                               child: Center(
-                                child: PinyinText(
-                                  text: widget.card.pinyin,
-                                  style: const TextStyle(
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold),
+                                // The pinyin and its tone pills shrink together
+                                // rather than overflowing the card at 2x text.
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      PinyinText(
+                                        text: widget.card.pinyin,
+                                        style: const TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      _buildToneStrip(isDark),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -306,13 +341,23 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                                   const SizedBox(height: 16),
                                   Expanded(
                                     child: SingleChildScrollView(
-                                      child: TranslatedDefinition(
-                                        definition: widget.card.definition,
-                                        hanzi: widget.card.hanzi,
-                                        definitionLanguage: widget.card.definitionLanguage,
-                                        originalStyle:
-                                            const TextStyle(fontSize: 20),
-                                        textAlign: TextAlign.center,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          // The tones of the word, then what it
+                                          // means: what to aim for, and why.
+                                          _buildToneStrip(isDark),
+                                          const SizedBox(height: 16),
+                                          TranslatedDefinition(
+                                            definition: widget.card.definition,
+                                            hanzi: widget.card.hanzi,
+                                            definitionLanguage:
+                                                widget.card.definitionLanguage,
+                                            originalStyle:
+                                                const TextStyle(fontSize: 20),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -324,7 +369,9 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                       ),
                     )
                         .animate()
-                        .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                        .fade(
+                            duration: ZenMotion.of(context, ZenMotion.page),
+                            curve: ZenMotion.enter)
                         .slideY(
                             begin: 0.1,
                             end: 0,
@@ -342,14 +389,21 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.red.withAlpha(25),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.red.shade200),
+                    color: alert.withValues(alpha: isDark ? 0.16 : 0.08),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: alert.withValues(alpha: 0.3)),
                   ),
-                  child: Text(
-                    _error!,
-                    style: const TextStyle(color: Colors.red),
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.error_outline_rounded, size: 16, color: alert),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          _error!,
+                          style: TextStyle(fontSize: 13, color: alert),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -358,11 +412,14 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: Column(
-                  children: [
-                    const CircularProgressIndicator(),
+                  children: <Widget>[
+                    const ZenLoader(),
                     const SizedBox(height: 16),
-                    Text(AppLocalizations.of(context)!
-                        .analyzing_pronunciation_with_gemini_ai),
+                    Text(
+                      l10n.analyzing_pronunciation_with_gemini_ai,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13.5, color: muted),
+                    ),
                   ],
                 ),
               )
@@ -395,51 +452,50 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32, vertical: 20),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: _isRecording
-                                ? [Colors.red.shade400, Colors.red.shade700]
-                                : (isDark
-                                    ? [
-                                        Colors.blue.shade700,
-                                        Colors.blue.shade900
-                                      ]
-                                    : [
-                                        Colors.blue.shade300,
-                                        Colors.blue.shade600
-                                      ]),
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
+                          // The book-screen primary action, Cinnabar while live:
+                          // recording is a state, not a second accent.
+                          color: _isRecording
+                              ? alert
+                              : (isDark
+                                  ? Colors.amber.shade700
+                                  : AppTheme.carbonInkLight),
                           borderRadius: BorderRadius.circular(40),
-                          boxShadow: [
+                          boxShadow: <BoxShadow>[
                             BoxShadow(
-                              color: (_isRecording ? Colors.red : Colors.blue)
-                                  .withAlpha(isDark ? 80 : 120),
+                              color: (_isRecording ? alert : accent)
+                                  .withValues(alpha: isDark ? 0.3 : 0.2),
                               blurRadius: _isRecording ? 24 : 16,
-                              spreadRadius: _isRecording ? 4 : 0,
+                              spreadRadius: _isRecording ? 3 : 0,
                               offset: const Offset(0, 8),
                             ),
                           ],
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: [
+                          children: <Widget>[
                             Icon(
-                                _isRecording
-                                    ? Icons.mic
-                                    : Icons.mic_none_rounded,
-                                color: Colors.white,
-                                size: 32),
+                              _isRecording ? Icons.mic : Icons.mic_none_rounded,
+                              color: _isRecording || !isDark
+                                  ? Colors.white
+                                  : AppTheme.carbonInkLight,
+                              size: 32,
+                            ),
                             const SizedBox(width: 16),
-                            Text(
-                              _isRecording
-                                  ? 'Listening...'
-                                  : 'Hold to speak (Optional)',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0.5,
+                            Flexible(
+                              child: Text(
+                                _isRecording
+                                    ? l10n.listening
+                                    : l10n.holdMicToRecordReleaseToGrade,
+                                style: TextStyle(
+                                  color: _isRecording || !isDark
+                                      ? Colors.white
+                                      : AppTheme.carbonInkLight,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.5,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -456,45 +512,17 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: isDark
-                        ? Colors.green.withAlpha(25)
-                        : Colors.green.shade50,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.green.shade200),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        'AI Score: ${_feedbackResult!['score'] ?? 0}/100',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        _feedbackResult!['overallFeedback'] ?? '',
-                        style: const TextStyle(fontSize: 14),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
+                child: SpeakingFeedbackPanel(result: _feedbackResult!),
               ),
 
             // Swipe Hint
-            if (_isRevealed || _feedbackResult != null)
+            if (canRate)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                 child: Column(
                   children: [
                     Text(
-                      "Swipe to Grade:",
+                      AppLocalizations.of(context)!.swipeToGrade,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -503,7 +531,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
+                      '⬅️ ${AppLocalizations.of(context)!.again} ➡️ ${AppLocalizations.of(context)!.good} ⬆️ ${AppLocalizations.of(context)!.easy} ⬇️ ${AppLocalizations.of(context)!.hard}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -515,6 +543,63 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
               ),
           ],
         ),
+      ),
+    );
+  }
+
+  /// The tones of the word, one pill per syllable, in the app's canonical tone
+  /// colours. The pinyin is already tone-marked, but calling the tones out is
+  /// what lets a learner *aim* before they speak — and speaking practice was the
+  /// one mode that showed nothing about them.
+  Widget _buildToneStrip(bool isDark) {
+    final List<Map<String, dynamic>> tokens =
+        PinyinUtils.tokenize(widget.card.pinyin)
+            .where((Map<String, dynamic> token) =>
+                (token['text'] as String).trim().isNotEmpty)
+            .toList();
+    if (tokens.isEmpty) return const SizedBox.shrink();
+
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 6,
+      runSpacing: 6,
+      children: <Widget>[
+        for (final Map<String, dynamic> token in tokens)
+          _buildTargetTonePill(
+            syllable: token['text'] as String,
+            tone: token['tone'] as int,
+            isDark: isDark,
+          ),
+      ],
+    );
+  }
+
+  Widget _buildTargetTonePill({
+    required String syllable,
+    required int tone,
+    required bool isDark,
+  }) {
+    final Color base = PinyinUtils.toneColors[tone] ?? const Color(0xFF1A1A1B);
+    // The neutral tone's ink is unreadable on a dark surface.
+    final Color colour = isDark && tone == 5 ? Colors.white70 : base;
+    final String label = tone >= 1 && tone <= 4 ? '$syllable $tone' : syllable;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+      decoration: BoxDecoration(
+        color: colour.withValues(alpha: isDark ? 0.16 : 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colour.withValues(alpha: 0.3)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 12.5,
+          fontWeight: FontWeight.w600,
+          color: colour,
+        ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

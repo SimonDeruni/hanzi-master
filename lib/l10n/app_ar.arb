@@ -372,6 +372,8 @@
   "scholarsDesk": "مكتب العالِم",
   "chooseADeck": "اختر مجموعة",
   "whereWouldYouLike": "أين تود حفظ هذا الرمز؟",
+  "whereWouldYouLikeWords": "أين تود حفظ هذه الكلمات ({count})؟",
+  "deckItemsCount": "{count} عنصر",
   "addToDefaultStudy": "أضف إلى مجموعة الدراسة الافتراضية",
   "ifOffItsOnly": "إذا تم تعطيله، فسيتم حفظه في القاموس العام فقط",
   "saveToLibrary": "حفظ في المكتبة",
@@ -4186,5 +4188,15 @@
   "enjoyingAppSubtitle": "كيف تسير رحلتك في تعلم اللغة الصينية حتى الآن؟",
   "ratingLovingIt": "نعم، يعجبني جداً!",
   "ratingCouldBeBetter": "يمكن أن يكون أفضل",
-  "dictionarySearchFailed": "فشل البحث في القاموس. يرجى المحاولة مرة أخرى."
+  "dictionarySearchFailed": "فشل البحث في القاموس. يرجى المحاولة مرة أخرى.",
+  "tapToHearVoiceSample": "اضغط على ▶ لسماع عيّنة",
+  "soundEffects": "المؤثرات الصوتية",
+  "soundEffectsDesc": "صوت الورق الناعم والختم الخشبي والخط",
+  "generatingYourScenario": "جارٍ إنشاء السيناريو الخاص بك…",
+  "failedToGenerateScenario": "لم نتمكّن من إنشاء هذا السيناريو. يُرجى المحاولة مرة أخرى.",
+  "trickyCharacters": "أحرف صعبة",
+  "strongestCharacters": "الأحرف الأكثر رسوخًا",
+  "newThisWeek": "الجديدة في آخر 7 أيام",
+  "averageAttemptsPerWord": "متوسط المحاولات لكل كلمة",
+  "noCardsYet": "لا توجد بطاقات في هذه المجموعة بعد"
 }

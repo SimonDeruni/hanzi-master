@@ -1,4 +1,4 @@
-﻿import 'package:flutter/gestures.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,8 +66,7 @@ void main() {
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
         quickLookProvider('力').overrideWith((ref) => Future.value(mockCard)),
-        commonWordsProvider('力')
-            .overrideWith((ref) => Future.value(const [])),
+        commonWordsProvider('力').overrideWith((ref) => Future.value(const [])),
         flashcardControllerProvider
             .overrideWith(() => _InMemoryFlashcardController()),
       ],
@@ -113,7 +112,8 @@ void main() {
     for (final rt in richTextWidgets) {
       if (rt.text is TextSpan) {
         final span = rt.text as TextSpan;
-        if (span.children?.any((c) => c is TextSpan && c.text == '力') ?? false) {
+        if (span.children?.any((c) => c is TextSpan && c.text == '力') ??
+            false) {
           hanziRichText = rt;
           break;
         }

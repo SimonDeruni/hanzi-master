@@ -41,7 +41,8 @@ class PremiumTranscriptLine extends StatefulWidget {
   State<PremiumTranscriptLine> createState() => _PremiumTranscriptLineState();
 }
 
-class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with SingleTickerProviderStateMixin {
+class _PremiumTranscriptLineState extends State<PremiumTranscriptLine>
+    with SingleTickerProviderStateMixin {
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
 
@@ -165,7 +166,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
             ),
           ),
           const SizedBox(width: 8),
-          
+
           // Subtitle Content Block
           Expanded(
             child: GestureDetector(
@@ -175,12 +176,15 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: widget.isCurrent ? const Color(0xFFE8F0FE) : Colors.transparent,
+                  color: widget.isCurrent
+                      ? const Color(0xFFE8F0FE)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(16),
-                  border: widget.isCurrent 
-                      ? Border.all(color: Colors.blueAccent.withValues(alpha: 0.3))
+                  border: widget.isCurrent
+                      ? Border.all(
+                          color: Colors.blueAccent.withValues(alpha: 0.3))
                       : Border.all(color: Colors.transparent),
-                  boxShadow: widget.isCurrent 
+                  boxShadow: widget.isCurrent
                       ? [
                           BoxShadow(
                             color: Colors.blueAccent.withValues(alpha: 0.1),
@@ -196,11 +200,17 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                     // 1. Hanzi Line
                     RichText(
                       text: TextSpan(
-                        children: widget.line.text.split('').asMap().entries.map((entry) {
+                        children: widget.line.text
+                            .split('')
+                            .asMap()
+                            .entries
+                            .map((entry) {
                           final charIndex = entry.key;
                           final char = entry.value;
-                          final isHighlighted = widget.isCurrent && charIndex <= widget.highlightedCount;
-                          final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
+                          final isHighlighted = widget.isCurrent &&
+                              charIndex <= widget.highlightedCount;
+                          final isChinese =
+                              RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
                           final isSelected = _selectedCharIndex == charIndex;
 
                           TapGestureRecognizer? recognizer;
@@ -219,7 +229,8 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                                   context,
                                   char,
                                   contextText: widget.line.text,
-                                  presentation: QuickLookPresentation.readingPopover,
+                                  presentation:
+                                      QuickLookPresentation.readingPopover,
                                   anchorPosition: anchorPosition,
                                   onDismiss: () {
                                     if (mounted) {
@@ -247,14 +258,17 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                             style: TextStyle(
                               fontSize: 22,
                               backgroundColor: isSelected
-                                  ? const Color(0xFF4F46E5).withValues(alpha: 0.22)
+                                  ? const Color(0xFF4F46E5)
+                                      .withValues(alpha: 0.22)
                                   : null,
                               color: isSelected
                                   ? const Color(0xFF4F46E5)
                                   : isHighlighted
                                       ? const Color(0xFF1976D2)
                                       : const Color(0xFF2C2C2C),
-                              fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
+                              fontWeight: isHighlighted
+                                  ? FontWeight.bold
+                                  : FontWeight.w500,
                               height: 1.5,
                               fontFamily: 'NotoSerifSC', // fallback if needed
                             ),
@@ -263,21 +277,29 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                         }).toList(),
                       ),
                     ),
-                    
+
                     // 2. Pinyin Line
                     if (widget.showPinyin) ...[
                       () {
                         final raw = widget.line.pinyin?.trim();
-                        final translation = widget.line.translation?.trim().toLowerCase();
+                        final translation =
+                            widget.line.translation?.trim().toLowerCase();
                         String? effectivePinyin;
-                        if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+                        if (raw != null &&
+                            raw.isNotEmpty &&
+                            (translation == null ||
+                                raw.toLowerCase() != translation)) {
                           effectivePinyin = raw;
-                        } else if (RegExp(r'[\u4e00-\u9fff]').hasMatch(widget.line.text)) {
-                          effectivePinyin = PinyinHelper.getPinyinE(widget.line.text,
-                              separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                        } else if (RegExp(r'[\u4e00-\u9fff]')
+                            .hasMatch(widget.line.text)) {
+                          effectivePinyin = PinyinHelper.getPinyinE(
+                              widget.line.text,
+                              separator: ' ',
+                              format: PinyinFormat.WITH_TONE_MARK);
                         }
 
-                        if (effectivePinyin != null && effectivePinyin.isNotEmpty) {
+                        if (effectivePinyin != null &&
+                            effectivePinyin.isNotEmpty) {
                           return Padding(
                             padding: const EdgeInsets.only(top: 4),
                             child: Text(
@@ -292,7 +314,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                         return const SizedBox.shrink();
                       }(),
                     ],
-                      
+
                     // 3. English/Local Translation Line + Shadowing Button
                     if (widget.showEnglish || widget.isShadowingMode)
                       Padding(
@@ -304,10 +326,11 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                               Expanded(
                                 child: Text(
                                   widget.line.translation ??
-                                      AppLocalizations.of(context)?.translating ??
+                                      AppLocalizations.of(context)
+                                          ?.translating ??
                                       "[ Translating... ]",
                                   style: const TextStyle(
-                                    fontSize: 14, 
+                                    fontSize: 14,
                                     fontStyle: FontStyle.italic,
                                     color: Color(0xFF9E9E9E),
                                   ),
@@ -316,35 +339,49 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine> with Sing
                             else
                               const Spacer(),
                             const SizedBox(width: 8),
-                            
+
                             // Shadowing / Mic Button
                             GestureDetector(
                               onTap: widget.onShadowTapped,
                               child: AnimatedBuilder(
-                                animation: _pulseAnimation,
-                                builder: (context, child) {
-                                  return Transform.scale(
-                                    scale: widget.isRecordingThisLine ? _pulseAnimation.value : 1.0,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(6),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: widget.isRecordingThisLine 
-                                            ? Colors.red.withValues(alpha: 0.2) 
-                                            : Colors.indigo.withValues(alpha: 0.1),
-                                        boxShadow: widget.isRecordingThisLine ? [
-                                          BoxShadow(color: Colors.red.withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 2)
-                                        ] : null,
+                                  animation: _pulseAnimation,
+                                  builder: (context, child) {
+                                    return Transform.scale(
+                                      scale: widget.isRecordingThisLine
+                                          ? _pulseAnimation.value
+                                          : 1.0,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: widget.isRecordingThisLine
+                                              ? Colors.red
+                                                  .withValues(alpha: 0.2)
+                                              : Colors.indigo
+                                                  .withValues(alpha: 0.1),
+                                          boxShadow: widget.isRecordingThisLine
+                                              ? [
+                                                  BoxShadow(
+                                                      color: Colors.red
+                                                          .withValues(
+                                                              alpha: 0.4),
+                                                      blurRadius: 8,
+                                                      spreadRadius: 2)
+                                                ]
+                                              : null,
+                                        ),
+                                        child: Icon(
+                                          widget.isRecordingThisLine
+                                              ? Icons.stop
+                                              : Icons.mic,
+                                          color: widget.isRecordingThisLine
+                                              ? Colors.red
+                                              : Colors.indigo,
+                                          size: 20,
+                                        ),
                                       ),
-                                      child: Icon(
-                                        widget.isRecordingThisLine ? Icons.stop : Icons.mic,
-                                        color: widget.isRecordingThisLine ? Colors.red : Colors.indigo,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              ),
+                                    );
+                                  }),
                             ),
                           ],
                         ),

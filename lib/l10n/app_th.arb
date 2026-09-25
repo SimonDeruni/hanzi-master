@@ -312,6 +312,8 @@
   "scholarsDesk": "โต๊ะบัณฑิต",
   "chooseADeck": "เลือกสำรับ",
   "whereWouldYouLike": "คุณต้องการบันทึกตัวอักษรนี้ไว้ที่ไหน?",
+  "whereWouldYouLikeWords": "คุณต้องการบันทึก {count} คำนี้ไว้ที่ไหน?",
+  "deckItemsCount": "{count} รายการ",
   "addToDefaultStudy": "เพิ่มลงในสำรับการเรียนหลัก",
   "ifOffItsOnly": "หากปิดไว้ จะบันทึกลงในพจนานุกรมรวมเท่านั้น",
   "saveToLibrary": "บันทึกลงคลัง",
@@ -4178,5 +4180,15 @@
   "enjoyingAppSubtitle": "การเดินทางเรียนภาษาจีนของคุณเป็นอย่างไรบ้าง?",
   "ratingLovingIt": "ใช่ ชอบมาก!",
   "ratingCouldBeBetter": "ยังมีจุดที่ควรปรับปรุง",
-  "dictionarySearchFailed": "การค้นหาพจนานุกรมล้มเหลว โปรดลองอีกครั้ง"
+  "dictionarySearchFailed": "การค้นหาพจนานุกรมล้มเหลว โปรดลองอีกครั้ง",
+  "tapToHearVoiceSample": "แตะ ▶ เพื่อฟังตัวอย่าง",
+  "soundEffects": "เอฟเฟกต์เสียง",
+  "soundEffectsDesc": "เสียงกระดาษนุ่ม ตราประทับไม้ และพู่กัน",
+  "generatingYourScenario": "กำลังสร้างสถานการณ์ของคุณ…",
+  "failedToGenerateScenario": "สร้างสถานการณ์นี้ไม่สำเร็จ โปรดลองอีกครั้ง",
+  "trickyCharacters": "ตัวอักษรที่ยาก",
+  "strongestCharacters": "ตัวอักษรที่แม่นที่สุด",
+  "newThisWeek": "ใหม่ใน 7 วันที่ผ่านมา",
+  "averageAttemptsPerWord": "จำนวนครั้งเฉลี่ยต่อคำ",
+  "noCardsYet": "ยังไม่มีการ์ดในชุดนี้"
 }

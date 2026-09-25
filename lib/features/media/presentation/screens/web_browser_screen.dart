@@ -30,6 +30,7 @@ import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -674,9 +675,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     icon: Icons.playlist_add,
                     title: AppLocalizations.of(context)?.extractToDeck ??
                         'Extract to Deck',
-                    subtitle: AppLocalizations.of(context)
-                            ?.extractAllUnknownWords ??
-                        'Extract all unknown words to a new flashcard deck',
+                    subtitle:
+                        AppLocalizations.of(context)?.extractAllUnknownWords ??
+                            'Extract all unknown words to a new flashcard deck',
                     onTap: () {
                       HapticsManager.medium();
                       Navigator.pop(ctx);
@@ -1116,8 +1117,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           isScrollControlled: true,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-          builder: (context) => ExtractedWordsReviewSheet(
-              deckName: deckName, words: remaining),
+          builder: (context) =>
+              ExtractedWordsReviewSheet(deckName: deckName, words: remaining),
         );
 
         // Dismissed the review sheet, or deselected everything: stop.
@@ -1162,10 +1163,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         if (remaining.isEmpty) remaining = List<AiWord>.from(newWords);
 
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content:
-                    Text(AppLocalizations.of(context)!.please_select_a_deck_to_add)),
+          ZenToast.info(
+            context,
+            AppLocalizations.of(context)!.please_select_a_deck_to_add,
           );
         }
       }
@@ -1189,8 +1189,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     setState(() => _isProcessingAi = true);
 
     try {
-      final rawText = await _controller
-          .runJavaScriptReturningResult('''
+      final rawText = await _controller.runJavaScriptReturningResult('''
         (function() {
           const selectors = [
             'article',
@@ -1777,15 +1776,14 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                 );
                               } catch (e) {
                                 if (mounted) {
-                                  final cleanError = e
-                                      .toString()
-                                      .replaceFirst(
-                                          RegExp(r'^(FormatException|Exception):\s*'),
-                                          '');
+                                  final cleanError = e.toString().replaceFirst(
+                                      RegExp(
+                                          r'^(FormatException|Exception):\s*'),
+                                      '');
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content:
-                                              Text("Simplify failed: $cleanError")));
+                                          content: Text(
+                                              "Simplify failed: $cleanError")));
                                 }
                               } finally {
                                 if (mounted) {
@@ -2127,9 +2125,8 @@ class _AiToolTile extends StatelessWidget {
           color: AppTheme.cardBgOf(context),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: isDark
-                ? Colors.white10
-                : Colors.black.withValues(alpha: 0.06),
+            color:
+                isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
           ),
           boxShadow: [
             BoxShadow(
@@ -2174,9 +2171,7 @@ class _AiToolTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.35,
-                      color: isDark
-                          ? Colors.white70
-                          : const Color(0xFF2C2C2E),
+                      color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
                     ),
                   ),
                 ],
@@ -2328,8 +2323,7 @@ class _ExtractedWordsReviewSheetState
             ? l10n.addedWordsToDeck(addedCount, deckName)
             : 'Added $addedCount words to $deckName';
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message), backgroundColor: Colors.green));
+      ZenToast.success(context, message);
       // A null result tells the browser that this flow is complete. Returning
       // the words would incorrectly open DeckSelectionSheet after the new deck
       // and its cards have already been created.
@@ -2351,7 +2345,8 @@ class _ExtractedWordsReviewSheetState
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
     final selectedCount = _selected.where((s) => s).length;
-    final allSelected = selectedCount == widget.words.length && _selected.isNotEmpty;
+    final allSelected =
+        selectedCount == widget.words.length && _selected.isNotEmpty;
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
@@ -2404,12 +2399,11 @@ class _ExtractedWordsReviewSheetState
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      l10n.wordsSelectedCount(selectedCount,
-                          widget.words.length),
+                      l10n.wordsSelectedCount(
+                          selectedCount, widget.words.length),
                       style: TextStyle(
-                        color: isDark
-                            ? Colors.white70
-                            : const Color(0xFF2C2C2E),
+                        color:
+                            isDark ? Colors.white70 : const Color(0xFF2C2C2E),
                         fontSize: 14,
                       ),
                     ),
@@ -2432,8 +2426,8 @@ class _ExtractedWordsReviewSheetState
               TextButton.icon(
                 onPressed: _isCreating
                     ? null
-                    : () => setState(() => _selected =
-                        List.generate(widget.words.length, (_) => !allSelected)),
+                    : () => setState(() => _selected = List.generate(
+                        widget.words.length, (_) => !allSelected)),
                 icon: Icon(
                   allSelected
                       ? Icons.check_box_outlined
@@ -2454,8 +2448,7 @@ class _ExtractedWordsReviewSheetState
             child: ListView.separated(
               padding: const EdgeInsets.only(bottom: 4),
               itemCount: widget.words.length,
-              separatorBuilder: (context, index) =>
-                  const SizedBox(height: 8),
+              separatorBuilder: (context, index) => const SizedBox(height: 8),
               itemBuilder: (context, index) {
                 final word = widget.words[index];
                 final isSelected = _selected[index];
@@ -2481,9 +2474,8 @@ class _ExtractedWordsReviewSheetState
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppTheme.accentOf(context),
                       side: BorderSide(
-                        color: isDark
-                            ? AppTheme.accentDark
-                            : AppTheme.accentLight,
+                        color:
+                            isDark ? AppTheme.accentDark : AppTheme.accentLight,
                         width: 1.3,
                       ),
                       shape: RoundedRectangleBorder(
@@ -2595,9 +2587,7 @@ class _ExtractedWordCard extends StatelessWidget {
     final accent = AppTheme.accentOf(context);
     final borderColor = isSelected
         ? accent
-        : (isDark
-            ? Colors.white10
-            : Colors.black.withValues(alpha: 0.06));
+        : (isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06));
 
     return GestureDetector(
       onTap: onTap,
@@ -2666,9 +2656,7 @@ class _ExtractedWordCard extends StatelessWidget {
                     originalStyle: TextStyle(
                       fontSize: 14,
                       height: 1.35,
-                      color: isDark
-                          ? Colors.white70
-                          : const Color(0xFF2C2C2E),
+                      color: isDark ? Colors.white70 : const Color(0xFF2C2C2E),
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

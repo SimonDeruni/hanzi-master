@@ -1,0 +1,58 @@
+{
+  "en": {
+    "generatingYourScenario": "Creating your scenario…",
+    "failedToGenerateScenario": "We could not create this scenario. Please try again."
+  },
+  "fr": {
+    "generatingYourScenario": "Création de votre scénario…",
+    "failedToGenerateScenario": "Nous n'avons pas pu créer ce scénario. Veuillez réessayer."
+  },
+  "es": {
+    "generatingYourScenario": "Creando tu escenario…",
+    "failedToGenerateScenario": "No pudimos crear este escenario. Inténtalo de nuevo."
+  },
+  "de": {
+    "generatingYourScenario": "Dein Szenario wird erstellt…",
+    "failedToGenerateScenario": "Wir konnten dieses Szenario nicht erstellen. Bitte versuche es erneut."
+  },
+  "it": {
+    "generatingYourScenario": "Creazione del tuo scenario…",
+    "failedToGenerateScenario": "Non siamo riusciti a creare questo scenario. Riprova."
+  },
+  "pt": {
+    "generatingYourScenario": "Criando o seu cenário…",
+    "failedToGenerateScenario": "Não conseguimos criar este cenário. Tente novamente."
+  },
+  "ru": {
+    "generatingYourScenario": "Создаём ваш сценарий…",
+    "failedToGenerateScenario": "Не удалось создать этот сценарий. Попробуйте ещё раз."
+  },
+  "ja": {
+    "generatingYourScenario": "シナリオを作成しています…",
+    "failedToGenerateScenario": "このシナリオを作成できませんでした。もう一度お試しください。"
+  },
+  "ko": {
+    "generatingYourScenario": "시나리오를 만들고 있어요…",
+    "failedToGenerateScenario": "이 시나리오를 만들지 못했습니다. 다시 시도해 주세요."
+  },
+  "vi": {
+    "generatingYourScenario": "Đang tạo kịch bản của bạn…",
+    "failedToGenerateScenario": "Không thể tạo kịch bản này. Vui lòng thử lại."
+  },
+  "th": {
+    "generatingYourScenario": "กำลังสร้างสถานการณ์ของคุณ…",
+    "failedToGenerateScenario": "สร้างสถานการณ์นี้ไม่สำเร็จ โปรดลองอีกครั้ง"
+  },
+  "id": {
+    "generatingYourScenario": "Membuat skenario Anda…",
+    "failedToGenerateScenario": "Kami tidak dapat membuat skenario ini. Silakan coba lagi."
+  },
+  "hi": {
+    "generatingYourScenario": "आपका परिदृश्य बनाया जा रहा है…",
+    "failedToGenerateScenario": "यह परिदृश्य बनाना संभव नहीं हुआ। कृपया फिर कोशिश करें।"
+  },
+  "ar": {
+    "generatingYourScenario": "جارٍ إنشاء السيناريو الخاص بك…",
+    "failedToGenerateScenario": "لم نتمكّن من إنشاء هذا السيناريو. يُرجى المحاولة مرة أخرى."
+  }
+}

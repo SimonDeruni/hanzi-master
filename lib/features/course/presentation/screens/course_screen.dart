@@ -9,7 +9,9 @@ import '../widgets/course_map_widgets.dart';
 import '../widgets/course_painters.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+
 class CourseScreen extends ConsumerWidget {
   final String deckId;
   final String deckName;
@@ -24,12 +26,17 @@ class CourseScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final asyncUnits = ref.watch(courseControllerProvider(deckId));
-    final isLibraryLoading = ref.watch(flashcardControllerProvider.select((s) => s.isLoading));
+    final isLibraryLoading =
+        ref.watch(flashcardControllerProvider.select((s) => s.isLoading));
 
     return Scaffold(
       appBar: AppBar(
         title: Text(deckName.toUpperCase(),
-          style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 6, fontSize: 10, color: Colors.brown)),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 6,
+                fontSize: 10,
+                color: Colors.brown)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -43,9 +50,9 @@ class CourseScreen extends ConsumerWidget {
             child: RepaintBoundary(
               child: CustomPaint(
                 painter: AncientAtlasPainter(
-                  index: 0, 
+                  index: 0,
                   isDark: Theme.of(context).brightness == Brightness.dark,
-                  themeName: 'Nature', 
+                  themeName: 'Nature',
                 ),
               ),
             ),
@@ -57,7 +64,7 @@ class CourseScreen extends ConsumerWidget {
             child: asyncUnits.when(
               data: (units) {
                 final List<dynamic> viewItems = [];
-                viewItems.add(const SizedBox(height: 120)); 
+                viewItems.add(const SizedBox(height: 120));
                 viewItems.add(const InkStoneWidget());
                 viewItems.add(const SizedBox(height: 40));
 
@@ -70,12 +77,14 @@ class CourseScreen extends ConsumerWidget {
 
                   for (int j = 0; j < clusters.length; j++) {
                     final cluster = clusters[j];
-                    final sunNode = cluster.firstWhere((n) => n.parentUuid == null, orElse: () => cluster.first);
+                    final sunNode = cluster.firstWhere(
+                        (n) => n.parentUuid == null,
+                        orElse: () => cluster.first);
                     final String radical = sunNode.hanzi;
-                    
+
                     final int count = (radicalCounts[radical] ?? 0) + 1;
                     radicalCounts[radical] = count;
-                    
+
                     String suffix = "";
                     if (count > 1) {
                       suffix = " ${_toRoman(count)}";
@@ -105,13 +114,19 @@ class CourseScreen extends ConsumerWidget {
                           final item = viewItems[index];
                           if (item is Widget) return item;
                           if (item is _GalaxyClusterItem) {
-                            return GalaxyRegion(
-                              unit: item.unit,
-                              cluster: item.cluster,
-                              unitIndex: item.unitIndex,
-                              clusterIndex: item.clusterIndex,
-                              isLastInUnit: item.isLastInUnit,
-                              labelSuffix: item.labelSuffix,
+                            // Constellation entrance: each region eases in with
+                            // the list vocabulary instead of appearing in one
+                            // frame as the atlas scrolls.
+                            return StaggeredListItem(
+                              index: index,
+                              child: GalaxyRegion(
+                                unit: item.unit,
+                                cluster: item.cluster,
+                                unitIndex: item.unitIndex,
+                                clusterIndex: item.clusterIndex,
+                                isLastInUnit: item.isLastInUnit,
+                                labelSuffix: item.labelSuffix,
+                              ),
                             );
                           }
                           return const SizedBox.shrink();
@@ -122,8 +137,11 @@ class CourseScreen extends ConsumerWidget {
                   ],
                 );
               },
-              loading: () => const Center(child: ZenLoader(color: Colors.brown)),
-              error: (err, stack) => Center(child: Text("${l10n?.errorPrefix}$err", style: const TextStyle(color: Colors.red))),
+              loading: () =>
+                  const Center(child: ZenLoader(color: Colors.brown)),
+              error: (err, stack) => Center(
+                  child: Text("${l10n?.errorPrefix}$err",
+                      style: const TextStyle(color: Colors.red))),
             ),
           ),
 
@@ -139,7 +157,13 @@ class CourseScreen extends ConsumerWidget {
                       children: [
                         const CircularProgressIndicator(color: Colors.white),
                         const SizedBox(height: 16),
-                        Text(l10n?.initializingLibrary ?? AppLocalizations.of(context)!.initializingLibrary, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                        Text(
+                            l10n?.initializingLibrary ??
+                                AppLocalizations.of(context)!
+                                    .initializingLibrary,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -153,12 +177,18 @@ class CourseScreen extends ConsumerWidget {
         onPressed: () {
           final cards = ref.read(flashcardControllerProvider).value ?? [];
           if (cards.length < 4) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n?.unlockCharactersToQuiz ?? AppLocalizations.of(context)!.unlockCharactersToQuiz)));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(l10n?.unlockCharactersToQuiz ??
+                    AppLocalizations.of(context)!.unlockCharactersToQuiz)));
             return;
           }
-          Navigator.push(context, SwipeBackPageRoute(builder: (context) => QuizScreen(availableCards: cards)));
+          Navigator.push(
+              context,
+              SwipeBackPageRoute(
+                  builder: (context) => QuizScreen(availableCards: cards)));
         },
-        label: Text(l10n?.practiceQuiz ?? AppLocalizations.of(context)!.practiceQuiz),
+        label: Text(
+            l10n?.practiceQuiz ?? AppLocalizations.of(context)!.practiceQuiz),
         icon: const Icon(Icons.quiz),
         backgroundColor: Colors.indigo,
       ),

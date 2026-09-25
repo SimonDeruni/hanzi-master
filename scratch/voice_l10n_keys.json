@@ -1,0 +1,72 @@
+{
+  "en": {
+    "tapToHearVoiceSample": "Touch ▶ to hear a sample",
+    "soundEffects": "Sound Effects",
+    "soundEffectsDesc": "Soft paper, wooden seal, and calligraphy sounds"
+  },
+  "fr": {
+    "tapToHearVoiceSample": "Touchez ▶ pour écouter un exemple",
+    "soundEffects": "Effets sonores",
+    "soundEffectsDesc": "Papier doux, sceau de bois et bruits de calligraphie"
+  },
+  "es": {
+    "tapToHearVoiceSample": "Toca ▶ para escuchar una muestra",
+    "soundEffects": "Efectos de sonido",
+    "soundEffectsDesc": "Papel suave, sello de madera y sonidos de caligrafía"
+  },
+  "de": {
+    "tapToHearVoiceSample": "Tippe auf ▶ für eine Hörprobe",
+    "soundEffects": "Soundeffekte",
+    "soundEffectsDesc": "Sanftes Papier, Holzsiegel und Kalligrafie-Klänge"
+  },
+  "it": {
+    "tapToHearVoiceSample": "Tocca ▶ per ascoltare un esempio",
+    "soundEffects": "Effetti sonori",
+    "soundEffectsDesc": "Carta morbida, sigillo di legno e suoni di calligrafia"
+  },
+  "pt": {
+    "tapToHearVoiceSample": "Toque em ▶ para ouvir uma amostra",
+    "soundEffects": "Efeitos sonoros",
+    "soundEffectsDesc": "Papel suave, selo de madeira e sons de caligrafia"
+  },
+  "ru": {
+    "tapToHearVoiceSample": "Нажмите ▶, чтобы услышать образец",
+    "soundEffects": "Звуковые эффекты",
+    "soundEffectsDesc": "Мягкая бумага, деревянная печать и звуки каллиграфии"
+  },
+  "ja": {
+    "tapToHearVoiceSample": "▶ をタップしてサンプルを再生",
+    "soundEffects": "効果音",
+    "soundEffectsDesc": "やわらかな紙、木の印、書道の音"
+  },
+  "ko": {
+    "tapToHearVoiceSample": "▶를 눌러 샘플을 들어보세요",
+    "soundEffects": "효과음",
+    "soundEffectsDesc": "부드러운 종이, 나무 도장, 서예 소리"
+  },
+  "vi": {
+    "tapToHearVoiceSample": "Chạm ▶ để nghe thử",
+    "soundEffects": "Hiệu ứng âm thanh",
+    "soundEffectsDesc": "Tiếng giấy mềm, con dấu gỗ và thư pháp"
+  },
+  "th": {
+    "tapToHearVoiceSample": "แตะ ▶ เพื่อฟังตัวอย่าง",
+    "soundEffects": "เอฟเฟกต์เสียง",
+    "soundEffectsDesc": "เสียงกระดาษนุ่ม ตราประทับไม้ และพู่กัน"
+  },
+  "id": {
+    "tapToHearVoiceSample": "Ketuk ▶ untuk mendengar contoh",
+    "soundEffects": "Efek Suara",
+    "soundEffectsDesc": "Suara kertas lembut, stempel kayu, dan kaligrafi"
+  },
+  "hi": {
+    "tapToHearVoiceSample": "नमूना सुनने के लिए ▶ दबाएँ",
+    "soundEffects": "ध्वनि प्रभाव",
+    "soundEffectsDesc": "कोमल कागज़, लकड़ी की मुहर और सुलेख की ध्वनियाँ"
+  },
+  "ar": {
+    "tapToHearVoiceSample": "اضغط على ▶ لسماع عيّنة",
+    "soundEffects": "المؤثرات الصوتية",
+    "soundEffectsDesc": "صوت الورق الناعم والختم الخشبي والخط"
+  }
+}

@@ -3420,7 +3420,8 @@ class HardcodedShows {
         },
         {
           'id': '_82ibTv7Xn0',
-          'title': 'BTS｜「出戏 X 陈星旭 X 王玉雯」高总和欢儿的抽象究竟谁更甚一筹？【突然的喜欢 My Page in the 90s】',
+          'title':
+              'BTS｜「出戏 X 陈星旭 X 王玉雯」高总和欢儿的抽象究竟谁更甚一筹？【突然的喜欢 My Page in the 90s】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/_82ibTv7Xn0/hqdefault.jpg',
         },
         {
@@ -5755,7 +5756,8 @@ class HardcodedShows {
         },
         {
           'id': 'WHENTJCl9-M',
-          'title': 'BTS｜「Out of Character Duo Interview 」出戏双彩—高总和欢儿的抽象究竟谁更甚一筹？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
+          'title':
+              'BTS｜「Out of Character Duo Interview 」出戏双彩—高总和欢儿的抽象究竟谁更甚一筹？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/WHENTJCl9-M/hqdefault.jpg',
         },
         {
@@ -5770,22 +5772,26 @@ class HardcodedShows {
         },
         {
           'id': 'REk9xALNODE',
-          'title': '精彩片段04 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
+          'title':
+              '精彩片段04 离谱系统强行加戏！纸巾变卫生棉？这下尴尬大了！ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/REk9xALNODE/hqdefault.jpg',
         },
         {
           'id': 'V3HwU2XrQVk',
-          'title': '精彩片段03 替闺蜜去相亲，结果相到了男主本尊？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
+          'title':
+              '精彩片段03 替闺蜜去相亲，结果相到了男主本尊？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/V3HwU2XrQVk/hqdefault.jpg',
         },
         {
           'id': 'Xsb7B-Jppy0',
-          'title': '精彩片段02 本想攻略男主，结果竟然认错人？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
+          'title':
+              '精彩片段02 本想攻略男主，结果竟然认错人？ 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/Xsb7B-Jppy0/hqdefault.jpg',
         },
         {
           'id': '8lE07OYaufE',
-          'title': '精彩片段01 离谱！突然就穿书了？这剧情我该怎么演? 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
+          'title':
+              '精彩片段01 离谱！突然就穿书了？这剧情我该怎么演? 《突然的喜欢 My Page in the 90s》 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/8lE07OYaufE/hqdefault.jpg',
         },
         {
@@ -7119,12 +7125,14 @@ class HardcodedShows {
       'episodes': [
         {
           'id': '01lQKQHRKUs',
-          'title': '《狙击蝴蝶 Sniper Butterfly》Full Version 1-15｜主演：陈妍希，周柯宇 腾讯视频-青春剧场',
+          'title':
+              '《狙击蝴蝶 Sniper Butterfly》Full Version 1-15｜主演：陈妍希，周柯宇 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/01lQKQHRKUs/hqdefault.jpg',
         },
         {
           'id': 'O6R1ly2TuWI',
-          'title': '《狙击蝴蝶 Sniper Butterfly》Full Version 16-30｜主演：陈妍希，周柯宇 腾讯视频-青春剧场',
+          'title':
+              '《狙击蝴蝶 Sniper Butterfly》Full Version 16-30｜主演：陈妍希，周柯宇 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/O6R1ly2TuWI/hqdefault.jpg',
         },
         {
@@ -8090,17 +8098,20 @@ class HardcodedShows {
       'episodes': [
         {
           'id': 'r4Y2cweQySI',
-          'title': '《他为什么依然单身 Why Is He Still Single》Full Version｜主演：霍建华，朱珠 腾讯视频-青春剧场',
+          'title':
+              '《他为什么依然单身 Why Is He Still Single》Full Version｜主演：霍建华，朱珠 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/r4Y2cweQySI/hqdefault.jpg',
         },
         {
           'id': 'Ijg-FlHRPHw',
-          'title': '《他为什么依然单身 Why Is He Still Single》Full Version 1｜主演：霍建华，朱珠 腾讯视频-青春剧场',
+          'title':
+              '《他为什么依然单身 Why Is He Still Single》Full Version 1｜主演：霍建华，朱珠 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/Ijg-FlHRPHw/hqdefault.jpg',
         },
         {
           'id': 'bVt9AFsircU',
-          'title': '《他为什么依然单身 Why Is He Still Single》Full Version 2｜主演：霍建华，朱珠 腾讯视频-青春剧场',
+          'title':
+              '《他为什么依然单身 Why Is He Still Single》Full Version 2｜主演：霍建华，朱珠 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/bVt9AFsircU/hqdefault.jpg',
         },
         {
@@ -8691,87 +8702,104 @@ class HardcodedShows {
       'episodes': [
         {
           'id': 'wsGeYB_-r_o',
-          'title': '《折腰精简版 The Prisoner of Beauty》小乔替姐嫁世仇，新婚头天就和夫君杠上了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》小乔替姐嫁世仇，新婚头天就和夫君杠上了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/wsGeYB_-r_o/hqdefault.jpg',
         },
         {
           'id': 'ukf1TyjbM7U',
-          'title': '《折腰精简版 The Prisoner of Beauty》小乔破刘琰炸渠阴谋，和魏劭从死磕变互相护着｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》小乔破刘琰炸渠阴谋，和魏劭从死磕变互相护着｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/ukf1TyjbM7U/hqdefault.jpg',
         },
         {
           'id': '4k_9mMamgYQ',
-          'title': '《折腰精简版 The Prisoner of Beauty》小乔装病争主院，魏劭当众护妻拒纳妾｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》小乔装病争主院，魏劭当众护妻拒纳妾｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/4k_9mMamgYQ/hqdefault.jpg',
         },
         {
           'id': 'J8GGdQqH3bw',
-          'title': '《折腰精简版 The Prisoner of Beauty》小乔破了木匣栽赃局，魏劭认她是自家女君了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》小乔破了木匣栽赃局，魏劭认她是自家女君了｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/J8GGdQqH3bw/hqdefault.jpg',
         },
         {
           'id': '01RMfzz0EPQ',
-          'title': '《折腰精简版 The Prisoner of Beauty》小乔智破嫁祸局，魏劭认妻护妻婆媳掀桌｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》小乔智破嫁祸局，魏劭认妻护妻婆媳掀桌｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/01RMfzz0EPQ/hqdefault.jpg',
         },
         {
           'id': 'g9C7ZD_8SVc',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏俨挑事传假信，小乔魏劭因玉坠闹信任危机｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏俨挑事传假信，小乔魏劭因玉坠闹信任危机｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/g9C7ZD_8SVc/hqdefault.jpg',
         },
         {
           'id': 'U54T11whRgg',
-          'title': '《折腰精简版 The Prisoner of Beauty》苏娥皇用熟麦坑小乔，魏劭护妻破案俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》苏娥皇用熟麦坑小乔，魏劭护妻破案俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/U54T11whRgg/hqdefault.jpg',
         },
         {
           'id': 'UYaNZ7U08Ck',
-          'title': '《折腰精简版 The Prisoner of Beauty》小乔魏劭遇刺中毒，小乔智破阴谋救夫更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》小乔魏劭遇刺中毒，小乔智破阴谋救夫更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/UYaNZ7U08Ck/hqdefault.jpg',
         },
         {
           'id': 'RNYFW-Ncb8o',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏劭送战马后补发簪，护妻失踪急得抓耳挠腮｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏劭送战马后补发簪，护妻失踪急得抓耳挠腮｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/RNYFW-Ncb8o/hqdefault.jpg',
         },
         {
           'id': 'qjATProdYZg',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏劭怕小乔跑了吃醋护妻，搬出又后悔想她｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏劭怕小乔跑了吃醋护妻，搬出又后悔想她｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/qjATProdYZg/hqdefault.jpg',
         },
         {
           'id': 'KwgVCFIQnOs',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏劭吃醋背小乔，解木匣疑云俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏劭吃醋背小乔，解木匣疑云俩人更亲｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/KwgVCFIQnOs/hqdefault.jpg',
         },
         {
           'id': '7H4vDKa3OEk',
-          'title': '《折腰精简版 The Prisoner of Beauty》乔慈探姐引魏劭吃醋，小乔俩口子掏心定终身｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》乔慈探姐引魏劭吃醋，小乔俩口子掏心定终身｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/7H4vDKa3OEk/hqdefault.jpg',
         },
         {
           'id': 'rXdpVLxnTFM',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏俨为小乔离乡，劭乔吵架后和好｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏俨为小乔离乡，劭乔吵架后和好｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/rXdpVLxnTFM/hqdefault.jpg',
         },
         {
           'id': 'ry1BWCla-V0',
-          'title': '《折腰精简版 The Prisoner of Beauty》新婚夜兵变姐妹反目，小乔智退敌魏劭认错｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》新婚夜兵变姐妹反目，小乔智退敌魏劭认错｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/ry1BWCla-V0/hqdefault.jpg',
         },
         {
           'id': 'O8n-FcvzyvM',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏劭陪小乔回康郡解心结，乔父认婿俩口子圆房｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏劭陪小乔回康郡解心结，乔父认婿俩口子圆房｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/O8n-FcvzyvM/hqdefault.jpg',
         },
         {
           'id': 'Krsrk6wSAy8',
-          'title': '《折腰精简版 The Prisoner of Beauty》乔越叛变魏梁丧命，大乔被劫比彘拼命反杀｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》乔越叛变魏梁丧命，大乔被劫比彘拼命反杀｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/Krsrk6wSAy8/hqdefault.jpg',
         },
         {
           'id': 'V-26fn6w270',
-          'title': '《折腰精简版 The Prisoner of Beauty》魏梁战死魏渠断臂，大乔坠楼刘琰覆灭｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
+          'title':
+              '《折腰精简版 The Prisoner of Beauty》魏梁战死魏渠断臂，大乔坠楼刘琰覆灭｜主演：宋祖儿，刘宇宁 腾讯视频-青春剧场',
           'thumbnailUrl': 'https://i.ytimg.com/vi/V-26fn6w270/hqdefault.jpg',
         },
       ],
@@ -9538,7 +9566,8 @@ class HardcodedShows {
         },
         {
           'id': '4L7cCiQIilE',
-          'title': '《江湖夜雨十年灯 Generation to Generation》定档2月22日！看江湖最强新生代慕慕昭昭一起闯江湖',
+          'title':
+              '《江湖夜雨十年灯 Generation to Generation》定档2月22日！看江湖最强新生代慕慕昭昭一起闯江湖',
           'thumbnailUrl': 'https://i.ytimg.com/vi/4L7cCiQIilE/hqdefault.jpg',
         },
       ],
@@ -11492,7 +11521,8 @@ class HardcodedShows {
         },
         {
           'id': 'zc3e035lAx0',
-          'title': 'BTS 战场上帅气合体打斗，没人能拒绝飒感拉满的大魏双星【锦月如歌 Legend of The Female General】',
+          'title':
+              'BTS 战场上帅气合体打斗，没人能拒绝飒感拉满的大魏双星【锦月如歌 Legend of The Female General】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/zc3e035lAx0/hqdefault.jpg',
         },
         {
@@ -11502,7 +11532,8 @@ class HardcodedShows {
         },
         {
           'id': 'agaV_XNlH2w',
-          'title': 'BTS 醉酒的周也可爱到犯规~舞剑反差萌拉满~一旁的丞磊嘴角笑意真藏不住一点！【锦月如歌 Legend of The Female General】',
+          'title':
+              'BTS 醉酒的周也可爱到犯规~舞剑反差萌拉满~一旁的丞磊嘴角笑意真藏不住一点！【锦月如歌 Legend of The Female General】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/agaV_XNlH2w/hqdefault.jpg',
         },
       ],
@@ -11708,7 +11739,8 @@ class HardcodedShows {
         },
         {
           'id': 'tIQmS5NkEsY',
-          'title': 'Clip 一袭红衣染白雪！姜桃花为保护幼弟诀别故土远嫁祈国【桃花映江山 The Princess\'s Gambit】',
+          'title':
+              'Clip 一袭红衣染白雪！姜桃花为保护幼弟诀别故土远嫁祈国【桃花映江山 The Princess\'s Gambit】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/tIQmS5NkEsY/hqdefault.jpg',
         },
         {
@@ -11718,27 +11750,32 @@ class HardcodedShows {
         },
         {
           'id': 'Zwl9IXkhqJg',
-          'title': 'Clip 桃花自缢装晕被拆穿，沈在野一针扎醒：演，接着演！【桃花映江山 The Princess\'s Gambit】',
+          'title':
+              'Clip 桃花自缢装晕被拆穿，沈在野一针扎醒：演，接着演！【桃花映江山 The Princess\'s Gambit】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/Zwl9IXkhqJg/hqdefault.jpg',
         },
         {
           'id': '6DbdhzzbulA',
-          'title': 'Clip 沈相办案好狠的心！雷霆手段彻查恶钱案，贪官们瑟瑟发抖【桃花映江山 The Princess\'s Gambit】',
+          'title':
+              'Clip 沈相办案好狠的心！雷霆手段彻查恶钱案，贪官们瑟瑟发抖【桃花映江山 The Princess\'s Gambit】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/6DbdhzzbulA/hqdefault.jpg',
         },
         {
           'id': 'eDr-jjtCRF0',
-          'title': 'Clip 面具刺客完美伪装难逃制裁，神探桃花：你的脚出卖了你！【桃花映江山 The Princess\'s Gambit】',
+          'title':
+              'Clip 面具刺客完美伪装难逃制裁，神探桃花：你的脚出卖了你！【桃花映江山 The Princess\'s Gambit】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/eDr-jjtCRF0/hqdefault.jpg',
         },
         {
           'id': 'IfSCFwXGJnk',
-          'title': 'Clip 发簪审讯play！沈在野执簪挑起桃花下巴冷声逼问【桃花映江山 The Princess\'s Gambit】',
+          'title':
+              'Clip 发簪审讯play！沈在野执簪挑起桃花下巴冷声逼问【桃花映江山 The Princess\'s Gambit】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/IfSCFwXGJnk/hqdefault.jpg',
         },
         {
           'id': '58K8-gxhXlQ',
-          'title': 'Clip 初次相见就玩这么大！沈在野桃花身中合欢散四目相对【桃花映江山 The Princess\'s Gambit】',
+          'title':
+              'Clip 初次相见就玩这么大！沈在野桃花身中合欢散四目相对【桃花映江山 The Princess\'s Gambit】',
           'thumbnailUrl': 'https://i.ytimg.com/vi/58K8-gxhXlQ/hqdefault.jpg',
         },
         {
@@ -11748,9 +11785,10 @@ class HardcodedShows {
         },
       ],
     },
-      {
+    {
       'id': 'PLIPiKkS-FpK8B6r2izKyY-yiYdbkYSBbd',
-      'title': '[Get APP Now] ENGSUB [Love in The Clouds 入青云] Starring: Hou Minghao / Lu Yuxiao / Yu Chengen / He Nan | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [Love in The Clouds 入青云] Starring: Hou Minghao / Lu Yuxiao / Yu Chengen / He Nan | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/Reqdat_id-s/maxresdefault.jpg',
       'episodeCount': 50,
@@ -11760,256 +11798,305 @@ class HardcodedShows {
         {
           'id': 'Reqdat_id-s',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Reqdat_id-s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Reqdat_id-s/maxresdefault.jpg',
         },
         {
           'id': '72zyHSuR-dM',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/72zyHSuR-dM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/72zyHSuR-dM/maxresdefault.jpg',
         },
         {
           'id': 'SwtoN0w6gUM',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SwtoN0w6gUM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SwtoN0w6gUM/maxresdefault.jpg',
         },
         {
           'id': 'G1lFbsMNwjA',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G1lFbsMNwjA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G1lFbsMNwjA/maxresdefault.jpg',
         },
         {
           'id': 'N3phSuhWwCc',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/N3phSuhWwCc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/N3phSuhWwCc/maxresdefault.jpg',
         },
         {
           'id': '9EtckdH436M',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9EtckdH436M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9EtckdH436M/maxresdefault.jpg',
         },
         {
           'id': 'z-q_Dc6PfC0',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/z-q_Dc6PfC0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/z-q_Dc6PfC0/maxresdefault.jpg',
         },
         {
           'id': 'eSRxg8MoJIQ',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eSRxg8MoJIQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eSRxg8MoJIQ/maxresdefault.jpg',
         },
         {
           'id': 'BhL7ItztriE',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BhL7ItztriE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BhL7ItztriE/maxresdefault.jpg',
         },
         {
           'id': 'jaWUrOhPPMI',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jaWUrOhPPMI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jaWUrOhPPMI/maxresdefault.jpg',
         },
         {
           'id': 'QQjaCypanME',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QQjaCypanME/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QQjaCypanME/maxresdefault.jpg',
         },
         {
           'id': 'iOhhTiir4dA',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iOhhTiir4dA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iOhhTiir4dA/maxresdefault.jpg',
         },
         {
           'id': '-hfcLvnUQqA',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-hfcLvnUQqA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-hfcLvnUQqA/maxresdefault.jpg',
         },
         {
           'id': 'Y5C-HMfB8dw',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Y5C-HMfB8dw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Y5C-HMfB8dw/maxresdefault.jpg',
         },
         {
           'id': '_tEtSVxu9is',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_tEtSVxu9is/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_tEtSVxu9is/maxresdefault.jpg',
         },
         {
           'id': 'P28HP_1H4Vc',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/P28HP_1H4Vc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/P28HP_1H4Vc/maxresdefault.jpg',
         },
         {
           'id': 'YMycW8T_Bkg',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YMycW8T_Bkg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YMycW8T_Bkg/maxresdefault.jpg',
         },
         {
           'id': '1gSL31Ivp4I',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1gSL31Ivp4I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1gSL31Ivp4I/maxresdefault.jpg',
         },
         {
           'id': 'yBclY6-caTw',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yBclY6-caTw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yBclY6-caTw/maxresdefault.jpg',
         },
         {
           'id': '9RrrhaJ7IAw',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9RrrhaJ7IAw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9RrrhaJ7IAw/maxresdefault.jpg',
         },
         {
           'id': 'B-gIAtDEdlk',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B-gIAtDEdlk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B-gIAtDEdlk/maxresdefault.jpg',
         },
         {
           'id': 'mWKB6zD-zwc',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mWKB6zD-zwc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mWKB6zD-zwc/maxresdefault.jpg',
         },
         {
           'id': 'n1xjMNz1Ha4',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/n1xjMNz1Ha4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/n1xjMNz1Ha4/maxresdefault.jpg',
         },
         {
           'id': '9tuSlslNqK8',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9tuSlslNqK8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9tuSlslNqK8/maxresdefault.jpg',
         },
         {
           'id': 'mXRyPNIgXrw',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mXRyPNIgXrw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mXRyPNIgXrw/maxresdefault.jpg',
         },
         {
           'id': 'Q8N3LJ0A9Bk',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Q8N3LJ0A9Bk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Q8N3LJ0A9Bk/maxresdefault.jpg',
         },
         {
           'id': 'YR6T2qwwRJ0',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YR6T2qwwRJ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YR6T2qwwRJ0/maxresdefault.jpg',
         },
         {
           'id': '-o_ogqhGuLE',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-o_ogqhGuLE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-o_ogqhGuLE/maxresdefault.jpg',
         },
         {
           'id': 'V3ZGbZPe6cI',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/V3ZGbZPe6cI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/V3ZGbZPe6cI/maxresdefault.jpg',
         },
         {
           'id': 'Sk2MR0LGf0E',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Sk2MR0LGf0E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Sk2MR0LGf0E/maxresdefault.jpg',
         },
         {
           'id': 'sy2wlgE7uXw',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sy2wlgE7uXw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sy2wlgE7uXw/maxresdefault.jpg',
         },
         {
           'id': '2PaFG7pJYpQ',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2PaFG7pJYpQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2PaFG7pJYpQ/maxresdefault.jpg',
         },
         {
           'id': 'l5o9_nYoeuQ',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/l5o9_nYoeuQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/l5o9_nYoeuQ/maxresdefault.jpg',
         },
         {
           'id': 'rodBx023-qQ',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rodBx023-qQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rodBx023-qQ/maxresdefault.jpg',
         },
         {
           'id': 'trUbczVIwNI',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/trUbczVIwNI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/trUbczVIwNI/maxresdefault.jpg',
         },
         {
           'id': 'MDro54BouS4',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MDro54BouS4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MDro54BouS4/maxresdefault.jpg',
         },
         {
           'id': 'eV3UNRWP4hA',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eV3UNRWP4hA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eV3UNRWP4hA/maxresdefault.jpg',
         },
         {
           'id': 'ZwlmYCAerHc',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZwlmYCAerHc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZwlmYCAerHc/maxresdefault.jpg',
         },
         {
           'id': '2UcZBBroXhU',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2UcZBBroXhU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2UcZBBroXhU/maxresdefault.jpg',
         },
         {
           'id': 'z-pVcOAzByY',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/z-pVcOAzByY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/z-pVcOAzByY/maxresdefault.jpg',
         },
         {
           'id': 'CwhSrjSJ1CU',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CwhSrjSJ1CU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CwhSrjSJ1CU/maxresdefault.jpg',
         },
         {
           'id': 'HrIWDNvpp0o',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HrIWDNvpp0o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HrIWDNvpp0o/maxresdefault.jpg',
         },
         {
           'id': 'XYvleVsEoYo',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XYvleVsEoYo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XYvleVsEoYo/maxresdefault.jpg',
         },
         {
           'id': 'NWM1Ceq5oyE',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NWM1Ceq5oyE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NWM1Ceq5oyE/maxresdefault.jpg',
         },
         {
           'id': 'lE2l4YPS2_Y',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lE2l4YPS2_Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lE2l4YPS2_Y/maxresdefault.jpg',
         },
         {
           'id': '3438J481plg',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3438J481plg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3438J481plg/maxresdefault.jpg',
         },
         {
           'id': 'gRXXhAABmj4',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gRXXhAABmj4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gRXXhAABmj4/maxresdefault.jpg',
         },
         {
           'id': '9VacS4MBdEQ',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9VacS4MBdEQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9VacS4MBdEQ/maxresdefault.jpg',
         },
         {
           'id': 'o6YlKOUjL7A',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/o6YlKOUjL7A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/o6YlKOUjL7A/maxresdefault.jpg',
         },
         {
           'id': 'zwk4uVEr17E',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zwk4uVEr17E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zwk4uVEr17E/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK_IRCE5jKV6WuMHd3ba79JP',
       'title': 'The Double',
@@ -12022,209 +12109,249 @@ class HardcodedShows {
         {
           'id': '96bxh3ifevU',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/96bxh3ifevU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/96bxh3ifevU/maxresdefault.jpg',
         },
         {
           'id': 'jhvyJnYcJ9I',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jhvyJnYcJ9I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jhvyJnYcJ9I/maxresdefault.jpg',
         },
         {
           'id': 'ShyAckfTQ34',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ShyAckfTQ34/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ShyAckfTQ34/maxresdefault.jpg',
         },
         {
           'id': 'KRuAcDYULP8',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KRuAcDYULP8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KRuAcDYULP8/maxresdefault.jpg',
         },
         {
           'id': '8uattLYH4Cg',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8uattLYH4Cg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8uattLYH4Cg/maxresdefault.jpg',
         },
         {
           'id': 'fKVr0xmosjo',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fKVr0xmosjo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fKVr0xmosjo/maxresdefault.jpg',
         },
         {
           'id': 'WfZo1hLzUDA',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WfZo1hLzUDA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WfZo1hLzUDA/maxresdefault.jpg',
         },
         {
           'id': 'wdEuJNaGz58',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wdEuJNaGz58/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wdEuJNaGz58/maxresdefault.jpg',
         },
         {
           'id': 'beiNWkmmaP0',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/beiNWkmmaP0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/beiNWkmmaP0/maxresdefault.jpg',
         },
         {
           'id': '7y-lGOh2ABg',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7y-lGOh2ABg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7y-lGOh2ABg/maxresdefault.jpg',
         },
         {
           'id': 'lB05fMLkwUw',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lB05fMLkwUw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lB05fMLkwUw/maxresdefault.jpg',
         },
         {
           'id': 'hb_qkOqOU0w',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hb_qkOqOU0w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hb_qkOqOU0w/maxresdefault.jpg',
         },
         {
           'id': 'JqQyt3upl00',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JqQyt3upl00/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JqQyt3upl00/maxresdefault.jpg',
         },
         {
           'id': 'KN1pCfwQ1YU',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KN1pCfwQ1YU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KN1pCfwQ1YU/maxresdefault.jpg',
         },
         {
           'id': '-Yr5pUONS3c',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-Yr5pUONS3c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-Yr5pUONS3c/maxresdefault.jpg',
         },
         {
           'id': 'bFN9l7aaJ58',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bFN9l7aaJ58/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bFN9l7aaJ58/maxresdefault.jpg',
         },
         {
           'id': 'vnd5GpGSrzs',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vnd5GpGSrzs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vnd5GpGSrzs/maxresdefault.jpg',
         },
         {
           'id': 'bYLeCLw4maA',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bYLeCLw4maA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bYLeCLw4maA/maxresdefault.jpg',
         },
         {
           'id': 'SvE0DPJ-gYA',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SvE0DPJ-gYA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SvE0DPJ-gYA/maxresdefault.jpg',
         },
         {
           'id': 'UC7N4TKsIpA',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UC7N4TKsIpA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UC7N4TKsIpA/maxresdefault.jpg',
         },
         {
           'id': 'ibDFqpy3mn8',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ibDFqpy3mn8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ibDFqpy3mn8/maxresdefault.jpg',
         },
         {
           'id': 'UrtSjPJHG9s',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UrtSjPJHG9s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UrtSjPJHG9s/maxresdefault.jpg',
         },
         {
           'id': 'Xu9n_WdWW0k',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Xu9n_WdWW0k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Xu9n_WdWW0k/maxresdefault.jpg',
         },
         {
           'id': 'AJ3_13VoWY0',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AJ3_13VoWY0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AJ3_13VoWY0/maxresdefault.jpg',
         },
         {
           'id': 'I_709WD0cVs',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/I_709WD0cVs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/I_709WD0cVs/maxresdefault.jpg',
         },
         {
           'id': 'BXvG7MslqM4',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BXvG7MslqM4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BXvG7MslqM4/maxresdefault.jpg',
         },
         {
           'id': 'q1419rFmeg8',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/q1419rFmeg8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/q1419rFmeg8/maxresdefault.jpg',
         },
         {
           'id': 'JWASnVMjlDM',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JWASnVMjlDM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JWASnVMjlDM/maxresdefault.jpg',
         },
         {
           'id': 'qdQIgalgHPg',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qdQIgalgHPg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qdQIgalgHPg/maxresdefault.jpg',
         },
         {
           'id': 'LUxfoyhJpJ0',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LUxfoyhJpJ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LUxfoyhJpJ0/maxresdefault.jpg',
         },
         {
           'id': 'ACuUADNViBA',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ACuUADNViBA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ACuUADNViBA/maxresdefault.jpg',
         },
         {
           'id': '1KXzbYYlGdk',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1KXzbYYlGdk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1KXzbYYlGdk/maxresdefault.jpg',
         },
         {
           'id': 'MgWNgw_9-MQ',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MgWNgw_9-MQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MgWNgw_9-MQ/maxresdefault.jpg',
         },
         {
           'id': 'p9wdnltAsf4',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/p9wdnltAsf4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/p9wdnltAsf4/maxresdefault.jpg',
         },
         {
           'id': 'Xs2k2nlJYYc',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Xs2k2nlJYYc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Xs2k2nlJYYc/maxresdefault.jpg',
         },
         {
           'id': '63DRUjaY7LM',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/63DRUjaY7LM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/63DRUjaY7LM/maxresdefault.jpg',
         },
         {
           'id': '5I9NAe8zfkc',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5I9NAe8zfkc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5I9NAe8zfkc/maxresdefault.jpg',
         },
         {
           'id': 'FdXXd-YB6Vo',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FdXXd-YB6Vo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FdXXd-YB6Vo/maxresdefault.jpg',
         },
         {
           'id': 'p-KG6QKF6Og',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/p-KG6QKF6Og/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/p-KG6QKF6Og/maxresdefault.jpg',
         },
         {
           'id': 'MAzC06AxBXs',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MAzC06AxBXs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MAzC06AxBXs/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLlCrV9TCfzMbYYTC6fVMTR7VwQTCmNqDD',
-      'title': '【Limited FULL】云襄传 | The Ingenious One | iQIYI 👑Join the Membership and enjoy full episodes now!',
+      'title':
+          '【Limited FULL】云襄传 | The Ingenious One | iQIYI 👑Join the Membership and enjoy full episodes now!',
       'channelTitle': 'iQIYI 爱奇艺 - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/wmxlFSiUlco/maxresdefault.jpg',
       'episodeCount': 36,
@@ -12234,186 +12361,221 @@ class HardcodedShows {
         {
           'id': 'wmxlFSiUlco',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wmxlFSiUlco/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wmxlFSiUlco/maxresdefault.jpg',
         },
         {
           'id': '_Aky3021P-w',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_Aky3021P-w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_Aky3021P-w/maxresdefault.jpg',
         },
         {
           'id': 'yfhf9FxyNhU',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yfhf9FxyNhU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yfhf9FxyNhU/maxresdefault.jpg',
         },
         {
           'id': 'hMaBv-O3nkM',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hMaBv-O3nkM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hMaBv-O3nkM/maxresdefault.jpg',
         },
         {
           'id': 'R2YEAXZFxp4',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/R2YEAXZFxp4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/R2YEAXZFxp4/maxresdefault.jpg',
         },
         {
           'id': 'eipygedeoJU',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eipygedeoJU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eipygedeoJU/maxresdefault.jpg',
         },
         {
           'id': '9IoKkIhkruo',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9IoKkIhkruo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9IoKkIhkruo/maxresdefault.jpg',
         },
         {
           'id': 'Bl9tXPcilS8',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Bl9tXPcilS8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Bl9tXPcilS8/maxresdefault.jpg',
         },
         {
           'id': 'tmMqy23jGcQ',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tmMqy23jGcQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tmMqy23jGcQ/maxresdefault.jpg',
         },
         {
           'id': 'ITLYG-63GDc',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ITLYG-63GDc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ITLYG-63GDc/maxresdefault.jpg',
         },
         {
           'id': 'DnKxm_DAu8k',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DnKxm_DAu8k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DnKxm_DAu8k/maxresdefault.jpg',
         },
         {
           'id': '_QWOg8Tio5o',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_QWOg8Tio5o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_QWOg8Tio5o/maxresdefault.jpg',
         },
         {
           'id': '1TyTz8z1v-k',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1TyTz8z1v-k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1TyTz8z1v-k/maxresdefault.jpg',
         },
         {
           'id': '8SZgdJOX_QI',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8SZgdJOX_QI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8SZgdJOX_QI/maxresdefault.jpg',
         },
         {
           'id': '9FP7obSA3Zg',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9FP7obSA3Zg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9FP7obSA3Zg/maxresdefault.jpg',
         },
         {
           'id': 'pZnjXoiCz8Q',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pZnjXoiCz8Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pZnjXoiCz8Q/maxresdefault.jpg',
         },
         {
           'id': 'nc6sczV93AQ',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nc6sczV93AQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nc6sczV93AQ/maxresdefault.jpg',
         },
         {
           'id': 'wByz4iDd1HU',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wByz4iDd1HU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wByz4iDd1HU/maxresdefault.jpg',
         },
         {
           'id': 'CjAM51zLnZQ',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CjAM51zLnZQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CjAM51zLnZQ/maxresdefault.jpg',
         },
         {
           'id': 'm1wozj0DMvo',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/m1wozj0DMvo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/m1wozj0DMvo/maxresdefault.jpg',
         },
         {
           'id': '0zXayZuudDA',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0zXayZuudDA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0zXayZuudDA/maxresdefault.jpg',
         },
         {
           'id': 'JIq5a7yEd8c',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JIq5a7yEd8c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JIq5a7yEd8c/maxresdefault.jpg',
         },
         {
           'id': 'tDMp-sBCf5k',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tDMp-sBCf5k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tDMp-sBCf5k/maxresdefault.jpg',
         },
         {
           'id': 'PYiNsD6Z8z4',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PYiNsD6Z8z4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PYiNsD6Z8z4/maxresdefault.jpg',
         },
         {
           'id': 'FueR8LFYXAg',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FueR8LFYXAg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FueR8LFYXAg/maxresdefault.jpg',
         },
         {
           'id': 'IhRV7T9EMU8',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IhRV7T9EMU8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IhRV7T9EMU8/maxresdefault.jpg',
         },
         {
           'id': 'SuXxaUk6L2Y',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SuXxaUk6L2Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SuXxaUk6L2Y/maxresdefault.jpg',
         },
         {
           'id': 'IPW-sYbG6s4',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IPW-sYbG6s4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IPW-sYbG6s4/maxresdefault.jpg',
         },
         {
           'id': 'nr3O1UuYMaY',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nr3O1UuYMaY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nr3O1UuYMaY/maxresdefault.jpg',
         },
         {
           'id': '6Gj-FP-04aw',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6Gj-FP-04aw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6Gj-FP-04aw/maxresdefault.jpg',
         },
         {
           'id': 'CdlLR5OXRH4',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CdlLR5OXRH4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CdlLR5OXRH4/maxresdefault.jpg',
         },
         {
           'id': 'fTeRdvdIeZM',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fTeRdvdIeZM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fTeRdvdIeZM/maxresdefault.jpg',
         },
         {
           'id': 'FGPRRqMPGCU',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FGPRRqMPGCU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FGPRRqMPGCU/maxresdefault.jpg',
         },
         {
           'id': '7YJMmhcKm7o',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7YJMmhcKm7o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7YJMmhcKm7o/maxresdefault.jpg',
         },
         {
           'id': 'e8YAas83Dao',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e8YAas83Dao/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e8YAas83Dao/maxresdefault.jpg',
         },
         {
           'id': 'sFkNLmPCn10',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sFkNLmPCn10/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sFkNLmPCn10/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2Ps7N0b2-cUMkQ49aAX3xlw',
       'title': '[ENG SUB] Reborn Chinese Drama Full Episodes',
@@ -12426,124 +12588,147 @@ class HardcodedShows {
         {
           'id': 'mWFSH9sODC0',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mWFSH9sODC0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mWFSH9sODC0/maxresdefault.jpg',
         },
         {
           'id': 'VlMNiqNPUSo',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VlMNiqNPUSo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VlMNiqNPUSo/maxresdefault.jpg',
         },
         {
           'id': '3Z_iZO6Mh9M',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3Z_iZO6Mh9M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3Z_iZO6Mh9M/maxresdefault.jpg',
         },
         {
           'id': '5sDn7vmu8_o',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5sDn7vmu8_o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5sDn7vmu8_o/maxresdefault.jpg',
         },
         {
           'id': 'sI2VdMM0Kxg',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sI2VdMM0Kxg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sI2VdMM0Kxg/maxresdefault.jpg',
         },
         {
           'id': 'cG84Teb_vQk',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cG84Teb_vQk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cG84Teb_vQk/maxresdefault.jpg',
         },
         {
           'id': 'EiFoKYACHx4',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EiFoKYACHx4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EiFoKYACHx4/maxresdefault.jpg',
         },
         {
           'id': '1E2GYXNrgEA',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1E2GYXNrgEA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1E2GYXNrgEA/maxresdefault.jpg',
         },
         {
           'id': 'f8ilm_Fb-30',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/f8ilm_Fb-30/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/f8ilm_Fb-30/maxresdefault.jpg',
         },
         {
           'id': 'DQt4Zorb4gE',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DQt4Zorb4gE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DQt4Zorb4gE/maxresdefault.jpg',
         },
         {
           'id': 'J_yKoThS3cc',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/J_yKoThS3cc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/J_yKoThS3cc/maxresdefault.jpg',
         },
         {
           'id': 'hXSZ4MIgiDc',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hXSZ4MIgiDc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hXSZ4MIgiDc/maxresdefault.jpg',
         },
         {
           'id': 'rVZbEowCJmY',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rVZbEowCJmY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rVZbEowCJmY/maxresdefault.jpg',
         },
         {
           'id': 'nRRNAlnPUMA',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nRRNAlnPUMA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nRRNAlnPUMA/maxresdefault.jpg',
         },
         {
           'id': 't9XD-OuW-Lc',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t9XD-OuW-Lc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t9XD-OuW-Lc/maxresdefault.jpg',
         },
         {
           'id': 'K_I7UJiNuGk',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K_I7UJiNuGk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K_I7UJiNuGk/maxresdefault.jpg',
         },
         {
           'id': '3fHgXY96z0A',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3fHgXY96z0A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3fHgXY96z0A/maxresdefault.jpg',
         },
         {
           'id': 'IJGYH4VXcUI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IJGYH4VXcUI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IJGYH4VXcUI/maxresdefault.jpg',
         },
         {
           'id': 'U4xU5bkKcn0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/U4xU5bkKcn0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/U4xU5bkKcn0/maxresdefault.jpg',
         },
         {
           'id': '-vc_egRd_08',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-vc_egRd_08/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-vc_egRd_08/maxresdefault.jpg',
         },
         {
           'id': 'B0b1dF-l9Nc',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B0b1dF-l9Nc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B0b1dF-l9Nc/maxresdefault.jpg',
         },
         {
           'id': '5wBlUHDMdys',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5wBlUHDMdys/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5wBlUHDMdys/maxresdefault.jpg',
         },
         {
           'id': '4O5La6Fmm9w',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4O5La6Fmm9w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4O5La6Fmm9w/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8_VhfSNo7Vsx4lCMTKbcOm',
-      'title': '[Get APP Now] ENGSUB [First Romance💕初恋了那么多年]  Starring: Wang Yilun / Wan Peng / Wu Hankun / Zheng Shuhuan / Lu Yangyang / Wei Tianyu | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [First Romance💕初恋了那么多年]  Starring: Wang Yilun / Wan Peng / Wu Hankun / Zheng Shuhuan / Lu Yangyang / Wei Tianyu | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/AMe-uFNq1m8/maxresdefault.jpg',
       'episodeCount': 24,
@@ -12553,126 +12738,149 @@ class HardcodedShows {
         {
           'id': 'AMe-uFNq1m8',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AMe-uFNq1m8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AMe-uFNq1m8/maxresdefault.jpg',
         },
         {
           'id': '94AC75k2cuw',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/94AC75k2cuw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/94AC75k2cuw/maxresdefault.jpg',
         },
         {
           'id': 'DJ-UpKoPRtg',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DJ-UpKoPRtg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DJ-UpKoPRtg/maxresdefault.jpg',
         },
         {
           'id': 'JuauuRPntSw',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JuauuRPntSw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JuauuRPntSw/maxresdefault.jpg',
         },
         {
           'id': 'XMdC3mVm1t4',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XMdC3mVm1t4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XMdC3mVm1t4/maxresdefault.jpg',
         },
         {
           'id': 'sRP4zXwgt6k',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sRP4zXwgt6k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sRP4zXwgt6k/maxresdefault.jpg',
         },
         {
           'id': '4CJC9ljel28',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4CJC9ljel28/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4CJC9ljel28/maxresdefault.jpg',
         },
         {
           'id': 'OQML_DVlb7g',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OQML_DVlb7g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OQML_DVlb7g/maxresdefault.jpg',
         },
         {
           'id': 'cMTvROycPEM',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cMTvROycPEM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cMTvROycPEM/maxresdefault.jpg',
         },
         {
           'id': 'rkNFZoYhpPs',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rkNFZoYhpPs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rkNFZoYhpPs/maxresdefault.jpg',
         },
         {
           'id': 'aUeypfRL-24',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aUeypfRL-24/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aUeypfRL-24/maxresdefault.jpg',
         },
         {
           'id': '1In8w5J0_SQ',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1In8w5J0_SQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1In8w5J0_SQ/maxresdefault.jpg',
         },
         {
           'id': 'zmHe7rcrz04',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zmHe7rcrz04/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zmHe7rcrz04/maxresdefault.jpg',
         },
         {
           'id': 'DuENw3buKU0',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DuENw3buKU0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DuENw3buKU0/maxresdefault.jpg',
         },
         {
           'id': 'wL1pSm07yX8',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wL1pSm07yX8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wL1pSm07yX8/maxresdefault.jpg',
         },
         {
           'id': 'UB9ycPhk1mg',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UB9ycPhk1mg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UB9ycPhk1mg/maxresdefault.jpg',
         },
         {
           'id': 'YqHQFMehlTw',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YqHQFMehlTw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YqHQFMehlTw/maxresdefault.jpg',
         },
         {
           'id': 'md19PoQqQeI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/md19PoQqQeI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/md19PoQqQeI/maxresdefault.jpg',
         },
         {
           'id': 'AaFwNpjLt98',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AaFwNpjLt98/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AaFwNpjLt98/maxresdefault.jpg',
         },
         {
           'id': 'XHHzXYIx24o',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XHHzXYIx24o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XHHzXYIx24o/maxresdefault.jpg',
         },
         {
           'id': 'kqckVp7i7XI',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kqckVp7i7XI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kqckVp7i7XI/maxresdefault.jpg',
         },
         {
           'id': 'iJDzv385nVU',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iJDzv385nVU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iJDzv385nVU/maxresdefault.jpg',
         },
         {
           'id': 'aPz8BNCzDkM',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aPz8BNCzDkM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aPz8BNCzDkM/maxresdefault.jpg',
         },
         {
           'id': 'ymgLWotO_yM',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ymgLWotO_yM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ymgLWotO_yM/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8Pesmyu9gzK2jXpplqUn9d',
       'title': 'Back from the Brink',
@@ -12685,206 +12893,245 @@ class HardcodedShows {
         {
           'id': 'I5TQ4z_jDUs',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/I5TQ4z_jDUs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/I5TQ4z_jDUs/maxresdefault.jpg',
         },
         {
           'id': 'b1IyPLpznBg',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/b1IyPLpznBg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/b1IyPLpznBg/maxresdefault.jpg',
         },
         {
           'id': 'TZxUBImeNkY',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TZxUBImeNkY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TZxUBImeNkY/maxresdefault.jpg',
         },
         {
           'id': 'xnfSNIkI218',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xnfSNIkI218/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xnfSNIkI218/maxresdefault.jpg',
         },
         {
           'id': 'JmRU4NQAHDs',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JmRU4NQAHDs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JmRU4NQAHDs/maxresdefault.jpg',
         },
         {
           'id': '66lqQ9f1gl0',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/66lqQ9f1gl0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/66lqQ9f1gl0/maxresdefault.jpg',
         },
         {
           'id': 'Goft2N911yE',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Goft2N911yE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Goft2N911yE/maxresdefault.jpg',
         },
         {
           'id': 'WTeGxBuqj5w',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WTeGxBuqj5w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WTeGxBuqj5w/maxresdefault.jpg',
         },
         {
           'id': 'Er1Q3fFeEOk',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Er1Q3fFeEOk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Er1Q3fFeEOk/maxresdefault.jpg',
         },
         {
           'id': '9jJcekSmQgk',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9jJcekSmQgk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9jJcekSmQgk/maxresdefault.jpg',
         },
         {
           'id': 'T7vuuKkc7yo',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/T7vuuKkc7yo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/T7vuuKkc7yo/maxresdefault.jpg',
         },
         {
           'id': 'AicUh8JQQp0',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AicUh8JQQp0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AicUh8JQQp0/maxresdefault.jpg',
         },
         {
           'id': '06GrskRp3HY',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/06GrskRp3HY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/06GrskRp3HY/maxresdefault.jpg',
         },
         {
           'id': 'sraEP5hG-98',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sraEP5hG-98/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sraEP5hG-98/maxresdefault.jpg',
         },
         {
           'id': 'Ou7ur4fAwSQ',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ou7ur4fAwSQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ou7ur4fAwSQ/maxresdefault.jpg',
         },
         {
           'id': '1JVUcpv8ZDE',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1JVUcpv8ZDE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1JVUcpv8ZDE/maxresdefault.jpg',
         },
         {
           'id': 'uUlRbs0Tv8U',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uUlRbs0Tv8U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uUlRbs0Tv8U/maxresdefault.jpg',
         },
         {
           'id': 'cWtlJl_RpzY',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cWtlJl_RpzY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cWtlJl_RpzY/maxresdefault.jpg',
         },
         {
           'id': '_AxhDRy-kII',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_AxhDRy-kII/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_AxhDRy-kII/maxresdefault.jpg',
         },
         {
           'id': 'LiFdpgKYF7Y',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LiFdpgKYF7Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LiFdpgKYF7Y/maxresdefault.jpg',
         },
         {
           'id': 'J-1z4azTG40',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/J-1z4azTG40/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/J-1z4azTG40/maxresdefault.jpg',
         },
         {
           'id': '_QaMji2uNfE',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_QaMji2uNfE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_QaMji2uNfE/maxresdefault.jpg',
         },
         {
           'id': '-m_87V7kOvg',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-m_87V7kOvg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-m_87V7kOvg/maxresdefault.jpg',
         },
         {
           'id': 'V25MyqX0EUU',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/V25MyqX0EUU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/V25MyqX0EUU/maxresdefault.jpg',
         },
         {
           'id': 'G2-aSv4fOuc',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G2-aSv4fOuc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G2-aSv4fOuc/maxresdefault.jpg',
         },
         {
           'id': 'be7LHy_4JBQ',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/be7LHy_4JBQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/be7LHy_4JBQ/maxresdefault.jpg',
         },
         {
           'id': 'bMHvCtjjhnE',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bMHvCtjjhnE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bMHvCtjjhnE/maxresdefault.jpg',
         },
         {
           'id': 'G0VNwL00cTk',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G0VNwL00cTk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G0VNwL00cTk/maxresdefault.jpg',
         },
         {
           'id': 'VldEo6BzaYw',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VldEo6BzaYw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VldEo6BzaYw/maxresdefault.jpg',
         },
         {
           'id': 'UCtM09S3lZA',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UCtM09S3lZA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UCtM09S3lZA/maxresdefault.jpg',
         },
         {
           'id': 'CcLgtZswEkA',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CcLgtZswEkA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CcLgtZswEkA/maxresdefault.jpg',
         },
         {
           'id': 'B3jIqdELP38',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B3jIqdELP38/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B3jIqdELP38/maxresdefault.jpg',
         },
         {
           'id': 'cb5b4Mr23zg',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cb5b4Mr23zg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cb5b4Mr23zg/maxresdefault.jpg',
         },
         {
           'id': '-TONKwU_FYQ',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-TONKwU_FYQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-TONKwU_FYQ/maxresdefault.jpg',
         },
         {
           'id': 'fcUadzkRyb4',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fcUadzkRyb4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fcUadzkRyb4/maxresdefault.jpg',
         },
         {
           'id': '9hR1PHbLE4g',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9hR1PHbLE4g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9hR1PHbLE4g/maxresdefault.jpg',
         },
         {
           'id': 'YxCJJ9aSaAc',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YxCJJ9aSaAc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YxCJJ9aSaAc/maxresdefault.jpg',
         },
         {
           'id': '40oZc8BUO8k',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/40oZc8BUO8k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/40oZc8BUO8k/maxresdefault.jpg',
         },
         {
           'id': 'ZGsHdx4ESP8',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZGsHdx4ESP8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZGsHdx4ESP8/maxresdefault.jpg',
         },
         {
           'id': '-Mw7OlvkWDg',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-Mw7OlvkWDg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-Mw7OlvkWDg/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8KCCeSQTpodI0VqMejybr9',
       'title': 'Falling Into Your Smile',
@@ -12897,161 +13144,191 @@ class HardcodedShows {
         {
           'id': 'TFeO2fFXKzs',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TFeO2fFXKzs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TFeO2fFXKzs/maxresdefault.jpg',
         },
         {
           'id': '4G-jqLnsV6c',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4G-jqLnsV6c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4G-jqLnsV6c/maxresdefault.jpg',
         },
         {
           'id': 'Zdg6x1eT5H4',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Zdg6x1eT5H4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Zdg6x1eT5H4/maxresdefault.jpg',
         },
         {
           'id': 'B36gveS-pqI',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B36gveS-pqI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B36gveS-pqI/maxresdefault.jpg',
         },
         {
           'id': 'e04hFR32Ms0',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e04hFR32Ms0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e04hFR32Ms0/maxresdefault.jpg',
         },
         {
           'id': 'NBunkeJrm2w',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NBunkeJrm2w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NBunkeJrm2w/maxresdefault.jpg',
         },
         {
           'id': 'ydoUWJRqNVw',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ydoUWJRqNVw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ydoUWJRqNVw/maxresdefault.jpg',
         },
         {
           'id': 'L_hvJLrZ9Fs',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/L_hvJLrZ9Fs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/L_hvJLrZ9Fs/maxresdefault.jpg',
         },
         {
           'id': 'So4OwmzUlM4',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/So4OwmzUlM4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/So4OwmzUlM4/maxresdefault.jpg',
         },
         {
           'id': 'UyYXjXjnPvg',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UyYXjXjnPvg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UyYXjXjnPvg/maxresdefault.jpg',
         },
         {
           'id': 'Da6GLS11sDg',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Da6GLS11sDg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Da6GLS11sDg/maxresdefault.jpg',
         },
         {
           'id': 'ruKA5g9YGNQ',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ruKA5g9YGNQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ruKA5g9YGNQ/maxresdefault.jpg',
         },
         {
           'id': 'KIIDmX5_QoY',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KIIDmX5_QoY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KIIDmX5_QoY/maxresdefault.jpg',
         },
         {
           'id': 'ndSk4HBdtUQ',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ndSk4HBdtUQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ndSk4HBdtUQ/maxresdefault.jpg',
         },
         {
           'id': '-r7Jzgv6XuM',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-r7Jzgv6XuM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-r7Jzgv6XuM/maxresdefault.jpg',
         },
         {
           'id': 'psolCNkyLmw',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/psolCNkyLmw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/psolCNkyLmw/maxresdefault.jpg',
         },
         {
           'id': 'av7wGZ5S7EA',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/av7wGZ5S7EA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/av7wGZ5S7EA/maxresdefault.jpg',
         },
         {
           'id': 'tKwRKDSwXFo',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tKwRKDSwXFo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tKwRKDSwXFo/maxresdefault.jpg',
         },
         {
           'id': 'fg5iBJ6OfPA',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fg5iBJ6OfPA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fg5iBJ6OfPA/maxresdefault.jpg',
         },
         {
           'id': 'NVuHzp8ed1Y',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NVuHzp8ed1Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NVuHzp8ed1Y/maxresdefault.jpg',
         },
         {
           'id': 'wq5h_hluhBU',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wq5h_hluhBU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wq5h_hluhBU/maxresdefault.jpg',
         },
         {
           'id': 'l5hMTlTajlc',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/l5hMTlTajlc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/l5hMTlTajlc/maxresdefault.jpg',
         },
         {
           'id': 'NpR4_hd96T4',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NpR4_hd96T4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NpR4_hd96T4/maxresdefault.jpg',
         },
         {
           'id': '5zTa26cBP1o',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5zTa26cBP1o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5zTa26cBP1o/maxresdefault.jpg',
         },
         {
           'id': 'XIjJ1yRoPLE',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XIjJ1yRoPLE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XIjJ1yRoPLE/maxresdefault.jpg',
         },
         {
           'id': 'ByxPXamy7w8',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ByxPXamy7w8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ByxPXamy7w8/maxresdefault.jpg',
         },
         {
           'id': 'n7TymcfQdkg',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/n7TymcfQdkg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/n7TymcfQdkg/maxresdefault.jpg',
         },
         {
           'id': 'RXEmBSiJA34',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RXEmBSiJA34/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RXEmBSiJA34/maxresdefault.jpg',
         },
         {
           'id': 'lu6k1KpzO8Q',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lu6k1KpzO8Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lu6k1KpzO8Q/maxresdefault.jpg',
         },
         {
           'id': 'pWU5fHNYEvk',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pWU5fHNYEvk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pWU5fHNYEvk/maxresdefault.jpg',
         },
         {
           'id': 'DbBvsNSQgKU',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DbBvsNSQgKU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DbBvsNSQgKU/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCRAHXwKuO4CYvc39_uqVNtk',
       'title': '【FULL】👮ROAD HOME💕 | BoranJing, Seven Tan | iQIYI Philippines',
@@ -13064,169 +13341,201 @@ class HardcodedShows {
         {
           'id': 'LKuff6Nfwp8',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LKuff6Nfwp8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LKuff6Nfwp8/maxresdefault.jpg',
         },
         {
           'id': 'B9B6va9Vjec',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B9B6va9Vjec/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B9B6va9Vjec/maxresdefault.jpg',
         },
         {
           'id': 'd1GDyP1phSo',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/d1GDyP1phSo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/d1GDyP1phSo/maxresdefault.jpg',
         },
         {
           'id': '9FJzK4Yaxto',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9FJzK4Yaxto/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9FJzK4Yaxto/maxresdefault.jpg',
         },
         {
           'id': 'U7kVZZh8GxY',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/U7kVZZh8GxY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/U7kVZZh8GxY/maxresdefault.jpg',
         },
         {
           'id': 'naS98YTy3gc',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/naS98YTy3gc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/naS98YTy3gc/maxresdefault.jpg',
         },
         {
           'id': 'N3oPG8Eus-I',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/N3oPG8Eus-I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/N3oPG8Eus-I/maxresdefault.jpg',
         },
         {
           'id': 'JEq6lPG1rus',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JEq6lPG1rus/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JEq6lPG1rus/maxresdefault.jpg',
         },
         {
           'id': 'Rl6yrDopuxs',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Rl6yrDopuxs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Rl6yrDopuxs/maxresdefault.jpg',
         },
         {
           'id': 'IiM21CZVTdU',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IiM21CZVTdU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IiM21CZVTdU/maxresdefault.jpg',
         },
         {
           'id': 'Uwhhmc98HX8',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Uwhhmc98HX8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Uwhhmc98HX8/maxresdefault.jpg',
         },
         {
           'id': 'jrybRU4jXdY',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jrybRU4jXdY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jrybRU4jXdY/maxresdefault.jpg',
         },
         {
           'id': 'cjFORc6IYbI',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cjFORc6IYbI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cjFORc6IYbI/maxresdefault.jpg',
         },
         {
           'id': 'zMvsjjHSbJw',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zMvsjjHSbJw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zMvsjjHSbJw/maxresdefault.jpg',
         },
         {
           'id': '5NdLMUbyPc4',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5NdLMUbyPc4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5NdLMUbyPc4/maxresdefault.jpg',
         },
         {
           'id': 'CrQ7blKJ6yY',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CrQ7blKJ6yY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CrQ7blKJ6yY/maxresdefault.jpg',
         },
         {
           'id': 'ZnYwMgwuv8I',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZnYwMgwuv8I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZnYwMgwuv8I/maxresdefault.jpg',
         },
         {
           'id': 'uUgUtFgpqI0',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uUgUtFgpqI0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uUgUtFgpqI0/maxresdefault.jpg',
         },
         {
           'id': 'K3KVV-NRjgw',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K3KVV-NRjgw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K3KVV-NRjgw/maxresdefault.jpg',
         },
         {
           'id': 'Vpb2icQXwPQ',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Vpb2icQXwPQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Vpb2icQXwPQ/maxresdefault.jpg',
         },
         {
           'id': 'WlFfchIZGMA',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WlFfchIZGMA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WlFfchIZGMA/maxresdefault.jpg',
         },
         {
           'id': 'ZgF18BMUShk',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZgF18BMUShk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZgF18BMUShk/maxresdefault.jpg',
         },
         {
           'id': 'cu8v8XSioNo',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cu8v8XSioNo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cu8v8XSioNo/maxresdefault.jpg',
         },
         {
           'id': 'h1GiPfaH1QE',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/h1GiPfaH1QE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/h1GiPfaH1QE/maxresdefault.jpg',
         },
         {
           'id': 'GVF8UGbEJA8',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GVF8UGbEJA8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GVF8UGbEJA8/maxresdefault.jpg',
         },
         {
           'id': 'lq06HHSw8Iw',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lq06HHSw8Iw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lq06HHSw8Iw/maxresdefault.jpg',
         },
         {
           'id': 'urBktWvUA1g',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/urBktWvUA1g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/urBktWvUA1g/maxresdefault.jpg',
         },
         {
           'id': 'U9ytLcQIXdk',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/U9ytLcQIXdk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/U9ytLcQIXdk/maxresdefault.jpg',
         },
         {
           'id': 'jN3dlbhIu7w',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jN3dlbhIu7w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jN3dlbhIu7w/maxresdefault.jpg',
         },
         {
           'id': 'aFqajEq7VfM',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aFqajEq7VfM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aFqajEq7VfM/maxresdefault.jpg',
         },
         {
           'id': '2evktGFI4_k',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2evktGFI4_k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2evktGFI4_k/maxresdefault.jpg',
         },
         {
           'id': 'Cs0baeFIAtY',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Cs0baeFIAtY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Cs0baeFIAtY/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCSiwyYHBqHOxFwH0sSqOfDz',
-      'title': '【AI English Dub】Mr. BAD | Chen Zheyuan, Yue Shen | iQIYI Philippines',
+      'title':
+          '【AI English Dub】Mr. BAD | Chen Zheyuan, Yue Shen | iQIYI Philippines',
       'channelTitle': 'iQIYI Philippines - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/Df1R17LEtSc/maxresdefault.jpg',
       'episodeCount': 24,
@@ -13236,129 +13545,153 @@ class HardcodedShows {
         {
           'id': 'Df1R17LEtSc',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Df1R17LEtSc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Df1R17LEtSc/maxresdefault.jpg',
         },
         {
           'id': 'VwNzWskbH_s',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VwNzWskbH_s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VwNzWskbH_s/maxresdefault.jpg',
         },
         {
           'id': 'WQvC2yHVsIM',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WQvC2yHVsIM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WQvC2yHVsIM/maxresdefault.jpg',
         },
         {
           'id': 'oHHVm7v9xe8',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oHHVm7v9xe8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oHHVm7v9xe8/maxresdefault.jpg',
         },
         {
           'id': '0VAiyPcgzrA',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0VAiyPcgzrA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0VAiyPcgzrA/maxresdefault.jpg',
         },
         {
           'id': 'imNxHQzPs6I',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/imNxHQzPs6I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/imNxHQzPs6I/maxresdefault.jpg',
         },
         {
           'id': '-h7d38oi_w4',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-h7d38oi_w4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-h7d38oi_w4/maxresdefault.jpg',
         },
         {
           'id': 'qnCGL7qOfu4',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qnCGL7qOfu4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qnCGL7qOfu4/maxresdefault.jpg',
         },
         {
           'id': 'SDypwfyPr7Q',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SDypwfyPr7Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SDypwfyPr7Q/maxresdefault.jpg',
         },
         {
           'id': '-TIjEEDlLPY',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-TIjEEDlLPY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-TIjEEDlLPY/maxresdefault.jpg',
         },
         {
           'id': 'i88PObYjcAI',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/i88PObYjcAI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/i88PObYjcAI/maxresdefault.jpg',
         },
         {
           'id': 'By5KFLiUcI8',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/By5KFLiUcI8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/By5KFLiUcI8/maxresdefault.jpg',
         },
         {
           'id': 'WiYnFyhW15Q',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WiYnFyhW15Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WiYnFyhW15Q/maxresdefault.jpg',
         },
         {
           'id': 'gK6ddo2bpTY',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gK6ddo2bpTY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gK6ddo2bpTY/maxresdefault.jpg',
         },
         {
           'id': 'rbf9TH6ilk4',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rbf9TH6ilk4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rbf9TH6ilk4/maxresdefault.jpg',
         },
         {
           'id': '6P746xQE1-E',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6P746xQE1-E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6P746xQE1-E/maxresdefault.jpg',
         },
         {
           'id': 'WJo20fh1ovU',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WJo20fh1ovU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WJo20fh1ovU/maxresdefault.jpg',
         },
         {
           'id': 'AUci4B6qoIY',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AUci4B6qoIY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AUci4B6qoIY/maxresdefault.jpg',
         },
         {
           'id': 'rIyv81c2uHk',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rIyv81c2uHk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rIyv81c2uHk/maxresdefault.jpg',
         },
         {
           'id': 'QeW25QGFrIs',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QeW25QGFrIs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QeW25QGFrIs/maxresdefault.jpg',
         },
         {
           'id': '6WKzWriNTgM',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6WKzWriNTgM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6WKzWriNTgM/maxresdefault.jpg',
         },
         {
           'id': 'j_tlNHpNpu4',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/j_tlNHpNpu4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/j_tlNHpNpu4/maxresdefault.jpg',
         },
         {
           'id': 'JUOpuLvnOWI',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JUOpuLvnOWI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JUOpuLvnOWI/maxresdefault.jpg',
         },
         {
           'id': 'XqJFSLOXG9g',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XqJFSLOXG9g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XqJFSLOXG9g/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLlCrV9TCfzMb6Lz6co2L4DZ_TNHKGnRA6',
-      'title': '🌸【奇幻仙侠】🎋Love of the Divine Tree 仙台有树 | Deng Wei × Xiang Hanzhi | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!',
+      'title':
+          '🌸【奇幻仙侠】🎋Love of the Divine Tree 仙台有树 | Deng Wei × Xiang Hanzhi | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!',
       'channelTitle': 'iQIYI 爱奇艺 - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/xUt0jQY72r8/maxresdefault.jpg',
       'episodeCount': 40,
@@ -13368,209 +13701,249 @@ class HardcodedShows {
         {
           'id': 'xUt0jQY72r8',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xUt0jQY72r8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xUt0jQY72r8/maxresdefault.jpg',
         },
         {
           'id': 'blFP4J6xhfA',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/blFP4J6xhfA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/blFP4J6xhfA/maxresdefault.jpg',
         },
         {
           'id': 'S5PEJuJGFGQ',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/S5PEJuJGFGQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/S5PEJuJGFGQ/maxresdefault.jpg',
         },
         {
           'id': 'kCtURssltXM',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kCtURssltXM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kCtURssltXM/maxresdefault.jpg',
         },
         {
           'id': 'HybTvK94B1M',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HybTvK94B1M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HybTvK94B1M/maxresdefault.jpg',
         },
         {
           'id': '6EHWVEMPxqM',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6EHWVEMPxqM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6EHWVEMPxqM/maxresdefault.jpg',
         },
         {
           'id': 'hsISb4eSqTw',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hsISb4eSqTw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hsISb4eSqTw/maxresdefault.jpg',
         },
         {
           'id': 'BodE86StQJ0',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BodE86StQJ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BodE86StQJ0/maxresdefault.jpg',
         },
         {
           'id': '8t29jWPLpQ8',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8t29jWPLpQ8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8t29jWPLpQ8/maxresdefault.jpg',
         },
         {
           'id': 'rcdEjURtNMU',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rcdEjURtNMU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rcdEjURtNMU/maxresdefault.jpg',
         },
         {
           'id': 'UFSyFzIA-sM',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UFSyFzIA-sM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UFSyFzIA-sM/maxresdefault.jpg',
         },
         {
           'id': 'c8-tHRSSU6M',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/c8-tHRSSU6M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/c8-tHRSSU6M/maxresdefault.jpg',
         },
         {
           'id': 'fyuW5SKp0cs',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fyuW5SKp0cs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fyuW5SKp0cs/maxresdefault.jpg',
         },
         {
           'id': 'Cxx0rl8JJnc',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Cxx0rl8JJnc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Cxx0rl8JJnc/maxresdefault.jpg',
         },
         {
           'id': '3A_CyBBEz5I',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3A_CyBBEz5I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3A_CyBBEz5I/maxresdefault.jpg',
         },
         {
           'id': 'ld1oxUu1KKA',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ld1oxUu1KKA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ld1oxUu1KKA/maxresdefault.jpg',
         },
         {
           'id': 'mU3cMZYUV5I',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mU3cMZYUV5I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mU3cMZYUV5I/maxresdefault.jpg',
         },
         {
           'id': 'wE7ZgO0lpmU',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wE7ZgO0lpmU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wE7ZgO0lpmU/maxresdefault.jpg',
         },
         {
           'id': 'O5Mn9URF3uE',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/O5Mn9URF3uE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/O5Mn9URF3uE/maxresdefault.jpg',
         },
         {
           'id': 'Ou3zm1fLdJs',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ou3zm1fLdJs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ou3zm1fLdJs/maxresdefault.jpg',
         },
         {
           'id': 'AHIGr3TgIfE',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AHIGr3TgIfE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AHIGr3TgIfE/maxresdefault.jpg',
         },
         {
           'id': 'EE1jl4dzrg8',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EE1jl4dzrg8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EE1jl4dzrg8/maxresdefault.jpg',
         },
         {
           'id': '6GeLMiukH-c',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6GeLMiukH-c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6GeLMiukH-c/maxresdefault.jpg',
         },
         {
           'id': 'e_ahVaQ2-rA',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e_ahVaQ2-rA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e_ahVaQ2-rA/maxresdefault.jpg',
         },
         {
           'id': 'H9VQfS-pUzs',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/H9VQfS-pUzs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/H9VQfS-pUzs/maxresdefault.jpg',
         },
         {
           'id': 'UpUH1wWS11k',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UpUH1wWS11k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UpUH1wWS11k/maxresdefault.jpg',
         },
         {
           'id': '1_SuCIuL9_s',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1_SuCIuL9_s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1_SuCIuL9_s/maxresdefault.jpg',
         },
         {
           'id': 'TqmhgkYwsZU',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TqmhgkYwsZU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TqmhgkYwsZU/maxresdefault.jpg',
         },
         {
           'id': 'uFEa_nR1wIo',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uFEa_nR1wIo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uFEa_nR1wIo/maxresdefault.jpg',
         },
         {
           'id': 'ixTqB7Zsf5g',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ixTqB7Zsf5g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ixTqB7Zsf5g/maxresdefault.jpg',
         },
         {
           'id': '6aee5_oA5Go',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6aee5_oA5Go/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6aee5_oA5Go/maxresdefault.jpg',
         },
         {
           'id': 'z4ZU1C_ujro',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/z4ZU1C_ujro/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/z4ZU1C_ujro/maxresdefault.jpg',
         },
         {
           'id': 'mUf96fmxSRg',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mUf96fmxSRg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mUf96fmxSRg/maxresdefault.jpg',
         },
         {
           'id': 'UQWjN0x_J9k',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UQWjN0x_J9k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UQWjN0x_J9k/maxresdefault.jpg',
         },
         {
           'id': 'ykq5uOOOZhA',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ykq5uOOOZhA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ykq5uOOOZhA/maxresdefault.jpg',
         },
         {
           'id': 'CIzFjC18w2c',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CIzFjC18w2c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CIzFjC18w2c/maxresdefault.jpg',
         },
         {
           'id': 'xE0I3atfPIw',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xE0I3atfPIw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xE0I3atfPIw/maxresdefault.jpg',
         },
         {
           'id': 'sUh0pm8NQwc',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sUh0pm8NQwc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sUh0pm8NQwc/maxresdefault.jpg',
         },
         {
           'id': 'ZWC59GFlEF0',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZWC59GFlEF0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZWC59GFlEF0/maxresdefault.jpg',
         },
         {
           'id': 'dcswGLFteaY',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dcswGLFteaY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dcswGLFteaY/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK-uBrffjChZ310g2OtsQfLf',
-      'title': '[Get APP Now] ENGSUB [My Girl💄99分女朋友] Starring: Zhao Yiqin / Li Jiaqi / Fan Zhixin / He Meixuan / Pu Tao | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [My Girl💄99分女朋友] Starring: Zhao Yiqin / Li Jiaqi / Fan Zhixin / He Meixuan / Pu Tao | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/7s1kgaYJAxY/maxresdefault.jpg',
       'episodeCount': 24,
@@ -13580,129 +13953,153 @@ class HardcodedShows {
         {
           'id': '7s1kgaYJAxY',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7s1kgaYJAxY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7s1kgaYJAxY/maxresdefault.jpg',
         },
         {
           'id': 'N7RGBN7KJyA',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/N7RGBN7KJyA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/N7RGBN7KJyA/maxresdefault.jpg',
         },
         {
           'id': 'sNJy8OAHry0',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sNJy8OAHry0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sNJy8OAHry0/maxresdefault.jpg',
         },
         {
           'id': 'uOWDZCXCp5s',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uOWDZCXCp5s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uOWDZCXCp5s/maxresdefault.jpg',
         },
         {
           'id': 'gYxqSZvn580',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gYxqSZvn580/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gYxqSZvn580/maxresdefault.jpg',
         },
         {
           'id': 'VOhV1GZlCso',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VOhV1GZlCso/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VOhV1GZlCso/maxresdefault.jpg',
         },
         {
           'id': '5RIYsKTYdSk',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5RIYsKTYdSk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5RIYsKTYdSk/maxresdefault.jpg',
         },
         {
           'id': 'eK42xJKgwSc',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eK42xJKgwSc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eK42xJKgwSc/maxresdefault.jpg',
         },
         {
           'id': 'mL9sf1asXeE',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mL9sf1asXeE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mL9sf1asXeE/maxresdefault.jpg',
         },
         {
           'id': 'TnmJxUs7Wj8',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TnmJxUs7Wj8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TnmJxUs7Wj8/maxresdefault.jpg',
         },
         {
           'id': 'gDxVpLs_0S4',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gDxVpLs_0S4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gDxVpLs_0S4/maxresdefault.jpg',
         },
         {
           'id': 'K8-DtfAAU4U',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K8-DtfAAU4U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K8-DtfAAU4U/maxresdefault.jpg',
         },
         {
           'id': 'AfcJ0HVSBR4',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AfcJ0HVSBR4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AfcJ0HVSBR4/maxresdefault.jpg',
         },
         {
           'id': '3fw9EXFL29k',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3fw9EXFL29k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3fw9EXFL29k/maxresdefault.jpg',
         },
         {
           'id': 'OHdSzsJFKHI',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OHdSzsJFKHI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OHdSzsJFKHI/maxresdefault.jpg',
         },
         {
           'id': 'owPdV6G3ndY',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/owPdV6G3ndY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/owPdV6G3ndY/maxresdefault.jpg',
         },
         {
           'id': 'Cdna2Y7YQtM',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Cdna2Y7YQtM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Cdna2Y7YQtM/maxresdefault.jpg',
         },
         {
           'id': '1qulr_6IHj4',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1qulr_6IHj4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1qulr_6IHj4/maxresdefault.jpg',
         },
         {
           'id': 'y6WKf3rbFqs',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y6WKf3rbFqs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y6WKf3rbFqs/maxresdefault.jpg',
         },
         {
           'id': 'i2heIBU5DSg',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/i2heIBU5DSg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/i2heIBU5DSg/maxresdefault.jpg',
         },
         {
           'id': 'FZpXYFjDsF4',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FZpXYFjDsF4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FZpXYFjDsF4/maxresdefault.jpg',
         },
         {
           'id': '1bSDaD00s6k',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1bSDaD00s6k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1bSDaD00s6k/maxresdefault.jpg',
         },
         {
           'id': 'qmlLqHxqHwQ',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qmlLqHxqHwQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qmlLqHxqHwQ/maxresdefault.jpg',
         },
         {
           'id': 'IMvnYDvEDbs',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IMvnYDvEDbs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IMvnYDvEDbs/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK9-TcBapXhwwF9nCt2DZu9k',
-      'title': '[Get APP Now] ENGSUB [Second Chance Romance 亦舞之城] Starring: Wallace Chung / Qin Lan / Bai Bing / Lawrence Wong / Chen Jin | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [Second Chance Romance 亦舞之城] Starring: Wallace Chung / Qin Lan / Bai Bing / Lawrence Wong / Chen Jin | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/J_M2vEtN_3k/maxresdefault.jpg',
       'episodeCount': 48,
@@ -13712,246 +14109,293 @@ class HardcodedShows {
         {
           'id': 'J_M2vEtN_3k',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/J_M2vEtN_3k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/J_M2vEtN_3k/maxresdefault.jpg',
         },
         {
           'id': 'VP12XNOv5eM',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VP12XNOv5eM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VP12XNOv5eM/maxresdefault.jpg',
         },
         {
           'id': 'YTp22S1oA5Q',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YTp22S1oA5Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YTp22S1oA5Q/maxresdefault.jpg',
         },
         {
           'id': 'iuDQJCelXLE',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iuDQJCelXLE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iuDQJCelXLE/maxresdefault.jpg',
         },
         {
           'id': 'Rxgy49XHTbs',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Rxgy49XHTbs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Rxgy49XHTbs/maxresdefault.jpg',
         },
         {
           'id': 'aZ8TckmKv5Y',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aZ8TckmKv5Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aZ8TckmKv5Y/maxresdefault.jpg',
         },
         {
           'id': 'KLnZgZt7Sng',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KLnZgZt7Sng/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KLnZgZt7Sng/maxresdefault.jpg',
         },
         {
           'id': 'zP0Y6bee96w',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zP0Y6bee96w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zP0Y6bee96w/maxresdefault.jpg',
         },
         {
           'id': '_QOMmPB1HSo',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_QOMmPB1HSo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_QOMmPB1HSo/maxresdefault.jpg',
         },
         {
           'id': 'hHw9-RaWByc',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hHw9-RaWByc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hHw9-RaWByc/maxresdefault.jpg',
         },
         {
           'id': 'SkmzduxIsfE',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SkmzduxIsfE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SkmzduxIsfE/maxresdefault.jpg',
         },
         {
           'id': 'MiZzcU1fnac',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MiZzcU1fnac/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MiZzcU1fnac/maxresdefault.jpg',
         },
         {
           'id': '7qZmIHJYFf4',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7qZmIHJYFf4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7qZmIHJYFf4/maxresdefault.jpg',
         },
         {
           'id': 's6kAGafBut0',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/s6kAGafBut0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/s6kAGafBut0/maxresdefault.jpg',
         },
         {
           'id': 'Wwoz6JPu2Yg',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Wwoz6JPu2Yg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Wwoz6JPu2Yg/maxresdefault.jpg',
         },
         {
           'id': 'wyKG63aIbHA',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wyKG63aIbHA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wyKG63aIbHA/maxresdefault.jpg',
         },
         {
           'id': 'LW32x_QCoqs',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LW32x_QCoqs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LW32x_QCoqs/maxresdefault.jpg',
         },
         {
           'id': 'GDVrB8N3Nm8',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GDVrB8N3Nm8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GDVrB8N3Nm8/maxresdefault.jpg',
         },
         {
           'id': 'ZT5rxXkAxlk',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZT5rxXkAxlk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZT5rxXkAxlk/maxresdefault.jpg',
         },
         {
           'id': '2OHZmuo8G4A',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2OHZmuo8G4A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2OHZmuo8G4A/maxresdefault.jpg',
         },
         {
           'id': 'RwZoBAz2q0s',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RwZoBAz2q0s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RwZoBAz2q0s/maxresdefault.jpg',
         },
         {
           'id': '88MqwxRn3aU',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/88MqwxRn3aU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/88MqwxRn3aU/maxresdefault.jpg',
         },
         {
           'id': 'iPC_YzQRgxo',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iPC_YzQRgxo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iPC_YzQRgxo/maxresdefault.jpg',
         },
         {
           'id': 'Gb414C2_O3w',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Gb414C2_O3w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Gb414C2_O3w/maxresdefault.jpg',
         },
         {
           'id': '6p3xKefB9oc',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6p3xKefB9oc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6p3xKefB9oc/maxresdefault.jpg',
         },
         {
           'id': 'IXcCShc5iRE',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IXcCShc5iRE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IXcCShc5iRE/maxresdefault.jpg',
         },
         {
           'id': 'wKfmhgg4OU8',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wKfmhgg4OU8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wKfmhgg4OU8/maxresdefault.jpg',
         },
         {
           'id': 'K7iTv-KzZyQ',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K7iTv-KzZyQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K7iTv-KzZyQ/maxresdefault.jpg',
         },
         {
           'id': 'M7o9Y3yssjk',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/M7o9Y3yssjk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/M7o9Y3yssjk/maxresdefault.jpg',
         },
         {
           'id': 'zxh6_0u6Knk',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zxh6_0u6Knk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zxh6_0u6Knk/maxresdefault.jpg',
         },
         {
           'id': 'npbhgWJe-PE',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/npbhgWJe-PE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/npbhgWJe-PE/maxresdefault.jpg',
         },
         {
           'id': 'RYXqX_49Gs8',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RYXqX_49Gs8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RYXqX_49Gs8/maxresdefault.jpg',
         },
         {
           'id': 'tlQUCNikKHI',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tlQUCNikKHI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tlQUCNikKHI/maxresdefault.jpg',
         },
         {
           'id': 'D6l9mbZSKwM',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/D6l9mbZSKwM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/D6l9mbZSKwM/maxresdefault.jpg',
         },
         {
           'id': 'vtk89OH2vKI',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vtk89OH2vKI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vtk89OH2vKI/maxresdefault.jpg',
         },
         {
           'id': '6kqTofiAd5Q',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6kqTofiAd5Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6kqTofiAd5Q/maxresdefault.jpg',
         },
         {
           'id': 'KqmxKOSCWXA',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KqmxKOSCWXA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KqmxKOSCWXA/maxresdefault.jpg',
         },
         {
           'id': 'ZwSd_Hw4xH8',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZwSd_Hw4xH8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZwSd_Hw4xH8/maxresdefault.jpg',
         },
         {
           'id': 'KoZBcbZqsNY',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KoZBcbZqsNY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KoZBcbZqsNY/maxresdefault.jpg',
         },
         {
           'id': 'NzbHRKUtkbc',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NzbHRKUtkbc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NzbHRKUtkbc/maxresdefault.jpg',
         },
         {
           'id': '2KgTDDxIN78',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2KgTDDxIN78/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2KgTDDxIN78/maxresdefault.jpg',
         },
         {
           'id': 'NHRcm8cPRaA',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NHRcm8cPRaA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NHRcm8cPRaA/maxresdefault.jpg',
         },
         {
           'id': 'kn-WpROE9xU',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kn-WpROE9xU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kn-WpROE9xU/maxresdefault.jpg',
         },
         {
           'id': 'ET8okyktVok',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ET8okyktVok/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ET8okyktVok/maxresdefault.jpg',
         },
         {
           'id': 'EddK1R9_SSw',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EddK1R9_SSw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EddK1R9_SSw/maxresdefault.jpg',
         },
         {
           'id': 'bmxmrVLuXKI',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bmxmrVLuXKI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bmxmrVLuXKI/maxresdefault.jpg',
         },
         {
           'id': 'gDrXRNQYZVM',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gDrXRNQYZVM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gDrXRNQYZVM/maxresdefault.jpg',
         },
         {
           'id': 'NZt0ZwVyZFo',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NZt0ZwVyZFo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NZt0ZwVyZFo/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8Q5DyWQXPpAdGsyH8BPUYA',
       'title': 'Everyone Loves Me',
@@ -13964,129 +14408,153 @@ class HardcodedShows {
         {
           'id': 'coOCjx8q8sQ',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/coOCjx8q8sQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/coOCjx8q8sQ/maxresdefault.jpg',
         },
         {
           'id': 'mOTuyXSWUIE',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mOTuyXSWUIE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mOTuyXSWUIE/maxresdefault.jpg',
         },
         {
           'id': '0MEd0O63vUU',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0MEd0O63vUU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0MEd0O63vUU/maxresdefault.jpg',
         },
         {
           'id': 'Oo8AioL0bdY',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Oo8AioL0bdY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Oo8AioL0bdY/maxresdefault.jpg',
         },
         {
           'id': 'iXkYTLujbio',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iXkYTLujbio/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iXkYTLujbio/maxresdefault.jpg',
         },
         {
           'id': 'OaorVStJhuU',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OaorVStJhuU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OaorVStJhuU/maxresdefault.jpg',
         },
         {
           'id': 'RD40VQSYnjo',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RD40VQSYnjo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RD40VQSYnjo/maxresdefault.jpg',
         },
         {
           'id': 'BmdZ-Bo8HoE',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BmdZ-Bo8HoE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BmdZ-Bo8HoE/maxresdefault.jpg',
         },
         {
           'id': 'D8XcfRLK1m4',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/D8XcfRLK1m4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/D8XcfRLK1m4/maxresdefault.jpg',
         },
         {
           'id': 'JeRsTLzGgfc',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JeRsTLzGgfc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JeRsTLzGgfc/maxresdefault.jpg',
         },
         {
           'id': 'FDGBlk65FmU',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FDGBlk65FmU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FDGBlk65FmU/maxresdefault.jpg',
         },
         {
           'id': 'ymiA__HiwjY',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ymiA__HiwjY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ymiA__HiwjY/maxresdefault.jpg',
         },
         {
           'id': '7fSoXkIZT4A',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7fSoXkIZT4A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7fSoXkIZT4A/maxresdefault.jpg',
         },
         {
           'id': 'T8tSocG5EY8',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/T8tSocG5EY8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/T8tSocG5EY8/maxresdefault.jpg',
         },
         {
           'id': 'xI8gV8saiec',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xI8gV8saiec/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xI8gV8saiec/maxresdefault.jpg',
         },
         {
           'id': 'WhO50W9BxLo',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WhO50W9BxLo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WhO50W9BxLo/maxresdefault.jpg',
         },
         {
           'id': 'xrthF_EX4DA',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xrthF_EX4DA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xrthF_EX4DA/maxresdefault.jpg',
         },
         {
           'id': 'uzTFCL8TfS4',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uzTFCL8TfS4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uzTFCL8TfS4/maxresdefault.jpg',
         },
         {
           'id': '10S6qrduEy8',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/10S6qrduEy8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/10S6qrduEy8/maxresdefault.jpg',
         },
         {
           'id': '3Hpwwu9RzcE',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3Hpwwu9RzcE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3Hpwwu9RzcE/maxresdefault.jpg',
         },
         {
           'id': '30fD7l2II1Q',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/30fD7l2II1Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/30fD7l2II1Q/maxresdefault.jpg',
         },
         {
           'id': 'jr4IHmxEm8s',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jr4IHmxEm8s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jr4IHmxEm8s/maxresdefault.jpg',
         },
         {
           'id': 'DwgQjc2rff0',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DwgQjc2rff0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DwgQjc2rff0/maxresdefault.jpg',
         },
         {
           'id': '6YqpXR3R3hY',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6YqpXR3R3hY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6YqpXR3R3hY/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK9MiE3quPZjNnu7-RgviYDy',
-      'title': 'ENGSUB [My Divine Emissary 我的神使大人] Starring: Li Zixuan / Chen Jingke | YOUKU',
+      'title':
+          'ENGSUB [My Divine Emissary 我的神使大人] Starring: Li Zixuan / Chen Jingke | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/ItmwvYbO4bM/maxresdefault.jpg',
       'episodeCount': 24,
@@ -14096,129 +14564,153 @@ class HardcodedShows {
         {
           'id': 'ItmwvYbO4bM',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ItmwvYbO4bM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ItmwvYbO4bM/maxresdefault.jpg',
         },
         {
           'id': 'fYFcg3qN-jE',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fYFcg3qN-jE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fYFcg3qN-jE/maxresdefault.jpg',
         },
         {
           'id': '2b3yZ0gxI_4',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2b3yZ0gxI_4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2b3yZ0gxI_4/maxresdefault.jpg',
         },
         {
           'id': 'QwDGW80QTsI',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QwDGW80QTsI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QwDGW80QTsI/maxresdefault.jpg',
         },
         {
           'id': 'caL2Km_9gxo',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/caL2Km_9gxo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/caL2Km_9gxo/maxresdefault.jpg',
         },
         {
           'id': 'APSFQX2IMCI',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/APSFQX2IMCI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/APSFQX2IMCI/maxresdefault.jpg',
         },
         {
           'id': 'UWRVG89Kn8M',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UWRVG89Kn8M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UWRVG89Kn8M/maxresdefault.jpg',
         },
         {
           'id': 'IBUh0B2XAMQ',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IBUh0B2XAMQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IBUh0B2XAMQ/maxresdefault.jpg',
         },
         {
           'id': 'ny6rtiC4S7g',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ny6rtiC4S7g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ny6rtiC4S7g/maxresdefault.jpg',
         },
         {
           'id': '9QmLABqfEZ0',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9QmLABqfEZ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9QmLABqfEZ0/maxresdefault.jpg',
         },
         {
           'id': 'W-ql-tnSp5s',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W-ql-tnSp5s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W-ql-tnSp5s/maxresdefault.jpg',
         },
         {
           'id': 'EdsjwpTYfi4',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EdsjwpTYfi4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EdsjwpTYfi4/maxresdefault.jpg',
         },
         {
           'id': 'rhSDhzMwkEM',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rhSDhzMwkEM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rhSDhzMwkEM/maxresdefault.jpg',
         },
         {
           'id': 'Fhw8quL8Pto',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Fhw8quL8Pto/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Fhw8quL8Pto/maxresdefault.jpg',
         },
         {
           'id': 'GeuNOAEmGiM',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GeuNOAEmGiM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GeuNOAEmGiM/maxresdefault.jpg',
         },
         {
           'id': 'jON_G_MlGVw',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jON_G_MlGVw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jON_G_MlGVw/maxresdefault.jpg',
         },
         {
           'id': 'fLJRRXsK9IE',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fLJRRXsK9IE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fLJRRXsK9IE/maxresdefault.jpg',
         },
         {
           'id': 'dT1GTsUQBqs',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dT1GTsUQBqs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dT1GTsUQBqs/maxresdefault.jpg',
         },
         {
           'id': 'x0E95C5aE48',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/x0E95C5aE48/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/x0E95C5aE48/maxresdefault.jpg',
         },
         {
           'id': 'AUpY1pJWD24',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AUpY1pJWD24/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AUpY1pJWD24/maxresdefault.jpg',
         },
         {
           'id': 'Iw92rhT0WeE',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Iw92rhT0WeE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Iw92rhT0WeE/maxresdefault.jpg',
         },
         {
           'id': '-EdAqyr6ieU',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-EdAqyr6ieU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-EdAqyr6ieU/maxresdefault.jpg',
         },
         {
           'id': 'bERymDSlfFQ',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bERymDSlfFQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bERymDSlfFQ/maxresdefault.jpg',
         },
         {
           'id': 'wj5Rl_ig_Xs',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wj5Rl_ig_Xs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wj5Rl_ig_Xs/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8wb8Yzzh4eptkOEn2LPtDf',
-      'title': '[Get APP Now] ENGSUB [101 Marriages 101次抢婚] Starring: Jin Ze / Chen Shujun / Feng Chuxuan / Liu Dexi / Bai Kairui | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [101 Marriages 101次抢婚] Starring: Jin Ze / Chen Shujun / Feng Chuxuan / Liu Dexi / Bai Kairui | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/nbQZFaB1xQ4/maxresdefault.jpg',
       'episodeCount': 24,
@@ -14228,126 +14720,149 @@ class HardcodedShows {
         {
           'id': 'nbQZFaB1xQ4',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nbQZFaB1xQ4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nbQZFaB1xQ4/maxresdefault.jpg',
         },
         {
           'id': 'E01hOCqpgwU',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/E01hOCqpgwU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/E01hOCqpgwU/maxresdefault.jpg',
         },
         {
           'id': 'p2R9NEyahvo',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/p2R9NEyahvo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/p2R9NEyahvo/maxresdefault.jpg',
         },
         {
           'id': 'cTZoRmQ8UL0',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cTZoRmQ8UL0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cTZoRmQ8UL0/maxresdefault.jpg',
         },
         {
           'id': '-93ckJe0R6c',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-93ckJe0R6c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-93ckJe0R6c/maxresdefault.jpg',
         },
         {
           'id': '9j_Gy_WIBYc',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9j_Gy_WIBYc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9j_Gy_WIBYc/maxresdefault.jpg',
         },
         {
           'id': 'sf06M1RarCg',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sf06M1RarCg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sf06M1RarCg/maxresdefault.jpg',
         },
         {
           'id': 'bnloms1P58c',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bnloms1P58c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bnloms1P58c/maxresdefault.jpg',
         },
         {
           'id': 'y_zDUxntWCk',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y_zDUxntWCk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y_zDUxntWCk/maxresdefault.jpg',
         },
         {
           'id': 'i83F30FTigk',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/i83F30FTigk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/i83F30FTigk/maxresdefault.jpg',
         },
         {
           'id': 'r1s63fmnGmI',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/r1s63fmnGmI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/r1s63fmnGmI/maxresdefault.jpg',
         },
         {
           'id': '7z8WGtwnJdM',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7z8WGtwnJdM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7z8WGtwnJdM/maxresdefault.jpg',
         },
         {
           'id': 'gY9NBdZxOiU',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gY9NBdZxOiU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gY9NBdZxOiU/maxresdefault.jpg',
         },
         {
           'id': 'w_fGGH4tOWM',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w_fGGH4tOWM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w_fGGH4tOWM/maxresdefault.jpg',
         },
         {
           'id': 'Vzb1B-hRshM',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Vzb1B-hRshM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Vzb1B-hRshM/maxresdefault.jpg',
         },
         {
           'id': 'g_zqubPFrZ0',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/g_zqubPFrZ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/g_zqubPFrZ0/maxresdefault.jpg',
         },
         {
           'id': 'y-C69yjVyOo',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y-C69yjVyOo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y-C69yjVyOo/maxresdefault.jpg',
         },
         {
           'id': 'yjCa9CUfCXI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yjCa9CUfCXI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yjCa9CUfCXI/maxresdefault.jpg',
         },
         {
           'id': 'iVCwgqMoIdY',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iVCwgqMoIdY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iVCwgqMoIdY/maxresdefault.jpg',
         },
         {
           'id': 'iJ29XZAQY20',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iJ29XZAQY20/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iJ29XZAQY20/maxresdefault.jpg',
         },
         {
           'id': '44zAXW1udN8',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/44zAXW1udN8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/44zAXW1udN8/maxresdefault.jpg',
         },
         {
           'id': 'rMsyJM50jSs',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rMsyJM50jSs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rMsyJM50jSs/maxresdefault.jpg',
         },
         {
           'id': 'y5T1D2wxmlQ',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y5T1D2wxmlQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y5T1D2wxmlQ/maxresdefault.jpg',
         },
         {
           'id': 'SJPQXanIsEA',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SJPQXanIsEA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SJPQXanIsEA/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8MdPQg72ceDNUGjf0mhENz',
       'title': 'Till The End of The Moon',
@@ -14360,209 +14875,249 @@ class HardcodedShows {
         {
           'id': 'iEC4DBbzB-I',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iEC4DBbzB-I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iEC4DBbzB-I/maxresdefault.jpg',
         },
         {
           'id': '_dV3PiYrLvw',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_dV3PiYrLvw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_dV3PiYrLvw/maxresdefault.jpg',
         },
         {
           'id': '4l4L7nu2K3I',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4l4L7nu2K3I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4l4L7nu2K3I/maxresdefault.jpg',
         },
         {
           'id': 'uFJtgrJ2MGw',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uFJtgrJ2MGw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uFJtgrJ2MGw/maxresdefault.jpg',
         },
         {
           'id': 'u_QmsLPKbQM',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/u_QmsLPKbQM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/u_QmsLPKbQM/maxresdefault.jpg',
         },
         {
           'id': '9uAYvqICMRI',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9uAYvqICMRI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9uAYvqICMRI/maxresdefault.jpg',
         },
         {
           'id': 'yf7VW-sAbOU',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yf7VW-sAbOU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yf7VW-sAbOU/maxresdefault.jpg',
         },
         {
           'id': 'BAMzSmbLq8k',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BAMzSmbLq8k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BAMzSmbLq8k/maxresdefault.jpg',
         },
         {
           'id': 'S-F0QfbuHtQ',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/S-F0QfbuHtQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/S-F0QfbuHtQ/maxresdefault.jpg',
         },
         {
           'id': 'yPcsflr-52s',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yPcsflr-52s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yPcsflr-52s/maxresdefault.jpg',
         },
         {
           'id': 'md0-4meyJlA',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/md0-4meyJlA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/md0-4meyJlA/maxresdefault.jpg',
         },
         {
           'id': 'qhC4rMRnx9g',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qhC4rMRnx9g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qhC4rMRnx9g/maxresdefault.jpg',
         },
         {
           'id': 'Iof4jeN6LG4',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Iof4jeN6LG4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Iof4jeN6LG4/maxresdefault.jpg',
         },
         {
           'id': 'KANOeQ_T_Bs',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KANOeQ_T_Bs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KANOeQ_T_Bs/maxresdefault.jpg',
         },
         {
           'id': '1gpz5F3bzaA',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1gpz5F3bzaA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1gpz5F3bzaA/maxresdefault.jpg',
         },
         {
           'id': 'MjAdj5neiQw',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MjAdj5neiQw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MjAdj5neiQw/maxresdefault.jpg',
         },
         {
           'id': '-8_fjmZttLM',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-8_fjmZttLM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-8_fjmZttLM/maxresdefault.jpg',
         },
         {
           'id': 'xGSUjfLiPbc',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xGSUjfLiPbc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xGSUjfLiPbc/maxresdefault.jpg',
         },
         {
           'id': '14xeuhyn3Nc',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/14xeuhyn3Nc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/14xeuhyn3Nc/maxresdefault.jpg',
         },
         {
           'id': 'THuD4wvOZM4',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/THuD4wvOZM4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/THuD4wvOZM4/maxresdefault.jpg',
         },
         {
           'id': 'h6DsiVyFGm4',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/h6DsiVyFGm4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/h6DsiVyFGm4/maxresdefault.jpg',
         },
         {
           'id': 'B0PSx3WkWII',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B0PSx3WkWII/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B0PSx3WkWII/maxresdefault.jpg',
         },
         {
           'id': 'Rn6n9rcbBfQ',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Rn6n9rcbBfQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Rn6n9rcbBfQ/maxresdefault.jpg',
         },
         {
           'id': 'PlSrE6MZwbM',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PlSrE6MZwbM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PlSrE6MZwbM/maxresdefault.jpg',
         },
         {
           'id': 'k9O2slrsHxI',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k9O2slrsHxI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k9O2slrsHxI/maxresdefault.jpg',
         },
         {
           'id': '5onQ2sXK0HI',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5onQ2sXK0HI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5onQ2sXK0HI/maxresdefault.jpg',
         },
         {
           'id': '9s9Mourx02E',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9s9Mourx02E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9s9Mourx02E/maxresdefault.jpg',
         },
         {
           'id': 'mCvxq6HbQ5I',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mCvxq6HbQ5I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mCvxq6HbQ5I/maxresdefault.jpg',
         },
         {
           'id': 'vvEMiRNGYP8',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vvEMiRNGYP8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vvEMiRNGYP8/maxresdefault.jpg',
         },
         {
           'id': 'CCnli0HQ3IE',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnli0HQ3IE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnli0HQ3IE/maxresdefault.jpg',
         },
         {
           'id': '8-EXPB74Dyc',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8-EXPB74Dyc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8-EXPB74Dyc/maxresdefault.jpg',
         },
         {
           'id': '9493IPD_ofk',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9493IPD_ofk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9493IPD_ofk/maxresdefault.jpg',
         },
         {
           'id': 'Y3h_8OqnYeE',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Y3h_8OqnYeE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Y3h_8OqnYeE/maxresdefault.jpg',
         },
         {
           'id': '5CsOMGikwjM',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5CsOMGikwjM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5CsOMGikwjM/maxresdefault.jpg',
         },
         {
           'id': 'wVTgR1tlM6g',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wVTgR1tlM6g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wVTgR1tlM6g/maxresdefault.jpg',
         },
         {
           'id': 'UlTDWKinmrw',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UlTDWKinmrw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UlTDWKinmrw/maxresdefault.jpg',
         },
         {
           'id': '2YzZ_PI9oyk',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2YzZ_PI9oyk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2YzZ_PI9oyk/maxresdefault.jpg',
         },
         {
           'id': '_7VWXbysF3o',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_7VWXbysF3o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_7VWXbysF3o/maxresdefault.jpg',
         },
         {
           'id': '0AQAVNYPEFg',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0AQAVNYPEFg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0AQAVNYPEFg/maxresdefault.jpg',
         },
         {
           'id': 'PmvRCI6EfXM',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PmvRCI6EfXM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PmvRCI6EfXM/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCSHarVzUb_mWusxzQUoTtTv',
-      'title': '【FULL】🕊️My Dear Guardian |  Johnny Huang, Li Qin | iQIYI Philippines',
+      'title':
+          '【FULL】🕊️My Dear Guardian |  Johnny Huang, Li Qin | iQIYI Philippines',
       'channelTitle': 'iQIYI Philippines - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/OWrIhUm9Ntg/maxresdefault.jpg',
       'episodeCount': 27,
@@ -14572,144 +15127,171 @@ class HardcodedShows {
         {
           'id': 'OWrIhUm9Ntg',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OWrIhUm9Ntg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OWrIhUm9Ntg/maxresdefault.jpg',
         },
         {
           'id': 'uATaj4FEZ78',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uATaj4FEZ78/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uATaj4FEZ78/maxresdefault.jpg',
         },
         {
           'id': 'qQpK0ob1H6I',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qQpK0ob1H6I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qQpK0ob1H6I/maxresdefault.jpg',
         },
         {
           'id': 'EGqzH0rzjZw',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EGqzH0rzjZw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EGqzH0rzjZw/maxresdefault.jpg',
         },
         {
           'id': '13WtT_ji_Zw',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/13WtT_ji_Zw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/13WtT_ji_Zw/maxresdefault.jpg',
         },
         {
           'id': 'JR5yPICpHvo',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JR5yPICpHvo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JR5yPICpHvo/maxresdefault.jpg',
         },
         {
           'id': 'tdeJv1t6z08',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tdeJv1t6z08/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tdeJv1t6z08/maxresdefault.jpg',
         },
         {
           'id': 'eQ1nzRKlTrg',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eQ1nzRKlTrg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eQ1nzRKlTrg/maxresdefault.jpg',
         },
         {
           'id': 'ffP_K7Wmf3E',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ffP_K7Wmf3E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ffP_K7Wmf3E/maxresdefault.jpg',
         },
         {
           'id': 'F_ACdkteqzQ',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/F_ACdkteqzQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/F_ACdkteqzQ/maxresdefault.jpg',
         },
         {
           'id': 'JikY1FYedFw',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JikY1FYedFw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JikY1FYedFw/maxresdefault.jpg',
         },
         {
           'id': '_X501Mhu7nA',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_X501Mhu7nA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_X501Mhu7nA/maxresdefault.jpg',
         },
         {
           'id': 'FehJn7yXvaY',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FehJn7yXvaY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FehJn7yXvaY/maxresdefault.jpg',
         },
         {
           'id': 'kncJHfKMGRQ',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kncJHfKMGRQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kncJHfKMGRQ/maxresdefault.jpg',
         },
         {
           'id': 'fT3vcPBeXI0',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fT3vcPBeXI0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fT3vcPBeXI0/maxresdefault.jpg',
         },
         {
           'id': 'KOPYwwDk_sk',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KOPYwwDk_sk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KOPYwwDk_sk/maxresdefault.jpg',
         },
         {
           'id': '8BO68CgDO4U',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8BO68CgDO4U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8BO68CgDO4U/maxresdefault.jpg',
         },
         {
           'id': 'NG8y8exJSxA',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NG8y8exJSxA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NG8y8exJSxA/maxresdefault.jpg',
         },
         {
           'id': 'FN0lxPL4Qa0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FN0lxPL4Qa0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FN0lxPL4Qa0/maxresdefault.jpg',
         },
         {
           'id': 'bjlqxe76-cc',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bjlqxe76-cc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bjlqxe76-cc/maxresdefault.jpg',
         },
         {
           'id': 'dOF4svXbk14',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dOF4svXbk14/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dOF4svXbk14/maxresdefault.jpg',
         },
         {
           'id': 'mKbABki9gCQ',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mKbABki9gCQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mKbABki9gCQ/maxresdefault.jpg',
         },
         {
           'id': 'WLfdzq9rBpU',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WLfdzq9rBpU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WLfdzq9rBpU/maxresdefault.jpg',
         },
         {
           'id': 'kueYyI7OL1w',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kueYyI7OL1w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kueYyI7OL1w/maxresdefault.jpg',
         },
         {
           'id': 'usydxKBFX6Y',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/usydxKBFX6Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/usydxKBFX6Y/maxresdefault.jpg',
         },
         {
           'id': 'bu0BDSIJJYM',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bu0BDSIJJYM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bu0BDSIJJYM/maxresdefault.jpg',
         },
         {
           'id': 'id_vlHvdSpA',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OWrIhUm9Ntg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OWrIhUm9Ntg/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK-_h-KjD_qgjOj98MaZq0gm',
-      'title': '[Get APP Now] ENGSUB [We All Lie婚姻攻略] Starring: He Hongshan / Li Zifeng / Chen Muyang / Zheng Nanxi / Tan Yanyan / Wang Yizhou / Zhao Mengshu | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [We All Lie婚姻攻略] Starring: He Hongshan / Li Zifeng / Chen Muyang / Zheng Nanxi / Tan Yanyan / Wang Yizhou / Zhao Mengshu | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/TcWqflG-CUY/maxresdefault.jpg',
       'episodeCount': 21,
@@ -14719,111 +15301,131 @@ class HardcodedShows {
         {
           'id': 'TcWqflG-CUY',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TcWqflG-CUY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TcWqflG-CUY/maxresdefault.jpg',
         },
         {
           'id': '7e7omqXiEC0',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7e7omqXiEC0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7e7omqXiEC0/maxresdefault.jpg',
         },
         {
           'id': '--rZfxh4rSg',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/--rZfxh4rSg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/--rZfxh4rSg/maxresdefault.jpg',
         },
         {
           'id': 'TQNKrwyLfWU',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TQNKrwyLfWU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TQNKrwyLfWU/maxresdefault.jpg',
         },
         {
           'id': 'uhjUAtT3sQ4',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uhjUAtT3sQ4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uhjUAtT3sQ4/maxresdefault.jpg',
         },
         {
           'id': 'vvPplgYlRrI',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vvPplgYlRrI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vvPplgYlRrI/maxresdefault.jpg',
         },
         {
           'id': '6FVEiECMoSg',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6FVEiECMoSg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6FVEiECMoSg/maxresdefault.jpg',
         },
         {
           'id': 'KOJnYljmIos',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KOJnYljmIos/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KOJnYljmIos/maxresdefault.jpg',
         },
         {
           'id': 'tRe3R2MXUrk',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tRe3R2MXUrk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tRe3R2MXUrk/maxresdefault.jpg',
         },
         {
           'id': 'GzGA70Y4fOs',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GzGA70Y4fOs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GzGA70Y4fOs/maxresdefault.jpg',
         },
         {
           'id': '_Ph8S8ekSPw',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_Ph8S8ekSPw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_Ph8S8ekSPw/maxresdefault.jpg',
         },
         {
           'id': 'gF5fTFdXpB4',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gF5fTFdXpB4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gF5fTFdXpB4/maxresdefault.jpg',
         },
         {
           'id': 'KrUq3JTSBFI',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KrUq3JTSBFI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KrUq3JTSBFI/maxresdefault.jpg',
         },
         {
           'id': 'WqeGQPhKoJo',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WqeGQPhKoJo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WqeGQPhKoJo/maxresdefault.jpg',
         },
         {
           'id': '1ORyfeHBG-g',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1ORyfeHBG-g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1ORyfeHBG-g/maxresdefault.jpg',
         },
         {
           'id': 'rmXYRX3kel0',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rmXYRX3kel0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rmXYRX3kel0/maxresdefault.jpg',
         },
         {
           'id': 'emxVSCMoL8Y',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/emxVSCMoL8Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/emxVSCMoL8Y/maxresdefault.jpg',
         },
         {
           'id': '6HHyj1taNUg',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6HHyj1taNUg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6HHyj1taNUg/maxresdefault.jpg',
         },
         {
           'id': 'kdLETYV6I_U',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kdLETYV6I_U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kdLETYV6I_U/maxresdefault.jpg',
         },
         {
           'id': 'w02OYArp4EY',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w02OYArp4EY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w02OYArp4EY/maxresdefault.jpg',
         },
         {
           'id': 'auwI306S1qg',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/auwI306S1qg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/auwI306S1qg/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK9cwfQqamjvymbElQlrV6do',
       'title': 'The Best Day of My Life',
@@ -14836,79 +15438,93 @@ class HardcodedShows {
         {
           'id': 'xbDAxXcosVE',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xbDAxXcosVE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xbDAxXcosVE/maxresdefault.jpg',
         },
         {
           'id': 'm5DwQATdh_s',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/m5DwQATdh_s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/m5DwQATdh_s/maxresdefault.jpg',
         },
         {
           'id': 'GMVmPINdzf4',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GMVmPINdzf4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GMVmPINdzf4/maxresdefault.jpg',
         },
         {
           'id': 'sLsHGo0PPBA',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sLsHGo0PPBA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sLsHGo0PPBA/maxresdefault.jpg',
         },
         {
           'id': 'DDkOdp2roy0',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DDkOdp2roy0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DDkOdp2roy0/maxresdefault.jpg',
         },
         {
           'id': 'vAEJBd1qZss',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vAEJBd1qZss/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vAEJBd1qZss/maxresdefault.jpg',
         },
         {
           'id': 'PPWy1EBmGHk',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PPWy1EBmGHk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PPWy1EBmGHk/maxresdefault.jpg',
         },
         {
           'id': 'FPqaUilehnQ',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FPqaUilehnQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FPqaUilehnQ/maxresdefault.jpg',
         },
         {
           'id': 'Hp2neOaJcgI',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Hp2neOaJcgI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Hp2neOaJcgI/maxresdefault.jpg',
         },
         {
           'id': 'VKvu1urDSps',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VKvu1urDSps/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VKvu1urDSps/maxresdefault.jpg',
         },
         {
           'id': 'DN0g_C4SkJ4',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DN0g_C4SkJ4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DN0g_C4SkJ4/maxresdefault.jpg',
         },
         {
           'id': 'ZSnsOsjY4Z0',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZSnsOsjY4Z0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZSnsOsjY4Z0/maxresdefault.jpg',
         },
         {
           'id': 'DB2fAHAIw30',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DB2fAHAIw30/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DB2fAHAIw30/maxresdefault.jpg',
         },
         {
           'id': 'iteE88GvAWE',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iteE88GvAWE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iteE88GvAWE/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLlCrV9TCfzMYJebfwvzDDQzDFbY-9XqvE',
-      'title': '🌸【治愈爱情】🎋The Best Thing 爱你 | Zhang Linghe × Xu Ruohan | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!',
+      'title':
+          '🌸【治愈爱情】🎋The Best Thing 爱你 | Zhang Linghe × Xu Ruohan | FULL正片 | iQIYI 👑Join the Membership and enjoy full episodes now!',
       'channelTitle': 'iQIYI 爱奇艺 - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/BM2sTrsV8xM/maxresdefault.jpg',
       'episodeCount': 28,
@@ -14918,149 +15534,177 @@ class HardcodedShows {
         {
           'id': 'BM2sTrsV8xM',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BM2sTrsV8xM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BM2sTrsV8xM/maxresdefault.jpg',
         },
         {
           'id': '1Jpt_CmttVU',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1Jpt_CmttVU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1Jpt_CmttVU/maxresdefault.jpg',
         },
         {
           'id': 'mSedGMnKTjs',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mSedGMnKTjs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mSedGMnKTjs/maxresdefault.jpg',
         },
         {
           'id': 'XjlzbwyW9pg',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XjlzbwyW9pg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XjlzbwyW9pg/maxresdefault.jpg',
         },
         {
           'id': 'H22R4lYT0QQ',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/H22R4lYT0QQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/H22R4lYT0QQ/maxresdefault.jpg',
         },
         {
           'id': 'nZtI9eKPV7Y',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nZtI9eKPV7Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nZtI9eKPV7Y/maxresdefault.jpg',
         },
         {
           'id': 'PEf4PSfKRVk',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PEf4PSfKRVk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PEf4PSfKRVk/maxresdefault.jpg',
         },
         {
           'id': 'hvSSP4_jayI',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hvSSP4_jayI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hvSSP4_jayI/maxresdefault.jpg',
         },
         {
           'id': 'twlaceVOKBY',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/twlaceVOKBY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/twlaceVOKBY/maxresdefault.jpg',
         },
         {
           'id': 'HynhLzlAn0A',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HynhLzlAn0A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HynhLzlAn0A/maxresdefault.jpg',
         },
         {
           'id': 'A-4C-mqC9Hg',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/A-4C-mqC9Hg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/A-4C-mqC9Hg/maxresdefault.jpg',
         },
         {
           'id': 'jJvSI-EUsWY',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jJvSI-EUsWY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jJvSI-EUsWY/maxresdefault.jpg',
         },
         {
           'id': 'iddBCaAbMBY',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iddBCaAbMBY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iddBCaAbMBY/maxresdefault.jpg',
         },
         {
           'id': '94M1y8iv--g',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/94M1y8iv--g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/94M1y8iv--g/maxresdefault.jpg',
         },
         {
           'id': 'iaXxDEUYRlw',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iaXxDEUYRlw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iaXxDEUYRlw/maxresdefault.jpg',
         },
         {
           'id': 'o40TnCbLHOY',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/o40TnCbLHOY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/o40TnCbLHOY/maxresdefault.jpg',
         },
         {
           'id': 'ExQHCCdCCDU',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ExQHCCdCCDU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ExQHCCdCCDU/maxresdefault.jpg',
         },
         {
           'id': '2uVJAl1frCI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2uVJAl1frCI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2uVJAl1frCI/maxresdefault.jpg',
         },
         {
           'id': 'uL549i6GQj0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uL549i6GQj0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uL549i6GQj0/maxresdefault.jpg',
         },
         {
           'id': 'vfEjmwguhn8',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vfEjmwguhn8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vfEjmwguhn8/maxresdefault.jpg',
         },
         {
           'id': 'd6GDgj7dXzc',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/d6GDgj7dXzc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/d6GDgj7dXzc/maxresdefault.jpg',
         },
         {
           'id': 'gKDFi3LBuiI',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gKDFi3LBuiI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gKDFi3LBuiI/maxresdefault.jpg',
         },
         {
           'id': 'BgX12YP_6aI',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BgX12YP_6aI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BgX12YP_6aI/maxresdefault.jpg',
         },
         {
           'id': 'jabafMFVYMU',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jabafMFVYMU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jabafMFVYMU/maxresdefault.jpg',
         },
         {
           'id': 'lu69KA4Rrgw',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lu69KA4Rrgw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lu69KA4Rrgw/maxresdefault.jpg',
         },
         {
           'id': 'K_50lO8uGHM',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K_50lO8uGHM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K_50lO8uGHM/maxresdefault.jpg',
         },
         {
           'id': '5aXoGDcg91A',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5aXoGDcg91A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5aXoGDcg91A/maxresdefault.jpg',
         },
         {
           'id': 'DamavnZmSsQ',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DamavnZmSsQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DamavnZmSsQ/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLWnMeKaZKVEXoq6w04JF3SaL0f4N30vTI',
-      'title': '📽️【EP01 2026】Rebirth Chinese Drama  ENGSUB | Li Yunrui / Huangyang Tiantian /Zhang Kangle ⛵😍 Historical Drama 2026 #冰湖重生',
+      'title':
+          '📽️【EP01 2026】Rebirth Chinese Drama  ENGSUB | Li Yunrui / Huangyang Tiantian /Zhang Kangle ⛵😍 Historical Drama 2026 #冰湖重生',
       'channelTitle': 'GIKKI Chinese Drama',
       'thumbnailUrl': 'https://i.ytimg.com/vi/YwaO3_3qQeA/maxresdefault.jpg',
       'episodeCount': 50,
@@ -15070,256 +15714,305 @@ class HardcodedShows {
         {
           'id': 'YwaO3_3qQeA',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YwaO3_3qQeA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YwaO3_3qQeA/maxresdefault.jpg',
         },
         {
           'id': 'xNizF7DBiGU',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xNizF7DBiGU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xNizF7DBiGU/maxresdefault.jpg',
         },
         {
           'id': 'SoRN-qqVHiE',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SoRN-qqVHiE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SoRN-qqVHiE/maxresdefault.jpg',
         },
         {
           'id': 'hOJonH1LVuI',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hOJonH1LVuI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hOJonH1LVuI/maxresdefault.jpg',
         },
         {
           'id': '_1M5z0dEGaI',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_1M5z0dEGaI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_1M5z0dEGaI/maxresdefault.jpg',
         },
         {
           'id': '03Z9kxVjQP0',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/03Z9kxVjQP0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/03Z9kxVjQP0/maxresdefault.jpg',
         },
         {
           'id': '0WKj11G-O1k',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0WKj11G-O1k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0WKj11G-O1k/maxresdefault.jpg',
         },
         {
           'id': 'ykjKGyqanCY',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ykjKGyqanCY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ykjKGyqanCY/maxresdefault.jpg',
         },
         {
           'id': 'vJWG5NFtfg0',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vJWG5NFtfg0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vJWG5NFtfg0/maxresdefault.jpg',
         },
         {
           'id': 'ilH2iWrhlpg',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ilH2iWrhlpg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ilH2iWrhlpg/maxresdefault.jpg',
         },
         {
           'id': 'LFs6JI3YlUM',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LFs6JI3YlUM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LFs6JI3YlUM/maxresdefault.jpg',
         },
         {
           'id': '0q2Z5CU39vQ',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0q2Z5CU39vQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0q2Z5CU39vQ/maxresdefault.jpg',
         },
         {
           'id': 'EFoGroTKWnk',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EFoGroTKWnk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EFoGroTKWnk/maxresdefault.jpg',
         },
         {
           'id': 'Mckn8scIT9M',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Mckn8scIT9M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Mckn8scIT9M/maxresdefault.jpg',
         },
         {
           'id': 'PtmOkDVpvcQ',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PtmOkDVpvcQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PtmOkDVpvcQ/maxresdefault.jpg',
         },
         {
           'id': 'AvZJH5L5lFY',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AvZJH5L5lFY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AvZJH5L5lFY/maxresdefault.jpg',
         },
         {
           'id': 'MAgmGb1BgAY',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MAgmGb1BgAY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MAgmGb1BgAY/maxresdefault.jpg',
         },
         {
           'id': 'WftsE1rbHVg',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WftsE1rbHVg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WftsE1rbHVg/maxresdefault.jpg',
         },
         {
           'id': '07wzYxbWzJo',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/07wzYxbWzJo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/07wzYxbWzJo/maxresdefault.jpg',
         },
         {
           'id': 'EupRNyEiXj0',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EupRNyEiXj0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EupRNyEiXj0/maxresdefault.jpg',
         },
         {
           'id': 'LgaYdDAiQbs',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LgaYdDAiQbs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LgaYdDAiQbs/maxresdefault.jpg',
         },
         {
           'id': 'TEGvACP8914',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TEGvACP8914/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TEGvACP8914/maxresdefault.jpg',
         },
         {
           'id': '3ouJb1Xcv-o',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3ouJb1Xcv-o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3ouJb1Xcv-o/maxresdefault.jpg',
         },
         {
           'id': 'aSSwijAOyOY',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aSSwijAOyOY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aSSwijAOyOY/maxresdefault.jpg',
         },
         {
           'id': 'sOS10vVoJMY',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sOS10vVoJMY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sOS10vVoJMY/maxresdefault.jpg',
         },
         {
           'id': 'g8BS803F0wE',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/g8BS803F0wE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/g8BS803F0wE/maxresdefault.jpg',
         },
         {
           'id': 'fxytcSzeJrU',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fxytcSzeJrU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fxytcSzeJrU/maxresdefault.jpg',
         },
         {
           'id': 'OGOi5z-R5GE',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OGOi5z-R5GE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OGOi5z-R5GE/maxresdefault.jpg',
         },
         {
           'id': 'PUINrHEUavY',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PUINrHEUavY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PUINrHEUavY/maxresdefault.jpg',
         },
         {
           'id': 'mIofyeZUIVU',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mIofyeZUIVU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mIofyeZUIVU/maxresdefault.jpg',
         },
         {
           'id': 'oSCmrPPTm-8',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oSCmrPPTm-8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oSCmrPPTm-8/maxresdefault.jpg',
         },
         {
           'id': 'QgY9ZyZl9BM',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QgY9ZyZl9BM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QgY9ZyZl9BM/maxresdefault.jpg',
         },
         {
           'id': 'BLxneSBVJ8s',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BLxneSBVJ8s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BLxneSBVJ8s/maxresdefault.jpg',
         },
         {
           'id': '9J7d4Q5Ysjk',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9J7d4Q5Ysjk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9J7d4Q5Ysjk/maxresdefault.jpg',
         },
         {
           'id': 'PYFUGvP7Tek',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PYFUGvP7Tek/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PYFUGvP7Tek/maxresdefault.jpg',
         },
         {
           'id': 'FSBy5hig8pk',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FSBy5hig8pk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FSBy5hig8pk/maxresdefault.jpg',
         },
         {
           'id': 'SC1tGve5Nr0',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SC1tGve5Nr0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SC1tGve5Nr0/maxresdefault.jpg',
         },
         {
           'id': 'jU88uXulQqU',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jU88uXulQqU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jU88uXulQqU/maxresdefault.jpg',
         },
         {
           'id': 'vmD7jsiM2Sk',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vmD7jsiM2Sk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vmD7jsiM2Sk/maxresdefault.jpg',
         },
         {
           'id': 'LYW-ukqJk2E',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LYW-ukqJk2E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LYW-ukqJk2E/maxresdefault.jpg',
         },
         {
           'id': 'XheYcFyel0M',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XheYcFyel0M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XheYcFyel0M/maxresdefault.jpg',
         },
         {
           'id': 'IXwhs66r7_c',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IXwhs66r7_c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IXwhs66r7_c/maxresdefault.jpg',
         },
         {
           'id': 'k3L80X7WPUg',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k3L80X7WPUg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k3L80X7WPUg/maxresdefault.jpg',
         },
         {
           'id': 'j6WNUS8eVnM',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/j6WNUS8eVnM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/j6WNUS8eVnM/maxresdefault.jpg',
         },
         {
           'id': '4D0NsF19jhE',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4D0NsF19jhE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4D0NsF19jhE/maxresdefault.jpg',
         },
         {
           'id': 'VIacmoMtrKE',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VIacmoMtrKE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VIacmoMtrKE/maxresdefault.jpg',
         },
         {
           'id': 'T0GjvJAQGm0',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/T0GjvJAQGm0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/T0GjvJAQGm0/maxresdefault.jpg',
         },
         {
           'id': 'HJ1qGBGVF14',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HJ1qGBGVF14/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HJ1qGBGVF14/maxresdefault.jpg',
         },
         {
           'id': 'xz1-Za_LRTo',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xz1-Za_LRTo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xz1-Za_LRTo/maxresdefault.jpg',
         },
         {
           'id': 'KHkzW3QJzBI',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KHkzW3QJzBI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KHkzW3QJzBI/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2OaE8yjLqTIxq2XKe-PI7m7',
       'title': '[ENG SUB] How Dare You!? Chinese Drama Full Episodes',
@@ -15332,169 +16025,201 @@ class HardcodedShows {
         {
           'id': 'Xi7IXdkz-yg',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Xi7IXdkz-yg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Xi7IXdkz-yg/maxresdefault.jpg',
         },
         {
           'id': 'pjDjTtOAyCI',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pjDjTtOAyCI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pjDjTtOAyCI/maxresdefault.jpg',
         },
         {
           'id': 'mTvAw3yN_3s',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mTvAw3yN_3s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mTvAw3yN_3s/maxresdefault.jpg',
         },
         {
           'id': 'xMUzyFFGB-s',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xMUzyFFGB-s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xMUzyFFGB-s/maxresdefault.jpg',
         },
         {
           'id': 'FlDv7CelPIs',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FlDv7CelPIs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FlDv7CelPIs/maxresdefault.jpg',
         },
         {
           'id': 'e7r3Uwg9yww',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e7r3Uwg9yww/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e7r3Uwg9yww/maxresdefault.jpg',
         },
         {
           'id': 'Fhbb_sb9XiU',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Fhbb_sb9XiU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Fhbb_sb9XiU/maxresdefault.jpg',
         },
         {
           'id': 'e0x2t2qeaZo',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e0x2t2qeaZo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e0x2t2qeaZo/maxresdefault.jpg',
         },
         {
           'id': 'CyG8khYHAYY',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CyG8khYHAYY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CyG8khYHAYY/maxresdefault.jpg',
         },
         {
           'id': 'TRFLA6VlkHU',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TRFLA6VlkHU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TRFLA6VlkHU/maxresdefault.jpg',
         },
         {
           'id': '2YY0I_uFHPc',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2YY0I_uFHPc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2YY0I_uFHPc/maxresdefault.jpg',
         },
         {
           'id': 'Z7KlybX7VPE',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Z7KlybX7VPE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Z7KlybX7VPE/maxresdefault.jpg',
         },
         {
           'id': 'CAPUf0NVjfg',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CAPUf0NVjfg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CAPUf0NVjfg/maxresdefault.jpg',
         },
         {
           'id': 'W4XBuEqYkts',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W4XBuEqYkts/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W4XBuEqYkts/maxresdefault.jpg',
         },
         {
           'id': 'JObgd77gRVI',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JObgd77gRVI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JObgd77gRVI/maxresdefault.jpg',
         },
         {
           'id': 'OTrNbeHNbp8',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OTrNbeHNbp8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OTrNbeHNbp8/maxresdefault.jpg',
         },
         {
           'id': 'i0gscN_d3ss',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/i0gscN_d3ss/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/i0gscN_d3ss/maxresdefault.jpg',
         },
         {
           'id': 'whdceB1PFH8',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/whdceB1PFH8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/whdceB1PFH8/maxresdefault.jpg',
         },
         {
           'id': 'ykHozXEd4o0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ykHozXEd4o0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ykHozXEd4o0/maxresdefault.jpg',
         },
         {
           'id': 'aZOnFsIGiA8',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aZOnFsIGiA8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aZOnFsIGiA8/maxresdefault.jpg',
         },
         {
           'id': 'jWNoWYDCHdc',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jWNoWYDCHdc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jWNoWYDCHdc/maxresdefault.jpg',
         },
         {
           'id': 'ZAh5l4TSL44',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZAh5l4TSL44/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZAh5l4TSL44/maxresdefault.jpg',
         },
         {
           'id': 'h5Wyvwcvs4I',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/h5Wyvwcvs4I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/h5Wyvwcvs4I/maxresdefault.jpg',
         },
         {
           'id': 'XzLZ3sc9Cdk',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XzLZ3sc9Cdk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XzLZ3sc9Cdk/maxresdefault.jpg',
         },
         {
           'id': '7be5EVmMC70',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7be5EVmMC70/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7be5EVmMC70/maxresdefault.jpg',
         },
         {
           'id': 'yrSKWsskJkc',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yrSKWsskJkc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yrSKWsskJkc/maxresdefault.jpg',
         },
         {
           'id': 'wyMCcYVRDc4',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wyMCcYVRDc4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wyMCcYVRDc4/maxresdefault.jpg',
         },
         {
           'id': 'JfU_1gVGozk',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JfU_1gVGozk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JfU_1gVGozk/maxresdefault.jpg',
         },
         {
           'id': 'tgihEZiK8CU',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tgihEZiK8CU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tgihEZiK8CU/maxresdefault.jpg',
         },
         {
           'id': 'IH-5Dhymb50',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IH-5Dhymb50/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IH-5Dhymb50/maxresdefault.jpg',
         },
         {
           'id': 'uolhcVketEM',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uolhcVketEM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uolhcVketEM/maxresdefault.jpg',
         },
         {
           'id': 'r2i5kYDa_z0',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/r2i5kYDa_z0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/r2i5kYDa_z0/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK-BxGpxeLaoE3RK1-B27J2K',
-      'title': '[Get APP Now] ENGSUB [Dawn is Breaking永夜长明] Starring: He Xuanlin / Li Fei / Wang Xingwei | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [Dawn is Breaking永夜长明] Starring: He Xuanlin / Li Fei / Wang Xingwei | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/6YYeJcdHos4/maxresdefault.jpg',
       'episodeCount': 39,
@@ -15504,204 +16229,243 @@ class HardcodedShows {
         {
           'id': '6YYeJcdHos4',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6YYeJcdHos4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6YYeJcdHos4/maxresdefault.jpg',
         },
         {
           'id': 'rXl_g4_1O4s',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rXl_g4_1O4s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rXl_g4_1O4s/maxresdefault.jpg',
         },
         {
           'id': 'vawGay9YgFc',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vawGay9YgFc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vawGay9YgFc/maxresdefault.jpg',
         },
         {
           'id': '0sUb3_hR9ok',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0sUb3_hR9ok/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0sUb3_hR9ok/maxresdefault.jpg',
         },
         {
           'id': 'z6MydktWpw0',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/z6MydktWpw0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/z6MydktWpw0/maxresdefault.jpg',
         },
         {
           'id': 'Vs9aa4SJyEc',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Vs9aa4SJyEc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Vs9aa4SJyEc/maxresdefault.jpg',
         },
         {
           'id': 'oCCnEf_gEA4',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oCCnEf_gEA4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oCCnEf_gEA4/maxresdefault.jpg',
         },
         {
           'id': '45lv8Y1SRMI',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/45lv8Y1SRMI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/45lv8Y1SRMI/maxresdefault.jpg',
         },
         {
           'id': '5i-tVfTFX1c',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5i-tVfTFX1c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5i-tVfTFX1c/maxresdefault.jpg',
         },
         {
           'id': 'ypbIF9XGhIY',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ypbIF9XGhIY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ypbIF9XGhIY/maxresdefault.jpg',
         },
         {
           'id': 'dEjyH7Gg_js',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dEjyH7Gg_js/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dEjyH7Gg_js/maxresdefault.jpg',
         },
         {
           'id': '2jKJSKq-qlI',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2jKJSKq-qlI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2jKJSKq-qlI/maxresdefault.jpg',
         },
         {
           'id': 'YMOgiymZf9Y',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YMOgiymZf9Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YMOgiymZf9Y/maxresdefault.jpg',
         },
         {
           'id': 'l4414iJCE_U',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/l4414iJCE_U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/l4414iJCE_U/maxresdefault.jpg',
         },
         {
           'id': 'h0HxHdwlxaQ',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/h0HxHdwlxaQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/h0HxHdwlxaQ/maxresdefault.jpg',
         },
         {
           'id': 'G451cOmMu14',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G451cOmMu14/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G451cOmMu14/maxresdefault.jpg',
         },
         {
           'id': '78BUGN7wbMw',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/78BUGN7wbMw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/78BUGN7wbMw/maxresdefault.jpg',
         },
         {
           'id': 'WQYgPqXxu0s',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WQYgPqXxu0s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WQYgPqXxu0s/maxresdefault.jpg',
         },
         {
           'id': 'YSNfsYerNUY',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YSNfsYerNUY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YSNfsYerNUY/maxresdefault.jpg',
         },
         {
           'id': '_EWNCtfmVN8',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_EWNCtfmVN8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_EWNCtfmVN8/maxresdefault.jpg',
         },
         {
           'id': 'Z6PRnPZlQGU',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Z6PRnPZlQGU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Z6PRnPZlQGU/maxresdefault.jpg',
         },
         {
           'id': 'zGVuGGLHnk4',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zGVuGGLHnk4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zGVuGGLHnk4/maxresdefault.jpg',
         },
         {
           'id': 'Rz2uuoluMvE',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Rz2uuoluMvE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Rz2uuoluMvE/maxresdefault.jpg',
         },
         {
           'id': 't3ijLSiWkc8',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t3ijLSiWkc8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t3ijLSiWkc8/maxresdefault.jpg',
         },
         {
           'id': 'RCEnLrOK2Nk',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RCEnLrOK2Nk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RCEnLrOK2Nk/maxresdefault.jpg',
         },
         {
           'id': 'CrW7GBI1QD4',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CrW7GBI1QD4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CrW7GBI1QD4/maxresdefault.jpg',
         },
         {
           'id': 'bvU6LqhG0nI',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bvU6LqhG0nI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bvU6LqhG0nI/maxresdefault.jpg',
         },
         {
           'id': 'ixABUsYwTeM',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ixABUsYwTeM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ixABUsYwTeM/maxresdefault.jpg',
         },
         {
           'id': 'rSlp4Sh6mdQ',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rSlp4Sh6mdQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rSlp4Sh6mdQ/maxresdefault.jpg',
         },
         {
           'id': 'xTqe-h63puw',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xTqe-h63puw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xTqe-h63puw/maxresdefault.jpg',
         },
         {
           'id': 'qUeC4j3Zyd4',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qUeC4j3Zyd4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qUeC4j3Zyd4/maxresdefault.jpg',
         },
         {
           'id': '6RtyvflnAyY',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6RtyvflnAyY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6RtyvflnAyY/maxresdefault.jpg',
         },
         {
           'id': 'TcjUct6d8Lk',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TcjUct6d8Lk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TcjUct6d8Lk/maxresdefault.jpg',
         },
         {
           'id': 'Zw4R2ANvHxc',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Zw4R2ANvHxc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Zw4R2ANvHxc/maxresdefault.jpg',
         },
         {
           'id': 'r2hfrPrXrM8',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/r2hfrPrXrM8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/r2hfrPrXrM8/maxresdefault.jpg',
         },
         {
           'id': 'IjKXr05tUVE',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IjKXr05tUVE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IjKXr05tUVE/maxresdefault.jpg',
         },
         {
           'id': 'Oazvgr9cyow',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Oazvgr9cyow/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Oazvgr9cyow/maxresdefault.jpg',
         },
         {
           'id': 'udLBzO1hDos',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/udLBzO1hDos/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/udLBzO1hDos/maxresdefault.jpg',
         },
         {
           'id': 'Ee8uMEzZcIU',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ee8uMEzZcIU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ee8uMEzZcIU/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCSeA3SHirfRuIfeuQ6LL0_P',
-      'title': '【FULL】🏹Fated Hearts | Li Qin, Chen Zheyuan | iQIYI Philippines',
+      'title':
+          '【FULL】🏹Fated Hearts | Li Qin, Chen Zheyuan | iQIYI Philippines',
       'channelTitle': 'iQIYI Philippines - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/7BVVw5H3SMc/maxresdefault.jpg',
       'episodeCount': 50,
@@ -15711,256 +16475,305 @@ class HardcodedShows {
         {
           'id': '7BVVw5H3SMc',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7BVVw5H3SMc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7BVVw5H3SMc/maxresdefault.jpg',
         },
         {
           'id': 'nMS9IVK6NUc',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nMS9IVK6NUc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nMS9IVK6NUc/maxresdefault.jpg',
         },
         {
           'id': '6hjzWdMQjlg',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6hjzWdMQjlg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6hjzWdMQjlg/maxresdefault.jpg',
         },
         {
           'id': 'PrFCDTdY3QI',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PrFCDTdY3QI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PrFCDTdY3QI/maxresdefault.jpg',
         },
         {
           'id': 'eeq9uN88aEo',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eeq9uN88aEo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eeq9uN88aEo/maxresdefault.jpg',
         },
         {
           'id': 'mnrUpNrMuIU',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mnrUpNrMuIU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mnrUpNrMuIU/maxresdefault.jpg',
         },
         {
           'id': 'd5g02NECGm0',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/d5g02NECGm0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/d5g02NECGm0/maxresdefault.jpg',
         },
         {
           'id': '7E9WphK4pRs',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7E9WphK4pRs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7E9WphK4pRs/maxresdefault.jpg',
         },
         {
           'id': 'oEbcdRUEXNA',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oEbcdRUEXNA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oEbcdRUEXNA/maxresdefault.jpg',
         },
         {
           'id': 'meObZVjxAIU',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/meObZVjxAIU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/meObZVjxAIU/maxresdefault.jpg',
         },
         {
           'id': 'aOLRJX3XDQc',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aOLRJX3XDQc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aOLRJX3XDQc/maxresdefault.jpg',
         },
         {
           'id': '1CnS0VgMHfg',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1CnS0VgMHfg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1CnS0VgMHfg/maxresdefault.jpg',
         },
         {
           'id': '24B32b8wSbc',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/24B32b8wSbc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/24B32b8wSbc/maxresdefault.jpg',
         },
         {
           'id': 'JfPn55K_Zyw',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JfPn55K_Zyw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JfPn55K_Zyw/maxresdefault.jpg',
         },
         {
           'id': '4ANNIbePL5o',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4ANNIbePL5o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4ANNIbePL5o/maxresdefault.jpg',
         },
         {
           'id': 'KCYYUs6wGOY',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KCYYUs6wGOY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KCYYUs6wGOY/maxresdefault.jpg',
         },
         {
           'id': 'tm2-SyrqoQg',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tm2-SyrqoQg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tm2-SyrqoQg/maxresdefault.jpg',
         },
         {
           'id': 'eVwqmK9xMXI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eVwqmK9xMXI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eVwqmK9xMXI/maxresdefault.jpg',
         },
         {
           'id': 'HPpzUQQvMO4',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HPpzUQQvMO4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HPpzUQQvMO4/maxresdefault.jpg',
         },
         {
           'id': 'lgMUVwsDeaE',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lgMUVwsDeaE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lgMUVwsDeaE/maxresdefault.jpg',
         },
         {
           'id': 'D8ICcjleLek',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/D8ICcjleLek/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/D8ICcjleLek/maxresdefault.jpg',
         },
         {
           'id': '60rdQhEtjtQ',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/60rdQhEtjtQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/60rdQhEtjtQ/maxresdefault.jpg',
         },
         {
           'id': 'zfxu68LSqpY',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zfxu68LSqpY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zfxu68LSqpY/maxresdefault.jpg',
         },
         {
           'id': 'nH7BpwZHiT4',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nH7BpwZHiT4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nH7BpwZHiT4/maxresdefault.jpg',
         },
         {
           'id': 'QZ5uUGk9gmg',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QZ5uUGk9gmg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QZ5uUGk9gmg/maxresdefault.jpg',
         },
         {
           'id': 'XETV6qE-P_Y',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XETV6qE-P_Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XETV6qE-P_Y/maxresdefault.jpg',
         },
         {
           'id': 'KwAdeWZGsv4',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KwAdeWZGsv4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KwAdeWZGsv4/maxresdefault.jpg',
         },
         {
           'id': 'zhmkQ8Wp7_0',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zhmkQ8Wp7_0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zhmkQ8Wp7_0/maxresdefault.jpg',
         },
         {
           'id': '-8rWW83nQVE',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-8rWW83nQVE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-8rWW83nQVE/maxresdefault.jpg',
         },
         {
           'id': 'zd-4MuxKNDE',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zd-4MuxKNDE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zd-4MuxKNDE/maxresdefault.jpg',
         },
         {
           'id': 'EB2z4OaeJeQ',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EB2z4OaeJeQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EB2z4OaeJeQ/maxresdefault.jpg',
         },
         {
           'id': 'DqgnuwijJ88',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DqgnuwijJ88/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DqgnuwijJ88/maxresdefault.jpg',
         },
         {
           'id': 'Pyknjp4MzGM',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Pyknjp4MzGM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Pyknjp4MzGM/maxresdefault.jpg',
         },
         {
           'id': 'FPdI6w6y5qM',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FPdI6w6y5qM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FPdI6w6y5qM/maxresdefault.jpg',
         },
         {
           'id': 'RdP3SwAKWFY',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RdP3SwAKWFY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RdP3SwAKWFY/maxresdefault.jpg',
         },
         {
           'id': 'kU3V890Llwo',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kU3V890Llwo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kU3V890Llwo/maxresdefault.jpg',
         },
         {
           'id': 'ETJTymoD25w',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ETJTymoD25w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ETJTymoD25w/maxresdefault.jpg',
         },
         {
           'id': 're4pX7gq9iA',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/re4pX7gq9iA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/re4pX7gq9iA/maxresdefault.jpg',
         },
         {
           'id': 'vUTwzvelXb4',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vUTwzvelXb4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vUTwzvelXb4/maxresdefault.jpg',
         },
         {
           'id': '06b8psEluNM',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/06b8psEluNM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/06b8psEluNM/maxresdefault.jpg',
         },
         {
           'id': 'V8Fl3hjwXeo',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/V8Fl3hjwXeo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/V8Fl3hjwXeo/maxresdefault.jpg',
         },
         {
           'id': 'vGvHEg3GZAI',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vGvHEg3GZAI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vGvHEg3GZAI/maxresdefault.jpg',
         },
         {
           'id': 'nmKuUNIsTrc',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nmKuUNIsTrc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nmKuUNIsTrc/maxresdefault.jpg',
         },
         {
           'id': 'S2pk7pn3go4',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/S2pk7pn3go4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/S2pk7pn3go4/maxresdefault.jpg',
         },
         {
           'id': 'HQvrj4X9Frg',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HQvrj4X9Frg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HQvrj4X9Frg/maxresdefault.jpg',
         },
         {
           'id': 'JuyX0SOAZz4',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JuyX0SOAZz4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JuyX0SOAZz4/maxresdefault.jpg',
         },
         {
           'id': 'cJX1Z7OsXw0',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cJX1Z7OsXw0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cJX1Z7OsXw0/maxresdefault.jpg',
         },
         {
           'id': '0SnNcafGaFk',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0SnNcafGaFk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0SnNcafGaFk/maxresdefault.jpg',
         },
         {
           'id': 'dyFdUZG1wQM',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dyFdUZG1wQM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dyFdUZG1wQM/maxresdefault.jpg',
         },
         {
           'id': 'neUlHrFkFGo',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/neUlHrFkFGo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/neUlHrFkFGo/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2NKgnz8uwXIEBwUCqNYbqLq',
       'title': '[ENG SUB] Sword and Beloved Chinese Drama Full Episodes',
@@ -15973,189 +16786,225 @@ class HardcodedShows {
         {
           'id': 'mzXys66_8g0',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mzXys66_8g0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mzXys66_8g0/maxresdefault.jpg',
         },
         {
           'id': 'ygaW9iONLwI',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ygaW9iONLwI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ygaW9iONLwI/maxresdefault.jpg',
         },
         {
           'id': 'YcP1xuQi_mU',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YcP1xuQi_mU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YcP1xuQi_mU/maxresdefault.jpg',
         },
         {
           'id': 'fc-8AWtgpGY',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fc-8AWtgpGY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fc-8AWtgpGY/maxresdefault.jpg',
         },
         {
           'id': 'NlFBGDWbPe0',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NlFBGDWbPe0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NlFBGDWbPe0/maxresdefault.jpg',
         },
         {
           'id': 'bixmTMipHro',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bixmTMipHro/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bixmTMipHro/maxresdefault.jpg',
         },
         {
           'id': 'ZPgeg1zFU1s',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZPgeg1zFU1s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZPgeg1zFU1s/maxresdefault.jpg',
         },
         {
           'id': 'YawhOf25Gyg',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YawhOf25Gyg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YawhOf25Gyg/maxresdefault.jpg',
         },
         {
           'id': 'Gt9yxm_nLbU',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Gt9yxm_nLbU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Gt9yxm_nLbU/maxresdefault.jpg',
         },
         {
           'id': 'jcT_7HSJz3g',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jcT_7HSJz3g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jcT_7HSJz3g/maxresdefault.jpg',
         },
         {
           'id': 'iYjOK-bPzxE',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iYjOK-bPzxE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iYjOK-bPzxE/maxresdefault.jpg',
         },
         {
           'id': 'f1PmnQRkc5I',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/f1PmnQRkc5I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/f1PmnQRkc5I/maxresdefault.jpg',
         },
         {
           'id': 'ejtDmyIl780',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ejtDmyIl780/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ejtDmyIl780/maxresdefault.jpg',
         },
         {
           'id': 'lPGrZuPjaYw',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lPGrZuPjaYw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lPGrZuPjaYw/maxresdefault.jpg',
         },
         {
           'id': 'F0JxhdvVCxo',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/F0JxhdvVCxo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/F0JxhdvVCxo/maxresdefault.jpg',
         },
         {
           'id': '-6DmBfkWs4I',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-6DmBfkWs4I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-6DmBfkWs4I/maxresdefault.jpg',
         },
         {
           'id': 'qhdNg7ezi18',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qhdNg7ezi18/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qhdNg7ezi18/maxresdefault.jpg',
         },
         {
           'id': 'C4QWatsLzd0',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/C4QWatsLzd0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/C4QWatsLzd0/maxresdefault.jpg',
         },
         {
           'id': '-3JUC-w6WIY',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-3JUC-w6WIY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-3JUC-w6WIY/maxresdefault.jpg',
         },
         {
           'id': 'SJ22yMn4qfY',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SJ22yMn4qfY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SJ22yMn4qfY/maxresdefault.jpg',
         },
         {
           'id': 'WPT1vZsbEPA',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WPT1vZsbEPA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WPT1vZsbEPA/maxresdefault.jpg',
         },
         {
           'id': 'vb_rRlYucos',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vb_rRlYucos/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vb_rRlYucos/maxresdefault.jpg',
         },
         {
           'id': 'tA9mW8QZ66g',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tA9mW8QZ66g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tA9mW8QZ66g/maxresdefault.jpg',
         },
         {
           'id': 'pVclitFDQLA',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pVclitFDQLA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pVclitFDQLA/maxresdefault.jpg',
         },
         {
           'id': 'mSm7TbtSQqQ',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mSm7TbtSQqQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mSm7TbtSQqQ/maxresdefault.jpg',
         },
         {
           'id': 'OBP8ezDJxsY',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OBP8ezDJxsY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OBP8ezDJxsY/maxresdefault.jpg',
         },
         {
           'id': 'Ono7fMWcfcg',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ono7fMWcfcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ono7fMWcfcg/maxresdefault.jpg',
         },
         {
           'id': 'grA3qndYsSY',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/grA3qndYsSY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/grA3qndYsSY/maxresdefault.jpg',
         },
         {
           'id': 'uFmqBjp5oPw',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uFmqBjp5oPw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uFmqBjp5oPw/maxresdefault.jpg',
         },
         {
           'id': 'y8DeCfxe4R8',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y8DeCfxe4R8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y8DeCfxe4R8/maxresdefault.jpg',
         },
         {
           'id': '725BzLC7bQw',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/725BzLC7bQw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/725BzLC7bQw/maxresdefault.jpg',
         },
         {
           'id': 'zfLNojkBSdI',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zfLNojkBSdI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zfLNojkBSdI/maxresdefault.jpg',
         },
         {
           'id': 'q2hUHTE56eQ',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/q2hUHTE56eQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/q2hUHTE56eQ/maxresdefault.jpg',
         },
         {
           'id': 'gHD9ngK9TQc',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gHD9ngK9TQc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gHD9ngK9TQc/maxresdefault.jpg',
         },
         {
           'id': '1tYQ6ZMyIvM',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1tYQ6ZMyIvM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1tYQ6ZMyIvM/maxresdefault.jpg',
         },
         {
           'id': 'txW-0Ss7D50',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/txW-0Ss7D50/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/txW-0Ss7D50/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK9dJRiyjRahGpG8woGS9Sl2',
-      'title': '[Get APP Now] ENGSUB [ Skate Into Love 冰糖炖雪梨] Starring: Wu Qian / Zhang Xincheng / Zhou Lijie / Chu Yue | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [ Skate Into Love 冰糖炖雪梨] Starring: Wu Qian / Zhang Xincheng / Zhou Lijie / Chu Yue | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/MVab12IKYMA/maxresdefault.jpg',
       'episodeCount': 40,
@@ -16165,209 +17014,249 @@ class HardcodedShows {
         {
           'id': 'MVab12IKYMA',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MVab12IKYMA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MVab12IKYMA/maxresdefault.jpg',
         },
         {
           'id': 'nf3Jm6DxcS8',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nf3Jm6DxcS8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nf3Jm6DxcS8/maxresdefault.jpg',
         },
         {
           'id': 'HMWUomXgG0Q',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HMWUomXgG0Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HMWUomXgG0Q/maxresdefault.jpg',
         },
         {
           'id': 'v8zkPnVROB8',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/v8zkPnVROB8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/v8zkPnVROB8/maxresdefault.jpg',
         },
         {
           'id': 'v2zRrseQDLU',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/v2zRrseQDLU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/v2zRrseQDLU/maxresdefault.jpg',
         },
         {
           'id': 'fJfkQTffw5w',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fJfkQTffw5w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fJfkQTffw5w/maxresdefault.jpg',
         },
         {
           'id': 'Z-lABLPu8ik',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Z-lABLPu8ik/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Z-lABLPu8ik/maxresdefault.jpg',
         },
         {
           'id': 'yOX9frMhkyk',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yOX9frMhkyk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yOX9frMhkyk/maxresdefault.jpg',
         },
         {
           'id': 'dBbcYuVHCMg',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dBbcYuVHCMg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dBbcYuVHCMg/maxresdefault.jpg',
         },
         {
           'id': 'lL_tOLs2LvM',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lL_tOLs2LvM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lL_tOLs2LvM/maxresdefault.jpg',
         },
         {
           'id': '4uTJHoy9hJE',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4uTJHoy9hJE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4uTJHoy9hJE/maxresdefault.jpg',
         },
         {
           'id': '_rBoIXFIu6A',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_rBoIXFIu6A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_rBoIXFIu6A/maxresdefault.jpg',
         },
         {
           'id': 'dvjDjylZl4I',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dvjDjylZl4I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dvjDjylZl4I/maxresdefault.jpg',
         },
         {
           'id': 'hCoJ_-McrjQ',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hCoJ_-McrjQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hCoJ_-McrjQ/maxresdefault.jpg',
         },
         {
           'id': '9r1c6ODT5Ak',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9r1c6ODT5Ak/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9r1c6ODT5Ak/maxresdefault.jpg',
         },
         {
           'id': 't7dEXG1Fiyg',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t7dEXG1Fiyg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t7dEXG1Fiyg/maxresdefault.jpg',
         },
         {
           'id': 'tYt_VKB0YAY',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tYt_VKB0YAY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tYt_VKB0YAY/maxresdefault.jpg',
         },
         {
           'id': 'e_ry-fDWPR4',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e_ry-fDWPR4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e_ry-fDWPR4/maxresdefault.jpg',
         },
         {
           'id': 'JkcQ3EA_rd0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JkcQ3EA_rd0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JkcQ3EA_rd0/maxresdefault.jpg',
         },
         {
           'id': 'cKx_3qsQSAs',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cKx_3qsQSAs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cKx_3qsQSAs/maxresdefault.jpg',
         },
         {
           'id': 'sMcHu2NpJTk',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sMcHu2NpJTk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sMcHu2NpJTk/maxresdefault.jpg',
         },
         {
           'id': 'MAvoRUd-3wU',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MAvoRUd-3wU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MAvoRUd-3wU/maxresdefault.jpg',
         },
         {
           'id': '50L3zYps7qA',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/50L3zYps7qA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/50L3zYps7qA/maxresdefault.jpg',
         },
         {
           'id': 'dW-ExvMyV-U',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dW-ExvMyV-U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dW-ExvMyV-U/maxresdefault.jpg',
         },
         {
           'id': '9Ir8fRl0tOE',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9Ir8fRl0tOE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9Ir8fRl0tOE/maxresdefault.jpg',
         },
         {
           'id': 'qvltdhMugDk',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qvltdhMugDk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qvltdhMugDk/maxresdefault.jpg',
         },
         {
           'id': 'SamMqarfFcM',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SamMqarfFcM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SamMqarfFcM/maxresdefault.jpg',
         },
         {
           'id': 'qumVz5dsNAg',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qumVz5dsNAg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qumVz5dsNAg/maxresdefault.jpg',
         },
         {
           'id': '-bPKuepf_UA',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-bPKuepf_UA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-bPKuepf_UA/maxresdefault.jpg',
         },
         {
           'id': 'B3DiwwVOd1g',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B3DiwwVOd1g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B3DiwwVOd1g/maxresdefault.jpg',
         },
         {
           'id': 'xqhBgTijxPA',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xqhBgTijxPA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xqhBgTijxPA/maxresdefault.jpg',
         },
         {
           'id': 'sTdNSjmrHS8',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sTdNSjmrHS8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sTdNSjmrHS8/maxresdefault.jpg',
         },
         {
           'id': 'iAW0fRBSFsI',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iAW0fRBSFsI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iAW0fRBSFsI/maxresdefault.jpg',
         },
         {
           'id': 'oOMtbg2dSiQ',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oOMtbg2dSiQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oOMtbg2dSiQ/maxresdefault.jpg',
         },
         {
           'id': 'bQ378NXo380',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bQ378NXo380/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bQ378NXo380/maxresdefault.jpg',
         },
         {
           'id': 'sfhlsuG8o1U',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sfhlsuG8o1U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sfhlsuG8o1U/maxresdefault.jpg',
         },
         {
           'id': '9xjimdGIxRw',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9xjimdGIxRw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9xjimdGIxRw/maxresdefault.jpg',
         },
         {
           'id': 'zP8DY0GpZN0',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zP8DY0GpZN0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zP8DY0GpZN0/maxresdefault.jpg',
         },
         {
           'id': 'ybnHLvEdI8I',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ybnHLvEdI8I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ybnHLvEdI8I/maxresdefault.jpg',
         },
         {
           'id': 'fBj8D-L4EF0',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fBj8D-L4EF0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fBj8D-L4EF0/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK87slgXbMjH686D5Y9P0EuG',
-      'title': 'ENGSUB [Beauty Strategy 美人攻略] Starring: Guan Chang/Zhang Jingyun | YOUKU',
+      'title':
+          'ENGSUB [Beauty Strategy 美人攻略] Starring: Guan Chang/Zhang Jingyun | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/K0Gl-3FEW4s/maxresdefault.jpg',
       'episodeCount': 31,
@@ -16377,164 +17266,195 @@ class HardcodedShows {
         {
           'id': 'K0Gl-3FEW4s',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K0Gl-3FEW4s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K0Gl-3FEW4s/maxresdefault.jpg',
         },
         {
           'id': '-shHZmbjrqI',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-shHZmbjrqI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-shHZmbjrqI/maxresdefault.jpg',
         },
         {
           'id': 'pDbBWLe1p5g',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pDbBWLe1p5g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pDbBWLe1p5g/maxresdefault.jpg',
         },
         {
           'id': 'axSOoe6a3uk',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/axSOoe6a3uk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/axSOoe6a3uk/maxresdefault.jpg',
         },
         {
           'id': '7-X5IzmrLCw',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7-X5IzmrLCw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7-X5IzmrLCw/maxresdefault.jpg',
         },
         {
           'id': '1sX4zMn6XGs',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1sX4zMn6XGs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1sX4zMn6XGs/maxresdefault.jpg',
         },
         {
           'id': 'HAtkBgsUWyQ',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HAtkBgsUWyQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HAtkBgsUWyQ/maxresdefault.jpg',
         },
         {
           'id': 'bMVxuuvU6pM',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bMVxuuvU6pM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bMVxuuvU6pM/maxresdefault.jpg',
         },
         {
           'id': 'nI1kp3v97-o',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nI1kp3v97-o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nI1kp3v97-o/maxresdefault.jpg',
         },
         {
           'id': 't2K3ynffbtw',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t2K3ynffbtw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t2K3ynffbtw/maxresdefault.jpg',
         },
         {
           'id': 'k0BdDADRE6g',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k0BdDADRE6g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k0BdDADRE6g/maxresdefault.jpg',
         },
         {
           'id': 'bv2ujyMoLJ4',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bv2ujyMoLJ4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bv2ujyMoLJ4/maxresdefault.jpg',
         },
         {
           'id': 'Ea8enhWKTo0',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ea8enhWKTo0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ea8enhWKTo0/maxresdefault.jpg',
         },
         {
           'id': '4OGFrP9mnpI',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4OGFrP9mnpI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4OGFrP9mnpI/maxresdefault.jpg',
         },
         {
           'id': 'YL0RBWIo2iw',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YL0RBWIo2iw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YL0RBWIo2iw/maxresdefault.jpg',
         },
         {
           'id': 'WBqcZWZRBj0',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WBqcZWZRBj0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WBqcZWZRBj0/maxresdefault.jpg',
         },
         {
           'id': 'A0fQ2BoUDYY',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/A0fQ2BoUDYY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/A0fQ2BoUDYY/maxresdefault.jpg',
         },
         {
           'id': '4qsI6nTp8Q0',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4qsI6nTp8Q0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4qsI6nTp8Q0/maxresdefault.jpg',
         },
         {
           'id': 'jqxZDfrhxRY',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jqxZDfrhxRY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jqxZDfrhxRY/maxresdefault.jpg',
         },
         {
           'id': 'AufYaiO6AKw',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AufYaiO6AKw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AufYaiO6AKw/maxresdefault.jpg',
         },
         {
           'id': 'ZOfiSJbMJ5Y',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZOfiSJbMJ5Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZOfiSJbMJ5Y/maxresdefault.jpg',
         },
         {
           'id': 'H_x1u0R19FY',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/H_x1u0R19FY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/H_x1u0R19FY/maxresdefault.jpg',
         },
         {
           'id': '7aveFBlloBo',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7aveFBlloBo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7aveFBlloBo/maxresdefault.jpg',
         },
         {
           'id': 'etItQXZEA14',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/etItQXZEA14/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/etItQXZEA14/maxresdefault.jpg',
         },
         {
           'id': 's6FNFO17k4U',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/s6FNFO17k4U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/s6FNFO17k4U/maxresdefault.jpg',
         },
         {
           'id': '6HfxWU8TYKU',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6HfxWU8TYKU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6HfxWU8TYKU/maxresdefault.jpg',
         },
         {
           'id': 'CEGtoc5chDc',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CEGtoc5chDc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CEGtoc5chDc/maxresdefault.jpg',
         },
         {
           'id': 'QXKk36teGLc',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QXKk36teGLc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QXKk36teGLc/maxresdefault.jpg',
         },
         {
           'id': 'lgA3rVz8STM',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lgA3rVz8STM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lgA3rVz8STM/maxresdefault.jpg',
         },
         {
           'id': 'KwBHhKQY9M4',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KwBHhKQY9M4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KwBHhKQY9M4/maxresdefault.jpg',
         },
         {
           'id': 'tseUVlKh1i0',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tseUVlKh1i0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tseUVlKh1i0/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK-zTWsxZO5xUAlAsUEFOl3K',
-      'title': '[Get APP Now] ENGSUB [Circle of Love 锁爱三生] Starring: Li Jiulin/Guan Chang | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [Circle of Love 锁爱三生] Starring: Li Jiulin/Guan Chang | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/Mt_o6K9Y59Q/maxresdefault.jpg',
       'episodeCount': 25,
@@ -16544,131 +17464,155 @@ class HardcodedShows {
         {
           'id': 'Mt_o6K9Y59Q',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Mt_o6K9Y59Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Mt_o6K9Y59Q/maxresdefault.jpg',
         },
         {
           'id': '0e4PUE95gCk',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0e4PUE95gCk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0e4PUE95gCk/maxresdefault.jpg',
         },
         {
           'id': 'FGbciRJfGz8',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FGbciRJfGz8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FGbciRJfGz8/maxresdefault.jpg',
         },
         {
           'id': 'kVop_5QZ-cM',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kVop_5QZ-cM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kVop_5QZ-cM/maxresdefault.jpg',
         },
         {
           'id': 'NJXTCPVjSSI',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NJXTCPVjSSI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NJXTCPVjSSI/maxresdefault.jpg',
         },
         {
           'id': 'l-X8cA1yLAg',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/l-X8cA1yLAg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/l-X8cA1yLAg/maxresdefault.jpg',
         },
         {
           'id': 'NViayK1R56A',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NViayK1R56A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NViayK1R56A/maxresdefault.jpg',
         },
         {
           'id': 'V7m8WNX1gxE',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/V7m8WNX1gxE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/V7m8WNX1gxE/maxresdefault.jpg',
         },
         {
           'id': 'ps5CNXOsgSo',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ps5CNXOsgSo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ps5CNXOsgSo/maxresdefault.jpg',
         },
         {
           'id': 'RDNpQQwImv8',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RDNpQQwImv8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RDNpQQwImv8/maxresdefault.jpg',
         },
         {
           'id': 'Dv4_TvQgkZ8',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Dv4_TvQgkZ8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Dv4_TvQgkZ8/maxresdefault.jpg',
         },
         {
           'id': 'pZQA65WpwVI',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pZQA65WpwVI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pZQA65WpwVI/maxresdefault.jpg',
         },
         {
           'id': 'e5PHcB1S7Do',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e5PHcB1S7Do/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e5PHcB1S7Do/maxresdefault.jpg',
         },
         {
           'id': 'tFCc6RnlOIs',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tFCc6RnlOIs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tFCc6RnlOIs/maxresdefault.jpg',
         },
         {
           'id': 'h9ybnZQRWA0',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/h9ybnZQRWA0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/h9ybnZQRWA0/maxresdefault.jpg',
         },
         {
           'id': 'ws_jHn0n9RE',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ws_jHn0n9RE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ws_jHn0n9RE/maxresdefault.jpg',
         },
         {
           'id': 'gHq2yLxeEDI',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gHq2yLxeEDI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gHq2yLxeEDI/maxresdefault.jpg',
         },
         {
           'id': 'qgd3lQqi7cw',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qgd3lQqi7cw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qgd3lQqi7cw/maxresdefault.jpg',
         },
         {
           'id': 'BGf1clB_uq0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BGf1clB_uq0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BGf1clB_uq0/maxresdefault.jpg',
         },
         {
           'id': '9WN3oWZ8LSY',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9WN3oWZ8LSY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9WN3oWZ8LSY/maxresdefault.jpg',
         },
         {
           'id': '4J0PVfqNpXM',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4J0PVfqNpXM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4J0PVfqNpXM/maxresdefault.jpg',
         },
         {
           'id': 'LPA6cWd9vqA',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LPA6cWd9vqA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LPA6cWd9vqA/maxresdefault.jpg',
         },
         {
           'id': '-Pfck_LVY64',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-Pfck_LVY64/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-Pfck_LVY64/maxresdefault.jpg',
         },
         {
           'id': 'ydWeU4T8c1U',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ydWeU4T8c1U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ydWeU4T8c1U/maxresdefault.jpg',
         },
         {
           'id': 'WcpJ2gD5Ovw',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WcpJ2gD5Ovw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WcpJ2gD5Ovw/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK_n3T51FbkSIbF5IQ0RxhVm',
       'title': 'Dashing Youth',
@@ -16681,206 +17625,245 @@ class HardcodedShows {
         {
           'id': 'YkbaFtAttQM',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YkbaFtAttQM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YkbaFtAttQM/maxresdefault.jpg',
         },
         {
           'id': 'AH8-0GizsvY',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AH8-0GizsvY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AH8-0GizsvY/maxresdefault.jpg',
         },
         {
           'id': 'jI2IS-Weh_Q',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jI2IS-Weh_Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jI2IS-Weh_Q/maxresdefault.jpg',
         },
         {
           'id': '7rw-gdyAl0g',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7rw-gdyAl0g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7rw-gdyAl0g/maxresdefault.jpg',
         },
         {
           'id': 'RF7hLpgfvAA',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RF7hLpgfvAA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RF7hLpgfvAA/maxresdefault.jpg',
         },
         {
           'id': 'A8SmavsPUAY',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/A8SmavsPUAY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/A8SmavsPUAY/maxresdefault.jpg',
         },
         {
           'id': 'cmCwwfLxWIU',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cmCwwfLxWIU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cmCwwfLxWIU/maxresdefault.jpg',
         },
         {
           'id': '_Z0GVGVoLAQ',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_Z0GVGVoLAQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_Z0GVGVoLAQ/maxresdefault.jpg',
         },
         {
           'id': 'KF4rfnm9qdo',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KF4rfnm9qdo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KF4rfnm9qdo/maxresdefault.jpg',
         },
         {
           'id': '0Onz0ARypNw',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0Onz0ARypNw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0Onz0ARypNw/maxresdefault.jpg',
         },
         {
           'id': 'dWLkIvg5lv8',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dWLkIvg5lv8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dWLkIvg5lv8/maxresdefault.jpg',
         },
         {
           'id': 'nFdRfFZpEz0',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nFdRfFZpEz0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nFdRfFZpEz0/maxresdefault.jpg',
         },
         {
           'id': 'mNKnxDhw0Hs',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mNKnxDhw0Hs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mNKnxDhw0Hs/maxresdefault.jpg',
         },
         {
           'id': 'RGb7YPmR3NU',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RGb7YPmR3NU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RGb7YPmR3NU/maxresdefault.jpg',
         },
         {
           'id': '2nQLcDuiYNE',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2nQLcDuiYNE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2nQLcDuiYNE/maxresdefault.jpg',
         },
         {
           'id': 'Wb7nqpWpgRY',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Wb7nqpWpgRY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Wb7nqpWpgRY/maxresdefault.jpg',
         },
         {
           'id': 'o5tbvQGhaCo',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/o5tbvQGhaCo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/o5tbvQGhaCo/maxresdefault.jpg',
         },
         {
           'id': 'FuMBIuEBj5g',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FuMBIuEBj5g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FuMBIuEBj5g/maxresdefault.jpg',
         },
         {
           'id': 'V1ae2rgrl70',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/V1ae2rgrl70/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/V1ae2rgrl70/maxresdefault.jpg',
         },
         {
           'id': 'AE47gHJdOjI',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AE47gHJdOjI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AE47gHJdOjI/maxresdefault.jpg',
         },
         {
           'id': '4lS5ltfjp0I',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4lS5ltfjp0I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4lS5ltfjp0I/maxresdefault.jpg',
         },
         {
           'id': 'D2hdWAb6UfM',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/D2hdWAb6UfM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/D2hdWAb6UfM/maxresdefault.jpg',
         },
         {
           'id': 'FFMHgMz2T0Y',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FFMHgMz2T0Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FFMHgMz2T0Y/maxresdefault.jpg',
         },
         {
           'id': 'oZFAWZeFw5w',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oZFAWZeFw5w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oZFAWZeFw5w/maxresdefault.jpg',
         },
         {
           'id': '16DyrvdDSZY',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/16DyrvdDSZY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/16DyrvdDSZY/maxresdefault.jpg',
         },
         {
           'id': 'P7MdXl2XWw4',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/P7MdXl2XWw4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/P7MdXl2XWw4/maxresdefault.jpg',
         },
         {
           'id': 'mZTJFt7bUDI',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mZTJFt7bUDI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mZTJFt7bUDI/maxresdefault.jpg',
         },
         {
           'id': 'uG2VI9ENu9k',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uG2VI9ENu9k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uG2VI9ENu9k/maxresdefault.jpg',
         },
         {
           'id': 'yBj0p8sW6ns',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yBj0p8sW6ns/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yBj0p8sW6ns/maxresdefault.jpg',
         },
         {
           'id': 'zp4NY56HuPM',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zp4NY56HuPM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zp4NY56HuPM/maxresdefault.jpg',
         },
         {
           'id': 'C9D8k_-Ct3k',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/C9D8k_-Ct3k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/C9D8k_-Ct3k/maxresdefault.jpg',
         },
         {
           'id': 'N4BxbanvOzc',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/N4BxbanvOzc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/N4BxbanvOzc/maxresdefault.jpg',
         },
         {
           'id': 'YImfslXTajE',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YImfslXTajE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YImfslXTajE/maxresdefault.jpg',
         },
         {
           'id': 'ycELi26Sodo',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ycELi26Sodo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ycELi26Sodo/maxresdefault.jpg',
         },
         {
           'id': 'ZY4AL-wb5lw',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZY4AL-wb5lw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZY4AL-wb5lw/maxresdefault.jpg',
         },
         {
           'id': 'wpfZhYyfvro',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wpfZhYyfvro/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wpfZhYyfvro/maxresdefault.jpg',
         },
         {
           'id': 'UsSyEemHgJM',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UsSyEemHgJM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UsSyEemHgJM/maxresdefault.jpg',
         },
         {
           'id': 'KDuUsTQ0evI',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KDuUsTQ0evI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KDuUsTQ0evI/maxresdefault.jpg',
         },
         {
           'id': 'AbU95BC3Vsw',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AbU95BC3Vsw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AbU95BC3Vsw/maxresdefault.jpg',
         },
         {
           'id': 'q-UvwUdI73Y',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/q-UvwUdI73Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/q-UvwUdI73Y/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2M518kT6v3zMqJQkW33RKRB',
       'title': '[ENG SUB] Blossom Chinese Drama Full Episodes',
@@ -17062,7 +18045,6 @@ class HardcodedShows {
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2MFUvg5bCaEK1JLFHzcsAN1',
       'title': '[ENG SUB] Gemini Chinese Drama Full Episodes',
@@ -17075,146 +18057,173 @@ class HardcodedShows {
         {
           'id': '9f82S37VQbA',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9f82S37VQbA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9f82S37VQbA/maxresdefault.jpg',
         },
         {
           'id': 'xFyiBwSRe2E',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xFyiBwSRe2E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xFyiBwSRe2E/maxresdefault.jpg',
         },
         {
           'id': 'W59Sa_Aa6Ck',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W59Sa_Aa6Ck/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W59Sa_Aa6Ck/maxresdefault.jpg',
         },
         {
           'id': 'uTU6MyyQdSs',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uTU6MyyQdSs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uTU6MyyQdSs/maxresdefault.jpg',
         },
         {
           'id': 'LSBiko45p8U',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LSBiko45p8U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LSBiko45p8U/maxresdefault.jpg',
         },
         {
           'id': 'cpRvSzCXbME',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cpRvSzCXbME/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cpRvSzCXbME/maxresdefault.jpg',
         },
         {
           'id': 'T2PwfV1J-iE',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/T2PwfV1J-iE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/T2PwfV1J-iE/maxresdefault.jpg',
         },
         {
           'id': 'mLD2rhFQ24U',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mLD2rhFQ24U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mLD2rhFQ24U/maxresdefault.jpg',
         },
         {
           'id': 'Bz75CX-z_3c',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Bz75CX-z_3c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Bz75CX-z_3c/maxresdefault.jpg',
         },
         {
           'id': 'cm4m6ndEfeE',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cm4m6ndEfeE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cm4m6ndEfeE/maxresdefault.jpg',
         },
         {
           'id': 'NEEt9D9uR4g',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NEEt9D9uR4g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NEEt9D9uR4g/maxresdefault.jpg',
         },
         {
           'id': 'I6ZkNNpabgY',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/I6ZkNNpabgY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/I6ZkNNpabgY/maxresdefault.jpg',
         },
         {
           'id': 'DFv86C0wEg8',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DFv86C0wEg8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DFv86C0wEg8/maxresdefault.jpg',
         },
         {
           'id': 'yPY2tJgqEv4',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yPY2tJgqEv4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yPY2tJgqEv4/maxresdefault.jpg',
         },
         {
           'id': 'jMSVCf9AMY0',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jMSVCf9AMY0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jMSVCf9AMY0/maxresdefault.jpg',
         },
         {
           'id': 'KvY0fOX1SIk',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KvY0fOX1SIk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KvY0fOX1SIk/maxresdefault.jpg',
         },
         {
           'id': 'nWijSsYBU-I',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nWijSsYBU-I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nWijSsYBU-I/maxresdefault.jpg',
         },
         {
           'id': 'D7TBm4YntvI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/D7TBm4YntvI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/D7TBm4YntvI/maxresdefault.jpg',
         },
         {
           'id': 'WjfLoUzG1ng',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WjfLoUzG1ng/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WjfLoUzG1ng/maxresdefault.jpg',
         },
         {
           'id': '9BQL8A28RQA',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9BQL8A28RQA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9BQL8A28RQA/maxresdefault.jpg',
         },
         {
           'id': 'Ui2O9fffvWM',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ui2O9fffvWM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ui2O9fffvWM/maxresdefault.jpg',
         },
         {
           'id': 'KMK9ZIL5vIE',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KMK9ZIL5vIE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KMK9ZIL5vIE/maxresdefault.jpg',
         },
         {
           'id': 'jHwUWfu0KHM',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jHwUWfu0KHM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jHwUWfu0KHM/maxresdefault.jpg',
         },
         {
           'id': '8mHGFtysCrY',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8mHGFtysCrY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8mHGFtysCrY/maxresdefault.jpg',
         },
         {
           'id': 'w0L_FcMIW58',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w0L_FcMIW58/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w0L_FcMIW58/maxresdefault.jpg',
         },
         {
           'id': 'iQAAY0CYLKg',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iQAAY0CYLKg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iQAAY0CYLKg/maxresdefault.jpg',
         },
         {
           'id': 'kY7TpDcxEaA',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kY7TpDcxEaA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kY7TpDcxEaA/maxresdefault.jpg',
         },
         {
           'id': '5mYsyhSQjCo',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5mYsyhSQjCo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5mYsyhSQjCo/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLNwUedXCsl_MurMYhDk9aliUjgTXiZ3mL',
       'title': 'Reborn Chinese drama ENG SUB',
@@ -17227,129 +18236,153 @@ class HardcodedShows {
         {
           'id': 'mWFSH9sODC0',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mWFSH9sODC0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mWFSH9sODC0/maxresdefault.jpg',
         },
         {
           'id': 'VlMNiqNPUSo',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VlMNiqNPUSo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VlMNiqNPUSo/maxresdefault.jpg',
         },
         {
           'id': '3Z_iZO6Mh9M',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3Z_iZO6Mh9M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3Z_iZO6Mh9M/maxresdefault.jpg',
         },
         {
           'id': '5sDn7vmu8_o',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5sDn7vmu8_o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5sDn7vmu8_o/maxresdefault.jpg',
         },
         {
           'id': 'sI2VdMM0Kxg',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sI2VdMM0Kxg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sI2VdMM0Kxg/maxresdefault.jpg',
         },
         {
           'id': 'cG84Teb_vQk',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cG84Teb_vQk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cG84Teb_vQk/maxresdefault.jpg',
         },
         {
           'id': 'EiFoKYACHx4',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EiFoKYACHx4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EiFoKYACHx4/maxresdefault.jpg',
         },
         {
           'id': '1E2GYXNrgEA',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1E2GYXNrgEA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1E2GYXNrgEA/maxresdefault.jpg',
         },
         {
           'id': 'f8ilm_Fb-30',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/f8ilm_Fb-30/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/f8ilm_Fb-30/maxresdefault.jpg',
         },
         {
           'id': 'DQt4Zorb4gE',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DQt4Zorb4gE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DQt4Zorb4gE/maxresdefault.jpg',
         },
         {
           'id': 'J_yKoThS3cc',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/J_yKoThS3cc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/J_yKoThS3cc/maxresdefault.jpg',
         },
         {
           'id': 'hXSZ4MIgiDc',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hXSZ4MIgiDc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hXSZ4MIgiDc/maxresdefault.jpg',
         },
         {
           'id': 'rVZbEowCJmY',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rVZbEowCJmY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rVZbEowCJmY/maxresdefault.jpg',
         },
         {
           'id': 'nRRNAlnPUMA',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nRRNAlnPUMA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nRRNAlnPUMA/maxresdefault.jpg',
         },
         {
           'id': 't9XD-OuW-Lc',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t9XD-OuW-Lc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t9XD-OuW-Lc/maxresdefault.jpg',
         },
         {
           'id': 'K_I7UJiNuGk',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K_I7UJiNuGk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K_I7UJiNuGk/maxresdefault.jpg',
         },
         {
           'id': '3fHgXY96z0A',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3fHgXY96z0A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3fHgXY96z0A/maxresdefault.jpg',
         },
         {
           'id': 'IJGYH4VXcUI',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IJGYH4VXcUI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IJGYH4VXcUI/maxresdefault.jpg',
         },
         {
           'id': 'U4xU5bkKcn0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/U4xU5bkKcn0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/U4xU5bkKcn0/maxresdefault.jpg',
         },
         {
           'id': '-vc_egRd_08',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-vc_egRd_08/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-vc_egRd_08/maxresdefault.jpg',
         },
         {
           'id': 'B0b1dF-l9Nc',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B0b1dF-l9Nc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B0b1dF-l9Nc/maxresdefault.jpg',
         },
         {
           'id': '5wBlUHDMdys',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5wBlUHDMdys/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5wBlUHDMdys/maxresdefault.jpg',
         },
         {
           'id': '4O5La6Fmm9w',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4O5La6Fmm9w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4O5La6Fmm9w/maxresdefault.jpg',
         },
         {
           'id': 'pZx_pXG-sNk',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pZx_pXG-sNk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pZx_pXG-sNk/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLWnMeKaZKVEUx1iJBGlxv2tkDDm5w_CYb',
-      'title': '[ENG SUB] Fated Hearts EPO1 | Cast - Li Qin / Chen Zheyuan | Amnesia War Lady Meets Scheming Prince 💖😍 Historical Drama #爱奇艺东方奇幻',
+      'title':
+          '[ENG SUB] Fated Hearts EPO1 | Cast - Li Qin / Chen Zheyuan | Amnesia War Lady Meets Scheming Prince 💖😍 Historical Drama #爱奇艺东方奇幻',
       'channelTitle': 'GIKKI Chinese Drama',
       'thumbnailUrl': 'https://i.ytimg.com/vi/bRDMNlQzUEk/maxresdefault.jpg',
       'episodeCount': 50,
@@ -17359,259 +18392,309 @@ class HardcodedShows {
         {
           'id': 'bRDMNlQzUEk',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bRDMNlQzUEk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bRDMNlQzUEk/maxresdefault.jpg',
         },
         {
           'id': '9dbF1TkgsQQ',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9dbF1TkgsQQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9dbF1TkgsQQ/maxresdefault.jpg',
         },
         {
           'id': 'vxpx2WW6Txs',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vxpx2WW6Txs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vxpx2WW6Txs/maxresdefault.jpg',
         },
         {
           'id': 'eQLcceF8s1A',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eQLcceF8s1A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eQLcceF8s1A/maxresdefault.jpg',
         },
         {
           'id': '3BS04RQ6Eo8',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3BS04RQ6Eo8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3BS04RQ6Eo8/maxresdefault.jpg',
         },
         {
           'id': '_yafiT4GFl4',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_yafiT4GFl4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_yafiT4GFl4/maxresdefault.jpg',
         },
         {
           'id': 'dpzjzcDhF10',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dpzjzcDhF10/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dpzjzcDhF10/maxresdefault.jpg',
         },
         {
           'id': 'z2atpIo4ZL0',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/z2atpIo4ZL0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/z2atpIo4ZL0/maxresdefault.jpg',
         },
         {
           'id': 'FVdccF7qLy8',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FVdccF7qLy8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FVdccF7qLy8/maxresdefault.jpg',
         },
         {
           'id': 'uHEz4ZwruBA',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uHEz4ZwruBA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uHEz4ZwruBA/maxresdefault.jpg',
         },
         {
           'id': 'LGe1BEo7wL8',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LGe1BEo7wL8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LGe1BEo7wL8/maxresdefault.jpg',
         },
         {
           'id': 'GfYfhot3kG8',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GfYfhot3kG8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GfYfhot3kG8/maxresdefault.jpg',
         },
         {
           'id': 'NYHOhTBqHpo',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NYHOhTBqHpo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NYHOhTBqHpo/maxresdefault.jpg',
         },
         {
           'id': 'j7_dVvV2cPI',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/j7_dVvV2cPI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/j7_dVvV2cPI/maxresdefault.jpg',
         },
         {
           'id': '4nbibzTb4cc',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4nbibzTb4cc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4nbibzTb4cc/maxresdefault.jpg',
         },
         {
           'id': 'jgKGPNvlLDM',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jgKGPNvlLDM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jgKGPNvlLDM/maxresdefault.jpg',
         },
         {
           'id': 'WtVVEt4Nx-I',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WtVVEt4Nx-I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WtVVEt4Nx-I/maxresdefault.jpg',
         },
         {
           'id': 'Gg-xL7d-ePA',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Gg-xL7d-ePA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Gg-xL7d-ePA/maxresdefault.jpg',
         },
         {
           'id': '94OBBp6lE0c',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/94OBBp6lE0c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/94OBBp6lE0c/maxresdefault.jpg',
         },
         {
           'id': 'MPO0drxj4XI',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MPO0drxj4XI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MPO0drxj4XI/maxresdefault.jpg',
         },
         {
           'id': 'HkNoSTOhB4Y',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HkNoSTOhB4Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HkNoSTOhB4Y/maxresdefault.jpg',
         },
         {
           'id': 'LY_UPtxRDfs',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LY_UPtxRDfs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LY_UPtxRDfs/maxresdefault.jpg',
         },
         {
           'id': '0Kpb9u8vW4c',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0Kpb9u8vW4c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0Kpb9u8vW4c/maxresdefault.jpg',
         },
         {
           'id': '49sN31L3vS8',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/49sN31L3vS8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/49sN31L3vS8/maxresdefault.jpg',
         },
         {
           'id': 'k120zzRl04g',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k120zzRl04g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k120zzRl04g/maxresdefault.jpg',
         },
         {
           'id': '--q_ykUzAJo',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/--q_ykUzAJo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/--q_ykUzAJo/maxresdefault.jpg',
         },
         {
           'id': 'mU4PJGd-oxg',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mU4PJGd-oxg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mU4PJGd-oxg/maxresdefault.jpg',
         },
         {
           'id': 'jTsMW87q8GY',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jTsMW87q8GY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jTsMW87q8GY/maxresdefault.jpg',
         },
         {
           'id': 'BiS4rObqR9U',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BiS4rObqR9U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BiS4rObqR9U/maxresdefault.jpg',
         },
         {
           'id': '8kDY8fOHwmg',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8kDY8fOHwmg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8kDY8fOHwmg/maxresdefault.jpg',
         },
         {
           'id': 'HOWSRDXSjb4',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HOWSRDXSjb4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HOWSRDXSjb4/maxresdefault.jpg',
         },
         {
           'id': 'nttqxJL3E-s',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nttqxJL3E-s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nttqxJL3E-s/maxresdefault.jpg',
         },
         {
           'id': 'fE86yZc8kZc',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fE86yZc8kZc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fE86yZc8kZc/maxresdefault.jpg',
         },
         {
           'id': 'rrrjg1K2DUA',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rrrjg1K2DUA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rrrjg1K2DUA/maxresdefault.jpg',
         },
         {
           'id': '43TVuVHqv4U',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/43TVuVHqv4U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/43TVuVHqv4U/maxresdefault.jpg',
         },
         {
           'id': 'tJCmewUT4-o',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tJCmewUT4-o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tJCmewUT4-o/maxresdefault.jpg',
         },
         {
           'id': 'CK0FABWgQCE',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CK0FABWgQCE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CK0FABWgQCE/maxresdefault.jpg',
         },
         {
           'id': 'XXMQEDKOJ1Y',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XXMQEDKOJ1Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XXMQEDKOJ1Y/maxresdefault.jpg',
         },
         {
           'id': 'j6WNUS8eVnM',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/j6WNUS8eVnM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/j6WNUS8eVnM/maxresdefault.jpg',
         },
         {
           'id': 'sobElbooltg',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sobElbooltg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sobElbooltg/maxresdefault.jpg',
         },
         {
           'id': 'j3Ud20i2DdQ',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/j3Ud20i2DdQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/j3Ud20i2DdQ/maxresdefault.jpg',
         },
         {
           'id': 'aSSwijAOyOY',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aSSwijAOyOY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aSSwijAOyOY/maxresdefault.jpg',
         },
         {
           'id': 'WNeCMdIeSOM',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WNeCMdIeSOM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WNeCMdIeSOM/maxresdefault.jpg',
         },
         {
           'id': 'Sp7Q-FdPm3o',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Sp7Q-FdPm3o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Sp7Q-FdPm3o/maxresdefault.jpg',
         },
         {
           'id': 'QI7c50Jcxbk',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QI7c50Jcxbk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QI7c50Jcxbk/maxresdefault.jpg',
         },
         {
           'id': 'tM0Rxs-wCms',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tM0Rxs-wCms/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tM0Rxs-wCms/maxresdefault.jpg',
         },
         {
           'id': '8LnGgGo6dZI',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8LnGgGo6dZI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8LnGgGo6dZI/maxresdefault.jpg',
         },
         {
           'id': '9LRYYn9FsS0',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9LRYYn9FsS0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9LRYYn9FsS0/maxresdefault.jpg',
         },
         {
           'id': 'DbRYdrg_7zM',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DbRYdrg_7zM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DbRYdrg_7zM/maxresdefault.jpg',
         },
         {
           'id': '9WMCnhIlVm0',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9WMCnhIlVm0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9WMCnhIlVm0/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK_6Iyv3Gsa1hZqwSLQ4z34u',
-      'title': 'ENGSUB [THE HOPE 鸣龙少年] Starring: Zhang Ruoyun/Huang Yao | YOUKU',
+      'title':
+          'ENGSUB [THE HOPE 鸣龙少年] Starring: Zhang Ruoyun/Huang Yao | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/kmAPFkyrxbk/maxresdefault.jpg',
       'episodeCount': 30,
@@ -17621,156 +18704,185 @@ class HardcodedShows {
         {
           'id': 'kmAPFkyrxbk',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kmAPFkyrxbk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kmAPFkyrxbk/maxresdefault.jpg',
         },
         {
           'id': 'Oh20v3zeXmQ',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Oh20v3zeXmQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Oh20v3zeXmQ/maxresdefault.jpg',
         },
         {
           'id': 'p1c9-aW9VNY',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/p1c9-aW9VNY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/p1c9-aW9VNY/maxresdefault.jpg',
         },
         {
           'id': 'YIDlSByPZVo',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YIDlSByPZVo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YIDlSByPZVo/maxresdefault.jpg',
         },
         {
           'id': 'w4jiBLztTZs',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w4jiBLztTZs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w4jiBLztTZs/maxresdefault.jpg',
         },
         {
           'id': 'UTClY5ayHco',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UTClY5ayHco/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UTClY5ayHco/maxresdefault.jpg',
         },
         {
           'id': 'tf6hkk68JVc',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tf6hkk68JVc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tf6hkk68JVc/maxresdefault.jpg',
         },
         {
           'id': 'e-TwGAe5RiM',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e-TwGAe5RiM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e-TwGAe5RiM/maxresdefault.jpg',
         },
         {
           'id': 'XP0Ykx7pNmY',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XP0Ykx7pNmY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XP0Ykx7pNmY/maxresdefault.jpg',
         },
         {
           'id': '26bQCoJ6GcY',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/26bQCoJ6GcY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/26bQCoJ6GcY/maxresdefault.jpg',
         },
         {
           'id': 'rSo4q_Bas8E',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rSo4q_Bas8E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rSo4q_Bas8E/maxresdefault.jpg',
         },
         {
           'id': 'djJsBdjN8uc',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/djJsBdjN8uc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/djJsBdjN8uc/maxresdefault.jpg',
         },
         {
           'id': 'VSD-Fc4ivKU',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VSD-Fc4ivKU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VSD-Fc4ivKU/maxresdefault.jpg',
         },
         {
           'id': '2U-nAa30mF0',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2U-nAa30mF0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2U-nAa30mF0/maxresdefault.jpg',
         },
         {
           'id': 'k8ObNsQuS14',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k8ObNsQuS14/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k8ObNsQuS14/maxresdefault.jpg',
         },
         {
           'id': 'le5KQbKlK2w',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/le5KQbKlK2w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/le5KQbKlK2w/maxresdefault.jpg',
         },
         {
           'id': 'YeAZVIyC2WE',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YeAZVIyC2WE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YeAZVIyC2WE/maxresdefault.jpg',
         },
         {
           'id': '8R5J4DgfSyU',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8R5J4DgfSyU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8R5J4DgfSyU/maxresdefault.jpg',
         },
         {
           'id': '2AVwXpzjakE',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2AVwXpzjakE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2AVwXpzjakE/maxresdefault.jpg',
         },
         {
           'id': 'W8f9bLkZPwU',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W8f9bLkZPwU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W8f9bLkZPwU/maxresdefault.jpg',
         },
         {
           'id': 'T7Q5qeoou6s',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/T7Q5qeoou6s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/T7Q5qeoou6s/maxresdefault.jpg',
         },
         {
           'id': 'LjM1P8AST6M',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LjM1P8AST6M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LjM1P8AST6M/maxresdefault.jpg',
         },
         {
           'id': 'TPUdbVO_4hE',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TPUdbVO_4hE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TPUdbVO_4hE/maxresdefault.jpg',
         },
         {
           'id': 'QZtxNWZmix8',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QZtxNWZmix8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QZtxNWZmix8/maxresdefault.jpg',
         },
         {
           'id': 'I-LP6X3nSYE',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/I-LP6X3nSYE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/I-LP6X3nSYE/maxresdefault.jpg',
         },
         {
           'id': 'lhxXALx3uMc',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lhxXALx3uMc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lhxXALx3uMc/maxresdefault.jpg',
         },
         {
           'id': 'Mo4kd8rg3yU',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Mo4kd8rg3yU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Mo4kd8rg3yU/maxresdefault.jpg',
         },
         {
           'id': 'TvzISnDikCI',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TvzISnDikCI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TvzISnDikCI/maxresdefault.jpg',
         },
         {
           'id': 'Xt8m_39rI9o',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Xt8m_39rI9o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Xt8m_39rI9o/maxresdefault.jpg',
         },
         {
           'id': 'OFLWTHO-jJo',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OFLWTHO-jJo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OFLWTHO-jJo/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLlRMBK-O6RkY69nj6AJ051lj7vSGrkNxZ',
       'title': 'Moonlight (Yu Shuxin / Ding Yuxi)  /  EP 1-36  / Eng sub',
@@ -17783,189 +18895,225 @@ class HardcodedShows {
         {
           'id': 'BXHyMeUTgIE',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BXHyMeUTgIE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BXHyMeUTgIE/maxresdefault.jpg',
         },
         {
           'id': '7JZCfgp5G8o',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7JZCfgp5G8o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7JZCfgp5G8o/maxresdefault.jpg',
         },
         {
           'id': 'iGaZjwP4a68',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iGaZjwP4a68/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iGaZjwP4a68/maxresdefault.jpg',
         },
         {
           'id': '1RTL5ZnOMU0',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1RTL5ZnOMU0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1RTL5ZnOMU0/maxresdefault.jpg',
         },
         {
           'id': 'SwKzPW2euI4',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SwKzPW2euI4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SwKzPW2euI4/maxresdefault.jpg',
         },
         {
           'id': '3gTpy-qenT0',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3gTpy-qenT0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3gTpy-qenT0/maxresdefault.jpg',
         },
         {
           'id': 'y2IE9xLX86I',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y2IE9xLX86I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y2IE9xLX86I/maxresdefault.jpg',
         },
         {
           'id': '4SdGhANu4h8',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4SdGhANu4h8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4SdGhANu4h8/maxresdefault.jpg',
         },
         {
           'id': 'tcqD09_LPHY',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tcqD09_LPHY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tcqD09_LPHY/maxresdefault.jpg',
         },
         {
           'id': 'WYsTkuyqNdI',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WYsTkuyqNdI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WYsTkuyqNdI/maxresdefault.jpg',
         },
         {
           'id': 'jdDi1BLK8cM',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jdDi1BLK8cM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jdDi1BLK8cM/maxresdefault.jpg',
         },
         {
           'id': 'E00SdExRvQ0',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/E00SdExRvQ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/E00SdExRvQ0/maxresdefault.jpg',
         },
         {
           'id': '3yLBKL534Q4',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3yLBKL534Q4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3yLBKL534Q4/maxresdefault.jpg',
         },
         {
           'id': 'ap_zzn9tcMo',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ap_zzn9tcMo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ap_zzn9tcMo/maxresdefault.jpg',
         },
         {
           'id': 'Kf5lEbaRDEY',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Kf5lEbaRDEY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Kf5lEbaRDEY/maxresdefault.jpg',
         },
         {
           'id': 'nM3BDMI4Y-s',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nM3BDMI4Y-s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nM3BDMI4Y-s/maxresdefault.jpg',
         },
         {
           'id': 'Hudgy0oFTz4',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Hudgy0oFTz4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Hudgy0oFTz4/maxresdefault.jpg',
         },
         {
           'id': 'GCcTZWkJRfo',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GCcTZWkJRfo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GCcTZWkJRfo/maxresdefault.jpg',
         },
         {
           'id': '1uo4BnsQjw4',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1uo4BnsQjw4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1uo4BnsQjw4/maxresdefault.jpg',
         },
         {
           'id': 'MZXmNrJX4kE',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MZXmNrJX4kE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MZXmNrJX4kE/maxresdefault.jpg',
         },
         {
           'id': '7jSi6hfdgTE',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7jSi6hfdgTE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7jSi6hfdgTE/maxresdefault.jpg',
         },
         {
           'id': 'LVc0U1sJIBU',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LVc0U1sJIBU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LVc0U1sJIBU/maxresdefault.jpg',
         },
         {
           'id': 'bpAW45r5mXw',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bpAW45r5mXw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bpAW45r5mXw/maxresdefault.jpg',
         },
         {
           'id': 'G-BTqOwTPTU',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G-BTqOwTPTU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G-BTqOwTPTU/maxresdefault.jpg',
         },
         {
           'id': 'SYVjoQw8zWA',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SYVjoQw8zWA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SYVjoQw8zWA/maxresdefault.jpg',
         },
         {
           'id': '_T-N-0iGRSk',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_T-N-0iGRSk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_T-N-0iGRSk/maxresdefault.jpg',
         },
         {
           'id': 'nCqEmjZBvqM',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nCqEmjZBvqM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nCqEmjZBvqM/maxresdefault.jpg',
         },
         {
           'id': '5xshqqXpiYI',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5xshqqXpiYI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5xshqqXpiYI/maxresdefault.jpg',
         },
         {
           'id': 'qXb_nXrqjMw',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qXb_nXrqjMw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qXb_nXrqjMw/maxresdefault.jpg',
         },
         {
           'id': 'pERGTJni1Rk',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pERGTJni1Rk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pERGTJni1Rk/maxresdefault.jpg',
         },
         {
           'id': 'vL2qt1yxG3Q',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vL2qt1yxG3Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vL2qt1yxG3Q/maxresdefault.jpg',
         },
         {
           'id': 'gkEBMy-B9TM',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gkEBMy-B9TM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gkEBMy-B9TM/maxresdefault.jpg',
         },
         {
           'id': 'qZHqSM69wN0',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qZHqSM69wN0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qZHqSM69wN0/maxresdefault.jpg',
         },
         {
           'id': 'Wy1sHyASYQw',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Wy1sHyASYQw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Wy1sHyASYQw/maxresdefault.jpg',
         },
         {
           'id': 'zaVgpx0dn7c',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zaVgpx0dn7c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zaVgpx0dn7c/maxresdefault.jpg',
         },
         {
           'id': '-bw3XWYzo-I',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-bw3XWYzo-I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-bw3XWYzo-I/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCRf_shmZazc2l6y_WHZlJpt',
-      'title': '【Full】Bright Eyes in the Dark | Johnny Huang, Zhang Jing Yi | iQIYI Philippines',
+      'title':
+          '【Full】Bright Eyes in the Dark | Johnny Huang, Zhang Jing Yi | iQIYI Philippines',
       'channelTitle': 'iQIYI Philippines - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
       'episodeCount': 50,
@@ -17975,259 +19123,309 @@ class HardcodedShows {
         {
           'id': 'CCnuSDzEhcg',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'bk7FTvh2tj4',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bk7FTvh2tj4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bk7FTvh2tj4/maxresdefault.jpg',
         },
         {
           'id': 'zgpM5pUunwg',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zgpM5pUunwg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zgpM5pUunwg/maxresdefault.jpg',
         },
         {
           'id': '54tzWAXv7w0',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/54tzWAXv7w0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/54tzWAXv7w0/maxresdefault.jpg',
         },
         {
           'id': 'LHlO3OrFEQE',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LHlO3OrFEQE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LHlO3OrFEQE/maxresdefault.jpg',
         },
         {
           'id': 'ENkJ6oCgFTU',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': '7TzEMGVbhPM',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'XyVyVF1EdTA',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': '8eeWUDjLI7E',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': '0z2l2q1SvNc',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'gf7Y7C3dr3s',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'JalmOqeIm-Y',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'zJa0z7ihi0M',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'V-UuzPUBkas',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'xYUu5cE1RfA',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'OxvoVf9kBac',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'Ni1j-N2ECMY',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'ZvLKJYPkl50',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'PchnouE9BjE',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'gKC9t209qDU',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'D1DUFyrETRk',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'V5qeq2caORg',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'teFuEt2ZWVg',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'rCzAKjS9xbU',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'CB64rYJ2tX4',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'ryZD8MApNCY',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'pCnmc5jgwDY',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'i_hulffl8cM',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'Qwyz2k6oymc',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'rn2XkbJCvgM',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'GQ_-_YaqUf4',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'tqHC6-ktyoI',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'AQppYrDr0a4',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': '_9Ev8jx2aYw',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_9Ev8jx2aYw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_9Ev8jx2aYw/maxresdefault.jpg',
         },
         {
           'id': 'cZkR3PZ37Ic',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cZkR3PZ37Ic/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cZkR3PZ37Ic/maxresdefault.jpg',
         },
         {
           'id': 'iOjJIudbIeM',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iOjJIudbIeM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iOjJIudbIeM/maxresdefault.jpg',
         },
         {
           'id': '6v_BIH_JVO8',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6v_BIH_JVO8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6v_BIH_JVO8/maxresdefault.jpg',
         },
         {
           'id': 'fONWUM41_aA',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'hvsJOV-_10Q',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hvsJOV-_10Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hvsJOV-_10Q/maxresdefault.jpg',
         },
         {
           'id': '-9LFPEXffyQ',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-9LFPEXffyQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-9LFPEXffyQ/maxresdefault.jpg',
         },
         {
           'id': 'b-MbhR77eps',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'dFbZas2qzUA',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCnuSDzEhcg/maxresdefault.jpg',
         },
         {
           'id': 'ra3qyuCJwEk',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ra3qyuCJwEk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ra3qyuCJwEk/maxresdefault.jpg',
         },
         {
           'id': 'CNzHwa4N5zU',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CNzHwa4N5zU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CNzHwa4N5zU/maxresdefault.jpg',
         },
         {
           'id': '9N5es7zORjk',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9N5es7zORjk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9N5es7zORjk/maxresdefault.jpg',
         },
         {
           'id': 'YlZ2thsGjgc',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YlZ2thsGjgc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YlZ2thsGjgc/maxresdefault.jpg',
         },
         {
           'id': '6qeNjR_Osw8',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6qeNjR_Osw8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6qeNjR_Osw8/maxresdefault.jpg',
         },
         {
           'id': 'OlkxX-4m0m4',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OlkxX-4m0m4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OlkxX-4m0m4/maxresdefault.jpg',
         },
         {
           'id': 'pBMVES1jsfU',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pBMVES1jsfU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pBMVES1jsfU/maxresdefault.jpg',
         },
         {
           'id': 'VE8nY1UC2zo',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VE8nY1UC2zo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VE8nY1UC2zo/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK-Zjc5dsVYfFD44oWYA-1YZ',
-      'title': 'ENGSUB [Governor&#39;s Secret Love 君心藏不住] Starring: Deng Kai/Jin Zixuan | YOUKU',
+      'title':
+          'ENGSUB [Governor&#39;s Secret Love 君心藏不住] Starring: Deng Kai/Jin Zixuan | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/gZDlH6P-n3M/maxresdefault.jpg',
       'episodeCount': 24,
@@ -18237,126 +19435,149 @@ class HardcodedShows {
         {
           'id': 'gZDlH6P-n3M',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gZDlH6P-n3M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gZDlH6P-n3M/maxresdefault.jpg',
         },
         {
           'id': 'Iw4jJBB5z7A',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Iw4jJBB5z7A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Iw4jJBB5z7A/maxresdefault.jpg',
         },
         {
           'id': 'HOTu6yklewA',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HOTu6yklewA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HOTu6yklewA/maxresdefault.jpg',
         },
         {
           'id': 'bjQpTKoiHa4',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bjQpTKoiHa4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bjQpTKoiHa4/maxresdefault.jpg',
         },
         {
           'id': 'uUrQ5bc6bfg',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uUrQ5bc6bfg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uUrQ5bc6bfg/maxresdefault.jpg',
         },
         {
           'id': '6N4rEVI_44Y',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6N4rEVI_44Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6N4rEVI_44Y/maxresdefault.jpg',
         },
         {
           'id': 'cUBmLDwgg3g',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cUBmLDwgg3g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cUBmLDwgg3g/maxresdefault.jpg',
         },
         {
           'id': '-VJqSl1U6CE',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-VJqSl1U6CE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-VJqSl1U6CE/maxresdefault.jpg',
         },
         {
           'id': '4p4p5HR_c_o',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4p4p5HR_c_o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4p4p5HR_c_o/maxresdefault.jpg',
         },
         {
           'id': 'M2uy7hJkMc0',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/M2uy7hJkMc0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/M2uy7hJkMc0/maxresdefault.jpg',
         },
         {
           'id': '3sI6IUqIhuw',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3sI6IUqIhuw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3sI6IUqIhuw/maxresdefault.jpg',
         },
         {
           'id': 'kJTkeEVhOHQ',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kJTkeEVhOHQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kJTkeEVhOHQ/maxresdefault.jpg',
         },
         {
           'id': 'VGIbHEBtSO8',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VGIbHEBtSO8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VGIbHEBtSO8/maxresdefault.jpg',
         },
         {
           'id': '2wS_1dWIPQg',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2wS_1dWIPQg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2wS_1dWIPQg/maxresdefault.jpg',
         },
         {
           'id': 'YGnKdzZCl4g',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YGnKdzZCl4g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YGnKdzZCl4g/maxresdefault.jpg',
         },
         {
           'id': 'eUdikKkmHZM',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eUdikKkmHZM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eUdikKkmHZM/maxresdefault.jpg',
         },
         {
           'id': 'kf5yScE3vSk',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kf5yScE3vSk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kf5yScE3vSk/maxresdefault.jpg',
         },
         {
           'id': '4yG2jbMT1RY',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4yG2jbMT1RY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4yG2jbMT1RY/maxresdefault.jpg',
         },
         {
           'id': 'VD_RekOaMmE',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VD_RekOaMmE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VD_RekOaMmE/maxresdefault.jpg',
         },
         {
           'id': 'YF-3ZBEnNaA',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YF-3ZBEnNaA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YF-3ZBEnNaA/maxresdefault.jpg',
         },
         {
           'id': 'At8v7Xp7XX4',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/At8v7Xp7XX4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/At8v7Xp7XX4/maxresdefault.jpg',
         },
         {
           'id': 'GblqYwpa3Fw',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GblqYwpa3Fw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GblqYwpa3Fw/maxresdefault.jpg',
         },
         {
           'id': '2p3kgk_yqag',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2p3kgk_yqag/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2p3kgk_yqag/maxresdefault.jpg',
         },
         {
           'id': '-CtXWz6p3RI',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-CtXWz6p3RI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-CtXWz6p3RI/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2M638TXCMccVWoAHm4JDSWN',
       'title': '[ENG SUB] Gen Z Chinese Drama Full Episodes',
@@ -18369,206 +19590,245 @@ class HardcodedShows {
         {
           'id': '8E25Sz4q7C0',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8E25Sz4q7C0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8E25Sz4q7C0/maxresdefault.jpg',
         },
         {
           'id': '7uwJog4IYWY',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7uwJog4IYWY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7uwJog4IYWY/maxresdefault.jpg',
         },
         {
           'id': 'klnttdWlLvg',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/klnttdWlLvg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/klnttdWlLvg/maxresdefault.jpg',
         },
         {
           'id': 'cpCuhxdbP3M',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cpCuhxdbP3M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cpCuhxdbP3M/maxresdefault.jpg',
         },
         {
           'id': 'GsuEr3--Rwo',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GsuEr3--Rwo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GsuEr3--Rwo/maxresdefault.jpg',
         },
         {
           'id': 'ar5nslsgHis',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ar5nslsgHis/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ar5nslsgHis/maxresdefault.jpg',
         },
         {
           'id': 'KpuMNEBxYNs',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KpuMNEBxYNs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KpuMNEBxYNs/maxresdefault.jpg',
         },
         {
           'id': '1bWfIaHipqw',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1bWfIaHipqw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1bWfIaHipqw/maxresdefault.jpg',
         },
         {
           'id': '157g0j0OaBg',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/157g0j0OaBg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/157g0j0OaBg/maxresdefault.jpg',
         },
         {
           'id': '-CvkAplxMt0',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-CvkAplxMt0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-CvkAplxMt0/maxresdefault.jpg',
         },
         {
           'id': 'asP8HwhELmE',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/asP8HwhELmE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/asP8HwhELmE/maxresdefault.jpg',
         },
         {
           'id': 'jtkQwCWG1uc',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jtkQwCWG1uc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jtkQwCWG1uc/maxresdefault.jpg',
         },
         {
           'id': 'qFQA8E_kgI8',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qFQA8E_kgI8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qFQA8E_kgI8/maxresdefault.jpg',
         },
         {
           'id': 'DrIil1zrm44',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DrIil1zrm44/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DrIil1zrm44/maxresdefault.jpg',
         },
         {
           'id': 'saRIoOePhdE',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/saRIoOePhdE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/saRIoOePhdE/maxresdefault.jpg',
         },
         {
           'id': 'uEUv2fEAaMQ',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uEUv2fEAaMQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uEUv2fEAaMQ/maxresdefault.jpg',
         },
         {
           'id': 'i9949ge4ua4',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/i9949ge4ua4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/i9949ge4ua4/maxresdefault.jpg',
         },
         {
           'id': 'A0ugXgB7QP8',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/A0ugXgB7QP8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/A0ugXgB7QP8/maxresdefault.jpg',
         },
         {
           'id': 'pLWYDTsom5g',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pLWYDTsom5g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pLWYDTsom5g/maxresdefault.jpg',
         },
         {
           'id': 'WkBSnKaCZHY',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WkBSnKaCZHY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WkBSnKaCZHY/maxresdefault.jpg',
         },
         {
           'id': 'HHNXUMyDjRg',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HHNXUMyDjRg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HHNXUMyDjRg/maxresdefault.jpg',
         },
         {
           'id': 'gRuFGjmetfQ',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gRuFGjmetfQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gRuFGjmetfQ/maxresdefault.jpg',
         },
         {
           'id': 'hDHTwe1MLzY',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hDHTwe1MLzY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hDHTwe1MLzY/maxresdefault.jpg',
         },
         {
           'id': 'k2tgL6FHqdI',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k2tgL6FHqdI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k2tgL6FHqdI/maxresdefault.jpg',
         },
         {
           'id': 'jqZXA8fEGX4',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jqZXA8fEGX4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jqZXA8fEGX4/maxresdefault.jpg',
         },
         {
           'id': 'AjX4unwOkRU',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AjX4unwOkRU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AjX4unwOkRU/maxresdefault.jpg',
         },
         {
           'id': 'SsQiWv0M-eA',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SsQiWv0M-eA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SsQiWv0M-eA/maxresdefault.jpg',
         },
         {
           'id': '8dkl5FVrzz8',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8dkl5FVrzz8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8dkl5FVrzz8/maxresdefault.jpg',
         },
         {
           'id': 'ILg4m7TGBwY',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ILg4m7TGBwY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ILg4m7TGBwY/maxresdefault.jpg',
         },
         {
           'id': 'aaDl-YQswEc',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aaDl-YQswEc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aaDl-YQswEc/maxresdefault.jpg',
         },
         {
           'id': 'TP3pNfeQbzo',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TP3pNfeQbzo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TP3pNfeQbzo/maxresdefault.jpg',
         },
         {
           'id': 'NlcUv5qQuOY',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NlcUv5qQuOY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NlcUv5qQuOY/maxresdefault.jpg',
         },
         {
           'id': 'ygxNSpkxgKY',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ygxNSpkxgKY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ygxNSpkxgKY/maxresdefault.jpg',
         },
         {
           'id': 'FBUAyRS5yS4',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FBUAyRS5yS4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FBUAyRS5yS4/maxresdefault.jpg',
         },
         {
           'id': '94FPeHwzjbQ',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/94FPeHwzjbQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/94FPeHwzjbQ/maxresdefault.jpg',
         },
         {
           'id': 'TdonioWPWDs',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TdonioWPWDs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TdonioWPWDs/maxresdefault.jpg',
         },
         {
           'id': 'obsTNqWCpyg',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/obsTNqWCpyg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/obsTNqWCpyg/maxresdefault.jpg',
         },
         {
           'id': 'Oa_DLF7MQF0',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Oa_DLF7MQF0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Oa_DLF7MQF0/maxresdefault.jpg',
         },
         {
           'id': 's39qrfApo8c',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/s39qrfApo8c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/s39qrfApo8c/maxresdefault.jpg',
         },
         {
           'id': 'O555SfhS6OA',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/O555SfhS6OA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/O555SfhS6OA/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK9jSaLiXX_KZUvwfh7ROuLy',
       'title': 'ENGSUB [Be Reborn 重生之门] Starring: Zhang Yi/Wang Junkai | YOUKU',
@@ -18581,139 +19841,165 @@ class HardcodedShows {
         {
           'id': '2_AA84y1M7o',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2_AA84y1M7o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2_AA84y1M7o/maxresdefault.jpg',
         },
         {
           'id': '8ZnF4AxG4Ds',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8ZnF4AxG4Ds/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8ZnF4AxG4Ds/maxresdefault.jpg',
         },
         {
           'id': 'hyGckRpLLSk',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hyGckRpLLSk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hyGckRpLLSk/maxresdefault.jpg',
         },
         {
           'id': 'LNX2nmW5AaE',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LNX2nmW5AaE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LNX2nmW5AaE/maxresdefault.jpg',
         },
         {
           'id': 'u3ZwKiAkPu8',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/u3ZwKiAkPu8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/u3ZwKiAkPu8/maxresdefault.jpg',
         },
         {
           'id': 'G_0nqbugnDI',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G_0nqbugnDI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G_0nqbugnDI/maxresdefault.jpg',
         },
         {
           'id': 'UcFypPIcaO0',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UcFypPIcaO0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UcFypPIcaO0/maxresdefault.jpg',
         },
         {
           'id': 'TnHgUzj-pNQ',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TnHgUzj-pNQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TnHgUzj-pNQ/maxresdefault.jpg',
         },
         {
           'id': 'n-m7ZeW-m1g',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/n-m7ZeW-m1g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/n-m7ZeW-m1g/maxresdefault.jpg',
         },
         {
           'id': '_eFmiDGht7Y',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_eFmiDGht7Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_eFmiDGht7Y/maxresdefault.jpg',
         },
         {
           'id': 'whrd8Hp_2CY',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/whrd8Hp_2CY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/whrd8Hp_2CY/maxresdefault.jpg',
         },
         {
           'id': '-sUqbEIap2M',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-sUqbEIap2M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-sUqbEIap2M/maxresdefault.jpg',
         },
         {
           'id': 'X0qW6Mw-ABw',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/X0qW6Mw-ABw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/X0qW6Mw-ABw/maxresdefault.jpg',
         },
         {
           'id': 'L-aNXfM0Hmc',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/L-aNXfM0Hmc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/L-aNXfM0Hmc/maxresdefault.jpg',
         },
         {
           'id': 'EYbZCTlCx_I',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EYbZCTlCx_I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EYbZCTlCx_I/maxresdefault.jpg',
         },
         {
           'id': 'tSUnm3XkRag',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tSUnm3XkRag/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tSUnm3XkRag/maxresdefault.jpg',
         },
         {
           'id': 'Y84UUFKMZf4',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Y84UUFKMZf4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Y84UUFKMZf4/maxresdefault.jpg',
         },
         {
           'id': 'TFAgwFI0dQs',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TFAgwFI0dQs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TFAgwFI0dQs/maxresdefault.jpg',
         },
         {
           'id': 'MGPFI2bfKPE',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MGPFI2bfKPE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MGPFI2bfKPE/maxresdefault.jpg',
         },
         {
           'id': 'kmrDDNA_Yg0',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kmrDDNA_Yg0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kmrDDNA_Yg0/maxresdefault.jpg',
         },
         {
           'id': 'deuzgMB7WDQ',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/deuzgMB7WDQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/deuzgMB7WDQ/maxresdefault.jpg',
         },
         {
           'id': 'F3w_swhf0z8',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/F3w_swhf0z8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/F3w_swhf0z8/maxresdefault.jpg',
         },
         {
           'id': 'OCVVULHJGJA',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OCVVULHJGJA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OCVVULHJGJA/maxresdefault.jpg',
         },
         {
           'id': '0vlbug31hJc',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0vlbug31hJc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0vlbug31hJc/maxresdefault.jpg',
         },
         {
           'id': 'QFITVBXVj2g',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QFITVBXVj2g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QFITVBXVj2g/maxresdefault.jpg',
         },
         {
           'id': 'bcoI9Vgpf8U',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bcoI9Vgpf8U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bcoI9Vgpf8U/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCR7t2xuK0-L7L4qIRBTnA2n',
-      'title': '【FULL】⚜️ Pursuit of Jade |  Zhang Linghe, Tian Xiwei | iQIYI Philippines (In no particular order）',
+      'title':
+          '【FULL】⚜️ Pursuit of Jade |  Zhang Linghe, Tian Xiwei | iQIYI Philippines (In no particular order）',
       'channelTitle': 'iQIYI Philippines - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/AY1Wv805lUw/maxresdefault.jpg',
       'episodeCount': 50,
@@ -18723,259 +20009,309 @@ class HardcodedShows {
         {
           'id': 'AY1Wv805lUw',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AY1Wv805lUw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AY1Wv805lUw/maxresdefault.jpg',
         },
         {
           'id': 'zr4J5LmMjuE',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zr4J5LmMjuE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zr4J5LmMjuE/maxresdefault.jpg',
         },
         {
           'id': '6zVdgKIAwsA',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6zVdgKIAwsA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6zVdgKIAwsA/maxresdefault.jpg',
         },
         {
           'id': 'MxOydpm5U5U',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MxOydpm5U5U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MxOydpm5U5U/maxresdefault.jpg',
         },
         {
           'id': 'W44-q3K2QJY',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W44-q3K2QJY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W44-q3K2QJY/maxresdefault.jpg',
         },
         {
           'id': 'KJn1gifAmok',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KJn1gifAmok/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KJn1gifAmok/maxresdefault.jpg',
         },
         {
           'id': 'xwEs-WU6_wI',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xwEs-WU6_wI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xwEs-WU6_wI/maxresdefault.jpg',
         },
         {
           'id': 'siEOodxhIBE',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/siEOodxhIBE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/siEOodxhIBE/maxresdefault.jpg',
         },
         {
           'id': '_96ikaUUS3Y',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_96ikaUUS3Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_96ikaUUS3Y/maxresdefault.jpg',
         },
         {
           'id': 'UVoNFDYec8s',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UVoNFDYec8s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UVoNFDYec8s/maxresdefault.jpg',
         },
         {
           'id': 'JtXcK_1N8OM',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JtXcK_1N8OM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JtXcK_1N8OM/maxresdefault.jpg',
         },
         {
           'id': 'ao04ms4nORA',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ao04ms4nORA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ao04ms4nORA/maxresdefault.jpg',
         },
         {
           'id': '4SiXKX2tpdc',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4SiXKX2tpdc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4SiXKX2tpdc/maxresdefault.jpg',
         },
         {
           'id': '6Pbj3NwYrqI',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6Pbj3NwYrqI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6Pbj3NwYrqI/maxresdefault.jpg',
         },
         {
           'id': 'VTt0AZfR0Wg',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VTt0AZfR0Wg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VTt0AZfR0Wg/maxresdefault.jpg',
         },
         {
           'id': 'ScBOAMVWtQE',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ScBOAMVWtQE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ScBOAMVWtQE/maxresdefault.jpg',
         },
         {
           'id': 'gt9-3TaUaco',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gt9-3TaUaco/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gt9-3TaUaco/maxresdefault.jpg',
         },
         {
           'id': 'vRQTXpGf_kE',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vRQTXpGf_kE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vRQTXpGf_kE/maxresdefault.jpg',
         },
         {
           'id': 'iUtVJVDFKEo',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iUtVJVDFKEo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iUtVJVDFKEo/maxresdefault.jpg',
         },
         {
           'id': '0_c62q-bO6o',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0_c62q-bO6o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0_c62q-bO6o/maxresdefault.jpg',
         },
         {
           'id': 'Rzqd18lL5rk',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Rzqd18lL5rk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Rzqd18lL5rk/maxresdefault.jpg',
         },
         {
           'id': 'bqYl9Ts6Pko',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bqYl9Ts6Pko/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bqYl9Ts6Pko/maxresdefault.jpg',
         },
         {
           'id': '6hEMkTy8E28',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6hEMkTy8E28/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6hEMkTy8E28/maxresdefault.jpg',
         },
         {
           'id': '7Dq-iz7YqcA',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7Dq-iz7YqcA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7Dq-iz7YqcA/maxresdefault.jpg',
         },
         {
           'id': 'xh5K9iC-Moo',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xh5K9iC-Moo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xh5K9iC-Moo/maxresdefault.jpg',
         },
         {
           'id': '0MMe2AgbXX4',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0MMe2AgbXX4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0MMe2AgbXX4/maxresdefault.jpg',
         },
         {
           'id': 'm0E7f9qpupE',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/m0E7f9qpupE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/m0E7f9qpupE/maxresdefault.jpg',
         },
         {
           'id': 'AKGp1lOCRTI',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AKGp1lOCRTI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AKGp1lOCRTI/maxresdefault.jpg',
         },
         {
           'id': 'zxS_9eyDljk',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zxS_9eyDljk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zxS_9eyDljk/maxresdefault.jpg',
         },
         {
           'id': 'sWDtJ9Ivc6c',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sWDtJ9Ivc6c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sWDtJ9Ivc6c/maxresdefault.jpg',
         },
         {
           'id': 'dr_AaGkb96s',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dr_AaGkb96s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dr_AaGkb96s/maxresdefault.jpg',
         },
         {
           'id': '_cROiBNRstY',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_cROiBNRstY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_cROiBNRstY/maxresdefault.jpg',
         },
         {
           'id': 'JWY_i2dtDE0',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JWY_i2dtDE0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JWY_i2dtDE0/maxresdefault.jpg',
         },
         {
           'id': 'srRaVt1j1No',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/srRaVt1j1No/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/srRaVt1j1No/maxresdefault.jpg',
         },
         {
           'id': 'Uv6ZUUFGSaE',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Uv6ZUUFGSaE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Uv6ZUUFGSaE/maxresdefault.jpg',
         },
         {
           'id': 'YWHZCsskuvo',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YWHZCsskuvo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YWHZCsskuvo/maxresdefault.jpg',
         },
         {
           'id': 'jc5ngqdGuDk',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jc5ngqdGuDk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jc5ngqdGuDk/maxresdefault.jpg',
         },
         {
           'id': 'diqyFEFapiU',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/diqyFEFapiU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/diqyFEFapiU/maxresdefault.jpg',
         },
         {
           'id': 'BatUY26ec3c',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BatUY26ec3c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BatUY26ec3c/maxresdefault.jpg',
         },
         {
           'id': 'J2c6hscMuT4',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/J2c6hscMuT4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/J2c6hscMuT4/maxresdefault.jpg',
         },
         {
           'id': 'kW6yDossZAg',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kW6yDossZAg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kW6yDossZAg/maxresdefault.jpg',
         },
         {
           'id': 'yB2uGh8v5Ik',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yB2uGh8v5Ik/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yB2uGh8v5Ik/maxresdefault.jpg',
         },
         {
           'id': 'ER8YyLFy6cY',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ER8YyLFy6cY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ER8YyLFy6cY/maxresdefault.jpg',
         },
         {
           'id': '76Z43cw-xKQ',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/76Z43cw-xKQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/76Z43cw-xKQ/maxresdefault.jpg',
         },
         {
           'id': 've3aRMsYemE',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ve3aRMsYemE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ve3aRMsYemE/maxresdefault.jpg',
         },
         {
           'id': 'CINtsi-kIx4',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CINtsi-kIx4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CINtsi-kIx4/maxresdefault.jpg',
         },
         {
           'id': 'tJrgJ4YEMy4',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tJrgJ4YEMy4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tJrgJ4YEMy4/maxresdefault.jpg',
         },
         {
           'id': 'ppcwqg8W6EU',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ppcwqg8W6EU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ppcwqg8W6EU/maxresdefault.jpg',
         },
         {
           'id': '7UEIRvnt7VE',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7UEIRvnt7VE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7UEIRvnt7VE/maxresdefault.jpg',
         },
         {
           'id': 'zxtgnOyIIww',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zxtgnOyIIww/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zxtgnOyIIww/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLMjsTGJ0oUITRqxD9tQr9osWFpK0cYePk',
-      'title': '🎥✨【ENG SUB】Chinese Fantasy Movie | Fantasy、Adventure【 iQIYI MOVIE THEATER-Welcome to subscribe】',
+      'title':
+          '🎥✨【ENG SUB】Chinese Fantasy Movie | Fantasy、Adventure【 iQIYI MOVIE THEATER-Welcome to subscribe】',
       'channelTitle': '爱奇艺大电影 iQIYI MOVIE THEATER - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
       'episodeCount': 30,
@@ -18985,159 +20321,189 @@ class HardcodedShows {
         {
           'id': 'NoSUzyq7UkY',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
         },
         {
           'id': 'M8YalPPPAa0',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/M8YalPPPAa0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/M8YalPPPAa0/maxresdefault.jpg',
         },
         {
           'id': 'fihFhvJqrbA',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fihFhvJqrbA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fihFhvJqrbA/maxresdefault.jpg',
         },
         {
           'id': '33sjjLztDTQ',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/33sjjLztDTQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/33sjjLztDTQ/maxresdefault.jpg',
         },
         {
           'id': 'DDalAt6LuVs',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DDalAt6LuVs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DDalAt6LuVs/maxresdefault.jpg',
         },
         {
           'id': '8Q0JPA4YBXE',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8Q0JPA4YBXE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8Q0JPA4YBXE/maxresdefault.jpg',
         },
         {
           'id': 'tNR2FhDX0j4',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tNR2FhDX0j4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tNR2FhDX0j4/maxresdefault.jpg',
         },
         {
           'id': 'w9Hyq9jzu4I',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w9Hyq9jzu4I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w9Hyq9jzu4I/maxresdefault.jpg',
         },
         {
           'id': 'lQfrTazdZI4',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lQfrTazdZI4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lQfrTazdZI4/maxresdefault.jpg',
         },
         {
           'id': 'Ny8NkpwKcUc',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ny8NkpwKcUc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ny8NkpwKcUc/maxresdefault.jpg',
         },
         {
           'id': 'ONi1Mh97lYo',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ONi1Mh97lYo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ONi1Mh97lYo/maxresdefault.jpg',
         },
         {
           'id': 'EPT4eMGWZpY',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EPT4eMGWZpY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EPT4eMGWZpY/maxresdefault.jpg',
         },
         {
           'id': 'sF74vc-qwZE',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sF74vc-qwZE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sF74vc-qwZE/maxresdefault.jpg',
         },
         {
           'id': 'QBQ1xvkvQHw',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QBQ1xvkvQHw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QBQ1xvkvQHw/maxresdefault.jpg',
         },
         {
           'id': 'TlgGzWpANoc',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TlgGzWpANoc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TlgGzWpANoc/maxresdefault.jpg',
         },
         {
           'id': '996iFaMAbYM',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/996iFaMAbYM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/996iFaMAbYM/maxresdefault.jpg',
         },
         {
           'id': 'WeWFPSqZ7Qg',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WeWFPSqZ7Qg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WeWFPSqZ7Qg/maxresdefault.jpg',
         },
         {
           'id': '_eynwNLg1LM',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_eynwNLg1LM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_eynwNLg1LM/maxresdefault.jpg',
         },
         {
           'id': 'xxolDupU1S8',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xxolDupU1S8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xxolDupU1S8/maxresdefault.jpg',
         },
         {
           'id': '5ldas27R1BA',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5ldas27R1BA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5ldas27R1BA/maxresdefault.jpg',
         },
         {
           'id': 'vohGWRICu0s',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vohGWRICu0s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vohGWRICu0s/maxresdefault.jpg',
         },
         {
           'id': 'YnvPgKCqVOI',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YnvPgKCqVOI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YnvPgKCqVOI/maxresdefault.jpg',
         },
         {
           'id': 'S2HdHtZ_A-U',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/S2HdHtZ_A-U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/S2HdHtZ_A-U/maxresdefault.jpg',
         },
         {
           'id': 'lsVPb1UQFaA',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lsVPb1UQFaA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lsVPb1UQFaA/maxresdefault.jpg',
         },
         {
           'id': 'RMesAh1Cqx8',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RMesAh1Cqx8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RMesAh1Cqx8/maxresdefault.jpg',
         },
         {
           'id': 'fLqUSHlmL5Q',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fLqUSHlmL5Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fLqUSHlmL5Q/maxresdefault.jpg',
         },
         {
           'id': 'Pyt8O-ISpH0',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Pyt8O-ISpH0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Pyt8O-ISpH0/maxresdefault.jpg',
         },
         {
           'id': 'X5oUtp_X_wQ',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
         },
         {
           'id': 'Df_NkwpyN2s',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
         },
         {
           'id': '2j8hIbqpFtQ',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NoSUzyq7UkY/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLMX26aiIvX5qmkybu_K9tG6zuaEdx7nJa',
-      'title': '🎀【微短剧 Mini Drama】ENG SUB | Full Version Collection | Download WeTV / Tencent Video APP to Watch More',
+      'title':
+          '🎀【微短剧 Mini Drama】ENG SUB | Full Version Collection | Download WeTV / Tencent Video APP to Watch More',
       'channelTitle': '腾讯视频 - Get the WeTV APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/V-zysxG7Jdg/maxresdefault.jpg',
       'episodeCount': 50,
@@ -19147,259 +20513,309 @@ class HardcodedShows {
         {
           'id': 'V-zysxG7Jdg',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/V-zysxG7Jdg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/V-zysxG7Jdg/maxresdefault.jpg',
         },
         {
           'id': '5U09HqdBEIA',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5U09HqdBEIA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5U09HqdBEIA/maxresdefault.jpg',
         },
         {
           'id': 'jgJbHoBN2vI',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jgJbHoBN2vI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jgJbHoBN2vI/maxresdefault.jpg',
         },
         {
           'id': 'MHWOieF9Hg4',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MHWOieF9Hg4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MHWOieF9Hg4/maxresdefault.jpg',
         },
         {
           'id': '78OEvKmlP2Q',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/78OEvKmlP2Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/78OEvKmlP2Q/maxresdefault.jpg',
         },
         {
           'id': 'aL-Cm1V4uj8',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/aL-Cm1V4uj8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/aL-Cm1V4uj8/maxresdefault.jpg',
         },
         {
           'id': 'bPoSBHDZ6cA',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bPoSBHDZ6cA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bPoSBHDZ6cA/maxresdefault.jpg',
         },
         {
           'id': '_k1uixNTSxU',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_k1uixNTSxU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_k1uixNTSxU/maxresdefault.jpg',
         },
         {
           'id': 'vl5ysvfaqWY',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vl5ysvfaqWY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vl5ysvfaqWY/maxresdefault.jpg',
         },
         {
           'id': 'w2ELw5cC4ZQ',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w2ELw5cC4ZQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w2ELw5cC4ZQ/maxresdefault.jpg',
         },
         {
           'id': 'qqJUcG1fLv8',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qqJUcG1fLv8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qqJUcG1fLv8/maxresdefault.jpg',
         },
         {
           'id': 'Xk8guI5XC7I',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Xk8guI5XC7I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Xk8guI5XC7I/maxresdefault.jpg',
         },
         {
           'id': 'PCmB1NeR1NI',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PCmB1NeR1NI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PCmB1NeR1NI/maxresdefault.jpg',
         },
         {
           'id': 'JpLARFyx_vU',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JpLARFyx_vU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JpLARFyx_vU/maxresdefault.jpg',
         },
         {
           'id': 'Wo--IZMiblY',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Wo--IZMiblY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Wo--IZMiblY/maxresdefault.jpg',
         },
         {
           'id': 'ao5l5OYbOVI',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ao5l5OYbOVI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ao5l5OYbOVI/maxresdefault.jpg',
         },
         {
           'id': 'mgnqLEh0mXQ',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mgnqLEh0mXQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mgnqLEh0mXQ/maxresdefault.jpg',
         },
         {
           'id': 'E0Z1n-9lVyg',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/E0Z1n-9lVyg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/E0Z1n-9lVyg/maxresdefault.jpg',
         },
         {
           'id': 'RakZ-auY6Xc',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RakZ-auY6Xc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RakZ-auY6Xc/maxresdefault.jpg',
         },
         {
           'id': 'RW_5f-_3p84',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RW_5f-_3p84/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RW_5f-_3p84/maxresdefault.jpg',
         },
         {
           'id': '3aK1ZPzauu0',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3aK1ZPzauu0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3aK1ZPzauu0/maxresdefault.jpg',
         },
         {
           'id': 'hCA8oOSz2CM',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hCA8oOSz2CM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hCA8oOSz2CM/maxresdefault.jpg',
         },
         {
           'id': 'rO_67qQVdk0',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rO_67qQVdk0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rO_67qQVdk0/maxresdefault.jpg',
         },
         {
           'id': '2SRRaMTuhKE',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2SRRaMTuhKE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2SRRaMTuhKE/maxresdefault.jpg',
         },
         {
           'id': '72miE0_G8Ms',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/72miE0_G8Ms/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/72miE0_G8Ms/maxresdefault.jpg',
         },
         {
           'id': 'wMtyXWrQ-rY',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wMtyXWrQ-rY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wMtyXWrQ-rY/maxresdefault.jpg',
         },
         {
           'id': 'yeXFYL3mApA',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yeXFYL3mApA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yeXFYL3mApA/maxresdefault.jpg',
         },
         {
           'id': 'MIpUxvy0wXk',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MIpUxvy0wXk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MIpUxvy0wXk/maxresdefault.jpg',
         },
         {
           'id': 'I_LCNapP7tM',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/I_LCNapP7tM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/I_LCNapP7tM/maxresdefault.jpg',
         },
         {
           'id': 'RkcFhSErxUs',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RkcFhSErxUs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RkcFhSErxUs/maxresdefault.jpg',
         },
         {
           'id': 'awWDtFja2t4',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/awWDtFja2t4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/awWDtFja2t4/maxresdefault.jpg',
         },
         {
           'id': 'gxQh71RYSSM',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gxQh71RYSSM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gxQh71RYSSM/maxresdefault.jpg',
         },
         {
           'id': 'cBgg6JfSx0o',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cBgg6JfSx0o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cBgg6JfSx0o/maxresdefault.jpg',
         },
         {
           'id': 'q1z6Z7EcYpY',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/q1z6Z7EcYpY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/q1z6Z7EcYpY/maxresdefault.jpg',
         },
         {
           'id': 'XggiqEE3udE',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XggiqEE3udE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XggiqEE3udE/maxresdefault.jpg',
         },
         {
           'id': 'n48KK0IAF9o',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/n48KK0IAF9o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/n48KK0IAF9o/maxresdefault.jpg',
         },
         {
           'id': 'PVQQ8nXhkQg',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PVQQ8nXhkQg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PVQQ8nXhkQg/maxresdefault.jpg',
         },
         {
           'id': 'IZCgEvXMpxQ',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IZCgEvXMpxQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IZCgEvXMpxQ/maxresdefault.jpg',
         },
         {
           'id': 'jdMpzFtSty0',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jdMpzFtSty0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jdMpzFtSty0/maxresdefault.jpg',
         },
         {
           'id': 'QuAjCapZm4w',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QuAjCapZm4w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QuAjCapZm4w/maxresdefault.jpg',
         },
         {
           'id': 'qHqUzd7yCDo',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qHqUzd7yCDo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qHqUzd7yCDo/maxresdefault.jpg',
         },
         {
           'id': '5v0gEmw9QUc',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5v0gEmw9QUc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5v0gEmw9QUc/maxresdefault.jpg',
         },
         {
           'id': 'BQj9Q1GRnrk',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BQj9Q1GRnrk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BQj9Q1GRnrk/maxresdefault.jpg',
         },
         {
           'id': '1zSF2IeBJ3s',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1zSF2IeBJ3s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1zSF2IeBJ3s/maxresdefault.jpg',
         },
         {
           'id': '-EzD9r_GwMk',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-EzD9r_GwMk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-EzD9r_GwMk/maxresdefault.jpg',
         },
         {
           'id': 'KeslBuPLpgg',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KeslBuPLpgg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KeslBuPLpgg/maxresdefault.jpg',
         },
         {
           'id': 'FaO23WnU9PA',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FaO23WnU9PA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FaO23WnU9PA/maxresdefault.jpg',
         },
         {
           'id': 'EKZdgbBHyp4',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EKZdgbBHyp4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EKZdgbBHyp4/maxresdefault.jpg',
         },
         {
           'id': 'QkMrMdmV6Xs',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QkMrMdmV6Xs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QkMrMdmV6Xs/maxresdefault.jpg',
         },
         {
           'id': 'eZFyMaxIoCw',
           'title': 'EP50',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eZFyMaxIoCw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eZFyMaxIoCw/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8hfRCOdc3tpxnj6JmGAZoc',
-      'title': '[Get APP Now] ENGSUB [Brocade Odyssey 蜀锦人家] Starring: Tan Songyun / Zheng Yecheng / JingChao / ChenXiaoyun | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [Brocade Odyssey 蜀锦人家] Starring: Tan Songyun / Zheng Yecheng / JingChao / ChenXiaoyun | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/nQpbI8Htb_Y/maxresdefault.jpg',
       'episodeCount': 45,
@@ -19409,234 +20825,279 @@ class HardcodedShows {
         {
           'id': 'nQpbI8Htb_Y',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nQpbI8Htb_Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nQpbI8Htb_Y/maxresdefault.jpg',
         },
         {
           'id': '4AclcDz3yak',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4AclcDz3yak/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4AclcDz3yak/maxresdefault.jpg',
         },
         {
           'id': 'u2gopTdmP6Y',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/u2gopTdmP6Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/u2gopTdmP6Y/maxresdefault.jpg',
         },
         {
           'id': '7fg4gzhutlw',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7fg4gzhutlw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7fg4gzhutlw/maxresdefault.jpg',
         },
         {
           'id': 'SS4MrbNwE3w',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SS4MrbNwE3w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SS4MrbNwE3w/maxresdefault.jpg',
         },
         {
           'id': 'toOnjsKgHDI',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/toOnjsKgHDI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/toOnjsKgHDI/maxresdefault.jpg',
         },
         {
           'id': '739tewokXPk',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/739tewokXPk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/739tewokXPk/maxresdefault.jpg',
         },
         {
           'id': 'HhpPLdpSV84',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/HhpPLdpSV84/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/HhpPLdpSV84/maxresdefault.jpg',
         },
         {
           'id': 'AGyTSXP9iWY',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AGyTSXP9iWY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AGyTSXP9iWY/maxresdefault.jpg',
         },
         {
           'id': 'vSgMQ7dScZ0',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vSgMQ7dScZ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vSgMQ7dScZ0/maxresdefault.jpg',
         },
         {
           'id': 'XGjdZmWPoPQ',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XGjdZmWPoPQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XGjdZmWPoPQ/maxresdefault.jpg',
         },
         {
           'id': 'xI8DwGqkYew',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xI8DwGqkYew/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xI8DwGqkYew/maxresdefault.jpg',
         },
         {
           'id': 'kVopCxsDrak',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kVopCxsDrak/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kVopCxsDrak/maxresdefault.jpg',
         },
         {
           'id': '-bSt0NgJemE',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-bSt0NgJemE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-bSt0NgJemE/maxresdefault.jpg',
         },
         {
           'id': 'YvRwUWwZxfE',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YvRwUWwZxfE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YvRwUWwZxfE/maxresdefault.jpg',
         },
         {
           'id': 'zwSSFib-_kM',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zwSSFib-_kM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zwSSFib-_kM/maxresdefault.jpg',
         },
         {
           'id': 'OdZZQ5FzWEc',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OdZZQ5FzWEc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OdZZQ5FzWEc/maxresdefault.jpg',
         },
         {
           'id': 'IWfU3NrntN8',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IWfU3NrntN8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IWfU3NrntN8/maxresdefault.jpg',
         },
         {
           'id': 'ErIiwxowxa0',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ErIiwxowxa0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ErIiwxowxa0/maxresdefault.jpg',
         },
         {
           'id': 'rFPkjQgdw-Q',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rFPkjQgdw-Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rFPkjQgdw-Q/maxresdefault.jpg',
         },
         {
           'id': 'yYYfoU7keGQ',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yYYfoU7keGQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yYYfoU7keGQ/maxresdefault.jpg',
         },
         {
           'id': '0BgIjnIS-_U',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0BgIjnIS-_U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0BgIjnIS-_U/maxresdefault.jpg',
         },
         {
           'id': 'O-1mRObiOog',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/O-1mRObiOog/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/O-1mRObiOog/maxresdefault.jpg',
         },
         {
           'id': 'hrLS6lZjrOg',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hrLS6lZjrOg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hrLS6lZjrOg/maxresdefault.jpg',
         },
         {
           'id': 'rOGTP3XczfY',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/rOGTP3XczfY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/rOGTP3XczfY/maxresdefault.jpg',
         },
         {
           'id': 'YHk-KXeRbbk',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YHk-KXeRbbk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YHk-KXeRbbk/maxresdefault.jpg',
         },
         {
           'id': '0E4-CVmwEv0',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0E4-CVmwEv0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0E4-CVmwEv0/maxresdefault.jpg',
         },
         {
           'id': 'sUzN97FYP4E',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sUzN97FYP4E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sUzN97FYP4E/maxresdefault.jpg',
         },
         {
           'id': 'RLjL1Glrjns',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RLjL1Glrjns/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RLjL1Glrjns/maxresdefault.jpg',
         },
         {
           'id': 'eSJn4q1eR2k',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/eSJn4q1eR2k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/eSJn4q1eR2k/maxresdefault.jpg',
         },
         {
           'id': 'N220nwxfsgY',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/N220nwxfsgY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/N220nwxfsgY/maxresdefault.jpg',
         },
         {
           'id': 'oxeBub6eqUA',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oxeBub6eqUA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oxeBub6eqUA/maxresdefault.jpg',
         },
         {
           'id': 'W6qbXqVVJwE',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W6qbXqVVJwE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W6qbXqVVJwE/maxresdefault.jpg',
         },
         {
           'id': '5rrShV11JFY',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5rrShV11JFY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5rrShV11JFY/maxresdefault.jpg',
         },
         {
           'id': 'RZQc0wk8Y4c',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RZQc0wk8Y4c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RZQc0wk8Y4c/maxresdefault.jpg',
         },
         {
           'id': '_71YicSIM7Q',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_71YicSIM7Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_71YicSIM7Q/maxresdefault.jpg',
         },
         {
           'id': 'pQfb34asYw4',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pQfb34asYw4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pQfb34asYw4/maxresdefault.jpg',
         },
         {
           'id': 'BjFp4oZ9uGA',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BjFp4oZ9uGA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BjFp4oZ9uGA/maxresdefault.jpg',
         },
         {
           'id': 'wxQBQIEZ4y0',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wxQBQIEZ4y0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wxQBQIEZ4y0/maxresdefault.jpg',
         },
         {
           'id': 'TUlRfMfEN2w',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TUlRfMfEN2w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TUlRfMfEN2w/maxresdefault.jpg',
         },
         {
           'id': 'LmUbyJbVLNc',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LmUbyJbVLNc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LmUbyJbVLNc/maxresdefault.jpg',
         },
         {
           'id': '4Nwp2j5i5S8',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4Nwp2j5i5S8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4Nwp2j5i5S8/maxresdefault.jpg',
         },
         {
           'id': 'U_i-v6jneTw',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/U_i-v6jneTw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/U_i-v6jneTw/maxresdefault.jpg',
         },
         {
           'id': 'zITnAcVLU2M',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zITnAcVLU2M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zITnAcVLU2M/maxresdefault.jpg',
         },
         {
           'id': 'ImwgcAU1y68',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ImwgcAU1y68/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ImwgcAU1y68/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLyT8L9yeLXCRr7VK87lI0UOg3HG3uutbu',
-      'title': '【Full】Beauty of Resilience | Ju Jing Yi, Fiction | iQIYI Philippines',
+      'title':
+          '【Full】Beauty of Resilience | Ju Jing Yi, Fiction | iQIYI Philippines',
       'channelTitle': 'iQIYI Philippines - Get the iQIYI APP',
       'thumbnailUrl': 'https://i.ytimg.com/vi/DFGzSdd3jwM/maxresdefault.jpg',
       'episodeCount': 45,
@@ -19646,231 +21107,275 @@ class HardcodedShows {
         {
           'id': 'DFGzSdd3jwM',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DFGzSdd3jwM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DFGzSdd3jwM/maxresdefault.jpg',
         },
         {
           'id': 'TT8V4eOewkc',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TT8V4eOewkc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TT8V4eOewkc/maxresdefault.jpg',
         },
         {
           'id': 'axcCy4gfY_I',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/axcCy4gfY_I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/axcCy4gfY_I/maxresdefault.jpg',
         },
         {
           'id': 'BqesPsnhWtc',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BqesPsnhWtc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BqesPsnhWtc/maxresdefault.jpg',
         },
         {
           'id': '8uo1rd4uCYE',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8uo1rd4uCYE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8uo1rd4uCYE/maxresdefault.jpg',
         },
         {
           'id': 'qDju7mXelok',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qDju7mXelok/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qDju7mXelok/maxresdefault.jpg',
         },
         {
           'id': 'QfOo7HeYEuk',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/QfOo7HeYEuk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/QfOo7HeYEuk/maxresdefault.jpg',
         },
         {
           'id': 'DIKd3IvdkGw',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DIKd3IvdkGw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DIKd3IvdkGw/maxresdefault.jpg',
         },
         {
           'id': 'A6D40BKYc9Y',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/A6D40BKYc9Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/A6D40BKYc9Y/maxresdefault.jpg',
         },
         {
           'id': 'Gd5lvL1Y3UI',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Gd5lvL1Y3UI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Gd5lvL1Y3UI/maxresdefault.jpg',
         },
         {
           'id': 'X_GvgVlmavY',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/X_GvgVlmavY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/X_GvgVlmavY/maxresdefault.jpg',
         },
         {
           'id': 'wV9UNxgYvz4',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wV9UNxgYvz4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wV9UNxgYvz4/maxresdefault.jpg',
         },
         {
           'id': '8_YXbYyoInQ',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8_YXbYyoInQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8_YXbYyoInQ/maxresdefault.jpg',
         },
         {
           'id': 'DLxHpgostqE',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DLxHpgostqE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DLxHpgostqE/maxresdefault.jpg',
         },
         {
           'id': 'o5DX6GmFL5w',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/o5DX6GmFL5w/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/o5DX6GmFL5w/maxresdefault.jpg',
         },
         {
           'id': '74ugLP7690c',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/74ugLP7690c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/74ugLP7690c/maxresdefault.jpg',
         },
         {
           'id': 'TJmSEd08Oyg',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TJmSEd08Oyg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TJmSEd08Oyg/maxresdefault.jpg',
         },
         {
           'id': 'Bhrmf6k_Unc',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Bhrmf6k_Unc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Bhrmf6k_Unc/maxresdefault.jpg',
         },
         {
           'id': 'ksscxXbSX80',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ksscxXbSX80/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ksscxXbSX80/maxresdefault.jpg',
         },
         {
           'id': 'ukB_qXmBR_Y',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ukB_qXmBR_Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ukB_qXmBR_Y/maxresdefault.jpg',
         },
         {
           'id': 'pSsygPA5avo',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pSsygPA5avo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pSsygPA5avo/maxresdefault.jpg',
         },
         {
           'id': 'VgN4h6PNPlw',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VgN4h6PNPlw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VgN4h6PNPlw/maxresdefault.jpg',
         },
         {
           'id': 'Zajs-Q18HyM',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Zajs-Q18HyM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Zajs-Q18HyM/maxresdefault.jpg',
         },
         {
           'id': 'Za9iO7xrdhU',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Za9iO7xrdhU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Za9iO7xrdhU/maxresdefault.jpg',
         },
         {
           'id': '3Q9vKlcD0Ow',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3Q9vKlcD0Ow/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3Q9vKlcD0Ow/maxresdefault.jpg',
         },
         {
           'id': 'CCi69c44BTY',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CCi69c44BTY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CCi69c44BTY/maxresdefault.jpg',
         },
         {
           'id': 'ev_VWdm8HTw',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ev_VWdm8HTw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ev_VWdm8HTw/maxresdefault.jpg',
         },
         {
           'id': 'C5Lnqm4FI5s',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/C5Lnqm4FI5s/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/C5Lnqm4FI5s/maxresdefault.jpg',
         },
         {
           'id': 'XCEUUnOzNnk',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XCEUUnOzNnk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XCEUUnOzNnk/maxresdefault.jpg',
         },
         {
           'id': 'iRK5mHj374E',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iRK5mHj374E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iRK5mHj374E/maxresdefault.jpg',
         },
         {
           'id': 'm4AR3xsJOys',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/m4AR3xsJOys/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/m4AR3xsJOys/maxresdefault.jpg',
         },
         {
           'id': 'RFIOSuAv3Qk',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RFIOSuAv3Qk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RFIOSuAv3Qk/maxresdefault.jpg',
         },
         {
           'id': 'orEXmerMi1Q',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/orEXmerMi1Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/orEXmerMi1Q/maxresdefault.jpg',
         },
         {
           'id': 'dsC0JdjQq0g',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dsC0JdjQq0g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dsC0JdjQq0g/maxresdefault.jpg',
         },
         {
           'id': '6ujA39ulLUc',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6ujA39ulLUc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6ujA39ulLUc/maxresdefault.jpg',
         },
         {
           'id': 'k4_3EdyGX6Y',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/k4_3EdyGX6Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/k4_3EdyGX6Y/maxresdefault.jpg',
         },
         {
           'id': 'AcbZicGdlPk',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AcbZicGdlPk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AcbZicGdlPk/maxresdefault.jpg',
         },
         {
           'id': 'AfzLdKdMfeQ',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/AfzLdKdMfeQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/AfzLdKdMfeQ/maxresdefault.jpg',
         },
         {
           'id': 'J0O2PkQgc5E',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DFGzSdd3jwM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DFGzSdd3jwM/maxresdefault.jpg',
         },
         {
           'id': 'dccEJ10wfPc',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/dccEJ10wfPc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/dccEJ10wfPc/maxresdefault.jpg',
         },
         {
           'id': 'H0Bg8owQeAE',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/H0Bg8owQeAE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/H0Bg8owQeAE/maxresdefault.jpg',
         },
         {
           'id': 'BXr6Zu7EH3g',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BXr6Zu7EH3g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BXr6Zu7EH3g/maxresdefault.jpg',
         },
         {
           'id': 'Sgj2N6Z31as',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Sgj2N6Z31as/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Sgj2N6Z31as/maxresdefault.jpg',
         },
         {
           'id': 'lwUIIudzIUg',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lwUIIudzIUg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lwUIIudzIUg/maxresdefault.jpg',
         },
         {
           'id': 'MgFIMyaJKRQ',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MgFIMyaJKRQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MgFIMyaJKRQ/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK85Ldm2HSl-0Xwj2hN7T59g',
       'title': 'When I Fly Towards You',
@@ -19883,131 +21388,155 @@ class HardcodedShows {
         {
           'id': 'juqpXP34V48',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/juqpXP34V48/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/juqpXP34V48/maxresdefault.jpg',
         },
         {
           'id': 'lR77IiGNBIw',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lR77IiGNBIw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lR77IiGNBIw/maxresdefault.jpg',
         },
         {
           'id': 'ecKG__P_86o',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ecKG__P_86o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ecKG__P_86o/maxresdefault.jpg',
         },
         {
           'id': 'obAOrz5Stw0',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/obAOrz5Stw0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/obAOrz5Stw0/maxresdefault.jpg',
         },
         {
           'id': 'pRTpTTBmiEs',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pRTpTTBmiEs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pRTpTTBmiEs/maxresdefault.jpg',
         },
         {
           'id': 'ZhbrU3InWSY',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZhbrU3InWSY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZhbrU3InWSY/maxresdefault.jpg',
         },
         {
           'id': '2oMNzK_C1fg',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2oMNzK_C1fg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2oMNzK_C1fg/maxresdefault.jpg',
         },
         {
           'id': '1ECNYuz2R48',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1ECNYuz2R48/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1ECNYuz2R48/maxresdefault.jpg',
         },
         {
           'id': 'esQaIgUbO5E',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/esQaIgUbO5E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/esQaIgUbO5E/maxresdefault.jpg',
         },
         {
           'id': 'A_oAoRLtb9A',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/A_oAoRLtb9A/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/A_oAoRLtb9A/maxresdefault.jpg',
         },
         {
           'id': 'PiRmB9K0cUs',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PiRmB9K0cUs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PiRmB9K0cUs/maxresdefault.jpg',
         },
         {
           'id': '7moI88G3ZLY',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7moI88G3ZLY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7moI88G3ZLY/maxresdefault.jpg',
         },
         {
           'id': 'nwtbOphTIiE',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nwtbOphTIiE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nwtbOphTIiE/maxresdefault.jpg',
         },
         {
           'id': 'IKnYDelOVeU',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IKnYDelOVeU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IKnYDelOVeU/maxresdefault.jpg',
         },
         {
           'id': 'mIcKNsCBUuU',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mIcKNsCBUuU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mIcKNsCBUuU/maxresdefault.jpg',
         },
         {
           'id': 'PLWIh6wofY4',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PLWIh6wofY4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PLWIh6wofY4/maxresdefault.jpg',
         },
         {
           'id': '3-yVDQD5Onc',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/3-yVDQD5Onc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/3-yVDQD5Onc/maxresdefault.jpg',
         },
         {
           'id': 'uuiTlE1SV0g',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uuiTlE1SV0g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uuiTlE1SV0g/maxresdefault.jpg',
         },
         {
           'id': 'IPx-GP1UGnM',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IPx-GP1UGnM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IPx-GP1UGnM/maxresdefault.jpg',
         },
         {
           'id': 'CJcS_lbwYzs',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CJcS_lbwYzs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CJcS_lbwYzs/maxresdefault.jpg',
         },
         {
           'id': '27iqjKW7n5I',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/27iqjKW7n5I/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/27iqjKW7n5I/maxresdefault.jpg',
         },
         {
           'id': 'lhsEs0sFwCM',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lhsEs0sFwCM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lhsEs0sFwCM/maxresdefault.jpg',
         },
         {
           'id': 'u_BiskyGAmA',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/u_BiskyGAmA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/u_BiskyGAmA/maxresdefault.jpg',
         },
         {
           'id': 'XsEwWUgK4lg',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/XsEwWUgK4lg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/XsEwWUgK4lg/maxresdefault.jpg',
         },
         {
           'id': 'DynQ4XkS8yo',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/juqpXP34V48/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/juqpXP34V48/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PL6xVgUZ4UP2Pzz2wxr9RubWqYLJeHqXiS',
       'title': '[ENG SUB] Generation to Generation Chinese Drama Full Episodes',
@@ -20020,194 +21549,231 @@ class HardcodedShows {
         {
           'id': 'WCfp3YN9mPs',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/WCfp3YN9mPs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/WCfp3YN9mPs/maxresdefault.jpg',
         },
         {
           'id': '2EVCFBMF2Uw',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2EVCFBMF2Uw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2EVCFBMF2Uw/maxresdefault.jpg',
         },
         {
           'id': '7NegqhY90bQ',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7NegqhY90bQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7NegqhY90bQ/maxresdefault.jpg',
         },
         {
           'id': '0Sus6s0-hWM',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0Sus6s0-hWM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0Sus6s0-hWM/maxresdefault.jpg',
         },
         {
           'id': 'cdaUp68InDk',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cdaUp68InDk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cdaUp68InDk/maxresdefault.jpg',
         },
         {
           'id': 'yGGPJzaufXU',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yGGPJzaufXU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yGGPJzaufXU/maxresdefault.jpg',
         },
         {
           'id': 'pWlGGcNnndM',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/pWlGGcNnndM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/pWlGGcNnndM/maxresdefault.jpg',
         },
         {
           'id': 'ljv9lGuHJRA',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ljv9lGuHJRA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ljv9lGuHJRA/maxresdefault.jpg',
         },
         {
           'id': 'Zjc-GjE54zU',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Zjc-GjE54zU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Zjc-GjE54zU/maxresdefault.jpg',
         },
         {
           'id': 'zJAQRoPxxv4',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zJAQRoPxxv4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zJAQRoPxxv4/maxresdefault.jpg',
         },
         {
           'id': 'oFfINRQYApU',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oFfINRQYApU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oFfINRQYApU/maxresdefault.jpg',
         },
         {
           'id': 'G1q8I4lZ5mU',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/G1q8I4lZ5mU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/G1q8I4lZ5mU/maxresdefault.jpg',
         },
         {
           'id': 'gm8n4jIPHj8',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gm8n4jIPHj8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gm8n4jIPHj8/maxresdefault.jpg',
         },
         {
           'id': 'daerE8PmpsE',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/daerE8PmpsE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/daerE8PmpsE/maxresdefault.jpg',
         },
         {
           'id': '5h1KAf8IGxw',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/5h1KAf8IGxw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/5h1KAf8IGxw/maxresdefault.jpg',
         },
         {
           'id': 'c8LWYjmm3iQ',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/c8LWYjmm3iQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/c8LWYjmm3iQ/maxresdefault.jpg',
         },
         {
           'id': 'qCjI3CzDrc0',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qCjI3CzDrc0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qCjI3CzDrc0/maxresdefault.jpg',
         },
         {
           'id': 'Y2IWPq6jFCE',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Y2IWPq6jFCE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Y2IWPq6jFCE/maxresdefault.jpg',
         },
         {
           'id': 'CBhFNAur2d8',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CBhFNAur2d8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CBhFNAur2d8/maxresdefault.jpg',
         },
         {
           'id': 'ccG_LXaw6vo',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ccG_LXaw6vo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ccG_LXaw6vo/maxresdefault.jpg',
         },
         {
           'id': '__g9ldYLTLM',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/__g9ldYLTLM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/__g9ldYLTLM/maxresdefault.jpg',
         },
         {
           'id': 'nvH8k2CGJTU',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/nvH8k2CGJTU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/nvH8k2CGJTU/maxresdefault.jpg',
         },
         {
           'id': 'KzibYC6NCQA',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KzibYC6NCQA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KzibYC6NCQA/maxresdefault.jpg',
         },
         {
           'id': 'CF6GtiIWcTc',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CF6GtiIWcTc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CF6GtiIWcTc/maxresdefault.jpg',
         },
         {
           'id': 'h8jkF56Y8Ns',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/h8jkF56Y8Ns/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/h8jkF56Y8Ns/maxresdefault.jpg',
         },
         {
           'id': '0FqLncUkwIM',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0FqLncUkwIM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0FqLncUkwIM/maxresdefault.jpg',
         },
         {
           'id': 'YbgMXar9Yz4',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YbgMXar9Yz4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YbgMXar9Yz4/maxresdefault.jpg',
         },
         {
           'id': 'ivuO3yIGLKs',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ivuO3yIGLKs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ivuO3yIGLKs/maxresdefault.jpg',
         },
         {
           'id': 'SA6lMpEr_QY',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SA6lMpEr_QY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SA6lMpEr_QY/maxresdefault.jpg',
         },
         {
           'id': 'vyEe4CCl3gQ',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/vyEe4CCl3gQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/vyEe4CCl3gQ/maxresdefault.jpg',
         },
         {
           'id': 'uwTGw1ZDxjA',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/uwTGw1ZDxjA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/uwTGw1ZDxjA/maxresdefault.jpg',
         },
         {
           'id': 'Wz9oy_74_x8',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Wz9oy_74_x8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Wz9oy_74_x8/maxresdefault.jpg',
         },
         {
           'id': 'iyZbMAEYw9E',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iyZbMAEYw9E/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iyZbMAEYw9E/maxresdefault.jpg',
         },
         {
           'id': '-ztz3CXfrQE',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-ztz3CXfrQE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-ztz3CXfrQE/maxresdefault.jpg',
         },
         {
           'id': 'sJtJlpmayig',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/sJtJlpmayig/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/sJtJlpmayig/maxresdefault.jpg',
         },
         {
           'id': 'BsVtpn0Si3c',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BsVtpn0Si3c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BsVtpn0Si3c/maxresdefault.jpg',
         },
         {
           'id': 'IMgHpivKcHk',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IMgHpivKcHk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IMgHpivKcHk/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLpghCOjR4Qqpym2zoKCT7o32gK7nHFwzV',
-      'title': '🔥Hot Trending【子夜归 Moonlit Reunion】Full EPS | Human and Demon fall in love while solving mysteries | Xu Kai, Tian Xiwei | ENG SUB',
+      'title':
+          '🔥Hot Trending【子夜归 Moonlit Reunion】Full EPS | Human and Demon fall in love while solving mysteries | Xu Kai, Tian Xiwei | ENG SUB',
       'channelTitle': 'MZTV Exclusive Chinese Drama',
       'thumbnailUrl': 'https://i.ytimg.com/vi/iq5gjpTxROk/maxresdefault.jpg',
       'episodeCount': 49,
@@ -20217,251 +21783,299 @@ class HardcodedShows {
         {
           'id': 'iq5gjpTxROk',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iq5gjpTxROk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iq5gjpTxROk/maxresdefault.jpg',
         },
         {
           'id': 'iq5gjpTxROk',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iq5gjpTxROk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iq5gjpTxROk/maxresdefault.jpg',
         },
         {
           'id': 'LkpImMDw3C8',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LkpImMDw3C8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LkpImMDw3C8/maxresdefault.jpg',
         },
         {
           'id': 'v7ni-iXnWWM',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/v7ni-iXnWWM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/v7ni-iXnWWM/maxresdefault.jpg',
         },
         {
           'id': 'DeukwkUB0As',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DeukwkUB0As/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DeukwkUB0As/maxresdefault.jpg',
         },
         {
           'id': 'I7w8raFCzEU',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/I7w8raFCzEU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/I7w8raFCzEU/maxresdefault.jpg',
         },
         {
           'id': 'wOypFDbkpLI',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wOypFDbkpLI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wOypFDbkpLI/maxresdefault.jpg',
         },
         {
           'id': 'VQ5PKKJSVHc',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/VQ5PKKJSVHc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/VQ5PKKJSVHc/maxresdefault.jpg',
         },
         {
           'id': 'hWu-kG1vJe0',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/hWu-kG1vJe0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/hWu-kG1vJe0/maxresdefault.jpg',
         },
         {
           'id': 'fO6ERiQnTpU',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fO6ERiQnTpU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fO6ERiQnTpU/maxresdefault.jpg',
         },
         {
           'id': '-ydHH-ema2Q',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-ydHH-ema2Q/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-ydHH-ema2Q/maxresdefault.jpg',
         },
         {
           'id': 'W6-SB0R7W1U',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W6-SB0R7W1U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W6-SB0R7W1U/maxresdefault.jpg',
         },
         {
           'id': 'oJshdsZo6ZQ',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oJshdsZo6ZQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oJshdsZo6ZQ/maxresdefault.jpg',
         },
         {
           'id': 'Kwjhz1XOLhs',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Kwjhz1XOLhs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Kwjhz1XOLhs/maxresdefault.jpg',
         },
         {
           'id': 'GOS27WmV2gA',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GOS27WmV2gA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GOS27WmV2gA/maxresdefault.jpg',
         },
         {
           'id': 'JGKZ8rqZrJE',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JGKZ8rqZrJE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JGKZ8rqZrJE/maxresdefault.jpg',
         },
         {
           'id': 'NRm_KjYzdgQ',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NRm_KjYzdgQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NRm_KjYzdgQ/maxresdefault.jpg',
         },
         {
           'id': 'cyatTDRS8kQ',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cyatTDRS8kQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cyatTDRS8kQ/maxresdefault.jpg',
         },
         {
           'id': 'gOJfSlyltIg',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gOJfSlyltIg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gOJfSlyltIg/maxresdefault.jpg',
         },
         {
           'id': '-cmyjS-5zTQ',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/-cmyjS-5zTQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/-cmyjS-5zTQ/maxresdefault.jpg',
         },
         {
           'id': '7jD88vMJcyM',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7jD88vMJcyM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7jD88vMJcyM/maxresdefault.jpg',
         },
         {
           'id': '0asOqx2Qmco',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0asOqx2Qmco/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0asOqx2Qmco/maxresdefault.jpg',
         },
         {
           'id': '8-DzphxFJPI',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8-DzphxFJPI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8-DzphxFJPI/maxresdefault.jpg',
         },
         {
           'id': 'Gzjc1eGV22g',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Gzjc1eGV22g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Gzjc1eGV22g/maxresdefault.jpg',
         },
         {
           'id': 'PjasnF6K51c',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PjasnF6K51c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PjasnF6K51c/maxresdefault.jpg',
         },
         {
           'id': 'lkxXGpDjsCY',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lkxXGpDjsCY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lkxXGpDjsCY/maxresdefault.jpg',
         },
         {
           'id': '635WJzOH4l0',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/635WJzOH4l0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/635WJzOH4l0/maxresdefault.jpg',
         },
         {
           'id': 'LPMBjQBf9s8',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/LPMBjQBf9s8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/LPMBjQBf9s8/maxresdefault.jpg',
         },
         {
           'id': '2GL5IIinbdY',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2GL5IIinbdY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2GL5IIinbdY/maxresdefault.jpg',
         },
         {
           'id': 'Y9ZHRA9lxcg',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Y9ZHRA9lxcg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Y9ZHRA9lxcg/maxresdefault.jpg',
         },
         {
           'id': 'lrlrwX6Lavo',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/lrlrwX6Lavo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/lrlrwX6Lavo/maxresdefault.jpg',
         },
         {
           'id': 'Mnfa5_S7KO8',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Mnfa5_S7KO8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Mnfa5_S7KO8/maxresdefault.jpg',
         },
         {
           'id': 'UrZa7fVFqIg',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UrZa7fVFqIg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UrZa7fVFqIg/maxresdefault.jpg',
         },
         {
           'id': 't5EPIgSTgY8',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t5EPIgSTgY8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t5EPIgSTgY8/maxresdefault.jpg',
         },
         {
           'id': 'K3lj2mfIwjY',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/K3lj2mfIwjY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/K3lj2mfIwjY/maxresdefault.jpg',
         },
         {
           'id': '2MHi4diLIJ4',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2MHi4diLIJ4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2MHi4diLIJ4/maxresdefault.jpg',
         },
         {
           'id': 'xKkv1vc7lWU',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xKkv1vc7lWU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xKkv1vc7lWU/maxresdefault.jpg',
         },
         {
           'id': 'tfnUnUOMDc8',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tfnUnUOMDc8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tfnUnUOMDc8/maxresdefault.jpg',
         },
         {
           'id': '_DvckbuNNR0',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_DvckbuNNR0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_DvckbuNNR0/maxresdefault.jpg',
         },
         {
           'id': 'UEiSH3PD40c',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UEiSH3PD40c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UEiSH3PD40c/maxresdefault.jpg',
         },
         {
           'id': 'us5GyTDjMF0',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/us5GyTDjMF0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/us5GyTDjMF0/maxresdefault.jpg',
         },
         {
           'id': 'oBzsKfZVxPw',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/oBzsKfZVxPw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/oBzsKfZVxPw/maxresdefault.jpg',
         },
         {
           'id': 'Q5gn6Jykous',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Q5gn6Jykous/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Q5gn6Jykous/maxresdefault.jpg',
         },
         {
           'id': 'gNiRWpe-mws',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gNiRWpe-mws/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gNiRWpe-mws/maxresdefault.jpg',
         },
         {
           'id': 'KkH2DIBQ7aA',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KkH2DIBQ7aA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KkH2DIBQ7aA/maxresdefault.jpg',
         },
         {
           'id': 'JfPu7o60ZfU',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/JfPu7o60ZfU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/JfPu7o60ZfU/maxresdefault.jpg',
         },
         {
           'id': 'UnIcv7xT85k',
           'title': 'EP47',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UnIcv7xT85k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UnIcv7xT85k/maxresdefault.jpg',
         },
         {
           'id': 'CVO0hA3P8-o',
           'title': 'EP48',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CVO0hA3P8-o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CVO0hA3P8-o/maxresdefault.jpg',
         },
         {
           'id': '9afZnk-zaPs',
           'title': 'EP49',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9afZnk-zaPs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9afZnk-zaPs/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK9cUoS9l_5spDGFvN2Crmdn',
       'title': 'Lighter &amp; Princess',
@@ -20474,184 +22088,219 @@ class HardcodedShows {
         {
           'id': 'z3on0qUUdGA',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/z3on0qUUdGA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/z3on0qUUdGA/maxresdefault.jpg',
         },
         {
           'id': '53H1ZrSqOd4',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/53H1ZrSqOd4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/53H1ZrSqOd4/maxresdefault.jpg',
         },
         {
           'id': '2BcyBuxmwug',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2BcyBuxmwug/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2BcyBuxmwug/maxresdefault.jpg',
         },
         {
           'id': 'PyyMX8IMVxQ',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PyyMX8IMVxQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PyyMX8IMVxQ/maxresdefault.jpg',
         },
         {
           'id': 'PtG5xbL43jk',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/PtG5xbL43jk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/PtG5xbL43jk/maxresdefault.jpg',
         },
         {
           'id': 'y8uvb1yRsa0',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/y8uvb1yRsa0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/y8uvb1yRsa0/maxresdefault.jpg',
         },
         {
           'id': 'NL_MKI6PT3o',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/NL_MKI6PT3o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/NL_MKI6PT3o/maxresdefault.jpg',
         },
         {
           'id': 'ZR7i5_lASYI',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZR7i5_lASYI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZR7i5_lASYI/maxresdefault.jpg',
         },
         {
           'id': '4n4bxsA7hA4',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4n4bxsA7hA4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4n4bxsA7hA4/maxresdefault.jpg',
         },
         {
           'id': 't688DcHAN_o',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/t688DcHAN_o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/t688DcHAN_o/maxresdefault.jpg',
         },
         {
           'id': 'tdjEbbu4Bkw',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tdjEbbu4Bkw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tdjEbbu4Bkw/maxresdefault.jpg',
         },
         {
           'id': '0evrrx1mlnc',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/0evrrx1mlnc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/0evrrx1mlnc/maxresdefault.jpg',
         },
         {
           'id': 'KeK-mrR1Yss',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KeK-mrR1Yss/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KeK-mrR1Yss/maxresdefault.jpg',
         },
         {
           'id': 'e9QEybvn3tU',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/e9QEybvn3tU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/e9QEybvn3tU/maxresdefault.jpg',
         },
         {
           'id': 'cx2SXLdlWao',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cx2SXLdlWao/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cx2SXLdlWao/maxresdefault.jpg',
         },
         {
           'id': 'juRTPVp-VXA',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/juRTPVp-VXA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/juRTPVp-VXA/maxresdefault.jpg',
         },
         {
           'id': 'myXCH1tHfjA',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/myXCH1tHfjA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/myXCH1tHfjA/maxresdefault.jpg',
         },
         {
           'id': '082ZrElAkjU',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/082ZrElAkjU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/082ZrElAkjU/maxresdefault.jpg',
         },
         {
           'id': 'yzSy3kl-eQU',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yzSy3kl-eQU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yzSy3kl-eQU/maxresdefault.jpg',
         },
         {
           'id': 'q8mcR4shhJQ',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/q8mcR4shhJQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/q8mcR4shhJQ/maxresdefault.jpg',
         },
         {
           'id': '4MnKIn1d9lE',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4MnKIn1d9lE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4MnKIn1d9lE/maxresdefault.jpg',
         },
         {
           'id': '7wPJWF108s8',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7wPJWF108s8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7wPJWF108s8/maxresdefault.jpg',
         },
         {
           'id': 'izALo6t328g',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/izALo6t328g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/izALo6t328g/maxresdefault.jpg',
         },
         {
           'id': 'el5uWojAy3o',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/el5uWojAy3o/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/el5uWojAy3o/maxresdefault.jpg',
         },
         {
           'id': 'W0hlB87qHe8',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/W0hlB87qHe8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/W0hlB87qHe8/maxresdefault.jpg',
         },
         {
           'id': 'UiBPe6PF9HU',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UiBPe6PF9HU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UiBPe6PF9HU/maxresdefault.jpg',
         },
         {
           'id': 'IlS3MNHstJs',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IlS3MNHstJs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IlS3MNHstJs/maxresdefault.jpg',
         },
         {
           'id': 'Ntw328hIhso',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ntw328hIhso/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ntw328hIhso/maxresdefault.jpg',
         },
         {
           'id': 'Z1y6kjIGQuQ',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Z1y6kjIGQuQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Z1y6kjIGQuQ/maxresdefault.jpg',
         },
         {
           'id': 'qcwibyjlfYE',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qcwibyjlfYE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qcwibyjlfYE/maxresdefault.jpg',
         },
         {
           'id': '8A7W-tDaaGs',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8A7W-tDaaGs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8A7W-tDaaGs/maxresdefault.jpg',
         },
         {
           'id': 'GcdaQu5AFOw',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GcdaQu5AFOw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GcdaQu5AFOw/maxresdefault.jpg',
         },
         {
           'id': 'kLAmvPRQwf4',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kLAmvPRQwf4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kLAmvPRQwf4/maxresdefault.jpg',
         },
         {
           'id': 'IW27_ghEApE',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/IW27_ghEApE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/IW27_ghEApE/maxresdefault.jpg',
         },
         {
           'id': 'quZLDYMmtkc',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/quZLDYMmtkc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/quZLDYMmtkc/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK8hIu32ZhKKsO2wlADWaCBU',
-      'title': '[Get APP Now] ENGSUB [Kill Me Love Me春花焰] Starring: Liu Xueyi / Wu Jinyan / Bi Wenjun / Zhao Xiaotang / Chen Chuhe / Huang Riying | YOUKU',
+      'title':
+          '[Get APP Now] ENGSUB [Kill Me Love Me春花焰] Starring: Liu Xueyi / Wu Jinyan / Bi Wenjun / Zhao Xiaotang / Chen Chuhe / Huang Riying | YOUKU',
       'channelTitle': 'YOUKU English-Get APP now',
       'thumbnailUrl': 'https://i.ytimg.com/vi/OVN1y6LPWD4/maxresdefault.jpg',
       'episodeCount': 46,
@@ -20661,236 +22310,281 @@ class HardcodedShows {
         {
           'id': 'OVN1y6LPWD4',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/OVN1y6LPWD4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/OVN1y6LPWD4/maxresdefault.jpg',
         },
         {
           'id': 'ABz2OmY_Vk0',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ABz2OmY_Vk0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ABz2OmY_Vk0/maxresdefault.jpg',
         },
         {
           'id': 'iqW7J1pkYT4',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/iqW7J1pkYT4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/iqW7J1pkYT4/maxresdefault.jpg',
         },
         {
           'id': 'qU7t6-c4_gc',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/qU7t6-c4_gc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/qU7t6-c4_gc/maxresdefault.jpg',
         },
         {
           'id': 'DabaukoIpYE',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/DabaukoIpYE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/DabaukoIpYE/maxresdefault.jpg',
         },
         {
           'id': 'tm_knyrcSL0',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/tm_knyrcSL0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/tm_knyrcSL0/maxresdefault.jpg',
         },
         {
           'id': 'xn1B8ISofaE',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xn1B8ISofaE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xn1B8ISofaE/maxresdefault.jpg',
         },
         {
           'id': 'zZyRLT4jeJo',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/zZyRLT4jeJo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/zZyRLT4jeJo/maxresdefault.jpg',
         },
         {
           'id': 'f5fVB1OtigE',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/f5fVB1OtigE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/f5fVB1OtigE/maxresdefault.jpg',
         },
         {
           'id': 'n_dXQfWPrsA',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/n_dXQfWPrsA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/n_dXQfWPrsA/maxresdefault.jpg',
         },
         {
           'id': 'UNlMGeaTcX8',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UNlMGeaTcX8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UNlMGeaTcX8/maxresdefault.jpg',
         },
         {
           'id': 'Y1XdV2ZERQo',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Y1XdV2ZERQo/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Y1XdV2ZERQo/maxresdefault.jpg',
         },
         {
           'id': 'cPa71_6tOU4',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/cPa71_6tOU4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/cPa71_6tOU4/maxresdefault.jpg',
         },
         {
           'id': 'mgue5fqLgM0',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/mgue5fqLgM0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/mgue5fqLgM0/maxresdefault.jpg',
         },
         {
           'id': 'd5pIVXLmyc4',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/d5pIVXLmyc4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/d5pIVXLmyc4/maxresdefault.jpg',
         },
         {
           'id': 'Fk9_JXDCOG4',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Fk9_JXDCOG4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Fk9_JXDCOG4/maxresdefault.jpg',
         },
         {
           'id': 'B1VaYbqEGXg',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/B1VaYbqEGXg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/B1VaYbqEGXg/maxresdefault.jpg',
         },
         {
           'id': '8WIHBB8xPMk',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/8WIHBB8xPMk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/8WIHBB8xPMk/maxresdefault.jpg',
         },
         {
           'id': 'KJiCfp36GtY',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KJiCfp36GtY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KJiCfp36GtY/maxresdefault.jpg',
         },
         {
           'id': 'UC7Mnd3q_Jc',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/UC7Mnd3q_Jc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/UC7Mnd3q_Jc/maxresdefault.jpg',
         },
         {
           'id': 'khQ1meTreZM',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/khQ1meTreZM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/khQ1meTreZM/maxresdefault.jpg',
         },
         {
           'id': 'glHm8Zs8-Ac',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/glHm8Zs8-Ac/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/glHm8Zs8-Ac/maxresdefault.jpg',
         },
         {
           'id': 'ymU44iPDgEM',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ymU44iPDgEM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ymU44iPDgEM/maxresdefault.jpg',
         },
         {
           'id': '7tdbcEc7AEA',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/7tdbcEc7AEA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/7tdbcEc7AEA/maxresdefault.jpg',
         },
         {
           'id': 'L2w4TUDxmsg',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/L2w4TUDxmsg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/L2w4TUDxmsg/maxresdefault.jpg',
         },
         {
           'id': 'BO6LWjUoozc',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BO6LWjUoozc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BO6LWjUoozc/maxresdefault.jpg',
         },
         {
           'id': 'L4xkSuR2nEQ',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/L4xkSuR2nEQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/L4xkSuR2nEQ/maxresdefault.jpg',
         },
         {
           'id': 'CPLU864rP14',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CPLU864rP14/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CPLU864rP14/maxresdefault.jpg',
         },
         {
           'id': 'GgJUfOA9oJQ',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GgJUfOA9oJQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GgJUfOA9oJQ/maxresdefault.jpg',
         },
         {
           'id': 'Ql1PCSiMb04',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ql1PCSiMb04/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ql1PCSiMb04/maxresdefault.jpg',
         },
         {
           'id': 'KZkKbrEf3Pk',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/KZkKbrEf3Pk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/KZkKbrEf3Pk/maxresdefault.jpg',
         },
         {
           'id': 'a4mUs4-8UAU',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/a4mUs4-8UAU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/a4mUs4-8UAU/maxresdefault.jpg',
         },
         {
           'id': 'atbdfVtO0m4',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/atbdfVtO0m4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/atbdfVtO0m4/maxresdefault.jpg',
         },
         {
           'id': 'Zkdzlt4stEc',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Zkdzlt4stEc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Zkdzlt4stEc/maxresdefault.jpg',
         },
         {
           'id': 'BVmda5m2mN4',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BVmda5m2mN4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BVmda5m2mN4/maxresdefault.jpg',
         },
         {
           'id': '9mjF8x2P_po',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/9mjF8x2P_po/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/9mjF8x2P_po/maxresdefault.jpg',
         },
         {
           'id': 'yuRLxcLRVvs',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yuRLxcLRVvs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yuRLxcLRVvs/maxresdefault.jpg',
         },
         {
           'id': '4BVeYD8Q3f0',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/4BVeYD8Q3f0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/4BVeYD8Q3f0/maxresdefault.jpg',
         },
         {
           'id': 'wgsifa8G9SM',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/wgsifa8G9SM/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/wgsifa8G9SM/maxresdefault.jpg',
         },
         {
           'id': 'GSaAs6LEk68',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GSaAs6LEk68/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GSaAs6LEk68/maxresdefault.jpg',
         },
         {
           'id': 'MZUf8J2gZA4',
           'title': 'EP41',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/MZUf8J2gZA4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/MZUf8J2gZA4/maxresdefault.jpg',
         },
         {
           'id': 'TQi--ZtftwY',
           'title': 'EP42',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/TQi--ZtftwY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/TQi--ZtftwY/maxresdefault.jpg',
         },
         {
           'id': 'Lw3tSnbwVX0',
           'title': 'EP43',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Lw3tSnbwVX0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Lw3tSnbwVX0/maxresdefault.jpg',
         },
         {
           'id': 'SXnYl2tU6AY',
           'title': 'EP44',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/SXnYl2tU6AY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/SXnYl2tU6AY/maxresdefault.jpg',
         },
         {
           'id': 'BR38d9KJoos',
           'title': 'EP45',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BR38d9KJoos/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BR38d9KJoos/maxresdefault.jpg',
         },
         {
           'id': 'ItQlZjCg2bE',
           'title': 'EP46',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ItQlZjCg2bE/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ItQlZjCg2bE/maxresdefault.jpg',
         },
       ],
     },
-
     {
       'id': 'PLIPiKkS-FpK-oHffjOp4-rq__WHtE2OYq',
       'title': 'The Starry Love',
@@ -20903,205 +22597,244 @@ class HardcodedShows {
         {
           'id': 'Ud9RGdOBay8',
           'title': 'EP01',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Ud9RGdOBay8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Ud9RGdOBay8/maxresdefault.jpg',
         },
         {
           'id': 'Nkess8YvK0k',
           'title': 'EP02',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/Nkess8YvK0k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/Nkess8YvK0k/maxresdefault.jpg',
         },
         {
           'id': 'x3IqpbvBuG4',
           'title': 'EP03',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/x3IqpbvBuG4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/x3IqpbvBuG4/maxresdefault.jpg',
         },
         {
           'id': 'fyuHVqs-XMI',
           'title': 'EP04',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fyuHVqs-XMI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fyuHVqs-XMI/maxresdefault.jpg',
         },
         {
           'id': 'r6JyARnZxJU',
           'title': 'EP05',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/r6JyARnZxJU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/r6JyARnZxJU/maxresdefault.jpg',
         },
         {
           'id': 'anGmcycozNk',
           'title': 'EP06',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/anGmcycozNk/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/anGmcycozNk/maxresdefault.jpg',
         },
         {
           'id': 'w68EUGYMJY8',
           'title': 'EP07',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/w68EUGYMJY8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/w68EUGYMJY8/maxresdefault.jpg',
         },
         {
           'id': 'YJB0nFJNw_0',
           'title': 'EP08',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/YJB0nFJNw_0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/YJB0nFJNw_0/maxresdefault.jpg',
         },
         {
           'id': 'FSRqbYGJCKU',
           'title': 'EP09',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FSRqbYGJCKU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FSRqbYGJCKU/maxresdefault.jpg',
         },
         {
           'id': 'yHvC6VT46CY',
           'title': 'EP10',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yHvC6VT46CY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yHvC6VT46CY/maxresdefault.jpg',
         },
         {
           'id': 'fIuI_W4B9GY',
           'title': 'EP11',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/fIuI_W4B9GY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/fIuI_W4B9GY/maxresdefault.jpg',
         },
         {
           'id': '2aBApTbHhek',
           'title': 'EP12',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2aBApTbHhek/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2aBApTbHhek/maxresdefault.jpg',
         },
         {
           'id': 'jS2nkvZa08Y',
           'title': 'EP13',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/jS2nkvZa08Y/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/jS2nkvZa08Y/maxresdefault.jpg',
         },
         {
           'id': '1zhOdyxSqcA',
           'title': 'EP14',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1zhOdyxSqcA/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1zhOdyxSqcA/maxresdefault.jpg',
         },
         {
           'id': '607Iap1kPNg',
           'title': 'EP15',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/607Iap1kPNg/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/607Iap1kPNg/maxresdefault.jpg',
         },
         {
           'id': '21Rxw-DPr8k',
           'title': 'EP16',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/21Rxw-DPr8k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/21Rxw-DPr8k/maxresdefault.jpg',
         },
         {
           'id': 'bokQjCIQsS4',
           'title': 'EP17',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/bokQjCIQsS4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/bokQjCIQsS4/maxresdefault.jpg',
         },
         {
           'id': '2F0Gjx0L4yQ',
           'title': 'EP18',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/2F0Gjx0L4yQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/2F0Gjx0L4yQ/maxresdefault.jpg',
         },
         {
           'id': 'ZZ-_tZ149pQ',
           'title': 'EP19',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZZ-_tZ149pQ/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZZ-_tZ149pQ/maxresdefault.jpg',
         },
         {
           'id': 'RB2q9yWlchI',
           'title': 'EP20',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/RB2q9yWlchI/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/RB2q9yWlchI/maxresdefault.jpg',
         },
         {
           'id': 'udLA04petys',
           'title': 'EP21',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/udLA04petys/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/udLA04petys/maxresdefault.jpg',
         },
         {
           'id': '_Koymxrldus',
           'title': 'EP22',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/_Koymxrldus/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/_Koymxrldus/maxresdefault.jpg',
         },
         {
           'id': 'CetoagQsKbY',
           'title': 'EP23',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/CetoagQsKbY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/CetoagQsKbY/maxresdefault.jpg',
         },
         {
           'id': 'o5qvwY-EyQ0',
           'title': 'EP24',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/o5qvwY-EyQ0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/o5qvwY-EyQ0/maxresdefault.jpg',
         },
         {
           'id': 'd7td57vOSzY',
           'title': 'EP25',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/d7td57vOSzY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/d7td57vOSzY/maxresdefault.jpg',
         },
         {
           'id': 'BGGDIBw4TIw',
           'title': 'EP26',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/BGGDIBw4TIw/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/BGGDIBw4TIw/maxresdefault.jpg',
         },
         {
           'id': '1UQUcsiIRI0',
           'title': 'EP27',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/1UQUcsiIRI0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/1UQUcsiIRI0/maxresdefault.jpg',
         },
         {
           'id': 'x4WeZpqzTjc',
           'title': 'EP28',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/x4WeZpqzTjc/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/x4WeZpqzTjc/maxresdefault.jpg',
         },
         {
           'id': '6uNfVP3mvcs',
           'title': 'EP29',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6uNfVP3mvcs/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6uNfVP3mvcs/maxresdefault.jpg',
         },
         {
           'id': 'GU0lbFUBwg8',
           'title': 'EP30',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/GU0lbFUBwg8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/GU0lbFUBwg8/maxresdefault.jpg',
         },
         {
           'id': 'yTfshUkXm-g',
           'title': 'EP31',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/yTfshUkXm-g/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/yTfshUkXm-g/maxresdefault.jpg',
         },
         {
           'id': '6oTsNYAXV8k',
           'title': 'EP32',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6oTsNYAXV8k/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6oTsNYAXV8k/maxresdefault.jpg',
         },
         {
           'id': 'xoyjZTslYfU',
           'title': 'EP33',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/xoyjZTslYfU/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/xoyjZTslYfU/maxresdefault.jpg',
         },
         {
           'id': 'ZEtpyJT3TC4',
           'title': 'EP34',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/ZEtpyJT3TC4/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/ZEtpyJT3TC4/maxresdefault.jpg',
         },
         {
           'id': 'EpKcDPZso2M',
           'title': 'EP35',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/EpKcDPZso2M/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/EpKcDPZso2M/maxresdefault.jpg',
         },
         {
           'id': 'gUyw1tUE89U',
           'title': 'EP36',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/gUyw1tUE89U/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/gUyw1tUE89U/maxresdefault.jpg',
         },
         {
           'id': 'kz9aZt3VEi0',
           'title': 'EP37',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/kz9aZt3VEi0/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/kz9aZt3VEi0/maxresdefault.jpg',
         },
         {
           'id': '6nodbyofYAY',
           'title': 'EP38',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/6nodbyofYAY/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/6nodbyofYAY/maxresdefault.jpg',
         },
         {
           'id': 'FzIPXW64ba8',
           'title': 'EP39',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/FzIPXW64ba8/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/FzIPXW64ba8/maxresdefault.jpg',
         },
         {
           'id': 'E9gSx01wG3c',
           'title': 'EP40',
-          'thumbnailUrl': 'https://i.ytimg.com/vi/E9gSx01wG3c/maxresdefault.jpg',
+          'thumbnailUrl':
+              'https://i.ytimg.com/vi/E9gSx01wG3c/maxresdefault.jpg',
         },
       ],
     },
-
   ];
 }

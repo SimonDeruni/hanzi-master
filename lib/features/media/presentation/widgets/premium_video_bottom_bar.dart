@@ -148,8 +148,8 @@ class _PremiumVideoBottomBarState extends State<PremiumVideoBottomBar> {
                   widget.onInteraction?.call();
                   if (widget.currentIndex >= 0) {
                     widget.controller.seekTo(
-                      seconds: widget.transcript.lines[widget.currentIndex]
-                          .start.inSeconds
+                      seconds: widget
+                          .transcript.lines[widget.currentIndex].start.inSeconds
                           .toDouble(),
                       allowSeekAhead: true,
                     );
@@ -201,8 +201,8 @@ class _PremiumVideoBottomBarState extends State<PremiumVideoBottomBar> {
                   if (widget.currentIndex <
                       widget.transcript.lines.length - 1) {
                     widget.controller.seekTo(
-                      seconds: widget
-                          .transcript.lines[widget.currentIndex + 1].start.inSeconds
+                      seconds: widget.transcript.lines[widget.currentIndex + 1]
+                          .start.inSeconds
                           .toDouble(),
                       allowSeekAhead: true,
                     );

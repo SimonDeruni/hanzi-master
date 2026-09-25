@@ -7,12 +7,26 @@ import '../../domain/models/library_story.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../reading/presentation/providers/story_controller.dart';
 import '../../../reading/presentation/screens/story_reader_screen.dart';
+import '../widgets/story_cover_art.dart';
 import 'web_browser_screen.dart';
 import '../../../../shared/widgets/tappable_hanzi_text.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
+import '../../../../shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
+/// The first screen of a story.
+///
+/// Laid out like the book screen ([BookDetailScreen]): a portrait cover card,
+/// the title, a badge row, one primary action, then cards for the summary and
+/// the keywords — so opening a Mandarin Bean story and opening a classical book
+/// feel like the same product.
+///
+/// The cover is the story's own artwork, resolved by [StoryCoverArt]:
+/// `imageUrl` when the feed provides one, otherwise the Mandarin Bean cover that
+/// ships in `assets/images/mandarin_bean/` (134 of the 150 bundled stories have
+/// one, named after the article slug). The generic ink-wash mountains that every
+/// story used to show are gone.
 class StorySummaryScreen extends ConsumerStatefulWidget {
   final LibraryStory story;
 
@@ -37,6 +51,11 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     return _placeholders.any((p) => text.startsWith(p)) || text.length < 60;
   }
 
+  /// Mandarin Bean articles are bundled with the app, so they read offline.
+  bool get _isBundledArticle =>
+      widget.story.link.contains('mandarinbean.com') ||
+      widget.story.link.startsWith('local_');
+
   @override
   void initState() {
     super.initState();
@@ -45,30 +64,48 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
       title: widget.story.title,
       topic: widget.story.title,
       category: widget.story.category,
-      imageUrl:
-          widget.story.imageUrl ?? 'assets/images/ai_hub_ink_mountains.png',
+      // The cover the reader will also open on, so the artwork travels with it.
+      imageUrl: widget.story.imageUrl ??
+          StoryCoverArt.bundledCoverAsset(widget.story.link) ??
+          '',
       tags: [widget.story.category],
     );
 
     // Start loading the story immediately to fetch vocabulary
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      final StoryController controller =
+          ref.read(storyControllerProvider.notifier);
       if (widget.story.link.startsWith('custom_')) {
-        ref
-            .read(storyControllerProvider.notifier)
-            .loadOrGenerateStory(_blueprint, widget.story.hskLevel);
-      } else if (widget.story.link.startsWith('local_') ||
-          widget.story.link.startsWith('tang_poetry_')) {
-        ref
-            .read(storyControllerProvider.notifier)
-            .fetchAndParseLocalStory(_blueprint, widget.story.hskLevel);
+        controller.loadOrGenerateStory(_blueprint, widget.story.hskLevel);
+      } else if (widget.story.link.startsWith('tang_poetry_') ||
+          _isBundledArticle) {
+        // `fetchAndParseLocalStory` is the path that knows how to read the
+        // bundled JSON by link — Mandarin Bean articles used to be sent to the
+        // Firestore path, which is why their key words never loaded.
+        controller.fetchAndParseLocalStory(_blueprint, widget.story.hskLevel);
       } else {
-        ref
-            .read(storyControllerProvider.notifier)
-            .fetchAndParseFirebaseStory(_blueprint, widget.story.hskLevel);
+        controller.fetchAndParseFirebaseStory(
+            _blueprint, widget.story.hskLevel);
       }
     });
+  }
 
-    // Enrich placeholder summaries with AI-generated content
+  /// Guards the one-shot summary enrichment in [didChangeDependencies].
+  bool _enrichmentConsidered = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_enrichmentConsidered) return;
+    _enrichmentConsidered = true;
+
+    // Enrich placeholder summaries with AI-generated content.
+    //
+    // Deliberately NOT in `initState`: `_isPlaceholder` reads the localizations,
+    // and `AppLocalizations.of(context)` in `initState` trips
+    // "dependOnInheritedWidgetOfExactType … called before initState completed"
+    // in every debug build. `didChangeDependencies` runs once the inherited
+    // widgets are available, and the flag keeps it to a single pass.
     final summaryText = widget.story.summaryEn ?? widget.story.summary;
     if (_isPlaceholder(summaryText) &&
         widget.story.link.startsWith('tang_poetry_')) {
@@ -123,331 +160,285 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     );
   }
 
-  Widget _buildFallbackImage() {
-    return Image.asset(
-      'assets/images/ai_hub_ink_mountains.png',
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: 300,
-      color: Colors.black.withValues(alpha: 0.4),
-      colorBlendMode: BlendMode.darken,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final storyState = ref.watch(storyControllerProvider);
-    final displayImageUrl =
-        widget.story.imageUrl ?? 'assets/images/ai_hub_ink_mountains.png';
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
+
+    // The book screen's ground, ink wells and accent — one reading vocabulary.
+    final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
+    final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
+    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final mutedText = isDark ? Colors.white60 : const Color(0xFF6B655B);
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+    final gold = isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+
+    final String localizedTitle = widget.story.localizedTitle(localeCode);
+    final bool isRemote = widget.story.link.startsWith('http');
 
     return Scaffold(
-      backgroundColor: isDark
-          ? const Color(0xFF1A1A1B)
-          : const Color(0xFFFDFCF0), // Zen Paper / Carbon Ink
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                expandedHeight: 300,
-                pinned: true,
-                backgroundColor:
-                    isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B),
-                foregroundColor:
-                    isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: displayImageUrl.startsWith('http')
-                      ? Image.network(
-                          displayImageUrl,
-                          fit: BoxFit.cover,
-                          color: Colors.black.withValues(alpha: 0.4),
-                          colorBlendMode: BlendMode.darken,
-                          errorBuilder: (_, __, ___) => _buildFallbackImage(),
-                        )
-                      : Image.asset(
-                          displayImageUrl,
-                          fit: BoxFit.cover,
-                          color: Colors.black.withValues(alpha: 0.4),
-                          colorBlendMode: BlendMode.darken,
-                          errorBuilder: (_, __, ___) => _buildFallbackImage(),
-                        ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // HSK Badge & Category
-                      Row(
-                        children: [
-                          if (widget.story.hskLevel > 0) ...[
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF8B0000), // Deep red
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                'HSK ${widget.story.hskLevel}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                          ],
-                          if (widget.story.hskLevel == 0) ...[
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF1A1A1B), // Deep ink
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                AppLocalizations.of(context)!.native,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                          ],
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border.all(
-                                color: isDark
-                                    ? Colors.white.withValues(alpha: 0.2)
-                                    : const Color(0xFF1A1A1B)
-                                        .withValues(alpha: 0.2),
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              widget.story.category,
-                              style: TextStyle(
-                                color: isDark
-                                    ? Colors.white70
-                                    : const Color(0xFF1A1A1B),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new, size: 20, color: primaryText),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  // 1. The story's own cover — the Mandarin Bean artwork the app
+                  //    ships for it — composed as a portrait card, exactly as the
+                  //    catalogue draws a book. The source is named once, in the
+                  //    badge row below, so the cover stays clean.
+                  ZenFadeIn(
+                    child: Center(
+                      child: StoryCoverArt(
+                        story: widget.story,
+                        showSourceBadge: false,
                       ),
-                      const SizedBox(height: 24),
+                    ),
+                  ),
+                  const SizedBox(height: 18),
 
-                      // Titles
-                      TappableHanziText(
-                        widget.story.localizedTitle(
-                          Localizations.localeOf(context).toLanguageTag(),
-                        ),
-                        quickLookPresentation:
-                            QuickLookPresentation.readingPopover,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NotoSerifSC',
-                          color:
-                              isDark ? Colors.white : const Color(0xFF1A1A1B),
-                          height: 1.2,
-                        ),
+                  // 2. Title, with the original line beneath it when the two
+                  //    differ (a Tang poem keeps its Hanzi title).
+                  TappableHanziText(
+                    localizedTitle,
+                    textAlign: TextAlign.center,
+                    quickLookPresentation: QuickLookPresentation.readingPopover,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoSerifSC',
+                      color: primaryText,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  if (widget.story.titleEn != null &&
+                      widget.story.title != localizedTitle) ...<Widget>[
+                    const SizedBox(height: 6),
+                    TappableHanziText(
+                      widget.story.title,
+                      textAlign: TextAlign.center,
+                      quickLookPresentation:
+                          QuickLookPresentation.readingPopover,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontStyle: FontStyle.italic,
+                        color: mutedText,
                       ),
-                      if (widget.story.titleEn != null) ...[
-                        const SizedBox(height: 8),
+                    ),
+                  ],
+                  const SizedBox(height: 14),
+
+                  // 3. Badges: reading level, subject, source. The subject badge
+                  //    borrows the cover's own hue, so the two agree.
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: <Widget>[
+                      if (widget.story.hskLevel > 0)
+                        _buildBadge('HSK ${widget.story.hskLevel}', accent)
+                      else
+                        _buildBadge(l10n.native, accent),
+                      _buildBadge(
+                        widget.story.category,
+                        StoryCoverArt.topicGradient(widget.story.category)
+                            .first,
+                      ),
+                      if (widget.story.sourceName.isNotEmpty)
+                        _buildBadge(widget.story.sourceName, gold),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+
+                  // 4. One primary action, in the book screen's button style:
+                  //    carbon ink in light mode, Emperor's gold in dark. A
+                  //    minimum height, not a fixed one, so a 2x text scale fits.
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: 52),
+                    child: ElevatedButton.icon(
+                      onPressed: isRemote
+                          ? () {
+                              Navigator.push(
+                                context,
+                                SwipeBackPageRoute(
+                                  builder: (_) => WebBrowserScreen(
+                                    initialUrl: widget.story.link,
+                                    autoReadingMode: true,
+                                    isStoryMode: true,
+                                  ),
+                                ),
+                              );
+                            }
+                          : _startReading,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isDark
+                            ? Colors.amber.shade700
+                            : const Color(0xFF1A1A1B),
+                        foregroundColor:
+                            isDark ? const Color(0xFF1A1A1B) : Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        elevation: 0,
+                      ),
+                      icon: Icon(
+                        isRemote
+                            ? Icons.open_in_new_rounded
+                            : Icons.menu_book_rounded,
+                        size: 20,
+                      ),
+                      label: Text(
+                        isRemote ? l10n.openOriginalWebsite : l10n.startReading,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // 5. Summary ink well.
+                  _buildCard(
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                l10n.summary,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'NotoSerifSC',
+                                  color: primaryText,
+                                ),
+                              ),
+                            ),
+                            if (_isEnriching) ...<Widget>[
+                              const SizedBox(width: 12),
+                              const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: ZenLoader(strokeWidth: 2),
+                              ),
+                            ],
+                          ],
+                        ),
+                        const SizedBox(height: 12),
                         TappableHanziText(
-                          widget.story.title,
+                          _enrichedSummary ??
+                              widget.story.summaryEn ??
+                              widget.story.summary,
                           quickLookPresentation:
                               QuickLookPresentation.readingPopover,
                           style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'NotoSerifSC',
-                            color: (isDark
-                                    ? Colors.white
-                                    : const Color(0xFF1A1A1B))
-                                .withValues(alpha: 0.6),
+                            fontSize: 16,
+                            height: 1.6,
+                            color: isDark
+                                ? Colors.white.withValues(alpha: 0.75)
+                                : const Color(0xFF1A1A1B)
+                                    .withValues(alpha: 0.8),
                           ),
                         ),
                       ],
-                      const SizedBox(height: 32),
-
-                      // Summary
-                      Row(
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.summary,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'NotoSerifSC',
-                              color: isDark
-                                  ? Colors.white
-                                  : const Color(0xFF1A1A1B),
-                            ),
-                          ),
-                          if (_isEnriching) ...[
-                            const SizedBox(width: 12),
-                            SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: const Color(0xFF1A1A1B)
-                                    .withValues(alpha: 0.4),
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      TappableHanziText(
-                        _enrichedSummary ??
-                            widget.story.summaryEn ??
-                            widget.story.summary,
-                        quickLookPresentation:
-                            QuickLookPresentation.readingPopover,
-                        style: TextStyle(
-                          fontSize: 16,
-                          height: 1.6,
-                          color: isDark
-                              ? Colors.white.withValues(alpha: 0.75)
-                              : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-
-                      // Key Words
-                      Text(
-                        AppLocalizations.of(context)!.keyWords,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NotoSerifSC',
-                          color:
-                              isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      _buildKeyWords(storyState),
-
-                      // Bottom padding for the FAB
-                      const SizedBox(height: 100),
-                    ],
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 16),
+
+                  // 6. Key words ink well.
+                  _buildCard(
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          l10n.keyWords,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoSerifSC',
+                            color: primaryText,
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        _buildKeyWords(storyState),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-
-          // Floating Action Button
-          Positioned(
-            bottom: 32,
-            left: 24,
-            right: 24,
-            child: widget.story.link.startsWith('http')
-                ? Container(
-                    height: 56,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                const Color(0xFF8B0000).withValues(alpha: 0.3),
-                            blurRadius: 20,
-                            offset: const Offset(0, 8),
-                          )
-                        ]),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          SwipeBackPageRoute(
-                            builder: (_) => WebBrowserScreen(
-                              initialUrl: widget.story.link,
-                              autoReadingMode: true,
-                              isStoryMode: true,
-                            ),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF8B0000), // Deep red
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.openOriginalWebsite,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.open_in_new_rounded, size: 20),
-                        ],
-                      ),
-                    ),
-                  )
-                : Container(
-                    height: 56,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                const Color(0xFF8B0000).withValues(alpha: 0.3),
-                            blurRadius: 20,
-                            offset: const Offset(0, 8),
-                          )
-                        ]),
-                    child: ElevatedButton(
-                      onPressed: _startReading,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF8B0000), // Deep red
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.startReading,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.menu_book_rounded, size: 20),
-                        ],
-                      ),
-                    ),
-                  ),
+            ),
           ),
         ],
+      ),
+    );
+  }
+
+  // ── Book-screen vocabulary (same shapes as `book_detail_screen.dart`) ──────
+  Widget _buildCard({
+    required bool isDark,
+    required Color cardBg,
+    required Widget child,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
+  Widget _buildBadge(String label, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          color: color,
+        ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }
@@ -456,10 +447,12 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     if (storyState.isLoading && storyState.currentStory == null) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: CircularProgressIndicator(color: Color(0xFF8B0000)),
+          padding: const EdgeInsets.all(24.0),
+          child: ZenLoader(
+            color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+          ),
         ),
       );
     }
@@ -467,10 +460,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     if (storyState.currentStory == null) {
       return Text(
         AppLocalizations.of(context)!.couldNotLoadVocabulary,
-        style: TextStyle(
-            color: isDark
-                ? Colors.white38
-                : const Color(0xFF1A1A1B).withValues(alpha: 0.5)),
+        style:
+            TextStyle(color: isDark ? Colors.white60 : const Color(0xFF6B655B)),
       );
     }
 
@@ -489,10 +480,8 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     if (vocabList.isEmpty) {
       return Text(
         AppLocalizations.of(context)!.noKeyWordsFoundForThisStory,
-        style: TextStyle(
-            color: isDark
-                ? Colors.white38
-                : const Color(0xFF1A1A1B).withValues(alpha: 0.5)),
+        style:
+            TextStyle(color: isDark ? Colors.white60 : const Color(0xFF6B655B)),
       );
     }
 
@@ -514,20 +503,13 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF2A2A2B) : Colors.white,
+            // The same ink well as the cards around them.
+            color: isDark ? const Color(0xFF1E1E22) : Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: isDark
-                  ? Colors.white.withValues(alpha: 0.08)
-                  : const Color(0xFF1A1A1B).withValues(alpha: 0.1),
+              color: (isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37))
+                  .withValues(alpha: 0.28),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.03),
-                blurRadius: 5,
-                offset: const Offset(0, 2),
-              ),
-            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -548,9 +530,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                 word.pinyin,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isDark
-                      ? Colors.white70
-                      : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                  color: isDark ? Colors.white60 : const Color(0xFF6B655B),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -559,9 +539,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                 word.meaning,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isDark
-                      ? Colors.white54
-                      : const Color(0xFF1A1A1B).withValues(alpha: 0.6),
+                  color: isDark ? Colors.white38 : const Color(0xFF8A857C),
                   fontStyle: FontStyle.italic,
                 ),
               ),

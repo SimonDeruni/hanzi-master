@@ -23,7 +23,8 @@ class YoutubeVideo {
 
   factory YoutubeVideo.fromJson(Map<String, dynamic> json) {
     final snippet = json['snippet'] as Map<String, dynamic>? ?? {};
-    final contentDetails = json['contentDetails'] as Map<String, dynamic>? ?? {};
+    final contentDetails =
+        json['contentDetails'] as Map<String, dynamic>? ?? {};
     final thumbnails = snippet['thumbnails'] as Map<String, dynamic>? ?? {};
 
     final medium = thumbnails['medium'] as Map<String, dynamic>? ?? {};
@@ -48,7 +49,8 @@ class YoutubeVideo {
     String videoId;
     if (json['id'] is Map) {
       // Search result: id = { "kind": "youtube#video", "videoId": "..." }
-      videoId = (json['id'] as Map<String, dynamic>)['videoId'] as String? ?? '';
+      videoId =
+          (json['id'] as Map<String, dynamic>)['videoId'] as String? ?? '';
     } else if (json['id'] is String) {
       // Playlist item: id is the playlist item ID, real video ID is in snippet.resourceId
       final resourceId = snippet['resourceId'] as Map<String, dynamic>? ?? {};
@@ -63,7 +65,8 @@ class YoutubeVideo {
       url: 'https://www.youtube.com/watch?v=$videoId',
       duration: duration,
       mediumThumbnailUrl: medium['url'] as String? ?? '',
-      highThumbnailUrl: high['url'] as String? ?? (medium['url'] as String? ?? ''),
+      highThumbnailUrl:
+          high['url'] as String? ?? (medium['url'] as String? ?? ''),
       uploadDate: uploadDate,
       channelTitle: snippet['channelTitle'] as String? ?? '',
     );

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -121,7 +122,10 @@ class _SwipeableFlashcardState extends State<SwipeableFlashcard>
       // Phase 1: Stamp impact animation (1.25 -> 1.0 with haptic tap)
       await _stampController.forward(from: 0.0);
       ZenSoundService.instance.playSealStamp();
-      await HapticsManager.medium();
+      // Fired, not awaited: the exit below must never queue behind the haptic
+      // channel — it is feedback for a gesture that has already happened. This
+      // also matches how the rest of the app calls `HapticsManager`.
+      unawaited(HapticsManager.medium());
 
       // Brief tactile pause so user perceives the stamped seal
       await Future.delayed(const Duration(milliseconds: 90));
@@ -164,17 +168,16 @@ class _SwipeableFlashcardState extends State<SwipeableFlashcard>
       child: AnimatedBuilder(
         animation: Listenable.merge([_slideController, _stampController]),
         builder: (context, _) {
-          final currentOffset = _isAnimatingStamp && _slideController.isAnimating
-              ? _slideAnimation.value
-              : _panOffset;
+          final currentOffset =
+              _isAnimatingStamp && _slideController.isAnimating
+                  ? _slideAnimation.value
+                  : _panOffset;
 
-          final double currentScale = _isAnimatingStamp
-              ? _stampScaleAnimation.value
-              : 1.18;
+          final double currentScale =
+              _isAnimatingStamp ? _stampScaleAnimation.value : 1.18;
 
-          final double currentOpacity = _isAnimatingStamp
-              ? 1.0
-              : (_activeSeal != null ? 0.85 : 0.0);
+          final double currentOpacity =
+              _isAnimatingStamp ? 1.0 : (_activeSeal != null ? 0.85 : 0.0);
 
           return Transform(
             transform: Matrix4.translationValues(

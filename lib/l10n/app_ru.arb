@@ -297,6 +297,8 @@
   "scholarsDesk": "Письменный стол Ученого",
   "chooseADeck": "Выберите колоду",
   "whereWouldYouLike": "Куда вы хотите сохранить этот иероглиф?",
+  "whereWouldYouLikeWords": "Куда вы хотите сохранить эти {count} слова?",
+  "deckItemsCount": "Элементов: {count}",
   "addToDefaultStudy": "Добавить в основную учебную колоду",
   "ifOffItsOnly": "Если выключено, сохранится только в общий словарь",
   "saveToLibrary": "Сохранить в библиотеку",
@@ -4108,5 +4110,15 @@
   "enjoyingAppSubtitle": "Как продвигается ваше изучение китайского языка?",
   "ratingLovingIt": "Да, очень нравится!",
   "ratingCouldBeBetter": "Могло быть лучше",
-  "dictionarySearchFailed": "Не удалось выполнить поиск по словарю. Попробуйте ещё раз."
+  "dictionarySearchFailed": "Не удалось выполнить поиск по словарю. Попробуйте ещё раз.",
+  "tapToHearVoiceSample": "Нажмите ▶, чтобы услышать образец",
+  "soundEffects": "Звуковые эффекты",
+  "soundEffectsDesc": "Мягкая бумага, деревянная печать и звуки каллиграфии",
+  "generatingYourScenario": "Создаём ваш сценарий…",
+  "failedToGenerateScenario": "Не удалось создать этот сценарий. Попробуйте ещё раз.",
+  "trickyCharacters": "Трудные иероглифы",
+  "strongestCharacters": "Самые устойчивые иероглифы",
+  "newThisWeek": "Новые за последние 7 дней",
+  "averageAttemptsPerWord": "В среднем попыток на слово",
+  "noCardsYet": "В этой колоде пока нет карточек"
 }

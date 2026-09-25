@@ -8,8 +8,8 @@ import 'conversation_screen.dart';
 import 'live_call_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../widgets/custom_scenario_dialog.dart';
+import '../widgets/deck_scenario_picker_sheet.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
-import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
@@ -22,6 +22,8 @@ import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/features/echo_hall/domain/logic/generated_scenario_parser.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
@@ -159,90 +161,152 @@ class _ScenarioSelectionScreenState
 
     return Scaffold(
       backgroundColor: AppTheme.surfaceOf(context),
-      body: Column(
-        children: [
-          if (widget.showBackButton)
-            SafeArea(
-              bottom: false,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                          size: 20),
-                      onPressed: () => Navigator.pop(context),
+      body: Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              if (widget.showBackButton)
+                SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 4.0),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                              size: 20),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
+                ),
+              const SizedBox(height: 4),
+              // Search bar
+              ZenSearchBar(
+                controller: _searchController,
+                hintText: AppLocalizations.of(context)!.searchScenariosHint,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                onChanged: (value) => setState(() => _searchQuery = value),
+              ),
+              const SizedBox(height: 8),
+              // Filter chips
+              _buildCategoryFilter(isDark),
+              const SizedBox(height: 12),
+              // Grid content
+              Expanded(
+                child: scenarios.isEmpty
+                    ? Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.noScenariosFound,
+                          style: TextStyle(
+                            color: isDark ? Colors.white60 : Colors.black54,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.only(top: 4, bottom: 24),
+                        itemCount: isSearching
+                            ? (scenarios.length / 2).ceil()
+                            : (scenarios.length / 2).ceil() + 2,
+                        itemBuilder: (context, index) {
+                          if (!isSearching) {
+                            // Braces (not the one-line form) because the extra
+                            // Stack level pushed these past the 80-column limit.
+                            if (index == 0) {
+                              return _buildCreateScenarioCard(isDark);
+                            }
+                            if (index == 1) {
+                              return _buildCreateFromDeckCard(isDark);
+                            }
+                          }
+                          final rowIndex = isSearching ? index : index - 2;
+                          final leftScenario = rowIndex * 2 < scenarios.length
+                              ? scenarios[rowIndex * 2]
+                              : null;
+                          final rightScenario =
+                              rowIndex * 2 + 1 < scenarios.length
+                                  ? scenarios[rowIndex * 2 + 1]
+                                  : null;
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: leftScenario != null
+                                      ? _buildScenarioCard(leftScenario, isDark)
+                                      : const SizedBox(),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: rightScenario != null
+                                      ? _buildScenarioCard(
+                                          rightScenario, isDark)
+                                      : const SizedBox(),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+              ),
+            ],
+          ),
+          // A generated scenario takes an AI round-trip; without this the tap
+          // looked like it had done nothing at all.
+          if (_isGenerating) _buildGeneratingOverlay(context, isDark),
+        ],
+      ),
+    );
+  }
+
+  /// Blocks the screen while a deck scenario is being written, and says so.
+  Widget _buildGeneratingOverlay(BuildContext context, bool isDark) {
+    final Color accent = AppTheme.accentOf(context);
+    final Color ink = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    return Positioned.fill(
+      child: AbsorbPointer(
+        child: ColoredBox(
+          color: Colors.black.withValues(alpha: isDark ? 0.55 : 0.4),
+          child: Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
+              decoration: BoxDecoration(
+                color: AppTheme.cardBgOf(context),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color:
+                      (isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37))
+                          .withValues(alpha: 0.3),
                 ),
               ),
-            ),
-          const SizedBox(height: 4),
-          // Search bar
-          ZenSearchBar(
-            controller: _searchController,
-            hintText: AppLocalizations.of(context)!.searchScenariosHint,
-            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-            onChanged: (value) => setState(() => _searchQuery = value),
-          ),
-          const SizedBox(height: 8),
-          // Filter chips
-          _buildCategoryFilter(isDark),
-          const SizedBox(height: 12),
-          // Grid content
-          Expanded(
-            child: scenarios.isEmpty
-                ? Center(
-                    child: Text(
-                      "No scenarios found.",
-                      style: TextStyle(
-                        color: isDark ? Colors.white38 : Colors.black54,
-                        fontSize: 16,
-                      ),
-                      textAlign: TextAlign.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ZenLoader(color: accent),
+                  const SizedBox(height: 16),
+                  Text(
+                    AppLocalizations.of(context)!.generatingYourScenario,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: ink,
+                      height: 1.3,
                     ),
-                  )
-                : ListView.builder(
-                    padding: const EdgeInsets.only(top: 4, bottom: 24),
-                    itemCount: isSearching
-                        ? (scenarios.length / 2).ceil()
-                        : (scenarios.length / 2).ceil() + 2,
-                    itemBuilder: (context, index) {
-                      if (!isSearching) {
-                        if (index == 0) return _buildCreateScenarioCard(isDark);
-                        if (index == 1) return _buildCreateFromDeckCard(isDark);
-                      }
-                      final rowIndex = isSearching ? index : index - 2;
-                      final leftScenario = rowIndex * 2 < scenarios.length
-                          ? scenarios[rowIndex * 2]
-                          : null;
-                      final rightScenario = rowIndex * 2 + 1 < scenarios.length
-                          ? scenarios[rowIndex * 2 + 1]
-                          : null;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: leftScenario != null
-                                  ? _buildScenarioCard(leftScenario, isDark)
-                                  : const SizedBox(),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: rightScenario != null
-                                  ? _buildScenarioCard(rightScenario, isDark)
-                                  : const SizedBox(),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
                   ),
+                ],
+              ),
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -374,9 +438,8 @@ class _ScenarioSelectionScreenState
                       AppLocalizations.of(context)?.designCustomAiRoleplay ??
                           'Design your own AI roleplay experience',
                       style: TextStyle(
-                        color: isDark
-                            ? Colors.white70
-                            : const Color(0xFF2C2C2E),
+                        color:
+                            isDark ? Colors.white70 : const Color(0xFF2C2C2E),
                         fontSize: 14,
                         height: 1.35,
                       ),
@@ -456,9 +519,8 @@ class _ScenarioSelectionScreenState
                               ?.practiceFlashcardVocabulary ??
                           'Practice flashcard vocabulary in a live dialogue',
                       style: TextStyle(
-                        color: isDark
-                            ? Colors.white70
-                            : const Color(0xFF2C2C2E),
+                        color:
+                            isDark ? Colors.white70 : const Color(0xFF2C2C2E),
                         fontSize: 14,
                         height: 1.35,
                       ),
@@ -921,10 +983,9 @@ class _ScenarioSelectionScreenState
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                          color: (isDark
-                                  ? Colors.amber
-                                  : const Color(0xFF8B0000))
-                              .withValues(alpha: 0.12),
+                          color:
+                              (isDark ? Colors.amber : const Color(0xFF8B0000))
+                                  .withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(8)),
                       child: Text(
                           scenario.targetHskLevel == 0
@@ -1194,7 +1255,6 @@ class _ScenarioSelectionScreenState
       ConversationScenario.pickAvatarAndVoice(persona, title);
 
   Future<void> _generateFromDeck({Deck? preselectedDeck}) async {
-    final l10n = AppLocalizations.of(context)!;
     final interfaceLanguage = LocalizedScenarioContent.languageName(
       Localizations.localeOf(context),
     );
@@ -1202,24 +1262,11 @@ class _ScenarioSelectionScreenState
     Deck? selectedDeck = preselectedDeck;
 
     if (selectedDeck == null) {
-      final decks = ref.read(deckControllerProvider).valueOrNull ?? [];
-      final deckNames = decks.map((d) => d.name).toList();
-
-      final picked = await showDialog<String>(
-        context: context,
-        builder: (ctx) => SimpleDialog(
-          title: Text(l10n.chooseADeck),
-          children: deckNames
-              .map((name) => SimpleDialogOption(
-                    onPressed: () => Navigator.pop(ctx, name),
-                    child: Text(name),
-                  ))
-              .toList(),
-        ),
-      );
-
-      if (picked == null) return;
-      selectedDeck = decks.firstWhere((d) => d.name == picked);
+      // A designed picker (book-screen ink wells, localized names, card counts,
+      // HSK level chips) replaced the bare `SimpleDialog` of names that made this
+      // step look like it belonged to another app.
+      selectedDeck = await DeckScenarioPickerSheet.show(context);
+      if (selectedDeck == null) return;
     }
 
     if (!mounted) return;
@@ -1306,11 +1353,10 @@ Respond ONLY in valid JSON format with NO markdown formatting:
     } catch (e) {
       if (!mounted) return;
       debugPrint('Failed to generate deck scenario: $e');
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text(
-          'We had trouble generating this scenario. Please try again.',
-        ),
-      ));
+      ZenToast.error(
+        context,
+        AppLocalizations.of(context)!.failedToGenerateScenario,
+      );
     } finally {
       if (mounted) {
         setState(() => _isGenerating = false);

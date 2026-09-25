@@ -39,7 +39,8 @@ class LessonScreen extends ConsumerWidget {
             ),
             backgroundColor: Colors.indigoAccent,
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             duration: ZenMotion.toast,
           ),
         );
@@ -54,9 +55,14 @@ class LessonScreen extends ConsumerWidget {
           icon: const Icon(Icons.close, color: Colors.grey),
           onPressed: () => Navigator.pop(context),
         ),
-        title: lessonState.inWarmupPhase 
-          ? Text(l10n?.warmUp ?? AppLocalizations.of(context)!.warmUp, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 2, color: Colors.indigo))
-          : null,
+        title: lessonState.inWarmupPhase
+            ? Text(l10n?.warmUp ?? AppLocalizations.of(context)!.warmUp,
+                style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                    color: Colors.indigo))
+            : null,
         centerTitle: true,
       ),
       extendBodyBehindAppBar: true,
@@ -65,9 +71,21 @@ class LessonScreen extends ConsumerWidget {
           children: [
             _buildProgressBar(context, lessonState.progress),
             Expanded(
-              child: lessonState.inWarmupPhase
-                  ? _buildWarmupStep(lessonState.warmupCards[lessonState.currentWarmupIndex], controller)
-                  : _buildStepContent(lessonState.currentStep, lessonState, controller, context, ref),
+              // Content swap in place: advancing a lesson cross-fades the next
+              // step instead of hard-cutting. `ZenMotion.swap` is the standard's
+              // token for an in-place swap, and `ZenMotion.of` collapses it
+              // under the platform "Reduce Motion" setting.
+              child: AnimatedSwitcher(
+                duration: ZenMotion.of(context, ZenMotion.swap),
+                switchInCurve: ZenMotion.natural,
+                switchOutCurve: ZenMotion.natural,
+                child: lessonState.inWarmupPhase
+                    ? _buildWarmupStep(
+                        lessonState.warmupCards[lessonState.currentWarmupIndex],
+                        controller)
+                    : _buildStepContent(lessonState.currentStep, lessonState,
+                        controller, context, ref),
+              ),
             ),
           ],
         ),
@@ -102,7 +120,8 @@ class LessonScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildStepContent(LessonStepType step, LessonState state, LessonController controller, BuildContext context, WidgetRef ref) {
+  Widget _buildStepContent(LessonStepType step, LessonState state,
+      LessonController controller, BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     switch (step) {
       case LessonStepType.discovery:
@@ -172,7 +191,9 @@ class LessonScreen extends ConsumerWidget {
             ref.read(progressionProvider.notifier).addInkPoints(10);
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(l10n?.lessonComplete ?? AppLocalizations.of(context)!.lessonComplete)),
+              SnackBar(
+                  content: Text(l10n?.lessonComplete ??
+                      AppLocalizations.of(context)!.lessonComplete)),
             );
           },
         );

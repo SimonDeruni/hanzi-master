@@ -351,6 +351,8 @@
   "scholarsDesk": "学者の机",
   "chooseADeck": "デッキを選択",
   "whereWouldYouLike": "この漢字をどこに保存しますか？",
+  "whereWouldYouLikeWords": "この{count}語をどこに保存しますか？",
+  "deckItemsCount": "{count}項目",
   "addToDefaultStudy": "デフォルトの学習デッキに追加",
   "ifOffItsOnly": "オフの場合、グローバル辞書にのみ保存されます",
   "saveToLibrary": "ライブラリに保存",
@@ -4158,5 +4160,15 @@
   "enjoyingAppSubtitle": "ここまでの中国語学習の体験はいかがですか？",
   "ratingLovingIt": "はい、とても気に入っています！",
   "ratingCouldBeBetter": "改善してほしい点がある",
-  "dictionarySearchFailed": "辞書の検索に失敗しました。もう一度お試しください。"
+  "dictionarySearchFailed": "辞書の検索に失敗しました。もう一度お試しください。",
+  "tapToHearVoiceSample": "▶ をタップしてサンプルを再生",
+  "soundEffects": "効果音",
+  "soundEffectsDesc": "やわらかな紙、木の印、書道の音",
+  "generatingYourScenario": "シナリオを作成しています…",
+  "failedToGenerateScenario": "このシナリオを作成できませんでした。もう一度お試しください。",
+  "trickyCharacters": "苦手な漢字",
+  "strongestCharacters": "定着した漢字",
+  "newThisWeek": "過去7日間の新規",
+  "averageAttemptsPerWord": "1語あたりの平均試行回数",
+  "noCardsYet": "このデッキにはまだカードがありません"
 }

@@ -42,8 +42,7 @@ void main() {
       expect(translationLanguageForLocale('en'), 'English');
     });
 
-    testWidgets(
-        'PremiumTranscriptLine displays localized French translation',
+    testWidgets('PremiumTranscriptLine displays localized French translation',
         (tester) async {
       final line = TranscriptLine(
         start: Duration.zero,

@@ -18,9 +18,9 @@ void main() {
     expect(file.existsSync(), isTrue);
     source = file.readAsStringSync();
 
-    final tileStart = source.indexOf('class _AiToolTile extends StatelessWidget');
-    expect(tileStart, greaterThan(-1),
-        reason: '_AiToolTile must still exist');
+    final tileStart =
+        source.indexOf('class _AiToolTile extends StatelessWidget');
+    expect(tileStart, greaterThan(-1), reason: '_AiToolTile must still exist');
     // Bound the slice to the widget itself: slicing to EOF would swallow the
     // following widgets and make these assertions meaningless.
     final tileEnd = source.indexOf('class _DockIcon', tileStart);
@@ -66,8 +66,7 @@ void main() {
   });
 
   test('both AI tools render through the shared tile', () {
-    final callSites =
-        RegExp(r'_AiToolTile\(').allMatches(source).length;
+    final callSites = RegExp(r'_AiToolTile\(').allMatches(source).length;
     // Two call sites + the constructor declaration.
     expect(callSites, 3,
         reason: 'Extract-to-Deck and Auto-Simplify must both use _AiToolTile');
@@ -83,7 +82,8 @@ void main() {
     // same expression, never as a bare subtitle value.
     expect(
       source,
-      isNot(contains("subtitle:\n                        'Extract all unknown words")),
+      isNot(contains(
+          "subtitle:\n                        'Extract all unknown words")),
     );
   });
 

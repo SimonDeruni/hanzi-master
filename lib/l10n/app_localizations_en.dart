@@ -931,6 +931,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Where would you like to save this character?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'Where would you like to save these $count words?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count items';
+  }
+
+  @override
   String get addToDefaultStudy => 'Add to Default Study Deck';
 
   @override
@@ -13009,4 +13019,36 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'Dictionary search failed. Please try again.';
+
+  @override
+  String get tapToHearVoiceSample => 'Touch ▶ to hear a sample';
+
+  @override
+  String get soundEffects => 'Sound Effects';
+
+  @override
+  String get soundEffectsDesc =>
+      'Soft paper, wooden seal, and calligraphy sounds';
+
+  @override
+  String get generatingYourScenario => 'Creating your scenario…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'We could not create this scenario. Please try again.';
+
+  @override
+  String get trickyCharacters => 'Tricky characters';
+
+  @override
+  String get strongestCharacters => 'Strongest characters';
+
+  @override
+  String get newThisWeek => 'New in the last 7 days';
+
+  @override
+  String get averageAttemptsPerWord => 'Average attempts per word';
+
+  @override
+  String get noCardsYet => 'No cards in this deck yet';
 }

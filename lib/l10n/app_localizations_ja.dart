@@ -913,6 +913,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get whereWouldYouLike => 'この漢字をどこに保存しますか？';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'この$count語をどこに保存しますか？';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count項目';
+  }
+
+  @override
   String get addToDefaultStudy => 'デフォルトの学習デッキに追加';
 
   @override
@@ -12669,4 +12679,34 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get dictionarySearchFailed => '辞書の検索に失敗しました。もう一度お試しください。';
+
+  @override
+  String get tapToHearVoiceSample => '▶ をタップしてサンプルを再生';
+
+  @override
+  String get soundEffects => '効果音';
+
+  @override
+  String get soundEffectsDesc => 'やわらかな紙、木の印、書道の音';
+
+  @override
+  String get generatingYourScenario => 'シナリオを作成しています…';
+
+  @override
+  String get failedToGenerateScenario => 'このシナリオを作成できませんでした。もう一度お試しください。';
+
+  @override
+  String get trickyCharacters => '苦手な漢字';
+
+  @override
+  String get strongestCharacters => '定着した漢字';
+
+  @override
+  String get newThisWeek => '過去7日間の新規';
+
+  @override
+  String get averageAttemptsPerWord => '1語あたりの平均試行回数';
+
+  @override
+  String get noCardsYet => 'このデッキにはまだカードがありません';
 }

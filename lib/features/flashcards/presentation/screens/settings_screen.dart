@@ -11,9 +11,12 @@ import 'package:hanzi_master/core/providers/app_language_controller.dart';
 
 import '../widgets/app_language_picker_sheet.dart';
 import 'package:hanzi_master/core/services/app_rating_service.dart';
+import 'package:hanzi_master/core/services/audio_quota_service.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/widgets/audiobook_voice_sheet.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -25,8 +28,8 @@ class SettingsScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF121212) : const Color(0xFFFDFCF0),
+      // The same Xuan paper / carbon ground as every other surface.
+      backgroundColor: isDark ? AppTheme.surfaceDark : AppTheme.surfaceLight,
       appBar: AppBar(
         title: Text(
             l10n?.settingsTitle ?? AppLocalizations.of(context)!.settingsTitle,
@@ -34,7 +37,7 @@ class SettingsScreen extends ConsumerWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
+        iconTheme: IconThemeData(color: _ink(context)),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
@@ -48,7 +51,7 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               _buildSliderTile(
                 icon: Icons.speed,
-                iconColor: Colors.lightBlue,
+                iconColor: _accent(context),
                 title: l10n?.voiceSpeed ??
                     AppLocalizations.of(context)!.voiceSpeed,
                 subtitle: "${settings.speechRate.toStringAsFixed(1)}x",
@@ -61,10 +64,10 @@ class SettingsScreen extends ConsumerWidget {
                   ref.read(audioServiceProvider).setSpeechRate(val);
                 },
               ),
-              _buildDivider(),
+              _buildDivider(context),
               _buildSwitchTile(
                 icon: Icons.vibration,
-                iconColor: Colors.orange,
+                iconColor: _accent(context),
                 title: AppLocalizations.of(context)!.hapticFeedback,
                 subtitle:
                     AppLocalizations.of(context)!.vibrationsForInteractions,
@@ -73,29 +76,25 @@ class SettingsScreen extends ConsumerWidget {
                   ref.read(settingsProvider.notifier).toggleHaptics(val);
                 },
               ),
-              _buildDivider(),
+              _buildDivider(context),
               _buildSwitchTile(
                 icon: Icons.music_note,
-                iconColor: Colors.amber,
-                title: "Sound Effects",
-                subtitle: "Soft paper, wooden seal, and calligraphy sounds",
+                iconColor: _accent(context),
+                title: AppLocalizations.of(context)!.soundEffects,
+                subtitle: AppLocalizations.of(context)!.soundEffectsDesc,
                 value: settings.enableSoundEffects,
                 onChanged: (val) {
                   ref.read(settingsProvider.notifier).toggleSoundEffects(val);
                 },
               ),
-              _buildDivider(),
+              _buildDivider(context),
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.purple.withValues(alpha: 0.1),
-                  child: const Icon(Icons.record_voice_over,
-                      color: Colors.purple, size: 20),
-                ),
+                leading: _rowIcon(context, Icons.record_voice_over),
                 title: Text(AppLocalizations.of(context)!.audiobookVoice,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
                 subtitle:
                     Text(_voiceDisplayName(context, settings.audiobookVoice)),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                trailing: Icon(Icons.chevron_right, color: _muted(context)),
                 onTap: () => _showVoicePickerDialog(context, ref),
               ),
             ],
@@ -111,29 +110,26 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               _buildSwitchTile(
                 icon: Icons.dark_mode,
-                iconColor: Colors.indigo,
+                iconColor: _accent(context),
                 title: l10n?.darkMode ?? "Dark Mode",
                 subtitle: l10n?.darkModeDesc ?? "Easy on the eyes",
                 value: settings.isDarkMode,
                 onChanged: (val) =>
                     ref.read(settingsProvider.notifier).toggleDarkMode(val),
               ),
-              _buildDivider(),
+              _buildDivider(context),
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.teal.withValues(alpha: 0.1),
-                  child: const Icon(Icons.language, color: Colors.teal),
-                ),
+                leading: _rowIcon(context, Icons.language),
                 title: Text(l10n?.appLanguage ?? "App Language",
                     style: const TextStyle(fontWeight: FontWeight.w600)),
                 subtitle: Text(appLanguageName(settings.locale)),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                trailing: Icon(Icons.chevron_right, color: _muted(context)),
                 onTap: () => _showAppLanguagePicker(context, ref),
               ),
-              _buildDivider(),
+              _buildDivider(context),
               _buildSwitchTile(
                 icon: Icons.menu_book_outlined,
-                iconColor: Colors.indigo,
+                iconColor: _accent(context),
                 title: l10n?.useEnglishDefinitions ?? "Use English definitions",
                 subtitle: l10n?.useEnglishDefinitionsDesc ??
                     "English definitions are generally more accurate and detailed",
@@ -144,10 +140,10 @@ class SettingsScreen extends ConsumerWidget {
                       .toggleUseEnglishDefinitions(val);
                 },
               ),
-              _buildDivider(),
+              _buildDivider(context),
               _buildSliderTile(
                 icon: Icons.animation,
-                iconColor: Colors.pink,
+                iconColor: _accent(context),
                 title: l10n?.animationSpeed ?? "Stroke Animation Speed",
                 subtitle: "${settings.animationSpeed.toStringAsFixed(1)}x",
                 value: settings.animationSpeed,
@@ -163,22 +159,18 @@ class SettingsScreen extends ConsumerWidget {
           _buildSectionHeader(
               l10n?.notifications ??
                   AppLocalizations.of(context)!.notifications,
-              theme,
-              color: Colors.amber.shade700),
+              theme),
           _buildSettingsCard(
             context: context,
             children: [
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.amber.withValues(alpha: 0.1),
-                  child: const Icon(Icons.notifications_active,
-                      color: Colors.amber),
-                ),
+                leading: _rowIcon(context, Icons.notifications_active,
+                    tone: _gold(context)),
                 title: Text(AppLocalizations.of(context)!.notification_settings,
                     style: const TextStyle(fontWeight: FontWeight.w600)),
                 subtitle: Text(AppLocalizations.of(context)!
                     .oneOptionalDailyPracticeReminder),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                trailing: Icon(Icons.chevron_right, color: _muted(context)),
                 onTap: () => _showNotificationSettings(context, ref),
               ),
             ],
@@ -188,16 +180,12 @@ class SettingsScreen extends ConsumerWidget {
             l10n?.supportAndFeedback ??
                 AppLocalizations.of(context)!.supportAndFeedback,
             theme,
-            color: Colors.amber.shade700,
           ),
           _buildSettingsCard(
             context: context,
             children: [
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.amber.withValues(alpha: 0.1),
-                  child: const Icon(Icons.star_rounded, color: Colors.amber),
-                ),
+                leading: _rowIcon(context, Icons.star_rounded),
                 title: Text(
                   l10n?.rateSinoSpark ??
                       AppLocalizations.of(context)!.rateSinoSpark,
@@ -207,20 +195,16 @@ class SettingsScreen extends ConsumerWidget {
                   l10n?.rateSinoSparkDesc ??
                       AppLocalizations.of(context)!.rateSinoSparkDesc,
                 ),
-                trailing: const Icon(Icons.open_in_new_rounded,
-                    size: 18, color: Colors.grey),
+                trailing: Icon(Icons.open_in_new_rounded,
+                    size: 18, color: _muted(context)),
                 onTap: () async {
                   HapticsManager.light();
                   await ref.read(appRatingServiceProvider).openStoreListing();
                 },
               ),
-              _buildDivider(),
+              _buildDivider(context),
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blue.withValues(alpha: 0.1),
-                  child: const Icon(Icons.mail_outline_rounded,
-                      color: Colors.blue),
-                ),
+                leading: _rowIcon(context, Icons.mail_outline_rounded),
                 title: Text(
                   l10n?.sendFeedback ??
                       AppLocalizations.of(context)!.sendFeedback,
@@ -230,7 +214,7 @@ class SettingsScreen extends ConsumerWidget {
                   l10n?.sendFeedbackDesc ??
                       AppLocalizations.of(context)!.sendFeedbackDesc,
                 ),
-                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+                trailing: Icon(Icons.chevron_right, color: _muted(context)),
                 onTap: () {
                   HapticsManager.light();
                   Navigator.of(context).push(
@@ -244,25 +228,24 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24), // Danger Zone
           _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme,
-              color: Colors.redAccent),
+              color: _alert(context)),
           _buildSettingsCard(
             context: context,
             children: [
               ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.red.withValues(alpha: 0.1),
-                  child: const Icon(Icons.delete_forever, color: Colors.red),
-                ),
+                leading: _rowIcon(context, Icons.delete_forever,
+                    tone: _alert(context)),
                 title: Text(
                     l10n?.resetAllData ??
                         AppLocalizations.of(context)!.resetAllData,
-                    style: const TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold)),
+                    style: TextStyle(
+                        color: _alert(context), fontWeight: FontWeight.bold)),
                 subtitle: Text(
                     l10n?.resetDataDesc ??
                         AppLocalizations.of(context)!
                             .deletesAllProgressPermanently,
-                    style: TextStyle(color: Colors.red.shade300)),
+                    style: TextStyle(
+                        color: _alert(context).withValues(alpha: 0.75))),
                 onTap: () {
                   showDialog(
                     context: context,
@@ -282,7 +265,7 @@ class SettingsScreen extends ConsumerWidget {
                               l10n?.deleteEverything ??
                                   AppLocalizations.of(context)!
                                       .deleteEverything,
-                              style: const TextStyle(color: Colors.red)),
+                              style: TextStyle(color: _alert(context))),
                           onPressed: () async {
                             await ref
                                 .read(flashcardControllerProvider.notifier)
@@ -310,7 +293,7 @@ class SettingsScreen extends ConsumerWidget {
             child: Text(
               AppLocalizations.of(context)!.hanziMasterV100,
               style: TextStyle(
-                  color: Colors.grey.shade500,
+                  color: _muted(context),
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2),
             ),
@@ -328,9 +311,10 @@ class SettingsScreen extends ConsumerWidget {
       child: Text(
         title,
         style: theme.textTheme.titleMedium?.copyWith(
-          fontFamily: 'Serif',
+          // The app's calligraphic family, not the platform's generic 'Serif'.
+          fontFamily: 'NotoSerifSC',
           fontWeight: FontWeight.w800,
-          color: color ?? (isDark ? Colors.white70 : Colors.black87),
+          color: color ?? (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
           letterSpacing: 0.5,
         ),
       ),
@@ -339,11 +323,14 @@ class SettingsScreen extends ConsumerWidget {
 
   Widget _buildSettingsCard(
       {required BuildContext context, required List<Widget> children}) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        // One ink well for the whole app: Xuan paper/carbon with a gold hairline,
+        // exactly like the deck, book and shadowing surfaces.
+        color: _card(context),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: _gold(context).withValues(alpha: 0.28)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.04),
@@ -353,7 +340,7 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         child: Column(children: children),
       ),
     );
@@ -421,28 +408,67 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildDivider() {
-    return const Divider(height: 1, thickness: 1, indent: 56);
+  Widget _buildDivider(BuildContext context) {
+    return Divider(
+      height: 1,
+      thickness: 1,
+      indent: 56,
+      color: _gold(context).withValues(alpha: 0.18),
+    );
+  }
+
+  // ── Settings palette ────────────────────────────────────────────────────────
+  // Sourced from [AppTheme] so a settings row, its sheet and the screen behind
+  // them share the vocabulary the reader and the decks already speak. The rows
+  // used to carry one ad-hoc Material colour each (lightBlue, orange, purple,
+  // indigo, teal, pink, amber, blue), which made the screen read as a legend
+  // rather than a set of settings.
+  static Color _accent(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? AppTheme.accentDark
+          : AppTheme.accentLight;
+
+  static Color _card(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? AppTheme.cardBgDark
+          : AppTheme.cardBgLight;
+
+  static Color _gold(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? Colors.amber.shade700
+          : const Color(0xFFD4AF37);
+
+  static Color _ink(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? Colors.white
+          : const Color(0xFF1A1A1B);
+
+  static Color _muted(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? Colors.white60
+          : const Color(0xFF6B655B);
+
+  /// Destructive actions keep the documented Cinnabar alert red.
+  static Color _alert(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? Colors.redAccent
+          : const Color(0xFFC62828);
+
+  /// The leading tile of a settings row: accent tint, accent glyph.
+  static Widget _rowIcon(BuildContext context, IconData icon, {Color? tone}) {
+    final Color color = tone ?? _accent(context);
+    return CircleAvatar(
+      backgroundColor: color.withValues(alpha: 0.12),
+      child: Icon(icon, color: color, size: 20),
+    );
   }
 
   static String _voiceDisplayName(BuildContext context, String voice) {
     final l10n = AppLocalizations.of(context);
-    switch (voice) {
-      case 'Kore':
-        return 'Kore — ${l10n?.voiceFemaleWarm ?? 'Female, warm'} (Azure)';
-      case 'Aoede':
-        return 'Aoede — ${l10n?.voiceFemaleCheerful ?? 'Female, cheerful'} (Azure)';
-      case 'Fenrir':
-        return 'Fenrir — ${l10n?.voiceMaleUpbeat ?? 'Male, upbeat'} (Azure)';
-      case 'Charon':
-        return 'Charon — ${l10n?.voiceMaleNewsStyle ?? 'Male, news-style'} (Azure)';
-      case 'Puck':
-        return 'Puck — ${l10n?.voiceMaleSporty ?? 'Male, sporty'} (Azure)';
-      case 'local':
-        return 'Local — ${l10n?.voiceOnDeviceTts ?? 'On-device TTS'}';
-      default:
-        return voice;
-    }
+    if (l10n == null) return voice;
+    // One catalogue for the whole app: the row, the sheet and the player all
+    // name a voice the same way, and the engine's own identifiers never surface.
+    return audiobookVoiceLabel(l10n, voice);
   }
 
   static void _showAppLanguagePicker(BuildContext context, WidgetRef ref) {
@@ -459,85 +485,29 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   static void _showVoicePickerDialog(BuildContext context, WidgetRef ref) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final currentVoice = ref.read(settingsProvider).audiobookVoice;
-    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
-    final cardBg = isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0);
     final l10n = AppLocalizations.of(context);
+    if (l10n == null) return;
+    final quota = ref.read(audioQuotaServiceProvider);
+    final currentVoice = ref.read(settingsProvider).audiobookVoice;
 
-    final voiceOptions = [
-      (
-        'Kore',
-        'Kore — ${l10n?.voiceFemaleWarm ?? 'Female, warm'}',
-        'zh-CN-XiaoxiaoNeural'
+    // The same sheet the reader and the player open, so there is one voice
+    // picker in the app instead of three. The weekly studio allowance decides
+    // which rows are locked; the on-device voice is always available.
+    GlobalBlurredBottomSheet.show<void>(
+      context,
+      child: AudiobookVoiceSheet(
+        title: l10n.chooseAudiobookVoice,
+        options: audiobookVoiceOptions(
+          l10n,
+          hasStudioQuota: quota.hasQuotaRemaining,
+        ),
+        selectedVoiceId: currentVoice,
+        onSelected: (option) {
+          ref.read(settingsProvider.notifier).setAudiobookVoice(option.id);
+          ref.read(audioServiceProvider).setAudiobookVoice(option.id);
+          Navigator.of(context, rootNavigator: true).pop();
+        },
       ),
-      (
-        'Aoede',
-        'Aoede — ${l10n?.voiceFemaleCheerful ?? 'Female, cheerful'}',
-        'zh-CN-XiaoyiNeural'
-      ),
-      (
-        'Fenrir',
-        'Fenrir — ${l10n?.voiceMaleUpbeat ?? 'Male, upbeat'}',
-        'zh-CN-YunxiNeural'
-      ),
-      (
-        'Charon',
-        'Charon — ${l10n?.voiceMaleNewsStyle ?? 'Male, news-style'}',
-        'zh-CN-YunyangNeural'
-      ),
-      (
-        'Puck',
-        'Puck — ${l10n?.voiceMaleSporty ?? 'Male, sporty'}',
-        'zh-CN-YunjianNeural'
-      ),
-      (
-        'local',
-        'Local — ${l10n?.voiceOnDeviceTts ?? 'On-device TTS'}',
-        l10n?.voiceSystemVoice ?? 'System voice'
-      ),
-    ];
-
-    showDialog(
-      context: context,
-      builder: (ctx) {
-        return AlertDialog(
-          backgroundColor: cardBg,
-          title: Text(AppLocalizations.of(context)!.chooseAudiobookVoice,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white : Colors.black87)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: voiceOptions.map((opt) {
-              final isSelected = currentVoice == opt.$1;
-              return ListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                leading: Icon(
-                  isSelected
-                      ? Icons.radio_button_checked
-                      : Icons.radio_button_unchecked,
-                  color: isSelected ? accent : Colors.grey,
-                ),
-                title: Text(
-                  opt.$2,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.normal,
-                  ),
-                ),
-                subtitle: Text(opt.$3, style: const TextStyle(fontSize: 11)),
-                onTap: () {
-                  ref.read(settingsProvider.notifier).setAudiobookVoice(opt.$1);
-                  Navigator.of(ctx).pop();
-                },
-              );
-            }).toList(),
-          ),
-        );
-      },
     );
   }
 }
@@ -551,51 +521,40 @@ Future<void> _showNotificationSettings(
   if (!context.mounted) return;
   final isDark = Theme.of(context).brightness == Brightness.dark;
 
-  await showModalBottomSheet<void>(
-    context: context,
-    useRootNavigator: true,
-    backgroundColor: Colors.transparent,
-    isScrollControlled: true,
-    builder: (sheetContext) => StatefulBuilder(
+  // The app's sheet chrome (glass veil + handle), not a hand-rolled container.
+  await GlobalBlurredBottomSheet.show<void>(
+    context,
+    child: StatefulBuilder(
       builder: (context, setSheetState) {
         final l10n = AppLocalizations.of(context)!;
-        return Container(
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-          ),
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(24, 2, 24, 24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
               Text(
                 l10n.notification_settings,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 19,
                   fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white : Colors.black87,
+                  color: SettingsScreen._ink(context),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 4),
               Text(
                 l10n.chooseOneOptionalDailyPractice,
                 style: TextStyle(
-                  color: isDark ? Colors.white60 : Colors.black54,
+                  fontSize: 12.5,
+                  color: SettingsScreen._muted(context),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 12),
+              Container(
+                height: 1,
+                color: SettingsScreen._gold(context).withValues(alpha: 0.3),
+              ),
+              const SizedBox(height: 20),
               _buildNotifToggle(
                 context: context,
                 isDark: isDark,
@@ -642,11 +601,15 @@ Future<void> _showNotificationSettings(
               ),
               const SizedBox(height: 24),
               ElevatedButton(
-                onPressed: () => Navigator.pop(sheetContext),
+                onPressed: () => Navigator.of(context).pop(),
                 style: ElevatedButton.styleFrom(
+                  // Book-screen primary: ink in light mode, gold in dark.
+                  backgroundColor: SettingsScreen._accent(context),
+                  foregroundColor:
+                      isDark ? const Color(0xFF1A1A1B) : Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                 ),
                 child: Text(l10n.done),
@@ -671,11 +634,12 @@ Widget _buildNotifToggle({
   required Function(bool) onChanged,
   required Function(TimeOfDay) onTimePicked,
 }) {
+  final Color tone = SettingsScreen._gold(context);
   return Row(
     children: [
       CircleAvatar(
-        backgroundColor: Colors.amber.withValues(alpha: 0.1),
-        child: Icon(icon, color: Colors.amber, size: 20),
+        backgroundColor: tone.withValues(alpha: 0.12),
+        child: Icon(icon, color: tone, size: 20),
       ),
       const SizedBox(width: 14),
       Expanded(
@@ -685,13 +649,13 @@ Widget _buildNotifToggle({
             Text(title,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : Colors.black87,
+                  color: SettingsScreen._ink(context),
                 )),
             const SizedBox(height: 2),
             Text(subtitle,
                 style: TextStyle(
                   fontSize: 12,
-                  color: isDark ? Colors.white54 : Colors.black54,
+                  color: SettingsScreen._muted(context),
                 )),
           ],
         ),
@@ -734,14 +698,14 @@ Widget _buildNotifToggle({
           time.format(context),
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: Colors.amber.shade700,
+            color: tone,
           ),
         ),
       ),
       Switch(
         value: value,
         onChanged: onChanged,
-        activeThumbColor: Colors.amber,
+        activeThumbColor: tone,
       ),
     ],
   );

@@ -287,6 +287,8 @@
   "scholarsDesk": "Escritorio del Erudito",
   "chooseADeck": "Elige un mazo",
   "whereWouldYouLike": "¿Dónde te gustaría guardar este carácter?",
+  "whereWouldYouLikeWords": "¿Dónde quieres guardar estas {count} palabras?",
+  "deckItemsCount": "{count} elementos",
   "addToDefaultStudy": "Añadir al mazo de estudio predeterminado",
   "ifOffItsOnly": "Si está desactivado, solo se guardará en el diccionario global",
   "saveToLibrary": "Guardar en la biblioteca",
@@ -4101,5 +4103,15 @@
   "enjoyingAppSubtitle": "¿Cómo va tu viaje de aprendizaje de chino hasta ahora?",
   "ratingLovingIt": "¡Sí, me encanta!",
   "ratingCouldBeBetter": "Podría ser mejor",
-  "dictionarySearchFailed": "La búsqueda en el diccionario ha fallado. Vuelve a intentarlo."
+  "dictionarySearchFailed": "La búsqueda en el diccionario ha fallado. Vuelve a intentarlo.",
+  "tapToHearVoiceSample": "Toca ▶ para escuchar una muestra",
+  "soundEffects": "Efectos de sonido",
+  "soundEffectsDesc": "Papel suave, sello de madera y sonidos de caligrafía",
+  "generatingYourScenario": "Creando tu escenario…",
+  "failedToGenerateScenario": "No pudimos crear este escenario. Inténtalo de nuevo.",
+  "trickyCharacters": "Caracteres difíciles",
+  "strongestCharacters": "Caracteres mejor dominados",
+  "newThisWeek": "Nuevos en los últimos 7 días",
+  "averageAttemptsPerWord": "Intentos medios por palabra",
+  "noCardsYet": "Aún no hay tarjetas en este mazo"
 }

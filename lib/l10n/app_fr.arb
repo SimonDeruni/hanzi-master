@@ -281,6 +281,8 @@
   "scholarsDesk": "Bureau du savant",
   "chooseADeck": "Choisissez un deck",
   "whereWouldYouLike": "Où souhaitez-vous enregistrer ce caractère ?",
+  "whereWouldYouLikeWords": "Où souhaitez-vous enregistrer ces {count} mots ?",
+  "deckItemsCount": "{count} éléments",
   "addToDefaultStudy": "Ajouter au deck d'étude par défaut",
   "ifOffItsOnly": "Si désactivé, il est uniquement enregistré dans le dictionnaire global",
   "saveToLibrary": "Enregistrer dans la bibliothèque",
@@ -4095,5 +4097,15 @@
   "enjoyingAppSubtitle": "Comment se passe votre apprentissage du chinois jusqu'ici ?",
   "ratingLovingIt": "Oui, j'adore !",
   "ratingCouldBeBetter": "Pourrait être mieux",
-  "dictionarySearchFailed": "La recherche dans le dictionnaire a échoué. Veuillez réessayer."
+  "dictionarySearchFailed": "La recherche dans le dictionnaire a échoué. Veuillez réessayer.",
+  "tapToHearVoiceSample": "Touchez ▶ pour écouter un exemple",
+  "soundEffects": "Effets sonores",
+  "soundEffectsDesc": "Papier doux, sceau de bois et bruits de calligraphie",
+  "generatingYourScenario": "Création de votre scénario…",
+  "failedToGenerateScenario": "Nous n\u0027avons pas pu créer ce scénario. Veuillez réessayer.",
+  "trickyCharacters": "Caractères difficiles",
+  "strongestCharacters": "Caractères les mieux maîtrisés",
+  "newThisWeek": "Nouveaux ces 7 derniers jours",
+  "averageAttemptsPerWord": "Tentatives moyennes par mot",
+  "noCardsYet": "Aucune carte dans ce paquet pour l\u0027instant"
 }

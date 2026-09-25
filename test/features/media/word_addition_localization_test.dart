@@ -3,7 +3,9 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 
 void main() {
   group('Word Addition Localization Tests (14 Languages)', () {
-    test('all 14 locales render addedWordsAndUpdatedWords without unreplaced placeholders', () async {
+    test(
+        'all 14 locales render addedWordsAndUpdatedWords without unreplaced placeholders',
+        () async {
       for (final locale in AppLocalizations.supportedLocales) {
         final l10n = await AppLocalizations.delegate.load(locale);
 
@@ -18,7 +20,9 @@ void main() {
       }
     });
 
-    test('all 14 locales render addedWordsToDeck and updatedWordsInDeck cleanly', () async {
+    test(
+        'all 14 locales render addedWordsToDeck and updatedWordsInDeck cleanly',
+        () async {
       for (final locale in AppLocalizations.supportedLocales) {
         final l10n = await AppLocalizations.delegate.load(locale);
 
@@ -50,10 +54,12 @@ void main() {
 
     test('French localized strings match user scenario accurately', () async {
       final l10n = await AppLocalizations.delegate.load(
-        AppLocalizations.supportedLocales.singleWhere((l) => l.languageCode == 'fr'),
+        AppLocalizations.supportedLocales
+            .singleWhere((l) => l.languageCode == 'fr'),
       );
 
-      final msg = l10n.addedWordsAndUpdatedWords(23, 2, 'La bibliothèque principale');
+      final msg =
+          l10n.addedWordsAndUpdatedWords(23, 2, 'La bibliothèque principale');
       expect(
         msg,
         'Ajout de 23 nouveaux mots, mise à jour de 2 mots existants dans La bibliothèque principale',
@@ -62,8 +68,10 @@ void main() {
       final addedMsg = l10n.addedWordsToDeck(23, 'La bibliothèque principale');
       expect(addedMsg, 'Ajout de 23 mots à La bibliothèque principale');
 
-      final updatedMsg = l10n.updatedWordsInDeck(2, 'La bibliothèque principale');
-      expect(updatedMsg, 'Mise à jour de 2 mots existants dans La bibliothèque principale');
+      final updatedMsg =
+          l10n.updatedWordsInDeck(2, 'La bibliothèque principale');
+      expect(updatedMsg,
+          'Mise à jour de 2 mots existants dans La bibliothèque principale');
 
       final singleMsg = l10n.addedCardToDeck('学', 'La bibliothèque principale');
       expect(singleMsg, '学 ajouté à La bibliothèque principale');
@@ -71,7 +79,8 @@ void main() {
 
     test('English localized strings match expected baseline', () async {
       final l10n = await AppLocalizations.delegate.load(
-        AppLocalizations.supportedLocales.singleWhere((l) => l.languageCode == 'en'),
+        AppLocalizations.supportedLocales
+            .singleWhere((l) => l.languageCode == 'en'),
       );
 
       final msg = l10n.addedWordsAndUpdatedWords(23, 2, 'Main Deck');

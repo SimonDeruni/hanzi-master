@@ -186,12 +186,14 @@ class StoryFetcherService {
                 }
 
                 // Try image from description
-                imageUrl ??= doc.querySelector('img')?.attributes['src'];
+                imageUrl ??= _absoluteUrl(
+                    doc.querySelector('img')?.attributes['src'], link);
               }
 
               if (contentNode != null && imageUrl == null) {
                 final doc = parse(contentNode.innerText);
-                imageUrl ??= doc.querySelector('img')?.attributes['src'];
+                imageUrl ??= _absoluteUrl(
+                    doc.querySelector('img')?.attributes['src'], link);
               }
 
               // Fallback to enclosure or media:content
@@ -356,6 +358,9 @@ class StoryFetcherService {
                 ?.attributes['content'];
             img ??= doc.querySelector('article img')?.attributes['src'];
             img ??= doc.querySelector('.entry-content img')?.attributes['src'];
+            // A relative path is useless to `Image.network`: resolve it against
+            // the article it came from.
+            img = _absoluteUrl(img, story.link);
             if (img != null && img.isNotEmpty) {
               return story.copyWith(imageUrl: img);
             }
@@ -365,6 +370,21 @@ class StoryFetcherService {
       return story;
     });
     return Future.wait(futures);
+  }
+
+  /// Makes a feed-provided image path absolute against the page it came from.
+  ///
+  /// Mandarin Bean's markup mixes absolute and `/wp-content/...` paths; without
+  /// this, a relative cover silently fails to load and the story shows
+  /// placeholder art instead of its own illustration.
+  static String? _absoluteUrl(String? url, String? base) {
+    if (url == null || url.isEmpty) return null;
+    final Uri? parsed = Uri.tryParse(url);
+    if (parsed == null) return null;
+    if (parsed.hasScheme) return url;
+    final Uri? baseUri = base == null ? null : Uri.tryParse(base);
+    if (baseUri == null || !baseUri.hasScheme) return url;
+    return baseUri.resolveUri(parsed).toString();
   }
 
   // Fetch all Option A sources — 50 pages of Mandarin Bean in waves to avoid rate limiting

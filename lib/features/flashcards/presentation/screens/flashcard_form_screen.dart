@@ -6,6 +6,7 @@ import '../../domain/entities/flashcard.dart';
 import '../providers/flashcard_controller.dart';
 import '../utils/haptics_manager.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class FlashcardFormScreen extends ConsumerStatefulWidget {
   final Flashcard? cardToEdit; // If this is null, we are creating a NEW card
@@ -87,56 +88,59 @@ class _FlashcardFormScreenState extends ConsumerState<FlashcardFormScreen> {
           title: Text(isEditing
               ? AppLocalizations.of(context)!.editCard
               : AppLocalizations.of(context)!.newCard)),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              // HANZI
-              HanziTextField(
-                controller: _hanziController,
-                hintText: '',
-                decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.hanziCharacter,
-                    border: const OutlineInputBorder()),
-                style: const TextStyle(fontSize: 24),
-                validator: (v) => v!.isEmpty ? "Required" : null,
-              ),
-              const SizedBox(height: 16),
-
-              // PINYIN
-              TextFormField(
-                controller: _pinyinController,
-                decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.pinyin,
-                    border: const OutlineInputBorder()),
-                validator: (v) => v!.isEmpty ? "Required" : null,
-              ),
-              const SizedBox(height: 16),
-
-              // DEFINITION
-              TextFormField(
-                controller: _defController,
-                decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.definition,
-                    border: const OutlineInputBorder()),
-                maxLines: 3,
-                validator: (v) => v!.isEmpty ? "Required" : null,
-              ),
-              const SizedBox(height: 32),
-
-              // SAVE BUTTON
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  backgroundColor: Colors.indigo,
+      body: ZenFadeIn(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                // HANZI
+                HanziTextField(
+                  controller: _hanziController,
+                  hintText: '',
+                  decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.hanziCharacter,
+                      border: const OutlineInputBorder()),
+                  style: const TextStyle(fontSize: 24),
+                  validator: (v) => v!.isEmpty ? "Required" : null,
                 ),
-                onPressed: _save,
-                child: Text(AppLocalizations.of(context)!.saveCard,
-                    style: const TextStyle(color: Colors.white, fontSize: 18)),
-              ),
-            ],
+                const SizedBox(height: 16),
+
+                // PINYIN
+                TextFormField(
+                  controller: _pinyinController,
+                  decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.pinyin,
+                      border: const OutlineInputBorder()),
+                  validator: (v) => v!.isEmpty ? "Required" : null,
+                ),
+                const SizedBox(height: 16),
+
+                // DEFINITION
+                TextFormField(
+                  controller: _defController,
+                  decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.definition,
+                      border: const OutlineInputBorder()),
+                  maxLines: 3,
+                  validator: (v) => v!.isEmpty ? "Required" : null,
+                ),
+                const SizedBox(height: 32),
+
+                // SAVE BUTTON
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    backgroundColor: Colors.indigo,
+                  ),
+                  onPressed: _save,
+                  child: Text(AppLocalizations.of(context)!.saveCard,
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 18)),
+                ),
+              ],
+            ),
           ),
         ),
       ),

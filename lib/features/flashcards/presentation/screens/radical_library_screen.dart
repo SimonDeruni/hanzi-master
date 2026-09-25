@@ -8,6 +8,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
@@ -109,7 +110,8 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w900,
-                          color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                          color:
+                              isDark ? Colors.white : const Color(0xFF1A1A1B),
                         ),
                       ),
                     ),
@@ -140,8 +142,7 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
               const SizedBox(height: 8),
               Expanded(
                 child: _isLoading
-                    ? const Center(
-                        child: ZenLoader(color: Colors.indigo))
+                    ? const Center(child: ZenLoader(color: Colors.indigo))
                     : _filteredKeys.isEmpty
                         ? Center(
                             child: Text(
@@ -160,8 +161,14 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                             itemBuilder: (context, index) {
                               final key = _filteredKeys[index];
                               final data = _radicals[key];
-                              return _buildRadicalCard(
-                                  context, key, data, isDark);
+                              // Grid entrance: each radical tile eases in with
+                              // the list-entrance vocabulary and a stagger, so
+                              // the shelf assembles instead of snapping.
+                              return StaggeredListItem(
+                                index: index,
+                                child: _buildRadicalCard(
+                                    context, key, data, isDark),
+                              );
                             },
                           ),
               ),

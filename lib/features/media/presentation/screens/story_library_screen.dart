@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_cultural_insight_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
+import 'package:hanzi_master/features/media/presentation/widgets/story_cover_art.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_creator_sheet.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -289,8 +290,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           const SizedBox(height: 8),
           Expanded(
             child: _isLoading && _allStories.isEmpty
-                ? const Center(
-                    child: ZenLoader(color: Color(0xFF8B0000)))
+                ? const Center(child: ZenLoader(color: Color(0xFF8B0000)))
                 : RefreshIndicator(
                     onRefresh: _loadStories,
                     child: _buildLibraryContent(),
@@ -390,8 +390,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                                 : 'HSK $level'),
                         isSelected: _selectedHskLevel == level,
                         isDark: isDark,
-                        onTap: () =>
-                            setState(() => _selectedHskLevel = level),
+                        onTap: () => setState(() => _selectedHskLevel = level),
                       ),
                     ))
                 .toList(),
@@ -487,14 +486,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     if (dailyStory == null) return const SizedBox();
 
     final theme = Theme.of(context);
-    final hasImage =
-        dailyStory.imageUrl != null && dailyStory.imageUrl!.isNotEmpty;
-    // Use an asset that was already loaded in memory
-    final displayImageUrl = hasImage
-        ? dailyStory.imageUrl!
-        : 'assets/images/ai_hub_ink_mountains.png';
-
-    final isNetworkImage = displayImageUrl.startsWith('http');
+    // The daily story gets its real Mandarin Bean cover too.
+    final coverProvider = StoryCoverArt.resolveProvider(dailyStory);
 
     return GestureDetector(
       onTap: () {
@@ -528,20 +521,13 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
           children: [
             Hero(
               tag: 'daily_story_${dailyStory.hashCode}',
-              child: isNetworkImage
-                  ? Image.network(
-                      displayImageUrl,
+              child: coverProvider == null
+                  ? _buildFallbackGradient()
+                  : Image(
+                      image: coverProvider,
                       fit: BoxFit.cover,
-                      color:
-                          Colors.black.withValues(alpha: 0.6), // Dark overlay
-                      colorBlendMode: BlendMode.darken,
-                      errorBuilder: (_, __, ___) => _buildFallbackGradient(),
-                    )
-                  : Image.asset(
-                      displayImageUrl,
-                      fit: BoxFit.cover,
-                      color:
-                          Colors.black.withValues(alpha: 0.6), // Dark overlay
+                      // Keep the darkening so the overlaid title stays legible.
+                      color: Colors.black.withValues(alpha: 0.6),
                       colorBlendMode: BlendMode.darken,
                       errorBuilder: (_, __, ___) => _buildFallbackGradient(),
                     ),
@@ -645,12 +631,10 @@ class StoryCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final hasImage = story.imageUrl != null && story.imageUrl!.isNotEmpty;
-    // Use an asset that was already loaded in memory
-    final displayImageUrl =
-        hasImage ? story.imageUrl! : 'assets/images/ai_hub_ink_mountains.png';
+    // The story's own artwork: its URL, or the Mandarin Bean cover bundled with
+    // the app. No more generic landscape on every card.
+    final coverProvider = StoryCoverArt.resolveProvider(story);
 
-    final isNetworkImage = displayImageUrl.startsWith('http');
     final cardColor = _getCategoryColor();
 
     return GestureDetector(
@@ -678,24 +662,20 @@ class StoryCardWidget extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  if (isNetworkImage)
-                    Image.network(
-                      displayImageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) =>
-                          _buildFallbackGradient(cardColor),
-                    )
+                  if (coverProvider == null)
+                    _buildFallbackGradient(cardColor)
                   else
-                    Image.asset(
-                      displayImageUrl,
+                    Image(
+                      image: coverProvider,
                       fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) =>
                           _buildFallbackGradient(cardColor),
                     ),
-                  // Tint overlay for category color
+                  // A light category wash keeps the colour-coding without
+                  // drowning the illustration (it used to sit at 0.4).
                   Container(
                     decoration: BoxDecoration(
-                      color: cardColor.withValues(alpha: 0.4),
+                      color: cardColor.withValues(alpha: 0.18),
                     ),
                   ),
                   // Dark gradient at top for badge visibility

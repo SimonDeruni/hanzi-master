@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
@@ -22,7 +23,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
-  
+
   bool _isLogin = true;
   bool _isLoading = false;
   String? _errorMessage;
@@ -334,18 +335,20 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               ]
             : null,
       ),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
-            child: isAccountGatekeeper
-                ? _buildAccountGatekeeperView(
-                    context,
-                    isDark,
-                    l10n,
-                    currentUser,
-                  )
-                : _buildAuthForm(context, isDark, l10n),
+      body: ZenFadeIn(
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: isAccountGatekeeper
+                  ? _buildAccountGatekeeperView(
+                      context,
+                      isDark,
+                      l10n,
+                      currentUser,
+                    )
+                  : _buildAuthForm(context, isDark, l10n),
+            ),
           ),
         ),
       ),
@@ -444,7 +447,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               ),
             ),
             child: Text(
-              l10n?.noActiveSubscriptionFound ?? "No active subscription found.",
+              l10n?.noActiveSubscriptionFound ??
+                  "No active subscription found.",
               key: const Key('auth_gatekeeper_status_badge'),
               style: const TextStyle(
                 fontSize: 12,
@@ -604,175 +608,181 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-                Icon(
-                  Icons.auto_awesome,
-                  size: 64,
-                  color: isDark ? Colors.white : Colors.black87,
+        Icon(
+          Icons.auto_awesome,
+          size: 64,
+          color: isDark ? Colors.white : Colors.black87,
+        ),
+        const SizedBox(height: 32),
+        Text(
+          _isLogin
+              ? (l10n?.welcomeBack ?? "Welcome Back")
+              : (l10n?.beginYourJourney ?? "Begin Your Journey"),
+          textAlign: TextAlign.center,
+          style: theme.textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.w900,
+            fontFamily: 'Serif',
+            color: isDark ? Colors.white : Colors.black87,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          _isLogin
+              ? (l10n?.signInToSyncYourProgress ??
+                  "Sign in to sync your progress.")
+              : (l10n?.createAnAccountToSaveYourStats ??
+                  "Create an account to save your stats."),
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: isDark ? Colors.white70 : Colors.black54,
+          ),
+        ),
+        const SizedBox(height: 48),
+        if (!_isLogin) ...[
+          _buildTextField(
+            key: const Key('auth_name_field'),
+            controller: _nameController,
+            label: l10n?.nameLabel ?? "Name",
+            icon: Icons.person_outline,
+            isDark: isDark,
+          ),
+          const SizedBox(height: 16),
+        ],
+        _buildTextField(
+          key: const Key('auth_email_field'),
+          controller: _emailController,
+          label: l10n?.emailLabel ?? "Email",
+          icon: Icons.email_outlined,
+          keyboardType: TextInputType.emailAddress,
+          isDark: isDark,
+        ),
+        const SizedBox(height: 16),
+        _buildTextField(
+          key: const Key('auth_password_field'),
+          controller: _passwordController,
+          label: l10n?.passwordLabel ?? "Password",
+          icon: Icons.lock_outline,
+          obscureText: true,
+          isDark: isDark,
+        ),
+        if (_errorMessage != null) ...[
+          const SizedBox(height: 16),
+          Text(
+            _errorMessage!,
+            style: TextStyle(color: Colors.red.shade400, fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+        ],
+        if (!_isLogin) ...[
+          const SizedBox(height: 24),
+          CheckboxListTile(
+            value: _acceptTerms,
+            onChanged: (val) => setState(() => _acceptTerms = val ?? false),
+            title: Text(
+              l10n?.iAgreeToTheTermsOfServiceAndPrivacy ??
+                  "I agree to the Terms of Service and Privacy Policy.",
+              style: TextStyle(
+                color: isDark ? Colors.white70 : Colors.black87,
+                fontSize: 13,
+              ),
+            ),
+            controlAffinity: ListTileControlAffinity.leading,
+            contentPadding: EdgeInsets.zero,
+            activeColor: const Color(0xFF6750A4),
+            dense: true,
+          ),
+          CheckboxListTile(
+            value: _subscribeNewsletter,
+            onChanged: (val) =>
+                setState(() => _subscribeNewsletter = val ?? false),
+            title: Text(
+              l10n?.sendMeOccasionalUpdatesTipsAndOffer ??
+                  "Send me occasional updates, tips, and offers.",
+              style: TextStyle(
+                color: isDark ? Colors.white70 : Colors.black87,
+                fontSize: 13,
+              ),
+            ),
+            controlAffinity: ListTileControlAffinity.leading,
+            contentPadding: EdgeInsets.zero,
+            activeColor: const Color(0xFF6750A4),
+            dense: true,
+          ),
+        ],
+        const SizedBox(height: 32),
+        _buildSubmitButton(isDark, l10n),
+        const SizedBox(height: 24),
+        if (widget.requireSubscription) ...[
+          const SizedBox(height: 16),
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 6,
+            runSpacing: 2,
+            children: [
+              TextButton(
+                key: const Key('auth_restore_subscription'),
+                onPressed: _isLoading ? null : _restorePurchases,
+                style: TextButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                const SizedBox(height: 32),
-                Text(
-                  _isLogin
-                      ? (l10n?.welcomeBack ?? "Welcome Back")
-                      : (l10n?.beginYourJourney ?? "Begin Your Journey"),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'Serif',
-                    color: isDark ? Colors.white : Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  _isLogin 
-                      ? (l10n?.signInToSyncYourProgress ?? "Sign in to sync your progress.") 
-                      : (l10n?.createAnAccountToSaveYourStats ?? "Create an account to save your stats."),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: isDark ? Colors.white70 : Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 48),
-                if (!_isLogin) ...[
-                  _buildTextField(
-                    key: const Key('auth_name_field'),
-                    controller: _nameController,
-                    label: l10n?.nameLabel ?? "Name",
-                    icon: Icons.person_outline,
-                    isDark: isDark,
-                  ),
-                  const SizedBox(height: 16),
-                ],
-                _buildTextField(
-                  key: const Key('auth_email_field'),
-                  controller: _emailController,
-                  label: l10n?.emailLabel ?? "Email",
-                  icon: Icons.email_outlined,
-                  keyboardType: TextInputType.emailAddress,
-                  isDark: isDark,
-                ),
-                const SizedBox(height: 16),
-                _buildTextField(
-                  key: const Key('auth_password_field'),
-                  controller: _passwordController,
-                  label: l10n?.passwordLabel ?? "Password",
-                  icon: Icons.lock_outline,
-                  obscureText: true,
-                  isDark: isDark,
-                ),
-                if (_errorMessage != null) ...[
-                  const SizedBox(height: 16),
-                  Text(
-                    _errorMessage!,
-                    style: TextStyle(color: Colors.red.shade400, fontSize: 14),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-                if (!_isLogin) ...[
-                  const SizedBox(height: 24),
-                  CheckboxListTile(
-                    value: _acceptTerms,
-                    onChanged: (val) => setState(() => _acceptTerms = val ?? false),
-                    title: Text(
-                      l10n?.iAgreeToTheTermsOfServiceAndPrivacy ??
-                          "I agree to the Terms of Service and Privacy Policy.",
-                      style: TextStyle(
-                        color: isDark ? Colors.white70 : Colors.black87,
-                        fontSize: 13,
-                      ),
-                    ),
-                    controlAffinity: ListTileControlAffinity.leading,
-                    contentPadding: EdgeInsets.zero,
-                    activeColor: const Color(0xFF6750A4),
-                    dense: true,
-                  ),
-                  CheckboxListTile(
-                    value: _subscribeNewsletter,
-                    onChanged: (val) => setState(() => _subscribeNewsletter = val ?? false),
-                    title: Text(
-                      l10n?.sendMeOccasionalUpdatesTipsAndOffer ??
-                          "Send me occasional updates, tips, and offers.",
-                      style: TextStyle(
-                        color: isDark ? Colors.white70 : Colors.black87,
-                        fontSize: 13,
-                      ),
-                    ),
-                    controlAffinity: ListTileControlAffinity.leading,
-                    contentPadding: EdgeInsets.zero,
-                    activeColor: const Color(0xFF6750A4),
-                    dense: true,
-                  ),
-                ],
-                const SizedBox(height: 32),
-                _buildSubmitButton(isDark, l10n),
-                const SizedBox(height: 24),
-
-
-                if (widget.requireSubscription) ...[
-                  const SizedBox(height: 16),
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 6,
-                    runSpacing: 2,
-                    children: [
-                      TextButton(
-                        key: const Key('auth_restore_subscription'),
-                        onPressed: _isLoading ? null : _restorePurchases,
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          minimumSize: Size.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        child: Text(
-                          l10n?.restore ?? "Restore Purchases",
-                          style: TextStyle(
-                            color: isDark ? Colors.white60 : Colors.black54,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                      Text("•", style: TextStyle(color: isDark ? Colors.white30 : Colors.black26)),
-                      TextButton(
-                        key: const Key('auth_view_subscription_plans'),
-                        onPressed: _isLoading ? null : _viewPlans,
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          minimumSize: Size.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        child: Text(
-                          l10n?.viewPlans ?? "View Plans",
-                          style: TextStyle(
-                            color: isDark ? Colors.white60 : Colors.black54,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-                const SizedBox(height: 16),
-                
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _isLogin = !_isLogin;
-                      _errorMessage = null;
-                    });
-                  },
-                  child: Text(
-                    _isLogin 
-                        ? (l10n?.dontHaveAccountSignUp ?? "Don't have an account? Sign up") 
-                        : (l10n?.alreadyHaveAccountSignIn ?? "Already have an account? Sign in"),
-                    style: TextStyle(
-                      color: isDark ? Colors.white70 : Colors.black87,
-                      fontWeight: FontWeight.w600,
-                    ),
+                child: Text(
+                  l10n?.restore ?? "Restore Purchases",
+                  style: TextStyle(
+                    color: isDark ? Colors.white60 : Colors.black54,
+                    fontSize: 13,
                   ),
                 ),
-                const SizedBox(height: 12),
-                _buildLegalLinks(isDark, l10n),
-              ],
+              ),
+              Text("•",
+                  style: TextStyle(
+                      color: isDark ? Colors.white30 : Colors.black26)),
+              TextButton(
+                key: const Key('auth_view_subscription_plans'),
+                onPressed: _isLoading ? null : _viewPlans,
+                style: TextButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: Text(
+                  l10n?.viewPlans ?? "View Plans",
+                  style: TextStyle(
+                    color: isDark ? Colors.white60 : Colors.black54,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+        const SizedBox(height: 16),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              _isLogin = !_isLogin;
+              _errorMessage = null;
+            });
+          },
+          child: Text(
+            _isLogin
+                ? (l10n?.dontHaveAccountSignUp ??
+                    "Don't have an account? Sign up")
+                : (l10n?.alreadyHaveAccountSignIn ??
+                    "Already have an account? Sign in"),
+            style: TextStyle(
+              color: isDark ? Colors.white70 : Colors.black87,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        _buildLegalLinks(isDark, l10n),
+      ],
     );
   }
 

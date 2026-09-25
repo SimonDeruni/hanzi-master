@@ -280,6 +280,8 @@
   "scholarsDesk": "Bàn Học Giả",
   "chooseADeck": "Chọn bộ thẻ",
   "whereWouldYouLike": "Bạn muốn lưu chữ Hán này vào đâu?",
+  "whereWouldYouLikeWords": "Bạn muốn lưu {count} từ này vào đâu?",
+  "deckItemsCount": "{count} mục",
   "addToDefaultStudy": "Thêm vào bộ học mặc định",
   "ifOffItsOnly": "Nếu tắt, chữ chỉ được lưu vào từ điển chung",
   "saveToLibrary": "Lưu vào thư viện",
@@ -4094,5 +4096,15 @@
   "enjoyingAppSubtitle": "Hành trình học tiếng Trung của bạn đến nay thế nào?",
   "ratingLovingIt": "Vâng, rất thích!",
   "ratingCouldBeBetter": "Có thể tốt hơn",
-  "dictionarySearchFailed": "Tìm kiếm từ điển không thành công. Vui lòng thử lại."
+  "dictionarySearchFailed": "Tìm kiếm từ điển không thành công. Vui lòng thử lại.",
+  "tapToHearVoiceSample": "Chạm ▶ để nghe thử",
+  "soundEffects": "Hiệu ứng âm thanh",
+  "soundEffectsDesc": "Tiếng giấy mềm, con dấu gỗ và thư pháp",
+  "generatingYourScenario": "Đang tạo kịch bản của bạn…",
+  "failedToGenerateScenario": "Không thể tạo kịch bản này. Vui lòng thử lại.",
+  "trickyCharacters": "Chữ khó nhớ",
+  "strongestCharacters": "Chữ nhớ tốt nhất",
+  "newThisWeek": "Mới trong 7 ngày qua",
+  "averageAttemptsPerWord": "Số lần thử trung bình mỗi từ",
+  "noCardsYet": "Bộ thẻ này chưa có thẻ nào"
 }

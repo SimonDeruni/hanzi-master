@@ -925,6 +925,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get whereWouldYouLike => 'أين تود حفظ هذا الرمز؟';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'أين تود حفظ هذه الكلمات ($count)؟';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count عنصر';
+  }
+
+  @override
   String get addToDefaultStudy => 'أضف إلى مجموعة الدراسة الافتراضية';
 
   @override
@@ -12985,4 +12995,35 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'فشل البحث في القاموس. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get tapToHearVoiceSample => 'اضغط على ▶ لسماع عيّنة';
+
+  @override
+  String get soundEffects => 'المؤثرات الصوتية';
+
+  @override
+  String get soundEffectsDesc => 'صوت الورق الناعم والختم الخشبي والخط';
+
+  @override
+  String get generatingYourScenario => 'جارٍ إنشاء السيناريو الخاص بك…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'لم نتمكّن من إنشاء هذا السيناريو. يُرجى المحاولة مرة أخرى.';
+
+  @override
+  String get trickyCharacters => 'أحرف صعبة';
+
+  @override
+  String get strongestCharacters => 'الأحرف الأكثر رسوخًا';
+
+  @override
+  String get newThisWeek => 'الجديدة في آخر 7 أيام';
+
+  @override
+  String get averageAttemptsPerWord => 'متوسط المحاولات لكل كلمة';
+
+  @override
+  String get noCardsYet => 'لا توجد بطاقات في هذه المجموعة بعد';
 }

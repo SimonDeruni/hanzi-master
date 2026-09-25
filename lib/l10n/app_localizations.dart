@@ -1892,6 +1892,18 @@ abstract class AppLocalizations {
   /// **'Where would you like to save this character?'**
   String get whereWouldYouLike;
 
+  /// Prompt shown when several cards are being saved to a deck
+  ///
+  /// In en, this message translates to:
+  /// **'Where would you like to save these {count} words?'**
+  String whereWouldYouLikeWords(int count);
+
+  /// Number of cards stored in a deck row of the deck picker
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items'**
+  String deckItemsCount(int count);
+
   /// No description provided for @addToDefaultStudy.
   ///
   /// In en, this message translates to:
@@ -23949,6 +23961,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dictionary search failed. Please try again.'**
   String get dictionarySearchFailed;
+
+  /// No description provided for @tapToHearVoiceSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Touch ▶ to hear a sample'**
+  String get tapToHearVoiceSample;
+
+  /// No description provided for @soundEffects.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound Effects'**
+  String get soundEffects;
+
+  /// No description provided for @soundEffectsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft paper, wooden seal, and calligraphy sounds'**
+  String get soundEffectsDesc;
+
+  /// No description provided for @generatingYourScenario.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating your scenario…'**
+  String get generatingYourScenario;
+
+  /// No description provided for @failedToGenerateScenario.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not create this scenario. Please try again.'**
+  String get failedToGenerateScenario;
+
+  /// No description provided for @trickyCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Tricky characters'**
+  String get trickyCharacters;
+
+  /// No description provided for @strongestCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Strongest characters'**
+  String get strongestCharacters;
+
+  /// No description provided for @newThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'New in the last 7 days'**
+  String get newThisWeek;
+
+  /// No description provided for @averageAttemptsPerWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Average attempts per word'**
+  String get averageAttemptsPerWord;
+
+  /// No description provided for @noCardsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No cards in this deck yet'**
+  String get noCardsYet;
 }
 
 class _AppLocalizationsDelegate

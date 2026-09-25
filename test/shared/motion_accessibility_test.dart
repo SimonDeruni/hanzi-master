@@ -50,9 +50,9 @@ void main() {
 
     testWidgets('shimmer holds a static value instead of looping forever',
         (tester) async {
-      await tester.pumpWidget(
-          _host(const ShimmerSkeleton(width: 40, isDark: false),
-              reduceMotion: true));
+      await tester.pumpWidget(_host(
+          const ShimmerSkeleton(width: 40, isDark: false),
+          reduceMotion: true));
       await tester.pump(const Duration(seconds: 3));
 
       // Resting value is 0.5, i.e. halfway between the 0.3 and 0.7 greys.
@@ -288,4 +288,46 @@ void main() {
       expect(switcher.duration, Duration.zero);
     });
   });
+
+  group('staggered list item first row', () {
+    // Regression: index 0 holds for `delay * 0` = 0, and a zero-length hold used
+    // to be emitted as `TweenSequenceItem(weight: 0)` — which `TweenSequence`
+    // rejects (`assert(weight > 0)`). The row threw while building, so any list
+    // whose first entry was staggered failed to mount at all.
+    testWidgets('index 0 mounts and settles fully opaque', (tester) async {
+      await tester.pumpWidget(_host(
+        const StaggeredListItem(index: 0, child: Text('first row')),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(tester.takeException(), isNull,
+          reason: 'A zero-length hold must be omitted, not weighted 0.0');
+      expect(_opacityOf(tester, 'first row'), moreOrLessEquals(1.0));
+    });
+
+    testWidgets('a zero delay mounts without a hold segment', (tester) async {
+      await tester.pumpWidget(_host(
+        const StaggeredListItem(
+          index: 4,
+          delay: Duration.zero,
+          child: Text('row'),
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(tester.takeException(), isNull);
+      expect(_opacityOf(tester, 'row'), moreOrLessEquals(1.0),
+          reason: 'With no hold, the entrance simply starts immediately');
+    });
+  });
 }
+
+/// The opacity a staggered row currently renders at.
+double _opacityOf(WidgetTester tester, String text) => tester
+    .widget<FadeTransition>(
+      find
+          .ancestor(of: find.text(text), matching: find.byType(FadeTransition))
+          .first,
+    )
+    .opacity
+    .value;

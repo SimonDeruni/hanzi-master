@@ -939,6 +939,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get whereWouldYouLike => 'Куда вы хотите сохранить этот иероглиф?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'Куда вы хотите сохранить эти $count слова?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return 'Элементов: $count';
+  }
+
+  @override
   String get addToDefaultStudy => 'Добавить в основную учебную колоду';
 
   @override
@@ -13118,4 +13128,36 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'Не удалось выполнить поиск по словарю. Попробуйте ещё раз.';
+
+  @override
+  String get tapToHearVoiceSample => 'Нажмите ▶, чтобы услышать образец';
+
+  @override
+  String get soundEffects => 'Звуковые эффекты';
+
+  @override
+  String get soundEffectsDesc =>
+      'Мягкая бумага, деревянная печать и звуки каллиграфии';
+
+  @override
+  String get generatingYourScenario => 'Создаём ваш сценарий…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'Не удалось создать этот сценарий. Попробуйте ещё раз.';
+
+  @override
+  String get trickyCharacters => 'Трудные иероглифы';
+
+  @override
+  String get strongestCharacters => 'Самые устойчивые иероглифы';
+
+  @override
+  String get newThisWeek => 'Новые за последние 7 дней';
+
+  @override
+  String get averageAttemptsPerWord => 'В среднем попыток на слово';
+
+  @override
+  String get noCardsYet => 'В этой колоде пока нет карточек';
 }

@@ -23,6 +23,7 @@ class Show {
   final List<YoutubeVideo> episodes;
   final List<String> tags;
   final SubtitleType subtitleType;
+
   /// A short 4-sentence English summary of the show (may be null if not pre-generated).
   final String? summary;
   const Show({
@@ -42,34 +43,182 @@ class Show {
 /// Genre categories for Chinese dramas.
 enum ShowGenre {
   romance('Romance', [
-    '爱情', '恋爱', '甜宠', '总裁', '浪漫', '情', '恋', '嫁', '夫', '妻', '妻主', '妃', '宠',
-    '心动', '相爱', 'love', 'romance', 'sweet', 'lover', 'wedding', 'heart', 'kiss', 'girl',
-    'girlfriend', 'boy', 'boyfriend', 'fall in love', 'my girl', 'first romance', 'fall for'
+    '爱情',
+    '恋爱',
+    '甜宠',
+    '总裁',
+    '浪漫',
+    '情',
+    '恋',
+    '嫁',
+    '夫',
+    '妻',
+    '妻主',
+    '妃',
+    '宠',
+    '心动',
+    '相爱',
+    'love',
+    'romance',
+    'sweet',
+    'lover',
+    'wedding',
+    'heart',
+    'kiss',
+    'girl',
+    'girlfriend',
+    'boy',
+    'boyfriend',
+    'fall in love',
+    'my girl',
+    'first romance',
+    'fall for'
   ]),
   historical('Historical / Costume', [
-    '古装', '宫廷', '武侠', '仙侠', '江湖', '朝代', '大唐', '大宋', '明朝', '清朝', '皇', '帝',
-    '剑', '刀', '侠', '宗', '门', '国', '天下', '锦', '令', '传', '世家', 'historical',
-    'dynasty', 'costume', 'wuxia', 'xianxia', 'palace', 'emperor', 'king', 'sword', 'blade'
+    '古装',
+    '宫廷',
+    '武侠',
+    '仙侠',
+    '江湖',
+    '朝代',
+    '大唐',
+    '大宋',
+    '明朝',
+    '清朝',
+    '皇',
+    '帝',
+    '剑',
+    '刀',
+    '侠',
+    '宗',
+    '门',
+    '国',
+    '天下',
+    '锦',
+    '令',
+    '传',
+    '世家',
+    'historical',
+    'dynasty',
+    'costume',
+    'wuxia',
+    'xianxia',
+    'palace',
+    'emperor',
+    'king',
+    'sword',
+    'blade'
   ]),
   modern('Modern & Youth', [
-    '现代', '都市', '职场', '青春', '校园', '生活', '日常', '少年', '同学', '大学', '高中',
-    '毕业', '奋斗', '逆袭', '成长', '青年', '时代', '年华', '岁', '守诚', 'police', 'guardian',
-    '刑侦', '犯罪', '侦探', '破案', '真相', '探案', '重案', 'modern', 'city', 'youth',
-    'campus', 'school', 'student', 'life', 'story', 'dream', 'young'
+    '现代',
+    '都市',
+    '职场',
+    '青春',
+    '校园',
+    '生活',
+    '日常',
+    '少年',
+    '同学',
+    '大学',
+    '高中',
+    '毕业',
+    '奋斗',
+    '逆袭',
+    '成长',
+    '青年',
+    '时代',
+    '年华',
+    '岁',
+    '守诚',
+    'police',
+    'guardian',
+    '刑侦',
+    '犯罪',
+    '侦探',
+    '破案',
+    '真相',
+    '探案',
+    '重案',
+    'modern',
+    'city',
+    'youth',
+    'campus',
+    'school',
+    'student',
+    'life',
+    'story',
+    'dream',
+    'young'
   ]),
   fantasy('Fantasy & Mythology', [
-    '玄幻', '奇幻', '修仙', '魔幻', '神话', '妖', '魔', '神', '灵', '九', '龙', '凤',
-    '异能', '转世', '重生', '异界', 'fantasy', 'magic', 'myth', 'demon', 'fairy', 'god',
-    'immortal', 'spirit', 'dragon', 'reborn', 'rebirth'
+    '玄幻',
+    '奇幻',
+    '修仙',
+    '魔幻',
+    '神话',
+    '妖',
+    '魔',
+    '神',
+    '灵',
+    '九',
+    '龙',
+    '凤',
+    '异能',
+    '转世',
+    '重生',
+    '异界',
+    'fantasy',
+    'magic',
+    'myth',
+    'demon',
+    'fairy',
+    'god',
+    'immortal',
+    'spirit',
+    'dragon',
+    'reborn',
+    'rebirth'
   ]),
   family('Family & Drama', [
-    '家庭', '亲情', '育儿', '婆媳', '父母', '父母爱情', '儿女', '姊妹', '兄弟', '家', '亲',
-    '大院', '巷', '家常', '门第', 'family', 'parents', 'sister', 'brother', 'home',
-    'mother', 'father', 'drama'
+    '家庭',
+    '亲情',
+    '育儿',
+    '婆媳',
+    '父母',
+    '父母爱情',
+    '儿女',
+    '姊妹',
+    '兄弟',
+    '家',
+    '亲',
+    '大院',
+    '巷',
+    '家常',
+    '门第',
+    'family',
+    'parents',
+    'sister',
+    'brother',
+    'home',
+    'mother',
+    'father',
+    'drama'
   ]),
   comedy('Comedy', [
-    '喜剧', '搞笑', '幽默', '欢乐', '爆笑', '段子', '开心', '笑', '喜事', 'comedy', 'funny',
-    'humor', 'laugh', 'hilarious'
+    '喜剧',
+    '搞笑',
+    '幽默',
+    '欢乐',
+    '爆笑',
+    '段子',
+    '开心',
+    '笑',
+    '喜事',
+    'comedy',
+    'funny',
+    'humor',
+    'laugh',
+    'hilarious'
   ]),
   other('Other', []);
 
@@ -77,7 +226,8 @@ enum ShowGenre {
   final List<String> keywords;
   const ShowGenre(this.label, this.keywords);
 
-  static ShowGenre detect(String title, {List<String> tags = const [], String channel = ''}) {
+  static ShowGenre detect(String title,
+      {List<String> tags = const [], String channel = ''}) {
     final combined = '$title ${tags.join(" ")} $channel'.toLowerCase();
     for (final genre in ShowGenre.values) {
       if (genre == other) continue;
@@ -102,6 +252,7 @@ class ShowChannels {
     'UC3PKcYXUAhao3p4kuNS4_9w', // 腾讯视频 华语经典剧场 (Classic Chinese Drama)
   ];
 }
+
 final showRepositoryProvider = Provider<ShowRepository>((ref) {
   final pool = ref.watch(apiKeyPoolProvider);
   return ShowRepository(apiKeyPool: pool);
@@ -169,7 +320,8 @@ class ShowRepository {
     final cached = _cache[cacheKey];
     if (cached != null &&
         DateTime.now().difference(cached.timestamp) < _cacheTtl) {
-      debugPrint("[ShowRepo] Cache hit: ${cached.showsByGenre.values.fold(0, (sum, list) => sum + list.length)} shows");
+      debugPrint(
+          "[ShowRepo] Cache hit: ${cached.showsByGenre.values.fold(0, (sum, list) => sum + list.length)} shows");
       return cached.showsByGenre;
     }
 
@@ -187,7 +339,8 @@ class ShowRepository {
       final channelTitle = entry["channelTitle"] as String? ?? '';
       final tags = List<String>.from(entry["tags"] as List? ?? []);
 
-      final detectedGenre = ShowGenre.detect(title, tags: tags, channel: channelTitle);
+      final detectedGenre =
+          ShowGenre.detect(title, tags: tags, channel: channelTitle);
 
       allShows.add(Show(
         id: playlistId,
@@ -205,14 +358,16 @@ class ShowRepository {
       ));
     }
 
-    debugPrint("[ShowRepo] Loaded ${allShows.length} qualified shows (filtered short playlists)");
+    debugPrint(
+        "[ShowRepo] Loaded ${allShows.length} qualified shows (filtered short playlists)");
 
     final showsByGenre = <ShowGenre, List<Show>>{};
     for (final genre in ShowGenre.values) {
       showsByGenre[genre] = [];
     }
     for (final show in allShows) {
-      final genre = ShowGenre.detect(show.title, tags: show.tags, channel: show.channelTitle);
+      final genre = ShowGenre.detect(show.title,
+          tags: show.tags, channel: show.channelTitle);
       showsByGenre[genre]!.add(show);
     }
     showsByGenre.removeWhere((_, list) => list.isEmpty);
@@ -236,13 +391,14 @@ class ShowRepository {
       for (int i = 0; i < 3; i++) {
         final currentApiKey = _apiKeyPool.youtubeApiKey;
         if (currentApiKey == 'MISSING_KEY') break;
-        
-        final uri = Uri.parse('$_baseUrl/playlistItems?part=snippet,contentDetails'
-            '&playlistId=$playlistId'
-            '&maxResults=50'
-            '&key=$currentApiKey'
-            '${nextPageToken != null ? '&pageToken=$nextPageToken' : ''}');
-        
+
+        final uri =
+            Uri.parse('$_baseUrl/playlistItems?part=snippet,contentDetails'
+                '&playlistId=$playlistId'
+                '&maxResults=50'
+                '&key=$currentApiKey'
+                '${nextPageToken != null ? '&pageToken=$nextPageToken' : ''}');
+
         response = await _client.get(uri);
         if (response.statusCode == 200) {
           break;
@@ -255,7 +411,7 @@ class ShowRepository {
       }
 
       if (response == null || response.statusCode != 200) break;
-      
+
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       final items = data['items'] as List<dynamic>? ?? [];
       for (final item in items) {
@@ -263,7 +419,8 @@ class ShowRepository {
           final video = YoutubeVideo.fromJson(item as Map<String, dynamic>);
           // Skip short videos (trailers, teasers, clips < 90s)
           if (video.duration != null && video.duration! < minDuration) {
-            debugPrint('[ShowRepo] Skipping short video: ${video.title} (${video.duration})');
+            debugPrint(
+                '[ShowRepo] Skipping short video: ${video.title} (${video.duration})');
             continue;
           }
           videos.add(video);
@@ -316,11 +473,13 @@ class ShowRepository {
             duration: null,
           ));
         }
-        debugPrint("[ShowRepo] Loaded ${episodes.length} episodes from local hardcoded shows database");
+        debugPrint(
+            "[ShowRepo] Loaded ${episodes.length} episodes from local hardcoded shows database");
         return episodes;
       }
     } catch (e) {
-      debugPrint("[ShowRepo] Show not found in local hardcoded shows database or failed parsing: $e");
+      debugPrint(
+          "[ShowRepo] Show not found in local hardcoded shows database or failed parsing: $e");
     }
 
     // Fallback to online YouTube API fetch

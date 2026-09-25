@@ -41,7 +41,8 @@ class _SimplifiedArticleReaderScreenState
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     // Same paper/ink pairing as the browser's Zen reading mode.
-    final textColor = isDark ? const Color(0xFFDADADA) : const Color(0xFF1A1A1B);
+    final textColor =
+        isDark ? const Color(0xFFDADADA) : const Color(0xFF1A1A1B);
     final accent = AppTheme.accentOf(context);
 
     return Scaffold(
@@ -147,10 +148,16 @@ class _SimplifiedArticleReaderScreenState
     bool isDark,
   ) {
     final l10n = AppLocalizations.of(context)!;
-    final textColor = isDark ? const Color(0xFFDADADA) : const Color(0xFF1A1A1B);
+    final textColor =
+        isDark ? const Color(0xFFDADADA) : const Color(0xFF1A1A1B);
     final accent = AppTheme.accentOf(context);
 
-    final spans = <InlineSpan>[];
+    final spans = <InlineSpan>[
+      // A sentence can arrive without a word breakdown (a repaired or
+      // differently-shaped AI answer): render its text rather than letting the
+      // paragraph come out blank.
+      if (sentence.words.isEmpty) TextSpan(text: sentence.chinese),
+    ];
     for (var i = 0; i < sentence.words.length; i++) {
       final word = sentence.words[i];
       final wordKey = '${sentenceIndex}_$i';

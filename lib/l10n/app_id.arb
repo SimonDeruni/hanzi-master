@@ -275,6 +275,8 @@
   "scholarsDesk": "Meja Cendekiawan",
   "chooseADeck": "Pilih Dek",
   "whereWouldYouLike": "Di mana Anda ingin menyimpan karakter ini?",
+  "whereWouldYouLikeWords": "Di mana Anda ingin menyimpan {count} kata ini?",
+  "deckItemsCount": "{count} item",
   "addToDefaultStudy": "Tambahkan ke Dek Belajar Default",
   "ifOffItsOnly": "Jika dinonaktifkan, hanya akan disimpan ke kamus global",
   "saveToLibrary": "Simpan ke Perpustakaan",
@@ -4089,5 +4091,15 @@
   "enjoyingAppSubtitle": "Bagaimana perjalanan belajar bahasa Mandarin Anda sejauh ini?",
   "ratingLovingIt": "Ya, saya suka!",
   "ratingCouldBeBetter": "Bisa lebih baik",
-  "dictionarySearchFailed": "Pencarian kamus gagal. Silakan coba lagi."
+  "dictionarySearchFailed": "Pencarian kamus gagal. Silakan coba lagi.",
+  "tapToHearVoiceSample": "Ketuk ▶ untuk mendengar contoh",
+  "soundEffects": "Efek Suara",
+  "soundEffectsDesc": "Suara kertas lembut, stempel kayu, dan kaligrafi",
+  "generatingYourScenario": "Membuat skenario Anda…",
+  "failedToGenerateScenario": "Kami tidak dapat membuat skenario ini. Silakan coba lagi.",
+  "trickyCharacters": "Karakter sulit",
+  "strongestCharacters": "Karakter terkuat",
+  "newThisWeek": "Baru dalam 7 hari terakhir",
+  "averageAttemptsPerWord": "Rata-rata percobaan per kata",
+  "noCardsYet": "Belum ada kartu di dek ini"
 }

@@ -293,6 +293,8 @@
   "scholarsDesk": "학자의 책상",
   "chooseADeck": "덱 선택",
   "whereWouldYouLike": "이 한자를 어디에 저장하시겠습니까?",
+  "whereWouldYouLikeWords": "이 {count}개 단어를 어디에 저장하시겠습니까?",
+  "deckItemsCount": "{count}개 항목",
   "addToDefaultStudy": "기본 학습 덱에 추가",
   "ifOffItsOnly": "비활성화 시 글로벌 사전에만 저장됩니다",
   "saveToLibrary": "라이브러리에 저장",
@@ -4106,5 +4108,15 @@
   "enjoyingAppSubtitle": "지금까지의 중국어 학습 여정은 어떠셨나요?",
   "ratingLovingIt": "네, 아주 좋아요!",
   "ratingCouldBeBetter": "아쉬운 점이 있어요",
-  "dictionarySearchFailed": "사전 검색에 실패했습니다. 다시 시도해 주세요."
+  "dictionarySearchFailed": "사전 검색에 실패했습니다. 다시 시도해 주세요.",
+  "tapToHearVoiceSample": "▶를 눌러 샘플을 들어보세요",
+  "soundEffects": "효과음",
+  "soundEffectsDesc": "부드러운 종이, 나무 도장, 서예 소리",
+  "generatingYourScenario": "시나리오를 만들고 있어요…",
+  "failedToGenerateScenario": "이 시나리오를 만들지 못했습니다. 다시 시도해 주세요.",
+  "trickyCharacters": "까다로운 한자",
+  "strongestCharacters": "가장 잘 외운 한자",
+  "newThisWeek": "최근 7일 새 단어",
+  "averageAttemptsPerWord": "단어당 평균 시도",
+  "noCardsYet": "이 덱에는 아직 카드가 없습니다"
 }

@@ -52,22 +52,32 @@ class _StaggeredListItemState extends State<StaggeredListItem>
     // failure for a list row. Encoding the delay as a hold at the start of a
     // TweenSequence makes the animation the single source of truth, so full
     // opacity is always reached once it completes.
-    _fadeAnimation = TweenSequence<double>([
-      TweenSequenceItem(tween: ConstantTween(0.0), weight: holdMicros.toDouble()),
-      TweenSequenceItem(
-        tween: Tween(begin: 0.0, end: 1.0)
+    //
+    // A zero-length hold must be omitted rather than emitted as `weight: 0`:
+    // `TweenSequenceItem` asserts `weight > 0`, so the *first* row (index 0) and
+    // any zero `delay` used to throw while building — the whole list failed to
+    // mount instead of simply animating without a hold.
+    _fadeAnimation = TweenSequence<double>(<TweenSequenceItem<double>>[
+      if (holdMicros > 0)
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(0.0),
+          weight: holdMicros.toDouble(),
+        ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 0.0, end: 1.0)
             .chain(CurveTween(curve: ZenMotion.enter)),
         weight: entranceMicros.toDouble(),
       ),
     ]).animate(_controller);
 
-    _slideAnimation = TweenSequence<Offset>([
-      TweenSequenceItem(
-        tween: ConstantTween(const Offset(0, 0.2)),
-        weight: holdMicros.toDouble(),
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: const Offset(0, 0.2), end: Offset.zero)
+    _slideAnimation = TweenSequence<Offset>(<TweenSequenceItem<Offset>>[
+      if (holdMicros > 0)
+        TweenSequenceItem<Offset>(
+          tween: ConstantTween<Offset>(const Offset(0, 0.2)),
+          weight: holdMicros.toDouble(),
+        ),
+      TweenSequenceItem<Offset>(
+        tween: Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero)
             .chain(CurveTween(curve: ZenMotion.natural)),
         weight: entranceMicros.toDouble(),
       ),

@@ -10,7 +10,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('ShadowingStudioScreen Context Sentence & Target Hanzi Highlight', () {
-    test('PinyinHelper generates full sentence pinyin with tone marks for context', () {
+    test(
+        'PinyinHelper generates full sentence pinyin with tone marks for context',
+        () {
       const sentence = '台湾艺术家郑亭亭突然得知';
       final pinyin = PinyinHelper.getPinyinE(
         sentence,
@@ -27,7 +29,9 @@ void main() {
       expect(pinyin.split(' ').length, greaterThan(4));
     });
 
-    testWidgets('renders full sentence and highlights the specific tapped character in Scholar Indigo', (tester) async {
+    testWidgets(
+        'renders full sentence and highlights the specific tapped character in the canonical accent',
+        (tester) async {
       const targetChar = '得';
       const sentence = '8月初，台湾艺术家郑亭亭突然得知消息。';
       final sentencePinyin = PinyinHelper.getPinyinE(
@@ -50,7 +54,8 @@ void main() {
                 initialHanzi: targetChar,
                 initialContextSentence: sentence,
                 initialPinyin: sentencePinyin,
-                initialTranslation: 'In early August, Taiwanese artist Cheng Ting-Ting suddenly learned the news.',
+                initialTranslation:
+                    'In early August, Taiwanese artist Cheng Ting-Ting suddenly learned the news.',
                 isCompact: false,
               ),
             ),
@@ -65,7 +70,10 @@ void main() {
       expect(find.text(sentencePinyin), findsOneWidget);
 
       // Verify the sentence translation is rendered
-      expect(find.text('In early August, Taiwanese artist Cheng Ting-Ting suddenly learned the news.'), findsOneWidget);
+      expect(
+          find.text(
+              'In early August, Taiwanese artist Cheng Ting-Ting suddenly learned the news.'),
+          findsOneWidget);
 
       // Verify that the Chinese sentence is rendered with the highlighted target character
       final highlightedFinder = find.byWidgetPredicate((widget) {
@@ -78,8 +86,12 @@ void main() {
               for (final child in children) {
                 if (child is TextSpan && child.text == targetChar) {
                   final style = child.style;
+                  // The target character wears the app's canonical Cinnabar
+                  // accent (AppTheme.accentLight), the way the reader inks the
+                  // sentence you are on — it used to be Material indigo, which
+                  // made this screen the odd one out.
                   if (style != null &&
-                      style.color == const Color(0xFF4F46E5) &&
+                      style.color == const Color(0xFF8B0000) &&
                       style.fontWeight == FontWeight.bold) {
                     return true;
                   }
@@ -94,7 +106,9 @@ void main() {
       expect(highlightedFinder, findsOneWidget);
     });
 
-    testWidgets('renders multi-character tapped word highlighted in full sentence', (tester) async {
+    testWidgets(
+        'renders multi-character tapped word highlighted in full sentence',
+        (tester) async {
       const targetWord = '艺术家';
       const sentence = '台湾艺术家郑亭亭前往伦敦。';
       final sentencePinyin = PinyinHelper.getPinyinE(
@@ -117,7 +131,8 @@ void main() {
                 initialHanzi: targetWord,
                 initialContextSentence: sentence,
                 initialPinyin: sentencePinyin,
-                initialTranslation: 'Taiwanese artist Cheng Ting-Ting traveled to London.',
+                initialTranslation:
+                    'Taiwanese artist Cheng Ting-Ting traveled to London.',
                 isCompact: true,
               ),
             ),
@@ -136,8 +151,9 @@ void main() {
               for (final child in children) {
                 if (child is TextSpan && child.text == targetWord) {
                   final style = child.style;
+                  // Same canonical accent as the single-character case above.
                   if (style != null &&
-                      style.color == const Color(0xFF4F46E5) &&
+                      style.color == const Color(0xFF8B0000) &&
                       style.fontWeight == FontWeight.bold) {
                     return true;
                   }

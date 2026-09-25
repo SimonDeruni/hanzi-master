@@ -310,6 +310,8 @@
   "scholarsDesk": "Escrivaninha do Erudito",
   "chooseADeck": "Escolha um baralho",
   "whereWouldYouLike": "Onde você gostaria de salvar este caractere?",
+  "whereWouldYouLikeWords": "Onde você gostaria de salvar estas {count} palavras?",
+  "deckItemsCount": "{count} itens",
   "addToDefaultStudy": "Adicionar ao baralho de estudo padrão",
   "ifOffItsOnly": "Se desativado, será salvo apenas no dicionário global",
   "saveToLibrary": "Salvar na biblioteca",
@@ -4124,5 +4126,15 @@
   "enjoyingAppSubtitle": "Como está sendo sua jornada no aprendizado de chinês?",
   "ratingLovingIt": "Sim, estou adorando!",
   "ratingCouldBeBetter": "Poderia ser melhor",
-  "dictionarySearchFailed": "A pesquisa no dicionário falhou. Tente novamente."
+  "dictionarySearchFailed": "A pesquisa no dicionário falhou. Tente novamente.",
+  "tapToHearVoiceSample": "Toque em ▶ para ouvir uma amostra",
+  "soundEffects": "Efeitos sonoros",
+  "soundEffectsDesc": "Papel suave, selo de madeira e sons de caligrafia",
+  "generatingYourScenario": "Criando o seu cenário…",
+  "failedToGenerateScenario": "Não conseguimos criar este cenário. Tente novamente.",
+  "trickyCharacters": "Caracteres difíceis",
+  "strongestCharacters": "Caracteres mais sólidos",
+  "newThisWeek": "Novos nos últimos 7 dias",
+  "averageAttemptsPerWord": "Tentativas médias por palavra",
+  "noCardsYet": "Ainda não há cartões neste baralho"
 }

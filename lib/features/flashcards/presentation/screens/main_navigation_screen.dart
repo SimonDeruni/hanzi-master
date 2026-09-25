@@ -13,6 +13,7 @@ import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/features/reading/presentation/widgets/now_playing_bar.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -103,55 +104,65 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           );
         }),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: AppTheme.surfaceOf(context),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
+      // The Now Playing bar stacks directly above the tab bar so background
+      // audiobook playback always has an in-app transport (see NowPlayingBar);
+      // it collapses to nothing when the engine is idle.
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const NowPlayingBar(),
+          Container(
+            decoration: BoxDecoration(
+              color: AppTheme.surfaceOf(context),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: (index) {
-            HapticsManager.light();
-            _onNavigate(index);
-          },
-          backgroundColor: AppTheme.surfaceOf(context),
-          selectedItemColor: AppTheme.accentFire,
-          unselectedItemColor: isDark
-              ? AppTheme.carbonInkDark.withValues(alpha: 0.4)
-              : const Color(0xFF1A1A1B).withValues(alpha: 0.5),
-          showUnselectedLabels: true,
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.home_outlined),
-              activeIcon: const Icon(Icons.home),
-              label:
-                  AppLocalizations.of(context)?.dashboardTitle ?? 'Dashboard',
+            child: BottomNavigationBar(
+              currentIndex: _selectedIndex,
+              onTap: (index) {
+                HapticsManager.light();
+                _onNavigate(index);
+              },
+              backgroundColor: AppTheme.surfaceOf(context),
+              selectedItemColor: AppTheme.accentFire,
+              unselectedItemColor: isDark
+                  ? AppTheme.carbonInkDark.withValues(alpha: 0.4)
+                  : const Color(0xFF1A1A1B).withValues(alpha: 0.5),
+              showUnselectedLabels: true,
+              elevation: 0,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.home_outlined),
+                  activeIcon: const Icon(Icons.home),
+                  label: AppLocalizations.of(context)?.dashboardTitle ??
+                      'Dashboard',
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.explore_outlined),
+                  activeIcon: const Icon(Icons.explore),
+                  label: AppLocalizations.of(context)?.explore ?? 'Explore',
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.auto_awesome_outlined),
+                  activeIcon: const Icon(Icons.auto_awesome),
+                  label: AppLocalizations.of(context)?.aiHubTitle ?? 'AI Hub',
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.menu_book_outlined),
+                  activeIcon: const Icon(Icons.menu_book),
+                  label:
+                      AppLocalizations.of(context)?.libraryLabel ?? 'Library',
+                ),
+              ],
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.explore_outlined),
-              activeIcon: const Icon(Icons.explore),
-              label: AppLocalizations.of(context)?.explore ?? 'Explore',
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.auto_awesome_outlined),
-              activeIcon: const Icon(Icons.auto_awesome),
-              label: AppLocalizations.of(context)?.aiHubTitle ?? 'AI Hub',
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.menu_book_outlined),
-              activeIcon: const Icon(Icons.menu_book),
-              label: AppLocalizations.of(context)?.libraryLabel ?? 'Library',
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

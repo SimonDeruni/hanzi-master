@@ -61,7 +61,7 @@ class _DashboardBody extends StatelessWidget {
   final DailyStudyMetrics metrics;
 
   void _launch(BuildContext context, {required bool studyAhead}) {
-    StudyModeSelectionSheet.show(context, onModeSelected: (mode) {
+    StudyModeSelectionSheet.show(context, cards: cards, onModeSelected: (mode) {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -90,90 +90,95 @@ class _DashboardBody extends StatelessWidget {
             .clamp(0, 1)
             .toDouble();
 
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        Text(deck.localizedName(context), style: theme.textTheme.headlineSmall),
-        const SizedBox(height: 4),
-        Text(DateFormat.yMMMMEEEEd().format(DateTime.now()),
-            style: theme.textTheme.bodyMedium),
-        const SizedBox(height: 20),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(children: [
-              _GoalRow(l10n.newCardsLabel, metrics.introducedToday,
-                  deck.dailyNewCardsLimit, newProgress, Colors.green),
-              const SizedBox(height: 18),
-              _GoalRow(l10n.reviews, metrics.reviewedToday,
-                  deck.dailyReviewLimit, reviewProgress, Colors.indigo),
-            ]),
+    return ZenFadeIn(
+      child: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          Text(deck.localizedName(context),
+              style: theme.textTheme.headlineSmall),
+          const SizedBox(height: 4),
+          Text(DateFormat.yMMMMEEEEd().format(DateTime.now()),
+              style: theme.textTheme.bodyMedium),
+          const SizedBox(height: 20),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(children: [
+                _GoalRow(l10n.newCardsLabel, metrics.introducedToday,
+                    deck.dailyNewCardsLimit, newProgress, Colors.green),
+                const SizedBox(height: 18),
+                _GoalRow(l10n.reviews, metrics.reviewedToday,
+                    deck.dailyReviewLimit, reviewProgress, Colors.indigo),
+              ]),
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        Row(children: [
-          _CountCard(l10n.dueNow, metrics.dueNow, Icons.notifications_active,
-              Colors.orange),
-          const SizedBox(width: 10),
-          _CountCard(
-              l10n.learning, metrics.learningNow, Icons.school, Colors.green),
-          const SizedBox(width: 10),
-          _CountCard(
-              l10n.scheduled, metrics.futureReviews, Icons.event, Colors.blue),
-        ]),
-        const SizedBox(height: 20),
-        Text(l10n.sevenDayForecast,
-            style: theme.textTheme.titleMedium
-                ?.copyWith(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 130,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: List.generate(metrics.forecast.length, (index) {
-              final max =
-                  metrics.forecast.fold<int>(1, (a, b) => b > a ? b : a);
-              final count = metrics.forecast[index];
-              final date = DateTime.now().add(Duration(days: index));
-              return Expanded(
-                child:
-                    Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  Text('$count', style: theme.textTheme.bodySmall),
-                  const SizedBox(height: 4),
-                  Container(
-                    width: 18,
-                    height: 12 + 70 * count / max,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(DateFormat.E().format(date).substring(0, 1)),
-                ]),
-              );
-            }),
+          const SizedBox(height: 12),
+          Row(children: [
+            _CountCard(l10n.dueNow, metrics.dueNow, Icons.notifications_active,
+                Colors.orange),
+            const SizedBox(width: 10),
+            _CountCard(
+                l10n.learning, metrics.learningNow, Icons.school, Colors.green),
+            const SizedBox(width: 10),
+            _CountCard(l10n.scheduled, metrics.futureReviews, Icons.event,
+                Colors.blue),
+          ]),
+          const SizedBox(height: 20),
+          Text(l10n.sevenDayForecast,
+              style: theme.textTheme.titleMedium
+                  ?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 12),
+          SizedBox(
+            height: 130,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: List.generate(metrics.forecast.length, (index) {
+                final max =
+                    metrics.forecast.fold<int>(1, (a, b) => b > a ? b : a);
+                final count = metrics.forecast[index];
+                final date = DateTime.now().add(Duration(days: index));
+                return Expanded(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('$count', style: theme.textTheme.bodySmall),
+                        const SizedBox(height: 4),
+                        Container(
+                          width: 18,
+                          height: 12 + 70 * count / max,
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.primary,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(DateFormat.E().format(date).substring(0, 1)),
+                      ]),
+                );
+              }),
+            ),
           ),
-        ),
-        const SizedBox(height: 24),
-        FilledButton.icon(
-          onPressed:
-              cards.isEmpty ? null : () => _launch(context, studyAhead: false),
-          icon: const Icon(Icons.play_arrow),
-          label: Text(l10n.studyToday),
-        ),
-        const SizedBox(height: 10),
-        OutlinedButton.icon(
-          onPressed: metrics.futureReviews == 0
-              ? null
-              : () => _launch(context, studyAhead: true),
-          icon: const Icon(Icons.fast_forward),
-          label: Text(l10n.studyAhead),
-        ),
-        const SizedBox(height: 6),
-        Text(l10n.studyAheadDescription,
-            textAlign: TextAlign.center, style: theme.textTheme.bodySmall),
-      ],
+          const SizedBox(height: 24),
+          FilledButton.icon(
+            onPressed: cards.isEmpty
+                ? null
+                : () => _launch(context, studyAhead: false),
+            icon: const Icon(Icons.play_arrow),
+            label: Text(l10n.studyToday),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            onPressed: metrics.futureReviews == 0
+                ? null
+                : () => _launch(context, studyAhead: true),
+            icon: const Icon(Icons.fast_forward),
+            label: Text(l10n.studyAhead),
+          ),
+          const SizedBox(height: 6),
+          Text(l10n.studyAheadDescription,
+              textAlign: TextAlign.center, style: theme.textTheme.bodySmall),
+        ],
+      ),
     );
   }
 }

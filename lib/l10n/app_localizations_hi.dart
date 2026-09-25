@@ -934,6 +934,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get whereWouldYouLike => 'आप इस वर्ण को कहाँ सहेजना चाहेंगे?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'आप इन $count शब्दों को कहाँ सहेजना चाहेंगे?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count आइटम';
+  }
+
+  @override
   String get addToDefaultStudy => 'डिफ़ॉल्ट अध्ययन डेक में जोड़ें';
 
   @override
@@ -13065,4 +13075,36 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'शब्दकोश खोज विफल रही। कृपया पुनः प्रयास करें।';
+
+  @override
+  String get tapToHearVoiceSample => 'नमूना सुनने के लिए ▶ दबाएँ';
+
+  @override
+  String get soundEffects => 'ध्वनि प्रभाव';
+
+  @override
+  String get soundEffectsDesc =>
+      'कोमल कागज़, लकड़ी की मुहर और सुलेख की ध्वनियाँ';
+
+  @override
+  String get generatingYourScenario => 'आपका परिदृश्य बनाया जा रहा है…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'यह परिदृश्य बनाना संभव नहीं हुआ। कृपया फिर कोशिश करें।';
+
+  @override
+  String get trickyCharacters => 'कठिन अक्षर';
+
+  @override
+  String get strongestCharacters => 'सबसे मज़बूत अक्षर';
+
+  @override
+  String get newThisWeek => 'पिछले 7 दिनों में नए';
+
+  @override
+  String get averageAttemptsPerWord => 'प्रति शब्द औसत प्रयास';
+
+  @override
+  String get noCardsYet => 'इस डेक में अभी कोई कार्ड नहीं है';
 }

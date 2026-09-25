@@ -25,12 +25,18 @@ import 'dart:io';
 
 void main() async {
   final shows = _parseShowsData();
-  if (shows.isEmpty) { print('No shows found'); return; }
+  if (shows.isEmpty) {
+    print('No shows found');
+    return;
+  }
   print('Found ${shows.length} shows/playlists');
   print('');
 
   final apiKey = _loadApiKey();
-  if (apiKey == null) { print('No YOUTUBE_API_KEY found in .env'); return; }
+  if (apiKey == null) {
+    print('No YOUTUBE_API_KEY found in .env');
+    return;
+  }
 
   final cacheFile = File(
     'lib/features/media/data/repositories/show_durations_cache.json',
@@ -39,11 +45,13 @@ void main() async {
   Map<String, List<_EpisodeInfo>>? cachedData;
   if (cacheFile.existsSync()) {
     try {
-      final cached = jsonDecode(cacheFile.readAsStringSync()) as Map<String, dynamic>;
+      final cached =
+          jsonDecode(cacheFile.readAsStringSync()) as Map<String, dynamic>;
       cachedData = cached.map((k, v) => MapEntry(
-            k, (v as List<dynamic>)
-                .map((e) => _EpisodeInfo.fromJson(e as Map<String, dynamic>))
-                .toList()));
+          k,
+          (v as List<dynamic>)
+              .map((e) => _EpisodeInfo.fromJson(e as Map<String, dynamic>))
+              .toList()));
       print('Loaded cached durations for ${cachedData.length} playlists');
     } catch (e) {
       print('Cache corrupt, re-fetching...');
@@ -56,8 +64,8 @@ void main() async {
     print('Using cache (${shows.length} playlists)');
   } else {
     allData = await _fetchAllDurations(shows, apiKey);
-    final jsonMap = allData.map(
-      (k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()));
+    final jsonMap =
+        allData.map((k, v) => MapEntry(k, v.map((e) => e.toJson()).toList()));
     cacheFile.writeAsStringSync(jsonEncode(jsonMap));
     print('Cache saved');
   }
@@ -104,7 +112,9 @@ void main() async {
   final extended = <MapEntry<String, List<_EpisodeInfo>>>[];
 
   for (final e in onlyLong) {
-    final avgSec = e.value.map((v) => v.durationSeconds).reduce((a, b) => a + b) / e.value.length;
+    final avgSec =
+        e.value.map((v) => v.durationSeconds).reduce((a, b) => a + b) /
+            e.value.length;
     final avg = Duration(seconds: avgSec.round());
     if (avg < compactMax) {
       compact.add(e);
@@ -115,22 +125,31 @@ void main() async {
     }
   }
 
-  void printGroup(String label, List<MapEntry<String, List<_EpisodeInfo>>> group) {
+  void printGroup(
+      String label, List<MapEntry<String, List<_EpisodeInfo>>> group) {
     print('--- $label (${group.length} shows) ---');
-    if (group.isEmpty) { print('  (none)'); return; }
+    if (group.isEmpty) {
+      print('  (none)');
+      return;
+    }
 
     // Sort by episode count descending
     group.sort((a, b) => b.value.length.compareTo(a.value.length));
 
     for (final e in group) {
       final eps = e.value.length;
-      final avgSec = e.value.map((v) => v.durationSeconds).reduce((a, b) => a + b) / e.value.length;
-      final minDur = e.value.map((v) => v.durationSeconds).reduce((a, b) => a < b ? a : b);
-      final maxDur = e.value.map((v) => v.durationSeconds).reduce((a, b) => a > b ? a : b);
+      final avgSec =
+          e.value.map((v) => v.durationSeconds).reduce((a, b) => a + b) /
+              e.value.length;
+      final minDur =
+          e.value.map((v) => v.durationSeconds).reduce((a, b) => a < b ? a : b);
+      final maxDur =
+          e.value.map((v) => v.durationSeconds).reduce((a, b) => a > b ? a : b);
       final mn = Duration(seconds: minDur);
       final mx = Duration(seconds: maxDur);
       print('  ${showTitle(e.key)}');
-      print('    $eps eps | avg ${avgSec.toStringAsFixed(0)}s (${(avgSec / 60).toStringAsFixed(1)}m) | range ${mn.inMinutes}:${(mn.inSeconds % 60).toString().padLeft(2, '0')}–${mx.inMinutes}:${(mx.inSeconds % 60).toString().padLeft(2, '0')}');
+      print(
+          '    $eps eps | avg ${avgSec.toStringAsFixed(0)}s (${(avgSec / 60).toStringAsFixed(1)}m) | range ${mn.inMinutes}:${(mn.inSeconds % 60).toString().padLeft(2, '0')}–${mx.inMinutes}:${(mx.inSeconds % 60).toString().padLeft(2, '0')}');
     }
     print('');
   }
@@ -144,7 +163,9 @@ void main() async {
   print('                      SUMMARY');
   print('=========================================================');
   int totalEp = 0;
-  for (final e in onlyLong) { totalEp += e.value.length; }
+  for (final e in onlyLong) {
+    totalEp += e.value.length;
+  }
   print('  Only-long playlists: ${onlyLong.length}');
   print('  Total episodes: $totalEp');
   print('');
@@ -160,7 +181,10 @@ void main() async {
 
 List<Map<String, String>> _parseShowsData() {
   final file = File('lib/features/media/data/repositories/shows_data.dart');
-  if (!file.existsSync()) { print('shows_data.dart not found'); return []; }
+  if (!file.existsSync()) {
+    print('shows_data.dart not found');
+    return [];
+  }
 
   final content = file.readAsStringSync();
   final results = <Map<String, String>>[];
@@ -183,8 +207,10 @@ List<Map<String, String>> _parseShowsData() {
 
     if (videoIds.isNotEmpty) {
       results.add({
-        'id': playlistId, 'title': title,
-        'videoIds': videoIds.join(','), 'count': videoIds.length.toString(),
+        'id': playlistId,
+        'title': title,
+        'videoIds': videoIds.join(','),
+        'count': videoIds.length.toString(),
       });
     }
   }
@@ -207,7 +233,8 @@ String? _loadApiKey() {
 // ---------------------------------------------------------------------------
 
 Future<Map<String, List<_EpisodeInfo>>> _fetchAllDurations(
-  List<Map<String, String>> shows, String apiKey,
+  List<Map<String, String>> shows,
+  String apiKey,
 ) async {
   final client = HttpClient();
   final allData = <String, List<_EpisodeInfo>>{};
@@ -266,7 +293,9 @@ Future<Map<String, List<_EpisodeInfo>>> _fetchAllDurations(
 
     allData[playlistId] = episodes;
     if (episodes.isNotEmpty) {
-      final avg = episodes.map((e) => e.durationSeconds).reduce((a, b) => a + b) / episodes.length;
+      final avg =
+          episodes.map((e) => e.durationSeconds).reduce((a, b) => a + b) /
+              episodes.length;
       print('    ${episodes.length} episodes, avg ${avg.toStringAsFixed(0)}s');
     }
   }
@@ -297,8 +326,10 @@ class _EpisodeInfo {
   const _EpisodeInfo({required this.videoId, required this.durationSeconds});
   Duration get duration => Duration(seconds: durationSeconds);
 
-  factory _EpisodeInfo.fromJson(Map<String, dynamic> json) =>
-      _EpisodeInfo(videoId: json['videoId'] as String, durationSeconds: json['durationSeconds'] as int);
+  factory _EpisodeInfo.fromJson(Map<String, dynamic> json) => _EpisodeInfo(
+      videoId: json['videoId'] as String,
+      durationSeconds: json['durationSeconds'] as int);
 
-  Map<String, dynamic> toJson() => {'videoId': videoId, 'durationSeconds': durationSeconds};
+  Map<String, dynamic> toJson() =>
+      {'videoId': videoId, 'durationSeconds': durationSeconds};
 }

@@ -1,0 +1,29 @@
+﻿UNBALANCED lib/features/course/presentation/widgets/radical_detail_sheet.dart  open=150 close=151
+reverted lib/features/course/presentation/widgets/radical_detail_sheet.dart
+reverted lib/features/echo_hall/presentation/screens/scenario_selection_screen.dart
+reverted lib/features/echo_hall/presentation/widgets/live_call_summary_screen.dart
+UNBALANCED lib/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart  open=318 close=319
+reverted lib/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart
+reverted lib/features/flashcards/presentation/screens/daily_study_dashboard_screen.dart
+reverted lib/features/flashcards/presentation/screens/deck_review_session_screen.dart
+UNBALANCED lib/features/flashcards/presentation/screens/dictionary_screen.dart  open=579 close=581
+reverted lib/features/flashcards/presentation/screens/dictionary_screen.dart
+reverted lib/features/flashcards/presentation/screens/profile_screen.dart
+reverted lib/features/flashcards/presentation/screens/radical_detail_screen.dart
+reverted lib/features/flashcards/presentation/screens/radical_library_screen.dart
+reverted lib/features/flashcards/presentation/screens/session_summary_screen.dart
+reverted lib/features/flashcards/presentation/screens/settings_screen.dart
+reverted lib/features/flashcards/presentation/screens/stats_screen.dart
+UNBALANCED lib/features/flashcards/presentation/widgets/deck_settings_sheet.dart  open=126 close=127
+reverted lib/features/flashcards/presentation/widgets/deck_settings_sheet.dart
+UNBALANCED lib/features/flashcards/presentation/widgets/flashcard_edit_dialog.dart  open=102 close=103
+reverted lib/features/flashcards/presentation/widgets/flashcard_edit_dialog.dart
+UNBALANCED lib/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart  open=51 close=52
+reverted lib/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart
+reverted lib/features/media/presentation/screens/media_hub_screen.dart
+reverted lib/features/media/presentation/screens/simplified_article_reader_screen.dart
+reverted lib/features/media/presentation/screens/story_summary_screen.dart
+reverted lib/features/reading/presentation/screens/book_detail_screen.dart
+reverted lib/features/settings/presentation/screens/ai_data_privacy_screen.dart
+reverted lib/features/settings/presentation/screens/contact_screen.dart
+reverted lib/features/settings/presentation/screens/qa_screen.dart

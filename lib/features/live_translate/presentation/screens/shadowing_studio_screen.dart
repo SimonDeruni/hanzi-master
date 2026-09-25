@@ -379,7 +379,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-                content: Text(AppLocalizations.of(context)?.microphonePermissionDeniedEnableItI ??
+                content: Text(AppLocalizations.of(context)
+                        ?.microphonePermissionDeniedEnableItI ??
                     "Microphone permission denied. Enable it in Settings to use Shadowing Studio.")),
           );
         }
@@ -508,7 +509,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               _errorMessage =
                   "Azure authentication failed. Check your Speech API key and region in .env";
             } else if (msg.contains("Azure Error 429")) {
-              _errorMessage = "Azure quota exceeded. Try again later.";
+              // Was a hardcoded English sentence; the 14-locale key already
+              // existed for exactly this message.
+              _errorMessage =
+                  AppLocalizations.of(context)!.azureQuotaExceededTryAgainLater;
             } else if (msg.contains("TimeoutException") ||
                 msg.contains("timed out")) {
               _errorMessage =
@@ -563,7 +567,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    AppLocalizations.of(context)?.sessionSummary ?? "Session Summary",
+                    AppLocalizations.of(context)?.sessionSummary ??
+                        "Session Summary",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -572,7 +577,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    AppLocalizations.of(context)?.hereAreTheCharactersYouStruggledWit ??
+                    AppLocalizations.of(context)
+                            ?.hereAreTheCharactersYouStruggledWit ??
                         "Here are the characters you struggled with:",
                     style: TextStyle(
                         color: isDark ? Colors.white70 : Colors.black54),
@@ -597,7 +603,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                           contentPadding: EdgeInsets.zero,
                           leading: Checkbox(
                             value: isSelected,
-                            activeColor: Colors.orange,
+                            activeColor: _accentOf(isDark),
                             onChanged: (val) {
                               setModalState(() {
                                 if (val == true) {
@@ -613,7 +619,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             style: TextStyle(
                               fontSize: 28,
                               fontFamily: 'NotoSerifSC',
-                              color: isPartial ? Colors.orange : Colors.red,
+                              color: isPartial
+                                  ? _accentOf(isDark)
+                                  : _alertOf(isDark),
                             ),
                           ),
                           subtitle: feedback.isNotEmpty
@@ -637,8 +645,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             _exitSession();
                           },
                           child: Text(AppLocalizations.of(context)!.skip,
-                              style: const TextStyle(
-                                  color: Colors.grey, fontSize: 16)),
+                              style: TextStyle(
+                                  color: _mutedOf(isDark), fontSize: 16)),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -646,7 +654,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         flex: 2,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.orange,
+                            // Book-screen primary: Deep Carbon Ink in light mode,
+                            // Emperor's Gold in dark mode.
+                            backgroundColor: isDark
+                                ? Colors.amber.shade700
+                                : const Color(0xFF1A1A1B),
+                            foregroundColor:
+                                isDark ? const Color(0xFF1A1A1B) : Colors.white,
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16)),
@@ -661,9 +675,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                           child: Text(
                               AppLocalizations.of(context)!.addSelectedToDeck,
                               style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16)),
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
                         ),
                       ),
                     ],
@@ -706,15 +718,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     title: const Text(
                         "Apply session grades to Spaced Repetition (Speaking Mode)",
                         style: TextStyle(fontSize: 14)),
-                    activeThumbColor: Colors.orange,
+                    activeThumbColor: _accentOf(isDark),
                     value: applySrs,
                     onChanged: (val) => setModalState(() => applySrs = val),
                     contentPadding: EdgeInsets.zero,
                   ),
                   const Divider(),
                   if (decksAsync.isLoading)
-                    const Center(
-                        child: ZenLoader(color: Colors.orange)),
+                    Center(child: ZenLoader(color: _accentOf(isDark))),
                   if (decksAsync.hasValue && decksAsync.value!.isEmpty)
                     Text(AppLocalizations.of(context)!.no_decks_found),
                   if (decksAsync.hasValue && decksAsync.value!.isNotEmpty)
@@ -728,8 +739,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   color: isDark
                                       ? Colors.white54
                                       : Colors.black54)),
-                          trailing: const Icon(Icons.add_circle_outline,
-                              color: Colors.orange),
+                          trailing: Icon(Icons.add_circle_outline,
+                              color: _accentOf(isDark)),
                           onTap: () async {
                             Navigator.pop(context); // Close deck selector
                             _exitSession();
@@ -741,14 +752,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   const Divider(),
                   ListTile(
                     title: Text(AppLocalizations.of(context)!.createNewDeck,
-                        style: const TextStyle(
-                            color: Colors.orange, fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            color: _accentOf(isDark),
+                            fontWeight: FontWeight.bold)),
                     subtitle: Text(
                         AppLocalizations.of(context)!.makeACustomCollection,
                         style: TextStyle(
                             color: isDark ? Colors.white54 : Colors.black54)),
-                    trailing:
-                        const Icon(Icons.add_circle, color: Colors.orange),
+                    trailing: Icon(Icons.add_circle, color: _accentOf(isDark)),
                     onTap: () {
                       _showCreateDeckDialog(
                           context, isDark, wordsToAdd, applySrs);
@@ -769,31 +780,34 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor:
-              isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          backgroundColor: _cardOf(isDark),
           title: Text(AppLocalizations.of(context)!.newDeckName,
-              style: TextStyle(color: isDark ? Colors.white : Colors.black)),
+              style: TextStyle(color: _inkOf(isDark))),
           content: HanziTextField(
             controller: controller,
-            style: TextStyle(color: isDark ? Colors.white : Colors.black),
+            style: TextStyle(color: _inkOf(isDark)),
             decoration: InputDecoration(
               hintText: AppLocalizations.of(context)!.egAnimeVocab,
-              hintStyle:
-                  TextStyle(color: isDark ? Colors.white54 : Colors.black54),
-              enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange)),
-              focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange)),
+              hintStyle: TextStyle(color: _mutedOf(isDark)),
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: _accentOf(isDark))),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: _accentOf(isDark))),
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
               child: Text(AppLocalizations.of(context)!.cancelAction,
-                  style: const TextStyle(color: Colors.grey)),
+                  style: TextStyle(color: _mutedOf(isDark))),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    isDark ? Colors.amber.shade700 : const Color(0xFF1A1A1B),
+                foregroundColor:
+                    isDark ? const Color(0xFF1A1A1B) : Colors.white,
+              ),
               onPressed: () async {
                 if (controller.text.trim().isEmpty) return;
 
@@ -813,8 +827,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 }
               },
               child: Text(AppLocalizations.of(context)!.createAction,
-                  style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
             ),
           ],
         );
@@ -893,10 +906,45 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   static const Color _bookAccentLight = AppTheme.accentLight;
   static const IconData _configCardIcon = Icons.settings_rounded;
 
+  // ── Session palette (book-screen parity) ───────────────────────────────────
+  //
+  // The live shadowing flow used to speak a different visual language: a
+  // `Colors.orange` accent, Material `Colors.green`/`Colors.red` verdicts, an M3
+  // `colorScheme.surface` background and its own radii — so the screen you spend
+  // the whole session on looked like a different app from the hub, the reader and
+  // the book screens. These helpers route it through the same [AppTheme] tokens.
+  static Color _accentOf(bool isDark) =>
+      isDark ? _bookAccentDark : _bookAccentLight;
+
+  static Color _inkOf(bool isDark) =>
+      isDark ? Colors.white : const Color(0xFF1A1A1B);
+
+  static Color _mutedOf(bool isDark) =>
+      isDark ? Colors.white60 : const Color(0xFF6B655B);
+
+  static Color _bgOf(bool isDark) => isDark ? _bookBgDark : _bookBgLight;
+
+  static Color _cardOf(bool isDark) =>
+      isDark ? _bookCardBgDark : _bookCardBgLight;
+
+  /// Emperor's Gold hairline, as used by every calligraphic surface.
+  static Color _goldOf(bool isDark) =>
+      isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+
+  /// Jade Green success, per `docs/UI_UX_STANDARDS.md` § Colour Palette.
+  static const Color _successOf = Color(0xFF2E7D32);
+
+  /// The documented Cinnabar alert red. Recording is a *live* state and a failed
+  /// grade is an alert, so both wear this rather than the accent — which would
+  /// read as "tap me" while the mic is already running.
+  static Color _alertOf(bool isDark) =>
+      isDark ? Colors.redAccent : const Color(0xFFC62828);
+
   Widget _buildSectionLabel({
     required IconData icon,
     required String title,
     required bool isDark,
+    Widget? trailing,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
@@ -908,14 +956,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             color: isDark ? _bookAccentDark : _bookAccentLight,
           ),
           const SizedBox(width: 8),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
+          if (trailing != null) ...[
+            const SizedBox(width: 8),
+            trailing,
+          ],
         ],
       ),
     );
@@ -1026,6 +1082,46 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
+  void _showStudioGuideSheet(BuildContext context, bool isDark) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => Container(
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
+        decoration: BoxDecoration(
+          color: isDark ? _bookCardBgDark : _bookCardBgLight,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          border: Border.all(
+            color:
+                isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.08),
+          ),
+        ),
+        child: SafeArea(
+          top: false,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 36,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white24 : Colors.black26,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              _buildStudioGuideCard(sheetContext, isDark),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildStudioGuideCard(BuildContext context, bool isDark) {
     final l10n = AppLocalizations.of(context)!;
     return Container(
@@ -1035,9 +1131,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         color: isDark ? _bookCardBgDark : _bookCardBgLight,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isDark
-              ? Colors.white10
-              : Colors.black.withValues(alpha: 0.06),
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
@@ -1074,7 +1168,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     fontWeight: FontWeight.bold,
                     color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                   ),
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -1137,9 +1231,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         color: isDark ? _bookCardBgDark : _bookCardBgLight,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isDark
-              ? Colors.white10
-              : Colors.black.withValues(alpha: 0.06),
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
         ),
       ),
       child: Column(
@@ -1180,9 +1272,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         color: cardBg,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isDark
-              ? Colors.white10
-              : Colors.black.withValues(alpha: 0.06),
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
           BoxShadow(
@@ -1230,6 +1320,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(
+        top: widget.showBackButton,
+        bottom: widget.showBackButton,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -1248,6 +1340,18 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       icon: Icons.tune_rounded,
                       title: l10n.practiceMode,
                       isDark: isDark,
+                      trailing: GestureDetector(
+                        onTap: () => _showStudioGuideSheet(context, isDark),
+                        behavior: HitTestBehavior.opaque,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Icon(
+                            Icons.info_outline_rounded,
+                            size: 20,
+                            color: isDark ? _bookAccentDark : _bookAccentLight,
+                          ),
+                        ),
+                      ),
                     ),
 
                     GridView.count(
@@ -1256,7 +1360,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       physics: const NeverScrollableScrollPhysics(),
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio: 2.0,
+                      childAspectRatio: 2.35,
                       children: [
                         _buildSegmentModeTab(
                           mode: ShadowingMode.freeFlow,
@@ -1367,14 +1471,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 prefixIcon: Icon(
                                   Icons.search_rounded,
                                   size: 20,
-                                  color: isDark ? Colors.white54 : Colors.black45,
+                                  color:
+                                      isDark ? Colors.white54 : Colors.black45,
                                 ),
                                 decoration: InputDecoration(
                                   hintText: AppLocalizations.of(context)!
                                       .searchDictionaryOrTypeCustom,
                                   hintStyle: TextStyle(
-                                    color:
-                                        isDark ? Colors.white38 : Colors.black38,
+                                    color: isDark
+                                        ? Colors.white38
+                                        : Colors.black38,
                                     fontSize: 14,
                                   ),
                                   filled: true,
@@ -1570,12 +1676,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                     ],
 
-                    const SizedBox(height: 14),
-
-                    // ── Studio Pedagogical Highlights Card ────────
-                    _buildStudioGuideCard(context, isDark),
-
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                   ],
                 ),
               ),
@@ -1583,7 +1684,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
             // Start Button Area
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 14),
+              padding: EdgeInsets.fromLTRB(
+                20,
+                8,
+                20,
+                widget.showBackButton ? 14 : 10,
+              ),
               child: SizedBox(
                 width: double.infinity,
                 height: 52,
@@ -1664,10 +1770,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       );
     }
 
-    final highlightColor =
-        isDark ? const Color(0xFF818CF8) : const Color(0xFF4F46E5);
-    final highlightBg =
-        highlightColor.withValues(alpha: isDark ? 0.28 : 0.16);
+    // The practised characters wear the canonical accent, the way the reader
+    // inks the sentence you are on — not Material indigo.
+    final highlightColor = _accentOf(isDark);
+    final highlightBg = highlightColor.withValues(alpha: isDark ? 0.28 : 0.16);
 
     final spans = <InlineSpan>[];
     int lastEnd = 0;
@@ -1719,18 +1825,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
             color: isSlow
-                ? (isDark
-                    ? const Color(0xFFD97706).withValues(alpha: 0.25)
-                    : const Color(0xFFFEF3C7))
+                ? _accentOf(isDark).withValues(alpha: isDark ? 0.22 : 0.10)
                 : (isDark
                     ? Colors.white10
                     : Colors.black.withValues(alpha: 0.05)),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: isSlow
-                  ? (isDark
-                      ? const Color(0xFFF59E0B)
-                      : const Color(0xFFD4AF37))
+                  ? _goldOf(isDark)
                   : (isDark ? Colors.white24 : Colors.black12),
               width: 1.2,
             ),
@@ -1741,11 +1843,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               Icon(
                 Icons.speed_rounded,
                 size: 16,
-                color: isSlow
-                    ? (isDark
-                        ? const Color(0xFFFBBF24)
-                        : const Color(0xFFB45309))
-                    : (isDark ? Colors.white70 : Colors.black54),
+                color: isSlow ? _accentOf(isDark) : _mutedOf(isDark),
               ),
               const SizedBox(width: 4),
               Text(
@@ -1753,11 +1851,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: isSlow
-                      ? (isDark
-                          ? const Color(0xFFFBBF24)
-                          : const Color(0xFFB45309))
-                      : (isDark ? Colors.white70 : Colors.black54),
+                  color: isSlow ? _accentOf(isDark) : _mutedOf(isDark),
                 ),
               ),
             ],
@@ -1776,9 +1870,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         _showSessionSummaryDialog(context, isDark);
       },
       child: Scaffold(
-        backgroundColor: widget.isCompact
-            ? Colors.transparent
-            : Theme.of(context).colorScheme.surface,
+        // Xuan paper / carbon, not the M3 default surface: the session you spend
+        // the whole flow on must sit on the same ground as the hub and the reader.
+        backgroundColor: widget.isCompact ? Colors.transparent : _bgOf(isDark),
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -1791,15 +1885,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         // Top Bar
                         if (!widget.isCompact)
                           Padding(
-                            padding: const EdgeInsets.all(24.0),
+                            padding: const EdgeInsets.fromLTRB(24, 16, 24, 12),
                             child: Row(
                               children: [
                                 IconButton(
                                   icon: Icon(Icons.keyboard_arrow_down,
-                                      size: 32,
-                                      color: isDark
-                                          ? Colors.white
-                                          : const Color(0xFF1A1A1B)),
+                                      size: 32, color: _inkOf(isDark)),
+                                  tooltip: l10n?.back,
                                   onPressed: () => _showSessionSummaryDialog(
                                       context, isDark),
                                 ),
@@ -1810,13 +1902,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        l10n?.shadowingStudio ?? "Shadowing Studio",
+                                        l10n?.shadowingStudio ??
+                                            "Shadowing Studio",
                                         style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
-                                            color: isDark
-                                                ? Colors.white
-                                                : const Color(0xFF1A1A1B)),
+                                            color: _inkOf(isDark)),
                                       ),
                                       Text(
                                         (_selectedMode ==
@@ -1829,9 +1920,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                             : (l10n?.endlessAiStreamSentence(
                                                     _sentenceCount) ??
                                                 "Endless AI Stream • Sentence $_sentenceCount"),
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                             fontSize: 14,
-                                            color: Colors.orange,
+                                            color: _accentOf(isDark),
                                             fontWeight: FontWeight.w600),
                                       ),
                                     ],
@@ -1843,13 +1934,22 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             ),
                           ),
 
+                        // Gold hairline under the header, as on every other
+                        // calligraphic surface.
+                        if (!widget.isCompact)
+                          Container(
+                            height: 1,
+                            margin: const EdgeInsets.symmetric(horizontal: 24),
+                            color: _goldOf(isDark).withValues(alpha: 0.25),
+                          ),
+
                         if (_errorMessage != null)
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               children: [
                                 Text(_errorMessage!,
-                                    style: const TextStyle(color: Colors.red),
+                                    style: TextStyle(color: _alertOf(isDark)),
                                     textAlign: TextAlign.center),
                                 if (_errorMessage!
                                     .contains("Failed to generate phrase")) ...[
@@ -1875,9 +1975,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         // Main Content Area
                         Expanded(
                           child: _isLoadingNextPhrase
-                              ? const Center(
-                                  child: ZenLoader(
-                                      color: Colors.orange))
+                              ? Center(
+                                  child: ZenLoader(color: _accentOf(isDark)))
                               : _currentPhrase == null
                                   ? Center(
                                       child: Text(AppLocalizations.of(context)!
@@ -1898,19 +1997,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                              strokeWidth: 2,
-                                              color: Colors.orange)),
+                                      // ZenLoader, not a bare spinner: the
+                                      // standard forbids a section-level
+                                      // CircularProgressIndicator.
+                                      ZenLoader(
+                                          strokeWidth: 2,
+                                          color: _accentOf(isDark)),
                                       const SizedBox(width: 12),
-                                      Text(
-                                        l10n?.aiIsGradingYourPronunciation ??
-                                            "AI is grading your pronunciation...",
-                                        style: const TextStyle(
-                                            color: Colors.orange,
-                                            fontSize: 16),
+                                      Flexible(
+                                        child: Text(
+                                          l10n?.aiIsGradingYourPronunciation ??
+                                              "AI is grading your pronunciation...",
+                                          style: TextStyle(
+                                              color: _accentOf(isDark),
+                                              fontSize: 16),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -1924,10 +2025,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                     // Play Button
                                     IconButton(
                                       iconSize: widget.isCompact ? 36 : 48,
-                                      color: isDark
-                                          ? Colors.white70
-                                          : Colors.black54,
+                                      color: _inkOf(isDark),
                                       icon: const Icon(Icons.play_circle_fill),
+                                      tooltip: l10n?.play,
                                       onPressed: _playNativeAudio,
                                     ),
 
@@ -1952,33 +2052,40 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: _isRecording
-                                                      ? Colors.red
-                                                      : (isDark
-                                                          ? Colors
-                                                              .orange.shade800
-                                                          : Colors.orange),
+                                                      ? _alertOf(isDark)
+                                                      : _accentOf(isDark),
                                                   boxShadow: [
-                                                    if (_isRecording)
-                                                      BoxShadow(
-                                                          color: Colors.red
-                                                              .withValues(
-                                                                  alpha: 0.5),
-                                                          blurRadius: 20,
-                                                          spreadRadius: 5)
-                                                    else
-                                                      BoxShadow(
-                                                          color: Colors.orange
-                                                              .withValues(
-                                                                  alpha: 0.3),
-                                                          blurRadius: 10,
-                                                          spreadRadius: 2),
+                                                    BoxShadow(
+                                                        color: (_isRecording
+                                                                ? _alertOf(
+                                                                    isDark)
+                                                                : _accentOf(
+                                                                    isDark))
+                                                            .withValues(
+                                                                alpha: 0.35),
+                                                        blurRadius: _isRecording
+                                                            ? 20
+                                                            : 10,
+                                                        spreadRadius:
+                                                            _isRecording
+                                                                ? 5
+                                                                : 2),
                                                   ],
                                                 ),
                                                 child: Icon(Icons.mic,
                                                     size: widget.isCompact
                                                         ? 28
                                                         : 36,
-                                                    color: Colors.white),
+                                                    // The dark-mode accent is
+                                                    // light amber, so its glyph
+                                                    // has to be ink; the light-mode
+                                                    // accent (and both alert reds)
+                                                    // are dark, so white wins.
+                                                    color:
+                                                        isDark && !_isRecording
+                                                            ? const Color(
+                                                                0xFF1A1A1B)
+                                                            : Colors.white),
                                               ),
                                             );
                                           },
@@ -1990,9 +2097,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                     if (!widget.isCompact)
                                       IconButton(
                                         iconSize: 48,
-                                        color: isDark
-                                            ? Colors.white70
-                                            : Colors.black54,
+                                        color: _mutedOf(isDark),
                                         icon: Icon((_selectedMode ==
                                                     ShadowingMode.customWord ||
                                                 _selectedMode ==
@@ -2000,6 +2105,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                                         .customSentence)
                                             ? Icons.check_circle_outline
                                             : Icons.skip_next),
+                                        tooltip: l10n?.skip,
                                         onPressed: () {
                                           if (_selectedMode ==
                                                   ShadowingMode.customWord ||
@@ -2018,10 +2124,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                 Text(
                                   l10n?.holdMicToRecordReleaseToGrade ??
                                       "Hold mic to record. Release to grade.",
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: isDark
-                                          ? Colors.white54
-                                          : Colors.black54,
+                                      color: _mutedOf(isDark),
                                       fontSize: widget.isCompact ? 12 : 14),
                                 ),
                               ],
@@ -2039,7 +2144,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     );
   }
 
-  String _getLocalizedOverallFeedback(String? feedback, AppLocalizations? l10n) {
+  String _getLocalizedOverallFeedback(
+      String? feedback, AppLocalizations? l10n) {
     if (feedback == null || feedback.isEmpty || l10n == null) {
       return feedback ?? '';
     }
@@ -2072,12 +2178,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               margin: const EdgeInsets.only(bottom: 32),
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: isDark ? Colors.grey[900] : Colors.white,
-                borderRadius: BorderRadius.circular(24),
+                color: _cardOf(isDark),
+                borderRadius: BorderRadius.circular(18),
                 border: Border.all(
-                  color:
-                      _lastGrade!['score'] >= 80 ? Colors.green : Colors.orange,
-                  width: 2,
+                  color: _lastGrade!['score'] >= 80
+                      ? _successOf
+                      : _accentOf(isDark),
+                  width: 1.4,
                 ),
               ),
               child: Column(
@@ -2090,17 +2197,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: _lastGrade!['score'] >= 80
-                          ? Colors.green
-                          : Colors.orange,
+                          ? _successOf
+                          : _accentOf(isDark),
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     _getLocalizedOverallFeedback(
                         _lastGrade!['overallFeedback'], l10n),
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: isDark ? Colors.white70 : Colors.black87),
+                    style: TextStyle(fontSize: 16, color: _mutedOf(isDark)),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -2113,7 +2218,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               _currentPhrase!['pinyin']!,
               style: TextStyle(
                 fontSize: _getPinyinFontSize(_currentPhrase!['hanzi']!.length),
-                color: isDark ? Colors.white70 : Colors.black87,
+                color: _mutedOf(isDark),
                 fontStyle: FontStyle.italic,
                 letterSpacing: 1.2,
               ),
@@ -2131,16 +2236,16 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 final isPartial = item['isPartial'] ?? false;
                 final isOmitted = item['isOmitted'] ?? false;
 
-                Color color;
-                if (isOmitted) {
-                  color = Colors.grey;
-                } else if (isCorrect) {
-                  color = Colors.green;
-                } else if (isPartial) {
-                  color = Colors.orange;
-                } else {
-                  color = Colors.red;
-                }
+                // Verdicts in the documented palette: Jade Green for a correct
+                // character, the accent for a near miss, the Cinnabar alert for a
+                // miss and muted ink for one that was never attempted.
+                final Color color = isOmitted
+                    ? _mutedOf(isDark)
+                    : isCorrect
+                        ? _successOf
+                        : isPartial
+                            ? _accentOf(isDark)
+                            : _alertOf(isDark);
 
                 return GestureDetector(
                   onTap: () =>
@@ -2214,9 +2319,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             definitionLanguage: 'English',
             originalStyle: TextStyle(
               fontSize: widget.isCompact ? 16 : 20,
-              color: isDark ? Colors.white54 : Colors.black54,
+              color: _mutedOf(isDark),
               fontStyle: FontStyle.italic,
-              fontFamily: 'serif',
+              fontFamily: 'NotoSerifSC',
             ),
             textAlign: TextAlign.center,
           ),
@@ -2272,7 +2377,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     width: 40,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Colors.grey[400],
+                      // Same handle as every other sheet in the app.
+                      color: isDark ? Colors.white24 : Colors.black12,
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
@@ -2316,12 +2422,13 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   Center(
                     child: Text(
                       l10n != null
-                          ? l10n.score((wordData['accuracyScore'] as num).toInt(), 100)
+                          ? l10n.score(
+                              (wordData['accuracyScore'] as num).toInt(), 100)
                           : "Score: ${(wordData['accuracyScore'] as num).toInt()}/100",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : Colors.black87,
+                        color: _inkOf(isDark),
                       ),
                     ),
                   ),
@@ -2334,10 +2441,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.touch_app_outlined,
-                          size: 14,
-                          color: isDark
-                              ? Colors.orange.shade300
-                              : Colors.orange.shade800),
+                          size: 14, color: _accentOf(isDark)),
                       const SizedBox(width: 4),
                       Text(
                         l10n?.tapAnySyllableToAuditionAll4Tones ??
@@ -2345,9 +2449,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
-                          color: isDark
-                              ? Colors.orange.shade300
-                              : Colors.orange.shade800,
+                          color: _accentOf(isDark),
                         ),
                       ),
                     ],
@@ -2366,8 +2468,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         final p = entry.value;
                         final acc = (p['accuracy'] as num).toInt();
                         final color = acc >= 80
-                            ? Colors.green
-                            : (acc >= 60 ? Colors.orange : Colors.red);
+                            ? _successOf
+                            : (acc >= 60
+                                ? _accentOf(isDark)
+                                : _alertOf(isDark));
                         final phonemeStr =
                             (p['phoneme'] ?? '').toString().trim();
 
@@ -2449,7 +2553,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     feedback,
                     style: TextStyle(
                       fontSize: 16,
-                      color: isDark ? Colors.white70 : Colors.black87,
+                      color: _mutedOf(isDark),
                       height: 1.5,
                     ),
                     textAlign: TextAlign.center,
@@ -2470,8 +2574,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   icon: const Icon(Icons.volume_up),
                   label: Text(AppLocalizations.of(context)!.listenToThisWord),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    foregroundColor: Colors.white,
+                    // Same primary as every other sheet in the app.
+                    backgroundColor: isDark
+                        ? Colors.amber.shade700
+                        : const Color(0xFF1A1A1B),
+                    foregroundColor:
+                        isDark ? const Color(0xFF1A1A1B) : Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
@@ -2537,7 +2645,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     backgroundColor: isDark
                         ? Colors.white.withValues(alpha: 0.08)
                         : Colors.black.withValues(alpha: 0.05),
-                    foregroundColor: isDark ? Colors.white : Colors.black87,
+                    foregroundColor: _inkOf(isDark),
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     elevation: 0,
                     side: BorderSide(

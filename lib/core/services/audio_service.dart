@@ -135,6 +135,24 @@ class AudioService extends background_audio.BaseAudioHandler {
 
   double get playbackRate => _playbackRate;
 
+  /// True while an audiobook is loaded into the background engine.
+  ///
+  /// The shell's Now Playing bar and the full-screen player own that playback;
+  /// the reader's inline reading-aloud does **not** (it clears this flag), which
+  /// is how `BookReaderScreen.dispose` knows whether it may stop the engine.
+  bool get isAudiobookLoaded => _audiobookActive;
+
+  /// True while the loaded audiobook is actually playing (not merely paused).
+  bool get isAudiobookPlaying => _audiobookPlaying;
+
+  /// The sentence currently loaded, or null when none is.
+  AudiobookTrack? get currentTrack {
+    if (_audiobookIndex < 0 || _audiobookIndex >= _audiobookTracks.length) {
+      return null;
+    }
+    return _audiobookTracks[_audiobookIndex];
+  }
+
   Future<void> setPlaybackRate(double rate) async {
     _playbackRate = rate.clamp(0.5, 2.0);
     try {
@@ -560,6 +578,10 @@ class AudioService extends background_audio.BaseAudioHandler {
     double? playbackRate,
   }) async {
     final generation = ++_playbackGeneration;
+    // Inline reading-aloud takes the engine over from any background audiobook.
+    // Clearing the flag here is what lets the reader stop audio on exit without
+    // killing playback the shell's Now Playing bar is controlling.
+    _audiobookActive = false;
     _currentBoundaries = [];
     _currentBoundaryIndex = 0;
     if (!_isInitialized) await init();
@@ -975,11 +997,9 @@ class AudioService extends background_audio.BaseAudioHandler {
     int searchPos = 0;
     for (final b in rawBoundaries) {
       final rawWord = (b['text']?['Text'] ?? b['Word'] ?? '').toString();
-      final boundaryType = (b['text']?['BoundaryType'] ??
-              b['BoundaryType'] ??
-              b['Type'] ??
-              '')
-          .toString();
+      final boundaryType =
+          (b['text']?['BoundaryType'] ?? b['BoundaryType'] ?? b['Type'] ?? '')
+              .toString();
       final offsetTicks = b['Offset'];
       final durTicks = b['Duration'];
       final double offsetMs = (b['OffsetMs'] as num?)?.toDouble() ??

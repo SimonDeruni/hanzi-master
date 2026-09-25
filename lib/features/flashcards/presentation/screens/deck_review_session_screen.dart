@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/review_stats.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_session_summary.dart';
@@ -15,6 +18,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/read
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/recall_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/listening_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/speaking_mode.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class DeckReviewSessionScreen extends ConsumerStatefulWidget {
@@ -42,6 +46,23 @@ class _DeckReviewSessionScreenState
   bool _isLoading = true;
   bool _isStarting = false;
   bool _isReviewRouteOpen = false;
+
+  /// True from the moment the queue is reserved until the summary is shown.
+  ///
+  /// While a session runs, the screen behind the card must not be the "Ready to
+  /// study" preview: each card is a route of its own, so the preview used to be
+  /// revealed between every single card — the whole page faded out to a Start
+  /// button and faded back in, once per word.
+  bool _sessionStarted = false;
+
+  /// Hive writes for finished cards, awaited before the session leaves.
+  ///
+  /// Persisting used to sit *between* the pop of the finished card and the push
+  /// of the next one, which is dead time the user spent staring at the revealed
+  /// base route. Writes are chained rather than fired in parallel so two cards
+  /// can never interleave an update to the controller's state.
+  Future<void> _writeChain = Future<void>.value();
+
   StudyQueue? _queue;
   String? _loadError;
   final Map<String, int> _retryCounts = {};
@@ -194,39 +215,44 @@ class _DeckReviewSessionScreenState
     }
 
     if (!mounted) return;
-    setState(() => _isStarting = false);
+    setState(() {
+      _isStarting = false;
+      _sessionStarted = true;
+    });
     _startNextReview();
   }
 
   Future<void> _startNextReview() async {
     if (_isReviewRouteOpen || !mounted) return;
     if (_currentIndex >= _cardsToReview.length) {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SessionSummaryScreen(
-              summary: StudySessionSummary(
-                mode: widget.mode,
-                startedAt: _startedAt ?? DateTime.now(),
-                completedAt: DateTime.now(),
-                uniqueCards: _initialCardCount,
-                totalAttempts: _ratingCounts.values.fold(0, (a, b) => a + b),
-                correctAttempts: _correctCount,
-                newCards: _initialNewCount,
-                reviewCards: _initialCardCount - _initialNewCount,
-                retryAttempts: _retryCounts.values.fold(0, (a, b) => a + b),
-                againCount: _ratingCounts[0] ?? 0,
-                hardCount: _ratingCounts[2] ?? 0,
-                goodCount: _ratingCounts[4] ?? 0,
-                easyCount: _ratingCounts[5] ?? 0,
-                needsPractice: _retryCounts.length,
-                studyAhead: widget.studyAhead,
-              ),
+      // Flush the last cards' writes before leaving the session, so the summary
+      // and the statistics behind it are never shown a review short.
+      await _drainPendingWrites();
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SessionSummaryScreen(
+            summary: StudySessionSummary(
+              mode: widget.mode,
+              startedAt: _startedAt ?? DateTime.now(),
+              completedAt: DateTime.now(),
+              uniqueCards: _initialCardCount,
+              totalAttempts: _ratingCounts.values.fold(0, (a, b) => a + b),
+              correctAttempts: _correctCount,
+              newCards: _initialNewCount,
+              reviewCards: _initialCardCount - _initialNewCount,
+              retryAttempts: _retryCounts.values.fold(0, (a, b) => a + b),
+              againCount: _ratingCounts[0] ?? 0,
+              hardCount: _ratingCounts[2] ?? 0,
+              goodCount: _ratingCounts[4] ?? 0,
+              easyCount: _ratingCounts[5] ?? 0,
+              needsPractice: _retryCounts.length,
+              studyAhead: widget.studyAhead,
             ),
           ),
-        );
-      }
+        ),
+      );
       return;
     }
 
@@ -324,58 +350,84 @@ class _DeckReviewSessionScreenState
     _isReviewRouteOpen = true;
     final grade = await Navigator.push<int>(
       context,
-      MaterialPageRoute(
-        builder: (context) => screenToPush,
+      // A card, not a screen: the finished card leaves in `swap` and the next
+      // sheet settles in over `quick`, both from the shared motion vocabulary.
+      // `MaterialPageRoute` here meant a full page transition per card — the
+      // page faded out to the preview and back in, once per word.
+      _CardRoute<int>(
+        reduceMotion: context.reduceMotion,
+        child: screenToPush,
       ),
     );
     _isReviewRouteOpen = false;
 
     if (grade != null) {
-      // 1. Process SM-2
-      final updatedCard = card.processReview(grade, widget.mode);
-
-      // 2. Save to database
-      await ref
-          .read(flashcardControllerProvider.notifier)
-          .updateFlashcard(updatedCard);
-      if (!widget.studyAhead &&
-          card.getStatsForMode(widget.mode).interval > 1) {
-        await ref.read(studyActivityRepositoryProvider).recordReview(
-              deckId: widget.deckId,
-              cardId: card.id,
-              reviewedAt: DateTime.now(),
-            );
-      }
-
-      // 3. Update stats
-      if (grade >= 3) {
-        _correctCount++;
-      }
-      _ratingCounts[grade] = (_ratingCounts[grade] ?? 0) + 1;
-
-      // 4. Learning Phase: If interval is 0, they must see it again today.
-      // Append it to the end of the session queue so they review it again before finishing.
-      if (updatedCard.getStatsForMode(widget.mode).interval == 0) {
-        final retryCount = _retryCounts[card.id] ?? 0;
-        if (retryCount < _maxRetriesPerCard) {
-          _retryCounts[card.id] = retryCount + 1;
-          _cardsToReview.add(updatedCard);
-        } else if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content: Text(AppLocalizations.of(context)!.retryLimitReached)),
-          );
-        }
-      }
-
+      _applyGrade(card, grade);
       _currentIndex++;
+      // Deliberately not awaited: the next card must arrive immediately, and
+      // the write is drained before the session shows its summary.
       _startNextReview();
     } else {
       // User aborted the session
+      await _drainPendingWrites();
       if (mounted) {
         Navigator.pop(context);
       }
     }
+  }
+
+  /// Books a finished card: SM-2 result, session tallies, the learning-phase
+  /// re-queue, and the persistence that runs alongside the next card.
+  void _applyGrade(Flashcard card, int grade) {
+    final Flashcard updatedCard = card.processReview(grade, widget.mode);
+
+    // Chained so the previous card's write finishes first; the learner keeps
+    // swiping at their own pace while these drain in the background.
+    _writeChain = _writeChain
+        .then((_) => _persistReview(card, updatedCard))
+        .catchError((Object error, StackTrace stackTrace) {
+      // A failed write must not stall the queue: the SRS state on the card is
+      // untouched by it, so the word simply returns on its next due date.
+      debugPrint('Study session: could not persist ${card.id} — $error');
+    });
+
+    if (grade >= 3) {
+      _correctCount++;
+    }
+    _ratingCounts[grade] = (_ratingCounts[grade] ?? 0) + 1;
+
+    // Learning Phase: If interval is 0, they must see it again today. Append it
+    // to the end of the session queue so they review it again before finishing.
+    if (updatedCard.getStatsForMode(widget.mode).interval == 0) {
+      final retryCount = _retryCounts[card.id] ?? 0;
+      if (retryCount < _maxRetriesPerCard) {
+        _retryCounts[card.id] = retryCount + 1;
+        _cardsToReview.add(updatedCard);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.retryLimitReached),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _persistReview(Flashcard card, Flashcard updatedCard) async {
+    await ref
+        .read(flashcardControllerProvider.notifier)
+        .updateFlashcard(updatedCard);
+    if (!widget.studyAhead && card.getStatsForMode(widget.mode).interval > 1) {
+      await ref.read(studyActivityRepositoryProvider).recordReview(
+            deckId: widget.deckId,
+            cardId: card.id,
+            reviewedAt: DateTime.now(),
+          );
+    }
+  }
+
+  Future<void> _drainPendingWrites() async {
+    await _writeChain;
   }
 
   @override
@@ -400,8 +452,21 @@ class _DeckReviewSessionScreenState
                 )
               : _cardsToReview.isEmpty
                   ? _buildEmptyState(localizations)
-                  : _buildPreview(localizations),
+                  : _sessionStarted
+                      ? _buildSessionSurface()
+                      : _buildPreview(localizations),
     );
+  }
+
+  /// What sits behind an open card: the session's paper, and nothing else.
+  ///
+  /// Each card is a route, so this surface *is* the "between cards" state. It
+  /// is deliberately empty — the finished card leaves and the next settles in
+  /// over it, which is what makes the swap read as one motion instead of a page
+  /// change. It must never be the preview: a Start button appearing between two
+  /// words is exactly the glitch this replaces.
+  Widget _buildSessionSurface() {
+    return const SizedBox.expand();
   }
 
   Widget _buildPreview(AppLocalizations localizations) {
@@ -575,4 +640,49 @@ class _DeckReviewSessionScreenState
       ),
     );
   }
+}
+
+/// The transition for one card of a session.
+///
+/// Not a page: the finished card is already off-screen from the user's own
+/// swipe, so the only motion worth showing is the next sheet settling into
+/// place. The outgoing leg therefore runs on [ZenMotion.swap] (180ms) while the
+/// incoming one gets [ZenMotion.quick] (300ms) — both tokens from the shared
+/// motion vocabulary, and both skipped under reduced motion, where the next card
+/// is simply presented.
+class _CardRoute<T> extends PageRouteBuilder<T> {
+  _CardRoute({required Widget child, required bool reduceMotion})
+      : super(
+          opaque: true,
+          transitionDuration: reduceMotion ? Duration.zero : ZenMotion.quick,
+          reverseTransitionDuration:
+              reduceMotion ? Duration.zero : ZenMotion.swap,
+          pageBuilder: (_, __, ___) => child,
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) {
+            if (reduceMotion) return child;
+
+            final Animation<double> curved = CurvedAnimation(
+              parent: animation,
+              curve: ZenMotion.enter,
+              reverseCurve: ZenMotion.natural,
+            );
+            return FadeTransition(
+              opacity: curved,
+              child: SlideTransition(
+                // 6% rise: the new sheet arrives from just below the old one,
+                // far enough to read as a card and short enough to stay calm.
+                position: Tween<Offset>(
+                  begin: const Offset(0, 0.06),
+                  end: Offset.zero,
+                ).animate(curved),
+                child: child,
+              ),
+            );
+          },
+        );
 }

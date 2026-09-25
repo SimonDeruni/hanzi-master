@@ -301,6 +301,8 @@
   "scholarsDesk": "Schreibtisch des Gelehrten",
   "chooseADeck": "Wähle ein Deck",
   "whereWouldYouLike": "Wo möchtest du dieses Zeichen speichern?",
+  "whereWouldYouLikeWords": "Wo möchtest du diese {count} Wörter speichern?",
+  "deckItemsCount": "{count} Einträge",
   "addToDefaultStudy": "Zum Standard-Lern-Deck hinzufügen",
   "ifOffItsOnly": "Wenn deaktiviert, wird es nur im globalen Wörterbuch gespeichert",
   "saveToLibrary": "In Bibliothek speichern",
@@ -4044,5 +4046,15 @@
   "enjoyingAppSubtitle": "Wie gefällt Ihnen Ihre Chinesisch-Lernreise bisher?",
   "ratingLovingIt": "Ja, ich liebe es!",
   "ratingCouldBeBetter": "Könnte besser sein",
-  "dictionarySearchFailed": "Die Wörterbuchsuche ist fehlgeschlagen. Bitte erneut versuchen."
+  "dictionarySearchFailed": "Die Wörterbuchsuche ist fehlgeschlagen. Bitte erneut versuchen.",
+  "tapToHearVoiceSample": "Tippe auf ▶ für eine Hörprobe",
+  "soundEffects": "Soundeffekte",
+  "soundEffectsDesc": "Sanftes Papier, Holzsiegel und Kalligrafie-Klänge",
+  "generatingYourScenario": "Dein Szenario wird erstellt…",
+  "failedToGenerateScenario": "Wir konnten dieses Szenario nicht erstellen. Bitte versuche es erneut.",
+  "trickyCharacters": "Knifflige Zeichen",
+  "strongestCharacters": "Sicherste Zeichen",
+  "newThisWeek": "Neu in den letzten 7 Tagen",
+  "averageAttemptsPerWord": "Durchschnittliche Versuche pro Wort",
+  "noCardsYet": "Noch keine Karten in diesem Deck"
 }

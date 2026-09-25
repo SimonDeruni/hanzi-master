@@ -1,0 +1,100 @@
+{
+  "en": {
+    "trickyCharacters": "Tricky characters",
+    "strongestCharacters": "Strongest characters",
+    "newThisWeek": "New in the last 7 days",
+    "averageAttemptsPerWord": "Average attempts per word",
+    "noCardsYet": "No cards in this deck yet"
+  },
+  "fr": {
+    "trickyCharacters": "Caractères difficiles",
+    "strongestCharacters": "Caractères les mieux maîtrisés",
+    "newThisWeek": "Nouveaux ces 7 derniers jours",
+    "averageAttemptsPerWord": "Tentatives moyennes par mot",
+    "noCardsYet": "Aucune carte dans ce paquet pour l'instant"
+  },
+  "es": {
+    "trickyCharacters": "Caracteres difíciles",
+    "strongestCharacters": "Caracteres mejor dominados",
+    "newThisWeek": "Nuevos en los últimos 7 días",
+    "averageAttemptsPerWord": "Intentos medios por palabra",
+    "noCardsYet": "Aún no hay tarjetas en este mazo"
+  },
+  "de": {
+    "trickyCharacters": "Knifflige Zeichen",
+    "strongestCharacters": "Sicherste Zeichen",
+    "newThisWeek": "Neu in den letzten 7 Tagen",
+    "averageAttemptsPerWord": "Durchschnittliche Versuche pro Wort",
+    "noCardsYet": "Noch keine Karten in diesem Deck"
+  },
+  "it": {
+    "trickyCharacters": "Caratteri difficili",
+    "strongestCharacters": "Caratteri più solidi",
+    "newThisWeek": "Nuovi negli ultimi 7 giorni",
+    "averageAttemptsPerWord": "Tentativi medi per parola",
+    "noCardsYet": "Ancora nessuna carta in questo mazzo"
+  },
+  "pt": {
+    "trickyCharacters": "Caracteres difíceis",
+    "strongestCharacters": "Caracteres mais sólidos",
+    "newThisWeek": "Novos nos últimos 7 dias",
+    "averageAttemptsPerWord": "Tentativas médias por palavra",
+    "noCardsYet": "Ainda não há cartões neste baralho"
+  },
+  "ru": {
+    "trickyCharacters": "Трудные иероглифы",
+    "strongestCharacters": "Самые устойчивые иероглифы",
+    "newThisWeek": "Новые за последние 7 дней",
+    "averageAttemptsPerWord": "В среднем попыток на слово",
+    "noCardsYet": "В этой колоде пока нет карточек"
+  },
+  "ja": {
+    "trickyCharacters": "苦手な漢字",
+    "strongestCharacters": "定着した漢字",
+    "newThisWeek": "過去7日間の新規",
+    "averageAttemptsPerWord": "1語あたりの平均試行回数",
+    "noCardsYet": "このデッキにはまだカードがありません"
+  },
+  "ko": {
+    "trickyCharacters": "까다로운 한자",
+    "strongestCharacters": "가장 잘 외운 한자",
+    "newThisWeek": "최근 7일 새 단어",
+    "averageAttemptsPerWord": "단어당 평균 시도",
+    "noCardsYet": "이 덱에는 아직 카드가 없습니다"
+  },
+  "vi": {
+    "trickyCharacters": "Chữ khó nhớ",
+    "strongestCharacters": "Chữ nhớ tốt nhất",
+    "newThisWeek": "Mới trong 7 ngày qua",
+    "averageAttemptsPerWord": "Số lần thử trung bình mỗi từ",
+    "noCardsYet": "Bộ thẻ này chưa có thẻ nào"
+  },
+  "th": {
+    "trickyCharacters": "ตัวอักษรที่ยาก",
+    "strongestCharacters": "ตัวอักษรที่แม่นที่สุด",
+    "newThisWeek": "ใหม่ใน 7 วันที่ผ่านมา",
+    "averageAttemptsPerWord": "จำนวนครั้งเฉลี่ยต่อคำ",
+    "noCardsYet": "ยังไม่มีการ์ดในชุดนี้"
+  },
+  "id": {
+    "trickyCharacters": "Karakter sulit",
+    "strongestCharacters": "Karakter terkuat",
+    "newThisWeek": "Baru dalam 7 hari terakhir",
+    "averageAttemptsPerWord": "Rata-rata percobaan per kata",
+    "noCardsYet": "Belum ada kartu di dek ini"
+  },
+  "hi": {
+    "trickyCharacters": "कठिन अक्षर",
+    "strongestCharacters": "सबसे मज़बूत अक्षर",
+    "newThisWeek": "पिछले 7 दिनों में नए",
+    "averageAttemptsPerWord": "प्रति शब्द औसत प्रयास",
+    "noCardsYet": "इस डेक में अभी कोई कार्ड नहीं है"
+  },
+  "ar": {
+    "trickyCharacters": "أحرف صعبة",
+    "strongestCharacters": "الأحرف الأكثر رسوخًا",
+    "newThisWeek": "الجديدة في آخر 7 أيام",
+    "averageAttemptsPerWord": "متوسط المحاولات لكل كلمة",
+    "noCardsYet": "لا توجد بطاقات في هذه المجموعة بعد"
+  }
+}

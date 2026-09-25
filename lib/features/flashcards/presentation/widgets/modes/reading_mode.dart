@@ -104,9 +104,8 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   style: TextStyle(
                                     fontSize: 120,
                                     fontWeight: FontWeight.bold,
-                                    color: isDark
-                                        ? Colors.white
-                                        : Colors.black87,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87,
                                   ),
                                 ),
                               ),
@@ -144,9 +143,8 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   style: TextStyle(
                                     fontSize: 84,
                                     fontWeight: FontWeight.bold,
-                                    color: isDark
-                                        ? Colors.white
-                                        : Colors.black87,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87,
                                   ),
                                 ),
                               ),
@@ -170,8 +168,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   hanzi: widget.card.hanzi,
                                   definitionLanguage:
                                       widget.card.definitionLanguage,
-                                  originalStyle:
-                                      const TextStyle(fontSize: 20),
+                                  originalStyle: const TextStyle(fontSize: 20),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -192,7 +189,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                 child: Column(
                   children: [
                     Text(
-                      "Swipe to Grade:",
+                      AppLocalizations.of(context)!.swipeToGrade,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -201,7 +198,7 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
+                      '⬅️ ${AppLocalizations.of(context)!.again} ➡️ ${AppLocalizations.of(context)!.good} ⬆️ ${AppLocalizations.of(context)!.easy} ⬇️ ${AppLocalizations.of(context)!.hard}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

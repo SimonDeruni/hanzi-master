@@ -11,6 +11,7 @@ import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
@@ -280,8 +281,7 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
 
               Expanded(
                 child: _isLoading
-                    ? const Center(
-                        child: ZenLoader(color: Colors.indigo))
+                    ? const Center(child: ZenLoader(color: Colors.indigo))
                     : _filteredCharacters.isEmpty
                         ? Center(
                             child: Text(AppLocalizations.of(context)!
@@ -299,7 +299,13 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                             itemCount: _filteredCharacters.length,
                             itemBuilder: (context, index) {
                               final item = _filteredCharacters[index];
-                              return _buildCharacterItem(context, item, isDark);
+                              // Tile entrance: the character grid assembles with
+                              // a stagger instead of snapping in at once.
+                              return StaggeredListItem(
+                                index: index,
+                                child:
+                                    _buildCharacterItem(context, item, isDark),
+                              );
                             },
                           ),
               ),

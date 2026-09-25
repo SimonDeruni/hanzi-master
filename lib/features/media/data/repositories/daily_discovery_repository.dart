@@ -7,8 +7,7 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
-  static const _bbcFeedUrl =
-      'https://feeds.bbci.co.uk/zhongwen/simp/rss.xml';
+  static const _bbcFeedUrl = 'https://feeds.bbci.co.uk/zhongwen/simp/rss.xml';
   static const _bbcHomepageUrl = 'https://www.bbc.com/zhongwen/simp';
   static const _bbcLogoUrl =
       'https://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png';
@@ -98,7 +97,8 @@ class DailyDiscoveryRepository {
     }
     candidates.shuffle(random);
 
-    final unseen = candidates.where((c) => !shownVideoIds.contains(c.videoId)).toList();
+    final unseen =
+        candidates.where((c) => !shownVideoIds.contains(c.videoId)).toList();
     final pool = unseen.isNotEmpty ? unseen : candidates;
 
     for (final candidate in pool) {
@@ -130,7 +130,8 @@ class DailyDiscoveryRepository {
     throw Exception('No valid video found.');
   }
 
-  Future<List<_VideoCandidate>> _fetchChannelVideos(String channelId, String channelName) async {
+  Future<List<_VideoCandidate>> _fetchChannelVideos(
+      String channelId, String channelName) async {
     final yt = YoutubeExplode();
     try {
       final uploads = await yt.search.search(channelName);
@@ -145,7 +146,8 @@ class DailyDiscoveryRepository {
         ));
         count++;
       }
-      debugPrint('[DailyDiscovery] Fetched ${candidates.length} videos from $channelName');
+      debugPrint(
+          '[DailyDiscovery] Fetched ${candidates.length} videos from $channelName');
       return candidates;
     } catch (e) {
       debugPrint('[DailyDiscovery] Error fetching channel $channelId: $e');
@@ -163,7 +165,6 @@ class DailyDiscoveryRepository {
       imageUrl: "https://img.youtube.com/vi/gcShBujgsIQ/maxresdefault.jpg",
       tag: "2 MIN CULTURAL CONTEXT",
     ),
-
     DailyMediaItem(
       title: "Grace Mandarin: 50 Phrases",
       subtitle: "Essential Chinese Phrases for Beginners",
@@ -185,7 +186,6 @@ class DailyDiscoveryRepository {
       imageUrl: "https://img.youtube.com/vi/LqAObK1tE9w/hqdefault.jpg",
       tag: "LISTENING PRACTICE",
     ),
-
     DailyMediaItem(
       title: "Mandarin Corner: 300 Verbs",
       subtitle: "Most Common Chinese Verbs",
@@ -370,5 +370,6 @@ class _VideoCandidate {
   final String videoId;
   final String title;
   final String channelName;
-  _VideoCandidate({required this.videoId, required this.title, required this.channelName});
+  _VideoCandidate(
+      {required this.videoId, required this.title, required this.channelName});
 }

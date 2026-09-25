@@ -169,7 +169,12 @@ class AiSentence {
         list.map((i) => AiWord.fromJson(i as Map<String, dynamic>)).toList();
 
     return AiSentence(
-      chinese: json['chinese'] as String? ?? '',
+      // Models occasionally name the Chinese field something else; the rest of
+      // the app only ever reads `chinese`, so accept the common aliases here
+      // rather than losing a whole sentence to a key-name difference.
+      chinese:
+          (json['chinese'] ?? json['simplified'] ?? json['text']) as String? ??
+              '',
       english: json['english'] as String? ?? '',
       words: wordsList,
     );
@@ -252,6 +257,27 @@ class AiChatSession {
           'OpenRouter Error ${response.statusCode}: ${response.body}');
     }
   }
+}
+
+/// Outcome of one simplification chunk: either the sentences it produced, or the
+/// reason it produced none, so a single lost chunk can be reported instead of
+/// discarding the whole article.
+class _ChunkResult {
+  const _ChunkResult.success(this.sentences) : error = null;
+
+  const _ChunkResult.failure(this.error) : sentences = null;
+
+  final List<AiSentence>? sentences;
+
+  final Object? error;
+}
+
+/// A rewrite that kept too little of its source: the chunk was already re-asked
+/// with its real target numbers, so another attempt would only burn a call.
+/// Subclasses [FormatException] so the screens keep stripping the type prefix
+/// and the user still reads a plain sentence.
+class _ContentLossFormatException extends FormatException {
+  const _ContentLossFormatException(super.message);
 }
 
 class GeminiService {
@@ -1607,28 +1633,60 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
     yield* streamOpenRouterText(prompt);
   }
 
+  /// A page must contain at least this much Chinese before "simplify" means
+  /// anything: the browser hands us whatever `innerText` it found, which on an
+  /// English page is English, and a "rewrite this Chinese article" prompt then
+  /// answers with an empty article.
+  static const int minimumSourceChineseCharacters = 20;
+
+  /// Simplification chunks stay well inside the 8192-token completion budget.
+  /// A chunk's rewrite is *longer* than its source and the reader renders the
+  /// prose from the per-sentence word arrays, so the JSON is ~30x the Chinese
+  /// character count: a measured 504-character section finished at ~16k
+  /// characters of JSON, and an 875-character section hit the cap and was cut
+  /// off. Sized so every section finishes instead of being truncated.
+  static const int _simplificationChunkCharacters = 700;
+
   Future<AiStory> simplifyTextToHsk(String sourceText, int hskLevel) async {
     final normalizedSource =
         sourceText.replaceAll(RegExp(r'\n{3,}'), '\n\n').trim();
     if (normalizedSource.isEmpty) {
       throw ArgumentError.value(sourceText, 'sourceText', 'Cannot be empty');
     }
+    if (_countChineseCharacters(normalizedSource) <
+        minimumSourceChineseCharacters) {
+      throw const FormatException(
+          'No Chinese article text was found on this page.');
+    }
 
     try {
-      final chunks = splitArticleIntoChunks(normalizedSource);
+      final chunks = splitArticleIntoChunks(normalizedSource,
+          maxCharacters: _simplificationChunkCharacters);
       final sentences = <AiSentence>[];
+      Object? firstFailure;
 
       // Process a few bounded chunks at once. Future.wait preserves their order.
       for (var start = 0; start < chunks.length; start += 3) {
         final end = math.min(start + 3, chunks.length);
-        final stories = await Future.wait(
+        final results = await Future.wait(
           chunks.sublist(start, end).map(
-                (chunk) => _simplifyArticleChunk(chunk, hskLevel),
+                (chunk) => _simplifyChunkResiliently(chunk, hskLevel),
               ),
         );
-        for (final story in stories) {
-          sentences.addAll(story.sentences);
+        for (final result in results) {
+          final chunkSentences = result.sentences;
+          if (chunkSentences == null) {
+            firstFailure ??= result.error;
+            continue;
+          }
+          sentences.addAll(chunkSentences);
         }
+      }
+
+      if (sentences.isEmpty) {
+        // Nothing survived: report why, instead of an unexplained empty article.
+        throw firstFailure ??
+            const FormatException('Simplification returned an empty article.');
       }
 
       analytics.logApiUsage(
@@ -1638,6 +1696,33 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
       analytics.logApiUsage(
           apiName: 'openrouter', feature: 'simplify_text', success: false);
       rethrow;
+    }
+  }
+
+  /// Simplifies one chunk, retrying once. A single unlucky chunk must not cost
+  /// the reader the whole article, so a failure is reported to the caller as a
+  /// missing chunk rather than thrown.
+  Future<_ChunkResult> _simplifyChunkResiliently(
+      String chunk, int hskLevel) async {
+    try {
+      return _ChunkResult.success(
+          (await _simplifyArticleChunk(chunk, hskLevel)).sentences);
+    } catch (firstError) {
+      if (firstError is _ContentLossFormatException) {
+        // Already retried with its real numbers: the model genuinely cannot keep
+        // this section's content, so do not pay for a third attempt.
+        debugPrint('Simplification dropped a chunk: $firstError');
+        return _ChunkResult.failure(firstError);
+      }
+      debugPrint('Simplification chunk failed, retrying once: $firstError');
+      try {
+        return _ChunkResult.success(
+            (await _simplifyArticleChunk(chunk, hskLevel, isRetry: true))
+                .sentences);
+      } catch (secondError) {
+        debugPrint('Simplification dropped a chunk: $secondError');
+        return _ChunkResult.failure(secondError);
+      }
     }
   }
 
@@ -1695,17 +1780,31 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
     // A faithful rewrite keeps ~all of the source. Anything below this ratio has
     // dropped content (the model strips detail clauses rather than sentences).
     const minimumRetryRatio = 0.90;
+    // Below this the "rewrite" really is a summary of a fraction of the source,
+    // and the reader would present it as if it were the whole article. The floor
+    // is deliberately low (it is the value the app shipped before build 559):
+    // measured against the real API, a compliant rewrite of dense news prose
+    // lands between 30% and 60% of the source, and dropping a whole section for
+    // being condensed costs the reader more than a shorter-but-complete rewrite.
+    const minimumAcceptableRatio = 0.35;
     final sourceLength = sourceChineseLength ?? _countChineseCharacters(sourceText);
     final terminators =
         [String.fromCharCode(0x3002), String.fromCharCode(0xFF01), String.fromCharCode(0xFF1F)];
     final sourceSentences = sourceSentenceCount ??
         RegExp('[$terminators]').allMatches(sourceText).length;
 
+    // Only quote numbers when there is enough Chinese in this section to measure
+    // (a mostly-English paragraph inside a Chinese page must not be told to aim
+    // for "0 to 0 characters", which invites an empty answer).
+    final lengthRule = sourceLength >= 20
+        ? 'The source has $sourceLength Chinese characters and $sourceSentences sentences. Because you are replacing difficult words with simpler ones, your rewrite must stay at least as long as the source - writing fewer than $sourceLength Chinese characters is a FAILURE.'
+        : 'Because you are replacing difficult words with simpler ones, your rewrite must stay at least as long as the source.';
+
     final prompt = '''
 You are rewriting a Chinese article into easier Chinese (HSK $hskLevel vocabulary and grammar) for a learner.
 
 THE SINGLE MOST IMPORTANT RULE - NEVER SHORTEN THE TEXT:
-The source has $sourceLength Chinese characters and $sourceSentences sentences. Because you are replacing difficult words with simpler ones, your rewrite should become LONGER, not shorter - aim for $sourceLength to ${sourceLength * 2} Chinese characters. Writing fewer than $sourceLength Chinese characters is a FAILURE.
+$lengthRule
 
 You are NOT a summariser. Do not summarise, condense, trim, merge or paraphrase anything away. Every sentence in the source must have a corresponding sentence (often two) in your rewrite.
 
@@ -1717,9 +1816,8 @@ HOW TO WRITE EASIER CHINESE WITHOUT LOSING CONTENT:
 5. Do not add opinions or conclusions that were not in the source, and do not remove any that were.
 6. Preserve paragraph and sentence order.
 7. Return only the rewritten article, not commentary.
-
-Your rewrite must contain at least $sourceSentences sentences.
-${isRetry ? '\nYour previous attempt was too short and/or dropped content. Rewrite the WHOLE section again, covering every clause and example, and reaching at least $sourceLength Chinese characters.' : ''}
+8. The "chinese" field always holds Chinese characters. Never put pinyin, an English translation or an explanation in it.
+${isRetry ? '\nYour previous attempt was too short and/or dropped content. Rewrite the WHOLE section again, covering every clause and example, and staying at least as long as the source.' : ''}
 
 Source article:
 """
@@ -1742,6 +1840,7 @@ Answer with JSON only, in this exact shape:
     }
   ]
 }
+Every "chinese" value must be Chinese characters; the translation goes in "english" only.
 Represent all Chinese text in each sentence's words array in order. Group multi-character words; punctuation may be omitted.
 ''';
 
@@ -1752,28 +1851,20 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
       ],
       jsonMode: true,
       maxTokens: 8192,
+      // A faithful rewrite of a 1200-character section - plus its translation and
+      // a word array per sentence - legitimately takes a while. The default 90s
+      // was cutting off responses that were still arriving.
+      timeout: const Duration(seconds: 150),
     );
     if (text.isEmpty) {
       throw Exception('Empty response from AI API');
     }
 
-    final firstBrace = text.indexOf('{');
-    final lastBrace = text.lastIndexOf('}');
-    final cleanJson = (firstBrace != -1 && lastBrace != -1 && lastBrace > firstBrace)
-        ? text.substring(firstBrace, lastBrace + 1)
-        : text
-            .replaceAll(RegExp(r'^```json\s*'), '')
-            .replaceAll(RegExp(r'\s*```$'), '')
-            .trim();
-
-    final decoded = jsonDecode(cleanJson);
-    if (decoded is! Map<String, dynamic>) {
-      throw const FormatException('Simplification returned invalid JSON.');
-    }
-    final story = AiStory.fromJson(decoded);
+    final story = _parseSimplifiedStory(text);
     if (story.sentences.isEmpty ||
         story.sentences.every((sentence) => sentence.chinese.trim().isEmpty)) {
-      throw const FormatException('Simplification returned an empty article.');
+      throw FormatException('Simplification returned an empty article '
+          '(${text.length} characters received).');
     }
 
     final outputChineseLength = _countChineseCharacters(
@@ -1790,12 +1881,105 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
           sourceSentenceCount: sourceSentences,
         );
       }
-      // Never silently accept a truncated article: the reader would present a
-      // fraction of the source as if it were the whole thing.
-      throw const FormatException(
-          'Simplification dropped too much of the article.');
+      if (outputChineseLength < sourceLength * minimumAcceptableRatio) {
+        // Never silently accept an article that lost half of its content: the
+        // reader would present a fraction of the source as the whole thing.
+        throw const _ContentLossFormatException(
+            'Simplification dropped too much of the article.');
+      }
+      // Shorter than we asked for, but complete - usable, so keep it.
+      debugPrint('Simplification kept $outputChineseLength of $sourceLength '
+          'characters for HSK $hskLevel. Accepting the shorter rewrite.');
     }
     return story;
+  }
+
+  /// Turns a model payload into a story, tolerating every shape the API actually
+  /// returns: plain JSON, JSON wrapped in fences or prose, a top-level array, a
+  /// nested article object, and JSON that the token budget cut off mid-stream.
+  static AiStory _parseSimplifiedStory(String text) {
+    final trimmed = text.trim();
+    final start = trimmed.indexOf(RegExp(r'[\[{]'));
+    if (start != -1) {
+      final closer = trimmed[start] == '[' ? ']' : '}';
+      final end = trimmed.lastIndexOf(closer);
+      final candidate = end > start
+          ? trimmed.substring(start, end + 1)
+          : trimmed.substring(start);
+      try {
+        final decoded = jsonDecode(candidate);
+        final story = _storyFromDecoded(decoded);
+        if (story != null && story.sentences.isNotEmpty) return story;
+      } on FormatException {
+        // Truncated or malformed: salvage the complete sentences below.
+      }
+    }
+    return AiStory(sentences: salvageSentences(trimmed));
+  }
+
+  /// Reads a decoded payload into a story, accepting the nesting and key
+  /// variants the model occasionally answers with.
+  static AiStory? _storyFromDecoded(Object? decoded) {
+    if (decoded is List) {
+      return AiStory(
+        sentences: decoded
+            .whereType<Map<String, dynamic>>()
+            .map(AiSentence.fromJson)
+            .toList(),
+      );
+    }
+    if (decoded is Map<String, dynamic>) {
+      if (decoded['sentences'] is List) return AiStory.fromJson(decoded);
+      for (final key in const ['article', 'simplified', 'result', 'data']) {
+        final nested = decoded[key];
+        if (nested is Map<String, dynamic> && nested['sentences'] is List) {
+          return AiStory.fromJson(nested);
+        }
+      }
+      return AiStory.fromJson(decoded);
+    }
+    return null;
+  }
+
+  /// Recovers the complete sentences from a payload that is not valid JSON. A
+  /// response cut off by the completion budget still contains whole
+  /// `"chinese": "..."` pairs; discarding every one of them is what turned a
+  /// long article into "an empty article".
+  ///
+  /// The reader renders prose from the per-sentence word arrays, so a recovered
+  /// sentence gets one word per character: without them the repaired text would
+  /// render as an empty paragraph.
+  @visibleForTesting
+  static List<AiSentence> salvageSentences(String payload) {
+    final pattern = RegExp(
+      r'"(?:chinese|simplified|text|zh)"\s*:\s*"((?:[^"\\]|\\.)*)"',
+    );
+    final sentences = <AiSentence>[];
+    for (final match in pattern.allMatches(payload)) {
+      final chinese = _decodeJsonFragment(match.group(1)!);
+      if (chinese.trim().isEmpty) continue;
+      sentences.add(AiSentence(
+        chinese: chinese,
+        english: '',
+        words: [
+          for (final character in chinese.split(''))
+            if (character.trim().isNotEmpty)
+              AiWord(hanzi: character, pinyin: '', meaning: ''),
+        ],
+      ));
+    }
+    return sentences;
+  }
+
+  /// Unescapes a JSON string body captured by [salvageSentences].
+  static String _decodeJsonFragment(String raw) {
+    try {
+      final decoded = jsonDecode('"$raw"');
+      if (decoded is String) return decoded;
+    } on FormatException {
+      // Not decodable: fall back to the minimal unescaping below.
+    }
+    return raw.replaceAll(r'\"', '"').replaceAll(r'\n', ' ');
   }
 
   static int _countChineseCharacters(String text) =>

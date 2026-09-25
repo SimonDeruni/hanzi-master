@@ -1,0 +1,352 @@
+
+  // ── Tone feedback ──────────────────────────────────────────────────────────
+
+  /// The result of a recording: the score, what each metric says, and — the part
+  /// this screen used to drop on the floor — **what happened to your tones**,
+  /// syllable by syllable, with a tap through to the tone graph.
+  ///
+  /// The grader already returned `expectedTone`, `actualTone` and the phoneme
+  /// scores for every character; only the coloured hanzi was ever rendered.
+  Widget _buildFeedbackPanel(bool isDark) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final Map<String, dynamic> result = _feedbackResult!;
+    final int score = (result['score'] as num?)?.toInt() ?? 0;
+    final List<dynamic> words =
+        (result['words'] as List<dynamic>?) ?? const <dynamic>[];
+
+    final Color accent = AppTheme.accentOf(context);
+    final Color gold = isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+    final Color ink = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final Color muted = isDark ? Colors.white60 : const Color(0xFF6B655B);
+
+    return Container(
+      key: const ValueKey<String>('speaking-feedback'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppTheme.cardBgOf(context),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: gold.withValues(alpha: 0.3)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                '$score',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: _scoreTone(score, isDark),
+                ),
+              ),
+              const SizedBox(width: 4),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                  '/100',
+                  style: TextStyle(fontSize: 13, color: muted),
+                ),
+              ),
+              const Spacer(),
+              Flexible(
+                child: Wrap(
+                  alignment: WrapAlignment.end,
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: <Widget>[
+                    _buildMetricChip(l10n.accuracy, result['accuracy'], isDark),
+                    _buildMetricChip(
+                      l10n.completeness,
+                      result['completeness'],
+                      isDark,
+                    ),
+                    _buildMetricChip(l10n.fluency, result['fluency'], isDark),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            _localizedVerdict(score, l10n),
+            style: TextStyle(fontSize: 13.5, color: ink, height: 1.35),
+          ),
+          if (words.isNotEmpty) ...<Widget>[
+            const SizedBox(height: 14),
+            Divider(height: 1, color: gold.withValues(alpha: 0.2)),
+            const SizedBox(height: 12),
+            Row(
+              children: <Widget>[
+                Icon(Icons.equalizer_rounded, size: 16, color: accent),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    l10n.toneAccuracy,
+                    style: TextStyle(
+                      fontSize: 14.5,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoSerifSC',
+                      color: ink,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            for (final dynamic word in words)
+              _buildToneRow(
+                Map<String, dynamic>.from(word as Map<dynamic, dynamic>),
+                isDark: isDark,
+                gold: gold,
+                muted: muted,
+              ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  /// One character's tone verdict, tappable through to the tone graph.
+  Widget _buildToneRow(
+    Map<String, dynamic> word, {
+    required bool isDark,
+    required Color gold,
+    required Color muted,
+  }) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final String hanzi = (word['word'] ?? '').toString();
+    final String pinyin = (word['pinyin'] ?? '').toString();
+    final String feedback = (word['feedback'] ?? '').toString();
+    final int expectedTone = (word['expectedTone'] as num?)?.toInt() ?? 5;
+    final int actualTone = (word['actualTone'] as num?)?.toInt() ?? 5;
+    final bool matches = expectedTone == actualTone;
+    final Color accent = AppTheme.accentOf(context);
+    final Color ink = isDark ? Colors.white : const Color(0xFF1A1A1B);
+
+    return InkWell(
+      key: ValueKey<String>('speaking-tone-$hanzi'),
+      borderRadius: BorderRadius.circular(12),
+      onTap: () {
+        HapticsManager.light();
+        ToneComparisonSheet.show<void>(
+          context,
+          character: hanzi,
+          pinyin: pinyin,
+          expectedTone: expectedTone,
+          actualTone: actualTone,
+          feedback: feedback.isEmpty ? null : feedback,
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 34,
+                  child: Text(
+                    hanzi,
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontFamily: 'NotoSerifSC',
+                      color: ink,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    pinyin,
+                    style: TextStyle(fontSize: 12.5, color: muted),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Icon(Icons.show_chart_rounded, size: 16, color: accent),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
+              children: <Widget>[
+                _buildTonePill(
+                  label: l10n.toneExpected,
+                  pinyin: pinyin,
+                  tone: expectedTone,
+                  fallbackColour: gold,
+                  isDark: isDark,
+                ),
+                _buildTonePill(
+                  label: l10n.toneYouSaid,
+                  pinyin: pinyin,
+                  tone: actualTone,
+                  fallbackColour: matches
+                      ? const Color(0xFF2E7D32)
+                      : (isDark ? Colors.redAccent : const Color(0xFFC62828)),
+                  isDark: isDark,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// A tone pill: the syllable written in the tone the grader heard (or the one
+  /// it expected), tinted with the app's canonical tone colour. Showing the
+  /// *marked syllable* rather than a bare digit is what makes the comparison
+  /// readable — `nán` against `nà`, not "2 against 4".
+  Widget _buildTonePill({
+    required String label,
+    required String pinyin,
+    required int tone,
+    required Color fallbackColour,
+    required bool isDark,
+  }) {
+    final String marked = _syllableInTone(pinyin, tone);
+    final Color colour = marked.isEmpty
+        ? fallbackColour
+        : PinyinUtils.toneColors[tone] ?? fallbackColour;
+    final Color textColour = isDark && colour == const Color(0xFF1A1A1B)
+        ? Colors.white70
+        : colour;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: textColour.withValues(alpha: isDark ? 0.16 : 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: textColour.withValues(alpha: 0.3)),
+      ),
+      child: Text(
+        marked.isEmpty ? '$label · $tone' : '$label · $marked',
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: textColour,
+        ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
+  }
+
+  /// The same syllable rewritten in [tone] (`nán` + 4 → `nà`), or '' when the
+  /// syllable cannot be inflected.
+  String _syllableInTone(String pinyin, int tone) {
+    if (pinyin.trim().isEmpty) return '';
+    return PinyinUtils.getAllTonesForSyllable(pinyin)[tone] ?? '';
+  }
+
+  /// A metric pill (`Accuracy 86`), Jade for a strong score, gold for shaky.
+  Widget _buildMetricChip(String label, dynamic value, bool isDark) {
+    final int score = (value as num?)?.toInt() ?? 0;
+    final Color colour = _scoreTone(score, isDark);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: colour.withValues(alpha: isDark ? 0.16 : 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colour.withValues(alpha: 0.25)),
+      ),
+      child: Text(
+        '$label $score',
+        style: TextStyle(
+          fontSize: 10.5,
+          fontWeight: FontWeight.w600,
+          color: colour,
+        ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
+  }
+
+  /// Jade Green for 80+, gold for 60+, Cinnabar below — the same reading as the
+  /// deck's statistics tab.
+  Color _scoreTone(int score, bool isDark) {
+    if (score >= 80) return const Color(0xFF2E7D32);
+    if (score >= 60) {
+      return isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+    }
+    return isDark ? Colors.redAccent : const Color(0xFFC62828);
+  }
+
+  /// The band feedback, from the 14-locale catalogue rather than the English
+  /// sentence the grader returns.
+  String _localizedVerdict(int score, AppLocalizations l10n) {
+    if (score >= 90) return l10n.perfectPronunciationSoundsLikeANati;
+    if (score >= 80) return l10n.greatJobAFewMinorToneInaccuracies;
+    if (score >= 60) return l10n.notBadButYourTonesNeedSomeWork;
+    if (score > 0) return l10n.keepPracticingListenToTheNativeAudi;
+    return l10n.goodEffortKeepPracticing;
+  }
+
+  /// The tones of the word, one pill per syllable, in the app's canonical tone
+  /// colours. The pinyin is already tone-marked, but calling the tones out is
+  /// what lets a learner *aim* before they speak — and speaking practice was the
+  /// one mode that showed nothing about them.
+  Widget _buildToneStrip(bool isDark) {
+    final List<Map<String, dynamic>> tokens = PinyinUtils
+        .tokenize(widget.card.pinyin)
+        .where((Map<String, dynamic> token) =>
+            (token['text'] as String).trim().isNotEmpty)
+        .toList();
+    if (tokens.isEmpty) return const SizedBox.shrink();
+
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 6,
+      runSpacing: 6,
+      children: <Widget>[
+        for (final Map<String, dynamic> token in tokens)
+          _buildTargetTonePill(
+            syllable: token['text'] as String,
+            tone: token['tone'] as int,
+            isDark: isDark,
+          ),
+      ],
+    );
+  }
+
+  Widget _buildTargetTonePill({
+    required String syllable,
+    required int tone,
+    required bool isDark,
+  }) {
+    final Color base =
+        PinyinUtils.toneColors[tone] ?? const Color(0xFF1A1A1B);
+    // The neutral tone's ink is unreadable on a dark surface.
+    final Color colour =
+        isDark && tone == 5 ? Colors.white70 : base;
+    final String label = tone >= 1 && tone <= 4 ? '$syllable $tone' : syllable;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+      decoration: BoxDecoration(
+        color: colour.withValues(alpha: isDark ? 0.16 : 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colour.withValues(alpha: 0.3)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 12.5,
+          fontWeight: FontWeight.w600,
+          color: colour,
+        ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
+  }

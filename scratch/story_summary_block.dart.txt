@@ -1,0 +1,271 @@
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final storyState = ref.watch(storyControllerProvider);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final localeCode = Localizations.localeOf(context).toLanguageTag();
+
+    // The book screen's ground, ink wells and accent — one reading vocabulary.
+    final bgColor = isDark ? const Color(0xFF141416) : const Color(0xFFFDFCF0);
+    final cardBg = isDark ? const Color(0xFF1E1E22) : Colors.white;
+    final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    final mutedText = isDark ? Colors.white60 : const Color(0xFF6B655B);
+    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+    final gold = isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+
+    final String localizedTitle = widget.story.localizedTitle(localeCode);
+    final bool isRemote = widget.story.link.startsWith('http');
+
+    return Scaffold(
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new, size: 20, color: primaryText),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  // 1. The story's own cover — the Mandarin Bean artwork the app
+                  //    ships for it — composed as a portrait card, exactly as the
+                  //    catalogue draws a book.
+                  Center(child: StoryCoverArt(story: widget.story)),
+                  const SizedBox(height: 18),
+
+                  // 2. Title, with the original line beneath it when the two
+                  //    differ (a Tang poem keeps its Hanzi title).
+                  TappableHanziText(
+                    localizedTitle,
+                    textAlign: TextAlign.center,
+                    quickLookPresentation: QuickLookPresentation.readingPopover,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoSerifSC',
+                      color: primaryText,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  if (widget.story.titleEn != null &&
+                      widget.story.title != localizedTitle) ...<Widget>[
+                    const SizedBox(height: 6),
+                    TappableHanziText(
+                      widget.story.title,
+                      textAlign: TextAlign.center,
+                      quickLookPresentation:
+                          QuickLookPresentation.readingPopover,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontStyle: FontStyle.italic,
+                        color: mutedText,
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 14),
+
+                  // 3. Badges: reading level, subject, source. The subject badge
+                  //    borrows the cover's own hue, so the two agree.
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: <Widget>[
+                      if (widget.story.hskLevel > 0)
+                        _buildBadge('HSK ${widget.story.hskLevel}', accent)
+                      else
+                        _buildBadge(l10n.native, accent),
+                      _buildBadge(
+                        widget.story.category,
+                        StoryCoverArt.topicGradient(widget.story.category).first,
+                      ),
+                      if (widget.story.sourceName.isNotEmpty)
+                        _buildBadge(widget.story.sourceName, gold),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+
+
+                  // 4. One primary action, in the book screen's button style:
+                  //    carbon ink in light mode, Emperor's gold in dark.
+                  SizedBox(
+                    height: 52,
+                    child: ElevatedButton.icon(
+                      onPressed: isRemote
+                          ? () {
+                              Navigator.push(
+                                context,
+                                SwipeBackPageRoute(
+                                  builder: (_) => WebBrowserScreen(
+                                    initialUrl: widget.story.link,
+                                    autoReadingMode: true,
+                                    isStoryMode: true,
+                                  ),
+                                ),
+                              );
+                            }
+                          : _startReading,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isDark
+                            ? Colors.amber.shade700
+                            : const Color(0xFF1A1A1B),
+                        foregroundColor: isDark
+                            ? const Color(0xFF1A1A1B)
+                            : Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        elevation: 0,
+                      ),
+                      icon: Icon(
+                        isRemote
+                            ? Icons.open_in_new_rounded
+                            : Icons.menu_book_rounded,
+                        size: 20,
+                      ),
+                      label: Text(
+                        isRemote ? l10n.openOriginalWebsite : l10n.startReading,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // 5. Summary ink well.
+                  _buildCard(
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              l10n.summary,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'NotoSerifSC',
+                                color: primaryText,
+                              ),
+                            ),
+                            if (_isEnriching) ...<Widget>[
+                              const SizedBox(width: 12),
+                              const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: ZenLoader(strokeWidth: 2),
+                              ),
+                            ],
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        TappableHanziText(
+                          _enrichedSummary ??
+                              widget.story.summaryEn ??
+                              widget.story.summary,
+                          quickLookPresentation:
+                              QuickLookPresentation.readingPopover,
+                          style: TextStyle(
+                            fontSize: 16,
+                            height: 1.6,
+                            color: isDark
+                                ? Colors.white.withValues(alpha: 0.75)
+                                : const Color(0xFF1A1A1B).withValues(alpha: 0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // 6. Key words ink well.
+                  _buildCard(
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          l10n.keyWords,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoSerifSC',
+                            color: primaryText,
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        _buildKeyWords(storyState),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+  // ── Book-screen vocabulary (same shapes as `book_detail_screen.dart`) ──────
+  Widget _buildCard({
+    required bool isDark,
+    required Color cardBg,
+    required Widget child,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
+  Widget _buildBadge(String label, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          color: color,
+        ),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
+  }
+

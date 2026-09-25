@@ -129,4 +129,46 @@ void main() {
     final scrollTop = tester.getTopLeft(find.byType(SingleChildScrollView)).dy;
     expect(tester.getTopLeft(practiceMode).dy, lessThan(scrollTop + 48));
   });
+
+  testWidgets('Shadowing Studio hub fits standard mobile viewports with no scroll required',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: MaterialApp(
+          locale: Locale('fr'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ShadowingStudioScreen(showBackButton: false),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final startButton = find.byKey(const Key('shadowing_start_session'));
+    expect(startButton, findsOneWidget);
+
+    final scrollFinder = find.byType(SingleChildScrollView);
+    expect(scrollFinder, findsOneWidget);
+    final scrollableState = tester.state<ScrollableState>(
+      find.descendant(of: scrollFinder, matching: find.byType(Scrollable)).first,
+    );
+    expect(scrollableState.position.maxScrollExtent, equals(0.0));
+
+    // Verify info icon opens the pedagogical guide sheet
+    final infoIcon = find.byIcon(Icons.info_outline_rounded);
+    expect(infoIcon, findsOneWidget);
+    await tester.tap(infoIcon);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Studio de répétition et analyse visuelle des tons'),
+        findsOneWidget);
+  });
 }

@@ -235,7 +235,8 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                                       child: TranslatedDefinition(
                                         definition: widget.card.definition,
                                         hanzi: widget.card.hanzi,
-                                        definitionLanguage: widget.card.definitionLanguage,
+                                        definitionLanguage:
+                                            widget.card.definitionLanguage,
                                         originalStyle:
                                             const TextStyle(fontSize: 18),
                                         textAlign: TextAlign.center,
@@ -250,7 +251,9 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                       ),
                     )
                         .animate()
-                        .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                        .fade(
+                            duration: ZenMotion.of(context, ZenMotion.page),
+                            curve: ZenMotion.enter)
                         .slideY(
                             begin: 0.1,
                             end: 0,
@@ -268,7 +271,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                 child: Column(
                   children: [
                     Text(
-                      "Swipe to Grade:",
+                      AppLocalizations.of(context)!.swipeToGrade,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -277,7 +280,7 @@ class _ListeningModeWidgetState extends ConsumerState<ListeningModeWidget> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
+                      '⬅️ ${AppLocalizations.of(context)!.again} ➡️ ${AppLocalizations.of(context)!.good} ⬆️ ${AppLocalizations.of(context)!.easy} ⬇️ ${AppLocalizations.of(context)!.hard}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

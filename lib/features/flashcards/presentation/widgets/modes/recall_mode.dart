@@ -115,14 +115,18 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                         child: ZenFlipCard(
                           isFlipped: _isRevealed,
                           onTap: !_isRevealed ? _reveal : null,
-                          front: _buildHiddenCard(isDark, cardColor, borderColor),
-                          back: _buildRevealedCard(isDark, cardColor, borderColor),
+                          front:
+                              _buildHiddenCard(isDark, cardColor, borderColor),
+                          back: _buildRevealedCard(
+                              isDark, cardColor, borderColor),
                         ),
                       ),
               ),
             )
                 .animate()
-                .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                .fade(
+                    duration: ZenMotion.of(context, ZenMotion.page),
+                    curve: ZenMotion.enter)
                 .slideY(
                     begin: 0.1,
                     end: 0,
@@ -209,7 +213,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                 child: Column(
                   children: [
                     Text(
-                      "Swipe to Grade:",
+                      AppLocalizations.of(context)!.swipeToGrade,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -218,7 +222,7 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "⬅️ Again    ➡️ Good    ⬆️ Easy    ⬇️ Hard",
+                      '⬅️ ${AppLocalizations.of(context)!.again} ➡️ ${AppLocalizations.of(context)!.good} ⬆️ ${AppLocalizations.of(context)!.easy} ⬇️ ${AppLocalizations.of(context)!.hard}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

@@ -27,7 +27,7 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
   int _getHighlightedCharCount(TranscriptLine line, Duration position) {
     if (position < line.start) return 0;
     if (position >= line.end) return line.text.length;
-    
+
     final elapsed = position - line.start;
     final progress = elapsed.inMilliseconds / line.duration.inMilliseconds;
     return (progress * line.text.length).floor();
@@ -36,7 +36,9 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
   String? _getEffectivePinyin(TranscriptLine line) {
     final raw = line.pinyin?.trim();
     final translation = line.translation?.trim().toLowerCase();
-    if (raw != null && raw.isNotEmpty && (translation == null || raw.toLowerCase() != translation)) {
+    if (raw != null &&
+        raw.isNotEmpty &&
+        (translation == null || raw.toLowerCase() != translation)) {
       return raw;
     }
     if (RegExp(r'[\u4e00-\u9fff]').hasMatch(line.text)) {
@@ -67,65 +69,83 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (showHanzi)
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: line.text.split('').asMap().entries.map((entry) {
-              final charIndex = entry.key;
-              final char = entry.value;
-              final isHighlighted = charIndex <= highlightedCount;
-              final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
+            Wrap(
+              alignment: WrapAlignment.center,
+              children: line.text.split('').asMap().entries.map((entry) {
+                final charIndex = entry.key;
+                final char = entry.value;
+                final isHighlighted = charIndex <= highlightedCount;
+                final isChinese = RegExp(r'[\u4e00-\u9fff]').hasMatch(char);
 
-              final textWidget = Text(
-                char,
-                style: TextStyle(
-                  fontSize: 36,
-                  color: isHighlighted ? Colors.white : Colors.white60,
-                  fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
-                  shadows: isHighlighted ? const [
-                    Shadow(color: Colors.blueAccent, blurRadius: 8, offset: Offset(0, 0)),
-                    Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1)),
-                  ] : const [
-                    Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1))
-                  ],
-                ),
-              );
+                final textWidget = Text(
+                  char,
+                  style: TextStyle(
+                    fontSize: 36,
+                    color: isHighlighted ? Colors.white : Colors.white60,
+                    fontWeight:
+                        isHighlighted ? FontWeight.bold : FontWeight.w500,
+                    shadows: isHighlighted
+                        ? const [
+                            Shadow(
+                                color: Colors.blueAccent,
+                                blurRadius: 8,
+                                offset: Offset(0, 0)),
+                            Shadow(
+                                color: Colors.black87,
+                                blurRadius: 4,
+                                offset: Offset(1, 1)),
+                          ]
+                        : const [
+                            Shadow(
+                                color: Colors.black87,
+                                blurRadius: 4,
+                                offset: Offset(1, 1))
+                          ],
+                  ),
+                );
 
-              return isChinese 
-                ? GestureDetector(
-                    onTap: () => onWordTapped(char),
-                    child: textWidget,
-                  )
-                : textWidget;
-            }).toList(),
-          ),
-          
-        if (showPinyin && effectivePinyin != null && effectivePinyin.isNotEmpty) ...[
-          const SizedBox(height: 4),
-          Text(
-            effectivePinyin,
-            style: const TextStyle(
-              fontSize: 22, 
-              color: Colors.white70,
-              shadows: [
-                Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1))
-              ],
+                return isChinese
+                    ? GestureDetector(
+                        onTap: () => onWordTapped(char),
+                        child: textWidget,
+                      )
+                    : textWidget;
+              }).toList(),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-
-        if (showEnglish && line.translation != null) ...[
-          const SizedBox(height: 8),
-          Text(
-            line.translation!,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.white70,
-              fontStyle: FontStyle.italic,
-              shadows: [
-                Shadow(color: Colors.black87, blurRadius: 4, offset: Offset(1, 1))
-              ],
+          if (showPinyin &&
+              effectivePinyin != null &&
+              effectivePinyin.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Text(
+              effectivePinyin,
+              style: const TextStyle(
+                fontSize: 22,
+                color: Colors.white70,
+                shadows: [
+                  Shadow(
+                      color: Colors.black87,
+                      blurRadius: 4,
+                      offset: Offset(1, 1))
+                ],
+              ),
+              textAlign: TextAlign.center,
             ),
+          ],
+          if (showEnglish && line.translation != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              line.translation!,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white70,
+                fontStyle: FontStyle.italic,
+                shadows: [
+                  Shadow(
+                      color: Colors.black87,
+                      blurRadius: 4,
+                      offset: Offset(1, 1))
+                ],
+              ),
               textAlign: TextAlign.center,
             ),
           ],

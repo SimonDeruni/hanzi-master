@@ -934,6 +934,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get whereWouldYouLike => 'Di mana Anda ingin menyimpan karakter ini?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'Di mana Anda ingin menyimpan $count kata ini?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count item';
+  }
+
+  @override
   String get addToDefaultStudy => 'Tambahkan ke Dek Belajar Default';
 
   @override
@@ -13086,4 +13096,36 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'Pencarian kamus gagal. Silakan coba lagi.';
+
+  @override
+  String get tapToHearVoiceSample => 'Ketuk ▶ untuk mendengar contoh';
+
+  @override
+  String get soundEffects => 'Efek Suara';
+
+  @override
+  String get soundEffectsDesc =>
+      'Suara kertas lembut, stempel kayu, dan kaligrafi';
+
+  @override
+  String get generatingYourScenario => 'Membuat skenario Anda…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'Kami tidak dapat membuat skenario ini. Silakan coba lagi.';
+
+  @override
+  String get trickyCharacters => 'Karakter sulit';
+
+  @override
+  String get strongestCharacters => 'Karakter terkuat';
+
+  @override
+  String get newThisWeek => 'Baru dalam 7 hari terakhir';
+
+  @override
+  String get averageAttemptsPerWord => 'Rata-rata percobaan per kata';
+
+  @override
+  String get noCardsYet => 'Belum ada kartu di dek ini';
 }

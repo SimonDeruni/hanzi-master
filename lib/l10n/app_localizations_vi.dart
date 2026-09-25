@@ -931,6 +931,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get whereWouldYouLike => 'Bạn muốn lưu chữ Hán này vào đâu?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'Bạn muốn lưu $count từ này vào đâu?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count mục';
+  }
+
+  @override
   String get addToDefaultStudy => 'Thêm vào bộ học mặc định';
 
   @override
@@ -13070,4 +13080,35 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'Tìm kiếm từ điển không thành công. Vui lòng thử lại.';
+
+  @override
+  String get tapToHearVoiceSample => 'Chạm ▶ để nghe thử';
+
+  @override
+  String get soundEffects => 'Hiệu ứng âm thanh';
+
+  @override
+  String get soundEffectsDesc => 'Tiếng giấy mềm, con dấu gỗ và thư pháp';
+
+  @override
+  String get generatingYourScenario => 'Đang tạo kịch bản của bạn…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'Không thể tạo kịch bản này. Vui lòng thử lại.';
+
+  @override
+  String get trickyCharacters => 'Chữ khó nhớ';
+
+  @override
+  String get strongestCharacters => 'Chữ nhớ tốt nhất';
+
+  @override
+  String get newThisWeek => 'Mới trong 7 ngày qua';
+
+  @override
+  String get averageAttemptsPerWord => 'Số lần thử trung bình mỗi từ';
+
+  @override
+  String get noCardsYet => 'Bộ thẻ này chưa có thẻ nào';
 }

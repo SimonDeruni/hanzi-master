@@ -914,6 +914,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get whereWouldYouLike => '이 한자를 어디에 저장하시겠습니까?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return '이 $count개 단어를 어디에 저장하시겠습니까?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count개 항목';
+  }
+
+  @override
   String get addToDefaultStudy => '기본 학습 덱에 추가';
 
   @override
@@ -12701,4 +12711,34 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get dictionarySearchFailed => '사전 검색에 실패했습니다. 다시 시도해 주세요.';
+
+  @override
+  String get tapToHearVoiceSample => '▶를 눌러 샘플을 들어보세요';
+
+  @override
+  String get soundEffects => '효과음';
+
+  @override
+  String get soundEffectsDesc => '부드러운 종이, 나무 도장, 서예 소리';
+
+  @override
+  String get generatingYourScenario => '시나리오를 만들고 있어요…';
+
+  @override
+  String get failedToGenerateScenario => '이 시나리오를 만들지 못했습니다. 다시 시도해 주세요.';
+
+  @override
+  String get trickyCharacters => '까다로운 한자';
+
+  @override
+  String get strongestCharacters => '가장 잘 외운 한자';
+
+  @override
+  String get newThisWeek => '최근 7일 새 단어';
+
+  @override
+  String get averageAttemptsPerWord => '단어당 평균 시도';
+
+  @override
+  String get noCardsYet => '이 덱에는 아직 카드가 없습니다';
 }

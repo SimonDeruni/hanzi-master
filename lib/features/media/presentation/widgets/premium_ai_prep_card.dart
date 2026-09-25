@@ -86,7 +86,8 @@ class _PremiumAiPrepCardState extends State<PremiumAiPrepCard> {
                 children: widget.briefing.hardWords.take(6).map((w) {
                   Offset? tapPosition;
                   return GestureDetector(
-                    onTapDown: (details) => tapPosition = details.globalPosition,
+                    onTapDown: (details) =>
+                        tapPosition = details.globalPosition,
                     onTap: () {
                       widget.onWordTapped(w);
                       if (tapPosition != null) {

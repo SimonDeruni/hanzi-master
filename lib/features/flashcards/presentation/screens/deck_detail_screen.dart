@@ -200,7 +200,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              AppLocalizations.of(context)!.cardsCount(deckCards.length),
+                              AppLocalizations.of(context)!
+                                  .cardsCount(deckCards.length),
                               style: TextStyle(
                                 fontSize: 12,
                                 color: isDark ? Colors.white70 : Colors.black54,
@@ -325,7 +326,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 children: [
                                   Expanded(
                                     child: _DailyGoal(
-                                      label: AppLocalizations.of(context)!.dueToday,
+                                      label: AppLocalizations.of(context)!
+                                          .dueToday,
                                       available: dueToday,
                                       limit: _dailyReviewLimit,
                                       color: Colors.indigo,
@@ -338,7 +340,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                   ),
                                   Expanded(
                                     child: _DailyGoal(
-                                      label: AppLocalizations.of(context)!.newAvailable,
+                                      label: AppLocalizations.of(context)!
+                                          .newAvailable,
                                       available: newAvailable,
                                       limit: _dailyNewCardsLimit,
                                       color: Colors.green,
@@ -388,6 +391,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       onPressed: () {
                                         StudyModeSelectionSheet.show(
                                           context,
+                                          cards: deckCards,
                                           onModeSelected: (mode) {
                                             ref
                                                 .read(analyticsServiceProvider)
@@ -788,7 +792,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                                             '${card.hanzi} ${AppLocalizations.of(context)?.removedFromDeck ?? "removed from deck"}'),
                                                         backgroundColor:
                                                             Colors.redAccent,
-                                                        duration: ZenMotion.toast,
+                                                        duration:
+                                                            ZenMotion.toast,
                                                         action: SnackBarAction(
                                                           label: AppLocalizations
                                                                   .of(context)!
@@ -817,8 +822,10 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     ],
                   ),
 
-                  // Tab 2: Statistics (unified polished view)
-                  StatsScreen(deckId: widget.deck.id),
+                  // Tab 2: Statistics. Content only — the view deliberately has no
+                  // Scaffold or AppBar of its own, so the tab no longer carries a
+                  // second title bar and a second back arrow.
+                  DeckStatsView(deckId: widget.deck.id),
                 ],
               ),
             );

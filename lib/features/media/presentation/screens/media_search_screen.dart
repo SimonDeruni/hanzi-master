@@ -50,15 +50,15 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     if (_categoriesInitialized) return;
 
     final localizations = AppLocalizations.of(context)!;
+    // Gaming/esports is intentionally absent: its discovery query returned
+    // nothing, so the shelf only ever rendered "no videos found".
     _categories = {
       localizations.lifestyleAndVlog: [],
-      localizations.gamingAndEsports: [],
       localizations.foodAndCooking: [],
       localizations.techAndGadgets: [],
     };
     _categoryQueries = {
       localizations.lifestyleAndVlog: VideoCategoryQueries.lifestyle,
-      localizations.gamingAndEsports: VideoCategoryQueries.gaming,
       localizations.foodAndCooking: VideoCategoryQueries.food,
       localizations.techAndGadgets: VideoCategoryQueries.technology,
     };
@@ -345,7 +345,16 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
               Expanded(
                 child: ListView(
                   padding: const EdgeInsets.only(bottom: 40),
-                  children: _categories.entries.map((entry) {
+                  // Shelves that loaded empty are dropped, not rendered: an
+                  // empty rail reserved 250dp to say "no videos found", which
+                  // reads as an unfinished feed. The loading skeleton and the
+                  // retry-able error state stay, because both are actionable.
+                  children: _categories.entries
+                      .where((entry) =>
+                          (_categoryStates[entry.key] ??
+                              _CategoryLoadState.loading) !=
+                          _CategoryLoadState.empty)
+                      .map((entry) {
                     final state = _categoryStates[entry.key] ??
                         _CategoryLoadState.loading;
 
@@ -403,15 +412,10 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       case _CategoryLoadState.loading:
         return _buildSkeletonRow();
       case _CategoryLoadState.empty:
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Center(
-            child: Text(
-              AppLocalizations.of(context)!.noVideosFound,
-              style: const TextStyle(color: Colors.black38, fontSize: 14),
-            ),
-          ),
-        );
+        // Unreachable while the feed filters empty shelves out; kept so the
+        // switch stays exhaustive and so a regressed filter degrades to a blank
+        // rather than re-introducing a "no videos found" shelf.
+        return const SizedBox.shrink();
       case _CategoryLoadState.error:
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

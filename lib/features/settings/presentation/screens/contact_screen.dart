@@ -2,6 +2,7 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactScreen extends StatefulWidget {
@@ -97,146 +98,149 @@ class _ContactScreenState extends State<ContactScreen> {
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                Text(
-                  localizations.wedLoveToHearFromYou,
-                  style: TextStyle(
-                    fontSize: 38,
-                    fontFamily: 'Serif',
-                    fontWeight: FontWeight.w900,
-                    color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                    height: 1.1,
-                    letterSpacing: -1.0,
-                  ),
-                ),
-                const SizedBox(height: 40),
-
-                // Category Selector
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: AppTheme.cardBgOf(context),
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: isDark
-                            ? Colors.black.withValues(alpha: 0.2)
-                            : Colors.black.withValues(alpha: 0.04),
-                        blurRadius: 16,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      value: _selectedCategoryKey,
-                      isExpanded: true,
-                      icon: Icon(Icons.keyboard_arrow_down_rounded,
-                          color: isDark ? Colors.white54 : Colors.black54),
-                      dropdownColor:
-                          AppTheme.cardBgOf(context),
-                      borderRadius: BorderRadius.circular(16),
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                      ),
-                      onChanged: (String? newValue) {
-                        if (newValue != null) {
-                          setState(() {
-                            _selectedCategoryKey = newValue;
-                          });
-                        }
-                      },
-                      items: categoryMap.keys
-                          .map<DropdownMenuItem<String>>((String key) {
-                        return DropdownMenuItem<String>(
-                          value: key,
-                          child: Text(categoryMap[key]!),
-                        );
-                      }).toList(),
+          child: ZenFadeIn(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Text(
+                    localizations.wedLoveToHearFromYou,
+                    style: TextStyle(
+                      fontSize: 38,
+                      fontFamily: 'Serif',
+                      fontWeight: FontWeight.w900,
+                      color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+                      height: 1.1,
+                      letterSpacing: -1.0,
                     ),
                   ),
-                ),
-                const SizedBox(height: 24),
+                  const SizedBox(height: 40),
 
-                // Message Area
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
+                  // Category Selector
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                     decoration: BoxDecoration(
                       color: AppTheme.cardBgOf(context),
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
                           color: isDark
                               ? Colors.black.withValues(alpha: 0.2)
                               : Colors.black.withValues(alpha: 0.04),
-                          blurRadius: 24,
-                          offset: const Offset(0, 12),
+                          blurRadius: 16,
+                          offset: const Offset(0, 8),
                         ),
                       ],
                     ),
-                    child: HanziTextField(
-                      controller: _messageController,
-                      focusNode: _focusNode,
-                      maxLines: null,
-                      expands: true,
-                      textAlignVertical: TextAlignVertical.top,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: isDark ? Colors.white : const Color(0xFF1A1A1B),
-                        height: 1.5,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText:
-                            AppLocalizations.of(context)!.writeYourMessageHere,
-                        hintStyle: TextStyle(
-                          color: isDark ? Colors.white30 : Colors.black38,
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: _selectedCategoryKey,
+                        isExpanded: true,
+                        icon: Icon(Icons.keyboard_arrow_down_rounded,
+                            color: isDark ? Colors.white54 : Colors.black54),
+                        dropdownColor: AppTheme.cardBgOf(context),
+                        borderRadius: BorderRadius.circular(16),
+                        style: TextStyle(
                           fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color:
+                              isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        ),
+                        onChanged: (String? newValue) {
+                          if (newValue != null) {
+                            setState(() {
+                              _selectedCategoryKey = newValue;
+                            });
+                          }
+                        },
+                        items: categoryMap.keys
+                            .map<DropdownMenuItem<String>>((String key) {
+                          return DropdownMenuItem<String>(
+                            value: key,
+                            child: Text(categoryMap[key]!),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Message Area
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      decoration: BoxDecoration(
+                        color: AppTheme.cardBgOf(context),
+                        borderRadius: BorderRadius.circular(24),
+                        boxShadow: [
+                          BoxShadow(
+                            color: isDark
+                                ? Colors.black.withValues(alpha: 0.2)
+                                : Colors.black.withValues(alpha: 0.04),
+                            blurRadius: 24,
+                            offset: const Offset(0, 12),
+                          ),
+                        ],
+                      ),
+                      child: HanziTextField(
+                        controller: _messageController,
+                        focusNode: _focusNode,
+                        maxLines: null,
+                        expands: true,
+                        textAlignVertical: TextAlignVertical.top,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color:
+                              isDark ? Colors.white : const Color(0xFF1A1A1B),
+                          height: 1.5,
+                        ),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: AppLocalizations.of(context)!
+                              .writeYourMessageHere,
+                          hintStyle: TextStyle(
+                            color: isDark ? Colors.white30 : Colors.black38,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
-                // Send Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    onPressed: _sendFeedback,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          isDark ? Colors.white : const Color(0xFF1A1A1B),
-                      foregroundColor:
-                          isDark ? const Color(0xFF1A1A1B) : Colors.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                  // Send Button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      onPressed: _sendFeedback,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            isDark ? Colors.white : const Color(0xFF1A1A1B),
+                        foregroundColor:
+                            isDark ? const Color(0xFF1A1A1B) : Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.sendMessage,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.2,
+                      child: Text(
+                        AppLocalizations.of(context)!.sendMessage,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -0.2,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 32),
-              ],
+                  const SizedBox(height: 32),
+                ],
+              ),
             ),
           ),
         ),

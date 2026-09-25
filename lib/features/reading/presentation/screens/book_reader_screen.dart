@@ -19,6 +19,9 @@ import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/services/app_rating_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/audiobook_voice_sheet.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 enum BookPinyinMode { all, ghost, none }
 
@@ -191,6 +194,16 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     });
   }
 
+  /// Captured here so [dispose] can clear reader-owned notices without touching
+  /// a defunct `BuildContext`.
+  ScaffoldMessengerState? _scaffoldMessenger;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _scaffoldMessenger = ScaffoldMessenger.maybeOf(context);
+  }
+
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -207,7 +220,14 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     _sleepTimer?.cancel();
     _audioCompleteSub?.cancel();
     _audioErrorSub?.cancel();
-    unawaited(ref.read(audioServiceProvider).stop());
+    // Inline reading-aloud belongs to this screen; a loaded background audiobook
+    // belongs to the shell's Now Playing bar, so leave that one running.
+    final AudioService audio = ref.read(audioServiceProvider);
+    if (!audio.isAudiobookLoaded) unawaited(audio.stop());
+    // Belt and braces: a `SnackBar` belongs to the root `ScaffoldMessenger`, so
+    // without this a notice raised in the reader would still be on screen after
+    // the reader is dismissed.
+    _scaffoldMessenger?.clearSnackBars();
     unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
     _scrollController.dispose();
     super.dispose();
@@ -265,44 +285,33 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     });
   }
 
+  /// Tells the reader where it resumed, on the app's own toast surface.
+  ///
+  /// This used to be a Material `SnackBar`: dark, hardcoded English
+  /// ("Resumed: Ch.4/120, Sent.1/228") and — because a `SnackBar` belongs to the
+  /// **root** `ScaffoldMessenger`, not to this route — still on screen after the
+  /// reader was dismissed, re-parented onto whatever Scaffold came next.
+  /// `ZenToast` lives on the root overlay, follows `ZenMotion.toast`, can be
+  /// tapped away and can never outlive its own dwell.
   void _showResumeToastIfRestored() {
-    // Only show toast when restoring from a non-start position (chapter > 0 or sentence > 0)
+    // Only announce a restore when it is not the very start of the book.
     final isFromStart = _currentIndex == 0 && _currentReadingSentenceIndex == 0;
     if (isFromStart) return;
 
-    final chapter = widget.chapters[_currentIndex];
-    final chapterNum = chapter.chapterIndex;
-    final sentNum =
-        chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1;
-    final totalChapters = widget.chapters.length;
-    final totalSentences = chapter.sentences.length;
-
-    Future.delayed(const Duration(milliseconds: 600), () {
+    // Deferred by a motion token (not a magic timeout) so the reader paints its
+    // restored position first.
+    Future<void>.delayed(ZenMotion.quick, () {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Row(
-            children: [
-              Icon(Icons.my_location_rounded,
-                  size: 18,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.amber.shade300
-                      : const Color(0xFF8B0000)),
-              const SizedBox(width: 8),
-              Text(
-                'Resumed: Ch.$chapterNum/$totalChapters, Sent.$sentNum/$totalSentences',
-                style: const TextStyle(fontSize: 13),
-              ),
-            ],
-          ),
-          behavior: SnackBarBehavior.floating,
-          duration: ZenMotion.toast,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          margin: const EdgeInsets.fromLTRB(20, 0, 20, 80),
-        ),
+      final l10n = AppLocalizations.of(context);
+      final chapter = widget.chapters[_currentIndex];
+      final sentenceNumber =
+          chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1;
+
+      ZenToast.show(
+        context,
+        '${l10n?.chapterXOfY(chapter.chapterIndex, widget.chapters.length)} · '
+        '${l10n?.sentenceXOfY(sentenceNumber, chapter.sentences.length)}',
+        tone: ZenToastTone.info,
       );
     });
   }
@@ -440,71 +449,55 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   }
 
   void _showPlaybackFailure() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-            AppLocalizations.of(context)?.audio_could_not_start_check_your ??
-                'Audio could not start. Check your connection and device voice settings.'),
-      ),
+    ZenToast.error(
+      context,
+      AppLocalizations.of(context)!.audio_could_not_start_check_your,
     );
   }
 
   Widget _buildCompactVoiceChip(bool isDark, AudioQuotaService quotaService) {
+    final l10n = AppLocalizations.of(context)!;
     final voice = ref.watch(settingsProvider).audiobookVoice;
-    final hasQuota = quotaService.hasQuotaRemaining;
-    final isLocal = voice == 'local' || !hasQuota;
+    final isLocal = voice == 'local' || !quotaService.hasQuotaRemaining;
     final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
+    // One tone for the chip: the accent when a studio voice is in use, muted ink
+    // while the reader has fallen back to the on-device voice.
+    final tone =
+        isLocal ? (isDark ? Colors.white70 : const Color(0xFF6B655B)) : accent;
 
     return GestureDetector(
-      onTap: () => _showVoicePickerSheet(context, isDark, quotaService),
+      onTap: () => _showVoicePickerSheet(context, quotaService),
       child: Tooltip(
-        message: isLocal ? 'Local device voice' : 'Azure Neural: $voice',
+        // The listener's own name for the voice, not the vendor's
+        // ("Azure Neural: Kore" told nobody anything).
+        message: '${l10n.audiobookVoice}: ${audiobookVoiceLabel(l10n, voice)}',
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: isLocal
-                  ? (isDark ? Colors.orange.shade700 : Colors.orange.shade400)
-                  : accent.withValues(alpha: 0.4),
-            ),
-            color: isLocal
-                ? (isDark
-                    ? Colors.orange.shade900.withValues(alpha: 0.2)
-                    : Colors.orange.shade50)
-                : accent.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: accent.withValues(alpha: 0.35)),
+            color: accent.withValues(alpha: 0.08),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.record_voice_over,
-                size: 14,
-                color: isLocal
-                    ? (isDark ? Colors.orange.shade300 : Colors.orange.shade700)
-                    : accent,
-              ),
+              Icon(Icons.record_voice_over, size: 14, color: tone),
               const SizedBox(width: 3),
-              Text(
-                voice == 'local' ? 'Local' : voice,
-                style: TextStyle(
-                  fontSize: 10.5,
-                  fontWeight: FontWeight.bold,
-                  color: isLocal
-                      ? (isDark
-                          ? Colors.orange.shade300
-                          : Colors.orange.shade700)
-                      : accent,
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 96),
+                child: Text(
+                  audiobookVoiceLabel(l10n, voice),
+                  style: TextStyle(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.bold,
+                    color: tone,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               const SizedBox(width: 2),
-              Icon(Icons.arrow_drop_down,
-                  size: 14,
-                  color: isLocal
-                      ? (isDark
-                          ? Colors.orange.shade300
-                          : Colors.orange.shade700)
-                      : accent),
+              Icon(Icons.arrow_drop_down, size: 14, color: tone),
             ],
           ),
         ),
@@ -513,137 +506,28 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   }
 
   void _showVoicePickerSheet(
-      BuildContext context, bool isDark, AudioQuotaService quotaService) {
+      BuildContext context, AudioQuotaService quotaService) {
     HapticsManager.light();
-    final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
-    final cardBg = isDark ? const Color(0xFF1E1E22) : const Color(0xFFF5F2E4);
-    final primaryText =
-        isDark ? const Color(0xFFFDFCF0) : const Color(0xFF1A1A1B);
-    final hasQuota = quotaService.hasQuotaRemaining;
-    final currentVoice = ref.read(settingsProvider).audiobookVoice;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) return;
 
-    const voiceOptions = [
-      ('Kore', 'Kore — Female, warm', 'zh-CN-XiaoxiaoNeural'),
-      ('Aoede', 'Aoede — Female, cheerful', 'zh-CN-XiaoyiNeural'),
-      ('Fenrir', 'Fenrir — Male, upbeat', 'zh-CN-YunxiNeural'),
-      ('Charon', 'Charon — Male, news-style', 'zh-CN-YunyangNeural'),
-      ('Puck', 'Puck — Male, sporty', 'zh-CN-YunjianNeural'),
-      ('local', 'Local — On-device TTS', 'System voice'),
-    ];
-
-    showModalBottomSheet(
-      context: context,
-      useRootNavigator: true,
-      backgroundColor: Colors.transparent,
-      builder: (ctx) {
-        return Container(
-          padding: const EdgeInsets.fromLTRB(24, 20, 24, 36),
-          decoration: BoxDecoration(
-            color: cardBg,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.white24 : Colors.black12,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(AppLocalizations.of(context)!.chooseVoice,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: primaryText)),
-              if (!hasQuota)
-                Padding(
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Row(
-                    children: [
-                      Icon(Icons.info_outline,
-                          size: 14, color: Colors.orange.shade400),
-                      const SizedBox(width: 4),
-                      Text(
-                        AppLocalizations.of(context)?.weeklyAzureQuotaReachedSwitching ??
-                            'Weekly Azure quota reached — switching to local voice',
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: isDark
-                                ? Colors.orange.shade300
-                                : Colors.orange.shade700),
-                      ),
-                    ],
-                  ),
-                ),
-              const SizedBox(height: 12),
-              ...voiceOptions.map((opt) {
-                final isSelected = currentVoice == opt.$1;
-                final isAzure = opt.$1 != 'local';
-                final disabled = isAzure && !hasQuota;
-                return ListTile(
-                  dense: true,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                  leading: Icon(
-                    isSelected
-                        ? Icons.check_circle
-                        : Icons.radio_button_unchecked,
-                    size: 20,
-                    color: isSelected
-                        ? accent
-                        : (disabled
-                            ? (isDark ? Colors.white24 : Colors.black26)
-                            : (isDark ? Colors.white54 : Colors.black54)),
-                  ),
-                  title: Text(
-                    opt.$2,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
-                      color: disabled
-                          ? (isDark ? Colors.white30 : Colors.black38)
-                          : primaryText,
-                    ),
-                  ),
-                  subtitle: isAzure
-                      ? Text(
-                          opt.$3,
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: disabled
-                                ? (isDark ? Colors.white24 : Colors.black26)
-                                : (isDark ? Colors.white38 : Colors.black45),
-                          ),
-                        )
-                      : null,
-                  trailing: disabled
-                      ? Icon(Icons.lock,
-                          size: 16,
-                          color: isDark ? Colors.white24 : Colors.black26)
-                      : null,
-                  onTap: disabled
-                      ? null
-                      : () {
-                          HapticsManager.selection();
-                          ref
-                              .read(settingsProvider.notifier)
-                              .setAudiobookVoice(opt.$1);
-                          Navigator.of(ctx).pop();
-                        },
-                );
-              }),
-            ],
-          ),
-        );
-      },
+    // The one voice picker in the app (Settings and the player open the same
+    // sheet), with auditioning built in: tap ▶ to hear a voice before choosing.
+    GlobalBlurredBottomSheet.show<void>(
+      context,
+      child: AudiobookVoiceSheet(
+        title: l10n.chooseVoice,
+        options: audiobookVoiceOptions(
+          l10n,
+          hasStudioQuota: quotaService.hasQuotaRemaining,
+        ),
+        selectedVoiceId: ref.read(settingsProvider).audiobookVoice,
+        onSelected: (option) {
+          ref.read(settingsProvider.notifier).setAudiobookVoice(option.id);
+          ref.read(audioServiceProvider).setAudiobookVoice(option.id);
+          Navigator.of(context, rootNavigator: true).pop();
+        },
+      ),
     );
   }
 
@@ -762,8 +646,12 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                 ],
               ),
               const SizedBox(height: 16),
-              _buildSleepTimerTile(ctx,
-                  AppLocalizations.of(context)?.off ?? 'Off', null, isDark, primaryText,
+              _buildSleepTimerTile(
+                  ctx,
+                  AppLocalizations.of(context)?.off ?? 'Off',
+                  null,
+                  isDark,
+                  primaryText,
                   isSelected:
                       _sleepSecondsRemaining == null && !_stopAtEndOfChapter),
               _buildSleepTimerTile(ctx, '15 Minutes', 15, isDark, primaryText,
@@ -888,7 +776,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                         ),
                       ),
                       Text(
-                        AppLocalizations.of(context)?.weeklyHighdefinitionAiRecitation ??
+                        AppLocalizations.of(context)
+                                ?.weeklyHighdefinitionAiRecitation ??
                             'Weekly High-Definition AI Recitation',
                         style: TextStyle(
                           fontSize: 11.5,
@@ -962,7 +851,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             color: isDark ? Colors.white70 : Colors.black87),
                         const SizedBox(width: 6),
                         Text(
-                          AppLocalizations.of(context)?.resetsEveryMondayAt0000 ??
+                          AppLocalizations.of(context)
+                                  ?.resetsEveryMondayAt0000 ??
                               'Resets every Monday at 00:00',
                           style: TextStyle(
                             fontSize: 12.5,
@@ -974,7 +864,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      AppLocalizations.of(context)?.whenYourWeekly4hourStudioAllowanceI ??
+                      AppLocalizations.of(context)
+                              ?.whenYourWeekly4hourStudioAllowanceI ??
                           'When your weekly 4-hour Studio allowance is used, the app automatically switches to On-Device Voice for unlimited, free listening without interruption.',
                       style: TextStyle(
                         fontSize: 11.5,
@@ -1130,12 +1021,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       );
       await repo.removeBookmark(target.id);
       if (mounted) {
-        final l10n = AppLocalizations.of(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n?.bookmarkRemoved ?? "书签已移除 · Bookmark removed"),
-            duration: ZenMotion.toast,
-          ),
+        ZenToast.info(
+          context,
+          AppLocalizations.of(context)!.bookmarkRemoved,
         );
       }
     } else {
@@ -1150,19 +1038,207 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       );
       await repo.saveBookmark(newBm);
       if (mounted) {
-        final l10n = AppLocalizations.of(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n != null
-                ? "${l10n.bookmarkAdded}: 第${chapter.chapterIndex}回"
-                : "已添加书签 · Bookmark added: 第${chapter.chapterIndex}回"),
-            duration: ZenMotion.toast,
-          ),
+        final l10n = AppLocalizations.of(context)!;
+        ZenToast.success(
+          context,
+          '${l10n.bookmarkAdded} · '
+          '${l10n.chapterXOfY(chapter.chapterIndex, widget.chapters.length)}',
         );
       }
     }
     setState(() {});
   }
+
+  /// All → Ghost → Hidden → All. Extracted from the toolbar's `onPressed` so
+  /// the AppBar block stays readable.
+  void _cyclePinyinMode() {
+    HapticsManager.light();
+    setState(() {
+      if (_pinyinMode == BookPinyinMode.all) {
+        _pinyinMode = BookPinyinMode.ghost;
+      } else if (_pinyinMode == BookPinyinMode.ghost) {
+        _pinyinMode = BookPinyinMode.none;
+      } else {
+        _pinyinMode = BookPinyinMode.all;
+      }
+    });
+  }
+
+  /// 17 → 20 → 24 → 28 → 17pt.
+  void _cycleFontSize() {
+    HapticsManager.light();
+    setState(() {
+      if (_fontSize == 17.0) {
+        _fontSize = 20.0;
+      } else if (_fontSize == 20.0) {
+        _fontSize = 24.0;
+      } else if (_fontSize == 24.0) {
+        _fontSize = 28.0;
+      } else {
+        _fontSize = 17.0;
+      }
+    });
+  }
+
+  /// One row of the reader overflow menu: icon + a label that may wrap for the
+  /// longest locales (Russian/Vietnamese ≈ 2x English).
+  PopupMenuItem<_ReaderMenuAction> _buildReaderMenuItem({
+    required _ReaderMenuAction action,
+    required IconData icon,
+    required String label,
+    required Color primaryText,
+  }) {
+    return PopupMenuItem<_ReaderMenuAction>(
+      value: action,
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: primaryText),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              label,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: primaryText,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleReaderMenuAction(
+    _ReaderMenuAction action,
+    BuildContext context,
+    bool isDark,
+    Color cardBg,
+    Color primaryText,
+  ) {
+    switch (action) {
+      case _ReaderMenuAction.audiobook:
+        _openFullscreenAudiobookPlayer();
+        return;
+      case _ReaderMenuAction.ambient:
+        ZenSoundscapeSheet.show(context);
+        return;
+      case _ReaderMenuAction.fontSize:
+        _cycleFontSize();
+        return;
+      case _ReaderMenuAction.bookmarks:
+        _openBookmarksDrawer(context, isDark, cardBg, primaryText);
+        return;
+    }
+  }
+
+  /// One leg of the paired chapter navigation (Précédent / Suivant).
+  ///
+  /// Both legs are built here so they can never drift back into different
+  /// weights; the only variable is which side the chevron sits on. A disabled
+  /// leg dims its label and chevron together while keeping its geometry, so the
+  /// bar does not shift when you reach the first or last chapter.
+  Widget _buildChapterNavButton({
+    required String label,
+    required IconData icon,
+    required bool iconLeading,
+    required VoidCallback? onPressed,
+    required Color ink,
+  }) {
+    final Widget chevron = Icon(icon, size: 13);
+
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        foregroundColor: ink,
+        disabledForegroundColor: ink.withValues(alpha: 0.32),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        minimumSize: const Size(0, 48),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (iconLeading) ...[
+            chevron,
+            const SizedBox(width: 6),
+          ],
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              // No explicit colour: the label inherits the button's foreground,
+              // so the whole leg dims as one piece when disabled.
+              style: const TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          if (!iconLeading) ...[
+            const SizedBox(width: 6),
+            chevron,
+          ],
+        ],
+      ),
+    );
+  }
+
+  /// The middle zone: the chapter picker, wearing the canonical accent so it
+  /// anchors the bar instead of reading as a third, unfilled orphan.
+  Widget _buildChapterPicker(
+    BuildContext context,
+    bool isDark,
+    Color cardBg,
+    Color primaryText,
+  ) {
+    final Color accent =
+        isDark ? Colors.amber.shade300 : const Color(0xFF8B0000);
+
+    return TextButton(
+      onPressed: () => _openChapterDrawer(context, isDark, cardBg, primaryText),
+      style: TextButton.styleFrom(
+        foregroundColor: accent,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        minimumSize: const Size(0, 48),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.list_alt_rounded, size: 15),
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              AppLocalizations.of(context)!.chapterXOfY(
+                _currentIndex + 1,
+                widget.chapters.length,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Hairline between the three zones, so the bar reads as one segmented
+  /// control rather than three unrelated pills.
+  Widget _buildChapterNavDivider(bool isDark) => Container(
+        width: 1,
+        height: 24,
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.1)
+            : Colors.black.withValues(alpha: 0.08),
+      );
 
   void _openBookmarksDrawer(
       BuildContext context, bool isDark, Color cardBg, Color primaryText) {
@@ -1521,91 +1597,31 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             Navigator.of(context).pop();
           },
         ),
-        title: Column(
-          children: [
-            Text(
-              widget.book.localizedTitle(
-                Localizations.localeOf(context).toLanguageTag(),
-              ),
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: primaryText,
-              ),
-            ),
-            Text(
-              widget.book.category.contains('Poetry')
-                  ? 'Classical Verse'
-                  : 'Ch.${chapter.chapterIndex}/${widget.chapters.length} · Sent.${chapter.sentences.isEmpty ? 0 : _currentReadingSentenceIndex + 1}/${chapter.sentences.length}',
-              style: TextStyle(
-                fontSize: 11,
-                color: isDark ? Colors.white54 : Colors.black54,
-              ),
-            ),
-          ],
+        // One line, never two. The toolbar must not outgrow the phone: the
+        // chapter/sentence counter and the progress bar already live in the
+        // body header (`chapterXOfY` · `sentenceXOfY` · %), localized.
+        title: Text(
+          widget.book.localizedTitle(
+            Localizations.localeOf(context).toLanguageTag(),
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: primaryText,
+          ),
         ),
         actions: [
-          // Audiobook Mode -> Fullscreen Spotify-Lyrics Player (for novels)
-          if (!widget.book.category.contains('Poetry'))
-            IconButton(
-              icon: Icon(
-                Icons.headphones_rounded,
-                size: 22,
-                color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
-              ),
-              tooltip: AppLocalizations.of(context)!.audiobookPlayer,
-              onPressed: _openFullscreenAudiobookPlayer,
-            ),
-          // Ambient Soundscape Button (soothing background music while reading)
-          Consumer(
-            builder: (context, ref, _) {
-              final ambient = ref.watch(zenAmbientServiceProvider);
-              final isSoundscapeActive =
-                  ambient.track != SoundscapeTrack.off && ambient.isPlaying;
-              return IconButton(
-                icon: Icon(
-                  isSoundscapeActive
-                      ? Icons.spa_rounded
-                      : Icons.spa_outlined,
-                  size: 21,
-                  color: isSoundscapeActive
-                      ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
-                      : primaryText,
-                ),
-                tooltip: AppLocalizations.of(context)?.ambientSoundscape ??
-                    'Ambient Soundscape',
-                onPressed: () => ZenSoundscapeSheet.show(context),
-              );
-            },
-          ),
-          // Bookmark Toggle
-          IconButton(
-            icon: Icon(
-              isCurrentBookmarked ? Icons.bookmark : Icons.bookmark_border,
-              size: 22,
-              color: isCurrentBookmarked
-                  ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
-                  : primaryText,
-            ),
-            tooltip: AppLocalizations.of(context)!.bookmarkChapter,
-            onPressed: _toggleBookmark,
-          ),
-          // Bookmarks List
-          IconButton(
-            icon: Icon(Icons.bookmarks_outlined, size: 20, color: primaryText),
-            tooltip: AppLocalizations.of(context)!.viewBookmarks,
-            onPressed: () =>
-                _openBookmarksDrawer(context, isDark, cardBg, primaryText),
-          ),
-          // Table of Contents Drawer
-          IconButton(
-            icon:
-                Icon(Icons.format_list_bulleted, size: 22, color: primaryText),
-            tooltip: AppLocalizations.of(context)!.tableOfContents,
-            onPressed: () =>
-                _openChapterDrawer(context, isDark, cardBg, primaryText),
-          ),
-          // Pinyin Toggle
+          // ── Three reading toggles, then everything else one tap deeper ──
+          //
+          // The toolbar previously carried EIGHT IconButtons (~384dp) beside a
+          // two-line title on a phone. `NavigationToolbar` places the actions
+          // row at `width - actionsWidth`, so with ~384dp of actions on a 390dp
+          // screen the row started at x≈6 — the first action (the Cinnabar
+          // headphones) was drawn **on top of the leading back arrow** and
+          // swallowed its taps. Three controls keep the row at ~144dp, which
+          // cannot reach the leading slot on any supported width.
           IconButton(
             icon: Icon(
               _pinyinMode == BookPinyinMode.all
@@ -1617,20 +1633,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               color: primaryText,
             ),
             tooltip: AppLocalizations.of(context)!.togglePinyin,
-            onPressed: () {
-              HapticsManager.light();
-              setState(() {
-                if (_pinyinMode == BookPinyinMode.all) {
-                  _pinyinMode = BookPinyinMode.ghost;
-                } else if (_pinyinMode == BookPinyinMode.ghost) {
-                  _pinyinMode = BookPinyinMode.none;
-                } else {
-                  _pinyinMode = BookPinyinMode.all;
-                }
-              });
-            },
+            onPressed: _cyclePinyinMode,
           ),
-          // English Translation Toggle
           IconButton(
             icon: Icon(
               Icons.translate_rounded,
@@ -1640,30 +1644,63 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                   : primaryText.withValues(alpha: 0.6),
             ),
             tooltip: _showAllTranslations
-                ? 'Hide English Translations'
-                : 'Show English Translations',
+                ? AppLocalizations.of(context)!.hideTranslation
+                : AppLocalizations.of(context)!.showTranslation,
             onPressed: () {
               HapticsManager.light();
               setState(() => _showAllTranslations = !_showAllTranslations);
             },
           ),
-          // Font Size Adjust
           IconButton(
-            icon: Icon(Icons.text_fields, size: 22, color: primaryText),
-            tooltip: AppLocalizations.of(context)!.adjustFontSize,
-            onPressed: () {
-              HapticsManager.light();
-              setState(() {
-                if (_fontSize == 17.0) {
-                  _fontSize = 20.0;
-                } else if (_fontSize == 20.0) {
-                  _fontSize = 24.0;
-                } else if (_fontSize == 24.0) {
-                  _fontSize = 28.0;
-                } else {
-                  _fontSize = 17.0;
-                }
-              });
+            icon: Icon(
+              isCurrentBookmarked ? Icons.bookmark : Icons.bookmark_border,
+              size: 22,
+              color: isCurrentBookmarked
+                  ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
+                  : primaryText,
+            ),
+            tooltip: AppLocalizations.of(context)!.bookmarkChapter,
+            onPressed: _toggleBookmark,
+          ),
+          // Audiobook, ambient soundscape, font size and the bookmarks list.
+          // Without a `tooltip`, Flutter supplies the localized "Show menu".
+          PopupMenuButton<_ReaderMenuAction>(
+            icon: Icon(Icons.more_vert_rounded, size: 22, color: primaryText),
+            color: cardBg,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            onSelected: (_ReaderMenuAction action) => _handleReaderMenuAction(
+                action, context, isDark, cardBg, primaryText),
+            itemBuilder: (context) {
+              final l10n = AppLocalizations.of(context)!;
+              return <PopupMenuEntry<_ReaderMenuAction>>[
+                if (!widget.book.category.contains('Poetry'))
+                  _buildReaderMenuItem(
+                    action: _ReaderMenuAction.audiobook,
+                    icon: Icons.headphones_rounded,
+                    label: l10n.audiobookPlayer,
+                    primaryText: primaryText,
+                  ),
+                _buildReaderMenuItem(
+                  action: _ReaderMenuAction.ambient,
+                  icon: Icons.spa_outlined,
+                  label: l10n.ambientSoundscape,
+                  primaryText: primaryText,
+                ),
+                _buildReaderMenuItem(
+                  action: _ReaderMenuAction.fontSize,
+                  icon: Icons.text_fields,
+                  label: l10n.adjustFontSize,
+                  primaryText: primaryText,
+                ),
+                _buildReaderMenuItem(
+                  action: _ReaderMenuAction.bookmarks,
+                  icon: Icons.bookmarks_outlined,
+                  label: l10n.viewBookmarks,
+                  primaryText: primaryText,
+                ),
+              ];
             },
           ),
         ],
@@ -1945,7 +1982,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                   },
                                   behavior: HitTestBehavior.opaque,
                                   child: AnimatedContainer(
-                                    duration: ZenMotion.of(context, ZenMotion.swap),
+                                    duration:
+                                        ZenMotion.of(context, ZenMotion.swap),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 3, vertical: 2),
                                     decoration: BoxDecoration(
@@ -2100,7 +2138,9 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                     ),
                     SliverPadding(
                       key: _centerSliverKey,
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+                      // A gap the bar's own padding cannot swallow, so the last
+                      // sentence never sits flush against the chapter controls.
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 32),
                       sliver: SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (context, childIndex) => buildSentence(
@@ -2183,7 +2223,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                       Text(
                                         quotaService.hasQuotaRemaining
                                             ? 'Studio Voice: ${quotaService.remainingHours.toStringAsFixed(1)}h left this week'
-                                            : (AppLocalizations.of(context)?.ondeviceVoice4hWeeklyUsed ??
+                                            : (AppLocalizations.of(context)
+                                                    ?.ondeviceVoice4hWeeklyUsed ??
                                                 'On-Device Voice (4h weekly used)'),
                                         style: TextStyle(
                                           fontSize: 10.5,
@@ -2240,7 +2281,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                           // Ambient Soundscape Button
                           Consumer(
                             builder: (context, ref, _) {
-                              final ambient = ref.watch(zenAmbientServiceProvider);
+                              final ambient =
+                                  ref.watch(zenAmbientServiceProvider);
                               final isSoundscapeActive =
                                   ambient.track != SoundscapeTrack.off &&
                                       ambient.isPlaying;
@@ -2254,12 +2296,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                       ? (isDark
                                           ? Colors.amber.shade400
                                           : const Color(0xFF8B0000))
-                                      : (isDark ? Colors.white60 : Colors.black54),
+                                      : (isDark
+                                          ? Colors.white60
+                                          : Colors.black54),
                                 ),
                                 tooltip: AppLocalizations.of(context)
                                         ?.ambientSoundscape ??
                                     'Ambient Soundscape',
-                                onPressed: () => ZenSoundscapeSheet.show(context),
+                                onPressed: () =>
+                                    ZenSoundscapeSheet.show(context),
                               );
                             },
                           ),
@@ -2313,9 +2358,19 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               },
             ),
 
-          // Bottom Chapter Navigation Bar
+          // Bottom Chapter Navigation Bar.
+          //
+          // One unified control with three zones, not three differently styled
+          // pills in a row. The previous build mixed a grey "Précédent" (which
+          // read as disabled beside its sibling) with a solid-ink "Suivant"
+          // (which read as the primary action) plus a third, fainter pill for
+          // the picker — a capsule inside a capsule whose weight
+          // misrepresented both the hierarchy and the paired nature of the two
+          // chapter actions. Here both legs come from one builder and only dim
+          // when genuinely disabled, the picker wears the accent as the anchor,
+          // and hairline dividers make the bar read as a single control.
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
             decoration: BoxDecoration(
               color: cardBg,
               border: Border(
@@ -2327,69 +2382,57 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               ),
             ),
             child: SafeArea(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: _currentIndex > 0 ? _goToPreviousChapter : null,
-                    icon: const Icon(Icons.arrow_back_ios, size: 14),
-                    label: Text(AppLocalizations.of(context)!.previous),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: isDark ? Colors.white12 : Colors.black12,
-                      foregroundColor: primaryText,
-                      elevation: 0,
-                    ),
+              // `minimum` guarantees breathing room from the bottom edge even on
+              // devices that report no inset (e.g. Android 3-button navigation).
+              top: false,
+              minimum: const EdgeInsets.only(bottom: 8),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.05)
+                      : const Color(0xFFF7F3E9),
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: (isDark
+                            ? Colors.amber.shade700
+                            : const Color(0xFFD4AF37))
+                        .withValues(alpha: 0.35),
+                    width: 1.1,
                   ),
-                  GestureDetector(
-                    onTap: () => _openChapterDrawer(
-                        context, isDark, cardBg, primaryText),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? Colors.white10
-                            : Colors.black.withValues(alpha: 0.04),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.list_alt,
-                              size: 14,
-                              color: isDark
-                                  ? Colors.amber.shade300
-                                  : const Color(0xFF8B0000)),
-                          const SizedBox(width: 4),
-                          Text(
-                            AppLocalizations.of(context)!.chapterXOfY(
-                              _currentIndex + 1,
-                              widget.chapters.length,
-                            ),
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: primaryText,
-                            ),
-                          ),
-                        ],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildChapterNavButton(
+                        label: AppLocalizations.of(context)!.previous,
+                        icon: Icons.arrow_back_ios_new_rounded,
+                        iconLeading: true,
+                        onPressed:
+                            _currentIndex > 0 ? _goToPreviousChapter : null,
+                        ink: primaryText,
                       ),
                     ),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: _currentIndex < widget.chapters.length - 1
-                        ? _goToNextChapter
-                        : null,
-                    label: Text(AppLocalizations.of(context)!.next),
-                    icon: const Icon(Icons.arrow_forward_ios, size: 14),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: isDark
-                          ? Colors.amber.shade700
-                          : const Color(0xFF1A1A1B),
-                      foregroundColor: Colors.white,
-                      elevation: 0,
+                    _buildChapterNavDivider(isDark),
+                    Expanded(
+                      flex: 5,
+                      child: _buildChapterPicker(
+                          context, isDark, cardBg, primaryText),
                     ),
-                  ),
-                ],
+                    _buildChapterNavDivider(isDark),
+                    Expanded(
+                      child: _buildChapterNavButton(
+                        label: AppLocalizations.of(context)!.next,
+                        icon: Icons.arrow_forward_ios_rounded,
+                        iconLeading: false,
+                        onPressed: _currentIndex < widget.chapters.length - 1
+                            ? _goToNextChapter
+                            : null,
+                        ink: primaryText,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -2398,6 +2441,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     );
   }
 }
+
+/// The reader's secondary toolbar controls, kept one tap deeper so the AppBar
+/// can never outgrow the phone and overlap the back arrow.
+enum _ReaderMenuAction { audiobook, ambient, fontSize, bookmarks }
 
 class _MountedSentence extends StatefulWidget {
   final int index;

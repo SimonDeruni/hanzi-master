@@ -929,6 +929,16 @@ class AppLocalizationsTh extends AppLocalizations {
   String get whereWouldYouLike => 'คุณต้องการบันทึกตัวอักษรนี้ไว้ที่ไหน?';
 
   @override
+  String whereWouldYouLikeWords(int count) {
+    return 'คุณต้องการบันทึก $count คำนี้ไว้ที่ไหน?';
+  }
+
+  @override
+  String deckItemsCount(int count) {
+    return '$count รายการ';
+  }
+
+  @override
   String get addToDefaultStudy => 'เพิ่มลงในสำรับการเรียนหลัก';
 
   @override
@@ -13017,4 +13027,35 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get dictionarySearchFailed =>
       'การค้นหาพจนานุกรมล้มเหลว โปรดลองอีกครั้ง';
+
+  @override
+  String get tapToHearVoiceSample => 'แตะ ▶ เพื่อฟังตัวอย่าง';
+
+  @override
+  String get soundEffects => 'เอฟเฟกต์เสียง';
+
+  @override
+  String get soundEffectsDesc => 'เสียงกระดาษนุ่ม ตราประทับไม้ และพู่กัน';
+
+  @override
+  String get generatingYourScenario => 'กำลังสร้างสถานการณ์ของคุณ…';
+
+  @override
+  String get failedToGenerateScenario =>
+      'สร้างสถานการณ์นี้ไม่สำเร็จ โปรดลองอีกครั้ง';
+
+  @override
+  String get trickyCharacters => 'ตัวอักษรที่ยาก';
+
+  @override
+  String get strongestCharacters => 'ตัวอักษรที่แม่นที่สุด';
+
+  @override
+  String get newThisWeek => 'ใหม่ใน 7 วันที่ผ่านมา';
+
+  @override
+  String get averageAttemptsPerWord => 'จำนวนครั้งเฉลี่ยต่อคำ';
+
+  @override
+  String get noCardsYet => 'ยังไม่มีการ์ดในชุดนี้';
 }

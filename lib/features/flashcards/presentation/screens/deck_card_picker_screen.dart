@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
@@ -80,57 +81,62 @@ class _DeckCardPickerScreenState extends ConsumerState<DeckCardPickerScreen> {
                         itemCount: filteredCards.length,
                         itemBuilder: (context, index) {
                           final card = filteredCards[index];
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 8),
-                            decoration: BoxDecoration(
-                              color: isDark
-                                  ? Colors.white.withValues(alpha: 0.05)
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                  color:
-                                      isDark ? Colors.white12 : Colors.black12),
-                            ),
-                            child: ListTile(
-                              leading: Text(
-                                card.hanzi,
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                  color: isDark ? Colors.white : Colors.black,
+                          // Row entrance: the list assembles with a stagger.
+                          return StaggeredListItem(
+                            index: index,
+                            child: Container(
+                              margin: const EdgeInsets.only(bottom: 8),
+                              decoration: BoxDecoration(
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.05)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: isDark
+                                        ? Colors.white12
+                                        : Colors.black12),
+                              ),
+                              child: ListTile(
+                                leading: Text(
+                                  card.hanzi,
+                                  style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                    color: isDark ? Colors.white : Colors.black,
+                                  ),
                                 ),
-                              ),
-                              title: PinyinText(text: card.pinyin),
-                              subtitle: TranslatedDefinition(
-                                definition: card.definition,
-                                definitionLanguage: card.definitionLanguage,
-                                hanzi: card.hanzi,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.add_circle_outline,
-                                    color: Colors.indigo),
-                                onPressed: () {
-                                  final updatedCard =
-                                      card.copyWith(deckId: widget.deckId);
-                                  ref
-                                      .read(
-                                          flashcardControllerProvider.notifier)
-                                      .updateFlashcard(updatedCard);
-                                  final l10n = AppLocalizations.of(context);
-                                  final msg = l10n != null
-                                      ? l10n.addedCardToDeck(
-                                          card.hanzi, widget.deckName)
-                                      : 'Added ${card.hanzi} to ${widget.deckName}';
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(msg),
-                                      duration: ZenMotion.toast,
-                                      backgroundColor: Colors.green,
-                                    ),
-                                  );
-                                },
+                                title: PinyinText(text: card.pinyin),
+                                subtitle: TranslatedDefinition(
+                                  definition: card.definition,
+                                  definitionLanguage: card.definitionLanguage,
+                                  hanzi: card.hanzi,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.add_circle_outline,
+                                      color: Colors.indigo),
+                                  onPressed: () {
+                                    final updatedCard =
+                                        card.copyWith(deckId: widget.deckId);
+                                    ref
+                                        .read(flashcardControllerProvider
+                                            .notifier)
+                                        .updateFlashcard(updatedCard);
+                                    final l10n = AppLocalizations.of(context);
+                                    final msg = l10n != null
+                                        ? l10n.addedCardToDeck(
+                                            card.hanzi, widget.deckName)
+                                        : 'Added ${card.hanzi} to ${widget.deckName}';
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(msg),
+                                        duration: ZenMotion.toast,
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           );

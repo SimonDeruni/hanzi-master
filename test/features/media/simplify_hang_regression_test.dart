@@ -29,14 +29,14 @@ void main() {
 
     // onPageFinished must delegate to the sequencing helper rather than
     // calling the interceptor and Zen mode side by side.
-    final onPageFinished =
-        source.substring(source.indexOf('onPageFinished:'));
+    final onPageFinished = source.substring(source.indexOf('onPageFinished:'));
     expect(
       onPageFinished.substring(0, 700),
       contains('_preparePageForReading(url)'),
       reason: 'onPageFinished must await the ordered setup',
     );
-    expect(onPageFinished.substring(0, 700), isNot(contains('_injectHanziInterceptor();')),
+    expect(onPageFinished.substring(0, 700),
+        isNot(contains('_injectHanziInterceptor();')),
         reason: 'The interceptor must not be fired un-awaited from '
             'onPageFinished any more');
   });
@@ -81,7 +81,8 @@ void main() {
         reason: 'runJavaScriptReturningResult needs an upper bound');
 
     // Both the simplify and the analyze paths read the page text.
-    final timedReads = RegExp(r'\.timeout\(\s*_articleTextTimeout').allMatches(source).length;
+    final timedReads =
+        RegExp(r'\.timeout\(\s*_articleTextTimeout').allMatches(source).length;
     expect(timedReads, 2,
         reason: 'Both page-text reads must be guarded by the timeout');
   });

@@ -4,17 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/scenario.dart';
 import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/shared/widgets/loading_swap.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_persona_presets.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 
-
+/// The scenario creator behind *Create Custom Scenario*.
+///
+/// Zen & Ink rules applied here (see `docs/UI_UX_STANDARDS.md`), so the creator
+/// reads as the same surface family as the deck picker, the ambient soundscape
+/// sheet and the book screens:
+/// * One palette (`_InkPalette`), resolved from [AppTheme]: Cinnabar `#8B0000`
+///   in light mode, Emperor's Gold in dark mode. The amber `#FFB300` seal tile,
+///   the `#FFD54F`/`#B8860B` links and the amber difficulty pills are gone.
+/// * Xuan-paper field fills with a hairline, radius 14 — the geometry the book
+///   and deck screens use — instead of borderless black-tinted boxes.
+/// * The primary action is the book-screen button family (Deep Carbon Ink in
+///   light mode, Emperor's Gold in dark mode, elevation 0, radius 14) and swaps
+///   its icon for a spinner with `LoadingSwap`, never a bare
+///   `CircularProgressIndicator`.
+/// * Confirmations are raised with `ZenToast`: a Material `SnackBar` renders
+///   *behind* the modal barrier, so from inside this sheet it arrives dimmed and
+///   half-covered.
 class CustomScenarioDialog extends ConsumerStatefulWidget {
   const CustomScenarioDialog({super.key});
 
@@ -88,14 +108,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
         preset.topic,
         personaSummary,
       );
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          duration: ZenMotion.toast,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      ZenToast.info(context, message);
       return;
     }
 
@@ -128,14 +141,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
       translated.topic,
       personaSummary,
     );
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: ZenMotion.toast,
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    ZenToast.info(context, message);
   }
 
   Future<void> _createScenario() async {
@@ -145,14 +151,7 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
     final title = _titleController.text.trim();
     final locale = Localizations.localeOf(context);
     if (title.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            AppLocalizations.of(context)?.pleaseEnterTopic ??
-                'Please enter a scenario topic.',
-          ),
-        ),
-      );
+      ZenToast.error(context, AppLocalizations.of(context)!.pleaseEnterTopic);
       return;
     }
 
@@ -165,8 +164,10 @@ class _CustomScenarioDialogState extends ConsumerState<CustomScenarioDialog> {
       final prompt = _promptController.text.trim();
       final targetHsk = _hskLevels[_difficultyIndex];
 
-      // Extract persona name if formatted as "Name (Title)" or similar
-      String personaName = "AI Character";
+      // Extract persona name if formatted as "Name (Title)" or similar. The
+      // fallback is localized, because it is the name the persona wears in
+      // Echo Hall.
+      String personaName = AppLocalizations.of(context)!.aiCharacter;
       if (prompt.isNotEmpty) {
         if (prompt.contains('(')) {
           final match = RegExp(r'^(.*?)\s*\(').firstMatch(prompt);
@@ -265,12 +266,9 @@ Respond ONLY in valid JSON format:
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '${AppLocalizations.of(context)?.errorPrefix ?? "Error: "}$e',
-            ),
-          ),
+        ZenToast.error(
+          context,
+          '${AppLocalizations.of(context)!.errorPrefix}$e',
         );
       }
     } finally {
@@ -282,8 +280,8 @@ Respond ONLY in valid JSON format:
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final l10n = AppLocalizations.of(context)!;
+    final ink = _InkPalette(context);
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
     final maxHeight = MediaQuery.of(context).size.height * 0.88;
 
@@ -307,147 +305,34 @@ Respond ONLY in valid JSON format:
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Header
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFFFB300)
-                                  .withValues(alpha: isDark ? 0.2 : 0.12),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.auto_awesome,
-                              color: Color(0xFFFFB300),
-                              size: 24,
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  AppLocalizations.of(context)
-                                          ?.createYourScenario ??
-                                      AppLocalizations.of(context)!
-                                          .createScenario,
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.2,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  l10n.designCustomAiRoleplay,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: isDark
-                                        ? Colors.white54
-                                        : Colors.black54,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          // Random Persona Button
-                          InkWell(
-                            onTap: _randomizePersona,
-                            borderRadius: BorderRadius.circular(14),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFFB300)
-                                    .withValues(alpha: isDark ? 0.2 : 0.12),
-                                borderRadius: BorderRadius.circular(14),
-                                border: Border.all(
-                                  color: const Color(0xFFFFB300)
-                                      .withValues(alpha: 0.6),
-                                  width: 1.0,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(
-                                    Icons.casino_rounded,
-                                    size: 16,
-                                    color: Color(0xFFFFB300),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    l10n.random,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: isDark
-                                          ? const Color(0xFFFFD54F)
-                                          : const Color(0xFF1A1A1B),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 24),
+                      // Header — seal tile, title, caption and the persona dice,
+                      // in the same geometry as the deck picker's header.
+                      _buildHeader(l10n, ink),
+                      const SizedBox(height: 20),
 
-                      // Topic Field
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              l10n.scenarioTopic,
-                              style: const TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          GestureDetector(
-                            onTap: _randomizePersona,
-                            child: Text(
-                              l10n.surpriseMe2,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: isDark
-                                    ? const Color(0xFFFFD54F)
-                                    : const Color(0xFFB8860B),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      HanziTextField(
-                        controller: _titleController,
-                        hintText: '',
-                        decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)!
-                              .egWeddingReceptionTechInterview,
-                          filled: true,
-                          fillColor: isDark
-                              ? Colors.white.withValues(alpha: 0.05)
-                              : Colors.black.withValues(alpha: 0.04),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide.none,
-                          ),
-                          prefixIcon: const Icon(Icons.lightbulb_outline),
+                      // Topic
+                      _buildSectionLabel(
+                        ink: ink,
+                        icon: Icons.lightbulb_outline,
+                        label: l10n.scenarioTopic,
+                        trailing: _buildInlineLink(
+                          ink: ink,
+                          label: l10n.surpriseMe2,
+                          onTap: _randomizePersona,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      _buildField(
+                        ink: ink,
+                        controller: _titleController,
+                        hint: l10n.egWeddingReceptionTechInterview,
+                      ),
+                      const SizedBox(height: 20),
 
-                      // Difficulty Selector
-                      Text(
-                        l10n.targetDifficulty,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                      // Difficulty
+                      _buildSectionLabel(
+                        ink: ink,
+                        icon: Icons.signal_cellular_alt_rounded,
+                        label: l10n.targetDifficulty,
                       ),
                       const SizedBox(height: 10),
                       Row(
@@ -464,76 +349,36 @@ Respond ONLY in valid JSON format:
                       ),
                       const SizedBox(height: 24),
 
-                      // Context / Setting Field
-                      Text(
-                        l10n.contextSettingOptional,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                      // Context / setting
+                      _buildSectionLabel(
+                        ink: ink,
+                        icon: Icons.place_outlined,
+                        label: l10n.contextSettingOptional,
                       ),
-                      const SizedBox(height: 10),
-                      HanziTextField(
+                      _buildField(
+                        ink: ink,
                         controller: _descController,
-                        hintText: '',
+                        hint: l10n.roleplayCreatorContextPlaceholder,
                         maxLines: 2,
-                        decoration: InputDecoration(
-                          hintText: l10n.roleplayCreatorContextPlaceholder,
-                          filled: true,
-                          fillColor: isDark
-                              ? Colors.white.withValues(alpha: 0.05)
-                              : Colors.black.withValues(alpha: 0.04),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide.none,
-                          ),
-                          prefixIcon: const Icon(Icons.place_outlined),
-                        ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 20),
 
-                      // AI Persona Field
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              l10n.aiCharacterPersonaOptional,
-                              style: const TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          GestureDetector(
-                            onTap: _randomizePersona,
-                            child: Text(
-                              l10n.rollCharacter2,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: isDark
-                                    ? const Color(0xFFFFD54F)
-                                    : const Color(0xFFB8860B),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      HanziTextField(
-                        controller: _promptController,
-                        hintText: '',
-                        maxLines: 2,
-                        decoration: InputDecoration(
-                          hintText: l10n.roleplayCreatorPersonaPlaceholder,
-                          filled: true,
-                          fillColor: isDark
-                              ? Colors.white.withValues(alpha: 0.05)
-                              : Colors.black.withValues(alpha: 0.04),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide.none,
-                          ),
-                          prefixIcon: const Icon(Icons.psychology_alt_outlined),
+                      // AI persona
+                      _buildSectionLabel(
+                        ink: ink,
+                        icon: Icons.psychology_alt_outlined,
+                        label: l10n.aiCharacterPersonaOptional,
+                        trailing: _buildInlineLink(
+                          ink: ink,
+                          label: l10n.rollCharacter2,
+                          onTap: _randomizePersona,
                         ),
+                      ),
+                      _buildField(
+                        ink: ink,
+                        controller: _promptController,
+                        hint: l10n.roleplayCreatorPersonaPlaceholder,
+                        maxLines: 2,
                       ),
                       const SizedBox(height: 20),
                     ],
@@ -542,7 +387,9 @@ Respond ONLY in valid JSON format:
               ),
             ),
 
-            // Bottom Action Button
+            // Primary action — the book-screen button family: Deep Carbon Ink in
+            // light mode, Emperor's Gold in dark mode, flat, radius 14. The icon
+            // cross-fades into the spinner so the label never shifts.
             SafeArea(
               bottom: true,
               top: false,
@@ -550,44 +397,48 @@ Respond ONLY in valid JSON format:
                 padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 54,
+                  height: 52,
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _createScenario,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isDark
-                          ? const Color(0xFFFFB300)
-                          : const Color(0xFF1A1A1B),
+                      backgroundColor: ink.isDark
+                          ? Colors.amber.shade700
+                          : AppTheme.carbonInkLight,
                       foregroundColor:
-                          isDark ? const Color(0xFF1A1A1B) : Colors.white,
+                          ink.isDark ? AppTheme.carbonInkLight : Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
                       ),
-                      elevation: 2,
+                      elevation: 0,
                     ),
-                    child: _isLoading
-                        ? const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LoadingSwap(
+                          isLoading: _isLoading,
+                          size: 20,
+                          spinnerColor: ink.isDark
+                              ? AppTheme.carbonInkLight
+                              : Colors.white,
+                          icon: const Icon(Icons.auto_awesome, size: 19),
+                        ),
+                        const SizedBox(width: 8),
+                        // Flexible + ellipsis: Russian and Vietnamese labels are
+                        // roughly twice the English width.
+                        Flexible(
+                          child: Text(
+                            l10n.createScenario,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 15.5,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.3,
                             ),
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.auto_awesome, size: 20),
-                              const SizedBox(width: 8),
-                              Text(
-                                AppLocalizations.of(context)!.createScenario,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.3,
-                                ),
-                              ),
-                            ],
                           ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -600,28 +451,28 @@ Respond ONLY in valid JSON format:
 
   Widget _buildDifficultySegment(int index, String title, String subtitle) {
     final isSelected = _difficultyIndex == index;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    const accentColor = Color(0xFFFFB300);
+    final ink = _InkPalette(context);
 
     return Expanded(
-      child: GestureDetector(
-        onTap: () {
+      child: BouncingButton(
+        onPressed: () {
           HapticsManager.selection();
           setState(() => _difficultyIndex = index);
         },
         child: AnimatedContainer(
           duration: ZenMotion.of(context, ZenMotion.swap),
+          curve: ZenMotion.natural,
           padding: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
+            // The selected difficulty wears the accent; the rest are cards on
+            // paper, like the session-mode segments.
             color: isSelected
-                ? accentColor.withValues(alpha: isDark ? 0.2 : 0.12)
-                : (isDark
-                    ? Colors.white.withValues(alpha: 0.05)
-                    : Colors.black.withValues(alpha: 0.04)),
+                ? ink.accent.withValues(alpha: ink.isDark ? 0.18 : 0.12)
+                : ink.rowFill,
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: isSelected ? accentColor : Colors.transparent,
-              width: 1.5,
+              color: isSelected ? ink.accent : ink.hairline,
+              width: isSelected ? 1.3 : 1.0,
             ),
           ),
           child: Column(
@@ -631,11 +482,7 @@ Respond ONLY in valid JSON format:
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
-                  color: isSelected
-                      ? (isDark
-                          ? const Color(0xFFFFD54F)
-                          : const Color(0xFF1A1A1B))
-                      : (isDark ? Colors.white70 : Colors.black87),
+                  color: isSelected ? ink.accent : ink.primaryText,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -643,14 +490,7 @@ Respond ONLY in valid JSON format:
               const SizedBox(height: 3),
               Text(
                 subtitle,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: isSelected
-                      ? (isDark
-                          ? const Color(0xFFFFD54F)
-                          : const Color(0xFF1A1A1B))
-                      : (isDark ? Colors.white54 : Colors.black54),
-                ),
+                style: TextStyle(fontSize: 11, color: ink.secondaryText),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -660,4 +500,211 @@ Respond ONLY in valid JSON format:
       ),
     );
   }
+
+  // ── Book-screen parity helpers ────────────────────────────────────────────
+  // Shared with the deck picker, the reading sheets and the re-skinned session
+  // screens, so every calligraphic surface speaks one vocabulary.
+
+  /// Seal tile, title, caption and the persona dice — the header geometry of the
+  /// deck picker, with the title left free to wrap for long locales.
+  Widget _buildHeader(AppLocalizations l10n, _InkPalette ink) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: ink.glyphTile,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(Icons.auto_awesome, size: 22, color: ink.accent),
+        ),
+        const SizedBox(width: 12),
+        // Expanded rather than a Spacer: Russian and Vietnamese expand these
+        // strings to roughly twice the English width.
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.createYourScenario,
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: ink.primaryText,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                l10n.designCustomAiRoleplay,
+                style: TextStyle(
+                  fontSize: 12,
+                  height: 1.3,
+                  color: ink.secondaryText,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 8),
+        _buildInlineLink(
+          ink: ink,
+          label: l10n.random,
+          icon: Icons.casino_rounded,
+          onTap: _randomizePersona,
+          outlined: true,
+        ),
+      ],
+    );
+  }
+
+  /// Accent-icon section label with an optional inline action, matching the
+  /// session screens' section headers.
+  Widget _buildSectionLabel({
+    required _InkPalette ink,
+    required IconData icon,
+    required String label,
+    Widget? trailing,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: ink.accent),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 14.5,
+                fontWeight: FontWeight.bold,
+                color: ink.primaryText,
+              ),
+            ),
+          ),
+          if (trailing != null) ...[
+            const SizedBox(width: 8),
+            trailing,
+          ],
+        ],
+      ),
+    );
+  }
+
+  /// Accent affordance: a gold-hairline chip ([outlined], for the header dice)
+  /// or a bare accent label (the inline "Surprise me" / "Roll character").
+  Widget _buildInlineLink({
+    required _InkPalette ink,
+    required String label,
+    required VoidCallback onTap,
+    IconData? icon,
+    bool outlined = false,
+  }) {
+    final content = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (icon != null) ...[
+          Icon(icon, size: 15, color: ink.accent),
+          const SizedBox(width: 5),
+        ],
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: ink.accent,
+          ),
+        ),
+      ],
+    );
+
+    if (!outlined) {
+      return BouncingButton(onPressed: onTap, child: content);
+    }
+
+    return BouncingButton(
+      onPressed: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        decoration: BoxDecoration(
+          color: ink.isDark
+              ? ink.accent.withValues(alpha: 0.08)
+              : AppTheme.cardBgLight,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: ink.goldBorder.withValues(alpha: ink.isDark ? 0.7 : 0.55),
+            width: 1.2,
+          ),
+        ),
+        child: content,
+      ),
+    );
+  }
+
+  /// Xuan-paper field: parchment fill, hairline, radius 14 — the same input
+  /// geometry as the book and deck screens.
+  Widget _buildField({
+    required _InkPalette ink,
+    required TextEditingController controller,
+    required String hint,
+    int maxLines = 1,
+  }) {
+    OutlineInputBorder border(Color color, [double width = 1]) =>
+        OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: color, width: width),
+        );
+
+    return HanziTextField(
+      controller: controller,
+      hintText: '',
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        hintText: hint,
+        filled: true,
+        fillColor: ink.rowFill,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        border: border(ink.hairline),
+        enabledBorder: border(ink.hairline),
+        focusedBorder: border(ink.accent, 1.3),
+      ),
+    );
+  }
+}
+
+/// The Zen & Ink palette for this sheet, resolved once per build.
+///
+/// Mirrors `DeckSelectionSheet._InkPalette` and the book-screen parity helpers
+/// in `shadowing_studio_screen.dart`, so every calligraphic surface reads as one
+/// surface family rather than a Material default.
+class _InkPalette {
+  final bool isDark;
+
+  /// Cinnabar `#8B0000` in light mode, Emperor's Gold in dark mode.
+  final Color accent;
+
+  _InkPalette(BuildContext context)
+      : isDark = Theme.of(context).brightness == Brightness.dark,
+        accent = AppTheme.accentOf(context);
+
+  Color get primaryText =>
+      isDark ? AppTheme.carbonInkDark : AppTheme.carbonInkLight;
+
+  Color get secondaryText => isDark ? Colors.white60 : const Color(0xFF6B655B);
+
+  /// Emperor's Gold hairline, as used by every calligraphic surface.
+  Color get goldBorder =>
+      isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+
+  Color get hairline => isDark
+      ? Colors.white.withValues(alpha: 0.1)
+      : Colors.black.withValues(alpha: 0.08);
+
+  Color get rowFill =>
+      isDark ? Colors.white.withValues(alpha: 0.04) : const Color(0xFFF7F3E9);
+
+  Color get glyphTile => accent.withValues(alpha: isDark ? 0.18 : 0.1);
 }

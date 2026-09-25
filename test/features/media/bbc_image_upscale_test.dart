@@ -23,7 +23,8 @@ void main() {
       final item = DailyDiscoveryRepository.debugBuildBbcArticle(
         title: 't',
         link: 'https://www.bbc.com/zhongwen/articles/abc/trad',
-        imageUrl: 'https://ichef.bbci.co.uk/news/ws/240/amz/worldservice/live.jpg',
+        imageUrl:
+            'https://ichef.bbci.co.uk/news/ws/240/amz/worldservice/live.jpg',
       );
 
       expect(item.imageUrl, contains('/news/ws/1024/'));

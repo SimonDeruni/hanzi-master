@@ -9,6 +9,7 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress.dart';
 import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
+import 'package:hanzi_master/features/reading/presentation/providers/now_playing_provider.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
@@ -21,6 +22,8 @@ import 'package:hanzi_master/core/services/zen_ambient_service.dart';
 import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/audiobook_voice_sheet.dart';
+import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
   final BookModel book;
@@ -66,6 +69,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
 
   // Cache for parsed ruby sentence tokens (Chinese char + Pinyin syllable)
   final Map<String, List<_RubyToken>> _rubyCache = {};
+
+  // ── Palette (docs/UI_UX_STANDARDS.md) ──────────────────────────────────────
+  /// Jade Green success, used by the "studio allowance left" badge.
+  static const Color _playerSuccess = Color(0xFF2E7D32);
+
+  /// Cinnabar alert, used when playback has fallen back to the on-device voice.
+  static const Color _playerAlert = Color(0xFFC62828);
 
   // Translation display toggle
   bool _showTranslations = true;
@@ -172,8 +182,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       }
     });
 
-    _boundariesLoadedSub =
-        audioService.onBoundariesLoaded.listen((boundaries) {
+    _boundariesLoadedSub = audioService.onBoundariesLoaded.listen((boundaries) {
       if (!mounted) return;
       setState(() {
         _rebuildSentenceTimings();
@@ -253,6 +262,10 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       sentenceIndex: _currentSentenceIndex,
       voiceName: voiceName,
     );
+    // Hand the shell what it needs to reopen this player from its Now Playing
+    // bar once this screen is gone.
+    ref.read(nowPlayingBookProvider.notifier).state =
+        NowPlayingBook(book: widget.book, chapters: widget.chapters);
     if (!mounted) return;
     await _playSentenceAt(_currentSentenceIndex);
   }
@@ -278,7 +291,14 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     // Record reading event for streak
     ref.read(bookRepositoryProvider).recordReadingEvent();
     ++_audioRequestGeneration;
-    unawaited(ref.read(audioServiceProvider).stop());
+    // Leaving the player while it is playing hands the transport over to the
+    // shell's Now Playing bar — background playback is the feature, and the OS
+    // media notification is the out-of-app surface. Leaving it paused releases
+    // the engine instead of stranding a bar with nothing to play.
+    final AudioService audio = ref.read(audioServiceProvider);
+    if (!audio.isAudiobookPlaying) {
+      unawaited(audio.stop());
+    }
     unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
     _scrollController.dispose();
     super.dispose();
@@ -438,28 +458,52 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     );
   }
 
+  /// Applies a voice to both the settings store and the engine.
+  void _applyVoice(String voiceId) {
+    ref.read(settingsProvider.notifier).setAudiobookVoice(voiceId);
+    ref.read(audioServiceProvider).setAudiobookVoice(voiceId);
+  }
+
+  /// Opens the app's one voice picker. Auditioning re-reads the sentence the
+  /// listener is already on, so a voice is judged in context rather than against
+  /// a canned sample.
+  void _showVoicePickerSheet(bool hasStudioQuota) {
+    final AppLocalizations? l10n = AppLocalizations.of(context);
+    if (l10n == null) return;
+    HapticsManager.light();
+
+    GlobalBlurredBottomSheet.show<void>(
+      context,
+      child: AudiobookVoiceSheet(
+        title: l10n.chooseAudiobookVoice,
+        options: audiobookVoiceOptions(l10n, hasStudioQuota: hasStudioQuota),
+        selectedVoiceId: ref.read(settingsProvider).audiobookVoice,
+        onSelected: (AudiobookVoiceOption option) {
+          _applyVoice(option.id);
+          Navigator.of(context, rootNavigator: true).pop();
+          // Same behaviour the old chip row had: the sentence being read
+          // continues in the newly chosen voice.
+          unawaited(_playSentenceAt(_currentSentenceIndex));
+        },
+        onPreview: (AudiobookVoiceOption option) async {
+          _applyVoice(option.id);
+          await _playSentenceAt(_currentSentenceIndex);
+        },
+      ),
+    );
+  }
+
   Widget _buildVoicePickerRow(bool isDark, Color cardBg, Color primaryText,
       Color secondaryText, Color activeAccent, AudioQuotaService quota) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final settings = ref.watch(settingsProvider);
     final currentVoice = settings.audiobookVoice;
     final hasQuota = quota.hasQuotaRemaining;
+    final bool isLocal = currentVoice == 'local';
 
-    final localQuality = _localVoice?.qualityLabel;
-    final voiceOptions = [
-      ('Kore', 'Kore', 'Female, warm'),
-      ('Aoede', 'Aoede', 'Female, cheerful'),
-      ('Fenrir', 'Fenrir', 'Male, upbeat'),
-      ('Charon', 'Charon', 'Male, news-style'),
-      ('Puck', 'Puck', 'Male, sporty'),
-      (
-        'local',
-        localQuality == null ? 'Local' : 'Local $localQuality',
-        _localVoice == null
-            ? 'System on-device Mandarin voice'
-            : '${_localVoice!.name} — $localQuality on-device voice'
-      ),
-    ];
-
+    // One row instead of six code-named chips: the current voice, described the
+    // way the picker describes it, opening the same auditioning sheet the reader
+    // and Settings open.
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
@@ -467,122 +511,83 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           Icon(Icons.record_voice_over_outlined,
               size: 15, color: secondaryText.withValues(alpha: 0.7)),
           const SizedBox(width: 5),
-          Text(AppLocalizations.of(context)!.voice,
+          Text(l10n.audiobookVoice,
               style: TextStyle(
                   fontSize: 11,
                   color: secondaryText,
                   fontWeight: FontWeight.w600)),
           const SizedBox(width: 6),
           Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              child: Row(
-                children: voiceOptions.map((opt) {
-                  final isSelected = currentVoice == opt.$1;
-                  final isAzure = opt.$1 != 'local';
-                  final disabled = isAzure && !hasQuota && !isSelected;
-                  final labelColor = disabled
-                      ? (isDark ? Colors.white24 : Colors.black26)
-                      : isSelected
-                          ? activeAccent
-                          : secondaryText;
-                  final bgColor = isSelected
-                      ? activeAccent.withValues(alpha: isDark ? 0.2 : 0.12)
-                      : Colors.transparent;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 4),
-                    child: GestureDetector(
-                      onTap: disabled
-                          ? null
-                          : () {
-                              HapticsManager.selection();
-                              ref
-                                  .read(settingsProvider.notifier)
-                                  .setAudiobookVoice(opt.$1);
-                              ref
-                                  .read(audioServiceProvider)
-                                  .setAudiobookVoice(opt.$1);
-                              unawaited(_playSentenceAt(_currentSentenceIndex));
-                            },
-                      child: Tooltip(
-                        message: disabled
-                            ? '${opt.$2} — Azure quota exhausted'
-                            : isAzure
-                                ? '${opt.$2} (Azure) — ${opt.$3}'
-                                : 'Local on-device TTS',
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: bgColor,
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(
-                              color: isSelected
-                                  ? activeAccent.withValues(alpha: 0.5)
-                                  : (disabled
-                                      ? Colors.transparent
-                                      : (isDark
-                                          ? Colors.white12
-                                          : Colors.black12)),
-                              width: 1,
-                            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                key: const ValueKey<String>('audiobook-voice-pill'),
+                onTap: () => _showVoicePickerSheet(quota.hasQuotaRemaining),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: activeAccent.withValues(alpha: isDark ? 0.16 : 0.08),
+                    borderRadius: BorderRadius.circular(20),
+                    border:
+                        Border.all(color: activeAccent.withValues(alpha: 0.4)),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 150),
+                        child: Text(
+                          audiobookVoiceLabel(l10n, currentVoice),
+                          style: TextStyle(
+                            fontSize: 11.5,
+                            fontWeight: FontWeight.bold,
+                            color: activeAccent,
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                opt.$2,
-                                style: TextStyle(
-                                  fontSize: 11.5,
-                                  fontWeight: isSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.w500,
-                                  color: labelColor,
-                                ),
-                              ),
-                              if (disabled && isAzure)
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 3),
-                                  child: Icon(Icons.lock,
-                                      size: 10, color: labelColor),
-                                ),
-                            ],
-                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                      const SizedBox(width: 2),
+                      Icon(Icons.arrow_drop_down,
+                          size: 16, color: activeAccent),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
-            padding: EdgeInsets.zero,
-            tooltip: 'Improve the local voice',
-            onPressed: () => _showLocalVoiceHelp(
-                context, isDark, cardBg, primaryText, secondaryText),
-            icon: Icon(Icons.info_outline_rounded,
-                size: 16, color: secondaryText),
-          ),
+          if (isLocal)
+            IconButton(
+              visualDensity: VisualDensity.compact,
+              constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
+              padding: EdgeInsets.zero,
+              tooltip: l10n.improveTheLocalVoice,
+              onPressed: () => _showLocalVoiceHelp(
+                  context, isDark, cardBg, primaryText, secondaryText),
+              icon: Icon(Icons.info_outline_rounded,
+                  size: 16, color: secondaryText),
+            ),
           // Quota indicator badge
           if (hasQuota)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
               decoration: BoxDecoration(
-                color: Colors.green.withValues(alpha: isDark ? 0.2 : 0.12),
+                // Documented Jade Green for "allowance available", Cinnabar
+                // alert for "on the on-device voice".
+                color: _playerSuccess.withValues(alpha: isDark ? 0.2 : 0.12),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.green.withValues(alpha: 0.4)),
+                border:
+                    Border.all(color: _playerSuccess.withValues(alpha: 0.4)),
               ),
               child: Text(
                 '${quota.remainingHours.toStringAsFixed(1)}h',
                 style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color:
-                        isDark ? Colors.green.shade300 : Colors.green.shade700),
+                    color: isDark
+                        ? _playerSuccess.withValues(alpha: 0.85)
+                        : _playerSuccess),
               ),
             )
           else
@@ -592,28 +597,23 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                 decoration: BoxDecoration(
-                  color: Colors.orange.withValues(alpha: isDark ? 0.2 : 0.12),
+                  color: _playerAlert.withValues(alpha: isDark ? 0.2 : 0.12),
                   borderRadius: BorderRadius.circular(10),
                   border:
-                      Border.all(color: Colors.orange.withValues(alpha: 0.5)),
+                      Border.all(color: _playerAlert.withValues(alpha: 0.5)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.warning_amber_rounded,
-                        size: 12,
-                        color: isDark
-                            ? Colors.orange.shade300
-                            : Colors.orange.shade700),
+                    const Icon(Icons.warning_amber_rounded,
+                        size: 12, color: _playerAlert),
                     const SizedBox(width: 3),
                     Text(
-                      'Local',
-                      style: TextStyle(
+                      l10n.onDevice,
+                      style: const TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
-                          color: isDark
-                              ? Colors.orange.shade300
-                              : Colors.orange.shade700),
+                          color: _playerAlert),
                     ),
                   ],
                 ),
@@ -857,7 +857,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                 ],
               ),
               const SizedBox(height: 16),
-              _buildSleepTile(ctx, AppLocalizations.of(context)?.off ?? 'Off', null, primaryText,
+              _buildSleepTile(ctx, AppLocalizations.of(context)?.off ?? 'Off',
+                  null, primaryText,
                   isSelected:
                       _sleepSecondsRemaining == null && !_stopAtEndOfChapter,
                   isDark: isDark),
@@ -919,6 +920,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   void _showQuotaDetailsSheet(BuildContext context, AudioQuotaService quota,
       bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final usedRatio =
         (quota.usedSeconds / AudioQuotaService.weeklyAllowanceSeconds)
             .clamp(0.0, 1.0);
@@ -1042,7 +1044,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                         Icon(Icons.all_inclusive, size: 16, color: accent),
                         const SizedBox(width: 6),
                         Text(
-                          'Standard Voice is 100% Unlimited & Free',
+                          l10n.standardVoiceIs100UnlimitedFree,
                           style: TextStyle(
                             fontSize: 12.5,
                             fontWeight: FontWeight.bold,
@@ -1393,9 +1395,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                 ? activeAccent
                                 : secondaryText,
                           ),
-                          tooltip: AppLocalizations.of(context)
-                                  ?.ambientSoundscape ??
-                              'Ambient Soundscape',
+                          tooltip:
+                              AppLocalizations.of(context)?.ambientSoundscape ??
+                                  'Ambient Soundscape',
                           onPressed: () => ZenSoundscapeSheet.show(context),
                         );
                       }),
@@ -1582,7 +1584,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                     },
                                     behavior: HitTestBehavior.opaque,
                                     child: AnimatedContainer(
-                                      duration: ZenMotion.of(context, ZenMotion.swap),
+                                      duration:
+                                          ZenMotion.of(context, ZenMotion.swap),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 4, vertical: 2),
                                       transform: isCharSpoken

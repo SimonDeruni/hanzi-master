@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class AppLanguageOption {
@@ -54,11 +55,13 @@ class AppLanguagePickerSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final accent = isDark ? Colors.tealAccent.shade400 : Colors.teal.shade700;
-    final selectedBackground = accent.withValues(alpha: isDark ? 0.12 : 0.08);
-    final unselectedBackground = isDark
-        ? Colors.white.withValues(alpha: 0.045)
-        : Colors.black.withValues(alpha: 0.035);
+    // Same palette as the audiobook-voice sheet, so the two pickers in Settings
+    // read as one component rather than two eras of the app.
+    final accent = isDark ? AppTheme.accentDark : AppTheme.accentLight;
+    final gold = isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+    final selectedBackground = accent.withValues(alpha: isDark ? 0.14 : 0.07);
+    final unselectedBackground =
+        isDark ? AppTheme.cardBgDark : AppTheme.cardBgLight;
 
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.82,
@@ -76,16 +79,13 @@ class AppLanguagePickerSheet extends StatelessWidget {
               ),
             ),
           ),
-          Divider(
-            height: 1,
-            color: theme.dividerColor.withValues(alpha: 0.4),
-          ),
+          Divider(height: 1, color: gold.withValues(alpha: 0.3)),
           Expanded(
             child: ListView.separated(
               key: const ValueKey('app-language-list'),
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
               itemCount: appLanguageOptions.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 8),
+              separatorBuilder: (_, __) => const SizedBox(height: 10),
               itemBuilder: (context, index) {
                 final language = appLanguageOptions[index];
                 final isSelected = language.code == selectedLocale;
@@ -93,84 +93,97 @@ class AppLanguagePickerSheet extends StatelessWidget {
                 return Semantics(
                   selected: isSelected,
                   button: true,
-                  child: Material(
-                    color:
-                        isSelected ? selectedBackground : unselectedBackground,
-                    borderRadius: BorderRadius.circular(16),
-                    child: InkWell(
-                      key: ValueKey('app-language-${language.code}'),
-                      borderRadius: BorderRadius.circular(16),
-                      onTap: () async {
-                        if (isSelected) {
-                          Navigator.of(context).pop();
-                          return;
-                        }
-                        await onSelected(language.code);
-                        if (context.mounted) Navigator.of(context).pop();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 14,
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: accent.withValues(alpha: 0.14),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Text(
-                                language.symbol,
-                                style: TextStyle(
-                                  color: accent,
-                                  fontSize:
-                                      language.symbol.length > 1 ? 12 : 18,
-                                  fontWeight: FontWeight.w700,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
+                      // The voice sheet's ink well: accent when chosen, gold
+                      // hairline when not.
+                      border: Border.all(
+                        color:
+                            isSelected ? accent : gold.withValues(alpha: 0.28),
+                        width: isSelected ? 1.6 : 1,
+                      ),
+                    ),
+                    child: Material(
+                      color: isSelected
+                          ? selectedBackground
+                          : unselectedBackground,
+                      borderRadius: BorderRadius.circular(18),
+                      child: InkWell(
+                        key: ValueKey('app-language-${language.code}'),
+                        borderRadius: BorderRadius.circular(18),
+                        onTap: () async {
+                          if (isSelected) {
+                            Navigator.of(context).pop();
+                            return;
+                          }
+                          await onSelected(language.code);
+                          if (context.mounted) Navigator.of(context).pop();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 14,
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: accent.withValues(alpha: 0.14),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  language.symbol,
+                                  style: TextStyle(
+                                    color: accent,
+                                    fontSize:
+                                        language.symbol.length > 1 ? 12 : 18,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Text(
-                                language.name,
-                                style: TextStyle(
-                                  color: isDark
-                                      ? Colors.white
-                                      : const Color(0xFF1A1A1B),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600,
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Text(
+                                  language.name,
+                                  style: TextStyle(
+                                    color: isDark
+                                        ? Colors.white
+                                        : const Color(0xFF1A1A1B),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 12),
-                            AnimatedContainer(
-                              duration: ZenMotion.of(context, ZenMotion.swap),
-                              width: 26,
-                              height: 26,
-                              decoration: BoxDecoration(
-                                color: isSelected ? accent : Colors.transparent,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: isSelected
-                                      ? accent
-                                      : theme.dividerColor
-                                          .withValues(alpha: 0.8),
-                                  width: 2,
+                              const SizedBox(width: 12),
+                              AnimatedContainer(
+                                duration: ZenMotion.of(context, ZenMotion.swap),
+                                width: 26,
+                                height: 26,
+                                decoration: BoxDecoration(
+                                  color:
+                                      isSelected ? accent : Colors.transparent,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: isSelected
+                                        ? accent
+                                        : gold.withValues(alpha: 0.5),
+                                    width: 1.6,
+                                  ),
                                 ),
+                                child: isSelected
+                                    ? Icon(Icons.check_rounded,
+                                        size: 18,
+                                        color: isDark
+                                            ? const Color(0xFF1A1A1B)
+                                            : Colors.white)
+                                    : null,
                               ),
-                              child: isSelected
-                                  ? Icon(Icons.check_rounded,
-                                      size: 18,
-                                      color: isDark
-                                          ? Colors.black87
-                                          : Colors.white)
-                                  : null,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

@@ -20,8 +20,7 @@ void main() {
   });
 
   test('news of the day carousel is declared before the Web Explorer card', () {
-    final carouselIndex =
-        source.indexOf('child: _DailyDiscoveryCarousel()');
+    final carouselIndex = source.indexOf('child: _DailyDiscoveryCarousel()');
     final webExplorerIndex =
         source.indexOf('child: _buildWebExplorerHeroCard(context)');
 
@@ -38,8 +37,7 @@ void main() {
     );
   });
 
-  test('no duplicate daily discovery carousel remains below the hero card',
-      () {
+  test('no duplicate daily discovery carousel remains below the hero card', () {
     final occurrences =
         'child: _DailyDiscoveryCarousel()'.allMatches(source).length;
     expect(occurrences, 1,

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
+import 'package:hanzi_master/features/media/presentation/widgets/story_cover_art.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
@@ -72,12 +73,10 @@ class _StoryCulturalInsightScreenState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final hasImage =
-        widget.story.imageUrl != null && widget.story.imageUrl!.isNotEmpty;
-    final displayImageUrl = hasImage
-        ? widget.story.imageUrl!
-        : 'assets/images/ai_hub_ink_mountains.png';
-    final isNetworkImage = displayImageUrl.startsWith('http');
+    // Same resolution order as the first screen: the story's own artwork, then
+    // the Mandarin Bean cover bundled with the app — never a generic landscape.
+    final ImageProvider<Object>? coverProvider =
+        StoryCoverArt.resolveProvider(widget.story);
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
@@ -108,9 +107,8 @@ class _StoryCulturalInsightScreenState
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    isNetworkImage
-                        ? Image.network(displayImageUrl, fit: BoxFit.cover)
-                        : Image.asset(displayImageUrl, fit: BoxFit.cover),
+                    if (coverProvider != null)
+                      Image(image: coverProvider, fit: BoxFit.cover),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -187,8 +185,7 @@ class _StoryCulturalInsightScreenState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 32),
-        Center(
-            child: ZenLoader(color: theme.colorScheme.primary)),
+        Center(child: ZenLoader(color: theme.colorScheme.primary)),
         const SizedBox(height: 24),
         Center(
           child: Text(

@@ -651,9 +651,8 @@ class _DailyDiscoveryCarouselState
           borderRadius: BorderRadius.circular(18),
           color: AppTheme.cardBgOf(context),
           border: Border.all(
-            color: isDark
-                ? Colors.white10
-                : Colors.black.withValues(alpha: 0.06),
+            color:
+                isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
           ),
           boxShadow: [
             BoxShadow(

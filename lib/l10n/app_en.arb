@@ -312,6 +312,24 @@
   "scholarsDesk": "Scholar's Desk",
   "chooseADeck": "Choose a Deck",
   "whereWouldYouLike": "Where would you like to save this character?",
+  "whereWouldYouLikeWords": "Where would you like to save these {count} words?",
+  "@whereWouldYouLikeWords": {
+    "description": "Prompt shown when several cards are being saved to a deck",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deckItemsCount": "{count} items",
+  "@deckItemsCount": {
+    "description": "Number of cards stored in a deck row of the deck picker",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "addToDefaultStudy": "Add to Default Study Deck",
   "ifOffItsOnly": "If off, it's only saved to the global Dictionary",
   "saveToLibrary": "Save to Library",
@@ -4552,5 +4570,15 @@
   "@maybeLater": {
     "description": "maybeLater label"
   },
-  "dictionarySearchFailed": "Dictionary search failed. Please try again."
+  "dictionarySearchFailed": "Dictionary search failed. Please try again.",
+  "tapToHearVoiceSample": "Touch ▶ to hear a sample",
+  "soundEffects": "Sound Effects",
+  "soundEffectsDesc": "Soft paper, wooden seal, and calligraphy sounds",
+  "generatingYourScenario": "Creating your scenario…",
+  "failedToGenerateScenario": "We could not create this scenario. Please try again.",
+  "trickyCharacters": "Tricky characters",
+  "strongestCharacters": "Strongest characters",
+  "newThisWeek": "New in the last 7 days",
+  "averageAttemptsPerWord": "Average attempts per word",
+  "noCardsYet": "No cards in this deck yet"
 }

@@ -7,6 +7,8 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_session_s
 import 'package:hanzi_master/features/progression/data/study_progress_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 
 class SessionSummaryScreen extends ConsumerStatefulWidget {
   const SessionSummaryScreen({super.key, required this.summary});
@@ -68,79 +70,91 @@ class _SessionSummaryScreenState extends ConsumerState<SessionSummaryScreen> {
                     style: TextStyle(color: theme.colorScheme.primary)),
               ),
             const SizedBox(height: 24),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(children: [
-                  Text('$accuracy%',
-                      style: theme.textTheme.displayMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: accuracy >= 80 ? Colors.green : Colors.orange,
-                      )),
-                  Text(l10n.accuracy),
-                  const SizedBox(height: 20),
-                  Row(children: [
-                    _Metric(l10n.uniqueCardsStudied, '${summary.uniqueCards}'),
-                    _Metric(l10n.attempts, '${summary.totalAttempts}'),
-                    _Metric(l10n.duration,
-                        '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}'),
+            StaggeredListItem(
+              index: 0,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(children: [
+                    _AnimatedScore(
+                      accuracy: accuracy,
+                      color: accuracy >= 80 ? Colors.green : Colors.orange,
+                    ),
+                    Text(l10n.accuracy),
+                    const SizedBox(height: 20),
+                    Row(children: [
+                      _Metric(
+                          l10n.uniqueCardsStudied, '${summary.uniqueCards}'),
+                      _Metric(l10n.attempts, '${summary.totalAttempts}'),
+                      _Metric(l10n.duration,
+                          '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}'),
+                    ]),
                   ]),
-                ]),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(l10n.answerBreakdown,
-                        style: theme.textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 16),
-                    _RatingBar(l10n.again, summary.againCount, Colors.red),
-                    _RatingBar(l10n.hard, summary.hardCount, Colors.orange),
-                    _RatingBar(l10n.good, summary.goodCount, Colors.green),
-                    _RatingBar(l10n.easy, summary.easyCount, Colors.blue),
-                  ],
                 ),
               ),
             ),
             const SizedBox(height: 12),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(children: [
-                  _Metric(l10n.newCardsLabel, '${summary.newCards}'),
-                  _Metric(l10n.reviewCards, '${summary.reviewCards}'),
-                  _Metric(l10n.retries, '${summary.retryAttempts}'),
-                  _Metric(l10n.needsPractice, '${summary.needsPractice}'),
-                ]),
+            StaggeredListItem(
+              index: 1,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(l10n.answerBreakdown,
+                          style: theme.textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 16),
+                      _RatingBar(l10n.again, summary.againCount, Colors.red),
+                      _RatingBar(l10n.hard, summary.hardCount, Colors.orange),
+                      _RatingBar(l10n.good, summary.goodCount, Colors.green),
+                      _RatingBar(l10n.easy, summary.easyCount, Colors.blue),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            StaggeredListItem(
+              index: 2,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(children: [
+                    _Metric(l10n.newCardsLabel, '${summary.newCards}'),
+                    _Metric(l10n.reviewCards, '${summary.reviewCards}'),
+                    _Metric(l10n.retries, '${summary.retryAttempts}'),
+                    _Metric(l10n.needsPractice, '${summary.needsPractice}'),
+                  ]),
+                ),
               ),
             ),
             const SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: () {
-                final ratingService = ref.read(appRatingServiceProvider);
-                final analytics = ref.read(analyticsServiceProvider);
-                Navigator.of(context).popUntil((route) => route.isFirst);
-                Future<void>.delayed(const Duration(milliseconds: 500),
-                    () async {
-                  final result =
-                      await ratingService.registerCompletedSession(summary);
-                  if (result == RatingPromptResult.requested) {
-                    await analytics
-                        .logEvent('app_rating_requested', parameters: {
-                      'trigger': 'study_session_complete',
-                      'cards': summary.uniqueCards,
-                      'accuracy_percent': (summary.accuracy * 100).round(),
-                    });
-                  }
-                });
-              },
-              icon: const Icon(Icons.home_outlined),
-              label: Text(l10n.backToLibrary),
+            StaggeredListItem(
+              index: 3,
+              child: FilledButton.icon(
+                onPressed: () {
+                  final ratingService = ref.read(appRatingServiceProvider);
+                  final analytics = ref.read(analyticsServiceProvider);
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Future<void>.delayed(const Duration(milliseconds: 500),
+                      () async {
+                    final result =
+                        await ratingService.registerCompletedSession(summary);
+                    if (result == RatingPromptResult.requested) {
+                      await analytics
+                          .logEvent('app_rating_requested', parameters: {
+                        'trigger': 'study_session_complete',
+                        'cards': summary.uniqueCards,
+                        'accuracy_percent': (summary.accuracy * 100).round(),
+                      });
+                    }
+                  });
+                },
+                icon: const Icon(Icons.home_outlined),
+                label: Text(l10n.backToLibrary),
+              ),
             ),
           ],
         ),
@@ -217,4 +231,40 @@ class _RatingBar extends StatelessWidget {
           ],
         ),
       );
+}
+
+/// Counts the score up as the summary arrives - the reward beat of the screen.
+///
+/// `docs/UI_UX_STANDARDS.md` § Motion: a reward arrival wears
+/// [ZenMotion.arrival]. Under the platform "Reduce Motion" setting
+/// [ZenMotion.of] returns [Duration.zero], so the final value is shown at once.
+class _AnimatedScore extends StatelessWidget {
+  const _AnimatedScore({required this.accuracy, required this.color});
+
+  /// Final percentage, 0..100.
+  final int accuracy;
+
+  /// Verdict tint (Jade at or above the pass line, Gold below).
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween<double>(begin: 0, end: accuracy.toDouble()),
+      duration: ZenMotion.of(context, ZenMotion.quick),
+      curve: ZenMotion.arrival,
+      builder: (BuildContext context, double value, Widget? child) {
+        // `arrival` overshoots past 1.0 by design, so the reading is clamped:
+        // a score that flickered to 103% would read as a bug, not a flourish.
+        final int shown = value.clamp(0, accuracy.toDouble()).round();
+        return Text(
+          '$shown%',
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+        );
+      },
+    );
+  }
 }

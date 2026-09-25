@@ -118,7 +118,8 @@ class PremiumVideoTopBar extends StatelessWidget {
                   child: StatefulBuilder(
                     builder: (context, setState) {
                       return SwitchListTile(
-                        title: Text(AppLocalizations.of(context)!.showTranslation,
+                        title: Text(
+                            AppLocalizations.of(context)!.showTranslation,
                             style: const TextStyle(color: Colors.white)),
                         value: localEnglish,
                         activeThumbColor: Colors.white,
