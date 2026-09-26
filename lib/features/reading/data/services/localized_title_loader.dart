@@ -19,8 +19,9 @@ const localizedContentLanguageCodes = <String>[
 ];
 
 Future<Map<String, Map<String, String>>> loadLocalizedTitlesById(
-  String assetPrefix,
-) async {
+  String assetPrefix, {
+  String field = 'title',
+}) async {
   final titlesById = <String, Map<String, String>>{};
   await Future.wait(localizedContentLanguageCodes.map((languageCode) async {
     final jsonString = await rootBundle.loadString(
@@ -30,7 +31,7 @@ Future<Map<String, Map<String, String>>> loadLocalizedTitlesById(
     for (final entry in values.entries) {
       final value = entry.value;
       final title =
-          value is Map ? value['title']?.toString() : value.toString();
+          value is Map ? value[field]?.toString() : value.toString();
       if (title != null && title.trim().isNotEmpty) {
         titlesById.putIfAbsent(entry.key, () => {})[languageCode] = title;
       }
