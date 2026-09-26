@@ -28,17 +28,18 @@ def main():
             continue
         with open(path, encoding="utf-8") as handle:
             data = json.load(handle)
-        missing = []
+        empty = []
+        english = []
         for index, (link, _title, summary) in enumerate(stories, start=1):
             current = (data.get(link, {}).get("summary") or "").strip()
-            if not current or current == summary.strip():
-                missing.append(index)
-        print("%-4s %3d / %d missing: %s" % (
-            locale,
-            len(stories) - len(missing),
-            len(stories),
-            " ".join(str(i) for i in missing) or "-",
-        ))
+            if not current:
+                empty.append(index)
+            elif current == summary.strip():
+                english.append(index)
+        done = len(stories) - len(empty) - len(english)
+        print("%-4s %3d / %d" % (locale, done, len(stories)))
+        print("     no summary : %s" % (" ".join(str(i) for i in empty) or "-"))
+        print("     still english: %s" % (" ".join(str(i) for i in english) or "-"))
 
 
 if __name__ == "__main__":
