@@ -82,6 +82,7 @@ workflows:
             --obfuscate \
             --split-debug-info=build/debug-info \
             --export-method app-store \
+            --build-number=561 \
             --dart-define="GEMINI_API_KEY=$GEMINI_API_KEY" \
             --dart-define="OPENROUTER_API_KEY=$OPENROUTER_API_KEY" \
             --dart-define="AZURE_SPEECH_KEY=$AZURE_SPEECH_KEY" \
