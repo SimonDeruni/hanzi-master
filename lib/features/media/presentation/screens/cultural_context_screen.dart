@@ -10,6 +10,7 @@ import 'package:hanzi_master/features/media/presentation/screens/smart_media_des
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
+import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
@@ -260,13 +261,16 @@ class CulturalContextScreen extends ConsumerWidget {
         ),
         if (subtitle.isNotEmpty) ...[
           const SizedBox(height: 8),
-          TappableMarkdownHanziText(
+          // The feed writes this summary in English. It is shown in the reader's
+          // own language - and re-translated when that language changes - with
+          // the English kept on screen until the translation arrives.
+          TranslatedText(
             subtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               height: 1.5,
               color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
-            quickLookPresentation: QuickLookPresentation.readingPopover,
+            showOriginalOnLoading: true,
           ),
         ],
       ],
