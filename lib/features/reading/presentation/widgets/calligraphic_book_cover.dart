@@ -166,93 +166,128 @@ class CalligraphicBookCover extends StatelessWidget {
     );
   }
 
-  /// Poetry covers get a designed plate instead of a bare crop: the artwork
-  /// keeps its own framing on a dark genre mat, so a tall card or a wide row
-  /// never cuts the composition, with an ink border and - on a large cover -
-  /// the poem's own hanzi title and author.
-  Widget _buildPoetryPlate(
-    BuildContext context,
-    bool isDark,
-    String imagePath,
-  ) {
-    final List<Color> mat = _getGenreGradient(book.category, isDark);
-    final bool showTitle = width.isFinite &&
-        height.isFinite &&
-        width >= 110 &&
-        height >= 150;
+  /// The cover for a poem, drawn entirely in code - no photograph.
+  ///
+  /// The bundled poem artwork is AI-generated, so it is deliberately not used:
+  /// instead the cover is an ink wash by era, the poem's own characters set
+  /// large, the poet beneath them, and a red seal in the corner. That reads as
+  /// a printed Chinese collection and stays sharp at any size.
+  Widget _buildPoetryCover(BuildContext context, bool isDark) {
+    final List<Color> ink = _getGenreGradient(book.category, isDark);
+    final String hanzi = book.title.trim();
+    final String byline = (book.author.trim().isNotEmpty
+            ? book.author.trim()
+            : book.titleEn.trim())
+        .trim();
+    final bool spacious = width.isFinite && height.isFinite &&
+        width >= 96 && height >= 128;
+
     return Stack(
       fit: StackFit.expand,
       children: [
+        // Ink wash, darker at the foot of the cover.
         DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: mat,
+              colors: [
+                ink.first.withValues(alpha: 0.95),
+                ink.last,
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(showTitle ? 0 : 4),
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.contain,
-            errorBuilder: (context, error, stackTrace) =>
-                _buildCalligraphicFallback(context, isDark),
+        // A faint sheet sheen so the ink does not read as a flat block.
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withValues(alpha: 0.07),
+                Colors.transparent,
+                Colors.black.withValues(alpha: 0.18),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0.0, 0.55, 1.0],
+            ),
           ),
         ),
-        if (showTitle)
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(10, 24, 10, 10),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withValues(alpha: 0.72),
-                  ],
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    book.title,
-                    maxLines: 1,
+        if (spacious && hanzi.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 14, 12, 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Text(
+                    hanzi,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 2,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.96),
+                      fontSize: (width / 5.5).clamp(15.0, 46.0),
+                      fontWeight: FontWeight.w600,
+                      height: 1.25,
+                      letterSpacing: 4,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withValues(alpha: 0.45),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
                   ),
-                  if (book.author.trim().isNotEmpty)
-                    Text(
-                      book.author,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.75),
-                        fontSize: 11,
-                      ),
+                ),
+                if (byline.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    byline,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.62),
+                      fontSize: (width / 16).clamp(9.0, 13.0),
+                      letterSpacing: 1.4,
                     ),
+                  ),
                 ],
+              ],
+            ),
+          ),
+        // The seal: a red stamp, the way a Chinese collection marks its cover.
+        Positioned(
+          right: spacious ? 10 : 5,
+          bottom: spacious ? 10 : 5,
+          child: Container(
+            width: spacious ? 26 : 14,
+            height: spacious ? 26 : 14,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: const Color(0xFFB3261E),
+              borderRadius: BorderRadius.circular(spacious ? 5 : 3),
+            ),
+            child: Text(
+              '詩',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.92),
+                fontSize: spacious ? 14 : 8,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
+        ),
+        // Ink border, so the cover reads as a mounted print.
         Positioned.fill(
           child: IgnorePointer(
             child: DecoratedBox(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.12),
+                  color: Colors.white.withValues(alpha: 0.14),
                   width: 1,
                 ),
               ),
@@ -291,7 +326,7 @@ class CalligraphicBookCover extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             isPoetry
-                ? _buildPoetryPlate(context, isDark, imagePath)
+                ? _buildPoetryCover(context, isDark)
                 : Image.asset(
                     imagePath,
                     fit: BoxFit.cover,

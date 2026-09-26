@@ -105,6 +105,13 @@ class StoryCoverArt extends StatelessWidget {
   /// keep their own framing and fall back to [topicGradient] when this returns
   /// null.
   static ImageProvider<Object>? resolveProvider(LibraryStory story) {
+    // Poems are drawn, not photographed: their bundled artwork is
+    // AI-generated and deliberately not shown - the poem cover is composed in
+    // code instead, so this returns null to let that design take over.
+    if (story.link.startsWith('poetry_') ||
+        story.link.startsWith('tang_poetry_')) {
+      return null;
+    }
     final String? explicit = story.imageUrl;
     if (explicit != null && explicit.isNotEmpty) {
       if (explicit.startsWith('http')) return NetworkImage(explicit);
