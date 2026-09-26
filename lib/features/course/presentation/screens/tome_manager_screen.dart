@@ -14,6 +14,7 @@ import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../../shared/utils/hero_transition.dart';
 import '../../../../shared/widgets/zen_filter_pill.dart';
 import '../../data/thematic_decks_data.dart';
+import '../../../../core/services/localized_deck_service.dart';
 import '../widgets/calligraphic_deck_cover.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
@@ -55,6 +56,22 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
   String? _busyThematicId;
   String _selectedCategory = 'ALL';
   final TextEditingController _searchController = TextEditingController();
+
+  /// Deck titles, descriptions and word definitions are localized **data**: they
+  /// are preloaded once per locale rather than awaited per widget, because the
+  /// shelves build a whole row of cards in a single pass.
+  String _deckLocale = '';
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final String locale = Localizations.localeOf(context).languageCode;
+    if (locale == _deckLocale) return;
+    _deckLocale = locale;
+    LocalizedDeckService.ensureLoaded(locale).then((_) {
+      if (mounted) setState(() {});
+    });
+  }
 
   static const List<String> _categoryFilterKeys = [
     'ALL',
@@ -474,7 +491,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
 
       if (mounted) {
         _showMessage(
-            AppLocalizations.of(context)!.shelfAddedThematic(thematic.title),
+            AppLocalizations.of(context)!.shelfAddedThematic(LocalizedDeckService.deckTitle(deckId: thematic.id, fallbackEn: thematic.title)),
             tone: ZenToastTone.success);
       }
     } catch (error) {
@@ -500,7 +517,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
         backgroundColor:
             isDark ? const Color(0xFF1E1E24) : const Color(0xFFFDFCF0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text('${l10n.remove} ${thematic.title}?'),
+        title: Text('${l10n.remove} ${LocalizedDeckService.deckTitle(deckId: thematic.id, fallbackEn: thematic.title)}?'),
         content: Text(l10n.removeCharactersWarning),
         actions: [
           TextButton(
@@ -532,7 +549,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       ref.invalidate(deckControllerProvider);
 
       if (mounted) {
-        _showMessage(AppLocalizations.of(context)!.shelfRemovedThematic(thematic.title),
+        _showMessage(AppLocalizations.of(context)!.shelfRemovedThematic(LocalizedDeckService.deckTitle(deckId: thematic.id, fallbackEn: thematic.title)),
             tone: ZenToastTone.success);
       }
     } catch (error) {
@@ -812,7 +829,7 @@ const SizedBox(height: 20),
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                word['definition'] ?? '',
+                                LocalizedDeckService.wordDefinition(hanzi: word['hanzi'] ?? '', fallbackEn: word['definition'] ?? ''),
                                 style: TextStyle(
                                   fontSize: 10.5,
                                   color:
@@ -1255,11 +1272,11 @@ const SliverToBoxAdapter(
 
         return _buildShelfCard(
           heroId: 'thematic-${thematic.id}',
-          title: thematic.title,
+          title: LocalizedDeckService.deckTitle(deckId: thematic.id, fallbackEn: thematic.title),
           titleHanzi: thematic.titleHanzi,
           subtitle:
               '${thematic.vocabulary.length} words · ${thematic.category}',
-          description: thematic.description,
+          description: LocalizedDeckService.deckDescription(deckId: thematic.id, fallbackEn: thematic.description),
           watermarkHanzi: thematic.watermarkHanzi,
           gradientColors: thematic.gradientColors,
           badgeText: '${thematic.vocabulary.length} 词',
@@ -1273,11 +1290,11 @@ const SliverToBoxAdapter(
           onTapCard: () => _showDeckPreviewSheet(
             context: context,
             heroId: 'thematic-${thematic.id}',
-            title: thematic.title,
+            title: LocalizedDeckService.deckTitle(deckId: thematic.id, fallbackEn: thematic.title),
             titleHanzi: thematic.titleHanzi,
             subtitle:
                 '${thematic.vocabulary.length} words · ${thematic.category}',
-            description: thematic.description,
+            description: LocalizedDeckService.deckDescription(deckId: thematic.id, fallbackEn: thematic.description),
             watermarkHanzi: thematic.watermarkHanzi,
             gradientColors: thematic.gradientColors,
             badgeText: '${thematic.vocabulary.length} 词',

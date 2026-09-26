@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "Văn hoá & đời sống hằng ngày", "description": "Nghệ thuật truyền thống, ẩm thực, lễ hội, thư pháp, triết học và lối sống." },
+  "thematic_tcm": { "title": "Đông y & chữa lành tự nhiên", "description": "Thuốc thảo mộc, chẩn mạch, kinh lạc, châm cứu và cân bằng." },
+  "thematic_festivals": { "title": "Lễ hội & văn hoá dân gian", "description": "Ngày lễ âm lịch, truyền thuyết, phong tục và lời chúc." },
+  "thematic_philosophy": { "title": "Triết học & thành ngữ", "description": "Tư tưởng cổ điển Trung Hoa, sự tĩnh tại Đạo gia và thành ngữ bốn chữ." },
+  "thematic_wushu": { "title": "Võ thuật & Thái cực quyền", "description": "Thế kung fu, kiếm pháp, hô hấp nội gia và bài quyền bậc thầy." },
+  "thematic_ball_games": { "title": "Bóng đá & điền kinh", "description": "Bóng bàn, cầu lông, bóng rổ, bóng đá, chạy bộ và trận đấu." },
+  "thematic_fitness": { "title": "Thể hình & luyện tập hiện đại", "description": "Phòng gym, tập sức mạnh, yoga, đạp xe, bơi lội và sức khoẻ." },
+  "thematic_winter_sports": { "title": "Thể thao mùa đông & Olympic", "description": "Trượt tuyết, trượt băng, bục Olympic, giải vô địch và huy chương." },
+  "thematic_studies": { "title": "Học tập & đại học", "description": "Từ vựng đại học cho lớp học, kỳ thi, nghiên cứu và đời sống sinh viên." },
+  "thematic_tech": { "title": "Khoa học & công nghệ hiện đại", "description": "Trí tuệ nhân tạo, lập trình, khám phá vũ trụ và đổi mới tương lai." },
+  "thematic_linguistics": { "title": "Ngôn ngữ học tiếng Trung", "description": "Bộ thủ, quy tắc phát âm, ngữ âm và trợ từ ngữ pháp." },
+  "thematic_travel": { "title": "Du lịch & sinh tồn", "description": "Tiếng Trung thiết yếu cho sân bay, khách sạn, chỉ đường, taxi và gọi món." },
+  "thematic_dining": { "title": "Nghệ thuật ẩm thực & ăn uống", "description": "Món ăn vùng miền, hương vị, kỹ thuật nấu, dim sum và gọi món ở nhà hàng." },
+  "thematic_shopping": { "title": "Đời sống đô thị & mua sắm", "description": "Mặc cả, trung tâm thương mại, kích cỡ, thanh toán di động và hỏi giá." },
+  "thematic_business": { "title": "Kinh doanh & sự nghiệp", "description": "Thuật ngữ chuyên nghiệp cho cuộc họp, hợp đồng, đàm phán và hợp tác." },
+  "thematic_workplace": { "title": "Công sở & văn phòng", "description": "Đánh giá hiệu suất, thăng chức, làm việc từ xa, email và thuyết trình." },
+  "thematic_finance": { "title": "Tài chính & thương mại toàn cầu", "description": "Cổ phiếu, vốn đầu tư mạo hiểm, ngoại hối, thư tín dụng và thuế quan." }
+}

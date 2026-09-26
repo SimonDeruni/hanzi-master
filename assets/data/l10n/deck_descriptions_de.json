@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "Kultur & Alltag", "description": "Traditionelle Künste, Küche, Feste, Kalligraphie, Philosophie und Lebensart." },
+  "thematic_tcm": { "title": "TCM & Naturheilkunde", "description": "Kräutermedizin, Pulsdiagnose, Meridiane, Akupunktur und Harmonie." },
+  "thematic_festivals": { "title": "Feste & Folklore", "description": "Mondfeste, Sagen, Bräuche und Festtagsgrüße." },
+  "thematic_philosophy": { "title": "Philosophie & Redewendungen", "description": "Klassisches chinesisches Denken, daoistische Ruhe und vierzeichenige Chengyu." },
+  "thematic_wushu": { "title": "Wushu & Tai Chi", "description": "Kung-Fu-Stellungen, Schwerttechniken, innere Atmung und Meisterformen." },
+  "thematic_ball_games": { "title": "Ballspiele & Leichtathletik", "description": "Tischtennis, Badminton, Basketball, Fußball, Laufen und Wettkämpfe." },
+  "thematic_fitness": { "title": "Fitness & modernes Training", "description": "Gym-Training, Krafttraining, Yoga, Radfahren, Schwimmen und Gesundheit." },
+  "thematic_winter_sports": { "title": "Wintersport & Olympische Spiele", "description": "Ski alpin, Eislaufen, olympische Podeste, Meisterschaften und Medaillen." },
+  "thematic_studies": { "title": "Studium & Wissenschaft", "description": "Uni-Wortschatz zu Kursen, Prüfungen, Forschung und Campusleben." },
+  "thematic_tech": { "title": "Wissenschaft & moderne Technik", "description": "Künstliche Intelligenz, Programmieren, Raumfahrt und Innovation." },
+  "thematic_linguistics": { "title": "Chinesische Sprachwissenschaft", "description": "Radikale, Ausspracheregeln, Phonetik und grammatische Partikeln." },
+  "thematic_travel": { "title": "Reisen & Überleben", "description": "Wichtiges Chinesisch für Flughafen, Hotel, Wegbeschreibungen, Taxi und Essen bestellen." },
+  "thematic_dining": { "title": "Kochkunst & Esskultur", "description": "Regionale Gerichte, Aromen, Kochtechniken, Dim Sum und Bestellen im Restaurant." },
+  "thematic_shopping": { "title": "Stadtleben & Einkaufen", "description": "Feilschen, Einkaufszentren, Größen, mobile Zahlung und nach dem Preis fragen." },
+  "thematic_business": { "title": "Business & Karriere", "description": "Fachbegriffe für Besprechungen, Verträge, Verhandlungen und Partnerschaften." },
+  "thematic_workplace": { "title": "Arbeitswelt & Büro", "description": "Leistungsbeurteilungen, Beförderungen, Homeoffice, E-Mails und Präsentationen." },
+  "thematic_finance": { "title": "Finanzen & Welthandel", "description": "Aktien, Wagniskapital, Devisen, Akkreditive und Zölle." }
+}

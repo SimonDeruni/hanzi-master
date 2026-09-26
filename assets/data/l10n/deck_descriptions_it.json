@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "Cultura e vita quotidiana", "description": "Arti tradizionali, cucina, feste, calligrafia, filosofia e stile di vita." },
+  "thematic_tcm": { "title": "Medicina cinese e cure naturali", "description": "Fitoterapia, diagnosi del polso, meridiani, agopuntura e armonia." },
+  "thematic_festivals": { "title": "Feste e folclore", "description": "Feste lunari, leggende, usanze e auguri di festa." },
+  "thematic_philosophy": { "title": "Filosofia e modi di dire", "description": "Pensiero cinese classico, quiete taoista e chengyu di quattro caratteri." },
+  "thematic_wushu": { "title": "Wushu e tai chi", "description": "Posizioni di kung fu, tecniche di spada, respirazione interna e forme del maestro." },
+  "thematic_ball_games": { "title": "Sport di palla e atletica", "description": "Tennistavolo, badminton, basket, calcio, corsa e partite." },
+  "thematic_fitness": { "title": "Fitness e allenamento moderno", "description": "Palestra, allenamento di forza, yoga, ciclismo, nuoto e salute." },
+  "thematic_winter_sports": { "title": "Sport invernali e Olimpiadi", "description": "Sci alpino, pattinaggio, podi olimpici, campionati e medaglie." },
+  "thematic_studies": { "title": "Studi e università", "description": "Vocabolario universitario: lezioni, esami, ricerca e vita nel campus." },
+  "thematic_tech": { "title": "Scienza e tecnologia moderna", "description": "Intelligenza artificiale, programmazione, esplorazione spaziale e innovazione." },
+  "thematic_linguistics": { "title": "Linguistica cinese", "description": "Radicali, regole di pronuncia, fonetica e particelle grammaticali." },
+  "thematic_travel": { "title": "Viaggio e sopravvivenza", "description": "Cinese essenziale: aeroporto, hotel, indicazioni, taxi e ordinare da mangiare." },
+  "thematic_dining": { "title": "Arte culinaria e ristorazione", "description": "Piatti regionali, sapori, tecniche di cottura, dim sum e ordinare al ristorante." },
+  "thematic_shopping": { "title": "Vita urbana e shopping", "description": "Contrattare, centri commerciali, taglie, pagamenti mobili e chiedere il prezzo." },
+  "thematic_business": { "title": "Affari e carriera", "description": "Terminologia professionale: riunioni, contratti, negoziazioni e partnership." },
+  "thematic_workplace": { "title": "Mondo del lavoro e ufficio", "description": "Valutazioni, promozioni, lavoro da remoto, email e presentazioni." },
+  "thematic_finance": { "title": "Finanza e commercio globale", "description": "Azioni, capitale di rischio, cambio valuta, lettere di credito e dazi." }
+}

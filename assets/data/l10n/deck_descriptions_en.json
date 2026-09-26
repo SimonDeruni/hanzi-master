@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "Culture & Daily Life", "description": "Traditional arts, cuisine, festivals, calligraphy, philosophy, and lifestyle." },
+  "thematic_tcm": { "title": "TCM & Natural Healing", "description": "Herbal medicine, pulse diagnostics, meridian theory, acupuncture, and harmony." },
+  "thematic_festivals": { "title": "Festivals & Folklore", "description": "Lunar holidays, mythic legends, folk customs, and celebration greetings." },
+  "thematic_philosophy": { "title": "Philosophy & Idioms", "description": "Classical Chinese thought, Daoist tranquility, and four-character Chengyu." },
+  "thematic_wushu": { "title": "Wushu & Tai Chi", "description": "Kung Fu stances, sword techniques, internal breathing, and master forms." },
+  "thematic_ball_games": { "title": "Ball Games & Athletics", "description": "Table tennis, badminton, basketball, football, running, and matches." },
+  "thematic_fitness": { "title": "Fitness & Modern Training", "description": "Gym workouts, strength training, yoga, cycling, swimming, and health." },
+  "thematic_winter_sports": { "title": "Winter & Olympic Games", "description": "Alpine skiing, ice skating, Olympic podiums, championships, and medals." },
+  "thematic_studies": { "title": "Academic & Studies", "description": "University vocabulary for classes, examinations, research, and campus life." },
+  "thematic_tech": { "title": "Science & Modern Tech", "description": "Artificial intelligence, coding, space exploration, and future innovation." },
+  "thematic_linguistics": { "title": "Chinese Linguistics", "description": "Radical structures, pronunciation rules, phonetics, and grammatical particles." },
+  "thematic_travel": { "title": "Travel & Survival", "description": "Essential Chinese for airports, hotels, directions, taxis, and ordering food." },
+  "thematic_dining": { "title": "Culinary Arts & Dining", "description": "Regional dishes, flavors, cooking techniques, dim sum, and restaurant ordering." },
+  "thematic_shopping": { "title": "City Life & Shopping", "description": "Bargaining, mall shopping, sizes, mobile payments, and asking prices." },
+  "thematic_business": { "title": "Business & Career", "description": "Professional terminology for meetings, contracts, negotiations, and partnerships." },
+  "thematic_workplace": { "title": "Workplace & Office Life", "description": "Performance reviews, promotions, remote work, emails, and presentations." },
+  "thematic_finance": { "title": "Finance & Global Trade", "description": "Stocks, venture capital, currency exchange, letters of credit, and tariffs." }
+}

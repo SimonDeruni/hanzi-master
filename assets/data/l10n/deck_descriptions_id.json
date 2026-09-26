@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "Budaya & kehidupan sehari-hari", "description": "Seni tradisional, kuliner, festival, kaligrafi, filsafat, dan gaya hidup." },
+  "thematic_tcm": { "title": "Pengobatan TCM & penyembuhan alami", "description": "Obat herbal, diagnosis nadi, teori meridian, akupunktur, dan keharmonisan." },
+  "thematic_festivals": { "title": "Festival & cerita rakyat", "description": "Hari raya lunar, legenda, adat, dan ucapan selamat." },
+  "thematic_philosophy": { "title": "Filsafat & peribahasa", "description": "Pemikiran klasik Tiongkok, ketenangan Tao, dan chengyu empat aksara." },
+  "thematic_wushu": { "title": "Wushu & tai chi", "description": "Sikap kung fu, teknik pedang, pernapasan dalam, dan jurus guru." },
+  "thematic_ball_games": { "title": "Permainan bola & atletik", "description": "Tenis meja, bulu tangkis, basket, sepak bola, lari, dan pertandingan." },
+  "thematic_fitness": { "title": "Kebugaran & latihan modern", "description": "Gym, latihan kekuatan, yoga, bersepeda, renang, dan kesehatan." },
+  "thematic_winter_sports": { "title": "Olahraga musim dingin & Olimpiade", "description": "Ski alpine, seluncur es, podium Olimpiade, kejuaraan, dan medali." },
+  "thematic_studies": { "title": "Studi & universitas", "description": "Kosakata universitas untuk kelas, ujian, riset, dan kehidupan kampus." },
+  "thematic_tech": { "title": "Sains & teknologi modern", "description": "Kecerdasan buatan, pemrograman, eksplorasi antariksa, dan inovasi." },
+  "thematic_linguistics": { "title": "Linguistik bahasa Mandarin", "description": "Struktur radikal, aturan pelafalan, fonetik, dan partikel tata bahasa." },
+  "thematic_travel": { "title": "Perjalanan & bertahan hidup", "description": "Bahasa Mandarin penting untuk bandara, hotel, arah, taksi, dan memesan makanan." },
+  "thematic_dining": { "title": "Seni kuliner & makan", "description": "Hidangan daerah, cita rasa, teknik memasak, dim sum, dan memesan di restoran." },
+  "thematic_shopping": { "title": "Kehidupan kota & belanja", "description": "Tawar-menawar, mal, ukuran, pembayaran seluler, dan menanyakan harga." },
+  "thematic_business": { "title": "Bisnis & karier", "description": "Istilah profesional untuk rapat, kontrak, negosiasi, dan kemitraan." },
+  "thematic_workplace": { "title": "Dunia kerja & kantor", "description": "Penilaian kinerja, promosi, kerja jarak jauh, email, dan presentasi." },
+  "thematic_finance": { "title": "Keuangan & perdagangan global", "description": "Saham, modal ventura, valuta asing, letter of credit, dan tarif." }
+}

@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "文化と日常生活", "description": "伝統芸術、料理、祭り、書道、哲学、暮らし。" },
+  "thematic_tcm": { "title": "中医学と自然治癒", "description": "漢方薬、脈診、経絡理論、鍼灸、調和。" },
+  "thematic_festivals": { "title": "祭りと伝承", "description": "旧暦の祝日、神話伝説、民俗習慣、祝いの挨拶。" },
+  "thematic_philosophy": { "title": "哲学と成語", "description": "中国古典思想、道教の静けさ、四字成語。" },
+  "thematic_wushu": { "title": "武術と太極拳", "description": "カンフーの型、剣術、内息、達人の套路。" },
+  "thematic_ball_games": { "title": "球技と陸上競技", "description": "卓球、バドミントン、バスケ、サッカー、ランニング、試合。" },
+  "thematic_fitness": { "title": "フィットネスと現代のトレーニング", "description": "ジム、筋力トレーニング、ヨガ、サイクリング、水泳、健康。" },
+  "thematic_winter_sports": { "title": "ウィンタースポーツとオリンピック", "description": "アルペンスキー、スケート、オリンピックの表彰台、選手権、メダル。" },
+  "thematic_studies": { "title": "学業と大学", "description": "授業、試験、研究、キャンパス生活の大学語彙。" },
+  "thematic_tech": { "title": "科学と現代技術", "description": "人工知能、プログラミング、宇宙探査、未来の革新。" },
+  "thematic_linguistics": { "title": "中国語学", "description": "部首構造、発音規則、音声学、文法助詞。" },
+  "thematic_travel": { "title": "旅行とサバイバル", "description": "空港、ホテル、道案内、タクシー、注文に必要な中国語。" },
+  "thematic_dining": { "title": "料理と食文化", "description": "郷土料理、味、調理技法、点心、レストランでの注文。" },
+  "thematic_shopping": { "title": "都市生活と買い物", "description": "値切り、ショッピングモール、サイズ、モバイル決済、値段を聞く。" },
+  "thematic_business": { "title": "ビジネスとキャリア", "description": "会議、契約、交渉、提携のビジネス用語。" },
+  "thematic_workplace": { "title": "職場とオフィス", "description": "人事評価、昇進、リモートワーク、メール、プレゼン。" },
+  "thematic_finance": { "title": "金融と国際貿易", "description": "株式、ベンチャーキャピタル、為替、信用状、関税。" }
+}

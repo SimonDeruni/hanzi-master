@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "Culture et vie quotidienne", "description": "Arts traditionnels, cuisine, fêtes, calligraphie, philosophie et art de vivre." },
+  "thematic_tcm": { "title": "Médecine chinoise et soins naturels", "description": "Phytothérapie, diagnostic du pouls, méridiens, acupuncture et harmonie." },
+  "thematic_festivals": { "title": "Fêtes et folklore", "description": "Fêtes lunaires, légendes, coutumes populaires et vœux de fête." },
+  "thematic_philosophy": { "title": "Philosophie et expressions", "description": "Pensée classique chinoise, quiétude taoïste et chengyu de quatre caractères." },
+  "thematic_wushu": { "title": "Wushu et tai-chi", "description": "Postures de kung-fu, techniques d'épée, respiration interne et formes de maître." },
+  "thematic_ball_games": { "title": "Sports de balle et athlétisme", "description": "Tennis de table, badminton, basket, football, course et compétitions." },
+  "thematic_fitness": { "title": "Forme et entraînement moderne", "description": "Salle de sport, musculation, yoga, vélo, natation et santé." },
+  "thematic_winter_sports": { "title": "Sports d'hiver et Jeux olympiques", "description": "Ski alpin, patinage, podiums olympiques, championnats et médailles." },
+  "thematic_studies": { "title": "Études et université", "description": "Vocabulaire universitaire : cours, examens, recherche et vie de campus." },
+  "thematic_tech": { "title": "Science et technologie moderne", "description": "Intelligence artificielle, programmation, exploration spatiale et innovation." },
+  "thematic_linguistics": { "title": "Linguistique chinoise", "description": "Clés et radicaux, règles de prononciation, phonétique et particules grammaticales." },
+  "thematic_travel": { "title": "Voyage et survie", "description": "Chinois essentiel : aéroport, hôtel, directions, taxis et commander à manger." },
+  "thematic_dining": { "title": "Cuisine et gastronomie", "description": "Plats régionaux, saveurs, techniques culinaires, dim sum et commande au restaurant." },
+  "thematic_shopping": { "title": "Vie urbaine et shopping", "description": "Marchandage, centres commerciaux, tailles, paiement mobile et demander le prix." },
+  "thematic_business": { "title": "Affaires et carrière", "description": "Terminologie professionnelle : réunions, contrats, négociations et partenariats." },
+  "thematic_workplace": { "title": "Monde du travail et bureau", "description": "Évaluations, promotions, télétravail, e-mails et présentations." },
+  "thematic_finance": { "title": "Finance et commerce mondial", "description": "Actions, capital-risque, change, lettres de crédit et droits de douane." }
+}

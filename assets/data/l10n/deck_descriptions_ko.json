@@ -1,0 +1,19 @@
+{
+  "thematic_culture": { "title": "문화와 일상", "description": "전통 예술, 요리, 축제, 서예, 철학, 생활 방식." },
+  "thematic_tcm": { "title": "중의학과 자연 치유", "description": "한약, 맥진, 경락 이론, 침술, 조화." },
+  "thematic_festivals": { "title": "축제와 민속", "description": "음력 명절, 신화 전설, 민속 풍습, 축하 인사." },
+  "thematic_philosophy": { "title": "철학과 성어", "description": "중국 고전 사상, 도가의 고요함, 사자성어." },
+  "thematic_wushu": { "title": "우슈와 태극권", "description": "쿵후 자세, 검술, 내호흡, 고수 품새." },
+  "thematic_ball_games": { "title": "구기 종목과 육상", "description": "탁구, 배드민턴, 농구, 축구, 달리기, 경기." },
+  "thematic_fitness": { "title": "피트니스와 현대 훈련", "description": "헬스, 근력 운동, 요가, 사이클, 수영, 건강." },
+  "thematic_winter_sports": { "title": "동계 스포츠와 올림픽", "description": "알파인 스키, 아이스 스케이팅, 올림픽 시상대, 선수권, 메달." },
+  "thematic_studies": { "title": "학업과 대학", "description": "수업, 시험, 연구, 캠퍼스 생활을 위한 대학 어휘." },
+  "thematic_tech": { "title": "과학과 현대 기술", "description": "인공지능, 코딩, 우주 탐사, 미래 혁신." },
+  "thematic_linguistics": { "title": "중국어학", "description": "부수 구조, 발음 규칙, 음성학, 문법 조사." },
+  "thematic_travel": { "title": "여행과 생존", "description": "공항, 호텔, 길 안내, 택시, 음식 주문에 필요한 필수 중국어." },
+  "thematic_dining": { "title": "요리와 식문화", "description": "지역 요리, 맛, 조리법, 딤섬, 식당 주문." },
+  "thematic_shopping": { "title": "도시 생활과 쇼핑", "description": "흥정, 쇼핑몰, 사이즈, 모바일 결제, 가격 묻기." },
+  "thematic_business": { "title": "비즈니스와 커리어", "description": "회의, 계약, 협상, 제휴를 위한 업무 용어." },
+  "thematic_workplace": { "title": "직장과 사무실", "description": "성과 평가, 승진, 재택근무, 이메일, 발표." },
+  "thematic_finance": { "title": "금융과 국제 무역", "description": "주식, 벤처 캐피털, 환전, 신용장, 관세." }
+}
