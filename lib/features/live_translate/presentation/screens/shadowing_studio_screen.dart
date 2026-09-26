@@ -21,6 +21,7 @@ import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/core/utils/shadowing_line.dart';
 import '../../../echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
@@ -165,12 +166,21 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       }
     } else if (widget.initialContextSentence != null &&
         widget.initialContextSentence!.isNotEmpty) {
+      // Whatever block arrived - the browser can hand over a whole paragraph -
+      // practise a line a person can actually repeat. Shortened only when no
+      // pinyin came with it, so the line and its pinyin can never disagree.
+      final String sentence = widget.initialPinyin == null
+          ? shadowingLine(
+              widget.initialContextSentence!,
+              widget.initialHanzi ?? '',
+            )
+          : widget.initialContextSentence!;
       _selectedMode = ShadowingMode.customSentence;
-      _customWordInput = widget.initialContextSentence!;
+      _customWordInput = sentence;
       _isSessionStarted = true;
       if (widget.initialPinyin != null || widget.initialTranslation != null) {
         _currentPhrase = {
-          "hanzi": widget.initialContextSentence!,
+          "hanzi": sentence,
           "pinyin": widget.initialPinyin ?? "",
           "english": widget.initialTranslation ?? "",
         };

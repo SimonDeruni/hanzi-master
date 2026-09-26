@@ -15,6 +15,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart'
     as hanzi_shadowing;
+import 'package:hanzi_master/core/utils/shadowing_line.dart';
 import 'package:hanzi_master/shared/widgets/calligraphy_canvas_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_explainer_sheet.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_selection_sheet.dart';
@@ -662,8 +663,10 @@ class _FoundBody extends ConsumerWidget {
                     final hasContext = contextText != null &&
                         contextText!.trim().isNotEmpty &&
                         contextText!.trim() != tappedHanzi.trim();
+                    // A paragraph is not shadowable: keep the clause around the
+                    // tapped word instead of whatever block arrived.
                     final effectiveSentence =
-                        hasContext ? contextText!.trim() : null;
+                        hasContext ? hanzi_shadowing.shadowingLine(contextText!, tappedHanzi) : null;
                     final effectivePinyin = hasContext
                         ? PinyinHelper.getPinyinE(effectiveSentence!,
                             separator: ' ', format: PinyinFormat.WITH_TONE_MARK)
