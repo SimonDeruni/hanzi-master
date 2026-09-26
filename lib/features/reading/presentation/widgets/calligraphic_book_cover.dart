@@ -166,135 +166,31 @@ class CalligraphicBookCover extends StatelessWidget {
     );
   }
 
-  /// The cover for a poem, drawn entirely in code - no photograph.
-  ///
-  /// The bundled poem artwork is AI-generated, so it is deliberately not used:
-  /// instead the cover is an ink wash by era, the poem's own characters set
-  /// large, the poet beneath them, and a red seal in the corner. That reads as
-  /// a printed Chinese collection and stays sharp at any size.
+  /// The cover for a poem: the same look the story cards use when a story has
+  /// no artwork of its own - a topic gradient with one large character in soft
+  /// gold, here the 詩 of poetry. Drawn in code, so it stays sharp at any size
+  /// and no AI-generated image is involved.
   Widget _buildPoetryCover(BuildContext context, bool isDark) {
-    final List<Color> ink = _getGenreGradient(book.category, isDark);
-    final String hanzi = book.title.trim();
-    final String byline = (book.author.trim().isNotEmpty
-            ? book.author.trim()
-            : book.titleEn.trim())
-        .trim();
-    final bool spacious = width.isFinite && height.isFinite &&
-        width >= 96 && height >= 128;
-
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        // Ink wash, darker at the foot of the cover.
-        DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ink.first.withValues(alpha: 0.95),
-                ink.last,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+    final double side = height.isFinite && height > 0 ? height : width;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: _getGenreGradient(book.category, isDark),
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Center(
+        child: Text(
+          '詩',
+          style: TextStyle(
+            fontSize:
+                (side.isFinite ? side * 0.38 : 48).clamp(18.0, 120.0).toDouble(),
+            height: 1,
+            color: const Color(0xFFD4AF37).withValues(alpha: 0.55),
           ),
         ),
-        // A faint sheet sheen so the ink does not read as a flat block.
-        DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.white.withValues(alpha: 0.07),
-                Colors.transparent,
-                Colors.black.withValues(alpha: 0.18),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: const [0.0, 0.55, 1.0],
-            ),
-          ),
-        ),
-        if (spacious && hanzi.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 14, 12, 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Text(
-                    hanzi,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.96),
-                      fontSize: (width / 5.5).clamp(15.0, 46.0),
-                      fontWeight: FontWeight.w600,
-                      height: 1.25,
-                      letterSpacing: 4,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black.withValues(alpha: 0.45),
-                          blurRadius: 6,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                if (byline.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Text(
-                    byline,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.62),
-                      fontSize: (width / 16).clamp(9.0, 13.0),
-                      letterSpacing: 1.4,
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        // The seal: a red stamp, the way a Chinese collection marks its cover.
-        Positioned(
-          right: spacious ? 10 : 5,
-          bottom: spacious ? 10 : 5,
-          child: Container(
-            width: spacious ? 26 : 14,
-            height: spacious ? 26 : 14,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: const Color(0xFFB3261E),
-              borderRadius: BorderRadius.circular(spacious ? 5 : 3),
-            ),
-            child: Text(
-              '詩',
-              style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.92),
-                fontSize: spacious ? 14 : 8,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ),
-        // Ink border, so the cover reads as a mounted print.
-        Positioned.fill(
-          child: IgnorePointer(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.14),
-                  width: 1,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
