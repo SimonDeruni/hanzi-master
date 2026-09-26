@@ -494,10 +494,15 @@ class StoryFetcherService {
       final results = await Future.wait([
         rootBundle.loadString(chinesePoetryAsset),
         loadLocalizedTitlesById('poetry'),
+        // The same store carries the summaries, keyed by poem id; the loader
+        // reads whichever field it is asked for.
+        loadLocalizedTitlesById('poetry', field: 'summary'),
       ]);
       final jsonString2 = results[0] as String;
       final localizedTitlesById =
           results[1] as Map<String, Map<String, String>>;
+      final localizedSummariesById =
+          results[2] as Map<String, Map<String, String>>;
       final List<dynamic> list2 = json.decode(jsonString2);
       localStories.addAll(list2.map((data) {
         final poetryData = Map<String, dynamic>.from(data as Map);
@@ -507,6 +512,7 @@ class StoryFetcherService {
           title: poetryData['title'] ?? '',
           titleEn: poetryData['title_en'],
           localizedTitles: localizedTitlesById[poemId] ?? const {},
+          localizedSummaries: localizedSummariesById[poemId] ?? const {},
           sourceName: _translateAuthor(rawAuthor),
           link: poemId,
           imageUrl:

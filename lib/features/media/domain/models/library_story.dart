@@ -12,6 +12,12 @@ class LibraryStory {
   final String? imageUrl;
   final String summary;
   final String? summaryEn;
+
+  /// Summaries by language code, for content whose translation lives in
+  /// `assets/data/l10n/<prefix>_<locale>.json` (poems today, keyed the same way
+  /// as [localizedTitles]). Empty for stories, which resolve their summary from
+  /// the story storage instead.
+  final Map<String, String> localizedSummaries;
   final DateTime? pubDate;
   final String category; // e.g. "Idioms", "News", "Fairy Tales"
   final StorySourceType sourceType;
@@ -27,6 +33,7 @@ class LibraryStory {
     this.imageUrl,
     required this.summary,
     this.summaryEn,
+    this.localizedSummaries = const {},
     this.pubDate,
     required this.category,
     required this.sourceType,
@@ -43,6 +50,7 @@ class LibraryStory {
     String? imageUrl,
     String? summary,
     String? summaryEn,
+    Map<String, String>? localizedSummaries,
     DateTime? pubDate,
     String? category,
     StorySourceType? sourceType,
@@ -57,6 +65,7 @@ class LibraryStory {
       imageUrl: imageUrl ?? this.imageUrl,
       summary: summary ?? this.summary,
       summaryEn: summaryEn ?? this.summaryEn,
+      localizedSummaries: localizedSummaries ?? this.localizedSummaries,
       pubDate: pubDate ?? this.pubDate,
       category: category ?? this.category,
       sourceType: sourceType ?? this.sourceType,
@@ -72,5 +81,16 @@ class LibraryStory {
         localizedTitles[languageCode] ??
         titleEn ??
         title;
+  }
+
+  /// The summary in [localeCode]; falls back to the English summary rather than
+  /// the original Chinese, so a missing translation stays readable.
+  String localizedSummary(String localeCode) {
+    final normalizedLocale = localeCode.replaceAll('-', '_').toLowerCase();
+    final languageCode = normalizedLocale.split('_').first;
+    return localizedSummaries[normalizedLocale] ??
+        localizedSummaries[languageCode] ??
+        summaryEn ??
+        summary;
   }
 }

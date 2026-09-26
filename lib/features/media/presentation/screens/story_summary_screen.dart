@@ -355,9 +355,9 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         const SizedBox(height: 12),
                         TappableHanziText(
                           _enrichedSummary ??
-                              (widget.story.summary.isNotEmpty
-                                  ? widget.story.summary
-                                  : (widget.story.summaryEn ?? '')),
+                              widget.story.localizedSummary(
+                                  Localizations.localeOf(context)
+                                      .languageCode),
                           quickLookPresentation:
                               QuickLookPresentation.readingPopover,
                           style: TextStyle(

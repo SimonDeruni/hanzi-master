@@ -1163,7 +1163,7 @@ if (filtered.isEmpty)
     Color primaryText,
   ) {
     const poetryAccent = Color(0xFF8B0000);
-    final book = _poemToBook(poem);
+    final book = _poemToBook(poem, Localizations.localeOf(context).languageCode);
 
     return BouncingButton(
       scaleFactor: 0.96,
@@ -1297,7 +1297,7 @@ if (filtered.isEmpty)
     );
   }
 
-  BookModel _poemToBook(LibraryStory poem) {
+  BookModel _poemToBook(LibraryStory poem, String localeCode) {
     return BookModel(
       id: poem.link,
       title: poem.title,
@@ -1306,7 +1306,9 @@ if (filtered.isEmpty)
       author: poem.sourceName,
       authorEn: poem.sourceName,
       category: poem.category.isNotEmpty ? poem.category : 'Chinese Poetry',
-      description: poem.summary,
+      // Poems carry their localized description in the poetry l10n store, read
+      // by the loader alongside the title; English stays in descriptionEn.
+      description: poem.localizedSummary(localeCode),
       descriptionEn: poem.summaryEn ?? poem.summary,
       dynastyOrEra: 'Tang Dynasty',
       hskLevel: poem.hskLevel,
