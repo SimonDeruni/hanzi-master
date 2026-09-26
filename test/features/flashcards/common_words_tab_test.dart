@@ -44,8 +44,15 @@ void main() {
     });
 
     test('the section is only mounted when it has content', () {
-      expect(screen, contains('if (_hasCommonWords) ...['),
+      // The guard moved from a spread-if in `_buildDetailSections` into
+      // `_detailSectionWidgets` — the single list both arrangements are built
+      // from. The pill list has an `if (_hasCommonWords)` of its own, so anchor
+      // on the guard that actually wraps the Words section.
+      final RegExp guard = RegExp(
+          r'if \(_hasCommonWords\)[\s\S]{0,240}?_buildCommonWordsSection\(');
+      expect(guard.hasMatch(screen), isTrue,
           reason: 'An empty section would leave a dead scroll target');
+      expect(guard.firstMatch(screen)!.group(0), contains('_wordsKey'));
     });
 
     test('pills and sections share one ordered key list', () {
@@ -54,7 +61,8 @@ void main() {
       // Both navigation paths must use the visible keys, not a fixed list.
       expect(screen, contains('final keys = _visibleSectionKeys;'));
       expect(screen, isNot(contains('_sectionKeys[index]')),
-          reason: 'Indexing a fixed key list desynchronises after hiding a pill');
+          reason:
+              'Indexing a fixed key list desynchronises after hiding a pill');
     });
   });
 

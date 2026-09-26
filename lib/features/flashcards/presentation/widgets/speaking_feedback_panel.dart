@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// The result of a spoken attempt, at the same depth the live call and the

@@ -11,6 +11,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class CourseScreen extends ConsumerWidget {
   final String deckId;
@@ -104,7 +105,7 @@ class CourseScreen extends ConsumerWidget {
 
                 viewItems.add(const SizedBox(height: 200));
 
-                return CustomScrollView(
+                return ZenFadeIn(child: CustomScrollView(
                   cacheExtent: 500,
                   physics: const BouncingScrollPhysics(),
                   slivers: [
@@ -135,7 +136,7 @@ class CourseScreen extends ConsumerWidget {
                       ),
                     ),
                   ],
-                );
+                ));
               },
               loading: () =>
                   const Center(child: ZenLoader(color: Colors.brown)),
@@ -155,7 +156,7 @@ class CourseScreen extends ConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const CircularProgressIndicator(color: Colors.white),
+                        const ZenLoader(color: Colors.white),
                         const SizedBox(height: 16),
                         Text(
                             l10n?.initializingLibrary ??
@@ -177,9 +178,10 @@ class CourseScreen extends ConsumerWidget {
         onPressed: () {
           final cards = ref.read(flashcardControllerProvider).value ?? [];
           if (cards.length < 4) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(l10n?.unlockCharactersToQuiz ??
-                    AppLocalizations.of(context)!.unlockCharactersToQuiz)));
+            ZenToast.info(
+                context,
+                l10n?.unlockCharactersToQuiz ??
+                    AppLocalizations.of(context)!.unlockCharactersToQuiz);
             return;
           }
           Navigator.push(

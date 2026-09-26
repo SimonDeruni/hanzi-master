@@ -602,7 +602,7 @@ class _DailyDiscoveryCarouselState
           final visibleItems = AppFeatures.youtubeMedia
               ? items
               : items.where((i) => i.tag != 'VIDEO OF THE DAY').toList();
-          return PageView.builder(
+          return ZenFadeIn(child: PageView.builder(
             controller: _pageController,
             physics: const BouncingScrollPhysics(),
             itemCount: visibleItems.length,
@@ -626,7 +626,7 @@ class _DailyDiscoveryCarouselState
                 },
               );
             },
-          );
+          ));
         },
         loading: () => const Center(child: ZenLoader()),
         error: (err, stack) => Center(

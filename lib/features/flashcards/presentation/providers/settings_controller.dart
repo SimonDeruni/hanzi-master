@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/core/localization/app_locale_policy.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
 
 // 1. THE STATE CLASS (What we remember)

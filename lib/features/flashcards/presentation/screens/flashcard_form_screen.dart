@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import '../../domain/entities/flashcard.dart';
 import '../providers/flashcard_controller.dart';
-import '../utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 

@@ -59,6 +59,9 @@ void main() {
       expect(ZenMotion.stagger, const Duration(milliseconds: 50));
       expect(ZenMotion.beat, const Duration(milliseconds: 100));
       expect(ZenMotion.shake, const Duration(milliseconds: 500));
+      // Added 2026-09-25 with `ZenExit`: the vocabulary had an entrance but no
+      // exit, so a button-driven removal was a hard cut.
+      expect(ZenMotion.exit, const Duration(milliseconds: 250));
 
       // The only five permitted curves.
       expect(ZenMotion.natural, Curves.easeInOutQuart);
@@ -77,6 +80,7 @@ void main() {
         ZenMotion.quick,
         ZenMotion.pageReverse,
         ZenMotion.page,
+        ZenMotion.exit,
       ];
       for (final Duration duration in interfaceMotions) {
         expect(duration.inMilliseconds, greaterThanOrEqualTo(130));

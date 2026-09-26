@@ -1,3 +1,6 @@
+@Tags(<String>['locale-sweep'])
+library;
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -120,7 +123,11 @@ void main() {
       'lib/features/flashcards/presentation/screens/deck_detail_screen.dart',
     ).readAsStringSync();
 
-    expect(source, contains('DeckStatsView(deckId: widget.deck.id)'));
+    expect(source, contains('DeckStatsView('));
+    expect(source, contains('deckId: widget.deck.id'));
+    // …and it names the deck, so the tab's numbers are visibly that deck's and
+    // not the library's.
+    expect(source, contains('deckName:'));
     expect(source, isNot(contains('StatsScreen(deckId: widget.deck.id)')));
   });
 

@@ -7,6 +7,22 @@ import 'package:hanzi_master/core/services/api_key_pool.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:http/testing.dart';
 
+/// A pool that always reports a configured key.
+///
+/// `GeminiService._isConfiguredKey` gates the AI call **before** the injected
+/// `httpClient` is ever reached, so the pool's value is emphatically *not*
+/// irrelevant. This test used to pass only because `ApiKeyPool` shipped a
+/// committed fallback key as its last resort; deleting that leak on 2026-09-26
+/// turned these three tests red, which is how the hidden dependency surfaced.
+/// A test must never borrow a real credential - inject one.
+class _ConfiguredKeyPool extends ApiKeyPool {
+  @override
+  String get nextKey => 'test-key';
+
+  @override
+  String get googleKey => 'test-key';
+}
+
 /// Guards the length-preservation contract of article simplification.
 ///
 /// Bug: the prompt only said "do not omit major information" and the retry
@@ -29,9 +45,9 @@ void main() {
       );
     });
     return GeminiService(
-      // No real network happens because httpClient is injected, so the pool's
-      // key value is irrelevant here.
-      pool: ApiKeyPool(),
+      // No real network happens: the injected client is a mock, and the key is a
+      // literal that exists only inside this test process.
+      pool: _ConfiguredKeyPool(),
       analytics: AnalyticsService(),
       httpClient: client,
     );

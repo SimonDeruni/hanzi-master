@@ -104,8 +104,20 @@ class StudyQueueBuilder {
     final neverIntroducedNew = <Flashcard>[];
     for (final card in cards) {
       if (!card.getStatsForMode(mode).isNew) continue;
-      if (modeIntroducedCardIds?.contains(card.id) ?? false) continue;
-      if (introducedToday.contains(card.id)) {
+
+      // Reserved today — in this mode or in another one — but never actually
+      // studied. Reserving writes the day's `introducedCardIds` and this mode's
+      // `modeIntroductionKeys`, never `attempts`, so such a card is *still*
+      // `isNew` here. It must therefore stay in the queue as an
+      // already-introduced card: dropping it made every card of an abandoned
+      // session unreachable for the rest of the day, so a session left after its
+      // first word served exactly that one word when it was reopened ("it stops
+      // after only one card"). It carries no allowance either way — its quota
+      // was spent when it was reserved — and its `introducedAt` is already
+      // today, so it is not introduced a second time.
+      final bool alreadyIntroduced = introducedToday.contains(card.id) ||
+          (modeIntroducedCardIds?.contains(card.id) ?? false);
+      if (alreadyIntroduced) {
         alreadyIntroducedNew.add(card);
       } else {
         neverIntroducedNew.add(card);

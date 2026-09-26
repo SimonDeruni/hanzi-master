@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/cross_reference_text.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';

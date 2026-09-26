@@ -14,7 +14,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/study_sess
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/waveform_painter.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';

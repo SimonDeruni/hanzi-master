@@ -1,12 +1,16 @@
 """Audit ARB translations for label expansion (width risk in fixed-size buttons).
 
-Usage:  python scratch/arb_expansion_audit.py
+Usage:  python scratch/arb_expansion_audit.py [--out PATH]
 Reads lib/l10n/app_*.arb and reports, per locale, how much longer translated
 label strings get compared to English.
+
+`--out` writes the report somewhere other than the default
+`scratch/arb_expansion_report.txt`, so CI can keep it as a build artifact.
 """
 import json
 import pathlib
 import re
+import sys
 
 L10N = pathlib.Path(__file__).resolve().parent.parent / "lib" / "l10n"
 
@@ -36,6 +40,7 @@ PLACEHOLDER = re.compile(r"\{[^}]*\}")
 
 def main():
     out = []
+
     def emit(line=""):
         out.append(line)
 
@@ -83,7 +88,12 @@ def main():
             emit(f"          {k}: \"{base}\" -> \"{loc_text}\"  ({r:.1f}x)")
         emit()
 
-    report = L10N.parent.parent / "scratch" / "arb_expansion_report.txt"
+    report = pathlib.Path(__file__).resolve().parent / "arb_expansion_report.txt"
+    if "--out" in sys.argv:
+        index = sys.argv.index("--out")
+        if index + 1 < len(sys.argv):
+            report = pathlib.Path(sys.argv[index + 1]).resolve()
+    report.parent.mkdir(parents=True, exist_ok=True)
     report.write_text("\n".join(out), encoding="utf-8")
     print(f"Report written to {report} ({len(out)} lines)")
 

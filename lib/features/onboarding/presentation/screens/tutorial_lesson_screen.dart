@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 class TutorialLessonScreen extends ConsumerStatefulWidget {
   const TutorialLessonScreen({
@@ -103,7 +104,7 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircularProgressIndicator(color: theme.colorScheme.primary),
+                ZenLoader(color: theme.colorScheme.primary),
                 const SizedBox(height: 16),
                 Text(
                   AppLocalizations.of(context)!.openingTheOriginScroll,
@@ -139,16 +140,12 @@ class _TutorialLessonScreenState extends ConsumerState<TutorialLessonScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             _buildIntroStep(),
-            _buildDrawingStep(
-                l10n.theHorizontalStroke,
-                l10n.tutorialOneExplanation,
-                _cardOne!),
+            _buildDrawingStep(l10n.theHorizontalStroke,
+                l10n.tutorialOneExplanation, _cardOne!),
             _buildRadicalExplanationStep(),
             _buildConstellationExplanationStep(),
             _buildDrawingStep(
-                l10n.theRadical,
-                l10n.tutorialWaterExplanation,
-                _cardWater!),
+                l10n.theRadical, l10n.tutorialWaterExplanation, _cardWater!),
             _buildFinaleStep(),
           ],
         ),

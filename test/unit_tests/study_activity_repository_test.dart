@@ -130,8 +130,16 @@ void main() {
 
     final reserved =
         queues.expand((queue) => queue.cards).map((card) => card.id);
+    // The shared daily limit caps how many DISTINCT new cards a day hands out.
     expect(reserved.toSet(), hasLength(2));
-    expect(reserved.length, 2);
+    // The second reservation re-offers the two cards the first one reserved.
+    // That is deliberate: they were reserved, never studied, so hiding them made
+    // a reopened session serve only the card that had already been graded ("it
+    // stops after only one card"). It must never mint a third, though — `three`
+    // is beyond the limit and stays unoffered.
+    expect(reserved, isNot(contains('three')));
+    expect(queues.first.cards, hasLength(2));
+    expect(queues.last.cards, hasLength(2));
   });
 
   test('abandoning a reserved review does not consume the daily allowance',

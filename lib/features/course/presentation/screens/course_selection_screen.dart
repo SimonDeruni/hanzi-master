@@ -10,6 +10,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
@@ -60,7 +61,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                       AppLocalizations.of(context)!.noDecksFound));
             }
 
-            return ListView.separated(
+            return ZenFadeIn(child: ListView.separated(
               padding: const EdgeInsets.fromLTRB(24, 120, 24, 40),
               itemCount: decks.length,
               separatorBuilder: (context, index) => const SizedBox(height: 20),
@@ -84,9 +85,10 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                   isGenerating: isGenerating,
                   onTap: () async {
                     if (cardCount == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(l10n?.addCardsFirst ??
-                              AppLocalizations.of(context)!.addCardsFirst)));
+                      ZenToast.info(
+                          context,
+                          l10n?.addCardsFirst ??
+                              AppLocalizations.of(context)!.addCardsFirst);
                       return;
                     }
 
@@ -102,7 +104,8 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                     } else {
                       if (isGenerating) return;
 
-                      final consented = await AiConsentSheet.ensureConsent(context);
+                      final consented =
+                          await AiConsentSheet.ensureConsent(context);
                       if (!consented || !context.mounted) return;
 
                       // Add to background queue
@@ -116,7 +119,7 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const CircularProgressIndicator(),
+                              const ZenLoader(),
                               const SizedBox(height: 16),
                               Text(l10n?.aiDraftingPath ??
                                   AppLocalizations.of(context)!.aiDraftingPath),
@@ -136,32 +139,26 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
 
                         if (mounted && context.mounted) {
                           Navigator.pop(context); // Close dialog
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text(AppLocalizations.of(context)!
-                                    .your_path_for_is_ready(
-                                        deck.localizedName(context))),
-                                backgroundColor: Colors.green.shade700),
-                          );
+                          ZenToast.success(
+                              context,
+                              AppLocalizations.of(context)!
+                                  .your_path_for_is_ready(
+                                      deck.localizedName(context)));
                         }
                       } catch (e) {
                         await Future.delayed(Duration.zero);
                         ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
                         if (mounted && context.mounted) {
                           Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text(
-                                    "${l10n?.errorGeneratingPath ?? AppLocalizations.of(context)!.errorGeneratingPath}: $e"),
-                                backgroundColor: Colors.red),
-                          );
+                          ZenToast.error(context,
+                              "${l10n?.errorGeneratingPath ?? AppLocalizations.of(context)!.errorGeneratingPath}: $e");
                         }
                       }
                     }
                   },
                 );
               },
-            );
+            ));
           },
           loading: () => const Center(child: ZenLoader()),
           error: (err, stack) =>
@@ -296,8 +293,7 @@ class _CourseCard extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const CircularProgressIndicator(
-                            color: Colors.brown, strokeWidth: 3),
+                        const ZenLoader(color: Colors.brown, strokeWidth: 3),
                         const SizedBox(height: 8),
                         Text(
                             AppLocalizations.of(context)?.brushingCurriculum ??

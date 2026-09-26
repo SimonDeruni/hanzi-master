@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 /// The tone of a [ZenToast]: which accent, icon and semantic colour it wears.
 enum ZenToastTone { success, error, info }
@@ -71,9 +72,17 @@ class ZenToast {
   static void success(BuildContext context, String message) =>
       show(context, message, tone: ZenToastTone.success);
 
-  /// A failed action: Cinnabar alert.
-  static void error(BuildContext context, String message) =>
-      show(context, message, tone: ZenToastTone.error);
+  /// A failed action: Cinnabar alert, and a refusal you can feel.
+  ///
+  /// The tone is already the app's way of saying "no", so the haptic belongs
+  /// here rather than at each of the call sites. That is the whole point: the
+  /// app had **22** error-toast call sites and exactly **one** haptic refusal,
+  /// because the buzz was being forgotten at every site and is impossible to
+  /// forget in the one place they all pass through.
+  static void error(BuildContext context, String message) {
+    HapticsManager.error();
+    show(context, message, tone: ZenToastTone.error);
+  }
 
   /// A neutral hint: the canonical app accent.
   static void info(BuildContext context, String message) =>

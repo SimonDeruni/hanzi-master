@@ -51,7 +51,7 @@ class _SimplifiedArticleReaderScreenState
         title: Text(
           l10n.simplifiedArticle,
           style: TextStyle(
-            fontFamily: l10n.serif,
+            fontFamily: 'NotoSerifSC',
             fontWeight: FontWeight.bold,
             color: textColor,
           ),
@@ -147,7 +147,6 @@ class _SimplifiedArticleReaderScreenState
     AiSentence sentence,
     bool isDark,
   ) {
-    final l10n = AppLocalizations.of(context)!;
     final textColor =
         isDark ? const Color(0xFFDADADA) : const Color(0xFF1A1A1B);
     final accent = AppTheme.accentOf(context);
@@ -194,7 +193,7 @@ class _SimplifiedArticleReaderScreenState
           Text.rich(
             TextSpan(children: spans),
             style: TextStyle(
-              fontFamily: l10n.serif,
+              fontFamily: 'NotoSerifSC',
               fontSize: 22,
               height: 1.8,
               color: textColor,
@@ -272,7 +271,6 @@ class _TappableWord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final hasChinese = RegExp(r'[\u4e00-\u9fa5]').hasMatch(word.hanzi);
 
     // Pinyin and meanings only apply to real Chinese words.
@@ -299,7 +297,7 @@ class _TappableWord extends StatelessWidget {
           Text(
             word.hanzi,
             style: TextStyle(
-              fontFamily: l10n.serif,
+              fontFamily: 'NotoSerifSC',
               fontSize: 22,
               height: 1.35,
               color: isSelected ? accent : textColor,

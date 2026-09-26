@@ -65,7 +65,12 @@ void main() {
       expect(
           flowSource, contains('final added = await DeckSelectionSheet.show'),
           reason: 'The picker result must be awaited');
-      expect(flowSource, contains('if (added == true)'),
+      // The branch itself moved into the shared `_addSelectedWordsToDeck`
+      // helper, which reports the verdict the loop terminates on — so the sheet
+      // and the iPad side pane cannot drift apart.
+      expect(flowSource, contains('return added == true;'),
+          reason: 'Saving must be reported as complete');
+      expect(flowSource, contains('if (await _addSelectedWordsToDeck('),
           reason: 'Saving must terminate the flow');
     });
 
@@ -81,8 +86,16 @@ void main() {
     test('the loop exits cleanly when the user cancels out', () {
       expect(flowSource, contains('if (selectedWords == null'),
           reason: 'Dismissing the review sheet must end the loop');
-      expect(flowSource, contains('if (!mounted) return;'),
+      // The picker call and its `mounted` guard moved into the shared
+      // `_addSelectedWordsToDeck` helper (so the iPad side pane and the sheet
+      // use one implementation); it still lives inside this slice, and the loop
+      // still consumes its verdict.
+      expect(flowSource, contains('if (!mounted) return'),
           reason: 'Widget context must be guarded across async gaps');
+      expect(flowSource, contains('return added == true;'),
+          reason: 'The helper must report whether the words were saved');
+      expect(flowSource, contains('if (await _addSelectedWordsToDeck('),
+          reason: 'Saving must terminate the flow');
     });
   });
 }

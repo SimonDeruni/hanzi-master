@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class HanziTextField extends StatefulWidget {
@@ -94,7 +94,7 @@ class _HanziTextFieldState extends State<HanziTextField> {
         splashRadius: 18,
         tooltip: AppLocalizations.of(context)!.clear,
         onPressed: () {
-          HapticFeedback.lightImpact();
+          HapticsManager.light();
           widget.controller.clear();
           widget.onChanged?.call('');
         },

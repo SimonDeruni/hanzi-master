@@ -4,7 +4,7 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/review_stats.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 

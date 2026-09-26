@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/auth/domain/repositories/auth_repository.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 typedef AccountDeletionCallback = Future<void> Function(String? password);
 
@@ -78,6 +80,10 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
       ),
     );
     if (confirmed != true || !mounted) return;
+
+    // The one irreversible action in the app, so it gets the one impact that is
+    // not a Taptic tap: a confirmation that cannot read as an ordinary press.
+    HapticsManager.destructive();
 
     setState(() {
       _isDeleting = true;
@@ -227,15 +233,12 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
                 minimumSize: const Size.fromHeight(52),
               ),
               onPressed: _isDeleting ? null : _confirmDeletion,
-              icon: _isDeleting
-                  ? const SizedBox.square(
-                      dimension: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Colors.white,
-                      ),
-                    )
-                  : const Icon(Icons.delete_forever),
+              icon: LoadingSwap(
+                isLoading: _isDeleting,
+                icon: const Icon(Icons.delete_forever),
+                size: 20,
+                spinnerColor: Colors.white,
+              ),
               label: Text(_isDeleting
                   ? l10n.deletingAccount
                   : l10n.deleteAccountPermanently),

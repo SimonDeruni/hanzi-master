@@ -25,7 +25,11 @@ void main() {
     test('uses the same reading column as the browser', () {
       expect(source, contains('BoxConstraints(maxWidth: 800)'),
           reason: "Zen mode uses max-width: 800px");
-      expect(source, contains('fontFamily: l10n.serif'),
+      // The family is now the bundled OFL serif rather than a name routed
+      // through l10n, where a translator editing a string could have changed
+      // the typography. `test/core/typography_guard_test.dart` proves that the
+      // family it names is actually declared and shipped.
+      expect(source, contains("fontFamily: 'NotoSerifSC'"),
           reason: 'The reading mode is serif');
       expect(paragraphSource, contains('fontSize: 22'),
           reason: 'Zen mode body text is 22px');

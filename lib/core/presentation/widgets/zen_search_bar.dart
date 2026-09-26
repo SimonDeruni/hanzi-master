@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// A unified, calligraphic search bar adhering to the Zen & Ink aesthetic.
@@ -149,7 +149,7 @@ class _ZenSearchBarState extends State<ZenSearchBar> {
               splashRadius: 18,
               tooltip: AppLocalizations.of(context)!.clear,
               onPressed: () {
-                HapticFeedback.lightImpact();
+                HapticsManager.light();
                 widget.controller.clear();
                 widget.onChanged?.call('');
                 widget.onClear?.call();

@@ -10,6 +10,8 @@ import 'package:hanzi_master/main.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   final bool requireSubscription;
@@ -55,23 +57,17 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         );
       } else {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(l10n?.noActiveSubscriptionFound ??
-                  "No active subscription found."),
-            ),
-          );
+          ZenToast.error(
+              context,
+              l10n?.noActiveSubscriptionFound ??
+                  "No active subscription found.");
         }
       }
     } catch (e) {
       debugPrint("Restore error: $e");
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n?.noActiveSubscriptionFound ??
-                "No active subscription found."),
-          ),
-        );
+        ZenToast.error(context,
+            l10n?.noActiveSubscriptionFound ?? "No active subscription found.");
       }
     } finally {
       if (mounted) {
@@ -175,6 +171,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         );
       } else {
         if (!_acceptTerms) {
+          HapticsManager.error();
           setState(() {
             _errorMessage = l10n?.youMustAccount ??
                 "You must accept the Terms of Service and Privacy Policy to create an account.";
@@ -216,6 +213,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         }
       }
     } on FirebaseAuthException catch (e) {
+      // One refusal for every credential rejection the switch below maps, rather
+      // than one per case: a wrong password and a locked account are the same
+      // "no" to the person holding the phone.
+      HapticsManager.error();
       if (mounted) {
         setState(() {
           switch (e.code) {
@@ -398,7 +399,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w900,
-            fontFamily: 'Serif',
+            fontFamily: 'NotoSerifSC',
             color: isDark ? Colors.white : Colors.black87,
           ),
         ),
@@ -621,7 +622,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w900,
-            fontFamily: 'Serif',
+            fontFamily: 'NotoSerifSC',
             color: isDark ? Colors.white : Colors.black87,
           ),
         ),

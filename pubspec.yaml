@@ -129,13 +129,23 @@ flutter:
     - third_party/chinese-poetry-LICENSE
     - assets/default_stories.json
     - assets/mascot/
+    # The OFL licence must travel with the font it covers; the font files
+    # themselves are declared under `fonts:` below, not here.
+    - assets/fonts/OFL.txt
 
-#  fonts:
-#    - family: NotoSansSC
-#      fonts:
-#        - asset: assets/fonts/NotoSansSC-Regular.ttf
-#        - asset: assets/fonts/NotoSansSC-Bold.ttf
-#          weight: 700
+  # `NotoSerifSC` is the family this app has always *asked* for - 60
+  # declarations across ~30 files - and never bundled: this block was commented
+  # out, so every one of those sites silently fell back to the platform font and
+  # the calligraphic identity never shipped. The two files below are OFL subsets
+  # built by `scratch/build_font_subset.py` from Noto Serif SC, and they cover
+  # the taught inventory, the dictionary, the reading room, pinyin tone marks and
+  # the punctuation the UI prints. Licence: assets/fonts/OFL.txt.
+  fonts:
+    - family: NotoSerifSC
+      fonts:
+        - asset: assets/fonts/NotoSerifSC-Regular.ttf
+        - asset: assets/fonts/NotoSerifSC-Bold.ttf
+          weight: 700
 
 flutter_icons:
   android: "launcher_icon"

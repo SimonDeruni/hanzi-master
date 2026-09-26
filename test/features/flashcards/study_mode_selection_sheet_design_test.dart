@@ -1,3 +1,6 @@
+@Tags(<String>['locale-sweep'])
+library;
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';

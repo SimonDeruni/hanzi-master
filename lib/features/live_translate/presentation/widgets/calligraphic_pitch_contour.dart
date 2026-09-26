@@ -1,13 +1,19 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 /// A Zen & Ink calligraphic pitch contour canvas.
 ///
-/// Draws the target tone contour curve progressively like an authentic
-/// Chinese brush stroke over 750ms with [ZenMotion.natural], and
-/// overlays the student's tone pitch to show acoustic divergence.
+/// The target tone contour is laid down left-to-right like an authentic Chinese
+/// brush stroke over [ZenMotion.quick] with [ZenMotion.enter] rather than
+/// popping in complete, and the student's tone pitch is overlaid to show
+/// acoustic divergence.
+///
+/// Only a genuinely new contour replays the stroke — a parent that streams the
+/// same contour back leaves the running trace alone. See
+/// [_CalligraphicPitchContourState._shouldReplay] for the exact rule.
 class CalligraphicPitchContour extends StatefulWidget {
   final int expectedTone; // 1, 2, 3, 4 (or 0/5 for neutral)
   final int? actualTone;
@@ -23,7 +29,7 @@ class CalligraphicPitchContour extends StatefulWidget {
     this.height = 130,
     this.isCompact = false,
     this.autoAnimate = true,
-    this.duration = ZenMotion.page,
+    this.duration = ZenMotion.quick,
   });
 
   @override
@@ -36,43 +42,101 @@ class _CalligraphicPitchContourState extends State<CalligraphicPitchContour>
   late AnimationController _controller;
   late Animation<double> _animation;
 
+  /// The student's divergent tone currently inked, or null while the painter
+  /// draws no comparison curve. Tracked so "the student's curve appeared" can be
+  /// told apart from "the student's curve is still streaming".
+  int? _studentCurve;
+
   @override
   void initState() {
     super.initState();
+    _studentCurve = _divergentStudentCurve(widget);
     _controller = AnimationController(
       vsync: this,
       duration: widget.duration,
+      // 0.0 = no ink yet, 1.0 = the finished contour. The ticker is *not*
+      // started here: `initState` has no usable `MediaQuery`, so Reduce Motion
+      // cannot be honoured yet. `didChangeDependencies` starts or snaps it.
       value: widget.autoAnimate ? 0.0 : 1.0,
     );
     _animation = CurvedAnimation(
       parent: _controller,
-      curve: ZenMotion.natural,
+      curve: ZenMotion.enter,
     );
+  }
 
-    if (widget.autoAnimate) {
-      _controller.forward();
+  /// [widget]'s actual tone, but only when the painter inks a comparison curve.
+  ///
+  /// Mirrors the painter's own condition: a dashed student trace is drawn only
+  /// when the student's tone exists in Mandarin (1-4) and differs from the
+  /// target. Null therefore means "this contour carries no second curve".
+  static int? _divergentStudentCurve(CalligraphicPitchContour widget) {
+    final int? actual = widget.actualTone;
+    if (actual == null || actual <= 0 || actual == widget.expectedTone) {
+      return null;
     }
+    return actual;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Reduced motion: present the finished contour instead of tracing it.
-    if (context.reduceMotion && _controller.value != 1.0) {
-      _controller.value = 1.0;
-    }
+    // Motion is resolved here, never in `initState`: a controller may only read
+    // the platform preference once its inherited dependencies are wired up.
+    // Under Reduce Motion this snaps the reveal to the finished contour and
+    // stops the ticker, so the stroke is complete on the very first frame with
+    // nothing animating; otherwise it starts the one-shot trace.
+    MotionResolution.resolve(
+      context,
+      controller: _controller,
+      staticValue: 1.0,
+    ).apply();
+  }
+
+  /// Whether [widget] carries a genuinely *new* contour that must be re-traced.
+  ///
+  /// This widget is rebuilt by parents that stream a contour in — the tone
+  /// comparison sheet re-renders while a grade lands, and the compact tone
+  /// badges rebuild as playback state changes. Restarting the reveal on every
+  /// such rebuild would reset it to 0 mid-stroke and make the line strobe, so
+  /// the rule keys on the *identity* of the ink, not on the rebuild:
+  ///
+  /// * a different [CalligraphicPitchContour.expectedTone] is new ink — replay;
+  /// * a divergent student curve appearing where the previous contour was empty
+  ///   (no [CalligraphicPitchContour.actualTone], the same tone as the target,
+  ///   or a neutral 0/5) is new ink — replay;
+  /// * [CalligraphicPitchContour.autoAnimate] rising false -> true is the
+  ///   caller explicitly asking to audition the tone again — replay.
+  ///
+  /// Everything else — the same contour arriving again, a student curve that
+  /// merely *shifts* between two divergent tones, and updates that land while
+  /// the stroke is still in flight — leaves the running animation untouched.
+  bool _shouldReplay(CalligraphicPitchContour oldWidget, int? studentCurve) {
+    if (widget.expectedTone != oldWidget.expectedTone) return true;
+    if (_studentCurve == null && studentCurve != null) return true;
+    if (widget.autoAnimate && !oldWidget.autoAnimate) return true;
+    return false;
   }
 
   @override
   void didUpdateWidget(covariant CalligraphicPitchContour oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.expectedTone != oldWidget.expectedTone ||
-        widget.actualTone != oldWidget.actualTone) {
-      if (context.reduceMotion) {
-        _controller.value = 1.0;
-      } else {
-        _controller.forward(from: 0.0);
-      }
+
+    if (widget.duration != oldWidget.duration) {
+      _controller.duration = widget.duration;
+    }
+
+    final int? studentCurve = _divergentStudentCurve(widget);
+    final bool replay = _shouldReplay(oldWidget, studentCurve);
+    _studentCurve = studentCurve;
+
+    if (!replay) return;
+
+    // Reduced motion: present the finished contour instead of tracing it.
+    if (context.reduceMotion) {
+      _controller.value = 1.0;
+    } else {
+      _controller.forward(from: 0.0);
     }
   }
 
@@ -104,7 +168,7 @@ class _CalligraphicPitchContourState extends State<CalligraphicPitchContour>
           painter: _PitchContourPainter(
             expectedTone: widget.expectedTone,
             actualTone: widget.actualTone,
-            progress: _animation.value,
+            reveal: _animation.value,
             isDark: isDark,
             isCompact: widget.isCompact,
           ),
@@ -115,16 +179,25 @@ class _CalligraphicPitchContourState extends State<CalligraphicPitchContour>
 }
 
 class _PitchContourPainter extends CustomPainter {
+  /// Arc-length samples taken along one contour for the reveal sweep.
+  ///
+  /// Dense enough that the interpolated brush head never reads as a corner,
+  /// cheap enough to walk twice per frame.
+  static const int _revealSamples = 96;
+
   final int expectedTone;
   final int? actualTone;
-  final double progress;
+
+  /// How much of the contour is inked: 0 = nothing, 1 = complete.
+  final double reveal;
+
   final bool isDark;
   final bool isCompact;
 
   _PitchContourPainter({
     required this.expectedTone,
     this.actualTone,
-    required this.progress,
+    this.reveal = 1.0,
     required this.isDark,
     required this.isCompact,
   });
@@ -194,7 +267,7 @@ class _PitchContourPainter extends CustomPainter {
       _drawCalligraphicTrace(
         canvas: canvas,
         path: studentPath,
-        progress: math.min(1.0, progress * 1.1),
+        reveal: math.min(1.0, reveal * 1.1),
         color: studentColor,
         isDashed: true,
         baseStrokeWidth: isCompact ? 2.5 : 3.5,
@@ -216,11 +289,11 @@ class _PitchContourPainter extends CustomPainter {
     _drawCalligraphicTrace(
       canvas: canvas,
       path: targetPath,
-      progress: progress,
+      reveal: reveal,
       color: targetColor,
       isDashed: false,
       baseStrokeWidth: isCompact ? 3.0 : 4.5,
-      drawBrushTip: !isCompact && progress > 0.02 && progress < 0.98,
+      drawBrushTip: !isCompact && reveal > 0.02 && reveal < 0.98,
     );
   }
 
@@ -298,20 +371,31 @@ class _PitchContourPainter extends CustomPainter {
   }
 
   /// Draws a progressive calligraphic brush stroke along the path.
+  ///
+  /// Only the first [reveal] fraction of [path]'s arc length is inked, ending on
+  /// a point interpolated between the two samples that straddle the cut-off, so
+  /// the head of the line travels smoothly along the curve instead of snapping
+  /// sample to sample.
   void _drawCalligraphicTrace({
     required Canvas canvas,
     required Path path,
-    required double progress,
+    required double reveal,
     required Color color,
     required bool isDashed,
     required double baseStrokeWidth,
     bool drawBrushTip = false,
   }) {
-    if (progress <= 0.0) return;
+    final double inked = reveal.clamp(0.0, 1.0);
+    if (inked <= 0.0) return;
 
     for (final metric in path.computeMetrics()) {
-      final currentLength = metric.length * progress.clamp(0.0, 1.0);
-      final subPath = metric.extractPath(0.0, currentLength);
+      final List<Offset> samples = _revealedSamples(metric, inked);
+      if (samples.length < 2) continue;
+
+      final subPath = Path()..moveTo(samples.first.dx, samples.first.dy);
+      for (int i = 1; i < samples.length; i++) {
+        subPath.lineTo(samples[i].dx, samples[i].dy);
+      }
 
       final strokePaint = Paint()
         ..color = color
@@ -339,20 +423,63 @@ class _PitchContourPainter extends CustomPainter {
 
         // Draw brush tip droplet at the moving front
         if (drawBrushTip) {
-          final tangent = metric.getTangentForOffset(currentLength);
-          if (tangent != null) {
-            final tipPaint = Paint()
-              ..color = color
-              ..style = PaintingStyle.fill;
-            canvas.drawCircle(
-              tangent.position,
-              baseStrokeWidth * 0.75,
-              tipPaint,
-            );
-          }
+          final tipPaint = Paint()
+            ..color = color
+            ..style = PaintingStyle.fill;
+          canvas.drawCircle(
+            samples.last,
+            baseStrokeWidth * 0.75,
+            tipPaint,
+          );
         }
       }
     }
+  }
+
+  /// The inked polyline of [metric]: whole samples up to [reveal], plus a head
+  /// interpolated across the cut-off.
+  ///
+  /// Samples sit at even arc-length stations, so the walk is a
+  /// left-to-right brush stroke for a pitch contour (its x advances
+  /// monotonically). When the cut-off falls between two stations — which it
+  /// almost always does — the head is `lerp`-ed between them; stopping at the
+  /// last whole sample instead would visibly step the tip forward once per
+  /// sample.
+  List<Offset> _revealedSamples(ui.PathMetric metric, double reveal) {
+    final double length = metric.length;
+    if (length <= 0) return const <Offset>[];
+
+    final double step = length / _revealSamples;
+    final double reach = length * reveal;
+    final List<Offset> samples = <Offset>[];
+
+    for (int i = 0; i < _revealSamples; i++) {
+      final double from = step * i;
+      final Offset? fromPoint = metric.getTangentForOffset(from)?.position;
+      if (fromPoint == null) break;
+
+      if (from + step <= reach) {
+        samples.add(fromPoint);
+        continue;
+      }
+
+      // The cut-off lands inside this segment: interpolate between the two
+      // samples that straddle it so the head is a true point on the curve.
+      final Offset? toPoint =
+          metric.getTangentForOffset(from + step)?.position;
+      if (toPoint == null) break;
+      samples.add(
+        Offset.lerp(fromPoint, toPoint, (reach - from) / step) ?? fromPoint,
+      );
+      return samples;
+    }
+
+    // A complete reveal closes on the real end of the contour.
+    if (reach >= length) {
+      final Offset? end = metric.getTangentForOffset(length)?.position;
+      if (end != null) samples.add(end);
+    }
+    return samples;
   }
 
   void _drawDashedLine(
@@ -401,7 +528,7 @@ class _PitchContourPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _PitchContourPainter oldDelegate) {
-    return oldDelegate.progress != progress ||
+    return oldDelegate.reveal != reveal ||
         oldDelegate.expectedTone != expectedTone ||
         oldDelegate.actualTone != actualTone ||
         oldDelegate.isDark != isDark ||

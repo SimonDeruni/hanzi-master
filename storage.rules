@@ -1,0 +1,14 @@
+rules_version = '2';
+
+// The speech cache is written and read by Cloud Functions only, and the Admin
+// SDK bypasses these rules entirely. No client ever needs direct access, so
+// denying everything is the safest setting available: the bucket cannot be
+// listed, written to, or abused as free file hosting by anyone but the server.
+// It also means the cache cannot be poisoned from a modified app.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

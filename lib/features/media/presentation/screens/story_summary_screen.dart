@@ -13,6 +13,7 @@ import '../../../../shared/widgets/tappable_hanzi_text.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../../shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// The first screen of a story.
@@ -203,9 +204,16 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                   //    badge row below, so the cover stays clean.
                   ZenFadeIn(
                     child: Center(
-                      child: StoryCoverArt(
-                        story: widget.story,
-                        showSourceBadge: false,
+                      // Receives the daily-story card's flight from the library
+                      // (`HeroTransition.heroTag('story_library', link)`).
+                      child: HeroTransition.wrap(
+                        context: context,
+                        tag: HeroTransition.heroTag(
+                            'story_library', widget.story.link),
+                        child: StoryCoverArt(
+                          story: widget.story,
+                          showSourceBadge: false,
+                        ),
                       ),
                     ),
                   ),

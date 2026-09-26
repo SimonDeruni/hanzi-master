@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 /// A Zen & Ink 3D perspective flip card widget.
 ///
@@ -58,6 +59,9 @@ class _ZenFlipCardState extends State<ZenFlipCard>
     }
     if (widget.isFlipped != oldWidget.isFlipped) {
       ZenSoundService.instance.playPaperFlip();
+      // Turning a card over is the signature gesture of a flashcard app, so it
+      // earns the "reveal" impact - in both directions - beside the paper sound.
+      HapticsManager.medium();
       // Reduced motion: present the target face without the 3D rotation.
       if (context.reduceMotion) {
         _controller.value = widget.isFlipped ? 1.0 : 0.0;

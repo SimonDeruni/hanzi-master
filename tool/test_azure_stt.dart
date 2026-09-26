@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() async {
-  const key = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
+  const key = 'MISSING_KEY_SEE_ISSUES';
   const region = 'germanywestcentral';
   
   final Map<String, dynamic> params = {

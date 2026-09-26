@@ -15,11 +15,42 @@ const {
   outputText,
   extractGeminiJson,
 } = require("./dictionary-expansion");
+const {
+  recordingIdentity,
+  boundariesPath,
+  validateBoundaries,
+  MAX_AUDIO_BYTES,
+} = require("./tts-cache");
+const { requireUser } = require("./ai-proxy-auth");
 
 admin.initializeApp();
 
 const revenueCatSecretKey = defineSecret("REVENUECAT_SECRET_API_KEY");
 const geminiApiKey = defineSecret("GEMINI_API_KEY");
+// NOTE: the speech cache deliberately holds **no** Azure credential. The
+// recordings it stores are uploaded by the app, which already has them from its
+// own streamed playback, so the server never needs to speak to Azure and there is
+// nothing extra to configure in Secret Manager for it.
+
+/**
+ * Reject a call that carries no verified identity.
+ *
+ * W0 (`docs/AI_CACHING_ROADMAP.md`): these proxies forward to a paid model with
+ * this project's key, so an unauthenticated call makes them an **open relay** -
+ * which is exactly what they were until now, with the only usage limit running
+ * on the client. Returns the uid, or `null` after writing the 401 itself, so a
+ * handler reads `if (!(await authenticatedUid(req, res))) return;`.
+ */
+async function authenticatedUid(req, res) {
+  try {
+    const { uid } = await requireUser(req);
+    return uid;
+  } catch (error) {
+    console.warn("AI proxy rejected an unauthenticated call:", error.message);
+    res.status(401).json({ error: "Authentication required" });
+    return null;
+  }
+}
 
 const EXPANSION_DAILY_QUOTA = 20;
 const GENERATION_LEASE_MS = 2 * 60 * 1000;
@@ -275,13 +306,18 @@ exports.deleteAccountV1 = onCall(
   },
 );
 
-exports.generateContentProxyV2 = onRequest({ cors: true, invoker: "public" }, (req, res) => {
+exports.generateContentProxyV2 = onRequest({ cors: true, invoker: "public", secrets: [geminiApiKey] }, (req, res) => {
   cors(req, res, async () => {
     if (req.method !== "POST") {
       return res.status(405).send("Method Not Allowed");
     }
 
-    const apiKey = process.env.GEMINI_API_KEY_LOCAL;
+    // W0: require a signed-in app user, so this is not an open relay for the
+    // project's key (see ai-proxy-auth.js).
+    if (!(await authenticatedUid(req, res))) return;
+
+    // W0: the key is a Secret Manager parameter now, not a process env var.
+    const apiKey = geminiApiKey.value();
     if (!apiKey) {
       return res.status(500).json({ error: "Missing Gemini API Key" });
     }
@@ -306,14 +342,20 @@ exports.generateContentProxyV2 = onRequest({ cors: true, invoker: "public" }, (r
   });
 });
 
-exports.openRouterProxyV2 = onRequest({ cors: true, invoker: "public" }, (req, res) => {
+exports.openRouterProxyV2 = onRequest({ cors: true, invoker: "public", secrets: [geminiApiKey] }, (req, res) => {
   cors(req, res, async () => {
     if (req.method !== "POST") {
       return res.status(405).send("Method Not Allowed");
     }
 
-    // Use the perfectly working Gemini API key instead of the broken OpenRouter key
-    const apiKey = process.env.GEMINI_API_KEY_LOCAL;
+    // W0: require a signed-in app user, so this is not an open relay for the
+    // project's key (see ai-proxy-auth.js).
+    if (!(await authenticatedUid(req, res))) return;
+
+    // This proxy targets Gemini's OpenAI-compatible endpoint with the project
+    // key, which is why it is a Secret Manager parameter rather than a value
+    // the app carries.
+    const apiKey = geminiApiKey.value();
     if (!apiKey) {
       return res.status(500).json({ error: "Missing Gemini API Key" });
     }
@@ -350,3 +392,199 @@ exports.openRouterProxyV2 = onRequest({ cors: true, invoker: "public" }, (req, r
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Shared speech cache
+// ---------------------------------------------------------------------------
+//
+// One recording per (sentence, voice, rate), shared by every user. Speech is the
+// safest thing to share - the bytes are identical for a given request, the
+// content is the app's own (never something a user typed), and Azure is metered
+// against a 4-hour weekly quota, so every reused recording is quota kept.
+//
+// The app keeps streaming from Azure for the *first* listener, exactly as it
+// does today, so nobody waits for this: on a miss it asks `warmTtsAudioV2` to
+// record the sentence for everyone who comes after.
+//
+// See `tts-cache.js` for the identity rules, and `test/tts-cache.test.js` for the
+// two that must never be wrong: everything that changes the sound is in the key
+// (voice, and rate), and nothing that does not is.
+
+/**
+ * Read the word timings stored with a recording.
+ *
+ * Returns an empty list for anything unreadable. Timings are an enhancement, so
+ * a recording without them must still be playable - just without highlighting -
+ * rather than becoming an error.
+ */
+function parseBoundaries(buffer) {
+  if (!buffer) return [];
+  try {
+    const parsed = JSON.parse(buffer.toString("utf8"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.warn("Stored speech timings were unreadable:", error.message);
+    return [];
+  }
+}
+
+/**
+ * Read a recording, or `null` when there is nothing to read.
+ *
+ * Never throws. A bucket that is missing, not yet enabled or unreachable must
+ * look exactly like a miss, so the app carries on with its own path - a cache
+ * that can break speech would be worse than no cache at all.
+ */
+async function readRecording(objectPath) {
+  try {
+    const file = admin.storage().bucket().file(objectPath);
+    const [exists] = await file.exists();
+    if (!exists) return null;
+    const [buffer] = await file.download();
+    return buffer;
+  } catch (error) {
+    console.warn("Speech cache read failed (treated as a miss):", error.message);
+    return null;
+  }
+}
+
+/** Store an object. Never throws: by this point the caller has the content. */
+async function storeRecording(objectPath, buffer, contentType = "audio/mpeg") {
+  try {
+    await admin.storage().bucket().file(objectPath).save(buffer, {
+      contentType,
+      metadata: { cacheControl: "public, max-age=31536000, immutable" },
+    });
+    return true;
+  } catch (error) {
+    console.warn("Speech cache write failed:", error.message);
+    return false;
+  }
+}
+
+/**
+ * Hand back a recording of one sentence, if it has already been made.
+ *
+ * **No sign-in required, on purpose.** This half can only return audio the
+ * project has already paid for - a miss costs nothing and answers `hit: false` -
+ * so a signed-out listener still benefits from everyone else's recordings. The
+ * half that *spends* money is `warmTtsAudioV2`, and that one requires a user.
+ *
+ * No secrets either: reading the bucket needs none, so the read path cannot fail
+ * for want of Secret Manager configuration.
+ */
+exports.getTtsAudioV2 = onCall(async (request) => {
+  let identity;
+  try {
+    identity = recordingIdentity(request.data || {});
+  } catch (error) {
+    // Malformed or oversized input is not worth surfacing to a learner
+    // mid-sentence: it is simply not cacheable.
+    return { hit: false, reason: error.message };
+  }
+  const audio = await readRecording(identity.objectPath);
+  if (!audio) return { hit: false };
+  // The timings must travel with the audio: they drive the highlighting that
+  // follows the spoken words, and timings from a different take would appear to
+  // slide against the voice. An empty list means "no timings", which the app
+  // treats as "still playable, just without highlighting".
+  const boundaries = parseBoundaries(
+    await readRecording(boundariesPath(identity.key))
+  );
+  return {
+    hit: true,
+    audioBase64: audio.toString("base64"),
+    boundaries,
+    contentType: "audio/mpeg",
+    bytes: audio.length,
+  };
+});
+
+/**
+ * Turn the app's base64 audio into bytes, refusing anything implausible.
+ *
+ * The app uploads the recording it has already streamed and played. That is not
+ * a shortcut - it is the only way to keep the audio and its word timings
+ * consistent, because Azure returns those timings on its streaming path, so the
+ * app is the one party holding a *matching* pair.
+ */
+function decodeAudio(audioBase64) {
+  if (typeof audioBase64 !== "string" || audioBase64.length === 0) {
+    throw new HttpsError("invalid-argument", "audioBase64 is required.");
+  }
+  const buffer = Buffer.from(audioBase64, "base64");
+  if (buffer.length === 0) {
+    throw new HttpsError("invalid-argument", "audioBase64 was not decodable.");
+  }
+  // The ceiling matters because the length comes from the caller: without it, the
+  // bucket is an open invitation.
+  if (buffer.length > MAX_AUDIO_BYTES) {
+    throw new HttpsError(
+      "invalid-argument",
+      `audio exceeds ${MAX_AUDIO_BYTES} bytes.`
+    );
+  }
+  return buffer;
+}
+
+/**
+ * Store a sentence for everyone who comes after.
+ *
+ * The app calls this *after* it played its own streamed audio, and does not wait
+ * for the reply, so the first listener pays no latency cost. It requires a
+ * signed-in caller because it is the half that writes to shared storage.
+ *
+ * **Trust boundary, stated plainly:** the audio and timings come from the app, so
+ * a modified client could store a take that does not match its key. The damage is
+ * bounded to that one sentence - the key is a hash of text, voice and rate - and
+ * at worst to highlighting, and the shape is validated above. The real fix is App
+ * Check, which this project already depends on but does not yet enforce here.
+ * Recorded rather than hidden.
+ */
+exports.warmTtsAudioV2 = onCall(async (request) => {
+    if (!request.auth || !request.auth.uid) {
+      throw new HttpsError(
+        "unauthenticated",
+        "Sign in to contribute to the shared speech cache."
+      );
+    }
+
+    let identity;
+    try {
+      identity = recordingIdentity(request.data || {});
+    } catch (error) {
+      throw new HttpsError("invalid-argument", error.message);
+    }
+
+    const data = request.data || {};
+    const audio = decodeAudio(data.audioBase64);
+    let boundaries;
+    try {
+      boundaries = validateBoundaries(data.boundaries);
+    } catch (error) {
+      throw new HttpsError("invalid-argument", error.message);
+    }
+
+    // Already recorded: keep the existing take rather than replacing good audio
+    // with a later one, so one sentence does not change voice mid-book.
+    if (await readRecording(identity.objectPath)) {
+      return { stored: false, alreadyPresent: true };
+    }
+
+    const stored = await storeRecording(identity.objectPath, audio);
+    const timingsStored =
+      boundaries.length > 0 &&
+      (await storeRecording(
+        boundariesPath(identity.key),
+        Buffer.from(JSON.stringify(boundaries), "utf8"),
+        "application/json"
+      ));
+    return {
+      stored,
+      timingsStored,
+      bytes: audio.length,
+      boundaries: boundaries.length,
+    };
+  }
+);
+

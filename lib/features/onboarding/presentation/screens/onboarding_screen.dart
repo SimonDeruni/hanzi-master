@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/onboarding_mini_lesson_screen.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
@@ -282,7 +282,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                         fontSize: isCompact ? 28 : 36,
-                        fontFamily: 'Serif',
+                        fontFamily: 'NotoSerifSC',
                         height: 1.3,
                       ),
                     ).animate().fadeIn(delay: 300.ms).slideY(),
@@ -364,7 +364,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
-              fontFamily: 'Serif',
+              fontFamily: 'NotoSerifSC',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
@@ -438,7 +438,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
-              fontFamily: 'Serif',
+              fontFamily: 'NotoSerifSC',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
@@ -502,7 +502,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
-              fontFamily: 'Serif',
+              fontFamily: 'NotoSerifSC',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
@@ -595,7 +595,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: 28,
-              fontFamily: 'Serif',
+              fontFamily: 'NotoSerifSC',
               fontWeight: FontWeight.bold,
               height: 1.2,
             ),
@@ -908,7 +908,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       ? selectedText
                       : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                   fontSize: 24,
-                  fontFamily: 'Serif',
+                  fontFamily: 'NotoSerifSC',
                 ),
               ),
               const SizedBox(width: 16),

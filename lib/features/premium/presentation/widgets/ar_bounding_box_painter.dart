@@ -135,7 +135,7 @@ class ARBoundingBoxPainter extends CustomPainter {
           color: Color(0xFF1A1A1B),
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          fontFamily: 'NotoSansSC',
+          fontFamily: 'NotoSerifSC',
         ),
       ),
       textDirection: TextDirection.ltr,

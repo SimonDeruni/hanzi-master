@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'zen_ink_splash.dart';
 import 'zen_motion.dart';
 
 /// Centralized Design System for SinoSpark
@@ -49,37 +50,60 @@ class AppTheme {
   static const Color accentRed = Colors.redAccent;
   static const Color accentAmber = Colors.amber;
 
-  // --- Typography (NotoSansSC Mandate) ---
-  static const String _fontFamily = 'NotoSansSC';
+  // --- Typography ---
+  //
+  // The calligraphic family was requested here as `'NotoSansSC'` - and in 85
+  // other places as `'NotoSerifSC'` - while `pubspec.yaml` declared no font at
+  // all, so *every* role below silently fell back to the platform font. The
+  // display/title roles now name the bundled OFL serif (see
+  // `assets/fonts/`, built by `scratch/build_font_subset.py`), which is what
+  // those 85 sites were already asking for, so large glyphs are one consistent
+  // face on iOS and Android at last.
+  //
+  // Body and label roles deliberately declare **no** family: the app's UI text
+  // is platform-native (San Francisco / Roboto), which also means their metrics
+  // are unchanged by this fix - the locale-overflow budgets measured in
+  // `test/core/locale_layout_guard_test.dart` stay valid.
+  static const String _serifFamily = 'NotoSerifSC';
+
+  /// The face used by the **component themes** (app bars, buttons, dialogs).
+  ///
+  /// Deliberately `null`, which means "platform-native" - San Francisco on iOS,
+  /// Roboto on Android. This used to be `'NotoSansSC'`, a family that was never
+  /// bundled, so these twenty-odd sites have always rendered in the platform
+  /// font regardless; naming that intention explicitly is what lets
+  /// `test/core/typography_guard_test.dart` prove the app only ever requests
+  /// fonts it actually ships.
+  static const String? _fontFamily = null;
 
   static TextTheme _buildTextTheme(Color textColor, Color mutedColor) {
     return TextTheme(
       // Display: Massive characters (Flashcards, Canvas)
-      displayLarge: TextStyle(fontFamily: _fontFamily, fontSize: 120, fontWeight: FontWeight.bold, color: textColor),
-      displayMedium: TextStyle(fontFamily: _fontFamily, fontSize: 80, fontWeight: FontWeight.bold, color: textColor),
-      displaySmall: TextStyle(fontFamily: _fontFamily, fontSize: 48, fontWeight: FontWeight.bold, color: textColor),
-      
+      displayLarge: TextStyle(fontFamily: _serifFamily, fontSize: 120, fontWeight: FontWeight.bold, color: textColor),
+      displayMedium: TextStyle(fontFamily: _serifFamily, fontSize: 80, fontWeight: FontWeight.bold, color: textColor),
+      displaySmall: TextStyle(fontFamily: _serifFamily, fontSize: 48, fontWeight: FontWeight.bold, color: textColor),
+
       // Headlines: Screen Titles, Major Sections
-      headlineLarge: TextStyle(fontFamily: _fontFamily, fontSize: 34, fontWeight: FontWeight.bold, color: textColor, letterSpacing: -0.5),
-      headlineMedium: TextStyle(fontFamily: _fontFamily, fontSize: 24, fontWeight: FontWeight.bold, color: textColor),
-      headlineSmall: TextStyle(fontFamily: _fontFamily, fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
-      
+      headlineLarge: TextStyle(fontFamily: _serifFamily, fontSize: 34, fontWeight: FontWeight.bold, color: textColor, letterSpacing: -0.5),
+      headlineMedium: TextStyle(fontFamily: _serifFamily, fontSize: 24, fontWeight: FontWeight.bold, color: textColor),
+      headlineSmall: TextStyle(fontFamily: _serifFamily, fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
+
       // Titles: Cards, List Items
-      titleLarge: TextStyle(fontFamily: _fontFamily, fontSize: 18, fontWeight: FontWeight.w600, color: textColor),
-      titleMedium: TextStyle(fontFamily: _fontFamily, fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
-      titleSmall: TextStyle(fontFamily: _fontFamily, fontSize: 14, fontWeight: FontWeight.w600, color: textColor),
-      
+      titleLarge: TextStyle(fontFamily: _serifFamily, fontSize: 18, fontWeight: FontWeight.w600, color: textColor),
+      titleMedium: TextStyle(fontFamily: _serifFamily, fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
+      titleSmall: TextStyle(fontFamily: _serifFamily, fontSize: 14, fontWeight: FontWeight.w600, color: textColor),
+
       // Body: Definitions, Standard Text
-      bodyLarge: TextStyle(fontFamily: _fontFamily, fontSize: 16, fontWeight: FontWeight.normal, color: textColor),
-      bodyMedium: TextStyle(fontFamily: _fontFamily, fontSize: 14, fontWeight: FontWeight.normal, color: textColor),
-      bodySmall: TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.normal, color: mutedColor),
-      
+      bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: textColor),
+      bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor),
+      bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: mutedColor),
+
       // Labels: Buttons, Pinyin, Tags
       // Tracking kept deliberately low (0.2): the former 1.0 inflated every
       // Latin/Cyrillic button label by ~10-15% and caused locale overflow.
-      labelLarge: TextStyle(fontFamily: _fontFamily, fontSize: 14, fontWeight: FontWeight.bold, color: textColor, letterSpacing: 0.2),
-      labelMedium: TextStyle(fontFamily: _fontFamily, fontSize: 12, fontWeight: FontWeight.bold, color: mutedColor, letterSpacing: 0.5),
-      labelSmall: TextStyle(fontFamily: _fontFamily, fontSize: 10, fontWeight: FontWeight.bold, color: mutedColor, letterSpacing: 0.5),
+      labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: textColor, letterSpacing: 0.2),
+      labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: mutedColor, letterSpacing: 0.5),
+      labelSmall: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: mutedColor, letterSpacing: 0.5),
     );
   }
 
@@ -196,6 +220,11 @@ class AppTheme {
           TargetPlatform.fuchsia: ZenPageTransitionsBuilder(),
         },
       ),
+      // A tap bleeds cinnabar ink into the paper instead of flashing Flutter's
+      // grey disc. `splashColor` is the tint the factory draws with; the factory
+      // thins it, so this stays a full-strength accent.
+      splashFactory: const ZenInkSplashFactory(),
+      splashColor: accentLight,
     );
   }
 
@@ -281,6 +310,10 @@ class AppTheme {
           TargetPlatform.fuchsia: ZenPageTransitionsBuilder(),
         },
       ),
+      // Same ink bleed as the light theme, but amber: cinnabar would be invisible
+      // on the dark surface.
+      splashFactory: const ZenInkSplashFactory(),
+      splashColor: accentDark,
     );
   }
 }

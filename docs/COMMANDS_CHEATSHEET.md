@@ -19,6 +19,13 @@ Use these exact commands for maintenance and development.
   `flutter test`
 - **Run Specific Test:**
   `flutter test test/unit_tests/stroke_matcher_test.dart`
+- **Locale layout gate** (CI runs exactly this, blocking — see `docs/LOCALIZATION_PIPELINE.md` §5):
+  `flutter test test/core/locale_layout_guard_test.dart`
+  `flutter test --tags locale-sweep`
+- **Which suites the sweep covers:**
+  `grep -rl "locale-sweep" test --include='*_test.dart'`
+- **Translation expansion report** (also published as a CI artifact):
+  `python scratch/arb_expansion_audit.py --out build/reports/arb_expansion.txt`
 
 ## 📦 Data Pipeline (Tooling)
 - **Fetch HSK 1 Strokes:**

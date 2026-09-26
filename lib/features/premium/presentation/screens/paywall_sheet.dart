@@ -4,7 +4,7 @@ import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
-import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class PaywallSheet {
   /// Helper to show the RevenueCat paywall easily from anywhere
@@ -39,9 +39,7 @@ class PaywallSheet {
     } catch (e) {
       debugPrint("Error presenting RevenueCat UI: $e");
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Error presenting payment: $e"),
-            duration: ZenMotion.toast));
+        ZenToast.error(context, "Error presenting payment: $e");
       }
       return false;
     }

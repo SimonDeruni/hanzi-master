@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/youtube_repository.dart';
 import '../../domain/models/youtube_video.dart';
 import 'smart_media_desk_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';

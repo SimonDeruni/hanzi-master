@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/progression_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class InkStoneWidget extends ConsumerStatefulWidget {
   const InkStoneWidget({super.key});
@@ -15,6 +16,7 @@ class _InkStoneWidgetState extends ConsumerState<InkStoneWidget> with SingleTick
   late AnimationController _shakeController;
   late Animation<double> _shakeAnimation;
   int _lastPoints = 0;
+  ScholarRank? _lastRank;
 
   @override
   void initState() {
@@ -41,10 +43,17 @@ class _InkStoneWidgetState extends ConsumerState<InkStoneWidget> with SingleTick
 
     // Trigger shake if points increased
     if (progression.inkPoints > _lastPoints && _lastPoints != 0) {
+      // Crossing a rank is the milestone; earning points is the ordinary award.
+      if (progression.rank != _lastRank) {
+        HapticsManager.milestone();
+      } else {
+        HapticsManager.success();
+      }
       // Reduced motion: the award lands without the celebratory shake.
       if (!context.reduceMotion) _shakeController.forward(from: 0.0);
     }
     _lastPoints = progression.inkPoints;
+    _lastRank = progression.rank;
 
     return AnimatedBuilder(
       animation: _shakeAnimation,

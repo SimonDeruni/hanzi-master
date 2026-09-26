@@ -13,6 +13,7 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -145,12 +146,10 @@ class ProfileScreen extends ConsumerWidget {
                         ),
                       );
                       if (deleted == true && context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(AppLocalizations.of(context)!
-                                .accountDeletedSuccessfully),
-                          ),
-                        );
+                        ZenToast.success(
+                            context,
+                            AppLocalizations.of(context)!
+                                .accountDeletedSuccessfully);
                       }
                     },
                   ),

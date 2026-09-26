@@ -7,7 +7,7 @@ import 'package:hanzi_master/features/reading/presentation/screens/audiobook_pla
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/shared/utils/hero_transition.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/services/bundled_author_biography_service.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
@@ -80,7 +80,18 @@ String _localizedBookEra(AppLocalizations l10n, String era) {
 
 class BookDetailScreen extends ConsumerStatefulWidget {
   final BookModel book;
-  const BookDetailScreen({super.key, required this.book});
+
+  /// True when this screen is the trailing pane of the catalogue on an iPad
+  /// (≥840dp): it is then not a pushed route, so it must render **no** back
+  /// button — that button would pop the catalogue itself.
+  /// See `docs/IPAD_ADAPTIVE_PLAN.md`, Phase 2.
+  final bool embedded;
+
+  const BookDetailScreen({
+    super.key,
+    required this.book,
+    this.embedded = false,
+  });
 
   @override
   ConsumerState<BookDetailScreen> createState() => _BookDetailScreenState();
@@ -150,14 +161,19 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, size: 20, color: primaryText),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        automaticallyImplyLeading: false,
+        leading: widget.embedded
+            ? null
+            : IconButton(
+                icon: Icon(Icons.arrow_back_ios_new,
+                    size: 20, color: primaryText),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
       ),
       body: chaptersAsync.when(
         data: (chapters) {
-          return CustomScrollView(
+          return ZenFadeIn(
+              child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
               // Hero Book Header
@@ -648,83 +664,83 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                               color: isCurrent
                                   ? (isDarkLocal
                                       ? Colors.amber.shade500
-                                    : const Color(0xFF8B0000))
-                                : (isDarkLocal
-                                    ? Colors.white10
-                                    : Colors.black.withValues(alpha: 0.05)),
-                            width: isCurrent ? 1.5 : 1.0,
+                                      : const Color(0xFF8B0000))
+                                  : (isDarkLocal
+                                      ? Colors.white10
+                                      : Colors.black.withValues(alpha: 0.05)),
+                              width: isCurrent ? 1.5 : 1.0,
+                            ),
                           ),
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            HapticsManager.medium();
-                            Navigator.of(context).push(
-                              SwipeBackPageRoute(
-                                builder: (_) => BookReaderScreen(
-                                  book: book,
-                                  chapters: chapters,
-                                  initialChapterIndex: index,
+                          child: ListTile(
+                            onTap: () {
+                              HapticsManager.medium();
+                              Navigator.of(context).push(
+                                SwipeBackPageRoute(
+                                  builder: (_) => BookReaderScreen(
+                                    book: book,
+                                    chapters: chapters,
+                                    initialChapterIndex: index,
+                                  ),
+                                ),
+                              );
+                            },
+                            leading: CircleAvatar(
+                              radius: 16,
+                              backgroundColor: isCurrent
+                                  ? (isDarkLocal
+                                      ? Colors.amber.shade700
+                                      : const Color(0xFF8B0000))
+                                  : (isDarkLocal
+                                      ? Colors.white12
+                                      : Colors.black12),
+                              child: Text(
+                                '${ch.chapterIndex}',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: isCurrent
+                                      ? Colors.white
+                                      : (isDarkLocal
+                                          ? Colors.white70
+                                          : Colors.black87),
                                 ),
                               ),
-                            );
-                          },
-                          leading: CircleAvatar(
-                            radius: 16,
-                            backgroundColor: isCurrent
-                                ? (isDarkLocal
-                                    ? Colors.amber.shade700
-                                    : const Color(0xFF8B0000))
-                                : (isDarkLocal
-                                    ? Colors.white12
-                                    : Colors.black12),
-                            child: Text(
-                              '${ch.chapterIndex}',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: isCurrent
-                                    ? Colors.white
-                                    : (isDarkLocal
-                                        ? Colors.white70
-                                        : Colors.black87),
+                            ),
+                            title: FutureBuilder<String>(
+                              future: LocalizedCatalogService.getChapterTitle(
+                                chapterId: ch.id,
+                                titleEn: ch.titleEn,
+                                localizedTitles: ch.localizedTitles,
+                                localeCode: Localizations.localeOf(context)
+                                    .languageCode,
+                              ),
+                              builder: (context, snap) => Text(
+                                snap.data ?? ch.titleEn,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: primaryTextLocal,
+                                ),
                               ),
                             ),
-                          ),
-                          title: FutureBuilder<String>(
-                            future: LocalizedCatalogService.getChapterTitle(
-                              chapterId: ch.id,
-                              titleEn: ch.titleEn,
-                              localizedTitles: ch.localizedTitles,
-                              localeCode:
-                                  Localizations.localeOf(context).languageCode,
-                            ),
-                            builder: (context, snap) => Text(
-                              snap.data ?? ch.titleEn,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: primaryTextLocal,
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: Text(
+                                ch.title,
+                                style: TextStyle(
+                                  fontSize: 12.5,
+                                  color: isDarkLocal
+                                      ? Colors.amber.shade300
+                                      : const Color(0xFF8B0000),
+                                  fontStyle: FontStyle.italic,
+                                  height: 1.3,
+                                ),
                               ),
                             ),
+                            trailing:
+                                const Icon(Icons.arrow_forward_ios, size: 14),
                           ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 2),
-                            child: Text(
-                              ch.title,
-                              style: TextStyle(
-                                fontSize: 12.5,
-                                color: isDarkLocal
-                                    ? Colors.amber.shade300
-                                    : const Color(0xFF8B0000),
-                                fontStyle: FontStyle.italic,
-                                height: 1.3,
-                              ),
-                            ),
-                          ),
-                          trailing:
-                              const Icon(Icons.arrow_forward_ios, size: 14),
                         ),
-                      ),
                       );
                     },
                     childCount: chapters.length,
@@ -734,7 +750,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
 
               const SliverToBoxAdapter(child: SizedBox(height: 32)),
             ],
-          );
+          ));
         },
         loading: () => const Center(child: ZenLoader()),
         error: (e, _) => Center(child: Text("Error: $e")),

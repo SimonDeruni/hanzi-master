@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
@@ -19,6 +19,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'dart:ui' as ui;
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 enum ReviewState { practice, feedback, complete }
 
@@ -180,9 +181,8 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   Future<void> _submitDrawing(List<ui.Offset?> userPoints,
       {Size? canvasSize}) async {
     if (userPoints.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content:
-              Text(AppLocalizations.of(context)!.pleaseDrawSomethingFirst)));
+      ZenToast.info(
+          context, AppLocalizations.of(context)!.pleaseDrawSomethingFirst);
       return;
     }
     final userStrokes = _splitIntoStrokes(userPoints);
@@ -426,8 +426,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                           color: Colors.white, size: 20),
                       const SizedBox(width: 8),
                       const Expanded(
-                          child: Text(
-                              "Follow the guide stroke",
+                          child: Text("Follow the guide stroke",
                               style: TextStyle(
                                   color: Colors.white, fontSize: 14))),
                       Text('${_currentStrokeIndex + 1}/$totalStrokes',
@@ -934,7 +933,9 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
                   ), // closes Container 455
                 )
                     .animate() // closes SwipeableFlashcard 450
-                    .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                    .fade(
+                        duration: ZenMotion.of(context, ZenMotion.page),
+                        curve: ZenMotion.enter)
                     .slideY(
                         begin: 0.1,
                         end: 0,
@@ -976,7 +977,11 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
 
   String _getFeedback(double s) => s >= 90
       ? AppLocalizations.of(context)!.perfect
-      : (s >= 70 ? AppLocalizations.of(context)!.great : (s >= 50 ? AppLocalizations.of(context)!.goodAttempt : AppLocalizations.of(context)!.keepPracticing));
+      : (s >= 70
+          ? AppLocalizations.of(context)!.great
+          : (s >= 50
+              ? AppLocalizations.of(context)!.goodAttempt
+              : AppLocalizations.of(context)!.keepPracticing));
 
   Widget _buildStarRating(double score, {double size = 40, Color? color}) {
     int stars = score >= 95

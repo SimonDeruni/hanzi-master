@@ -26,6 +26,11 @@ class WordInsight extends Equatable {
   /// 0..1 across every mode this word has been practised in.
   double get accuracy => attempts == 0 ? 0 : successes / attempts;
 
+  /// Attempts that did not pass — how much this word keeps costing. Raw attempt
+  /// count only says how often the word was seen, so ranking "tricky" by it put
+  /// a word drilled thirty times at 100% above one failed six times out of six.
+  int get failures => attempts - successes;
+
   @override
   List<Object?> get props => [
         hanzi,
@@ -52,7 +57,9 @@ class StatsState extends Equatable {
   /// about "you have never tried this one".
   final Map<StudyMode, int> attemptsByMode;
 
-  /// Words whose next review falls today or earlier.
+  /// Words whose next review falls today or earlier, counted per MODE — the same
+  /// set as the first bar of [upcomingReviews], so the headline number and the
+  /// chart can never disagree.
   final int dueToday;
 
   /// Sum of the seven-day forecast in [upcomingReviews].
@@ -61,19 +68,15 @@ class StatsState extends Equatable {
   /// Words first introduced in the last seven days (`introducedAt`).
   final int introducedThisWeek;
 
-  /// Words whose most recent attempt (any mode) was in the last seven days.
-  final int reviewedThisWeek;
-
   /// Total graded attempts across every word and mode.
   final int totalReviews;
 
-  /// Mean attempts per word — how much work each character has needed.
+  /// Mean attempts per *practised* word (a word nothing has been attempted on
+  /// is not "cheap", it is untouched, and dividing by the whole deck drowned the
+  /// real figure — 150 words with 10 drilled reported 0.3).
   final double averageAttempts;
 
-  /// The longest interval any word has reached, in days.
-  final int longestIntervalDays;
-
-  /// Words that keep costing the most (most attempts, lowest accuracy first).
+  /// Words that keep costing the most (most failures first).
   final List<WordInsight> trickyWords;
 
   /// Words that have held up the longest (interval, then streak).
@@ -91,10 +94,8 @@ class StatsState extends Equatable {
     this.dueToday = 0,
     this.nextSevenDays = 0,
     this.introducedThisWeek = 0,
-    this.reviewedThisWeek = 0,
     this.totalReviews = 0,
     this.averageAttempts = 0,
-    this.longestIntervalDays = 0,
     this.trickyWords = const <WordInsight>[],
     this.strongestWords = const <WordInsight>[],
   });
@@ -127,10 +128,8 @@ class StatsState extends Equatable {
         dueToday,
         nextSevenDays,
         introducedThisWeek,
-        reviewedThisWeek,
         totalReviews,
         averageAttempts,
-        longestIntervalDays,
         trickyWords,
         strongestWords,
       ];

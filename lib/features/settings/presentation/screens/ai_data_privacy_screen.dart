@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class AiDataPrivacyScreen extends StatelessWidget {
   const AiDataPrivacyScreen({super.key});
@@ -15,9 +16,7 @@ class AiDataPrivacyScreen extends StatelessWidget {
       mode: LaunchMode.externalApplication,
     );
     if (!launched && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.linkOpenFailed)),
-      );
+      ZenToast.error(context, AppLocalizations.of(context)!.linkOpenFailed);
     }
   }
 

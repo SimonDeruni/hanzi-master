@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/onboarding/presentation/onboarding_design.
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class NotificationPermissionScreen extends ConsumerStatefulWidget {
   const NotificationPermissionScreen({super.key});
@@ -102,11 +103,8 @@ class _NotificationPermissionScreenState
     if (_secretTapCount < 5) return;
     _secretTapCount = 0;
     MonetizationService.unlockDeveloperBackdoor();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(AppLocalizations.of(context)!.developerBackdoorUnlocked),
-      ),
-    );
+    ZenToast.success(
+        context, AppLocalizations.of(context)!.developerBackdoorUnlocked);
   }
 
   @override
@@ -144,7 +142,7 @@ class _NotificationPermissionScreenState
                         ),
                         style: TextStyle(
                           color: colors.text,
-                          fontFamily: 'Serif',
+                          fontFamily: 'NotoSerifSC',
                           fontSize: OnboardingDesign.titleFontSize,
                           height: 1.2,
                         ),

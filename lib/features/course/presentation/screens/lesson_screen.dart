@@ -12,6 +12,7 @@ import '../widgets/lesson_steps/context_step.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class LessonScreen extends ConsumerWidget {
   final Flashcard card;
@@ -28,22 +29,9 @@ class LessonScreen extends ConsumerWidget {
     // Listen for Fast Track events
     ref.listen(lessonControllerProvider(card), (previous, next) {
       if (next.skipReason != null && next.skipReason != previous?.skipReason) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
-              children: [
-                const Icon(Icons.speed, color: Colors.white),
-                const SizedBox(width: 12),
-                Text(next.skipReason!),
-              ],
-            ),
-            backgroundColor: Colors.indigoAccent,
-            behavior: SnackBarBehavior.floating,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            duration: ZenMotion.toast,
-          ),
-        );
+        // Fast-Track notice: a calligraphic toast on the root overlay rather
+        // than a Material snackbar, so it follows the Zen motion vocabulary.
+        ZenToast.info(context, next.skipReason!);
       }
     });
 
@@ -190,11 +178,10 @@ class LessonScreen extends ConsumerWidget {
             ZenSoundService.instance.playBellChime();
             ref.read(progressionProvider.notifier).addInkPoints(10);
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content: Text(l10n?.lessonComplete ??
-                      AppLocalizations.of(context)!.lessonComplete)),
-            );
+            ZenToast.success(
+                context,
+                l10n?.lessonComplete ??
+                    AppLocalizations.of(context)!.lessonComplete);
           },
         );
     }

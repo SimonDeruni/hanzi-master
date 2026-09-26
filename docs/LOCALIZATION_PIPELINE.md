@@ -84,18 +84,45 @@ to ~2x English (worst cases 5-9x). Run the locale sweep every time `.arb` files
 change:
 
 ```bash
-flutter test test/core/locale_layout_guard_test.dart
+flutter test test/core/locale_layout_guard_test.dart   # source ratchets, instant
+flutter test --tags locale-sweep                       # the worst-case sweep
 ```
 
 The sweep in `test/support/locale_layout_harness.dart` renders widgets across the
 worst-case locales x viewports (390x844, 320x568) x text scales (1.0x, 2.0x) and
 **fails on any overflow**. If it reports one, do not silence it: make the
 offending text flexible (see `docs/UI_UX_STANDARDS.md` -> "Localization Layout
-Budget"). Audit scripts live in `scratch/`:
+Budget").
+
+**This gate is enforced in CI, and it is blocking** — it used to be documentation
+only, which is why translations still reached users overflowing their buttons:
+
+| Where | Job | What it runs |
+|---|---|---|
+| GitLab | `flutter_test_locale` (stage `test`) | the guard test, then the tagged sweep; report kept as an artifact for 30 days |
+| GitHub | `.github/workflows/locale_guard.yml` | the same two steps on pushes and pull requests |
+
+Both jobs also publish the per-locale **expansion report** as an artifact at
+`build/reports/arb_expansion.txt` (UTF-8):
+
+```bash
+python scratch/arb_expansion_audit.py --out build/reports/arb_expansion.txt
+flutter test --tags locale-sweep   # `grep -rl "locale-sweep" test` lists the suites it selects
+```
+
+**Adding a screen to the sweep is one line:** annotate the suite with the tag,
+and CI picks it up automatically (the job derives its file list from the tag).
+
+```dart
+@Tags(<String>['locale-sweep'])
+library;
+```
+
+Audit scripts live in `scratch/`:
 
 | Script | Purpose |
 |---|---|
-| `scratch/arb_expansion_audit.py` | Per-locale expansion ratios + the worst expanding keys |
+| `scratch/arb_expansion_audit.py` | Per-locale expansion ratios + the worst expanding keys (`--out PATH`) |
 | `scratch/fixed_width_text_audit.py` | Containers that size text by pixel, non-flexible button rows |
 | `scratch/layout_l10n_audit.py` | Untranslated UI literals (the ratchet baseline) |
 | `scratch/fix_mojibake.py` | Byte-exact repairs for cp1252-decoded UTF-8 in `lib/` |

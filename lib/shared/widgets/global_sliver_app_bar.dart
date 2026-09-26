@@ -44,7 +44,7 @@ class GlobalSliverAppBar extends ConsumerWidget {
               title,
               style: theme.textTheme.headlineMedium?.copyWith(
                 fontWeight: FontWeight.w900,
-                fontFamily: 'Serif',
+                fontFamily: 'NotoSerifSC',
                 color: isDark ? Colors.white : Colors.black87,
                 letterSpacing: 0.5,
                 fontSize: 28,

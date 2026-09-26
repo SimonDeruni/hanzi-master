@@ -5,7 +5,16 @@ final apiKeyPoolProvider = Provider<ApiKeyPool>((ref) => ApiKeyPool());
 
 /// Reads API keys from compile-time --dart-define flags (release builds)
 /// with a fallback to the local .env file (local development via flutter run).
-/// This ensures keys are never bundled as a readable asset in the app binary.
+///
+/// **No credential may ever be written into this file.** Two were: an OpenRouter
+/// secret and an Azure Speech key sat here as fallbacks, which put a metered
+/// credential in source control *and* in every binary built from it. Both were
+/// removed on 2026-09-26 and now return `'MISSING_KEY'`, so an unconfigured key
+/// fails loudly rather than quietly spending something that leaked.
+/// `test/core/secret_guard_test.dart` exists so it cannot happen again.
+///
+/// The RevenueCat keys below (`appl_…`, `goog_…`) are **publishable SDK keys by
+/// design** and are not secrets — do not "fix" them.
 class ApiKeyPool {
   String get nextKey {
     const key = String.fromEnvironment('OPENROUTER_API_KEY');
@@ -15,7 +24,11 @@ class ApiKeyPool {
         dotenv.env['OPENROUTER_API_KEY']!.isNotEmpty) {
       return dotenv.env['OPENROUTER_API_KEY']!;
     }
-    return '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';
+    // No fallback key ships here. A hard-coded credential in this file is a
+    // credential in the repository *and* in every built binary; callers check
+    // with `_isConfiguredKey`, so a missing key now fails loudly instead of
+    // silently spending a credential that leaked with the source.
+    return 'MISSING_KEY';
   }
 
   String get googleKey {
@@ -42,7 +55,10 @@ class ApiKeyPool {
     if (dotenv.isInitialized && dotenv.env['AZURE_SPEECH_KEY'] != null && dotenv.env['AZURE_SPEECH_KEY']!.isNotEmpty) {
       return dotenv.env['AZURE_SPEECH_KEY']!;
     }
-    return 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
+    // Same reasoning as `nextKey` above: the Azure Speech key was hard-coded
+    // here, so it was both committed and shipped. It is a *metered* credential,
+    // which made it the most costly leak of the two.
+    return 'MISSING_KEY';
   }
 
   String get azureSpeechRegion {

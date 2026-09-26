@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
@@ -20,6 +21,7 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/list
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/speaking_mode.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class DeckReviewSessionScreen extends ConsumerStatefulWidget {
   final String deckId;
@@ -404,11 +406,7 @@ class _DeckReviewSessionScreenState
         _retryCounts[card.id] = retryCount + 1;
         _cardsToReview.add(updatedCard);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppLocalizations.of(context)!.retryLimitReached),
-          ),
-        );
+        ZenToast.info(context, AppLocalizations.of(context)!.retryLimitReached);
       }
     }
   }
@@ -506,12 +504,11 @@ class _DeckReviewSessionScreenState
                   child: FilledButton.icon(
                     key: const Key('study_session_start'),
                     onPressed: _isStarting ? null : _startSession,
-                    icon: _isStarting
-                        ? const SizedBox.square(
-                            dimension: 18,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : const Icon(Icons.play_arrow),
+                    icon: LoadingSwap(
+                      isLoading: _isStarting,
+                      icon: const Icon(Icons.play_arrow),
+                      size: 18,
+                    ),
                     label: Text(localizations.startSession),
                   ),
                 ),

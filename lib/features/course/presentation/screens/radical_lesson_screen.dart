@@ -7,13 +7,54 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/features/course/domain/entities/course_unit.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/widgets/zen_assembly.dart';
+import 'package:hanzi_master/shared/widgets/zen_shake.dart';
+
+/// IDS "Ideographic Description Sequence" operators: the `⿰` in `明`'s stored
+/// decomposition `⿰日月`.
+final RegExp _idsOperators = RegExp(r'[⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻]');
+
+/// The placeholder `hanzi_metadata.json` uses for a component it never resolved,
+/// e.g. `水` -> `⿻亅？`.
+final RegExp _unknownComponent = RegExp(r'[?？]');
+
+/// The glyphs a character is built from, per its stored decomposition.
+List<String> _decompositionGlyphs(String decomposition) => decomposition
+    .replaceAll(_idsOperators, '')
+    .replaceAll(_unknownComponent, '')
+    .runes
+    .map(String.fromCharCode)
+    .where((String glyph) => glyph.trim().isNotEmpty)
+    .toList();
+
+/// The forge's parts: the radical the learner just placed, followed by the
+/// components the metadata says are left over, in reading order.
+///
+/// `hanzi_metadata.json` stores an IDS decomposition per character, so `明` (the
+/// target) with `日` (the radical) yields `['日', '月']` and the assembly has
+/// something real to teach with.
+///
+/// Returns an empty list when the decomposition does not actually contain the
+/// radical: the repo then holds no component list for this pair, and the caller
+/// must fall back rather than invent one. At most three parts are returned - any
+/// more and the components stop being legible in a 140px tile.
+List<String> _forgePartsFor(String decomposition, String radical) {
+  final List<String> glyphs = _decompositionGlyphs(decomposition);
+  final int index = glyphs.indexOf(radical);
+  if (index == -1) return const <String>[];
+  final List<String> rest = <String>[...glyphs]..removeAt(index);
+  if (rest.isEmpty) return const <String>[];
+  return <String>[radical, ...rest.take(2)];
+}
 
 class RadicalLessonScreen extends ConsumerStatefulWidget {
   final CourseNode sunNode;
@@ -40,12 +81,23 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
   Flashcard? _forgeTarget;
   String _forgeBase = "";
   bool _forgeSuccess = false;
+
+  /// The glyphs the forge assembles when it succeeds: the radical the learner
+  /// placed, then the components the character's own stored decomposition says
+  /// are left over (`明` -> `['日', '月']`). Empty when the repo has no
+  /// decomposition for the target.
+  List<String> _forgeParts = const <String>[];
   List<String> _forgeDistractors = [];
   List<String> _forgeOptions = [];
 
   // Hunt Data
   List<Flashcard> _huntOptions = [];
   final Set<String> _foundTargets = {};
+
+  /// Rejection counter for [ZenShake] - each wrong tap bumps it once, and only
+  /// the tile that was tapped picks up the shake.
+  int _rejections = 0;
+  String? _rejectedCardId;
 
   @override
   void initState() {
@@ -96,8 +148,21 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               .replaceAll(widget.sunNode.hanzi, '')
               .replaceAll(RegExp(r'[⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻]'), '');
           if (_forgeBase.isEmpty) _forgeBase = "?";
+          // The same decomposition, but kept whole: the forge replays the
+          // radical the learner placed plus the components that were left.
+          final List<String> parts =
+              _forgePartsFor(decomp, widget.sunNode.hanzi);
+          _forgeParts = parts.isNotEmpty
+              ? parts
+              // Decomposition exists but does not mention this radical, so it
+              // describes nothing the lesson is teaching: two elements only.
+              : <String>[widget.sunNode.hanzi, childCard.hanzi];
         } else {
           _forgeBase = "?";
+          // No decomposition in the repo for this character: the honest
+          // two-element assembly (radical + finished glyph) rather than an
+          // invented component list.
+          _forgeParts = <String>[widget.sunNode.hanzi, childCard.hanzi];
         }
 
         _forgeDistractors = allRadicals
@@ -253,10 +318,10 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               Future.delayed(const Duration(seconds: 2), _nextPage);
             } else {
               HapticsManager.heavy();
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content:
-                      Text(l10n?.wrongEssence ?? AppLocalizations.of(context)!.wrongEssence),
-                  duration: ZenMotion.toast));
+              ZenToast.error(
+                  context,
+                  l10n?.wrongEssence ??
+                      AppLocalizations.of(context)!.wrongEssence);
             }
           },
           builder: (context, candidates, rejects) {
@@ -281,6 +346,9 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
               ),
               child: Stack(
                 alignment: Alignment.center,
+                // The assembly starts its parts outside the tile, so the tile
+                // must not clip them. Nothing that already fits moves.
+                clipBehavior: Clip.none,
                 children: [
                   if (!_forgeSuccess)
                     Text(_forgeBase,
@@ -294,6 +362,29 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
                             fontSize: 64,
                             fontWeight: FontWeight.bold,
                             color: Colors.indigo)),
+                  if (_forgeSuccess && _forgeParts.length > 1)
+                    // Additive layer over the green tile and its FORGED
+                    // caption: the parts fly in, settle, and only then does the
+                    // composed glyph land. Same size and colour as the glyph
+                    // underneath, so the resting state does not change.
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        child: ZenAssembly(
+                          key: const ValueKey<String>('forge-assembly'),
+                          parts: _forgeParts,
+                          composed: _forgeTarget!.hanzi,
+                          // The tile's edge, so the parts land on the glyph.
+                          size: 140,
+                          partStyle: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.indigo),
+                          composedStyle: const TextStyle(
+                              fontSize: 64,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.indigo),
+                        ),
+                      ),
+                    ),
                   if (isHovering && !_forgeSuccess)
                     const Icon(Icons.add_circle_outline,
                         size: 48, color: Colors.amber),
@@ -406,49 +497,59 @@ class _RadicalLessonScreenState extends ConsumerState<RadicalLessonScreen> {
                 widget.clusterNodes.any((n) => n.uuid == card.id);
             final bool isFound = _foundTargets.contains(card.id);
 
-            return GestureDetector(
-              onTap: () {
-                if (isTarget && !isFound) {
-                  setState(() => _foundTargets.add(card.id));
-                  HapticsManager.light();
-                  if (_foundTargets.length >= targetCount) {
-                    HapticsManager.success();
-                    Future.delayed(const Duration(seconds: 1), _nextPage);
+            return ZenShake(
+              // Only the tile they tapped wrongly moves; the rest keep trigger 0.
+              trigger: _rejectedCardId == card.id ? _rejections : 0,
+              child: BouncingButton(
+                onPressed: () {
+                  if (isTarget && !isFound) {
+                    setState(() => _foundTargets.add(card.id));
+                    HapticsManager.light();
+                    if (_foundTargets.length >= targetCount) {
+                      HapticsManager.success();
+                      Future.delayed(const Duration(seconds: 1), _nextPage);
+                    }
+                  } else if (!isTarget) {
+                    // The `ZenShake` below owns the refusal haptic now, so this
+                    // site must not buzz as well.
+                    // The error shake: one rejection on the tile they chose.
+                    setState(() {
+                      _rejections++;
+                      _rejectedCardId = card.id;
+                    });
+                    ZenToast.info(
+                        context,
+                        l10n?.notThatOne ??
+                            AppLocalizations.of(context)!.notThatOne);
                   }
-                } else if (!isTarget) {
-                  HapticsManager.heavy();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                          l10n?.notThatOne ?? AppLocalizations.of(context)!.notThatOne),
-                      duration: ZenMotion.toast));
-                }
-              },
-              child: AnimatedContainer(
-                duration: ZenMotion.of(context, ZenMotion.quick),
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: isFound
-                      ? Colors.green
-                      : Colors.white.withValues(alpha: 0.8),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                      color: isFound ? Colors.green : Colors.grey.shade300,
-                      width: 2),
-                  boxShadow: [
-                    if (!isFound)
-                      BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.05),
-                          blurRadius: 5,
-                          offset: const Offset(0, 2))
-                  ],
-                ),
-                child: Center(
-                  child: isFound
-                      ? const Icon(Icons.check, color: Colors.white, size: 40)
-                      : Text(card.hanzi,
-                          style: const TextStyle(
-                              fontSize: 32, fontWeight: FontWeight.bold)),
+                },
+                child: AnimatedContainer(
+                  duration: ZenMotion.of(context, ZenMotion.quick),
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: isFound
+                        ? Colors.green
+                        : Colors.white.withValues(alpha: 0.8),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                        color: isFound ? Colors.green : Colors.grey.shade300,
+                        width: 2),
+                    boxShadow: [
+                      if (!isFound)
+                        BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.05),
+                            blurRadius: 5,
+                            offset: const Offset(0, 2))
+                    ],
+                  ),
+                  child: Center(
+                    child: isFound
+                        ? const Icon(Icons.check, color: Colors.white, size: 40)
+                        : Text(card.hanzi,
+                            style: const TextStyle(
+                                fontSize: 32, fontWeight: FontWeight.bold)),
+                  ),
                 ),
               ),
             );
@@ -476,8 +577,8 @@ class _HandPointerHintState extends State<_HandPointerHint>
     // the platform "Reduce Motion" setting can be read.
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
-    _animation = Tween<double>(begin: 0, end: 1)
-        .animate(CurvedAnimation(parent: _controller, curve: ZenMotion.natural));
+    _animation = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(parent: _controller, curve: ZenMotion.natural));
   }
 
   @override

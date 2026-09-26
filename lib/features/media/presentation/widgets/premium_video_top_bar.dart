@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class PremiumVideoTopBar extends StatelessWidget {
   final String title;
@@ -156,6 +157,8 @@ class PremiumVideoTopBar extends StatelessWidget {
                               setState(() => localOpacity = v);
                               onOpacityChanged(v);
                             },
+                            // Committed on release: a scrub must not buzz per frame.
+                            onChangeEnd: (_) => HapticsManager.selection(),
                           ),
                         ],
                       );

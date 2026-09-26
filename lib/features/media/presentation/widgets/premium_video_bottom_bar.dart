@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../domain/models/video_transcript.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 /// YouTube-style bottom bar:
 /// - Thin red scrubber flush to the bottom of the control area
@@ -114,6 +115,9 @@ class _PremiumVideoBottomBarState extends State<PremiumVideoBottomBar> {
                       });
                     },
                     onChangeEnd: (val) {
+                      // The seek is committed here, so this is the moment worth
+                      // feeling - not every frame of the drag.
+                      HapticsManager.selection();
                       widget.onInteraction?.call();
                       widget.controller
                           .seekTo(seconds: val, allowSeekAhead: true);

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:uuid/uuid.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class FlashcardEditDialog extends ConsumerStatefulWidget {
   final String initialHanzi;
@@ -77,11 +78,8 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
     final hasChinese = RegExp(r'[\u4e00-\u9fff\u3400-\u4dbf]').hasMatch(hanzi);
     if (!hasChinese) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text(AppLocalizations.of(context)!.pleaseEnterValidChinese)),
-        );
+        ZenToast.info(
+            context, AppLocalizations.of(context)!.pleaseEnterValidChinese);
       }
       return;
     }
@@ -101,11 +99,10 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
 
     if (mounted) {
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(AppLocalizations.of(context)!
-                .added_to_your_library(_hanziController.text))),
-      );
+      ZenToast.success(
+          context,
+          AppLocalizations.of(context)!
+              .added_to_your_library(_hanziController.text));
     }
   }
 

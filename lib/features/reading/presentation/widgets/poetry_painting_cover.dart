@@ -82,7 +82,7 @@ class PoetryPaintingCover extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontFamily: 'serif',
+                      fontFamily: 'NotoSerifSC',
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                       height: 1.12,

@@ -15,6 +15,7 @@ import 'dart:math' as math;
 import 'package:http/http.dart' as http;
 
 import 'package:hanzi_master/core/services/api_key_pool.dart';
+import 'package:hanzi_master/core/services/speech_cache_service.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/core/services/local_tts_voice.dart';
 import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
@@ -131,6 +132,11 @@ class AudioService extends background_audio.BaseAudioHandler {
       List.unmodifiable(_currentBoundaries);
 
   double _speechRate = 0.5;
+
+  /// The shared speech cache: one recording per (sentence, voice, rate), reused
+  /// by every user. Reads are silent on failure, so an undeployed or unreachable
+  /// server behaves exactly like a miss and speech never depends on it.
+  final SpeechCacheService _speechCache = SpeechCacheService();
   double _playbackRate = 1.0;
 
   double get playbackRate => _playbackRate;
@@ -524,6 +530,32 @@ class AudioService extends background_audio.BaseAudioHandler {
         debugPrint("Failed to play cached audio for $hanzi: $e");
       }
     }
+  // Tier 2.5: a recording another user already made, if there is one. A hit is
+  // free and instant; a miss costs nothing and falls through to the cloud path
+  // below, so this can only ever help speech - never break it.
+  //
+  // The `* 2` is not arbitrary: this class treats 0.5 as normal speed (it
+  // converts as `(rate - 0.5) * 200%`), while a recording's identity treats 1.0
+  // as normal. Passing `_speechRate` straight through would label every normal
+  // sentence "half speed" and hand a listener slowed audio.
+  try {
+    final cached = await _speechCache.lookup(
+      text: hanzi,
+      voice: _defaultAzureVoice,
+      rate: _speechRate * 2,
+    );
+    if (cached != null) {
+      await cacheFile.writeAsBytes(cached.audio);
+      _currentBoundaries = cached.boundaries;
+      _currentBoundaryIndex = 0;
+      await _player.play(DeviceFileSource(cacheFile.path));
+      return true;
+    }
+  } catch (e) {
+    debugPrint("Shared speech cache lookup failed for $hanzi: $e");
+  }
+
+
 
     // Tier 3: Fast Cloud TTS
     try {
@@ -531,6 +563,16 @@ class AudioService extends background_audio.BaseAudioHandler {
       if (result != null && result.audio.isNotEmpty) {
         await cacheFile.writeAsBytes(result.audio);
         _currentBoundaries = result.boundaries;
+      // Offer this take to everyone else. Deliberately not awaited: an upload
+      // must never delay playback, and a failure here is invisible by design.
+      _speechCache.offer(
+        text: hanzi,
+        voice: _defaultAzureVoice,
+        rate: _speechRate * 2,
+        audio: result.audio,
+        boundaries: result.boundaries,
+      );
+
         _currentBoundaryIndex = 0;
         await _player.play(DeviceFileSource(cacheFile.path));
         return true;
@@ -1433,23 +1475,6 @@ class AudioService extends background_audio.BaseAudioHandler {
   Future<void> setSpeechRate(double rate) async {
     _speechRate = rate;
     await _tts.setSpeechRate(rate);
-  }
-
-  // SFX Methods
-  Future<void> playCorrectSfx() async {
-    await _player.play(AssetSource('audio/sfx_correct.wav'));
-  }
-
-  Future<void> playWrongSfx() async {
-    await _player.play(AssetSource('audio/sfx_wrong.wav'));
-  }
-
-  Future<void> playCompleteSfx() async {
-    await _player.play(AssetSource('audio/sfx_complete.wav'));
-  }
-
-  Future<void> playStreakSfx() async {
-    await _player.play(AssetSource('audio/sfx_streak.wav'));
   }
 
   void dispose() {

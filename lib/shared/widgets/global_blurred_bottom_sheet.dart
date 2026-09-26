@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 class GlobalBlurredBottomSheet extends StatelessWidget {
   final Widget child;
@@ -9,6 +10,16 @@ class GlobalBlurredBottomSheet extends StatelessWidget {
   static Future<T?> show<T>(BuildContext context, {required Widget child}) {
     return showModalBottomSheet<T>(
       context: context,
+      // Tokenised sheet timing. Material's own default for a modal sheet is
+      // 250ms on an easeOutQuad curve - neither is in the vocabulary - so every
+      // sheet opened before this ran outside the durations and curves the
+      // standard documents for "Sheet, dialog, panel open + close".
+      sheetAnimationStyle: AnimationStyle(
+        duration: ZenMotion.of(context, ZenMotion.quick),
+        curve: ZenMotion.natural,
+        reverseDuration: ZenMotion.of(context, ZenMotion.quick),
+        reverseCurve: ZenMotion.natural,
+      ),
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       useSafeArea: true,

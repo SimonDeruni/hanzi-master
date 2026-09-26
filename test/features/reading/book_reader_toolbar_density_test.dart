@@ -23,7 +23,13 @@ void main() {
       'lib/features/reading/presentation/screens/book_reader_screen.dart',
     ).readAsStringSync();
 
-    final int appBarStart = source.indexOf('appBar: AppBar(');
+    // The reader can be embedded as a pane (the iPad listen-and-read desk), so
+    // the app bar became conditional — and `dart format` decides whether that
+    // ternary stays on one line. Match the argument, not the layout of it.
+    final RegExpMatch? appBarArg = RegExp(
+      r'appBar: (?:widget\.embedded\s*\?\s*null\s*:\s*)?AppBar\(',
+    ).firstMatch(source);
+    final int appBarStart = appBarArg?.start ?? -1;
     expect(appBarStart, greaterThan(-1), reason: 'Reader AppBar not found');
     final int bodyStart = source.indexOf('body: Column(', appBarStart);
     expect(bodyStart, greaterThan(appBarStart));

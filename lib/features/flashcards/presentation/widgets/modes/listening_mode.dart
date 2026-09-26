@@ -6,7 +6,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';

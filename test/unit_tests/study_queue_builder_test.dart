@@ -148,6 +148,44 @@ void main() {
       expect(queue.cardIdsToIntroduce, {'shared', 'new-1'});
     });
 
+    test('a reserved card that was never studied is still served', () {
+      // Reported: "card to review today (or new card)… it stops after only one
+      // card". Starting a session RESERVES the day's new cards, writing both the
+      // day's `introducedCardIds` and this mode's `modeIntroductionKeys` — but a
+      // card the learner never actually grades keeps `attempts == 0`, so it is
+      // still `isNew` in this mode. Such a card used to be dropped outright, so
+      // every card of an abandoned session became unreachable for the rest of
+      // the day and the reopened session served exactly the one card that had
+      // been graded.
+      final introduced = DateTime(2026, 8, 24, 9);
+      final queue = StudyQueueBuilder.build(
+        cards: [
+          // Graded once today: no longer new, still in its learning phase.
+          card(
+              'graded',
+              stats(
+                  attempts: 1,
+                  interval: 0,
+                  due: now,
+                  introducedAt: introduced)),
+          // Reserved when the session started, then never graded.
+          card('reserved', stats(introducedAt: introduced)),
+        ],
+        mode: StudyMode.reading,
+        now: now,
+        dailyNewLimit: 20,
+        dailyReviewLimit: 100,
+        introducedCardIds: const {'graded', 'reserved'},
+        modeIntroducedCardIds: const {'graded', 'reserved'},
+      );
+
+      expect(ids(queue), ['graded', 'reserved']);
+      // The reservation already spent this card's quota, so re-offering it must
+      // not consume another new-card slot nor re-stamp `introducedAt`.
+      expect(queue.newlyReservedCardIds, isEmpty);
+      expect(queue.cardIdsToIntroduce, isEmpty);
+    });
+
     test('resets new-card allowance on the next calendar day', () {
       final queue = StudyQueueBuilder.build(
         cards: [

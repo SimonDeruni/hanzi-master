@@ -17,7 +17,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/onboarding/presentation/screens/notification_permission_screen.dart';
@@ -574,7 +574,7 @@ class _OnboardingMiniLessonScreenState
                         key: ValueKey('lesson-title-$_step'),
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontFamily: 'Serif',
+                          fontFamily: 'NotoSerifSC',
                           fontSize: OnboardingDesign.titleFontSize,
                           height: 1.2,
                           color: ink,

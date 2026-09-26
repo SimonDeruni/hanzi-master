@@ -1,6 +1,11 @@
-// TEMPORARY diagnostic harness: drives the REAL DeckReviewSessionScreen against
-// a faithful in-memory mirror of StudyActivityRepositoryImpl, so the production
-// StudyQueueBuilder decides the queue instead of a stub.
+// The session's queue across leaving and reopening it the same day.
+//
+// `StudyActivityRepositoryImpl` is mirrored in memory here (its state machine is
+// what decides the queue: `reserveQueue` persists the day's reserved new cards,
+// `recordReview` persists a graded review), so the production
+// `StudyQueueBuilder` builds the queue instead of a stub. That is what makes
+// these tests catch a queue that silently shrinks between two sessions — the
+// reported "card to review today (or new card)… it stops after only one card".
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,7 +25,6 @@ import 'package:hanzi_master/features/flashcards/domain/repositories/study_activ
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/session_summary_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/reading_mode.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
@@ -94,7 +98,13 @@ class _FakeFlashcardController extends FlashcardController {
       cards.where((Flashcard card) => card.deckId == deckId).toList();
 
   @override
-  Future<void> updateFlashcard(Flashcard card) async => written.add(card);
+  Future<void> updateFlashcard(Flashcard card) async {
+    written.add(card);
+    // Mirror the real controller: the card list it serves is the persisted one,
+    // so reopening a session sees the grades that landed.
+    final int index = cards.indexWhere((Flashcard c) => c.id == card.id);
+    if (index != -1) cards[index] = card;
+  }
 }
 
 class _StubDeckRepository implements DeckRepository {
@@ -193,10 +203,38 @@ class _MirrorActivityRepository implements StudyActivityRepository {
   }
 }
 
+/// A stand-in for the deck screen: the session is a pushed route of it, exactly
+/// as in the app, so it can be left and opened again within one provider scope.
+class _SessionHost extends StatelessWidget {
+  const _SessionHost();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          key: const Key('launch-session'),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (_) => const DeckReviewSessionScreen(
+                deckId: _deckId,
+                mode: StudyMode.reading,
+              ),
+            ),
+          ),
+          child: const Text('Study'),
+        ),
+      ),
+    );
+  }
+}
+
 Future<_MirrorActivityRepository> _pumpSession(
   WidgetTester tester,
-  List<Flashcard> cards,
-) async {
+  List<Flashcard> cards, {
+  _MirrorActivityRepository? activity,
+}) async {
   await tester.binding.setSurfaceSize(const Size(390, 844));
   addTearDown(() => tester.binding.setSurfaceSize(null));
 
@@ -212,14 +250,15 @@ Future<_MirrorActivityRepository> _pumpSession(
         .setMockMethodCallHandler(SystemChannels.platform, null);
   });
 
-  final _MirrorActivityRepository activity = _MirrorActivityRepository();
+  final _MirrorActivityRepository shared =
+      activity ?? _MirrorActivityRepository();
 
   await tester.pumpWidget(
     ProviderScope(
       overrides: <Override>[
         sharedPreferencesProvider.overrideWithValue(preferences),
         deckRepositoryProvider.overrideWithValue(_StubDeckRepository()),
-        studyActivityRepositoryProvider.overrideWithValue(activity),
+        studyActivityRepositoryProvider.overrideWithValue(shared),
         flashcardControllerProvider.overrideWith(() {
           return _FakeFlashcardController(cards);
         }),
@@ -234,31 +273,18 @@ Future<_MirrorActivityRepository> _pumpSession(
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const DeckReviewSessionScreen(
-          deckId: _deckId,
-          mode: StudyMode.reading,
-        ),
+        home: const _SessionHost(),
       ),
     ),
   );
   await tester.pumpAndSettle();
-  return activity;
+  return activity ?? shared;
 }
 
-/// Reads the "Ready to study" preview's own numbers, e.g. due=2 new=3.
-String _previewCounts(WidgetTester tester) {
-  String read(String key) {
-    final Finder finder = find.descendant(
-      of: find.byKey(Key(key)),
-      matching: find.byType(Text),
-    );
-    if (finder.evaluate().isEmpty) return '?';
-    return (tester.widget<Text>(finder.first)).data ?? '?';
-  }
-
-  return 'due=${read('study_queue_due_count')} '
-      'learning=${read('study_queue_learning_count')} '
-      'new=${read('study_queue_new_count')}';
+/// Opens the session from the host screen (a pushed route, like the app).
+Future<void> _launchSession(WidgetTester tester) async {
+  await tester.tap(find.byKey(const Key('launch-session')));
+  await tester.pumpAndSettle();
 }
 
 /// Grades card after card until the session leaves the card loop.
@@ -291,15 +317,62 @@ void main() {
       _newCard('字'),
       _newCard('文'),
     ];
-    final _MirrorActivityRepository activity = await _pumpSession(tester, cards);
+    await _pumpSession(tester, cards);
 
-    debugPrint('PREVIEW -> ${_previewCounts(tester)}');
+    await _launchSession(tester);
+    await tester.tap(find.byKey(const Key('study_session_start')));
+    await tester.pumpAndSettle();
+
+    // Two due reviews and three new cards. A new card is met twice (it is
+    // re-queued while its interval is 0), so eight gradings land before the
+    // summary: the whole queue is served, nothing is dropped.
+    final int gradings = await _gradeUntilSessionEnds(tester);
+    expect(gradings, greaterThan(2));
+  });
+
+  testWidgets('abandoning a session after one card does not hide the rest',
+      (tester) async {
+    // The reported flow: start a session, grade one card, leave, come back.
+    // Starting reserves the whole queue, so the cards that were never graded
+    // must still be waiting — otherwise the reopened session serves exactly the
+    // one card that had been graded ("it stops after only one card").
+    final List<Flashcard> cards = <Flashcard>[
+      _newCard('汉'),
+      _newCard('字'),
+      _newCard('文'),
+    ];
+    final _MirrorActivityRepository activity = _MirrorActivityRepository();
+
+    // Session 1 — start, grade exactly ONE card, then leave via the card's back
+    // arrow (which pops the card with no grade and exits the session).
+    await _pumpSession(tester, cards, activity: activity);
+    await _launchSession(tester);
+    await tester.tap(find.byKey(const Key('study_session_start')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(ZenFlipCard).first);
+    await tester.pumpAndSettle();
+    await tester.drag(
+      find.byType(SwipeableFlashcard).first,
+      const Offset(200, 0),
+    );
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 120));
+    await tester.pumpAndSettle();
+
+    // The learner leaves the session: the card's back arrow pops the card with
+    // no grade, and `_startNextReview` exits the session back to the deck.
+    await tester.tap(find.byIcon(Icons.arrow_back).first);
+    await tester.pumpAndSettle();
+
+    // Reopen the session the same day. The reservation lives in the activity
+    // box; the graded card was persisted by the controller, so `cards` now
+    // carries its new SRS state.
+    await _launchSession(tester);
     await tester.tap(find.byKey(const Key('study_session_start')));
     await tester.pumpAndSettle();
 
     final int gradings = await _gradeUntilSessionEnds(tester);
-    debugPrint('GRADINGS=$gradings recorded=${activity.recorded}');
-    debugPrint('summary=${find.byType(SessionSummaryScreen).evaluate().length}');
-    expect(gradings, greaterThan(2));
+    expect(gradings, greaterThan(1),
+        reason: 'the two cards that were only reserved must still be waiting');
   });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 /// A Zen & Ink streak flame badge with a subtle breathing glow animation.
 ///
@@ -52,6 +53,16 @@ class _StreakFlameBadgeState extends State<StreakFlameBadge>
       staticValue: 0.5,
       loop: true,
     ).apply();
+  }
+
+  @override
+  void didUpdateWidget(covariant StreakFlameBadge oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // A streak that grew deserves a tick: the glow is ambient and easy to miss,
+    // and this is the one number in the app a learner is actively protecting.
+    if (widget.streak > oldWidget.streak) {
+      HapticsManager.success();
+    }
   }
 
   @override

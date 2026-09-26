@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:hanzi_master/core/theme/app_theme.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import '../../domain/entities/study_mode.dart';
@@ -19,6 +19,12 @@ import '../providers/stats_state.dart';
 ///   an `AppBar` inside that tab, which put a second back arrow (and a second
 ///   title bar) inside a screen that already had both.
 /// * [StatsScreen] is the routed version, used by the profile entry.
+///
+/// **Scope is decided by [deckId], and the screen says which one it is:** null
+/// means the whole library (the settings entry, titled "My Progress"), a deck id
+/// means that deck only (the deck tab, titled with the deck's own name so its
+/// numbers can never be mistaken for library-wide ones). The provider does the
+/// same filtering, so no number on screen crosses the boundary.
 ///
 /// The numbers also go past "how many cards do I have": per-mode retention, the
 /// words that keep resisting, the words that graduated, this week's intake and
@@ -46,7 +52,13 @@ class StatsScreen extends ConsumerWidget {
 
 class DeckStatsView extends ConsumerWidget {
   final String? deckId;
-  const DeckStatsView({super.key, this.deckId});
+
+  /// The deck's localized name, when this view belongs to one. It becomes the
+  /// mastery card's title, so a deck's tab reads "HSK 1: Foundation" instead of
+  /// "Library Mastery" over numbers that are that deck's alone.
+  final String? deckName;
+
+  const DeckStatsView({super.key, this.deckId, this.deckName});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,7 +81,9 @@ class DeckStatsView extends ConsumerWidget {
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  l10n.noCardsYet,
+                  // The settings entry is the whole library, so it must not tell
+                  // the learner about "this deck".
+                  deckId == null ? l10n.noCardsAvailable : l10n.noCardsYet,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -87,7 +101,12 @@ class DeckStatsView extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),
       children: <Widget>[
-        _MasteryCard(stats: stats, l10n: l10n, palette: palette),
+        _MasteryCard(
+          stats: stats,
+          l10n: l10n,
+          palette: palette,
+          title: deckName ?? l10n.libraryMastery,
+        ),
         const SizedBox(height: 16),
         _RetentionCard(stats: stats, l10n: l10n, palette: palette),
         const SizedBox(height: 16),
@@ -304,11 +323,15 @@ class _MasteryCard extends StatelessWidget {
     required this.stats,
     required this.l10n,
     required this.palette,
+    required this.title,
   });
 
   final StatsState stats;
   final AppLocalizations l10n;
   final _Palette palette;
+
+  /// "Library Mastery" for the whole library, the deck's own name for a deck.
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -324,7 +347,7 @@ class _MasteryCard extends StatelessWidget {
 
     return _StatsCard(
       palette: palette,
-      title: l10n.libraryMastery,
+      title: title,
       icon: Icons.donut_large_rounded,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -626,11 +649,13 @@ class _WorkloadCard extends StatelessWidget {
     final MaterialLocalizations material = MaterialLocalizations.of(context);
     final List<String> weekdays = material.narrowWeekdays;
     final int firstDay = material.firstDayOfWeekIndex;
-    // The axis labels grow with the user's text scale and their line height
-    // varies by script (Hindi and Thai are much taller than Latin), so the
-    // space reserved for them is scaled generously rather than guessed at —
-    // reserve too little and fl_chart's own axis column overflows.
-    final double axisSpace = MediaQuery.textScalerOf(context).scale(30);
+    // Every bar now carries the day's count under its weekday, so the axis is
+    // two lines instead of one. The space is scaled rather than guessed at (the
+    // labels grow with the user's text scale, and by script — Hindi and Thai are
+    // much taller than Latin) and each label is FittedBox-guarded: a two-digit
+    // count no longer fits the ~31px a bar owns at 2x text on a 320px screen, so
+    // it shrinks rather than overflowing fl_chart's axis column.
+    final double axisSpace = MediaQuery.textScalerOf(context).scale(46);
 
     return _StatsCard(
       palette: palette,
@@ -695,15 +720,24 @@ class _WorkloadCard extends StatelessWidget {
                         }
                         return Padding(
                           padding: const EdgeInsets.only(top: 6),
-                          child: Text(
-                            weekdays[(firstDay + index) % 7],
-                            style: TextStyle(
-                              fontSize: 10.5,
-                              color:
-                                  index == 0 ? palette.accent : palette.muted,
-                              fontWeight: index == 0
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              // "Th" over the day's own count: the bars showed
+                              // the shape of the week but never how much any day
+                              // held, so the forecast could not be acted on.
+                              '${weekdays[(firstDay + index) % 7]}\n'
+                              '${forecast[index]}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 10.5,
+                                height: 1.25,
+                                color:
+                                    index == 0 ? palette.accent : palette.muted,
+                                fontWeight: index == 0
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                              ),
                             ),
                           ),
                         );

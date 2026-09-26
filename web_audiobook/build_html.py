@@ -1286,7 +1286,7 @@ def main():
   <script>
     const EMBEDDED_BOOKS = {embedded_json};
 
-    const AZURE_KEY = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
+    const AZURE_KEY = 'MISSING_KEY_SEE_ISSUES';
     const AZURE_REGION = 'germanywestcentral';
 
     const NON_SPOKEN_SET = new Set([

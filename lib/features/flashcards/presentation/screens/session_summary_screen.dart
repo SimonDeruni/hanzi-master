@@ -9,6 +9,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class SessionSummaryScreen extends ConsumerStatefulWidget {
   const SessionSummaryScreen({super.key, required this.summary});
@@ -27,6 +28,9 @@ class _SessionSummaryScreenState extends ConsumerState<SessionSummaryScreen> {
   void initState() {
     super.initState();
     ZenSoundService.instance.playBellChime();
+    // The session's own reward: it already rings, and now it is felt. A finished
+    // session is the achievement this whole screen exists to mark.
+    HapticsManager.milestone();
     Future<void>(() async {
       try {
         final wasAdded = await ref

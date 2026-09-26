@@ -11,8 +11,16 @@ StatsState userStats(UserStatsRef ref, {String? deckId}) {
 
   return cardsAsync.maybeWhen(
     data: (cards) {
+      // The Main Library also owns the cards saved without a deck
+      // (`deckId == ''`), which `deck_detail_screen` and
+      // `FlashcardController.getCardsForDeck` both accept. Omitting that fallback
+      // made a deck's statistics disagree with the deck's own card list.
       final filtered = deckId != null
-          ? cards.where((c) => c.deckId == deckId).toList()
+          ? cards
+              .where((c) =>
+                  c.deckId == deckId ||
+                  (deckId == 'default' && c.deckId.isEmpty))
+              .toList()
           : cards;
       final int total = filtered.length;
       int mastered = 0;
@@ -32,25 +40,23 @@ StatsState userStats(UserStatsRef ref, {String? deckId}) {
       final DateTime today = DateTime(now.year, now.month, now.day);
       final DateTime weekAgo = today.subtract(const Duration(days: 6));
 
-      int dueToday = 0;
       int introducedThisWeek = 0;
-      int reviewedThisWeek = 0;
-      int longestInterval = 0;
       final List<WordInsight> insights = <WordInsight>[];
 
       for (final card in filtered) {
-        if (card.isMastered(StudyMode.reading)) {
-          mastered++;
-        } else if (card.isLearning(StudyMode.reading)) {
-          learned++;
-        }
+        // Word-level buckets: every mode is its own SRS track, so a word has
+        // graduated once ANY track pushed it past the mastery threshold, and it
+        // is "New Ink" only while no track has ever been attempted. Judging the
+        // ring from Reading alone made a word with forty calligraphy attempts
+        // read as new, while the retention card below counted every mode.
+        bool cardMastered = false;
+        bool cardTouched = false;
 
         int cardAttempts = 0;
         int cardSuccesses = 0;
         int cardInterval = 0;
         int cardStreak = 0;
         bool introducedRecently = false;
-        bool practisedRecently = false;
 
         for (final mode in StudyMode.values) {
           final s = card.getStatsForMode(mode);
@@ -58,6 +64,9 @@ StatsState userStats(UserStatsRef ref, {String? deckId}) {
           totalAttempts += s.attempts;
           modeSuccess[mode] = modeSuccess[mode]! + s.successCount;
           modeAttempts[mode] = modeAttempts[mode]! + s.attempts;
+
+          if (s.attempts > 0) cardTouched = true;
+          if (s.isMastered) cardMastered = true;
 
           cardAttempts += s.attempts;
           cardSuccesses += s.successCount;
@@ -68,40 +77,31 @@ StatsState userStats(UserStatsRef ref, {String? deckId}) {
           if (introduced != null && !introduced.isBefore(weekAgo)) {
             introducedRecently = true;
           }
-          final DateTime? attempted = s.lastAttemptDate;
-          if (attempted != null && !attempted.isBefore(weekAgo)) {
-            practisedRecently = true;
-          }
+        }
+
+        if (cardMastered) {
+          mastered++;
+        } else if (cardTouched) {
+          learned++;
         }
 
         if (introducedRecently) introducedThisWeek++;
-        if (practisedRecently) reviewedThisWeek++;
-        if (cardInterval > longestInterval) longestInterval = cardInterval;
 
-        // The nearest review across modes decides the word's workload slot.
-        DateTime? earliestNextReview;
-        bool dueNow = false;
+        // The forecast counts REVIEW SLOTS — one per mode that is scheduled —
+        // because that is what the week actually costs. Counting each word once
+        // (by its earliest mode) turned "N Reviews" into a word count and hid two
+        // thirds of a three-mode backlog.
         for (final mode in StudyMode.values) {
           final s = card.getStatsForMode(mode);
           if (s.attempts == 0) continue;
-          if (earliestNextReview == null ||
-              s.nextReviewDate.isBefore(earliestNextReview)) {
-            earliestNextReview = s.nextReviewDate;
-          }
-          if (s.isDueAt(now)) dueNow = true;
-        }
-        if (dueNow) dueToday++;
-
-        if (earliestNextReview != null) {
-          final reviewDay = DateTime(earliestNextReview.year,
-              earliestNextReview.month, earliestNextReview.day);
-          final difference = reviewDay.difference(today).inDays;
-          if (difference >= 0 && difference < 7) {
-            upcomingReviews[difference]++;
-          } else if (difference < 0) {
-            // Due before today? Count as today
-            upcomingReviews[0]++;
-          }
+          final DateTime due = s.nextReviewDate;
+          final int difference =
+              DateTime(due.year, due.month, due.day).difference(today).inDays;
+          // Beyond the seven-day window: not this week's problem.
+          if (difference >= 7) continue;
+          // Anything already past due lands in today's bar, which is also the
+          // headline figure.
+          upcomingReviews[difference < 0 ? 0 : difference]++;
         }
 
         if (cardAttempts > 0) {
@@ -127,13 +127,16 @@ StatsState userStats(UserStatsRef ref, {String? deckId}) {
             : 0.0;
       }
 
-      // The words worth looking at: the ones that keep resisting (many attempts,
-      // low success) and the ones that graduated (long interval, long streak).
+      // The words worth looking at: the ones that keep costing the most (most
+      // failed attempts, then the shakiest rate) and the ones that graduated
+      // (longest interval, then longest streak).
       final List<WordInsight> tricky = List<WordInsight>.from(insights)
         ..sort((a, b) {
-          final int byAttempts = b.attempts.compareTo(a.attempts);
-          if (byAttempts != 0) return byAttempts;
-          return a.accuracy.compareTo(b.accuracy);
+          final int byFailures = b.failures.compareTo(a.failures);
+          if (byFailures != 0) return byFailures;
+          final int byAccuracy = a.accuracy.compareTo(b.accuracy);
+          if (byAccuracy != 0) return byAccuracy;
+          return b.attempts.compareTo(a.attempts);
         });
       final List<WordInsight> strongest = List<WordInsight>.from(
         insights.where((WordInsight w) => w.intervalDays > 0),
@@ -152,14 +155,16 @@ StatsState userStats(UserStatsRef ref, {String? deckId}) {
         accuracyByMode: accuracyByMode,
         upcomingReviews: upcomingReviews,
         attemptsByMode: modeAttempts,
-        dueToday: dueToday,
+        // The headline is the first bar of the same forecast, so the number and
+        // the chart can never tell two different stories.
+        dueToday: upcomingReviews.first,
         nextSevenDays:
             upcomingReviews.fold<int>(0, (int sum, int day) => sum + day),
         introducedThisWeek: introducedThisWeek,
-        reviewedThisWeek: reviewedThisWeek,
         totalReviews: totalAttempts,
-        averageAttempts: total > 0 ? totalAttempts / total : 0,
-        longestIntervalDays: longestInterval,
+        // Per practised word: dividing by the whole deck made an untouched
+        // library look effortless.
+        averageAttempts: insights.isEmpty ? 0 : totalAttempts / insights.length,
         trickyWords: tricky.take(5).toList(),
         strongestWords: strongest.take(5).toList(),
       );

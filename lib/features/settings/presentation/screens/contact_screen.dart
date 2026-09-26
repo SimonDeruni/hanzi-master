@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -29,11 +30,8 @@ class _ContactScreenState extends State<ContactScreen> {
   Future<void> _sendFeedback() async {
     final message = _messageController.text.trim();
     if (message.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                AppLocalizations.of(context)!.pleaseEnterMessageBeforeSending)),
-      );
+      ZenToast.info(context,
+          AppLocalizations.of(context)!.pleaseEnterMessageBeforeSending);
       return;
     }
 
@@ -56,11 +54,8 @@ class _ContactScreenState extends State<ContactScreen> {
     } else {
       debugPrint("Could not launch $emailLaunchUri");
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text(AppLocalizations.of(context)!.couldNotOpenEmailApp)),
-        );
+        ZenToast.info(
+            context, AppLocalizations.of(context)!.couldNotOpenEmailApp);
       }
     }
   }
@@ -109,7 +104,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     localizations.wedLoveToHearFromYou,
                     style: TextStyle(
                       fontSize: 38,
-                      fontFamily: 'Serif',
+                      fontFamily: 'NotoSerifSC',
                       fontWeight: FontWeight.w900,
                       color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                       height: 1.1,

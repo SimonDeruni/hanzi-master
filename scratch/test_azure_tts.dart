@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 import 'package:web_socket_channel/io.dart';
 
 void main() async {
-  const apiKey = 'AnZ5l470hrJMMOqPYYH085lWbpFHjRH8nZCkryg0TWFF8yaVzDdOJQQJ99CGACPV0roXJ3w3AAAYACOGk7C0';
+  const apiKey = 'MISSING_KEY_SEE_ISSUES';
   const region = 'germanywestcentral';
   const text = '你好';
 

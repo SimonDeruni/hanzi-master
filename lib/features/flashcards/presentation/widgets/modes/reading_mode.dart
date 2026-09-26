@@ -4,9 +4,11 @@ import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart'
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
+import 'package:hanzi_master/shared/widgets/swipe_to_grade_hint.dart';
 
 import 'package:hanzi_master/shared/widgets/zen_flip_card.dart';
 
@@ -40,26 +42,29 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
     HapticsManager.light();
   }
 
-  Widget _buildCardContainer({
-    required bool isDark,
-    required Widget child,
-  }) {
+  /// The study card, in the app's card vocabulary.
+  ///
+  /// The radius stays 32 because [ZenFlipCard] paints its paper-shimmer
+  /// highlight at 32: any other corner here would let the highlight's corners
+  /// show through the card mid-flip.
+  Widget _buildCardContainer({required Widget child}) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: isDark ? Colors.white.withAlpha(12) : Colors.white,
+        color: AppTheme.cardBgOf(context),
         borderRadius: BorderRadius.circular(32),
         border: Border.all(
-          color: isDark ? Colors.white12 : Colors.black12,
+          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
         ),
         boxShadow: [
-          if (!isDark)
-            BoxShadow(
-              color: Colors.black.withAlpha(12),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.03),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
         ],
       ),
       child: child,
@@ -71,6 +76,9 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
+      // The canonical surface, so the transparent app bar and the body read as
+      // the same sheet of Xuan paper rather than two stacked panels.
+      backgroundColor: AppTheme.surfaceOf(context),
       appBar: StudySessionAppBar(
         title: AppLocalizations.of(context)?.readingMode ?? 'Reading Mode',
         dueCount: widget.dueCount,
@@ -90,7 +98,6 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                     isFlipped: _isRevealed,
                     onTap: !_isRevealed ? _revealAnswer : null,
                     front: _buildCardContainer(
-                      isDark: isDark,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -104,8 +111,9 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   style: TextStyle(
                                     fontSize: 120,
                                     fontWeight: FontWeight.bold,
-                                    color:
-                                        isDark ? Colors.white : Colors.black87,
+                                    color: isDark
+                                        ? AppTheme.carbonInkDark
+                                        : AppTheme.carbonInkLight,
                                   ),
                                 ),
                               ),
@@ -115,12 +123,22 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                             flex: 1,
                             child: Align(
                               alignment: Alignment.bottomCenter,
-                              child: Text(
-                                AppLocalizations.of(context)!.tapToReveal,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
+                              // Scales down rather than overflowing when a
+                              // longer locale wraps this onto two lines.
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  AppLocalizations.of(context)!.tapToReveal,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 0.4,
+                                    color: isDark
+                                        ? AppTheme.carbonInkDark
+                                            .withValues(alpha: 0.55)
+                                        : AppTheme.carbonInkLight
+                                            .withValues(alpha: 0.55),
+                                  ),
                                 ),
                               ),
                             ),
@@ -129,7 +147,6 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                       ),
                     ),
                     back: _buildCardContainer(
-                      isDark: isDark,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -143,35 +160,63 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
                                   style: TextStyle(
                                     fontSize: 84,
                                     fontWeight: FontWeight.bold,
-                                    color:
-                                        isDark ? Colors.white : Colors.black87,
+                                    color: isDark
+                                        ? AppTheme.carbonInkDark
+                                        : AppTheme.carbonInkLight,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          const Divider(height: 32),
+                          // The Emperor's Gold hairline the rest of the app
+                          // rules its cards with.
+                          Divider(
+                            height: 32,
+                            color:
+                                const Color(0xFFD4AF37).withValues(alpha: 0.45),
+                          ),
                           Expanded(
                             flex: 2,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                PinyinText(
-                                  text: widget.card.pinyin,
-                                  style: const TextStyle(
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(height: 16),
-                                TranslatedDefinition(
-                                  definition: widget.card.definition,
-                                  hanzi: widget.card.hanzi,
-                                  definitionLanguage:
-                                      widget.card.definitionLanguage,
-                                  originalStyle: const TextStyle(fontSize: 20),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
+                            child: LayoutBuilder(
+                              builder: (BuildContext context,
+                                  BoxConstraints constraints) {
+                                // The hanzi above owns half the card, and a long
+                                // definition can want more than the other half.
+                                // Rather than overflow a 320x568 screen, the
+                                // answer block wraps at the card's width and
+                                // scales down to whatever share it gets.
+                                return FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: SizedBox(
+                                    width: constraints.maxWidth,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        PinyinText(
+                                          text: widget.card.pinyin,
+                                          style: const TextStyle(
+                                              fontSize: 32,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        TranslatedDefinition(
+                                          definition: widget.card.definition,
+                                          hanzi: widget.card.hanzi,
+                                          definitionLanguage:
+                                              widget.card.definitionLanguage,
+                                          originalStyle: TextStyle(
+                                            fontSize: 20,
+                                            color: isDark
+                                                ? AppTheme.carbonInkDark
+                                                : AppTheme.carbonInkLight,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -182,31 +227,12 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
               ),
             ),
 
-            // Swipe Hint
+            // Swipe hint: the four grades as Hanko seals, the same vocabulary
+            // the swipe itself stamps on the card.
             if (_isRevealed)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
-                child: Column(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.swipeToGrade,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white54 : Colors.black45,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '⬅️ ${AppLocalizations.of(context)!.again} ➡️ ${AppLocalizations.of(context)!.good} ⬆️ ${AppLocalizations.of(context)!.easy} ⬇️ ${AppLocalizations.of(context)!.hard}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white70 : Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 32),
+                child: SwipeToGradeHint(),
               ),
           ],
         ),

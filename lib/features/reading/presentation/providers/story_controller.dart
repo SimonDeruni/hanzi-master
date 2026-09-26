@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 import '../../domain/entities/graded_story.dart';
 import '../../../../core/services/gemini_service.dart';
+import '../../../../core/services/story_parse_contract.dart';
 import 'package:flutter/services.dart';
 import '../../data/repositories/story_repository.dart';
 
@@ -289,8 +290,28 @@ class StoryController extends StateNotifier<StoryState> {
         throw Exception("Story text is empty");
       }
 
-      // 3. Parse with Gemini
-      final aiStory = await geminiService.parseRawStoryToAiStory(rawText, hskLevel);
+      // 3. Prefer the parse that was precomputed for everyone. A bundled story
+      // is identical for every user, so a seed turns a model call into a
+      // document read. Anything missing, written by an older prompt, or refused
+      // by security rules falls back to the model, so this can only ever save
+      // money - it must never be able to break a story.
+      AiStory? seededStory;
+      try {
+        final seededParse = await FirebaseFirestore.instance
+            .collection('stories')
+            .doc(blueprint.id)
+            .collection(storySeedCollection)
+            .doc('$hskLevel')
+            .get();
+        seededStory = storyFromSeed(seededParse.data());
+      } catch (error) {
+        // A denied or unavailable read is not a reason to lose the story; the
+        // model call below is the fallback, and skipping the seed only ever
+        // costs money, never content.
+        seededStory = null;
+      }
+      final aiStory = seededStory ??
+          await geminiService.parseRawStoryToAiStory(rawText, hskLevel);
       
       final newStory = GradedStory(
         id: storyId,

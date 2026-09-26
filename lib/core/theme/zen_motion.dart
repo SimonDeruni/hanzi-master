@@ -73,6 +73,14 @@ class ZenMotion {
   /// Per-item step between successive list entrances.
   static const Duration stagger = Duration(milliseconds: 50);
 
+  /// A row, card or chip leaving the screen.
+  ///
+  /// Deliberately shorter than [entrance]: a departure should read as clearing
+  /// space, not as a performance. `Dismissible` covers the swipe case; this
+  /// covers the data-driven one, where a button (or a provider update) removes
+  /// the row. Pair it with [natural]; see `ZenExit`.
+  static const Duration exit = Duration(milliseconds: 250);
+
   /// Choreography beat for sequenced reveals: `delay: beat * 2` = 200ms.
   static const Duration beat = Duration(milliseconds: 100);
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
