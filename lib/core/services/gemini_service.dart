@@ -8,6 +8,7 @@ import 'package:hanzi_master/features/media/domain/models/media_briefing.dart';
 import 'package:hanzi_master/features/media/domain/models/video_transcript.dart';
 import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
+import 'ai_cache.dart';
 import 'analytics_service.dart';
 import '../providers/translation_language_provider.dart';
 import '../utils/pinyin_utils.dart';
@@ -316,6 +317,7 @@ class GeminiService {
     bool jsonMode = false,
     Duration? timeout,
     int maxTokens = 2048,
+    bool useCache = true,
   }) async {
     await _checkUsageLimit();
     final openRouterKey = pool.nextKey;
@@ -351,6 +353,13 @@ class GeminiService {
       body['response_format'] = {'type': 'json_object'};
     }
 
+    // The transport is the right place for this: an identical question is never
+    // paid for twice, for *every* AI feature at once, rather than only the few
+    // that happened to cache at their own call site.
+    final cacheKey = _transportCacheKey('openrouter', model, body);
+    final cached = _readCachedResponse(cacheKey, useCache);
+    if (cached != null) return cached;
+
     final uri = Uri.parse('https://openrouter.ai/api/v1/chat/completions');
     final headers = {
       'Authorization': 'Bearer $openRouterKey',
@@ -366,7 +375,9 @@ class GeminiService {
 
     if (response.statusCode == 200) {
       final json = jsonDecode(utf8.decode(response.bodyBytes));
-      return json['choices']?[0]?['message']?['content'] ?? '';
+      final content = json['choices']?[0]?['message']?['content'] ?? '';
+      _writeCachedResponse(cacheKey, content, useCache);
+      return content;
     } else if (_isConfiguredKey(googleKey)) {
       // Automatic failover to Google Gemini API
       return _makeGoogleGeminiCall(
@@ -376,11 +387,41 @@ class GeminiService {
         jsonMode: jsonMode,
         timeout: timeout,
         maxTokens: maxTokens,
+        useCache: useCache,
       );
     } else {
       throw Exception(
           'OpenRouter Error ${response.statusCode}: ${response.body}');
     }
+  }
+
+  /// The cache key for an identical outgoing request.
+  ///
+  /// Keyed on the *request* - provider, model and the encoded body - rather than
+  /// on whatever a call site chose to pass, so two features asking the same
+  /// question share one answer, and a feature that never cached at all still gets
+  /// a cache for free.
+  String _transportCacheKey(String provider, String model, Object body) =>
+      aiCacheKey('transport', <Object?>[provider, model, jsonEncode(body)]);
+
+  /// The cached answer for [cacheKey], or `null` on a miss.
+  ///
+  /// Guarded by `isBoxOpen`, because unit tests never open Hive: a cache that
+  /// throws where it should miss would break every AI test in the suite.
+  String? _readCachedResponse(String cacheKey, bool useCache) {
+    if (!useCache || !Hive.isBoxOpen(aiCacheBoxName)) return null;
+    final String? cached = Hive.box<String>(aiCacheBoxName).get(cacheKey);
+    if (cached == null || cached.isEmpty) return null;
+    return cached;
+  }
+
+  /// Remember an answer, so the identical request is never sent a second time.
+  ///
+  /// An empty answer is deliberately not cached: that is how a failed call looks,
+  /// and remembering it would turn one bad response into a permanent one.
+  void _writeCachedResponse(String cacheKey, String value, bool useCache) {
+    if (!useCache || value.isEmpty || !Hive.isBoxOpen(aiCacheBoxName)) return;
+    Hive.box<String>(aiCacheBoxName).put(cacheKey, value);
   }
 
   static bool _isConfiguredKey(String key) =>
@@ -406,6 +447,7 @@ class GeminiService {
     required bool jsonMode,
     required Duration? timeout,
     required int maxTokens,
+    bool useCache = true,
   }) async {
     final systemMessages = messages
         .where((message) => message['role'] == 'system')
@@ -435,6 +477,9 @@ class GeminiService {
       },
     };
     final googleModel = _resolveGoogleModel(model);
+    final cacheKey = _transportCacheKey('google', googleModel, body);
+    final cached = _readCachedResponse(cacheKey, useCache);
+    if (cached != null) return cached;
     final uri = Uri.https(
       'generativelanguage.googleapis.com',
       '/v1beta/models/$googleModel:generateContent',
@@ -459,9 +504,11 @@ class GeminiService {
     if (candidates is! List || candidates.isEmpty) return '';
     final parts = candidates.first['content']?['parts'];
     if (parts is! List) return '';
-    return parts
+    final text = parts
         .map((part) => part is Map ? part['text']?.toString() ?? '' : '')
         .join();
+    _writeCachedResponse(cacheKey, text, useCache);
+    return text;
   }
 
   Future<String> generateText(String prompt) async {
@@ -663,8 +710,10 @@ Return ONLY a valid JSON object with EXACTLY this structure:
   }
 
   Future<Map<String, String>> defineWord(String word) async {
-    final cacheKey = 'def_$word';
-    final box = Hive.box<String>('ai_cache');
+    // The prompt asks for English specifically, so the language is fixed and is
+    // not part of the key; `aiCacheKey` supplies the version and a bounded hash.
+    final cacheKey = aiCacheKey('define_word', <Object?>[word]);
+    final box = Hive.box<String>(aiCacheBoxName);
 
     if (box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
@@ -1399,8 +1448,14 @@ IMPORTANT RULES for hskLevel and partOfSpeech:
   Future<AiStory> generateStory(
       String deckId, String deckName, List<String> vocabulary,
       {bool forceRegenerate = false}) async {
-    final cacheKey = 'story_$deckId';
-    final box = Hive.box<String>('ai_cache');
+    // Keyed on the *vocabulary*, not merely the deck id: the story is built from
+    // those words, so editing a deck used to keep serving the story written for
+    // its previous contents for ever.
+    final cacheKey = aiCacheKey(
+      'deck_story',
+      <Object?>[deckId, deckName, targetLanguage, ...vocabulary],
+    );
+    final box = Hive.box<String>(aiCacheBoxName);
 
     if (!forceRegenerate && box.containsKey(cacheKey)) {
       final json = jsonDecode(box.get(cacheKey)!);
@@ -1441,6 +1496,8 @@ Make sure every single character in the 'chinese' sentence is represented in the
 
     try {
       final text = await makeOpenRouterCall(
+        // A deliberate regeneration must not be answered from the cache.
+        useCache: !forceRegenerate,
         model: 'google/gemini-2.5-flash',
         messages: [
           {'role': 'user', 'content': prompt}
@@ -3368,8 +3425,12 @@ Output JSON matching this exact structure:
 
   Future<String> generateDetailedSummary(
       String title, String fullText, String targetLanguage) async {
-    final cacheKey = 'detailed_summary_$title';
-    final box = Hive.box<String>('ai_cache');
+    // `targetLanguage` belongs in the key because the summary is localized:
+    // keying on the title alone meant a French reader could be served the
+    // English summary that happened to be written first.
+    final cacheKey =
+        aiCacheKey('detailed_summary', <Object?>[title, targetLanguage]);
+    final box = Hive.box<String>(aiCacheBoxName);
     if (box.containsKey(cacheKey)) {
       try {
         final cached = box.get(cacheKey)!;

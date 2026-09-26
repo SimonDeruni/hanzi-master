@@ -27,6 +27,7 @@ class _FakeGeminiService extends GeminiService {
     bool jsonMode = false,
     Duration? timeout,
     int maxTokens = 2048,
+    bool useCache = true,
   }) async {
     capturedMessages = messages;
     return 'Bonjour';
