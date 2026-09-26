@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/youtube_repository.dart';
@@ -578,17 +579,23 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                 ClipRRect(
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
-                  child: Image.network(
-                    video.highThumbnailUrl,
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                        height: 200,
-                        color: isDark
-                            ? const Color(0xFF2C2C2E)
-                            : Colors.grey.shade300),
-                  ),
+                  child: video.highThumbnailUrl.isEmpty
+                      ? _thumbPlaceholder(isDark)
+                      : CachedNetworkImage(
+                          imageUrl: video.highThumbnailUrl,
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                          // The placeholder fills the thumbnail's own frame, so
+                          // the card never shows a blank strip while the picture
+                          // is on its way, and a thumbnail already seen comes
+                          // back instantly from the cache.
+                          placeholder: (context, url) =>
+                              _thumbPlaceholder(isDark),
+                          errorWidget: (context, url, error) =>
+                              _thumbPlaceholder(isDark),
+                          fadeInDuration: const Duration(milliseconds: 220),
+                        ),
                 ),
                 _buildDurationBadge(video.duration),
                 _buildCcBadge(),
@@ -717,3 +724,22 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
         '${seconds.toString().padLeft(2, '0')}';
   }
 }
+
+/// The frame a channel thumbnail occupies before it arrives: the same 200px box
+/// and the same colours the card already uses for a picture that failed, with a
+/// faint mark so it reads as "picture on its way" rather than an empty card.
+Widget _thumbPlaceholder(bool isDark) {
+  return Container(
+    height: 200,
+    alignment: Alignment.center,
+    color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade300,
+    child: Icon(
+      Icons.image_outlined,
+      size: 30,
+      color: isDark
+          ? Colors.white.withValues(alpha: 0.14)
+          : Colors.black.withValues(alpha: 0.12),
+    ),
+  );
+}
+
