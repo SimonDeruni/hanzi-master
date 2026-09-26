@@ -14,6 +14,7 @@ import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../../shared/utils/hero_transition.dart';
 import '../../../../shared/widgets/zen_filter_pill.dart';
 import '../../data/thematic_decks_data.dart';
+import '../../../../core/services/character_lookup_service.dart';
 import '../../../../core/services/localized_deck_service.dart';
 import '../widgets/calligraphic_deck_cover.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
@@ -584,9 +585,31 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     required VoidCallback onInstall,
     required VoidCallback onUninstall,
     String? heroId,
-  }) {
+  }) async {
     HapticsManager.light();
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Word meanings come from storage (`dictionary.db`), in the reader's own
+    // language, instead of being carried as hardcoded English in the deck data.
+    // Only the words actually rendered are looked up, and a deck's own
+    // definition still backstops anything the dictionary does not hold.
+    Map<String, String> meanings = const <String, String>{};
+    try {
+      final localeCode = Localizations.localeOf(context).languageCode;
+      final infos = await ref.read(characterLookupServiceProvider).lookupAll(
+            sampleWords
+                .take(12)
+                .map((word) => word['hanzi'] ?? '')
+                .where((hanzi) => hanzi.isNotEmpty),
+            targetLanguage: localeCode,
+          );
+      meanings = <String, String>{
+        for (final info in infos) info.hanzi: info.definition,
+      };
+    } catch (_) {
+      meanings = const <String, String>{};
+    }
+    if (!context.mounted) return;
     final bgColor = isDark ? const Color(0xFF1E1E24) : const Color(0xFFFDFCF0);
     final cardBg = isDark ? const Color(0xFF28282E) : Colors.white;
     final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
@@ -829,7 +852,7 @@ const SizedBox(height: 20),
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                LocalizedDeckService.wordDefinition(hanzi: word['hanzi'] ?? '', fallbackEn: word['definition'] ?? ''),
+                                meanings[word['hanzi']] ?? word['definition'] ?? '',
                                 style: TextStyle(
                                   fontSize: 10.5,
                                   color:
