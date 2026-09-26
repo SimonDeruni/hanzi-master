@@ -166,6 +166,103 @@ class CalligraphicBookCover extends StatelessWidget {
     );
   }
 
+  /// Poetry covers get a designed plate instead of a bare crop: the artwork
+  /// keeps its own framing on a dark genre mat, so a tall card or a wide row
+  /// never cuts the composition, with an ink border and - on a large cover -
+  /// the poem's own hanzi title and author.
+  Widget _buildPoetryPlate(
+    BuildContext context,
+    bool isDark,
+    String imagePath,
+  ) {
+    final List<Color> mat = _getGenreGradient(book.category, isDark);
+    final bool showTitle = width.isFinite &&
+        height.isFinite &&
+        width >= 110 &&
+        height >= 150;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: mat,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(showTitle ? 0 : 4),
+          child: Image.asset(
+            imagePath,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) =>
+                _buildCalligraphicFallback(context, isDark),
+          ),
+        ),
+        if (showTitle)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(10, 24, 10, 10),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withValues(alpha: 0.72),
+                  ],
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    book.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 2,
+                    ),
+                  ),
+                  if (book.author.trim().isNotEmpty)
+                    Text(
+                      book.author,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.75),
+                        fontSize: 11,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.12),
+                  width: 1,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -193,22 +290,14 @@ class CalligraphicBookCover extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            // 1. True Book Cover Image
-            Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                if (isPoetry) {
-                  return Image.asset(
-                    'assets/images/books/${book.id}.jpg',
+            isPoetry
+                ? _buildPoetryPlate(context, isDark, imagePath)
+                : Image.asset(
+                    imagePath,
                     fit: BoxFit.cover,
-                    errorBuilder: (ctx, err, st) =>
+                    errorBuilder: (context, error, stackTrace) =>
                         _buildCalligraphicFallback(context, isDark),
-                  );
-                }
-                return _buildCalligraphicFallback(context, isDark);
-              },
-            ),
+                  ),
 // 2. Subtle Spine Left Shadow (Tactile 3D book illusion)
             Positioned(
               left: 0,
