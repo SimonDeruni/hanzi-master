@@ -104,7 +104,6 @@ class _ContactScreenState extends State<ContactScreen> {
                     localizations.wedLoveToHearFromYou,
                     style: TextStyle(
                       fontSize: 38,
-                      fontFamily: 'NotoSerifSC',
                       fontWeight: FontWeight.w900,
                       color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                       height: 1.1,
@@ -112,8 +111,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                   ),
                   const SizedBox(height: 40),
-
-                  // Category Selector
+// Category Selector
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
@@ -162,8 +160,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Message Area
+// Message Area
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -206,8 +203,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Send Button
+// Send Button
                   SizedBox(
                     width: double.infinity,
                     height: 60,

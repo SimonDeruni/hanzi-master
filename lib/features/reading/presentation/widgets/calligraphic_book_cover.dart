@@ -87,8 +87,7 @@ class CalligraphicBookCover extends StatelessWidget {
               ),
             ),
           ),
-
-          // Background Hanzi Watermark
+// Background Hanzi Watermark
           Positioned(
             right: -6,
             bottom: -10,
@@ -100,13 +99,11 @@ class CalligraphicBookCover extends StatelessWidget {
                   fontSize: 100,
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
-                  fontFamily: 'NotoSerifSC',
                 ),
               ),
             ),
           ),
-
-          // Center Calligraphic Plaque
+// Center Calligraphic Plaque
           Center(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
@@ -137,7 +134,6 @@ class CalligraphicBookCover extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                       color: Color(0xFF1A1A1B),
                       letterSpacing: 1.5,
-                      fontFamily: 'NotoSerifSC',
                       height: 1.2,
                     ),
                     maxLines: 2,
@@ -213,8 +209,7 @@ class CalligraphicBookCover extends StatelessWidget {
                 return _buildCalligraphicFallback(context, isDark);
               },
             ),
-
-            // 2. Subtle Spine Left Shadow (Tactile 3D book illusion)
+// 2. Subtle Spine Left Shadow (Tactile 3D book illusion)
             Positioned(
               left: 0,
               top: 0,
@@ -233,8 +228,7 @@ class CalligraphicBookCover extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Bottom gradient overlay for Chapter badge readability
+// Bottom gradient overlay for Chapter badge readability
             if (showBadge)
               Positioned(
                 bottom: 0,
@@ -254,8 +248,7 @@ class CalligraphicBookCover extends StatelessWidget {
                   ),
                 ),
               ),
-
-            // 4. Chapters Count (Bottom Right)
+// 4. Chapters Count (Bottom Right)
             if (showBadge)
               Positioned(
                 bottom: 8,

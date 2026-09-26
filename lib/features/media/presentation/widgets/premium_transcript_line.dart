@@ -167,8 +167,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine>
             ),
           ),
           const SizedBox(width: 8),
-
-          // Subtitle Content Block
+// Subtitle Content Block
           Expanded(
             child: GestureDetector(
               onTap: widget.onLineTapped,
@@ -270,16 +269,14 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine>
                               fontWeight: isHighlighted
                                   ? FontWeight.bold
                                   : FontWeight.w500,
-                              height: 1.5,
-                              fontFamily: 'NotoSerifSC', // fallback if needed
+                              height: 1.5, // fallback if needed
                             ),
                             recognizer: recognizer,
                           );
                         }).toList(),
                       ),
                     ),
-
-                    // 2. Pinyin Line
+// 2. Pinyin Line
                     if (widget.showPinyin) ...[
                       () {
                         final raw = widget.line.pinyin?.trim();
@@ -315,8 +312,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine>
                         return const SizedBox.shrink();
                       }(),
                     ],
-
-                    // 3. English/Local Translation Line + Shadowing Button
+// 3. English/Local Translation Line + Shadowing Button
                     if (widget.showEnglish || widget.isShadowingMode)
                       Padding(
                         padding: const EdgeInsets.only(top: 6),
@@ -340,8 +336,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine>
                             else
                               const Spacer(),
                             const SizedBox(width: 8),
-
-                            // Shadowing / Mic Button
+// Shadowing / Mic Button
                             GestureDetector(
                               onTap: widget.onShadowTapped,
                               child: AnimatedBuilder(

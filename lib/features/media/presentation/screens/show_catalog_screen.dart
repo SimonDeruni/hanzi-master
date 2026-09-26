@@ -117,10 +117,8 @@ class _ShowCatalogScreenState extends ConsumerState<ShowCatalogScreen> {
                   },
                 ),
               ),
-
-              const SizedBox(height: 8),
-
-              // Content Area
+const SizedBox(height: 8),
+// Content Area
               Expanded(
                 child: isFiltering
                     ? (filteredShows.isEmpty
@@ -249,7 +247,6 @@ class _GenreRow extends StatelessWidget {
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: 20,
               fontWeight: FontWeight.w900,
-              fontFamily: 'NotoSerifSC',
             ),
           ),
         ),

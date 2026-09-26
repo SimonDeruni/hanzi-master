@@ -51,7 +51,6 @@ class _SimplifiedArticleReaderScreenState
         title: Text(
           l10n.simplifiedArticle,
           style: TextStyle(
-            fontFamily: 'NotoSerifSC',
             fontWeight: FontWeight.bold,
             color: textColor,
           ),
@@ -193,7 +192,6 @@ class _SimplifiedArticleReaderScreenState
           Text.rich(
             TextSpan(children: spans),
             style: TextStyle(
-              fontFamily: 'NotoSerifSC',
               fontSize: 22,
               height: 1.8,
               color: textColor,
@@ -297,7 +295,6 @@ class _TappableWord extends StatelessWidget {
           Text(
             word.hanzi,
             style: TextStyle(
-              fontFamily: 'NotoSerifSC',
               fontSize: 22,
               height: 1.35,
               color: isSelected ? accent : textColor,

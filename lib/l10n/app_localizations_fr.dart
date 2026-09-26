@@ -2282,8 +2282,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get notes => 'Notes';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => 'OBJECTIFS';

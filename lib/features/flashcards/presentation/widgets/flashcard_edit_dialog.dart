@@ -162,7 +162,7 @@ class _FlashcardEditDialogState extends ConsumerState<FlashcardEditDialog> {
                 border: const OutlineInputBorder(),
               ),
               style: TextStyle(
-                  color: textColor, fontFamily: 'NotoSerifSC', fontSize: 24),
+                  color: textColor, fontSize: 24),
             ),
             const SizedBox(height: 16),
             HanziTextField(

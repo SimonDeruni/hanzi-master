@@ -2275,8 +2275,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get notes => 'Anotações';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => 'OBJETIVOS';

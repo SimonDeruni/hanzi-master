@@ -4304,12 +4304,6 @@ abstract class AppLocalizations {
   /// **'Notes'**
   String get notes;
 
-  /// No description provided for @notoserifsc.
-  ///
-  /// In en, this message translates to:
-  /// **'NotoSerifSC'**
-  String get notoserifsc;
-
   /// No description provided for @objectivesTitle.
   ///
   /// In en, this message translates to:

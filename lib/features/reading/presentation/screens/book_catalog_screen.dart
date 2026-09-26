@@ -159,10 +159,8 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                           hintText: _getSearchHint(l10n),
                           onChanged: (_) => setState(() {}),
                         ),
-
-                        const SizedBox(height: 12),
-
-                        // --- 3-TIER READING ROOM SWITCHER ---
+const SizedBox(height: 12),
+// --- 3-TIER READING ROOM SWITCHER ---
                         Container(
                           height: 44,
                           padding: const EdgeInsets.all(3),
@@ -206,17 +204,14 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             ],
                           ),
                         ),
-
-                        const SizedBox(height: 12),
-
-                        // --- SUB-FILTERS PER ACTIVE SECTION ---
+const SizedBox(height: 12),
+// --- SUB-FILTERS PER ACTIVE SECTION ---
                         _buildSubFilters(isDark, cardBg),
                       ],
                     ),
                   ),
                 ),
-
-                // 2. Main Content based on Active Section
+// 2. Main Content based on Active Section
                 if (_activeSection == ReadingRoomSection.novels)
                   ..._buildNovelsSlivers(
                     catalogAsync: catalogAsync,
@@ -478,8 +473,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               child: _buildContinueReadingShelf(
                   context, inProgressItems, isDark, cardBg, primaryText),
             ),
-
-          // Count indicator
+// Count indicator
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
@@ -494,8 +488,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               ),
             ),
           ),
-
-          // Grid
+// Grid
           if (filtered.isEmpty)
             SliverFillRemaining(
               hasScrollBody: false,
@@ -580,8 +573,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               ),
             ),
           ),
-
-          if (filtered.isEmpty)
+if (filtered.isEmpty)
             SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
@@ -662,8 +654,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               ),
             ),
           ),
-
-          if (filtered.isEmpty)
+if (filtered.isEmpty)
             SliverFillRemaining(
               hasScrollBody: false,
               child: Center(
@@ -830,7 +821,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                             color: primaryText,
-                            fontFamily: 'NotoSerifSC',
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -1027,7 +1017,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                               maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                fontFamily: 'NotoSerifSC',
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,
                                 color: Colors.white,
@@ -1120,7 +1109,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 13,
                             color: primaryText,
-                            fontFamily: 'NotoSerifSC',
                           ),
                         ),
                         if (story.titleEn != null &&
@@ -1240,7 +1228,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 13.5,
                             color: primaryText,
-                            fontFamily: 'NotoSerifSC',
                           ),
                         ),
                         if (poem.titleEn != null &&
@@ -1476,7 +1463,6 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
                                   color: primaryText,
-                                  fontFamily: 'NotoSerifSC',
                                 ),
                               ),
                               const SizedBox(height: 2),

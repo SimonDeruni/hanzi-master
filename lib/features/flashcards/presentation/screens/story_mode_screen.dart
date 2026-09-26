@@ -211,7 +211,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
         title: Text(
           AppLocalizations.of(context)!.aiStory,
           style: TextStyle(
-              fontFamily: 'NotoSerifSC',
               color: isDark ? Colors.white : Colors.black87),
         ),
         backgroundColor: Colors.transparent,
@@ -283,7 +282,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                   ? '幻拼'
                                   : '无拼',
                           style: TextStyle(
-                            fontFamily: 'NotoSerifSC',
                             fontSize: 13,
                             color: isDark ? Colors.white60 : Colors.black54,
                           ),
@@ -360,7 +358,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                           child: Text(
                                             word.hanzi,
                                             style: TextStyle(
-                                              fontFamily: 'NotoSerifSC',
                                               fontSize: 26,
                                               color: isDark
                                                   ? Colors.white70
@@ -432,7 +429,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                               Text(
                                                 word.hanzi,
                                                 style: TextStyle(
-                                                  fontFamily: 'NotoSerifSC',
                                                   fontSize: 28,
                                                   fontWeight: isDue
                                                       ? FontWeight.w900
@@ -534,7 +530,6 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               Text(
                 AppLocalizations.of(context)!.geminiFlashIsStructuring,
                 style: TextStyle(
-                  fontFamily: 'NotoSerifSC',
                   fontSize: 18,
                   color: isDark ? Colors.white70 : Colors.black54,
                 ),

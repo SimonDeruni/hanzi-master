@@ -245,7 +245,6 @@ class _StatsCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'NotoSerifSC',
                       color: palette.ink,
                     ),
                     maxLines: 2,
@@ -913,7 +912,6 @@ class _WordListCard extends StatelessWidget {
                 word.hanzi,
                 style: TextStyle(
                   fontSize: 22,
-                  fontFamily: 'NotoSerifSC',
                   color: palette.ink,
                 ),
                 maxLines: 2,

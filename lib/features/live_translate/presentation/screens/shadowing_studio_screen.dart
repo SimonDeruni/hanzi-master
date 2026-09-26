@@ -619,7 +619,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         word,
                         style: TextStyle(
                           fontSize: 28,
-                          fontFamily: 'NotoSerifSC',
                           color:
                               isPartial ? _accentOf(isDark) : _alertOf(isDark),
                         ),
@@ -1328,8 +1327,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 12),
-
-                    // ── Mode Selector Section ─────────────────────
+// ── Mode Selector Section ─────────────────────
                     _buildSectionLabel(
                       icon: Icons.tune_rounded,
                       title: l10n.practiceMode,
@@ -1347,8 +1345,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         ),
                       ),
                     ),
-
-                    GridView(
+GridView(
                         gridDelegate: ZenGrid.tiles(
                             maxTileWidth: 170,
                             childAspectRatio: 2.35,
@@ -1382,17 +1379,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             isDark: isDark,
                           ),
                         ]),
-
-                    const SizedBox(height: 14),
-
-                    // ── Configuration Section ─────────────────────
+const SizedBox(height: 14),
+// ── Configuration Section ─────────────────────
                     _buildSectionLabel(
                       icon: Icons.settings_rounded,
                       title: AppLocalizations.of(context)!.configuration,
                       isDark: isDark,
                     ),
-
-                    if (_selectedMode == ShadowingMode.freeFlow) ...[
+if (_selectedMode == ShadowingMode.freeFlow) ...[
                       _buildConfigCard(
                         isDark: isDark,
                         label: l10n.practiceMode,
@@ -1444,8 +1438,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         ),
                       ),
                     ],
-
-                    if (_selectedMode == ShadowingMode.customWord) ...[
+if (_selectedMode == ShadowingMode.customWord) ...[
                       _buildConfigCard(
                         isDark: isDark,
                         label: AppLocalizations.of(context)!.chinese_character,
@@ -1670,14 +1663,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             ),
                       ),
                     ],
-
-                    const SizedBox(height: 12),
+const SizedBox(height: 12),
                   ],
                 ),
               ),
             ),
-
-            // Start Button Area
+// Start Button Area
             Padding(
               padding: EdgeInsets.fromLTRB(
                 20,
@@ -1751,7 +1742,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       fontSize: fontSize,
       color: defaultColor,
       fontWeight: FontWeight.w500,
-      fontFamily: 'NotoSerifSC',
       height: 1.35,
     );
 
@@ -1928,8 +1918,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               ],
                             ),
                           ),
-
-                        // Gold hairline under the header, as on every other
+// Gold hairline under the header, as on every other
                         // calligraphic surface.
                         if (!widget.isCompact)
                           Container(
@@ -1937,8 +1926,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                             margin: const EdgeInsets.symmetric(horizontal: 24),
                             color: _goldOf(isDark).withValues(alpha: 0.25),
                           ),
-
-                        if (_errorMessage != null)
+if (_errorMessage != null)
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -1966,8 +1954,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               ],
                             ),
                           ),
-
-                        // Main Content Area
+// Main Content Area
                         Expanded(
                           child: _isLoadingNextPhrase
                               ? Center(
@@ -1978,8 +1965,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                           .readyToStart))
                                   : _buildPhraseCard(isDark),
                         ),
-
-                        // Bottom Actions Area
+// Bottom Actions Area
                         if (_currentPhrase != null && !_isLoadingNextPhrase)
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -2010,10 +1996,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                       ),
                                     ],
                                   ),
-
-                                const SizedBox(height: 24),
-
-                                Row(
+const SizedBox(height: 24),
+Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
@@ -2025,8 +2009,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                       tooltip: l10n?.play,
                                       onPressed: _playNativeAudio,
                                     ),
-
-                                    // Record Button (Hold)
+// Record Button (Hold)
                                     GestureDetector(
                                       onLongPressStart: (_) =>
                                           _startRecording(),
@@ -2087,8 +2070,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                         ),
                                       ),
                                     ),
-
-                                    // Next Button / Done Button
+// Next Button / Done Button
                                     if (!widget.isCompact)
                                       IconButton(
                                         iconSize: 48,
@@ -2206,8 +2188,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                 ],
               ),
             ),
-
-          // The Phrase
+// The Phrase
           if (_lastGrade == null || _lastGrade!['words'] == null) ...[
             Text(
               _currentPhrase!['pinyin']!,
@@ -2264,7 +2245,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               _currentPhrase!['hanzi']!.length),
                           color: color,
                           fontWeight: FontWeight.w500,
-                          fontFamily: 'NotoSerifSC',
                         ),
                       ),
                     ],
@@ -2273,8 +2253,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               }).toList(),
             ),
           ],
-
-          // Tone Graph is hidden for V1 MVP as requested by user
+// Tone Graph is hidden for V1 MVP as requested by user
           /*
           if (_lastGrade != null && _userPitch.isNotEmpty) ...[
             const SizedBox(height: 24),
@@ -2316,7 +2295,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
               fontSize: widget.isCompact ? 16 : 20,
               color: _mutedOf(isDark),
               fontStyle: FontStyle.italic,
-              fontFamily: 'NotoSerifSC',
             ),
             textAlign: TextAlign.center,
           ),
@@ -2384,7 +2362,6 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   word,
                   style: TextStyle(
                     fontSize: 48,
-                    fontFamily: 'NotoSerifSC',
                     color: wordColor,
                     fontWeight: FontWeight.bold,
                   ),
@@ -2410,8 +2387,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     ),
                   ),
                 ),
-
-                // Phoneme Breakdown & Exact Score
+// Phoneme Breakdown & Exact Score
                 if (wordData['accuracyScore'] != null) ...[
                   const SizedBox(height: 16),
                   Center(
@@ -2428,8 +2404,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     ),
                   ),
                 ],
-
-                if (wordData['phonemes'] != null &&
+if (wordData['phonemes'] != null &&
                     (wordData['phonemes'] as List).isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Row(
@@ -2541,8 +2516,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                     ),
                   ),
                 ],
-
-                if (feedback.isNotEmpty) ...[
+if (feedback.isNotEmpty) ...[
                   const SizedBox(height: 16),
                   Text(
                     feedback,

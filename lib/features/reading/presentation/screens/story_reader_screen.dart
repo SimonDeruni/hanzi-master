@@ -425,7 +425,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 ? widget.blueprint.title
                 : 'HSK ${widget.hskLevel}: ${widget.blueprint.title}',
             style: TextStyle(
-                fontFamily: 'NotoSerifSC',
                 color: isDark ? Colors.white : Colors.black87),
           ),
           backgroundColor: Colors.transparent,
@@ -491,7 +490,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   child: Text(
                     _streamingText,
                     style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
                       fontSize: 28,
                       color: isDark ? Colors.white : Colors.black87,
                       height: 1.8,
@@ -701,8 +699,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                         child: Text(
                                                           word.hanzi,
                                                           style: TextStyle(
-                                                            fontFamily:
-                                                                'NotoSerifSC',
                                                             fontSize: 26,
                                                             color: textColor,
                                                           ),
@@ -809,8 +805,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                             Text(
                                                               word.hanzi,
                                                               style: TextStyle(
-                                                                fontFamily:
-                                                                    'NotoSerifSC',
                                                                 fontSize: 28,
                                                                 fontWeight: (isQuickLookSelected ||
                                                                         dueWords.contains(word

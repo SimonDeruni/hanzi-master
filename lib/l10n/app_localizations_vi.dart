@@ -2257,8 +2257,6 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get notes => 'Ghi chú';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => 'MỤC TIÊU HỌC TẬP';

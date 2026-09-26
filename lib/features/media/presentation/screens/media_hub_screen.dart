@@ -35,20 +35,16 @@ class MediaHubScreen extends ConsumerWidget {
                 child: _DailyDiscoveryCarousel(),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // 2. WEB EXPLORER - Prominent Hero Card
+const SliverToBoxAdapter(child: SizedBox(height: 24)),
+// 2. WEB EXPLORER - Prominent Hero Card
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
                 child: _buildWebExplorerHeroCard(context),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
-
-            // 3. Quick Bookmarks
+const SliverToBoxAdapter(child: SizedBox(height: 20)),
+// 3. Quick Bookmarks
             SliverToBoxAdapter(
               child: Padding(
                 padding:
@@ -61,8 +57,7 @@ class MediaHubScreen extends ConsumerWidget {
                 ),
               ),
             ),
-
-            // Horizontal List of Bookmarks
+// Horizontal List of Bookmarks
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 70,
@@ -97,10 +92,8 @@ class MediaHubScreen extends ConsumerWidget {
                 ),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // Additional Core Tools
+const SliverToBoxAdapter(child: SizedBox(height: 24)),
+// Additional Core Tools
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -130,10 +123,8 @@ class MediaHubScreen extends ConsumerWidget {
                 ),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
-
-            // Saved Articles Section
+const SliverToBoxAdapter(child: SizedBox(height: 32)),
+// Saved Articles Section
             SliverToBoxAdapter(
               child: Padding(
                 padding:
@@ -146,8 +137,7 @@ class MediaHubScreen extends ConsumerWidget {
                 ),
               ),
             ),
-
-            SliverToBoxAdapter(
+SliverToBoxAdapter(
               child: ValueListenableBuilder<Box<SavedArticle>>(
                 valueListenable:
                     Hive.box<SavedArticle>('saved_articles').listenable(),
@@ -218,8 +208,7 @@ class MediaHubScreen extends ConsumerWidget {
                 },
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+const SliverToBoxAdapter(child: SizedBox(height: 40)),
           ],
         ),
       ),
@@ -283,8 +272,7 @@ class MediaHubScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-
-              // Content Layout
+// Content Layout
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 24.0, vertical: 24.0),
@@ -347,10 +335,8 @@ class MediaHubScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-
-                    const SizedBox(height: 18),
-
-                    // Headline
+const SizedBox(height: 18),
+// Headline
                     Text(
                       AppLocalizations.of(context)!.webExplorer,
                       style: const TextStyle(
@@ -371,10 +357,8 @@ class MediaHubScreen extends ConsumerWidget {
                         height: 1.35,
                       ),
                     ),
-
-                    const SizedBox(height: 20),
-
-                    // Refined CTA Button
+const SizedBox(height: 20),
+// Refined CTA Button
                     Row(
                       children: [
                         Container(
@@ -485,7 +469,6 @@ class MediaHubScreen extends ConsumerWidget {
                             title,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w900,
-                              fontFamily: 'NotoSerifSC',
                               letterSpacing: 0.5,
                             ),
                           ),

@@ -63,7 +63,6 @@ class DailyGoalReviewRing extends StatelessWidget {
                     style: TextStyle(
                       fontSize: size * 0.22,
                       fontWeight: FontWeight.w900,
-                      fontFamily: 'NotoSerifSC',
                       color: isComplete
                           ? (isDark
                               ? const Color(0xFF34D399)

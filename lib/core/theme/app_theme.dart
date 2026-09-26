@@ -52,53 +52,51 @@ class AppTheme {
 
   // --- Typography ---
   //
-  // The calligraphic family was requested here as `'NotoSansSC'` - and in 85
-  // other places as `'NotoSerifSC'` - while `pubspec.yaml` declared no font at
-  // all, so *every* role below silently fell back to the platform font. The
-  // display/title roles now name the bundled OFL serif (see
-  // `assets/fonts/`, built by `scratch/build_font_subset.py`), which is what
-  // those 85 sites were already asking for, so large glyphs are one consistent
-  // face on iOS and Android at last.
+  // Policy (2026-09-26, at the owner's request): the app ships **no** custom
+  // font. Every role below - display, headline, title, body, label - is left
+  // unspecified, so all text renders in the platform's own face: San Francisco
+  // on iOS, Roboto on Android.
   //
-  // Body and label roles deliberately declare **no** family: the app's UI text
-  // is platform-native (San Francisco / Roboto), which also means their metrics
-  // are unchanged by this fix - the locale-overflow budgets measured in
-  // `test/core/locale_layout_guard_test.dart` stay valid.
-  static const String _serifFamily = 'NotoSerifSC';
-
+  // History worth keeping: a calligraphic family used to be named here
+  // (`'NotoSansSC'`) and in 91 further call sites (`'NotoSerifSC'`) while
+  // `pubspec.yaml` declared no font at all, so every one of those sites silently
+  // fell back to the platform font for the life of the project. Dropping the
+  // declarations therefore changes *nothing* visually in those places - it only
+  // stops the app from asking for a face it does not carry. The only place the
+  // serif was ever actually visible was the brief window in which the OFL
+  // subset in `assets/fonts/` shipped; those files are gone again, which also
+  // takes ~15 MB off the bundle.
+  //
+  // Leaving the roles unspecified is what keeps the locale-overflow budgets in
+  // `test/core/locale_layout_guard_test.dart` valid: platform metrics are
+  // unchanged by this cleanup.
   /// The face used by the **component themes** (app bars, buttons, dialogs).
   ///
   /// Deliberately `null`, which means "platform-native" - San Francisco on iOS,
-  /// Roboto on Android. This used to be `'NotoSansSC'`, a family that was never
-  /// bundled, so these twenty-odd sites have always rendered in the platform
-  /// font regardless; naming that intention explicitly is what lets
-  /// `test/core/typography_guard_test.dart` prove the app only ever requests
-  /// fonts it actually ships.
+  /// Roboto on Android. `test/core/typography_guard_test.dart` fails the build
+  /// if anything in `lib/` requests a family the app does not ship, which is
+  /// what keeps this a deliberate `null` rather than an accidental one.
   static const String? _fontFamily = null;
 
   static TextTheme _buildTextTheme(Color textColor, Color mutedColor) {
     return TextTheme(
       // Display: Massive characters (Flashcards, Canvas)
-      displayLarge: TextStyle(fontFamily: _serifFamily, fontSize: 120, fontWeight: FontWeight.bold, color: textColor),
-      displayMedium: TextStyle(fontFamily: _serifFamily, fontSize: 80, fontWeight: FontWeight.bold, color: textColor),
-      displaySmall: TextStyle(fontFamily: _serifFamily, fontSize: 48, fontWeight: FontWeight.bold, color: textColor),
-
-      // Headlines: Screen Titles, Major Sections
-      headlineLarge: TextStyle(fontFamily: _serifFamily, fontSize: 34, fontWeight: FontWeight.bold, color: textColor, letterSpacing: -0.5),
-      headlineMedium: TextStyle(fontFamily: _serifFamily, fontSize: 24, fontWeight: FontWeight.bold, color: textColor),
-      headlineSmall: TextStyle(fontFamily: _serifFamily, fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
-
-      // Titles: Cards, List Items
-      titleLarge: TextStyle(fontFamily: _serifFamily, fontSize: 18, fontWeight: FontWeight.w600, color: textColor),
-      titleMedium: TextStyle(fontFamily: _serifFamily, fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
-      titleSmall: TextStyle(fontFamily: _serifFamily, fontSize: 14, fontWeight: FontWeight.w600, color: textColor),
-
-      // Body: Definitions, Standard Text
+      displayLarge: TextStyle(fontSize: 120, fontWeight: FontWeight.bold, color: textColor),
+      displayMedium: TextStyle(fontSize: 80, fontWeight: FontWeight.bold, color: textColor),
+      displaySmall: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: textColor),
+// Headlines: Screen Titles, Major Sections
+      headlineLarge: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: textColor, letterSpacing: -0.5),
+      headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: textColor),
+      headlineSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
+// Titles: Cards, List Items
+      titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textColor),
+      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: textColor),
+      titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: textColor),
+// Body: Definitions, Standard Text
       bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: textColor),
       bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: textColor),
       bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: mutedColor),
-
-      // Labels: Buttons, Pinyin, Tags
+// Labels: Buttons, Pinyin, Tags
       // Tracking kept deliberately low (0.2): the former 1.0 inflated every
       // Latin/Cyrillic button label by ~10-15% and caused locale overflow.
       labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: textColor, letterSpacing: 0.2),

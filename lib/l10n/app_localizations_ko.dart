@@ -2200,8 +2200,6 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get notes => '메모';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => '학습 목표';

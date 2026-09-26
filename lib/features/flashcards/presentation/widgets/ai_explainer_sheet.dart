@@ -332,7 +332,6 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
           Text(
             widget.sentence.chinese,
             style: TextStyle(
-              fontFamily: 'NotoSerifSC',
               fontSize: 16,
               color: textColor.withValues(alpha: 0.85),
             ),

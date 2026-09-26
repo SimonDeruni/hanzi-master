@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -258,7 +259,6 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                     style: TextStyle(
                       color: textColor,
                       fontSize: 18,
-                      fontFamily: 'NotoSerifSC',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -619,6 +619,26 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
                           ),
                         ),
                 ),
+                if (kDebugMode)
+                  Positioned(
+                    top: 4,
+                    left: 8,
+                    child: TextButton.icon(
+                      onPressed: () async {
+                        await MonetizationService.unlockDeveloperBackdoor();
+                        _continueWithTemporaryPremium();
+                      },
+                      icon: const Icon(Icons.developer_mode, size: 16),
+                      label: const Text(
+                        'Dev Bypass',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor: bgColor.withValues(alpha: 0.92),
+                        foregroundColor: textColor,
+                      ),
+                    ),
+                  ),
                 Positioned(
                   top: 4,
                   right: 8,
@@ -679,7 +699,6 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           style: TextStyle(
             color: textColor,
             fontSize: 29,
-            fontFamily: 'NotoSerifSC',
             fontWeight: FontWeight.bold,
             height: 1.12,
           ),
@@ -751,7 +770,6 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: textColor,
-            fontFamily: 'NotoSerifSC',
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -834,7 +852,6 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             title,
             style: TextStyle(
               color: textColor,
-              fontFamily: 'NotoSerifSC',
               fontSize: 22,
               fontWeight: FontWeight.bold,
               height: 1.2,
@@ -1002,7 +1019,6 @@ class _CustomPaywallScreenState extends ConsumerState<CustomPaywallScreen> {
             l10n.everythingIncluded,
             style: TextStyle(
               color: textColor,
-              fontFamily: 'NotoSerifSC',
               fontSize: 21,
               fontWeight: FontWeight.bold,
             ),

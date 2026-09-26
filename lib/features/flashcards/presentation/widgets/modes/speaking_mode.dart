@@ -198,7 +198,6 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
         style: const TextStyle(
           fontSize: 120,
           fontWeight: FontWeight.bold,
-          fontFamily: 'NotoSerifSC',
         ),
         children: spans,
       ),
@@ -381,8 +380,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                 ),
               ),
             ),
-
-            if (_error != null)
+if (_error != null)
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
@@ -407,8 +405,7 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                   ),
                 ),
               ),
-
-            if (_isProcessing)
+if (_isProcessing)
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: Column(
@@ -506,16 +503,14 @@ class _SpeakingModeWidgetState extends ConsumerState<SpeakingModeWidget> {
                   const SizedBox(height: 24),
                 ],
               ),
-
-            // AI Feedback Results
+// AI Feedback Results
             if (_feedbackResult != null)
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 child: SpeakingFeedbackPanel(result: _feedbackResult!),
               ),
-
-            // Swipe Hint
+// Swipe Hint
             if (canRate)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),

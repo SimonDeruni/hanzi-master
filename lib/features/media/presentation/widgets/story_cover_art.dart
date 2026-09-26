@@ -139,8 +139,7 @@ class StoryCoverArt extends StatelessWidget {
             fit: StackFit.expand,
             children: <Widget>[
               _buildArtwork(context),
-
-              // Spine shading: the same 3D book illusion as the catalogue.
+// Spine shading: the same 3D book illusion as the catalogue.
               Positioned(
                 left: 0,
                 top: 0,
@@ -159,8 +158,7 @@ class StoryCoverArt extends StatelessWidget {
                   ),
                 ),
               ),
-
-              if (showSourceBadge && story.sourceName.isNotEmpty) ...<Widget>[
+if (showSourceBadge && story.sourceName.isNotEmpty) ...<Widget>[
                 Positioned(
                   left: 0,
                   right: 0,
@@ -254,7 +252,6 @@ class StoryCoverArt extends StatelessWidget {
           topicGlyph(story.category),
           style: TextStyle(
             fontSize: height * 0.38,
-            fontFamily: 'NotoSerifSC',
             height: 1,
             color: const Color(0xFFD4AF37).withValues(alpha: 0.55),
           ),

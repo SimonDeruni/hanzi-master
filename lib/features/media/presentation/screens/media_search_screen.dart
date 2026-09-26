@@ -220,8 +220,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
             const SizedBox(height: 8),
             _buildChannelRow(),
             const SizedBox(height: 12),
-
-            // ── Pill Search Bar (matching reference) ──
+// ── Pill Search Bar (matching reference) ──
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
@@ -285,8 +284,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
               ),
             ),
             const SizedBox(height: 12),
-
-            if (_error != null)
+if (_error != null)
               Expanded(
                   child: Center(
                       child: Text(
@@ -370,7 +368,6 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                                 style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.w900,
-                                  fontFamily: 'NotoSerifSC',
                                   color: isDark
                                       ? Colors.white
                                       : const Color(0xFF1A1A1B),
@@ -608,8 +605,7 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
                   ),
                 ],
               ),
-
-              // Video Info
+// Video Info
               Padding(
                 padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
                 child: Column(

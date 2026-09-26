@@ -71,8 +71,7 @@ class ZenSoundscapeSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-
-          // Header Row
+// Header Row
           Row(
             children: [
               Container(
@@ -102,7 +101,6 @@ class ZenSoundscapeSheet extends ConsumerWidget {
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         color: primaryText,
-                        fontFamily: 'NotoSerifSC',
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -134,8 +132,7 @@ class ZenSoundscapeSheet extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 18),
-
-          // Track Options List
+// Track Options List
           _buildTrackOption(
             context: context,
             title: l10n?.soundscapeCourtyardRain ?? 'Courtyard Rain',
@@ -211,10 +208,8 @@ class ZenSoundscapeSheet extends ConsumerWidget {
               ambientService.setTrack(SoundscapeTrack.off);
             },
           ),
-
-          const SizedBox(height: 20),
-
-          // Volume Slider (only shown when a track is active)
+const SizedBox(height: 20),
+// Volume Slider (only shown when a track is active)
           if (ambientState.track != SoundscapeTrack.off) ...[
             Row(
               children: [

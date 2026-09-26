@@ -120,8 +120,7 @@ class DashboardScreen extends ConsumerWidget {
             GlobalSliverAppBar(
               title: l10n?.dashboardTitle ?? "Dashboard",
             ),
-
-            // --- TODAY'S WORD (CROPPED & COMPACT) ---
+// --- TODAY'S WORD (CROPPED & COMPACT) ---
             const SliverToBoxAdapter(
               child: Padding(
                 key: Key('dashboard_word_of_the_day'),
@@ -129,10 +128,8 @@ class DashboardScreen extends ConsumerWidget {
                 child: TodayInsightCard(),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 18)),
-
-            // --- PRIMARY ACTIONS: SCANNER & INTERPRETER ---
+const SliverToBoxAdapter(child: SizedBox(height: 18)),
+// --- PRIMARY ACTIONS: SCANNER & INTERPRETER ---
             SliverToBoxAdapter(
               child: Padding(
                 key: const Key('dashboard_quick_actions'),
@@ -189,10 +186,8 @@ class DashboardScreen extends ConsumerWidget {
                         curve: ZenMotion.enter),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 22)),
-
-            SliverToBoxAdapter(
+const SliverToBoxAdapter(child: SizedBox(height: 22)),
+SliverToBoxAdapter(
               child: Padding(
                 key: const Key('dashboard_practice_progress'),
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -207,10 +202,8 @@ class DashboardScreen extends ConsumerWidget {
                     ),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 22)),
-
-            // --- QUICK SEARCH BAR ---
+const SliverToBoxAdapter(child: SizedBox(height: 22)),
+// --- QUICK SEARCH BAR ---
             SliverToBoxAdapter(
               child: Padding(
                 key: const Key('dashboard_search'),
@@ -294,10 +287,8 @@ class DashboardScreen extends ConsumerWidget {
                         curve: ZenMotion.enter),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // --- UPCOMING FORECAST (COMPACT) ---
+const SliverToBoxAdapter(child: SizedBox(height: 24)),
+// --- UPCOMING FORECAST (COMPACT) ---
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -308,7 +299,6 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.upcomingForecast ?? "Upcoming Forecast",
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w900,
-                        fontFamily: 'NotoSerifSC',
                         letterSpacing: 0.3,
                         fontSize: 16,
                       ),
@@ -370,10 +360,8 @@ class DashboardScreen extends ConsumerWidget {
                       duration: ZenMotion.page,
                       curve: ZenMotion.enter),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-
-            // --- BOTTOM: DAILY REVIEW ---
+const SliverToBoxAdapter(child: SizedBox(height: 24)),
+// --- BOTTOM: DAILY REVIEW ---
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -384,7 +372,6 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.dailyReview ?? "Daily Review",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
-                        fontFamily: 'NotoSerifSC',
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -627,8 +614,7 @@ class DashboardScreen extends ConsumerWidget {
                 ),
               ),
             ),
-
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+const SliverToBoxAdapter(child: SizedBox(height: 40)),
           ],
         ),
       ),
@@ -759,7 +745,7 @@ class DashboardScreen extends ConsumerWidget {
               Text(title,
                   style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w900,
-                      fontFamily: 'NotoSerifSC')),
+                      )),
               const SizedBox(height: 4),
               Text(
                   '${sorted.fold<int>(0, (sum, e) => sum + e.value)} cards total',

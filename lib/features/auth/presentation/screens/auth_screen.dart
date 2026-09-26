@@ -399,7 +399,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w900,
-            fontFamily: 'NotoSerifSC',
             color: isDark ? Colors.white : Colors.black87,
           ),
         ),
@@ -622,7 +621,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w900,
-            fontFamily: 'NotoSerifSC',
             color: isDark ? Colors.white : Colors.black87,
           ),
         ),

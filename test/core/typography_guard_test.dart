@@ -2,23 +2,29 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
-/// Guard rails for **typography**: the app's identity is only real if the fonts
-/// it asks for actually ship.
+/// Guard rails for **typography**.
 ///
 /// The bug this exists to prevent: `lib/` asked for `'NotoSerifSC'` in **60**
 /// places while `pubspec.yaml`'s `fonts:` block was commented out and
 /// `assets/fonts/` did not exist. Flutter therefore fell back silently at every
-/// one of those sites, for the life of the project, on every platform - the
-/// calligraphic identity never shipped and hanzi rendered in whatever
+/// one of those sites, for the life of the project, on every platform - so the
+/// app's identity never actually shipped and hanzi rendered in whatever
 /// sans-serif CJK face the device happened to have. Nothing noticed, because
 /// nothing checked.
 ///
+/// Policy now (2026-09-26, at the owner's request): the app ships **no** custom
+/// font and asks for **none** - every text style uses the platform face (San
+/// Francisco on iOS, Roboto on Android). So the guard flipped from "the serif
+/// must be bundled" to "nothing may request a family at all", which is the
+/// stricter and simpler rule. If a font is ever added back, it must be declared
+/// under `fonts:` in `pubspec.yaml` *and* its asset committed, or these tests
+/// fail the build.
+///
 /// **What this cannot see**, stated so the gap is not mistaken for coverage: a
-/// family supplied through a *variable* (`AppLocalizations…!.notoserifsc`) rather
-/// than a literal, and whether the subset actually carries a given glyph. The
-/// second one is answered by `scratch/verify_font_coverage.py`, which reports
-/// coverage against the app's own taught inventory - the last run said
-/// **0 taught characters missing**.
+/// family supplied through a *variable* (e.g. `someL10nString`) rather than a
+/// literal, and whether a bundled font actually carries a given glyph (that is
+/// answered by `scratch/verify_font_coverage.py`, which reports coverage
+/// against the app's own taught inventory).
 List<File> _libSources() => Directory('lib')
     .listSync(recursive: true)
     .whereType<File>()
@@ -72,8 +78,6 @@ void main() {
     });
 
     test('every declared font asset exists on disk, and is not empty', () {
-      expect(declaredFontAssets, isNotEmpty, reason: 'no font is declared');
-
       for (final String asset in declaredFontAssets) {
         final File file = File(asset);
         expect(file.existsSync(), isTrue, reason: 'declared but absent: $asset');
@@ -86,14 +90,49 @@ void main() {
       }
     });
 
-    test('the Zen serif ships in two weights with its licence', () {
-      expect(declaredFamilies, contains('NotoSerifSC'));
-      expect(pubspec, contains('assets/fonts/NotoSerifSC-Regular.ttf'));
-      expect(pubspec, contains('assets/fonts/NotoSerifSC-Bold.ttf'));
+    test('the app ships no custom font - everything is platform-native', () {
+      // The owner's decision (2026-09-26): no bundled face, no requested face.
+      // A `fontFamily:` literal anywhere in lib/ would be a silent opt-out of
+      // that, so this is asserted on raw source rather than on the parsed set.
       expect(
-        File('assets/fonts/OFL.txt').existsSync(),
+        declaredFamilies,
+        isEmpty,
+        reason: 'pubspec.yaml declares a font family again',
+      );
+
+      final List<String> offenders = <String>[];
+      for (final File file in _libSources()) {
+        final String source = _withoutLineComments(file.readAsStringSync());
+        for (final RegExpMatch match
+            in RegExp(r'fontFamily\s*:\s*([^,\r\n]+)').allMatches(source)) {
+          final String value = match.group(1)!.trim();
+          // `_fontFamily` is the theme's documented `null` (platform-native);
+          // anything else is a real family name and therefore a fallback risk.
+          if (value != '_fontFamily') {
+            offenders.add('${file.path}: $value');
+          }
+        }
+      }
+      expect(
+        offenders,
+        isEmpty,
+        reason: 'These sites request a font family; the app ships none, so each '
+            'of these is a silent fallback waiting to happen: $offenders',
+      );
+
+      // The one permitted spelling must genuinely mean "platform font".
+      expect(
+        RegExp(r'static const String\? _fontFamily = null;')
+            .hasMatch(File('lib/core/theme/app_theme.dart').readAsStringSync()),
         isTrue,
-        reason: 'the SIL OFL requires the licence to travel with the font',
+        reason: 'the component themes must resolve to the platform font',
+      );
+
+      expect(
+        Directory('assets/fonts').existsSync(),
+        isFalse,
+        reason: 'assets/fonts/ is back - if fonts ship again they need the OFL '
+            'licence alongside them and a declaration in pubspec.yaml',
       );
     });
   });

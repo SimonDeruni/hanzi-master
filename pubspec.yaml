@@ -131,21 +131,12 @@ flutter:
     - assets/mascot/
     # The OFL licence must travel with the font it covers; the font files
     # themselves are declared under `fonts:` below, not here.
-    - assets/fonts/OFL.txt
 
-  # `NotoSerifSC` is the family this app has always *asked* for - 60
-  # declarations across ~30 files - and never bundled: this block was commented
-  # out, so every one of those sites silently fell back to the platform font and
-  # the calligraphic identity never shipped. The two files below are OFL subsets
-  # built by `scratch/build_font_subset.py` from Noto Serif SC, and they cover
-  # the taught inventory, the dictionary, the reading room, pinyin tone marks and
-  # the punctuation the UI prints. Licence: assets/fonts/OFL.txt.
-  fonts:
-    - family: NotoSerifSC
-      fonts:
-        - asset: assets/fonts/NotoSerifSC-Regular.ttf
-        - asset: assets/fonts/NotoSerifSC-Bold.ttf
-          weight: 700
+  # Typography: the app deliberately ships **no** custom font. Every text style
+  # inherits the platform font (SF Pro on iOS, Roboto on Android), which keeps the
+  # bundle ~15 MB smaller and the Latin/CJK/emoji mixing consistent. If a font is
+  # ever added back it must be declared here — test/core/typography_guard_test.dart
+  # fails the build for any family the app requests but does not ship.
 
 flutter_icons:
   android: "launcher_icon"

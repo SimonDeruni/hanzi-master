@@ -99,7 +99,6 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
                     style: const TextStyle(
                       fontSize: 160,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'NotoSerifSC',
                       color: Colors.white,
                       height: 1,
                       shadows: [Shadow(color: Colors.white24, blurRadius: 20)],
@@ -107,8 +106,7 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
                   ),
                 ),
               ),
-
-              // Content
+// Content
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 28.0, vertical: 42.0),
@@ -133,7 +131,6 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
                           todayWord['hanzi']!,
                           style: theme.textTheme.displaySmall?.copyWith(
                             color: Colors.white,
-                            fontFamily: 'NotoSerifSC',
                             fontWeight: FontWeight.w900,
                             height: 1.0,
                             fontSize: 72,

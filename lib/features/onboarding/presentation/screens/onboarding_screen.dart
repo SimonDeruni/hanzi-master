@@ -282,7 +282,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       style: TextStyle(
                         color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                         fontSize: isCompact ? 28 : 36,
-                        fontFamily: 'NotoSerifSC',
                         height: 1.3,
                       ),
                     ).animate().fadeIn(delay: 300.ms).slideY(),
@@ -364,7 +363,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
-              fontFamily: 'NotoSerifSC',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
@@ -438,7 +436,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
-              fontFamily: 'NotoSerifSC',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
@@ -502,7 +499,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: OnboardingDesign.titleFontSize,
-              fontFamily: 'NotoSerifSC',
               height: 1.2,
             ),
           ).animate().fadeIn().slideY(),
@@ -595,15 +591,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: TextStyle(
               color: isDark ? Colors.white : const Color(0xFF1A1A1B),
               fontSize: 28,
-              fontFamily: 'NotoSerifSC',
               fontWeight: FontWeight.bold,
               height: 1.2,
             ),
           ).animate().fadeIn(),
-
-          const SizedBox(height: 8),
-
-          Text(
+const SizedBox(height: 8),
+Text(
             _calibrationComplete
                 ? l10n.personalizedPathInitialized
                 : l10n.calibratingAiNeuralMasters,
@@ -614,10 +607,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-
-          const SizedBox(height: 24),
-
-          // Live Progress Bar & Percentage
+const SizedBox(height: 24),
+// Live Progress Bar & Percentage
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -673,10 +664,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ],
             ),
           ),
-
-          const SizedBox(height: 20),
-
-          // Interactive Checklist of Milestones
+const SizedBox(height: 20),
+// Interactive Checklist of Milestones
           Expanded(
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
@@ -854,7 +843,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     );
   }
 
-
   Widget _buildRitualCard({
     required String title,
     required String subtitle,
@@ -908,7 +896,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       ? selectedText
                       : (isDark ? Colors.white : const Color(0xFF1A1A1B)),
                   fontSize: 24,
-                  fontFamily: 'NotoSerifSC',
                 ),
               ),
               const SizedBox(width: 16),

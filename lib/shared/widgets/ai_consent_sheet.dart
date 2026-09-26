@@ -84,7 +84,6 @@ class AiConsentSheet extends StatelessWidget {
                   Text(
                     l10n.aiConsentTitle,
                     style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
                       fontSize: OnboardingDesign.titleFontSize,
                       height: 1.2,
                       color: ink,
@@ -132,8 +131,7 @@ class AiConsentSheet extends StatelessWidget {
               ),
             ),
           ),
-
-          // ── Actions: pinned, so consent is always one tap away ──────
+// ── Actions: pinned, so consent is always one tap away ──────
           Padding(
             padding: const EdgeInsets.fromLTRB(
               OnboardingDesign.horizontalPadding,
@@ -170,8 +168,7 @@ class AiConsentSheet extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-
-                // ── Secondary action: the full disclosure ─────────────
+// ── Secondary action: the full disclosure ─────────────
                 TextButton.icon(
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).push(

@@ -589,8 +589,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                 ),
               ),
             ),
-
-            Flexible(
+Flexible(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
@@ -640,7 +639,6 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                     color: color,
-                                    fontFamily: 'NotoSerifSC',
                                   ),
                                 ),
                               ),
@@ -708,8 +706,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         ),
                       ],
                     ),
-
-                    const SizedBox(height: 16),
+const SizedBox(height: 16),
                     // Description
                     Text(
                       description,
@@ -720,8 +717,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             isDark ? Colors.white70 : const Color(0xFF374151),
                       ),
                     ),
-
-                    const SizedBox(height: 20),
+const SizedBox(height: 20),
                     // Sample Vocabulary Section
                     Row(
                       children: [
@@ -745,8 +741,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       ],
                     ),
                     const SizedBox(height: 10),
-
-                    // Vocabulary Cards
+// Vocabulary Cards
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
@@ -776,7 +771,6 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: primaryText,
-                                      fontFamily: 'NotoSerifSC',
                                     ),
                                   ),
                                   const SizedBox(width: 6),
@@ -804,10 +798,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         );
                       }).toList(),
                     ),
-
-                    const SizedBox(height: 28),
-
-                    // Primary Action Button
+const SizedBox(height: 28),
+// Primary Action Button
                     SizedBox(
                       width: double.infinity,
                       height: 50,
@@ -963,8 +955,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                   subtitle: AppLocalizations.of(context)!.deckLibrarySubtitle,
                   showBackButton: true,
                 ),
-
-                // Top Controls: Search Bar, Status Card, and Category Filter Pills
+// Top Controls: Search Bar, Status Card, and Category Filter Pills
                 SliverToBoxAdapter(
                   child: Padding(
                     padding:
@@ -978,10 +969,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                           hintText: "Search decks, topics, or Hanzi words...",
                           onChanged: (_) => setState(() {}),
                         ),
-
-                        const SizedBox(height: 12),
-
-                        // Download / Bookshelf Status Card
+const SizedBox(height: 12),
+// Download / Bookshelf Status Card
                         _BookshelfSummaryCard(
                           installedCount: totalInstalled,
                           totalCount: totalAvailable,
@@ -989,10 +978,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                           cardBg: cardBg,
                           primaryText: primaryText,
                         ),
-
-                        const SizedBox(height: 12),
-
-                        // Horizontal Category Filter Pills (like BookCatalogScreen)
+const SizedBox(height: 12),
+// Horizontal Category Filter Pills (like BookCatalogScreen)
                         SizedBox(
                           height: 34,
                           child: ListView.separated(
@@ -1020,8 +1007,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                     ),
                   ),
                 ),
-
-                if (!hasAnyResults)
+if (!hasAnyResults)
                   SliverFillRemaining(
                     hasScrollBody: false,
                     child: Center(
@@ -1119,8 +1105,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         },
                       ),
                     ),
-
-                  // ==========================================
+// ==========================================
                   // 2. CULTURE & HERITAGE SHELF ROW
                   // ==========================================
                   if (cultureDecks.isNotEmpty)
@@ -1139,8 +1124,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         primaryText: primaryText,
                       ),
                     ),
-
-                  // ==========================================
+// ==========================================
                   // 3. SPORTS & MARTIAL ARTS SHELF ROW
                   // ==========================================
                   if (sportsDecks.isNotEmpty)
@@ -1159,8 +1143,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         primaryText: primaryText,
                       ),
                     ),
-
-                  // ==========================================
+// ==========================================
                   // 4. EDUCATION & ACADEMICS SHELF ROW
                   // ==========================================
                   if (educationDecks.isNotEmpty)
@@ -1179,8 +1162,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         primaryText: primaryText,
                       ),
                     ),
-
-                  // ==========================================
+// ==========================================
                   // 5. TRAVEL & CITY LIFE SHELF ROW
                   // ==========================================
                   if (travelDecks.isNotEmpty)
@@ -1199,8 +1181,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         primaryText: primaryText,
                       ),
                     ),
-
-                  // ==========================================
+// ==========================================
                   // 6. BUSINESS & PROFESSIONAL SHELF ROW
                   // ==========================================
                   if (businessDecks.isNotEmpty)
@@ -1219,8 +1200,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         primaryText: primaryText,
                       ),
                     ),
-
-                  const SliverToBoxAdapter(
+const SliverToBoxAdapter(
                     child: SizedBox(height: 36),
                   ),
                 ],
@@ -1363,7 +1343,6 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: accentColor,
-                              fontFamily: 'NotoSerifSC',
                             ),
                           ),
                         ],
@@ -1400,8 +1379,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
             ),
           ),
           const SizedBox(height: 10),
-
-          // Horizontal Shelf Row
+// Horizontal Shelf Row
           SizedBox(
             height: 255,
             child: ListView.separated(
@@ -1484,8 +1462,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                 height: 148,
               ),
             ),
-
-            // Bottom Text & Action Info (height 105)
+// Bottom Text & Action Info (height 105)
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
@@ -1504,7 +1481,6 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 13,
                             color: primaryText,
-                            fontFamily: 'NotoSerifSC',
                           ),
                         ),
                         const SizedBox(height: 2),
@@ -1520,8 +1496,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         ),
                       ],
                     ),
-
-                    // Action Row
+// Action Row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1547,8 +1522,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             ),
                           ),
                         ),
-
-                        // Action Button (Install / Delete)
+// Action Button (Install / Delete)
                         if (isBusy)
                           const SizedBox.square(
                             dimension: 22,

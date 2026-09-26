@@ -1936,8 +1936,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 ),
                               ],
                             ),
-
-                            // Ruby Chinese Characters & Pinyin Alignment
+// Ruby Chinese Characters & Pinyin Alignment
                             Wrap(
                               spacing: 3,
                               runSpacing: 8,
@@ -1959,7 +1958,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                                 ? Colors.amber.shade200
                                                 : const Color(0xFF8B0000))
                                             : primaryText,
-                                        fontFamily: 'NotoSerifSC',
                                       ),
                                     ),
                                   );
@@ -2079,7 +2077,6 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                                         : const Color(
                                                             0xFF8B0000))
                                                     : primaryText),
-                                            fontFamily: 'NotoSerifSC',
                                             height: 1.2,
                                           ),
                                         ),
@@ -2089,8 +2086,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 );
                               }).toList(),
                             ),
-
-                            // English Translation (Global toggle or tap to reveal)
+// English Translation (Global toggle or tap to reveal)
                             if (_showAllTranslations || isRevealed)
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
@@ -2177,8 +2173,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
               },
             ),
           ),
-
-          // Neural Audiobook Floating Controls Bar
+// Neural Audiobook Floating Controls Bar
           if (_isAudiobookActive)
             Builder(
               builder: (context) {
@@ -2378,8 +2373,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                 );
               },
             ),
-
-          // Bottom Chapter Navigation Bar.
+// Bottom Chapter Navigation Bar.
           //
           // One unified control with three zones, not three differently styled
           // pills in a row. The previous build mixed a grey "Précédent" (which

@@ -142,7 +142,6 @@ class _NotificationPermissionScreenState
                         ),
                         style: TextStyle(
                           color: colors.text,
-                          fontFamily: 'NotoSerifSC',
                           fontSize: OnboardingDesign.titleFontSize,
                           height: 1.2,
                         ),

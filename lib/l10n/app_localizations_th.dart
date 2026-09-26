@@ -2242,8 +2242,6 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get notes => 'บันทึก';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => 'วัตถุประสงค์';

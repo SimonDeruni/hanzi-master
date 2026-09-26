@@ -144,7 +144,6 @@ class SpeakingFeedbackPanel extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14.5,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'NotoSerifSC',
                       color: ink,
                     ),
                     maxLines: 2,
@@ -260,7 +259,6 @@ class SpeakingFeedbackPanel extends StatelessWidget {
                     hanzi,
                     style: TextStyle(
                       fontSize: 21,
-                      fontFamily: 'NotoSerifSC',
                       color: ink,
                     ),
                     maxLines: 2,

@@ -108,8 +108,7 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 24),
-
-            _buildSectionHeader(
+_buildSectionHeader(
                 l10n?.displayAndContent ??
                     AppLocalizations.of(context)!.display_content,
                 theme),
@@ -165,8 +164,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
-
-            _buildSectionHeader(
+_buildSectionHeader(
                 l10n?.notifications ??
                     AppLocalizations.of(context)!.notifications,
                 theme),
@@ -298,8 +296,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
-
-            const SizedBox(height: 48),
+const SizedBox(height: 48),
             Center(
               child: Text(
                 AppLocalizations.of(context)!.hanziMasterV100,
@@ -324,7 +321,6 @@ class SettingsScreen extends ConsumerWidget {
         title,
         style: theme.textTheme.titleMedium?.copyWith(
           // The app's calligraphic family, not the platform's generic 'Serif'.
-          fontFamily: 'NotoSerifSC',
           fontWeight: FontWeight.w800,
           color: color ?? (isDark ? Colors.white70 : const Color(0xFF1A1A1B)),
           letterSpacing: 0.5,

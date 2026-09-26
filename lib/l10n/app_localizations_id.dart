@@ -2260,8 +2260,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get notes => 'Catatan';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => 'TUJUAN';

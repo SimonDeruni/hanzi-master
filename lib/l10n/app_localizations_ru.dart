@@ -2271,8 +2271,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get notes => 'Заметки';
 
-  @override
-  String get notoserifsc => 'NotoSerifSC';
 
   @override
   String get objectivesTitle => 'ЦЕЛИ';

@@ -76,8 +76,7 @@ class CalligraphicDeckCover extends StatelessWidget {
                 ),
               ),
             ),
-
-            // 2. Background Hanzi Watermark
+// 2. Background Hanzi Watermark
             Positioned(
               right: -8,
               bottom: -10,
@@ -89,13 +88,11 @@ class CalligraphicDeckCover extends StatelessWidget {
                     fontSize: 90,
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
-                    fontFamily: 'NotoSerifSC',
                   ),
                 ),
               ),
             ),
-
-            // 3. Center Calligraphic Plaque (Xuan Parchment with Emperor's Gold Border)
+// 3. Center Calligraphic Plaque (Xuan Parchment with Emperor's Gold Border)
             Center(
               child: Container(
                 margin: const EdgeInsets.only(left: 18, right: 10, top: 12, bottom: 12),
@@ -126,7 +123,6 @@ class CalligraphicDeckCover extends StatelessWidget {
                         fontWeight: FontWeight.w900,
                         color: Color(0xFF1A1A1B),
                         letterSpacing: 1.2,
-                        fontFamily: 'NotoSerifSC',
                         height: 1.15,
                       ),
                       maxLines: 2,
@@ -156,8 +152,7 @@ class CalligraphicDeckCover extends StatelessWidget {
                 ),
               ),
             ),
-
-            // 4. Badge — Top Right (e.g. "50 词" or "HSK 1")
+// 4. Badge — Top Right (e.g. "50 词" or "HSK 1")
             Positioned(
               top: 8,
               right: 8,
@@ -182,8 +177,7 @@ class CalligraphicDeckCover extends StatelessWidget {
                 ),
               ),
             ),
-
-            // 5. Installed Checkmark Badge — Top Left (beside spine)
+// 5. Installed Checkmark Badge — Top Left (beside spine)
             if (isInstalled)
               Positioned(
                 top: 8,

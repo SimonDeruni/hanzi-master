@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import '../../../../features/flashcards/domain/entities/flashcard.dart';
 
@@ -135,7 +135,6 @@ class ARBoundingBoxPainter extends CustomPainter {
           color: Color(0xFF1A1A1B),
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          fontFamily: 'NotoSerifSC',
         ),
       ),
       textDirection: TextDirection.ltr,

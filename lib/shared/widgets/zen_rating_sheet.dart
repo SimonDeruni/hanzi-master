@@ -86,8 +86,7 @@ class ZenRatingSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 20),
-
-          // Glowing Star Badge
+// Glowing Star Badge
           Container(
             width: 56,
             height: 56,
@@ -106,13 +105,11 @@ class ZenRatingSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-
-          // Title
+// Title
           Text(
             l10n.enjoyingAppTitle,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'NotoSerifSC',
               fontSize: 20,
               fontWeight: FontWeight.w800,
               color: primaryText,
@@ -120,8 +117,7 @@ class ZenRatingSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 8),
-
-          // Subtitle
+// Subtitle
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
@@ -135,8 +131,7 @@ class ZenRatingSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
-
-          // Primary: "Yes, loving it!" (❤️) -> Triggers Apple App Store Review
+// Primary: "Yes, loving it!" (❤️) -> Triggers Apple App Store Review
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -165,8 +160,7 @@ class ZenRatingSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 12),
-
-          // Secondary: "Could be better" (💬) -> Opens Private Feedback
+// Secondary: "Could be better" (💬) -> Opens Private Feedback
           SizedBox(
             width: double.infinity,
             height: 48,
@@ -197,8 +191,7 @@ class ZenRatingSheet extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 8),
-
-          // Tertiary: "Maybe Later"
+// Tertiary: "Maybe Later"
           TextButton(
             onPressed: () async {
               Navigator.of(context).pop(null);

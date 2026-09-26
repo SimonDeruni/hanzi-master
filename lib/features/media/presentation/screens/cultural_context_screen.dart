@@ -253,7 +253,6 @@ class CulturalContextScreen extends ConsumerWidget {
           mediaItem.title,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w900,
-            fontFamily: 'NotoSerifSC',
             height: 1.4,
             color: theme.colorScheme.onSurface,
           ),

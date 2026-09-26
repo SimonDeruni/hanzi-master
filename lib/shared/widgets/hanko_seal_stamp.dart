@@ -115,7 +115,6 @@ class HankoSealStamp extends StatelessWidget {
                   Text(
                     data.sealCharacters,
                     style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
                       fontWeight: FontWeight.w900,
                       fontSize: 26,
                       color: color,

@@ -173,7 +173,6 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                               Text(
                                 widget.word.hanzi,
                                 style: TextStyle(
-                                  fontFamily: 'NotoSerifSC',
                                   fontSize: 48,
                                   fontWeight: FontWeight.bold,
                                   color: isDark ? Colors.white : Colors.black87,
@@ -233,8 +232,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                 ],
               ),
               const SizedBox(height: 16),
-
-              // Unified Graph Node: Micro Calligraphy Canvas
+// Unified Graph Node: Micro Calligraphy Canvas
               if (_isLoadingCard)
                 const SizedBox(
                   height: 180,
@@ -276,8 +274,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
                     ),
                   ),
                 ),
-
-              const SizedBox(height: 24),
+const SizedBox(height: 24),
               Text(
                 AppLocalizations.of(context)!.meaningInContext,
                 style: TextStyle(

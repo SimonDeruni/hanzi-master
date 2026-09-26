@@ -558,7 +558,6 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                           color: Color(0xFF1A1A1B),
                           fontSize: 10,
                           fontWeight: FontWeight.w700,
-                          fontFamily: 'NotoSerifSC',
                           letterSpacing: 1.2),
                     ),
                   ),
@@ -573,7 +572,6 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                         color: Colors.white,
                         fontSize: 32, // Larger title
                         fontWeight: FontWeight.w600,
-                        fontFamily: 'NotoSerifSC',
                         height: 1.1),
                   ),
                   const SizedBox(height: 8),
@@ -724,8 +722,7 @@ class StoryCardWidget extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Content
+// Content
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -739,7 +736,6 @@ class StoryCardWidget extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'NotoSerifSC',
                         color: theme.brightness == Brightness.dark
                             ? const Color(0xFFFDFCF0)
                             : const Color(0xFF1A1A1B),

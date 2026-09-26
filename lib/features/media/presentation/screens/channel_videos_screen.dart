@@ -172,7 +172,6 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                     color: isDark ? Colors.white : Colors.black87,
                     fontWeight: FontWeight.w800,
                     fontSize: 16,
-                    fontFamily: 'NotoSerifSC',
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -186,12 +185,10 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
           // Persistent Channel Row
           const SizedBox(height: 4),
           _buildChannelRow(),
-
-          // 3-sentence channel description banner
+// 3-sentence channel description banner
           _buildChannelDescriptionCard(),
           const SizedBox(height: 8),
-
-          // Main video list
+// Main video list
           Expanded(child: _buildBody()),
         ],
       ),

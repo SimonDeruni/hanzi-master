@@ -1287,8 +1287,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
               ),
             ),
           ),
-
-          SafeArea(
+SafeArea(
             child: Column(
               children: [
                 // Top Action & Title Bar
@@ -1328,7 +1327,6 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: primaryText,
-                                fontFamily: 'NotoSerifSC',
                               ),
                             ),
                             GestureDetector(
@@ -1457,8 +1455,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                     ],
                   ),
                 ),
-
-                // Chapter & Book Progress Bar
+// Chapter & Book Progress Bar
                 Builder(builder: (context) {
                   final totalSentences = chapter.sentences.length;
                   final chapterProgress = totalSentences > 0
@@ -1532,8 +1529,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                     ),
                   );
                 }),
-
-                // Spotify-Lyrics Live Sentences Stream with Ruby Pinyin Alignment
+// Spotify-Lyrics Live Sentences Stream with Ruby Pinyin Alignment
                 Expanded(
                   child: ListView.builder(
                     controller: _scrollController,
@@ -1585,7 +1581,6 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                             : (isDark
                                                 ? Colors.white38
                                                 : Colors.black38),
-                                        fontFamily: 'NotoSerifSC',
                                       ),
                                     );
                                   }
@@ -1775,7 +1770,6 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                                               ? Colors.white38
                                                               : const Color(
                                                                   0xFF7A7067)))),
-                                              fontFamily: 'NotoSerifSC',
                                               height: 1.2,
                                             ),
                                           ),
@@ -1785,8 +1779,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                   );
                                 }).toList(),
                               ),
-
-                              // English Translation
+// English Translation
                               if (_showTranslations) ...[
                                 const SizedBox(height: 8),
                                 sentence.english.isNotEmpty
@@ -1828,8 +1821,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                     },
                   ),
                 ),
-
-                // Bottom Glassmorphic Player Console
+// Bottom Glassmorphic Player Console
                 Container(
                   padding: const EdgeInsets.fromLTRB(20, 14, 20, 18),
                   decoration: BoxDecoration(
@@ -1930,16 +1922,12 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                           ),
                         ],
                       ),
-
-                      const SizedBox(height: 8),
-
-                      // Voice Selection Chips in Bottom Console
+const SizedBox(height: 8),
+// Voice Selection Chips in Bottom Console
                       _buildVoicePickerRow(isDark, cardBg, primaryText,
                           secondaryText, activeAccent, quota),
-
-                      const SizedBox(height: 10),
-
-                      // Transport Controls. Every control is fixed-size (a compact
+const SizedBox(height: 10),
+// Transport Controls. Every control is fixed-size (a compact
                       // "1.5x" label, icons, a 58px circle) and the only localized
                       // string here is a tooltip, which renders unconstrained.
                       Row(
@@ -1964,16 +1952,14 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                               ),
                             ),
                           ),
-
-                          IconButton(
+IconButton(
                             icon: Icon(Icons.skip_previous_rounded,
                                 size: 30, color: primaryText),
                             onPressed: _currentSentenceIndex > 0
                                 ? _prevSentence
                                 : null,
                           ),
-
-                          // Big Play / Pause Button
+// Big Play / Pause Button
                           GestureDetector(
                             onTap: _togglePlayPause,
                             child: Container(
@@ -2016,8 +2002,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                               ),
                             ),
                           ),
-
-                          IconButton(
+IconButton(
                             icon: Icon(Icons.skip_next_rounded,
                                 size: 30, color: primaryText),
                             onPressed: _currentSentenceIndex <
@@ -2025,8 +2010,7 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
                                 ? _nextSentence
                                 : null,
                           ),
-
-                          // Text Reader Switcher
+// Text Reader Switcher
                           IconButton(
                             icon: Icon(Icons.menu_book_rounded,
                                 size: 22, color: activeAccent),

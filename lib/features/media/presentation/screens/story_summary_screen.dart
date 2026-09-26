@@ -218,8 +218,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     ),
                   ),
                   const SizedBox(height: 18),
-
-                  // 2. Title, with the original line beneath it when the two
+// 2. Title, with the original line beneath it when the two
                   //    differ (a Tang poem keeps its Hanzi title).
                   TappableHanziText(
                     localizedTitle,
@@ -228,7 +227,6 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'NotoSerifSC',
                       color: primaryText,
                       letterSpacing: 1.0,
                     ),
@@ -249,8 +247,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     ),
                   ],
                   const SizedBox(height: 14),
-
-                  // 3. Badges: reading level, subject, source. The subject badge
+// 3. Badges: reading level, subject, source. The subject badge
                   //    borrows the cover's own hue, so the two agree.
                   Wrap(
                     alignment: WrapAlignment.center,
@@ -271,8 +268,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-
-                  // 4. One primary action, in the book screen's button style:
+// 4. One primary action, in the book screen's button style:
                   //    carbon ink in light mode, Emperor's gold in dark. A
                   //    minimum height, not a fixed one, so a 2x text scale fits.
                   ConstrainedBox(
@@ -322,8 +318,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // 5. Summary ink well.
+// 5. Summary ink well.
                   _buildCard(
                     isDark: isDark,
                     cardBg: cardBg,
@@ -338,7 +333,6 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: 'NotoSerifSC',
                                   color: primaryText,
                                 ),
                               ),
@@ -373,8 +367,7 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
-                  // 6. Key words ink well.
+// 6. Key words ink well.
                   _buildCard(
                     isDark: isDark,
                     cardBg: cardBg,
@@ -386,7 +379,6 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'NotoSerifSC',
                             color: primaryText,
                           ),
                         ),
@@ -529,7 +521,6 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'NotoSerifSC',
                   color: isDark ? Colors.white : const Color(0xFF1A1A1B),
                 ),
               ),

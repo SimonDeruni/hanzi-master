@@ -938,7 +938,6 @@ class _IconNode extends StatelessWidget {
                               fontSize: 24,
                               fontWeight: FontWeight.w900,
                               color: textColor,
-                              fontFamily: 'NotoSerifSC',
                             ),
                           ),
                   ),

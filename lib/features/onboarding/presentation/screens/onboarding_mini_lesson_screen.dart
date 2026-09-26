@@ -574,7 +574,6 @@ class _OnboardingMiniLessonScreenState
                         key: ValueKey('lesson-title-$_step'),
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontFamily: 'NotoSerifSC',
                           fontSize: OnboardingDesign.titleFontSize,
                           height: 1.2,
                           color: ink,
@@ -832,7 +831,6 @@ class _OnboardingMiniLessonScreenState
                   Text(
                     '《孙子兵法》',
                     style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: ink.withValues(alpha: .85),
@@ -979,7 +977,6 @@ class _OnboardingMiniLessonScreenState
                   Text(
                     chinese,
                     style: TextStyle(
-                      fontFamily: 'NotoSerifSC',
                       fontSize: 27,
                       height: 1.35,
                       color: ink,
@@ -1272,7 +1269,6 @@ class _OnboardingMiniLessonScreenState
                             Text(
                               word['word'].toString(),
                               style: TextStyle(
-                                fontFamily: 'NotoSerifSC',
                                 fontSize: 29,
                                 color: ink,
                               ),
@@ -1533,7 +1529,6 @@ class OnboardingSpeakingText extends StatelessWidget {
                       child: Text(
                         char,
                         style: TextStyle(
-                          fontFamily: 'NotoSerifSC',
                           fontSize: fontSize,
                           height: height,
                           color: isDark
@@ -1582,7 +1577,6 @@ class OnboardingSpeakingText extends StatelessWidget {
                     child: Text(
                       char,
                       style: TextStyle(
-                        fontFamily: 'NotoSerifSC',
                         fontSize: fontSize,
                         height: height,
                         color: isActive
