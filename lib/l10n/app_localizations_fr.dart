@@ -13340,4 +13340,43 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Maîtrisez 2 500 mots pour comprendre tout chinois et exprimer les nuances.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Histoires d\'expressions';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Histoires contemporaines';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Littérature classique';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Anglais et monde';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Classiques français';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Philosophie ancienne';
+
+  @override
+  String get storyCategoryModernChinese => 'Chinois moderne';
+
+  @override
+  String get storyCategoryGermanClassics => 'Classiques allemands';
+
+  @override
+  String get storyCategorySpanishWorld => 'Espagnol et monde';
+
+  @override
+  String get storyCategoryChineseEpics => 'Épopées chinoises';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'Surnaturel et folklore';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Poésie chinoise';
+
+  @override
+  String get storyCategoryTangPoetry => 'Poésie Tang';
 }

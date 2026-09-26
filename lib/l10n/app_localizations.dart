@@ -24231,6 +24231,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.'**
   String get hskDescription6;
+
+  /// No description provided for @storyCategoryIdiomStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Idiom Stories'**
+  String get storyCategoryIdiomStories;
+
+  /// No description provided for @storyCategoryContemporaryStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Contemporary Stories'**
+  String get storyCategoryContemporaryStories;
+
+  /// No description provided for @storyCategoryClassicalLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Classical Literature'**
+  String get storyCategoryClassicalLiterature;
+
+  /// No description provided for @storyCategoryEnglishWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'English & World'**
+  String get storyCategoryEnglishWorld;
+
+  /// No description provided for @storyCategoryFrenchClassics.
+  ///
+  /// In en, this message translates to:
+  /// **'French Classics'**
+  String get storyCategoryFrenchClassics;
+
+  /// No description provided for @storyCategoryAncientPhilosophy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ancient Philosophy'**
+  String get storyCategoryAncientPhilosophy;
+
+  /// No description provided for @storyCategoryModernChinese.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern Chinese'**
+  String get storyCategoryModernChinese;
+
+  /// No description provided for @storyCategoryGermanClassics.
+  ///
+  /// In en, this message translates to:
+  /// **'German Classics'**
+  String get storyCategoryGermanClassics;
+
+  /// No description provided for @storyCategorySpanishWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish & World'**
+  String get storyCategorySpanishWorld;
+
+  /// No description provided for @storyCategoryChineseEpics.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Epics'**
+  String get storyCategoryChineseEpics;
+
+  /// No description provided for @storyCategorySupernaturalFolklore.
+  ///
+  /// In en, this message translates to:
+  /// **'Supernatural & Folklore'**
+  String get storyCategorySupernaturalFolklore;
+
+  /// No description provided for @storyCategoryChinesePoetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese Poetry'**
+  String get storyCategoryChinesePoetry;
+
+  /// No description provided for @storyCategoryTangPoetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Tang Poetry'**
+  String get storyCategoryTangPoetry;
 }
 
 class _AppLocalizationsDelegate

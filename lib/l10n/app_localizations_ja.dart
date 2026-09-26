@@ -12832,4 +12832,43 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get hskDescription6 => 'あらゆる中国語を理解しニュアンスを表現できる2,500語を身につけます。';
+
+  @override
+  String get storyCategoryIdiomStories => '成語ものがたり';
+
+  @override
+  String get storyCategoryContemporaryStories => '現代の物語';
+
+  @override
+  String get storyCategoryClassicalLiterature => '古典文学';
+
+  @override
+  String get storyCategoryEnglishWorld => '英語と世界';
+
+  @override
+  String get storyCategoryFrenchClassics => 'フランス古典';
+
+  @override
+  String get storyCategoryAncientPhilosophy => '古代哲学';
+
+  @override
+  String get storyCategoryModernChinese => '現代中国語';
+
+  @override
+  String get storyCategoryGermanClassics => 'ドイツ古典';
+
+  @override
+  String get storyCategorySpanishWorld => 'スペイン語と世界';
+
+  @override
+  String get storyCategoryChineseEpics => '中国の叙事詩';
+
+  @override
+  String get storyCategorySupernaturalFolklore => '怪異と伝承';
+
+  @override
+  String get storyCategoryChinesePoetry => '中国の詩';
+
+  @override
+  String get storyCategoryTangPoetry => '唐詩';
 }

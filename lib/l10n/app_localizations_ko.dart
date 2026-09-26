@@ -12864,4 +12864,43 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get hskDescription6 => '모든 중국어를 이해하고 뉘앙스를 표현할 2,500개 단어를 익힙니다.';
+
+  @override
+  String get storyCategoryIdiomStories => '성어 이야기';
+
+  @override
+  String get storyCategoryContemporaryStories => '현대 이야기';
+
+  @override
+  String get storyCategoryClassicalLiterature => '고전 문학';
+
+  @override
+  String get storyCategoryEnglishWorld => '영어와 세계';
+
+  @override
+  String get storyCategoryFrenchClassics => '프랑스 고전';
+
+  @override
+  String get storyCategoryAncientPhilosophy => '고대 철학';
+
+  @override
+  String get storyCategoryModernChinese => '현대 중국어';
+
+  @override
+  String get storyCategoryGermanClassics => '독일 고전';
+
+  @override
+  String get storyCategorySpanishWorld => '스페인어와 세계';
+
+  @override
+  String get storyCategoryChineseEpics => '중국 서사시';
+
+  @override
+  String get storyCategorySupernaturalFolklore => '초자연과 민속';
+
+  @override
+  String get storyCategoryChinesePoetry => '중국 시';
+
+  @override
+  String get storyCategoryTangPoetry => '당시';
 }

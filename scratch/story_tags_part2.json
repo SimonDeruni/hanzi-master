@@ -1,0 +1,38 @@
+{
+  "storyCategoryGermanClassics": {
+    "en": "German Classics", "fr": "Classiques allemands", "de": "Deutsche Klassiker", "es": "Clásicos alemanes",
+    "it": "Classici tedeschi", "pt": "Clássicos alemães", "ru": "Немецкая классика", "ja": "ドイツ古典",
+    "ko": "독일 고전", "ar": "الكلاسيكيات الألمانية", "hi": "जर्मन क्लासिक्स", "id": "Klasik Jerman",
+    "th": "วรรณกรรมคลาสสิกเยอรมัน", "vi": "Tác phẩm kinh điển Đức"
+  },
+  "storyCategorySpanishWorld": {
+    "en": "Spanish & World", "fr": "Espagnol et monde", "de": "Spanisch & Welt", "es": "Español y mundo",
+    "it": "Spagnolo e mondo", "pt": "Espanhol e mundo", "ru": "Испанский и мир", "ja": "スペイン語と世界",
+    "ko": "스페인어와 세계", "ar": "الإسبانية والعالم", "hi": "स्पेनिश और विश्व", "id": "Spanyol & dunia",
+    "th": "สเปนและโลก", "vi": "Tiếng Tây Ban Nha & thế giới"
+  },
+  "storyCategoryChineseEpics": {
+    "en": "Chinese Epics", "fr": "Épopées chinoises", "de": "Chinesische Epen", "es": "Epopeyas chinas",
+    "it": "Epiche cinesi", "pt": "Épicos chineses", "ru": "Китайский эпос", "ja": "中国の叙事詩",
+    "ko": "중국 서사시", "ar": "الملاحم الصينية", "hi": "चीनी महाकाव्य", "id": "Epos Tiongkok",
+    "th": "มหากาพย์จีน", "vi": "Sử thi Trung Hoa"
+  },
+  "storyCategorySupernaturalFolklore": {
+    "en": "Supernatural & Folklore", "fr": "Surnaturel et folklore", "de": "Übernatürliches & Folklore", "es": "Sobrenatural y folclore",
+    "it": "Soprannaturale e folclore", "pt": "Sobrenatural e folclore", "ru": "Мистика и фольклор", "ja": "怪異と伝承",
+    "ko": "초자연과 민속", "ar": "الخارق والفولكلور", "hi": "अलौकिक और लोककथा", "id": "Supranatural & cerita rakyat",
+    "th": "เหนือธรรมชาติและคติชน", "vi": "Siêu nhiên & văn hoá dân gian"
+  },
+  "storyCategoryChinesePoetry": {
+    "en": "Chinese Poetry", "fr": "Poésie chinoise", "de": "Chinesische Dichtung", "es": "Poesía china",
+    "it": "Poesia cinese", "pt": "Poesia chinesa", "ru": "Китайская поэзия", "ja": "中国の詩",
+    "ko": "중국 시", "ar": "الشعر الصيني", "hi": "चीनी कविता", "id": "Puisi Tiongkok",
+    "th": "กวีจีน", "vi": "Thơ Trung Hoa"
+  },
+  "storyCategoryTangPoetry": {
+    "en": "Tang Poetry", "fr": "Poésie Tang", "de": "Tang-Dichtung", "es": "Poesía Tang",
+    "it": "Poesia Tang", "pt": "Poesia Tang", "ru": "Поэзия Тан", "ja": "唐詩",
+    "ko": "당시", "ar": "شعر تانغ", "hi": "तांग कविता", "id": "Puisi Tang",
+    "th": "กวีสมัยถัง", "vi": "Thơ Đường"
+  }
+}

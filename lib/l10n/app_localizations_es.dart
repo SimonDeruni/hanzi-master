@@ -13315,4 +13315,43 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Domina 2.500 palabras para entender cualquier chino y matizar.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Historias de modismos';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Historias contemporáneas';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Literatura clásica';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Inglés y mundo';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Clásicos franceses';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Filosofía antigua';
+
+  @override
+  String get storyCategoryModernChinese => 'Chino moderno';
+
+  @override
+  String get storyCategoryGermanClassics => 'Clásicos alemanes';
+
+  @override
+  String get storyCategorySpanishWorld => 'Español y mundo';
+
+  @override
+  String get storyCategoryChineseEpics => 'Epopeyas chinas';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'Sobrenatural y folclore';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Poesía china';
+
+  @override
+  String get storyCategoryTangPoetry => 'Poesía Tang';
 }

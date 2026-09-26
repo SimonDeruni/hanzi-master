@@ -13263,4 +13263,44 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Kuasai 2.500 kata untuk memahami bahasa Mandarin dan mengungkapkan nuansa.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Cerita peribahasa';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Cerita kontemporer';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Sastra klasik';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Inggris & dunia';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Klasik Prancis';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Filsafat kuno';
+
+  @override
+  String get storyCategoryModernChinese => 'Mandarin modern';
+
+  @override
+  String get storyCategoryGermanClassics => 'Klasik Jerman';
+
+  @override
+  String get storyCategorySpanishWorld => 'Spanyol & dunia';
+
+  @override
+  String get storyCategoryChineseEpics => 'Epos Tiongkok';
+
+  @override
+  String get storyCategorySupernaturalFolklore =>
+      'Supranatural & cerita rakyat';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Puisi Tiongkok';
+
+  @override
+  String get storyCategoryTangPoetry => 'Puisi Tang';
 }

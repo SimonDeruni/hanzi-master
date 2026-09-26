@@ -13341,4 +13341,43 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Impara 2.500 parole per capire qualsiasi cinese ed esprimere sfumature.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Storie di modi di dire';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Storie contemporanee';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Letteratura classica';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Inglese e mondo';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Classici francesi';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Filosofia antica';
+
+  @override
+  String get storyCategoryModernChinese => 'Cinese moderno';
+
+  @override
+  String get storyCategoryGermanClassics => 'Classici tedeschi';
+
+  @override
+  String get storyCategorySpanishWorld => 'Spagnolo e mondo';
+
+  @override
+  String get storyCategoryChineseEpics => 'Epiche cinesi';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'Soprannaturale e folclore';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Poesia cinese';
+
+  @override
+  String get storyCategoryTangPoetry => 'Poesia Tang';
 }

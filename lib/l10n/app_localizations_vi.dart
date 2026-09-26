@@ -13243,4 +13243,44 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Nắm 2.500 từ để hiểu mọi tiếng Trung nói và viết, diễn đạt sắc thái.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Chuyện thành ngữ';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Truyện đương đại';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Văn học cổ điển';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Tiếng Anh & thế giới';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Tác phẩm kinh điển Pháp';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Triết học cổ đại';
+
+  @override
+  String get storyCategoryModernChinese => 'Tiếng Trung hiện đại';
+
+  @override
+  String get storyCategoryGermanClassics => 'Tác phẩm kinh điển Đức';
+
+  @override
+  String get storyCategorySpanishWorld => 'Tiếng Tây Ban Nha & thế giới';
+
+  @override
+  String get storyCategoryChineseEpics => 'Sử thi Trung Hoa';
+
+  @override
+  String get storyCategorySupernaturalFolklore =>
+      'Siêu nhiên & văn hoá dân gian';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Thơ Trung Hoa';
+
+  @override
+  String get storyCategoryTangPoetry => 'Thơ Đường';
 }

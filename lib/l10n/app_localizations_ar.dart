@@ -13161,4 +13161,43 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'أتقن 2500 كلمة لفهم أي صينية منطوقة أو مكتوبة والتعبير عن الفروق الدقيقة.';
+
+  @override
+  String get storyCategoryIdiomStories => 'حكايات الأمثال';
+
+  @override
+  String get storyCategoryContemporaryStories => 'حكايات معاصرة';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'الأدب الكلاسيكي';
+
+  @override
+  String get storyCategoryEnglishWorld => 'الإنجليزية والعالم';
+
+  @override
+  String get storyCategoryFrenchClassics => 'الكلاسيكيات الفرنسية';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'الفلسفة القديمة';
+
+  @override
+  String get storyCategoryModernChinese => 'الصينية الحديثة';
+
+  @override
+  String get storyCategoryGermanClassics => 'الكلاسيكيات الألمانية';
+
+  @override
+  String get storyCategorySpanishWorld => 'الإسبانية والعالم';
+
+  @override
+  String get storyCategoryChineseEpics => 'الملاحم الصينية';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'الخارق والفولكلور';
+
+  @override
+  String get storyCategoryChinesePoetry => 'الشعر الصيني';
+
+  @override
+  String get storyCategoryTangPoetry => 'شعر تانغ';
 }

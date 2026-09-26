@@ -1,0 +1,44 @@
+{
+  "storyCategoryIdiomStories": {
+    "en": "Idiom Stories", "fr": "Histoires d'expressions", "de": "Chengyu-Geschichten", "es": "Historias de modismos",
+    "it": "Storie di modi di dire", "pt": "Histórias de expressões", "ru": "Истории идиом", "ja": "成語ものがたり",
+    "ko": "성어 이야기", "ar": "حكايات الأمثال", "hi": "मुहावरों की कहानियाँ", "id": "Cerita peribahasa",
+    "th": "เรื่องเล่าสำนวน", "vi": "Chuyện thành ngữ"
+  },
+  "storyCategoryContemporaryStories": {
+    "en": "Contemporary Stories", "fr": "Histoires contemporaines", "de": "Zeitgenössische Geschichten", "es": "Historias contemporáneas",
+    "it": "Storie contemporanee", "pt": "Histórias contemporâneas", "ru": "Современные истории", "ja": "現代の物語",
+    "ko": "현대 이야기", "ar": "حكايات معاصرة", "hi": "समकालीन कहानियाँ", "id": "Cerita kontemporer",
+    "th": "เรื่องเล่าร่วมสมัย", "vi": "Truyện đương đại"
+  },
+  "storyCategoryClassicalLiterature": {
+    "en": "Classical Literature", "fr": "Littérature classique", "de": "Klassische Literatur", "es": "Literatura clásica",
+    "it": "Letteratura classica", "pt": "Literatura clássica", "ru": "Классическая литература", "ja": "古典文学",
+    "ko": "고전 문학", "ar": "الأدب الكلاسيكي", "hi": "शास्त्रीय साहित्य", "id": "Sastra klasik",
+    "th": "วรรณกรรมคลาสสิก", "vi": "Văn học cổ điển"
+  },
+  "storyCategoryEnglishWorld": {
+    "en": "English & World", "fr": "Anglais et monde", "de": "Englisch & Welt", "es": "Inglés y mundo",
+    "it": "Inglese e mondo", "pt": "Inglês e mundo", "ru": "Английский и мир", "ja": "英語と世界",
+    "ko": "영어와 세계", "ar": "الإنجليزية والعالم", "hi": "अंग्रेज़ी और विश्व", "id": "Inggris & dunia",
+    "th": "อังกฤษและโลก", "vi": "Tiếng Anh & thế giới"
+  },
+  "storyCategoryFrenchClassics": {
+    "en": "French Classics", "fr": "Classiques français", "de": "Französische Klassiker", "es": "Clásicos franceses",
+    "it": "Classici francesi", "pt": "Clássicos franceses", "ru": "Французская классика", "ja": "フランス古典",
+    "ko": "프랑스 고전", "ar": "الكلاسيكيات الفرنسية", "hi": "फ़्रांसीसी क्लासिक्स", "id": "Klasik Prancis",
+    "th": "วรรณกรรมคลาสสิกฝรั่งเศส", "vi": "Tác phẩm kinh điển Pháp"
+  },
+  "storyCategoryAncientPhilosophy": {
+    "en": "Ancient Philosophy", "fr": "Philosophie ancienne", "de": "Antike Philosophie", "es": "Filosofía antigua",
+    "it": "Filosofia antica", "pt": "Filosofia antiga", "ru": "Античная философия", "ja": "古代哲学",
+    "ko": "고대 철학", "ar": "الفلسفة القديمة", "hi": "प्राचीन दर्शन", "id": "Filsafat kuno",
+    "th": "ปรัชญาโบราณ", "vi": "Triết học cổ đại"
+  },
+  "storyCategoryModernChinese": {
+    "en": "Modern Chinese", "fr": "Chinois moderne", "de": "Modernes Chinesisch", "es": "Chino moderno",
+    "it": "Cinese moderno", "pt": "Chinês moderno", "ru": "Современный китайский", "ja": "現代中国語",
+    "ko": "현대 중국어", "ar": "الصينية الحديثة", "hi": "आधुनिक चीनी", "id": "Mandarin modern",
+    "th": "ภาษาจีนสมัยใหม่", "vi": "Tiếng Trung hiện đại"
+  }
+}

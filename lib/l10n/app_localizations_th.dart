@@ -13192,4 +13192,43 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'ฝึกคำศัพท์ 2,500 คำเพื่อเข้าใจภาษาจีนทุกรูปแบบและแสดงความหมายละเอียดอ่อน';
+
+  @override
+  String get storyCategoryIdiomStories => 'เรื่องเล่าสำนวน';
+
+  @override
+  String get storyCategoryContemporaryStories => 'เรื่องเล่าร่วมสมัย';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'วรรณกรรมคลาสสิก';
+
+  @override
+  String get storyCategoryEnglishWorld => 'อังกฤษและโลก';
+
+  @override
+  String get storyCategoryFrenchClassics => 'วรรณกรรมคลาสสิกฝรั่งเศส';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'ปรัชญาโบราณ';
+
+  @override
+  String get storyCategoryModernChinese => 'ภาษาจีนสมัยใหม่';
+
+  @override
+  String get storyCategoryGermanClassics => 'วรรณกรรมคลาสสิกเยอรมัน';
+
+  @override
+  String get storyCategorySpanishWorld => 'สเปนและโลก';
+
+  @override
+  String get storyCategoryChineseEpics => 'มหากาพย์จีน';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'เหนือธรรมชาติและคติชน';
+
+  @override
+  String get storyCategoryChinesePoetry => 'กวีจีน';
+
+  @override
+  String get storyCategoryTangPoetry => 'กวีสมัยถัง';
 }

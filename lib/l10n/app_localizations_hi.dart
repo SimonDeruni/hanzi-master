@@ -13238,4 +13238,43 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'किसी भी बोली या लिखित चीनी को सहज समझने और भाव व्यक्त करने के लिए 2,500 शब्द सीखें।';
+
+  @override
+  String get storyCategoryIdiomStories => 'मुहावरों की कहानियाँ';
+
+  @override
+  String get storyCategoryContemporaryStories => 'समकालीन कहानियाँ';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'शास्त्रीय साहित्य';
+
+  @override
+  String get storyCategoryEnglishWorld => 'अंग्रेज़ी और विश्व';
+
+  @override
+  String get storyCategoryFrenchClassics => 'फ़्रांसीसी क्लासिक्स';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'प्राचीन दर्शन';
+
+  @override
+  String get storyCategoryModernChinese => 'आधुनिक चीनी';
+
+  @override
+  String get storyCategoryGermanClassics => 'जर्मन क्लासिक्स';
+
+  @override
+  String get storyCategorySpanishWorld => 'स्पेनिश और विश्व';
+
+  @override
+  String get storyCategoryChineseEpics => 'चीनी महाकाव्य';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'अलौकिक और लोककथा';
+
+  @override
+  String get storyCategoryChinesePoetry => 'चीनी कविता';
+
+  @override
+  String get storyCategoryTangPoetry => 'तांग कविता';
 }

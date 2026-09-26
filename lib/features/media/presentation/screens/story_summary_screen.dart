@@ -107,7 +107,12 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
     // "dependOnInheritedWidgetOfExactType … called before initState completed"
     // in every debug build. `didChangeDependencies` runs once the inherited
     // widgets are available, and the flag keeps it to a single pass.
-    final summaryText = widget.story.summaryEn ?? widget.story.summary;
+    // Prefer the localized summary (read from
+    // `assets/data/l10n/mandarin_bean_stories_<locale>.json`) and fall back to
+    // the English the story data itself carries.
+    final summaryText = widget.story.summary.isNotEmpty
+        ? widget.story.summary
+        : (widget.story.summaryEn ?? '');
     if (_isPlaceholder(summaryText) &&
         widget.story.link.startsWith('tang_poetry_')) {
       _enrichSummary();
@@ -350,8 +355,9 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                         const SizedBox(height: 12),
                         TappableHanziText(
                           _enrichedSummary ??
-                              widget.story.summaryEn ??
-                              widget.story.summary,
+                              (widget.story.summary.isNotEmpty
+                                  ? widget.story.summary
+                                  : (widget.story.summaryEn ?? '')),
                           quickLookPresentation:
                               QuickLookPresentation.readingPopover,
                           style: TextStyle(

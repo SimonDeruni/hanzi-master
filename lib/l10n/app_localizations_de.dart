@@ -13328,4 +13328,43 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get hskDescription6 =>
       '2.500 Wörter, um jedes Chinesisch mühelos zu verstehen und Nuancen auszudrücken.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Chengyu-Geschichten';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Zeitgenössische Geschichten';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Klassische Literatur';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Englisch & Welt';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Französische Klassiker';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Antike Philosophie';
+
+  @override
+  String get storyCategoryModernChinese => 'Modernes Chinesisch';
+
+  @override
+  String get storyCategoryGermanClassics => 'Deutsche Klassiker';
+
+  @override
+  String get storyCategorySpanishWorld => 'Spanisch & Welt';
+
+  @override
+  String get storyCategoryChineseEpics => 'Chinesische Epen';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'Übernatürliches & Folklore';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Chinesische Dichtung';
+
+  @override
+  String get storyCategoryTangPoetry => 'Tang-Dichtung';
 }

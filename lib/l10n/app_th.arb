@@ -4227,4 +4227,18 @@
   "hskDescription4": "ฝึกคำศัพท์ระดับกลางสูง 602 คำเพื่อสนทนากับเจ้าของภาษาได้อย่างคล่องแคล่ว",
   "hskDescription5": "ฝึกคำศัพท์ระดับสูง 1,300 คำเพื่ออ่านหนังสือพิมพ์ นิตยสาร และดูภาพยนตร์",
   "hskDescription6": "ฝึกคำศัพท์ 2,500 คำเพื่อเข้าใจภาษาจีนทุกรูปแบบและแสดงความหมายละเอียดอ่อน"
+,
+  "storyCategoryIdiomStories": "เรื่องเล่าสำนวน",
+  "storyCategoryContemporaryStories": "เรื่องเล่าร่วมสมัย",
+  "storyCategoryClassicalLiterature": "วรรณกรรมคลาสสิก",
+  "storyCategoryEnglishWorld": "อังกฤษและโลก",
+  "storyCategoryFrenchClassics": "วรรณกรรมคลาสสิกฝรั่งเศส",
+  "storyCategoryAncientPhilosophy": "ปรัชญาโบราณ",
+  "storyCategoryModernChinese": "ภาษาจีนสมัยใหม่",
+  "storyCategoryGermanClassics": "วรรณกรรมคลาสสิกเยอรมัน",
+  "storyCategorySpanishWorld": "สเปนและโลก",
+  "storyCategoryChineseEpics": "มหากาพย์จีน",
+  "storyCategorySupernaturalFolklore": "เหนือธรรมชาติและคติชน",
+  "storyCategoryChinesePoetry": "กวีจีน",
+  "storyCategoryTangPoetry": "กวีสมัยถัง"
 }

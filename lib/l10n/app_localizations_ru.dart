@@ -13294,4 +13294,43 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Освойте 2500 слов, чтобы понимать любой китайский и оттенки смысла.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Истории идиом';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Современные истории';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Классическая литература';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Английский и мир';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Французская классика';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Античная философия';
+
+  @override
+  String get storyCategoryModernChinese => 'Современный китайский';
+
+  @override
+  String get storyCategoryGermanClassics => 'Немецкая классика';
+
+  @override
+  String get storyCategorySpanishWorld => 'Испанский и мир';
+
+  @override
+  String get storyCategoryChineseEpics => 'Китайский эпос';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'Мистика и фольклор';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Китайская поэзия';
+
+  @override
+  String get storyCategoryTangPoetry => 'Поэзия Тан';
 }

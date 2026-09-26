@@ -13302,4 +13302,43 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get hskDescription6 =>
       'Domine 2.500 palavras para entender qualquer chinês e expressar nuances.';
+
+  @override
+  String get storyCategoryIdiomStories => 'Histórias de expressões';
+
+  @override
+  String get storyCategoryContemporaryStories => 'Histórias contemporâneas';
+
+  @override
+  String get storyCategoryClassicalLiterature => 'Literatura clássica';
+
+  @override
+  String get storyCategoryEnglishWorld => 'Inglês e mundo';
+
+  @override
+  String get storyCategoryFrenchClassics => 'Clássicos franceses';
+
+  @override
+  String get storyCategoryAncientPhilosophy => 'Filosofia antiga';
+
+  @override
+  String get storyCategoryModernChinese => 'Chinês moderno';
+
+  @override
+  String get storyCategoryGermanClassics => 'Clássicos alemães';
+
+  @override
+  String get storyCategorySpanishWorld => 'Espanhol e mundo';
+
+  @override
+  String get storyCategoryChineseEpics => 'Épicos chineses';
+
+  @override
+  String get storyCategorySupernaturalFolklore => 'Sobrenatural e folclore';
+
+  @override
+  String get storyCategoryChinesePoetry => 'Poesia chinesa';
+
+  @override
+  String get storyCategoryTangPoetry => 'Poesia Tang';
 }

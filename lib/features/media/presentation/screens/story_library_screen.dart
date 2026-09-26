@@ -23,6 +23,8 @@ import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/utils/hero_transition.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/core/localization/story_category_labels.dart';
+
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -149,7 +151,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         author: story.sourceName,
         authorEn: story.sourceName,
         category: story.category.isNotEmpty
-            ? story.category
+            ? AppLocalizations.of(context)!.storyCategoryLabel(story.category)
             : AppLocalizations.of(context)!.chinesePoetry,
         description: story.summary,
         descriptionEn: story.summaryEn ?? story.summary,
@@ -576,7 +578,9 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    dailyStory.summaryEn ?? dailyStory.summary,
+                    dailyStory.summary.isNotEmpty
+                        ? dailyStory.summary
+                        : (dailyStory.summaryEn ?? ''),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -746,7 +750,9 @@ class StoryCardWidget extends StatelessWidget {
                     const SizedBox(height: 6),
                     Expanded(
                       child: Text(
-                        story.summaryEn ?? story.summary,
+                        story.summary.isNotEmpty
+                            ? story.summary
+                            : (story.summaryEn ?? ''),
                         style: TextStyle(
                           fontSize: 12,
                           color: (theme.brightness == Brightness.dark
