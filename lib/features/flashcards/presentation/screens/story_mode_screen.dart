@@ -10,6 +10,9 @@ import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
 import 'package:hanzi_master/features/reading/domain/entities/graded_story.dart';
+import 'package:hanzi_master/features/reading/presentation/providers/story_controller.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/story_reader_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
@@ -186,6 +189,48 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
     }
   }
 
+  /// Guards the one-shot hand-over to the reader.
+  bool _handedOff = false;
+
+  /// Stores the generated story where the reader looks for it, then replaces
+  /// this screen with the reader - the same one every other story opens in, so
+  /// a deck story is read exactly like a library story.
+  Future<void> _handOffToReader(AiStory story) async {
+    if (_handedOff) return;
+    _handedOff = true;
+    const int level = 0;
+    final String deckName = widget.deck.localizedName(context);
+    await ref.read(storyRepositoryProvider).saveStory(
+          GradedStory(
+            id: 'custom_${widget.deck.id}_hsk$level',
+            title: deckName,
+            category: 'Deck Story',
+            hskLevel: level,
+            sentences: story.sentences,
+            generatedAt: DateTime.now(),
+            sourceDeckId: widget.deck.id,
+            sourceDeckName: deckName,
+          ),
+        );
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      SwipeBackPageRoute(
+        builder: (_) => StoryReaderScreen(
+          blueprint: StoryBlueprint(
+            id: 'custom_${widget.deck.id}',
+            title: deckName,
+            topic: deckName,
+            category: 'Deck Story',
+            imageUrl: '',
+            tags: widget.cards.map((c) => c.hanzi).toList(),
+          ),
+          hskLevel: level,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final vocabString = widget.cards.map((c) => c.hanzi).join(',');
@@ -203,6 +248,14 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
       vocabString: vocabString,
       force: _forceRegenerate,
     )));
+
+    // As soon as the deck's story exists it is handed to the standard reader.
+    if (asyncStory.hasValue && !_handedOff) {
+      final AiStory generated = asyncStory.value!;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _handOffToReader(generated);
+      });
+    }
 
     return Scaffold(
       backgroundColor:
