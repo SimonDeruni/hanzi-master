@@ -2271,7 +2271,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get notes => 'Заметки';
 
-
   @override
   String get objectivesTitle => 'ЦЕЛИ';
 
@@ -13158,4 +13157,141 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get noCardsYet => 'В этой колоде пока нет карточек';
+
+  @override
+  String get libraryFilterOfficialHsk => 'Официальный HSK';
+
+  @override
+  String get libraryFilterCulture => 'Культура';
+
+  @override
+  String get libraryFilterSports => 'Спорт';
+
+  @override
+  String get libraryFilterEducation => 'Образование';
+
+  @override
+  String get libraryFilterTravel => 'Путешествия';
+
+  @override
+  String get libraryFilterBusiness => 'Бизнес';
+
+  @override
+  String get librarySearchHint => 'Поиск колод, тем или слов ханьцзы...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'Колоды по запросу «$query» не найдены';
+  }
+
+  @override
+  String get libraryResetFilters => 'Сбросить фильтры';
+
+  @override
+  String get shelfHskTitle => 'Официальная программа HSK';
+
+  @override
+  String get shelfHskSubtitle => 'Официальные уровни китайского (HSK 1–6)';
+
+  @override
+  String get shelfCultureTitle => 'Культура и наследие';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Традиционные искусства, оздоровление ТКМ, чай и праздники';
+
+  @override
+  String get shelfSportsTitle => 'Спорт и боевые искусства';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'Ушу кунг-фу, игры с мячом, фитнес и лёгкая атлетика';
+
+  @override
+  String get shelfEducationTitle => 'Образование и наука';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'Исследования, наука, технологии и лингвистика';
+
+  @override
+  String get shelfTravelTitle => 'Путешествия и городская жизнь';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Китайский для выживания, еда, покупки и метро';
+
+  @override
+  String get shelfBusinessTitle => 'Бизнес и работа';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Договоры, переговоры, работа и мировые финансы';
+
+  @override
+  String get shelfInstalled => 'Установлено в библиотеке';
+
+  @override
+  String get shelfAvailable => 'Доступно для загрузки';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Примеры слов ($countString слов)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Удалить из библиотеки';
+
+  @override
+  String get shelfDownloadInstall => 'Скачать и установить колоду';
+
+  @override
+  String get shelfGetButton => 'Получить';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString колод';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '«$title» добавлено в вашу библиотеку.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '«$title» удалено.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'Освойте 154 базовых иероглифа, приветствия, числа и простые конструкции.';
+
+  @override
+  String get hskDescription2 =>
+      'Освойте 162 базовых слова для повседневного общения.';
+
+  @override
+  String get hskDescription3 =>
+      'Освойте 299 слов среднего уровня для уверенного общения.';
+
+  @override
+  String get hskDescription4 =>
+      'Освойте 602 слова выше среднего для беглых бесед с носителями.';
+
+  @override
+  String get hskDescription5 =>
+      'Освойте 1300 продвинутых слов для газет, журналов и фильмов.';
+
+  @override
+  String get hskDescription6 =>
+      'Освойте 2500 слов, чтобы понимать любой китайский и оттенки смысла.';
 }

@@ -2196,7 +2196,6 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get notes => 'メモ';
 
-
   @override
   String get objectivesTitle => '目標';
 
@@ -12707,4 +12706,130 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noCardsYet => 'このデッキにはまだカードがありません';
+
+  @override
+  String get libraryFilterOfficialHsk => '公式HSK';
+
+  @override
+  String get libraryFilterCulture => '文化';
+
+  @override
+  String get libraryFilterSports => 'スポーツ';
+
+  @override
+  String get libraryFilterEducation => '教育';
+
+  @override
+  String get libraryFilterTravel => '旅行';
+
+  @override
+  String get libraryFilterBusiness => 'ビジネス';
+
+  @override
+  String get librarySearchHint => 'デッキ・トピック・漢字語を検索...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return '「$query」に一致するデッキはありません';
+  }
+
+  @override
+  String get libraryResetFilters => 'フィルターをリセット';
+
+  @override
+  String get shelfHskTitle => '公式HSKカリキュラム';
+
+  @override
+  String get shelfHskSubtitle => '中国語能力の公式基準（HSK 1〜6）';
+
+  @override
+  String get shelfCultureTitle => '文化と伝統';
+
+  @override
+  String get shelfCultureSubtitle => '伝統芸術・中医養生・茶・祭り';
+
+  @override
+  String get shelfSportsTitle => 'スポーツと武術';
+
+  @override
+  String get shelfSportsSubtitle => '武術・球技・ジム・陸上競技';
+
+  @override
+  String get shelfEducationTitle => '教育と学術';
+
+  @override
+  String get shelfEducationSubtitle => '大学研究・科学・技術・言語学';
+
+  @override
+  String get shelfTravelTitle => '旅行と都市生活';
+
+  @override
+  String get shelfTravelSubtitle => 'サバイバル中国語・外食・買い物・地下鉄';
+
+  @override
+  String get shelfBusinessTitle => 'ビジネスと仕事';
+
+  @override
+  String get shelfBusinessSubtitle => '契約・交渉・職場・国際金融';
+
+  @override
+  String get shelfInstalled => '本棚にインストール済み';
+
+  @override
+  String get shelfAvailable => 'ダウンロード可能';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'サンプル語彙（$countString語）';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => '本棚から削除';
+
+  @override
+  String get shelfDownloadInstall => 'デッキをダウンロードしてインストール';
+
+  @override
+  String get shelfGetButton => '入手';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countStringデッキ';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '「$title」を本棚に追加しました。';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '「$title」を削除しました。';
+  }
+
+  @override
+  String get hskDescription1 => '基本漢字154字、日常のあいさつ、数字、基本文型を身につけます。';
+
+  @override
+  String get hskDescription2 => '日常会話に使える初級単語162語を身につけます。';
+
+  @override
+  String get hskDescription3 => '学習・社交・旅行で使える中級単語299語を身につけます。';
+
+  @override
+  String get hskDescription4 => 'ネイティブと幅広い話題で話せる中上級単語602語を身につけます。';
+
+  @override
+  String get hskDescription5 => '新聞・雑誌・映画を楽しめる上級単語1,300語を身につけます。';
+
+  @override
+  String get hskDescription6 => 'あらゆる中国語を理解しニュアンスを表現できる2,500語を身につけます。';
 }

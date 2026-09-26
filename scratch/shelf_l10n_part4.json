@@ -1,0 +1,59 @@
+{
+  "shelfSampleVocabulary": {
+    "en": "Sample Vocabulary ({count} preview words)", "fr": "Vocabulaire d'exemple ({count} mots)",
+    "de": "Beispielwortschatz ({count} Vorschauwörter)", "es": "Vocabulario de muestra ({count} palabras)",
+    "it": "Vocabolario di esempio ({count} parole)", "pt": "Vocabulário de amostra ({count} palavras)",
+    "ru": "Примеры слов ({count} слов)", "ja": "サンプル語彙（{count}語）", "ko": "예시 어휘 ({count}개 단어)",
+    "ar": "مفردات نموذجية ({count} كلمة)", "hi": "नमूना शब्दावली ({count} शब्द)", "id": "Contoh kosakata ({count} kata)",
+    "th": "คำศัพท์ตัวอย่าง ({count} คำ)", "vi": "Từ vựng mẫu ({count} từ)"
+  },
+  "shelfRemoveFromBookshelf": {
+    "en": "Remove from Bookshelf", "fr": "Retirer de la bibliothèque", "de": "Aus der Bibliothek entfernen",
+    "es": "Quitar de la biblioteca", "it": "Rimuovi dalla libreria", "pt": "Remover da estante",
+    "ru": "Удалить из библиотеки", "ja": "本棚から削除", "ko": "서재에서 제거",
+    "ar": "إزالة من المكتبة", "hi": "लाइब्रेरी से हटाएँ", "id": "Hapus dari rak",
+    "th": "นำออกจากคลัง", "vi": "Xoá khỏi tủ sách"
+  },
+  "shelfDownloadInstall": {
+    "en": "Download & Install Deck", "fr": "Télécharger et installer le deck", "de": "Deck herunterladen & installieren",
+    "es": "Descargar e instalar mazo", "it": "Scarica e installa mazzo", "pt": "Baixar e instalar baralho",
+    "ru": "Скачать и установить колоду", "ja": "デッキをダウンロードしてインストール", "ko": "덱 다운로드 및 설치",
+    "ar": "تنزيل المجموعة وتثبيتها", "hi": "डेक डाउनलोड और इंस्टॉल करें", "id": "Unduh & pasang dek",
+    "th": "ดาวน์โหลดและติดตั้งสำรับ", "vi": "Tải & cài bộ bài"
+  },
+  "shelfGetButton": {
+    "en": "Get", "fr": "Obtenir", "de": "Holen", "es": "Obtener",
+    "it": "Ottieni", "pt": "Obter", "ru": "Получить", "ja": "入手",
+    "ko": "받기", "ar": "احصل", "hi": "प्राप्त करें", "id": "Dapatkan",
+    "th": "รับ", "vi": "Nhận"
+  },
+  "shelfDeckCount": {
+    "en": "{count} decks", "fr": "{count} decks", "de": "{count} Decks", "es": "{count} mazos",
+    "it": "{count} mazzi", "pt": "{count} baralhos", "ru": "{count} колод", "ja": "{count}デッキ",
+    "ko": "덱 {count}개", "ar": "{count} مجموعة", "hi": "{count} डेक", "id": "{count} dek",
+    "th": "{count} สำรับ", "vi": "{count} bộ bài"
+  },
+  "shelfAddedThematic": {
+    "en": "Successfully added “{title}” to your Bookshelf.",
+    "fr": "« {title} » a été ajouté à votre bibliothèque.",
+    "de": "„{title}“ wurde zu deiner Bibliothek hinzugefügt.",
+    "es": "Se añadió “{title}” a tu biblioteca.",
+    "it": "“{title}” è stato aggiunto alla libreria.",
+    "pt": "“{title}” foi adicionado à sua estante.",
+    "ru": "«{title}» добавлено в вашу библиотеку.",
+    "ja": "「{title}」を本棚に追加しました。",
+    "ko": "“{title}”을(를) 서재에 추가했습니다.",
+    "ar": "تمت إضافة ”{title}“ إلى مكتبتك.",
+    "hi": "“{title}” आपकी लाइब्रेरी में जोड़ा गया।",
+    "id": "“{title}” ditambahkan ke rak Anda.",
+    "th": "เพิ่ม “{title}” ลงในคลังของคุณแล้ว",
+    "vi": "Đã thêm “{title}” vào tủ sách của bạn."
+  },
+  "shelfRemovedThematic": {
+    "en": "Removed “{title}”.", "fr": "« {title} » retiré.", "de": "„{title}“ entfernt.",
+    "es": "Se quitó “{title}”.", "it": "“{title}” rimosso.", "pt": "“{title}” removido.",
+    "ru": "«{title}» удалено.", "ja": "「{title}」を削除しました。", "ko": "“{title}”을(를) 제거했습니다.",
+    "ar": "تمت إزالة ”{title}“.", "hi": "“{title}” हटा दिया गया।", "id": "“{title}” dihapus.",
+    "th": "นำ “{title}” ออกแล้ว", "vi": "Đã xoá “{title}”."
+  }
+}

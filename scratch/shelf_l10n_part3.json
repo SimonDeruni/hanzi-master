@@ -1,0 +1,85 @@
+{
+  "shelfEducationTitle": {
+    "en": "Education & Academics", "fr": "Éducation et université", "de": "Bildung & Wissenschaft",
+    "es": "Educación y academia", "it": "Istruzione e accademia", "pt": "Educação e academia",
+    "ru": "Образование и наука", "ja": "教育と学術", "ko": "교육과 학문",
+    "ar": "التعليم والأكاديميا", "hi": "शिक्षा और अकादमिक", "id": "Pendidikan & akademik",
+    "th": "การศึกษาและวิชาการ", "vi": "Giáo dục & học thuật"
+  },
+  "shelfEducationSubtitle": {
+    "en": "University research, science, tech, and linguistics",
+    "fr": "Recherche, science, technologie et linguistique",
+    "de": "Forschung, Wissenschaft, Technik und Linguistik",
+    "es": "Investigación, ciencia, tecnología y lingüística",
+    "it": "Ricerca, scienza, tecnologia e linguistica",
+    "pt": "Pesquisa, ciência, tecnologia e linguística",
+    "ru": "Исследования, наука, технологии и лингвистика",
+    "ja": "大学研究・科学・技術・言語学",
+    "ko": "대학 연구, 과학, 기술, 언어학",
+    "ar": "البحث الجامعي والعلوم والتقنية واللسانيات",
+    "hi": "विश्वविद्यालय अनुसंधान, विज्ञान, तकनीक और भाषाविज्ञान",
+    "id": "Riset universitas, sains, teknologi, dan linguistik",
+    "th": "งานวิจัยมหาวิทยาลัย วิทยาศาสตร์ เทคโนโลยี และภาษาศาสตร์",
+    "vi": "Nghiên cứu đại học, khoa học, công nghệ và ngôn ngữ học"
+  },
+  "shelfTravelTitle": {
+    "en": "Travel & City Life", "fr": "Voyage et vie urbaine", "de": "Reisen & Stadtleben",
+    "es": "Viajes y vida urbana", "it": "Viaggi e vita urbana", "pt": "Viagens e vida urbana",
+    "ru": "Путешествия и городская жизнь", "ja": "旅行と都市生活", "ko": "여행과 도시 생활",
+    "ar": "السفر والحياة في المدينة", "hi": "यात्रा और शहरी जीवन", "id": "Perjalanan & kehidupan kota",
+    "th": "การเดินทางและชีวิตในเมือง", "vi": "Du lịch & cuộc sống đô thị"
+  },
+  "shelfTravelSubtitle": {
+    "en": "Survival Chinese, Chinese dining, shopping, and metro",
+    "fr": "Chinois de survie, restaurant, shopping et métro",
+    "de": "Überlebens-Chinesisch, Essen, Einkaufen und Metro",
+    "es": "Chino de supervivencia, restaurantes, compras y metro",
+    "it": "Cinese di sopravvivenza, ristoranti, shopping e metro",
+    "pt": "Chinês de sobrevivência, restaurantes, compras e metrô",
+    "ru": "Китайский для выживания, еда, покупки и метро",
+    "ja": "サバイバル中国語・外食・買い物・地下鉄",
+    "ko": "생존 중국어, 외식, 쇼핑, 지하철",
+    "ar": "الصينية للنجاة، وتناول الطعام، والتسوق، والمترو",
+    "hi": "उत्तरजीविता चीनी, भोजन, खरीदारी और मेट्रो",
+    "id": "Bahasa Mandarin bertahan hidup, kuliner, belanja, dan MRT",
+    "th": "ภาษาจีนเอาตัวรอด การรับประทานอาหาร การช้อปปิ้ง และรถไฟใต้ดิน",
+    "vi": "Tiếng Trung sinh tồn, ăn uống, mua sắm và tàu điện ngầm"
+  },
+  "shelfBusinessTitle": {
+    "en": "Business & Professional", "fr": "Affaires et professionnel", "de": "Business & Beruf",
+    "es": "Negocios y profesional", "it": "Affari e professionale", "pt": "Negócios e profissional",
+    "ru": "Бизнес и работа", "ja": "ビジネスと仕事", "ko": "비즈니스와 직장",
+    "ar": "الأعمال والمهنية", "hi": "व्यवसाय और पेशेवर", "id": "Bisnis & profesional",
+    "th": "ธุรกิจและอาชีพ", "vi": "Kinh doanh & công sở"
+  },
+  "shelfBusinessSubtitle": {
+    "en": "Contracts, negotiation, workplace, and global finance",
+    "fr": "Contrats, négociation, monde du travail et finance",
+    "de": "Verträge, Verhandlung, Arbeitswelt und Finanzen",
+    "es": "Contratos, negociación, entorno laboral y finanzas",
+    "it": "Contratti, negoziazione, lavoro e finanza globale",
+    "pt": "Contratos, negociação, ambiente de trabalho e finanças",
+    "ru": "Договоры, переговоры, работа и мировые финансы",
+    "ja": "契約・交渉・職場・国際金融",
+    "ko": "계약, 협상, 직장, 국제 금융",
+    "ar": "العقود والتفاوض وبيئة العمل والتمويل العالمي",
+    "hi": "अनुबंध, बातचीत, कार्यस्थल और वैश्विक वित्त",
+    "id": "Kontrak, negosiasi, dunia kerja, dan keuangan global",
+    "th": "สัญญา การเจรจา สถานที่ทำงาน และการเงินโลก",
+    "vi": "Hợp đồng, đàm phán, công sở và tài chính toàn cầu"
+  },
+  "shelfInstalled": {
+    "en": "Installed on Bookshelf", "fr": "Installé dans la bibliothèque", "de": "In der Bibliothek installiert",
+    "es": "Instalado en la biblioteca", "it": "Installato in libreria", "pt": "Instalado na estante",
+    "ru": "Установлено в библиотеке", "ja": "本棚にインストール済み", "ko": "서재에 설치됨",
+    "ar": "مثبّت في المكتبة", "hi": "लाइब्रेरी में इंस्टॉल", "id": "Terpasang di rak",
+    "th": "ติดตั้งในคลังแล้ว", "vi": "Đã cài trong tủ sách"
+  },
+  "shelfAvailable": {
+    "en": "Available for Download", "fr": "Disponible au téléchargement", "de": "Zum Download verfügbar",
+    "es": "Disponible para descargar", "it": "Disponibile per il download", "pt": "Disponível para download",
+    "ru": "Доступно для загрузки", "ja": "ダウンロード可能", "ko": "다운로드 가능",
+    "ar": "متاح للتنزيل", "hi": "डाउनलोड के लिए उपलब्ध", "id": "Tersedia untuk diunduh",
+    "th": "พร้อมให้ดาวน์โหลด", "vi": "Có thể tải xuống"
+  }
+}

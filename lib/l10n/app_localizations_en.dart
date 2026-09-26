@@ -2249,7 +2249,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notes => 'Notes';
 
-
   @override
   String get objectivesTitle => 'OBJECTIVES';
 
@@ -13049,4 +13048,142 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noCardsYet => 'No cards in this deck yet';
+
+  @override
+  String get libraryFilterOfficialHsk => 'Official HSK';
+
+  @override
+  String get libraryFilterCulture => 'Culture';
+
+  @override
+  String get libraryFilterSports => 'Sports';
+
+  @override
+  String get libraryFilterEducation => 'Education';
+
+  @override
+  String get libraryFilterTravel => 'Travel';
+
+  @override
+  String get libraryFilterBusiness => 'Business';
+
+  @override
+  String get librarySearchHint => 'Search decks, topics, or Hanzi words...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'No decks found matching “$query”';
+  }
+
+  @override
+  String get libraryResetFilters => 'Reset filters';
+
+  @override
+  String get shelfHskTitle => 'Official HSK Curriculum';
+
+  @override
+  String get shelfHskSubtitle =>
+      'Official Chinese proficiency standards (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'Culture & Heritage';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Traditional arts, TCM wellness, tea, and festivals';
+
+  @override
+  String get shelfSportsTitle => 'Sports & Martial Arts';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'Wushu Kung Fu, ball games, gym, and athletics';
+
+  @override
+  String get shelfEducationTitle => 'Education & Academics';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'University research, science, tech, and linguistics';
+
+  @override
+  String get shelfTravelTitle => 'Travel & City Life';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Survival Chinese, Chinese dining, shopping, and metro';
+
+  @override
+  String get shelfBusinessTitle => 'Business & Professional';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Contracts, negotiation, workplace, and global finance';
+
+  @override
+  String get shelfInstalled => 'Installed on Bookshelf';
+
+  @override
+  String get shelfAvailable => 'Available for Download';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Sample Vocabulary ($countString preview words)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Remove from Bookshelf';
+
+  @override
+  String get shelfDownloadInstall => 'Download & Install Deck';
+
+  @override
+  String get shelfGetButton => 'Get';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString decks';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return 'Successfully added “$title” to your Bookshelf.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return 'Removed “$title”.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'Master 154 foundational Hanzi, fundamental daily greetings, numbers, and basic sentence patterns.';
+
+  @override
+  String get hskDescription2 =>
+      'Master 162 elementary words for practical everyday communication and routine interactions.';
+
+  @override
+  String get hskDescription3 =>
+      'Master 299 intermediate words to comfortably converse in academic, social, and travel settings.';
+
+  @override
+  String get hskDescription4 =>
+      'Master 602 upper-intermediate words for fluent discussion with native speakers across diverse topics.';
+
+  @override
+  String get hskDescription5 =>
+      'Master 1,300 advanced words to read Chinese newspapers, magazines, and appreciate films.';
+
+  @override
+  String get hskDescription6 =>
+      'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.';
 }

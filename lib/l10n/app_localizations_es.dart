@@ -2269,7 +2269,6 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get notes => 'Notas';
 
-
   @override
   String get objectivesTitle => 'OBJETIVOS';
 
@@ -13179,4 +13178,141 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noCardsYet => 'Aún no hay tarjetas en este mazo';
+
+  @override
+  String get libraryFilterOfficialHsk => 'HSK oficial';
+
+  @override
+  String get libraryFilterCulture => 'Cultura';
+
+  @override
+  String get libraryFilterSports => 'Deportes';
+
+  @override
+  String get libraryFilterEducation => 'Educación';
+
+  @override
+  String get libraryFilterTravel => 'Viajes';
+
+  @override
+  String get libraryFilterBusiness => 'Negocios';
+
+  @override
+  String get librarySearchHint => 'Busca mazos, temas o palabras hanzi...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'No se encontraron mazos para “$query”';
+  }
+
+  @override
+  String get libraryResetFilters => 'Restablecer filtros';
+
+  @override
+  String get shelfHskTitle => 'Plan de estudios oficial de HSK';
+
+  @override
+  String get shelfHskSubtitle => 'Estándares oficiales de chino (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'Cultura y patrimonio';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Artes tradicionales, bienestar TCM, té y festivales';
+
+  @override
+  String get shelfSportsTitle => 'Deportes y artes marciales';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'Wushu kung fu, deportes de pelota, gimnasio y atletismo';
+
+  @override
+  String get shelfEducationTitle => 'Educación y academia';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'Investigación, ciencia, tecnología y lingüística';
+
+  @override
+  String get shelfTravelTitle => 'Viajes y vida urbana';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Chino de supervivencia, restaurantes, compras y metro';
+
+  @override
+  String get shelfBusinessTitle => 'Negocios y profesional';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Contratos, negociación, entorno laboral y finanzas';
+
+  @override
+  String get shelfInstalled => 'Instalado en la biblioteca';
+
+  @override
+  String get shelfAvailable => 'Disponible para descargar';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Vocabulario de muestra ($countString palabras)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Quitar de la biblioteca';
+
+  @override
+  String get shelfDownloadInstall => 'Descargar e instalar mazo';
+
+  @override
+  String get shelfGetButton => 'Obtener';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString mazos';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return 'Se añadió “$title” a tu biblioteca.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return 'Se quitó “$title”.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'Domina 154 hanzi básicos, saludos diarios, números y estructuras simples.';
+
+  @override
+  String get hskDescription2 =>
+      'Domina 162 palabras elementales para la comunicación diaria.';
+
+  @override
+  String get hskDescription3 =>
+      'Domina 299 palabras intermedias para conversar con soltura.';
+
+  @override
+  String get hskDescription4 =>
+      'Domina 602 palabras de nivel intermedio alto para conversar con fluidez.';
+
+  @override
+  String get hskDescription5 =>
+      'Domina 1.300 palabras avanzadas para leer prensa, revistas y cine.';
+
+  @override
+  String get hskDescription6 =>
+      'Domina 2.500 palabras para entender cualquier chino y matizar.';
 }

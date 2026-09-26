@@ -2282,7 +2282,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get notes => 'Notes';
 
-
   @override
   String get objectivesTitle => 'OBJECTIFS';
 
@@ -13203,4 +13202,142 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noCardsYet => 'Aucune carte dans ce paquet pour l\'instant';
+
+  @override
+  String get libraryFilterOfficialHsk => 'HSK officiel';
+
+  @override
+  String get libraryFilterCulture => 'Culture';
+
+  @override
+  String get libraryFilterSports => 'Sports';
+
+  @override
+  String get libraryFilterEducation => 'Éducation';
+
+  @override
+  String get libraryFilterTravel => 'Voyage';
+
+  @override
+  String get libraryFilterBusiness => 'Affaires';
+
+  @override
+  String get librarySearchHint =>
+      'Rechercher des decks, thèmes ou mots hanzi...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'Aucun deck trouvé pour « $query »';
+  }
+
+  @override
+  String get libraryResetFilters => 'Réinitialiser les filtres';
+
+  @override
+  String get shelfHskTitle => 'Programme officiel HSK';
+
+  @override
+  String get shelfHskSubtitle => 'Niveaux officiels de chinois (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'Culture et patrimoine';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Arts traditionnels, bien-être MTC, thé et festivals';
+
+  @override
+  String get shelfSportsTitle => 'Sports et arts martiaux';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'Wushu kung-fu, sports de ballon, gym et athlétisme';
+
+  @override
+  String get shelfEducationTitle => 'Éducation et université';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'Recherche, science, technologie et linguistique';
+
+  @override
+  String get shelfTravelTitle => 'Voyage et vie urbaine';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Chinois de survie, restaurant, shopping et métro';
+
+  @override
+  String get shelfBusinessTitle => 'Affaires et professionnel';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Contrats, négociation, monde du travail et finance';
+
+  @override
+  String get shelfInstalled => 'Installé dans la bibliothèque';
+
+  @override
+  String get shelfAvailable => 'Disponible au téléchargement';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Vocabulaire d\'exemple ($countString mots)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Retirer de la bibliothèque';
+
+  @override
+  String get shelfDownloadInstall => 'Télécharger et installer le deck';
+
+  @override
+  String get shelfGetButton => 'Obtenir';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString decks';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '« $title » a été ajouté à votre bibliothèque.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '« $title » retiré.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'Maîtrisez 154 hanzi de base, les salutations, les nombres et les structures simples.';
+
+  @override
+  String get hskDescription2 =>
+      'Maîtrisez 162 mots élémentaires pour la communication quotidienne.';
+
+  @override
+  String get hskDescription3 =>
+      'Maîtrisez 299 mots intermédiaires pour converser avec aisance.';
+
+  @override
+  String get hskDescription4 =>
+      'Maîtrisez 602 mots de niveau intermédiaire avancé pour discuter avec des locuteurs natifs.';
+
+  @override
+  String get hskDescription5 =>
+      'Maîtrisez 1 300 mots avancés pour lire journaux, magazines et films.';
+
+  @override
+  String get hskDescription6 =>
+      'Maîtrisez 2 500 mots pour comprendre tout chinois et exprimer les nuances.';
 }

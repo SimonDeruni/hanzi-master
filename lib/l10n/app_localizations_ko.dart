@@ -2200,7 +2200,6 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get notes => '메모';
 
-
   @override
   String get objectivesTitle => '학습 목표';
 
@@ -12739,4 +12738,130 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get noCardsYet => '이 덱에는 아직 카드가 없습니다';
+
+  @override
+  String get libraryFilterOfficialHsk => '공식 HSK';
+
+  @override
+  String get libraryFilterCulture => '문화';
+
+  @override
+  String get libraryFilterSports => '스포츠';
+
+  @override
+  String get libraryFilterEducation => '교육';
+
+  @override
+  String get libraryFilterTravel => '여행';
+
+  @override
+  String get libraryFilterBusiness => '비즈니스';
+
+  @override
+  String get librarySearchHint => '덱, 주제 또는 한자 단어 검색...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return '“$query”와 일치하는 덱이 없습니다';
+  }
+
+  @override
+  String get libraryResetFilters => '필터 초기화';
+
+  @override
+  String get shelfHskTitle => '공식 HSK 교육과정';
+
+  @override
+  String get shelfHskSubtitle => '공식 중국어 능력 기준(HSK 1~6)';
+
+  @override
+  String get shelfCultureTitle => '문화와 유산';
+
+  @override
+  String get shelfCultureSubtitle => '전통 예술, 중의 건강법, 차, 축제';
+
+  @override
+  String get shelfSportsTitle => '스포츠와 무술';
+
+  @override
+  String get shelfSportsSubtitle => '우슈 쿵후, 구기 종목, 헬스, 육상';
+
+  @override
+  String get shelfEducationTitle => '교육과 학문';
+
+  @override
+  String get shelfEducationSubtitle => '대학 연구, 과학, 기술, 언어학';
+
+  @override
+  String get shelfTravelTitle => '여행과 도시 생활';
+
+  @override
+  String get shelfTravelSubtitle => '생존 중국어, 외식, 쇼핑, 지하철';
+
+  @override
+  String get shelfBusinessTitle => '비즈니스와 직장';
+
+  @override
+  String get shelfBusinessSubtitle => '계약, 협상, 직장, 국제 금융';
+
+  @override
+  String get shelfInstalled => '서재에 설치됨';
+
+  @override
+  String get shelfAvailable => '다운로드 가능';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '예시 어휘 ($countString개 단어)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => '서재에서 제거';
+
+  @override
+  String get shelfDownloadInstall => '덱 다운로드 및 설치';
+
+  @override
+  String get shelfGetButton => '받기';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '덱 $countString개';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '“$title”을(를) 서재에 추가했습니다.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '“$title”을(를) 제거했습니다.';
+  }
+
+  @override
+  String get hskDescription1 => '기초 한자 154자, 일상 인사, 숫자, 기본 문형을 익힙니다.';
+
+  @override
+  String get hskDescription2 => '일상 대화에 쓰이는 초급 단어 162개를 익힙니다.';
+
+  @override
+  String get hskDescription3 => '학업, 사교, 여행에서 편하게 대화할 중급 단어 299개를 익힙니다.';
+
+  @override
+  String get hskDescription4 => '원어민과 다양한 주제로 유창하게 대화할 중상급 단어 602개를 익힙니다.';
+
+  @override
+  String get hskDescription5 => '신문, 잡지, 영화를 이해할 고급 단어 1,300개를 익힙니다.';
+
+  @override
+  String get hskDescription6 => '모든 중국어를 이해하고 뉘앙스를 표현할 2,500개 단어를 익힙니다.';
 }

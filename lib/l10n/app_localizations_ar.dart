@@ -2233,7 +2233,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get notes => 'ملاحظات';
 
-
   @override
   String get objectivesTitle => 'الأهداف';
 
@@ -13024,4 +13023,142 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noCardsYet => 'لا توجد بطاقات في هذه المجموعة بعد';
+
+  @override
+  String get libraryFilterOfficialHsk => 'HSK الرسمي';
+
+  @override
+  String get libraryFilterCulture => 'الثقافة';
+
+  @override
+  String get libraryFilterSports => 'الرياضة';
+
+  @override
+  String get libraryFilterEducation => 'التعليم';
+
+  @override
+  String get libraryFilterTravel => 'السفر';
+
+  @override
+  String get libraryFilterBusiness => 'الأعمال';
+
+  @override
+  String get librarySearchHint =>
+      'ابحث عن المجموعات أو المواضيع أو كلمات الهانزي...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'لا توجد مجموعات مطابقة لـ ”$query“';
+  }
+
+  @override
+  String get libraryResetFilters => 'إعادة تعيين عوامل التصفية';
+
+  @override
+  String get shelfHskTitle => 'منهج HSK الرسمي';
+
+  @override
+  String get shelfHskSubtitle =>
+      'معايير الكفاءة الرسمية في الصينية (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'الثقافة والتراث';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'الفنون التقليدية، والعلاج بالطب الصيني، والشاي، والمهرجانات';
+
+  @override
+  String get shelfSportsTitle => 'الرياضة والفنون القتالية';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'الووشو الكونغ فو، ورياضات الكرة، والصالة الرياضية، وألعاب القوى';
+
+  @override
+  String get shelfEducationTitle => 'التعليم والأكاديميا';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'البحث الجامعي والعلوم والتقنية واللسانيات';
+
+  @override
+  String get shelfTravelTitle => 'السفر والحياة في المدينة';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'الصينية للنجاة، وتناول الطعام، والتسوق، والمترو';
+
+  @override
+  String get shelfBusinessTitle => 'الأعمال والمهنية';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'العقود والتفاوض وبيئة العمل والتمويل العالمي';
+
+  @override
+  String get shelfInstalled => 'مثبّت في المكتبة';
+
+  @override
+  String get shelfAvailable => 'متاح للتنزيل';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'مفردات نموذجية ($countString كلمة)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'إزالة من المكتبة';
+
+  @override
+  String get shelfDownloadInstall => 'تنزيل المجموعة وتثبيتها';
+
+  @override
+  String get shelfGetButton => 'احصل';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString مجموعة';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return 'تمت إضافة ”$title“ إلى مكتبتك.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return 'تمت إزالة ”$title“.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'أتقن 154 حرفًا صينيًا أساسيًا والتحيات اليومية والأرقام والتراكيب البسيطة.';
+
+  @override
+  String get hskDescription2 => 'أتقن 162 كلمة أساسية للتواصل اليومي.';
+
+  @override
+  String get hskDescription3 =>
+      'أتقن 299 كلمة متوسطة للتواصل بيسر في الدراسة والحياة والسفر.';
+
+  @override
+  String get hskDescription4 =>
+      'أتقن 602 كلمة فوق المتوسطة للحوار بطلاقة مع الناطقين الأصليين.';
+
+  @override
+  String get hskDescription5 =>
+      'أتقن 1300 كلمة متقدمة لقراءة الصحف والمجلات ومتابعة الأفلام.';
+
+  @override
+  String get hskDescription6 =>
+      'أتقن 2500 كلمة لفهم أي صينية منطوقة أو مكتوبة والتعبير عن الفروق الدقيقة.';
 }

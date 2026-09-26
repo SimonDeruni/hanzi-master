@@ -82,7 +82,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           gradientColors: const [Color(0xFF15803D), Color(0xFF052E16)],
           watermarkHanzi: '壹',
           description:
-              'Master 154 foundational Hanzi, fundamental daily greetings, numbers, and basic sentence patterns.',
+              l10n.hskDescription1,
           sampleWords: const [
             {"hanzi": "你", "pinyin": "nǐ", "definition": "you"},
             {"hanzi": "好", "pinyin": "hǎo", "definition": "good; well"},
@@ -103,7 +103,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           gradientColors: const [Color(0xFF0F766E), Color(0xFF042F2E)],
           watermarkHanzi: '贰',
           description:
-              'Master 162 elementary words for practical everyday communication and routine interactions.',
+              l10n.hskDescription2,
           sampleWords: const [
             {
               "hanzi": "准备",
@@ -132,7 +132,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           gradientColors: const [Color(0xFFB45309), Color(0xFF451A03)],
           watermarkHanzi: '叁',
           description:
-              'Master 299 intermediate words to comfortably converse in academic, social, and travel settings.',
+              l10n.hskDescription3,
           sampleWords: const [
             {
               "hanzi": "解决",
@@ -177,7 +177,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           gradientColors: const [Color(0xFFBE123C), Color(0xFF4C0519)],
           watermarkHanzi: '肆',
           description:
-              'Master 602 upper-intermediate words for fluent discussion with native speakers across diverse topics.',
+              l10n.hskDescription4,
           sampleWords: const [
             {
               "hanzi": "坚持",
@@ -226,7 +226,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           gradientColors: const [Color(0xFF4338CA), Color(0xFF1E1B4B)],
           watermarkHanzi: '伍',
           description:
-              'Master 1,300 advanced words to read Chinese newspapers, magazines, and appreciate films.',
+              l10n.hskDescription5,
           sampleWords: const [
             {
               "hanzi": "综合",
@@ -275,7 +275,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           gradientColors: const [Color(0xFF6D28D9), Color(0xFF2E1065)],
           watermarkHanzi: '陆',
           description:
-              'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.',
+              l10n.hskDescription6,
           sampleWords: const [
             {
               "hanzi": "领悟",
@@ -320,6 +320,32 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           ],
         ),
       ];
+
+  /// Human label for a filter key.
+  ///
+  /// The keys themselves stay English (and stable) because they are also the
+  /// comparison values used for filtering; only what the pill *shows* is
+  /// translated. See `_categoryFilterKeys`.
+  String _categoryLabel(AppLocalizations l10n, String key) {
+    switch (key) {
+      case 'ALL':
+        return l10n.allLabel;
+      case 'Official HSK':
+        return l10n.libraryFilterOfficialHsk;
+      case 'Culture':
+        return l10n.libraryFilterCulture;
+      case 'Sports':
+        return l10n.libraryFilterSports;
+      case 'Education':
+        return l10n.libraryFilterEducation;
+      case 'Travel':
+        return l10n.libraryFilterTravel;
+      case 'Business':
+        return l10n.libraryFilterBusiness;
+      default:
+        return key;
+    }
+  }
 
   bool _isLevelInstalled(int level, List<Deck> decks) =>
       decks.any((deck) => deck.id == 'hsk$level');
@@ -448,7 +474,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
 
       if (mounted) {
         _showMessage(
-            'Successfully added "${thematic.title}" to your Bookshelf.',
+            AppLocalizations.of(context)!.shelfAddedThematic(thematic.title),
             tone: ZenToastTone.success);
       }
     } catch (error) {
@@ -506,7 +532,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       ref.invalidate(deckControllerProvider);
 
       if (mounted) {
-        _showMessage('Removed "${thematic.title}".',
+        _showMessage(AppLocalizations.of(context)!.shelfRemovedThematic(thematic.title),
             tone: ZenToastTone.success);
       }
     } catch (error) {
@@ -688,8 +714,8 @@ Flexible(
                                     const SizedBox(width: 4),
                                     Text(
                                       isInstalled
-                                          ? 'Installed on Bookshelf'
-                                          : 'Available for Download',
+                                          ? AppLocalizations.of(context)!.shelfInstalled
+                                          : AppLocalizations.of(context)!.shelfAvailable,
                                       style: TextStyle(
                                         fontSize: 10.5,
                                         fontWeight: FontWeight.bold,
@@ -730,7 +756,7 @@ const SizedBox(height: 20),
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          'Sample Vocabulary (${sampleWords.length} preview words)',
+                          AppLocalizations.of(context)!.shelfSampleVocabulary(sampleWords.length),
                           style: TextStyle(
                             fontSize: 13.5,
                             fontWeight: FontWeight.bold,
@@ -821,9 +847,9 @@ const SizedBox(height: 28),
                                   },
                                   icon: const Icon(Icons.delete_outline_rounded,
                                       size: 18),
-                                  label: const Text(
-                                    'Remove from Bookshelf',
-                                    style: TextStyle(
+                                  label: Text(
+                                    AppLocalizations.of(context)!.shelfRemoveFromBookshelf,
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -843,9 +869,9 @@ const SizedBox(height: 28),
                                   },
                                   icon: const Icon(Icons.download_rounded,
                                       size: 18),
-                                  label: const Text(
-                                    'Download & Install Deck',
-                                    style: TextStyle(
+                                  label: Text(
+                                    AppLocalizations.of(context)!.shelfDownloadInstall,
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -875,18 +901,6 @@ const SizedBox(height: 28),
       body: CalligraphyBackground(
         child: asyncDecks.when(
           data: (decks) {
-            final installedHskCount = collections
-                .where(
-                    (collection) => _isLevelInstalled(collection.level, decks))
-                .length;
-
-            final installedThematicCount = thematicDecks
-                .where((thematic) => _isThematicInstalled(thematic.id, decks))
-                .length;
-
-            final totalInstalled = installedHskCount + installedThematicCount;
-            final totalAvailable = collections.length + thematicDecks.length;
-
             final query = _searchController.text.trim().toLowerCase();
 
             // Filter HSK
@@ -966,17 +980,8 @@ const SizedBox(height: 28),
                         // Zen Search Bar
                         ZenSearchBar(
                           controller: _searchController,
-                          hintText: "Search decks, topics, or Hanzi words...",
+                          hintText: AppLocalizations.of(context)!.librarySearchHint,
                           onChanged: (_) => setState(() {}),
-                        ),
-const SizedBox(height: 12),
-// Download / Bookshelf Status Card
-                        _BookshelfSummaryCard(
-                          installedCount: totalInstalled,
-                          totalCount: totalAvailable,
-                          isDark: isDark,
-                          cardBg: cardBg,
-                          primaryText: primaryText,
                         ),
 const SizedBox(height: 12),
 // Horizontal Category Filter Pills (like BookCatalogScreen)
@@ -992,7 +997,7 @@ const SizedBox(height: 12),
                               final catKey = _categoryFilterKeys[index];
                               final isSelected = _selectedCategory == catKey;
                               return ZenFilterPill(
-                                label: catKey,
+                                label: _categoryLabel(AppLocalizations.of(context)!, catKey),
                                 isSelected: isSelected,
                                 isDark: isDark,
                                 background: cardBg,
@@ -1021,7 +1026,7 @@ if (!hasAnyResults)
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'No decks found matching "$query"',
+                            AppLocalizations.of(context)!.libraryNoMatch(query),
                             style: TextStyle(
                               color: isDark ? Colors.white54 : Colors.black54,
                               fontSize: 14,
@@ -1033,7 +1038,7 @@ if (!hasAnyResults)
                               _searchController.clear();
                               setState(() => _selectedCategory = 'ALL');
                             },
-                            child: const Text('Reset filters'),
+                            child: Text(AppLocalizations.of(context)!.libraryResetFilters),
                           ),
                         ],
                       ),
@@ -1046,10 +1051,10 @@ if (!hasAnyResults)
                   if (filteredHsk.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildCategoryShelf(
-                        title: 'Official HSK Curriculum',
+                        title: l10n.shelfHskTitle,
                         titleHanzi: '官方HSK分级',
                         subtitle:
-                            'Official Chinese proficiency standards (HSK 1 - 6)',
+                            l10n.shelfHskSubtitle,
                         icon: Icons.workspace_premium_rounded,
                         accentColor: const Color(0xFF0F766E),
                         itemCount: filteredHsk.length,
@@ -1071,7 +1076,7 @@ if (!hasAnyResults)
                             description: collection.description,
                             watermarkHanzi: collection.watermarkHanzi,
                             gradientColors: collection.gradientColors,
-                            badgeText: 'HSK ${collection.level}',
+                            badgeText: l10n.hskLevel(collection.level.toString()),
                             accentColor: collection.color,
                             isInstalled: isInstalled,
                             isBusy: isBusy,
@@ -1090,7 +1095,7 @@ if (!hasAnyResults)
                               description: collection.description,
                               watermarkHanzi: collection.watermarkHanzi,
                               gradientColors: collection.gradientColors,
-                              badgeText: 'HSK ${collection.level}',
+                              badgeText: l10n.hskLevel(collection.level.toString()),
                               color: collection.color,
                               sampleWords: collection.sampleWords,
                               isInstalled: isInstalled,
@@ -1111,10 +1116,10 @@ if (!hasAnyResults)
                   if (cultureDecks.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildThematicShelf(
-                        title: 'Culture & Heritage',
+                        title: l10n.shelfCultureTitle,
                         titleHanzi: '文化与传统',
                         subtitle:
-                            'Traditional arts, TCM wellness, tea, and festivals',
+                            l10n.shelfCultureSubtitle,
                         icon: Icons.palette_rounded,
                         accentColor: const Color(0xFFB91C1C),
                         decks: cultureDecks,
@@ -1130,10 +1135,10 @@ if (!hasAnyResults)
                   if (sportsDecks.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildThematicShelf(
-                        title: 'Sports & Martial Arts',
+                        title: l10n.shelfSportsTitle,
                         titleHanzi: '运动与竞技',
                         subtitle:
-                            'Wushu Kung Fu, ball games, gym, and athletics',
+                            l10n.shelfSportsSubtitle,
                         icon: Icons.sports_martial_arts_rounded,
                         accentColor: const Color(0xFF0F766E),
                         decks: sportsDecks,
@@ -1149,10 +1154,10 @@ if (!hasAnyResults)
                   if (educationDecks.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildThematicShelf(
-                        title: 'Education & Academics',
+                        title: l10n.shelfEducationTitle,
                         titleHanzi: '教育与学术',
                         subtitle:
-                            'University research, science, tech, and linguistics',
+                            l10n.shelfEducationSubtitle,
                         icon: Icons.school_rounded,
                         accentColor: const Color(0xFF4338CA),
                         decks: educationDecks,
@@ -1168,10 +1173,10 @@ if (!hasAnyResults)
                   if (travelDecks.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildThematicShelf(
-                        title: 'Travel & City Life',
+                        title: l10n.shelfTravelTitle,
                         titleHanzi: '旅行与出行',
                         subtitle:
-                            'Survival Chinese, Chinese dining, shopping, and metro',
+                            l10n.shelfTravelSubtitle,
                         icon: Icons.flight_takeoff_rounded,
                         accentColor: const Color(0xFF0284C7),
                         decks: travelDecks,
@@ -1187,10 +1192,10 @@ if (!hasAnyResults)
                   if (businessDecks.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildThematicShelf(
-                        title: 'Business & Professional',
+                        title: l10n.shelfBusinessTitle,
                         titleHanzi: '商务与职场',
                         subtitle:
-                            'Contracts, negotiation, workplace, and global finance',
+                            l10n.shelfBusinessSubtitle,
                         icon: Icons.business_center_rounded,
                         accentColor: const Color(0xFFD97706),
                         decks: businessDecks,
@@ -1367,7 +1372,7 @@ const SliverToBoxAdapter(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    '$itemCount decks',
+                    AppLocalizations.of(context)!.shelfDeckCount(itemCount),
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
@@ -1564,15 +1569,15 @@ const SliverToBoxAdapter(
                                   ),
                                 ],
                               ),
-                              child: const Row(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(Icons.download_rounded,
+                                  const Icon(Icons.download_rounded,
                                       size: 12, color: Colors.white),
-                                  SizedBox(width: 3),
+                                  const SizedBox(width: 3),
                                   Text(
-                                    'Get',
-                                    style: TextStyle(
+                                    AppLocalizations.of(context)!.shelfGetButton,
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 10.5,
                                       fontWeight: FontWeight.bold,
@@ -1591,121 +1596,6 @@ const SliverToBoxAdapter(
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _BookshelfSummaryCard extends StatelessWidget {
-  final int installedCount;
-  final int totalCount;
-  final bool isDark;
-  final Color cardBg;
-  final Color primaryText;
-
-  const _BookshelfSummaryCard({
-    required this.installedCount,
-    required this.totalCount,
-    required this.isDark,
-    required this.cardBg,
-    required this.primaryText,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final progress =
-        totalCount > 0 ? (installedCount / totalCount).clamp(0.0, 1.0) : 0.0;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: cardBg,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark
-              ? Colors.white12
-              : const Color(0xFFD4AF37).withValues(alpha: 0.35),
-          width: 1.0,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(7),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFD4AF37).withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.auto_stories_rounded,
-                  size: 16,
-                  color: Color(0xFFD4AF37),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Master Bookshelf Status',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: primaryText,
-                        letterSpacing: 0.3,
-                      ),
-                    ),
-                    Text(
-                      '$installedCount of $totalCount collections installed offline',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: isDark ? Colors.white54 : Colors.black45,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF10B981).withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  '${(progress * 100).toInt()}%',
-                  style: const TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF10B981),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 5,
-              backgroundColor: isDark
-                  ? Colors.white10
-                  : Colors.black.withValues(alpha: 0.06),
-              valueColor:
-                  const AlwaysStoppedAnimation<Color>(Color(0xFFD4AF37)),
-            ),
-          ),
-        ],
       ),
     );
   }

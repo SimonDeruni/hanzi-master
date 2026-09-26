@@ -1,0 +1,63 @@
+{
+  "libraryFilterOfficialHsk": {
+    "en": "Official HSK", "fr": "HSK officiel", "de": "Offizielles HSK", "es": "HSK oficial",
+    "it": "HSK ufficiale", "pt": "HSK oficial", "ru": "Официальный HSK", "ja": "公式HSK",
+    "ko": "공식 HSK", "ar": "HSK الرسمي", "hi": "आधिकारिक HSK", "id": "HSK Resmi",
+    "th": "HSK ทางการ", "vi": "HSK chính thức"
+  },
+  "libraryFilterCulture": {
+    "en": "Culture", "fr": "Culture", "de": "Kultur", "es": "Cultura",
+    "it": "Cultura", "pt": "Cultura", "ru": "Культура", "ja": "文化",
+    "ko": "문화", "ar": "الثقافة", "hi": "संस्कृति", "id": "Budaya",
+    "th": "วัฒนธรรม", "vi": "Văn hoá"
+  },
+  "libraryFilterSports": {
+    "en": "Sports", "fr": "Sports", "de": "Sport", "es": "Deportes",
+    "it": "Sport", "pt": "Esportes", "ru": "Спорт", "ja": "スポーツ",
+    "ko": "스포츠", "ar": "الرياضة", "hi": "खेल", "id": "Olahraga",
+    "th": "กีฬา", "vi": "Thể thao"
+  },
+  "libraryFilterEducation": {
+    "en": "Education", "fr": "Éducation", "de": "Bildung", "es": "Educación",
+    "it": "Istruzione", "pt": "Educação", "ru": "Образование", "ja": "教育",
+    "ko": "교육", "ar": "التعليم", "hi": "शिक्षा", "id": "Pendidikan",
+    "th": "การศึกษา", "vi": "Giáo dục"
+  },
+  "libraryFilterTravel": {
+    "en": "Travel", "fr": "Voyage", "de": "Reisen", "es": "Viajes",
+    "it": "Viaggi", "pt": "Viagens", "ru": "Путешествия", "ja": "旅行",
+    "ko": "여행", "ar": "السفر", "hi": "यात्रा", "id": "Perjalanan",
+    "th": "การเดินทาง", "vi": "Du lịch"
+  },
+  "libraryFilterBusiness": {
+    "en": "Business", "fr": "Affaires", "de": "Business", "es": "Negocios",
+    "it": "Affari", "pt": "Negócios", "ru": "Бизнес", "ja": "ビジネス",
+    "ko": "비즈니스", "ar": "الأعمال", "hi": "व्यवसाय", "id": "Bisnis",
+    "th": "ธุรกิจ", "vi": "Kinh doanh"
+  },
+  "librarySearchHint": {
+    "en": "Search decks, topics, or Hanzi words...", "fr": "Rechercher des decks, thèmes ou mots hanzi...",
+    "de": "Decks, Themen oder Hanzi-Wörter suchen...", "es": "Busca mazos, temas o palabras hanzi...",
+    "it": "Cerca mazzi, argomenti o parole hanzi...", "pt": "Buscar baralhos, temas ou palavras hanzi...",
+    "ru": "Поиск колод, тем или слов ханьцзы...", "ja": "デッキ・トピック・漢字語を検索...",
+    "ko": "덱, 주제 또는 한자 단어 검색...", "ar": "ابحث عن المجموعات أو المواضيع أو كلمات الهانزي...",
+    "hi": "डेक, विषय या हानज़ी शब्द खोजें...", "id": "Cari dek, topik, atau kata hanzi...",
+    "th": "ค้นหาสำรับ หัวข้อ หรือคำฮั่นจื้อ...", "vi": "Tìm bộ bài, chủ đề hoặc từ Hán tự..."
+  },
+  "libraryNoMatch": {
+    "en": "No decks found matching “{query}”", "fr": "Aucun deck trouvé pour « {query} »",
+    "de": "Keine Decks gefunden für „{query}“", "es": "No se encontraron mazos para “{query}”",
+    "it": "Nessun mazzo trovato per “{query}”", "pt": "Nenhum baralho encontrado para “{query}”",
+    "ru": "Колоды по запросу «{query}» не найдены", "ja": "「{query}」に一致するデッキはありません",
+    "ko": "“{query}”와 일치하는 덱이 없습니다", "ar": "لا توجد مجموعات مطابقة لـ ”{query}“",
+    "hi": "“{query}” से मेल खाता कोई डेक नहीं मिला", "id": "Tidak ada dek yang cocok dengan “{query}”",
+    "th": "ไม่พบสำรับที่ตรงกับ “{query}”", "vi": "Không tìm thấy bộ bài nào khớp với “{query}”"
+  },
+  "libraryResetFilters": {
+    "en": "Reset filters", "fr": "Réinitialiser les filtres", "de": "Filter zurücksetzen",
+    "es": "Restablecer filtros", "it": "Reimposta filtri", "pt": "Redefinir filtros",
+    "ru": "Сбросить фильтры", "ja": "フィルターをリセット", "ko": "필터 초기화",
+    "ar": "إعادة تعيين عوامل التصفية", "hi": "फ़िल्टर रीसेट करें", "id": "Atur ulang filter",
+    "th": "รีเซ็ตตัวกรอง", "vi": "Đặt lại bộ lọc"
+  }
+}

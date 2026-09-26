@@ -2242,7 +2242,6 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get notes => 'บันทึก';
 
-
   @override
   String get objectivesTitle => 'วัตถุประสงค์';
 
@@ -13056,4 +13055,141 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get noCardsYet => 'ยังไม่มีการ์ดในชุดนี้';
+
+  @override
+  String get libraryFilterOfficialHsk => 'HSK ทางการ';
+
+  @override
+  String get libraryFilterCulture => 'วัฒนธรรม';
+
+  @override
+  String get libraryFilterSports => 'กีฬา';
+
+  @override
+  String get libraryFilterEducation => 'การศึกษา';
+
+  @override
+  String get libraryFilterTravel => 'การเดินทาง';
+
+  @override
+  String get libraryFilterBusiness => 'ธุรกิจ';
+
+  @override
+  String get librarySearchHint => 'ค้นหาสำรับ หัวข้อ หรือคำฮั่นจื้อ...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'ไม่พบสำรับที่ตรงกับ “$query”';
+  }
+
+  @override
+  String get libraryResetFilters => 'รีเซ็ตตัวกรอง';
+
+  @override
+  String get shelfHskTitle => 'หลักสูตร HSK ทางการ';
+
+  @override
+  String get shelfHskSubtitle =>
+      'มาตรฐานวัดความสามารถภาษาจีนอย่างเป็นทางการ (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'วัฒนธรรมและมรดก';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'ศิลปะดั้งเดิม สุขภาพแบบยาจีน ชา และเทศกาล';
+
+  @override
+  String get shelfSportsTitle => 'กีฬาและศิลปะการต่อสู้';
+
+  @override
+  String get shelfSportsSubtitle => 'วูซู กังฟู กีฬาลูกบอล ฟิตเนส และกรีฑา';
+
+  @override
+  String get shelfEducationTitle => 'การศึกษาและวิชาการ';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'งานวิจัยมหาวิทยาลัย วิทยาศาสตร์ เทคโนโลยี และภาษาศาสตร์';
+
+  @override
+  String get shelfTravelTitle => 'การเดินทางและชีวิตในเมือง';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'ภาษาจีนเอาตัวรอด การรับประทานอาหาร การช้อปปิ้ง และรถไฟใต้ดิน';
+
+  @override
+  String get shelfBusinessTitle => 'ธุรกิจและอาชีพ';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'สัญญา การเจรจา สถานที่ทำงาน และการเงินโลก';
+
+  @override
+  String get shelfInstalled => 'ติดตั้งในคลังแล้ว';
+
+  @override
+  String get shelfAvailable => 'พร้อมให้ดาวน์โหลด';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'คำศัพท์ตัวอย่าง ($countString คำ)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'นำออกจากคลัง';
+
+  @override
+  String get shelfDownloadInstall => 'ดาวน์โหลดและติดตั้งสำรับ';
+
+  @override
+  String get shelfGetButton => 'รับ';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString สำรับ';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return 'เพิ่ม “$title” ลงในคลังของคุณแล้ว';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return 'นำ “$title” ออกแล้ว';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'ฝึกอักษรจีนพื้นฐาน 154 ตัว คำทักทาย ตัวเลข และรูปประโยคพื้นฐาน';
+
+  @override
+  String get hskDescription2 =>
+      'ฝึกคำศัพท์ระดับต้น 162 คำสำหรับการสื่อสารในชีวิตประจำวัน';
+
+  @override
+  String get hskDescription3 =>
+      'ฝึกคำศัพท์ระดับกลาง 299 คำเพื่อสนทนาได้อย่างคล่องแคล่ว';
+
+  @override
+  String get hskDescription4 =>
+      'ฝึกคำศัพท์ระดับกลางสูง 602 คำเพื่อสนทนากับเจ้าของภาษาได้อย่างคล่องแคล่ว';
+
+  @override
+  String get hskDescription5 =>
+      'ฝึกคำศัพท์ระดับสูง 1,300 คำเพื่ออ่านหนังสือพิมพ์ นิตยสาร และดูภาพยนตร์';
+
+  @override
+  String get hskDescription6 =>
+      'ฝึกคำศัพท์ 2,500 คำเพื่อเข้าใจภาษาจีนทุกรูปแบบและแสดงความหมายละเอียดอ่อน';
 }

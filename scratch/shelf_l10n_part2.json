@@ -1,0 +1,71 @@
+{
+  "shelfHskTitle": {
+    "en": "Official HSK Curriculum", "fr": "Programme officiel HSK", "de": "Offizieller HSK-Lehrplan",
+    "es": "Plan de estudios oficial de HSK", "it": "Programma ufficiale HSK", "pt": "Currículo oficial do HSK",
+    "ru": "Официальная программа HSK", "ja": "公式HSKカリキュラム", "ko": "공식 HSK 교육과정",
+    "ar": "منهج HSK الرسمي", "hi": "आधिकारिक HSK पाठ्यक्रम", "id": "Kurikulum HSK resmi",
+    "th": "หลักสูตร HSK ทางการ", "vi": "Giáo trình HSK chính thức"
+  },
+  "shelfHskSubtitle": {
+    "en": "Official Chinese proficiency standards (HSK 1 - 6)",
+    "fr": "Niveaux officiels de chinois (HSK 1 - 6)",
+    "de": "Offizielle Chinesisch-Sprachstandards (HSK 1 - 6)",
+    "es": "Estándares oficiales de chino (HSK 1 - 6)",
+    "it": "Standard ufficiali di cinese (HSK 1 - 6)",
+    "pt": "Padrões oficiais de chinês (HSK 1 - 6)",
+    "ru": "Официальные уровни китайского (HSK 1–6)",
+    "ja": "中国語能力の公式基準（HSK 1〜6）",
+    "ko": "공식 중국어 능력 기준(HSK 1~6)",
+    "ar": "معايير الكفاءة الرسمية في الصينية (HSK 1 - 6)",
+    "hi": "आधिकारिक चीनी दक्षता मानक (HSK 1 - 6)",
+    "id": "Standar resmi kemahiran bahasa Mandarin (HSK 1 - 6)",
+    "th": "มาตรฐานวัดความสามารถภาษาจีนอย่างเป็นทางการ (HSK 1 - 6)",
+    "vi": "Chuẩn năng lực tiếng Trung chính thức (HSK 1 - 6)"
+  },
+  "shelfCultureTitle": {
+    "en": "Culture & Heritage", "fr": "Culture et patrimoine", "de": "Kultur & Tradition",
+    "es": "Cultura y patrimonio", "it": "Cultura e patrimonio", "pt": "Cultura e patrimônio",
+    "ru": "Культура и наследие", "ja": "文化と伝統", "ko": "문화와 유산",
+    "ar": "الثقافة والتراث", "hi": "संस्कृति और विरासत", "id": "Budaya & warisan",
+    "th": "วัฒนธรรมและมรดก", "vi": "Văn hoá & di sản"
+  },
+  "shelfCultureSubtitle": {
+    "en": "Traditional arts, TCM wellness, tea, and festivals",
+    "fr": "Arts traditionnels, bien-être MTC, thé et festivals",
+    "de": "Traditionelle Künste, TCM-Wellness, Tee und Feste",
+    "es": "Artes tradicionales, bienestar TCM, té y festivales",
+    "it": "Arti tradizionali, benessere MTC, tè e festività",
+    "pt": "Artes tradicionais, bem-estar da MTC, chá e festivais",
+    "ru": "Традиционные искусства, оздоровление ТКМ, чай и праздники",
+    "ja": "伝統芸術・中医養生・茶・祭り",
+    "ko": "전통 예술, 중의 건강법, 차, 축제",
+    "ar": "الفنون التقليدية، والعلاج بالطب الصيني، والشاي، والمهرجانات",
+    "hi": "पारंपरिक कलाएँ, टीसीएम स्वास्थ्य, चाय और त्योहार",
+    "id": "Seni tradisional, kesehatan TCM, teh, dan festival",
+    "th": "ศิลปะดั้งเดิม สุขภาพแบบยาจีน ชา และเทศกาล",
+    "vi": "Nghệ thuật truyền thống, dưỡng sinh Đông y, trà và lễ hội"
+  },
+  "shelfSportsTitle": {
+    "en": "Sports & Martial Arts", "fr": "Sports et arts martiaux", "de": "Sport & Kampfkunst",
+    "es": "Deportes y artes marciales", "it": "Sport e arti marziali", "pt": "Esportes e artes marciais",
+    "ru": "Спорт и боевые искусства", "ja": "スポーツと武術", "ko": "스포츠와 무술",
+    "ar": "الرياضة والفنون القتالية", "hi": "खेल और मार्शल आर्ट", "id": "Olahraga & seni bela diri",
+    "th": "กีฬาและศิลปะการต่อสู้", "vi": "Thể thao & võ thuật"
+  },
+  "shelfSportsSubtitle": {
+    "en": "Wushu Kung Fu, ball games, gym, and athletics",
+    "fr": "Wushu kung-fu, sports de ballon, gym et athlétisme",
+    "de": "Wushu Kung Fu, Ballspiele, Fitness und Leichtathletik",
+    "es": "Wushu kung fu, deportes de pelota, gimnasio y atletismo",
+    "it": "Wushu kung fu, sport con la palla, palestra e atletica",
+    "pt": "Wushu kung fu, esportes com bola, academia e atletismo",
+    "ru": "Ушу кунг-фу, игры с мячом, фитнес и лёгкая атлетика",
+    "ja": "武術・球技・ジム・陸上競技",
+    "ko": "우슈 쿵후, 구기 종목, 헬스, 육상",
+    "ar": "الووشو الكونغ فو، ورياضات الكرة، والصالة الرياضية، وألعاب القوى",
+    "hi": "वुशू कुंग फू, बॉल गेम, जिम और एथलेटिक्स",
+    "id": "Wushu kung fu, permainan bola, gym, dan atletik",
+    "th": "วูซู กังฟู กีฬาลูกบอล ฟิตเนส และกรีฑา",
+    "vi": "Võ thuật Wushu, bóng đá, gym và điền kinh"
+  }
+}

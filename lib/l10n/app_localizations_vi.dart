@@ -2257,7 +2257,6 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get notes => 'Ghi chú';
 
-
   @override
   String get objectivesTitle => 'MỤC TIÊU HỌC TẬP';
 
@@ -13109,4 +13108,139 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noCardsYet => 'Bộ thẻ này chưa có thẻ nào';
+
+  @override
+  String get libraryFilterOfficialHsk => 'HSK chính thức';
+
+  @override
+  String get libraryFilterCulture => 'Văn hoá';
+
+  @override
+  String get libraryFilterSports => 'Thể thao';
+
+  @override
+  String get libraryFilterEducation => 'Giáo dục';
+
+  @override
+  String get libraryFilterTravel => 'Du lịch';
+
+  @override
+  String get libraryFilterBusiness => 'Kinh doanh';
+
+  @override
+  String get librarySearchHint => 'Tìm bộ bài, chủ đề hoặc từ Hán tự...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'Không tìm thấy bộ bài nào khớp với “$query”';
+  }
+
+  @override
+  String get libraryResetFilters => 'Đặt lại bộ lọc';
+
+  @override
+  String get shelfHskTitle => 'Giáo trình HSK chính thức';
+
+  @override
+  String get shelfHskSubtitle =>
+      'Chuẩn năng lực tiếng Trung chính thức (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'Văn hoá & di sản';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Nghệ thuật truyền thống, dưỡng sinh Đông y, trà và lễ hội';
+
+  @override
+  String get shelfSportsTitle => 'Thể thao & võ thuật';
+
+  @override
+  String get shelfSportsSubtitle => 'Võ thuật Wushu, bóng đá, gym và điền kinh';
+
+  @override
+  String get shelfEducationTitle => 'Giáo dục & học thuật';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'Nghiên cứu đại học, khoa học, công nghệ và ngôn ngữ học';
+
+  @override
+  String get shelfTravelTitle => 'Du lịch & cuộc sống đô thị';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Tiếng Trung sinh tồn, ăn uống, mua sắm và tàu điện ngầm';
+
+  @override
+  String get shelfBusinessTitle => 'Kinh doanh & công sở';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Hợp đồng, đàm phán, công sở và tài chính toàn cầu';
+
+  @override
+  String get shelfInstalled => 'Đã cài trong tủ sách';
+
+  @override
+  String get shelfAvailable => 'Có thể tải xuống';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Từ vựng mẫu ($countString từ)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Xoá khỏi tủ sách';
+
+  @override
+  String get shelfDownloadInstall => 'Tải & cài bộ bài';
+
+  @override
+  String get shelfGetButton => 'Nhận';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString bộ bài';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return 'Đã thêm “$title” vào tủ sách của bạn.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return 'Đã xoá “$title”.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'Nắm 154 chữ Hán cơ bản, lời chào hằng ngày, số đếm và mẫu câu đơn giản.';
+
+  @override
+  String get hskDescription2 => 'Nắm 162 từ sơ cấp cho giao tiếp hằng ngày.';
+
+  @override
+  String get hskDescription3 => 'Nắm 299 từ trung cấp để trò chuyện thoải mái.';
+
+  @override
+  String get hskDescription4 =>
+      'Nắm 602 từ trung cao cấp để thảo luận trôi chảy với người bản xứ.';
+
+  @override
+  String get hskDescription5 =>
+      'Nắm 1.300 từ nâng cao để đọc báo, tạp chí và xem phim.';
+
+  @override
+  String get hskDescription6 =>
+      'Nắm 2.500 từ để hiểu mọi tiếng Trung nói và viết, diễn đạt sắc thái.';
 }

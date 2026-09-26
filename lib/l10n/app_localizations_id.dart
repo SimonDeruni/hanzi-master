@@ -2260,7 +2260,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get notes => 'Catatan';
 
-
   @override
   String get objectivesTitle => 'TUJUAN';
 
@@ -13126,4 +13125,142 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get noCardsYet => 'Belum ada kartu di dek ini';
+
+  @override
+  String get libraryFilterOfficialHsk => 'HSK Resmi';
+
+  @override
+  String get libraryFilterCulture => 'Budaya';
+
+  @override
+  String get libraryFilterSports => 'Olahraga';
+
+  @override
+  String get libraryFilterEducation => 'Pendidikan';
+
+  @override
+  String get libraryFilterTravel => 'Perjalanan';
+
+  @override
+  String get libraryFilterBusiness => 'Bisnis';
+
+  @override
+  String get librarySearchHint => 'Cari dek, topik, atau kata hanzi...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'Tidak ada dek yang cocok dengan “$query”';
+  }
+
+  @override
+  String get libraryResetFilters => 'Atur ulang filter';
+
+  @override
+  String get shelfHskTitle => 'Kurikulum HSK resmi';
+
+  @override
+  String get shelfHskSubtitle =>
+      'Standar resmi kemahiran bahasa Mandarin (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'Budaya & warisan';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Seni tradisional, kesehatan TCM, teh, dan festival';
+
+  @override
+  String get shelfSportsTitle => 'Olahraga & seni bela diri';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'Wushu kung fu, permainan bola, gym, dan atletik';
+
+  @override
+  String get shelfEducationTitle => 'Pendidikan & akademik';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'Riset universitas, sains, teknologi, dan linguistik';
+
+  @override
+  String get shelfTravelTitle => 'Perjalanan & kehidupan kota';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Bahasa Mandarin bertahan hidup, kuliner, belanja, dan MRT';
+
+  @override
+  String get shelfBusinessTitle => 'Bisnis & profesional';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Kontrak, negosiasi, dunia kerja, dan keuangan global';
+
+  @override
+  String get shelfInstalled => 'Terpasang di rak';
+
+  @override
+  String get shelfAvailable => 'Tersedia untuk diunduh';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Contoh kosakata ($countString kata)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Hapus dari rak';
+
+  @override
+  String get shelfDownloadInstall => 'Unduh & pasang dek';
+
+  @override
+  String get shelfGetButton => 'Dapatkan';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString dek';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '“$title” ditambahkan ke rak Anda.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '“$title” dihapus.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      'Kuasai 154 hanzi dasar, sapaan harian, angka, dan pola kalimat sederhana.';
+
+  @override
+  String get hskDescription2 =>
+      'Kuasai 162 kata dasar untuk komunikasi sehari-hari.';
+
+  @override
+  String get hskDescription3 =>
+      'Kuasai 299 kata tingkat menengah untuk berbicara lancar.';
+
+  @override
+  String get hskDescription4 =>
+      'Kuasai 602 kata tingkat menengah atas untuk berbicara lancar dengan penutur asli.';
+
+  @override
+  String get hskDescription5 =>
+      'Kuasai 1.300 kata lanjutan untuk membaca koran, majalah, dan film.';
+
+  @override
+  String get hskDescription6 =>
+      'Kuasai 2.500 kata untuk memahami bahasa Mandarin dan mengungkapkan nuansa.';
 }

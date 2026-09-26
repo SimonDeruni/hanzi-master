@@ -24015,6 +24015,222 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No cards in this deck yet'**
   String get noCardsYet;
+
+  /// No description provided for @libraryFilterOfficialHsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Official HSK'**
+  String get libraryFilterOfficialHsk;
+
+  /// No description provided for @libraryFilterCulture.
+  ///
+  /// In en, this message translates to:
+  /// **'Culture'**
+  String get libraryFilterCulture;
+
+  /// No description provided for @libraryFilterSports.
+  ///
+  /// In en, this message translates to:
+  /// **'Sports'**
+  String get libraryFilterSports;
+
+  /// No description provided for @libraryFilterEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Education'**
+  String get libraryFilterEducation;
+
+  /// No description provided for @libraryFilterTravel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get libraryFilterTravel;
+
+  /// No description provided for @libraryFilterBusiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Business'**
+  String get libraryFilterBusiness;
+
+  /// No description provided for @librarySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search decks, topics, or Hanzi words...'**
+  String get librarySearchHint;
+
+  /// No description provided for @libraryNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No decks found matching “{query}”'**
+  String libraryNoMatch(String query);
+
+  /// No description provided for @libraryResetFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset filters'**
+  String get libraryResetFilters;
+
+  /// No description provided for @shelfHskTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Official HSK Curriculum'**
+  String get shelfHskTitle;
+
+  /// No description provided for @shelfHskSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Official Chinese proficiency standards (HSK 1 - 6)'**
+  String get shelfHskSubtitle;
+
+  /// No description provided for @shelfCultureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Culture & Heritage'**
+  String get shelfCultureTitle;
+
+  /// No description provided for @shelfCultureSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Traditional arts, TCM wellness, tea, and festivals'**
+  String get shelfCultureSubtitle;
+
+  /// No description provided for @shelfSportsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sports & Martial Arts'**
+  String get shelfSportsTitle;
+
+  /// No description provided for @shelfSportsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wushu Kung Fu, ball games, gym, and athletics'**
+  String get shelfSportsSubtitle;
+
+  /// No description provided for @shelfEducationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Education & Academics'**
+  String get shelfEducationTitle;
+
+  /// No description provided for @shelfEducationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'University research, science, tech, and linguistics'**
+  String get shelfEducationSubtitle;
+
+  /// No description provided for @shelfTravelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel & City Life'**
+  String get shelfTravelTitle;
+
+  /// No description provided for @shelfTravelSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Survival Chinese, Chinese dining, shopping, and metro'**
+  String get shelfTravelSubtitle;
+
+  /// No description provided for @shelfBusinessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Business & Professional'**
+  String get shelfBusinessTitle;
+
+  /// No description provided for @shelfBusinessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contracts, negotiation, workplace, and global finance'**
+  String get shelfBusinessSubtitle;
+
+  /// No description provided for @shelfInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed on Bookshelf'**
+  String get shelfInstalled;
+
+  /// No description provided for @shelfAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available for Download'**
+  String get shelfAvailable;
+
+  /// No description provided for @shelfSampleVocabulary.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample Vocabulary ({count} preview words)'**
+  String shelfSampleVocabulary(int count);
+
+  /// No description provided for @shelfRemoveFromBookshelf.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Bookshelf'**
+  String get shelfRemoveFromBookshelf;
+
+  /// No description provided for @shelfDownloadInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Download & Install Deck'**
+  String get shelfDownloadInstall;
+
+  /// No description provided for @shelfGetButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Get'**
+  String get shelfGetButton;
+
+  /// No description provided for @shelfDeckCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} decks'**
+  String shelfDeckCount(int count);
+
+  /// No description provided for @shelfAddedThematic.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully added “{title}” to your Bookshelf.'**
+  String shelfAddedThematic(String title);
+
+  /// No description provided for @shelfRemovedThematic.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed “{title}”.'**
+  String shelfRemovedThematic(String title);
+
+  /// No description provided for @hskDescription1.
+  ///
+  /// In en, this message translates to:
+  /// **'Master 154 foundational Hanzi, fundamental daily greetings, numbers, and basic sentence patterns.'**
+  String get hskDescription1;
+
+  /// No description provided for @hskDescription2.
+  ///
+  /// In en, this message translates to:
+  /// **'Master 162 elementary words for practical everyday communication and routine interactions.'**
+  String get hskDescription2;
+
+  /// No description provided for @hskDescription3.
+  ///
+  /// In en, this message translates to:
+  /// **'Master 299 intermediate words to comfortably converse in academic, social, and travel settings.'**
+  String get hskDescription3;
+
+  /// No description provided for @hskDescription4.
+  ///
+  /// In en, this message translates to:
+  /// **'Master 602 upper-intermediate words for fluent discussion with native speakers across diverse topics.'**
+  String get hskDescription4;
+
+  /// No description provided for @hskDescription5.
+  ///
+  /// In en, this message translates to:
+  /// **'Master 1,300 advanced words to read Chinese newspapers, magazines, and appreciate films.'**
+  String get hskDescription5;
+
+  /// No description provided for @hskDescription6.
+  ///
+  /// In en, this message translates to:
+  /// **'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.'**
+  String get hskDescription6;
 }
 
 class _AppLocalizationsDelegate

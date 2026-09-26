@@ -2259,7 +2259,6 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get notes => 'नोट्स';
 
-
   @override
   String get objectivesTitle => 'उद्देश्य';
 
@@ -13105,4 +13104,138 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noCardsYet => 'इस डेक में अभी कोई कार्ड नहीं है';
+
+  @override
+  String get libraryFilterOfficialHsk => 'आधिकारिक HSK';
+
+  @override
+  String get libraryFilterCulture => 'संस्कृति';
+
+  @override
+  String get libraryFilterSports => 'खेल';
+
+  @override
+  String get libraryFilterEducation => 'शिक्षा';
+
+  @override
+  String get libraryFilterTravel => 'यात्रा';
+
+  @override
+  String get libraryFilterBusiness => 'व्यवसाय';
+
+  @override
+  String get librarySearchHint => 'डेक, विषय या हानज़ी शब्द खोजें...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return '“$query” से मेल खाता कोई डेक नहीं मिला';
+  }
+
+  @override
+  String get libraryResetFilters => 'फ़िल्टर रीसेट करें';
+
+  @override
+  String get shelfHskTitle => 'आधिकारिक HSK पाठ्यक्रम';
+
+  @override
+  String get shelfHskSubtitle => 'आधिकारिक चीनी दक्षता मानक (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'संस्कृति और विरासत';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'पारंपरिक कलाएँ, टीसीएम स्वास्थ्य, चाय और त्योहार';
+
+  @override
+  String get shelfSportsTitle => 'खेल और मार्शल आर्ट';
+
+  @override
+  String get shelfSportsSubtitle => 'वुशू कुंग फू, बॉल गेम, जिम और एथलेटिक्स';
+
+  @override
+  String get shelfEducationTitle => 'शिक्षा और अकादमिक';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'विश्वविद्यालय अनुसंधान, विज्ञान, तकनीक और भाषाविज्ञान';
+
+  @override
+  String get shelfTravelTitle => 'यात्रा और शहरी जीवन';
+
+  @override
+  String get shelfTravelSubtitle => 'उत्तरजीविता चीनी, भोजन, खरीदारी और मेट्रो';
+
+  @override
+  String get shelfBusinessTitle => 'व्यवसाय और पेशेवर';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'अनुबंध, बातचीत, कार्यस्थल और वैश्विक वित्त';
+
+  @override
+  String get shelfInstalled => 'लाइब्रेरी में इंस्टॉल';
+
+  @override
+  String get shelfAvailable => 'डाउनलोड के लिए उपलब्ध';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'नमूना शब्दावली ($countString शब्द)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'लाइब्रेरी से हटाएँ';
+
+  @override
+  String get shelfDownloadInstall => 'डेक डाउनलोड और इंस्टॉल करें';
+
+  @override
+  String get shelfGetButton => 'प्राप्त करें';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString डेक';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '“$title” आपकी लाइब्रेरी में जोड़ा गया।';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '“$title” हटा दिया गया।';
+  }
+
+  @override
+  String get hskDescription1 =>
+      '154 बुनियादी हानज़ी, दैनिक अभिवादन, संख्याएँ और सरल वाक्य-संरचनाएँ सीखें।';
+
+  @override
+  String get hskDescription2 => 'दैनिक संवाद के लिए 162 प्रारंभिक शब्द सीखें।';
+
+  @override
+  String get hskDescription3 =>
+      'अकादमिक, सामाजिक और यात्रा में सहज बातचीत के लिए 299 मध्यम स्तर के शब्द सीखें।';
+
+  @override
+  String get hskDescription4 =>
+      'देशी वक्ताओं से विविध विषयों पर धाराप्रवाह बातचीत के लिए 602 शब्द सीखें।';
+
+  @override
+  String get hskDescription5 =>
+      'समाचार पत्र, पत्रिकाएँ और फ़िल्मों के लिए 1,300 उन्नत शब्द सीखें।';
+
+  @override
+  String get hskDescription6 =>
+      'किसी भी बोली या लिखित चीनी को सहज समझने और भाव व्यक्त करने के लिए 2,500 शब्द सीखें।';
 }

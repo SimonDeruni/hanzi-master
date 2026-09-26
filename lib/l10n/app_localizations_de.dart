@@ -2274,7 +2274,6 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get notes => 'Notizen';
 
-
   @override
   String get objectivesTitle => 'ZIELE';
 
@@ -13191,4 +13190,142 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noCardsYet => 'Noch keine Karten in diesem Deck';
+
+  @override
+  String get libraryFilterOfficialHsk => 'Offizielles HSK';
+
+  @override
+  String get libraryFilterCulture => 'Kultur';
+
+  @override
+  String get libraryFilterSports => 'Sport';
+
+  @override
+  String get libraryFilterEducation => 'Bildung';
+
+  @override
+  String get libraryFilterTravel => 'Reisen';
+
+  @override
+  String get libraryFilterBusiness => 'Business';
+
+  @override
+  String get librarySearchHint => 'Decks, Themen oder Hanzi-Wörter suchen...';
+
+  @override
+  String libraryNoMatch(String query) {
+    return 'Keine Decks gefunden für „$query“';
+  }
+
+  @override
+  String get libraryResetFilters => 'Filter zurücksetzen';
+
+  @override
+  String get shelfHskTitle => 'Offizieller HSK-Lehrplan';
+
+  @override
+  String get shelfHskSubtitle =>
+      'Offizielle Chinesisch-Sprachstandards (HSK 1 - 6)';
+
+  @override
+  String get shelfCultureTitle => 'Kultur & Tradition';
+
+  @override
+  String get shelfCultureSubtitle =>
+      'Traditionelle Künste, TCM-Wellness, Tee und Feste';
+
+  @override
+  String get shelfSportsTitle => 'Sport & Kampfkunst';
+
+  @override
+  String get shelfSportsSubtitle =>
+      'Wushu Kung Fu, Ballspiele, Fitness und Leichtathletik';
+
+  @override
+  String get shelfEducationTitle => 'Bildung & Wissenschaft';
+
+  @override
+  String get shelfEducationSubtitle =>
+      'Forschung, Wissenschaft, Technik und Linguistik';
+
+  @override
+  String get shelfTravelTitle => 'Reisen & Stadtleben';
+
+  @override
+  String get shelfTravelSubtitle =>
+      'Überlebens-Chinesisch, Essen, Einkaufen und Metro';
+
+  @override
+  String get shelfBusinessTitle => 'Business & Beruf';
+
+  @override
+  String get shelfBusinessSubtitle =>
+      'Verträge, Verhandlung, Arbeitswelt und Finanzen';
+
+  @override
+  String get shelfInstalled => 'In der Bibliothek installiert';
+
+  @override
+  String get shelfAvailable => 'Zum Download verfügbar';
+
+  @override
+  String shelfSampleVocabulary(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return 'Beispielwortschatz ($countString Vorschauwörter)';
+  }
+
+  @override
+  String get shelfRemoveFromBookshelf => 'Aus der Bibliothek entfernen';
+
+  @override
+  String get shelfDownloadInstall => 'Deck herunterladen & installieren';
+
+  @override
+  String get shelfGetButton => 'Holen';
+
+  @override
+  String shelfDeckCount(int count) {
+    final intl.NumberFormat countNumberFormat =
+        intl.NumberFormat.decimalPattern(localeName);
+    final String countString = countNumberFormat.format(count);
+
+    return '$countString Decks';
+  }
+
+  @override
+  String shelfAddedThematic(String title) {
+    return '„$title“ wurde zu deiner Bibliothek hinzugefügt.';
+  }
+
+  @override
+  String shelfRemovedThematic(String title) {
+    return '„$title“ entfernt.';
+  }
+
+  @override
+  String get hskDescription1 =>
+      '154 grundlegende Hanzi, tägliche Begrüßungen, Zahlen und einfache Satzmuster.';
+
+  @override
+  String get hskDescription2 =>
+      '162 Grundwörter für alltägliche Kommunikation und Routinegespräche.';
+
+  @override
+  String get hskDescription3 =>
+      '299 Wörter der Mittelstufe für Gespräche in Studium, Alltag und auf Reisen.';
+
+  @override
+  String get hskDescription4 =>
+      '602 Wörter der oberen Mittelstufe für flüssige Gespräche mit Muttersprachlern.';
+
+  @override
+  String get hskDescription5 =>
+      '1.300 fortgeschrittene Wörter für Zeitungen, Magazine und Filme.';
+
+  @override
+  String get hskDescription6 =>
+      '2.500 Wörter, um jedes Chinesisch mühelos zu verstehen und Nuancen auszudrücken.';
 }
