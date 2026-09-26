@@ -286,7 +286,7 @@ void main() {
       // Ratchet: this number can only go DOWN. An untranslated literal is a
       // label that cannot expand for the other 13 languages, and it is also
       // invisible to the locale sweep. Move strings into `lib/l10n/*.arb`.
-      const int baseline = 81;
+      const int baseline = 55;
       final RegExp literalText =
           RegExp(r'''Text\(\s*(['"])([A-Za-z][^'"\\\n]{3,})\1''');
       final RegExp localizedLine =
