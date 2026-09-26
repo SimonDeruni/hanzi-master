@@ -259,6 +259,7 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
             theme: AppTheme.lightTheme,
             home: StartupErrorScreen(
               timedOut: !hasFailed,
+              error: snapshot.error,
               onRetry: () => _retryBootstrap(startNewAttempt: hasFailed),
             ),
           );
@@ -284,10 +285,17 @@ class StartupErrorScreen extends StatelessWidget {
     super.key,
     required this.timedOut,
     required this.onRetry,
+    this.error,
   });
 
   final bool timedOut;
   final VoidCallback onRetry;
+
+  /// The exception that stopped initialisation, when there was one.
+  ///
+  /// Shown on the screen on purpose: a TestFlight build swallows `debugPrint`,
+  /// so without this the only report a tester can give is "it did not start".
+  final Object? error;
 
   @override
   Widget build(BuildContext context) {
@@ -321,6 +329,25 @@ class StartupErrorScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xFF5A4300)),
                 ),
+                if (error != null) ...[
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.06),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: SelectableText(
+                      '$error',
+                      key: const Key('startupErrorDetail'),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF5A4300),
+                      ),
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 24),
                 FilledButton.icon(
                   key: const Key('startupRetryButton'),
