@@ -1,4 +1,4 @@
-﻿import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:collection/collection.dart';
@@ -13,6 +13,7 @@ import '../widgets/continue_reading_card.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class ReadingRoomScreen extends ConsumerStatefulWidget {
   const ReadingRoomScreen({super.key});
@@ -88,8 +89,8 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
   }
 
   void _showCreatorSheet(BuildContext context, WidgetRef ref) {
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -377,11 +378,15 @@ class _ReadingRoomScreenState extends ConsumerState<ReadingRoomScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  // TODO: localize
-                  Text(AppLocalizations.of(context)!.recentBookmarks,
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w600)),
-                  const Spacer(),
+                  // Flexible so a longer translation is ellipsized instead of
+                  // squeezing "See all" out of the row.
+                  Expanded(
+                    child: Text(AppLocalizations.of(context)!.recentBookmarks,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w600)),
+                  ),
                   if (items.length > 5)
                     TextButton(
                       onPressed: () {

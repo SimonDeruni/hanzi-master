@@ -6,6 +6,7 @@ import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/calligraphic_pitch_contour.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class ToneComparisonSheet extends ConsumerStatefulWidget {
   final String character;
@@ -31,8 +32,7 @@ class ToneComparisonSheet extends ConsumerStatefulWidget {
     required int actualTone,
     String? feedback,
   }) {
-    return showModalBottomSheet<T>(
-      context: context,
+    return zenSheet<T>(context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,

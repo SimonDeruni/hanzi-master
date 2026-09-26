@@ -13,6 +13,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 class RadicalDetailSheet extends ConsumerStatefulWidget {
   final CourseNode sunNode;
@@ -85,7 +86,7 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
         };
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.85,
+      height: MediaQuery.sizeOf(context).height * 0.85,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -203,13 +204,11 @@ class _RadicalDetailSheetState extends ConsumerState<RadicalDetailSheet> {
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 1.2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                          ),
+                          gridDelegate: ZenGrid.tiles(
+                              maxTileWidth: 170,
+                              childAspectRatio: 1.2,
+                              crossSpacing: 12,
+                              mainSpacing: 12),
                           itemCount: widget.clusterNodes
                               .where((n) => n.uuid != widget.sunNode.uuid)
                               .length,

@@ -250,7 +250,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
   Widget _buildOneShotView(ThemeData theme, bool isDark) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.7,
+        maxHeight: MediaQuery.sizeOf(context).height * 0.7,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -366,12 +366,10 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
         final escaped = RegExp.escape(leadingWord);
         final bullet = RegExp(r'^([\*\-•]\s+)').firstMatch(block.trim());
         if (bullet != null) {
-          block = block.replaceFirst(
-              RegExp('^([\\*\\-•]\\s+)$escaped'),
+          block = block.replaceFirst(RegExp('^([\\*\\-•]\\s+)$escaped'),
               '${bullet.group(1)}**$leadingWord**');
         } else {
-          block = block.replaceFirst(
-              RegExp('^$escaped'), '**$leadingWord**');
+          block = block.replaceFirst(RegExp('^$escaped'), '**$leadingWord**');
         }
       }
 
@@ -611,7 +609,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
   Widget _buildChatView(ThemeData theme, bool isDark) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.8,
+        maxHeight: MediaQuery.sizeOf(context).height * 0.8,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -674,9 +672,8 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                           children: [
                             Icon(Icons.menu_book_outlined,
                                 size: 14,
-                                color: isDark
-                                    ? Colors.white54
-                                    : Colors.black45),
+                                color:
+                                    isDark ? Colors.white54 : Colors.black45),
                             const SizedBox(width: 6),
                             Text(
                               AppLocalizations.of(context)!.comparisonLabel,
@@ -684,9 +681,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 0.5,
-                                color: isDark
-                                    ? Colors.white54
-                                    : Colors.black45,
+                                color: isDark ? Colors.white54 : Colors.black45,
                               ),
                             ),
                           ],
@@ -701,8 +696,8 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                                 : Colors.black.withValues(alpha: 0.03),
                             borderRadius: BorderRadius.circular(14),
                           ),
-                          child: _buildFormattedContent(
-                              msg.text, theme, isDark),
+                          child:
+                              _buildFormattedContent(msg.text, theme, isDark),
                         ),
                         const Divider(height: 24),
                       ],
@@ -717,7 +712,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
                         : Alignment.centerLeft,
                     child: Container(
                       constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.75,
+                        maxWidth: MediaQuery.sizeOf(context).width * 0.75,
                       ),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 14, vertical: 10),

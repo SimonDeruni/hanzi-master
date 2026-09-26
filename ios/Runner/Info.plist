@@ -57,8 +57,10 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<!-- Split View / Slide Over / Stage Manager require this to be false.
+		     See docs/IPAD_ADAPTIVE_PLAN.md — blocker B1. -->
 		<key>UIRequiresFullScreen</key>
-		<true/>
+		<false/>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>

@@ -1,0 +1,101 @@
+name: Locale Layout Gate
+
+# The only automated gate for "a longer translation must not leave its box".
+#
+# Two layers are verified here:
+#   1. the source ratchets + button geometry in
+#      `test/core/locale_layout_guard_test.dart` (bans `fixedSize`, forces a
+#      degradation strategy on fixed-width text boxes, ratchets untranslated
+#      literals), and
+#   2. the worst-case sweep in `test/support/locale_layout_harness.dart` —
+#      12 expansion locales x {390x844, 320x568} viewports x {1.0x, 2.0x} text
+#      scale — used by every suite carrying the `locale-sweep` tag.
+#
+# It is a separate workflow from `build_ios.yml` on purpose: that one is a
+# release builder pinned to an older Flutter, and this must stay a fast,
+# blocking check. `.gitlab-ci.yml` runs the same job for the GitLab mirror.
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  locale-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          # The toolchain this codebase currently builds with locally.
+          flutter-version: '3.38.7'
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Anti-pattern ratchets and button geometry
+        run: flutter test test/core/locale_layout_guard_test.dart
+
+      - name: Worst-case locale sweep
+        run: |
+          # Derived from the tag so a new sweep suite joins the gate by being
+          # tagged; scoped to those files so the runner does not load every
+          # other suite just to read its metadata.
+          SUITES=$(grep -rl "locale-sweep" test --include='*_test.dart')
+          echo "Sweeping: $SUITES"
+          flutter test --tags locale-sweep $SUITES
+
+      - name: ARB expansion report
+        run: |
+          mkdir -p build/reports
+          python3 scratch/arb_expansion_audit.py --out build/reports/arb_expansion.txt
+          head -n 12 build/reports/arb_expansion.txt
+
+      - name: Upload the expansion report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arb-expansion-report
+          path: build/reports/
+          retention-days: 30
+
+  # The iPad/Pencil counterpart of the gate above: the adaptive ratchets + the
+  # adoption ledger, the phone-vs-tablet contract of every primitive, and every
+  # suite tagged `ipad-sweep` (adaptive kit at iPad sizes, the deck screen's wide
+  # branch, and the Apple-Pencil input tests). Tagging a suite is all it takes to
+  # bring it into the gate.
+  ipad-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.7'
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Adaptive ratchets and primitive contracts
+        run: |
+          flutter test test/core/adaptive_layout_guard_test.dart
+          flutter test test/core/adaptive_layout_test.dart
+
+      - name: iPad / Pencil sweep
+        run: |
+          SUITES=$(grep -rl "ipad-sweep" test --include='*_test.dart')
+          echo "Sweeping: $SUITES"
+          flutter test --tags ipad-sweep $SUITES

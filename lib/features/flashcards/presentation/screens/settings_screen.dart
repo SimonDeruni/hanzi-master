@@ -13,10 +13,12 @@ import '../widgets/app_language_picker_sheet.dart';
 import 'package:hanzi_master/core/services/app_rating_service.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/features/settings/presentation/screens/contact_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/audiobook_voice_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -39,267 +41,277 @@ class SettingsScreen extends ConsumerWidget {
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: _ink(context)),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        children: [
-          _buildSectionHeader(
-              l10n?.audioAndHaptics ??
-                  AppLocalizations.of(context)!.audio_haptics,
-              theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              _buildSliderTile(
-                icon: Icons.speed,
-                iconColor: _accent(context),
-                title: l10n?.voiceSpeed ??
-                    AppLocalizations.of(context)!.voiceSpeed,
-                subtitle: "${settings.speechRate.toStringAsFixed(1)}x",
-                value: settings.speechRate,
-                min: 0.1,
-                max: 1.0,
-                divisions: 9,
-                onChanged: (val) {
-                  ref.read(settingsProvider.notifier).setSpeechRate(val);
-                  ref.read(audioServiceProvider).setSpeechRate(val);
-                },
-              ),
-              _buildDivider(context),
-              _buildSwitchTile(
-                icon: Icons.vibration,
-                iconColor: _accent(context),
-                title: AppLocalizations.of(context)!.hapticFeedback,
-                subtitle:
-                    AppLocalizations.of(context)!.vibrationsForInteractions,
-                value: settings.enableHaptics,
-                onChanged: (val) {
-                  ref.read(settingsProvider.notifier).toggleHaptics(val);
-                },
-              ),
-              _buildDivider(context),
-              _buildSwitchTile(
-                icon: Icons.music_note,
-                iconColor: _accent(context),
-                title: AppLocalizations.of(context)!.soundEffects,
-                subtitle: AppLocalizations.of(context)!.soundEffectsDesc,
-                value: settings.enableSoundEffects,
-                onChanged: (val) {
-                  ref.read(settingsProvider.notifier).toggleSoundEffects(val);
-                },
-              ),
-              _buildDivider(context),
-              ListTile(
-                leading: _rowIcon(context, Icons.record_voice_over),
-                title: Text(AppLocalizations.of(context)!.audiobookVoice,
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle:
-                    Text(_voiceDisplayName(context, settings.audiobookVoice)),
-                trailing: Icon(Icons.chevron_right, color: _muted(context)),
-                onTap: () => _showVoicePickerDialog(context, ref),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-
-          _buildSectionHeader(
-              l10n?.displayAndContent ??
-                  AppLocalizations.of(context)!.display_content,
-              theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              _buildSwitchTile(
-                icon: Icons.dark_mode,
-                iconColor: _accent(context),
-                title: l10n?.darkMode ?? "Dark Mode",
-                subtitle: l10n?.darkModeDesc ?? "Easy on the eyes",
-                value: settings.isDarkMode,
-                onChanged: (val) =>
-                    ref.read(settingsProvider.notifier).toggleDarkMode(val),
-              ),
-              _buildDivider(context),
-              ListTile(
-                leading: _rowIcon(context, Icons.language),
-                title: Text(l10n?.appLanguage ?? "App Language",
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(appLanguageName(settings.locale)),
-                trailing: Icon(Icons.chevron_right, color: _muted(context)),
-                onTap: () => _showAppLanguagePicker(context, ref),
-              ),
-              _buildDivider(context),
-              _buildSwitchTile(
-                icon: Icons.menu_book_outlined,
-                iconColor: _accent(context),
-                title: l10n?.useEnglishDefinitions ?? "Use English definitions",
-                subtitle: l10n?.useEnglishDefinitionsDesc ??
-                    "English definitions are generally more accurate and detailed",
-                value: settings.useEnglishDefinitions,
-                onChanged: (val) {
-                  ref
-                      .read(settingsProvider.notifier)
-                      .toggleUseEnglishDefinitions(val);
-                },
-              ),
-              _buildDivider(context),
-              _buildSliderTile(
-                icon: Icons.animation,
-                iconColor: _accent(context),
-                title: l10n?.animationSpeed ?? "Stroke Animation Speed",
-                subtitle: "${settings.animationSpeed.toStringAsFixed(1)}x",
-                value: settings.animationSpeed,
-                min: 0.5,
-                max: 2.0,
-                divisions: 15,
-                onChanged: (val) =>
-                    ref.read(settingsProvider.notifier).setAnimationSpeed(val),
-              ),
-            ],
-          ),
-
-          _buildSectionHeader(
-              l10n?.notifications ??
-                  AppLocalizations.of(context)!.notifications,
-              theme),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              ListTile(
-                leading: _rowIcon(context, Icons.notifications_active,
-                    tone: _gold(context)),
-                title: Text(AppLocalizations.of(context)!.notification_settings,
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(AppLocalizations.of(context)!
-                    .oneOptionalDailyPracticeReminder),
-                trailing: Icon(Icons.chevron_right, color: _muted(context)),
-                onTap: () => _showNotificationSettings(context, ref),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          _buildSectionHeader(
-            l10n?.supportAndFeedback ??
-                AppLocalizations.of(context)!.supportAndFeedback,
-            theme,
-          ),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              ListTile(
-                leading: _rowIcon(context, Icons.star_rounded),
-                title: Text(
-                  l10n?.rateSinoSpark ??
-                      AppLocalizations.of(context)!.rateSinoSpark,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
+      // An iPad gets a capped, centred column: a 1366dp-wide settings form is
+      // wrong. The cap is a no-op on a phone (760 > any phone width), which is
+      // why this wrapper is unconditional rather than a second layout branch.
+      body: ZenContentPane(
+        maxWidth: 760,
+        padding: EdgeInsets.zero,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+          children: [
+            _buildSectionHeader(
+                l10n?.audioAndHaptics ??
+                    AppLocalizations.of(context)!.audio_haptics,
+                theme),
+            _buildSettingsCard(
+              context: context,
+              children: [
+                _buildSliderTile(
+                  icon: Icons.speed,
+                  iconColor: _accent(context),
+                  title: l10n?.voiceSpeed ??
+                      AppLocalizations.of(context)!.voiceSpeed,
+                  subtitle: "${settings.speechRate.toStringAsFixed(1)}x",
+                  value: settings.speechRate,
+                  min: 0.1,
+                  max: 1.0,
+                  divisions: 9,
+                  onChanged: (val) {
+                    ref.read(settingsProvider.notifier).setSpeechRate(val);
+                    ref.read(audioServiceProvider).setSpeechRate(val);
+                  },
                 ),
-                subtitle: Text(
-                  l10n?.rateSinoSparkDesc ??
-                      AppLocalizations.of(context)!.rateSinoSparkDesc,
+                _buildDivider(context),
+                _buildSwitchTile(
+                  icon: Icons.vibration,
+                  iconColor: _accent(context),
+                  title: AppLocalizations.of(context)!.hapticFeedback,
+                  subtitle:
+                      AppLocalizations.of(context)!.vibrationsForInteractions,
+                  value: settings.enableHaptics,
+                  onChanged: (val) {
+                    ref.read(settingsProvider.notifier).toggleHaptics(val);
+                  },
                 ),
-                trailing: Icon(Icons.open_in_new_rounded,
-                    size: 18, color: _muted(context)),
-                onTap: () async {
-                  HapticsManager.light();
-                  await ref.read(appRatingServiceProvider).openStoreListing();
-                },
-              ),
-              _buildDivider(context),
-              ListTile(
-                leading: _rowIcon(context, Icons.mail_outline_rounded),
-                title: Text(
-                  l10n?.sendFeedback ??
-                      AppLocalizations.of(context)!.sendFeedback,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
+                _buildDivider(context),
+                _buildSwitchTile(
+                  icon: Icons.music_note,
+                  iconColor: _accent(context),
+                  title: AppLocalizations.of(context)!.soundEffects,
+                  subtitle: AppLocalizations.of(context)!.soundEffectsDesc,
+                  value: settings.enableSoundEffects,
+                  onChanged: (val) {
+                    ref.read(settingsProvider.notifier).toggleSoundEffects(val);
+                  },
                 ),
-                subtitle: Text(
-                  l10n?.sendFeedbackDesc ??
-                      AppLocalizations.of(context)!.sendFeedbackDesc,
+                _buildDivider(context),
+                ListTile(
+                  leading: _rowIcon(context, Icons.record_voice_over),
+                  title: Text(AppLocalizations.of(context)!.audiobookVoice,
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle:
+                      Text(_voiceDisplayName(context, settings.audiobookVoice)),
+                  trailing: Icon(Icons.chevron_right, color: _muted(context)),
+                  onTap: () => _showVoicePickerDialog(context, ref),
                 ),
-                trailing: Icon(Icons.chevron_right, color: _muted(context)),
-                onTap: () {
-                  HapticsManager.light();
-                  Navigator.of(context).push(
-                    SwipeBackRoute<void>(
-                      builder: (_) => const ContactScreen(),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-          const SizedBox(height: 24), // Danger Zone
-          _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme,
-              color: _alert(context)),
-          _buildSettingsCard(
-            context: context,
-            children: [
-              ListTile(
-                leading: _rowIcon(context, Icons.delete_forever,
-                    tone: _alert(context)),
-                title: Text(
-                    l10n?.resetAllData ??
-                        AppLocalizations.of(context)!.resetAllData,
-                    style: TextStyle(
-                        color: _alert(context), fontWeight: FontWeight.bold)),
-                subtitle: Text(
-                    l10n?.resetDataDesc ??
-                        AppLocalizations.of(context)!
-                            .deletesAllProgressPermanently,
-                    style: TextStyle(
-                        color: _alert(context).withValues(alpha: 0.75))),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: Text(l10n?.areYouSure ??
-                          AppLocalizations.of(context)!.areYouSure),
-                      content: Text(l10n?.cannotBeUndone ??
-                          AppLocalizations.of(context)!.this_cannot_be_undone),
-                      actions: [
-                        TextButton(
-                          child: Text(l10n?.cancel ??
-                              AppLocalizations.of(context)!.cancelAction),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        TextButton(
-                          child: Text(
-                              l10n?.deleteEverything ??
-                                  AppLocalizations.of(context)!
-                                      .deleteEverything,
-                              style: TextStyle(color: _alert(context))),
-                          onPressed: () async {
-                            await ref
-                                .read(flashcardControllerProvider.notifier)
-                                .resetAllData();
-                            if (context.mounted) {
-                              Navigator.pop(context);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(
-                                          AppLocalizations.of(context)!
-                                              .allDataHasBeen)));
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 48),
-          Center(
-            child: Text(
-              AppLocalizations.of(context)!.hanziMasterV100,
-              style: TextStyle(
-                  color: _muted(context),
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2),
+              ],
             ),
-          ),
-          const SizedBox(height: 24),
-        ],
+            const SizedBox(height: 24),
+
+            _buildSectionHeader(
+                l10n?.displayAndContent ??
+                    AppLocalizations.of(context)!.display_content,
+                theme),
+            _buildSettingsCard(
+              context: context,
+              children: [
+                _buildSwitchTile(
+                  icon: Icons.dark_mode,
+                  iconColor: _accent(context),
+                  title: l10n?.darkMode ?? "Dark Mode",
+                  subtitle: l10n?.darkModeDesc ?? "Easy on the eyes",
+                  value: settings.isDarkMode,
+                  onChanged: (val) =>
+                      ref.read(settingsProvider.notifier).toggleDarkMode(val),
+                ),
+                _buildDivider(context),
+                ListTile(
+                  leading: _rowIcon(context, Icons.language),
+                  title: Text(l10n?.appLanguage ?? "App Language",
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: Text(appLanguageName(settings.locale)),
+                  trailing: Icon(Icons.chevron_right, color: _muted(context)),
+                  onTap: () => _showAppLanguagePicker(context, ref),
+                ),
+                _buildDivider(context),
+                _buildSwitchTile(
+                  icon: Icons.menu_book_outlined,
+                  iconColor: _accent(context),
+                  title:
+                      l10n?.useEnglishDefinitions ?? "Use English definitions",
+                  subtitle: l10n?.useEnglishDefinitionsDesc ??
+                      "English definitions are generally more accurate and detailed",
+                  value: settings.useEnglishDefinitions,
+                  onChanged: (val) {
+                    ref
+                        .read(settingsProvider.notifier)
+                        .toggleUseEnglishDefinitions(val);
+                  },
+                ),
+                _buildDivider(context),
+                _buildSliderTile(
+                  icon: Icons.animation,
+                  iconColor: _accent(context),
+                  title: l10n?.animationSpeed ?? "Stroke Animation Speed",
+                  subtitle: "${settings.animationSpeed.toStringAsFixed(1)}x",
+                  value: settings.animationSpeed,
+                  min: 0.5,
+                  max: 2.0,
+                  divisions: 15,
+                  onChanged: (val) => ref
+                      .read(settingsProvider.notifier)
+                      .setAnimationSpeed(val),
+                ),
+              ],
+            ),
+
+            _buildSectionHeader(
+                l10n?.notifications ??
+                    AppLocalizations.of(context)!.notifications,
+                theme),
+            _buildSettingsCard(
+              context: context,
+              children: [
+                ListTile(
+                  leading: _rowIcon(context, Icons.notifications_active,
+                      tone: _gold(context)),
+                  title: Text(
+                      AppLocalizations.of(context)!.notification_settings,
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  subtitle: Text(AppLocalizations.of(context)!
+                      .oneOptionalDailyPracticeReminder),
+                  trailing: Icon(Icons.chevron_right, color: _muted(context)),
+                  onTap: () => _showNotificationSettings(context, ref),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _buildSectionHeader(
+              l10n?.supportAndFeedback ??
+                  AppLocalizations.of(context)!.supportAndFeedback,
+              theme,
+            ),
+            _buildSettingsCard(
+              context: context,
+              children: [
+                ListTile(
+                  leading: _rowIcon(context, Icons.star_rounded),
+                  title: Text(
+                    l10n?.rateSinoSpark ??
+                        AppLocalizations.of(context)!.rateSinoSpark,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: Text(
+                    l10n?.rateSinoSparkDesc ??
+                        AppLocalizations.of(context)!.rateSinoSparkDesc,
+                  ),
+                  trailing: Icon(Icons.open_in_new_rounded,
+                      size: 18, color: _muted(context)),
+                  onTap: () async {
+                    HapticsManager.light();
+                    await ref.read(appRatingServiceProvider).openStoreListing();
+                  },
+                ),
+                _buildDivider(context),
+                ListTile(
+                  leading: _rowIcon(context, Icons.mail_outline_rounded),
+                  title: Text(
+                    l10n?.sendFeedback ??
+                        AppLocalizations.of(context)!.sendFeedback,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  subtitle: Text(
+                    l10n?.sendFeedbackDesc ??
+                        AppLocalizations.of(context)!.sendFeedbackDesc,
+                  ),
+                  trailing: Icon(Icons.chevron_right, color: _muted(context)),
+                  onTap: () {
+                    HapticsManager.light();
+                    Navigator.of(context).push(
+                      SwipeBackRoute<void>(
+                        builder: (_) => const ContactScreen(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 24), // Danger Zone
+            _buildSectionHeader(l10n?.dangerZone ?? "Danger Zone", theme,
+                color: _alert(context)),
+            _buildSettingsCard(
+              context: context,
+              children: [
+                ListTile(
+                  leading: _rowIcon(context, Icons.delete_forever,
+                      tone: _alert(context)),
+                  title: Text(
+                      l10n?.resetAllData ??
+                          AppLocalizations.of(context)!.resetAllData,
+                      style: TextStyle(
+                          color: _alert(context), fontWeight: FontWeight.bold)),
+                  subtitle: Text(
+                      l10n?.resetDataDesc ??
+                          AppLocalizations.of(context)!
+                              .deletesAllProgressPermanently,
+                      style: TextStyle(
+                          color: _alert(context).withValues(alpha: 0.75))),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(l10n?.areYouSure ??
+                            AppLocalizations.of(context)!.areYouSure),
+                        content: Text(l10n?.cannotBeUndone ??
+                            AppLocalizations.of(context)!
+                                .this_cannot_be_undone),
+                        actions: [
+                          TextButton(
+                            child: Text(l10n?.cancel ??
+                                AppLocalizations.of(context)!.cancelAction),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          TextButton(
+                            child: Text(
+                                l10n?.deleteEverything ??
+                                    AppLocalizations.of(context)!
+                                        .deleteEverything,
+                                style: TextStyle(color: _alert(context))),
+                            onPressed: () async {
+                              await ref
+                                  .read(flashcardControllerProvider.notifier)
+                                  .resetAllData();
+                              if (context.mounted) {
+                                Navigator.pop(context);
+                                ZenToast.info(
+                                    context,
+                                    AppLocalizations.of(context)!
+                                        .allDataHasBeen);
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 48),
+            Center(
+              child: Text(
+                AppLocalizations.of(context)!.hanziMasterV100,
+                style: TextStyle(
+                    color: _muted(context),
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2),
+              ),
+            ),
+            const SizedBox(height: 24),
+          ],
+        ),
       ),
     );
   }
@@ -356,7 +368,13 @@ class SettingsScreen extends ConsumerWidget {
   }) {
     return SwitchListTile(
       value: value,
-      onChanged: onChanged,
+      onChanged: (bool next) {
+        // Let the switch settle first, so turning haptics *off* is silent while
+        // turning it back on ticks - which is also how a user finds out that the
+        // switch really does what it says.
+        onChanged(next);
+        HapticsManager.selection();
+      },
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Text(subtitle),
       secondary: CircleAvatar(
@@ -400,7 +418,13 @@ class SettingsScreen extends ConsumerWidget {
               max: max,
               divisions: divisions,
               activeColor: iconColor,
-              onChanged: onChanged,
+              // A divided slider moves in detents, so one impact per detent is
+              // exactly the platform convention and cannot degenerate into a
+              // continuous buzz the way a continuous slider would.
+              onChanged: (double next) {
+                HapticsManager.selection();
+                onChanged(next);
+              },
             ),
           ),
         ],

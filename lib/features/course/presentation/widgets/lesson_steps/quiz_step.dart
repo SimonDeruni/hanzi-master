@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/services/zen_sound_service.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/widgets/zen_shake.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 enum QuizMode { recognition, pinyin }
 
@@ -33,6 +37,9 @@ class _QuizStepState extends ConsumerState<QuizStep> {
   bool _isAnswered = false;
   bool _isCorrect = false;
 
+  /// Counts rejected answers; each bump plays one [ZenShake] on the wrong tile.
+  int _rejections = 0;
+
   @override
   void initState() {
     super.initState();
@@ -43,15 +50,18 @@ class _QuizStepState extends ConsumerState<QuizStep> {
   void _handleSelection(Flashcard card) {
     if (_isAnswered) return;
 
+    final bool correct = card.id == widget.targetCard.id;
     setState(() {
       _selectedCard = card;
       _isAnswered = true;
-      _isCorrect = card.id == widget.targetCard.id;
+      _isCorrect = correct;
+      // Bumping this plays exactly one rejection on the tile they picked.
+      if (!correct) _rejections++;
     });
 
-    if (_isCorrect) {
+    if (correct) {
       HapticsManager.success();
-      ref.read(audioServiceProvider).playCorrectSfx();
+      ref.read(zenSoundServiceProvider).playCorrect();
       Future.delayed(const Duration(milliseconds: 300), () {
         if (mounted) {
           ref.read(audioServiceProvider).playCharacter(widget.targetCard.hanzi);
@@ -59,8 +69,9 @@ class _QuizStepState extends ConsumerState<QuizStep> {
       });
       Future.delayed(const Duration(seconds: 1), widget.onComplete);
     } else {
-      HapticsManager.error();
-      ref.read(audioServiceProvider).playWrongSfx();
+      // `ZenShake` owns the refusal haptic (it fires on the same `_rejections`
+      // bump this branch makes), so this site must not buzz on top of it.
+      ref.read(zenSoundServiceProvider).playWrong();
       // In a real app, we might force them to try again or penalize score
       Future.delayed(const Duration(milliseconds: 800), () {
         if (mounted) {
@@ -114,16 +125,16 @@ class _QuizStepState extends ConsumerState<QuizStep> {
                     const TextStyle(fontSize: 64, fontWeight: FontWeight.bold)),
           ],
           const Spacer(flex: 2),
-          GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
-            childAspectRatio: 1.2,
-            children: _options
-                .map((option) => _buildOptionCard(option, isRecognition))
-                .toList(),
-          ),
+          GridView(
+              gridDelegate: ZenGrid.tiles(
+                  maxTileWidth: 170,
+                  childAspectRatio: 1.2,
+                  crossSpacing: 16,
+                  mainSpacing: 16),
+              shrinkWrap: true,
+              children: _options
+                  .map((option) => _buildOptionCard(option, isRecognition))
+                  .toList()),
           const Spacer(flex: 3),
         ],
       ),
@@ -148,29 +159,34 @@ class _QuizStepState extends ConsumerState<QuizStep> {
       }
     }
 
-    return GestureDetector(
-      onTap: () => _handleSelection(option),
-      child: AnimatedContainer(
-        duration: ZenMotion.of(context, ZenMotion.swap),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor, width: 2),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 4))
-          ],
-        ),
-        child: Center(
-          child: PinyinText(
-            text: isRecognition ? option.hanzi : option.pinyin,
-            style: TextStyle(
-              fontSize: isRecognition ? 32 : 18,
-              color: isSelected ? Colors.white : Colors.black87,
+    return ZenShake(
+      // Only the rejected tile moves: the others keep trigger 0, and a tile that
+      // stops being the rejected one falls back to 0 (increase-only, so silent).
+      trigger: isSelected && !_isCorrect ? _rejections : 0,
+      child: BouncingButton(
+        onPressed: _isAnswered ? null : () => _handleSelection(option),
+        child: AnimatedContainer(
+          duration: ZenMotion.of(context, ZenMotion.swap),
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: borderColor, width: 2),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4))
+            ],
+          ),
+          child: Center(
+            child: PinyinText(
+              text: isRecognition ? option.hanzi : option.pinyin,
+              style: TextStyle(
+                fontSize: isRecognition ? 32 : 18,
+                color: isSelected ? Colors.white : Colors.black87,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
       ),

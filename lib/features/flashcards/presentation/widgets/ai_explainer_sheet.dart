@@ -19,7 +19,8 @@ class _ChatMessage {
   final String text;
   final bool isUser;
   final List<_FollowUpChip> chips;
-  _ChatMessage({required this.text, required this.isUser, this.chips = const []});
+  _ChatMessage(
+      {required this.text, required this.isUser, this.chips = const []});
 }
 
 class _InkDots extends StatefulWidget {
@@ -46,12 +47,20 @@ class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
               vsync: this,
               duration: ZenMotion.page,
             ));
-    _anims = _controllers.map((c) => Tween(begin: 0.3, end: 1.0).animate(
-      CurvedAnimation(parent: c, curve: ZenMotion.natural),
-    )).toList();
-    Future.delayed(const Duration(milliseconds: 0),  () { if (mounted && !_reduceMotion) _controllers[0].forward(); });
-    Future.delayed(const Duration(milliseconds: 180), () { if (mounted && !_reduceMotion) _controllers[1].forward(); });
-    Future.delayed(const Duration(milliseconds: 360), () { if (mounted && !_reduceMotion) _controllers[2].forward(); });
+    _anims = _controllers
+        .map((c) => Tween(begin: 0.3, end: 1.0).animate(
+              CurvedAnimation(parent: c, curve: ZenMotion.natural),
+            ))
+        .toList();
+    Future.delayed(const Duration(milliseconds: 0), () {
+      if (mounted && !_reduceMotion) _controllers[0].forward();
+    });
+    Future.delayed(const Duration(milliseconds: 180), () {
+      if (mounted && !_reduceMotion) _controllers[1].forward();
+    });
+    Future.delayed(const Duration(milliseconds: 360), () {
+      if (mounted && !_reduceMotion) _controllers[2].forward();
+    });
   }
 
   @override
@@ -71,7 +80,9 @@ class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    for (final c in _controllers) { c.dispose(); }
+    for (final c in _controllers) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -79,18 +90,21 @@ class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(3, (i) => AnimatedBuilder(
-        animation: _anims[i],
-        builder: (_, __) => Container(
-          margin: const EdgeInsets.symmetric(horizontal: 3),
-          width: 6,
-          height: 6,
-          decoration: BoxDecoration(
-            color: const Color(0xFF1A1A1B).withValues(alpha: _anims[i].value),
-            shape: BoxShape.circle,
-          ),
-        ),
-      )),
+      children: List.generate(
+          3,
+          (i) => AnimatedBuilder(
+                animation: _anims[i],
+                builder: (_, __) => Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 3),
+                  width: 6,
+                  height: 6,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1A1A1B)
+                        .withValues(alpha: _anims[i].value),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              )),
     );
   }
 }
@@ -99,9 +113,11 @@ class AiExplainerSheet extends ConsumerStatefulWidget {
   final AiWord word;
   final AiSentence sentence;
 
-  const AiExplainerSheet({super.key, required this.word, required this.sentence});
+  const AiExplainerSheet(
+      {super.key, required this.word, required this.sentence});
 
-  static Future<void> show(BuildContext context, AiWord word, AiSentence sentence) async {
+  static Future<void> show(
+      BuildContext context, AiWord word, AiSentence sentence) async {
     final consented = await AiConsentSheet.ensureConsent(context);
     if (!consented || !context.mounted) return;
 
@@ -125,16 +141,22 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
 
   final List<List<_FollowUpChip>> _grammarChips = [
     [
-      const _FollowUpChip('📝 More examples', 'Can you give me two more examples using this word?'),
-      const _FollowUpChip('🔄 Similar words', 'What are some similar words and how do they differ?'),
+      const _FollowUpChip('📝 More examples',
+          'Can you give me two more examples using this word?'),
+      const _FollowUpChip('🔄 Similar words',
+          'What are some similar words and how do they differ?'),
     ],
     [
-      const _FollowUpChip('❓ Usage', 'Is this word used in spoken or written Chinese more?'),
-      const _FollowUpChip('💬 Translation', 'Are there other ways to translate this word?'),
+      const _FollowUpChip(
+          '❓ Usage', 'Is this word used in spoken or written Chinese more?'),
+      const _FollowUpChip(
+          '💬 Translation', 'Are there other ways to translate this word?'),
     ],
     [
-      const _FollowUpChip('📚 Collocations', 'What are common words that go together with this word?'),
-      const _FollowUpChip('❌ Mistakes', 'What are common mistakes learners make with this word?'),
+      const _FollowUpChip('📚 Collocations',
+          'What are common words that go together with this word?'),
+      const _FollowUpChip('❌ Mistakes',
+          'What are common mistakes learners make with this word?'),
     ]
   ];
 
@@ -142,8 +164,12 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
   void initState() {
     super.initState();
     final langCode = Localizations.localeOf(context).languageCode;
-    _chatSession = ref.read(geminiServiceProvider).startGrammarChat(widget.word.hanzi, widget.sentence.chinese, langCode);
-    _sendMessage("Explain the grammatical role and usage of the word \"${widget.word.hanzi}\" in the following sentence:\n\"${widget.sentence.chinese}\"", isInitial: true);
+    _chatSession = ref
+        .read(geminiServiceProvider)
+        .startGrammarChat(widget.word.hanzi, widget.sentence.chinese, langCode);
+    _sendMessage(
+        "Explain the grammatical role and usage of the word \"${widget.word.hanzi}\" in the following sentence:\n\"${widget.sentence.chinese}\"",
+        isInitial: true);
   }
 
   @override
@@ -155,7 +181,7 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
 
   Future<void> _sendMessage(String text, {bool isInitial = false}) async {
     if (text.trim().isEmpty) return;
-    
+
     if (!isInitial) {
       final consented = await AiConsentSheet.ensureConsent(context);
       if (!consented || !mounted) return;
@@ -175,10 +201,10 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
     try {
       final rawText = await _chatSession.sendMessage(text);
       if (rawText.isEmpty) throw Exception('Empty response');
-      
+
       final chips = _grammarChips[_aiReplyCount % _grammarChips.length];
       _aiReplyCount++;
-      
+
       setState(() {
         _messages.add(_ChatMessage(
           text: rawText,
@@ -190,7 +216,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
       _scrollToBottom();
     } catch (e) {
       setState(() {
-        _messages.add(_ChatMessage(text: 'Error getting explanation: $e', isUser: false));
+        _messages.add(
+            _ChatMessage(text: 'Error getting explanation: $e', isUser: false));
         _isLoading = false;
       });
       _scrollToBottom();
@@ -212,13 +239,14 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final aiBubbleColor = isDark ? const Color(0xFF252525) : const Color(0xFFFFF8EE);
+    final aiBubbleColor =
+        isDark ? const Color(0xFF252525) : const Color(0xFFFFF8EE);
     final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
     final drawerWidth = screenWidth * 0.88;
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.85,
+      height: MediaQuery.sizeOf(context).height * 0.85,
       child: SafeArea(
         top: false,
         child: Column(
@@ -238,7 +266,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
                   final msg = _messages[index];
                   return msg.isUser
                       ? _buildUserBubble(msg, drawerWidth, textColor)
-                      : _buildAiBubble(msg, aiBubbleColor, drawerWidth, textColor, isDark);
+                      : _buildAiBubble(
+                          msg, aiBubbleColor, drawerWidth, textColor, isDark);
                 },
               ),
             ),
@@ -253,7 +282,9 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 10, 8, 10),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.blueAccent.withValues(alpha: 0.12))),
+        border: Border(
+            bottom:
+                BorderSide(color: Colors.blueAccent.withValues(alpha: 0.12))),
       ),
       child: Row(
         children: [
@@ -275,7 +306,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
             ),
           ),
           IconButton(
-            icon: Icon(Icons.close, size: 20, color: textColor.withValues(alpha: 0.5)),
+            icon: Icon(Icons.close,
+                size: 20, color: textColor.withValues(alpha: 0.5)),
             onPressed: () => Navigator.pop(context),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
@@ -316,7 +348,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
                 const TextSpan(text: "Explaining: "),
                 TextSpan(
                   text: widget.word.hanzi,
-                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.blueAccent),
                 ),
               ],
             ),
@@ -326,7 +359,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
     );
   }
 
-  Widget _buildAiBubble(_ChatMessage msg, Color aiBubbleColor, double drawerWidth, Color textColor, bool isDark) {
+  Widget _buildAiBubble(_ChatMessage msg, Color aiBubbleColor,
+      double drawerWidth, Color textColor, bool isDark) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -361,32 +395,39 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
             child: Wrap(
               spacing: 6,
               runSpacing: 6,
-              children: msg.chips.map((chip) => GestureDetector(
-                onTap: () => _sendMessage(chip.prompt),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent.withValues(alpha: isDark ? 0.2 : 0.08),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.blueAccent.withValues(alpha: 0.2)),
-                  ),
-                  child: Text(
-                    chip.label,
-                    style: const TextStyle(
-                      fontSize: 12.5,
-                      color: Colors.blueAccent,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              )).toList(),
+              children: msg.chips
+                  .map((chip) => GestureDetector(
+                        onTap: () => _sendMessage(chip.prompt),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent
+                                .withValues(alpha: isDark ? 0.2 : 0.08),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                                color:
+                                    Colors.blueAccent.withValues(alpha: 0.2)),
+                          ),
+                          child: Text(
+                            chip.label,
+                            style: const TextStyle(
+                              fontSize: 12.5,
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ))
+                  .toList(),
             ),
           ),
       ],
     );
   }
 
-  Widget _buildUserBubble(_ChatMessage msg, double drawerWidth, Color textColor) {
+  Widget _buildUserBubble(
+      _ChatMessage msg, double drawerWidth, Color textColor) {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
@@ -404,7 +445,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
         ),
         child: Text(
           msg.text,
-          style: const TextStyle(fontSize: 14.5, color: Colors.white, height: 1.3),
+          style:
+              const TextStyle(fontSize: 14.5, color: Colors.white, height: 1.3),
         ),
       ),
     );
@@ -435,7 +477,8 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
       decoration: BoxDecoration(
         color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
-        border: Border(top: BorderSide(color: textColor.withValues(alpha: 0.08))),
+        border:
+            Border(top: BorderSide(color: textColor.withValues(alpha: 0.08))),
       ),
       child: Row(
         children: [
@@ -444,14 +487,16 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
               controller: _textController,
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.askFollowUpQuestion,
-                hintStyle: TextStyle(color: textColor.withValues(alpha: 0.4), fontSize: 14),
+                hintStyle: TextStyle(
+                    color: textColor.withValues(alpha: 0.4), fontSize: 14),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
                 fillColor: textColor.withValues(alpha: 0.05),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 isDense: true,
               ),
               style: TextStyle(fontSize: 14, color: textColor),
@@ -468,16 +513,21 @@ class _AiExplainerSheetState extends ConsumerState<AiExplainerSheet> {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onTap: canSend ? () => _sendMessage(_textController.text) : null,
+                  onTap:
+                      canSend ? () => _sendMessage(_textController.text) : null,
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: canSend ? Colors.blueAccent : textColor.withValues(alpha: 0.05),
+                      color: canSend
+                          ? Colors.blueAccent
+                          : textColor.withValues(alpha: 0.05),
                     ),
                     child: Icon(
                       Icons.arrow_upward,
-                      color: canSend ? Colors.white : textColor.withValues(alpha: 0.2),
+                      color: canSend
+                          ? Colors.white
+                          : textColor.withValues(alpha: 0.2),
                       size: 20,
                     ),
                   ),

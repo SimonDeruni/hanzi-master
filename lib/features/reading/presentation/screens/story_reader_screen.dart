@@ -11,6 +11,9 @@ import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class StoryReaderScreen extends ConsumerStatefulWidget {
   final StoryBlueprint blueprint;
@@ -282,8 +285,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   void _showSummary(BuildContext context, AiStory story) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -312,12 +315,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!.summary,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : Colors.black87,
+                    // Flexible: "Summary" is much longer in several locales, and
+                    // the close button must stay inside the sheet.
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)!.summary,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? Colors.white : Colors.black87,
+                        ),
                       ),
                     ),
                     IconButton(
@@ -430,9 +439,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                     ambient.track != SoundscapeTrack.off && ambient.isPlaying;
                 return IconButton(
                   icon: Icon(
-                    isSoundscapeActive
-                        ? Icons.spa_rounded
-                        : Icons.spa_outlined,
+                    isSoundscapeActive ? Icons.spa_rounded : Icons.spa_outlined,
                     size: 21,
                     color: isSoundscapeActive
                         ? (isDark
@@ -466,9 +473,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   setState(() {
                     _isSaved = true;
                   });
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                          AppLocalizations.of(context)!.storySavedToLibrary)));
+                  ZenToast.success(context,
+                      AppLocalizations.of(context)!.storySavedToLibrary);
                 },
               ),
             ]
@@ -498,7 +504,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const CircularProgressIndicator(color: Colors.indigo),
+                        const ZenLoader(color: Colors.indigo),
                         const SizedBox(height: 24),
                         AnimatedSwitcher(
                           duration: ZenMotion.of(context, ZenMotion.page),
@@ -724,14 +730,13 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                         await showQuickLook(
                                                           context,
                                                           word.hanzi,
-                                                          contextText: sentence
-                                                              .chinese,
+                                                          contextText:
+                                                              sentence.chinese,
                                                           presentation:
                                                               QuickLookPresentation
                                                                   .readingPopover,
-                                                          anchorPosition:
-                                                              details
-                                                                  .globalPosition,
+                                                          anchorPosition: details
+                                                              .globalPosition,
                                                           onDismiss: () {
                                                             if (mounted) {
                                                               setState(() {
@@ -755,7 +760,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                         }
                                                       },
                                                       child: AnimatedContainer(
-                                                        duration: ZenMotion.of(context, ZenMotion.swap),
+                                                        duration: ZenMotion.of(
+                                                            context,
+                                                            ZenMotion.swap),
                                                         padding:
                                                             const EdgeInsets
                                                                 .symmetric(
@@ -763,24 +770,32 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                                 vertical: 2),
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              isQuickLookSelected
-                                                                  ? (isDark
-                                                                      ? const Color(0xFF6366F1).withValues(alpha: 0.35)
-                                                                      : const Color(0xFF4F46E5).withValues(alpha: 0.16))
-                                                                  : Colors
-                                                                      .transparent,
+                                                          color: isQuickLookSelected
+                                                              ? (isDark
+                                                                  ? const Color(
+                                                                          0xFF6366F1)
+                                                                      .withValues(
+                                                                          alpha:
+                                                                              0.35)
+                                                                  : const Color(
+                                                                          0xFF4F46E5)
+                                                                      .withValues(
+                                                                          alpha:
+                                                                              0.16))
+                                                              : Colors
+                                                                  .transparent,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(6),
                                                           border: Border.all(
-                                                            color:
-                                                                isQuickLookSelected
-                                                                    ? (isDark
-                                                                        ? const Color(0xFF818CF8)
-                                                                        : const Color(0xFF4F46E5))
-                                                                    : Colors
-                                                                        .transparent,
+                                                            color: isQuickLookSelected
+                                                                ? (isDark
+                                                                    ? const Color(
+                                                                        0xFF818CF8)
+                                                                    : const Color(
+                                                                        0xFF4F46E5))
+                                                                : Colors
+                                                                    .transparent,
                                                             width:
                                                                 isQuickLookSelected
                                                                     ? 1.5
@@ -798,17 +813,21 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                                     'NotoSerifSC',
                                                                 fontSize: 28,
                                                                 fontWeight: (isQuickLookSelected ||
-                                                                        dueWords.contains(word.hanzi))
+                                                                        dueWords.contains(word
+                                                                            .hanzi))
                                                                     ? FontWeight
                                                                         .bold
                                                                     : FontWeight
                                                                         .w600,
                                                                 color: isQuickLookSelected
                                                                     ? (isDark
-                                                                        ? Colors.white
-                                                                        : const Color(0xFF1E1B4B))
+                                                                        ? Colors
+                                                                            .white
+                                                                        : const Color(
+                                                                            0xFF1E1B4B))
                                                                     : (isWordActive
-                                                                        ? Colors.orange
+                                                                        ? Colors
+                                                                            .orange
                                                                         : (dueWords.contains(word.hanzi)
                                                                             ? const Color(0xFFD4AF37)
                                                                             : textColor)),
@@ -817,16 +836,22 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                             if (shouldShowPinyin)
                                                               Text(
                                                                 word.pinyin,
-                                                                style: TextStyle(
+                                                                style:
+                                                                    TextStyle(
                                                                   fontSize: 12,
                                                                   fontWeight: isQuickLookSelected
-                                                                      ? FontWeight.bold
-                                                                      : FontWeight.normal,
+                                                                      ? FontWeight
+                                                                          .bold
+                                                                      : FontWeight
+                                                                          .normal,
                                                                   color: isQuickLookSelected
                                                                       ? (isDark
-                                                                          ? const Color(0xFFA5B4FC)
-                                                                          : const Color(0xFF3730A3))
-                                                                      : Colors.blueAccent,
+                                                                          ? const Color(
+                                                                              0xFFA5B4FC)
+                                                                          : const Color(
+                                                                              0xFF3730A3))
+                                                                      : Colors
+                                                                          .blueAccent,
                                                                 ),
                                                               ),
                                                           ],
@@ -915,8 +940,12 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                           color: isDark ? Colors.white12 : Colors.black12)),
                 ),
                 child: SafeArea(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  child: Wrap(
+                    // An action pair: stacks onto a second line instead of
+                    // overflowing once a translation expands the labels.
+                    alignment: WrapAlignment.spaceEvenly,
+                    spacing: 12,
+                    runSpacing: 4,
                     children: [
                       TextButton.icon(
                         icon: const Icon(Icons.article, size: 20),

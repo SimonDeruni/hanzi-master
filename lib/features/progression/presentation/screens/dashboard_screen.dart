@@ -21,11 +21,12 @@ import 'package:hanzi_master/shared/widgets/global_sliver_app_bar.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/universal_scanner_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/travel_interpreter_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/services/app_rating_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class DashboardScreen extends ConsumerWidget {
   final Function(int) onNavigate;
@@ -178,7 +179,9 @@ class DashboardScreen extends ConsumerWidget {
                   ],
                 )
                     .animate(delay: 150.ms)
-                    .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                    .fade(
+                        duration: ZenMotion.of(context, ZenMotion.page),
+                        curve: ZenMotion.enter)
                     .slideY(
                         begin: 0.05,
                         end: 0,
@@ -199,8 +202,8 @@ class DashboardScreen extends ConsumerWidget {
                         child: Center(child: ZenLoader()),
                       ),
                       error: (_, __) => const SizedBox.shrink(),
-                      data: (progress) =>
-                          HabitProgressCards(progress: progress),
+                      data: (progress) => ZenFadeIn(
+                          child: HabitProgressCards(progress: progress)),
                     ),
               ),
             ),
@@ -281,7 +284,9 @@ class DashboardScreen extends ConsumerWidget {
                   ),
                 )
                     .animate(delay: 150.ms)
-                    .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                    .fade(
+                        duration: ZenMotion.of(context, ZenMotion.page),
+                        curve: ZenMotion.enter)
                     .slideY(
                         begin: 0.05,
                         end: 0,
@@ -303,7 +308,7 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.upcomingForecast ?? "Upcoming Forecast",
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w900,
-                        fontFamily: AppLocalizations.of(context)!.notoserifsc,
+                        fontFamily: 'NotoSerifSC',
                         letterSpacing: 0.3,
                         fontSize: 16,
                       ),
@@ -356,7 +361,9 @@ class DashboardScreen extends ConsumerWidget {
                 ),
               )
                   .animate(delay: 300.ms)
-                  .fade(duration: ZenMotion.of(context, ZenMotion.page), curve: ZenMotion.enter)
+                  .fade(
+                      duration: ZenMotion.of(context, ZenMotion.page),
+                      curve: ZenMotion.enter)
                   .slideY(
                       begin: 0.05,
                       end: 0,
@@ -377,7 +384,7 @@ class DashboardScreen extends ConsumerWidget {
                       l10n?.dailyReview ?? "Daily Review",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
-                        fontFamily: AppLocalizations.of(context)!.notoserifsc,
+                        fontFamily: 'NotoSerifSC',
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -737,8 +744,8 @@ class DashboardScreen extends ConsumerWidget {
     if (deckCounts.isEmpty) return;
     final sorted = deckCounts.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
@@ -752,7 +759,7 @@ class DashboardScreen extends ConsumerWidget {
               Text(title,
                   style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w900,
-                      fontFamily: AppLocalizations.of(context)!.notoserifsc)),
+                      fontFamily: 'NotoSerifSC')),
               const SizedBox(height: 4),
               Text(
                   '${sorted.fold<int>(0, (sum, e) => sum + e.value)} cards total',

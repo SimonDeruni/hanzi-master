@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import '../../domain/models/video_transcript.dart';
 
 class PremiumSubtitlesOverlay extends StatelessWidget {
@@ -80,7 +81,11 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
                 final textWidget = Text(
                   char,
                   style: TextStyle(
-                    fontSize: 36,
+                    // A tablet sits further from the eye than a phone, so the
+                    // subtitles grow with the window class instead of being a
+                    // fixed 36pt at every distance (Phase 3, #50 / #44).
+                    fontSize: zenValue(context,
+                        compact: 36, medium: 40, expanded: 44),
                     color: isHighlighted ? Colors.white : Colors.white60,
                     fontWeight:
                         isHighlighted ? FontWeight.bold : FontWeight.w500,
@@ -118,10 +123,11 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               effectivePinyin,
-              style: const TextStyle(
-                fontSize: 22,
+              style: TextStyle(
+                fontSize:
+                    zenValue(context, compact: 22, medium: 24, expanded: 26),
                 color: Colors.white70,
-                shadows: [
+                shadows: const [
                   Shadow(
                       color: Colors.black87,
                       blurRadius: 4,
@@ -135,11 +141,12 @@ class PremiumSubtitlesOverlay extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               line.translation!,
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize:
+                    zenValue(context, compact: 16, medium: 17, expanded: 18),
                 color: Colors.white70,
                 fontStyle: FontStyle.italic,
-                shadows: [
+                shadows: const [
                   Shadow(
                       color: Colors.black87,
                       blurRadius: 4,

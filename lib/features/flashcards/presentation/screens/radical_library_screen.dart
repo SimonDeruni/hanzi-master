@@ -9,7 +9,10 @@ import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 class RadicalLibraryScreen extends StatefulWidget {
   const RadicalLibraryScreen({super.key});
@@ -150,13 +153,11 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
                         : GridView.builder(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 24, vertical: 16),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 16,
-                              mainAxisSpacing: 16,
-                              childAspectRatio: 0.85,
-                            ),
+                            gridDelegate: ZenGrid.tiles(
+                                maxTileWidth: 114,
+                                childAspectRatio: 0.85,
+                                crossSpacing: 16,
+                                mainSpacing: 16),
                             itemCount: _filteredKeys.length,
                             itemBuilder: (context, index) {
                               final key = _filteredKeys[index];
@@ -181,8 +182,10 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
 
   Widget _buildRadicalCard(
       BuildContext context, String character, dynamic data, bool isDark) {
-    return GestureDetector(
-      onTap: () {
+    // BouncingButton owns the tap so the tile carries the Zen press feedback
+    // (`ZenMotion.tap` + a light haptic) instead of a bare GestureDetector.
+    return BouncingButton(
+      onPressed: () {
         Navigator.push(
           context,
           SwipeBackPageRoute(
@@ -210,12 +213,18 @@ class _RadicalLibraryScreenState extends State<RadicalLibraryScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              character,
-              style: const TextStyle(
-                fontSize: 42,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFB22222), // Deep red color for radical
+            // Shared-element flight into the radical's detail header: the same
+            // glyph travels from the shelf tile to the 100px header box.
+            HeroTransition.wrap(
+              context: context,
+              tag: HeroTransition.heroTag('radical_library', character),
+              child: Text(
+                character,
+                style: const TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFB22222), // Deep red color for radical
+                ),
               ),
             ),
             const SizedBox(height: 4),

@@ -1,4 +1,4 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 import 'dart:math';
@@ -20,6 +20,8 @@ import 'radical_detail_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class UnitHeader extends StatelessWidget {
   final CourseUnit unit;
@@ -55,9 +57,9 @@ class UnitHeader extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
-            onPressed: () => showModalBottomSheet(
-              context: context,
-      useRootNavigator: true,
+            onPressed: () => zenSheet(
+              context,
+              useRootNavigator: true,
               isScrollControlled: true,
               backgroundColor: Colors.transparent,
               builder: (context) => UnitIntroSheet(unit: unit),
@@ -465,9 +467,9 @@ class MapNode extends ConsumerWidget {
       }
 
       if (isSun) {
-        await showModalBottomSheet(
-          context: context,
-      useRootNavigator: true,
+        await zenSheet(
+          context,
+          useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
           builder: (context) => RadicalDetailSheet(
@@ -610,9 +612,9 @@ class MapNode extends ConsumerWidget {
           final radNode =
               CourseNode(uuid: 'temp_${comp.hanzi}', hanzi: comp.hanzi);
           Navigator.pop(context); // Close current sheet
-          await showModalBottomSheet(
-            context: context,
-      useRootNavigator: true,
+          await zenSheet(
+            context,
+            useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => RadicalDetailSheet(
@@ -628,16 +630,14 @@ class MapNode extends ConsumerWidget {
         // Re-trigger the tap logic for this new character
         // We'll call onNodeTap but specifically for this card
         // For simplicity in this scope, we show a preview
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content:
-                Text("${l10n?.divingInto ?? "Diving into"} ${comp.hanzi}..."),
-            duration: ZenMotion.toast));
+        ZenToast.info(
+            context, "${l10n?.divingInto ?? "Diving into"} ${comp.hanzi}...");
       }
 
       if (context.mounted) {
-        await showModalBottomSheet(
-          context: context,
-      useRootNavigator: true,
+        await zenSheet(
+          context,
+          useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
           builder: (context) => MissionBriefingSheet(
@@ -1042,7 +1042,7 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.sizeOf(context).height * 0.7,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -1109,14 +1109,17 @@ class _UnitIntroSheetState extends State<UnitIntroSheet> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       TranslatedDefinition(
-                                        definition: item['info']?['name']?.toString() ?? '',
+                                        definition:
+                                            item['info']?['name']?.toString() ??
+                                                '',
                                         originalStyle: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       TranslatedDefinition(
-                                        definition:
-                                            item['info']?['meaning']?.toString() ?? '',
+                                        definition: item['info']?['meaning']
+                                                ?.toString() ??
+                                            '',
                                         originalStyle: const TextStyle(
                                             fontSize: 14,
                                             color: Colors.black87),

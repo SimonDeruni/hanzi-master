@@ -3,6 +3,7 @@
 
 stages:
   - lint
+  - test
   - deploy
 
 # 1. Automated Flutter Hygiene Analysis
@@ -18,7 +19,75 @@ flutter_analyze:
     - if: $CI_COMMIT_BRANCH == "master"
   allow_failure: true
 
-# 2. Deploy Web Audiobook Player to GitLab Pages
+# 2. Localized layout gate.
+#
+# The rules that keep a longer translation inside its box live in two places:
+# the source ratchets + button geometry in
+# `test/core/locale_layout_guard_test.dart`, and the worst-case sweep in
+# `test/support/locale_layout_harness.dart` (12 expansion locales x {390x844,
+# 320x568} viewports x {1.0x, 2.0x} text scale) used by every suite carrying the
+# `locale-sweep` tag. Nothing else makes them binding, so this job blocks.
+#
+# The sweep list is derived from the tag rather than typed out, but the run is
+# scoped to those files: selecting by tag alone makes the runner load every
+# other suite just to read its metadata. Tagging a new sweep suite is therefore
+# still all it takes to bring it into the gate.
+flutter_test_locale:
+  stage: test
+  image: ghcr.io/cirruslabs/flutter:latest
+  timeout: 20m
+  before_script:
+    - flutter doctor -v
+    # The image is normally Ubuntu with python3 already present.
+    - command -v python3 >/dev/null 2>&1 || (apt-get update && apt-get install -y python3)
+  script:
+    # The anti-pattern ratchets first: they are instant and catch the cheap ones.
+    - flutter pub get
+    - flutter test test/core/locale_layout_guard_test.dart
+    - LOCALE_SUITES=$(grep -rl "locale-sweep" test --include='*_test.dart')
+    - echo "Sweeping: $LOCALE_SUITES"
+    - flutter test --tags locale-sweep $LOCALE_SUITES
+    # Per-locale expansion report, kept for the reviewer of the merge request.
+    - mkdir -p build/reports
+    - python3 scratch/arb_expansion_audit.py --out build/reports/arb_expansion.txt
+    - head -n 12 build/reports/arb_expansion.txt
+  artifacts:
+    name: "locale-layout-$CI_COMMIT_SHORT_SHA"
+    when: always
+    expire_in: 30 days
+    paths:
+      - build/reports/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "master"
+
+# 2b. iPad / Pencil gate.
+#
+# The adaptive layer is verified in three places: the ratchets and the adoption
+# ledger in `test/core/adaptive_layout_guard_test.dart`, the phone-vs-tablet
+# contract of every primitive in `test/core/adaptive_layout_test.dart`, and every
+# suite carrying the `ipad-sweep` tag (the adaptive kit across `kIpadViewports`,
+# the deck screen's wide branch, and the Apple-Pencil input tests in
+# `test/features/flashcards/drawing_canvas_stylus_test.dart`).
+#
+# Same tag-derived pattern as the locale gate: tagging a suite is all it takes to
+# bring it into the gate.
+flutter_test_ipad:
+  stage: test
+  image: ghcr.io/cirruslabs/flutter:latest
+  timeout: 20m
+  script:
+    - flutter pub get
+    # Source guarantees first: instant, and they catch a removed wide branch.
+    - flutter test test/core/adaptive_layout_guard_test.dart test/core/adaptive_layout_test.dart
+    - IPAD_SUITES=$(grep -rl "ipad-sweep" test --include='*_test.dart')
+    - echo "Sweeping: $IPAD_SUITES"
+    - flutter test --tags ipad-sweep $IPAD_SUITES
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "master"
+
+# 3. Deploy Web Audiobook Player to GitLab Pages
 pages:
   stage: deploy
   image: alpine:latest

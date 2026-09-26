@@ -1,11 +1,12 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 enum DrawingStepMode { guided, ghost, anchors, recall }
 
@@ -31,24 +32,25 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
 
   void _onStrokeComplete(int strokeIndex, Size size) {
     HapticsManager.light();
-    
+
     // Determine total VALID strokes (ignoring separators for simplicity in MVP)
     // Note: If multi-char, this simple logic might need enhancement, but works for single chars.
-    final totalValidStrokes = widget.card.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').length;
-    
+    final totalValidStrokes =
+        widget.card.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').length;
+
     if (_currentStrokeIndex + 1 < totalValidStrokes) {
-       Future.delayed(const Duration(milliseconds: 150), () {
-         if (mounted) {
-           setState(() {
-             _currentStrokeIndex++;
-             _userPointsNotifier.value = [];
-           });
-         }
-       });
+      Future.delayed(const Duration(milliseconds: 150), () {
+        if (mounted) {
+          setState(() {
+            _currentStrokeIndex++;
+            _userPointsNotifier.value = [];
+          });
+        }
+      });
     } else {
       Future.delayed(const Duration(milliseconds: 600), () {
         if (mounted) {
-           _gradeAndFinish();
+          _gradeAndFinish();
         }
       });
     }
@@ -60,14 +62,16 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
     widget.onComplete(100.0);
   }
 
-
   @override
   Widget build(BuildContext context) {
     // Logic mapping
     final bool showReference = widget.mode != DrawingStepMode.recall;
-    final bool showGuideLines = widget.mode == DrawingStepMode.guided || widget.mode == DrawingStepMode.ghost;
-    const bool showAnimation = false; // Disable distracting animation loop in lesson mode
-    final Color referenceColor = widget.mode == DrawingStepMode.ghost ? Colors.grey : Colors.blue;
+    final bool showGuideLines = widget.mode == DrawingStepMode.guided ||
+        widget.mode == DrawingStepMode.ghost;
+    const bool showAnimation =
+        false; // Disable distracting animation loop in lesson mode
+    final Color referenceColor =
+        widget.mode == DrawingStepMode.ghost ? Colors.grey : Colors.blue;
     final bool strictGrading = widget.mode != DrawingStepMode.recall;
 
     return Column(
@@ -76,7 +80,10 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Text(
             _getInstruction(),
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.indigo),
+            style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.indigo),
             textAlign: TextAlign.center,
           ),
         ),
@@ -85,7 +92,10 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
               child: SizedBox(
-                width: 300, // Reduced size to prevent "allongé" feel
+                // The 300dp size is deliberate on a phone ("allongé" feel); an
+                // iPad has room for a real writing surface, which is the point of
+                // practising with a Pencil (Part 2b of the iPad plan).
+                width: zenValue(context, compact: 300.0, expanded: 460.0),
                 child: AspectRatio(
                   aspectRatio: 1.0,
                   child: DecoratedBox(
@@ -93,7 +103,10 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
                       color: Colors.white.withValues(alpha: 0.9),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
-                        BoxShadow(color: Colors.indigo.withValues(alpha: 0.1), blurRadius: 20, offset: const Offset(0, 8))
+                        BoxShadow(
+                            color: Colors.indigo.withValues(alpha: 0.1),
+                            blurRadius: 20,
+                            offset: const Offset(0, 8))
                       ],
                     ),
                     child: DrawingCanvas(
@@ -110,8 +123,10 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
                       currentStrokeIndex: _currentStrokeIndex,
                       onStrokeComplete: _onStrokeComplete,
                       showGrade: true,
-                      autoCenter: false, // Use original coordinates for perfect alignment
-                      masteryLevel: widget.card.masteryLevel(StudyMode.calligraphy),
+                      autoCenter:
+                          false, // Use original coordinates for perfect alignment
+                      masteryLevel:
+                          widget.card.masteryLevel(StudyMode.calligraphy),
                     ),
                   ),
                 ),
@@ -125,10 +140,14 @@ class _DrawingStepState extends ConsumerState<DrawingStep> {
 
   String _getInstruction() {
     switch (widget.mode) {
-      case DrawingStepMode.guided: return "Trace with the Guide";
-      case DrawingStepMode.ghost: return "Trace the Ghost";
-      case DrawingStepMode.anchors: return "Connect the Dots";
-      case DrawingStepMode.recall: return "Draw from Memory";
+      case DrawingStepMode.guided:
+        return "Trace with the Guide";
+      case DrawingStepMode.ghost:
+        return "Trace the Ghost";
+      case DrawingStepMode.anchors:
+        return "Connect the Dots";
+      case DrawingStepMode.recall:
+        return "Draw from Memory";
     }
   }
 }

@@ -41,6 +41,8 @@ Follows a **Feature-First Clean Architecture**.
 - **`ai_update_guidelines/`**: Modular standards for every tracking file.
 - **`archive/`**: Deep storage for resolved issues and old changelogs.
 - **`UI_UX_STANDARDS.md`**: The visual and haptic "Zen" guide.
+- **`IPAD_ADAPTIVE_PLAN.md`**: The iPad/adaptive-layout worklist — window classes, two-pane, Pencil/keyboard/pointer, and a priority row for all 61 screens.
+- **`AI_CACHING_ROADMAP.md`**: Every outbound API call and what should be cached on the phone or in Firebase — cacheability verdicts with priorities, the shared-cache pattern this codebase already proves, a privacy boundary, and workstreams W1–W7 with acceptance criteria.
 - **`ARCHITECTURAL_DECISIONS.md`**: Choices regarding ML, State, and Persistence.
 - **`FEATURE_MANIFEST.md`**: The pedagogical truth of implemented features.
 - **`ISSUES.md`**: Active bug and task tracker.

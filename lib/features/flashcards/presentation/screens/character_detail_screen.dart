@@ -30,6 +30,8 @@ import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -299,8 +301,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     final radicalChar = comp['radical']?.toString() ?? '';
     final info = comp['info'];
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
@@ -432,8 +434,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
                 height: canvasSize,
                 width: canvasSize,
                 child: _isLoadingStrokes
-                    ? const Center(
-                        child: ZenLoader(color: Colors.indigo))
+                    ? const Center(child: ZenLoader(color: Colors.indigo))
                     : currentCard.strokePaths.isEmpty
                         ? Center(
                             child: Text(
@@ -560,27 +561,72 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     );
   }
 
+  /// The detail sections as **data**, so the two arrangements below cannot
+  /// drift apart: the stacked one (phone / medium) and the columnar one
+  /// (expanded). The `KeyedSubtree` anchors stay attached either way, which is
+  /// what `_scrollToSection` aims at.
+  List<Widget> _detailSectionWidgets(BuildContext context, bool isDark) {
+    return <Widget>[
+      KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
+      if (_hasAnatomy)
+        KeyedSubtree(
+            key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
+      KeyedSubtree(
+          key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
+      // Only mounted when it has content, so the matching pill is the only
+      // way to reach it and can never scroll to an empty placeholder.
+      if (_hasCommonWords)
+        KeyedSubtree(
+            key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
+      KeyedSubtree(
+          key: _contextKey, child: _buildAiContextSection(context, isDark)),
+    ];
+  }
+
   Widget _buildDetailSections(BuildContext context, bool isDark) {
+    final List<Widget> sections = _detailSectionWidgets(context, isDark);
     return Column(
-      children: [
-        KeyedSubtree(key: _strokesKey, child: const SizedBox.shrink()),
-        if (_hasAnatomy) ...[
-          KeyedSubtree(
-              key: _anatomyKey, child: _buildAnatomySection(context, isDark)),
+      children: <Widget>[
+        for (int i = 0; i < sections.length; i++) ...<Widget>[
+          sections[i],
+          if (i < sections.length - 1) const SizedBox(height: 16),
         ],
-        const SizedBox(height: 16),
-        KeyedSubtree(
-            key: _notesKey, child: _buildPersonalNotesSection(context, isDark)),
-        const SizedBox(height: 16),
-        // Only mounted when it has content, so the matching pill is the only
-        // way to reach it and can never scroll to an empty placeholder.
-        if (_hasCommonWords) ...[
-          KeyedSubtree(
-              key: _wordsKey, child: _buildCommonWordsSection(context, isDark)),
-          const SizedBox(height: 16),
-        ],
-        KeyedSubtree(
-            key: _contextKey, child: _buildAiContextSection(context, isDark)),
+      ],
+    );
+  }
+
+  /// The same sections **side by side** instead of stacked.
+  ///
+  /// At expanded the pill bar and the single column both stop earning their
+  /// place: the pills exist to jump between stacked sections, and on a 1366pt
+  /// screen the width is there to show them at once. Even indices go left, odd
+  /// ones right — a deterministic split, because section heights are data-driven
+  /// and a "balance the columns" pass would be guesswork.
+  Widget _buildDetailColumns(BuildContext context, bool isDark) {
+    final List<Widget> sections = _detailSectionWidgets(context, isDark);
+    final List<Widget> left = <Widget>[];
+    final List<Widget> right = <Widget>[];
+    for (int i = 0; i < sections.length; i++) {
+      final List<Widget> target = i.isEven ? left : right;
+      if (target.isNotEmpty) target.add(const SizedBox(height: 16));
+      target.add(sections[i]);
+    }
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: left,
+          ),
+        ),
+        const SizedBox(width: 24),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: right,
+          ),
+        ),
       ],
     );
   }
@@ -593,8 +639,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           height: 60,
           child: ElevatedButton.icon(
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
+              zenSheet(
+                context,
                 useRootNavigator: true,
                 shape: const RoundedRectangleBorder(
                     borderRadius:
@@ -751,9 +797,16 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildPillTabBar(isDark, floating: false),
-                const SizedBox(height: 16),
-                _buildDetailSections(context, isDark),
+                // Expanded: the sections are columns, so the pill bar (whose only
+                // job is jumping between stacked sections) is not built at all —
+                // no dead control above content that is already on screen.
+                if (context.zenWindow.isExpanded) ...[
+                  _buildDetailColumns(context, isDark),
+                ] else ...[
+                  _buildPillTabBar(isDark, floating: false),
+                  const SizedBox(height: 16),
+                  _buildDetailSections(context, isDark),
+                ],
                 const SizedBox(height: 40),
                 _buildBottomActions(currentCard),
               ],
@@ -804,7 +857,13 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       body: CalligraphyBackground(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            if (constraints.maxWidth > 600) {
+            // Window class first — a Split View slice must not be handed the
+            // wide treatment just because a raw pixel count crossed a threshold
+            // — then the pane's own width, which is what actually has to fit
+            // the character card beside the detail column.
+            final ZenWindow window = context.zenWindow;
+            if (window.isAtLeastMedium &&
+                constraints.maxWidth > ZenBreakpoints.compactMax) {
               return _buildLandscapeLayout(
                   currentCard, masteryProgress, inLibrary, isDark);
             }
@@ -1103,6 +1162,22 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     if (_anatomyComponents.length == 1) {
       return _buildAnatomyCard(_anatomyComponents.first, isDark);
     }
+    // Expanded shows every component at once: the pills and the 220dp pager
+    // exist to page a narrow column, and a swipe carousel on a wide screen both
+    // hides content and fights two-finger trackpad scrolling.
+    if (context.zenWindow.isExpanded) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _anatomyComponents
+            .map((comp) => Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: _buildAnatomyCard(comp, isDark),
+                  ),
+                ))
+            .toList(),
+      );
+    }
     return Column(
       children: [
         Row(
@@ -1115,8 +1190,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               onTap: () {
                 setState(() => _activeAnatomyIndex = idx);
                 _pageController.animateToPage(idx,
-                    duration: ZenMotion.quick,
-                    curve: ZenMotion.natural);
+                    duration: ZenMotion.quick, curve: ZenMotion.natural);
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 6),
@@ -1549,7 +1623,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         child: const Center(
           child: Padding(
             padding: EdgeInsets.all(16.0),
-            child: CircularProgressIndicator(color: Colors.indigo),
+            child: ZenLoader(color: Colors.indigo),
           ),
         ),
       ),

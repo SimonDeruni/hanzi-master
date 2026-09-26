@@ -180,6 +180,94 @@ Future<bool> _showAnchoredQuickLook(
   return true;
 }
 
+/// A **non-modal** hover peek: the same body as the tap path, in an overlay entry
+/// rather than a route, so hovering never blocks the page underneath and repeated
+/// hovers cannot stack modal routes.
+///
+/// It is deliberately a *peek*: the overlay ignores pointers, so the page stays
+/// fully interactive and a tap still opens the real sheet with its actions.
+///
+/// The caller owns the lifecycle — [QuickLookPeekHandle.dismiss] removes it.
+class QuickLookPeekHandle {
+  QuickLookPeekHandle._(this._entry);
+
+  final OverlayEntry _entry;
+  bool _dismissed = false;
+
+  void dismiss() {
+    if (_dismissed) return;
+    _dismissed = true;
+    if (_entry.mounted) _entry.remove();
+  }
+}
+
+/// Marker around the peek overlay, so a test can assert presence/absence without
+/// depending on the body's loading state.
+class QuickLookPeekOverlay extends StatelessWidget {
+  const QuickLookPeekOverlay({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => child;
+}
+
+/// Shows the hover peek for [hanzi] near [anchorPosition]. Returns `null` when
+/// there is no room (or no overlay), in which case the caller can fall back to
+/// the tap path.
+QuickLookPeekHandle? showQuickLookPeek(
+  BuildContext context,
+  String hanzi, {
+  required Offset anchorPosition,
+  String? contextText,
+  Flashcard? card,
+}) {
+  if (hanzi.isEmpty) return null;
+  final OverlayState? overlay = Overlay.maybeOf(context, rootOverlay: true);
+  if (overlay == null) return null;
+
+  final MediaQueryData mediaQuery = MediaQuery.of(context);
+  final QuickLookPopoverLayout? layout = calculateQuickLookPopoverLayout(
+    viewportSize: mediaQuery.size,
+    safePadding: EdgeInsets.only(
+      top: math.max(mediaQuery.padding.top, mediaQuery.viewPadding.top),
+      bottom:
+          math.max(mediaQuery.padding.bottom, mediaQuery.viewPadding.bottom),
+      left: math.max(mediaQuery.padding.left, mediaQuery.viewPadding.left),
+      right: math.max(mediaQuery.padding.right, mediaQuery.viewPadding.right),
+    ),
+    anchorRect: Rect.fromCircle(center: anchorPosition, radius: 12),
+    textScaleFactor: mediaQuery.textScaler.scale(1),
+  );
+  if (layout == null) return null;
+
+  final OverlayEntry entry = OverlayEntry(
+    builder: (BuildContext overlayContext) => Positioned(
+      left: layout.left,
+      top: layout.top,
+      bottom: layout.bottom,
+      width: layout.width,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: layout.maxHeight),
+        child: QuickLookPeekOverlay(
+          // A peek, not a dialog: the pointer goes straight through it.
+          child: IgnorePointer(
+            child: _QuickLookPopover(
+              child: _QuickLookSheet(
+                hanzi: hanzi,
+                contextText: contextText,
+                initialCard: card,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+  overlay.insert(entry);
+  return QuickLookPeekHandle._(entry);
+}
+
 class _QuickLookPopover extends StatelessWidget {
   final Widget child;
 
@@ -250,17 +338,18 @@ class _QuickLookSheet extends ConsumerWidget {
     return asyncCard.when(
       loading: () => _LoadingBody(isDark: isDark),
       error: (_, __) => _NotFoundBody(hanzi: hanzi, isDark: isDark),
-      data: (card) => card == null
-          ? _NotFoundBody(hanzi: hanzi, isDark: isDark)
-          : _FoundBody(
-              card: card,
-              isDark: isDark,
-              inDeck: inDeck,
-              asyncCommon: asyncCommon,
-              contextText: contextText,
-              tappedHanzi: hanzi,
-              autoExpand: autoExpand,
-            ),
+      data: (card) => ZenFadeIn(
+          child: card == null
+              ? _NotFoundBody(hanzi: hanzi, isDark: isDark)
+              : _FoundBody(
+                  card: card,
+                  isDark: isDark,
+                  inDeck: inDeck,
+                  asyncCommon: asyncCommon,
+                  contextText: contextText,
+                  tappedHanzi: hanzi,
+                  autoExpand: autoExpand,
+                )),
     );
   }
 }

@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 
 /// CJK Unified Ideographs: basic block + Ext-A + Compatibility Ideographs.
@@ -22,9 +26,16 @@ final _cjkPattern = RegExp(
 abstract class _TappableBase extends StatefulWidget {
   final QuickLookPresentation quickLookPresentation;
 
+  /// On a pointer device — an iPad with a trackpad or Magic Keyboard, or a mouse
+  /// — hovering a character shows a non-modal **peek**: the same body the tap
+  /// opens, without the sheet or its barrier (see [showQuickLookPeek]). Dense
+  /// prose can pass `false` to keep tapping as the only way in.
+  final bool hoverPeek;
+
   const _TappableBase({
     super.key,
     this.quickLookPresentation = QuickLookPresentation.bottomSheet,
+    this.hoverPeek = true,
   });
 }
 
@@ -81,8 +92,97 @@ abstract class _TappableBaseState<T extends _TappableBase> extends State<T> {
 
   void _rebuildSpans();
 
+  // -------------------------------------------------------------------------
+  // Hover peek (pointer devices)
+  // -------------------------------------------------------------------------
+
+  final GlobalKey _hoverKey = GlobalKey();
+  QuickLookPeekHandle? _peek;
+  Timer? _peekIntent;
+  Timer? _peekGrace;
+  String? _peekedChar;
+
+  /// The text this widget actually renders, used to map a hover position to a
+  /// character. `null` disables the peek for a subclass whose rendered text
+  /// differs from its source — the markdown bubble pre-processes its markers, so
+  /// paragraph offsets would point at the wrong character.
+  @protected
+  String? get hoverSourceText => null;
+
+  bool get _hoverPeekAvailable =>
+      widget.hoverPeek &&
+      hoverSourceText != null &&
+      ZenWindow.of(context).isAtLeastMedium;
+
+  void _dismissPeek() {
+    _peek?.dismiss();
+    _peek = null;
+    _peekedChar = null;
+  }
+
+  void _cancelPeekTimers() {
+    _peekIntent?.cancel();
+    _peekGrace?.cancel();
+    _peekIntent = null;
+    _peekGrace = null;
+  }
+
+  void _onHoverPeek(PointerHoverEvent event) {
+    if (!_hoverPeekAvailable) return;
+    if (event.kind != PointerDeviceKind.mouse &&
+        event.kind != PointerDeviceKind.stylus &&
+        event.kind != PointerDeviceKind.invertedStylus &&
+        event.kind != PointerDeviceKind.trackpad) {
+      return;
+    }
+    final String text = hoverSourceText!;
+    final RenderObject? render = _hoverKey.currentContext?.findRenderObject();
+    if (render is! RenderParagraph) return;
+    final TextPosition position =
+        render.getPositionForOffset(render.globalToLocal(event.position));
+    if (position.offset < 0 || position.offset >= text.length) return;
+    final String char = text[position.offset];
+    if (!_cjkPattern.hasMatch(char)) return;
+
+    // Already showing this character: keep it, and cancel the pending leave.
+    _peekGrace?.cancel();
+    if (_peekedChar == char && _peek != null) return;
+
+    // Hover *intent*: a pointer crossing the text must not flash a card per
+    // character it passes over.
+    _peekIntent?.cancel();
+    _peekIntent = Timer(const Duration(milliseconds: 320), () {
+      if (!mounted) return;
+      _dismissPeek();
+      _peek = showQuickLookPeek(context, char, anchorPosition: event.position);
+      if (_peek != null) _peekedChar = char;
+    });
+  }
+
+  void _onHoverPeekExit(PointerEvent event) {
+    _peekIntent?.cancel();
+    if (_peek == null) return;
+    // Grace period, so crossing a character boundary or the padding between two
+    // lines does not dismiss and re-show the card.
+    _peekGrace?.cancel();
+    _peekGrace = Timer(const Duration(milliseconds: 520), () {
+      if (mounted) _dismissPeek();
+    });
+  }
+
+  /// Wraps a rendered paragraph so it can be peeked. The key is what makes the
+  /// hit-test exact: the paragraph itself maps the pointer to a text offset.
+  @protected
+  Widget withHoverPeek(Widget child) => MouseRegion(
+        onHover: _onHoverPeek,
+        onExit: _onHoverPeekExit,
+        child: KeyedSubtree(key: _hoverKey, child: child),
+      );
+
   @override
   void dispose() {
+    _cancelPeekTimers();
+    _dismissPeek();
     _disposeRecognizers();
     super.dispose();
   }
@@ -107,6 +207,7 @@ class TappableHanziText extends _TappableBase {
     this.maxLines,
     this.overflow,
     super.quickLookPresentation,
+    super.hoverPeek,
   });
 
   @override
@@ -175,14 +276,21 @@ class _TappableHanziTextState extends _TappableBaseState<TappableHanziText> {
         : spans;
   }
 
+  /// The rendered text *is* the source text here, so paragraph offsets map 1:1
+  /// onto characters and the hover peek can hit-test exactly.
+  @override
+  String? get hoverSourceText => widget.text;
+
   @override
   Widget build(BuildContext context) {
     final spans = _spans ?? [];
-    return RichText(
-      textAlign: widget.textAlign,
-      maxLines: widget.maxLines,
-      overflow: widget.overflow ?? TextOverflow.clip,
-      text: TextSpan(children: spans),
+    return withHoverPeek(
+      RichText(
+        textAlign: widget.textAlign,
+        maxLines: widget.maxLines,
+        overflow: widget.overflow ?? TextOverflow.clip,
+        text: TextSpan(children: spans),
+      ),
     );
   }
 }

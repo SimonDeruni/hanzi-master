@@ -45,7 +45,9 @@ void main() {
       // modal to the full screen, stranding two deck rows in empty paper.
       expect(source, isNot(contains('return Expanded(')));
       expect(source, contains('mainAxisSize: MainAxisSize.min'));
-      expect(source, contains('MediaQuery.of(context).size.height * 0.45'));
+      // `MediaQuery.of(context).size` was renamed to `MediaQuery.sizeOf(context)`
+      // when the iPad pass made the viewports real (docs/IPAD_ADAPTIVE_PLAN.md, F3).
+      expect(source, contains('MediaQuery.sizeOf(context).height * 0.45'));
       expect(source, contains('shrinkWrap: true'));
     });
   });

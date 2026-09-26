@@ -23,10 +23,12 @@ class CalligraphyCanvasDialog extends ConsumerStatefulWidget {
   const CalligraphyCanvasDialog({super.key, required this.card});
 
   @override
-  ConsumerState<CalligraphyCanvasDialog> createState() => _CalligraphyCanvasDialogState();
+  ConsumerState<CalligraphyCanvasDialog> createState() =>
+      _CalligraphyCanvasDialogState();
 }
 
-class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialog> {
+class _CalligraphyCanvasDialogState
+    extends ConsumerState<CalligraphyCanvasDialog> {
   final ValueNotifier<List<ui.Offset?>> _scratchpadNotifier = ValueNotifier([]);
   Flashcard? _hydratedCard;
   bool _isLoading = false;
@@ -46,7 +48,9 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
   }
 
   Future<void> _hydrateStrokes() async {
-    final updatedCard = await ref.read(flashcardControllerProvider.notifier).loadStrokesFor(widget.card);
+    final updatedCard = await ref
+        .read(flashcardControllerProvider.notifier)
+        .loadStrokesFor(widget.card);
     if (mounted) {
       setState(() {
         _hydratedCard = updatedCard;
@@ -66,8 +70,10 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
 
   void _onStrokeComplete(int index, ui.Size canvasSize) {
     if (!mounted || _hydratedCard == null) return;
-    final totalStrokes = _hydratedCard!.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').length;
-    
+    final totalStrokes = _hydratedCard!.strokePaths
+        .where((s) => s != '__CHAR_SEPARATOR__')
+        .length;
+
     if (index < totalStrokes - 1) {
       setState(() {
         _currentStrokeIndex = index + 1;
@@ -118,9 +124,9 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(16),
       child: Container(
-        height: MediaQuery.of(context).orientation == Orientation.landscape 
-            ? MediaQuery.of(context).size.height * 0.95 
-            : MediaQuery.of(context).size.height * 0.7,
+        height: MediaQuery.of(context).orientation == Orientation.landscape
+            ? MediaQuery.sizeOf(context).height * 0.95
+            : MediaQuery.sizeOf(context).height * 0.7,
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(24),
@@ -138,12 +144,20 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                     icon: Icon(Icons.close, color: textColor),
                     onPressed: () => Navigator.pop(context),
                   ),
-                  Text(
-                    AppLocalizations.of(context)?.traceCharacter ?? 'Trace Character',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
+                  // Flexible: "Trace Character" is much longer in German and
+                  // French, and the row also carries a refresh button.
+                  Expanded(
+                    child: Text(
+                      AppLocalizations.of(context)?.traceCharacter ??
+                          'Trace Character',
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
                     ),
                   ),
                   IconButton(
@@ -153,7 +167,7 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                 ],
               ),
             ),
-            
+
             Expanded(
               child: Center(
                 child: _isComplete
@@ -172,13 +186,16 @@ class _CalligraphyCanvasDialogState extends ConsumerState<CalligraphyCanvasDialo
                             child: _isLoading
                                 ? const Center(child: ZenLoader())
                                 : DrawingCanvas(
-                                    strokePaths: _hydratedCard?.strokePaths ?? [],
-                                    medianPaths: _hydratedCard?.medianPaths ?? [],
+                                    strokePaths:
+                                        _hydratedCard?.strokePaths ?? [],
+                                    medianPaths:
+                                        _hydratedCard?.medianPaths ?? [],
                                     showAnimation: false,
                                     strokeByStrokeMode: true,
                                     currentStrokeIndex: _currentStrokeIndex,
                                     onStrokeComplete: _onStrokeComplete,
-                                    isFlipped: _hydratedCard?.isFlipped ?? false,
+                                    isFlipped:
+                                        _hydratedCard?.isFlipped ?? false,
                                     readOnly: _isComplete,
                                     showControls: true,
                                     showGrade: false,

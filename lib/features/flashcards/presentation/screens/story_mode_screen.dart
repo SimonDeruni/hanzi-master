@@ -12,10 +12,22 @@ import 'package:hanzi_master/features/reading/data/repositories/story_repository
 import 'package:hanzi_master/features/reading/domain/entities/graded_story.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
-final storyProvider = FutureProvider.family<AiStory, ({String deckId, String deckName, String vocabString, bool force})>((ref, args) async {
+final storyProvider = FutureProvider.family<
+    AiStory,
+    ({
+      String deckId,
+      String deckName,
+      String vocabString,
+      bool force
+    })>((ref, args) async {
   final gemini = ref.read(geminiServiceProvider);
-  return await gemini.generateStory(args.deckId, args.deckName, args.vocabString.split(','), forceRegenerate: args.force);
+  return await gemini.generateStory(
+      args.deckId, args.deckName, args.vocabString.split(','),
+      forceRegenerate: args.force);
 });
 
 enum _PinyinMode { all, ghost, none }
@@ -169,9 +181,8 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
     await ref.read(storyRepositoryProvider).saveStory(gradedStory);
     if (mounted) {
       setState(() => _isSaved = true);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.storySavedToLibrary)),
-      );
+      ZenToast.success(
+          context, AppLocalizations.of(context)!.storySavedToLibrary);
     }
   }
 
@@ -194,11 +205,14 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
     )));
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+      backgroundColor:
+          isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.aiStory,
-          style: TextStyle(fontFamily: 'NotoSerifSC', color: isDark ? Colors.white : Colors.black87),
+          style: TextStyle(
+              fontFamily: 'NotoSerifSC',
+              color: isDark ? Colors.white : Colors.black87),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -234,10 +248,12 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
             });
           }
 
-          return Column(
+          return ZenFadeIn(
+              child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -252,9 +268,12 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                         });
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 4),
                         decoration: BoxDecoration(
-                          color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
+                          color: isDark
+                              ? Colors.white10
+                              : Colors.black.withValues(alpha: 0.06),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -276,184 +295,222 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       color: isDark ? const Color(0xFF252529) : Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+                      border: Border.all(
+                          color: isDark ? Colors.white12 : Colors.black12),
                     ),
                     child: Builder(builder: (context) {
                       int globalStringOffset = 0;
                       List<Widget> sentenceWidgets = [];
 
-                      for (int index = 0; index < story.sentences.length; index++) {
+                      for (int index = 0;
+                          index < story.sentences.length;
+                          index++) {
                         if (index > 0) {
                           sentenceWidgets.add(const SizedBox(height: 24));
                         }
-                        
+
                         final sentence = story.sentences[index];
-                        final isTranslated = _translatedSentences.contains(index);
+                        final isTranslated =
+                            _translatedSentences.contains(index);
                         final isPlaying = _isPlaying || _isPaused;
                         int currentStringOffset = globalStringOffset;
 
-                        sentenceWidgets.add(
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Wrap(
-                                      spacing: 8.0,
-                                      runSpacing: 16.0,
-                                      children: sentence.words.map((word) {
-                                        final wordStart = currentStringOffset;
-                                        currentStringOffset += word.hanzi.length;
-                                        final wordEnd = currentStringOffset;
+                        sentenceWidgets.add(Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Wrap(
+                                    spacing: 8.0,
+                                    runSpacing: 16.0,
+                                    children: sentence.words.map((word) {
+                                      final wordStart = currentStringOffset;
+                                      currentStringOffset += word.hanzi.length;
+                                      final wordEnd = currentStringOffset;
 
-                                        final isBeingSpoken = isPlaying &&
-                                            _playingStartOffset >= 0 &&
-                                            wordStart <= _playingStartOffset &&
-                                            (_playingEndOffset > 0
-                                                ? wordStart < _playingEndOffset
-                                                : wordEnd > _playingStartOffset);
-                                        final isDue = dueWords.contains(word.hanzi);
-                                        final isPunctuation = RegExp(r'[^\w\s\u4e00-\u9fa5]', unicode: true).hasMatch(word.hanzi) || word.hanzi.trim().isEmpty;
+                                      final isBeingSpoken = isPlaying &&
+                                          _playingStartOffset >= 0 &&
+                                          wordStart <= _playingStartOffset &&
+                                          (_playingEndOffset > 0
+                                              ? wordStart < _playingEndOffset
+                                              : wordEnd > _playingStartOffset);
+                                      final isDue =
+                                          dueWords.contains(word.hanzi);
+                                      final isPunctuation = RegExp(
+                                                  r'[^\w\s\u4e00-\u9fa5]',
+                                                  unicode: true)
+                                              .hasMatch(word.hanzi) ||
+                                          word.hanzi.trim().isEmpty;
 
-                                        if (isPunctuation) {
-                                          return Padding(
-                                            key: ValueKey('punct_$wordStart'),
-                                            padding: const EdgeInsets.only(top: 8.0),
-                                            child: Text(
-                                              word.hanzi,
-                                              style: TextStyle(
-                                                fontFamily: 'NotoSerifSC',
-                                                fontSize: 26,
-                                                color: isDark ? Colors.white70 : Colors.black87,
-                                              ),
-                                            ),
-                                          );
-                                        }
-
-                                        final quickLookWordKey = '${index}_${wordStart}_${word.hanzi}';
-                                        final isQuickLookSelected = _quickLookSelectedWordKey == quickLookWordKey;
-
-                                        return GestureDetector(
-                                          key: ValueKey('word_$wordStart'),
-                                          onTapDown: (details) {
-                                            _tapPosition = details.globalPosition;
-                                          },
-                                          onTap: () async {
-                                            setState(() {
-                                              _quickLookSelectedWordKey = quickLookWordKey;
-                                            });
-                                            await showQuickLook(
-                                              context,
-                                              word.hanzi,
-                                              contextText: sentence.chinese,
-                                              anchorPosition: _tapPosition,
-                                              onDismiss: () {
-                                                if (mounted) {
-                                                  setState(() {
-                                                    if (_quickLookSelectedWordKey == quickLookWordKey) {
-                                                      _quickLookSelectedWordKey = null;
-                                                    }
-                                                  });
-                                                }
-                                              },
-                                            );
-                                            if (mounted) {
-                                              setState(() {
-                                                if (_quickLookSelectedWordKey == quickLookWordKey) {
-                                                  _quickLookSelectedWordKey = null;
-                                                }
-                                              });
-                                            }
-                                          },
-                                          child: AnimatedContainer(
-                                            duration: ZenMotion.of(context, ZenMotion.swap),
-                                            padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                                            decoration: BoxDecoration(
-                                              color: isQuickLookSelected
-                                                  ? const Color(0xFF4F46E5).withValues(alpha: 0.22)
-                                                  : Colors.transparent,
-                                              borderRadius: BorderRadius.circular(6),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Text(
-                                                  word.hanzi,
-                                                  style: TextStyle(
-                                                    fontFamily: 'NotoSerifSC',
-                                                    fontSize: 28,
-                                                    fontWeight: isDue ? FontWeight.w900 : FontWeight.w600,
-                                                    color: isQuickLookSelected
-                                                        ? const Color(0xFF4F46E5)
-                                                        : isBeingSpoken
-                                                            ? Colors.orange
-                                                            : isDue
-                                                                ? const Color(0xFFD4AF37)
-                                                                : (isDark ? Colors.white : Colors.black87),
-                                                  ),
-                                                ),
-                                                if (_pinyinMode != _PinyinMode.none && (_pinyinMode == _PinyinMode.all || isBeingSpoken))
-                                                  Text(
-                                                    word.pinyin,
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: isBeingSpoken
-                                                          ? Colors.orange.shade300
-                                                          : Colors.blueAccent,
-                                                    ),
-                                                  ),
-                                              ],
+                                      if (isPunctuation) {
+                                        return Padding(
+                                          key: ValueKey('punct_$wordStart'),
+                                          padding:
+                                              const EdgeInsets.only(top: 8.0),
+                                          child: Text(
+                                            word.hanzi,
+                                            style: TextStyle(
+                                              fontFamily: 'NotoSerifSC',
+                                              fontSize: 26,
+                                              color: isDark
+                                                  ? Colors.white70
+                                                  : Colors.black87,
                                             ),
                                           ),
                                         );
-                                      }).toList(),
-                                    ),
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(Icons.translate, color: Colors.grey),
-                                    onPressed: () {
-                                      setState(() {
-                                        if (isTranslated) {
-                                          _translatedSentences.remove(index);
-                                        } else {
-                                          _translatedSentences.add(index);
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                              if (isTranslated) ...[
-                                const SizedBox(height: 12),
-                                Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: isDark ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.02),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Text(
-                                    sentence.english,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      height: 1.5,
-                                      color: isDark ? Colors.white70 : Colors.black87,
-                                      fontStyle: FontStyle.italic,
-                                    ),
+                                      }
+
+                                      final quickLookWordKey =
+                                          '${index}_${wordStart}_${word.hanzi}';
+                                      final isQuickLookSelected =
+                                          _quickLookSelectedWordKey ==
+                                              quickLookWordKey;
+
+                                      return GestureDetector(
+                                        key: ValueKey('word_$wordStart'),
+                                        onTapDown: (details) {
+                                          _tapPosition = details.globalPosition;
+                                        },
+                                        onTap: () async {
+                                          setState(() {
+                                            _quickLookSelectedWordKey =
+                                                quickLookWordKey;
+                                          });
+                                          await showQuickLook(
+                                            context,
+                                            word.hanzi,
+                                            contextText: sentence.chinese,
+                                            anchorPosition: _tapPosition,
+                                            onDismiss: () {
+                                              if (mounted) {
+                                                setState(() {
+                                                  if (_quickLookSelectedWordKey ==
+                                                      quickLookWordKey) {
+                                                    _quickLookSelectedWordKey =
+                                                        null;
+                                                  }
+                                                });
+                                              }
+                                            },
+                                          );
+                                          if (mounted) {
+                                            setState(() {
+                                              if (_quickLookSelectedWordKey ==
+                                                  quickLookWordKey) {
+                                                _quickLookSelectedWordKey =
+                                                    null;
+                                              }
+                                            });
+                                          }
+                                        },
+                                        child: AnimatedContainer(
+                                          duration: ZenMotion.of(
+                                              context, ZenMotion.swap),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 3, vertical: 2),
+                                          decoration: BoxDecoration(
+                                            color: isQuickLookSelected
+                                                ? const Color(0xFF4F46E5)
+                                                    .withValues(alpha: 0.22)
+                                                : Colors.transparent,
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                word.hanzi,
+                                                style: TextStyle(
+                                                  fontFamily: 'NotoSerifSC',
+                                                  fontSize: 28,
+                                                  fontWeight: isDue
+                                                      ? FontWeight.w900
+                                                      : FontWeight.w600,
+                                                  color: isQuickLookSelected
+                                                      ? const Color(0xFF4F46E5)
+                                                      : isBeingSpoken
+                                                          ? Colors.orange
+                                                          : isDue
+                                                              ? const Color(
+                                                                  0xFFD4AF37)
+                                                              : (isDark
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .black87),
+                                                ),
+                                              ),
+                                              if (_pinyinMode !=
+                                                      _PinyinMode.none &&
+                                                  (_pinyinMode ==
+                                                          _PinyinMode.all ||
+                                                      isBeingSpoken))
+                                                Text(
+                                                  word.pinyin,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: isBeingSpoken
+                                                        ? Colors.orange.shade300
+                                                        : Colors.blueAccent,
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
                                   ),
                                 ),
+                                IconButton(
+                                  icon: const Icon(Icons.translate,
+                                      color: Colors.grey),
+                                  onPressed: () {
+                                    setState(() {
+                                      if (isTranslated) {
+                                        _translatedSentences.remove(index);
+                                      } else {
+                                        _translatedSentences.add(index);
+                                      }
+                                    });
+                                  },
+                                ),
                               ],
+                            ),
+                            if (isTranslated) ...[
+                              const SizedBox(height: 12),
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: isDark
+                                      ? Colors.white.withValues(alpha: 0.05)
+                                      : Colors.black.withValues(alpha: 0.02),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  sentence.english,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    height: 1.5,
+                                    color: isDark
+                                        ? Colors.white70
+                                        : Colors.black87,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ),
                             ],
-                          )
-                        );
+                          ],
+                        ));
                         globalStringOffset = currentStringOffset;
                       }
 
@@ -466,13 +523,13 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                 ),
               ),
             ],
-          );
+          ));
         },
         loading: () => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircularProgressIndicator(color: Colors.purple),
+              const ZenLoader(color: Colors.purple),
               const SizedBox(height: 24),
               Text(
                 AppLocalizations.of(context)!.geminiFlashIsStructuring,
@@ -483,7 +540,8 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(AppLocalizations.of(context)!.usingYourDecksVocabulary, style: const TextStyle(color: Colors.grey)),
+              Text(AppLocalizations.of(context)!.usingYourDecksVocabulary,
+                  style: const TextStyle(color: Colors.grey)),
             ],
           ),
         ),
@@ -495,7 +553,8 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
               children: [
                 const Icon(Icons.error_outline, size: 64, color: Colors.red),
                 const SizedBox(height: 16),
-                Text("Failed to generate story:\n$e", textAlign: TextAlign.center),
+                Text("Failed to generate story:\n$e",
+                    textAlign: TextAlign.center),
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () {
@@ -513,21 +572,25 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
           ? Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-                border: Border(top: BorderSide(color: isDark ? Colors.white12 : Colors.black12)),
+                color:
+                    isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                border: Border(
+                    top: BorderSide(
+                        color: isDark ? Colors.white12 : Colors.black12)),
               ),
               child: SafeArea(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-
                     TextButton.icon(
-                      icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow, size: 20),
+                      icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow,
+                          size: 20),
                       label: Text(_isPlaying
                           ? AppLocalizations.of(context)!.pause
                           : AppLocalizations.of(context)!.play),
                       style: TextButton.styleFrom(
-                        foregroundColor: isDark ? Colors.white70 : Colors.black87,
+                        foregroundColor:
+                            isDark ? Colors.white70 : Colors.black87,
                       ),
                       onPressed: () => _togglePlay(asyncStory.value!),
                     ),
@@ -535,23 +598,31 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                       icon: const Icon(Icons.translate, size: 20),
                       label: Text(AppLocalizations.of(context)!.translate),
                       style: TextButton.styleFrom(
-                        foregroundColor: isDark ? Colors.white70 : Colors.black87,
+                        foregroundColor:
+                            isDark ? Colors.white70 : Colors.black87,
                       ),
                       onPressed: () {
                         final story = asyncStory.value!;
-                        showModalBottomSheet(
-                          context: context,
+                        zenSheet(
+                          context,
                           backgroundColor: Colors.transparent,
                           isScrollControlled: true,
                           builder: (context) {
-                            final fullEnglish = story.sentences.map((s) => s.english).join('\n\n');
+                            final fullEnglish = story.sentences
+                                .map((s) => s.english)
+                                .join('\n\n');
                             return Container(
                               margin: const EdgeInsets.all(16),
                               padding: const EdgeInsets.all(24),
                               decoration: BoxDecoration(
-                                color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+                                color: isDark
+                                    ? const Color(0xFF1A1A1B)
+                                    : const Color(0xFFFDFCF0),
                                 borderRadius: BorderRadius.circular(24),
-                                border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+                                border: Border.all(
+                                    color: isDark
+                                        ? Colors.white12
+                                        : Colors.black12),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black.withValues(alpha: 0.2),
@@ -564,29 +635,35 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                 top: false,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         // Expanded: the localized title yields
                                         // space instead of pushing the close
                                         // button off screen.
                                         Expanded(
                                           child: Text(
-                                            AppLocalizations.of(context)!.fullTranslation,
+                                            AppLocalizations.of(context)!
+                                                .fullTranslation,
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
-                                              color: isDark ? Colors.white : Colors.black87,
+                                              color: isDark
+                                                  ? Colors.white
+                                                  : Colors.black87,
                                             ),
                                           ),
                                         ),
                                         IconButton(
                                           icon: const Icon(Icons.close),
-                                          onPressed: () => Navigator.pop(context),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
                                         ),
                                       ],
                                     ),
@@ -598,7 +675,9 @@ class _StoryModeScreenState extends ConsumerState<StoryModeScreen> {
                                           style: TextStyle(
                                             fontSize: 16,
                                             height: 1.6,
-                                            color: isDark ? Colors.white70 : Colors.black87,
+                                            color: isDark
+                                                ? Colors.white70
+                                                : Colors.black87,
                                           ),
                                         ),
                                       ),

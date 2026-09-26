@@ -1,0 +1,23 @@
+# Test-runner configuration.
+#
+# `locale-sweep` marks the suites that render real widgets across the worst-case
+# matrix in `test/support/locale_layout_harness.dart` (12 expansion locales x
+# {390x844, 320x568} viewports x {1.0x, 2.0x} text scale) plus the source guards
+# that stop the layout anti-patterns from coming back. CI runs exactly these as
+# one blocking gate:
+#
+#   flutter test --tags locale-sweep
+#
+# `ipad-sweep` marks the suites that render the adaptive kit (and, from Phase 3
+# on, the real screens) across `kIpadViewports` + landscape phones — see
+# docs/IPAD_ADAPTIVE_PLAN.md. It is separate because it is a wider matrix:
+#
+#   flutter test --tags ipad-sweep
+#
+# Declared here so `--tags` / `--exclude-tags` can select it. By default every
+# test still runs, tags only matter when asked for.
+tags:
+  locale-sweep:
+    skip: false
+  ipad-sweep:
+    skip: false

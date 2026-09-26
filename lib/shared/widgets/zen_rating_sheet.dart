@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/app_rating_service.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 /// Calligraphic bottom sheet modal offering a sentiment check ("Happy Filter")
 /// before routing happy learners to the App Store 5-star review dialog
@@ -22,8 +23,7 @@ class ZenRatingSheet extends ConsumerWidget {
     String trigger = 'milestone',
   }) {
     HapticsManager.light();
-    return showModalBottomSheet<bool>(
-      context: context,
+    return zenSheet<bool>(context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -112,7 +112,7 @@ class ZenRatingSheet extends ConsumerWidget {
             l10n.enjoyingAppTitle,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'Serif',
+              fontFamily: 'NotoSerifSC',
               fontSize: 20,
               fontWeight: FontWeight.w800,
               color: primaryText,

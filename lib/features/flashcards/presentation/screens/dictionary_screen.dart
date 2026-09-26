@@ -30,11 +30,13 @@ import 'package:hanzi_master/core/utils/definition_formatter.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
   const DictionaryScreen({super.key});
@@ -97,75 +99,81 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
 
     return Scaffold(
       body: CalligraphyBackground(
-        child: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics(),
-          ),
-          slivers: [
-            GlobalSliverAppBar(
-              title: l10n?.scholarsLibrary ?? "The Scholar's Library",
-              actions: const [],
-              showBackButton: false,
+        // A hub rather than a reader: the cap stops the shelf rows from
+        // stretching across a 1366dp iPad while still leaving the grids wide.
+        child: ZenContentPane(
+          maxWidth: 1100,
+          padding: EdgeInsets.zero,
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ZenSearchBar(
-                        controller: _searchController,
-                        focusNode: _searchFocusNode,
-                        hintText: l10n?.searchPinyinHanziEnglish ??
-                            AppLocalizations.of(context)!
-                                .searchPinyinHanziEnglish,
-                        onChanged: (value) =>
-                            setState(() => _searchQuery = value),
+            slivers: [
+              GlobalSliverAppBar(
+                title: l10n?.scholarsLibrary ?? "The Scholar's Library",
+                actions: const [],
+                showBackButton: false,
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ZenSearchBar(
+                          controller: _searchController,
+                          focusNode: _searchFocusNode,
+                          hintText: l10n?.searchPinyinHanziEnglish ??
+                              AppLocalizations.of(context)!
+                                  .searchPinyinHanziEnglish,
+                          onChanged: (value) =>
+                              setState(() => _searchQuery = value),
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: theme.colorScheme.primary
-                                .withValues(alpha: 0.3),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
+                      const SizedBox(width: 12),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: theme.colorScheme.primary
+                                  .withValues(alpha: 0.3),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.camera_alt),
+                          color: theme.colorScheme.onPrimary,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                SwipeBackPageRoute(
+                                    builder: (context) =>
+                                        const UniversalScannerScreen(
+                                            intent: CameraIntent.dictionary)));
+                          },
+                        ),
                       ),
-                      child: IconButton(
-                        icon: const Icon(Icons.camera_alt),
-                        color: theme.colorScheme.onPrimary,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              SwipeBackPageRoute(
-                                  builder: (context) =>
-                                      const UniversalScannerScreen(
-                                          intent: CameraIntent.dictionary)));
-                        },
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ..._buildLibrarySlivers(
-              context: context,
-              ref: ref,
-              isDark: isDark,
-              l10n: l10n,
-              searchQuery: _searchQuery,
-              asyncFlashcards: asyncFlashcards,
-              asyncDecks: asyncDecks,
-              asyncMasterResults: asyncMasterResults,
-            ),
-          ],
+              ..._buildLibrarySlivers(
+                context: context,
+                ref: ref,
+                isDark: isDark,
+                l10n: l10n,
+                searchQuery: _searchQuery,
+                asyncFlashcards: asyncFlashcards,
+                asyncDecks: asyncDecks,
+                asyncMasterResults: asyncMasterResults,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -500,8 +508,7 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
               loading: () => const SliverToBoxAdapter(
                   child: Center(
                       child: Padding(
-                          padding: EdgeInsets.all(32),
-                          child: CircularProgressIndicator()))),
+                          padding: EdgeInsets.all(32), child: ZenLoader()))),
               error: (e, s) => SliverToBoxAdapter(
                 child: Center(
                   child: Padding(
@@ -926,12 +933,11 @@ class _RadicalLibraryTabState extends ConsumerState<_RadicalLibraryTab> {
 
     return GridView.builder(
       padding: const EdgeInsets.all(24),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 0.8,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-      ),
+      gridDelegate: ZenGrid.tiles(
+          maxTileWidth: 114,
+          childAspectRatio: 0.8,
+          crossSpacing: 16,
+          mainSpacing: 16),
       itemCount: filteredRadicals.length,
       itemBuilder: (context, index) {
         final entry = filteredRadicals[index];
@@ -981,8 +987,8 @@ class _RadicalCard extends ConsumerWidget {
         }
 
         // 3. Open Detail Sheet
-        showModalBottomSheet(
-          context: context,
+        zenSheet(
+          context,
           useRootNavigator: true,
           isScrollControlled: true,
           backgroundColor: Colors.transparent,

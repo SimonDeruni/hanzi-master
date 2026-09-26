@@ -4,6 +4,7 @@ import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import '../../domain/models/video_transcript.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 
@@ -256,7 +257,7 @@ class _PremiumTranscriptLineState extends State<PremiumTranscriptLine>
                           return TextSpan(
                             text: char,
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: zenValue(context, compact: 22, medium: 24, expanded: 26),
                               backgroundColor: isSelected
                                   ? const Color(0xFF4F46E5)
                                       .withValues(alpha: 0.22)

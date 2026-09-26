@@ -8,6 +8,7 @@ import '../../../chat/domain/entities/chat_message.dart';
 import 'package:hanzi_master/core/models/pronunciation_grade.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/widgets/pronunciation_report_sheet.dart';
 import 'tone_comparison_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class LiveCallSummaryScreen extends StatelessWidget {
   final List<LiveCallMessage> transcript;
@@ -142,15 +143,21 @@ class LiveCallSummaryScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildMetricItem(
-                    AppLocalizations.of(context)!.overallScore, "$avgScore%", accentColor, theme),
-              ),
-              Expanded(
-                child: _buildMetricItem(AppLocalizations.of(context)!.toneAccuracy, "$avgAcc%",
-                    theme.colorScheme.primary, theme),
+                    AppLocalizations.of(context)!.overallScore,
+                    "$avgScore%",
+                    accentColor,
+                    theme),
               ),
               Expanded(
                 child: _buildMetricItem(
-                    AppLocalizations.of(context)!.fluency, "$avgFlu%", const Color(0xFF3B82F6), theme),
+                    AppLocalizations.of(context)!.toneAccuracy,
+                    "$avgAcc%",
+                    theme.colorScheme.primary,
+                    theme),
+              ),
+              Expanded(
+                child: _buildMetricItem(AppLocalizations.of(context)!.fluency,
+                    "$avgFlu%", const Color(0xFF3B82F6), theme),
               ),
             ],
           ),
@@ -317,8 +324,8 @@ class LiveCallSummaryScreen extends StatelessWidget {
       audioPath: msg.audioPath,
     );
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,

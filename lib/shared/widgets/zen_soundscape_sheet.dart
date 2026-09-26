@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/zen_ambient_service.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 /// Calligraphic modal bottom sheet for managing reading & audiobook ambient soundscapes.
 class ZenSoundscapeSheet extends ConsumerWidget {
@@ -11,8 +12,8 @@ class ZenSoundscapeSheet extends ConsumerWidget {
 
   static Future<void> show(BuildContext context) {
     HapticsManager.light();
-    return showModalBottomSheet(
-      context: context,
+    return zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -32,8 +33,7 @@ class ZenSoundscapeSheet extends ConsumerWidget {
     final secondaryText = isDark ? Colors.white60 : const Color(0xFF6B655B);
     final activeAccent =
         isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
-    final goldBorder =
-        isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
+    final goldBorder = isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37);
 
     return Container(
       padding: EdgeInsets.fromLTRB(
@@ -261,6 +261,8 @@ class ZenSoundscapeSheet extends ConsumerWidget {
                 max: 0.50,
                 divisions: 9,
                 onChanged: (val) {
+                  // Nine detents, so one impact each: a volume you can count.
+                  HapticsManager.selection();
                   ambientService.setVolume(val);
                 },
               ),
@@ -287,7 +289,8 @@ class ZenSoundscapeSheet extends ConsumerWidget {
     required VoidCallback onTap,
   }) {
     final isSelected = currentTrack == track;
-    final isActivePlaying = isSelected && isPlaying && track != SoundscapeTrack.off;
+    final isActivePlaying =
+        isSelected && isPlaying && track != SoundscapeTrack.off;
 
     return Material(
       color: Colors.transparent,

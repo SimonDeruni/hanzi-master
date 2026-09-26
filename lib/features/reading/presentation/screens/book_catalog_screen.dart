@@ -7,7 +7,7 @@ import 'package:hanzi_master/features/reading/presentation/providers/book_provid
 import 'package:hanzi_master/features/reading/presentation/screens/book_detail_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/utils/hero_transition.dart';
@@ -15,6 +15,7 @@ import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 enum ReadingRoomSection {
   novels,
@@ -38,6 +39,10 @@ class BookCatalogScreen extends ConsumerStatefulWidget {
 
 class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   ReadingRoomSection _activeSection = ReadingRoomSection.novels;
+
+  /// The book shown in the trailing pane on an iPad, or `null` when nothing is
+  /// selected. The phone never sets it: it pushes [BookDetailScreen] instead.
+  BookModel? _previewBook;
 
   // Novel filters
   String _selectedNovelCategory = 'ALL';
@@ -134,102 +139,122 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
               ),
             )
           : null,
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          // 1. Search Bar & Section Pill Switcher
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // --- SEARCH BAR ---
-                  ZenSearchBar(
-                    controller: _searchController,
-                    hintText: _getSearchHint(l10n),
-                    onChanged: (_) => setState(() {}),
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  // --- 3-TIER READING ROOM SWITCHER ---
-                  Container(
-                    height: 44,
-                    padding: const EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? const Color(0xFF2C2C2E)
-                          : Colors.black.withValues(alpha: 0.06),
-                      borderRadius: BorderRadius.circular(22),
-                    ),
-                    child: Row(
+      body: Row(
+        children: <Widget>[
+          Expanded(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                // 1. Search Bar & Section Pill Switcher
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Full Novels
-                        Expanded(
-                          child: _buildSectionTab(
-                            title: l10n.novels961,
-                            section: ReadingRoomSection.novels,
-                            isDark: isDark,
-                            cardBg: cardBg,
+                        // --- SEARCH BAR ---
+                        ZenSearchBar(
+                          controller: _searchController,
+                          hintText: _getSearchHint(l10n),
+                          onChanged: (_) => setState(() {}),
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        // --- 3-TIER READING ROOM SWITCHER ---
+                        Container(
+                          height: 44,
+                          padding: const EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: isDark
+                                ? const Color(0xFF2C2C2E)
+                                : Colors.black.withValues(alpha: 0.06),
+                            borderRadius: BorderRadius.circular(22),
+                          ),
+                          child: Row(
+                            children: [
+                              // Full Novels
+                              Expanded(
+                                child: _buildSectionTab(
+                                  title: l10n.novels961,
+                                  section: ReadingRoomSection.novels,
+                                  isDark: isDark,
+                                  cardBg: cardBg,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              // Micro-Reads
+                              Expanded(
+                                child: _buildSectionTab(
+                                  title: l10n.microreads,
+                                  section: ReadingRoomSection.microReads,
+                                  isDark: isDark,
+                                  cardBg: cardBg,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              // Poetry
+                              Expanded(
+                                child: _buildSectionTab(
+                                  title: l10n.poetry1,
+                                  section: ReadingRoomSection.poetry,
+                                  isDark: isDark,
+                                  cardBg: cardBg,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 4),
-                        // Micro-Reads
-                        Expanded(
-                          child: _buildSectionTab(
-                            title: l10n.microreads,
-                            section: ReadingRoomSection.microReads,
-                            isDark: isDark,
-                            cardBg: cardBg,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        // Poetry
-                        Expanded(
-                          child: _buildSectionTab(
-                            title: l10n.poetry1,
-                            section: ReadingRoomSection.poetry,
-                            isDark: isDark,
-                            cardBg: cardBg,
-                          ),
-                        ),
+
+                        const SizedBox(height: 12),
+
+                        // --- SUB-FILTERS PER ACTIVE SECTION ---
+                        _buildSubFilters(isDark, cardBg),
                       ],
                     ),
                   ),
+                ),
 
-                  const SizedBox(height: 12),
-
-                  // --- SUB-FILTERS PER ACTIVE SECTION ---
-                  _buildSubFilters(isDark, cardBg),
-                ],
-              ),
+                // 2. Main Content based on Active Section
+                if (_activeSection == ReadingRoomSection.novels)
+                  ..._buildNovelsSlivers(
+                    catalogAsync: catalogAsync,
+                    inProgressAsync: inProgressAsync,
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    primaryText: primaryText,
+                  )
+                else if (_activeSection == ReadingRoomSection.microReads)
+                  ..._buildMicroReadsSlivers(
+                    microReadsAsync: microReadsAsync,
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    primaryText: primaryText,
+                  )
+                else
+                  ..._buildPoetrySlivers(
+                    poetryAsync: poetryAsync,
+                    isDark: isDark,
+                    cardBg: cardBg,
+                    primaryText: primaryText,
+                  ),
+              ],
             ),
           ),
-
-          // 2. Main Content based on Active Section
-          if (_activeSection == ReadingRoomSection.novels)
-            ..._buildNovelsSlivers(
-              catalogAsync: catalogAsync,
-              inProgressAsync: inProgressAsync,
-              isDark: isDark,
-              cardBg: cardBg,
-              primaryText: primaryText,
-            )
-          else if (_activeSection == ReadingRoomSection.microReads)
-            ..._buildMicroReadsSlivers(
-              microReadsAsync: microReadsAsync,
-              isDark: isDark,
-              cardBg: cardBg,
-              primaryText: primaryText,
-            )
-          else
-            ..._buildPoetrySlivers(
-              poetryAsync: poetryAsync,
-              isDark: isDark,
-              cardBg: cardBg,
-              primaryText: primaryText,
+          // iPad only: the shelf stays visible while a book's detail is open.
+          // The pane hosts the very same screen the phone pushes, in `embedded`
+          // mode so it carries no back button (there is no route to pop).
+          if (context.zenWindow.isExpanded && _previewBook != null) ...<Widget>[
+            const VerticalDivider(width: 1),
+            SizedBox(
+              width: 420,
+              child: BookDetailScreen(
+                book: _previewBook!,
+                embedded: true,
+              ),
             ),
+          ],
         ],
       ),
     );
@@ -487,12 +512,11 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
               sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.58,
-                  crossAxisSpacing: 14,
-                  mainAxisSpacing: 16,
-                ),
+                gridDelegate: ZenGrid.covers(
+                    maxCoverWidth: 179,
+                    childAspectRatio: 0.58,
+                    crossSpacing: 14,
+                    mainSpacing: 16),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => _buildBookCard(
                       context, filtered[index], isDark, cardBg, primaryText),
@@ -573,12 +597,11 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
               sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.58,
-                  crossAxisSpacing: 14,
-                  mainAxisSpacing: 16,
-                ),
+                gridDelegate: ZenGrid.covers(
+                    maxCoverWidth: 179,
+                    childAspectRatio: 0.58,
+                    crossSpacing: 14,
+                    mainSpacing: 16),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => _buildMicroReadCard(
                       context, filtered[index], isDark, cardBg, primaryText),
@@ -656,12 +679,11 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
               sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.58,
-                  crossAxisSpacing: 14,
-                  mainAxisSpacing: 16,
-                ),
+                gridDelegate: ZenGrid.covers(
+                    maxCoverWidth: 179,
+                    childAspectRatio: 0.58,
+                    crossSpacing: 14,
+                    mainSpacing: 16),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final poem = filtered[index];
@@ -704,6 +726,12 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
       scaleFactor: 0.96,
       onPressed: () {
         HapticsManager.light();
+        // iPad (≥840dp): the detail opens *beside* the shelf instead of covering
+        // it. Phones keep the pushed route, unchanged.
+        if (context.zenWindow.isExpanded) {
+          setState(() => _previewBook = book);
+          return;
+        }
         Navigator.of(context).push(
           SwipeBackPageRoute(
             builder: (_) => BookDetailScreen(book: book),

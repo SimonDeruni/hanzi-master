@@ -32,6 +32,35 @@ const List<Size> kTightViewports = <Size>[
   Size(320, 568),
 ];
 
+/// Landscape phones — the original matrix was portrait-only, so nothing ever
+/// checked these, even though the whole app can be rotated on Android.
+const List<Size> kLandscapePhoneViewports = <Size>[
+  Size(844, 390),
+  Size(568, 320),
+];
+
+/// iPad-class viewports (F9.1 of `docs/IPAD_ADAPTIVE_PLAN.md`).
+///
+/// A universal app (`TARGETED_DEVICE_FAMILY = "1,2"`) is judged on these as
+/// much as on the phone sizes: the landscape ones are where a phone layout
+/// breaks, and the portrait ones are where it merely looks stretched.
+const List<Size> kIpadViewports = <Size>[
+  Size(1024, 1366), // iPad 9.7"/10.2" portrait
+  Size(1366, 1024), // iPad Pro 12.9" landscape
+  Size(834, 1194), // iPad Air portrait
+  Size(1194, 834), // iPad Air landscape
+  Size(744, 1133), // iPad mini portrait
+];
+
+/// Every supported viewport. Suites that want the full iPad sweep pass
+/// `viewports: kAllViewports`; the per-change default stays the fast phone
+/// matrix so a normal `flutter test` does not multiply its runtime by five.
+const List<Size> kAllViewports = <Size>[
+  ...kTightViewports,
+  ...kLandscapePhoneViewports,
+  ...kIpadViewports,
+];
+
 /// Text scales to survive: 1.0 = default, 2.0 = largest accessibility setting.
 const List<double> kTextScales = <double>[1.0, 2.0];
 
@@ -65,8 +94,14 @@ Future<void> pumpLocalizedScreen(
   Size size = const Size(390, 844),
   double textScale = 1.0,
 }) async {
-  await tester.binding.setSurfaceSize(size);
-  addTearDown(() => tester.binding.setSurfaceSize(null));
+  // `tester.binding.setSurfaceSize` no longer reaches `MediaQuery` on
+  // Flutter 3.38 (it reports the 800x600 default whatever you pass), so every
+  // viewport in this matrix used to be ignored. Setting the view directly is
+  // what actually changes what the app sees.
+  tester.view.devicePixelRatio = 1.0;
+  tester.view.physicalSize = size;
+  addTearDown(tester.view.resetPhysicalSize);
+  addTearDown(tester.view.resetDevicePixelRatio);
 
   await tester.pumpWidget(
     MaterialApp(

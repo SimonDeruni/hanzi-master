@@ -5,6 +5,7 @@ import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
@@ -24,13 +25,14 @@ import 'dart:ui';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class WebBrowserScreen extends ConsumerStatefulWidget {
   final String initialUrl;
@@ -55,6 +57,11 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   late final WebViewController _controller;
   final GlobalKey _webViewKey = GlobalKey();
   final TextEditingController _urlController = TextEditingController();
+
+  /// Extracted words shown in a side pane beside the page instead of a sheet
+  /// over it (Part 3, row #48). Null means the pane is closed.
+  List<AiWord>? _extractedPane;
+  String _extractedPaneDeck = '';
   bool _isLoading = true;
   bool _isZenMode = false;
   bool _isProcessingAi = false;
@@ -623,88 +630,87 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final bgColor = AppTheme.surfaceOf(context);
     final textColor = isDark ? Colors.white : Colors.black87;
 
-    showModalBottomSheet(
-        context: context,
+    zenSheet(context,
         useRootNavigator: true,
         backgroundColor: bgColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
         builder: (ctx) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Drag handle
-                  Center(
-                    child: Container(
-                      width: 36,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: isDark ? Colors.white24 : Colors.black12,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
+      return SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Drag handle
+              Center(
+                child: Container(
+                  width: 36,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white24 : Colors.black12,
+                    borderRadius: BorderRadius.circular(2),
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    AppLocalizations.of(context)!.aiReadingTools,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                      letterSpacing: -0.3,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppLocalizations.of(context)!
-                        .enhanceYourReadingWithAipoweredTool,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: isDark ? Colors.white54 : Colors.black38,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 24),
-                  // Extract to Deck card
-                  _AiToolTile(
-                    icon: Icons.playlist_add,
-                    title: AppLocalizations.of(context)?.extractToDeck ??
-                        'Extract to Deck',
-                    subtitle:
-                        AppLocalizations.of(context)?.extractAllUnknownWords ??
-                            'Extract all unknown words to a new flashcard deck',
-                    onTap: () {
-                      HapticsManager.medium();
-                      Navigator.pop(ctx);
-                      _runAddAllUnknowns();
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  // Auto-Simplify card
-                  _AiToolTile(
-                    icon: Icons.auto_fix_high,
-                    title: AppLocalizations.of(context)?.autoSimplify ??
-                        'Auto-Simplify',
-                    subtitle: AppLocalizations.of(context)
-                            ?.rewriteThisArticleToMatch ??
-                        'Rewrite this article to match your HSK level',
-                    onTap: () {
-                      HapticsManager.medium();
-                      Navigator.pop(ctx);
-                      _showAutoSimplifyLevelPicker(
-                          context, isDark, bgColor, textColor);
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
-          );
-        });
+              const SizedBox(height: 20),
+              Text(
+                AppLocalizations.of(context)!.aiReadingTools,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                  letterSpacing: -0.3,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                AppLocalizations.of(context)!
+                    .enhanceYourReadingWithAipoweredTool,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: isDark ? Colors.white54 : Colors.black38,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              // Extract to Deck card
+              _AiToolTile(
+                icon: Icons.playlist_add,
+                title: AppLocalizations.of(context)?.extractToDeck ??
+                    'Extract to Deck',
+                subtitle:
+                    AppLocalizations.of(context)?.extractAllUnknownWords ??
+                        'Extract all unknown words to a new flashcard deck',
+                onTap: () {
+                  HapticsManager.medium();
+                  Navigator.pop(ctx);
+                  _runAddAllUnknowns();
+                },
+              ),
+              const SizedBox(height: 12),
+              // Auto-Simplify card
+              _AiToolTile(
+                icon: Icons.auto_fix_high,
+                title: AppLocalizations.of(context)?.autoSimplify ??
+                    'Auto-Simplify',
+                subtitle:
+                    AppLocalizations.of(context)?.rewriteThisArticleToMatch ??
+                        'Rewrite this article to match your HSK level',
+                onTap: () {
+                  HapticsManager.medium();
+                  Navigator.pop(ctx);
+                  _showAutoSimplifyLevelPicker(
+                      context, isDark, bgColor, textColor);
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   void _showAutoSimplifyLevelPicker(
@@ -713,135 +719,132 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final amberLight = amberColor.withValues(alpha: 0.12);
     final amberBorder = amberColor.withValues(alpha: 0.30);
 
-    showModalBottomSheet(
-        context: context,
+    zenSheet(context,
         useRootNavigator: true,
         backgroundColor: bgColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
         builder: (ctx) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Drag handle
-                  Center(
-                    child: Container(
-                      width: 36,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: isDark ? Colors.white24 : Colors.black12,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
+      return SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Drag handle
+              Center(
+                child: Container(
+                  width: 36,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: isDark ? Colors.white24 : Colors.black12,
+                    borderRadius: BorderRadius.circular(2),
                   ),
-                  const SizedBox(height: 20),
-                  Row(
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: amberLight,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(Icons.auto_fix_high,
+                        color: amberColor, size: 22),
+                  ),
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: amberLight,
-                          borderRadius: BorderRadius.circular(10),
+                      Text(
+                        AppLocalizations.of(context)!.select_target_hsk_level,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                          letterSpacing: -0.3,
                         ),
-                        child: const Icon(Icons.auto_fix_high,
-                            color: amberColor, size: 22),
                       ),
-                      const SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      const SizedBox(height: 2),
+                      Text(
+                        AppLocalizations.of(context)!
+                            .chooseTheTargetDifficultyForSimplif,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: isDark ? Colors.white54 : Colors.black38,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: WrapAlignment.center,
+                children: List.generate(6, (index) {
+                  final level = index + 1;
+                  final l10n = AppLocalizations.of(context)!;
+                  final descriptions = [
+                    l10n.beginner,
+                    l10n.elementary,
+                    l10n.intermediate,
+                    l10n.upperIntermediate,
+                    l10n.advanced,
+                    l10n.master,
+                  ];
+                  return GestureDetector(
+                    onTap: () {
+                      HapticsManager.medium();
+                      Navigator.pop(ctx);
+                      _runAutoSimplify(level);
+                    },
+                    child: Container(
+                      width: (MediaQuery.sizeOf(context).width - 60) / 3,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: amberLight,
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: amberBorder,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!
-                                .select_target_hsk_level,
-                            style: TextStyle(
-                              fontSize: 20,
+                            'HSK $level',
+                            style: const TextStyle(
+                              fontSize: 17,
                               fontWeight: FontWeight.bold,
-                              color: textColor,
-                              letterSpacing: -0.3,
+                              color: amberColor,
                             ),
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            AppLocalizations.of(context)!
-                                .chooseTheTargetDifficultyForSimplif,
+                            descriptions[index],
                             style: TextStyle(
-                              fontSize: 12,
-                              color: isDark ? Colors.white54 : Colors.black38,
+                              fontSize: 11,
+                              color: isDark ? Colors.white54 : Colors.black45,
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    alignment: WrapAlignment.center,
-                    children: List.generate(6, (index) {
-                      final level = index + 1;
-                      final l10n = AppLocalizations.of(context)!;
-                      final descriptions = [
-                        l10n.beginner,
-                        l10n.elementary,
-                        l10n.intermediate,
-                        l10n.upperIntermediate,
-                        l10n.advanced,
-                        l10n.master,
-                      ];
-                      return GestureDetector(
-                        onTap: () {
-                          HapticsManager.medium();
-                          Navigator.pop(ctx);
-                          _runAutoSimplify(level);
-                        },
-                        child: Container(
-                          width: (MediaQuery.of(context).size.width - 60) / 3,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 14, horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: amberLight,
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(
-                              color: amberBorder,
-                              width: 1,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'HSK $level',
-                                style: const TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: amberColor,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                descriptions[index],
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color:
-                                      isDark ? Colors.white54 : Colors.black45,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ],
+                    ),
+                  );
+                }),
               ),
-            ),
-          );
-        });
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   Future<void> _toggleZenMode() async {
@@ -1056,8 +1059,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Analysis failed: $e")));
+        ZenToast.error(context, "Analysis failed: $e");
       }
     } finally {
       if (mounted) {
@@ -1096,8 +1098,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
 
       if (newWords.isEmpty) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(AppLocalizations.of(context)!.noNewWordsFound)));
+          ZenToast.info(context, AppLocalizations.of(context)!.noNewWordsFound);
         }
         return;
       }
@@ -1110,10 +1111,20 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       // the review sheet (checkpoint 1) with their selection intact — otherwise
       // the extracted words are silently lost.
       List<AiWord> remaining = List<AiWord>.from(newWords);
+      // On an iPad the extracted words get a pane beside the page instead of a
+      // modal over it (#48). The pane hosts the same review widget and owns its
+      // own dismissal; the sheet path below is untouched.
+      if (context.zenWindow.isExpanded) {
+        setState(() {
+          _extractedPane = List<AiWord>.from(remaining);
+          _extractedPaneDeck = deckName;
+        });
+        return;
+      }
       while (remaining.isNotEmpty) {
         if (!mounted) return;
-        final selectedWords = await showModalBottomSheet<List<AiWord>>(
-          context: context,
+        final selectedWords = await zenSheet<List<AiWord>>(
+          context,
           isScrollControlled: true,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
@@ -1126,31 +1137,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           return;
         }
 
-        final List<Flashcard> flashcards = selectedWords
-            .map((w) => Flashcard(
-                  id: const Uuid().v4(),
-                  deckId: '', // Will be assigned by DeckSelectionSheet
-                  hanzi: w.hanzi,
-                  pinyin: w.pinyin,
-                  definition: w.meaning,
-                  hskLevel: 0,
-                  strokePaths: const [],
-                  medianPaths: const [],
-                  isFlipped: false,
-                  modeStats: const {},
-                  inkPoints: 0,
-                ))
-            .toList();
-
-        if (!mounted) return;
-        setState(() => _isProcessingAi = false);
-        final added = await DeckSelectionSheet.show(
-          context,
-          cards: flashcards,
-        );
-
-        if (added == true) {
-          // Words were saved — the flow is complete.
+        if (await _addSelectedWordsToDeck(selectedWords)) {
           return;
         }
 
@@ -1171,14 +1158,46 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Extraction failed: $e")));
+        ZenToast.error(context, "Extraction failed: $e");
       }
     } finally {
       if (mounted) {
         setState(() => _isProcessingAi = false);
       }
     }
+  }
+
+  /// Converts confirmed words and hands them to the deck picker.
+  ///
+  /// Returns true when the flow is complete (the words were saved), so the modal
+  /// review sheet and the iPad side pane can share one implementation instead of
+  /// drifting apart.
+  Future<bool> _addSelectedWordsToDeck(List<AiWord> selectedWords) async {
+    final List<Flashcard> flashcards = selectedWords
+        .map((w) => Flashcard(
+              id: const Uuid().v4(),
+              deckId: '', // Will be assigned by DeckSelectionSheet
+              hanzi: w.hanzi,
+              pinyin: w.pinyin,
+              definition: w.meaning,
+              hskLevel: 0,
+              strokePaths: const [],
+              medianPaths: const [],
+              isFlipped: false,
+              modeStats: const {},
+              inkPoints: 0,
+            ))
+        .toList();
+
+    if (!mounted) return false;
+    setState(() => _isProcessingAi = false);
+    final added = await DeckSelectionSheet.show(
+      context,
+      cards: flashcards,
+    );
+
+    // Words were saved — the flow is complete.
+    return added == true;
   }
 
   Future<void> _runAutoSimplify(int level) async {
@@ -1241,8 +1260,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         final cleanError = e
             .toString()
             .replaceFirst(RegExp(r'^(FormatException|Exception):\s*'), '');
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Simplify failed: $cleanError")));
+        ZenToast.error(context, "Simplify failed: $cleanError");
       }
     } finally {
       if (mounted) {
@@ -1365,8 +1383,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         setState(() {
           _isTranslating = false;
         });
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Translation failed: $e")));
+        ZenToast.error(context, "Translation failed: $e");
       }
     }
   }
@@ -1406,7 +1423,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                 )
               : ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height * 0.45,
+                    maxHeight: MediaQuery.sizeOf(context).height * 0.45,
                   ),
                   child: SingleChildScrollView(
                     child: Column(
@@ -1569,9 +1586,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                               final text = _activeTranslation!.chinese;
 
                               // Show HSK level picker
-                              final selectedLevel =
-                                  await showModalBottomSheet<int>(
-                                context: context,
+                              final selectedLevel = await zenSheet<int>(
+                                context,
                                 useRootNavigator: true,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.vertical(
@@ -1780,10 +1796,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                       RegExp(
                                           r'^(FormatException|Exception):\s*'),
                                       '');
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              "Simplify failed: $cleanError")));
+                                  ZenToast.error(
+                                      context, "Simplify failed: $cleanError");
                                 }
                               } finally {
                                 if (mounted) {
@@ -1818,19 +1832,46 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
           _buildOmnibox(context),
           if (_isLoading) const LinearProgressIndicator(minHeight: 2),
           Expanded(
-            child: Stack(
+            child: Row(
               children: [
-                WebViewWidget(key: _webViewKey, controller: _controller),
-                if (_isProcessingAi)
-                  Container(
-                    color: Theme.of(context).colorScheme.surface.withValues(
-                          alpha: 0.92,
+                Expanded(
+                  child: Stack(
+                    children: [
+                      WebViewWidget(key: _webViewKey, controller: _controller),
+                      if (_isProcessingAi)
+                        Container(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surface
+                              .withValues(
+                                alpha: 0.92,
+                              ),
+                          child: Center(
+                            child: AiProgressBar(
+                                label:
+                                    AppLocalizations.of(context)!.aiIsThinking),
+                          ),
                         ),
-                    child: Center(
-                      child: AiProgressBar(
-                          label: AppLocalizations.of(context)!.aiIsThinking),
+                    ],
+                  ),
+                ),
+                // The extracted-words review beside the page instead of over it
+                // (#48). Same widget as the sheet, so the two cannot diverge.
+                if (_extractedPane != null) ...[
+                  const VerticalDivider(width: 1),
+                  SizedBox(
+                    width: 380,
+                    child: ExtractedWordsReviewSheet(
+                      deckName: _extractedPaneDeck,
+                      words: _extractedPane!,
+                      onConfirm: (List<AiWord> words) {
+                        setState(() => _extractedPane = null);
+                        unawaited(_addSelectedWordsToDeck(words));
+                      },
+                      onDismiss: () => setState(() => _extractedPane = null),
                     ),
                   ),
+                ],
               ],
             ),
           ),
@@ -2066,9 +2107,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         if (mounted) {
           setState(() => _isArticleSaved = true);
           if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                    AppLocalizations.of(context)!.storyBookmarkedInLibrary)));
+            ZenToast.success(context,
+                AppLocalizations.of(context)!.storyBookmarkedInLibrary);
           }
         }
       }
@@ -2091,9 +2131,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     if (mounted) {
       setState(() => _isArticleSaved = true);
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content:
-                Text(AppLocalizations.of(context)!.articleSavedToMediaHub)));
+        ZenToast.success(
+            context, AppLocalizations.of(context)!.articleSavedToMediaHub);
       }
     }
   }
@@ -2208,10 +2247,20 @@ class _DockIcon extends StatelessWidget {
 
 class ExtractedWordsReviewSheet extends ConsumerStatefulWidget {
   final String deckName;
+
+  /// Hosted in the browser's side pane: a pane owns its own dismissal, so the
+  /// review reports its outcome instead of popping a route. Both default to
+  /// null, which keeps the modal path byte-for-byte.
+  final ValueChanged<List<AiWord>>? onConfirm;
+  final VoidCallback? onDismiss;
   final List<AiWord> words;
 
   const ExtractedWordsReviewSheet(
-      {super.key, required this.deckName, required this.words});
+      {super.key,
+      required this.deckName,
+      required this.words,
+      this.onConfirm,
+      this.onDismiss});
 
   @override
   ConsumerState<ExtractedWordsReviewSheet> createState() =>
@@ -2231,8 +2280,7 @@ class _ExtractedWordsReviewSheetState
 
   Future<void> _createNewDeck() async {
     if (!_selected.any((isSelected) => isSelected)) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(AppLocalizations.of(context)!.noWordsSelected)));
+      ZenToast.info(context, AppLocalizations.of(context)!.noWordsSelected);
       return;
     }
 
@@ -2245,8 +2293,8 @@ class _ExtractedWordsReviewSheetState
       final newDeck = await deckCtrl.createDeck(deckName.trim());
       if (newDeck == null) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(AppLocalizations.of(context)!.failedToCreateDeck)));
+          ZenToast.error(
+              context, AppLocalizations.of(context)!.failedToCreateDeck);
         }
         return;
       }
@@ -2254,9 +2302,7 @@ class _ExtractedWordsReviewSheetState
       await _addWordsToDeck(newDeck.id, deckName.trim());
     } catch (error) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Failed to save extracted words: $error")),
-        );
+        ZenToast.error(context, "Failed to save extracted words: $error");
       }
     } finally {
       if (mounted) {
@@ -2272,8 +2318,7 @@ class _ExtractedWordsReviewSheetState
     }
     if (selectedWords.isEmpty) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(context)!.noWordsSelected)));
+        ZenToast.info(context, AppLocalizations.of(context)!.noWordsSelected);
       }
       return;
     }
@@ -2327,7 +2372,7 @@ class _ExtractedWordsReviewSheetState
       // A null result tells the browser that this flow is complete. Returning
       // the words would incorrectly open DeckSelectionSheet after the new deck
       // and its cards have already been created.
-      Navigator.pop(context);
+      _dismissExtracted(null);
     }
   }
 
@@ -2340,6 +2385,16 @@ class _ExtractedWordsReviewSheetState
     );
   }
 
+  /// Closes the review: a host pane owns the dismissal, otherwise pop the route.
+  void _dismissExtracted(List<AiWord>? value) {
+    final VoidCallback? onDismiss = widget.onDismiss;
+    if (onDismiss != null) {
+      onDismiss();
+      return;
+    }
+    Navigator.pop(context, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -2350,7 +2405,7 @@ class _ExtractedWordsReviewSheetState
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
-      height: MediaQuery.of(context).size.height * 0.75,
+      height: MediaQuery.sizeOf(context).height * 0.75,
       decoration: BoxDecoration(
         // Canonical surface: sheet chrome matches the rest of the app.
         color: AppTheme.surfaceOf(context),
@@ -2415,7 +2470,7 @@ class _ExtractedWordsReviewSheetState
                 color: isDark ? Colors.white70 : Colors.black54,
                 tooltip: l10n.cancelAction,
                 onPressed:
-                    _isCreating ? null : () => Navigator.pop(context, null),
+                    _isCreating ? null : () => _dismissExtracted(null),
               ),
             ],
           ),
@@ -2423,22 +2478,30 @@ class _ExtractedWordsReviewSheetState
           // Select all / none affordance
           Row(
             children: [
-              TextButton.icon(
-                onPressed: _isCreating
-                    ? null
-                    : () => setState(() => _selected = List.generate(
-                        widget.words.length, (_) => !allSelected)),
-                icon: Icon(
-                  allSelected
-                      ? Icons.check_box_outlined
-                      : Icons.check_box_outline_blank,
-                  size: 20,
-                ),
-                label: Text(allSelected ? l10n.deselectAll : l10n.selectAll),
-                style: TextButton.styleFrom(
-                  foregroundColor: AppTheme.accentOf(context),
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  visualDensity: VisualDensity.compact,
+              // Flexible rather than intrinsic: "Deselect all" is much longer in
+              // several locales, and this row must not overflow the sheet.
+              Flexible(
+                child: TextButton.icon(
+                  onPressed: _isCreating
+                      ? null
+                      : () => setState(() => _selected = List.generate(
+                          widget.words.length, (_) => !allSelected)),
+                  icon: Icon(
+                    allSelected
+                        ? Icons.check_box_outlined
+                        : Icons.check_box_outline_blank,
+                    size: 20,
+                  ),
+                  label: Text(
+                    allSelected ? l10n.deselectAll : l10n.selectAll,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppTheme.accentOf(context),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    visualDensity: VisualDensity.compact,
+                  ),
                 ),
               ),
             ],
@@ -2526,7 +2589,11 @@ class _ExtractedWordsReviewSheetState
                                 selectedWords.add(widget.words[i]);
                               }
                             }
-                            Navigator.pop(context, selectedWords);
+                            if (widget.onConfirm != null) {
+                              widget.onConfirm!(selectedWords);
+                            } else {
+                              Navigator.pop(context, selectedWords);
+                            }
                           },
                     icon: const Icon(Icons.library_add_outlined, size: 20),
                     label: Text(
@@ -2548,7 +2615,7 @@ class _ExtractedWordsReviewSheetState
           Center(
             child: TextButton(
               onPressed:
-                  _isCreating ? null : () => Navigator.pop(context, null),
+                  _isCreating ? null : () => _dismissExtracted(null),
               child: Text(
                 l10n.cancelAction,
                 style: TextStyle(

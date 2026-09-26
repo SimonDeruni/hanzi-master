@@ -6,9 +6,11 @@ import 'package:hanzi_master/features/chat/presentation/screens/ai_hub_screen.da
 import 'package:hanzi_master/features/explore/presentation/screens/explore_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/core/layout/zen_adaptive_scaffold.dart';
 import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
@@ -57,6 +59,34 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     const DictionaryScreen(),
   ];
 
+  /// Rail destinations — the same four tabs as the phone's bottom bar, built
+  /// from the same localized labels, rendered beside the content on tablets.
+  List<ZenDestination> _destinations(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return <ZenDestination>[
+      ZenDestination(
+        icon: Icons.home_outlined,
+        selectedIcon: Icons.home,
+        label: l10n?.dashboardTitle ?? 'Dashboard',
+      ),
+      ZenDestination(
+        icon: Icons.explore_outlined,
+        selectedIcon: Icons.explore,
+        label: l10n?.explore ?? 'Explore',
+      ),
+      ZenDestination(
+        icon: Icons.auto_awesome_outlined,
+        selectedIcon: Icons.auto_awesome,
+        label: l10n?.aiHubTitle ?? 'AI Hub',
+      ),
+      ZenDestination(
+        icon: Icons.menu_book_outlined,
+        selectedIcon: Icons.menu_book,
+        label: l10n?.libraryLabel ?? 'Library',
+      ),
+    ];
+  }
+
   @override
   void initState() {
     super.initState();
@@ -92,18 +122,41 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final Widget tabs = Stack(
+      fit: StackFit.expand,
+      children: List.generate(_screens.length, (index) {
+        final isActive = index == _selectedIndex;
+        return _KeepAliveTab(
+          key: ValueKey(index),
+          isActive: isActive,
+          child: _screens[index],
+        );
+      }),
+    );
+
+    // Tablets get a rail beside the content instead of a bottom tab bar (F4 of
+    // docs/IPAD_ADAPTIVE_PLAN.md). The phone path below is deliberately left
+    // untouched — it is asserted by test/features/reading/now_playing_bar_test.
+    if (context.useNavigationRail) {
+      return Scaffold(
+        body: Row(
+          children: [
+            ZenNavigationRail(
+              destinations: _destinations(context),
+              selectedIndex: _selectedIndex,
+              onDestinationSelected: _onNavigate,
+              backgroundColor: AppTheme.surfaceOf(context),
+            ),
+            Expanded(child: tabs),
+          ],
+        ),
+        // The transport stays reachable in both shells.
+        bottomNavigationBar: const NowPlayingBar(),
+      );
+    }
+
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: List.generate(_screens.length, (index) {
-          final isActive = index == _selectedIndex;
-          return _KeepAliveTab(
-            key: ValueKey(index),
-            isActive: isActive,
-            child: _screens[index],
-          );
-        }),
-      ),
+      body: tabs,
       // The Now Playing bar stacks directly above the tab bar so background
       // audiobook playback always has an in-app transport (see NowPlayingBar);
       // it collapses to nothing when the engine is idle.

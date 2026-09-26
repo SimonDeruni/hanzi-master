@@ -1,12 +1,14 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/features/flashcards/presentation/screens/writing_bench_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
@@ -26,6 +28,7 @@ import 'package:hanzi_master/core/presentation/widgets/zen_search_bar.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class _SliverTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
@@ -81,6 +84,159 @@ class _DailyGoal extends StatelessWidget {
       ],
     );
   }
+}
+
+/// The deck's numbers, shown *beside* the card list on an iPad (≥840dp) rather
+/// than in a header you scroll past.
+///
+/// Deliberately informational: every action (study, add cards, deck settings)
+/// stays in the list pane, so the phone flow and the wide flow cannot drift
+/// apart, and the iPhone layout is untouched.
+class _DeckInsightRail extends StatelessWidget {
+  const _DeckInsightRail({
+    required this.isDark,
+    required this.totalCards,
+    required this.dueToday,
+    required this.newAvailable,
+    required this.dailyReviewLimit,
+    required this.dailyNewLimit,
+    required this.onPracticeWriting,
+  });
+
+  final bool isDark;
+  final int totalCards;
+  final int dueToday;
+  final int newAvailable;
+  final int dailyReviewLimit;
+  final int dailyNewLimit;
+
+  /// Opens the handwriting practice bench for this deck (iPad only — the rail
+  /// itself is only rendered at ≥840dp).
+  final VoidCallback onPracticeWriting;
+
+  static const double width = 320;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    // Derived, so no new model API is needed: everything that is neither due nor
+    // new is somewhere in the learning pipeline.
+    final int learning =
+        (totalCards - dueToday - newAvailable).clamp(0, totalCards);
+
+    return Container(
+      width: width,
+      decoration: BoxDecoration(
+        border: Border(
+          left: BorderSide(color: Colors.grey.withValues(alpha: 0.2)),
+        ),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.02)
+            : Colors.black.withValues(alpha: 0.02),
+      ),
+      child: SafeArea(
+        left: false,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                l10n.myProgress,
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 16),
+              _railStat(context, l10n.numberOfCards, totalCards, Colors.indigo),
+              _railStat(context, l10n.dueToday, dueToday, Colors.orange),
+              _railStat(context, l10n.newAvailable, newAvailable, Colors.green),
+              _railStat(
+                  context, l10n.learningStatus, learning, Colors.blueGrey),
+              const SizedBox(height: 20),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.06)
+                      : Colors.indigo.withValues(alpha: 0.06),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: _DailyGoal(
+                        label: l10n.dueToday,
+                        available: dueToday,
+                        limit: dailyReviewLimit,
+                        color: Colors.indigo,
+                      ),
+                    ),
+                    Container(
+                      width: 1,
+                      height: 32,
+                      color: Colors.grey.withValues(alpha: 0.25),
+                    ),
+                    Expanded(
+                      child: _DailyGoal(
+                        label: l10n.newAvailable,
+                        available: newAvailable,
+                        limit: dailyNewLimit,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              // iPad-only by construction (the rail only exists at ≥840dp): the
+              // handwriting practice bench for this deck.
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.icon(
+                  onPressed: onPracticeWriting,
+                  icon: const Icon(Icons.edit, size: 18),
+                  label: Text(
+                    l10n.practiceWriting,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _railStat(
+    BuildContext context,
+    String label,
+    int value,
+    Color color,
+  ) =>
+      Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                label,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '$value',
+              style: TextStyle(fontWeight: FontWeight.bold, color: color),
+            ),
+          ],
+        ),
+      );
 }
 
 class DeckDetailScreen extends ConsumerStatefulWidget {
@@ -157,7 +313,12 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                   c.definition.toLowerCase().contains(_searchQuery);
             }).toList();
 
-            return NestedScrollView(
+            // iPad (>=840dp): the deck's numbers sit *beside* the cards instead
+            // of above them. Everything below the branch is the phone layout,
+            // left untouched, so iPhone and a Split View slice behave exactly as
+            // they did before.
+            final Widget deckBody = ZenFadeIn(
+                child: NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
                   // Premium Header
@@ -223,8 +384,8 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                         icon: Icon(Icons.settings_outlined,
                             color: isDark ? Colors.white70 : Colors.black87),
                         onPressed: () async {
-                          final updatedDeck = await showModalBottomSheet<Deck>(
-                            context: context,
+                          final updatedDeck = await zenSheet<Deck>(
+                            context,
                             isScrollControlled: true,
                             useRootNavigator: true,
                             backgroundColor: Colors.transparent,
@@ -775,6 +936,10 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                                     );
                                                   },
                                                   onDismissed: (direction) {
+                                                    // The card has physically
+                                                    // left the deck: a state
+                                                    // change worth feeling.
+                                                    HapticsManager.medium();
                                                     final updatedCard =
                                                         card.copyWith(
                                                             deckId: 'default');
@@ -824,10 +989,39 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
 
                   // Tab 2: Statistics. Content only — the view deliberately has no
                   // Scaffold or AppBar of its own, so the tab no longer carries a
-                  // second title bar and a second back arrow.
-                  DeckStatsView(deckId: widget.deck.id),
+                  // second title bar and a second back arrow. The deck's name is
+                  // passed in so every number on the tab is visibly scoped to this
+                  // deck rather than to the whole library.
+                  DeckStatsView(
+                    deckId: widget.deck.id,
+                    deckName: _currentDeck.localizedName(context),
+                  ),
                 ],
               ),
+            ));
+            if (!context.zenWindow.isExpanded) return deckBody;
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(child: deckBody),
+                _DeckInsightRail(
+                  isDark: isDark,
+                  totalCards: deckCards.length,
+                  dueToday: dueToday,
+                  newAvailable: newAvailable,
+                  dailyReviewLimit: _dailyReviewLimit,
+                  dailyNewLimit: _dailyNewCardsLimit,
+                  onPracticeWriting: () => Navigator.push(
+                    context,
+                    SwipeBackPageRoute(
+                      builder: (_) => WritingBenchScreen(
+                        cards: deckCards,
+                        deckName: _currentDeck.localizedName(context),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             );
           },
           loading: () => const Center(child: ZenLoader()),

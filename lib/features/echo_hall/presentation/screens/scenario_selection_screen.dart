@@ -12,7 +12,7 @@ import '../widgets/deck_scenario_picker_sheet.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/saved_scenarios_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
@@ -25,6 +25,7 @@ import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
   final Deck? deck;
@@ -903,14 +904,14 @@ class _ScenarioSelectionScreenState
     final savedScenarios = ref.read(savedScenariosProvider);
     final isBookmarked = savedScenarios.any((s) => s.id == scenario.id);
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) => Container(
         constraints:
-            BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.7),
+            BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.7),
         decoration: BoxDecoration(
           color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -979,6 +980,7 @@ class _ScenarioSelectionScreenState
                               color: isDark ? Colors.white54 : Colors.black54)),
                     ])),
                 Row(mainAxisSize: MainAxisSize.min, children: [
+                  // locale-safe: badge + icon only, no localized label in this row
                   Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 4),

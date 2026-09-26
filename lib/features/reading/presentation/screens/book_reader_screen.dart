@@ -9,7 +9,8 @@ import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/audiobook_player_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -32,6 +33,12 @@ class BookReaderScreen extends ConsumerStatefulWidget {
   final int initialSentenceIndex;
   final bool autoStartAudiobook;
 
+  /// When true this screen is a **pane** inside a host screen (the iPad
+  /// listen-and-read desk): the host owns the app bar, the back button and the
+  /// in-screen notices, so the reader drops its own chrome and its "Resumed"
+  /// toast — which would otherwise fire on every chapter the host re-keys it to.
+  final bool embedded;
+
   const BookReaderScreen({
     super.key,
     required this.book,
@@ -39,6 +46,7 @@ class BookReaderScreen extends ConsumerStatefulWidget {
     required this.initialChapterIndex,
     this.initialSentenceIndex = 0,
     this.autoStartAudiobook = false,
+    this.embedded = false,
   });
 
   @override
@@ -93,6 +101,11 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   }
 
   Future<void> _openAudiobookAtSentence(int sentenceIdx) async {
+    // Embedded in the listen-and-read desk the transport is already on screen a
+    // pane away, and pushing a second player would bury both panes. Until the
+    // desk grows a "play this sentence in the transport" seam, the button is
+    // inert in pane mode rather than route-swapping out of the pairing.
+    if (widget.embedded) return;
     _currentReadingSentenceIndex = _clampSentenceIndex(sentenceIdx);
     _saveProgress();
     await _stopAudiobook();
@@ -294,6 +307,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   /// `ZenToast` lives on the root overlay, follows `ZenMotion.toast`, can be
   /// tapped away and can never outlive its own dwell.
   void _showResumeToastIfRestored() {
+    // An embedded pane is re-keyed every time the host follows the audio to a
+    // new chapter, so "Resumed: Ch.4/120" would announce a chapter the learner
+    // never chose. The host owns the feedback in that case.
+    if (widget.embedded) return;
     // Only announce a restore when it is not the very start of the book.
     final isFromStart = _currentIndex == 0 && _currentReadingSentenceIndex == 0;
     if (isFromStart) return;
@@ -594,8 +611,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   void _showSleepTimerModal(
       BuildContext context, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
@@ -714,8 +731,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
             .clamp(0.0, 1.0);
     final percentUsed = (usedRatio * 100).round();
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
@@ -1246,8 +1263,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     final repo = ref.read(bookRepositoryProvider);
     final bookmarks = repo.getBookmarks(widget.book.id);
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: cardBg,
       shape: const RoundedRectangleBorder(
@@ -1391,8 +1408,8 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   void _openChapterDrawer(
       BuildContext context, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.selection();
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: cardBg,
@@ -1587,7 +1604,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(
+      appBar: widget.embedded ? null : AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
@@ -1886,15 +1903,19 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .sentenceNumber(index + 1),
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: isDark
-                                        ? Colors.white30
-                                        : Colors.black26,
+                                Flexible(
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .sentenceNumber(index + 1),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: isDark
+                                          ? Colors.white30
+                                          : Colors.black26,
+                                    ),
                                   ),
                                 ),
                                 IconButton(

@@ -9,13 +9,15 @@ import '../../../../shared/widgets/global_sliver_app_bar.dart';
 import '../../../flashcards/domain/entities/deck.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
-import '../../../flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
 import '../../../../shared/utils/hero_transition.dart';
 import '../../../../shared/widgets/zen_filter_pill.dart';
 import '../../data/thematic_decks_data.dart';
 import '../widgets/calligraphic_deck_cover.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class _HskCollection {
   final int level;
@@ -79,7 +81,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           color: const Color(0xFF15803D),
           gradientColors: const [Color(0xFF15803D), Color(0xFF052E16)],
           watermarkHanzi: '壹',
-          description: 'Master 154 foundational Hanzi, fundamental daily greetings, numbers, and basic sentence patterns.',
+          description:
+              'Master 154 foundational Hanzi, fundamental daily greetings, numbers, and basic sentence patterns.',
           sampleWords: const [
             {"hanzi": "你", "pinyin": "nǐ", "definition": "you"},
             {"hanzi": "好", "pinyin": "hǎo", "definition": "good; well"},
@@ -99,10 +102,19 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           color: const Color(0xFF0F766E),
           gradientColors: const [Color(0xFF0F766E), Color(0xFF042F2E)],
           watermarkHanzi: '贰',
-          description: 'Master 162 elementary words for practical everyday communication and routine interactions.',
+          description:
+              'Master 162 elementary words for practical everyday communication and routine interactions.',
           sampleWords: const [
-            {"hanzi": "准备", "pinyin": "zhǔn bèi", "definition": "prepare; get ready"},
-            {"hanzi": "介绍", "pinyin": "jiè shào", "definition": "introduce; recommend"},
+            {
+              "hanzi": "准备",
+              "pinyin": "zhǔn bèi",
+              "definition": "prepare; get ready"
+            },
+            {
+              "hanzi": "介绍",
+              "pinyin": "jiè shào",
+              "definition": "introduce; recommend"
+            },
             {"hanzi": "时间", "pinyin": "shí jiān", "definition": "time; period"},
             {"hanzi": "帮助", "pinyin": "bāng zhù", "definition": "help; assist"},
             {"hanzi": "希望", "pinyin": "xī wàng", "definition": "hope; wish"},
@@ -119,16 +131,41 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           color: const Color(0xFFB45309),
           gradientColors: const [Color(0xFFB45309), Color(0xFF451A03)],
           watermarkHanzi: '叁',
-          description: 'Master 299 intermediate words to comfortably converse in academic, social, and travel settings.',
+          description:
+              'Master 299 intermediate words to comfortably converse in academic, social, and travel settings.',
           sampleWords: const [
-            {"hanzi": "解决", "pinyin": "jiě jué", "definition": "resolve; solve"},
-            {"hanzi": "影响", "pinyin": "yǐng xiǎng", "definition": "influence; effect"},
+            {
+              "hanzi": "解决",
+              "pinyin": "jiě jué",
+              "definition": "resolve; solve"
+            },
+            {
+              "hanzi": "影响",
+              "pinyin": "yǐng xiǎng",
+              "definition": "influence; effect"
+            },
             {"hanzi": "提高", "pinyin": "tí gāo", "definition": "improve; raise"},
             {"hanzi": "习惯", "pinyin": "xí guàn", "definition": "habit; custom"},
-            {"hanzi": "机会", "pinyin": "jī huì", "definition": "opportunity; chance"},
-            {"hanzi": "选择", "pinyin": "xuǎn zé", "definition": "choose; choice"},
-            {"hanzi": "努力", "pinyin": "nǔ lì", "definition": "diligent; hard-working"},
-            {"hanzi": "完成", "pinyin": "wán chéng", "definition": "complete; finish"},
+            {
+              "hanzi": "机会",
+              "pinyin": "jī huì",
+              "definition": "opportunity; chance"
+            },
+            {
+              "hanzi": "选择",
+              "pinyin": "xuǎn zé",
+              "definition": "choose; choice"
+            },
+            {
+              "hanzi": "努力",
+              "pinyin": "nǔ lì",
+              "definition": "diligent; hard-working"
+            },
+            {
+              "hanzi": "完成",
+              "pinyin": "wán chéng",
+              "definition": "complete; finish"
+            },
           ],
         ),
         _HskCollection(
@@ -139,16 +176,45 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           color: const Color(0xFFBE123C),
           gradientColors: const [Color(0xFFBE123C), Color(0xFF4C0519)],
           watermarkHanzi: '肆',
-          description: 'Master 602 upper-intermediate words for fluent discussion with native speakers across diverse topics.',
+          description:
+              'Master 602 upper-intermediate words for fluent discussion with native speakers across diverse topics.',
           sampleWords: const [
-            {"hanzi": "坚持", "pinyin": "jiān chí", "definition": "persist; persevere"},
-            {"hanzi": "甚至", "pinyin": "shèn zhì", "definition": "even; so much that"},
-            {"hanzi": "交流", "pinyin": "jiāo liú", "definition": "exchange; communicate"},
-            {"hanzi": "关键", "pinyin": "guān jiàn", "definition": "crucial; key"},
-            {"hanzi": "态度", "pinyin": "tài du", "definition": "attitude; demeanor"},
+            {
+              "hanzi": "坚持",
+              "pinyin": "jiān chí",
+              "definition": "persist; persevere"
+            },
+            {
+              "hanzi": "甚至",
+              "pinyin": "shèn zhì",
+              "definition": "even; so much that"
+            },
+            {
+              "hanzi": "交流",
+              "pinyin": "jiāo liú",
+              "definition": "exchange; communicate"
+            },
+            {
+              "hanzi": "关键",
+              "pinyin": "guān jiàn",
+              "definition": "crucial; key"
+            },
+            {
+              "hanzi": "态度",
+              "pinyin": "tài du",
+              "definition": "attitude; demeanor"
+            },
             {"hanzi": "经验", "pinyin": "jīng yàn", "definition": "experience"},
-            {"hanzi": "适应", "pinyin": "shì yìng", "definition": "adapt; adjust to"},
-            {"hanzi": "根据", "pinyin": "gēn jù", "definition": "according to; basis"},
+            {
+              "hanzi": "适应",
+              "pinyin": "shì yìng",
+              "definition": "adapt; adjust to"
+            },
+            {
+              "hanzi": "根据",
+              "pinyin": "gēn jù",
+              "definition": "according to; basis"
+            },
           ],
         ),
         _HskCollection(
@@ -159,16 +225,45 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           color: const Color(0xFF4338CA),
           gradientColors: const [Color(0xFF4338CA), Color(0xFF1E1B4B)],
           watermarkHanzi: '伍',
-          description: 'Master 1,300 advanced words to read Chinese newspapers, magazines, and appreciate films.',
+          description:
+              'Master 1,300 advanced words to read Chinese newspapers, magazines, and appreciate films.',
           sampleWords: const [
-            {"hanzi": "综合", "pinyin": "zōng hé", "definition": "comprehensive; synthesize"},
+            {
+              "hanzi": "综合",
+              "pinyin": "zōng hé",
+              "definition": "comprehensive; synthesize"
+            },
             {"hanzi": "逻辑", "pinyin": "luó ji", "definition": "logic"},
-            {"hanzi": "优势", "pinyin": "yōu shì", "definition": "advantage; superiority"},
-            {"hanzi": "趋势", "pinyin": "qū shì", "definition": "trend; tendency"},
-            {"hanzi": "本质", "pinyin": "běn zhì", "definition": "essence; nature"},
-            {"hanzi": "概念", "pinyin": "gài niàn", "definition": "concept; notion"},
-            {"hanzi": "比例", "pinyin": "bǐ lì", "definition": "proportion; scale"},
-            {"hanzi": "把握", "pinyin": "bǎ wò", "definition": "grasp; hold; certainty"},
+            {
+              "hanzi": "优势",
+              "pinyin": "yōu shì",
+              "definition": "advantage; superiority"
+            },
+            {
+              "hanzi": "趋势",
+              "pinyin": "qū shì",
+              "definition": "trend; tendency"
+            },
+            {
+              "hanzi": "本质",
+              "pinyin": "běn zhì",
+              "definition": "essence; nature"
+            },
+            {
+              "hanzi": "概念",
+              "pinyin": "gài niàn",
+              "definition": "concept; notion"
+            },
+            {
+              "hanzi": "比例",
+              "pinyin": "bǐ lì",
+              "definition": "proportion; scale"
+            },
+            {
+              "hanzi": "把握",
+              "pinyin": "bǎ wò",
+              "definition": "grasp; hold; certainty"
+            },
           ],
         ),
         _HskCollection(
@@ -179,16 +274,49 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           color: const Color(0xFF6D28D9),
           gradientColors: const [Color(0xFF6D28D9), Color(0xFF2E1065)],
           watermarkHanzi: '陆',
-          description: 'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.',
+          description:
+              'Master 2,500 words to effortlessly understand any spoken or written Chinese and express nuances.',
           sampleWords: const [
-            {"hanzi": "领悟", "pinyin": "lǐng wù", "definition": "comprehend; grasp"},
-            {"hanzi": "造诣", "pinyin": "zào yì", "definition": "scholarly attainment"},
-            {"hanzi": "渊博", "pinyin": "yuān bó", "definition": "broad and profound"},
-            {"hanzi": "博大精深", "pinyin": "bó dà jīng shēn", "definition": "wide-ranging and profound"},
-            {"hanzi": "琢磨", "pinyin": "zhuó mó", "definition": "ponder; deliberate"},
-            {"hanzi": "精益求精", "pinyin": "jīng yì qiú jīng", "definition": "strive for perfection"},
-            {"hanzi": "千方百计", "pinyin": "qiān fāng bǎi jì", "definition": "by every possible means"},
-            {"hanzi": "锲而不舍", "pinyin": "qiè ér bù shě", "definition": "persevere relentlessly"},
+            {
+              "hanzi": "领悟",
+              "pinyin": "lǐng wù",
+              "definition": "comprehend; grasp"
+            },
+            {
+              "hanzi": "造诣",
+              "pinyin": "zào yì",
+              "definition": "scholarly attainment"
+            },
+            {
+              "hanzi": "渊博",
+              "pinyin": "yuān bó",
+              "definition": "broad and profound"
+            },
+            {
+              "hanzi": "博大精深",
+              "pinyin": "bó dà jīng shēn",
+              "definition": "wide-ranging and profound"
+            },
+            {
+              "hanzi": "琢磨",
+              "pinyin": "zhuó mó",
+              "definition": "ponder; deliberate"
+            },
+            {
+              "hanzi": "精益求精",
+              "pinyin": "jīng yì qiú jīng",
+              "definition": "strive for perfection"
+            },
+            {
+              "hanzi": "千方百计",
+              "pinyin": "qiān fāng bǎi jì",
+              "definition": "by every possible means"
+            },
+            {
+              "hanzi": "锲而不舍",
+              "pinyin": "qiè ér bù shě",
+              "definition": "persevere relentlessly"
+            },
           ],
         ),
       ];
@@ -227,12 +355,16 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
         final l10n = AppLocalizations.of(context)!;
         _showMessage(
           '${l10n.successfullyInstalled} ${l10n.hskLevel(collection.level.toString())}',
+          tone: ZenToastTone.success,
         );
       }
     } catch (error) {
       debugPrint('Installation Error: $error');
       if (mounted) {
-        _showMessage(AppLocalizations.of(context)!.failedToDownload);
+        _showMessage(
+          AppLocalizations.of(context)!.failedToDownload,
+          tone: ZenToastTone.error,
+        );
       }
     } finally {
       if (mounted) setState(() => _busyHskLevel = null);
@@ -285,11 +417,14 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       ref.invalidate(deckControllerProvider);
 
       if (mounted) {
-        _showMessage('${l10n.removedLibrary} $levelName.');
+        _showMessage('${l10n.removedLibrary} $levelName.',
+            tone: ZenToastTone.success);
       }
     } catch (error) {
       debugPrint('Uninstallation Error: $error');
-      if (mounted) _showMessage(l10n.failedToDownload);
+      if (mounted) {
+        _showMessage(l10n.failedToDownload, tone: ZenToastTone.error);
+      }
     } finally {
       if (mounted) setState(() => _busyHskLevel = null);
     }
@@ -312,12 +447,17 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       HapticsManager.success();
 
       if (mounted) {
-        _showMessage('Successfully added "${thematic.title}" to your Bookshelf.');
+        _showMessage(
+            'Successfully added "${thematic.title}" to your Bookshelf.',
+            tone: ZenToastTone.success);
       }
     } catch (error) {
       debugPrint('Thematic Install Error: $error');
       if (mounted) {
-        _showMessage(AppLocalizations.of(context)!.failedToDownload);
+        _showMessage(
+          AppLocalizations.of(context)!.failedToDownload,
+          tone: ZenToastTone.error,
+        );
       }
     } finally {
       if (mounted) setState(() => _busyThematicId = null);
@@ -366,28 +506,23 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
       ref.invalidate(deckControllerProvider);
 
       if (mounted) {
-        _showMessage('Removed "${thematic.title}".');
+        _showMessage('Removed "${thematic.title}".',
+            tone: ZenToastTone.success);
       }
     } catch (error) {
       debugPrint('Thematic Uninstall Error: $error');
-      if (mounted) _showMessage(l10n.failedToDownload);
+      if (mounted) {
+        _showMessage(l10n.failedToDownload, tone: ZenToastTone.error);
+      }
     } finally {
       if (mounted) setState(() => _busyThematicId = null);
     }
   }
 
-  void _showMessage(String message) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text(message),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-      );
+  void _showMessage(String message, {ZenToastTone tone = ZenToastTone.info}) {
+    // Root-overlay toast: a download confirmation stays legible even while a
+    // sheet is closing over it.
+    ZenToast.show(context, message, tone: tone);
   }
 
   void _showDeckPreviewSheet({
@@ -413,19 +548,21 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     final cardBg = isDark ? const Color(0xFF28282E) : Colors.white;
     final primaryText = isDark ? Colors.white : const Color(0xFF1A1A1B);
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) => Container(
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.85,
+          maxHeight: MediaQuery.sizeOf(context).height * 0.85,
         ),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           border: Border.all(
-            color: isDark ? Colors.white12 : const Color(0xFFD4AF37).withValues(alpha: 0.3),
+            color: isDark
+                ? Colors.white12
+                : const Color(0xFFD4AF37).withValues(alpha: 0.3),
             width: 1,
           ),
           boxShadow: [
@@ -487,7 +624,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 7, vertical: 3),
                                 decoration: BoxDecoration(
                                   color: color.withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(6),
@@ -522,15 +660,18 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
-                                  color: isDark ? Colors.white60 : Colors.black54,
+                                  color:
+                                      isDark ? Colors.white60 : Colors.black54,
                                 ),
                               ),
                               const SizedBox(height: 8),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   color: isInstalled
-                                      ? const Color(0xFF10B981).withValues(alpha: 0.12)
+                                      ? const Color(0xFF10B981)
+                                          .withValues(alpha: 0.12)
                                       : Colors.amber.withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -538,17 +679,25 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(
-                                      isInstalled ? Icons.check_circle_rounded : Icons.library_add_rounded,
+                                      isInstalled
+                                          ? Icons.check_circle_rounded
+                                          : Icons.library_add_rounded,
                                       size: 13,
-                                      color: isInstalled ? const Color(0xFF10B981) : Colors.amber.shade800,
+                                      color: isInstalled
+                                          ? const Color(0xFF10B981)
+                                          : Colors.amber.shade800,
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      isInstalled ? 'Installed on Bookshelf' : 'Available for Download',
+                                      isInstalled
+                                          ? 'Installed on Bookshelf'
+                                          : 'Available for Download',
                                       style: TextStyle(
                                         fontSize: 10.5,
                                         fontWeight: FontWeight.bold,
-                                        color: isInstalled ? const Color(0xFF10B981) : Colors.amber.shade800,
+                                        color: isInstalled
+                                            ? const Color(0xFF10B981)
+                                            : Colors.amber.shade800,
                                       ),
                                     ),
                                   ],
@@ -567,7 +716,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       style: TextStyle(
                         fontSize: 13,
                         height: 1.45,
-                        color: isDark ? Colors.white70 : const Color(0xFF374151),
+                        color:
+                            isDark ? Colors.white70 : const Color(0xFF374151),
                       ),
                     ),
 
@@ -578,7 +728,9 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         Icon(
                           Icons.menu_book_rounded,
                           size: 16,
-                          color: isDark ? Colors.amber.shade400 : const Color(0xFF8B0000),
+                          color: isDark
+                              ? Colors.amber.shade400
+                              : const Color(0xFF8B0000),
                         ),
                         const SizedBox(width: 6),
                         Text(
@@ -600,12 +752,15 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       runSpacing: 8,
                       children: sampleWords.take(12).map((word) {
                         return Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 7),
                           decoration: BoxDecoration(
                             color: cardBg,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.07),
+                              color: isDark
+                                  ? Colors.white10
+                                  : Colors.black.withValues(alpha: 0.07),
                             ),
                           ),
                           child: Column(
@@ -640,7 +795,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                 word['definition'] ?? '',
                                 style: TextStyle(
                                   fontSize: 10.5,
-                                  color: isDark ? Colors.white60 : Colors.black54,
+                                  color:
+                                      isDark ? Colors.white60 : Colors.black54,
                                 ),
                               ),
                             ],
@@ -661,7 +817,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                               ? OutlinedButton.icon(
                                   style: OutlinedButton.styleFrom(
                                     foregroundColor: const Color(0xFFDC2626),
-                                    side: const BorderSide(color: Color(0xFFDC2626), width: 1.2),
+                                    side: const BorderSide(
+                                        color: Color(0xFFDC2626), width: 1.2),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(14),
                                     ),
@@ -670,10 +827,13 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                     Navigator.pop(sheetContext);
                                     onUninstall();
                                   },
-                                  icon: const Icon(Icons.delete_outline_rounded, size: 18),
+                                  icon: const Icon(Icons.delete_outline_rounded,
+                                      size: 18),
                                   label: const Text(
                                     'Remove from Bookshelf',
-                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 )
                               : FilledButton.icon(
@@ -689,10 +849,13 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                                     Navigator.pop(sheetContext);
                                     onInstall();
                                   },
-                                  icon: const Icon(Icons.download_rounded, size: 18),
+                                  icon: const Icon(Icons.download_rounded,
+                                      size: 18),
                                   label: const Text(
                                     'Download & Install Deck',
-                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                     ),
@@ -721,7 +884,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
         child: asyncDecks.when(
           data: (decks) {
             final installedHskCount = collections
-                .where((collection) => _isLevelInstalled(collection.level, decks))
+                .where(
+                    (collection) => _isLevelInstalled(collection.level, decks))
                 .length;
 
             final installedThematicCount = thematicDecks
@@ -735,7 +899,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
 
             // Filter HSK
             final filteredHsk = collections.where((c) {
-              if (_selectedCategory != 'ALL' && _selectedCategory != 'Official HSK') {
+              if (_selectedCategory != 'ALL' &&
+                  _selectedCategory != 'Official HSK') {
                 return false;
               }
               if (query.isEmpty) return true;
@@ -746,12 +911,14 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                   c.sampleWords.any((w) =>
                       (w['hanzi']?.toLowerCase().contains(query) ?? false) ||
                       (w['pinyin']?.toLowerCase().contains(query) ?? false) ||
-                      (w['definition']?.toLowerCase().contains(query) ?? false));
+                      (w['definition']?.toLowerCase().contains(query) ??
+                          false));
             }).toList();
 
             // Filter Thematic by category and search
             final filteredThematic = thematicDecks.where((t) {
-              if (_selectedCategory != 'ALL' && _selectedCategory != t.category) {
+              if (_selectedCategory != 'ALL' &&
+                  _selectedCategory != t.category) {
                 return false;
               }
               if (query.isEmpty) return true;
@@ -762,15 +929,23 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                   t.vocabulary.any((w) =>
                       (w['hanzi']?.toLowerCase().contains(query) ?? false) ||
                       (w['pinyin']?.toLowerCase().contains(query) ?? false) ||
-                      (w['definition']?.toLowerCase().contains(query) ?? false));
+                      (w['definition']?.toLowerCase().contains(query) ??
+                          false));
             }).toList();
 
             // Group thematic by categories
-            final cultureDecks = filteredThematic.where((t) => t.category == 'Culture').toList();
-            final sportsDecks = filteredThematic.where((t) => t.category == 'Sports').toList();
-            final educationDecks = filteredThematic.where((t) => t.category == 'Education').toList();
-            final travelDecks = filteredThematic.where((t) => t.category == 'Travel').toList();
-            final businessDecks = filteredThematic.where((t) => t.category == 'Business').toList();
+            final cultureDecks =
+                filteredThematic.where((t) => t.category == 'Culture').toList();
+            final sportsDecks =
+                filteredThematic.where((t) => t.category == 'Sports').toList();
+            final educationDecks = filteredThematic
+                .where((t) => t.category == 'Education')
+                .toList();
+            final travelDecks =
+                filteredThematic.where((t) => t.category == 'Travel').toList();
+            final businessDecks = filteredThematic
+                .where((t) => t.category == 'Business')
+                .toList();
 
             final bool hasAnyResults = filteredHsk.isNotEmpty ||
                 cultureDecks.isNotEmpty ||
@@ -779,7 +954,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                 travelDecks.isNotEmpty ||
                 businessDecks.isNotEmpty;
 
-            return CustomScrollView(
+            return ZenFadeIn(
+                child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
                 GlobalSliverAppBar(
@@ -791,7 +967,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                 // Top Controls: Search Bar, Status Card, and Category Filter Pills
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -822,7 +999,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             scrollDirection: Axis.horizontal,
                             physics: const BouncingScrollPhysics(),
                             itemCount: _categoryFilterKeys.length,
-                            separatorBuilder: (_, __) => const SizedBox(width: 8),
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(width: 8),
                             itemBuilder: (context, index) {
                               final catKey = _categoryFilterKeys[index];
                               final isSelected = _selectedCategory == catKey;
@@ -884,7 +1062,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       child: _buildCategoryShelf(
                         title: 'Official HSK Curriculum',
                         titleHanzi: '官方HSK分级',
-                        subtitle: 'Official Chinese proficiency standards (HSK 1 - 6)',
+                        subtitle:
+                            'Official Chinese proficiency standards (HSK 1 - 6)',
                         icon: Icons.workspace_premium_rounded,
                         accentColor: const Color(0xFF0F766E),
                         itemCount: filteredHsk.length,
@@ -893,14 +1072,16 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                         primaryText: primaryText,
                         itemBuilder: (context, index) {
                           final collection = filteredHsk[index];
-                          final isInstalled = _isLevelInstalled(collection.level, decks);
+                          final isInstalled =
+                              _isLevelInstalled(collection.level, decks);
                           final isBusy = _busyHskLevel == collection.level;
 
                           return _buildShelfCard(
                             heroId: 'hsk-${collection.level}',
                             title: l10n.hskLevel(collection.level.toString()),
                             titleHanzi: collection.titleHanzi,
-                            subtitle: '${collection.title} · ${collection.cardCount}',
+                            subtitle:
+                                '${collection.title} · ${collection.cardCount}',
                             description: collection.description,
                             watermarkHanzi: collection.watermarkHanzi,
                             gradientColors: collection.gradientColors,
@@ -908,7 +1089,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                             accentColor: collection.color,
                             isInstalled: isInstalled,
                             isBusy: isBusy,
-                            actionsDisabled: _busyHskLevel != null || _busyThematicId != null,
+                            actionsDisabled: _busyHskLevel != null ||
+                                _busyThematicId != null,
                             isDark: isDark,
                             cardBg: cardBg,
                             primaryText: primaryText,
@@ -917,7 +1099,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                               heroId: 'hsk-${collection.level}',
                               title: l10n.hskLevel(collection.level.toString()),
                               titleHanzi: collection.titleHanzi,
-                              subtitle: '${collection.title} · ${collection.cardCount}',
+                              subtitle:
+                                  '${collection.title} · ${collection.cardCount}',
                               description: collection.description,
                               watermarkHanzi: collection.watermarkHanzi,
                               gradientColors: collection.gradientColors,
@@ -927,7 +1110,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                               isInstalled: isInstalled,
                               isBusy: isBusy,
                               onInstall: () => _installCollection(collection),
-                              onUninstall: () => _uninstallCollection(collection),
+                              onUninstall: () =>
+                                  _uninstallCollection(collection),
                             ),
                             onInstall: () => _installCollection(collection),
                             onUninstall: () => _uninstallCollection(collection),
@@ -944,7 +1128,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       child: _buildThematicShelf(
                         title: 'Culture & Heritage',
                         titleHanzi: '文化与传统',
-                        subtitle: 'Traditional arts, TCM wellness, tea, and festivals',
+                        subtitle:
+                            'Traditional arts, TCM wellness, tea, and festivals',
                         icon: Icons.palette_rounded,
                         accentColor: const Color(0xFFB91C1C),
                         decks: cultureDecks,
@@ -963,7 +1148,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       child: _buildThematicShelf(
                         title: 'Sports & Martial Arts',
                         titleHanzi: '运动与竞技',
-                        subtitle: 'Wushu Kung Fu, ball games, gym, and athletics',
+                        subtitle:
+                            'Wushu Kung Fu, ball games, gym, and athletics',
                         icon: Icons.sports_martial_arts_rounded,
                         accentColor: const Color(0xFF0F766E),
                         decks: sportsDecks,
@@ -982,7 +1168,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       child: _buildThematicShelf(
                         title: 'Education & Academics',
                         titleHanzi: '教育与学术',
-                        subtitle: 'University research, science, tech, and linguistics',
+                        subtitle:
+                            'University research, science, tech, and linguistics',
                         icon: Icons.school_rounded,
                         accentColor: const Color(0xFF4338CA),
                         decks: educationDecks,
@@ -1001,7 +1188,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       child: _buildThematicShelf(
                         title: 'Travel & City Life',
                         titleHanzi: '旅行与出行',
-                        subtitle: 'Survival Chinese, Chinese dining, shopping, and metro',
+                        subtitle:
+                            'Survival Chinese, Chinese dining, shopping, and metro',
                         icon: Icons.flight_takeoff_rounded,
                         accentColor: const Color(0xFF0284C7),
                         decks: travelDecks,
@@ -1020,7 +1208,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                       child: _buildThematicShelf(
                         title: 'Business & Professional',
                         titleHanzi: '商务与职场',
-                        subtitle: 'Contracts, negotiation, workplace, and global finance',
+                        subtitle:
+                            'Contracts, negotiation, workplace, and global finance',
                         icon: Icons.business_center_rounded,
                         accentColor: const Color(0xFFD97706),
                         decks: businessDecks,
@@ -1036,7 +1225,7 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                   ),
                 ],
               ],
-            );
+            ));
           },
           loading: () => const Center(child: ZenLoader()),
           error: (error, stackTrace) => _LoadError(
@@ -1083,7 +1272,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           heroId: 'thematic-${thematic.id}',
           title: thematic.title,
           titleHanzi: thematic.titleHanzi,
-          subtitle: '${thematic.vocabulary.length} words · ${thematic.category}',
+          subtitle:
+              '${thematic.vocabulary.length} words · ${thematic.category}',
           description: thematic.description,
           watermarkHanzi: thematic.watermarkHanzi,
           gradientColors: thematic.gradientColors,
@@ -1100,7 +1290,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
             heroId: 'thematic-${thematic.id}',
             title: thematic.title,
             titleHanzi: thematic.titleHanzi,
-            subtitle: '${thematic.vocabulary.length} words · ${thematic.category}',
+            subtitle:
+                '${thematic.vocabulary.length} words · ${thematic.category}',
             description: thematic.description,
             watermarkHanzi: thematic.watermarkHanzi,
             gradientColors: thematic.gradientColors,
@@ -1188,9 +1379,12 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.05),
+                    color: isDark
+                        ? Colors.white10
+                        : Colors.black.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
@@ -1255,7 +1449,9 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
           border: Border.all(
             color: isInstalled
                 ? accentColor.withValues(alpha: 0.5)
-                : (isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.07)),
+                : (isDark
+                    ? Colors.white12
+                    : Colors.black.withValues(alpha: 0.07)),
             width: isInstalled ? 1.4 : 1.0,
           ),
           boxShadow: [
@@ -1381,7 +1577,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                           GestureDetector(
                             onTap: actionsDisabled ? null : onInstall,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
                                 color: accentColor,
                                 borderRadius: BorderRadius.circular(10),
@@ -1396,7 +1593,8 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                               child: const Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(Icons.download_rounded, size: 12, color: Colors.white),
+                                  Icon(Icons.download_rounded,
+                                      size: 12, color: Colors.white),
                                   SizedBox(width: 3),
                                   Text(
                                     'Get',
@@ -1441,7 +1639,8 @@ class _BookshelfSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress = totalCount > 0 ? (installedCount / totalCount).clamp(0.0, 1.0) : 0.0;
+    final progress =
+        totalCount > 0 ? (installedCount / totalCount).clamp(0.0, 1.0) : 0.0;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -1449,7 +1648,9 @@ class _BookshelfSummaryCard extends StatelessWidget {
         color: cardBg,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDark ? Colors.white12 : const Color(0xFFD4AF37).withValues(alpha: 0.35),
+          color: isDark
+              ? Colors.white12
+              : const Color(0xFFD4AF37).withValues(alpha: 0.35),
           width: 1.0,
         ),
         boxShadow: [
@@ -1523,8 +1724,11 @@ class _BookshelfSummaryCard extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress,
               minHeight: 5,
-              backgroundColor: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
-              valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFD4AF37)),
+              backgroundColor: isDark
+                  ? Colors.white10
+                  : Colors.black.withValues(alpha: 0.06),
+              valueColor:
+                  const AlwaysStoppedAnimation<Color>(Color(0xFFD4AF37)),
             ),
           ),
         ],

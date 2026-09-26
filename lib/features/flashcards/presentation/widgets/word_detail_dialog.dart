@@ -15,6 +15,8 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/deck_con
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class WordDetailDialog extends ConsumerStatefulWidget {
   final AiWord word;
@@ -79,8 +81,7 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
     // We get decks from deckControllerProvider, but it's not imported. We can import it.
     final decks = ref.read(deckControllerProvider).valueOrNull ?? [];
 
-    final selectedDeckId = await showModalBottomSheet<String>(
-      context: navContext,
+    final selectedDeckId = await zenSheet<String>(navContext,
       backgroundColor: Colors.transparent,
       builder: (ctx) => Container(
         margin: const EdgeInsets.all(16),
@@ -131,10 +132,8 @@ class _WordDetailDialogState extends ConsumerState<WordDetailDialog> {
 
     if (mounted) {
       setState(() => _isSaved = true);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(AppLocalizations.of(context)!.added_to_review_queue)),
-      );
+      ZenToast.success(
+          context, AppLocalizations.of(context)!.added_to_review_queue);
     }
   }
 

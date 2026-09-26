@@ -16,6 +16,7 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 
 /// Article / Video of the Day briefing.
 ///
@@ -87,6 +88,9 @@ class CulturalContextScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 22),
                         ...culturalContextAsync.when(
+                          // This call is *spread* into a children list, so its
+                          // branches return List<Widget> and cannot be wrapped in
+                          // ZenFadeIn, which needs a single widget.
                           data: (text) => _buildInsightCards(
                             context,
                             theme,
@@ -149,7 +153,7 @@ class CulturalContextScreen extends ConsumerWidget {
                   imageUrl: mediaItem.imageUrl,
                   fit: BoxFit.cover,
                   filterQuality: FilterQuality.medium,
-                  memCacheWidth: (MediaQuery.of(context).size.width *
+                  memCacheWidth: (MediaQuery.sizeOf(context).width *
                           MediaQuery.of(context).devicePixelRatio)
                       .round(),
                   fadeInDuration: ZenMotion.swap,
@@ -640,9 +644,7 @@ class CulturalContextScreen extends ConsumerWidget {
       if (uri != null) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.unable_to_open_this_video_please)),
-        );
+        ZenToast.error(context, l10n.unable_to_open_this_video_please);
       }
       return;
     }

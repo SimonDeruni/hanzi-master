@@ -12,7 +12,9 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 class RadicalDetailScreen extends ConsumerStatefulWidget {
   final String radicalChar;
@@ -153,12 +155,17 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                         ],
                       ),
                       child: Center(
-                        child: Text(
-                          widget.radicalChar,
-                          style: const TextStyle(
-                              fontSize: 64,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFB22222)),
+                        child: HeroTransition.wrap(
+                          context: context,
+                          tag: HeroTransition.heroTag(
+                              'radical_library', widget.radicalChar),
+                          child: Text(
+                            widget.radicalChar,
+                            style: const TextStyle(
+                                fontSize: 64,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFB22222)),
+                          ),
                         ),
                       ),
                     ),
@@ -289,13 +296,11 @@ class _RadicalDetailScreenState extends ConsumerState<RadicalDetailScreen> {
                         : GridView.builder(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 24, vertical: 8),
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 12,
-                              mainAxisSpacing: 12,
-                              childAspectRatio: 0.9,
-                            ),
+                            gridDelegate: ZenGrid.tiles(
+                                maxTileWidth: 86,
+                                childAspectRatio: 0.9,
+                                crossSpacing: 12,
+                                mainSpacing: 12),
                             itemCount: _filteredCharacters.length,
                             itemBuilder: (context, index) {
                               final item = _filteredCharacters[index];

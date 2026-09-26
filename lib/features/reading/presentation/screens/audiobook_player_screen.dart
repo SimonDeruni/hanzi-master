@@ -11,9 +11,11 @@ import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/now_playing_provider.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
+import 'package:hanzi_master/features/reading/presentation/screens/listen_and_read_screen.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/calligraphic_book_cover.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
 import 'package:hanzi_master/core/widgets/translated_text.dart';
@@ -24,6 +26,8 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/audiobook_voice_sheet.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class AudiobookPlayerScreen extends ConsumerStatefulWidget {
   final BookModel book;
@@ -31,12 +35,28 @@ class AudiobookPlayerScreen extends ConsumerStatefulWidget {
   final int initialChapterIndex;
   final int initialSentenceIndex;
 
+  /// When true this player is a **pane** inside the iPad listen-and-read desk:
+  /// the host owns the app bar and the text pane, so the read button becomes a
+  /// focus request ([onOpenTextPane]) instead of a route swap.
+  final bool embedded;
+
+  /// Every transport position, host-facing: the desk follows the audio's chapter
+  /// (`onAudiobookLocationChanged` also fires for paused/seeked positions, which
+  /// is what makes "put the text where the audio is" work when paused).
+  final void Function(int chapterIndex, int sentenceIndex)? onLocationChanged;
+
+  /// The read button's meaning when a host owns the text pane.
+  final VoidCallback? onOpenTextPane;
+
   const AudiobookPlayerScreen({
     super.key,
     required this.book,
     required this.chapters,
     this.initialChapterIndex = 0,
     this.initialSentenceIndex = 0,
+    this.embedded = false,
+    this.onLocationChanged,
+    this.onOpenTextPane,
   });
 
   @override
@@ -145,6 +165,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
           _ensureSentenceKeys();
         }
       });
+      // Outside `setState` on purpose: this is the host's seam, and every
+      // location event is forwarded (not only the ones that changed something),
+      // so a paused seek still moves the text pane.
+      widget.onLocationChanged?.call(
+        location.chapterIndex,
+        location.sentenceIndex,
+      );
       if (changed) {
         _saveProgress();
         _scrollToSentence(location.sentenceIndex);
@@ -450,12 +477,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   }
 
   void _showPlaybackFailure() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-            AppLocalizations.of(context)!.audio_could_not_start_check_your),
-      ),
-    );
+    ZenToast.info(context,
+        AppLocalizations.of(context)!.audio_could_not_start_check_your);
   }
 
   /// Applies a voice to both the settings store and the engine.
@@ -627,8 +650,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   void _showLocalVoiceHelp(BuildContext context, bool isDark, Color cardBg,
       Color primaryText, Color secondaryText) {
     final voice = _localVoice;
-    showModalBottomSheet<void>(
-      context: context,
+    zenSheet<void>(
+      context,
       backgroundColor: cardBg,
       showDragHandle: true,
       builder: (context) => SafeArea(
@@ -685,6 +708,36 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   }
 
   Future<void> _switchToReadingMode() async {
+    // A host screen owns the text pane (the listen-and-read desk): the button
+    // becomes a focus request, and — the whole point of that screen — the
+    // audiobook keeps playing instead of being stopped on the way out.
+    if (widget.onOpenTextPane != null) {
+      HapticsManager.light();
+      widget.onOpenTextPane!();
+      return;
+    }
+    // A pane has no route to replace.
+    if (widget.embedded) return;
+    // On an iPad the text belongs *beside* the transport, not instead of it:
+    // pushing the reader (below) stops playback, which is exactly what
+    // "listen and read" must not do.
+    if (context.zenWindow.isExpanded) {
+      HapticsManager.medium();
+      _saveProgress();
+      await Navigator.of(context).push(
+        SwipeBackPageRoute(
+          builder: (_) => ListenAndReadScreen(
+            book: widget.book,
+            chapters: widget.chapters,
+            initialChapterIndex: _currentChapterIndex,
+            initialSentenceIndex: _currentSentenceIndex,
+          ),
+        ),
+      );
+      // Playback is deliberately *not* stopped here: coming back from the desk
+      // must land on a still-playing transport.
+      return;
+    }
     HapticsManager.medium();
     _saveProgress();
     ++_audioRequestGeneration;
@@ -806,8 +859,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   void _showSleepTimerModal(
       BuildContext context, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
@@ -927,8 +980,8 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
     final percentUsed = (usedRatio * 100).round();
     final accent = isDark ? Colors.amber.shade400 : const Color(0xFF8B0000);
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
@@ -1075,13 +1128,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   void _showChapterPicker(
       BuildContext context, bool isDark, Color cardBg, Color primaryText) {
     HapticsManager.light();
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.6,
+          height: MediaQuery.sizeOf(context).height * 0.6,
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
           decoration: BoxDecoration(
             color: cardBg,
@@ -1886,8 +1939,11 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
 
                       const SizedBox(height: 10),
 
-                      // Transport Controls
+                      // Transport Controls. Every control is fixed-size (a compact
+                      // "1.5x" label, icons, a 58px circle) and the only localized
+                      // string here is a tooltip, which renders unconstrained.
                       Row(
+                        // locale-safe: fixed-size transport controls
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // Speed Button

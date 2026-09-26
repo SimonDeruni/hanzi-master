@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/scenario.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
@@ -283,7 +283,7 @@ Respond ONLY in valid JSON format:
     final l10n = AppLocalizations.of(context)!;
     final ink = _InkPalette(context);
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
-    final maxHeight = MediaQuery.of(context).size.height * 0.88;
+    final maxHeight = MediaQuery.sizeOf(context).height * 0.88;
 
     return Container(
       constraints: BoxConstraints(maxHeight: maxHeight),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,10 +17,14 @@ import 'package:hanzi_master/features/media/presentation/widgets/premium_transcr
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/core/layout/zen_device.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 enum _MediaLoadingStep {
   fetchingSubtitles,
@@ -170,7 +175,7 @@ class _SkeletonTranscriptLineState extends State<_SkeletonTranscriptLine>
               // Chinese text placeholder
               Container(
                 height: 16,
-                width: MediaQuery.of(context).size.width * w,
+                width: MediaQuery.sizeOf(context).width * w,
                 decoration: BoxDecoration(
                   color: shimmer,
                   borderRadius: BorderRadius.circular(4),
@@ -180,7 +185,7 @@ class _SkeletonTranscriptLineState extends State<_SkeletonTranscriptLine>
               // Pinyin/English placeholder
               Container(
                 height: 12,
-                width: MediaQuery.of(context).size.width * (w * 0.8),
+                width: MediaQuery.sizeOf(context).width * (w * 0.8),
                 decoration: BoxDecoration(
                   color: shimmer,
                   borderRadius: BorderRadius.circular(3),
@@ -261,19 +266,26 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     _loadData();
     _startSyncEngine();
 
-    // Keep the learning desk inline; fullscreen and landscape playback are disabled.
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    // Keep the learning desk inline on phones; tablets stay rotatable so the
+    // desk can become two-pane in landscape (docs/IPAD_ADAPTIVE_PLAN.md #44).
+    if (!ZenDevice.isTabletWindow) {
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    }
   }
 
   Future<void> _loadData() async {
     try {
       final repository = ref.read(youtubeRepositoryProvider);
-      if (mounted) setState(() => _loadingStep = _MediaLoadingStep.fetchingSubtitles);
+      if (mounted) {
+        setState(() => _loadingStep = _MediaLoadingStep.fetchingSubtitles);
+      }
       var transcript = await repository.getTranscript(widget.video.id);
       if (transcript != null) {
-        final cleanedLines = YoutubeRepository.deduplicateAndMergeLines(transcript.lines);
+        final cleanedLines =
+            YoutubeRepository.deduplicateAndMergeLines(transcript.lines);
         if (cleanedLines.length != transcript.lines.length) {
-          transcript = VideoTranscript(videoId: transcript.videoId, lines: cleanedLines);
+          transcript =
+              VideoTranscript(videoId: transcript.videoId, lines: cleanedLines);
         }
         if (mounted) {
           setState(() {
@@ -312,7 +324,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
           // Track memes
           gemini
-              .generateCulturalMemes(transcript.lines.map((e) => e.text).toList())
+              .generateCulturalMemes(
+                  transcript.lines.map((e) => e.text).toList())
               .then((m) {
             if (mounted) {
               setState(() {
@@ -381,8 +394,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     if (_transcript == null) return;
 
     // Prompt for HSK level
-    final selectedLevel = await showModalBottomSheet<int>(
-      context: context,
+    final selectedLevel = await zenSheet<int>(
+      context,
       useRootNavigator: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
@@ -545,30 +558,12 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
 
   void _showCulturalMeme(Map<String, dynamic> meme) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Row(
-        children: [
-          const Icon(Icons.lightbulb, color: Colors.amber),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Cultural Note: ${meme['keyword'] ?? ''}",
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                Text("${meme['explanation'] ?? ''}"),
-              ],
-            ),
-          ),
-        ],
-      ),
-      duration: ZenMotion.toast,
-      behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.only(bottom: 100, left: 16, right: 16),
-    ));
+    // A calligraphic toast on the root overlay instead of a Material snackbar,
+    // which would sit behind the video surface and the modal barrier.
+    ZenToast.info(
+      context,
+      "Cultural Note: ${meme['keyword'] ?? ''}\n${meme['explanation'] ?? ''}",
+    );
   }
 
   void _onWordTapped(String word) {
@@ -764,7 +759,7 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     _positionSubscription?.cancel();
     _playerController.close();
     _scrollController.dispose();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    ZenDevice.restoreDefaultOrientation();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.dispose();
   }
@@ -863,49 +858,14 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
       ),
       body: OrientationBuilder(
         builder: (context, _) {
-          return Column(
-            children: [
-              ClipRect(
-                child: Transform.scale(
-                  scale: 1.05,
-                  child: YoutubePlayer(
-                    controller: _playerController,
-                    aspectRatio: 16 / 9,
-                    controlsBuilder: (context, _) {
-                      return Transform.scale(
-                        scale: 1 / 1.05,
-                        child: Stack(
-                          children: [
-                            // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
-                            Positioned.fill(
-                              child: IgnorePointer(
-                                ignoring: _isAdPlaying,
-                                child: GestureDetector(
-                                  behavior: HitTestBehavior.opaque,
-                                  onTap: () {
-                                    if (_playerController.value.playerState ==
-                                        PlayerState.playing) {
-                                      _playerController.pauseVideo();
-                                    } else {
-                                      _playerController.playVideo();
-                                    }
-                                  },
-                                  onLongPress: () {},
-                                  child: const SizedBox.expand(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-
-              // ── Scrollable content ──
-              Expanded(
-                child: _isLoading
+      // Landscape on a tablet is the study-desk split (#44): the video keeps the
+      // left pane with its transport, and the AI prep + transcript stay beside it
+      // instead of scrolling under it. A phone or medium window keeps the column.
+      final bool split = context.zenWindow.isExpanded;
+      final Widget videoPane = _buildVideoPane();
+      final Widget controlPane = _buildPortraitControls();
+      final Widget contentPane =
+                _isLoading
                     ? _buildLoadingState()
                     : _error != null
                         ? _buildErrorState()
@@ -1012,14 +972,73 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
                                 ),
                               ),
                             ],
-                          ),
-              ),
+                          );
 
-              // ── Portrait Video Controls (docked at the BOTTOM of the screen) ──
-              _buildPortraitControls(),
-            ],
-          );
+      if (!split) {
+        return Column(
+          children: <Widget>[
+            videoPane,
+            Expanded(child: contentPane),
+            controlPane,
+          ],
+        );
+      }
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: <Widget>[videoPane, controlPane],
+            ),
+          ),
+          const VerticalDivider(width: 1),
+          Expanded(flex: 2, child: contentPane),
+        ],
+      );
+
         },
+      ),
+    );
+  }
+
+  /// The video surface, as a widget — extracted so the landscape split can put
+  /// it in a pane beside the transcript without duplicating the player (#44).
+  Widget _buildVideoPane() {
+    return ClipRect(
+      child: Transform.scale(
+        scale: 1.05,
+        child: YoutubePlayer(
+          controller: _playerController,
+          aspectRatio: 16 / 9,
+          controlsBuilder: (context, _) {
+            return Transform.scale(
+              scale: 1 / 1.05,
+              child: Stack(
+                children: [
+                  // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      ignoring: _isAdPlaying,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          if (_playerController.value.playerState ==
+                              PlayerState.playing) {
+                            _playerController.pauseVideo();
+                          } else {
+                            _playerController.playVideo();
+                          }
+                        },
+                        child: const SizedBox.expand(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -1210,6 +1229,9 @@ class _PortraitVideoControlsState extends State<_PortraitVideoControls> {
                           allowSeekAhead: true,
                         );
                         setState(() => _isDragging = false);
+                        // The seek is committed here, so this is the moment worth
+                        // feeling - the drag itself is continuous.
+                        HapticsManager.selection();
                         // Immediately scroll transcript to the target position
                         widget
                             .onSeekCompleted(Duration(seconds: target.toInt()));

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
-import 'package:flutter/services.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,6 +28,9 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
 
@@ -336,7 +339,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
 
   Future<void> _playNativeAudio() async {
     if (_currentPhrase == null) return;
-    HapticFeedback.lightImpact();
+    HapticsManager.light();
     final audioService = ref.read(audioServiceProvider);
     final mappedRate = _playbackSpeed == 0.8 ? 0.40 : 0.50;
     await audioService.playSentence(
@@ -355,7 +358,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     if (!consent || !mounted) return;
     try {
       if (await _audioRecorder.hasPermission()) {
-        HapticFeedback.heavyImpact();
+        HapticsManager.heavy();
         final tempDir = await getTemporaryDirectory();
         _recordingPath =
             '${tempDir.path}/shadow_recording_${DateTime.now().millisecondsSinceEpoch}.wav';
@@ -377,12 +380,11 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         });
       } else {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content: Text(AppLocalizations.of(context)
-                        ?.microphonePermissionDeniedEnableItI ??
-                    "Microphone permission denied. Enable it in Settings to use Shadowing Studio.")),
-          );
+          ZenToast.error(
+              context,
+              AppLocalizations.of(context)
+                      ?.microphonePermissionDeniedEnableItI ??
+                  "Microphone permission denied. Enable it in Settings to use Shadowing Studio.");
         }
       }
     } catch (e) {
@@ -394,7 +396,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     // Guard: prevent re-entry if already stopping/grading
     if (_isStopping || !_isRecording) return;
     _isStopping = true;
-    HapticFeedback.lightImpact();
+    HapticsManager.light();
 
     try {
       // 1. Validate minimum recording duration BEFORE calling stop()
@@ -545,8 +547,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     final Set<String> selectedWords =
         _weakCharacters.map((w) => w['word'] as String).toSet();
 
-    showModalBottomSheet(
-        context: context,
+    zenSheet(context,
         useRootNavigator: true,
         isScrollControlled: true,
         backgroundColor:
@@ -554,223 +555,216 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
         builder: (context) {
-          return StatefulBuilder(builder: (context, setModalState) {
-            return Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-                left: 24,
-                right: 24,
-                top: 32,
+      return StatefulBuilder(builder: (context, setModalState) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 24,
+            right: 24,
+            top: 32,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                AppLocalizations.of(context)?.sessionSummary ??
+                    "Session Summary",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : Colors.black),
+                textAlign: TextAlign.center,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)?.sessionSummary ??
-                        "Session Summary",
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white : Colors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppLocalizations.of(context)
-                            ?.hereAreTheCharactersYouStruggledWit ??
-                        "Here are the characters you struggled with:",
-                    style: TextStyle(
-                        color: isDark ? Colors.white70 : Colors.black54),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 24),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height * 0.5),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemCount: _weakCharacters.length,
-                      separatorBuilder: (_, __) => const Divider(),
-                      itemBuilder: (context, index) {
-                        final wordData = _weakCharacters[index];
-                        final word = wordData['word'];
-                        final feedback = wordData['feedback'] ?? '';
-                        final isPartial = wordData['isPartial'] ?? false;
-                        final isSelected = selectedWords.contains(word);
+              const SizedBox(height: 8),
+              Text(
+                AppLocalizations.of(context)
+                        ?.hereAreTheCharactersYouStruggledWit ??
+                    "Here are the characters you struggled with:",
+                style:
+                    TextStyle(color: isDark ? Colors.white70 : Colors.black54),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxHeight: MediaQuery.sizeOf(context).height * 0.5),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: _weakCharacters.length,
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemBuilder: (context, index) {
+                    final wordData = _weakCharacters[index];
+                    final word = wordData['word'];
+                    final feedback = wordData['feedback'] ?? '';
+                    final isPartial = wordData['isPartial'] ?? false;
+                    final isSelected = selectedWords.contains(word);
 
-                        return ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          leading: Checkbox(
-                            value: isSelected,
-                            activeColor: _accentOf(isDark),
-                            onChanged: (val) {
-                              setModalState(() {
-                                if (val == true) {
-                                  selectedWords.add(word);
-                                } else {
-                                  selectedWords.remove(word);
-                                }
-                              });
-                            },
-                          ),
-                          title: Text(
-                            word,
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontFamily: 'NotoSerifSC',
-                              color: isPartial
-                                  ? _accentOf(isDark)
-                                  : _alertOf(isDark),
-                            ),
-                          ),
-                          subtitle: feedback.isNotEmpty
-                              ? Text(feedback,
-                                  style: TextStyle(
-                                      color: isDark
-                                          ? Colors.white70
-                                          : Colors.black87))
-                              : null,
-                        );
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Checkbox(
+                        value: isSelected,
+                        activeColor: _accentOf(isDark),
+                        onChanged: (val) {
+                          setModalState(() {
+                            if (val == true) {
+                              selectedWords.add(word);
+                            } else {
+                              selectedWords.remove(word);
+                            }
+                          });
+                        },
+                      ),
+                      title: Text(
+                        word,
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontFamily: 'NotoSerifSC',
+                          color:
+                              isPartial ? _accentOf(isDark) : _alertOf(isDark),
+                        ),
+                      ),
+                      subtitle: feedback.isNotEmpty
+                          ? Text(feedback,
+                              style: TextStyle(
+                                  color:
+                                      isDark ? Colors.white70 : Colors.black87))
+                          : null,
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context); // close sheet
+                        _exitSession();
                       },
+                      child: Text(AppLocalizations.of(context)!.skip,
+                          style:
+                              TextStyle(color: _mutedOf(isDark), fontSize: 16)),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.pop(context); // close sheet
-                            _exitSession();
-                          },
-                          child: Text(AppLocalizations.of(context)!.skip,
-                              style: TextStyle(
-                                  color: _mutedOf(isDark), fontSize: 16)),
-                        ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 2,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        // Book-screen primary: Deep Carbon Ink in light mode,
+                        // Emperor's Gold in dark mode.
+                        backgroundColor: isDark
+                            ? Colors.amber.shade700
+                            : const Color(0xFF1A1A1B),
+                        foregroundColor:
+                            isDark ? const Color(0xFF1A1A1B) : Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            // Book-screen primary: Deep Carbon Ink in light mode,
-                            // Emperor's Gold in dark mode.
-                            backgroundColor: isDark
-                                ? Colors.amber.shade700
-                                : const Color(0xFF1A1A1B),
-                            foregroundColor:
-                                isDark ? const Color(0xFF1A1A1B) : Colors.white,
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                          ),
-                          onPressed: selectedWords.isEmpty
-                              ? null
-                              : () {
-                                  Navigator.pop(context); // close sheet
-                                  _showDeckSelectionDialog(
-                                      context, isDark, selectedWords.toList());
-                                },
-                          child: Text(
-                              AppLocalizations.of(context)!.addSelectedToDeck,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16)),
-                        ),
-                      ),
-                    ],
+                      onPressed: selectedWords.isEmpty
+                          ? null
+                          : () {
+                              Navigator.pop(context); // close sheet
+                              _showDeckSelectionDialog(
+                                  context, isDark, selectedWords.toList());
+                            },
+                      child: Text(
+                          AppLocalizations.of(context)!.addSelectedToDeck,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16)),
+                    ),
                   ),
-                  const SizedBox(height: 32),
                 ],
               ),
-            );
-          });
-        });
+              const SizedBox(height: 32),
+            ],
+          ),
+        );
+      });
+    });
   }
 
   void _showDeckSelectionDialog(
       BuildContext context, bool isDark, List<String> wordsToAdd) {
     bool applySrs = true;
 
-    showModalBottomSheet(
-        context: context,
+    zenSheet(context,
         useRootNavigator: true,
         isScrollControlled: true,
-        backgroundColor:
-            isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-        builder: (context) {
-          return StatefulBuilder(builder: (context, setModalState) {
-            final decksAsync = ref.watch(deckControllerProvider);
+        backgroundColor: isDark
+            ? const Color(0xFF1A1A1B)
+            : const Color(0xFFFDFCF0), builder: (context) {
+      return StatefulBuilder(builder: (context, setModalState) {
+        final decksAsync = ref.watch(deckControllerProvider);
 
-            return Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(AppLocalizations.of(context)!.selectADeck,
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: isDark ? Colors.white : Colors.black)),
-                  const SizedBox(height: 16),
-                  SwitchListTile(
-                    title: const Text(
-                        "Apply session grades to Spaced Repetition (Speaking Mode)",
-                        style: TextStyle(fontSize: 14)),
-                    activeThumbColor: _accentOf(isDark),
-                    value: applySrs,
-                    onChanged: (val) => setModalState(() => applySrs = val),
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  const Divider(),
-                  if (decksAsync.isLoading)
-                    Center(child: ZenLoader(color: _accentOf(isDark))),
-                  if (decksAsync.hasValue && decksAsync.value!.isEmpty)
-                    Text(AppLocalizations.of(context)!.no_decks_found),
-                  if (decksAsync.hasValue && decksAsync.value!.isNotEmpty)
-                    ...decksAsync.value!.map((deck) => ListTile(
-                          title: Text(deck.name,
-                              style: TextStyle(
-                                  color: isDark ? Colors.white : Colors.black)),
-                          subtitle: Text(
-                              AppLocalizations.of(context)!.exportToThisDeck,
-                              style: TextStyle(
-                                  color: isDark
-                                      ? Colors.white54
-                                      : Colors.black54)),
-                          trailing: Icon(Icons.add_circle_outline,
-                              color: _accentOf(isDark)),
-                          onTap: () async {
-                            Navigator.pop(context); // Close deck selector
-                            _exitSession();
-
-                            await _saveWordsToDeck(
-                                context, deck, applySrs, wordsToAdd);
-                          },
-                        )),
-                  const Divider(),
-                  ListTile(
-                    title: Text(AppLocalizations.of(context)!.createNewDeck,
-                        style: TextStyle(
-                            color: _accentOf(isDark),
-                            fontWeight: FontWeight.bold)),
-                    subtitle: Text(
-                        AppLocalizations.of(context)!.makeACustomCollection,
-                        style: TextStyle(
-                            color: isDark ? Colors.white54 : Colors.black54)),
-                    trailing: Icon(Icons.add_circle, color: _accentOf(isDark)),
-                    onTap: () {
-                      _showCreateDeckDialog(
-                          context, isDark, wordsToAdd, applySrs);
-                    },
-                  ),
-                  const SizedBox(height: 32),
-                ],
+        return Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(AppLocalizations.of(context)!.selectADeck,
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: isDark ? Colors.white : Colors.black)),
+              const SizedBox(height: 16),
+              SwitchListTile(
+                title: const Text(
+                    "Apply session grades to Spaced Repetition (Speaking Mode)",
+                    style: TextStyle(fontSize: 14)),
+                activeThumbColor: _accentOf(isDark),
+                value: applySrs,
+                onChanged: (val) => setModalState(() => applySrs = val),
+                contentPadding: EdgeInsets.zero,
               ),
-            );
-          });
-        });
+              const Divider(),
+              if (decksAsync.isLoading)
+                Center(child: ZenLoader(color: _accentOf(isDark))),
+              if (decksAsync.hasValue && decksAsync.value!.isEmpty)
+                Text(AppLocalizations.of(context)!.no_decks_found),
+              if (decksAsync.hasValue && decksAsync.value!.isNotEmpty)
+                ...decksAsync.value!.map((deck) => ListTile(
+                      title: Text(deck.name,
+                          style: TextStyle(
+                              color: isDark ? Colors.white : Colors.black)),
+                      subtitle: Text(
+                          AppLocalizations.of(context)!.exportToThisDeck,
+                          style: TextStyle(
+                              color: isDark ? Colors.white54 : Colors.black54)),
+                      trailing: Icon(Icons.add_circle_outline,
+                          color: _accentOf(isDark)),
+                      onTap: () async {
+                        Navigator.pop(context); // Close deck selector
+                        _exitSession();
+
+                        await _saveWordsToDeck(
+                            context, deck, applySrs, wordsToAdd);
+                      },
+                    )),
+              const Divider(),
+              ListTile(
+                title: Text(AppLocalizations.of(context)!.createNewDeck,
+                    style: TextStyle(
+                        color: _accentOf(isDark), fontWeight: FontWeight.bold)),
+                subtitle: Text(
+                    AppLocalizations.of(context)!.makeACustomCollection,
+                    style: TextStyle(
+                        color: isDark ? Colors.white54 : Colors.black54)),
+                trailing: Icon(Icons.add_circle, color: _accentOf(isDark)),
+                onTap: () {
+                  _showCreateDeckDialog(context, isDark, wordsToAdd, applySrs);
+                },
+              ),
+              const SizedBox(height: 32),
+            ],
+          ),
+        );
+      });
+    });
   }
 
   void _showCreateDeckDialog(BuildContext context, bool isDark,
@@ -838,9 +832,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   Future<void> _saveWordsToDeck(BuildContext context, Deck deck, bool applySrs,
       List<String> wordsToAdd) async {
     final flashcardController = ref.read(flashcardControllerProvider.notifier);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(AppLocalizations.of(context)!
-            .saving_words_to(wordsToAdd.length, deck.name))));
+    ZenToast.info(
+        context,
+        AppLocalizations.of(context)!
+            .saving_words_to(wordsToAdd.length, deck.name));
 
     for (String hanzi in wordsToAdd) {
       // Check if word exists in deck
@@ -891,9 +886,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     }
 
     if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text(AppLocalizations.of(context)!.wordsSavedAndSrsScheduled)));
+    ZenToast.success(
+        context, AppLocalizations.of(context)!.wordsSavedAndSrsScheduled);
   }
 
   // ── Book-screen parity tokens ───────────────────────────────────────────────
@@ -989,7 +983,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       onTap: () {
         if (_selectedMode != mode) {
           setState(() => _selectedMode = mode);
-          HapticFeedback.selectionClick();
+          HapticsManager.selection();
         }
       },
       child: AnimatedContainer(
@@ -1083,8 +1077,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   }
 
   void _showStudioGuideSheet(BuildContext context, bool isDark) {
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (sheetContext) => Container(
@@ -1354,40 +1348,40 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       ),
                     ),
 
-                    GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      childAspectRatio: 2.35,
-                      children: [
-                        _buildSegmentModeTab(
-                          mode: ShadowingMode.freeFlow,
-                          icon: Icons.mic_none_rounded,
-                          label: l10n.freeFlow,
-                          isDark: isDark,
-                        ),
-                        _buildSegmentModeTab(
-                          mode: ShadowingMode.theme,
-                          icon: Icons.auto_stories_rounded,
-                          label: l10n.thematic,
-                          isDark: isDark,
-                        ),
-                        _buildSegmentModeTab(
-                          mode: ShadowingMode.deck,
-                          icon: Icons.style_rounded,
-                          label: l10n.deckFlashcards,
-                          isDark: isDark,
-                        ),
-                        _buildSegmentModeTab(
-                          mode: ShadowingMode.customWord,
-                          icon: Icons.text_fields_rounded,
-                          label: l10n.customWord,
-                          isDark: isDark,
-                        ),
-                      ],
-                    ),
+                    GridView(
+                        gridDelegate: ZenGrid.tiles(
+                            maxTileWidth: 170,
+                            childAspectRatio: 2.35,
+                            crossSpacing: 10,
+                            mainSpacing: 10),
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.freeFlow,
+                            icon: Icons.mic_none_rounded,
+                            label: l10n.freeFlow,
+                            isDark: isDark,
+                          ),
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.theme,
+                            icon: Icons.auto_stories_rounded,
+                            label: l10n.thematic,
+                            isDark: isDark,
+                          ),
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.deck,
+                            icon: Icons.style_rounded,
+                            label: l10n.deckFlashcards,
+                            isDark: isDark,
+                          ),
+                          _buildSegmentModeTab(
+                            mode: ShadowingMode.customWord,
+                            icon: Icons.text_fields_rounded,
+                            label: l10n.customWord,
+                            isDark: isDark,
+                          ),
+                        ]),
 
                     const SizedBox(height: 14),
 
@@ -1635,7 +1629,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                   return Text(AppLocalizations.of(context)!
                                       .no_decks_found);
                                 }
-                                return DropdownButtonHideUnderline(
+                                return ZenFadeIn(
+                                    child: DropdownButtonHideUnderline(
                                   child: DropdownButton<String>(
                                     value: _selectedDeckId ?? decks.first.id,
                                     isExpanded: true,
@@ -1658,7 +1653,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                                       }
                                     },
                                   ),
-                                );
+                                ));
                               },
                               loading: () => const Padding(
                                 padding: EdgeInsets.all(8.0),
@@ -1816,7 +1811,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         key: const Key('shadowing_speed_toggle'),
         borderRadius: BorderRadius.circular(20),
         onTap: () {
-          HapticFeedback.selectionClick();
+          HapticsManager.selection();
           setState(() {
             _playbackSpeed = isSlow ? 1.0 : 0.8;
           });
@@ -2350,8 +2345,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       errorLabel = l10n?.mispronounced ?? 'Mispronounced';
     }
 
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor:

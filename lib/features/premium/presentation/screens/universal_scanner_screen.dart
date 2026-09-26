@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
@@ -18,7 +19,8 @@ import '../../../../core/services/vision_service.dart';
 import '../../../flashcards/domain/entities/flashcard.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
-import '../../../flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
+import 'package:hanzi_master/core/layout/zen_device.dart';
 import '../../../flashcards/presentation/widgets/deck_selection_sheet.dart';
 import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../../shared/widgets/tappable_hanzi_text.dart';
@@ -26,6 +28,8 @@ import '../../../../shared/widgets/ai_consent_sheet.dart';
 import '../widgets/ar_bounding_box_painter.dart';
 import '../widgets/interactive_image_overlay.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 enum CameraIntent { dictionary, translationHub, travelAR, textExtraction }
 
@@ -122,11 +126,16 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
         try {
           await _cameraController!.initialize();
-          try {
-            await _cameraController!
-                .lockCaptureOrientation(DeviceOrientation.portraitUp);
-          } catch (e) {
-            debugPrint("Orientation lock error (ignored): $e");
+          // Phones capture portrait; a tablet keeps its orientation and gets a
+          // side-by-side preview/results layout instead
+          // (docs/IPAD_ADAPTIVE_PLAN.md, screen #71 / blocker B3).
+          if (!ZenDevice.isTabletWindow) {
+            try {
+              await _cameraController!
+                  .lockCaptureOrientation(DeviceOrientation.portraitUp);
+            } catch (e) {
+              debugPrint("Orientation lock error (ignored): $e");
+            }
           }
           _minZoomLevel = await _cameraController!.getMinZoomLevel();
           _maxZoomLevel = await _cameraController!.getMaxZoomLevel();
@@ -195,6 +204,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     _cameraController?.stopImageStream();
     _cameraController?.dispose();
     _textRecognizer.close();
+    // Hand orientation back to the device policy (F2 of the iPad plan) instead
+    // of leaving the capture lock on for the rest of the session.
+    ZenDevice.restoreDefaultOrientation();
     super.dispose();
   }
 
@@ -520,11 +532,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         _scanPhase = 0;
       });
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text(AppLocalizations.of(context)!.noChineseCharactersFound)),
-        );
+        ZenToast.info(
+            context, AppLocalizations.of(context)!.noChineseCharactersFound);
       }
     }
   }
@@ -572,10 +581,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _scanPhase = 0;
           _isLookingUp = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text(AppLocalizations.of(context)!.aiAnalysisFailed)),
-        );
+        ZenToast.error(context, AppLocalizations.of(context)!.aiAnalysisFailed);
       }
     }
   }
@@ -596,11 +602,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               hanzi: info.hanzi,
               pinyin: info.pinyin,
               definition: info.meaning.isNotEmpty ? info.meaning : info.english,
-              definitionLanguage: info.meaning.isNotEmpty
-                  ? _resultLanguage
-                  : 'English',
-              englishDefinition:
-                  info.english.isNotEmpty ? info.english : null,
+              definitionLanguage:
+                  info.meaning.isNotEmpty ? _resultLanguage : 'English',
+              englishDefinition: info.english.isNotEmpty ? info.english : null,
               hskLevel: info.hskLevel,
               strokePaths: const [],
               modeStats: const {},
@@ -627,8 +631,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       hanzi: info.hanzi,
       pinyin: info.pinyin,
       definition: info.meaning.isNotEmpty ? info.meaning : info.english,
-      definitionLanguage:
-          info.meaning.isNotEmpty ? _resultLanguage : 'English',
+      definitionLanguage: info.meaning.isNotEmpty ? _resultLanguage : 'English',
       englishDefinition: info.english.isNotEmpty ? info.english : null,
       hskLevel: info.hskLevel,
       strokePaths: const [],
@@ -645,6 +648,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
+    // Landscape on a tablet splits the scanner (row #71): the live preview keeps
+    // the left pane and the OCR results take the right, instead of the results
+    // being painted over the preview. The interactive-image step is excluded on
+    // purpose — its markup painter still measures the window (see the plan).
+    final bool wideSplit =
+        context.zenWindow.isExpanded && !_showingInteractiveImage;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -695,39 +704,26 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       ),
       body: Stack(
         children: [
-          // Camera Preview (hidden when gallery image is shown)
+          // Camera Preview (hidden when gallery image is shown). In the split it
+          // keeps the left pane; the extracted widget means its fit math runs
+          // against the *pane's* constraints rather than the window's.
           if (_isCameraInitialized &&
               _cameraController != null &&
-              !_showingInteractiveImage)
+              !_showingInteractiveImage &&
+              wideSplit)
             Positioned.fill(
-              child: GestureDetector(
-                onScaleStart: _handleScaleStart,
-                onScaleUpdate: _handleScaleUpdate,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final double screenAspectRatio =
-                        constraints.maxWidth / constraints.maxHeight;
-                    final double cameraAspectRatio =
-                        _cameraController!.value.aspectRatio;
-
-                    // In portrait, camera visual ratio is inverted (1 / cameraAspectRatio)
-                    final double visualCameraRatio = 1 / cameraAspectRatio;
-
-                    double scale = screenAspectRatio / visualCameraRatio;
-                    if (scale < 1) scale = 1 / scale;
-
-                    return ClipRect(
-                      child: Transform.scale(
-                        scale: scale,
-                        child: Center(
-                          child: CameraPreview(_cameraController!),
-                        ),
-                      ),
-                    );
-                  },
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: FractionallySizedBox(
+                  widthFactor: 0.45,
+                  child: _buildCameraPreview(),
                 ),
               ),
             )
+          else if (_isCameraInitialized &&
+              _cameraController != null &&
+              !_showingInteractiveImage)
+            Positioned.fill(child: _buildCameraPreview())
           else
             Positioned.fill(child: Container(color: Colors.black)),
 
@@ -743,7 +739,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             ),
 
           // Main UI Content
-          SafeArea(
+          // Main UI Content. When split, it takes the right pane: the camera owns
+          // the left and the results stop being painted over the live preview.
+          // widthFactor 1.0 leaves every phone and medium window byte-identical.
+          FractionallySizedBox(
+            widthFactor: wideSplit ? 0.55 : 1.0,
+            alignment: Alignment.centerRight,
+            child: SafeArea(
             child: Column(
               children: [
                 const SizedBox(height: 16),
@@ -780,7 +782,42 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               ],
             ),
           ),
+          ),
         ],
+      ),
+    );
+  }
+
+  /// The live camera preview, filling whatever box it is given.
+  ///
+  /// This is extracted so the landscape split is *correct*: the aspect-fit math
+  /// inside runs against the pane's constraints, not the window's, so the
+  /// preview fits its half instead of being scaled for the whole screen (#71).
+  Widget _buildCameraPreview() {
+    return GestureDetector(
+      onScaleStart: _handleScaleStart,
+      onScaleUpdate: _handleScaleUpdate,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final double screenAspectRatio =
+              constraints.maxWidth / constraints.maxHeight;
+          final double cameraAspectRatio = _cameraController!.value.aspectRatio;
+
+          // In portrait, camera visual ratio is inverted (1 / cameraAspectRatio)
+          final double visualCameraRatio = 1 / cameraAspectRatio;
+
+          double scale = screenAspectRatio / visualCameraRatio;
+          if (scale < 1) scale = 1 / scale;
+
+          return ClipRect(
+            child: Transform.scale(
+              scale: scale,
+              child: Center(
+                child: CameraPreview(_cameraController!),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -841,12 +878,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               id: '',
               hanzi: aiWord.hanzi,
               pinyin: aiWord.pinyin,
-              definition: aiWord.meaning.isNotEmpty
-                  ? aiWord.meaning
-                  : aiWord.english,
-              definitionLanguage: aiWord.meaning.isNotEmpty
-                  ? resultLanguage
-                  : 'English',
+              definition:
+                  aiWord.meaning.isNotEmpty ? aiWord.meaning : aiWord.english,
+              definitionLanguage:
+                  aiWord.meaning.isNotEmpty ? resultLanguage : 'English',
               englishDefinition:
                   aiWord.english.isNotEmpty ? aiWord.english : null,
               hskLevel: aiWord.hskLevel,
@@ -868,9 +903,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         if (_isArLensMode) {
           _cameraController!.startImageStream(_processCameraImage);
         }
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content:
-                Text(AppLocalizations.of(context)!.aiSceneAnalysisFailed)));
+        ZenToast.error(
+            context, AppLocalizations.of(context)!.aiSceneAnalysisFailed);
       }
     }
   }
@@ -945,8 +979,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
             const SizedBox(
               width: 48,
               height: 48,
-              child: CircularProgressIndicator(
-                  color: Colors.white, strokeWidth: 3),
+              child: ZenLoader(color: Colors.white, strokeWidth: 3),
             ),
             const SizedBox(height: 24),
             ...List.generate(steps.length, (i) {
@@ -1007,9 +1040,16 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                           }
                         });
                       }),
-                  Text(AppLocalizations.of(context)!.results,
-                      style: theme.textTheme.titleMedium
-                          ?.copyWith(color: Colors.white)),
+                  // Flexible: a longer translation shrinks this title instead of
+                  // pushing the trailing icon out of the header row.
+                  Expanded(
+                    child: Text(AppLocalizations.of(context)!.results,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleMedium
+                            ?.copyWith(color: Colors.white)),
+                  ),
                   IconButton(
                     icon: const Icon(Icons.camera_alt_outlined,
                         color: Colors.white),
@@ -1100,7 +1140,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         onTapUp: (details) {
           if (_detectedObjects.isEmpty) return;
 
-          final size = MediaQuery.of(context).size;
+          final size = MediaQuery.sizeOf(context);
           final imageSize = Size(
             _cameraController!.value.previewSize!.width,
             _cameraController!.value.previewSize!.height,
@@ -1147,7 +1187,7 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                   _cameraController!.value.previewSize!.height,
                   _cameraController!.value.previewSize!.width,
                 ),
-                screenSize: MediaQuery.of(context).size,
+                screenSize: MediaQuery.sizeOf(context),
               ),
             ),
             CustomPaint(
@@ -1205,6 +1245,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 setState(() => _currentZoomLevel = value);
                 await _cameraController?.setZoomLevel(value);
               },
+              // Zoom is continuous, so tick once when the drag settles.
+              onChangeEnd: (_) => HapticsManager.selection(),
             ),
           ),
           const Icon(Icons.zoom_in, color: Colors.white70, size: 20),
@@ -1499,10 +1541,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                l10n.foundNCharacters(_matchedCharacters.length),
-                style: theme.textTheme.headlineSmall?.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold),
+              Expanded(
+                child: Text(
+                  l10n.foundNCharacters(_matchedCharacters.length),
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ),
               ElevatedButton.icon(
                 onPressed: _createDeck,
@@ -1695,12 +1739,19 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Scan Results",
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      "Scan Results",
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  Row(
+                  // An action pair stacks once a translation expands, instead of
+                  // overflowing this row: "Smart Deck" is much longer in German.
+                  Wrap(
+                    alignment: WrapAlignment.end,
+                    spacing: 8,
+                    runSpacing: 8,
                     children: [
                       TextButton.icon(
                         onPressed: () {
@@ -1729,7 +1780,6 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                 : "Select All",
                             style: const TextStyle(color: Colors.white70)),
                       ),
-                      const SizedBox(width: 8),
                       ElevatedButton.icon(
                         onPressed:
                             _isCreatingSmartDeck ? null : _createSmartDeck,
@@ -1749,7 +1799,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                                     color: Colors.black, strokeWidth: 2))
                             : const Icon(Icons.auto_awesome, size: 20),
                         label: Text(AppLocalizations.of(context)!.smartDeck,
-                            style: const TextStyle(fontWeight: FontWeight.bold)),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
@@ -1992,20 +2043,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
         if (mounted) {
           HapticsManager.success();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Row(
-                children: [
-                  const Icon(Icons.auto_awesome, color: Colors.white),
-                  const SizedBox(width: 12),
-                  Text(AppLocalizations.of(context)!
-                      .created_smart_deck_with_words(
-                          _smartDeckName, _matchedCharacters.length)),
-                ],
-              ),
-              backgroundColor: Colors.green,
-              behavior: SnackBarBehavior.floating,
-            ),
+          ZenToast.success(
+            context,
+            AppLocalizations.of(context)!.created_smart_deck_with_words(
+                _smartDeckName, _matchedCharacters.length),
           );
           Navigator.pop(context); // Close the scanner and return
         }

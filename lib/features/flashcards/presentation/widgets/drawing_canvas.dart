@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'dart:async';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
-
 
 class DrawingCanvas extends StatefulWidget {
   final List<String> strokePaths;
@@ -34,6 +34,30 @@ class DrawingCanvas extends StatefulWidget {
   final List<double>? strokeScores;
   final bool showHeatmap;
 
+  /// Apple Pencil / stylus support (iPad practice bench — Part 2b of
+  /// `docs/IPAD_ADAPTIVE_PLAN.md`): pressure-tapered live strokes, palm
+  /// rejection, and hover affordances.
+  ///
+  /// All three are **inert without a stylus**, which is why they default to on:
+  /// touch input produces no `stylus`/`invertedStylus` pointer events, so phone
+  /// behaviour (and the smooth quadratic stroke rendering) is unchanged.
+  final bool stylusInput;
+
+  /// While a stylus is down, ignore fingers/palms that would otherwise draw.
+  final bool palmRejection;
+
+  /// Stylus hover shows the brush landing point, and peeks at the guide stroke
+  /// even when the guide is hidden by the streak setting.
+  final bool hoverPreview;
+
+  /// What this surface *is*, for screen readers — the painters draw pixels, not
+  /// text, so without these the canvas is invisible to VoiceOver and Switch
+  /// Control (which matters most on an iPad). Example: `'Practice Writing: 难'`.
+  final String? semanticsLabel;
+
+  /// The live state to announce, e.g. `'3 / 7 strokes'`.
+  final String? semanticsValue;
+
   const DrawingCanvas({
     super.key,
     required this.strokePaths,
@@ -61,13 +85,19 @@ class DrawingCanvas extends StatefulWidget {
     this.strictGrading = true,
     this.strokeScores,
     this.showHeatmap = false,
+    this.stylusInput = true,
+    this.palmRejection = true,
+    this.hoverPreview = true,
+    this.semanticsLabel,
+    this.semanticsValue,
   });
 
   @override
   State<DrawingCanvas> createState() => _DrawingCanvasState();
 }
 
-class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateMixin {
+class _DrawingCanvasState extends State<DrawingCanvas>
+    with TickerProviderStateMixin {
   final List<Offset?> _userPoints = [];
   double? _gradingResult;
   int _activeCharIndex = 0;
@@ -81,17 +111,22 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   bool _isHintAnimating = false;
   late AnimationController _hintController;
 
-
   @override
   void initState() {
     super.initState();
-    if (widget.initialUserPoints != null) _userPoints.addAll(widget.initialUserPoints!);
-    _shakeController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
-    _hintController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
+    if (widget.initialUserPoints != null) {
+      _userPoints.addAll(widget.initialUserPoints!);
+    }
+    _shakeController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
+    _hintController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1200));
     _syncUserPointsWithNotifier();
     widget.userPointsNotifier?.addListener(_onExternalPointsChanged);
     _refreshData();
-    if (widget.showAnimation && _cachedCharGroups.length > 1 && widget.forcedActiveCharIndex == null) {
+    if (widget.showAnimation &&
+        _cachedCharGroups.length > 1 &&
+        widget.forcedActiveCharIndex == null) {
       _startCycling();
     }
   }
@@ -103,10 +138,14 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     } else if (widget.autoActiveChar && widget.strokeLimit != null) {
       _activeCharIndex = _getCharacterIndexForStroke(widget.strokeLimit! - 1);
     } else {
-      _activeCharIndex = widget.forcedActiveCharIndex ?? _getCharacterIndexForStroke(widget.currentStrokeIndex);
+      _activeCharIndex = widget.forcedActiveCharIndex ??
+          _getCharacterIndexForStroke(widget.currentStrokeIndex);
     }
     if (_activeCharIndex < _cachedCharGroups.length) {
-      _cachedParsedPaths = CharacterLoader.parseStrokes(_cachedCharGroups[_activeCharIndex], normalize: true, isFlipped: widget.isFlipped);
+      _cachedParsedPaths = CharacterLoader.parseStrokes(
+          _cachedCharGroups[_activeCharIndex],
+          normalize: true,
+          isFlipped: widget.isFlipped);
     }
   }
 
@@ -155,17 +194,24 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   }
 
   Future<void> _runCycleLoop() async {
-    if (!mounted || !widget.showAnimation || _cachedCharGroups.length <= 1 || widget.forcedActiveCharIndex != null) {
+    if (!mounted ||
+        !widget.showAnimation ||
+        _cachedCharGroups.length <= 1 ||
+        widget.forcedActiveCharIndex != null) {
       return;
     }
     final currentStrokes = _cachedCharGroups[_activeCharIndex].length;
-    await Future.delayed(Duration(milliseconds: (200 + currentStrokes * 500) + 1500));
+    await Future.delayed(
+        Duration(milliseconds: (200 + currentStrokes * 500) + 1500));
     if (!mounted || !widget.showAnimation) {
       return;
     }
     setState(() {
       _activeCharIndex = (_activeCharIndex + 1) % _cachedCharGroups.length;
-      _cachedParsedPaths = CharacterLoader.parseStrokes(_cachedCharGroups[_activeCharIndex], normalize: true, isFlipped: widget.isFlipped);
+      _cachedParsedPaths = CharacterLoader.parseStrokes(
+          _cachedCharGroups[_activeCharIndex],
+          normalize: true,
+          isFlipped: widget.isFlipped);
     });
     _runCycleLoop();
   }
@@ -173,8 +219,12 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   @override
   void didUpdateWidget(DrawingCanvas oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final bool dataChanged = widget.strokePaths.length != oldWidget.strokePaths.length;
-    final bool stateChanged = (widget.strokeLimit != oldWidget.strokeLimit) || (widget.currentStrokeIndex != oldWidget.currentStrokeIndex) || (widget.isFlipped != oldWidget.isFlipped) || (widget.forcedActiveCharIndex != oldWidget.forcedActiveCharIndex);
+    final bool dataChanged =
+        widget.strokePaths.length != oldWidget.strokePaths.length;
+    final bool stateChanged = (widget.strokeLimit != oldWidget.strokeLimit) ||
+        (widget.currentStrokeIndex != oldWidget.currentStrokeIndex) ||
+        (widget.isFlipped != oldWidget.isFlipped) ||
+        (widget.forcedActiveCharIndex != oldWidget.forcedActiveCharIndex);
     if (dataChanged || stateChanged) {
       setState(() {
         _refreshData();
@@ -184,7 +234,9 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
         }
       });
     }
-    if (widget.showAnimation && !oldWidget.showAnimation && widget.forcedActiveCharIndex == null) {
+    if (widget.showAnimation &&
+        !oldWidget.showAnimation &&
+        widget.forcedActiveCharIndex == null) {
       _startCycling();
     } else if (!widget.showAnimation && oldWidget.showAnimation) {
       _cycleTimer?.cancel();
@@ -201,7 +253,9 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
   }
 
   void _syncUserPointsWithNotifier() {
-    if (widget.userPointsNotifier != null) widget.userPointsNotifier!.value = List.from(_userPoints);
+    if (widget.userPointsNotifier != null) {
+      widget.userPointsNotifier!.value = List.from(_userPoints);
+    }
   }
 
   void _onExternalPointsChanged() {
@@ -231,7 +285,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     if (!widget.strokeByStrokeMode) {
       return;
     }
-    final validStrokes = widget.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
+    final validStrokes =
+        widget.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').toList();
     if (widget.currentStrokeIndex >= validStrokes.length) {
       return;
     }
@@ -243,7 +298,7 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
       currentStroke.insert(0, _userPoints[i]!);
     }
     if (currentStroke.length < 2) return;
-    
+
     int realMedianIndex = widget.currentStrokeIndex;
     int validCount = 0;
     for (int i = 0; i < widget.strokePaths.length; i++) {
@@ -257,13 +312,16 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     }
 
     List<Offset> referenceMedian = [];
-    if (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) {
+    if (widget.medianPaths.isNotEmpty &&
+        realMedianIndex < widget.medianPaths.length) {
       referenceMedian = widget.medianPaths[realMedianIndex];
     }
-    final result = StrokeMatcher.matchStroke(currentStroke, referenceMedian, masteryLevel: widget.masteryLevel, strictEndpoints: widget.strictGrading);
-    
+    final result = StrokeMatcher.matchStroke(currentStroke, referenceMedian,
+        masteryLevel: widget.masteryLevel,
+        strictEndpoints: widget.strictGrading);
+
     if (!mounted) return;
-    
+
     setState(() => _gradingResult = result.score * 100.0);
     if (result.isMatch) {
       HapticsManager.success();
@@ -279,7 +337,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
       });
       Future.delayed(const Duration(milliseconds: 50), () {
         if (widget.onStrokeComplete != null && mounted) {
-          widget.onStrokeComplete!(widget.currentStrokeIndex, context.size ?? Size.zero);
+          widget.onStrokeComplete!(
+              widget.currentStrokeIndex, context.size ?? Size.zero);
         }
       });
     } else {
@@ -321,41 +380,152 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
     return Offset(500.0 - totalBounds.center.dx, 500.0 - totalBounds.center.dy);
   }
 
+  // --- Stylus (Apple Pencil) state -----------------------------------------
+  //
+  // The drag gestures below do not expose pressure, and `DragStartDetails.kind`
+  // only tells us about the pointer that *won* the arena — so a raw `Listener`
+  // wraps the drawing surface to observe pressure and pointer kinds. It never
+  // draws: the `GestureDetector` inside it still owns the gesture arena, so
+  // scrolling parents and phone behaviour are untouched.
+  int? _stylusPointer;
+  double _stylusPressure = 0.5;
+  Offset? _hoverPoint;
+  bool _rejectDrag = false;
+  bool _dragIsStylus = false;
+  final List<double> _livePressures = <double>[];
+
+  static bool _isStylusKind(PointerDeviceKind kind) =>
+      kind == PointerDeviceKind.stylus ||
+      kind == PointerDeviceKind.invertedStylus;
+
+  static double _pressureOf(PointerEvent event) {
+    // Devices that do not report pressure send 0.0, which would render a
+    // hairline, so treat "no pressure" as a normal mid-press.
+    final double raw = event.pressure;
+    return raw <= 0 ? 0.5 : raw.clamp(0.05, 1.0);
+  }
+
+  Widget _withStylus(Widget child) {
+    if (!widget.stylusInput) return child;
+    return MouseRegion(
+      // `Listener` has no "pointer left the region" callback, so the hover ring
+      // is cleared here.
+      onExit: (_) => _clearHover(),
+      child: Listener(
+        onPointerDown: _onStylusDown,
+        onPointerMove: _onStylusMove,
+        onPointerUp: _onStylusUp,
+        onPointerCancel: _onStylusUp,
+        onPointerHover: _onStylusHover,
+        child: child,
+      ),
+    );
+  }
+
+  void _onStylusDown(PointerDownEvent event) {
+    if (_isStylusKind(event.kind)) {
+      _stylusPointer = event.pointer;
+      _stylusPressure = _pressureOf(event);
+      return;
+    }
+    // A finger (or palm) landing while the stylus is down must not draw.
+    if (widget.palmRejection && _stylusPointer != null) {
+      _rejectDrag = true;
+    }
+  }
+
+  void _onStylusMove(PointerMoveEvent event) {
+    if (event.pointer == _stylusPointer) {
+      _stylusPressure = _pressureOf(event);
+    }
+  }
+
+  void _onStylusUp(PointerEvent event) {
+    if (event.pointer == _stylusPointer) {
+      _stylusPointer = null;
+      _stylusPressure = 0.5;
+    }
+    _rejectDrag = false;
+    _dragIsStylus = false;
+    // `_livePressures` is deliberately *not* cleared here: the finished stroke
+    // keeps its taper until the next one starts (cleared in `onPanStart`), so
+    // lifting the Pencil does not visibly re-shape the stroke.
+  }
+
+  void _onStylusHover(PointerHoverEvent event) {
+    if (!widget.hoverPreview) return;
+    if (!_isStylusKind(event.kind) && event.kind != PointerDeviceKind.mouse) {
+      return;
+    }
+    setState(() => _hoverPoint = event.localPosition);
+  }
+
+  void _clearHover() {
+    if (_hoverPoint == null) return;
+    setState(() => _hoverPoint = null);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Widget canvas = _buildCanvas(context);
+    if (widget.semanticsLabel == null && widget.semanticsValue == null) {
+      return canvas;
+    }
+    // A `CustomPaint` surface carries no semantics of its own, so without this
+    // the whole writing area is invisible to VoiceOver and Switch Control.
+    return Semantics(
+      container: true,
+      label: widget.semanticsLabel,
+      value: widget.semanticsValue,
+      child: canvas,
+    );
+  }
+
+  Widget _buildCanvas(BuildContext context) {
     if (_cachedParsedPaths.isEmpty && widget.readOnly) {
       return const Center(child: Icon(Icons.broken_image, color: Colors.grey));
     }
 
     // Scratchpad mode: no reference strokes, just a blank canvas for free drawing
     if (_cachedParsedPaths.isEmpty && !widget.readOnly) {
-      final bool isDarkScratch = Theme.of(context).brightness == Brightness.dark;
-      return GestureDetector(
+      final bool isDarkScratch =
+          Theme.of(context).brightness == Brightness.dark;
+      return _withStylus(GestureDetector(
         onPanStart: (details) {
+          if (_rejectDrag) return;
           HapticsManager.light();
           setState(() => _userPoints.add(details.localPosition));
           _syncUserPointsWithNotifier();
         },
         onPanUpdate: (details) {
+          if (_rejectDrag) return;
           setState(() => _userPoints.add(details.localPosition));
           _syncUserPointsWithNotifier();
         },
         onPanEnd: (_) {
+          if (_rejectDrag) {
+            _rejectDrag = false;
+            return;
+          }
           HapticsManager.light();
           setState(() => _userPoints.add(null));
           _syncUserPointsWithNotifier();
         },
         child: Stack(
           children: [
-            Positioned.fill(child: CustomPaint(painter: _RiceGridPainter(isDark: isDarkScratch))),
+            Positioned.fill(
+                child: CustomPaint(
+                    painter: _RiceGridPainter(isDark: isDarkScratch))),
             Positioned.fill(
               child: CustomPaint(
-                painter: _ScratchpadPainter(points: _userPoints, isDark: isDarkScratch),
+                painter: _ScratchpadPainter(
+                    points: _userPoints, isDark: isDarkScratch),
               ),
             ),
             if (widget.showControls && _userPoints.isNotEmpty)
               Positioned(
-                top: 8, right: 8,
+                top: 8,
+                right: 8,
                 child: IconButton.filled(
                   icon: const Icon(Icons.refresh, size: 20),
                   style: IconButton.styleFrom(
@@ -371,15 +541,15 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
               ),
           ],
         ),
-      );
+      ));
     }
-
 
     // Generate median paths from stroke paths if not provided
     final List<List<Offset>> generatedMedianPaths = [];
     for (int i = 0; i < _cachedParsedPaths.length; i++) {
       if (!_cachedParsedPaths[i].getBounds().isEmpty) {
-        generatedMedianPaths.add(CharacterLoader.samplePoints(_cachedParsedPaths[i], interval: 3.0));
+        generatedMedianPaths.add(
+            CharacterLoader.samplePoints(_cachedParsedPaths[i], interval: 3.0));
       } else {
         generatedMedianPaths.add([]);
       }
@@ -387,10 +557,10 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 
     // Zen & Ink Aesthetic Tokens
     const Color xuanPaper = Color(0xFFFDFCF0);
-    
+
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final strokeOffset = _getStrokeOffsetForCharacter(_activeCharIndex);
-    
+
     int realMedianIndex = widget.currentStrokeIndex;
     int validCount = 0;
     for (int i = 0; i < widget.strokePaths.length; i++) {
@@ -419,7 +589,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
 
     // Pass raw 900-unit median points — the painters handle the 900→1000 scaling and y-flip.
     List<Offset>? currentMedianPoints;
-    if (widget.medianPaths.isNotEmpty && realMedianIndex < widget.medianPaths.length) {
+    if (widget.medianPaths.isNotEmpty &&
+        realMedianIndex < widget.medianPaths.length) {
       currentMedianPoints = widget.medianPaths[realMedianIndex];
     }
 
@@ -433,7 +604,9 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
         aspectRatio: 1.0,
         child: Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF242322) : xuanPaper, // Warm dark paper in dark mode
+            color: isDark
+                ? const Color(0xFF242322)
+                : xuanPaper, // Warm dark paper in dark mode
             border: Border.all(
               color: widget.strokeByStrokeMode
                   ? (isDark ? Colors.brown.shade700 : Colors.brown.shade200)
@@ -444,25 +617,36 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
           ),
           child: Stack(
             children: [
-              Positioned.fill(child: CustomPaint(painter: _RiceGridPainter(isDark: isDark))),
-
-
-              if (widget.strokeByStrokeMode && localCurrentIndex >= 0 && localCurrentIndex < _cachedParsedPaths.length)
+              Positioned.fill(
+                  child:
+                      CustomPaint(painter: _RiceGridPainter(isDark: isDark))),
+              if (widget.strokeByStrokeMode &&
+                  localCurrentIndex >= 0 &&
+                  localCurrentIndex < _cachedParsedPaths.length)
                 Positioned.fill(
                   child: Stack(
                     children: [
                       CustomPaint(
-                        painter: _CompletedStrokesPainter(
-                          paths: _cachedParsedPaths.sublist(0, (_currentStrokeComplete ? localCurrentIndex + 1 : localCurrentIndex).clamp(0, _cachedParsedPaths.length)),
-                          centeringShift: centeringShift,
-                          isDark: isDark,
-                        ),
-                        size: Size.infinite
-                      ),
-                      if (!_currentStrokeComplete && widget.showReference)
+                          painter: _CompletedStrokesPainter(
+                            paths: _cachedParsedPaths.sublist(
+                                0,
+                                (_currentStrokeComplete
+                                        ? localCurrentIndex + 1
+                                        : localCurrentIndex)
+                                    .clamp(0, _cachedParsedPaths.length)),
+                            centeringShift: centeringShift,
+                            isDark: isDark,
+                          ),
+                          size: Size.infinite),
+                      // Pencil hover peeks at the guide even when the streak
+                      // setting has hidden it.
+                      if (!_currentStrokeComplete &&
+                          (widget.showReference ||
+                              (widget.hoverPreview && _hoverPoint != null)))
                         CustomPaint(
                           painter: _ReferenceStrokePainter(
-                            referencePath: _cachedParsedPaths[localCurrentIndex],
+                            referencePath:
+                                _cachedParsedPaths[localCurrentIndex],
                             medianPoints: currentMedianPoints,
                             canvasSize: Size.infinite,
                             centeringShift: centeringShift,
@@ -474,7 +658,8 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                           animation: _hintController,
                           builder: (context, child) => CustomPaint(
                             painter: _HintStrokePainter(
-                              path: _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
+                              path: _cachedParsedPaths[localCurrentIndex.clamp(
+                                  0, _cachedParsedPaths.length - 1)],
                               points: currentMedianPoints,
                               progress: _hintController.value,
                               centeringShift: centeringShift,
@@ -486,20 +671,29 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                     ],
                   ),
                 ),
-              
               if (widget.showAnimation)
                 Positioned.fill(
                   child: IgnorePointer(
                     child: _DelayedAnimationWidget(
-                      key: ValueKey('anim_v10_${_activeCharIndex}_${widget.strokePaths.length}_${widget.medianPaths.length}'),
+                      key: ValueKey(
+                          'anim_v10_${_activeCharIndex}_${widget.strokePaths.length}_${widget.medianPaths.length}'),
                       paths: _cachedParsedPaths,
                       medianPaths: (() {
-                        final hasReal = (widget.medianPaths.length >= strokeOffset + _cachedParsedPaths.length);
-                        debugPrint("HM: Char $_activeCharIndex. Using real medians: $hasReal. Total in list: ${widget.medianPaths.length}");
+                        final hasReal = (widget.medianPaths.length >=
+                            strokeOffset + _cachedParsedPaths.length);
+                        debugPrint(
+                            "HM: Char $_activeCharIndex. Using real medians: $hasReal. Total in list: ${widget.medianPaths.length}");
                         if (hasReal) {
-                          final paths = widget.medianPaths.skip(strokeOffset).take(_cachedParsedPaths.length).toList();
+                          final paths = widget.medianPaths
+                              .skip(strokeOffset)
+                              .take(_cachedParsedPaths.length)
+                              .toList();
                           if (widget.isFlipped) {
-                            return paths.map((path) => path.map((p) => Offset(p.dx, 900.0 - p.dy)).toList()).toList();
+                            return paths
+                                .map((path) => path
+                                    .map((p) => Offset(p.dx, 900.0 - p.dy))
+                                    .toList())
+                                .toList();
                           }
                           return paths;
                         }
@@ -525,18 +719,17 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                     ),
                   ),
                 ),
-
               if (_showSnapStroke)
                 IgnorePointer(
                   child: CustomPaint(
                     painter: _SnapStrokePainter(
-                      _cachedParsedPaths[localCurrentIndex.clamp(0, _cachedParsedPaths.length - 1)],
+                      _cachedParsedPaths[localCurrentIndex.clamp(
+                          0, _cachedParsedPaths.length - 1)],
                       centeringShift: centeringShift,
                     ),
                     size: Size.infinite,
                   ),
                 ),
-
               Positioned.fill(
                 child: IgnorePointer(
                   ignoring: widget.readOnly,
@@ -545,14 +738,27 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                       final size = constraints.biggest;
                       final scaleX = 1000.0 / size.width;
                       final scaleY = 1000.0 / size.height;
-                      return GestureDetector(
+                      return _withStylus(GestureDetector(
                         onPanStart: (details) {
                           if (widget.readOnly) return;
+                          // Palm rejection: a finger that landed while the Pencil
+                          // is down never draws.
+                          if (_rejectDrag) return;
+                          _dragIsStylus = _isStylusKind(
+                              details.kind ?? PointerDeviceKind.touch);
+                          if (_dragIsStylus) {
+                            _livePressures
+                              ..clear()
+                              ..add(_stylusPressure);
+                          }
+                          _clearHover();
                           HapticsManager.light();
                           setState(() {
                             final normalizedPoint = Offset(
-                              details.localPosition.dx * scaleX - centeringShift.dx,
-                              details.localPosition.dy * scaleY - centeringShift.dy,
+                              details.localPosition.dx * scaleX -
+                                  centeringShift.dx,
+                              details.localPosition.dy * scaleY -
+                                  centeringShift.dy,
                             );
                             _userPoints.add(normalizedPoint);
                             _syncUserPointsWithNotifier();
@@ -563,10 +769,16 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         },
                         onPanUpdate: (details) {
                           if (widget.readOnly) return;
+                          if (_rejectDrag) return;
+                          if (_dragIsStylus) {
+                            _livePressures.add(_stylusPressure);
+                          }
                           setState(() {
                             final normalizedPoint = Offset(
-                              details.localPosition.dx * scaleX - centeringShift.dx,
-                              details.localPosition.dy * scaleY - centeringShift.dy,
+                              details.localPosition.dx * scaleX -
+                                  centeringShift.dx,
+                              details.localPosition.dy * scaleY -
+                                  centeringShift.dy,
                             );
                             _userPoints.add(normalizedPoint);
                             _syncUserPointsWithNotifier();
@@ -574,32 +786,72 @@ class _DrawingCanvasState extends State<DrawingCanvas> with TickerProviderStateM
                         },
                         onPanEnd: (details) {
                           if (widget.readOnly) return;
+                          _dragIsStylus = false;
+                          if (_rejectDrag) {
+                            _rejectDrag = false;
+                            return;
+                          }
                           HapticsManager.light();
                           setState(() => _userPoints.add(null));
                           _gradeCurrentStroke();
                         },
                         child: CustomPaint(
                           painter: _UserDrawingPainter(
-                            activeCharacterUserPoints, 
-                            _gradingResult, 
-                            centeringShift: centeringShift, 
+                            activeCharacterUserPoints,
+                            _gradingResult,
+                            centeringShift: centeringShift,
                             isDark: isDark,
                             strokeScores: widget.strokeScores,
                             showHeatmap: widget.showHeatmap,
-                          ), 
-                          size: Size.infinite
+                            // Pencil pressure tapers only the live stroke; a
+                            // finger leaves this empty (unchanged rendering).
+                            livePressures: _livePressures,
+                          ),
+                          // Stylus hover: show where the brush will land.
+                          foregroundPainter:
+                              (_hoverPoint != null && widget.hoverPreview)
+                                  ? _StylusHoverPainter(
+                                      point: _hoverPoint!,
+                                      isDark: isDark,
+                                    )
+                                  : null,
+                          size: Size.infinite,
                         ),
-                      );
+                      ));
                     },
                   ),
                 ),
               ),
-
               if (widget.showGrade)
-                Positioned(bottom: 10, left: 10, child: Text("Score: ${_gradingResult?.toStringAsFixed(2) ?? 'N/A'}", style: TextStyle(color: _gradingResult == null ? (isDark ? Colors.white : Colors.black) : (_gradingResult! > 40 ? Colors.green : Colors.red), fontSize: 16, fontWeight: FontWeight.bold))),
-
-              if (widget.showControls && widget.strokeByStrokeMode && !_currentStrokeComplete && !widget.readOnly)
-                Positioned(top: 10, right: 10, child: IconButton.filled(icon: Icon(_isHintAnimating ? Icons.lightbulb : Icons.lightbulb_outline), onPressed: _playHint, style: IconButton.styleFrom(backgroundColor: Colors.amber.withValues(alpha: 0.9), foregroundColor: Colors.white))),
+                Positioned(
+                    bottom: 10,
+                    left: 10,
+                    child: Text(
+                        "Score: ${_gradingResult?.toStringAsFixed(2) ?? 'N/A'}",
+                        style: TextStyle(
+                            color: _gradingResult == null
+                                ? (isDark ? Colors.white : Colors.black)
+                                : (_gradingResult! > 40
+                                    ? Colors.green
+                                    : Colors.red),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold))),
+              if (widget.showControls &&
+                  widget.strokeByStrokeMode &&
+                  !_currentStrokeComplete &&
+                  !widget.readOnly)
+                Positioned(
+                    top: 10,
+                    right: 10,
+                    child: IconButton.filled(
+                        icon: Icon(_isHintAnimating
+                            ? Icons.lightbulb
+                            : Icons.lightbulb_outline),
+                        onPressed: _playHint,
+                        style: IconButton.styleFrom(
+                            backgroundColor:
+                                Colors.amber.withValues(alpha: 0.9),
+                            foregroundColor: Colors.white))),
             ],
           ),
         ),
@@ -612,7 +864,8 @@ class _CompletedStrokesPainter extends CustomPainter {
   final List<Path> paths;
   final Offset centeringShift;
   final bool isDark;
-  _CompletedStrokesPainter({required this.paths, required this.centeringShift, this.isDark = false});
+  _CompletedStrokesPainter(
+      {required this.paths, required this.centeringShift, this.isDark = false});
   @override
   void paint(Canvas canvas, Size size) {
     if (paths.isEmpty) return;
@@ -633,8 +886,10 @@ class _CompletedStrokesPainter extends CustomPainter {
     }
     canvas.restore();
   }
+
   @override
-  bool shouldRepaint(covariant _CompletedStrokesPainter oldDelegate) => oldDelegate.paths.length != paths.length;
+  bool shouldRepaint(covariant _CompletedStrokesPainter oldDelegate) =>
+      oldDelegate.paths.length != paths.length;
 }
 
 class _SnapStrokePainter extends CustomPainter {
@@ -659,8 +914,10 @@ class _SnapStrokePainter extends CustomPainter {
     canvas.drawPath(strokePath, paint);
     canvas.restore();
   }
+
   @override
-  bool shouldRepaint(covariant _SnapStrokePainter oldDelegate) => oldDelegate.strokePath != strokePath;
+  bool shouldRepaint(covariant _SnapStrokePainter oldDelegate) =>
+      oldDelegate.strokePath != strokePath;
 }
 
 class _ReferenceStrokePainter extends CustomPainter {
@@ -668,7 +925,11 @@ class _ReferenceStrokePainter extends CustomPainter {
   final List<Offset>? medianPoints;
   final Size canvasSize;
   final Offset centeringShift;
-  _ReferenceStrokePainter({required this.referencePath, this.medianPoints, required this.canvasSize, required this.centeringShift});
+  _ReferenceStrokePainter(
+      {required this.referencePath,
+      this.medianPoints,
+      required this.canvasSize,
+      required this.centeringShift});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -678,7 +939,7 @@ class _ReferenceStrokePainter extends CustomPainter {
     canvas.save();
     canvas.scale(scaleX, scaleY);
     canvas.translate(centeringShift.dx, centeringShift.dy);
-    
+
     final strokePaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 46.0
@@ -687,17 +948,23 @@ class _ReferenceStrokePainter extends CustomPainter {
       ..strokeJoin = StrokeJoin.round
       ..isAntiAlias = true;
     canvas.drawPath(referencePath, strokePaint);
-    
-    final highlightPaint = Paint()..style = PaintingStyle.stroke..strokeWidth = 2.0..color = Colors.lightBlue.withValues(alpha: 0.6)..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round..isAntiAlias = true;
+
+    final highlightPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.0
+      ..color = Colors.lightBlue.withValues(alpha: 0.6)
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
     canvas.drawPath(referencePath, highlightPaint);
-    
+
     final metrics = referencePath.computeMetrics().toList();
     if (metrics.isNotEmpty) {
       Offset startPos, endPos;
-      
+
       if (medianPoints != null && medianPoints!.length >= 2) {
         startPos = medianPoints!.first;
-        endPos   = medianPoints!.last;
+        endPos = medianPoints!.last;
       } else {
         // Fallback: sample the SVG path itself (already in 1000-unit screen space)
         final metric = metrics.first;
@@ -710,33 +977,70 @@ class _ReferenceStrokePainter extends CustomPainter {
         for (int i = 0; i < samples.length; i++) {
           for (int j = i + 1; j < samples.length; j++) {
             double d = (samples[i] - samples[j]).distanceSquared;
-            if (d > maxDistSq) { maxDistSq = d; tipA = samples[i]; tipB = samples[j]; }
+            if (d > maxDistSq) {
+              maxDistSq = d;
+              tipA = samples[i];
+              tipB = samples[j];
+            }
           }
         }
         double scoreA = (tipA.dy * 1.5) + tipA.dx;
         double scoreB = (tipB.dy * 1.5) + tipB.dx;
         Offset startTip, endTip;
-        if (scoreA < scoreB) { startTip = tipA; endTip = tipB; }
-        else { startTip = tipB; endTip = tipA; }
+        if (scoreA < scoreB) {
+          startTip = tipA;
+          endTip = tipB;
+        } else {
+          startTip = tipB;
+          endTip = tipA;
+        }
         Offset sAcc = Offset.zero, eAcc = Offset.zero;
         int sCount = 0, eCount = 0;
         for (final p in samples) {
-          if ((p - startTip).distance < 50.0) { sAcc += p; sCount++; }
-          if ((p - endTip).distance < 50.0)   { eAcc += p; eCount++; }
+          if ((p - startTip).distance < 50.0) {
+            sAcc += p;
+            sCount++;
+          }
+          if ((p - endTip).distance < 50.0) {
+            eAcc += p;
+            eCount++;
+          }
         }
         startPos = sCount > 0 ? sAcc / sCount.toDouble() : startTip;
-        endPos   = eCount > 0 ? eAcc / eCount.toDouble() : endTip;
+        endPos = eCount > 0 ? eAcc / eCount.toDouble() : endTip;
       }
-      
-      canvas.drawCircle(startPos, 22.0, Paint()..color = Colors.green.withValues(alpha: 0.4)..style = PaintingStyle.fill);
-      canvas.drawCircle(startPos, 8.0,  Paint()..color = Colors.green..style = PaintingStyle.fill);
-      canvas.drawCircle(endPos,   22.0, Paint()..color = Colors.red.withValues(alpha: 0.2)..style = PaintingStyle.fill);
-      canvas.drawCircle(endPos,   8.0,  Paint()..color = Colors.red..style = PaintingStyle.fill);
+
+      canvas.drawCircle(
+          startPos,
+          22.0,
+          Paint()
+            ..color = Colors.green.withValues(alpha: 0.4)
+            ..style = PaintingStyle.fill);
+      canvas.drawCircle(
+          startPos,
+          8.0,
+          Paint()
+            ..color = Colors.green
+            ..style = PaintingStyle.fill);
+      canvas.drawCircle(
+          endPos,
+          22.0,
+          Paint()
+            ..color = Colors.red.withValues(alpha: 0.2)
+            ..style = PaintingStyle.fill);
+      canvas.drawCircle(
+          endPos,
+          8.0,
+          Paint()
+            ..color = Colors.red
+            ..style = PaintingStyle.fill);
     }
     canvas.restore();
   }
+
   @override
-  bool shouldRepaint(covariant _ReferenceStrokePainter oldDelegate) => oldDelegate.referencePath != referencePath;
+  bool shouldRepaint(covariant _ReferenceStrokePainter oldDelegate) =>
+      oldDelegate.referencePath != referencePath;
 }
 
 class _StaticHighlightPainter extends CustomPainter {
@@ -745,7 +1049,11 @@ class _StaticHighlightPainter extends CustomPainter {
   final Offset centeringShift;
   final bool isDark;
 
-  _StaticHighlightPainter({required this.paths, required this.strokeLimit, required this.centeringShift, this.isDark = false});
+  _StaticHighlightPainter(
+      {required this.paths,
+      required this.strokeLimit,
+      required this.centeringShift,
+      this.isDark = false});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -781,13 +1089,15 @@ class _StaticHighlightPainter extends CustomPainter {
         canvas.drawPath(paths[i], highlightPaint);
       }
     }
-    
+
     canvas.restore();
   }
 
   @override
   bool shouldRepaint(covariant _StaticHighlightPainter oldDelegate) {
-    return oldDelegate.paths.length != paths.length || oldDelegate.strokeLimit != strokeLimit || oldDelegate.isDark != isDark;
+    return oldDelegate.paths.length != paths.length ||
+        oldDelegate.strokeLimit != strokeLimit ||
+        oldDelegate.isDark != isDark;
   }
 }
 
@@ -797,7 +1107,12 @@ class _HintStrokePainter extends CustomPainter {
   final double progress;
   final Offset centeringShift;
   final bool isDark;
-  _HintStrokePainter({required this.path, this.points, required this.progress, required this.centeringShift, this.isDark = false});
+  _HintStrokePainter(
+      {required this.path,
+      this.points,
+      required this.progress,
+      required this.centeringShift,
+      this.isDark = false});
   @override
   void paint(Canvas canvas, Size size) {
     // Standardize Hint to use Pro Logic
@@ -811,6 +1126,7 @@ class _HintStrokePainter extends CustomPainter {
     );
     painter.paint(canvas, size);
   }
+
   @override
   bool shouldRepaint(_HintStrokePainter oldDelegate) => true;
 }
@@ -822,66 +1138,131 @@ class _UserDrawingPainter extends CustomPainter {
   final bool isDark;
   final List<double>? strokeScores;
   final bool showHeatmap;
-  
-  _UserDrawingPainter(this.points, this.gradingResult, {
-    required this.centeringShift, 
+
+  _UserDrawingPainter(
+    this.points,
+    this.gradingResult, {
+    required this.centeringShift,
     required this.isDark,
     this.strokeScores,
     this.showHeatmap = false,
+    this.livePressures = const <double>[],
   });
-  
+
+  /// Per-point pressure for the live stroke (parallel to `points`' trailing
+  /// stroke). Empty for touch input, which keeps the original smooth rendering.
+  final List<double> livePressures;
+
   @override
   void paint(Canvas canvas, Size size) {
     if (size.width == 0) return;
     final scale = size.width / 1000.0;
     const Color carbonInk = Color(0xFF1A1A1B);
-    
+
     // Default paint for the whole character
     final defaultPaint = Paint()
-      ..color = gradingResult == null 
+      ..color = gradingResult == null
           ? (isDark ? Colors.white : carbonInk)
           : (gradingResult! > 40 ? Colors.green : Colors.red)
       ..strokeWidth = scale * 44.0
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..style = PaintingStyle.stroke;
-      
+
+    final int liveStart = points.lastIndexOf(null) + 1;
+    final int liveLength = points.length - liveStart;
+    final bool taperLive = livePressures.isNotEmpty &&
+        liveLength == livePressures.length &&
+        liveLength > 1;
+    int strokeStart = 0;
+
     int currentStrokeIndex = 0;
     Path currentPath = Path();
     bool hasMoved = false;
-    
+
     // Draw stroke by stroke so we can color them individually if heatmap is enabled
     for (int i = 0; i < points.length; i++) {
       if (points[i] == null) {
         if (hasMoved) {
-          _drawPath(canvas, currentPath, currentStrokeIndex, defaultPaint, carbonInk);
+          if (taperLive && strokeStart == liveStart) {
+            _drawTaperedStroke(canvas, points.sublist(strokeStart, i),
+                livePressures, scale, centeringShift, defaultPaint);
+          } else {
+            _drawPath(canvas, currentPath, currentStrokeIndex, defaultPaint,
+                carbonInk);
+          }
           currentPath = Path();
           hasMoved = false;
           currentStrokeIndex++;
+          strokeStart = i + 1;
         }
         continue;
       }
 
-      final pt = Offset((points[i]!.dx + centeringShift.dx) * scale, (points[i]!.dy + centeringShift.dy) * scale);
-      
+      final pt = Offset((points[i]!.dx + centeringShift.dx) * scale,
+          (points[i]!.dy + centeringShift.dy) * scale);
+
       if (!hasMoved) {
         currentPath.moveTo(pt.dx, pt.dy);
         hasMoved = true;
       } else {
         // Smooth path using quadratic bezier
-        final prevPt = Offset((points[i-1]!.dx + centeringShift.dx) * scale, (points[i-1]!.dy + centeringShift.dy) * scale);
+        final prevPt = Offset((points[i - 1]!.dx + centeringShift.dx) * scale,
+            (points[i - 1]!.dy + centeringShift.dy) * scale);
         final midPt = Offset((prevPt.dx + pt.dx) / 2, (prevPt.dy + pt.dy) / 2);
         currentPath.quadraticBezierTo(prevPt.dx, prevPt.dy, midPt.dx, midPt.dy);
       }
     }
     // Draw the final segment and current path
     if (hasMoved) {
-       _drawPath(canvas, currentPath, currentStrokeIndex, defaultPaint, carbonInk);
+      if (taperLive && strokeStart == liveStart) {
+        _drawTaperedStroke(canvas, points.sublist(strokeStart), livePressures,
+            scale, centeringShift, defaultPaint);
+      } else {
+        _drawPath(
+            canvas, currentPath, currentStrokeIndex, defaultPaint, carbonInk);
+      }
     }
   }
 
-  void _drawPath(Canvas canvas, Path path, int strokeIndex, Paint defaultPaint, Color carbonInk) {
-    if (showHeatmap && strokeScores != null && strokeIndex < strokeScores!.length) {
+  /// Draws the live Pencil stroke as short segments whose width follows the
+  /// reported pressure: a light touch is a thin brush, a full press a wide one.
+  void _drawTaperedStroke(
+    Canvas canvas,
+    List<Offset?> rawPoints,
+    List<double> pressures,
+    double scale,
+    Offset centeringShift,
+    Paint basePaint,
+  ) {
+    final Paint paint = Paint()
+      ..color = basePaint.color
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+    for (int i = 0; i + 1 < rawPoints.length; i++) {
+      final Offset? a = rawPoints[i];
+      final Offset? b = rawPoints[i + 1];
+      if (a == null || b == null) continue;
+      final Offset pa = Offset((a.dx + centeringShift.dx) * scale,
+          (a.dy + centeringShift.dy) * scale);
+      final Offset pb = Offset((b.dx + centeringShift.dx) * scale,
+          (b.dy + centeringShift.dy) * scale);
+      final double p = i + 1 < pressures.length
+          ? ((pressures[i] + pressures[i + 1]) / 2).clamp(0.0, 1.0)
+          : pressures[i].clamp(0.0, 1.0);
+      // 0.5 pressure == exactly the touch stroke width (scale * 44), so a medium
+      // press looks like a finger and the brush only grows or thins around it.
+      paint.strokeWidth = scale * 44.0 * (0.55 + 0.9 * p);
+      canvas.drawLine(pa, pb, paint);
+    }
+  }
+
+  void _drawPath(Canvas canvas, Path path, int strokeIndex, Paint defaultPaint,
+      Color carbonInk) {
+    if (showHeatmap &&
+        strokeScores != null &&
+        strokeIndex < strokeScores!.length) {
       final score = strokeScores![strokeIndex];
       Color strokeColor;
       if (score >= 85) {
@@ -891,7 +1272,7 @@ class _UserDrawingPainter extends CustomPainter {
       } else {
         strokeColor = Colors.red;
       }
-      
+
       final heatmapPaint = Paint()
         ..color = strokeColor
         ..strokeWidth = defaultPaint.strokeWidth
@@ -908,36 +1289,82 @@ class _UserDrawingPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
+/// Shows where a hovering Pencil would put the brush down: a soft ring at the
+/// current hover position, so the writer can aim before touching the glass.
+class _StylusHoverPainter extends CustomPainter {
+  _StylusHoverPainter({required this.point, required this.isDark});
+
+  final Offset point;
+  final bool isDark;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (point.dx < 0 || point.dy < 0) return;
+    final Color ring = isDark ? Colors.white : const Color(0xFF1A1A1B);
+    canvas.drawCircle(
+      point,
+      10,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5
+        ..color = ring.withValues(alpha: 0.45),
+    );
+    canvas.drawCircle(
+      point,
+      2,
+      Paint()..color = ring.withValues(alpha: 0.55),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _StylusHoverPainter oldDelegate) =>
+      oldDelegate.point != point || oldDelegate.isDark != isDark;
+}
+
 class _DelayedAnimationWidget extends StatefulWidget {
   final List<Path> paths;
   final List<List<Offset>>? medianPaths;
   final double animationSpeed;
   final Offset centeringShift;
   final bool isDark;
-  const _DelayedAnimationWidget({super.key, required this.paths, this.medianPaths, required this.animationSpeed, required this.centeringShift, required this.isDark});
+  const _DelayedAnimationWidget(
+      {super.key,
+      required this.paths,
+      this.medianPaths,
+      required this.animationSpeed,
+      required this.centeringShift,
+      required this.isDark});
   @override
-  State<_DelayedAnimationWidget> createState() => _DelayedAnimationWidgetState();
+  State<_DelayedAnimationWidget> createState() =>
+      _DelayedAnimationWidgetState();
 }
 
-class _DelayedAnimationWidgetState extends State<_DelayedAnimationWidget> with SingleTickerProviderStateMixin {
+class _DelayedAnimationWidgetState extends State<_DelayedAnimationWidget>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      vsync: this, 
-      duration: Duration(milliseconds: (500 + widget.paths.length * 700).toInt()),
+      vsync: this,
+      duration:
+          Duration(milliseconds: (500 + widget.paths.length * 700).toInt()),
     )..forward();
-    _controller.addStatusListener((status) { 
+    _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Future.delayed(const Duration(milliseconds: 2000), () { 
-          if (mounted) _controller.forward(from: 0); 
-        }); 
-      } 
+        Future.delayed(const Duration(milliseconds: 2000), () {
+          if (mounted) _controller.forward(from: 0);
+        });
+      }
     });
   }
+
   @override
-  void dispose() { _controller.dispose(); super.dispose(); }
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
         animation: _controller,
@@ -993,27 +1420,33 @@ class _ProStrokePainter extends CustomPainter {
 
       if (strokeProgress >= 1.0) {
         // Fully drawn stroke
-        canvas.drawPath(path, Paint()
-          ..color = inkColor
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 46.0
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round
-          ..isAntiAlias = true);
+        canvas.drawPath(
+            path,
+            Paint()
+              ..color = inkColor
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 46.0
+              ..strokeCap = StrokeCap.round
+              ..strokeJoin = StrokeJoin.round
+              ..isAntiAlias = true);
       } else {
         // 1. PHANTOM STROKE
-        canvas.drawPath(path, Paint()
-          ..color = inkColor.withAlpha(25)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 46.0
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round
-          ..isAntiAlias = true);
+        canvas.drawPath(
+            path,
+            Paint()
+              ..color = inkColor.withAlpha(25)
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 46.0
+              ..strokeCap = StrokeCap.round
+              ..strokeJoin = StrokeJoin.round
+              ..isAntiAlias = true);
 
         // 2. VIRTUAL BRUSH ANIMATION
         const prepThreshold = 0.2;
         final isPrepping = strokeProgress < prepThreshold;
-        final inkingProgress = isPrepping ? 0.0 : (strokeProgress - prepThreshold) / (1.0 - prepThreshold);
+        final inkingProgress = isPrepping
+            ? 0.0
+            : (strokeProgress - prepThreshold) / (1.0 - prepThreshold);
         final easedProgress = Curves.easeInOutQuart.transform(inkingProgress);
 
         final metrics = path.computeMetrics().toList();
@@ -1030,20 +1463,20 @@ class _ProStrokePainter extends CustomPainter {
           currentLen -= metric.length;
         }
 
-        canvas.drawPath(partialPath, Paint()
-          ..color = inkColor
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 46.0
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round
-          ..isAntiAlias = true);
+        canvas.drawPath(
+            partialPath,
+            Paint()
+              ..color = inkColor
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 46.0
+              ..strokeCap = StrokeCap.round
+              ..strokeJoin = StrokeJoin.round
+              ..isAntiAlias = true);
       }
     }
 
     canvas.restore();
   }
-
-
 
   @override
   bool shouldRepaint(_ProStrokePainter oldDelegate) =>
@@ -1055,14 +1488,27 @@ class _RiceGridPainter extends CustomPainter {
   _RiceGridPainter({required this.isDark});
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = (isDark ? Colors.white : Colors.red.shade900).withValues(alpha: 0.15)..strokeWidth = 1.0..style = PaintingStyle.stroke;
-    final dashPaint = Paint()..color = (isDark ? Colors.white : Colors.red.shade900).withValues(alpha: 0.1)..strokeWidth = 0.5..style = PaintingStyle.stroke;
+    final paint = Paint()
+      ..color =
+          (isDark ? Colors.white : Colors.red.shade900).withValues(alpha: 0.15)
+      ..strokeWidth = 1.0
+      ..style = PaintingStyle.stroke;
+    final dashPaint = Paint()
+      ..color =
+          (isDark ? Colors.white : Colors.red.shade900).withValues(alpha: 0.1)
+      ..strokeWidth = 0.5
+      ..style = PaintingStyle.stroke;
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
-    canvas.drawLine(Offset(size.width / 2, 0), Offset(size.width / 2, size.height), paint);
-    canvas.drawLine(Offset(0, size.height / 2), Offset(size.width, size.height / 2), paint);
-    _drawDashedLine(canvas, const Offset(0, 0), Offset(size.width, size.height), dashPaint);
-    _drawDashedLine(canvas, Offset(size.width, 0), Offset(0, size.height), dashPaint);
+    canvas.drawLine(
+        Offset(size.width / 2, 0), Offset(size.width / 2, size.height), paint);
+    canvas.drawLine(
+        Offset(0, size.height / 2), Offset(size.width, size.height / 2), paint);
+    _drawDashedLine(
+        canvas, const Offset(0, 0), Offset(size.width, size.height), dashPaint);
+    _drawDashedLine(
+        canvas, Offset(size.width, 0), Offset(0, size.height), dashPaint);
   }
+
   void _drawDashedLine(Canvas canvas, Offset p1, Offset p2, Paint paint) {
     final distance = (p2 - p1).distance;
     if (distance == 0) return;
@@ -1072,12 +1518,18 @@ class _RiceGridPainter extends CustomPainter {
     final dy = (p2.dy - p1.dy) / distance;
     double currentDist = 0;
     while (currentDist < distance) {
-      canvas.drawLine(Offset(p1.dx + dx * currentDist, p1.dy + dy * currentDist), Offset(p1.dx + dx * (currentDist + dashWidth), p1.dy + dy * (currentDist + dashWidth)), paint);
+      canvas.drawLine(
+          Offset(p1.dx + dx * currentDist, p1.dy + dy * currentDist),
+          Offset(p1.dx + dx * (currentDist + dashWidth),
+              p1.dy + dy * (currentDist + dashWidth)),
+          paint);
       currentDist += dashWidth + dashSpace;
     }
   }
+
   @override
-  bool shouldRepaint(covariant _RiceGridPainter oldDelegate) => oldDelegate.isDark != isDark;
+  bool shouldRepaint(covariant _RiceGridPainter oldDelegate) =>
+      oldDelegate.isDark != isDark;
 }
 
 /// Simple painter for the free-draw scratchpad.
@@ -1110,7 +1562,8 @@ class _ScratchpadPainter extends CustomPainter {
       } else {
         // Smooth path using quadratic bezier
         final prevPt = points[i - 1]!;
-        final midPt = Offset((prevPt.dx + point.dx) / 2, (prevPt.dy + point.dy) / 2);
+        final midPt =
+            Offset((prevPt.dx + point.dx) / 2, (prevPt.dy + point.dy) / 2);
         path.quadraticBezierTo(prevPt.dx, prevPt.dy, midPt.dx, midPt.dy);
       }
     }

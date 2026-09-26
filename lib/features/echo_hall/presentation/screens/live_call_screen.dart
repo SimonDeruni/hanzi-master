@@ -8,7 +8,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
 import '../../../chat/domain/entities/chat_message.dart';
-import 'package:hanzi_master/features/flashcards/presentation/utils/haptics_manager.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
@@ -450,7 +450,8 @@ class _LiveCallScreenState extends ConsumerState<LiveCallScreen>
     } catch (e) {
       debugPrint("LiveCall: Could not start recorder: $e");
       _isStartingListening = false;
-      _setCallState(LiveCallState.error, LiveCallStatusKey.microphoneErrorRetry);
+      _setCallState(
+          LiveCallState.error, LiveCallStatusKey.microphoneErrorRetry);
     }
   }
 
@@ -802,7 +803,8 @@ Example: 你好！很高兴见到你。|||nǐ hǎo! hěn gāo xìng jiàn dào n
 
     if (mounted) {
       setState(() => _audioLevel = 0);
-      _setCallState(LiveCallState.idle, LiveCallStatusKey.callPausedReviewingTones);
+      _setCallState(
+          LiveCallState.idle, LiveCallStatusKey.callPausedReviewingTones);
     }
 
     if (!mounted) return;
@@ -1207,8 +1209,7 @@ Provide your short, professional linguistic analysis directly to the student:
                               ),
                               if (_hasError) ...[
                                 if (_statusKey ==
-                                    LiveCallStatusKey
-                                        .initErrorCheckPermissions)
+                                    LiveCallStatusKey.initErrorCheckPermissions)
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 8.0, left: 32.0, right: 32.0),
@@ -1261,8 +1262,8 @@ Provide your short, professional linguistic analysis directly to the student:
                                           },
                                         ),
                                       ElevatedButton.icon(
-                                        key: const Key(
-                                            'live_call_retry_button'),
+                                        key:
+                                            const Key('live_call_retry_button'),
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.white24,
                                           foregroundColor: Colors.white,
@@ -1273,8 +1274,8 @@ Provide your short, professional linguistic analysis directly to the student:
                                                   BorderRadius.circular(30)),
                                           elevation: 4,
                                         ),
-                                        icon: const Icon(Icons.refresh,
-                                            size: 18),
+                                        icon:
+                                            const Icon(Icons.refresh, size: 18),
                                         label: Text(
                                           AppLocalizations.of(context)!
                                               .tryAgain,
@@ -1326,8 +1327,8 @@ Provide your short, professional linguistic analysis directly to the student:
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 14, vertical: 8),
                             decoration: BoxDecoration(
-                              color:
-                                  const Color(0xFF1E293B).withValues(alpha: 0.4),
+                              color: const Color(0xFF1E293B)
+                                  .withValues(alpha: 0.4),
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
                                 color: Colors.white.withValues(alpha: 0.12),
@@ -1358,7 +1359,8 @@ Provide your short, professional linguistic analysis directly to the student:
                               blendMode: BlendMode.dstIn,
                               child: ListView.builder(
                                 controller: _scrollController,
-                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
                                 itemCount: _transcript.length,
                                 itemBuilder: (context, index) {
                                   final msg = _transcript[index];
@@ -1434,7 +1436,10 @@ Provide your short, professional linguistic analysis directly to the student:
 
                         Padding(
                           padding: const EdgeInsets.only(bottom: 40.0),
+                          // Each control caps its own label (60/64px, 2 lines)
+                          // inside _CallControlButton, so this row cannot grow.
                           child: Row(
+                            // locale-safe: fixed-width controls
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               _CallControlButton(
@@ -1591,7 +1596,7 @@ class _LiveTranscriptBubble extends StatelessWidget {
         alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
         child: Container(
           constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * 0.78,
+            maxWidth: MediaQuery.sizeOf(context).width * 0.78,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(

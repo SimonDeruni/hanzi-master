@@ -20,6 +20,9 @@ import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.da
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
+import 'package:hanzi_master/shared/utils/hero_transition.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 
 class CategoryStyle {
   final List<Color> gradient;
@@ -300,8 +303,8 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          showModalBottomSheet(
-            context: context,
+          zenSheet(
+            context,
             useRootNavigator: true,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
@@ -447,12 +450,11 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
+                gridDelegate: ZenGrid.covers(
+                    maxCoverWidth: 175,
+                    childAspectRatio: 0.7,
+                    crossSpacing: 16,
+                    mainSpacing: 16),
                 itemCount: results.length,
                 itemBuilder: (context, index) {
                   return _buildStoryCard(results[index]);
@@ -519,8 +521,14 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Hero(
-              tag: 'daily_story_${dailyStory.hashCode}',
+            // The tag used to be `'daily_story_${dailyStory.hashCode}'`, which can
+            // never match the destination: an identity hashCode is not stable
+            // across runs, and the object on the summary route is a different
+            // instance. Naming the pair by the story's own link makes the flight
+            // deterministic, and uses the frozen namespaced tag scheme.
+            HeroTransition.wrap(
+              context: context,
+              tag: HeroTransition.heroTag('story_library', dailyStory.link),
               child: coverProvider == null
                   ? _buildFallbackGradient()
                   : Image(

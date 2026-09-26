@@ -368,11 +368,11 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     final aiBubbleColor =
         isDark ? const Color(0xFF252525) : const Color(0xFFFFF8EE);
     final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
     final drawerWidth = screenWidth * 0.88;
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.85,
+      height: MediaQuery.sizeOf(context).height * 0.85,
       child: SafeArea(
         top: false,
         child: Padding(

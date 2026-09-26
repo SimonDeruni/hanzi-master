@@ -68,7 +68,8 @@ class DeckSelectionSheet extends ConsumerWidget {
           _buildCreateDeckAction(context, ref, l10n),
           const SizedBox(height: 16),
           asyncDecks.when(
-            data: (decks) => _buildDeckList(context, ref, decks, l10n),
+            data: (decks) =>
+                ZenFadeIn(child: _buildDeckList(context, ref, decks, l10n)),
             loading: () => const Padding(
               padding: EdgeInsets.symmetric(vertical: 32),
               child: Center(child: ZenLoader()),
@@ -245,7 +246,7 @@ class DeckSelectionSheet extends ConsumerWidget {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.45,
+        maxHeight: MediaQuery.sizeOf(context).height * 0.45,
       ),
       child: Container(
         clipBehavior: Clip.antiAlias,

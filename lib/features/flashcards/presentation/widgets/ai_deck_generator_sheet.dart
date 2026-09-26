@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
   const AiDeckGeneratorSheet({super.key});
@@ -66,7 +68,7 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
-    final maxHeight = MediaQuery.of(context).size.height * 0.85;
+    final maxHeight = MediaQuery.sizeOf(context).height * 0.85;
 
     return Container(
       constraints: BoxConstraints(maxHeight: maxHeight),
@@ -294,6 +296,9 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                           _countController.text = val.toInt().toString();
                         });
                       },
+                      // A count is committed on release, so that is when it lands:
+                      // dragging through 200 possible values must not buzz 200 times.
+                      onChangeEnd: (_) => HapticsManager.selection(),
                     ),
 
                     const SizedBox(height: 16),
@@ -316,17 +321,13 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                             final l10n = AppLocalizations.of(context)!;
                             final topic = _topicController.text.trim();
                             if (topic.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(l10n.pleaseEnterTopic)));
+                              ZenToast.info(context, l10n.pleaseEnterTopic);
                               return;
                             }
 
                             if (_mode == 1 && _selectedDeckId == null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(
-                                          l10n.please_select_a_deck_to_add)));
+                              ZenToast.info(
+                                  context, l10n.please_select_a_deck_to_add);
                               return;
                             }
 
@@ -389,10 +390,8 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
 
                                     if (mounted && context.mounted) {
                                       Navigator.pop(context);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              content: Text(
-                                                  "Created ${newDeck.name} with ${cards.length} cards")));
+                                      ZenToast.success(context,
+                                          "Created ${newDeck.name} with ${cards.length} cards");
                                     }
                                   } else {
                                     final error = ref
@@ -448,20 +447,17 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
 
                                   if (mounted && context.mounted) {
                                     Navigator.pop(context);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content: Text(
-                                                AppLocalizations.of(context)!
-                                                    .added_cards_to(
-                                                        cards.length,
-                                                        _selectedDeckName!))));
+                                    ZenToast.success(
+                                        context,
+                                        AppLocalizations.of(context)!
+                                            .added_cards_to(cards.length,
+                                                _selectedDeckName!));
                                   }
                                 }
                               }
                             } catch (e) {
                               if (mounted && context.mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text("Error: $e")));
+                                ZenToast.error(context, "Error: $e");
                               }
                             } finally {
                               if (mounted) {

@@ -33,6 +33,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/core/widgets/app_reload_boundary.dart';
 import 'package:hanzi_master/core/hive_adapter_registry.dart';
 import 'package:hanzi_master/core/localization/app_locale_policy.dart';
+import 'package:hanzi_master/core/layout/zen_device.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 void main() {
@@ -49,11 +50,11 @@ void main() {
     systemNavigationBarDividerColor: Colors.transparent,
   ));
 
-  // Force Portrait Mode globally
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // Orientation policy by device class (F2 of docs/IPAD_ADAPTIVE_PLAN.md):
+  // phones stay portrait; tablets may rotate, so landscape reading, video and
+  // Split View work. Screens that genuinely need a fixed orientation (camera
+  // capture, calligraphy) ask through ZenOrientationLock and release it on pop.
+  unawaited(ZenDevice.applyStartupOrientation());
 
   runApp(HanziMasterBootstrapApp(onFirstFrameReady: binding.allowFirstFrame));
 }

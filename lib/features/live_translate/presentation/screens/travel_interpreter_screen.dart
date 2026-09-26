@@ -14,6 +14,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 enum _InterpreterStatus {
   ready,
@@ -398,8 +399,8 @@ class _TravelInterpreterScreenState
 
   /// Shows a full-screen overlay for Side B (partner) to type using the system keyboard.
   void _showPartnerKeyboard() {
-    showModalBottomSheet(
-      context: context,
+    zenSheet(
+      context,
       useRootNavigator: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
