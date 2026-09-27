@@ -81,7 +81,32 @@ no figure below is inflated by false positives.
   confirmed 0 wrong-script values in ar/hi/ja/ko/ru/th and no truncated summary.
   Because the P0 wiring above landed first, this sweep reaches the shelf.
 
-### [P1 - High] - Thai is missing three catalogs entirely
+### [P1 - High] - Every locale covered only half the show synopses, and this audit scored the family 100% *(FIXED 2026-09-27)*
+
+- **Evidence:** `shows_{loc}.json` held **56-67 rows** against the **128** keys in
+  the generated `const Map<String, String> showSummaries`
+  (`lib/features/media/data/repositories/show_summaries.dart`, produced by
+  `tools/generate_show_summaries.py`): `id` 56, `it` 56, `ko` 67, `de` 60. Each
+  locale covered a *different* subset, and the union of all twelve files was 108 -
+  so twenty shows had no translation anywhere.
+- **Impact:** `LocalizedCatalogService.getShowSummary` falls back to `fallbackEn`
+  for any show without a row, so a German reader saw English for **68 of 128**
+  shows, an Indonesian reader for 72. This is the largest user-visible
+  localization gap found in this whole audit, and it shipped while the family read
+  "TRANSLATED 100%".
+- **Why the instrument missed it:** every rule in `content_l10n_audit.py` compares
+  a locale file against the English *for the keys that file contains*. A file with
+  60 keys and 60 translations therefore scores 100%, and **absence is never
+  measured at all**. Coverage and correctness are different questions; only the
+  second one was being asked.
+- **Remediation (shipped 2026-09-27):** `scratch/catalog_factory.py --family shows
+  --locale <loc>` reads the English key set out of `show_summaries.dart` and
+  translates every missing row (**1,112 rows across 13 locales**, batch 8 because a
+  four-sentence synopsis will not share a batch with a chapter name). Pinned by a
+  new guard rule that reads the generated map rather than a hard-coded count, so
+  it cannot drift from its source.
+
+### [P1 - High] - Thai is missing three catalogs entirely *(FIXED 2026-09-27)*
 
 - **Evidence:** `shows_th.json`, `channels_th.json` and `chapter_titles_th.json`
   do not exist. `LocalizedCatalogService` catches the load error, caches `{}` and
@@ -132,7 +157,7 @@ no figure below is inflated by false positives.
   placeholder allowlist in the guard test is now **empty**, and its staleness
   check keeps it that way.
 
-### [P2 - Minor] - Orphan assets and a half-translated tail
+### [P2 - Minor] - Orphan assets and a half-translated tail *(FIXED 2026-09-27)*
 
 - **Evidence:** `idiom_stories_*.json` (6 files, byte-identical to each other,
   entirely English, no reader). `chapter_titles_<locale>.json` keeps English
@@ -145,10 +170,24 @@ no figure below is inflated by false positives.
   (*Tao Te Ching*, *Zhuangzi*, *Les Misérables*) and are **correct as they are**.
 - **Impact:** Bundle weight and review noise; the chapter-tail case is a visible
   half-English string.
-- **Remediation:** Delete or wire `idiom_stories_*`; drop the `zh` files if no
-  Chinese UI ships; translate the chapter-name tails.
+- **Remediation (shipped 2026-09-27):** `idiom_stories_*`, `books_zh.json` and
+  `shows_zh.json` were **deleted** (~490 KB; `zh` is not in
+  `localizedContentLanguageCodes`, so nothing could load the latter two). The
+  English tails were **379 rows across twelve locales**, not the six locales this
+  entry names - the measurement was narrowed by a different key, and the real
+  count is 31 rows per locale (38 in French). All repaired by
+  `scratch/catalog_factory.py`, which translates the whole title rather than
+  splicing a tail into the existing value; single-word tails that are correct in
+  the target language (`Chapitre 1: Prologue`) are deliberately left. The 2 German
+  poem titles were fixed (*Der Garten des Goldenen Tals*, *Die Gasse der
+  schwarzen Gewänder*), and **`radicals_de.json` needed no change** - `钅` already
+  reads `Metall`, and *Person*, *Hand*, *Wind*, *Gold* and *Jade* are correct
+  German, so the parenthetical above was a false positive. The repair's first
+  attempt corrupted 99 rows and is documented here as a lesson: see the
+  `is_sane()` guard and the two new guard-test rules that now pin both the tail
+  and the doubled prefix.
 
-### [P2 - Minor] - A referenced asset does not exist, and one has a BOM
+### [P2 - Minor] - A referenced asset does not exist, and one has a BOM *(FIXED 2026-09-27)*
 
 - **Evidence:** `assets/data/mandarin_bean_stories_en.json` is requested from
   three sites (`story_fetcher_service.dart:460,566`,
@@ -158,8 +197,15 @@ no figure below is inflated by false positives.
   starts with a UTF-8 BOM, which Dart's decoder tolerates but strict JSON
   parsers reject.
 - **Impact:** Silent fallbacks hide intent; the BOM breaks tooling.
-- **Remediation:** Delete the dead `_en` lookups (or ship the file), and strip
-  the BOM.
+- **Remediation (shipped 2026-09-27):** the two `_en` lookups in
+  `story_fetcher_service.dart` now read `mandarin_bean_stories.json` directly -
+  that *is* the English base, and the `catch (_)` was hiding a `FileNotFoundError`
+  on every call. (`story_controller.dart` no longer has one.) The BOM was
+  stripped by the new `scratch/strip_json_bom.py`, which also found **a second
+  BOM'd asset this entry missed: `assets/data/poet_bios.json`**. The defect is not
+  theoretical - a survey script crashed on the file in this very session, with a
+  plain `utf-8` reader, which is exactly the "breaks tooling" impact claimed
+  above. Zero BOM'd JSON now remains under `assets/data`.
 
 ---
 
@@ -184,12 +230,17 @@ no figure below is inflated by false positives.
 
 ## 🔜 Not Done In This Step
 
-- The remaining sweeps (Thai catalogs, the bean summaries, the five Hindi rows,
-  the chapter-name tails) are content work that **an agent is already running**
-  (`scratch/translate_summaries_gemini.py`, dirty
-  `mandarin_bean_stories_de.json` / `_es.json` in the tree). Duplicating it would
-  collide and burn API quota.
+- ~~The remaining sweeps (Thai catalogs, the bean summaries, the five Hindi rows,
+  the chapter-name tails)~~ - **all four landed.** The bean summaries finished on
+  2026-09-27 (`scratch/summaries_factory.py`, 1,950/1,950), and the Thai catalogs
+  plus the chapter-name tails the same day (`scratch/catalog_factory.py`, 914 +
+  377 rows). The five Hindi rows were already clean when this pass ended.
 - `lib/features/reading/presentation/screens/story_reader_screen.dart:896`
   prints `sentence.english` for stories with no translation path at all; it was
   left alone because it is a different entity and its own suites pin it. It is
-  the same class of defect and should follow the reader.
+  the same class of defect and should follow the reader. **Still open.**
+- **Found after this pass, and fixed:** the `shows` family was scored against the
+  keys each file happened to hold, so it read "TRANSLATED 100%" while every locale
+  covered only 56-67 of the 128 synopses in `show_summaries.dart` - see the P1
+  entry above. The lesson for this instrument is that **coverage and correctness
+  are different questions**, and only the first was being asked here.

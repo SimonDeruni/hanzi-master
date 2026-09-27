@@ -37,6 +37,44 @@ Use these exact commands for maintenance and development.
 - **Generate Sentences:**
   `dart tooling/generate_sentences.dart`
 
+## 🌐 Content Translation Factories
+Both factories share one credential pool (`scratch/translation_pool.py`, every key in
+`.env` / `functions/.env`), rotate on `429` and drop a dead key on `401/403/404`.
+They only ever touch a row that is still the English source, so a hand-written
+translation can never be overwritten.
+- **What is still missing, per catalog family:**
+  `python scratch/catalog_factory.py --survey`
+- **Translate or repair a catalog family** (`shows` | `channels` | `chapter_titles`):
+  `python scratch/catalog_factory.py --family chapter_titles --locale all`
+- **Mandarin Bean micro-read summaries** (resumable; `--dry-run` first):
+  `python scratch/summaries_factory.py --dry-run`
+  `python scratch/summaries_factory.py --batch 25 --workers 4`
+- **Progress and independent quality check:**
+  `python scratch/summaries_progress.py`
+  `python scratch/summaries_quality_check.py`
+- **Per-locale audit of every content catalog:**
+  `python scratch/content_l10n_audit.py --out build/reports/content_l10n.txt`
+- **Strip a UTF-8 BOM from bundled JSON** (Dart tolerates it, strict parsers do not):
+  `python scratch/strip_json_bom.py`
+- **The rules that keep all of this honest:**
+  `flutter test test/core/content_localization_guard_test.dart`
+- **Expand Poetry Collections** (one book per poet, up to `--per-author` poems each;
+  `--check` validates without fetching, `--dry-run` reports without writing):
+  `python tooling/fetch_poetry_collections.py --per-author=50`
+  `python tooling/fetch_poetry_collections.py --check`
+- **Poet biographies** (condense the corpus author index, then translate; `--only <code>`
+  narrows to one locale, and English is fetched with `--only en`):
+  `python tooling/build_poet_bios.py`
+  `python tooling/build_poet_bios.py --translate --only fr`
+- **Poem title translations** (resumable — re-run to continue where it stopped;
+  a title that is already translated is never re-sent):
+  `python tooling/translate_poetry_chapters.py`
+  `python tooling/translate_poetry_chapters.py 600 --only ja`
+- **English poem titles** (the base locale reads the store's own `title_en`, since
+  there is no `l10n/poetry_en.json`; resumable, `--dry-run` reports without writing):
+  `python tooling/build_poem_titles_en.py`
+  `python tooling/build_poem_titles_en.py --dry-run`
+
 ## 📱 Release & Store
 - **Build Android App Bundle:**
   `flutter build appbundle`

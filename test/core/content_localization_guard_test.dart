@@ -56,14 +56,14 @@ void main() {
       expect(
         unexpected,
         isEmpty,
-        reason: 'A content catalog lost (or never gained) a locale file, so that '
+        reason:
+            'A content catalog lost (or never gained) a locale file, so that '
             'language silently falls back to English. Add the file or add it to '
             'kKnownMissingLocaleFiles with a date: $unexpected',
       );
 
       // Ratchet down: a file that now exists must leave the allowlist.
-      final Set<String> stale =
-          _kKnownMissingLocaleFiles.difference(offenders);
+      final Set<String> stale = _kKnownMissingLocaleFiles.difference(offenders);
       expect(
         stale,
         isEmpty,
@@ -77,8 +77,8 @@ void main() {
       // string "Hindi translation unavailable, using English: <English text>"
       // in five rows. A marker like this is not a fallback the UI can hide - it
       // is the chapter title the reader sees.
-      final RegExp marker =
-          RegExp(r'^(?:[A-Z][a-z]+ )?translation unavailable', caseSensitive: false);
+      final RegExp marker = RegExp(r'^(?:[A-Z][a-z]+ )?translation unavailable',
+          caseSensitive: false);
       final List<String> offenders = <String>[];
       for (final FileSystemEntity entity in _l10nFiles()) {
         final String name = entity.uri.pathSegments.last;
@@ -95,13 +95,14 @@ void main() {
         }
       }
 
-      final List<String> unexpected =
-          offenders.where((String row) => !_kKnownPlaceholderRows.contains(row))
-              .toList();
+      final List<String> unexpected = offenders
+          .where((String row) => !_kKnownPlaceholderRows.contains(row))
+          .toList();
       expect(
         unexpected,
         isEmpty,
-        reason: 'A locale ships a translation-pipeline placeholder as user text. '
+        reason:
+            'A locale ships a translation-pipeline placeholder as user text. '
             'Translate the row and delete it from kKnownPlaceholderRows: '
             '$unexpected',
       );
@@ -203,7 +204,8 @@ void main() {
         expect(
           englishSummaries,
           lessThanOrEqualTo(_kEnglishSummaryCeiling[locale]!),
-          reason: '$locale regressed on summaries ($englishSummaries English of '
+          reason:
+              '$locale regressed on summaries ($englishSummaries English of '
               '150, ceiling ${_kEnglishSummaryCeiling[locale]}). Finish the '
               'sweep with scratch/translate_summaries_gemini.py, then lower the '
               'ceiling - never raise it.',
@@ -216,6 +218,143 @@ void main() {
         );
       }
     });
+    test('no localized chapter title keeps its English tail', () {
+      // Audit 37 found this in twelve locales: the value localizes the word
+      // "Chapter" and its number, then repeats the English description
+      // (`Kapitel 10: Asteroid 325: The King Who Rules Solitude`), so the reader
+      // sees half-translated text. The English source is the key itself, so the
+      // test is exact rather than heuristic: whatever follows the chapter number
+      // must not survive verbatim in the value.
+      final RegExp tail = RegExp(r'^Chapter\s+\d+\s*(.*)$');
+      final RegExp englishWord = RegExp(r'[A-Za-z]{3,}');
+      final List<String> offenders = <String>[];
+      int inspected = 0;
+
+      for (final String locale in _kLocales) {
+        final Map<String, dynamic> data = jsonDecode(
+          _read('assets/data/l10n/chapter_titles_$locale.json'),
+        ) as Map<String, dynamic>;
+        for (final MapEntry<String, dynamic> entry in data.entries) {
+          final String rest = tail.firstMatch(entry.key)?.group(1) ?? '';
+          // A single word is often correct in the target language - French
+          // `Chapitre 1: Prologue`, German `Kapitel 1: Epilog` - so only a phrase
+          // counts as an untranslated tail.
+          if (englishWord.allMatches(rest).length < 2) continue;
+          inspected++;
+          if (entry.value.toString().contains(rest)) {
+            offenders.add('$locale:${entry.key}');
+          }
+        }
+      }
+
+      expect(inspected, greaterThan(0),
+          reason:
+              'The detector matched nothing, so the chapter-title shape has '
+              'changed and this rule is no longer testing anything.');
+      expect(
+        offenders,
+        isEmpty,
+        reason:
+            'A localized chapter title still carries its English tail. Repair '
+            'with `python scratch/catalog_factory.py --family chapter_titles '
+            '--locale all`: $offenders',
+      );
+    });
+
+    test('no localized chapter title carries its chapter prefix twice', () {
+      // Belt and braces for the rule above. A repair that replaced an English tail
+      // with a *whole* title left the old prefix sitting in front of it
+      // (`Kapitel 10Kapitel 1: ...`), and such a row no longer contains its English
+      // tail - so the tail rule cannot see it. This is the check that would have
+      // caught the 99 rows `catalog_factory.py` corrupted on 2026-09-27 before they
+      // were reverted. Tokens mirror
+      // `LocalizedCatalogService._localizeChapterPrefix`.
+      const Map<String, String> chapterPrefix = <String, String>{
+        'ar': 'الفصل',
+        'de': 'Kapitel',
+        'es': 'Capítulo',
+        'fr': 'Chapitre',
+        'hi': 'अध्याय',
+        'id': 'Bab',
+        'it': 'Capitolo',
+        'ja': '第',
+        'ko': '제',
+        'pt': 'Capítulo',
+        'ru': 'Глава',
+        'th': 'บทที่',
+        'vi': 'Chương',
+      };
+      final List<String> offenders = <String>[];
+
+      for (final String locale in _kLocales) {
+        final String token = chapterPrefix[locale]!;
+        final Map<String, dynamic> data = jsonDecode(
+          _read('assets/data/l10n/chapter_titles_$locale.json'),
+        ) as Map<String, dynamic>;
+        for (final MapEntry<String, dynamic> entry in data.entries) {
+          if (token.allMatches(entry.value.toString()).length > 1) {
+            offenders.add('$locale:${entry.key}');
+          }
+        }
+      }
+
+      expect(
+        offenders,
+        isEmpty,
+        reason:
+            'A localized chapter title repeats its own chapter prefix, so a '
+            'repair spliced a whole title into a value that already had one. '
+            'Re-translate the row with `python scratch/catalog_factory.py --family '
+            'chapter_titles --locale all`: $offenders',
+      );
+    });
+
+    test('every locale covers every English show synopsis', () {
+      // Audit 37 scored `shows_<locale>.json` only on the keys each file happened
+      // to hold, so a file carrying 60 of the synopses in `show_summaries.dart`
+      // still read "TRANSLATED 100%" - while every show it omitted showed English
+      // (or nothing) to that reader. The English key set is read out of the
+      // generated map rather than hard-coded, so this cannot drift from the source.
+      final String source = _read(
+        'lib/features/media/data/repositories/show_summaries.dart',
+      );
+      final RegExp entry = RegExp(r"'((?:[^'\\]|\\.)*)'\s*:\s*\n?\s*'");
+      // Backslashes are dropped on both sides before comparing. Three titles in
+      // the generated map end in an escaped backslash (`我本无名  I\\`), and the
+      // JSON files carry the unescaped form - comparing the raw text would report
+      // those three as missing in every locale, which they are not.
+      final Set<String> english = entry
+          .allMatches(source)
+          .map((RegExpMatch m) => m.group(1)!.replaceAll('\\', ''))
+          .toSet();
+      expect(english.length, greaterThan(100),
+          reason:
+              'Could not read the English synopsis map - the generated shape '
+              'changed, and this rule is no longer testing anything.');
+
+      for (final String locale in _kLocales) {
+        final Map<String, dynamic> data = jsonDecode(
+          _read('assets/data/l10n/shows_$locale.json'),
+        ) as Map<String, dynamic>;
+        final Set<String> present =
+            data.keys.map((String key) => key.replaceAll('\\', '')).toSet();
+        final int missingCount =
+            english.where((String key) => !present.contains(key)).length;
+        final List<String> missing = english
+            .where((String key) => !present.contains(key))
+            .take(5)
+            .toList();
+        expect(
+          missing,
+          isEmpty,
+          reason: '$locale is missing $missingCount of ${english.length} show '
+              'synopses (first five: $missing). Each one shows English to that '
+              'reader. Fill it with `python scratch/catalog_factory.py --family '
+              'shows --locale $locale`.',
+        );
+      }
+    });
+
     test('no book in the corpus carries an ebook watermark', () {
       // Audit 38 found pirate-site watermarks inside the *prose* of 28 books -
       // `w w w. xiao shuotxt. co m`, `ＷＷw.xiＡosＨuotxt.ＣＯＭ`, `bookcover` -
@@ -275,20 +414,17 @@ const List<String> _kFamilies = <String>[
   'chapter_titles_by_id',
   'channels',
   'deck_descriptions',
-  'idiom_stories',
   'mandarin_bean_stories',
   'poetry',
   'radicals',
   'shows',
 ];
 
-/// Allowlist for the missing-file rule. Thai is the only locale short of a
-/// catalog; each of these three files needs a Thai translation to clear.
-const Set<String> _kKnownMissingLocaleFiles = <String>{
-  'shows_th.json',
-  'channels_th.json',
-  'chapter_titles_th.json',
-};
+/// Allowlist for the missing-file rule. **Empty**, and it must stay empty: Thai
+/// was the only locale short of a catalog (`shows_th.json`, `channels_th.json`,
+/// `chapter_titles_th.json`), and all three were translated on 2026-09-27, so
+/// every family now ships all thirteen locales.
+const Set<String> _kKnownMissingLocaleFiles = <String>{};
 
 /// Allowlist for the placeholder-marker rule. **Empty**, and it must stay empty:
 /// the five Journey to the West rows (chapters 40-44) that carried the literal
@@ -296,21 +432,19 @@ const Set<String> _kKnownMissingLocaleFiles = <String>{
 /// on 2026-09-26, so the rule now has nothing to excuse.
 const Set<String> _kKnownPlaceholderRows = <String>{};
 
-/// Allowlist for the orphan rule.
+/// Allowlist for the orphan rule. **Empty**, and it must stay empty.
 ///
-/// * `idiom_stories` - six files, byte-identical to each other and written in
-///   English, with no reader since the story pipeline moved on. Delete them or
-///   wire them; either way they must leave this list.
+/// * `idiom_stories` was deleted on 2026-09-27 - six byte-identical English files
+///   with no reader since the story pipeline moved on, ~433 KB of bundle.
+/// * `mandarin_bean_stories` was here before that: the thirteen overlays held all
+///   150 titles translated while `loadLocalizedTitlesById` was never called with
+///   that prefix, so `LibraryStory.localizedSummaries` stayed empty and the reader
+///   fell back to `summaryEn`. Wired up in `StoryFetcherService._loadBeanOverlay`
+///   (2026-09-26, audit 37 P0).
 ///
-/// `mandarin_bean_stories` used to be on this list too: the thirteen overlays
-/// held all 150 titles translated while `loadLocalizedTitlesById` was never
-/// called with that prefix, so `LibraryStory.localizedSummaries` stayed empty and
-/// the reader fell back to `summaryEn`. Wired up in
-/// `StoryFetcherService._loadBeanOverlay` (2026-09-26, audit 37 P0), which is
-/// why it is no longer here - and why this list is now one entry shorter.
-const Set<String> _kKnownOrphanFamilies = <String>{
-  'idiom_stories',
-};
+/// `books_zh.json` and `shows_zh.json` were removed on 2026-09-27 as well: `zh`
+/// is not in `localizedContentLanguageCodes`, so nothing could load them.
+const Set<String> _kKnownOrphanFamilies = <String>{};
 
 /// Per-locale ceiling on summaries that are still the English string, out of 150.
 ///

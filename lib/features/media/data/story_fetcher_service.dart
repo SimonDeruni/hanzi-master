@@ -446,22 +446,68 @@ class StoryFetcherService {
     return author;
   }
 
+  /// Cached per-field Mandarin Bean overlays, keyed by story `link`.
+  static Map<String, Map<String, String>>? _beanTitlesCache;
+  static Map<String, Map<String, String>>? _beanSummariesCache;
+
+  /// Loads the per-locale Mandarin Bean overlay for [field], once per process.
+  ///
+  /// The story data lives in `assets/data/mandarin_bean_stories.json` keyed by
+  /// `link`; the translations live beside it in
+  /// `assets/data/l10n/mandarin_bean_stories_<locale>.json`, keyed the same way.
+  /// **Nothing read those files** - `loadLocalizedTitlesById` was only ever
+  /// called with `'poetry'` and `'book_titles'` - so every locale showed the
+  /// English title and summary while all thirteen overlays sat unused in the
+  /// bundle (audit 37, P0).
+  ///
+  /// Loaded defensively and cached: a missing or malformed locale file degrades
+  /// to the English the story already holds rather than to an empty shelf, and
+  /// the thirteen files are read once instead of on every shelf rebuild.
+  static Future<Map<String, Map<String, String>>> _loadBeanOverlay({
+    String field = 'title',
+  }) async {
+    final bool isSummary = field == 'summary';
+    final Map<String, Map<String, String>>? cached =
+        isSummary ? _beanSummariesCache : _beanTitlesCache;
+    if (cached != null) return cached;
+
+    Map<String, Map<String, String>> loaded = const {};
+    try {
+      loaded =
+          await loadLocalizedTitlesById('mandarin_bean_stories', field: field);
+    } catch (e) {
+      debugPrint('Mandarin Bean overlay ($field) unavailable: $e');
+    }
+    if (isSummary) {
+      _beanSummariesCache = loaded;
+    } else {
+      _beanTitlesCache = loaded;
+    }
+    return loaded;
+  }
+
   Future<List<LibraryStory>> fetchLocalStories() async {
     final List<LibraryStory> localStories = [];
+
+    // Localized title/summary overlays for the Mandarin Bean stories, keyed by
+    // the same `link` the story data carries. Loaded in their own try/catch on
+    // purpose: a missing or malformed locale file must degrade to the English
+    // the story already holds, never to an empty shelf.
+    final Map<String, Map<String, String>> beanTitlesById =
+        await _loadBeanOverlay();
+    final Map<String, Map<String, String>> beanSummariesById =
+        await _loadBeanOverlay(field: 'summary');
 
     try {
       // NOTE: Removed 1000_stories.json loading here as they were just short dictionary citations,
       // not actual narrative stories. The UI now only shows full stories.
 
       // Load Mandarin Bean Stories
-      String mbJsonString;
-      try {
-        mbJsonString = await rootBundle
-            .loadString('assets/data/mandarin_bean_stories_en.json');
-      } catch (_) {
-        mbJsonString = await rootBundle
-            .loadString('assets/data/mandarin_bean_stories.json');
-      }
+      // The English base *is* `mandarin_bean_stories.json` - every entry carries
+      // `title_en` / `summary_en`. The `_en` file this used to look for first has
+      // never existed, and the bare `catch (_)` hid that entirely (audit 37).
+      final String mbJsonString =
+          await rootBundle.loadString('assets/data/mandarin_bean_stories.json');
       final List<dynamic> listMb = json.decode(mbJsonString);
 
       for (var data in listMb) {
@@ -471,11 +517,14 @@ class StoryFetcherService {
 
         if (!_isActualStory(title, summary, rssCategories)) continue;
 
+        final link = (data['link'] as String?) ?? 'mandarin_bean_$title';
         localStories.add(LibraryStory(
           title: title,
           titleEn: data['title_en'],
+          localizedTitles: beanTitlesById[link] ?? const {},
+          localizedSummaries: beanSummariesById[link] ?? const {},
           sourceName: data['sourceName'] ?? 'Mandarin Bean',
-          link: data['link'] ?? 'mandarin_bean_$title',
+          link: link,
           imageUrl: data['imageUrl'],
           summary: summary,
           summaryEn: data['summary_en'],
@@ -534,6 +583,11 @@ class StoryFetcherService {
   Future<List<LibraryStory>> fetchFirebaseStories() async {
     final List<LibraryStory> localStories = [];
 
+    final Map<String, Map<String, String>> beanTitlesById =
+        await _loadBeanOverlay();
+    final Map<String, Map<String, String>> beanSummariesById =
+        await _loadBeanOverlay(field: 'summary');
+
     try {
       // Load Graded Readers (default_stories.json)
       final jsonString =
@@ -560,21 +614,21 @@ class StoryFetcherService {
 
     try {
       // Load Contemporary Stories (Mandarin Bean)
-      String jsonString;
-      try {
-        jsonString = await rootBundle
-            .loadString('assets/data/mandarin_bean_stories_en.json');
-      } catch (_) {
-        jsonString = await rootBundle
-            .loadString('assets/data/mandarin_bean_stories.json');
-      }
+      // Same dead `_en` lookup as `fetchLocalStories` above: the English base is
+      // the base file, so this reads it directly instead of swallowing a
+      // `FileNotFoundError` on every call (audit 37).
+      final String jsonString =
+          await rootBundle.loadString('assets/data/mandarin_bean_stories.json');
       final List<dynamic> list = json.decode(jsonString);
       localStories.addAll(list.map((data) {
+        final link = (data['link'] as String?) ?? '';
         return LibraryStory(
           title: data['title'] ?? '',
           titleEn: data['title_en'],
+          localizedTitles: beanTitlesById[link] ?? const {},
+          localizedSummaries: beanSummariesById[link] ?? const {},
           sourceName: data['sourceName'] ?? 'Mandarin Bean',
-          link: data['link'] ?? '',
+          link: link,
           imageUrl: data['imageUrl'],
           summary: data['summary'] ?? '',
           summaryEn: data['summary_en'],
