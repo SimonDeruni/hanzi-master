@@ -1,0 +1,63 @@
+Hanzi Writer Data (Make Me a Hanzi) — licence and attribution notice
+====================================================================
+
+This app bundles stroke data DERIVED FROM the `hanzi-writer-data` package, whose
+glyph data comes from the Make Me a Hanzi project.
+
+  Licence:      Arphic Public License
+  Projects:     https://github.com/chanind/hanzi-writer-data
+                https://github.com/skishore/makemeahanzi
+  Retrieved by: tooling/download_hsk1_strokes.dart
+  Source URL:   https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/<char>.json
+  Bundled file: assets/data/hsk1_strokes.json
+
+The `hanzi-writer-data` README states its licence explicitly:
+
+  "This data comes from the [Make Me A Hanzi] project, which extracted the data
+   from fonts by Arphic Technology, a Taiwanese font forge that released their
+   work under a permissive license in 1999. You can redistribute and/or modify
+   this data under the terms of the Arphic Public License as published by Arphic
+   Technology Co., Ltd. A copy of this license can be found in ARPHICPL.TXT."
+
+That licence file must be retained unaltered in all copies: it ships as
+third_party/ARPHICPL.TXT and is also registered on the in-app licences screen.
+
+  Arphic Public License: third_party/ARPHICPL.TXT
+  Canonical copy:        https://ftp.gnu.org/non-gnu/chinese-fonts-truetype/LICENSE
+
+Note: the Make Me a Hanzi project splits its data by licence. `graphics.txt` (the
+stroke and median geometry, which is what this app uses, via `hanzi-writer-data`)
+is under the Arphic Public License; `dictionary.txt` is derived from Unihan and
+CJKlib. Only the Arphic-licensed graphics data is bundled here.
+
+
+1. Attribution
+--------------
+
+  Chinese character stroke outlines and stroke medians from Make Me a Hanzi
+  (https://github.com/skishore/makemeahanzi), distributed as `hanzi-writer-data`
+  (https://github.com/chanind/hanzi-writer-data), used under the Arphic Public
+  License. The underlying glyph outlines were extracted from fonts released by
+  Arphic Technology Co., Ltd. in 1999.
+
+This notice travels with the data in three places:
+  - this file (third_party/hanzi-writer-data-LICENSE), declared as an app asset
+  - the app's licences screen (Settings -> "Licenses"),
+    registered by lib/core/legal/third_party_notices.dart
+  - third_party/dictionary-sources.md (the source inventory)
+
+
+2. Modifications (Arphic Public License sec. 2)
+-----------------------------------------------
+
+The bundled file is NOT the original distribution. Modified 2026-09 by
+tooling/download_hsk1_strokes.dart. What was changed, and how:
+  - the `strokes` (stroke outline paths) and `medians` (centre-line point lists)
+    fields are extracted and stored as JSON keyed by character;
+  - every other field in the source records (pinyin, decomposition and etymology)
+    is discarded;
+  - a subset (the HSK 1 character set) is shipped rather than the full data set.
+
+In line with Arphic Public License sec. 2(b), these modifications are made
+Freely Available as a whole to third parties under the terms of the Arphic
+Public License.

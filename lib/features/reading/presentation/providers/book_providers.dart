@@ -4,6 +4,8 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_collection.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
 
 final bookRepositoryProvider = Provider<BookRepository>((ref) {
   return BookRepository();
@@ -181,6 +183,8 @@ final allBookmarksProvider =
   final books = await repo.loadCatalog();
   final poetry = await ref.read(chinesePoetryProvider.future);
   final allBooks = <String, BookModel>{for (final book in books) book.id: book};
+  // Per-poem entries, kept so a bookmark written before collections still has a
+  // book to render against.
   for (final story in poetry) {
     allBooks[story.link] = BookModel(
       id: story.link,
@@ -199,6 +203,12 @@ final allBookmarksProvider =
       tags: story.keywords,
     );
   }
+  // And the author books a *migrated* bookmark now points at: `init()` has
+  // already re-pointed those records, so without these keys a reader's poetry
+  // bookmarks would silently vanish from the shelf.
+  for (final collection in await ref.read(poetryCollectionsProvider.future)) {
+    allBooks[collection.id] = poetryCollectionToBook(collection);
+  }
   return repo
       .getAllBookmarksAcrossBooks()
       .map(BookmarkModel.fromJson)
@@ -214,8 +224,9 @@ final microReadsProvider = FutureProvider<List<LibraryStory>>((ref) async {
   final fetcher = ref.read(storyFetcherServiceProvider);
   final all = await fetcher.fetchLocalStories();
   return all
-      .where((s) =>
-          s.category != 'Tang Poetry' && s.category != 'Classical Literature')
+      // Poems have their own tier now, as one card per poet, so the micro-reads
+      // shelf holds prose only — otherwise all 100 poems appear twice.
+      .where((s) => !isPoetryCategory(s.category))
       .toList();
 });
 
@@ -237,4 +248,19 @@ final chinesePoetryProvider = FutureProvider<List<LibraryStory>>((ref) async {
           s.category == 'Tang Poetry' ||
           s.category == 'Classical Literature')
       .toList();
+});
+
+/// One book per poet: a poem is a *chapter* of its author's collection instead
+/// of a whole book, so four lines of verse no longer open a table of contents,
+/// a chapter counter and a progress bar.
+///
+/// Deliberately a **new** provider beside [chinesePoetryProvider] rather than a
+/// change to it: the per-poem list still backs the story library, per-poem
+/// bookmarks and legacy `tang_poetry_*` links, so both must keep working.
+final poetryCollectionsProvider =
+    FutureProvider<List<PoetryCollection>>((ref) async {
+  final repo = ref.read(bookRepositoryProvider);
+  // `init()` is what loads (and groups) the poetry store.
+  await repo.init();
+  return repo.poetryCollections;
 });

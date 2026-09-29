@@ -184,8 +184,7 @@ class _ConversationScreenState extends ConsumerState<ConversationScreen> {
   }
 
   Widget _buildHeaderBackground(ThemeData theme) {
-    if (widget.scenario.avatarAssetPath != 'none' &&
-        widget.scenario.avatarAssetPath.isNotEmpty) {
+    if (widget.scenario.hasAvatar) {
       return SafeArea(
         bottom: false,
         child: Stack(

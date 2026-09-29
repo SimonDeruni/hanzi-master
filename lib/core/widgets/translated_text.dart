@@ -11,6 +11,21 @@ class TranslatedText extends ConsumerStatefulWidget {
   final bool showOriginalOnLoading;
   final String? placeholder;
 
+  /// The already-known English rendering of [text], when the caller has one.
+  ///
+  /// Book chapters ship a per-sentence `english` field, and the reader used to
+  /// print it unconditionally - so a German or Japanese reader was handed the
+  /// hard-coded English and the translator was never consulted, because the
+  /// `TranslatedText` branch only ran when that field was *empty*. Passing the
+  /// field here instead gives the widget both halves of the decision:
+  ///
+  /// * when the target language **is** English it renders this string and never
+  ///   calls the translator - there is nothing to translate and nothing to pay
+  ///   for;
+  /// * for every other target language it is shown while the translation is in
+  ///   flight, so the line never blanks out and never shows the wrong language.
+  final String? englishFallback;
+
   const TranslatedText(
     this.text, {
     super.key,
@@ -19,6 +34,7 @@ class TranslatedText extends ConsumerStatefulWidget {
     this.overflow,
     this.showOriginalOnLoading = false,
     this.placeholder,
+    this.englishFallback,
   });
 
   @override
@@ -52,6 +68,19 @@ class _TranslatedTextState extends ConsumerState<TranslatedText> {
   }
 
   Future<void> _translate() async {
+    // An English target with a known English string is already the answer: the
+    // chapter data carries it, so spending a request on it would be waste.
+    final String? english = widget.englishFallback;
+    if (english != null && english.isNotEmpty && _wantsEnglish) {
+      if (mounted) {
+        setState(() {
+          _translatedText = english;
+          _isLoading = false;
+        });
+      }
+      return;
+    }
+
     if (widget.text.isEmpty) {
       if (mounted) setState(() => _isLoading = false);
       return;
@@ -66,6 +95,9 @@ class _TranslatedTextState extends ConsumerState<TranslatedText> {
     }
   }
 
+  bool get _wantsEnglish =>
+      ref.read(translationLanguageProvider).toLowerCase() == 'english';
+
   @override
   Widget build(BuildContext context) {
     // A language change must produce that language, not the cached one.
@@ -79,10 +111,14 @@ class _TranslatedTextState extends ConsumerState<TranslatedText> {
       });
     }
 
+    final String? fallback = widget.englishFallback;
+
     if (_isLoading && _translatedText == null) {
-      if (widget.showOriginalOnLoading) {
+      final String? loadingText =
+          widget.showOriginalOnLoading ? widget.text : fallback;
+      if (loadingText != null) {
         return Text(
-          widget.text,
+          loadingText,
           style: widget.style,
           maxLines: widget.maxLines,
           overflow: widget.overflow,
@@ -98,7 +134,10 @@ class _TranslatedTextState extends ConsumerState<TranslatedText> {
       );
     }
 
-    final displayText = _translatedText ?? (widget.showOriginalOnLoading ? widget.text : '');
+    final displayText = _translatedText ??
+        (widget.showOriginalOnLoading ? widget.text : null) ??
+        fallback ??
+        '';
 
     return Text(
       displayText,

@@ -1779,40 +1779,31 @@ SafeArea(
                                   );
                                 }).toList(),
                               ),
-// English Translation
+// Sentence meaning
                               if (_showTranslations) ...[
                                 const SizedBox(height: 8),
-                                sentence.english.isNotEmpty
-                                    ? Text(
-                                        sentence.english,
-                                        style: TextStyle(
-                                          fontSize: isActive ? 13 : 11.5,
-                                          fontStyle: FontStyle.italic,
-                                          color: isActive
-                                              ? (isDark
-                                                  ? Colors.white70
-                                                  : const Color(0xFF4A4036))
-                                              : (isDark
-                                                  ? Colors.white38
-                                                  : const Color(0xFF7A7067)),
-                                          height: 1.3,
-                                        ),
-                                      )
-                                    : TranslatedText(
-                                        sentence.chinese,
-                                        style: TextStyle(
-                                          fontSize: isActive ? 13 : 11.5,
-                                          fontStyle: FontStyle.italic,
-                                          color: isActive
-                                              ? (isDark
-                                                  ? Colors.white70
-                                                  : const Color(0xFF4A4036))
-                                              : (isDark
-                                                  ? Colors.white38
-                                                  : const Color(0xFF7A7067)),
-                                          height: 1.3,
-                                        ),
-                                      ),
+                                TranslatedText(
+                                  // Same contract as the reader: the bundled
+                                  // English is the answer for an English target
+                                  // and a placeholder for every other one, never
+                                  // the final line.
+                                  sentence.chinese,
+                                  englishFallback: sentence.english.isEmpty
+                                      ? null
+                                      : sentence.english,
+                                  style: TextStyle(
+                                    fontSize: isActive ? 13 : 11.5,
+                                    fontStyle: FontStyle.italic,
+                                    color: isActive
+                                        ? (isDark
+                                            ? Colors.white70
+                                            : const Color(0xFF4A4036))
+                                        : (isDark
+                                            ? Colors.white38
+                                            : const Color(0xFF7A7067)),
+                                    height: 1.3,
+                                  ),
+                                ),
                               ],
                             ],
                           ),

@@ -32,6 +32,10 @@ void main() {
     expect(find.textContaining('OpenRouter'), findsOneWidget);
     expect(find.textContaining('DeepSeek'), findsOneWidget);
     expect(find.textContaining('Microsoft Azure AI Speech'), findsOneWidget);
+    // Tone grading is **on-device** (audit 40 superseded SOE), so it contributes no
+    // processor to this list — which is why the disclosure names only the services
+    // that actually receive data. If a vendor is ever added back for tone, this list
+    // and the store labels have to move with it.
 
     await tester.scrollUntilVisible(
       find.text('Read Full Privacy Policy'),

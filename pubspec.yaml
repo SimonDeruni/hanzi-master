@@ -1,7 +1,7 @@
 name: hanzi_master
 description: A mobile-first Chinese learning application.
 publish_to: 'none'
-version: 1.0.0+561
+version: 1.0.0+562
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -127,6 +127,13 @@ flutter:
     - assets/images/mandarin_bean/
     - assets/audio/
     - third_party/chinese-poetry-LICENSE
+    # Licence texts for bundled *data*, so the notice travels with the app and not
+    # only with the repository. The Arphic Public License requires its licence file
+    # to be retained unaltered in all copies, which is why ARPHICPL.TXT is here.
+    - third_party/ARPHICPL.TXT
+    - third_party/animcjk-LICENSE
+    - third_party/hanzivg-LICENSE
+    - third_party/hanzi-writer-data-LICENSE
     - assets/default_stories.json
     - assets/mascot/
     # The OFL licence must travel with the font it covers; the font files

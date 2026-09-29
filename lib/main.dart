@@ -34,11 +34,17 @@ import 'package:hanzi_master/core/widgets/app_reload_boundary.dart';
 import 'package:hanzi_master/core/hive_adapter_registry.dart';
 import 'package:hanzi_master/core/localization/app_locale_policy.dart';
 import 'package:hanzi_master/core/layout/zen_device.dart';
+import 'package:hanzi_master/core/legal/third_party_notices.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 void main() {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   binding.deferFirstFrame();
+
+  // Register the licences of bundled *data* (not pub packages) so the licences
+  // screen can show them. CC-CEDICT is CC BY-SA 4.0 and requires attribution;
+  // without this the dictionary shipped with no credit anywhere in the app.
+  registerThirdPartyNotices();
 
   // 0. Hardened Zen & Ink System UI (Synchronous)
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -130,6 +136,19 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
       debugPrint("No .env file found, relying on ApiKeyPool fallback");
     }
 
+    // 0. Initialize Firebase & App Check first so all service constructors can access Firebase safely
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      await FirebaseAppCheck.instance.activate(
+        providerAndroid: const AndroidPlayIntegrityProvider(),
+        providerApple: const AppleAppAttestWithDeviceCheckFallbackProvider(),
+      );
+    } catch (e) {
+      debugPrint('Firebase initialization failed: $e');
+    }
+
     // 1. Initialize SharedPreferences
     final prefs = await SharedPreferences.getInstance();
     await ZenAmbientService.instance.init(prefs: prefs);
@@ -211,19 +230,7 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
     handleWidgetUri(await widgetService.initiallyLaunchedFromWidget());
     widgetService.widgetClicks.listen(handleWidgetUri);
 
-    // 6. Initialize Analytics, Auth, RevenueCat
-    try {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-      await FirebaseAppCheck.instance.activate(
-        providerAndroid: const AndroidPlayIntegrityProvider(),
-        providerApple: const AppleAppAttestWithDeviceCheckFallbackProvider(),
-      );
-    } catch (e) {
-      debugPrint('Firebase initialization failed: $e');
-    }
-
+    // 6. Initialize Monetization & Analytics
     await MonetizationService.init();
     await container.read(analyticsServiceProvider).init();
 
@@ -438,10 +445,21 @@ class _SubscriptionGateState extends State<_SubscriptionGate> {
 
   void _loadPremiumStatus() {
     _premiumStatus = MonetizationService.checkPremiumStatus(
-      rethrowErrors: true,
+      rethrowErrors: false,
     ).timeout(
-      const Duration(seconds: 10),
-    );
+      const Duration(seconds: 5),
+      onTimeout: () {
+        debugPrint(
+          'MonetizationService: subscription check timed out, falling back to paywall',
+        );
+        return false;
+      },
+    ).catchError((Object error) {
+      debugPrint(
+        'MonetizationService: subscription check error ($error), falling back to paywall',
+      );
+      return false;
+    });
   }
 
   @override
@@ -452,29 +470,6 @@ class _SubscriptionGateState extends State<_SubscriptionGate> {
         if (snapshot.connectionState != ConnectionState.done) {
           return const Scaffold(
             body: Center(child: ZenLoader()),
-          );
-        }
-        if (snapshot.hasError) {
-          return Scaffold(
-            body: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'We could not check your subscription. Please try again.',
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    FilledButton(
-                      onPressed: () => setState(_loadPremiumStatus),
-                      child: const Text('Try again'),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           );
         }
         return snapshot.data == true

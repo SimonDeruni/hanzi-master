@@ -1,0 +1,71 @@
+AnimCJK — licence and attribution notice
+========================================
+
+This app bundles stroke-order vector data DERIVED FROM AnimCJK.
+
+  Project:      https://github.com/parsimonhi/animCJK
+  Retrieved by: tooling/fetch_animcjk.dart
+  Source URL:   https://raw.githubusercontent.com/parsimonhi/animCJK/master/svgsZhHans/<dec>.svg
+  Bundled file: assets/data/hsk1_animcjk.json
+
+AnimCJK is a DUAL-LICENSED project. Its own `licenses/COPYING.txt` says:
+
+  "You can redistribute and/or modify text files prefixed by "graphics" and SVG
+   files of AnimCJK project representing a character under the terms of the
+   Arphic Public License as published by Arphic Technology Co., Ltd. You should
+   have received a copy of this license (the directory "APL") along with these
+   files; if not, see <https://ftp.gnu.org/non-gnu/chinese-fonts-truetype/LICENSE>.
+
+   You can redistribute and/or modify all other files (including SVG files of
+   AnimCJK project representing kana or strokes) under the terms of the GNU
+   Lesser General Public License as published by the Free Software Foundation,
+   either version 3 of the license, or (at your option) any later version."
+
+The data this app uses are the per-character **SVG files**, so the **Arphic
+Public License** applies to them. That licence requires the licence file to be
+retained unaltered in all copies: it ships as third_party/ARPHICPL.TXT and is
+also registered on the in-app licences screen.
+
+  Arphic Public License: third_party/ARPHICPL.TXT
+  Canonical copy:        https://ftp.gnu.org/non-gnu/chinese-fonts-truetype/LICENSE
+  LGPL v3 or later:      https://www.gnu.org/licenses/lgpl-3.0.html
+
+
+1. Attribution
+--------------
+
+  Chinese stroke-order vector data from AnimCJK
+  (https://github.com/parsimonhi/animCJK), used for its per-character SVG files
+  under the Arphic Public License.
+
+AnimCJK is itself derived from the Arphic PL KaitiM GB and Arphic PL KaitiM Big5
+fonts, from the Make Me a Hanzi project (https://github.com/skishore/makemeahanzi)
+and from the Unihan database (http://unicode.org/charts/unihan.html). Thanks are
+owed to the AnimCJK authors (FM & SH, copyright 2016-2026) and to those upstream
+projects.
+
+This notice travels with the data in three places:
+  - this file (third_party/animcjk-LICENSE), declared as an app asset
+  - the app's licences screen (Settings -> "Licenses"),
+    registered by lib/core/legal/third_party_notices.dart
+  - third_party/dictionary-sources.md (the source inventory)
+
+
+2. Modifications (Arphic Public License sec. 2)
+-----------------------------------------------
+
+The bundled file is NOT the original AnimCJK distribution. Modified 2026-09 by
+tooling/fetch_animcjk.dart. What was changed, and how:
+  - only the two `<path d="...">` attribute sets per character are extracted: the
+    outline paths (`id`-bearing paths) and the single-line skeleton paths (paths
+    carrying `clip-path="url(#...)"`);
+  - the extracted paths are stored as JSON keyed by character (`outlines`,
+    `skeletons`) instead of as `.svg` files; all SVG markup, element ids and clip
+    path definitions are discarded;
+  - a subset (the HSK 1 character set) is shipped rather than the whole AnimCJK
+    collection;
+  - conversions used: Unicode code point -> decimal for the `svgsZhHans` path.
+
+In line with Arphic Public License sec. 2(b), these modifications are made
+Freely Available as a whole to third parties under the terms of the Arphic
+Public License.

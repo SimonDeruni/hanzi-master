@@ -39,15 +39,29 @@ class ConversationScenario {
     this.deckId,
   });
 
-  bool get hasAvatar =>
-      avatarAssetPath.isNotEmpty && avatarAssetPath != 'none';
+  /// The avatar sentinel for a character that has no portrait.
+  ///
+  /// Every surface already renders a designed fallback for it — a gold initial
+  /// seal (`scenario_selection_screen`, `live_call_screen`) or a plain header
+  /// (`conversation_screen`) — so "no portrait" is a finished state, not a gap.
+  static const String noAvatar = 'none';
 
-  String get resolvedAvatarAssetPath {
-    if (hasAvatar) {
-      return avatarAssetPath;
-    }
-    return 'none';
-  }
+  /// True when [path] is one of the portraits that ship inside the bundle
+  /// (`assets/mascot/*_avatar.png`).
+  ///
+  /// A deck scenario asks the AI to *invent* a character, so lending it one of
+  /// these seven stock photos put the same waiter/doctor face on unrelated
+  /// invented personas. A portrait the user picked arrives as a file path, and
+  /// every other image the app loads lives outside `assets/mascot/`, so neither
+  /// can be mistaken for a bundled one.
+  static bool isBundledMascotAvatar(String? path) =>
+      path != null && path.startsWith('assets/mascot/');
+
+  bool get hasAvatar =>
+      avatarAssetPath.isNotEmpty && avatarAssetPath != noAvatar;
+
+  String get resolvedAvatarAssetPath =>
+      hasAvatar ? avatarAssetPath : noAvatar;
 
   /// Picks an avatar asset and an Azure voice guaranteed to have matching gender
   /// and thematic relevance based on persona keywords and scenario title.
@@ -261,6 +275,8 @@ class ConversationScenario {
   }
 
   factory ConversationScenario.fromJson(Map<String, dynamic> json) {
+    final String? deckId = json['deckId'];
+    final String storedAvatar = json['avatarAssetPath'] ?? '';
     return ConversationScenario(
       id: json['id'],
       title: json['title'],
@@ -270,14 +286,21 @@ class ConversationScenario {
       initialPinyin: json['initialPinyin'],
       systemPrompt: json['systemPrompt'],
       targetHskLevel: json['targetHskLevel'],
-      avatarAssetPath: json['avatarAssetPath'] ?? '',
+      // A deck-written persona never wears a bundled mascot portrait. Enforcing
+      // it on rehydration also repairs the `deck_scenarios` cache written before
+      // the rule existed, so an already-saved deck stops replaying its stock
+      // photo instead of waiting to be regenerated. Scenarios the user wrote
+      // themselves (no `deckId`) keep whatever portrait they were given.
+      avatarAssetPath: deckId != null && isBundledMascotAvatar(storedAvatar)
+          ? noAvatar
+          : storedAvatar,
       backgroundAudioPath: json['backgroundAudioPath'],
       backgroundAssetPath: json['backgroundAssetPath'],
       quests: List<String>.from(json['quests'] ?? []),
       personaName: json['personaName'] ?? 'Assistant',
       isCustom: json['isCustom'] ?? false,
       voiceName: json['voiceName'] ?? 'Puck',
-      deckId: json['deckId'],
+      deckId: deckId,
     );
   }
 }

@@ -48,9 +48,14 @@ void main() {
         entry['id'] as String: (entry['descriptionEn'] as String).trim(),
     };
 
-    test('catalog has the canonical 62 authors and 86 synopsis IDs', () {
-      expect(authors, hasLength(62));
-      expect(bookIds, hasLength(86));
+    // 62 authors / 86 books until 31 books were removed for copyright reasons on
+    // 2026-09-27 (docs/BOOK_COPYRIGHT_REMOVALS.md). Eighteen authors lost their only
+    // remaining title, and their biographies were pruned along with them — the
+    // per-locale checks below require the key sets to match *exactly*, not merely to
+    // contain the catalog's authors.
+    test('catalog has the canonical 44 authors and 55 synopsis IDs', () {
+      expect(authors, hasLength(44));
+      expect(bookIds, hasLength(55));
     });
 
     for (final locale in _supportedLocales) {

@@ -69,5 +69,7 @@ GoogleService-Info.plist
  
 .aider*
 assets/data/dictionary.db
+scratch/dictionary_clean.db
+scratch/dictionary_accepted.db
 *.db-wal
 *.db-shm

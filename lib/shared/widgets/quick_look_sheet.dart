@@ -666,7 +666,7 @@ class _FoundBody extends ConsumerWidget {
                     // A paragraph is not shadowable: keep the clause around the
                     // tapped word instead of whatever block arrived.
                     final effectiveSentence =
-                        hasContext ? hanzi_shadowing.shadowingLine(contextText!, tappedHanzi) : null;
+                        hasContext ? shadowingLine(contextText!, tappedHanzi) : null;
                     final effectivePinyin = hasContext
                         ? PinyinHelper.getPinyinE(effectiveSentence!,
                             separator: ' ', format: PinyinFormat.WITH_TONE_MARK)

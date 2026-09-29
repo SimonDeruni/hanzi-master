@@ -182,7 +182,11 @@ class CalligraphicBookCover extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          '詩',
+          // An author collection wears the poet's own first character; a lone
+          // poem keeps the generic poetry glyph.
+          isPoetryAuthorBookId(book.id) && book.title.isNotEmpty
+              ? book.title[0]
+              : '詩',
           style: TextStyle(
             fontSize:
                 (side.isFinite ? side * 0.38 : 48).clamp(18.0, 120.0).toDouble(),

@@ -19,7 +19,7 @@ class _FakeApiKeyPool extends ApiKeyPool {
 
 void main() {
   group('Azure Pronunciation Rating Alignment', () {
-    test('gradeAudio maps Azure accuracy and calibrates tone divergence on mispronunciation',
+    test('gradeAudio maps Azure accuracy and refuses to invent a tone on mispronunciation',
         () async {
       final mockAzureResponse = {
         'RecognitionStatus': 'Success',
@@ -102,6 +102,10 @@ void main() {
       );
 
       final dummyAudio = List<int>.filled(1200, 0);
+      // NOTE: this fixture deliberately passes the *citation* form (`bù`) - it is
+      // exercising the syllable -> tone mapping, not sandhi. The onboarding screen
+      // now ships the surface form `bǎi zhàn bú dài` (audit 40 §4.5), so 不's
+      // expected tone there is 2, not the 4 asserted below.
       final grade = await service.gradeAudio(
         dummyAudio,
         '百战不殆',
@@ -118,11 +122,15 @@ void main() {
       expect(words[0]['expectedTone'], 3);
       expect(words[0]['actualTone'], 3);
 
-      // '战': 4th tone, mispronounced -> calibrated tone discrepancy (not 4)
+      // '战': 4th tone, mispronounced. Azure named the reference syllable as
+      // `zhan` with no tone digit and never reports the tone that was heard, so
+      // the honest answer is 0 ("not measured"). This used to be "calibrated"
+      // to 2 - literally `expTone % 4 + 1` - which told the learner they had
+      // said the rising tone when nothing had measured it.
       expect(words[1]['word'], '战');
       expect(words[1]['isCorrect'], isFalse);
       expect(words[1]['expectedTone'], 4);
-      expect(words[1]['actualTone'], 2);
+      expect(words[1]['actualTone'], 0);
 
       // '不': 4th tone, accurate
       expect(words[2]['word'], '不');

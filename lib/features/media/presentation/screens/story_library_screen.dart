@@ -14,6 +14,7 @@ import 'package:hanzi_master/features/reading/presentation/widgets/custom_story_
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_collection.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_detail_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
@@ -124,8 +125,21 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
 
     if (mounted) {
       setState(() {
+        // One card per poet. A poem is a chapter of its collection now, so the
+        // library lists the books rather than 100 four-line cards — and the
+        // per-poem cards it replaces are removed, not left beside them.
+        _poetryCollections = buildPoetryCollections(poetryEntries);
+        final poetryStories = <LibraryStory>[
+          for (final collection in _poetryCollections)
+            _collectionStory(collection),
+        ];
+        final proseStories = localStories
+            .where((s) =>
+                !isPoetryStoryId(s.link) && !isPoetryCategory(s.category))
+            .toList();
         _allStories = [
-          ...localStories,
+          ...poetryStories,
+          ...proseStories,
           ...firebaseStories,
           ...customLibraryStories
         ];
@@ -141,8 +155,79 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     }
   }
 
+  /// One per poet, built once when the store loads.
+  List<PoetryCollection> _poetryCollections = [];
+
+  /// A poet's collection dressed as a library story, so the existing card and
+  /// filter chrome renders it unchanged. The poet's name is the title — a proper
+  /// noun, so `localizedTitle` needs no translation — and the summary previews
+  /// what is inside.
+  LibraryStory _collectionStory(PoetryCollection collection) {
+    final authored = collection.poems.first;
+    final authorEn = (authored['author_en'] ?? '').toString().trim();
+    String titles(String key) => collection.poems
+        .map((poem) => (poem[key] ?? '').toString().trim())
+        .where((title) => title.isNotEmpty)
+        .take(4)
+        .join(' · ');
+    // A poet's collection is a book, and now it carries a real cover asset like
+    // any other: `assets/images/poetry/poetry_author_<digest>.jpg`. Without this
+    // the card fell to the generic topic gradient, which is why 100 poet books
+    // looked coverless however many cover files were bundled.
+    final String coverAsset = poetryCoverAssetPath(collection.id);
+    return LibraryStory(
+      title: collection.author,
+      titleEn: authorEn.isNotEmpty ? authorEn : collection.author,
+      link: collection.id,
+      sourceName: collection.author,
+      imageUrl: coverAsset,
+      summary: titles('title'),
+      summaryEn: titles('title_en'),
+      category: 'Chinese Poetry',
+      sourceType: StorySourceType.json,
+      hskLevel: collection.hskLevel,
+      keywords: const <String>['Poetry', 'Classical', 'Verse'],
+    );
+  }
+
   void _openStory(LibraryStory story) {
     if (isPoetryStoryId(story.link) || isPoetryCategory(story.category)) {
+      // A poet's collection card: its link *is* the author book.
+      for (final collection in _poetryCollections) {
+        if (collection.id != story.link) continue;
+        Navigator.push(
+          context,
+          SwipeBackPageRoute(
+            builder: (context) => BookDetailScreen(
+              book: poetryCollectionToBook(
+                collection,
+                localeCode: Localizations.localeOf(context).toLanguageTag(),
+              ),
+            ),
+          ),
+        );
+        return;
+      }
+      // A single poem — a legacy link or a saved item: a poem is a chapter of
+      // its poet's collection, so it opens the author's book, the same id the
+      // reader, the shelf and the migration use. That keeps progress and
+      // bookmarks pointing at one book.
+      final collection = collectionForPoem(_poetryCollections, story.link);
+      if (collection != null) {
+        Navigator.push(
+          context,
+          SwipeBackPageRoute(
+            builder: (context) => BookDetailScreen(
+              book: poetryCollectionToBook(
+                collection,
+                localeCode: Localizations.localeOf(context).toLanguageTag(),
+              ),
+            ),
+          ),
+        );
+        return;
+      }
+      // The poem is not in the store: fall back to presenting it on its own.
       final book = BookModel(
         id: story.link,
         title: story.title,

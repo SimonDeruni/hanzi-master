@@ -14,7 +14,22 @@ class GlobalDictionaryRepository {
   Map<String, int> _popularityRanks = const {};
 
   static const int _unrankedPopularity = 1000000;
-  static const String requiredSchemaVersion = '2';
+
+  /// The schema version this build expects in `assets/data/dictionary.db`.
+  ///
+  /// Bumping this is what makes an already-installed app replace its local copy of
+  /// the dictionary. The bundled asset advertises the same value in
+  /// `dictionary_metadata.dictionary_schema_version`; `init` re-copies the asset
+  /// whenever the two disagree, so an install carrying an older dictionary picks up
+  /// the new one on next launch without any migration step.
+  ///
+  /// Version 3 (2026-09-29) replaced the previous dictionary, whose localised values
+  /// came partly from sources that were never licence-verified, with one built only
+  /// from sources whose licences permit commercial redistribution, and added the
+  /// `localized_definition_provenance` table which marks each machine-translated
+  /// value so it can be labelled in the UI.
+  static const String requiredSchemaVersion = '3';
+
 
   GlobalDictionaryRepository();
 

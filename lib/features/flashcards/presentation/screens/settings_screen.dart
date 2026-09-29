@@ -233,6 +233,27 @@ _buildSectionHeader(
                     );
                   },
                 ),
+                _buildDivider(context),
+                // Attribution for bundled data belongs somewhere a user can
+                // actually find it. The page's own chrome is localized by
+                // GlobalMaterialLocalizations, so this needs no ARB key of its
+                // own — and the CC-CEDICT notice reaches it through
+                // `registerThirdPartyNotices()` in main().
+                ListTile(
+                  leading: _rowIcon(context, Icons.gavel_rounded),
+                  title: Text(
+                    MaterialLocalizations.of(context).licensesPageTitle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  trailing: Icon(Icons.chevron_right, color: _muted(context)),
+                  onTap: () {
+                    HapticsManager.light();
+                    showLicensePage(
+                      context: context,
+                      applicationName: 'Hanzi Master',
+                    );
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 24), // Danger Zone

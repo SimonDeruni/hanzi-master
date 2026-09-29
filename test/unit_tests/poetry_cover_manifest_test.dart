@@ -40,8 +40,12 @@ void main() {
             File('test/fixtures/poetry_cover_manifest.json').readAsStringSync())
         as Map<String, dynamic>;
     final covers = manifest['covers'] as List<dynamic>;
-    expect(poems, hasLength(100));
-    expect(covers, hasLength(poems.length));
+    // The manifest covers the curated 100 poems, which were the whole store when
+    // the artwork was drawn. The store is now one collection per poet (4,237 poems
+    // across 100 poets), so the store is no longer 100 entries and cannot be
+    // asserted to be: what still has to hold is that every cover points at a poem
+    // that exists.
+    expect(covers, isNotEmpty);
 
     final poemIds = poems.map((p) => p['id'] as String).toSet();
     final manifestIds = <String>{};
@@ -84,7 +88,12 @@ void main() {
       expect(decoded.height, 800, reason: id);
       perceptualHashes[id] = _dHash(decoded);
     }
-    expect(manifestIds, poemIds);
+    // Every cover must point at a poem the store still holds - a subset, not an
+    // equality: the store grew past the curated 100 when it became one collection
+    // per poet.
+    expect(poemIds.containsAll(manifestIds), isTrue,
+        reason: 'a cover points at a poem the store no longer has');
+    expect(manifestIds, hasLength(covers.length));
 
     final ids = perceptualHashes.keys.toList();
     for (var i = 0; i < ids.length; i++) {

@@ -101,6 +101,7 @@
 
 ## Phase 11: The Echo Hall (Oral & Intelligence) (✅ COMPLETE)
 - [x] **🗣️ Speech Recognition:** Integrated AI grading for tones and pronunciation.
+    - [ ] *Tone Assessment Upgrade (audit 40) — **provider chosen 2026-09-27: Tencent SOE**.* Decided on evidence, not preference: SOE is the only candidate that reports **`Tone.HypothesisTone`** (实际发音声调 — the tone actually pronounced), the field audit 39 lacked. iFlytek returns a tone *verdict* and *score* but never the heard tone, and its cloud API is WebSocket-only; SpeechSuper has the only real on-device path but **does not document lexical tone at all**. **Server core landed**: `functions/tencent-soe.js` (TC3 signing, both request bodies, `mapSoeResult`) with 25 tests probed by reverting. **Remaining:** wire a `gradePronunciationV1` callable + Flutter client, set the secrets, and make one live call to confirm `HypothesisTone` arrives.
 - [x] **🤖 AI Scribe:** LLM-driven roleplay chat using current HSK vocabulary.
     - [x] *Custom Scenarios:* AI-generated background soundscapes based on user prompts.
     - [x] *Dynamic Avatars:* AI-generated 18+ persona images matching the app's established art style.

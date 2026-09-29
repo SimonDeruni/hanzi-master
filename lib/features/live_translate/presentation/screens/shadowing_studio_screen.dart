@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
@@ -32,6 +33,9 @@ import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/core/services/pitch_detector_service.dart';
+import 'package:hanzi_master/core/utils/pitch_contour.dart';
+import '../widgets/tone_graph_card.dart';
 
 enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
 
@@ -93,6 +97,17 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   bool _isStopping = false; // Prevents re-entry during stop→grade→reset cycle
   Map<String, dynamic>? _lastGrade;
 
+  /// What the learner's voice actually did, and what the phrase's tones should have
+  /// done — both in Hz per point, `null` where nothing was voiced.
+  ///
+  /// These are **display data**, measured from the recording before Azure is called at
+  /// all. They are deliberately not read back out of [_lastGrade]: the grader only
+  /// measures a contour for a *single* character (see `LocalToneGrader`), so a phrase
+  /// has to be measured here regardless. Keeping them separate also means the graph
+  /// cannot be broken by a grading failure.
+  List<double?> _userPitch = const [];
+  List<double?> _idealPitch = const [];
+
   // Session State
   final List<Map<String, dynamic>> _weakCharacters = [];
   final List<String> _phraseHistory = [];
@@ -118,6 +133,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         _isSessionStarted = false;
         _currentPhrase = null;
         _lastGrade = null;
+        _userPitch = const [];
+        _idealPitch = const [];
         _sentenceCount = 0;
         _phraseHistory.clear();
         _weakCharacters.clear();
@@ -291,10 +308,55 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     }
   }
 
+  /// The learner's measured pitch contour, in Hz, `null` where nothing was voiced.
+  ///
+  /// Returns an empty list instead of throwing: this is display data, and failing to
+  /// draw a graph must never be able to fail a grading pass.
+  Future<List<double?>> _measurePitch(Uint8List bytes) async {
+    try {
+      return await PitchDetectorService().extractPitchContour(bytes);
+    } catch (e) {
+      debugPrint('Shadowing pitch contour failed: $e');
+      return const [];
+    }
+  }
+
+  /// The shape the phrase's tones should have made — the dashed target stroke.
+  ///
+  /// Built from the tones Azure *expects*, in phrase order, one equal slot each. It is
+  /// **not time-aligned to the recording**: Azure returns no per-syllable offsets, so
+  /// where each character begins is unknown. See `PitchContourMath.idealForTones`, and
+  /// the note the graph's own lightbulb carries.
+  ///
+  /// The shape is centred on the learner's own median pitch so the two strokes sit at
+  /// comparable heights. A tone is a *shape*, not an absolute pitch, and a target pinned
+  /// at a fixed 150 Hz would make a clean match on a higher voice look like a miss.
+  List<double?> _idealPitchFor(
+    Map<String, dynamic> grade,
+    List<double?> measured,
+  ) {
+    final words = grade['words'];
+    if (words is! List || words.isEmpty) return const [];
+
+    final tones = <int>[];
+    for (final word in words) {
+      if (word is! Map) continue;
+      tones.add((word['expectedTone'] as num?)?.toInt() ?? 0);
+    }
+    if (tones.isEmpty) return const [];
+
+    final voiced = measured.whereType<double>().toList()..sort();
+    final baseHz = voiced.isEmpty ? 150.0 : voiced[voiced.length ~/ 2];
+    return PitchContourMath.idealForTones(tones, baseHz: baseHz);
+  }
+
   Future<void> _fetchNextPhrase() async {
     setState(() {
       _isLoadingNextPhrase = true;
       _lastGrade = null;
+      // A new phrase means the old graph is about a different sentence.
+      _userPitch = const [];
+      _idealPitch = const [];
       _errorMessage = null;
       _sentenceCount++;
       // Cleanse any stuck recording/grading states when transitioning
@@ -481,6 +543,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       try {
         final bytes = await file.readAsBytes();
 
+        // Measure the learner's own voice first. This is only for the graph — the
+        // *verdict* comes from `gradeAudio` — but doing it here means the picture of
+        // what they said is drawn from the recording itself rather than from the
+        // grader's opinion of it.
+        final measuredPitch = await _measurePitch(bytes);
+
         final geminiService = ref.read(geminiServiceProvider);
         final grade = await geminiService.gradeAudio(
           bytes,
@@ -491,6 +559,8 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         if (mounted) {
           setState(() {
             _lastGrade = grade;
+            _userPitch = measuredPitch;
+            _idealPitch = _idealPitchFor(grade, measuredPitch);
             _isGrading = false;
 
             if (grade['words'] != null) {
@@ -2176,18 +2246,24 @@ Row(
               ),
               child: Column(
                 children: [
-                  Text(
-                    l10n != null
-                        ? l10n.score(_lastGrade!['score'], 100)
-                        : "Score: ${_lastGrade!['score']}/100",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: _lastGrade!['score'] >= 80
-                          ? _successOf
-                          : _accentOf(isDark),
+                  // A number only when there was something to score. `heardPhrase` is
+                  // false when nothing was assessed or the whole phrase was skipped, and
+                  // "0/100" beside "we could not hear the phrase" contradicts itself:
+                  // 0% reads as *an attempt that scored nothing*, which is a different
+                  // and harsher claim than *not an attempt at all*.
+                  if (_lastGrade!['heardPhrase'] != false)
+                    Text(
+                      l10n != null
+                          ? l10n.score(_lastGrade!['score'], 100)
+                          : "Score: ${_lastGrade!['score']}/100",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: _lastGrade!['score'] >= 80
+                            ? _successOf
+                            : _accentOf(isDark),
+                      ),
                     ),
-                  ),
                   const SizedBox(height: 8),
                   Text(
                     _getLocalizedOverallFeedback(
@@ -2263,38 +2339,20 @@ Row(
               }).toList(),
             ),
           ],
-// Tone Graph is hidden for V1 MVP as requested by user
-          /*
           if (_lastGrade != null && _userPitch.isNotEmpty) ...[
             const SizedBox(height: 24),
-            Container(
+            ToneGraphCard(
+              userPitch: _userPitch,
+              idealPitch: _idealPitch,
               height: 120,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: isDark ? Colors.black26 : Colors.black.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Stack(
-                children: [
-                  CustomPaint(
-                    size: const Size(double.infinity, 120),
-                    painter: ToneGraphPainter(
-                      idealPitch: _idealPitch,
-                      userPitch: _userPitch,
-                      isLive: false,
-                      highlightStart: _highlightStart,
-                      highlightEnd: _highlightEnd,
-                    ),
-                  ),
-                  const Positioned(
-                    top: 8, left: 16,
-                    child: Text(AppLocalizations.of(context)!.toneGraph, style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  )
-                ],
-              ),
+              // The two strokes are not time-aligned here — Azure returns no syllable
+              // offsets, so the target is drawn as equal slots — and the lightbulb is
+              // where that gets said, rather than letting the graph imply an alignment
+              // it cannot have.
+              helpNote:
+                  AppLocalizations.of(context)?.toneGraphHowToReadPhraseNote,
             ),
           ],
-          */
 
           const SizedBox(height: 24),
           TranslatedDefinition(
@@ -2483,7 +2541,13 @@ if (wordData['phonemes'] != null &&
                               character: char,
                               pinyin: pinyinMarked,
                               expectedTone: tone,
-                              actualTone: acc >= 80 ? tone : (tone % 4 + 1),
+                              // Azure assesses phonemes, not tones: it never
+                              // reports the tone that was heard. 0 means "not
+                              // measured", so the sheet shows the target tone and
+                              // the 4-tone audition instead of a verdict invented
+                              // from the accuracy percentage (which used to mark a
+                              // perfect tone wrong whenever the vowel slipped).
+                              actualTone: 0,
                               feedback: feedback,
                             );
                           },
@@ -2595,14 +2659,15 @@ if (feedback.isNotEmpty) ...[
                       final char = word.isNotEmpty ? word[0] : word;
                       final pinyinMarked =
                           PinyinUtils.convertNumericToMarks('$pinyinBase$tone');
-                      final acc =
-                          (firstPhoneme['accuracy'] as num?)?.toInt() ?? 100;
                       ToneComparisonSheet.show(
                         context,
                         character: char,
                         pinyin: pinyinMarked,
                         expectedTone: tone,
-                        actualTone: acc >= 80 ? tone : (tone % 4 + 1),
+                        // The word's own measured tone (0 when the grader heard
+                        // none), never a value derived from the accuracy score.
+                        actualTone:
+                            (wordData['actualTone'] as num?)?.toInt() ?? 0,
                         feedback: feedback,
                       );
                     } else {
@@ -2613,7 +2678,8 @@ if (feedback.isNotEmpty) ...[
                         character: word.isNotEmpty ? word[0] : word,
                         pinyin: pinyinStr,
                         expectedTone: tone,
-                        actualTone: tone,
+                        actualTone:
+                            (wordData['actualTone'] as num?)?.toInt() ?? 0,
                         feedback: feedback,
                       );
                     }

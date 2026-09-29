@@ -1,0 +1,57 @@
+HanziVG — licence and attribution notice
+========================================
+
+This app bundles stroke-order vector data DERIVED FROM HanziVG, a collection of
+SVG stroke-order files for Chinese (simplified and traditional) Hanzi.
+
+  Licence:    Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+  Legal code: https://creativecommons.org/licenses/by-sa/3.0/
+  Project:    https://github.com/Connum/hanzivg
+  Retrieved by: tooling/fetch_hanzivg.dart
+  Source URL: https://raw.githubusercontent.com/Connum/hanzivg/master/hanzi/<hex>.svg
+              (falling back to .../master/kanji/<hex>.svg)
+  Bundled file: assets/data/hsk1_hanzivg.json
+
+HanziVG states its own licence in its README:
+
+  "HanziVG is licenced under Creative Commons Attribution-ShareAlike 3.0
+   Unported (CC BY-SA 3.0)."
+
+HanziVG is itself "heavily based on KanjiVG" (https://kanjivg.tagaini.net/), and
+its README records that it also reuses "the great work by Francois Mizessyn at
+AnimHanzi", who created all HSK1-3 characters. The fetch script falls back to
+HanziVG's bundled `kanji/` copies of KanjiVG files for characters HanziVG does
+not yet cover; those rows are marked `"source": "kanjivg"` in the JSON.
+
+
+1. Attribution
+--------------
+
+  Stroke-order vector data from HanziVG (https://github.com/Connum/hanzivg),
+  used under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
+
+  HanziVG builds on KanjiVG (https://kanjivg.tagaini.net/, also CC BY-SA 3.0)
+  and on the AnimHanzi project by Francois Mizessyn. Thanks are owed to the
+  HanziVG, KanjiVG and AnimHanzi contributors.
+
+This notice travels with the data in three places:
+  - this file (third_party/hanzivg-LICENSE), declared as an app asset
+  - the app's licences screen (Settings -> "Licenses"),
+    registered by lib/core/legal/third_party_notices.dart
+  - third_party/dictionary-sources.md (the source inventory)
+
+
+2. Modifications (share-alike)
+------------------------------
+
+The bundled file is NOT the original HanziVG distribution. Modified 2026-09 by
+tooling/fetch_hanzivg.dart. What was changed:
+  - only the `d` path data of each SVG is kept; the SVG wrapper, `g` groups,
+    stroke numbers and KanjiVG metadata are discarded;
+  - the paths are stored as JSON keyed by character (`hex`, `paths`) rather than
+    as `.svg` files, and the fallback rows add `"source": "kanjivg"`;
+  - a subset (the HSK 1 character set) is shipped rather than the whole
+    HanziVG collection.
+
+CC BY-SA 3.0 permits commercial use. It requires attribution, and it requires
+that modifications be shared under the same licence.

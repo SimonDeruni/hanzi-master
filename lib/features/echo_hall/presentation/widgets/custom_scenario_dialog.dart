@@ -233,7 +233,11 @@ Respond ONLY in valid JSON format:
             separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
       }
 
-      final (pickedAvatar, pickedVoice) =
+      // The user writes this persona themselves, so it gets no portrait either:
+      // borrowing one of the bundled mascot photos put a stock face on a
+      // character the user invented. The picker is kept for its other half —
+      // the voice, which still has to follow the persona's gender.
+      final (_, String pickedVoice) =
           ConversationScenario.pickAvatarAndVoice(
         personaName,
         title,
@@ -251,7 +255,7 @@ Respond ONLY in valid JSON format:
             ? "You are $personaName. Your ONLY role is $personaName. The user is practicing spoken Chinese in the scenario: $title. ${desc.isNotEmpty ? 'Setting: $desc.' : ''} Reply in natural Mandarin suited for HSK $targetHsk. NEVER break character, never act like a generic AI."
             : "You are $personaName. Your ONLY role is $personaName. The user is practicing spoken Chinese in the scenario: $title. Reply in natural Mandarin suited for HSK $targetHsk. NEVER break character.",
         targetHskLevel: targetHsk,
-        avatarAssetPath: pickedAvatar,
+        avatarAssetPath: ConversationScenario.noAvatar,
         personaName: personaName,
         backgroundAudioPath: null,
         quests: quests,

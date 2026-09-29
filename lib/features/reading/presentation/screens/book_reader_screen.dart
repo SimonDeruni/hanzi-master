@@ -2086,41 +2086,37 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                                 );
                               }).toList(),
                             ),
-// English Translation (Global toggle or tap to reveal)
+// Sentence meaning (Global toggle or tap to reveal)
                             if (_showAllTranslations || isRevealed)
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
-                                child: sentence.english.isNotEmpty
-                                    ? Text(
-                                        sentence.english,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: isAudioActiveSentence
-                                              ? (isDark
-                                                  ? Colors.amber.shade300
-                                                  : const Color(0xFF8B0000))
-                                              : (isDark
-                                                  ? Colors.white70
-                                                  : const Color(0xFF5A4D41)),
-                                          fontStyle: FontStyle.italic,
-                                          height: 1.3,
-                                        ),
-                                      )
-                                    : TranslatedText(
-                                        sentence.chinese,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: isAudioActiveSentence
-                                              ? (isDark
-                                                  ? Colors.amber.shade300
-                                                  : const Color(0xFF8B0000))
-                                              : (isDark
-                                                  ? Colors.white70
-                                                  : const Color(0xFF5A4D41)),
-                                          fontStyle: FontStyle.italic,
-                                          height: 1.3,
-                                        ),
-                                      ),
+                                child: TranslatedText(
+                                  // The chapter data ships a per-sentence
+                                  // English string. `englishFallback` uses it
+                                  // verbatim when English *is* the target and
+                                  // only as the in-flight placeholder
+                                  // otherwise - so a French or Japanese reader
+                                  // now gets the Chinese translated through the
+                                  // API instead of the hard-coded English the
+                                  // old `sentence.english.isNotEmpty` branch
+                                  // printed for everyone.
+                                  sentence.chinese,
+                                  englishFallback: sentence.english.isEmpty
+                                      ? null
+                                      : sentence.english,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: isAudioActiveSentence
+                                        ? (isDark
+                                            ? Colors.amber.shade300
+                                            : const Color(0xFF8B0000))
+                                        : (isDark
+                                            ? Colors.white70
+                                            : const Color(0xFF5A4D41)),
+                                    fontStyle: FontStyle.italic,
+                                    height: 1.3,
+                                  ),
+                                ),
                               ),
                           ],
                         ),

@@ -47,7 +47,11 @@ class _OnboardingMiniLessonScreenState
     extends ConsumerState<OnboardingMiniLessonScreen> {
   static const _passage = '知彼知己者，百战不殆。';
   static const _shadowSentence = '百战不殆。';
-  static const _shadowPinyin = 'bǎi zhàn bù dài';
+  // 不 precedes 殆 **dài** (fourth tone), so it takes the second-tone sandhi
+  // form: this is the surface reading, not the citation tone `bù`. The app both
+  // displays this and grades against it, so shipping `bù` taught — and marked —
+  // the wrong tone. Same trap the tone bake-off exists to measure (audit 40, M5).
+  static const _shadowPinyin = 'bǎi zhàn bú dài';
   static const _onboardingSpeechRate = 0.42;
 
   List<String> _titles(AppLocalizations l10n) => [
@@ -1372,7 +1376,12 @@ class _OnboardingMiniLessonScreenState
                       character: selected['word'].toString(),
                       pinyin: (selected['pinyin'] ?? '').toString(),
                       expectedTone: expected,
-                      actualTone: isCorrect ? expected : actual,
+                      // Pass the measured tone through untouched. Overriding a
+                      // correct word's tone with the target made this sheet
+                      // announce a match nothing had measured - the same
+                      // invention the grader used to make. 0 means "not
+                      // measured", which the sheet now renders as an em dash.
+                      actualTone: actual,
                       feedback: charFeedback,
                     ),
                     icon: const Icon(Icons.graphic_eq, size: 18),

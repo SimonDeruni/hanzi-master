@@ -10,6 +10,7 @@ import '../../features/flashcards/domain/entities/flashcard.dart';
 import 'api_key_pool.dart';
 import 'ai_cache.dart';
 import 'analytics_service.dart';
+import 'local_tone_grader.dart';
 import '../providers/translation_language_provider.dart';
 import '../utils/pinyin_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -1697,12 +1698,31 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
   static const int minimumSourceChineseCharacters = 20;
 
   /// Simplification chunks stay well inside the 8192-token completion budget.
-  /// A chunk's rewrite is *longer* than its source and the reader renders the
-  /// prose from the per-sentence word arrays, so the JSON is ~30x the Chinese
-  /// character count: a measured 504-character section finished at ~16k
-  /// characters of JSON, and an 875-character section hit the cap and was cut
-  /// off. Sized so every section finishes instead of being truncated.
+  ///
+  /// Sized against the old prompt, which asked for a JSON object per word
+  /// (hanzi, pinyin and a translated gloss): a measured 504-character section
+  /// finished at ~16k characters of JSON — ~30x the source — and an
+  /// 875-character section hit the cap and was cut off. Carrying that per-word
+  /// payload was also the bulk of the wait for a simplified article, so it is
+  /// gone: the reply is now the rewritten sentence plus its translation, and the
+  /// word list is derived on the phone (see `_deriveWords`). The size is kept so
+  /// that a section still finishes rather than being truncated.
   static const int _simplificationChunkCharacters = 700;
+
+  /// How many simplification chunks are rewritten at the same time.
+  ///
+  /// The batches are awaited in turn, so this is the only lever on wall-clock
+  /// time for a long article: the total work is fixed by the section count, and
+  /// a batch of one would turn a ten-section article into ten sequential round
+  /// trips. Raised from 3 to 6 because the "AI is thinking" overlay was reported
+  /// stuck on long pages — and it was genuinely working the whole time, just
+  /// with four or five batches running back to back and nothing to show for it.
+  ///
+  /// Deliberately modest rather than "as many as possible": the upstream already
+  /// rate-limits this method (see the open 429/503 issue in `ISSUES.md`), so a
+  /// wider window trades a shorter wait for a higher chance of a rejected
+  /// request. Raise it only together with retry/backoff.
+  static const int _simplificationChunksInFlight = 6;
 
   Future<AiStory> simplifyTextToHsk(String sourceText, int hskLevel) async {
     final normalizedSource =
@@ -1722,9 +1742,13 @@ Respond ONLY with the Chinese text. Do not include pinyin or translations. Do no
       final sentences = <AiSentence>[];
       Object? firstFailure;
 
-      // Process a few bounded chunks at once. Future.wait preserves their order.
-      for (var start = 0; start < chunks.length; start += 3) {
-        final end = math.min(start + 3, chunks.length);
+      // Process a few bounded chunks at once. Future.wait preserves their order,
+      // so the article still reads top to bottom however wide the window is.
+      for (var start = 0;
+          start < chunks.length;
+          start += _simplificationChunksInFlight) {
+        final end =
+            math.min(start + _simplificationChunksInFlight, chunks.length);
         final results = await Future.wait(
           chunks.sublist(start, end).map(
                 (chunk) => _simplifyChunkResiliently(chunk, hskLevel),
@@ -1886,19 +1910,12 @@ Answer with JSON only, in this exact shape:
   "sentences": [
     {
       "chinese": "A complete simplified Chinese sentence",
-      "english": "The $targetLanguage translation",
-      "words": [
-        {
-          "hanzi": "Chinese word",
-          "pinyin": "word pinyin",
-          "meaning": "contextual $targetLanguage meaning"
-        }
-      ]
+      "english": "The $targetLanguage translation"
     }
   ]
 }
 Every "chinese" value must be Chinese characters; the translation goes in "english" only.
-Represent all Chinese text in each sentence's words array in order. Group multi-character words; punctuation may be omitted.
+Do NOT include a word list, pinyin or per-word glosses: the app reads "chinese" directly and derives everything else on the phone.
 ''';
 
     final text = await makeOpenRouterCall(
@@ -1966,7 +1983,9 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
       try {
         final decoded = jsonDecode(candidate);
         final story = _storyFromDecoded(decoded);
-        if (story != null && story.sentences.isNotEmpty) return story;
+        if (story != null && story.sentences.isNotEmpty) {
+          return _withDerivedWords(story);
+        }
       } on FormatException {
         // Truncated or malformed: salvage the complete sentences below.
       }
@@ -1998,14 +2017,47 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
     return null;
   }
 
+  /// Fills in a word breakdown for any sentence the model did not return one
+  /// for.
+  ///
+  /// The reader draws an article's prose out of its word list, so a sentence
+  /// without one renders as an empty paragraph. Simplification stopped asking
+  /// the model for that list - a JSON object per word carrying hanzi, pinyin and
+  /// a translated gloss - because it measured out at ~30x the source character
+  /// count and was what made the wait for a simplified article run into minutes.
+  /// Only `chinese` and `english` are requested now, and the list is rebuilt
+  /// here.
+  static AiStory _withDerivedWords(AiStory story) => AiStory(
+        sentences: <AiSentence>[
+          for (final AiSentence sentence in story.sentences)
+            sentence.words.isEmpty
+                ? AiSentence(
+                    chinese: sentence.chinese,
+                    english: sentence.english,
+                    words: _deriveWords(sentence.chinese),
+                  )
+                : sentence,
+        ],
+      );
+
+  /// One word per character, which is what this app has always done when no
+  /// word list was available (see [salvageSentences]).
+  ///
+  /// Deliberately character-level rather than a dictionary segmentation: it
+  /// needs no extra dependency, it never mis-groups a word, and every character
+  /// stays tappable for Quick Look. `pinyin` and `meaning` are left empty
+  /// because the reader derives pinyin from the hanzi itself (`PinyinHelper`)
+  /// and there is no contextual gloss to show.
+  static List<AiWord> _deriveWords(String chinese) => <AiWord>[
+        for (final String character in chinese.split(''))
+          if (character.trim().isNotEmpty)
+            AiWord(hanzi: character, pinyin: '', meaning: ''),
+      ];
+
   /// Recovers the complete sentences from a payload that is not valid JSON. A
   /// response cut off by the completion budget still contains whole
   /// `"chinese": "..."` pairs; discarding every one of them is what turned a
   /// long article into "an empty article".
-  ///
-  /// The reader renders prose from the per-sentence word arrays, so a recovered
-  /// sentence gets one word per character: without them the repaired text would
-  /// render as an empty paragraph.
   @visibleForTesting
   static List<AiSentence> salvageSentences(String payload) {
     final pattern = RegExp(
@@ -2018,11 +2070,7 @@ Represent all Chinese text in each sentence's words array in order. Group multi-
       sentences.add(AiSentence(
         chinese: chinese,
         english: '',
-        words: [
-          for (final character in chinese.split(''))
-            if (character.trim().isNotEmpty)
-              AiWord(hanzi: character, pinyin: '', meaning: ''),
-        ],
+        words: _deriveWords(chinese),
       ));
     }
     return sentences;
@@ -2398,9 +2446,6 @@ Respond ONLY in valid JSON format like:
         final bestResult = data['NBest'][0];
         final assessment = bestResult['PronunciationAssessment'];
 
-        final pronScore = (assessment?['PronScore'] as num?)?.toInt() ??
-            (bestResult['PronunciationScore'] as num?)?.toInt() ??
-            0;
         final accuracyScore = (assessment?['AccuracyScore'] as num?)?.toInt() ??
             (bestResult['AccuracyScore'] as num?)?.toInt() ??
             0;
@@ -2421,9 +2466,30 @@ Respond ONLY in valid JSON format like:
             : <String>[];
         int pinyinIndex = 0;
 
+        /// Azure names the *reference* syllable (e.g. `ni3`) and never reports
+        /// the tone the learner actually produced, so there is no honest "heard
+        /// tone" to be had from this response. These two helpers exist so the
+        /// code can read what Azure *does* say and otherwise admit it does not
+        /// know, instead of inventing a tone to fill the gap.
+        String syllableText(dynamic syllable) {
+          if (syllable is! Map) return '';
+          return (syllable['Syllable'] ?? '').toString().trim();
+        }
+
+        /// The tone digit Azure attaches to a reference syllable, or null.
+        int? toneFromSyllable(dynamic syllable) {
+          final text = syllableText(syllable);
+          if (text.isEmpty) return null;
+          final match = RegExp(r'([1-5])$').firstMatch(text);
+          if (match == null) return null;
+          return int.tryParse(match.group(1)!);
+        }
+
         List<Map<String, dynamic>> mappedWords = [];
         double totalAccuracy = 0;
         int evaluatedWords = 0;
+        int assessedWords = 0;
+        int omittedWords = 0;
 
         // Helper to extract accuracy from any map format
         double extractAccuracy(dynamic item) {
@@ -2448,10 +2514,16 @@ Respond ONLY in valid JSON format like:
           for (var w in bestResult['Words']) {
             final wordText = (w['Word'] ?? '').toString();
             double wAccuracy = extractAccuracy(w);
-            final wErrorType = (w['PronunciationAssessment']?['ErrorType'] ??
-                    w['ErrorType'] ??
-                    'None')
-                .toString();
+            // Azure sends `PronunciationAssessment.ErrorType` for every word it
+            // **assessed**. Defaulting a missing one to `'None'` — "pronounced with no
+            // error" — was a fabrication with two teeth: it let the word inherit the
+            // take's overall accuracy (see the fallback below), and at >= 80 it let
+            // `isCorrect` be true. That is how an utterance nobody could assess came out
+            // as a near-miss *percentage* rather than as "that was not the phrase".
+            final rawErrorType =
+                w['PronunciationAssessment']?['ErrorType'] ?? w['ErrorType'];
+            final bool assessed = rawErrorType != null;
+            final wErrorType = (rawErrorType ?? 'NotAssessed').toString();
 
             // Extract phoneme sub-scores from Phonemes or Syllables
             List<Map<String, dynamic>> phonemesList = [];
@@ -2516,7 +2588,15 @@ Respond ONLY in valid JSON format like:
             }
 
             // Fallback: If ErrorType is None and overall accuracy is good, don't falsely report 0
-            if (wAccuracy == 0 && wErrorType == 'None' && accuracyScore > 0) {
+            //
+            // `assessed` is load-bearing here. Without it a word Azure never scored
+            // borrowed the **take's** accuracy and carried it into the average below,
+            // which is how speaking a different language produced a grade instead of a
+            // refusal.
+            if (wAccuracy == 0 &&
+                assessed &&
+                wErrorType == 'None' &&
+                accuracyScore > 0) {
               wAccuracy = accuracyScore.toDouble();
             }
 
@@ -2524,7 +2604,7 @@ Respond ONLY in valid JSON format like:
             bool isPartial = false;
             bool isOmitted = (wErrorType == 'Omission');
 
-            if (wErrorType == 'None') {
+            if (assessed && wErrorType == 'None') {
               if (wAccuracy >= 80) {
                 isCorrect = true;
               } else if (wAccuracy >= 60) {
@@ -2532,9 +2612,19 @@ Respond ONLY in valid JSON format like:
               }
             }
 
-            if (!isOmitted && wErrorType != 'Insertion') {
+            // Omissions count against the score. Averaging only the words that
+            // *were* evaluated let a shadowing take that skipped half the phrase
+            // report 100/100 (an omitted word has accuracy 0, so folding it into
+            // the mean is exactly the completeness penalty the old denominator
+            // discarded). Insertions stay out: they are not part of the
+            // reference, so counting them would double-penalise one mistake.
+            if (wErrorType != 'Insertion') {
               totalAccuracy += wAccuracy;
               evaluatedWords++;
+              // Two more counters, both for the "was this phrase attempted at all?"
+              // question below. `assessed` is Azure's, not ours: see its derivation.
+              if (assessed) assessedWords++;
+              if (wErrorType == 'Omission') omittedWords++;
             }
 
             String feedback = "";
@@ -2546,37 +2636,54 @@ Respond ONLY in valid JSON format like:
               feedback = "Pronunciation was inaccurate.";
             }
 
-            // Assign exact pinyin to each Chinese character directly (preventing index drift / syllable mismatch)
-            final hanziChars = wordText.split('').where((c) => RegExp(r'[\u4e00-\u9fa5]').hasMatch(c)).toList();
+            final hanziChars = wordText
+                .split('')
+                .where((c) => RegExp(r'[\u4e00-\u9fa5]').hasMatch(c))
+                .toList();
+            final List<dynamic> wordSyllables = w['Syllables'] is List
+                ? w['Syllables'] as List
+                : const <dynamic>[];
             if (hanziChars.length > 1) {
-              // Decompose multi-character word into individual character pills
+              // Decompose multi-character word into individual character pills.
               for (int ci = 0; ci < hanziChars.length; ci++) {
                 final char = hanziChars[ci];
-                String charPinyin = '';
-                try {
-                  charPinyin = PinyinHelper.getPinyinE(char, separator: '', format: PinyinFormat.WITH_TONE_MARK);
-                } catch (_) {}
+                final syllable =
+                    ci < wordSyllables.length ? wordSyllables[ci] : null;
 
-                int expTone = PinyinUtils.getTone(charPinyin);
-                int actTone = expTone;
-                if (w['Syllables'] != null && (w['Syllables'] as List).length > ci) {
-                  final syl = w['Syllables'][ci]['Syllable']?.toString() ?? '';
-                  final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
-                  if (toneMatch != null) {
-                    actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
-                  } else {
-                    final toneFromSyl = PinyinUtils.getTone(syl);
-                    if (toneFromSyl != 5) {
-                      actTone = toneFromSyl;
-                    }
-                  }
+                // The reference reading is what the screen actually showed the
+                // learner (`expectedPinyin`), then Azure's own syllable, and only
+                // then a context-free per-character lookup - which reads every
+                // 多音字 at its default tone and so marked correct speech wrong.
+                final String authored =
+                    (pinyinIndex + ci) < expectedPinyinWords.length
+                        ? expectedPinyinWords[pinyinIndex + ci]
+                        : '';
+                String charPinyin = authored;
+                if (charPinyin.isEmpty) {
+                  charPinyin =
+                      syllableText(syllable).replaceAll(RegExp(r'[1-5]$'), '');
                 }
-                // If the character was inaccurate or mispronounced according to Azure,
-                // reflect tone discrepancy so downstream diagnostics and comparisons
-                // do not falsely claim actualTone matches expectedTone.
-                if (!isCorrect && actTone == expTone) {
-                  actTone = expTone == 4 ? 2 : (expTone % 4 + 1);
+                if (charPinyin.isEmpty) {
+                  try {
+                    charPinyin = PinyinHelper.getPinyinE(char,
+                        separator: '', format: PinyinFormat.WITH_TONE_MARK);
+                  } catch (_) {}
                 }
+
+                final int authoredTone = PinyinUtils.getTone(charPinyin);
+                final int expTone = authoredTone != 5
+                    ? authoredTone
+                    : (toneFromSyllable(syllable) ?? 5);
+
+                // 0 means "not measured" (the convention
+                // `CalligraphicPitchContour` and `SpeakingFeedbackPanel` already
+                // read). Azure reports no heard tone, so the only comparison
+                // worth making is the one Azure itself vouched for - it graded
+                // this word error-free. Anything else says nothing rather than
+                // inventing a tone the learner never said.
+                final int actTone = isCorrect
+                    ? (toneFromSyllable(syllable) ?? expTone)
+                    : 0;
 
                 mappedWords.add({
                   "word": char,
@@ -2594,37 +2701,40 @@ Respond ONLY in valid JSON format like:
                 });
               }
             } else {
-              // Single character word or non-Hanzi token
-              String singlePinyin = '';
-              if (wordText.isNotEmpty && RegExp(r'[\u4e00-\u9fa5]').hasMatch(wordText)) {
+              // A single Hanzi character, or a token with no Hanzi at all (which
+              // has no syllable and therefore no tone to report).
+              final bool isHanziWord = hanziChars.isNotEmpty;
+              final syllable = isHanziWord && wordSyllables.isNotEmpty
+                  ? wordSyllables.first
+                  : null;
+
+              // Same precedence as above: what the learner was shown, then
+              // Azure, then a context-free lookup.
+              final String authored = isHanziWord &&
+                      pinyinIndex < expectedPinyinWords.length
+                  ? expectedPinyinWords[pinyinIndex]
+                  : '';
+              String singlePinyin = authored;
+              if (singlePinyin.isEmpty && isHanziWord) {
+                singlePinyin =
+                    syllableText(syllable).replaceAll(RegExp(r'[1-5]$'), '');
+              }
+              if (singlePinyin.isEmpty && isHanziWord) {
                 try {
-                  singlePinyin = PinyinHelper.getPinyinE(wordText, separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
+                  singlePinyin = PinyinHelper.getPinyinE(wordText,
+                      separator: ' ', format: PinyinFormat.WITH_TONE_MARK);
                 } catch (_) {}
               }
-              if (singlePinyin.isEmpty && pinyinIndex < expectedPinyinWords.length) {
-                singlePinyin = expectedPinyinWords[pinyinIndex];
-              }
 
-              int expTone = PinyinUtils.getTone(singlePinyin);
-              int actTone = expTone;
-              if (w['Syllables'] != null && (w['Syllables'] as List).isNotEmpty) {
-                final syl = w['Syllables'][0]['Syllable']?.toString() ?? '';
-                final toneMatch = RegExp(r'[1-5]$').firstMatch(syl);
-                if (toneMatch != null) {
-                  actTone = int.tryParse(toneMatch.group(0)!) ?? expTone;
-                } else {
-                  final toneFromSyl = PinyinUtils.getTone(syl);
-                  if (toneFromSyl != 5) {
-                    actTone = toneFromSyl;
-                  }
-                }
-              }
-              // If the word was inaccurate or mispronounced according to Azure,
-              // reflect tone discrepancy so downstream diagnostics and comparisons
-              // do not falsely claim actualTone matches expectedTone.
-              if (!isCorrect && actTone == expTone) {
-                actTone = expTone == 4 ? 2 : (expTone % 4 + 1);
-              }
+              final int authoredTone = PinyinUtils.getTone(singlePinyin);
+              final int expTone = !isHanziWord
+                  ? 5
+                  : (authoredTone != 5
+                      ? authoredTone
+                      : (toneFromSyllable(syllable) ?? 5));
+              final int actTone = isHanziWord && isCorrect
+                  ? (toneFromSyllable(syllable) ?? expTone)
+                  : 0;
 
               if (phonemesList.isEmpty && wAccuracy > 0 && singlePinyin.isNotEmpty) {
                 phonemesList.add({
@@ -2645,20 +2755,43 @@ Respond ONLY in valid JSON format like:
                 "accuracy": wAccuracy.round(),
                 "expectedTone": expTone,
                 "actualTone": actTone,
+                // Whether Azure assessed this syllable at all. A word it never scored is
+                // "not measured", which the tone pass and any future UI must be able to
+                // tell apart from "measured and wrong" — the convention audit 39 set.
+                "assessed": assessed,
                 "phonemes": phonemesList,
               });
             }
-            pinyinIndex++;
+            pinyinIndex += hanziChars.isEmpty ? 0 : hanziChars.length;
           }
         }
 
-        int fairScore = pronScore; // Fallback to Azure's score
-        if (evaluatedWords > 0) {
-          fairScore = (totalAccuracy / evaluatedWords).round();
-        }
+        // Was the phrase actually attempted? Two states are unambiguous and need no
+        // threshold, which is why they are the only two used:
+        //
+        //   * no syllable was **assessed** at all, or
+        //   * every syllable was an **omission**.
+        //
+        // The subtler case — "a real attempt, badly done" versus "a different language" —
+        // cannot be told apart from here without seeing what Azure returns for a
+        // non-Chinese take, and guessing a floor for it would repeat the very mistake
+        // this replaced: a favourable default standing in for missing data.
+        final bool allOmitted =
+            evaluatedWords > 0 && omittedWords == evaluatedWords;
+        final bool heardPhrase = assessedWords > 0 && !allOmitted;
+
+        // There is no honest percentage for *"we heard nothing to score"*. This used to
+        // fall back to Azure's overall `PronScore` whenever no word had been evaluated,
+        // which is how a take nobody could assess came out with a plausible-looking
+        // number instead of a refusal.
+        final int fairScore =
+            evaluatedWords > 0 ? (totalAccuracy / evaluatedWords).round() : 0;
 
         String overallFeedback = "Good effort! Keep practicing.";
-        if (fairScore >= 90) {
+        if (!heardPhrase) {
+          overallFeedback =
+              "We could not hear the phrase clearly. Say each character out loud and try again.";
+        } else if (fairScore >= 90) {
           overallFeedback =
               "Perfect pronunciation! Sounds like a native speaker.";
         } else if (fairScore >= 80) {
@@ -2672,13 +2805,27 @@ Respond ONLY in valid JSON format like:
 
         analytics.logApiUsage(
             apiName: 'azure_speech', feature: 'grade_audio', success: true);
+        // Stage 8 of `docs/LOCAL_TONE_PLAN.md`: measure the tone **on the device**. Azure
+        // grades the *sounds* and names the reference syllable, but it never reports the
+        // tone that was actually produced — which is why audit 39 could only ship
+        // "not measured". This fills in a real measurement wherever one is available and
+        // returns the words untouched everywhere else.
+        final gradedWords = await LocalToneGrader.apply(
+          audioBytes: finalAudioBytes,
+          words: mappedWords,
+        );
         return {
           "score": fairScore,
           "accuracy": accuracyScore,
           "completeness": completenessScore,
           "fluency": fluencyScore,
           "overallFeedback": overallFeedback,
-          "words": mappedWords
+          // Whether anything was actually said. `false` means the take was not an attempt
+          // at the phrase — nothing was assessed, or everything was skipped — and the
+          // score is 0 because there is nothing to score, not because it was all wrong.
+          // A surface that shows "0%" alone cannot tell those apart; this can.
+          "heardPhrase": heardPhrase,
+          "words": gradedWords
         };
       } else {
         throw Exception("Azure Error ${response.statusCode}: $responseBody");
@@ -2837,10 +2984,13 @@ Respond ONLY in valid JSON format like:
           for (var w in bestResult['Words']) {
             final wordText = (w['Word'] ?? '').toString();
             double wAccuracy = extractUnscriptedAccuracy(w);
-            final wErrorType = (w['PronunciationAssessment']?['ErrorType'] ??
-                    w['ErrorType'] ??
-                    'None')
-                .toString();
+            // Same reasoning as `gradeAudio`: a word Azure did not assess is not a word it
+            // pronounced with no error. See the note there — the default was what let an
+            // unassessed utterance come back with a score instead of a refusal.
+            final rawErrorType =
+                w['PronunciationAssessment']?['ErrorType'] ?? w['ErrorType'];
+            final bool assessed = rawErrorType != null;
+            final wErrorType = (rawErrorType ?? 'NotAssessed').toString();
 
             // Check syllables if 0
             if (wAccuracy == 0 &&
@@ -2858,11 +3008,17 @@ Respond ONLY in valid JSON format like:
               if (sylCount > 0) wAccuracy = sylTotal / sylCount;
             }
 
-            if (wAccuracy == 0 && wErrorType == 'None' && accuracyScore > 0) {
+            // Same guard as `gradeAudio`: only a word Azure actually assessed may inherit
+            // the take's accuracy. An unassessed word has no error type, which is not the
+            // same as having no error.
+            if (wAccuracy == 0 &&
+                assessed &&
+                wErrorType == 'None' &&
+                accuracyScore > 0) {
               wAccuracy = accuracyScore.toDouble();
             }
 
-            bool isCorrect = wAccuracy >= 80 && wErrorType == 'None';
+            bool isCorrect = assessed && wAccuracy >= 80 && wErrorType == 'None';
             bool isPartial = wAccuracy >= 60 && wAccuracy < 80;
             if (wErrorType != 'None') {
               isCorrect = false;

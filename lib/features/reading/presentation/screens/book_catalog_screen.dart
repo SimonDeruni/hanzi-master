@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
 import 'package:hanzi_master/features/media/presentation/screens/story_summary_screen.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
+import 'package:hanzi_master/features/reading/domain/entities/poetry_collection.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_detail_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_reader_screen.dart';
@@ -113,7 +114,7 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
 
     final catalogAsync = ref.watch(bookCatalogProvider);
     final microReadsAsync = ref.watch(microReadsProvider);
-    final poetryAsync = ref.watch(chinesePoetryProvider);
+    final poetryAsync = ref.watch(poetryCollectionsProvider);
     final inProgressAsync = ref.watch(inProgressBooksProvider);
 
     return Scaffold(
@@ -620,23 +621,34 @@ if (filtered.isEmpty)
   // 3. POETRY SLIVERS (300 TANG POEMS)
   // ==========================================
   List<Widget> _buildPoetrySlivers({
-    required AsyncValue<List<LibraryStory>> poetryAsync,
+    required AsyncValue<List<PoetryCollection>> poetryAsync,
     required bool isDark,
     required Color cardBg,
     required Color primaryText,
   }) {
     return poetryAsync.when(
-      data: (poems) {
+      data: (collections) {
         final l10n = AppLocalizations.of(context)!;
         final query = _searchController.text.trim().toLowerCase();
-        final filtered = poems.where((p) {
-          final matchesSearch = query.isEmpty ||
-              p.title.toLowerCase().contains(query) ||
-              (p.titleEn?.toLowerCase().contains(query) ?? false) ||
-              p.sourceName.toLowerCase().contains(query) ||
-              p.summary.toLowerCase().contains(query);
-          return matchesSearch;
+        // A collection matches on its poet **and** on any poem it holds, so
+        // searching for one poem still finds the book that contains it.
+        final matches = collections.where((c) {
+          if (query.isEmpty) return true;
+          if (c.author.toLowerCase().contains(query)) return true;
+          return c.poems.any((p) {
+            final title = (p['title'] ?? '').toString().toLowerCase();
+            final titleEn = (p['title_en'] ?? '').toString().toLowerCase();
+            return title.contains(query) || titleEn.contains(query);
+          });
         }).toList();
+        final localeCode = Localizations.localeOf(context).toLanguageTag();
+        final filtered = matches
+            .map((collection) =>
+                poetryCollectionToBook(collection, localeCode: localeCode))
+            .toList(growable: false);
+        // Counts poems, not books, so the label stays truthful once one book
+        // holds fifty of them.
+        final poemCount = matches.fold<int>(0, (sum, c) => sum + c.poemCount);
 
         return [
           // Count indicator
@@ -644,7 +656,7 @@ if (filtered.isEmpty)
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Text(
-                l10n.classicalPoemsAndVerse(filtered.length),
+                l10n.classicalPoemsAndVerse(poemCount),
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -677,9 +689,8 @@ if (filtered.isEmpty)
                     mainSpacing: 16),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final poem = filtered[index];
                     return _buildPoetryGridCard(
-                        context, poem, isDark, cardBg, primaryText);
+                        context, filtered[index], isDark, cardBg, primaryText);
                   },
                   childCount: filtered.length,
                 ),
@@ -1157,13 +1168,13 @@ if (filtered.isEmpty)
 
   Widget _buildPoetryGridCard(
     BuildContext context,
-    LibraryStory poem,
+    BookModel book,
     bool isDark,
     Color cardBg,
     Color primaryText,
   ) {
     const poetryAccent = Color(0xFF8B0000);
-    final book = _poemToBook(poem, Localizations.localeOf(context).languageCode);
+    final l10n = AppLocalizations.of(context)!;
 
     return BouncingButton(
       scaleFactor: 0.96,
@@ -1221,7 +1232,7 @@ if (filtered.isEmpty)
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          poem.title,
+                          book.title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -1230,11 +1241,10 @@ if (filtered.isEmpty)
                             color: primaryText,
                           ),
                         ),
-                        if (poem.titleEn != null &&
-                            poem.titleEn!.isNotEmpty) ...[
+                        if (book.titleEn.isNotEmpty) ...[
                           const SizedBox(height: 2),
                           Text(
-                            poem.localizedTitle(
+                            book.localizedTitle(
                               Localizations.localeOf(context).toLanguageTag(),
                             ),
                             maxLines: 2,
@@ -1253,7 +1263,7 @@ if (filtered.isEmpty)
                       children: [
                         Expanded(
                           child: Text(
-                            poem.sourceName.split('(').first.trim(),
+                            l10n.chapters(book.totalChapters),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -1275,7 +1285,7 @@ if (filtered.isEmpty)
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            AppLocalizations.of(context)!.poetry1,
+                            l10n.poetry1,
                             style: TextStyle(
                               fontSize: 8.5,
                               fontWeight: FontWeight.bold,
@@ -1294,29 +1304,6 @@ if (filtered.isEmpty)
           ],
         ),
       ),
-    );
-  }
-
-  BookModel _poemToBook(LibraryStory poem, String localeCode) {
-    return BookModel(
-      id: poem.link,
-      title: poem.title,
-      titleEn: poem.titleEn ?? poem.title,
-      localizedTitles: poem.localizedTitles,
-      author: poem.sourceName,
-      authorEn: poem.sourceName,
-      category: poem.category.isNotEmpty ? poem.category : 'Chinese Poetry',
-      // Poems carry their localized description in the poetry l10n store, read
-      // by the loader alongside the title; English stays in descriptionEn.
-      description: poem.localizedSummary(localeCode),
-      descriptionEn: poem.summaryEn ?? poem.summary,
-      dynastyOrEra: 'Tang Dynasty',
-      hskLevel: poem.hskLevel,
-      totalChapters: 1,
-      coverEmoji: '📜',
-      tags: poem.keywords.isNotEmpty
-          ? poem.keywords
-          : const ['Poetry', 'Classical', 'Verse'],
     );
   }
 

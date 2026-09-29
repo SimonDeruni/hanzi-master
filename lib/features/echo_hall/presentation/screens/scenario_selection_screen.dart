@@ -1316,7 +1316,11 @@ Respond ONLY in valid JSON format with NO markdown formatting:
       final result = await ref.read(geminiServiceProvider).generateText(prompt);
       final generated = GeneratedScenarioData.parse(result);
 
-      final (avatarPath, voice) = _pickAvatarAndVoice(
+      // The AI invents this persona, so it gets no portrait: lending it one of
+      // the seven bundled mascot photos put the same stock face on unrelated
+      // characters. The picker is kept for its other half — the voice still has
+      // to follow the persona's gender to stay in sync with the character.
+      final (_, String voice) = _pickAvatarAndVoice(
         generated.personaName,
         generated.title,
       );
@@ -1335,7 +1339,7 @@ Respond ONLY in valid JSON format with NO markdown formatting:
         initialPinyin: initialPin,
         systemPrompt: generated.systemPrompt,
         targetHskLevel: hskLevel,
-        avatarAssetPath: avatarPath,
+        avatarAssetPath: ConversationScenario.noAvatar,
         personaName: generated.personaName,
         quests: generated.quests,
         deckId: deck.id,

@@ -64,11 +64,29 @@ CachedRecording? recordingFromCacheResponse(Map<String, dynamic>? data) {
 /// that speech can never break because of it.
 class SpeechCacheService {
   SpeechCacheService({FirebaseFunctions? functions, FirebaseAuth? auth})
-      : _functions = functions ?? FirebaseFunctions.instance,
-        _auth = auth ?? FirebaseAuth.instance;
+      : _customFunctions = functions,
+        _customAuth = auth;
 
-  final FirebaseFunctions _functions;
-  final FirebaseAuth _auth;
+  final FirebaseFunctions? _customFunctions;
+  final FirebaseAuth? _customAuth;
+
+  FirebaseFunctions? get _functions {
+    if (_customFunctions != null) return _customFunctions;
+    try {
+      return FirebaseFunctions.instance;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  FirebaseAuth? get _auth {
+    if (_customAuth != null) return _customAuth;
+    try {
+      return FirebaseAuth.instance;
+    } catch (_) {
+      return null;
+    }
+  }
 
   /// A recording another user already made, or `null` when there is none usable.
   ///
@@ -81,8 +99,10 @@ class SpeechCacheService {
     required double rate,
   }) async {
     try {
+      final functions = _functions;
+      if (functions == null) return null;
       final HttpsCallableResult<Map<String, dynamic>> response =
-          await _functions.httpsCallable('getTtsAudioV2').call<Map<String, dynamic>>(
+          await functions.httpsCallable('getTtsAudioV2').call<Map<String, dynamic>>(
         <String, Object?>{'text': text, 'voice': voice, 'rate': rate},
       );
       return recordingFromCacheResponse(response.data);
@@ -106,9 +126,11 @@ class SpeechCacheService {
     required List<Map<String, dynamic>> boundaries,
   }) async {
     try {
-      if (_auth.currentUser == null) return;
+      final auth = _auth;
+      final functions = _functions;
+      if (auth == null || functions == null || auth.currentUser == null) return;
       if (audio.isEmpty || boundaries.isEmpty) return;
-      await _functions.httpsCallable('warmTtsAudioV2').call<void>(
+      await functions.httpsCallable('warmTtsAudioV2').call<void>(
         <String, Object?>{
           'text': text,
           'voice': voice,

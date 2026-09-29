@@ -34,7 +34,11 @@ void main() {
           .map((chapter) => chapter['id'] as String));
     }
 
-    expect(chapterIds, hasLength(5356));
+    // 5,356 ids until 31 books were removed for copyright reasons on 2026-09-27,
+    // which took 2,157 of them with it (docs/BOOK_COPYRIGHT_REMOVALS.md). The real
+    // check is the per-locale key-set comparison below; this is the "did the asset
+    // set shrink unexpectedly" alarm, so it stays exact.
+    expect(chapterIds, hasLength(3199));
     for (final locale in locales) {
       final file = File(
         'assets/data/l10n/chapter_titles_by_id_$locale.json',

@@ -44,6 +44,10 @@ void main() {
       expect(find.textContaining('Microsoft Azure'), findsOneWidget);
       expect(find.textContaining('Google Gemini'), findsOneWidget);
       expect(find.textContaining('DeepSeek'), findsOneWidget);
+      // Tone grading is on-device (audit 40 superseded Tencent SOE), so this barrier
+      // correctly names only the providers that receive the learner's data. Adding a
+      // vendor for tone means changing this sheet, the disclosure screen and the
+      // store labels together.
     });
 
     testWidgets('renders localized content in French', (tester) async {

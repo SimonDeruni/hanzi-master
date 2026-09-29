@@ -126,8 +126,10 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
               : null,
         ),
         alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 6),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
@@ -137,15 +139,22 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
                   : (isDark ? Colors.white54 : Colors.black38),
             ),
             const SizedBox(width: 6),
-            Text(
-              label,
-              style: TextStyle(
-                color: isSelected
-                    ? (isDark ? AppTheme.accentDark : AppTheme.accentLight)
-                    : (isDark ? Colors.white54 : Colors.black38),
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                fontSize: 13,
-                letterSpacing: 0.2,
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: isSelected
+                        ? (isDark ? AppTheme.accentDark : AppTheme.accentLight)
+                        : (isDark ? Colors.white54 : Colors.black38),
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    fontSize: 13,
+                    letterSpacing: 0.2,
+                  ),
+                ),
               ),
             ),
           ],

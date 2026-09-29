@@ -32,14 +32,32 @@ class DictionaryExpansionRequest {
 
 class DictionaryExpansionService {
   static const _boxName = 'dictionary_expansions_v1';
-  final FirebaseFunctions _functions;
-  final FirebaseAuth _auth;
+  final FirebaseFunctions? _customFunctions;
+  final FirebaseAuth? _customAuth;
 
   DictionaryExpansionService({
     FirebaseFunctions? functions,
     FirebaseAuth? auth,
-  })  : _functions = functions ?? FirebaseFunctions.instance,
-        _auth = auth ?? FirebaseAuth.instance;
+  })  : _customFunctions = functions,
+        _customAuth = auth;
+
+  FirebaseFunctions? get _functions {
+    if (_customFunctions != null) return _customFunctions;
+    try {
+      return FirebaseFunctions.instance;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  FirebaseAuth? get _auth {
+    if (_customAuth != null) return _customAuth;
+    try {
+      return FirebaseAuth.instance;
+    } catch (_) {
+      return null;
+    }
+  }
 
   /// Returns a valid device-cached expansion without contacting Firebase.
   Future<DictionaryExpansion?> getCachedExpansion(
@@ -75,11 +93,18 @@ class DictionaryExpansionService {
     final box = await Hive.openBox<dynamic>(_boxName);
 
     try {
-      if (_auth.currentUser == null) {
-        await _auth.signInAnonymously();
+      final auth = _auth;
+      final functions = _functions;
+      if (auth == null || functions == null) {
+        throw const DictionaryExpansionException(
+          DictionaryExpansionFailure.unavailable,
+        );
+      }
+      if (auth.currentUser == null) {
+        await auth.signInAnonymously();
       }
 
-      final result = await _functions
+      final result = await functions
           .httpsCallable('getDictionaryExpansionV1')
           .call(<String, dynamic>{
         'wordId': request.wordId,

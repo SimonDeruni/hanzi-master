@@ -61,7 +61,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Shadow'), findsOneWidget);
     expect(find.bySemanticsLabel('百战不殆。'), findsOneWidget);
-    expect(find.text('bǎi zhàn bù dài'), findsOneWidget);
+    expect(find.text('bǎi zhàn bú dài'), findsOneWidget);
     expect(find.byKey(const Key('onboarding_shadow_card')), findsOneWidget);
     expect(find.text("I can't speak right now"), findsNothing);
 

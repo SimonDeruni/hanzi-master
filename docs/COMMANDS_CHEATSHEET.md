@@ -58,10 +58,21 @@ translation can never be overwritten.
   `python scratch/strip_json_bom.py`
 - **The rules that keep all of this honest:**
   `flutter test test/core/content_localization_guard_test.dart`
+- **Poet selection** (which 100 poets the app publishes; ranks by canonical-anthology
+  presence, drops non-people and poets too thin in the full corpora):
+  `python tooling/select_poetry_poets.py`
+  `python tooling/select_poetry_poets.py --write`
 - **Expand Poetry Collections** (one book per poet, up to `--per-author` poems each;
   `--check` validates without fetching, `--dry-run` reports without writing):
   `python tooling/fetch_poetry_collections.py --per-author=50`
+  `python tooling/fetch_poetry_collections.py --deep --publish-file tooling/poetry_poet_selection.txt --per-author=50`
   `python tooling/fetch_poetry_collections.py --check`
+- **Dictionary attribution** (writes the CC-CEDICT credit into the database's own
+  `dictionary_metadata`; re-runnable, upserts by key):
+  `python tooling/add_dictionary_attribution.py`
+- **Poet Latin names** (the base locale's `author_en`, without which a collection
+  falls back to showing the Chinese name in all 13 content locales):
+  `python tooling/build_poet_names_en.py`
 - **Poet biographies** (condense the corpus author index, then translate; `--only <code>`
   narrows to one locale, and English is fetched with `--only en`):
   `python tooling/build_poet_bios.py`

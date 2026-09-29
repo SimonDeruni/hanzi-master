@@ -271,9 +271,11 @@ class _TappableWord extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasChinese = RegExp(r'[\u4e00-\u9fa5]').hasMatch(word.hanzi);
 
-    // Pinyin and meanings only apply to real Chinese words.
-    final isValidPinyin =
-        hasChinese && word.pinyin.isNotEmpty && word.pinyin != word.hanzi;
+    // Pinyin and meanings only apply to real Chinese words. Pinyin no longer
+    // requires the model to have supplied it: `PinyinHelper` below derives it
+    // from the hanzi, and simplification stopped asking for it (it was most of a
+    // reply that took minutes to generate).
+    final isValidPinyin = hasChinese;
     final isValidMeaning =
         hasChinese && word.meaning.isNotEmpty && word.meaning != word.hanzi;
 

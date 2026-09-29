@@ -128,5 +128,13 @@ void main() {
     expect(source, contains('LoadingSwap('));
     expect(source, contains('class _InkPalette'),
         reason: 'One palette, resolved from AppTheme');
+
+    // The persona the user invents gets no portrait either: only the voice is
+    // taken from `pickAvatarAndVoice`, never the stock `assets/mascot/...` face.
+    expect(source, contains('avatarAssetPath: ConversationScenario.noAvatar'),
+        reason: 'A user-written persona must not wear an image that already '
+            'exists');
+    expect(source, isNot(contains('pickedAvatar')),
+        reason: 'Only the voice is taken from pickAvatarAndVoice');
   });
 }

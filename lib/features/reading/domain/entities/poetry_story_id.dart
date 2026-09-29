@@ -1,5 +1,46 @@
-﻿const chinesePoetryAsset = 'assets/data/famous_chinese_poetry.json';
+﻿import 'dart:convert';
+
+const chinesePoetryAsset = 'assets/data/famous_chinese_poetry.json';
 const legacyTangPoetryAsset = 'assets/data/tang_poetry_en.json';
+
+/// The poets' biographies (Chinese), with `origin`/`source` provenance per poet.
+const poetBiosAsset = 'assets/data/poet_bios.json';
+
+/// The English biographies. English is the app's base locale rather than one of
+/// the 13 selectable content locales, so `loadLocalizedTitlesById` skips it.
+const poetBiosEnAsset = 'assets/data/l10n/poet_bios_en.json';
+
+/// Book-id prefix for one poet's collection (`poetry_author_<digest>`).
+const String poetryAuthorBookPrefix = 'poetry_author_';
+
+/// A stable 8-hex digest of [value], shaped like the existing
+/// `poetry_<dynasty>_<hex>` poem ids.
+///
+/// FNV-1a over the UTF-8 bytes. This is a **book-id ingredient**: it is written
+/// into Hive reading progress and bookmarks, so it must never change for a
+/// given author name — a different digest would orphan a reader's history.
+/// A degenerate hash (all digits, no letter) is left-padded rather than
+/// re-hashed, which keeps the function total and deterministic.
+String poetryDigest(String value) {
+  var hash = 0x811c9dc5;
+  for (final byte in utf8.encode(value)) {
+    hash ^= byte;
+    hash = (hash * 0x01000193) & 0xFFFFFFFF;
+  }
+  return hash.toRadixString(16).padLeft(8, '0');
+}
+
+/// The book id for the collection of [author] (the **raw** Chinese name).
+///
+/// Keyed on the raw source name on purpose: display names are derived per
+/// locale (`_translateAuthor` lowercases to pinyin), so keying on a displayed
+/// name would split one poet into several books depending on the device locale.
+String poetryAuthorBookId(String author) =>
+    '$poetryAuthorBookPrefix${poetryDigest(author)}';
+
+/// True for an author-collection book id (as opposed to a single poem's).
+bool isPoetryAuthorBookId(String id) => id.startsWith(poetryAuthorBookPrefix);
+
 
 String poetryCoverAssetPath(String poetryId) =>
     'assets/images/poetry/$poetryId.jpg';

@@ -6,8 +6,8 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Grand Library Catalog 170+ Books Validation', () {
-    test('grand_library_catalog.json loads and parses 90+ full books cleanly',
+  group('Grand Library Catalog Validation', () {
+    test('grand_library_catalog.json loads and parses every book cleanly',
         () {
       final file = File('assets/data/grand_library_catalog.json');
       expect(file.existsSync(), isTrue, reason: 'Catalog JSON file must exist');
@@ -15,12 +15,16 @@ void main() {
       final content = file.readAsStringSync();
       final list = jsonDecode(content) as List<dynamic>;
 
-      expect(list.length, greaterThanOrEqualTo(80),
+      // The library went 86 -> 55 on 2026-09-27, when 31 books were removed for
+      // copyright reasons (see docs/BOOK_COPYRIGHT_REMOVALS.md) — 28 in the first
+      // pass and 3 more once every book was audited individually. This ratchet exists
+      // to catch *accidental* content loss, so it is kept exact and moved by hand -
+      // loosening it to a floor would defeat the only thing it is for.
+      expect(list.length, equals(55),
           reason:
-              'Catalog should contain at least 80 curated unabridged world masterpiece books');
-      expect(list.length, equals(86),
-          reason:
-              'Catalog has exactly 86 100% verified unabridged masterpieces');
+              'Catalog has exactly 55 books after the copyright removals. If this '
+              'number moved, either content was lost or the removal list changed - '
+              'check which before editing this line.');
 
       final ids = <String>{};
       for (final item in list) {

@@ -105,12 +105,15 @@ class StoryCoverArt extends StatelessWidget {
   /// keep their own framing and fall back to [topicGradient] when this returns
   /// null.
   static ImageProvider<Object>? resolveProvider(LibraryStory story) {
-    // Poems are drawn, not photographed: their bundled artwork is
-    // AI-generated and deliberately not shown - the poem cover is composed in
-    // code instead, so this returns null to let that design take over.
+    // A poet's collection is a book with a real bundled cover now, so it takes
+    // the normal path below — its `imageUrl` is the poetry cover asset
+    // (`assets/images/poetry/poetry_author_<digest>.jpg`). A single poem still
+    // has no artwork of its own; its cover is composed in code, so returning
+    // null lets that design take over, exactly as before.
     if (story.link.startsWith('poetry_') ||
         story.link.startsWith('tang_poetry_')) {
-      return null;
+      final String? poetryCover = story.imageUrl;
+      if (poetryCover == null || poetryCover.isEmpty) return null;
     }
     final String? explicit = story.imageUrl;
     if (explicit != null && explicit.isNotEmpty) {

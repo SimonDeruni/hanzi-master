@@ -6,6 +6,7 @@ import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/live_translate/presentation/widgets/calligraphic_pitch_contour.dart';
+import 'package:hanzi_master/shared/widgets/tone_graph_help.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class ToneComparisonSheet extends ConsumerStatefulWidget {
@@ -176,7 +177,13 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
     final surfaceColor = theme.colorScheme.surface;
     final onSurface = theme.colorScheme.onSurface;
 
-    final isCorrect = widget.expectedTone == widget.actualTone;
+    // `actualTone == 0` means the grader measured no tone - Azure assesses
+    // phonemes and never reports the tone that was heard. There is nothing to
+    // compare, so the sheet must not turn a missing measurement into a verdict
+    // (rendering 0 as a tone name made "not measured" read as a wrong answer).
+    final bool toneMeasured = widget.actualTone > 0;
+    final bool isCorrect =
+        toneMeasured && widget.expectedTone == widget.actualTone;
     final comparisonPinyin = _comparisonPinyin;
     final toneMap = PinyinUtils.getAllTonesForSyllable(comparisonPinyin);
 
@@ -228,7 +235,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                   border: Border.all(
                     color: isCorrect
                         ? Colors.green.withValues(alpha: 0.4)
-                        : Colors.orange.withValues(alpha: 0.4),
+                        : (toneMeasured
+                            ? Colors.orange.withValues(alpha: 0.4)
+                            : Colors.blue.withValues(alpha: 0.4)),
                   ),
                 ),
                 child: Center(
@@ -339,7 +348,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                             size: 14,
                             color: isCorrect
                                 ? const Color(0xFF10B981)
-                                : const Color(0xFFF59E0B),
+                                : (toneMeasured
+                                    ? const Color(0xFFF59E0B)
+                                    : onSurface.withValues(alpha: 0.45)),
                           ),
                           const SizedBox(width: 4),
                           Expanded(
@@ -350,7 +361,9 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                               style: theme.textTheme.labelSmall?.copyWith(
                                 color: isCorrect
                                     ? const Color(0xFF10B981)
-                                    : const Color(0xFFF59E0B),
+                                    : (toneMeasured
+                                        ? const Color(0xFFF59E0B)
+                                        : onSurface.withValues(alpha: 0.45)),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -359,12 +372,18 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "${_getLocalizedToneName(context, widget.actualTone)} (${toneMap[widget.actualTone] ?? widget.pinyin})",
+                        // An em dash for "we did not measure it" is honest in every
+                        // locale; naming a tone here would be a fabrication.
+                        toneMeasured
+                            ? "${_getLocalizedToneName(context, widget.actualTone)} (${toneMap[widget.actualTone] ?? widget.pinyin})"
+                            : '—',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: isCorrect
                               ? const Color(0xFF10B981)
-                              : const Color(0xFFF59E0B),
+                              : (toneMeasured
+                                  ? const Color(0xFFF59E0B)
+                                  : onSurface.withValues(alpha: 0.45)),
                         ),
                       ),
                     ],
@@ -398,13 +417,29 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                       color: isDark ? Colors.white60 : Colors.black54,
                     ),
                     const SizedBox(width: 5),
-                    Text(
-                      AppLocalizations.of(context)?.toneGraph ?? "Tone Graph",
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: isDark ? Colors.white60 : Colors.black54,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.5,
+                    // `Expanded` rather than a bare `Text` + `Spacer`: with a button
+                    // in this Row the text-bearing child has to be flexible, or a
+                    // long translation overflows — which is precisely what
+                    // `locale_layout_guard_test.dart` caught when this lightbulb was
+                    // first added.
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)?.toneGraph ?? "Tone Graph",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: isDark ? Colors.white60 : Colors.black54,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.5,
+                        ),
                       ),
+                    ),
+                    // The contour is the one graphic here whose meaning is not
+                    // self-evident — a second stroke is drawn *only* on a
+                    // mismatch — so it carries its own explanation rather than
+                    // relying on the reader to infer the rule.
+                    ToneGraphHelpButton(
+                      color: isDark ? Colors.white60 : Colors.black54,
                     ),
                   ],
                 ),
@@ -604,17 +639,27 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                   children: [
                     Row(
                       children: [
-                        LtrSanctuary(
-                          child: Text(
-                            exemplarHanzi != null
-                                ? "$pinyinWithTone  ($exemplarHanzi)"
-                                : pinyinWithTone,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: existsInChinese
-                                  ? null
-                                  : onSurface.withValues(alpha: 0.5),
+                        // The pinyin carries an exemplar character and the badge
+                        // beside it is fixed-width, so without a flexible label
+                        // this row overflowed by 46px in French as soon as a
+                        // mismatch badge appeared (the match path only ever draws
+                        // one badge and hid it). Same degradation the locale
+                        // guard asks for: shrink and ellipsize, never overflow.
+                        Flexible(
+                          child: LtrSanctuary(
+                            child: Text(
+                              exemplarHanzi != null
+                                  ? "$pinyinWithTone  ($exemplarHanzi)"
+                                  : pinyinWithTone,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: existsInChinese
+                                    ? null
+                                    : onSurface.withValues(alpha: 0.5),
+                              ),
                             ),
                           ),
                         ),

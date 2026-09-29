@@ -44,8 +44,16 @@ class SyllableGrade {
   final String word; // Hanzi
   final String pinyin; // Pinyin
   final String? english; // English translation/meaning
-  final int expectedTone; // 1-5
-  final int actualTone; // 1-5
+  final int expectedTone; // 1-5 (5 = neutral); 0 when no reading was known
+  /// The tone that was heard, or **0 for "not measured"**.
+  ///
+  /// Azure Pronunciation Assessment reports phoneme accuracy and a
+  /// reference-syllable tone; it never reports the tone the learner produced.
+  /// A non-zero value here therefore means only one thing: Azure graded the word
+  /// error-free, so the tone that was heard is the tone on the page. Consumers
+  /// must treat 0 as "no claim" - `CalligraphicPitchContour` skips the
+  /// comparison trace and `SpeakingFeedbackPanel` drops the row's tone verdict.
+  final int actualTone; // 0 = not measured, else 1-5
   final bool isCorrect;
   final bool isPartial; // Tone wrong but base syllable understood
   final int wordScore; // Individual word score (0-100)

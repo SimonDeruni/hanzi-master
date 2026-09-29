@@ -1,0 +1,65 @@
+CC-CEDICT — licence and attribution notice
+==========================================
+
+This app bundles a dictionary DERIVED FROM CC-CEDICT, a community-maintained
+Chinese-English dictionary. CC-CEDICT is licensed under the
+**Creative Commons Attribution-ShareAlike 4.0 International License
+(CC BY-SA 4.0)**.
+
+  Licence:  https://creativecommons.org/licenses/by-sa/4.0/
+  Legal code: https://creativecommons.org/licenses/by-sa/4.0/legalcode.en
+  Project:  https://cc-cedict.org/wiki/
+  Export used: https://www.mdbg.net/chinese/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz
+  Retrieved by: tooling/build_dictionary.dart
+  Bundled file: assets/data/dictionary.db (words, dictionary_metadata, ...)
+
+CC BY-SA 4.0 permits commercial use. It carries two conditions, and both are
+recorded here.
+
+
+1. Attribution
+--------------
+
+  Dictionary data from CC-CEDICT (https://cc-cedict.org/), used under the
+  Creative Commons Attribution-ShareAlike 4.0 International License.
+
+CC-CEDICT is a continuation of the CEDICT project started by Paul Andrew
+Denisowski in October 1997. Thanks are owed to the CC-CEDICT editor team —
+including goldyn_chyld, richwarm, vermillon and ycandau — and to everyone who
+contributed entries and corrections over the years.
+
+This notice is reproduced in three places so it travels with the data:
+  - this file (third_party/cc-cedict-LICENSE)
+  - inside the database itself, in the `dictionary_metadata` table
+  - in the app, on the licences screen (Settings -> "Licenses"),
+    registered by lib/core/legal/third_party_notices.dart
+
+
+2. Modifications (share-alike)
+------------------------------
+
+The bundled file is NOT the original CC-CEDICT export. It is a modified version,
+which matters because CC BY-SA 4.0 requires that modifications be shared under
+the same licence. What was changed:
+
+  - Stored as SQLite with a purpose-built schema (`words`,
+    `dictionary_metadata`, `localized_definition_quality`) rather than the
+    upstream line-based text format.
+  - Each definition was translated into further languages, held in
+    `words.definition_fr`, `definition_de`, `definition_es`, `definition_ru`,
+    `definition_it`, `definition_pt`, `definition_ja`, `definition_ko`,
+    `definition_vi`, `definition_id`, `definition_ar`, `definition_hi`,
+    `definition_th` (and the English source in `definition`).
+  - A per-definition quality score was computed and stored in
+    `localized_definition_quality` (1,369,632 rows), keyed to the hash of the
+    English source definition it was measured against.
+  - Entries were filtered and rearranged; a content version is recorded as
+    `dictionary_content_version = cc-cedict-localized-v1`.
+
+OPEN QUESTION — not yet decided, and deliberately not asserted here:
+whether the translated definitions above are "modifications" reached by the
+share-alike condition (in which case they must themselves be offered under
+CC BY-SA 4.0), or a separate work built on top of CC-CEDICT-derived text. The
+attribution above is correct either way and is now complete; the share-alike
+determination is tracked in ISSUES.md and is a question for a lawyer, because it
+decides whether the translated dictionary can stay proprietary.
