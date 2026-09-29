@@ -116,16 +116,31 @@ def read_metadata(path):
 
 
 def create_asset(out_path):
-    """A fresh, empty copy of the master's words schema. Returns the connection."""
+    """A fresh copy of the master's schema, with the data copied across.
+
+    `localized_definition_quality` is carried too when the master has it: the app
+    reads it to decide whether to offer the AI expansion panel
+    (`isExpansionEligible`), so dropping it would silently remove that feature.
+    It is produced by scripts/score_dictionary_quality.py, which section 3 of
+    docs/TRANSLATION_STRATEGY.md says to run after every rebuild.
+    """
+    tables = []
     master = sqlite3.connect("file:%s?mode=ro" % MASTER.replace("\\", "/"), uri=True)
     try:
-        schema = [r[0] for r in master.execute(
-            "SELECT sql FROM sqlite_master WHERE tbl_name='words' AND sql IS NOT NULL")]
+        present = {r[0] for r in master.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'")}
+        for table in ("words", "localized_definition_quality"):
+            if table not in present:
+                print("note: master has no %s table - not copied" % table)
+                continue
+            tables.append((table, [r[0] for r in master.execute(
+                "SELECT sql FROM sqlite_master WHERE tbl_name=? AND sql IS NOT NULL",
+                (table,))]))
     finally:
         master.close()
-    if len(schema) < 2:
+    if len(tables[0][1]) < 2:
         print("WARNING: expected the words table plus its indexes, found %d object(s)"
-              % len(schema))
+              % len(tables[0][1]))
 
     temp_path = out_path + ".building"
     for suffix in ("", "-wal", "-shm"):
@@ -135,11 +150,12 @@ def create_asset(out_path):
     con = sqlite3.connect(temp_path)
     con.execute("ATTACH DATABASE ? AS master", (MASTER,))
     con.execute("ATTACH DATABASE ? AS before", (BEFORE,))
-    for statement in schema:
-        con.execute(statement)
-    con.execute("INSERT INTO words SELECT * FROM master.words")
-    print("words copied             : %d" % con.execute(
-        "SELECT COUNT(*) FROM words").fetchone()[0])
+    for table, statements in tables:
+        for statement in statements:
+            con.execute(statement)
+        con.execute('INSERT INTO "%s" SELECT * FROM master."%s"' % (table, table))
+        print("%-29s: %d rows" % (table + " copied",
+                                  con.execute('SELECT COUNT(*) FROM "%s"' % table).fetchone()[0]))
     return con, temp_path
 
 

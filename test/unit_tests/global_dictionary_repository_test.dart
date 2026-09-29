@@ -278,6 +278,55 @@ void main() {
     expect(cardEs.definition, 'fuerza');
     expect(cardEs.definitionLanguage, 'Spanish');
   });
+
+  test('the bundled dictionary advertises the schema version the app requires',
+      () async {
+    // `GlobalDictionaryRepository.init` decides whether to copy the dictionary out
+    // of the bundle by comparing the asset's
+    // `dictionary_metadata.dictionary_schema_version` against `requiredSchemaVersion`.
+    // Two ways that wiring breaks, and both are silent:
+    //
+    //   - asset version > required: a mismatch every launch, so a ~250 MB file is
+    //     re-copied to disk on every single start;
+    //   - asset version < required: an installed app never replaces its local copy,
+    //     so it keeps serving the old dictionary forever.
+    //
+    // Neither shows up as a crash, which is exactly why it is asserted here.
+    final asset = File('assets/data/dictionary.db');
+    expect(asset.existsSync(), isTrue,
+        reason: 'the dictionary asset must ship with the app');
+
+    final bundled = await databaseFactoryFfi.openDatabase(
+      asset.absolute.path,
+      options: OpenDatabaseOptions(readOnly: true, singleInstance: false),
+    );
+    try {
+      final version = await bundled.rawQuery(
+        "SELECT value FROM dictionary_metadata "
+        "WHERE key = 'dictionary_schema_version'",
+      );
+      expect(version, isNotEmpty,
+          reason: 'the asset must carry dictionary_schema_version');
+      expect(
+        version.first['value'],
+        GlobalDictionaryRepository.requiredSchemaVersion,
+        reason: 'asset and app must agree, or the dictionary never refreshes',
+      );
+
+      // `init` also refuses the asset unless every localised column is present.
+      final columns = (await bundled.rawQuery('PRAGMA table_info(words)'))
+          .map((column) => column['name'] as String)
+          .toSet();
+      for (final language in <String>[
+        'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'pt', 'ru', 'th', 'vi',
+      ]) {
+        expect(columns, contains('definition_$language'),
+            reason: 'init treats a missing definition_$language as a stale asset');
+      }
+    } finally {
+      await bundled.close();
+    }
+  });
 }
 
 Future<void> _insertWord(
