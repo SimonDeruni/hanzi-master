@@ -1,7 +1,7 @@
-/// The birthday shelf: one account's tag, three fetched videos, and nobody else.
+/// The birthday shelf: one account's tag, four fetched videos, and nobody else.
 ///
 /// Two things are being pinned. The **content** — the tag reads exactly as written, and
-/// the three videos are the ones that were asked for (by id, not by a search that could
+/// the four videos are the ones that were asked for (by id, not by a search that could
 /// drift to something else tomorrow). And the **gate** — outside her account the shelf
 /// does not merely hide, it is *absent*, so every other user's Media tab is unchanged.
 library;
@@ -68,11 +68,12 @@ class _EmptyYoutubeRepository extends YoutubeRepository {
       throw UnimplementedError('offline in this test');
 }
 
-/// The three ids from the links that were sent, in order.
+/// The four ids from the links that were sent, in order.
 const List<String> _expectedIds = <String>[
   '4XYZi5HyI58',
   'obzK1p4m68U',
   'JpLH1SvdUUw',
+  'sPtc6P9xvbg',
 ];
 
 Widget _host({
@@ -138,7 +139,7 @@ void main() {
       expect(BirthdayPlaylist.tag, 'HAPPY BIRTHDAY !!!');
     });
 
-    test('is the three videos that were sent, by id', () {
+    test('is the four videos that were sent, by id', () {
       expect(BirthdayPlaylist.videos.map((v) => v.id).toList(), _expectedIds);
       for (final video in BirthdayPlaylist.videos) {
         expect(video.url, 'https://www.youtube.com/watch?v=${video.id}',
@@ -152,7 +153,7 @@ void main() {
         expect(video.mediumThumbnailUrl, contains('img.youtube.com/vi/'),
             reason: video.id);
       }
-      expect(BirthdayPlaylist.videos.map((v) => v.id).toSet(), hasLength(3),
+      expect(BirthdayPlaylist.videos.map((v) => v.id).toSet(), hasLength(4),
           reason: 'no duplicate video');
     });
 
@@ -195,6 +196,44 @@ void main() {
       expect(shelf.semanticChildCount, BirthdayPlaylist.videos.length,
           reason: 'one card per video, no more and no fewer');
       expect(tester.getSize(find.byType(BirthdayShelf)).height, greaterThan(0));
+    });
+
+    // `maxresdefault` 404s for plenty of videos — two of the four on this shelf — while
+    // `hqdefault` exists for them, so a failed best-frame request must land on the
+    // medium frame and only then give up. The `Image` widget is still in the tree after
+    // its `errorBuilder` has drawn something, so what it *would* draw can be asked for
+    // directly instead of waiting on a network that never answers in a test.
+    testWidgets('a missing maxres thumbnail falls back to the medium one',
+        (WidgetTester tester) async {
+      await _pumpShelf(tester, email: 'hanbaobao@love.com');
+
+      final YoutubeVideo first = BirthdayPlaylist.videos.first;
+      final Finder thumbnails = find.byType(Image);
+      expect(thumbnails, findsWidgets, reason: 'the card asks for a frame');
+
+      final Image best = tester.widget<Image>(thumbnails.first);
+      expect((best.image as NetworkImage).url, first.highThumbnailUrl,
+          reason: 'the best frame is asked for first');
+
+      final Widget afterError = best.errorBuilder!(
+        tester.element(thumbnails.first),
+        Exception('404'),
+        null,
+      );
+      expect(afterError, isA<Image>(),
+          reason: 'a 404 on maxres must not cost her the thumbnail');
+      final Image fallback = afterError as Image;
+      expect((fallback.image as NetworkImage).url, first.mediumThumbnailUrl);
+
+      // And if that is missing too, the card is a placeholder rather than a hole.
+      expect(
+        fallback.errorBuilder!(
+          tester.element(thumbnails.first),
+          Exception('404'),
+          null,
+        ),
+        isNot(isA<Image>()),
+      );
     });
 
     testWidgets('is absent — not hidden — for anyone else',

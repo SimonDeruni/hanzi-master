@@ -17,7 +17,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 ///
 /// The tag is deliberately loud — it is a birthday message, and the point was that she
 /// cannot miss it — so the Media tab leads with it, above the carousel of the day.
-/// The shelf itself is plain: a tag, three fetched videos, and the same tap every
+/// The shelf itself is plain: a tag, four fetched videos, and the same tap every
 /// other video in the app gets (`SmartMediaDeskScreen`, so she lands on the transcript
 /// desk rather than a bare embed).
 class BirthdayShelf extends ConsumerWidget {
@@ -155,10 +155,20 @@ class BirthdayShelf extends ConsumerWidget {
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, progress) =>
                             progress == null ? child : _placeholder(isDark),
-                        // YouTube has no `maxresdefault` for every video; the card
-                        // must never be a grey hole.
-                        errorBuilder: (context, error, stackTrace) =>
-                            _placeholder(isDark),
+                        // `maxresdefault` does not exist for every video — YouTube
+                        // answers 404 for plenty of them, two of the four on this shelf
+                        // included — while `hqdefault` almost always does. So the
+                        // fallback is the other thumbnail, and only *then* the
+                        // placeholder: a card that shows a grey hole for a video whose
+                        // frame exists is a card that looks broken on her birthday.
+                        errorBuilder: (context, error, stackTrace) => Image.network(
+                          video.mediumThumbnailUrl,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, progress) =>
+                              progress == null ? child : _placeholder(isDark),
+                          errorBuilder: (context, error, stackTrace) =>
+                              _placeholder(isDark),
+                        ),
                       ),
                       const Center(
                         child: Icon(

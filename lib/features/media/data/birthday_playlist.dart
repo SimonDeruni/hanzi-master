@@ -1,7 +1,7 @@
 import 'package:hanzi_master/core/personal/her_account.dart';
 import 'package:hanzi_master/features/media/domain/models/youtube_video.dart';
 
-/// Three videos fetched for one account's birthday.
+/// Four videos fetched for one account's birthday.
 ///
 /// The tag, the titles and the channel names are **content, not chrome**, so they
 /// ship exactly as written and are not translated — the same rule
@@ -54,6 +54,15 @@ abstract final class BirthdayPlaylist {
       highThumbnailUrl:
           'https://img.youtube.com/vi/JpLH1SvdUUw/maxresdefault.jpg',
       channelTitle: 'Josman',
+    ),
+    YoutubeVideo(
+      id: 'sPtc6P9xvbg',
+      title: 'Donald Trump Birthday Greeting - Happy birthday from Trump!',
+      url: 'https://www.youtube.com/watch?v=sPtc6P9xvbg',
+      mediumThumbnailUrl: 'https://img.youtube.com/vi/sPtc6P9xvbg/hqdefault.jpg',
+      highThumbnailUrl:
+          'https://img.youtube.com/vi/sPtc6P9xvbg/maxresdefault.jpg',
+      channelTitle: 'Birthday Cards World',
     ),
   ];
 

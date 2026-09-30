@@ -14,10 +14,10 @@ import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 /// (discovery terms) follow, and it is why these are constants rather than ARB keys —
 /// a machine-translated love letter is not the thing that was written.
 ///
-/// Nothing here is fetched. `deckVocabulary` and `shadowingSentences` are studied
-/// offline, and [wordOfTheDay] is hers every single day rather than rotating through
-/// `wordOfTheDayVocabulary`, because the word she asked for is a name, and a name does
-/// not change with the date.
+/// Nothing here is fetched. `deckVocabulary`, `shadowingSentences` and
+/// `shadowingDateSentences` are studied offline, and [wordOfTheDay] is hers every single
+/// day rather than rotating through `wordOfTheDayVocabulary`, because the word she asked
+/// for is a name, and a name does not change with the date.
 abstract final class HerContent {
   // ---------------------------------------------------------------------------
   // 1. Word of the day — the home card, and the home-screen widget
@@ -163,28 +163,113 @@ abstract final class HerContent {
     },
   ];
 
-  /// True when a mode should practise [shadowingSentences] rather than ask the model
-  /// for a phrase.
+  // ---------------------------------------------------------------------------
+  // 3b. Shadowing — the mode that is only hers: the three days that are theirs
+  // ---------------------------------------------------------------------------
+
+  /// The practice mode that carries [shadowingDateSentences].
+  ///
+  /// The studio carries its mode around as `toString()` — `_fetchNextPhrase` already
+  /// does, and `GeminiService.generateShadowingPhrase` takes the same form — so a mode
+  /// maps to a bank by string. The pairing is pinned by
+  /// `test/features/live_translate/shadowing_studio_practice_mode_test.dart`, which
+  /// switches over `ShadowingMode`: a mode added later without a decision fails there
+  /// instead of quietly practising her sentences.
+  static const String shadowingDateMode = 'ShadowingMode.ourDates';
+
+  /// What the mode is called where she chooses it.
+  ///
+  /// **Content, not chrome**, like everything else in this file: it is hers, it is only
+  /// ever shown to her, and her app is the French one — so it is written here rather
+  /// than in the fourteen `app_*.arb` files, where a mode no other account can open
+  /// would be a string no other account should translate. Renaming the mode is renaming
+  /// this one string.
+  static const String shadowingDateModeLabel = 'Notre histoire';
+
+  /// What the mode is for, on the card under the mode row.
+  static const String shadowingDateModeDescription =
+      'Les trois jours qui sont à nous, en trois phrases — et les dates qu’elles gardent.';
+
+  /// The three days, as three sentences.
+  ///
+  /// The same shape as [shadowingSentences] (`hanzi` / `pinyin` / `english`), and for
+  /// the same reason the bank exists at all: a date is a fact, not a theme, and no
+  /// prompt can promise that 16 October 2025 comes back out of a model unaltered. The
+  /// dates are written in Chinese numerals (二零二五年十月十六日) rather than in digits,
+  /// so that every character is a Hanzi: the studio draws one syllable above each
+  /// *character*, and digits would pair the ruby with the wrong ones.
+  ///
+  /// The English line is his, down to the `14.07.26`.
+  static const List<Map<String, String>> shadowingDateSentences =
+      <Map<String, String>>[
+    <String, String>{
+      'hanzi': '我爱你。',
+      'pinyin': 'wǒ ài nǐ.',
+      'english': 'I love you.',
+    },
+    <String, String>{
+      'hanzi': '我们相遇的那一天是二零二五年十月十六日。',
+      'pinyin':
+          'wǒ men xiāng yù de nà yì tiān shì èr líng èr wǔ nián shí yuè shí liù rì.',
+      'english': 'The day we met is 16 October 2025.',
+    },
+    <String, String>{
+      'hanzi': '我们发出第一条消息的那一天是二零二五年十月十八日。',
+      'pinyin':
+          'wǒ men fā chū dì yī tiáo xiāo xi de nà yì tiān shì èr líng èr wǔ nián shí yuè shí bā rì.',
+      'english': 'The day we sent the first message is 18 October 2025.',
+    },
+    <String, String>{
+      'hanzi': '我们在海德堡见面的那一天是二零二六年七月十四日。',
+      'pinyin':
+          'wǒ men zài hǎi dé bǎo jiàn miàn de nà yì tiān shì èr líng èr liù nián qī yuè shí sì rì.',
+      'english': 'The day we met in Heidelberg is 14.07.26.',
+    },
+  ];
+
+  /// The three days as the mode's own card lists them: the same three facts as
+  /// [shadowingDateSentences], in the short numeric form he writes dates in (the
+  /// letter's `14.07.26`), so the card and the sentences cannot disagree about a date.
+  static const List<String> shadowingDateLabels =
+      <String>['16.10.25', '18.10.25', '14.07.26'];
+
+  /// The bank [mode] practises, or `null` when the phrase is the model's to write.
   ///
   /// Every mode except the two where **she** brings the words: a free-flow line or a
-  /// themed one is chosen from her bank, while `customWord` and `customSentence` are
-  /// her own input and get their pinyin and translation from the model exactly as they
-  /// always did. The mode arrives as its `toString()` — the same form the studio already
-  /// hands to `GeminiService.generateShadowingPhrase`.
+  /// themed one is chosen from [shadowingSentences], her three days come from
+  /// [shadowingDateSentences], and `customWord` / `customSentence` are her own input and
+  /// get their pinyin and translation from the model exactly as they always did. The
+  /// mode arrives as its `toString()` — the same form the studio already hands to
+  /// `GeminiService.generateShadowingPhrase`.
+  static List<Map<String, String>>? shadowingBankFor(String mode) {
+    if (mode == 'ShadowingMode.customWord' ||
+        mode == 'ShadowingMode.customSentence') {
+      return null;
+    }
+    if (mode == shadowingDateMode) return shadowingDateSentences;
+    return shadowingSentences;
+  }
+
+  /// True when a mode should practise a bank from this file rather than ask the model.
   static bool shadowingBankAppliesTo(String mode) =>
-      mode != 'ShadowingMode.customWord' &&
-      mode != 'ShadowingMode.customSentence';
+      shadowingBankFor(mode) != null;
 
   /// The sentence after [history]: the first one she has not heard yet, and the first
   /// again once the whole bank has been round — so the practice never runs out and
   /// never repeats the line that is already on screen. [history] is what the studio
   /// already keeps (and passes to the model as `previousPhrases`).
-  static Map<String, String> shadowingSentenceAfter(List<String> history) {
+  ///
+  /// [bank] is what [shadowingBankFor] resolved, and defaults to [shadowingSentences].
+  static Map<String, String> shadowingSentenceAfter(
+    List<String> history, {
+    List<Map<String, String>>? bank,
+  }) {
+    final List<Map<String, String>> sentences = bank ?? shadowingSentences;
     final Set<String> heard = history.toSet();
-    for (final Map<String, String> sentence in shadowingSentences) {
+    for (final Map<String, String> sentence in sentences) {
       if (!heard.contains(sentence['hanzi'])) return sentence;
     }
-    return shadowingSentences.first;
+    return sentences.first;
   }
 
   // ---------------------------------------------------------------------------

@@ -41,7 +41,13 @@ import 'package:hanzi_master/core/services/pitch_detector_service.dart';
 import 'package:hanzi_master/core/utils/pitch_contour.dart';
 import '../widgets/tone_graph_card.dart';
 
-enum ShadowingMode { freeFlow, theme, deck, customWord, customSentence }
+/// How a phrase is chosen for a session.
+///
+/// `ourDates` is the one mode that is not the same studio for everybody: it is hers
+/// alone (the chip is only built for her — see the practice-mode row) and its four
+/// sentences are `HerContent.shadowingDateSentences` rather than anything the model
+/// writes.
+enum ShadowingMode { freeFlow, ourDates, theme, deck, customWord, customSentence }
 
 class ShadowingStudioScreen extends ConsumerStatefulWidget {
   final String? initialHanzi;
@@ -373,11 +379,17 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
       // Her sentences come from her own bank, not from the model: a theme handed to
       // Gemini is a hint, and "only sentences related to love" has to be a guarantee.
       // The bank is local, so the line also arrives with no key and no connection. Her
-      // *own* words are the exception — see `shadowingBankAppliesTo`.
-      if (HerAccount.isHer(ref.read(currentUserProvider)?.email) &&
-          HerContent.shadowingBankAppliesTo(_selectedMode.toString())) {
+      // *own* words are the exception, and her date mode has a bank of its own — which
+      // bank answers a mode is `HerContent.shadowingBankFor`'s decision, not this
+      // screen's.
+      final List<Map<String, String>>? bank = HerAccount.isHer(
+        ref.read(currentUserProvider)?.email,
+      )
+          ? HerContent.shadowingBankFor(_selectedMode.toString())
+          : null;
+      if (bank != null) {
         final Map<String, String> phrase =
-            HerContent.shadowingSentenceAfter(_phraseHistory);
+            HerContent.shadowingSentenceAfter(_phraseHistory, bank: bank);
         if (mounted) {
           setState(() {
             _currentPhrase = phrase;
@@ -1001,6 +1013,14 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
   static const Color _bookAccentLight = AppTheme.accentLight;
   static const IconData _configCardIcon = Icons.settings_rounded;
 
+  /// The icons on her date chips, in the order `HerContent.shadowingDateLabels` lists
+  /// them: met, first message, Heidelberg.
+  static const List<IconData> _dateChipIcons = <IconData>[
+    Icons.favorite_border_rounded,
+    Icons.chat_bubble_outline_rounded,
+    Icons.flight_takeoff_rounded,
+  ];
+
   // ── Session palette (book-screen parity) ───────────────────────────────────
   //
   // The live shadowing flow used to speak a different visual language: a
@@ -1456,6 +1476,17 @@ GridView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
+                          // Her mode, and hers alone: nobody else's row has it, because
+                          // the sentences are three dates of hers. See
+                          // `HerContent.shadowingDateMode`.
+                          if (HerAccount.isHer(
+                              ref.read(currentUserProvider)?.email))
+                            _buildSegmentModeTab(
+                              mode: ShadowingMode.ourDates,
+                              icon: Icons.favorite_rounded,
+                              label: HerContent.shadowingDateModeLabel,
+                              isDark: isDark,
+                            ),
                           _buildSegmentModeTab(
                             mode: ShadowingMode.freeFlow,
                             icon: Icons.mic_none_rounded,
@@ -1534,6 +1565,45 @@ if (_selectedMode == ShadowingMode.freeFlow) ...[
                                       ? Colors.purple.shade300
                                       : Colors.deepPurple.shade700,
                                 ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+if (_selectedMode == ShadowingMode.ourDates) ...[
+                      _buildConfigCard(
+                        isDark: isDark,
+                        label: HerContent.shadowingDateModeLabel,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              HerContent.shadowingDateModeDescription,
+                              style: TextStyle(
+                                color: isDark
+                                    ? Colors.white70
+                                    : const Color(0xFF2C2C2E),
+                                fontSize: 14,
+                                height: 1.55,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Wrap(
+                              spacing: 6,
+                              runSpacing: 6,
+                              children: <Widget>[
+                                for (int i = 0;
+                                    i < HerContent.shadowingDateLabels.length;
+                                    i++)
+                                  _buildFeaturePill(
+                                    icon: _dateChipIcons[i],
+                                    label: HerContent.shadowingDateLabels[i],
+                                    isDark: isDark,
+                                    color: isDark
+                                        ? Colors.pink.shade200
+                                        : const Color(0xFF9E1B1B),
+                                  ),
                               ],
                             ),
                           ],

@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+566] - 2026-09-30
+- **`[🚀 RELEASE]` Build Bump to 1.0.0+566**: Shadowing studio practice mode polish, birthday shelf updates, personal reading content and hanbaobao branch sync.
+
 ## [1.0.0+565] - 2026-09-30
 - **`[🚀 RELEASE]` Build Bump to 1.0.0+565**: Personal reading additions, auth localization, zen splash updates, scanner preview fit, and branch sync to hanbaobao.
 

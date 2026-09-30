@@ -332,13 +332,16 @@ void main() {
     });
 
     test('the bank covers the themed modes and leaves her own words alone', () {
-      // The five modes the studio offers (`ShadowingMode` in the studio screen), and
-      // which of them her bank answers. `customWord` / `customSentence` are her own
-      // input, so they keep going to the model for their pinyin and translation.
+      // The six modes the studio offers (`ShadowingMode` in the studio screen), and
+      // which of them a bank answers. `customWord` / `customSentence` are her own
+      // input, so they keep going to the model for their pinyin and translation, and
+      // `ourDates` has a bank of its own — which mode gets which bank is pinned in
+      // `test/features/live_translate/shadowing_studio_practice_mode_test.dart`.
       for (final String mode in <String>[
         'ShadowingMode.freeFlow',
         'ShadowingMode.theme',
         'ShadowingMode.deck',
+        'ShadowingMode.ourDates',
       ]) {
         expect(HerContent.shadowingBankAppliesTo(mode), isTrue, reason: mode);
       }
@@ -369,6 +372,35 @@ void main() {
         HerContent.shadowingSentenceAfter(heard)['hanzi'],
         HerContent.shadowingSentences.first['hanzi'],
       );
+    });
+
+    test('her three days are the same date in Chinese and in English', () {
+      // Each of the four is written twice over — once to be read out loud and once to
+      // be understood — so the two have to agree, or she practises one day and reads
+      // another. The Chinese dates are in numerals, the way a date is written on a
+      // card, and the English is his.
+      const Map<String, String> dayInChinese = <String, String>{
+        '16 October 2025': '二零二五年十月十六日',
+        '18 October 2025': '二零二五年十月十八日',
+        '14.07.26': '二零二六年七月十四日',
+      };
+
+      expect(HerContent.shadowingDateSentences, hasLength(4));
+      expect(HerContent.shadowingDateSentences.first['english'], 'I love you.');
+
+      for (final MapEntry<String, String> day in dayInChinese.entries) {
+        final Map<String, String> sentence =
+            HerContent.shadowingDateSentences.firstWhere(
+          (Map<String, String> s) => s['english']!.contains(day.key),
+          orElse: () => <String, String>{},
+        );
+        expect(sentence, isNotEmpty, reason: 'no sentence for ${day.key}');
+        expect(sentence['hanzi'], contains(day.value), reason: day.key);
+        expect(sentence['english'], contains(day.key), reason: day.key);
+      }
+
+      // The card under the mode row lists the same three days.
+      expect(HerContent.shadowingDateLabels, hasLength(dayInChinese.length));
     });
   });
 
