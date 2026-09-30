@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/personal/her_content.dart';
+import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/features/reading/data/repositories/book_repository.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/logic/reading_session.dart';
@@ -12,9 +14,15 @@ final bookRepositoryProvider = Provider<BookRepository>((ref) {
 });
 
 final bookCatalogProvider = FutureProvider<List<BookModel>>((ref) async {
+  // Watched rather than read: the catalogue gains her book when she signs in and
+  // loses it when she signs out, without the reading room being rebuilt by hand.
+  final String? email = ref.watch(currentUserProvider)?.email;
   final repo = ref.read(bookRepositoryProvider);
   await repo.init();
-  return repo.loadCatalog();
+  return HerContent.withBookFor(
+    email: email,
+    catalog: await repo.loadCatalog(),
+  );
 });
 
 final bookChaptersProvider =
@@ -144,7 +152,12 @@ final inProgressBooksProvider =
     FutureProvider<List<InProgressBookItem>>((ref) async {
   final repo = ref.read(bookRepositoryProvider);
   await repo.init();
-  final catalog = await repo.loadCatalog();
+  // Her book too: a bookmark or half-read page in `READ THIS :` has to find its book
+  // on the shelf, or "Continue reading" quietly drops it.
+  final catalog = HerContent.withBookFor(
+    email: ref.watch(currentUserProvider)?.email,
+    catalog: await repo.loadCatalog(),
+  );
   final progressList = repo.getAllInProgressBooksData();
 
   final items = <InProgressBookItem>[];
@@ -180,7 +193,10 @@ final allBookmarksProvider =
     FutureProvider<List<BookmarkShelfItem>>((ref) async {
   final repo = ref.read(bookRepositoryProvider);
   await repo.init();
-  final books = await repo.loadCatalog();
+  final books = HerContent.withBookFor(
+    email: ref.watch(currentUserProvider)?.email,
+    catalog: await repo.loadCatalog(),
+  );
   final poetry = await ref.read(chinesePoetryProvider.future);
   final allBooks = <String, BookModel>{for (final book in books) book.id: book};
   // Per-poem entries, kept so a bookmark written before collections still has a

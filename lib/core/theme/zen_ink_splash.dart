@@ -19,6 +19,12 @@ import 'zen_motion.dart';
 /// and every `InkWell` / `InkResponse` / `Material` button in the app inherits
 /// it — Flutter has 35 `InkWell`s here, so this is one line for all of them.
 ///
+/// A tap bleeds to the size of the thing it landed on: across the whole surface of a
+/// widget that contains its ink (a button, a card), and as a bounded drop on one that
+/// does not (the bottom navigation bar, an `IconButton`, a plain `InkWell` — that is
+/// the default). See [ZenInkSplashFactory.dropRadius] for why the second case is
+/// bounded, and for the report that made it so.
+///
 /// Under the platform "Reduce Motion" setting the bleed collapses to a static
 /// tint: the feedback stays, the travel goes.
 class ZenInkSplashFactory extends InteractiveInkFeatureFactory {
@@ -49,7 +55,12 @@ class ZenInkSplashFactory extends InteractiveInkFeatureFactory {
       referenceBox: referenceBox,
       position: position,
       ink: color.withValues(alpha: strength),
-      targetRadius: radius ?? reachOf(referenceBox, rectCallback, position),
+      // Mirrors `InkRipple._getTargetRadius`: a contained widget bleeds across its
+      // whole surface, an uncontained one gets a bounded drop. See [dropRadius].
+      targetRadius: radius ??
+          (containedInkWell
+              ? reachOf(referenceBox, rectCallback, position)
+              : dropRadius(referenceBox, rectCallback)),
       textDirection: textDirection,
       containedInkWell: containedInkWell,
       rectCallback: rectCallback,
@@ -74,6 +85,24 @@ class ZenInkSplashFactory extends InteractiveInkFeatureFactory {
     final double dy =
         math.max(position.dy - rect.top, rect.bottom - position.dy);
     return math.sqrt(dx * dx + dy * dy);
+  }
+
+  /// How far a bleed may spread when the widget does **not** ask for containment —
+  /// the bottom navigation bar, every `IconButton`, every bare `InkWell` (that is the
+  /// default) and every `InkResponse`.
+  ///
+  /// Flutter's own `InkRipple` uses `Material.defaultSplashRadius` (35) for these, and
+  /// this factory used the widget's **diagonal** instead. On the 98×56 bottom-nav tile
+  /// that is a 113dp radius — a soft terracotta disc roughly twice the tile in every
+  /// direction, painted over the page above the bar, because a widget that is not
+  /// contained is not clipped either. That is the *"a little bit too strong"* report.
+  ///
+  /// So the drop is bounded twice: by Flutter's own radius, and by the control it
+  /// landed on, so a tap can never tint more than the thing that was touched. A
+  /// contained tap is unaffected — see [reachOf].
+  static double dropRadius(RenderBox box, RectCallback? rectCallback) {
+    final Rect rect = rectCallback?.call() ?? (Offset.zero & box.size);
+    return math.min(Material.defaultSplashRadius, rect.shortestSide / 2);
   }
 
   /// The rect the ink is confined to, so a bleed inside a list row, a card or an

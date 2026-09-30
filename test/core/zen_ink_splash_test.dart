@@ -114,6 +114,80 @@ void main() {
     });
   });
 
+  group('target radius', () {
+    testWidgets('a tap that is not contained gets a bounded drop',
+        (WidgetTester tester) async {
+      // The bottom navigation bar's own `InkResponse` is not contained (Flutter
+      // passes no `containedInkWell`), and this is the shape that shipped: a blob
+      // 113dp wide on a 98×56 tile, painted over the page above the bar.
+      await tester.pumpWidget(
+        _host(const SizedBox(key: _surface, width: 98, height: 56)),
+      );
+      final RenderBox box = tester.renderObject<RenderBox>(find.byKey(_surface));
+
+      expect(
+        ZenInkSplashFactory.reachOf(box, null, Offset.zero),
+        greaterThan(110),
+        reason: 'the diagonal is what the bleed used to spread to',
+      );
+      expect(
+        ZenInkSplashFactory.dropRadius(box, null),
+        lessThanOrEqualTo(56 / 2),
+        reason: 'a tap never tints more than the control it lands on',
+      );
+      expect(
+        ZenInkSplashFactory.dropRadius(box, null),
+        lessThanOrEqualTo(Material.defaultSplashRadius),
+        reason: "Flutter's own bound for an uncontained ripple",
+      );
+    });
+
+    testWidgets('a roomy control keeps Flutter\'s radius',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        _host(const SizedBox(key: _surface, width: 300, height: 300)),
+      );
+      final RenderBox box = tester.renderObject<RenderBox>(find.byKey(_surface));
+
+      expect(
+        ZenInkSplashFactory.dropRadius(box, null),
+        Material.defaultSplashRadius,
+        reason: 'the small bound must not shrink a big surface',
+      );
+    });
+
+    testWidgets('the factory bounds an uncontained tap and frees a contained one',
+        (WidgetTester tester) async {
+      final (MaterialInkController layer, RenderBox box) =
+          await _captureLayer(tester);
+
+      ZenInkSplash bleed({required bool contained}) =>
+          const ZenInkSplashFactory().create(
+            controller: layer,
+            referenceBox: box,
+            position: const Offset(12, 12),
+            color: const Color(0x1A8B0000),
+            textDirection: TextDirection.ltr,
+            containedInkWell: contained,
+          ) as ZenInkSplash;
+
+      final ZenInkSplash open = bleed(contained: false);
+      final ZenInkSplash inside = bleed(contained: true);
+
+      expect(open.targetRadius, lessThanOrEqualTo(48 / 2));
+      expect(
+        inside.targetRadius,
+        greaterThan(100),
+        reason: 'a contained surface still bleeds edge to edge',
+      );
+
+      open.dispose();
+      inside.dispose();
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+    });
+  });
+
   group('clip', () {
     testWidgets('mirrors Flutter: the well wins, else the box, else open',
         (WidgetTester tester) async {

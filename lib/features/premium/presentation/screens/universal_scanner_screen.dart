@@ -26,6 +26,7 @@ import '../../../../shared/widgets/quick_look_sheet.dart';
 import '../../../../shared/widgets/tappable_hanzi_text.dart';
 import '../../../../shared/widgets/ai_consent_sheet.dart';
 import '../widgets/ar_bounding_box_painter.dart';
+import '../widgets/camera_preview_fit.dart';
 import '../widgets/interactive_image_overlay.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
@@ -847,21 +848,30 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       onScaleUpdate: _handleScaleUpdate,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          final Size? preview = _cameraController!.value.previewSize;
-          if (preview == null || constraints.maxWidth <= 0) {
+          final CameraValue? value = _cameraController?.value;
+          if (value == null ||
+              !value.isInitialized ||
+              value.previewSize == null ||
+              constraints.maxWidth <= 0) {
             return const ColoredBox(color: Colors.black);
           }
-          // `previewSize` is reported in sensor orientation, and `CameraPreview`
-          // rotates internally, so a box of exactly those dimensions is one the
-          // preview fills edge to edge; `BoxFit.cover` then scales that to the
-          // pane without distorting it.
+          // The box has to be the shape the preview **draws itself** in, not the shape
+          // the sensor reports. `previewSize` never flips for portrait, so using it
+          // handed a phone a landscape box that `CameraPreview`'s own `AspectRatio`
+          // could not fit: it took the tight constraints, the frame was stretched into
+          // them, and the result was scaled again to cover the screen — the smeared
+          // viewfinder in the report. `cameraPreviewAspectRatio` mirrors the plugin's
+          // rule (and `camera_preview_fit_test.dart` checks it against the plugin's own
+          // widget), and `BoxFit.cover` then scales *that* box to the pane, cropping
+          // the excess instead of distorting it.
+          final double previewAspect = cameraPreviewAspectRatio(value);
           return ClipRect(
             child: FittedBox(
               fit: BoxFit.cover,
               clipBehavior: Clip.hardEdge,
               child: SizedBox(
-                width: preview.width,
-                height: preview.height,
+                width: previewAspect,
+                height: 1,
                 child: CameraPreview(_cameraController!),
               ),
             ),

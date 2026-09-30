@@ -62,8 +62,8 @@ void main() {
       final missing = <String>[];
       for (final author in authors) {
         final path = poetryCoverAssetPath(
-            'poetry_author_${poetryDigest(author as String)}');
-        if (!File(path).existsSync()) missing.add(author as String);
+            'poetry_author_${poetryDigest(author)}');
+        if (!File(path).existsSync()) missing.add(author);
       }
       expect(missing, isEmpty, reason: 'collections with no cover: $missing');
     });

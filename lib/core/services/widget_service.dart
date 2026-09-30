@@ -130,25 +130,30 @@ class WidgetService {
     _isInitialized = true;
   }
 
-  /// Publishes today's bundled word to the shared App Group and asks WidgetKit
-  /// to reload. Widget failures must never prevent the main app from starting.
-  Future<void> updateWordOfTheDay({DateTime? now}) async {
+  /// Publishes [word] — today's bundled word unless one is given — to the shared App
+  /// Group and asks WidgetKit to reload. Widget failures must never prevent the main
+  /// app from starting.
+  ///
+  /// The caller resolves the word rather than this service, because *whose* word it is
+  /// is a question about the signed-in account and this class knows nothing about
+  /// accounts. `HerContent.wordOfTheDayForAccount` is the one resolver.
+  Future<void> updateWordOfTheDay({DateTime? now, WordOfTheDay? word}) async {
     try {
       await init();
       final date = now ?? DateTime.now();
-      final word = wordOfTheDayFor(date);
+      final published = word ?? wordOfTheDayFor(date);
       final dateKey = '${date.year.toString().padLeft(4, '0')}-'
           '${date.month.toString().padLeft(2, '0')}-'
           '${date.day.toString().padLeft(2, '0')}';
 
       await Future.wait([
-        HomeWidget.saveWidgetData<String>('wotd_hanzi', word.hanzi),
-        HomeWidget.saveWidgetData<String>('wotd_pinyin', word.pinyin),
-        HomeWidget.saveWidgetData<String>('wotd_meaning', word.definition),
+        HomeWidget.saveWidgetData<String>('wotd_hanzi', published.hanzi),
+        HomeWidget.saveWidgetData<String>('wotd_pinyin', published.pinyin),
+        HomeWidget.saveWidgetData<String>('wotd_meaning', published.definition),
         HomeWidget.saveWidgetData<String>('wotd_date', dateKey),
         HomeWidget.saveWidgetData<String>(
           'wotd_url',
-          wordOfTheDayUri(word).toString(),
+          wordOfTheDayUri(published).toString(),
         ),
       ]);
       await HomeWidget.updateWidget(iOSName: wordOfDayWidgetKind);

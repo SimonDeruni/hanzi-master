@@ -12,7 +12,8 @@ import 'package:hanzi_master/features/reading/presentation/screens/audiobook_pla
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
-import 'package:hanzi_master/core/widgets/translated_text.dart';
+import 'package:hanzi_master/features/reading/domain/logic/sentence_script.dart';
+import 'package:hanzi_master/features/reading/presentation/widgets/sentence_meaning_line.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/features/reading/domain/logic/spoken_text_highlight.dart';
@@ -462,6 +463,18 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   Future<void> _playSentenceAt(int sentenceIdx) async {
     final chapter = widget.chapters[_currentIndex];
     if (sentenceIdx >= 0 && sentenceIdx < chapter.sentences.length) {
+      // A line with no Hanzi is not Chinese, so the Mandarin voice has nothing to read:
+      // it would render an English letter as phonetics. Stop instead of guessing.
+      // See `sentenceHasHanzi`.
+      if (!sentenceHasHanzi(chapter.sentences[sentenceIdx].chinese)) {
+        if (mounted) {
+          setState(() {
+            _isAudiobookActive = false;
+            _isAudiobookPlaying = false;
+          });
+        }
+        return;
+      }
       final requestGeneration = ++_audioRequestGeneration;
       setState(() => _currentAudioSentenceIndex = sentenceIdx);
       final text = chapter.sentences[sentenceIdx].chinese;
@@ -1984,8 +1997,30 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                               spacing: 3,
                               runSpacing: 8,
                               crossAxisAlignment: WrapCrossAlignment.center,
-                              children:
-                                  _getRubyTokens(sentence.chinese).map((token) {
+                              children: !sentenceHasHanzi(sentence.chinese)
+                                  // A line with no Hanzi in it is the text, not ruby
+                                  // text: the tokenizer pairs characters with syllables
+                                  // from a Mandarin dictionary, so it left a stray
+                                  // syllable over one Latin letter and nothing over the
+                                  // rest. See `sentenceHasHanzi`.
+                                  ? <Widget>[
+                                      Text(
+                                        sentence.chinese,
+                                        style: TextStyle(
+                                          fontSize: _fontSize,
+                                          fontWeight: isAudioActiveSentence
+                                              ? FontWeight.bold
+                                              : FontWeight.w500,
+                                          color: isAudioActiveSentence
+                                              ? (isDark
+                                                  ? Colors.amber.shade300
+                                                  : const Color(0xFF8B0000))
+                                              : primaryText,
+                                          height: 1.6,
+                                        ),
+                                      ),
+                                    ]
+                                  : _getRubyTokens(sentence.chinese).map((token) {
                                 if (token.isPunctuation) {
                                   return Padding(
                                     padding: EdgeInsets.only(
@@ -2133,20 +2168,12 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
                             if (_showAllTranslations || isRevealed)
                               Padding(
                                 padding: const EdgeInsets.only(top: 8),
-                                child: TranslatedText(
-                                  // The chapter data ships a per-sentence
-                                  // English string. `englishFallback` uses it
-                                  // verbatim when English *is* the target and
-                                  // only as the in-flight placeholder
-                                  // otherwise - so a French or Japanese reader
-                                  // now gets the Chinese translated through the
-                                  // API instead of the hard-coded English the
-                                  // old `sentence.english.isNotEmpty` branch
-                                  // printed for everyone.
-                                  sentence.chinese,
-                                  englishFallback: sentence.english.isEmpty
-                                      ? null
-                                      : sentence.english,
+                                child: SentenceMeaningLine(
+                                  // Meaning in the reader's own language: the Chinese
+                                  // sentence translated, or — for a sentence that is
+                                  // the author's own words — the line as written.
+                                  // See `SentenceMeaningLine`.
+                                  sentence: sentence,
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: isAudioActiveSentence

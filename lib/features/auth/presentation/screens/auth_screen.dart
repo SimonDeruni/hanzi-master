@@ -121,15 +121,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     final l10n = AppLocalizations.of(context);
     final email = _emailController.text.trim();
     final password = _passwordController.text;
-    final cleanEmail = email.toLowerCase();
-    final isDemoAccount = (cleanEmail == 'apple.review@sinospark.app' ||
-            cleanEmail == 'apple.review@sinospark.com' ||
-            cleanEmail == 'demo@sinospark.app' ||
-            cleanEmail == 'demo@sinospark.com') &&
-        (password == 'AppleReview2026!' ||
-            password == 'SinoSparkReview2026!' ||
-            password == 'demo1234' ||
-            password.length >= 6);
+    // App Review and the owner's account both bypass the paywall; the policy (which
+    // addresses, which passwords) lives in `MonetizationService.compedAccounts` so a
+    // second entry point cannot drift from this one.
+    final isDemoAccount = MonetizationService.isCompedAccount(email, password);
 
     if (isDemoAccount) {
       await MonetizationService.unlockDeveloperBackdoor();
@@ -143,7 +138,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       } catch (_) {
         try {
           final controller = ref.read(authControllerProvider);
-          await controller.signUp(email, password, "Apple Reviewer");
+          // Creates the account on its first use, under the name the table carries —
+          // the address is not registered in Firebase until someone signs in with it.
+          await controller.signUp(
+              email, password, MonetizationService.compedAccountName(email));
         } catch (_) {
           try {
             await FirebaseAuth.instance.signInAnonymously();
@@ -161,6 +159,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       }
       return;
     }
+
+    // A comped grant belongs to the account that earned it, not to the device: the
+    // unlock is persisted in prefs, so someone signing in as a different account
+    // afterwards must not inherit it. A paying user is unaffected — their entitlement
+    // comes from RevenueCat whatever this flag says.
+    await MonetizationService.lockDeveloperBackdoor();
 
     try {
       final controller = ref.read(authControllerProvider);

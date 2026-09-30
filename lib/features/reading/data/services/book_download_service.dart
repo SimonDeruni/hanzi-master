@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+
+import 'package:hanzi_master/core/personal/her_content.dart';
 
 import '../../domain/entities/book_model.dart';
 
@@ -14,6 +17,20 @@ class BookDownloadService {
     'BOOK_CONTENT_BASE_URL',
     defaultValue: 'https://hanzi-master-books.web.app',
   );
+
+  /// Books that ship inside the app instead of on the content server, as
+  /// `bookId: asset path`.
+  ///
+  /// A bundled book is always available: it is read from the asset bundle, so it is
+  /// never "not downloaded", never needs a connection and cannot be removed by
+  /// clearing downloads. That is what the reading room's `READ THIS :` needs to be —
+  /// a book that is waiting for her on a plane is the whole point of it.
+  static const Map<String, String> bundledBooks = <String, String>{
+    HerContent.bookId: HerContent.bookAsset,
+  };
+
+  /// True when [bookId] travels with the app rather than being fetched.
+  static bool isBundled(String bookId) => bundledBooks.containsKey(bookId);
 
   final http.Client _client;
   final BookDirectoryProvider _supportDirectoryProvider;
@@ -37,6 +54,7 @@ class BookDownloadService {
   }
 
   Future<bool> isDownloaded(String bookId) async {
+    if (isBundled(bookId)) return true;
     final file = await _bookFile(bookId);
     if (!await file.exists()) return false;
     try {
@@ -49,6 +67,13 @@ class BookDownloadService {
   }
 
   Future<List<BookChapter>> load(String bookId) async {
+    // A bundled book is read straight from the asset bundle. Its chapters are
+    // validated exactly like a downloaded file's, so a malformed chapter file fails
+    // here in tests rather than halfway down the reader.
+    final String? asset = bundledBooks[bookId];
+    if (asset != null) {
+      return _decodeAndValidate(await rootBundle.loadString(asset), bookId);
+    }
     final file = await _bookFile(bookId);
     if (!await file.exists()) {
       throw StateError('Book has not been downloaded.');

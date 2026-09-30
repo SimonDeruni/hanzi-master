@@ -303,6 +303,90 @@ void main() {
     });
 
     testWidgets(
+        'the owner account is recognized, unlocked and carried past the paywall',
+        (tester) async {
+      // Two things this pins that the table test cannot. First, the *screen* uses the
+      // table, so a second entry point cannot drift from `MonetizationService`.
+      // Second, the grant happens **before** any Firebase call: the address is not
+      // registered in Firebase — nothing in this repo can create it — so the flow
+      // falls through sign-in to sign-up (with the name the table carries) and, if
+      // Firebase is unreachable entirely, the entitlement is already unlocked.
+      tester.view.physicalSize = const Size(800, 1200);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+
+      await MonetizationService.lockDeveloperBackdoor();
+      expect(await MonetizationService.checkPremiumStatus(), isFalse);
+
+      final navObserver = _TestNavigatorObserver();
+      await tester.pumpWidget(
+        _buildAuthScreen(
+          locale: const Locale('en'),
+          requireSubscription: true,
+          navigatorObserver: navObserver,
+          sharedPreferences: prefs,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+        find.byKey(const Key('auth_email_field')),
+        'hanbaobao@love.com',
+      );
+      await tester.enterText(
+        find.byKey(const Key('auth_password_field')),
+        'SomeSuprise',
+      );
+      await tester.tap(find.byKey(const Key('auth_submit_button')));
+      await tester.pump();
+
+      expect(await MonetizationService.checkPremiumStatus(), isTrue);
+      expect(prefs.getBool('demo_account_unlocked'), isTrue);
+      expect(prefs.getBool('has_seen_onboarding'), isTrue);
+      expect(find.byType(CustomPaywallScreen), findsNothing,
+          reason: 'the comped account must land on the app, not on the paywall');
+      expect(navObserver.pushedRoutes.length, greaterThanOrEqualTo(2));
+    });
+
+    testWidgets(
+        'a wrong password for the owner address does not unlock anything',
+        (tester) async {
+      // The negative control for the test above: without it, an implementation that
+      // matched on the address alone would pass.
+      tester.view.physicalSize = const Size(800, 1200);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+
+      await MonetizationService.lockDeveloperBackdoor();
+      await tester.pumpWidget(
+        _buildAuthScreen(
+          locale: const Locale('en'),
+          requireSubscription: true,
+          sharedPreferences: prefs,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.enterText(
+        find.byKey(const Key('auth_email_field')),
+        'hanbaobao@love.com',
+      );
+      await tester.enterText(
+        find.byKey(const Key('auth_password_field')),
+        'somesuprise',
+      );
+      await tester.tap(find.byKey(const Key('auth_submit_button')));
+      await tester.pump();
+
+      expect(await MonetizationService.checkPremiumStatus(), isFalse);
+      expect(prefs.getBool('demo_account_unlocked'), isNull);
+    });
+
+    testWidgets(
         'legal links adaptively wrap and center without overflow on mobile in French',
         (tester) async {
       tester.view.physicalSize = const Size(390, 844);

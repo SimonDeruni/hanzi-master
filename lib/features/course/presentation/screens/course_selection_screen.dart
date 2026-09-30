@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/personal/her_account.dart';
+import 'package:hanzi_master/core/personal/her_content.dart';
+import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/features/course/presentation/screens/course_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -28,6 +31,11 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
     final allCards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
     final aiQueue = ref.watch(aiJobQueueProvider);
     final engine = ref.read(curriculumEngineProvider);
+    // Her library is one deck. Everything else this list could show is a path she did
+    // not build — the default "Main Library" container, a tier she never installed —
+    // and listing them beside the deck she has only hides it.
+    final bool isHerLibrary =
+        HerAccount.isHer(ref.watch(currentUserProvider)?.email);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +62,12 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
       extendBodyBehindAppBar: true,
       body: CalligraphyBackground(
         child: asyncDecks.when(
-          data: (decks) {
+          data: (allDecks) {
+            final decks = isHerLibrary
+                ? allDecks
+                    .where((deck) => deck.id == HerContent.deckId)
+                    .toList()
+                : allDecks;
             if (decks.isEmpty) {
               return Center(
                   child: Text(l10n?.noDecksFound ??

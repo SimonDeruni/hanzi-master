@@ -16,6 +16,9 @@ import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/core/services/local_translation_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
+import 'package:hanzi_master/core/personal/her_content.dart';
+import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
+
 import 'package:hanzi_master/core/services/zen_ambient_service.dart';
 
 import 'package:hanzi_master/core/providers.dart';
@@ -226,7 +229,14 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
     await container.read(flashcardControllerProvider.notifier).init();
 
     final widgetService = container.read(widgetServiceProvider);
-    await widgetService.updateWordOfTheDay();
+    // Resolved through the account, so her word reaches the home screen's widget as
+    // well as the card inside the app — one resolver, both surfaces.
+    await widgetService.updateWordOfTheDay(
+      word: HerContent.wordOfTheDayForAccount(
+        email: container.read(currentUserProvider)?.email,
+        date: DateTime.now(),
+      ),
+    );
     handleWidgetUri(await widgetService.initiallyLaunchedFromWidget());
     widgetService.widgetClicks.listen(handleWidgetUri);
 

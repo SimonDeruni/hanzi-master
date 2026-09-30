@@ -1,7 +1,7 @@
 name: hanzi_master
 description: A mobile-first Chinese learning application.
 publish_to: 'none'
-version: 1.0.0+564
+version: 1.0.0+565
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -108,6 +108,10 @@ flutter:
     - assets/data/dictionary.db
     - assets/data/
     - assets/data/l10n/
+    # The one book that ships inside the app instead of being downloaded: the reading
+    # room's `READ THIS :`, whose text is not for sale and not for everyone. A book that
+    # has to be downloaded before it can be read is not a book that is waiting for her.
+    - assets/data/her/
     - assets/images/
     - assets/images/paywall/en/
     - assets/images/paywall/fr/

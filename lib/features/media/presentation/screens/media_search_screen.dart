@@ -8,6 +8,8 @@ import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
 import '../../data/video_category_queries.dart';
+import '../../data/birthday_playlist.dart';
+import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
@@ -50,9 +52,16 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     if (_categoriesInitialized) return;
 
     final localizations = AppLocalizations.of(context)!;
+    // Her birthday tag leads the feed: three named videos with **no search query**
+    // behind them, so the entry goes straight into the rendered map and is marked
+    // loaded — it is never dispatched to the API and never shows the "no videos
+    // found" state. Outside her account the map and the shelf count are unchanged.
+    final bool hasBirthdayShelf =
+        BirthdayPlaylist.isFor(ref.read(currentUserProvider)?.email);
     // Gaming/esports is intentionally absent: its discovery query returned
     // nothing, so the shelf only ever rendered "no videos found".
     _categories = {
+      if (hasBirthdayShelf) BirthdayPlaylist.tag: BirthdayPlaylist.videos,
       localizations.lifestyleAndVlog: [],
       localizations.foodAndCooking: [],
       localizations.techAndGadgets: [],
@@ -64,6 +73,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     };
     for (final key in _categoryQueries.keys) {
       _categoryStates[key] = _CategoryLoadState.loading;
+    }
+    if (hasBirthdayShelf) {
+      _categoryStates[BirthdayPlaylist.tag] = _CategoryLoadState.loaded;
     }
     _categoriesInitialized = true;
     _loadInitialCategories();

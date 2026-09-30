@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/personal/her_content.dart';
+import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
+
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/widget_service.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
@@ -35,7 +38,13 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
     _midnightTimer = Timer(nextDay.difference(now), () {
       if (!mounted) return;
       setState(() => _now = DateTime.now());
-      unawaited(ref.read(widgetServiceProvider).updateWordOfTheDay(now: _now));
+      unawaited(ref.read(widgetServiceProvider).updateWordOfTheDay(
+        now: _now,
+        word: HerContent.wordOfTheDayForAccount(
+          email: ref.read(currentUserProvider)?.email,
+          date: _now,
+        ),
+      ));
       _scheduleMidnightRefresh();
     });
   }
@@ -50,7 +59,11 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cards = ref.watch(flashcardControllerProvider).valueOrNull ?? [];
-    final todayWord = _pickDailyWord(cards, _now);
+    final todayWord = _pickDailyWord(
+      cards,
+      _now,
+      ref.watch(currentUserProvider)?.email,
+    );
     final word = todayWord['_word'] as WordOfTheDay;
     final card = todayWord['_card'] as Flashcard? ?? _dailyWordCard(word);
 
@@ -213,8 +226,14 @@ class _TodayInsightCardState extends ConsumerState<TodayInsightCard> {
   }
 }
 
-Map<String, dynamic> _pickDailyWord(List<Flashcard> cards, DateTime now) {
-  final word = wordOfTheDayFor(now);
+/// [email] decides *whose* word this is: one account gets the word it asked for, every
+/// other account gets `wordOfTheDayFor`. See `HerContent.wordOfTheDayForAccount`.
+Map<String, dynamic> _pickDailyWord(
+  List<Flashcard> cards,
+  DateTime now,
+  String? email,
+) {
+  final word = HerContent.wordOfTheDayForAccount(email: email, date: now);
   Flashcard? matchingCard;
   for (final card in cards) {
     if (card.hanzi == word.hanzi) {

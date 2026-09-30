@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
+import '../../../../core/personal/her_account.dart';
+import '../../../../core/personal/widgets/her_deck_library.dart';
 import '../../../../core/presentation/widgets/zen_search_bar.dart';
 import '../../../../core/providers.dart';
 import '../../../../shared/widgets/bouncing_button.dart';
 import '../../../../shared/widgets/global_sliver_app_bar.dart';
 import '../../../flashcards/domain/entities/deck.dart';
 import '../../../flashcards/presentation/providers/deck_controller.dart';
+import '../../../auth/presentation/providers/auth_controller.dart';
 import '../../../flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import '../../../flashcards/presentation/widgets/calligraphy_background.dart';
@@ -953,6 +956,14 @@ const SizedBox(height: 28),
 
   @override
   Widget build(BuildContext context) {
+    // One account's library is a single deck, so the catalogue is not hers to browse:
+    // six HSK tiers and twenty curated shelves would be noise around the deck she has.
+    // The gate is the first line of `build` so that for everyone else this screen is
+    // exactly what it was.
+    if (HerAccount.isHer(ref.watch(currentUserProvider)?.email)) {
+      return const HerDeckLibrary();
+    }
+
     final l10n = AppLocalizations.of(context)!;
     final collections = _collections(l10n);
     const thematicDecks = ThematicDecksData.collections;

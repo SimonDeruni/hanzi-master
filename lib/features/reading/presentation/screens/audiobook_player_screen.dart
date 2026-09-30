@@ -18,7 +18,8 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/settings
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/quick_look_sheet.dart';
-import 'package:hanzi_master/core/widgets/translated_text.dart';
+import 'package:hanzi_master/features/reading/domain/logic/sentence_script.dart';
+import 'package:hanzi_master/features/reading/presentation/widgets/sentence_meaning_line.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/services/zen_ambient_service.dart';
 import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
@@ -434,6 +435,13 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   Future<void> _playSentenceAt(int sentenceIdx) async {
     final chapter = widget.chapters[_currentChapterIndex];
     if (sentenceIdx >= 0 && sentenceIdx < chapter.sentences.length) {
+      // A line with no Hanzi is not Chinese, so the Mandarin voice has nothing to read:
+      // it would render an English letter as phonetics. Stop instead of guessing.
+      // See `sentenceHasHanzi`.
+      if (!sentenceHasHanzi(chapter.sentences[sentenceIdx].chinese)) {
+        if (mounted) setState(() => _isPlaying = false);
+        return;
+      }
       final requestGeneration = ++_audioRequestGeneration;
       setState(() {
         _currentSentenceIndex = sentenceIdx;
@@ -1570,7 +1578,28 @@ SafeArea(
                                 spacing: 4,
                                 runSpacing: 10,
                                 crossAxisAlignment: WrapCrossAlignment.center,
-                                children: tokens.map((token) {
+                                children: !sentenceHasHanzi(sentence.chinese)
+                                    // Not Chinese, so not ruby text: print the line as
+                                    // written instead of pairing letters with syllables.
+                                    // See `sentenceHasHanzi`.
+                                    ? <Widget>[
+                                        Text(
+                                          sentence.chinese,
+                                          style: TextStyle(
+                                            fontSize: isActive ? 20 : 16,
+                                            fontWeight: isActive
+                                                ? FontWeight.bold
+                                                : FontWeight.w500,
+                                            color: isActive
+                                                ? primaryText
+                                                : (isDark
+                                                    ? Colors.white38
+                                                    : Colors.black38),
+                                            height: 1.6,
+                                          ),
+                                        ),
+                                      ]
+                                    : tokens.map((token) {
                                   if (token.isPunctuation) {
                                     return Text(
                                       token.char,
@@ -1782,15 +1811,11 @@ SafeArea(
 // Sentence meaning
                               if (_showTranslations) ...[
                                 const SizedBox(height: 8),
-                                TranslatedText(
-                                  // Same contract as the reader: the bundled
-                                  // English is the answer for an English target
-                                  // and a placeholder for every other one, never
-                                  // the final line.
-                                  sentence.chinese,
-                                  englishFallback: sentence.english.isEmpty
-                                      ? null
-                                      : sentence.english,
+                                SentenceMeaningLine(
+                                  // Same contract as the reader, including the
+                                  // sentence that is the author's own words and is
+                                  // therefore printed rather than translated.
+                                  sentence: sentence,
                                   style: TextStyle(
                                     fontSize: isActive ? 13 : 11.5,
                                     fontStyle: FontStyle.italic,

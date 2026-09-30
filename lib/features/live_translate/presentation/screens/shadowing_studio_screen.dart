@@ -9,6 +9,10 @@ import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../../core/services/audio_service.dart';
+import '../../../../core/personal/her_account.dart';
+import '../../../../core/personal/her_content.dart';
+import '../../../../features/auth/presentation/providers/auth_controller.dart';
+
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/widgets/translated_definition.dart';
 
@@ -366,6 +370,24 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     });
 
     try {
+      // Her sentences come from her own bank, not from the model: a theme handed to
+      // Gemini is a hint, and "only sentences related to love" has to be a guarantee.
+      // The bank is local, so the line also arrives with no key and no connection. Her
+      // *own* words are the exception — see `shadowingBankAppliesTo`.
+      if (HerAccount.isHer(ref.read(currentUserProvider)?.email) &&
+          HerContent.shadowingBankAppliesTo(_selectedMode.toString())) {
+        final Map<String, String> phrase =
+            HerContent.shadowingSentenceAfter(_phraseHistory);
+        if (mounted) {
+          setState(() {
+            _currentPhrase = phrase;
+            _isLoadingNextPhrase = false;
+            _phraseHistory.add(phrase['hanzi'] ?? '');
+          });
+        }
+        return;
+      }
+
       final geminiService = ref.read(geminiServiceProvider);
 
       String contextInput = "";

@@ -8,8 +8,73 @@ import 'package:hanzi_master/core/services/api_key_pool.dart';
 
 enum PaymentProvider { revenueCat, huawei, none }
 
+/// An account that gets premium without a store purchase.
+///
+/// Two audiences share this mechanism: the App Review addresses (a reviewer cannot
+/// exercise in-app purchase, so they must be able to reach the far side of the
+/// paywall) and the owner's own account. See `MonetizationService.compedAccounts`.
+@immutable
+class CompedAccount {
+  const CompedAccount({required this.password, required this.displayName});
+
+  /// Compared exactly, unlike the review addresses' length rule.
+  final String password;
+
+  /// The name to create the account under the first time it signs in — Firebase
+  /// only accepts a display name at sign-up, and "Apple Reviewer" would be wrong.
+  final String displayName;
+}
+
 class MonetizationService {
   static const String entitlementId = 'Hanzi AI Pro';
+
+  /// Accounts that unlock premium with no purchase.
+  ///
+  /// **These credentials ship inside the app binary.** Anyone who reads the bundle
+  /// can use them, so they must never be an account that holds anything: no store
+  /// purchases, no user data beyond the flashcard progress that lives on the device.
+  /// The robust alternative is a Firebase custom claim (`admin`/`comp`) set
+  /// server-side and read from the ID token, which cannot be extracted and cannot be
+  /// replayed on a patched client — this list is the cheap version of that, and it is
+  /// deliberately the *only* place the policy lives, so moving it later is one edit.
+  static const Map<String, CompedAccount> compedAccounts =
+      <String, CompedAccount>{
+    'hanbaobao@love.com':
+        CompedAccount(password: 'SomeSuprise', displayName: 'Han Bao Bao'),
+  };
+
+  /// Review and demo addresses, accepted with **any** password of at least
+  /// [reviewAccountMinPasswordLength] characters.
+  ///
+  /// That leniency is deliberate and specific to these four addresses: a reviewer
+  /// signs up with whatever the review notes happen to say, and this list has been
+  /// edited more than once, so pinning a string here has broken review before. It
+  /// does mean anyone who guesses an address gets the entitlement — which is why the
+  /// owner's account above is *not* in this set.
+  static const Set<String> reviewAccounts = <String>{
+    'apple.review@sinospark.app',
+    'apple.review@sinospark.com',
+    'demo@sinospark.app',
+    'demo@sinospark.com',
+  };
+
+  static const int reviewAccountMinPasswordLength = 6;
+
+  /// True when [email] (any casing, surrounding space ignored) plus [password]
+  /// identify a comped account.
+  static bool isCompedAccount(String email, String password) {
+    final String clean = email.trim().toLowerCase();
+    final CompedAccount? owner = compedAccounts[clean];
+    if (owner != null) return password == owner.password;
+    return reviewAccounts.contains(clean) &&
+        password.length >= reviewAccountMinPasswordLength;
+  }
+
+  /// The display name to create a comped account under when Firebase has never seen
+  /// the address. A review address has no name of its own, so it stays generic.
+  static String compedAccountName(String email) =>
+      compedAccounts[email.trim().toLowerCase()]?.displayName ?? 'Reviewer';
+
   static PaymentProvider _activeProvider = PaymentProvider.none;
   static bool _developerBackdoorUnlocked = false;
   static bool _isInitialized = false;

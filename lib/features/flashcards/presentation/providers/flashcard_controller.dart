@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:hanzi_master/core/personal/her_content.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -247,6 +248,51 @@ class FlashcardController extends _$FlashcardController {
       return const Right(null);
     } catch (e) {
       return Left('Failed to import thematic deck: $e');
+    }
+  }
+
+  /// Her deck: the "Love" deck and its six cards, seeded the first time her library
+  /// opens and left alone after that.
+  ///
+  /// Idempotent on purpose, because it runs on every open: `ensureThematicDeckExists`
+  /// keeps a deck that is already there, and a card is only written when its id is
+  /// missing — so opening the library again can never duplicate a card, and can never
+  /// reset the review progress she has already earned on one.
+  Future<void> ensureLoveDeck() async {
+    try {
+      final box = ref.read(hiveBoxProvider);
+      final entries = <String, FlashcardModel>{};
+      for (int i = 0; i < HerContent.deckVocabulary.length; i++) {
+        final item = HerContent.deckVocabulary[i];
+        final id =
+            '${HerContent.deckId}_${(i + 1).toString().padLeft(3, '0')}';
+        if (box.containsKey(id)) continue;
+        entries[id] = FlashcardModel(
+          id: id,
+          hanzi: item['hanzi']!,
+          pinyin: item['pinyin']!,
+          definition: item['definition']!,
+          hskLevel: 0,
+          nextReviewDate: DateTime.now(),
+          interval: 0,
+          easeFactor: 2.5,
+          streak: 0,
+          strokePaths: [],
+          deckId: HerContent.deckId,
+          definitionLanguage: 'English',
+        );
+      }
+      if (entries.isNotEmpty) await box.putAll(entries);
+      await ref.read(deckRepositoryProvider).ensureThematicDeckExists(
+            HerContent.deckId,
+            name: HerContent.deckName,
+            description: HerContent.deckDescription,
+          );
+      if (entries.isNotEmpty) ref.invalidateSelf();
+    } catch (e) {
+      // A deck that failed to seed must not take the library down with it: the shelf
+      // below still renders, and the next open tries again.
+      debugPrint('Warning: the Love deck could not be seeded: $e');
     }
   }
 

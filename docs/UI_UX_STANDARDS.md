@@ -164,8 +164,19 @@ irregular blob that spreads fast, soaks, then dissipates. Three rules come with 
     surface). Never pre-multiply the alpha in the theme.
 *   Clipping is Flutter's, not ours: the factory mirrors the SDK's private
     `_getClipCallback` and clips with `customBorder.getOuterPath(...)` /
-    `borderRadius.toRRect(...)` / `clipRect`, so a bleed can never escape the
-    row, pill or icon button it belongs to.
+    `borderRadius.toRRect(...)` / `clipRect`. **Only a widget that contains its ink**
+    is clipped that way — a Material button, a card, an `InkWell` asking for
+    containment. A widget that does not (the bottom navigation bar, every
+    `IconButton`, a plain `InkWell`, which is the default) is not clipped at all, so
+    its *reach* is what keeps it in place — next rule.
+*   **Reach is bounded.** A contained widget bleeds across its whole surface. An
+    uncontained one gets Flutter's own bounded radius instead
+    (`Material.defaultSplashRadius`, and never more than half the control's *shorter*
+    side), i.e. a drop the size of the thing that was touched. It used to get the
+    widget's **diagonal**: 113dp on the 98×56 bottom-nav tile — an unclipped
+    terracotta disc twice the tile in every direction, painted over the page above the
+    bar (*"a little bit too strong"*). See `ZenInkSplashFactory.dropRadius`, and the
+    `target radius` group in `test/core/zen_ink_splash_test.dart`.
 *   Under Reduce Motion the ink is simply *put down* at a fixed tint with **no
     ticker**, and resolves instantly on tap-up. The feedback stays; the travel
     goes. Like every other `InkWell` honouring `MediaQuery.disableAnimations`,

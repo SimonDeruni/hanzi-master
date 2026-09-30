@@ -1,4 +1,5 @@
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
+import 'package:hanzi_master/features/media/presentation/widgets/birthday_shelf.dart';
 import 'package:hanzi_master/features/media/presentation/providers/daily_discovery_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +29,10 @@ class MediaHubScreen extends ConsumerWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
+            // 0. The birthday shelf. It is here — above the carousel of the day —
+            // because the point of it was that she cannot miss it. For every other
+            // account it renders a zero-size box, leaving this screen unchanged.
+            const SliverToBoxAdapter(child: BirthdayShelf()),
             // 1. Daily Discovery Carousel (Article of the Day) — highest element
             const SliverPadding(
               padding: EdgeInsets.only(top: 16),
