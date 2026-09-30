@@ -814,6 +814,7 @@
   "scenarioRemoved": "Cenário removido",
   "scenarioSavedFindInCustomTab": "Cenário salvo! Encontre-o na aba 'Personalizados'.",
   "score": "Pontuação: {score} / {total}",
+  "scoreValue": "Pontuação: {value}",
   "searchByPinyinOrMeaning": "Buscar por pinyin ou significado...",
   "searchByTitleOrTag": "Buscar por título ou tag...",
   "searchDictionaryOrTypeCustom": "Buscar no dicionário ou digitar caractere",
@@ -1087,8 +1088,8 @@
   "novels96": "Romances (96 obras)",
   "microReads": "Microleituras",
   "poetry": "Poesia e versos clássicos",
-  "bookmarkRemoved": "书签已移除 · Favorito removido",
-  "bookmarkAdded": "已添加书签 · Favorito adicionado: Capítulo {chapter}",
+  "bookmarkRemoved": "Favorito removido",
+  "bookmarkAdded": "Favorito adicionado: Capítulo {chapter}",
   "readingVocabulary": "Leitura e vocabulário",
   "vocabularyBatchUnitindex1": "Lote de vocabulário {index}",
   "yourDailyDropIsHere1": "Sua Dose Diária está pronta! ✨",
@@ -4186,5 +4187,12 @@
   "storyCategoryChineseEpics": "Épicos chineses",
   "storyCategorySupernaturalFolklore": "Sobrenatural e folclore",
   "storyCategoryChinesePoetry": "Poesia chinesa",
-  "storyCategoryTangPoetry": "Poesia Tang"
+  "storyCategoryTangPoetry": "Poesia Tang",
+  "toneGraphHowToReadTitle": "Como ler este gráfico",
+  "toneGraphHowToReadBody": "Da esquerda para a direita é o tempo. De cima para baixo é a altura: quão aguda é a sua voz, não quão alta.\nLeia a direção do traço, não a sua altura: o tom 1 fica alto e nivelado · o 2 sobe · o 3 desce · o 4 cai do alto.\nO primeiro traço é o tom que pretendia; o segundo só aparece quando foi ouvido outro tom.\nUm só traço significa que acertou ou que o tom não foi medido — nunca que errou.",
+  "toneGraphHowToReadTooltip": "Como ler este gráfico",
+  "toneGraphHowToReadPhraseNote": "Aqui o traço tracejado é a forma dos tons da frase, espaçados uniformemente.\nNão sabemos onde começa cada sílaba na sua gravação: compare as formas, não as posições.",
+  "toneGraphNoPitchMeasured": "Não foi medida nenhuma altura nesta gravação, por isso não há nada a desenhar para a sua voz. O traço a tracejado continua a ser a forma que pretendia.",
+  "toneGraphTarget": "Alvo",
+  "toneGraphYourVoice": "Sua voz"
 }

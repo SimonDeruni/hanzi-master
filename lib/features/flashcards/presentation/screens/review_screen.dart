@@ -5,9 +5,11 @@ import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
+import 'package:hanzi_master/shared/widgets/swipe_to_grade_hint.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
@@ -334,182 +336,240 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   }
 
   Widget _buildPracticeScreen(dynamic settings) {
-    final totalStrokes =
-        _currentCard.strokePaths.where((s) => s != '__CHAR_SEPARATOR__').length;
-    return Column(
+    final int totalStrokes = _currentCard.strokePaths
+        .where((String s) => s != '__CHAR_SEPARATOR__')
+        .length;
+
+    final ZenWindow window = ZenWindow.of(context);
+    // A wide window lies the bench on its side. Not a preference: the square is
+    // bounded by the pane's *height*, and the stacked order spends ~241dp of it on the
+    // glyph, its pinyin, the definition and the guide strip before the canvas gets any.
+    // Measured, canvas side, stacked -> side by side: 1000x680 (the window this was
+    // reported from) 247 -> 488; 1194x834 401 -> 642; 1366x1024 591 -> 832. On a
+    // landscape phone the stacked order does not merely come out small — at 844x390 it
+    // overflowed its own column by 3px and collapsed the surface to 0.
+    //
+    // Portrait tablets keep the stacked order, and that is deliberate: there the width
+    // is the tighter side, so 1024x1366 measures 933 stacked and would lose ~290dp to a
+    // reference column beside the canvas.
+    final bool sideBySide = window.isAtLeastMedium && window.isLandscape;
+
+    // The reference surface is blue in both layouts, so it is one decoration.
+    final BoxDecoration benchSurface = BoxDecoration(
+      gradient: LinearGradient(
+          colors: [Colors.blue.shade600, Colors.blue.shade400],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2))
+      ],
+    );
+
+    // The three parts of the bench, built once and placed by the layout below.
+    final Widget benchInfo = Column(
       children: [
-        Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.blue.shade600, Colors.blue.shade400],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2))
-            ],
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(AppLocalizations.of(context)!.drawThisCharacter,
-                            style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.white70,
-                                fontWeight: FontWeight.w500)),
-                        const SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Text(_currentCard.hanzi,
-                                style: const TextStyle(
-                                    fontSize: 48,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            IconButton(
-                                icon: const Icon(Icons.volume_up,
-                                    color: Colors.white70),
-                                onPressed: () => ref
-                                    .read(audioServiceProvider)
-                                    .playCharacter(_currentCard.hanzi)),
-                          ],
-                        ),
-                        if (settings.isHardMode && !_pinyinRevealed)
-                          GestureDetector(
-                            onTap: () => setState(() => _pinyinRevealed = true),
-                            child: ImageFiltered(
-                              imageFilter:
-                                  ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                              child: PinyinText(
-                                  text: _currentCard.pinyin,
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                          )
-                        else
-                          PinyinText(
-                              text: _currentCard.pinyin,
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        TranslatedDefinition(
-                            definition: _currentCard.definition,
-                            hanzi: _currentCard.hanzi,
-                            originalStyle: const TextStyle(
-                                fontSize: 14, color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              if (_strokeByStrokeMode) ...[
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
+                  Text(AppLocalizations.of(context)!.drawThisCharacter,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white70,
+                          fontWeight: FontWeight.w500)),
+                  const SizedBox(height: 8),
+                  Row(
                     children: [
-                      const Icon(Icons.info_outline,
-                          color: Colors.white, size: 20),
-                      const SizedBox(width: 8),
-                      const Expanded(
-                          child: Text("Follow the guide stroke",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 14))),
-                      Text('${_currentStrokeIndex + 1}/$totalStrokes',
+                      Text(_currentCard.hanzi,
                           style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold)),
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      IconButton(
+                          icon: const Icon(Icons.volume_up,
+                              color: Colors.white70),
+                          onPressed: () => ref
+                              .read(audioServiceProvider)
+                              .playCharacter(_currentCard.hanzi)),
                     ],
                   ),
-                ),
-              ],
-            ],
-          ),
+                  if (settings.isHardMode && !_pinyinRevealed)
+                    GestureDetector(
+                      onTap: () => setState(() => _pinyinRevealed = true),
+                      child: ImageFiltered(
+                        imageFilter:
+                            ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                        child: PinyinText(
+                            text: _currentCard.pinyin,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500)),
+                      ),
+                    )
+                  else
+                    PinyinText(
+                        text: _currentCard.pinyin,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500)),
+                  TranslatedDefinition(
+                      definition: _currentCard.definition,
+                      hanzi: _currentCard.hanzi,
+                      originalStyle: const TextStyle(
+                          fontSize: 14, color: Colors.white)),
+                ],
+              ),
+            ),
+          ],
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 1.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.15),
-                            blurRadius: 16,
-                            offset: const Offset(0, 4))
-                      ]),
-                  clipBehavior: Clip.antiAlias,
-                  child: CalligraphyBackground(
-                    child: LayoutBuilder(builder: (context, constraints) {
-                      _lastCanvasSize = constraints.biggest;
-                      return DrawingCanvas(
-                        key: const ValueKey('practiceCanvas'),
-                        strokePaths: _currentCard.strokePaths,
-                        medianPaths: _currentCard.medianPaths,
-                        showAnimation: false,
-                        animationSpeed: settings.animationSpeed,
-                        userPointsNotifier: _userPointsNotifier,
-                        strokeByStrokeMode: _strokeByStrokeMode,
-                        currentStrokeIndex: _currentStrokeIndex,
-                        onStrokeComplete: _onStrokeComplete,
-                        masteryLevel:
-                            (_currentCard.masteryLevel(StudyMode.calligraphy)),
-                        isFlipped: _currentCard.isFlipped,
-                        showReference: _currentCard
-                                .getStatsForMode(StudyMode.calligraphy)
-                                .streak <
-                            settings
-                                .guideDisappearanceStreak, // Hide blue guide based on settings
-                      );
-                    }),
-                  ),
-                ),
+        if (_strokeByStrokeMode) ...[
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(12)),
+            child: Row(
+              children: [
+                const Icon(Icons.info_outline,
+                    color: Colors.white, size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                    child: Text(
+                        AppLocalizations.of(context)!.followTheGuideStroke,
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 14))),
+                Text('${_currentStrokeIndex + 1}/$totalStrokes',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
+
+    final Widget benchCanvas = Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Center(
+          child: AspectRatio(
+            aspectRatio: 1.0,
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.15),
+                        blurRadius: 16,
+                        offset: const Offset(0, 4))
+                  ]),
+              clipBehavior: Clip.antiAlias,
+              child: CalligraphyBackground(
+                child: LayoutBuilder(builder: (context, constraints) {
+                  _lastCanvasSize = constraints.biggest;
+                  return DrawingCanvas(
+                    key: const ValueKey('practiceCanvas'),
+                    strokePaths: _currentCard.strokePaths,
+                    medianPaths: _currentCard.medianPaths,
+                    showAnimation: false,
+                    animationSpeed: settings.animationSpeed,
+                    userPointsNotifier: _userPointsNotifier,
+                    strokeByStrokeMode: _strokeByStrokeMode,
+                    currentStrokeIndex: _currentStrokeIndex,
+                    onStrokeComplete: _onStrokeComplete,
+                    masteryLevel:
+                        (_currentCard.masteryLevel(StudyMode.calligraphy)),
+                    isFlipped: _currentCard.isFlipped,
+                    showReference: _currentCard
+                            .getStatsForMode(StudyMode.calligraphy)
+                            .streak <
+                        settings
+                            .guideDisappearanceStreak, // Hide blue guide based on settings
+                  );
+                }),
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: SizedBox(
-            width: double.infinity,
-            height: 56,
-            child: _strokeByStrokeMode
-                ? OutlinedButton.icon(
-                    icon: const Icon(Icons.skip_next),
-                    label:
-                        Text(AppLocalizations.of(context)!.skipCurrentStroke),
-                    style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.orange.shade700,
-                        side: BorderSide(color: Colors.orange.shade700)),
-                    onPressed: () => _onStrokeComplete(
-                        _currentStrokeIndex, _lastCanvasSize ?? ui.Size.zero),
-                  )
-                : ElevatedButton.icon(
-                    icon: const Icon(Icons.check_circle, size: 24),
-                    label: Text(AppLocalizations.of(context)!.submitDrawing),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green.shade600,
-                        foregroundColor: Colors.white),
-                    onPressed: () => _submitDrawing(_userPointsNotifier.value),
-                  ),
+      ),
+    );
+
+    final Widget benchAction = Padding(
+      padding: const EdgeInsets.all(20),
+      child: SizedBox(
+        width: double.infinity,
+        height: 56,
+        child: _strokeByStrokeMode
+            ? OutlinedButton.icon(
+                icon: const Icon(Icons.skip_next),
+                label:
+                    Text(AppLocalizations.of(context)!.skipCurrentStroke),
+                style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.orange.shade700,
+                    side: BorderSide(color: Colors.orange.shade700)),
+                onPressed: () => _onStrokeComplete(
+                    _currentStrokeIndex, _lastCanvasSize ?? ui.Size.zero),
+              )
+            : ElevatedButton.icon(
+                icon: const Icon(Icons.check_circle, size: 24),
+                label: Text(AppLocalizations.of(context)!.submitDrawing),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green.shade600,
+                    foregroundColor: Colors.white),
+                onPressed: () => _submitDrawing(_userPointsNotifier.value),
+              ),
+      ),
+    );
+
+    if (!sideBySide) {
+      return Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: benchSurface,
+            child: benchInfo,
+          ),
+          benchCanvas,
+          benchAction,
+        ],
+      );
+    }
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SizedBox(
+          // The rail width `ZenTwoPaneScaffold` uses, so the bench's reference column
+          // lines up with the app's other two-pane screens.
+          width: window.isExpanded ? 340 : 300,
+          child: DecoratedBox(
+            decoration: benchSurface,
+            // Scrolls, because this column is bounded by the window now instead of by
+            // its own content: a 2.0x text scale in a landscape Split View half is
+            // what would otherwise overflow it.
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: benchInfo,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            children: [
+              benchCanvas,
+              benchAction,
+            ],
           ),
         ),
       ],
@@ -944,30 +1004,18 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
               ), // closes Padding 448
             ), // closes Expanded 447
 
-            // Swipe Hint
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-              child: Column(
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.swipeToGrade,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: isDark ? Colors.white54 : Colors.black45,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppLocalizations.of(context)!.againGoodEasyHard,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.white70 : Colors.black54,
-                    ),
-                  ),
-                ],
-              ),
+            // The shared legend. This one still shipped the single-string
+            // `againGoodEasyHard` (`'⬅️ Again    ➡️ Good …'`) — the exact
+            // construct `SwipeToGradeHint` was written to retire: it renders as
+            // empty tofu boxes wherever the emoji font is missing, and one
+            // unbreakable string cannot wrap on a narrow screen.
+            const Padding(
+              // The review screen grades from the first frame (its card is
+              // `isSwipeEnabled: true` with no reveal gate), so its legend is
+              // never conditional — but it shares the one strip value, or the
+              // same card would be a different size here than in the modes.
+              padding: SwipeToGradeHint.stripPadding,
+              child: SwipeToGradeHint(),
             ),
           ],
         ),

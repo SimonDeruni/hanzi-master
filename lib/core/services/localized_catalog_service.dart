@@ -7,11 +7,20 @@ class LocalizedCatalogService {
   static final Map<String, Map<String, String>> _showCache = {};
 
   /// Loads and returns the localized book synopsis for [bookId] and [localeCode].
-  /// Falls back to [fallbackEn] if not found or if English is selected.
+  ///
+  /// Precedence: the bundled overlay for this locale → [fallback] (the book's own
+  /// description *in the reader's language*, which is all a poetry collection
+  /// has: its `description` is the poet's translated biography) → [fallbackEn].
+  ///
+  /// That middle step is why a French reader no longer reads the English poem
+  /// titles under a "Synopsis" heading on a poet's book: the collection is not in
+  /// `books_<locale>.json` (only the prose catalogue is), so the lookup used to
+  /// land straight on [fallbackEn].
   static Future<String> getBookSynopsis({
     required String bookId,
     required String localeCode,
     required String fallbackEn,
+    String? fallback,
   }) async {
     if (localeCode == 'en' || localeCode.isEmpty) {
       return fallbackEn;
@@ -31,6 +40,9 @@ class LocalizedCatalogService {
     final localized = _bookCache[localeCode]?[bookId];
     if (localized != null && localized.isNotEmpty) {
       return localized;
+    }
+    if (fallback != null && fallback.trim().isNotEmpty) {
+      return fallback;
     }
     return fallbackEn;
   }

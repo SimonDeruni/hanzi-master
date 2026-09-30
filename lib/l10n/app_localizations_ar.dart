@@ -2449,6 +2449,11 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'النتيجة: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'ابحث بالبينيين أو المعنى...';
 
   @override
@@ -2621,28 +2626,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get toneGraph => 'مخطط النغمات';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'صوتك';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => 'الهدف';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'لم يتم قياس أي طبقة صوت في هذه المحاولة، لذا لا يوجد شيء لرسمه لصوتك. الخط المتقطع لا يزال يمثل الشكل الذي كنت تستهدفه.';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'هنا يمثل الخط المتقطع نغمات العبارة، موزعة بالتساوي.\nلا نعرف أين يبدأ كل مقطع لفظي في تسجيلك، لذا قارن الأشكال لا المواقع.';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'كيفية قراءة هذا الرسم البياني';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'كيفية قراءة هذا الرسم البياني';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'من اليسار إلى اليمين يمثل الزمن. ومن الأعلى إلى الأسفل ارتفاع الصوت: مدى ارتفاع نبرتك، لا مدى علوّها.\nاقرأ اتجاه الخط لا ارتفاعه: النغمة 1 عالية ومستوية · 2 صاعدة · 3 هابطة إلى الأسفل · 4 نازلة من الأعلى.\nالخط الأول هو النغمة التي كنت تستهدفها؛ ولا يُرسم خط ثانٍ إلا عندما تُسمَع نغمة مختلفة.\nخط واحد يعني أنك أصبت الهدف أو أن النغمة لم تُقدَّر — ولا يعني أبدًا أنك أخطأت.';
 
   @override
   String get traceLabel => 'تتبع';
@@ -3374,11 +3379,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get poetry => 'شعر';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · تمت إزالة الإشارة المرجعية';
+  String get bookmarkRemoved => 'تمت إزالة الإشارة المرجعية';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · تمت إضافة إشارة مرجعية: الفصل $chapter';
+    return 'تمت إضافة إشارة مرجعية: الفصل $chapter';
   }
 
   @override

@@ -2,13 +2,29 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../features/flashcards/data/repositories/global_dictionary_repository.dart';
+import '../providers.dart';
 import '../utils/pinyin_utils.dart';
 
 /// A lightweight character info object returned by the lookup service.
 class CharacterInfo {
   final String hanzi;
   final String pinyin;
+
+  /// The definition the database served — already in the reader's language when
+  /// the `definition_<lang>` column is filled for that locale.
+  ///
+  /// It is **not** always in the reader's language: `_mapRowToCard` falls back to
+  /// the English column per row when the localized cell is missing or empty
+  /// (15,555 rows carry an empty string rather than NULL), and CC-CEDICT simply
+  /// has no entry at all for some headwords. [definitionLanguage] is what lets a
+  /// caller tell those cases apart instead of printing English at a reader who
+  /// asked for French.
   final String definition;
+
+  /// The language [definition] is actually in: the requested locale code when a
+  /// localized column served it, `'English'` when the English one did.
+  final String? definitionLanguage;
+
   final int hskLevel; // 1–6, or 0 if not in HSK
 
   const CharacterInfo({
@@ -16,6 +32,7 @@ class CharacterInfo {
     required this.pinyin,
     required this.definition,
     required this.hskLevel,
+    this.definitionLanguage,
   });
 }
 
@@ -79,6 +96,7 @@ class CharacterLookupService {
       hanzi: card.hanzi,
       pinyin: PinyinUtils.convertNumericToMarks(card.pinyin),
       definition: card.definition,
+      definitionLanguage: card.definitionLanguage,
       hskLevel: _hskLevelMap[hanzi] ?? 0,
     );
   }
@@ -104,11 +122,13 @@ class CharacterLookupService {
 
 // ─── Providers ──────────────────────────────────────────────────────────────
 
-final globalDictionaryRepositoryProvider = Provider<GlobalDictionaryRepository>((ref) {
-  return GlobalDictionaryRepository();
-});
-
 final characterLookupServiceProvider = Provider<CharacterLookupService>((ref) {
+  // The dictionary provider is the single one declared in `core/providers.dart`.
+  // This file used to declare a second one under the same name, so any screen
+  // importing *this* file (word detail, tome manager) looked up words against a
+  // repository that `main` had never initialised — every lookup then returned
+  // an empty result, which reads exactly like "this word is not in the
+  // dictionary".
   final repo = ref.watch(globalDictionaryRepositoryProvider);
   return CharacterLookupService(repo);
 });

@@ -20,6 +20,7 @@ class _MockAudioService extends Fake implements AudioService {
     String voiceName = 'Fenrir',
     double? speechRate,
     double? playbackRate,
+    bool fromQueue = false,
   }) async {
     lastPlayedSentence = sentence;
     lastVoiceName = voiceName;

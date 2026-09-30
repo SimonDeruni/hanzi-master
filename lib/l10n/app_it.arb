@@ -797,6 +797,7 @@
   "scenarioRemoved": "Scenario rimosso",
   "scenarioSavedFindInCustomTab": "Scenario salvato! Lo trovi nella scheda «Personalizzato».",
   "score": "Punteggio: {score} / {total}",
+  "scoreValue": "Punteggio: {value}",
   "searchByPinyinOrMeaning": "Cerca per pinyin o significato...",
   "searchByTitleOrTag": "Cerca per titolo o tag...",
   "searchDictionaryOrTypeCustom": "Cerca nel dizionario o inserisci manualmente",
@@ -1070,8 +1071,8 @@
   "novels96": "Romanzi (96)",
   "microReads": "Micro-letture",
   "poetry": "Poesia",
-  "bookmarkRemoved": "书签已移除 · Segnalibro rimosso",
-  "bookmarkAdded": "已添加书签 · Segnalibro aggiunto: Capitolo {chapter}",
+  "bookmarkRemoved": "Segnalibro rimosso",
+  "bookmarkAdded": "Segnalibro aggiunto: Capitolo {chapter}",
   "readingVocabulary": "Lettura e vocabolario",
   "vocabularyBatchUnitindex1": "Gruppo di vocaboli {index}",
   "yourDailyDropIsHere1": "La tua Uscita Giornaliera è pronta! ✨",
@@ -4169,5 +4170,12 @@
   "storyCategoryChineseEpics": "Epiche cinesi",
   "storyCategorySupernaturalFolklore": "Soprannaturale e folclore",
   "storyCategoryChinesePoetry": "Poesia cinese",
-  "storyCategoryTangPoetry": "Poesia Tang"
+  "storyCategoryTangPoetry": "Poesia Tang",
+  "toneGraphHowToReadTitle": "Come leggere questo grafico",
+  "toneGraphHowToReadBody": "Da sinistra a destra c’è il tempo. In alto e in basso c’è l’altezza: quanto è acuta la tua voce, non quanto è forte.\nLeggi la direzione del tratto, non la sua altezza: 1 alto e stabile · 2 sale · 3 scende in basso · 4 cade dall’alto.\nIl primo tratto è il tono che volevi; il secondo compare solo quando è stato sentito un tono diverso.\nUn solo tratto significa che hai centrato il bersaglio o che il tono non è stato misurato — mai che hai sbagliato.",
+  "toneGraphHowToReadTooltip": "Come leggere questo grafico",
+  "toneGraphHowToReadPhraseNote": "Qui il tratto tratteggiato è la forma dei toni della frase, spaziati in modo uniforme.\nNon sappiamo dove inizia ogni sillaba nella tua registrazione: confronta le forme, non le posizioni.",
+  "toneGraphNoPitchMeasured": "Non è stata misurata alcuna intonazione in questa prova, quindi non c'è nulla da disegnare per la tua voce. Il tratto tratteggiato è comunque la forma a cui puntavi.",
+  "toneGraphTarget": "Obiettivo",
+  "toneGraphYourVoice": "La tua voce"
 }

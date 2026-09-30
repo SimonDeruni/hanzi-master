@@ -110,6 +110,36 @@ already in the target language**, because the model was asked for it.
    labelled English rather than a broken or blank entry, and machine translation is
    strictly an improvement on that.
 
+   **✅ Checked surface by surface 2026-09-29 — one surface broke this promise, and the
+   catalogue was then re-curated to keep it.** The deck-library preview sheet
+   (`tome_manager_screen.dart`) printed its English source verbatim instead of resolving
+   it, so a French reader opening "Wushu & Tai Chi" saw `bow stance`, `saber technique;
+   broadsword art`, `staff technique; cudgel play` and `Wudang Mountain martial lineage`
+   beside three chips that *were* French. It now goes through `TranslatedDefinition` like
+   every other definition surface, taking the database's own `definitionLanguage`, so a row
+   the database already holds in French is printed verbatim and spends no request.
+
+   **The measurement was worse than the screenshot.** Of the 428 headwords the 18 thematic
+   decks teach, **33 were not in the dictionary at all** — and not in CC-CEDICT either. The
+   spine is a faithful copy of it (`build_clean_dictionary.py` ingests every parseable line
+   with no filter), so 弓步, 刀法, 棍术, 武当 (only 武当山 exists), 微信支付, 远程办公,
+   量子计算, 自习室, 免税店, 短道速滑, 破招, 掌法, 内力 … were never there to translate.
+   A further 27 had a row whose localized cells were empty.
+
+   **Decision: the catalogue teaches only words the dictionary can serve.** 50 entries were
+   replaced by dictionary-served ones of the same theme — `弓步`/`马步` → 练功/武功,
+   `刀法`/`棍术` → 招式/招架, `少林`/`武当` → 打坐/太极拳, `宋词` → 元曲 (beside the deck's
+   existing 唐诗), `偏旁` → 部件, `声母`/`韵母` → 音节/拼音, `微信支付` → 刷卡, `年夜饭` →
+   春卷. The alternative was authoring and machine-translating headwords CC-CEDICT never
+   carried and rebuilding the 253 MB asset; moving the decks is the cheaper change and it
+   repairs every surface at once — preview, dictionary screen, tap-a-word and the reader.
+
+   Guarded by `test/features/course/deck_vocabulary_dictionary_contract_test.dart`, which
+   opens the shipped asset and asserts both halves of the rule: every deck word is a
+   headword, and the only empty cells left are the 24 listed there (月饼 has no Hindi, 五行
+   no French, 离职 no Korean or Vietnamese …). Filling a cell means deleting a line from
+   that list; adding a deck word the dictionary cannot serve fails the suite.
+
 4. **The only translatable content is the 13 `definition_*` columns.** That is the scope,
    and it is already 27% done from licensed sources.
 

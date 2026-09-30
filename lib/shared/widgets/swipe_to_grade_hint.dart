@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
@@ -19,6 +20,29 @@ import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
 class SwipeToGradeHint extends StatelessWidget {
   const SwipeToGradeHint({super.key});
 
+  /// The strip the legend occupies beneath a study card.
+  ///
+  /// One value for every host, because this strip is *subtracted from the card's
+  /// swipe surface*: the legend is a sibling of the card's `Expanded` in the
+  /// screen's column, so whatever the strip takes, the swipeable card loses.
+  /// Measured on a 320x568 screen, revealing the answer drops the surface from
+  /// 464 to 347 — the legend is 101 of that 117, and this padding is the rest.
+  /// At 2x text the clamped chips stop fitting two to a row, so the legend
+  /// itself grows to 184 and the surface falls to 264: the row count, not the
+  /// text scale, is what drives the strip.
+  ///
+  /// Four hosts used to pad 32 here and the review screen 16, so the same card
+  /// came out two different sizes depending on which screen was grading it.
+  ///
+  /// Reserving the strip *before* the reveal would remove the resize entirely,
+  /// but it buys that by spending the card's height on an empty band for the
+  /// whole session — including the pre-reveal state, which is where the learner
+  /// is actually reading the character. So the legend stays a revealed-state
+  /// hint on every host, and the way to give the card its height back on a wide
+  /// window is to move the legend *beside* the card (see IPAD_ADAPTIVE_PLAN.md,
+  /// the split bench for rows 14/15) rather than under it.
+  static const EdgeInsets stripPadding = EdgeInsets.fromLTRB(16, 0, 16, 16);
+
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context)!;
@@ -35,8 +59,12 @@ class SwipeToGradeHint extends StatelessWidget {
           Text(
             l10n.swipeToGrade,
             textAlign: TextAlign.center,
+            // Ramps on a wide window. Under a phone-width card a 13dp caption
+            // reads as the card's legend; under an iPad-width one it was a
+            // hairline strip floating at the bottom of the pane, which is what
+            // "the Balayez pour noter is a bit weird on iPad" was looking at.
             style: TextStyle(
-              fontSize: 13,
+              fontSize: zenValue(context, compact: 13.0, expanded: 15.0),
               fontWeight: FontWeight.w600,
               letterSpacing: 0.4,
               color: _ink(context).withValues(alpha: 0.55),
@@ -101,8 +129,16 @@ class _GradeChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color colour = seal.primaryColor;
 
+    // Ramp with the heading above; a phone-width card is unchanged.
+    final double chipIconSize = zenValue(context, compact: 14.0, expanded: 16.0);
+    final double chipLabelSize =
+        zenValue(context, compact: 12.0, expanded: 13.5);
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: EdgeInsets.symmetric(
+        horizontal: zenValue(context, compact: 10.0, expanded: 12.0),
+        vertical: zenValue(context, compact: 6.0, expanded: 7.0),
+      ),
       decoration: BoxDecoration(
         // The book screen's chip geometry: a 0.08 wash inside a 0.35 hairline
         // of the same colour.
@@ -113,7 +149,7 @@ class _GradeChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(icon, size: 14, color: colour),
+          Icon(icon, size: chipIconSize, color: colour),
           const SizedBox(width: 5),
           // Flexible, so a long localized grade name ("Schwierig") wraps
           // inside its chip instead of overflowing the row at 2x text scale.
@@ -121,7 +157,7 @@ class _GradeChip extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: chipLabelSize,
                 fontWeight: FontWeight.w600,
                 color: _ink(context).withValues(alpha: 0.75),
               ),

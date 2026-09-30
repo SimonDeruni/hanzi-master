@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/providers.dart';
+import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -34,6 +36,25 @@ import 'package:hanzi_master/core/theme/zen_motion.dart';
 
 /// Converts numeric pinyin to proper tone marks: da4 → dà, jiao1 → jiāo
 String _cleanPinyin(String raw) => PinyinUtils.convertNumericToMarks(raw);
+
+/// The reading of [hanzi], derived from the characters themselves.
+///
+/// The dictionary is the source of truth for pinyin, so this is only used when
+/// it has nothing to say. A card whose reading slot was left empty is what
+/// "Quick Look shows nothing" looked like: the reading does not depend on the
+/// dictionary at all, so the panel can still answer that question while it
+/// waits for — or instead of — a definition.
+String _derivedPinyin(String hanzi) {
+  if (hanzi.isEmpty) return '';
+  final String derived = PinyinHelper.getPinyinE(
+    hanzi,
+    separator: ' ',
+    format: PinyinFormat.WITH_TONE_MARK,
+  ).trim();
+  // Characters the library has no reading for are echoed back unchanged: that
+  // is not a reading, so the slot stays empty rather than repeating the hanzi.
+  return derived == hanzi ? '' : derived;
+}
 
 /// Strips CC-CEDICT embedded annotations like 大姐[da4 jie3] → 大姐
 /// and trims the definition to the first 2 meaningful parts.
@@ -365,10 +386,17 @@ class _LoadingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 56),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 56),
       child: Center(
-        child: ZenLoader(color: Colors.indigo, strokeWidth: 2),
+        child: ZenLoader(
+          color: Colors.indigo,
+          strokeWidth: 2,
+          // Labelled for the same reason the not-found card is: a thin,
+          // unlabelled arc in an otherwise empty panel reads as a rendering
+          // fault rather than as a wait.
+          label: AppLocalizations.of(context)!.loading,
+        ),
       ),
     );
   }
@@ -389,8 +417,9 @@ class _NotFoundBody extends ConsumerStatefulWidget {
 
 class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
   bool _isLoadingAi = true;
-  String _pinyin = '';
-  String _definition = '';
+  String? _aiPinyin;
+  String? _aiDefinition;
+  bool _aiFailed = false;
 
   @override
   void initState() {
@@ -401,37 +430,81 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
   Future<void> _fetchAiDefinition() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getBool(AiConsentSheet.prefKey) != true) {
-      if (mounted) {
-        setState(() {
-          _definition = 'Not found in dictionary.';
-          _isLoadingAi = false;
-        });
-      }
+      // Without consent there is no answer to wait for. The card states what it
+      // knows (the character and its reading) instead of spinning forever.
+      if (mounted) setState(() => _isLoadingAi = false);
       return;
     }
 
     try {
-      final aiDef =
-          await ref.read(geminiServiceProvider).defineWord(widget.hanzi);
-      if (mounted) {
-        setState(() {
-          _pinyin = aiDef['pinyin'] ?? '?';
-          _definition = aiDef['meaning'] ?? 'Not found';
-          _isLoadingAi = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _definition = 'Error loading from AI.';
-          _isLoadingAi = false;
-        });
+      final aiDef = await ref
+          .read(geminiServiceProvider)
+          .defineWord(widget.hanzi)
+          // A card that waits on the network indefinitely is indistinguishable
+          // from a broken one, which is how this one was reported. Bound the
+          // wait, then say the answer did not arrive.
+          .timeout(const Duration(seconds: 15));
+      if (!mounted) return;
+      setState(() {
+        _aiPinyin = aiDef['pinyin'];
+        _aiDefinition = aiDef['meaning'];
+        _isLoadingAi = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _aiFailed = true;
+        _isLoadingAi = false;
+      });
+    }
+  }
+
+  /// Retries the lookup, repairing the dictionary first when it failed to read.
+  ///
+  /// A card the reader cannot act on is worse than a slow one: the retry is the
+  /// only place a damaged local dictionary copy can be replaced, because the
+  /// copy is otherwise only rebuilt while the app starts.
+  Future<void> _retry() async {
+    final repository = ref.read(globalDictionaryRepositoryProvider);
+    final bool repair = !repository.isReady || repository.lastFailure != null;
+    setState(() {
+      _aiFailed = false;
+      _isLoadingAi = _aiDefinition == null;
+    });
+    if (repair) {
+      try {
+        await repository.init(forceRepair: repository.lastFailure != null);
+      } catch (_) {
+        // The failure is recorded on the repository; the card keeps its honest
+        // "unavailable" line rather than claiming the retry worked.
       }
     }
+    ref.invalidate(quickLookProvider(widget.hanzi));
+    if (mounted) await _fetchAiDefinition();
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final repository = ref.watch(globalDictionaryRepositoryProvider);
+    // The AI answer is English and needs translating; the status lines below are
+    // already in the reader's language, so telling TranslatedDefinition that is
+    // what keeps them on screen instead of hiding them behind a translation
+    // round-trip.
+    final String? definitionLanguage = _aiDefinition != null
+        ? 'English'
+        : ref.watch(translationLanguageProvider);
+    final String status;
+    if (_aiDefinition != null) {
+      status = _aiDefinition!;
+    } else if (_aiFailed) {
+      status = l10n.errorLoadingFromAi;
+    } else if (!repository.isReady) {
+      status = l10n.informationUnavailable;
+    } else {
+      status = l10n.notFound;
+    }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
       child: Column(
@@ -440,41 +513,57 @@ class _NotFoundBodyState extends ConsumerState<_NotFoundBody> {
           _CharacterHero(
             hanzi: widget.hanzi,
             isDark: widget.isDark,
-            pinyin: _pinyin,
+            // The dictionary has no entry, but the reading is derivable from
+            // the character itself. Leaving this slot empty is what made a
+            // missing definition look like a broken card.
+            pinyin: _aiPinyin ?? _derivedPinyin(widget.hanzi),
             hskLevel: 0,
-            definition: _definition,
-            definitionLanguage: 'English',
+            definition: _isLoadingAi ? '' : status,
+            definitionLanguage: definitionLanguage,
           ),
           const SizedBox(height: 16),
           if (_isLoadingAi)
-            const SizedBox(
-              width: 24,
-              height: 24,
-              child: CircularProgressIndicator(strokeWidth: 2),
+            ZenLoader(
+              color: Colors.indigo,
+              strokeWidth: 2,
+              // Labelled, so the thin arc under the character reads as "still
+              // asking" rather than as a stray glyph.
+              label: l10n.loading,
             )
           else
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.add_box),
-                label: Text(AppLocalizations.of(context)!.reviewAddToLibrary),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.indigo,
-                  foregroundColor: Colors.white,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 0,
-                ),
-                onPressed: () {
-                  FlashcardEditDialog.show(
-                    context,
-                    hanzi: widget.hanzi,
-                    pinyin: _cleanPinyin(_pinyin),
-                    definition: _cleanDefinition(_definition),
-                  );
-                },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.add_box),
+                    label: Text(l10n.reviewAddToLibrary),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      elevation: 0,
+                    ),
+                    onPressed: () {
+                      FlashcardEditDialog.show(
+                        context,
+                        hanzi: widget.hanzi,
+                        pinyin: _cleanPinyin(
+                            _aiPinyin ?? _derivedPinyin(widget.hanzi)),
+                        definition: _cleanDefinition(status),
+                      );
+                    },
+                  ),
+                  TextButton.icon(
+                    onPressed: _retry,
+                    icon: const Icon(Icons.refresh, size: 18),
+                    label: Text(l10n.retry),
+                  ),
+                ],
               ),
             ),
         ],

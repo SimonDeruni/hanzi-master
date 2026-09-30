@@ -70,6 +70,29 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   /// `runJavaScriptReturningResult` never completes if the injected script
   /// throws, which would otherwise leave the AI progress overlay stuck forever.
   static const Duration _articleTextTimeout = Duration(seconds: 20);
+
+  /// Upper bound for one round-trip to the model.
+  ///
+  /// Every flow below lowers the overlay in its `finally`, so a request that
+  /// never answers is not a slow wait but a *locked* screen: the overlay covers
+  /// the page and the AI Tools chip disables itself. A hung connection used to
+  /// do exactly that, indefinitely.
+  static const Duration _aiCallTimeout = Duration(seconds: 60);
+
+  /// Upper bound for a whole-article simplification.
+  ///
+  /// Longer than [_aiCallTimeout] because the model rewrites the entire article,
+  /// and it matches the budget `GeminiService.simplifyTextToHsk` gives itself:
+  /// cutting in earlier here would abort work the service still considers live.
+  static const Duration _simplifyCallTimeout = Duration(seconds: 150);
+
+  /// Which AI run owns the overlay.
+  ///
+  /// A run can outlive its own request (the learner dismisses the overlay, the
+  /// page navigates, a slow answer lands late). Only the newest run may switch
+  /// the overlay off, so a retired run's `finally` cannot clear the progress of
+  /// the run that replaced it.
+  int _aiRunGeneration = 0;
   String _selectedText = '';
   bool _isArticleSaved = false;
 
@@ -964,6 +987,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
   }
 
   void _removeZenMode() {
+    // Leaving zen mode also retires any analysis it kicked off: a late answer
+    // must not decorate the page the learner has already gone back to.
+    _aiRunGeneration++;
     setState(() => _isProcessingAi = false);
     _currentInsight = null;
     const js = '''
@@ -977,11 +1003,46 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     unawaited(_controller.runJavaScript(js));
   }
 
+  /// Raises the AI overlay and returns the token its run must quote back.
+  int _beginAiRun() {
+    final int generation = ++_aiRunGeneration;
+    setState(() => _isProcessingAi = true);
+    return generation;
+  }
+
+  /// Lowers the overlay, unless a newer run has taken it over.
+  void _endAiRun(int generation) {
+    if (mounted && generation == _aiRunGeneration) {
+      setState(() => _isProcessingAi = false);
+    }
+  }
+
+  /// True once [generation] has been retired (cancelled or replaced), so the
+  /// run must not touch the UI any more.
+  ///
+  /// Call sites spell out `!mounted ||` as well: it reads as the cheap bail-out
+  /// it is, and the analyzer can only see a `BuildContext` guard it can see.
+  bool _aiRunIsStale(int generation) =>
+      !mounted || generation != _aiRunGeneration;
+
+  /// Lets the learner back onto the page without waiting for the model.
+  ///
+  /// The request cannot be un-sent, so the run is retired instead: its answer is
+  /// dropped by the staleness check and the retry path is the AI Tools chip,
+  /// which is live again the moment this returns.
+  void _cancelAiRun() {
+    HapticsManager.selection();
+    setState(() {
+      _aiRunGeneration++;
+      _isProcessingAi = false;
+    });
+  }
+
   Future<void> _runAnalyzeArticle() async {
     final consented = await AiConsentSheet.ensureConsent(context);
     if (!consented || !mounted) return;
 
-    setState(() => _isProcessingAi = true);
+    final generation = _beginAiRun();
 
     try {
       // Extract only what Gemini needs to save platform channel overhead
@@ -1001,10 +1062,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       if (!mounted) return;
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
-      final insight = await gemini.generateArticleInsight(
-          text.toString(), knownWords, langCode);
+      final insight = await gemini
+          .generateArticleInsight(text.toString(), knownWords, langCode)
+          .timeout(
+            _aiCallTimeout,
+            onTimeout: () => throw TimeoutException(
+                'The model took too long to answer. Try again.'),
+          );
+      if (!mounted || _aiRunIsStale(generation)) return;
 
-      if (mounted && _isZenMode) {
+      if (_isZenMode) {
         setState(() {
           _currentInsight = insight;
         });
@@ -1062,9 +1129,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         ZenToast.error(context, "Analysis failed: $e");
       }
     } finally {
-      if (mounted) {
-        setState(() => _isProcessingAi = false);
-      }
+      _endAiRun(generation);
     }
   }
 
@@ -1072,13 +1137,19 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final consented = await AiConsentSheet.ensureConsent(context);
     if (!consented || !mounted) return;
 
-    setState(() => _isProcessingAi = true);
+    final generation = _beginAiRun();
 
     try {
       final text = await _controller
-          .runJavaScriptReturningResult('document.body.innerText');
-      final pageTitleRaw =
-          await _controller.runJavaScriptReturningResult('document.title');
+          .runJavaScriptReturningResult('document.body.innerText')
+          .timeout(_articleTextTimeout,
+              onTimeout: () => throw TimeoutException(
+                  'Reading the page text timed out. Try reloading the article.'));
+      final pageTitleRaw = await _controller
+          .runJavaScriptReturningResult('document.title')
+          .timeout(_articleTextTimeout,
+              onTimeout: () => throw TimeoutException(
+                  'Reading the page title timed out. Try reloading the article.'));
       final pageTitle = pageTitleRaw.toString().replaceAll('"', '');
 
       final repo = ref.read(flashcardRepositoryProvider);
@@ -1091,8 +1162,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       if (!mounted) return;
       final gemini = ref.read(geminiServiceProvider);
       final langCode = Localizations.localeOf(context).languageCode;
-      final newWords = await gemini.extractAllUnknownWords(
-          text.toString(), knownWords, langCode);
+      final newWords = await gemini
+          .extractAllUnknownWords(text.toString(), knownWords, langCode)
+          .timeout(
+            _aiCallTimeout,
+            onTimeout: () => throw TimeoutException(
+                'The model took too long to answer. Try again.'),
+          );
       final deckName =
           pageTitle.isNotEmpty ? 'Article: $pageTitle' : 'Web Extraction';
 
@@ -1102,6 +1178,8 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         }
         return;
       }
+
+      if (!mounted || _aiRunIsStale(generation)) return;
 
       if (!mounted) return;
       // Review ⇄ deck-picker loop.
@@ -1161,9 +1239,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         ZenToast.error(context, "Extraction failed: $e");
       }
     } finally {
-      if (mounted) {
-        setState(() => _isProcessingAi = false);
-      }
+      _endAiRun(generation);
     }
   }
 
@@ -1190,7 +1266,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         .toList();
 
     if (!mounted) return false;
-    setState(() => _isProcessingAi = false);
+    // The overlay must not sit behind the deck picker. A newer run, if any,
+    // keeps its own.
+    _endAiRun(_aiRunGeneration);
     final added = await DeckSelectionSheet.show(
       context,
       cards: flashcards,
@@ -1205,7 +1283,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
     final consented = await AiConsentSheet.ensureConsent(context);
     if (!consented || !mounted) return;
 
-    setState(() => _isProcessingAi = true);
+    final generation = _beginAiRun();
 
     try {
       final rawText = await _controller.runJavaScriptReturningResult('''
@@ -1245,9 +1323,15 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
 
       final gemini = ref.read(geminiServiceProvider);
-      final simplifiedStory = await gemini.simplifyTextToHsk(text, level);
+      final simplifiedStory = await gemini
+          .simplifyTextToHsk(text, level)
+          .timeout(
+            _simplifyCallTimeout,
+            onTimeout: () => throw TimeoutException(
+                'The model took too long to answer. Try again.'),
+          );
 
-      if (!mounted) return;
+      if (!mounted || _aiRunIsStale(generation)) return;
 
       Navigator.push(
         context,
@@ -1263,9 +1347,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         ZenToast.error(context, "Simplify failed: $cleanError");
       }
     } finally {
-      if (mounted) {
-        setState(() => _isProcessingAi = false);
-      }
+      _endAiRun(generation);
     }
   }
 
@@ -1775,13 +1857,21 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                               setState(() {
                                 _activeTranslation = null;
                                 _isTranslating = false;
-                                _isProcessingAi = true;
                               });
+                              final int generation = _beginAiRun();
                               try {
                                 final gemini = ref.read(geminiServiceProvider);
                                 final simplifiedStory = await gemini
-                                    .simplifyTextToHsk(text, selectedLevel);
-                                if (!mounted) return;
+                                    .simplifyTextToHsk(text, selectedLevel)
+                                    .timeout(
+                                      _simplifyCallTimeout,
+                                      onTimeout: () => throw TimeoutException(
+                                          'The model took too long to answer. '
+                                          'Try again.'),
+                                    );
+                                if (!mounted || _aiRunIsStale(generation)) {
+                                  return;
+                                }
                                 Navigator.push(
                                   context,
                                   SwipeBackPageRoute(
@@ -1800,9 +1890,7 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                       context, "Simplify failed: $cleanError");
                                 }
                               } finally {
-                                if (mounted) {
-                                  setState(() => _isProcessingAi = false);
-                                }
+                                _endAiRun(generation);
                               }
                             },
                           ),
@@ -1839,17 +1927,40 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                     children: [
                       WebViewWidget(key: _webViewKey, controller: _controller),
                       if (_isProcessingAi)
-                        Container(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .surface
-                              .withValues(
-                                alpha: 0.92,
+                        // The overlay owns the page while a run is in flight, so
+                        // it has to offer the way out: it used to be an inert
+                        // sheet over the article, and a request that never
+                        // answered left the learner with no page and nothing to
+                        // tap. Tapping anywhere retires the run and hands the
+                        // page back; the answer, if it lands, is dropped.
+                        GestureDetector(
+                          onTap: _cancelAiRun,
+                          behavior: HitTestBehavior.opaque,
+                          child: Container(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surface
+                                .withValues(
+                                  alpha: 0.92,
+                                ),
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  AiProgressBar(
+                                      label: AppLocalizations.of(context)!
+                                          .aiIsThinking),
+                                  const SizedBox(height: 12),
+                                  TextButton(
+                                    key: const Key('cancelAiRunButton'),
+                                    onPressed: _cancelAiRun,
+                                    child: Text(
+                                      AppLocalizations.of(context)!.cancel,
+                                    ),
+                                  ),
+                                ],
                               ),
-                          child: Center(
-                            child: AiProgressBar(
-                                label:
-                                    AppLocalizations.of(context)!.aiIsThinking),
+                            ),
                           ),
                         ),
                     ],
@@ -2057,7 +2168,9 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                _isProcessingAi ? 'Processing…' : 'AI Tools',
+                                _isProcessingAi
+                                    ? AppLocalizations.of(context)!.processing
+                                    : AppLocalizations.of(context)!.aiTools,
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -2276,6 +2389,38 @@ class _ExtractedWordsReviewSheetState
   void initState() {
     super.initState();
     _selected = List.generate(widget.words.length, (i) => true);
+  }
+
+  /// The iPad pane (#48) keeps this state alive across runs: a second "Extract
+  /// to Deck" beside the page hands the same [State] a different word list. The
+  /// ticks are addressed by index, so they are re-seeded with the words now on
+  /// screen — otherwise a longer list reads past `_selected` (`RangeError`), and
+  /// a shorter one leaves the header counting the previous run's ticks: a card
+  /// reads unselected while "N of M selected" claims every word is selected, and
+  /// "Add to Deck" then saves the stale ticks' words rather than the cards'.
+  ///
+  /// A rebuild carrying the same words changes nothing — the learner's ticks are
+  /// theirs to keep.
+  @override
+  void didUpdateWidget(covariant ExtractedWordsReviewSheet oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!_sameWordList(oldWidget.words, widget.words)) {
+      _selected = List.generate(widget.words.length, (i) => true);
+    }
+  }
+
+  /// Whether [before] and [after] are the same review, so a rebuild that merely
+  /// re-states the words does not clear the selection.
+  static bool _sameWordList(List<AiWord> before, List<AiWord> after) {
+    if (identical(before, after)) return true;
+    if (before.length != after.length) return false;
+    for (var i = 0; i < before.length; i++) {
+      if (before[i].hanzi != after[i].hanzi ||
+          before[i].meaning != after[i].meaning) {
+        return false;
+      }
+    }
+    return true;
   }
 
   Future<void> _createNewDeck() async {
@@ -2720,6 +2865,14 @@ class _ExtractedWordCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   TranslatedDefinition(
                     definition: word.meaning,
+                    // The card names the word it is showing, so the resolver can
+                    // read that word's dictionary row and its
+                    // `definition_<language>` cell (the v2 dictionary's localized
+                    // text) instead of machine-translating an untagged gloss —
+                    // which is how a French card ended up reading the model's
+                    // English "Prime Minister" while the dictionary held French
+                    // for the same word.
+                    hanzi: word.hanzi,
                     originalStyle: TextStyle(
                       fontSize: 14,
                       height: 1.35,

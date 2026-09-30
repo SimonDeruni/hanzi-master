@@ -15,16 +15,21 @@ void main() {
       final content = file.readAsStringSync();
       final list = jsonDecode(content) as List<dynamic>;
 
-      // The library went 86 -> 55 on 2026-09-27, when 31 books were removed for
-      // copyright reasons (see docs/BOOK_COPYRIGHT_REMOVALS.md) — 28 in the first
-      // pass and 3 more once every book was audited individually. This ratchet exists
-      // to catch *accidental* content loss, so it is kept exact and moved by hand -
-      // loosening it to a floor would defeat the only thing it is for.
-      expect(list.length, equals(55),
+      // 55 -> 113 on 2026-09-29. The 64 copyright-tainted books had already been
+      // deleted from disk, but the catalogue still advertised them, so every tap
+      // was a dead download ("Impossible de télécharger ce livre. Vérifiez votre
+      // connexion") — pruning the catalogue removed those 64 and left the 22
+      // survivors. The 91 public-domain works documented in
+      // docs/BOOK_SOURCES.md were then imported to replace them (68 Project
+      // Gutenberg + 23 chinese-poetry). This ratchet exists to catch *accidental*
+      // content loss, so it is kept exact and moved by hand — loosening it to a
+      // floor would defeat the only thing it is for.
+      expect(list.length, equals(113),
           reason:
-              'Catalog has exactly 55 books after the copyright removals. If this '
-              'number moved, either content was lost or the removal list changed - '
-              'check which before editing this line.');
+              'Catalog has exactly 113 books: the 22 survivors of the copyright '
+              'removals plus the 91 imported public-domain works. If this number '
+              'moved, either content was lost or a source was added - check which '
+              'before editing this line.');
 
       final ids = <String>{};
       for (final item in list) {

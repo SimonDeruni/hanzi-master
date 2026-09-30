@@ -6,6 +6,7 @@ import 'package:hanzi_master/core/character_loader.dart';
 import 'package:hanzi_master/core/stroke_matcher.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/services/zen_sound_service.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class DrawingCanvas extends StatefulWidget {
   final List<String> strokePaths;
@@ -465,6 +466,21 @@ class _DrawingCanvasState extends State<DrawingCanvas>
     setState(() => _hoverPoint = null);
   }
 
+  /// The score line under the canvas: `Score: 12.34` once a stroke has been graded,
+  /// `Score: —` before that.
+  ///
+  /// It is the only *sentence* this widget draws, which is why it is the only string
+  /// that could not stay in the widget: the iPad build showed "Score: N/A" in English
+  /// at the corner of a French practice screen, under a French instruction strip.
+  /// A dash rather than "N/A" for the ungraded state, because "N/A" is an English
+  /// abbreviation that would then need thirteen more translations of its own, and
+  /// the value it stands in for is a number in every language.
+  String _scoreLine(AppLocalizations? l10n) {
+    final String value = _gradingResult?.toStringAsFixed(2) ?? '—';
+    if (l10n == null) return 'Score: $value';
+    return l10n.scoreValue(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     final Widget canvas = _buildCanvas(context);
@@ -827,7 +843,7 @@ class _DrawingCanvasState extends State<DrawingCanvas>
                     bottom: 10,
                     left: 10,
                     child: Text(
-                        "Score: ${_gradingResult?.toStringAsFixed(2) ?? 'N/A'}",
+                        _scoreLine(AppLocalizations.of(context)),
                         style: TextStyle(
                             color: _gradingResult == null
                                 ? (isDark ? Colors.white : Colors.black)

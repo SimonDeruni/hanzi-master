@@ -16,6 +16,7 @@ import '../../../../shared/widgets/zen_filter_pill.dart';
 import '../../data/thematic_decks_data.dart';
 import '../../../../core/services/character_lookup_service.dart';
 import '../../../../core/services/localized_deck_service.dart';
+import '../../../../core/widgets/translated_definition.dart';
 import '../widgets/calligraphic_deck_cover.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
@@ -591,9 +592,18 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
 
     // Word meanings come from storage (`dictionary.db`), in the reader's own
     // language, instead of being carried as hardcoded English in the deck data.
-    // Only the words actually rendered are looked up, and a deck's own
-    // definition still backstops anything the dictionary does not hold.
-    Map<String, String> meanings = const <String, String>{};
+    // Only the words actually rendered are looked up.
+    //
+    // The lookup answers in two shapes and the chip has to handle both. When
+    // `definition_<locale>` is filled the database has already given the reader
+    // their own language and the gloss is printed verbatim. When it is not —
+    // 15,555 rows hold an empty string rather than NULL, and CC-CEDICT has no
+    // entry at all for 33 of the headwords these decks teach (弓步, 刀法, 棍术,
+    // 武当, 微信支付, 远程办公 …) — the row's English, or the deck's own English,
+    // is only a *source*: the gloss goes through the same `TranslatedDefinition`
+    // every other definition surface uses, which is what stops a French reader
+    // being shown "bow stance" and "Wudang Mountain martial lineage".
+    Map<String, CharacterInfo> lookups = const <String, CharacterInfo>{};
     try {
       final localeCode = Localizations.localeOf(context).languageCode;
       final infos = await ref.read(characterLookupServiceProvider).lookupAll(
@@ -603,11 +613,11 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
                 .where((hanzi) => hanzi.isNotEmpty),
             targetLanguage: localeCode,
           );
-      meanings = <String, String>{
-        for (final info in infos) info.hanzi: info.definition,
+      lookups = <String, CharacterInfo>{
+        for (final info in infos) info.hanzi: info,
       };
     } catch (_) {
-      meanings = const <String, String>{};
+      lookups = const <String, CharacterInfo>{};
     }
     if (!context.mounted) return;
     final bgColor = isDark ? const Color(0xFF1E1E24) : const Color(0xFFFDFCF0);
@@ -812,6 +822,12 @@ const SizedBox(height: 20),
                       spacing: 8,
                       runSpacing: 8,
                       children: sampleWords.take(12).map((word) {
+                        // The gloss the database served, if it served one.
+                        final CharacterInfo? known = lookups[word['hanzi']];
+                        final TextStyle glossStyle = TextStyle(
+                          fontSize: 10.5,
+                          color: isDark ? Colors.white60 : Colors.black54,
+                        );
                         return Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 7),
@@ -851,13 +867,21 @@ const SizedBox(height: 20),
                                 ],
                               ),
                               const SizedBox(height: 2),
-                              Text(
-                                meanings[word['hanzi']] ?? word['definition'] ?? '',
-                                style: TextStyle(
-                                  fontSize: 10.5,
-                                  color:
-                                      isDark ? Colors.white60 : Colors.black54,
-                                ),
+                              // Database local definition first, and only what
+                              // the database cannot answer for goes to the
+                              // translator. Passing the language the database
+                              // used is what makes that distinction: a French
+                              // row prints as-is, an English row (or a word with
+                              // no row at all) is translated like every other
+                              // definition in the app instead of being printed
+                              // at a reader who asked for French.
+                              TranslatedDefinition(
+                                definition:
+                                    known?.definition ?? word['definition'] ?? '',
+                                definitionLanguage: known?.definitionLanguage,
+                                hanzi: word['hanzi'],
+                                originalStyle: glossStyle,
+                                translationStyle: glossStyle,
                               ),
                             ],
                           ),

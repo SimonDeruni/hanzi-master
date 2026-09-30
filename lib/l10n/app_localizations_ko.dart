@@ -2413,6 +2413,11 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return '점수: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => '병음 또는 뜻으로 검색...';
 
   @override
@@ -2580,28 +2585,28 @@ class AppLocalizationsKo extends AppLocalizations {
   String get toneGraph => '성조 피치 그래프';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => '본인의 목소리';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => '목표';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      '이번 녹음에서는 음의 높낮이가 측정되지 않아 본인의 목소리를 그릴 수 없습니다. 점선은 여전히 목표로 한 성조의 모양입니다.';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      '여기서 점선은 구문 성조의 모양이며, 간격은 균일합니다.\n녹음에서 각 음절이 어디서 시작하는지 알 수 없으므로 위치가 아니라 모양을 비교하세요.';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => '이 그래프를 읽는 법';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => '이 그래프를 읽는 법';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      '왼쪽에서 오른쪽이 시간, 위아래가 음높이입니다. 목소리가 얼마나 높은지이지, 얼마나 큰지가 아닙니다.\n선의 높이가 아니라 방향을 보세요: 1은 높고 평평 · 2는 상승 · 3은 낮게 하강 · 4는 높은 데서 떨어짐.\n첫 번째 선은 목표한 성조이고, 두 번째 선은 다른 성조가 들렸을 때만 그려집니다.\n선이 하나면 목표를 맞췄거나 성조가 측정되지 않은 것입니다 — 결코 틀렸다는 뜻이 아닙니다.';
 
   @override
   String get traceLabel => '따라 쓰기';
@@ -3317,11 +3322,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get poetry => '고전 시가';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · 북마크가 삭제되었습니다';
+  String get bookmarkRemoved => '북마크가 삭제되었습니다';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · 북마크 추가됨: 제$chapter장';
+    return '북마크 추가됨: 제$chapter장';
   }
 
   @override

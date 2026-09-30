@@ -815,6 +815,7 @@
   "scenarioRemoved": "परिदृश्य हटा दिया गया",
   "scenarioSavedFindInCustomTab": "परिदृश्य सहेजा गया! इसे कस्टम टैब में देखें।",
   "score": "स्कोर: {score} / {total}",
+  "scoreValue": "स्कोर: {value}",
   "searchByPinyinOrMeaning": "पिनयिन या अर्थ द्वारा खोजें...",
   "searchByTitleOrTag": "शीर्षक या टैग द्वारा खोजें...",
   "searchDictionaryOrTypeCustom": "शब्दकोश में खोजें या कस्टम लिखें",
@@ -1085,8 +1086,8 @@
   "novels96": "उपन्यास (96)",
   "microReads": "माइक्रो-रीडिंग",
   "poetry": "कविता",
-  "bookmarkRemoved": "书签已移除 · बुकमार्क हटाया गया",
-  "bookmarkAdded": "已添加书签 · बुकमार्क जोड़ा गया: अध्याय {chapter}",
+  "bookmarkRemoved": "बुकमार्क हटाया गया",
+  "bookmarkAdded": "बुकमार्क जोड़ा गया: अध्याय {chapter}",
   "readingVocabulary": "पठन और शब्दावली",
   "vocabularyBatchUnitindex1": "शब्दावली बैच {index}",
   "yourDailyDropIsHere1": "आपकी दैनिक ड्रॉप यहाँ है! ✨",
@@ -4181,5 +4182,12 @@
   "storyCategoryChineseEpics": "चीनी महाकाव्य",
   "storyCategorySupernaturalFolklore": "अलौकिक और लोककथा",
   "storyCategoryChinesePoetry": "चीनी कविता",
-  "storyCategoryTangPoetry": "तांग कविता"
+  "storyCategoryTangPoetry": "तांग कविता",
+  "toneGraphHowToReadTitle": "इस ग्राफ़ को कैसे पढ़ें",
+  "toneGraphHowToReadBody": "बाएँ से दाएँ समय है। ऊपर-नीचे आवाज़ की ऊँचाई है: आपकी आवाज़ कितनी ऊँची है, कितनी तेज़ नहीं।\nरेखा की दिशा पढ़ें, उसकी ऊँचाई नहीं: 1 ऊँचा और स्थिर · 2 चढ़ता हुआ · 3 नीचे झुकता हुआ · 4 ऊँचे से गिरता हुआ।\nपहली रेखा वह स्वर है जिसका आपने लक्ष्य रखा था; दूसरी रेखा तभी बनती है जब कोई भिन्न स्वर सुनाई दे।\nएक ही रेखा का अर्थ है कि आप लक्ष्य तक पहुँचे या स्वर मापा नहीं गया — कभी नहीं कि आप ग़लत थे।",
+  "toneGraphHowToReadTooltip": "इस ग्राफ़ को कैसे पढ़ें",
+  "toneGraphHowToReadPhraseNote": "यहाँ डैश वाली रेखा वाक्यांश के स्वरों का आकार है, समान दूरी पर।\nहमें पता नहीं कि आपकी रिकॉर्डिंग में हर शब्दांश कहाँ से शुरू होता है, इसलिए आकार की तुलना करें, स्थिति की नहीं।",
+  "toneGraphNoPitchMeasured": "इस टेक में कोई पिच नहीं मापी गई, इसलिए आपकी आवाज़ के लिए खींचने को कुछ नहीं है। डैश वाला स्ट्रोक अभी भी वह आकार है जिसका आपने लक्ष्य रखा था।",
+  "toneGraphTarget": "लक्ष्य",
+  "toneGraphYourVoice": "आपकी आवाज़"
 }

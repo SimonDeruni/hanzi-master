@@ -2478,6 +2478,11 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'Skor: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'Cari berdasarkan pinyin atau arti...';
 
   @override
@@ -2649,28 +2654,28 @@ class AppLocalizationsId extends AppLocalizations {
   String get toneGraph => 'Grafik Nada';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'Suara Anda';
 
   @override
   String get toneGraphTarget => 'Target';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'Tidak ada nada yang terukur dalam rekaman ini, jadi tidak ada yang bisa digambar untuk suara Anda. Guratan putus-putus tetap merupakan bentuk yang Anda tuju.';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'Di sini guratan putus-putus adalah bentuk nada frasa, berjarak seragam.\nKami tidak tahu di mana tiap suku kata dimulai dalam rekaman Anda, jadi bandingkan bentuknya, bukan posisinya.';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'Cara membaca grafik ini';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'Cara membaca grafik ini';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'Kiri ke kanan adalah waktu. Atas ke bawah adalah tinggi nada: seberapa tinggi suara Anda, bukan seberapa keras.\nBaca arah guratannya, bukan tingginya: 1 tinggi dan rata · 2 naik · 3 turun rendah · 4 jatuh dari tinggi.\nGuratan pertama adalah nada yang Anda tuju; guratan kedua hanya muncul saat nada lain terdengar.\nSatu guratan berarti Anda tepat sasaran atau nadanya tidak terukur — bukan berarti Anda salah.';
 
   @override
   String get traceLabel => 'Tebalkan';
@@ -3414,11 +3419,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get poetry => 'Puisi';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · Markah buku dihapus';
+  String get bookmarkRemoved => 'Markah buku dihapus';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Markah buku ditambahkan: Bab $chapter';
+    return 'Markah buku ditambahkan: Bab $chapter';
   }
 
   @override

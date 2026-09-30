@@ -15,7 +15,7 @@ void main() {
   setUpAll(() {
     source = File(
       'lib/features/reading/presentation/screens/book_reader_screen.dart',
-    ).readAsStringSync();
+    ).readAsStringSync().replaceAll('\r\n', '\n');
   });
 
   test('the reader raises no SnackBar of its own', () {
@@ -57,7 +57,33 @@ void main() {
             'audiobook belongs to the shell\'s Now Playing bar');
     expect(source, contains('unawaited(audio.stop())'),
         reason: 'Audio engines are tied to this screen\'s lifecycle');
-    expect(source, contains('zenAmbientServiceProvider.notifier).pause()'),
+    expect(source, contains('unawaited(ambient.pause())'),
         reason: 'The ambient soundscape is reader-owned too');
+    expect(source, contains('_persistProgress(repository: repository'),
+        reason: 'The last position is written through the captured repository');
+  });
+
+  test('teardown never reads `ref`, which Riverpod has already revoked', () {
+    // The bug: dispose's first `ref.read` threw ("Cannot use \"ref\" after the
+    // widget was disposed"), so everything below it never ran — the inline
+    // audio kept playing after the book was closed, the completion subscription
+    // leaked and the scroll controller was never disposed.
+    final int start = source.indexOf('void dispose() {');
+    expect(start, greaterThan(-1), reason: 'dispose() not found');
+    final int end = source.indexOf('\n  }\n', start);
+    expect(end, greaterThan(start));
+    final String body = source.substring(start, end);
+
+    expect(body, isNot(contains('ref.')),
+        reason: 'Dispose runs after `ref` is unusable; dependencies must be '
+            'captured in didChangeDependencies');
+    for (final captured in <String>['_bookRepository', '_audioService',
+      '_zenAmbient']) {
+      expect(source, contains('$captured = ref.read('),
+          reason: '$captured must be captured while ref is alive');
+      expect(body, contains(captured));
+    }
+    expect(source, contains('_scaffoldMessenger = ScaffoldMessenger.maybeOf('));
+    expect(body, contains('_scaffoldMessenger'));
   });
 }

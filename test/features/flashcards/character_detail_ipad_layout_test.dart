@@ -8,9 +8,18 @@
 ///     also lets the adoption ledger scan this file.
 ///  2. **At expanded the sections stop being a stack behind pills.** They become
 ///     side-by-side columns and the pill bar is not built (its only job was
-///     jumping between stacked sections); the anatomy `PageView` becomes a row
-///     of component cards, since a swipe carousel on a wide screen hides content
-///     and fights two-finger trackpad scrolling.
+///     jumping between stacked sections).
+///  3. **The anatomy layout measures its own slice, not the window.** Rule 1
+///     fixed the *page* gate and left the anatomy one reading
+///     `window.isExpanded`, which is a different question: at expanded the
+///     sections are columns, so the anatomy widget is handed roughly half a
+///     column — about 285dp on a 1366dp iPad. Four component cards in a `Row` of
+///     `Expanded` then got ~70dp each, and since the card's own row is a 60dp
+///     radical tile plus a 16dp gap (neither of which shrinks), the definition
+///     text was left two pixels and wrapped one character per line while the
+///     headers overlapped into `ANANATOMIEOMIE`. It now sits behind a
+///     `LayoutBuilder` and shows a `Wrap` only when two minimum-width cards
+///     genuinely fit, falling back to the carousel otherwise.
 ///
 /// The sections need the dictionary repository and the AI-context provider to
 /// render, so — like `book_reader_toolbar_density_test.dart` — these layout
@@ -104,29 +113,48 @@ void main() {
   });
 
   group('the anatomy pager', () {
-    test('expanded shows every component at once', () {
+    test('the layout is decided by the section width, not the window', () {
       final String anatomy = body('Widget _buildAnatomySection(');
-      final int gate = anatomy.indexOf('if (context.zenWindow.isExpanded)');
-      // The narrow path is the `return Column(` below the expanded early return,
-      // so this slice cannot reach the carousel or its controller.
-      final int narrow = anatomy.indexOf('return Column(', gate);
-      expect(gate, greaterThan(-1));
-      expect(narrow, greaterThan(gate));
-      final String expandedBranch = anatomy.substring(gate, narrow);
-      expect(expandedBranch, contains('_buildAnatomyCard('));
-      expect(expandedBranch, contains('Expanded('));
-      expect(expandedBranch, isNot(contains('_pageController')),
+      expect(anatomy, contains('LayoutBuilder('),
+          reason: 'A widget handed a narrow slice of a wide window has to '
+              'measure the slice it was given');
+      expect(anatomy, contains('constraints.maxWidth'));
+      expect(anatomy, isNot(contains('zenWindow')),
+          reason:
+              'Gating on the window class is what put four cards into a 285dp '
+              'column on an iPad: ~70dp each, so the 60dp tile plus its 16dp gap '
+              'left the text two pixels and it wrapped one character per line');
+    });
+
+    test('cards are never seated below their minimum width', () {
+      final String anatomy = body('Widget _buildAnatomySection(');
+      expect(anatomy, contains('_anatomyCardMinWidth'));
+      expect(anatomy, contains('_anatomyCardGap'));
+      expect(anatomy, contains('columns < 2'),
+          reason: 'Side by side only when two cards actually fit');
+      expect(anatomy, contains('_buildAnatomyPager('));
+    });
+
+    test('every component is shown at once when there is room', () {
+      final String anatomy = body('Widget _buildAnatomySection(');
+      expect(anatomy, contains('Wrap('),
+          reason: 'Wrapping shows them all rather than paging');
+      expect(anatomy, isNot(contains('_pageController')),
           reason: 'With every card visible there is nothing to page to');
     });
 
-    test('the carousel survives on the narrow path', () {
-      final String anatomy = body('Widget _buildAnatomySection(');
-      final int expanded = anatomy.indexOf('if (context.zenWindow.isExpanded)');
-      final int pageView = anatomy.indexOf('PageView.builder(');
-      expect(pageView, greaterThan(expanded),
-          reason:
-              'The carousel must only exist below the expanded early return');
-      expect(anatomy, contains('controller: _pageController'));
+    test('the carousel survives as the narrow fallback', () {
+      final String pager = body('Widget _buildAnatomyPager(');
+      expect(pager, contains('PageView.builder('));
+      expect(pager, contains('controller: _pageController'));
+    });
+
+    test('the component header cannot overflow its card', () {
+      final String card = body('Widget _buildAnatomyCard(');
+      expect(card, contains('Flexible('),
+          reason: 'The label is wider than a narrow card and must be allowed to '
+              'shrink, or the headers run together into ANANATOMIEOMIE');
+      expect(card, contains('TextOverflow.ellipsis'));
     });
   });
 }

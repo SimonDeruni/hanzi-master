@@ -502,6 +502,96 @@ void main() {
       expect(chapters.single.chapterIndex, 1);
     });
   });
+
+  group('collection summaries', () {
+    // What describes a collection on the shelf and inside its book: what is
+    // gathered in these poems and what reading them together gives. The poet's
+    // biography is a separate text for the author card, and until the collection
+    // summary existed the card had nothing to show but a list of poem titles.
+    late Map<String, dynamic> collections;
+    late Map<String, dynamic> biographies;
+
+    setUpAll(() {
+      collections = jsonDecode(
+        File(poetryCollectionsAsset).readAsStringSync(),
+      ) as Map<String, dynamic>;
+      biographies = jsonDecode(
+        File(poetBiosAsset).readAsStringSync(),
+      ) as Map<String, dynamic>;
+    });
+
+    test('every published poet has one collection summary on disk', () {
+      final authors = poems
+          .map((poem) => (poem['sourceName'] ?? '').toString().trim())
+          .toSet();
+
+      expect(collections.keys.toSet(), authors,
+          reason: 'a missing summary puts the poem titles back on the card');
+      for (final entry in collections.entries) {
+        final value = entry.value as Map<String, dynamic>;
+        expect((value['summary'] as String).trim().length, greaterThan(20),
+            reason: '${entry.key} needs a real sentence');
+        expect((value['summary_en'] as String).trim(), isNotEmpty,
+            reason: entry.key);
+        // Provenance, as with the biographies: a model-written summary must not
+        // pass for a sourced one.
+        expect(value['origin'], isNotNull, reason: entry.key);
+        expect(value['source'], isNotNull, reason: entry.key);
+      }
+    });
+
+    test('the summary describes the collection, not the poet', () {
+      for (final author in collections.keys) {
+        final summary = (collections[author]['summary'] as String).trim();
+        final biography = (biographies[author]['summary'] as String).trim();
+        expect(summary, isNot(biography),
+            reason: '$author: the card would repeat the author card');
+      }
+    });
+
+    test('every collection summary is translated into every shipped locale',
+        () {
+      for (final code in [...localizedContentLanguageCodes, 'en']) {
+        final file = File('assets/data/l10n/poetry_collections_$code.json');
+        expect(file.existsSync(), isTrue,
+            reason: 'poetry_collections_$code.json');
+        final values =
+            jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+        expect(values.keys.toSet().difference(collections.keys.toSet()), isEmpty,
+            reason: '$code translates a poet the store does not publish');
+        for (final author in collections.keys) {
+          expect((values[author] as String?)?.trim() ?? '', isNotEmpty,
+              reason: '$code / $author');
+        }
+      }
+    });
+
+    test('the repository prefers the summary and keeps the bio as fallback',
+        () {
+      final repository = File(
+        'lib/features/reading/data/repositories/book_repository.dart',
+      ).readAsStringSync();
+
+      expect(repository, contains('poetryCollectionsAsset'));
+      expect(repository, contains('poetryCollectionsEnAsset'));
+      expect(repository, contains('...biographies.\$1,'),
+          reason: 'the biography still describes a poet with no summary');
+      expect(repository, contains('...collections.\$1,'),
+          reason: 'the collection summary must win when it exists');
+    });
+
+    test('the shelf card can no longer rebuild collections without them', () {
+      final library = File(
+        'lib/features/media/presentation/screens/story_library_screen.dart',
+      ).readAsStringSync();
+
+      expect(library, contains('poetryCollectionsProvider'));
+      expect(library, contains('.localizedSummary('),
+          reason: 'the card previews the collection summary');
+    });
+  });
 }
+
+
 
 

@@ -343,5 +343,15 @@ on real takes.
   between the current narrow win and tone feedback on every phrase the shadowing studio
   and Echo Hall show. It is also what would let the graph's two strokes be **time-aligned**
   instead of merely comparable, which is the one caveat the graph's own note has to admit.
+- ~~**The panel's copy, and its thirteen translations**~~ **Done 2026-09-29** — the
+  lightbulb opened a single 590-character paragraph (880 with the shadowing studio's
+  phrase note) and it was **English in every locale**, because the seven `toneGraph*` keys
+  existed only in `app_en.arb` and `gen-l10n` copies the template into any locale that
+  lacks them. It is four bullets now, plus two for the phrase note, hand-written in all 14
+  locales (10,158 → 7,399 characters); the shape is pinned per locale in
+  `test/unit_tests/l10n_arb_parity_test.dart` and the rule lives in
+  `docs/LOCALIZATION_PIPELINE.md` §5b. What the note *admits* — the two strokes are not
+  time-aligned — is unchanged, and so is the sentence the panel exists for: one stroke
+  never means you were wrong.
 
 

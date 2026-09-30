@@ -2407,6 +2407,11 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'スコア: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'ピンインまたは意味で検索…';
 
   @override
@@ -2574,28 +2579,28 @@ class AppLocalizationsJa extends AppLocalizations {
   String get toneGraph => '声調ピッチグラフ';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'あなたの声';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => 'ターゲット';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'このテイクではピッチが測定されなかったため、あなたの声を描画できません。破線は、あなたが目指していた形です。';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'ここでは破線がフレーズの声調の形で、等間隔に並んでいます。\n録音内で各音節がどこから始まるかは分からないため、位置ではなく形を比べてください。';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'このグラフの見方';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'このグラフの見方';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      '左から右へが時間、上下が音の高さです。声の高さであって、大きさではありません。\n線の高さではなく向きを読み取ります：1 は高く平ら · 2 は上がる · 3 は低く下がる · 4 は高い位置から落ちる。\n最初の線が目指した声調です。2本目の線は、別の声調が聞き取れたときだけ描かれます。\n線が1本なら、目標どおりか、声調が測定されなかったということ。決して「間違い」ではありません。';
 
   @override
   String get traceLabel => 'なぞり書き';
@@ -3310,11 +3315,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get poetry => '詩歌・漢詩';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · ブックマークを削除しました';
+  String get bookmarkRemoved => 'ブックマークを削除しました';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · ブックマークを追加しました: 第$chapter章';
+    return 'ブックマークを追加しました: 第$chapter章';
   }
 
   @override

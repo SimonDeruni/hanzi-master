@@ -6,6 +6,7 @@ import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/drawing_canvas.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_session_app_bar.dart';
+import 'package:hanzi_master/shared/widgets/swipe_to_grade_hint.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -208,29 +209,15 @@ class _RecallModeWidgetState extends ConsumerState<RecallModeWidget> {
               ),
 
             if (_isRevealed && !_showScratchpad)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
-                child: Column(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.swipeToGrade,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white54 : Colors.black45,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '⬅️ ${AppLocalizations.of(context)!.again} ➡️ ${AppLocalizations.of(context)!.good} ⬆️ ${AppLocalizations.of(context)!.easy} ⬇️ ${AppLocalizations.of(context)!.hard}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: isDark ? Colors.white70 : Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
+              const Padding(
+                padding: SwipeToGradeHint.stripPadding,
+                // The shared legend, not a local copy of the old emoji string.
+                // `'⬅️ …'` renders as empty tofu boxes wherever the emoji font is
+                // missing, and it could not localize the four names
+                // independently. `SwipeToGradeHint` draws the same four grades as
+                // tinted Hanko chips, so the legend teaches the gesture with the
+                // colours the swipe is about to stamp on the card.
+                child: SwipeToGradeHint(),
               ),
           ],
         ),

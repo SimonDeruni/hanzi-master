@@ -2478,6 +2478,11 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'स्कोर: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'पिनयिन या अर्थ द्वारा खोजें...';
 
   @override
@@ -2648,28 +2653,28 @@ class AppLocalizationsHi extends AppLocalizations {
   String get toneGraph => 'स्वर ग्राफ़';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'आपकी आवाज़';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => 'लक्ष्य';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'इस टेक में कोई पिच नहीं मापी गई, इसलिए आपकी आवाज़ के लिए खींचने को कुछ नहीं है। डैश वाला स्ट्रोक अभी भी वह आकार है जिसका आपने लक्ष्य रखा था।';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'यहाँ डैश वाली रेखा वाक्यांश के स्वरों का आकार है, समान दूरी पर।\nहमें पता नहीं कि आपकी रिकॉर्डिंग में हर शब्दांश कहाँ से शुरू होता है, इसलिए आकार की तुलना करें, स्थिति की नहीं।';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'इस ग्राफ़ को कैसे पढ़ें';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'इस ग्राफ़ को कैसे पढ़ें';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'बाएँ से दाएँ समय है। ऊपर-नीचे आवाज़ की ऊँचाई है: आपकी आवाज़ कितनी ऊँची है, कितनी तेज़ नहीं।\nरेखा की दिशा पढ़ें, उसकी ऊँचाई नहीं: 1 ऊँचा और स्थिर · 2 चढ़ता हुआ · 3 नीचे झुकता हुआ · 4 ऊँचे से गिरता हुआ।\nपहली रेखा वह स्वर है जिसका आपने लक्ष्य रखा था; दूसरी रेखा तभी बनती है जब कोई भिन्न स्वर सुनाई दे।\nएक ही रेखा का अर्थ है कि आप लक्ष्य तक पहुँचे या स्वर मापा नहीं गया — कभी नहीं कि आप ग़लत थे।';
 
   @override
   String get traceLabel => 'ट्रेस करें';
@@ -3410,11 +3415,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get poetry => 'कविता';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · बुकमार्क हटाया गया';
+  String get bookmarkRemoved => 'बुकमार्क हटाया गया';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · बुकमार्क जोड़ा गया: अध्याय $chapter';
+    return 'बुकमार्क जोड़ा गया: अध्याय $chapter';
   }
 
   @override

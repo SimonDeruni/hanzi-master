@@ -779,6 +779,7 @@
   "scenarioRemoved": "Skenario dihapus",
   "scenarioSavedFindInCustomTab": "Skenario tersimpan! Temukan di tab Kustom.",
   "score": "Skor: {score} / {total}",
+  "scoreValue": "Skor: {value}",
   "searchByPinyinOrMeaning": "Cari berdasarkan pinyin atau arti...",
   "searchByTitleOrTag": "Cari berdasarkan judul atau tag...",
   "searchDictionaryOrTypeCustom": "Cari di kamus atau ketik kustom",
@@ -1052,8 +1053,8 @@
   "novels96": "Novel (96)",
   "microReads": "Bacaan Mikro",
   "poetry": "Puisi",
-  "bookmarkRemoved": "书签已移除 · Markah buku dihapus",
-  "bookmarkAdded": "已添加书签 · Markah buku ditambahkan: Bab {chapter}",
+  "bookmarkRemoved": "Markah buku dihapus",
+  "bookmarkAdded": "Markah buku ditambahkan: Bab {chapter}",
   "readingVocabulary": "Membaca & Kosakata",
   "vocabularyBatchUnitindex1": "Batch Kosakata {index}",
   "yourDailyDropIsHere1": "Sajian Harian Anda telah tiba! ✨",
@@ -4151,5 +4152,12 @@
   "storyCategoryChineseEpics": "Epos Tiongkok",
   "storyCategorySupernaturalFolklore": "Supranatural & cerita rakyat",
   "storyCategoryChinesePoetry": "Puisi Tiongkok",
-  "storyCategoryTangPoetry": "Puisi Tang"
+  "storyCategoryTangPoetry": "Puisi Tang",
+  "toneGraphHowToReadTitle": "Cara membaca grafik ini",
+  "toneGraphHowToReadBody": "Kiri ke kanan adalah waktu. Atas ke bawah adalah tinggi nada: seberapa tinggi suara Anda, bukan seberapa keras.\nBaca arah guratannya, bukan tingginya: 1 tinggi dan rata · 2 naik · 3 turun rendah · 4 jatuh dari tinggi.\nGuratan pertama adalah nada yang Anda tuju; guratan kedua hanya muncul saat nada lain terdengar.\nSatu guratan berarti Anda tepat sasaran atau nadanya tidak terukur — bukan berarti Anda salah.",
+  "toneGraphHowToReadTooltip": "Cara membaca grafik ini",
+  "toneGraphHowToReadPhraseNote": "Di sini guratan putus-putus adalah bentuk nada frasa, berjarak seragam.\nKami tidak tahu di mana tiap suku kata dimulai dalam rekaman Anda, jadi bandingkan bentuknya, bukan posisinya.",
+  "toneGraphNoPitchMeasured": "Tidak ada nada yang terukur dalam rekaman ini, jadi tidak ada yang bisa digambar untuk suara Anda. Guratan putus-putus tetap merupakan bentuk yang Anda tuju.",
+  "toneGraphTarget": "Target",
+  "toneGraphYourVoice": "Suara Anda"
 }

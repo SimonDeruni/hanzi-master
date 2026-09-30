@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
@@ -157,10 +159,47 @@ class _SwipeableFlashcardState extends State<SwipeableFlashcard>
     }
   }
 
+  /// The study card's width cap.
+  ///
+  /// [ZenContentWidth.study] was declared for exactly this surface — *"A study
+  /// surface (flashcard, quiz)"* — and was never applied by anything. See [build]
+  /// for why leaving it unbounded is what made the mastery seal land off-screen
+  /// on an iPad.
+  static const double _maxCardWidth = ZenContentWidth.study;
+
   @override
   Widget build(BuildContext context) {
-    final double rotateAngle = _panOffset.dx * 0.002;
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // **Why the cap belongs here.** The seal is pinned 24dp from the card's
+        // right edge, and the whole stack above the painter is rotated about the
+        // card's *centre*. Unbounded, that corner sits ~450dp from the pivot on
+        // a 1024dp iPad but only ~150dp on a phone, so the very same tilt — up
+        // to 13.7° at the 120dp grade threshold — flings the seal ~100dp on iPad
+        // against ~35dp on a phone; with the simultaneous 120dp translation it
+        // left the window and got sliced. Capping the surface shortens that lever
+        // arm to phone-like numbers, and leaves ~300dp of window either side of
+        // the seal at full swipe.
+        //
+        // Height is preserved so the card still fills its pane, and a host
+        // narrower than the cap is bit-for-bit unchanged.
+        final double width = constraints.maxWidth.isFinite
+            ? math.min(constraints.maxWidth, _maxCardWidth)
+            : _maxCardWidth;
+        return Center(
+          child: SizedBox(
+            width: width,
+            height:
+                constraints.maxHeight.isFinite ? constraints.maxHeight : null,
+            child: _buildCard(_panOffset.dx * 0.002),
+          ),
+        );
+      },
+    );
+  }
 
+  /// The card itself, at its final — possibly capped — size.
+  Widget _buildCard(double rotateAngle) {
     return GestureDetector(
       onPanStart: _onPanStart,
       onPanUpdate: _onPanUpdate,

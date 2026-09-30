@@ -11,6 +11,7 @@ import 'ai_explainer_sheet.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'character_chat_sheet.dart';
 import 'package:hanzi_master/core/services/character_lookup_service.dart';
+import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:lpinyin/lpinyin.dart';

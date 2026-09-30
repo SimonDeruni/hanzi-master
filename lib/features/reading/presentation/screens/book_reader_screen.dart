@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/audio_quota_service.dart';
+import 'package:hanzi_master/features/reading/data/repositories/book_repository.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/domain/logic/book_reading_progress.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
@@ -211,37 +212,60 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
   /// a defunct `BuildContext`.
   ScaffoldMessengerState? _scaffoldMessenger;
 
+  /// The reader's teardown dependencies, captured while `ref` is still usable.
+  ///
+  /// Riverpod marks a `ConsumerState`'s `ref` unusable *before* `State.dispose`
+  /// runs, so `ref.read(...)` there throws. The first call in `dispose` used to
+  /// be one, which meant everything after it never happened: the inline audio
+  /// kept playing after the book was closed, the completion subscription leaked,
+  /// the soundscape kept running and the scroll controller was never disposed.
+  BookRepository? _bookRepository;
+  AudioService? _audioService;
+  ZenAmbientService? _zenAmbient;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _scaffoldMessenger = ScaffoldMessenger.maybeOf(context);
+    _bookRepository = ref.read(bookRepositoryProvider);
+    _audioService = ref.read(audioServiceProvider);
+    _zenAmbient = ref.read(zenAmbientServiceProvider.notifier);
   }
+
+  /// Set at the top of [dispose]; late progress callbacks read it instead of
+  /// `mounted`, which is still true while `dispose` runs.
+  bool _disposeStarted = false;
 
   @override
   void dispose() {
+    _disposeStarted = true;
     WidgetsBinding.instance.removeObserver(this);
     _progressSaveDebounce?.cancel();
-    _saveProgress();
-    // Persist last reading session
-    ref.read(bookRepositoryProvider).saveReadingSession(
-          bookId: widget.book.id,
-          chapterIndex: _currentIndex,
-          sentenceIndex: _currentReadingSentenceIndex,
-        );
-    // Record reading event for streak
-    ref.read(bookRepositoryProvider).recordReadingEvent();
+    // Every dependency below is captured: see [_bookRepository].
+    final repository = _bookRepository;
+    if (repository != null) {
+      _persistProgress(repository: repository, refreshProviders: false);
+      repository.saveReadingSession(
+        bookId: widget.book.id,
+        chapterIndex: _currentIndex,
+        sentenceIndex: _currentReadingSentenceIndex,
+      );
+      // Record reading event for streak
+      repository.recordReadingEvent();
+    }
     _sleepTimer?.cancel();
     _audioCompleteSub?.cancel();
     _audioErrorSub?.cancel();
     // Inline reading-aloud belongs to this screen; a loaded background audiobook
     // belongs to the shell's Now Playing bar, so leave that one running.
-    final AudioService audio = ref.read(audioServiceProvider);
-    if (!audio.isAudiobookLoaded) unawaited(audio.stop());
+    final AudioService? audio = _audioService;
+    if (audio != null && !audio.isAudiobookLoaded) unawaited(audio.stop());
     // Belt and braces: a `SnackBar` belongs to the root `ScaffoldMessenger`, so
     // without this a notice raised in the reader would still be on screen after
     // the reader is dismissed.
     _scaffoldMessenger?.clearSnackBars();
-    unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
+    final ambient = _zenAmbient;
+    if (ambient != null) unawaited(ambient.pause());
     _scrollController.dispose();
     super.dispose();
   }
@@ -915,7 +939,23 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
     }
   }
 
+  /// Persists the reading position and refreshes what derives from it.
   void _saveProgress() {
+    _persistProgress(
+      repository: ref.read(bookRepositoryProvider),
+      refreshProviders: true,
+    );
+  }
+
+  /// Writes the position through a repository resolved by the caller.
+  ///
+  /// Split out so [dispose] can pass the repository captured in
+  /// `didChangeDependencies`: `ref` is unusable by then, and refreshing derived
+  /// progress providers would be pointless anyway.
+  void _persistProgress({
+    required BookRepository repository,
+    required bool refreshProviders,
+  }) {
     if (widget.chapters.isEmpty) return;
     final chapterNumber = widget.chapters[_currentIndex].chapterIndex;
     final sentenceIndex = _isAudiobookActive
@@ -927,8 +967,7 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       chapterIndex: _currentIndex,
       sentenceIndex: sentenceIndex,
     );
-    ref
-        .read(bookRepositoryProvider)
+    repository
         .saveReadingProgress(
           bookId: widget.book.id,
           chapterIndex: chapterNumber,
@@ -936,11 +975,10 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
           percentage: fraction,
         )
         .then((_) {
-      if (mounted) {
-        ref.invalidate(bookProgressProvider(widget.book.id));
-        ref.invalidate(bookDetailedProgressProvider(widget.book.id));
-        ref.invalidate(inProgressBooksProvider);
-      }
+      if (!refreshProviders || _disposeStarted) return;
+      ref.invalidate(bookProgressProvider(widget.book.id));
+      ref.invalidate(bookDetailedProgressProvider(widget.book.id));
+      ref.invalidate(inProgressBooksProvider);
     });
   }
 
@@ -1056,10 +1094,15 @@ class _BookReaderScreenState extends ConsumerState<BookReaderScreen>
       await repo.saveBookmark(newBm);
       if (mounted) {
         final l10n = AppLocalizations.of(context)!;
+        // `bookmarkAdded` takes the chapter it was added to. Interpolating the
+        // key itself printed the method's closure into the toast — "Closure:
+        // (Object) => String from Function 'bookmarkAdded'" — because an ARB
+        // value with a `{placeholder}` is generated as a method, not a String.
+        // The chapter number, not the "Chapitre 2 sur 20" label, is what the
+        // per-locale templates wrap ("第{chapter}章", "제{chapter}장").
         ZenToast.success(
           context,
-          '${l10n.bookmarkAdded} · '
-          '${l10n.chapterXOfY(chapter.chapterIndex, widget.chapters.length)}',
+          l10n.bookmarkAdded(chapter.chapterIndex),
         );
       }
     }

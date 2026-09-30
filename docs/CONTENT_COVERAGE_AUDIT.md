@@ -182,6 +182,53 @@ parse fails on the first character.
 
 ---
 
+## 3. Covers — every book has one, and the provenance splits three ways
+
+Audited 2026-09-30 with `python scratch/cover_audit.py` (the inventory) and
+`python scratch/cover_bytes_check.py` (the bytes), after feedback asking whether
+every book has a cover and which of them were *fetched* rather than made.
+
+| family | count | where it came from | state |
+|---|---|---|---|
+| library books — CC0 fetches | 23 | Cleveland Open Access API, `book_cover_manifest.json` | 600x800, licence + hash + accession recorded |
+| library books — Build #184 automation | 90 | unattributed | **200x300 and friends** (128x192 … 386x500) |
+| poet collections | 100 | Cleveland CC0, `poetry_cover_manifest.json` | 600x800, licence + hash recorded |
+| poem plates | 100 | project-owned, `test/fixtures/poetry_cover_manifest.json` (schema v2) | 600x800, hash + perceptual-distinctness checked |
+
+**Nothing is missing.** 113/113 catalog books and 100/100 poet collections have a
+file. The two places that draw a cover in code — `CalligraphicBookCover` for a
+poetry-category book, and a lone poem's plate — are design decisions, not a gap: the
+11 books that had no file until 2026-09-30 were every poetry anthology, and 10 of
+them still draw the code plate in the reading grid.
+
+**Guarded now:** `test/unit_tests/book_cover_manifest_test.dart` — every catalog book
+and every poet collection has its file (via the app's own `bookCoverAssetPath` /
+`poetryDigest`), every manifest entry matches its file's path and SHA-256 and is CC0
+art made before 1929 at 600x800, and no image is bundled twice. Probed by deleting a
+cover: three of the four checks fail, by name.
+
+**Open — quality, not coverage:**
+
+1. **The 90 unattributed covers are thumbnails.** 89 of 113 book covers are not
+   600x800: 200x300 for most, `the_art_of_war` at 128x192, others up to 386x500 with
+   at least four different aspect ratios. These are the ones Build #184 called
+   *"96 authentic high-res book covers"*, and they are the only covers in the app
+   with no provenance record at all. `scratch/book_covers.py` refuses to overwrite an
+   existing cover *by design* ("a hand-picked cover is a decision, not a gap to
+   fill"), so re-sourcing them needs a `--replace` mode in that script. **Not done:
+   it restyles 90 covers, which is a product decision.**
+2. **Two poem plates are perceptually identical** — a pre-existing failure in
+   `test/unit_tests/poetry_cover_manifest_test.dart`: `poetry_tang_d1d69a75` and
+   `poetry_tang_4dc5fa06` sit at dHash distance 5 where the suite demands > 5. They
+   are project-owned plates, which the *reader* no longer shows (it draws its own
+   cover) but the media library still loads.
+3. **Ten fetched covers are not displayed anywhere yet.** The ten poetry-category
+   books (诗经, 楚辞, 曹操诗集, 花间集, 南唐二主词, 宋词, 元曲, 纳兰性德, 千家诗,
+   唐诗三百首) draw their cover in code, so their new 600x800 CC0 files are carried
+   for any view that resolves the asset rather than the plate.
+
+---
+
 ## Headline
 
 - **Poetry needs nothing.** 100/100 poet biographies in 14 locales; 4,237/4,237

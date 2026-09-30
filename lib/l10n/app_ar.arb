@@ -876,6 +876,7 @@
   "scenarioRemoved": "تمت إزالة السيناريو",
   "scenarioSavedFindInCustomTab": "تم حفظ السيناريو! تجده في علامة التبويب المخصصة.",
   "score": "النتيجة: {score} / {total}",
+  "scoreValue": "النتيجة: {value}",
   "searchByPinyinOrMeaning": "ابحث بالبينيين أو المعنى...",
   "searchByTitleOrTag": "ابحث بالعنوان أو الوسم...",
   "searchDictionaryOrTypeCustom": "ابحث في القاموس أو اكتب كلمة مخصصة",
@@ -1149,8 +1150,8 @@
   "novels96": "روايات (96)",
   "microReads": "قراءات قصيرة",
   "poetry": "شعر",
-  "bookmarkRemoved": "书签已移除 · تمت إزالة الإشارة المرجعية",
-  "bookmarkAdded": "已添加书签 · تمت إضافة إشارة مرجعية: الفصل {chapter}",
+  "bookmarkRemoved": "تمت إزالة الإشارة المرجعية",
+  "bookmarkAdded": "تمت إضافة إشارة مرجعية: الفصل {chapter}",
   "readingVocabulary": "القراءة والمفردات",
   "vocabularyBatchUnitindex1": "دفعة المفردات {index}",
   "yourDailyDropIsHere1": "جرعتك اليومية هنا! ✨",
@@ -4248,5 +4249,12 @@
   "storyCategoryChineseEpics": "الملاحم الصينية",
   "storyCategorySupernaturalFolklore": "الخارق والفولكلور",
   "storyCategoryChinesePoetry": "الشعر الصيني",
-  "storyCategoryTangPoetry": "شعر تانغ"
+  "storyCategoryTangPoetry": "شعر تانغ",
+  "toneGraphHowToReadTitle": "كيفية قراءة هذا الرسم البياني",
+  "toneGraphHowToReadBody": "من اليسار إلى اليمين يمثل الزمن. ومن الأعلى إلى الأسفل ارتفاع الصوت: مدى ارتفاع نبرتك، لا مدى علوّها.\nاقرأ اتجاه الخط لا ارتفاعه: النغمة 1 عالية ومستوية · 2 صاعدة · 3 هابطة إلى الأسفل · 4 نازلة من الأعلى.\nالخط الأول هو النغمة التي كنت تستهدفها؛ ولا يُرسم خط ثانٍ إلا عندما تُسمَع نغمة مختلفة.\nخط واحد يعني أنك أصبت الهدف أو أن النغمة لم تُقدَّر — ولا يعني أبدًا أنك أخطأت.",
+  "toneGraphHowToReadTooltip": "كيفية قراءة هذا الرسم البياني",
+  "toneGraphHowToReadPhraseNote": "هنا يمثل الخط المتقطع نغمات العبارة، موزعة بالتساوي.\nلا نعرف أين يبدأ كل مقطع لفظي في تسجيلك، لذا قارن الأشكال لا المواقع.",
+  "toneGraphNoPitchMeasured": "لم يتم قياس أي طبقة صوت في هذه المحاولة، لذا لا يوجد شيء لرسمه لصوتك. الخط المتقطع لا يزال يمثل الشكل الذي كنت تستهدفه.",
+  "toneGraphTarget": "الهدف",
+  "toneGraphYourVoice": "صوتك"
 }

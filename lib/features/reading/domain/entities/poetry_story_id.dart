@@ -10,6 +10,20 @@ const poetBiosAsset = 'assets/data/poet_bios.json';
 /// the 13 selectable content locales, so `loadLocalizedTitlesById` skips it.
 const poetBiosEnAsset = 'assets/data/l10n/poet_bios_en.json';
 
+/// The **collection** summaries (Chinese), keyed by the poet's Chinese name.
+///
+/// A different text from [poetBiosAsset]: the biography is the person, this is
+/// the contents — what is gathered in the poet's poems and what a learner gets
+/// from reading them together. Both are shown, in different places: the summary
+/// describes the collection card and the book, the biography answers the author
+/// card through `BundledAuthorBiographyService`.
+const poetryCollectionsAsset = 'assets/data/poetry_collections.json';
+
+/// The English collection summaries, for the same reason [poetBiosEnAsset] is
+/// read separately.
+const poetryCollectionsEnAsset =
+    'assets/data/l10n/poetry_collections_en.json';
+
 /// Book-id prefix for one poet's collection (`poetry_author_<digest>`).
 const String poetryAuthorBookPrefix = 'poetry_author_';
 

@@ -28,8 +28,9 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 ///   a replay of your own attempt (the canvas already supports `readOnly` +
 ///   `initialUserStrokes`).
 ///
-/// Reachable from the deck screen's iPad insight rail. Nothing here is iPad-only
-/// in the *logic* sense: on a phone the same screen lays out as a single column.
+/// Reachable from the deck screen's action block, beside Review / Story / Role
+/// play (`Practice Writing`). Nothing here is iPad-only in the *logic* sense: on
+/// a phone the same screen lays out as a single column.
 class WritingBenchScreen extends StatefulWidget {
   const WritingBenchScreen({
     super.key,

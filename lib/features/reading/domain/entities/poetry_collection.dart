@@ -147,7 +147,7 @@ BookModel poetryCollectionToBook(
 }) {
   final firstPoem = collection.poems.first;
   final authorEn = (firstPoem['author_en'] ?? '').toString().trim();
-  final biography = collection.localizedSummary(localeCode);
+  final summary = collection.localizedSummary(localeCode);
   return BookModel(
     id: collection.id,
     title: collection.author,
@@ -155,11 +155,12 @@ BookModel poetryCollectionToBook(
     author: collection.author,
     authorEn: authorEn.isNotEmpty ? authorEn : collection.author,
     category: 'Chinese Poetry',
-    // The poet's real biography, condensed from the corpus's own author index
-    // and translated; the poem titles are only the fallback for a poet we could
-    // not source one for.
-    description: biography.isNotEmpty
-        ? biography
+    // What is *in* the collection — its own summary, translated. The poet's
+    // biography is a separate text (the person, not the contents) and reaches the
+    // author card through `BundledAuthorBiographyService`; the poem titles are
+    // the last resort for a collection we could not describe at all.
+    description: summary.isNotEmpty
+        ? summary
         : _joinTitles(collection, 'title'),
     descriptionEn: collection.summaryEn.isNotEmpty
         ? collection.summaryEn

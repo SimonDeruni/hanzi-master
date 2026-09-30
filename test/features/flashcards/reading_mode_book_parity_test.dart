@@ -15,6 +15,7 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/settings
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/reading_mode.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/swipe_to_grade_hint.dart';
+import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/shared/widgets/zen_flip_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -191,7 +192,76 @@ void main() {
         }
       }
     });
+    // Where the legend's cost lands, measured on the smallest supported screen.
+    // The legend is a sibling of the card's `Expanded`, so every pixel of its
+    // strip comes straight out of the surface the learner has to swipe on:
+    //
+    //   de 1.0x  surface 464 -> 347  (legend 101)
+    //   ru 2.0x  surface 464 -> 308  (legend 140)
+    //   de 2.0x  surface 464 -> 264  (legend 184)
+    //
+    // At 2x text the clamped chips stop fitting two to a row, so the legend is
+    // 82% taller than at 1x even though its own text is clamped to 1.3x: the
+    // row count, not the text scale, is what drives the strip. That residual is
+    // the deliberate balance (`SwipeToGradeHint`'s clamp comment), so these two
+    // tests pin it rather than forbid it — the card may not lose more than the
+    // legend is worth, and it may not be squeezed below a usable swipe target.
+    for (final String locale in <String>['de', 'ru', 'th']) {
+      for (final double scale in kTextScales) {
+        testWidgets('the strip costs the card the legend and nothing else',
+            (WidgetTester tester) async {
+          // A fresh test per combination: `_isRevealed` lives in the mode's
+          // State, so re-pumping inside one test would measure a card that is
+          // already revealed.
+          await pumpLocalizedScreen(
+            tester,
+            builder: _host,
+            locale: locale,
+            size: const Size(320, 568),
+            textScale: scale,
+          );
+
+          final double surface =
+              tester.getRect(find.byType(SwipeableFlashcard)).height;
+          await tester.tap(find.byType(ZenFlipCard));
+          await tester.pumpAndSettle();
+
+          final double spent =
+              surface - tester.getRect(find.byType(SwipeableFlashcard)).height;
+          final double legend =
+              tester.getRect(find.byType(SwipeToGradeHint)).height;
+
+          expect(
+            spent,
+            legend + SwipeToGradeHint.stripPadding.vertical,
+            reason: '$locale at ${scale}x, 320x568: the card lost '
+                '${spent}dp to a ${legend}dp legend, so something other than '
+                'the legend strip is taking surface',
+          );
+          // The measured cost of the strip, per worst-case combination, with
+          // 8dp of slack for font metrics. The numbers are the price of
+          // teaching the gesture under the card, and they are pinned: an extra
+          // 16dp of strip (the value four hosts used to carry) fails here.
+          const Map<String, double> spentCap = <String, double>{
+            'de@1.0': 117.0, // legend 101
+            'de@2.0': 200.0, // legend 184 — the worst case measured
+            'ru@1.0': 117.0,
+            'ru@2.0': 156.0, // legend 140
+            'th@1.0': 117.0,
+            'th@2.0': 156.0,
+          };
+          expect(
+            spent,
+            lessThanOrEqualTo(
+                spentCap['$locale@${scale.toStringAsFixed(1)}']! + 8),
+            reason: '$locale at ${scale}x, 320x568: the legend strip took '
+                '${spent}dp of the ${surface}dp swipe surface',
+          );
+        });
+      }
+    }
   });
+
   group('the mode dropped the old Material vocabulary', () {
     late String source;
 

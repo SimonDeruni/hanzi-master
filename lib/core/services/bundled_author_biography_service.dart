@@ -22,8 +22,15 @@ class AuthorBiography {
 
 /// Loads bundled, author-specific biographies and caches each locale once.
 ///
-/// Assets use a top-level JSON object whose keys are the exact `author` values
-/// from `grand_library_catalog.json` and whose values are biography strings.
+/// Two catalogues feed it, same shape (a top-level JSON object of author →
+/// biography), so a lookup is one pass over both:
+///
+///  * `assets/data/l10n/author_bios_<locale>.json` — keyed by the exact `author`
+///    values from `grand_library_catalog.json` (the prose classics).
+///  * `assets/data/l10n/poet_bios_<locale>.json` — keyed by the poet's Chinese
+///    name, which is the `author` of every poetry collection. Without it the
+///    author card on a poet's book had nothing to say: a poet is not in the
+///    prose catalogue, so "no explanation of the author" was all it could show.
 class BundledAuthorBiographyService {
   BundledAuthorBiographyService({AssetBundle? bundle})
       : _bundle = bundle ?? rootBundle;
@@ -33,6 +40,12 @@ class BundledAuthorBiographyService {
 
   final AssetBundle _bundle;
   final Map<String, Future<Map<String, String>>> _localeLoads = {};
+
+  /// The biography catalogues, in lookup order.
+  static const List<String> _catalogueFiles = <String>[
+    'assets/data/l10n/author_bios_%s.json',
+    'assets/data/l10n/poet_bios_%s.json',
+  ];
 
   /// Resolves [author] in [localeCode], falling back to the bundled English
   /// biography. Returns null only when the author is absent from both files.
@@ -65,22 +78,27 @@ class BundledAuthorBiographyService {
 
   Future<Map<String, String>> _loadLocale(String locale) =>
       _localeLoads.putIfAbsent(locale, () async {
-        try {
-          final source = await _bundle.loadString(
-            'assets/data/l10n/author_bios_$locale.json',
-          );
-          final decoded = jsonDecode(source);
-          if (decoded is! Map<String, dynamic>) return const {};
-          return Map.unmodifiable({
-            for (final entry in decoded.entries)
-              if (entry.value is String &&
-                  (entry.value as String).trim().isNotEmpty)
-                entry.key: (entry.value as String).trim(),
-          });
-        } on Object {
-          // A missing/corrupt regional file is a recoverable fallback case.
-          return const {};
+        // Every catalogue is optional: a missing or corrupt regional file is a
+        // recoverable fallback case, never a reason to lose the ones that load.
+        final merged = <String, String>{};
+        for (final template in _catalogueFiles) {
+          try {
+            final source =
+                await _bundle.loadString(template.replaceFirst('%s', locale));
+            final decoded = jsonDecode(source);
+            if (decoded is! Map<String, dynamic>) continue;
+            for (final entry in decoded.entries) {
+              final value = entry.value;
+              final text = value is Map
+                  ? (value['summary'] ?? '').toString().trim()
+                  : value.toString().trim();
+              if (text.isNotEmpty) merged[entry.key] = text;
+            }
+          } on Object {
+            continue;
+          }
         }
+        return Map.unmodifiable(merged);
       });
 
   static String normalizeLocale(String localeCode) {

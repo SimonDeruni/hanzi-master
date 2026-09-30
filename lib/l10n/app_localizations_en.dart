@@ -2467,6 +2467,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'Score: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'Search by pinyin or meaning...';
 
   @override
@@ -2649,7 +2654,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'On this graph the dashed stroke is the phrase’s tones, spaced evenly.\nWe cannot tell where each syllable starts in your recording, so compare the shapes, not the positions.';
 
   @override
   String get toneGraphHowToReadTitle => 'How to read this graph';
@@ -2659,7 +2664,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'Left to right is time. Up and down is pitch: how high your voice sits, not how loud it is.\nRead a stroke’s direction, not its height: 1 high and level · 2 rising · 3 dipping low · 4 falling from high.\nThe first stroke is the tone you aimed for; a second is drawn only when a different tone was heard.\nOne stroke means you matched it, or the tone was not measured — never that you were wrong.';
 
   @override
   String get traceLabel => 'Trace';
@@ -3394,11 +3399,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get poetry => 'Poetry';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · Bookmark removed';
+  String get bookmarkRemoved => 'Bookmark removed';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Bookmark added: 第(chapter)回';
+    return 'Bookmark added: Chapter $chapter';
   }
 
   @override

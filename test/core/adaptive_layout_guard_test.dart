@@ -147,11 +147,22 @@ void main() {
           <String>['maxWidth: 1100'],
       'lib/features/reading/presentation/screens/book_catalog_screen.dart':
           <String>[
-        'context.zenWindow.isExpanded && _previewBook != null',
+        'if (context.zenWindow.isExpanded &&',
+        '(_previewBook != null || _previewStory != null)) ...<Widget>[',
         'embedded: true',
+        // The pane owns no route, so the catalogue must hand it the way out —
+        // for the book pane and the story pane alike.
+        'onClose: _closeDetailPane,',
       ],
       'lib/features/reading/presentation/screens/book_detail_screen.dart':
-          <String>['final bool embedded;', 'automaticallyImplyLeading: false'],
+          <String>[
+        'final bool embedded;',
+        'automaticallyImplyLeading: false',
+        // Dismissal for the embedded pane, and the reason its cover drops the
+        // shared-element tag while embedded (the catalogue's card still has it).
+        'widget.embedded && widget.onClose != null',
+        'enabled: !widget.embedded',
+      ],
       // Part 2b: the Pencil plumbing and the iPad writing surface.
       'lib/features/flashcards/presentation/widgets/drawing_canvas.dart':
           <String>[

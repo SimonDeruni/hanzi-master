@@ -1,0 +1,802 @@
+{
+  "李白": {
+    "summary": "这组诗集汇聚了月光下的独酌、远别与壮游。诗人们在旷达与思乡间流转，展现自由不羁的浪漫情怀。学习这组诗，能让读者领略盛唐豪迈开阔的意境与深沉的友情。",
+    "summary_en": "This collection gathers moonlit drinking, distant farewells, and grand journeys. Readers experience untamed romanticism, shifting between freedom and homesickness, absorbing the vast imagery and deep friendships of the golden Tang era.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "杜甫": {
+    "summary": "这组诗集记录了战乱中的忧患、秋日登高的苍凉与对家国的深情。诗篇回旋于沧桑岁月与个人命运之间，读来沉郁顿挫，让学习者深刻体会历史的厚重与文人的赤子之心。",
+    "summary_en": "This collection records wartime anxieties, autumnal desolation, and profound devotion to the homeland. Moving between turbulent eras and personal fates, these heavy, resonant verses teach learners about historical weight and patriotic sincerity.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王维": {
+    "summary": "这组诗集展现了空灵的山水、幽深的竹林与孤寂的村舍。字里行间流淌着静谧与对亲友的绵长思念，引领学习者体悟自然之美与内心的安宁。",
+    "summary_en": "This collection presents ethereal landscapes, quiet bamboo groves, and solitary retreats. Overflowing with stillness and lingering longing for loved ones, these poems guide learners toward natural beauty and inner peace.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "孟浩然": {
+    "summary": "这组诗集描绘了春日的晨曦、江村的静夜与田园的闲适。诗景清幽自然，情感纯净含蓄，让学习者在简练的语言中感受山水之趣与隐逸之乐。",
+    "summary_en": "This collection portrays spring dawns, quiet river nights, and rural leisure. With serene natural scenery and pure, subtle emotions, it allows learners to experience the joy of landscapes and seclusion.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "白居易": {
+    "summary": "这组诗集触及原野芳草、冬日寒夜与乱世离散。语言平易真挚，融叙事与抒情于一体，带给学习者广阔的世俗生活画卷与深切的人文关怀。",
+    "summary_en": "This collection touches upon ancient grasses, winter nights, and wartime separations. Using accessible yet sincere language that blends narrative and lyricism, it offers learners a broad canvas of everyday life and deep human sympathy.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王昌龄": {
+    "summary": "这组诗集聚焦孤烟大漠、边塞战事与深闺离怨。慷慨悲壮与凄清婉转交织，激荡着报国之志与离别之苦，赋予学习者雄浑开阔的边塞意象与坚定气节。",
+    "summary_en": "This collection focuses on frontier deserts, wartime struggles, and separation sorrows. Blending heroic grandeur with poignant melancholy, it stirs ambitions and grief, granting learners majestic frontier imagery and steadfast integrity.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "杜牧": {
+    "summary": "这组诗集穿梭于历史遗迹、秋夜宫苑与繁华秦淮。诗篇充满对兴亡盛衰的凭吊与深沉感慨，赋予学习者沧海桑田的审美体验与含蓄隽永的唐代韵味。",
+    "summary_en": "This collection wanders through historical ruins, autumn palaces, and bustling rivers. Filled with reflections on the rise and fall of dynasties, it offers learners poignant aesthetic experiences of passing time and refined Tang elegance.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "李商隐": {
+    "summary": "这组诗集弥漫着夜雨残阳、锦瑟迷离与幽微的心事。情感缠绵悱恻，意象朦胧绮丽，带领学习者品味时光流转中的惆怅与极致的抒情艺术。",
+    "summary_en": "This collection is suffused with night rain, setting suns, and veiled emotional mysteries. With lingering, delicate sentiments and hazy, gorgeous imagery, it guides learners to savor the melancholy of passing time and exquisite lyricism.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "柳宗元": {
+    "summary": "该合集聚焦于冬日、孤寂与自然，展现了诗人被贬后的心境。通过这些诗篇，学习者能领悟在清冷山水中寻求精神自由的深沉意境与独特审美。",
+    "summary_en": "This collection focuses on winter, solitude, and nature, reflecting the poet's exiled state of mind. Readers gain insight into the profound artistic imagery and the pursuit of spiritual freedom amidst cold, desolate landscapes.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘禹锡": {
+    "summary": "这些诗作围绕历史兴衰、江水流转与时代变迁展开。阅读此集，学习者能深刻体会诗人对往事的怀念与对世事无常的哲学思考，领略豪迈的怀古情怀。",
+    "summary_en": "These poems center on historical rise and fall, flowing rivers, and the passage of time. Readers will grasp the poet's reflections on history and the impermanence of life, appreciating a grand, contemplative spirit.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张继": {
+    "summary": "合集收录了关于夜晚与旅途的诗篇，描绘了羁旅之思与静谧之美。学习者通过这些作品，能感受到深沉的孤独感与宁静的意境，体味古典诗歌的清雅韵味。",
+    "summary_en": "This collection gathers poems about nights and travels, depicting the sentiments of a wanderer and the beauty of stillness. Readers can experience a profound sense of solitude and tranquility, savoring the elegant charm of classical poetry.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王之涣": {
+    "summary": "这些诗作聚焦于边塞风光、宏大抱负与思乡之情。阅读此集，学习者能领略唐诗中豪迈的气势与开阔的意境，感受诗人对广袤疆域的深情与壮志。",
+    "summary_en": "These poems focus on frontier landscapes, grand aspirations, and homesickness. Readers will appreciate the bold spirit and expansive imagery of Tang poetry, feeling the poet's deep connection to the vast frontier and their ambitious vision.",
+    "poems": 7,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "孟郊": {
+    "summary": "本集围绕母爱与感恩主题，语言质朴而情感真挚。学习者通过这些作品，能深刻体会中国传统文化中深厚的孝道与亲情，感受诗人笔下苦涩而坚韧的生命底色。",
+    "summary_en": "Centered on themes of maternal love and gratitude, these poems use simple language to convey sincere emotions. Readers will deeply understand the traditional Chinese values of filial piety and family bonds, feeling the poet's bitter yet resilient spirit.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "贾岛": {
+    "summary": "这些诗篇描绘了深山幽境与神秘氛围，展现了隐逸之趣。学习者通过阅读，能领略诗人推敲字句的匠心，感受山林间的清冷与超脱，提升对意象营造的感知力。",
+    "summary_en": "These poems depict deep mountain retreats and mysterious atmospheres, showcasing the charm of seclusion. Readers will appreciate the poet's meticulous craftsmanship and the serene, detached spirit of the mountains, enhancing their perception of imagery.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "苏轼": {
+    "summary": "合集涵盖明月、亲情、雨中感悟与人生起伏。学习者能从中领悟诗人豁达的处世哲学与深厚情感，在悲欢离合中感受生命的韧性与旷达的胸怀。",
+    "summary_en": "This collection covers the moon, family, reflections in the rain, and life's ups and downs. Readers will grasp the poet's optimistic philosophy and deep emotions, experiencing the resilience and broad-mindedness of life amidst joys and sorrows.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "辛弃疾": {
+    "summary": "这些词作聚焦于灯火、家国情怀与历史兴亡。学习者能通过这些慷慨激昂的篇章，感受到诗人强烈的爱国热忱与壮志难酬的悲愤，领略宋词的豪放之美。",
+    "summary_en": "These poems focus on lanterns, patriotism, and historical reflection. Through these impassioned verses, readers will feel the poet's intense love for their country and the sorrow of unfulfilled ambitions, appreciating the bold beauty of Song lyrics.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "李清照": {
+    "summary": "该词集聚焦秋意与离愁，通过细腻的意象描绘深沉的孤独与思念。读者可从中领略婉约词的哀婉美学，感受诗人内心深处对时光流逝与情感缺失的敏锐捕捉，提升对宋词抒情艺术的鉴赏力。",
+    "summary_en": "This collection focuses on autumn and grief, using delicate imagery to depict profound loneliness and longing. Readers can appreciate the aesthetic of the graceful school, experiencing the poet's keen capture of fleeting time and emotional loss, while enhancing their appreciation for Song lyric artistry.",
+    "poems": 38,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "柳永": {
+    "summary": "这些词作围绕离别、秋景与相思展开，展现了羁旅生活的漂泊感。通过阅读，学习者能深入理解宋词中典型的送别文化与情感表达，领悟婉约派词人如何将个人愁绪与自然景观巧妙融合。",
+    "summary_en": "These poems center on farewells, autumn scenes, and longing, showcasing the drift of a traveler's life. Through reading, learners can deeply understand the culture of parting and emotional expression in Song lyrics, grasping how poets blend personal sorrow with natural landscapes.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "岳飞": {
+    "summary": "这组词作充满了豪迈的爱国情怀与坚定的报国志向。阅读它们能让学习者感受到宋代词人面对国家危难时的壮志凌云与铁骨铮铮，是理解中国传统士大夫忠义精神的极佳窗口。",
+    "summary_en": "This collection is filled with heroic patriotism and firm resolve to serve the country. Reading them allows learners to feel the lofty ambitions and iron backbone of Song poets facing national crisis, serving as an excellent window into the traditional scholar-official's spirit of loyalty.",
+    "poems": 3,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "陆游": {
+    "summary": "该集以梅花为核心意象，寄托了诗人高洁的品格与坚守。通过这些作品，学习者不仅能领略咏物词的艺术魅力，更能深刻体会宋代文人如何在逆境中保持人格独立与爱国赤诚。",
+    "summary_en": "With plum blossoms as the core imagery, this collection embodies the poet's noble character and integrity. Through these works, learners can appreciate the artistic charm of object-focused lyrics and deeply understand how Song scholars maintained personal independence and patriotic sincerity in adversity.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "范仲淹": {
+    "summary": "这些词作深刻表达了秋日里的乡愁与家国情怀。阅读它们，学习者能感受到一种深沉的忧患意识，领悟文人如何在个人情感与社会责任之间寻求平衡，体味宋词中蕴含的深厚人文关怀。",
+    "summary_en": "These poems express deep autumn homesickness and national sentiment. Reading them, learners can feel a profound sense of concern, grasping how scholars sought balance between personal emotion and social responsibility, while savoring the deep humanistic care embedded in Song lyrics.",
+    "poems": 5,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "欧阳修": {
+    "summary": "该词集描绘了西湖美景与春日风光，并穿插着离别的感伤。通过阅读，学习者能领略宋词中清新自然的语言风格，感受诗人对生活的热爱以及在宦海浮沉中保持的豁达心境。",
+    "summary_en": "This collection depicts the beauty of West Lake and spring scenery, interspersed with the melancholy of parting. Through reading, learners can appreciate the fresh, natural language of Song lyrics and feel the poet's love for life and the open-mindedness maintained amidst political ups and downs.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "晏殊": {
+    "summary": "这些词作探讨了时光易逝与珍惜当下的主题，风格雍容华贵。阅读它们，学习者能领悟宋代文人对生命节律的深刻洞察，在优美的辞藻中感受一种从容、淡雅的人生哲学。",
+    "summary_en": "These poems explore themes of fleeting time and cherishing the present, with an elegant and graceful style. Reading them, learners can grasp the deep insight Song scholars had into the rhythms of life, experiencing a calm and elegant philosophy of life within the beautiful language.",
+    "poems": 41,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "秦观": {
+    "summary": "该集汇集了离别、山水与春日的抒情之作，情感细腻而深沉。通过阅读，学习者能深入体会婉约词的含蓄美，感受诗人如何通过景物描写传达内心孤独，提升对古典诗词意境的感知力。",
+    "summary_en": "This collection gathers lyrical works of farewell, landscape, and spring, with delicate and profound emotions. Through reading, learners can deeply appreciate the subtle beauty of the graceful school and feel how the poet conveys inner loneliness through scenery, enhancing their perception of classical poetic imagery.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "姜夔": {
+    "summary": "该集聚焦于战争后的荒凉景象与深沉的家国哀愁。通过清雅的词风，读者能领略到宋代词人对往昔繁华的追忆，以及在动荡时代中对个人命运与国家兴衰的深刻反思，感受文字背后的音律之美。",
+    "summary_en": "This collection centers on post-war desolation and deep national sorrow. Through elegant lyrics, readers experience the poet's reflection on past prosperity and the intersection of personal fate with national decline, offering a profound appreciation for musicality and historical resonance.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "周邦彦": {
+    "summary": "此集围绕柳影与离别主题，展现了细腻的送别情感。作品以精巧的格律捕捉瞬间的离愁，通过对自然景物的描写，让读者体会到宋词中婉约含蓄的艺术特色，领悟离别之情的深沉与隽永。",
+    "summary_en": "Focusing on willow shadows and farewells, this collection captures delicate emotions of parting. Through precise prosody and vivid natural imagery, readers explore the subtle, restrained artistry of Song lyrics, gaining insight into the profound and enduring nature of separation.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "佚名": {
+    "summary": "这些诗歌汇集了先秦时期关于爱情、婚姻与自然生活的纯真表达。通过对河流、春光与日常劳作的描绘，读者能感受到古人质朴的情感，领略中国文学源头处那份清新、真挚且充满生命力的原始美感。",
+    "summary_en": "These poems gather innocent expressions of love, marriage, and daily life from the pre-Qin era. Through imagery of rivers, spring, and labor, readers encounter the raw, sincere emotions of antiquity, experiencing the fresh, vital beauty at the source of Chinese literature.",
+    "poems": 50,
+    "dynasty": "Pre-Qin",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "曹操": {
+    "summary": "本集展现了宏大的政治抱负与对时光流逝的沉思。通过对沧海与壮志的描写，读者能感受到一种慷慨激昂的英雄气概，领悟在有限生命中追求无限价值的哲理，体会乱世中坚韧的意志与胸怀。",
+    "summary_en": "This collection reveals grand political ambitions and meditations on the passage of time. Through imagery of the vast sea and heroic resolve, readers encounter a stirring, heroic spirit, grasping the philosophy of pursuing infinite value within a finite life amidst turbulent times.",
+    "poems": 26,
+    "dynasty": "Han",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "李煜": {
+    "summary": "该集深情诉说了亡国之痛、孤独与凄凉。通过对雨夜与往事的细腻刻画，读者能沉浸于那种哀婉缠绵的意境中，深刻体会到从繁华跌落至深渊的悲剧色彩，领悟个人命运在历史变迁中的无奈。",
+    "summary_en": "This collection poignantly conveys the sorrow of a lost kingdom, solitude, and desolation. Through delicate depictions of rainy nights and past memories, readers are immersed in a melancholic atmosphere, grasping the tragic transition from prosperity to ruin and the helplessness of fate.",
+    "poems": 50,
+    "dynasty": "Five Dynasties",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "温庭筠": {
+    "summary": "此集多描写雨景与离别，营造出一种凄清幽冷的氛围。通过对细腻情感的捕捉，读者能感受到晚唐诗词中特有的忧郁美感，领悟离人心中那份挥之不去的愁绪与对美好时光的眷恋。",
+    "summary_en": "Focusing on rain and separation, this collection creates a desolate and chilly atmosphere. By capturing nuanced emotions, readers experience the unique, melancholic beauty of late Tang poetry, understanding the lingering sorrow and nostalgia for better times felt by those parted.",
+    "poems": 50,
+    "dynasty": "Five Dynasties",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "韦庄": {
+    "summary": "该集围绕梦境与思念展开，展现了漂泊中的孤独感。通过对离别与怀旧的细腻描写，读者能领略到花间词派清雅的艺术风格，体会到在梦境与现实交织中，那份对故乡与往事深沉的眷恋与哀思。",
+    "summary_en": "Centered on dreams and longing, this collection reveals the loneliness of wandering. Through delicate depictions of parting and nostalgia, readers explore the elegant artistic style of the 'Flower-Among' school, experiencing the deep yearning and sorrow woven between dreams and reality.",
+    "poems": 50,
+    "dynasty": "Five Dynasties",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "马致远": {
+    "summary": "此集以秋景与旅途为核心，勾勒出漂泊者的苍凉心境。通过对萧瑟秋色的描写，读者能感受到元曲中独特的悲剧美学，领悟在漫长旅途中对人生无常的深刻感悟，体验那份洗尽铅华后的旷达与沉静。",
+    "summary_en": "With autumn scenery and travel at its core, this collection outlines the desolate state of a wanderer. Through bleak autumnal imagery, readers experience the unique tragic aesthetics of Yuan Qu, grasping insights into life's impermanence and a sense of calm, stripped-back clarity.",
+    "poems": 50,
+    "dynasty": "Yuan",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张养浩": {
+    "summary": "本集聚焦元代历史沧桑与民生疾苦，通过散曲描绘朝代更迭下的社会图景。学习这些作品，能深刻领悟作者对家国命运的忧虑，感受历史沉淀出的厚重情感与人文关怀。",
+    "summary_en": "This collection focuses on historical vicissitudes and the hardships of the people in the Yuan Dynasty, depicting social landscapes through sanqu. Reading these helps learners grasp the poet's concern for the nation and the profound emotions rooted in history.",
+    "poems": 22,
+    "dynasty": "Yuan",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "徐再思": {
+    "summary": "这些作品以雨景与离愁为核心，细腻捕捉旅途中的孤独与思乡之情。通过阅读，学习者能体会元代散曲中那种委婉动人、寄情于景的艺术魅力，领略古典文学中独特的抒情意境。",
+    "summary_en": "Centering on rain and homesickness, these poems capture the loneliness of travel. Reading them allows learners to appreciate the subtle, evocative artistry of Yuan sanqu and experience the unique lyrical atmosphere of classical Chinese literature.",
+    "poems": 16,
+    "dynasty": "Yuan",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "宋方壶": {
+    "summary": "本集汇集了关于闲适生活与自然风光的散曲，展现了作者超脱世俗的旷达心境。通过阅读，学习者能感受到一种淡泊名利、回归自然的宁静之美，领悟古人处世的智慧。",
+    "summary_en": "This collection gathers sanqu on leisurely life and nature, showcasing a detached, broad-minded outlook. Reading these allows learners to experience the tranquil beauty of living simply and gain insights into ancient wisdom regarding life.",
+    "poems": 19,
+    "dynasty": "Yuan",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张可久": {
+    "summary": "作品集围绕秋日思乡与羁旅愁绪展开，描绘了多样的自然景观与个人情感。阅读这些散曲，能帮助学习者掌握元代散曲的韵律美，并在优美的意象中体验深沉的思乡之情。",
+    "summary_en": "Centered on autumn homesickness and the sorrows of travel, these poems depict diverse landscapes and emotions. Reading them helps learners master the rhythmic beauty of Yuan sanqu and experience deep nostalgia through refined imagery.",
+    "poems": 50,
+    "dynasty": "Yuan",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "纳兰性德": {
+    "summary": "本集收录了关于爱情、离别、哀悼与秋思的词作，情感真挚且深沉。通过阅读，学习者能深入体会清代词人细腻的内心世界，感受古典诗词中关于爱与失落的永恒主题。",
+    "summary_en": "This collection gathers lyrics on love, parting, mourning, and autumn thoughts, marked by deep sincerity. Reading them allows learners to explore the delicate inner world of Qing poets and experience the eternal themes of love and loss.",
+    "poems": 50,
+    "dynasty": "Qing",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王建": {
+    "summary": "本集精选了多首乐府诗，题材广泛，涵盖了宫廷生活、边塞风光与民间疾苦。阅读这些作品，能帮助学习者了解唐代乐府诗的叙事技巧，感受其质朴而深远的艺术感染力。",
+    "summary_en": "This collection features various yuefu poems covering palace life, frontier scenery, and social hardships. Reading them helps learners understand the narrative techniques of Tang yuefu and experience its simple yet profound artistic appeal.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "马戴": {
+    "summary": "本集诗作多以边塞、怀古与秋景为主题，营造出苍凉雄浑的意境。通过阅读，学习者能领略晚唐诗歌的独特韵味，感受诗人笔下深沉的历史沧桑感与边疆情怀。",
+    "summary_en": "These poems focus on the frontier, historical reflection, and autumn scenes, creating a desolate and majestic atmosphere. Reading them allows learners to appreciate the unique charm of late Tang poetry and the poet's deep sense of history.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "元稹": {
+    "summary": "本集收录了多首情感深挚的诗作，围绕悼亡、怀古与社会现实展开。通过阅读，学习者能深入理解中唐诗歌的叙事与抒情风格，感受作者对往事与故人的深切追思。",
+    "summary_en": "This collection gathers deeply emotional poems centered on mourning, historical reflection, and social reality. Reading them helps learners understand the narrative and lyrical style of mid-Tang poetry and feel the poet's profound remembrance of the past.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "沈佺期": {
+    "summary": "该集汇集了初唐律诗格律奠基之作，通过宫廷乐章与古意抒怀，展现了盛唐气象与严谨的格律美。读者可从中领略早期律诗的规范化进程，感受初唐诗坛对形式与音韵的极致追求。",
+    "summary_en": "This collection gathers foundational early Tang regulated verse. Through court music and ancient-style reflections, it showcases the era's grandeur and formal precision. Readers gain insight into the evolution of poetic structure and the early pursuit of tonal perfection.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "韩愈": {
+    "summary": "这些诗作以豪放雄奇的笔触刻画山水与个人境遇，展现了中唐文人独特的精神世界。阅读此集，能领悟诗人不避粗险的艺术风格，感受其在自然与现实碰撞中激荡出的深沉情感与思想深度。",
+    "summary_en": "These bold, imaginative poems depict landscapes and personal trials, revealing the mid-Tang intellectual spirit. Reading them allows one to grasp a daring artistic style and feel the profound emotions and depth emerging from the collision of nature and reality.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "杜荀鹤": {
+    "summary": "诗集聚焦于晚唐社会的动荡与离愁，通过对隐逸生活与送别场景的描绘，流露出深沉的忧患意识。读者在此可体察晚唐文人在时代变迁中的孤独与无奈，感悟诗歌中蕴含的清冷美学。",
+    "summary_en": "Focusing on late Tang social unrest and parting sorrows, these poems capture reclusive life and farewells with a sense of deep anxiety. Readers can perceive the loneliness and resignation of late Tang poets, appreciating the collection's cold, melancholic aesthetic.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "朱庆余": {
+    "summary": "该集收录了大量宫廷与酬赠之作，描绘了细腻的宫怨与文人交游。通过这些精致的篇章，读者能窥见中唐时期士人的生活情态与社交风貌，感受其诗风中蕴含的婉转与含蓄之美。",
+    "summary_en": "This collection gathers palace laments and social exchanges, depicting delicate emotions and scholarly interactions. Through these refined pieces, readers glimpse the lifestyle and social customs of mid-Tang literati, experiencing the subtle and implicit beauty of their poetic style.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "许浑": {
+    "summary": "诗集多以秋日、边塞及隐逸为主题，勾勒出晚唐时期苍凉的时代底色。通过对雪、秋景与访友的细腻刻画，读者能沉浸于一种静谧而哀伤的氛围中，领略晚唐诗歌独特的意境营造。",
+    "summary_en": "Focusing on autumn, frontiers, and reclusion, these poems sketch the bleak backdrop of the late Tang. Through delicate depictions of snow, autumn, and friends, readers are immersed in a quiet, sorrowful atmosphere, appreciating the era's unique mastery of imagery.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "李益": {
+    "summary": "这些作品多抒发边塞征战的艰辛与离乡之情，旋律感极强。阅读此集，读者仿佛置身于大漠孤烟与江南烟雨之间，深刻体会中唐诗歌中那种兼具豪迈与哀婉的复杂情感张力。",
+    "summary_en": "These works express the hardships of frontier life and homesickness with a strong lyrical quality. Readers are transported between desert winds and Jiangnan rains, deeply experiencing the complex emotional tension—both heroic and sorrowful—characteristic of mid-Tang poetry.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "司空曙": {
+    "summary": "诗集展现了中唐文人清雅的审美情趣，多描写离别、隐居与山水之乐。通过这些清丽的诗句，读者能感受到一种超脱世俗的宁静，领悟大历时期诗坛崇尚自然、追求意境的艺术追求。",
+    "summary_en": "This collection showcases the refined aesthetic of mid-Tang literati, focusing on parting, reclusion, and nature. Through these elegant verses, readers find a sense of transcendent tranquility and understand the Dali era's artistic devotion to nature and atmosphere.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘长卿": {
+    "summary": "该集以五言诗见长，通过对山水、僧侣与隐者的描写，营造出空灵深远的意境。读者在此不仅能学习五言律诗的典范技巧，更能体会诗人寄情山水、超然物外的淡泊心境。",
+    "summary_en": "Renowned for five-character verse, this collection creates ethereal, profound imagery through depictions of landscapes, monks, and hermits. Readers not only master the techniques of regulated verse but also experience the poet's detached, serene spirit amidst nature.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "卢纶": {
+    "summary": "该集汇聚了边塞风云与羁旅愁思。诗人以雄浑笔触描绘边关战事与行旅见闻，展现了唐代边疆的苍凉与壮美。阅读这些诗作，能让读者深刻领略唐诗中豪迈与孤寂交织的独特意境，感受边塞生活的艰辛与报国之志。",
+    "summary_en": "This collection gathers frontier turmoil and travel weariness. The poems depict border warfare and journeys with bold strokes, revealing the desolate beauty of the Tang frontier. Readers gain insight into the blend of heroism and solitude, experiencing the hardships and aspirations of border life.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "丘为": {
+    "summary": "此集多为隐逸山水之作，描绘了寻访隐者、泛舟湖上的超然生活。这些诗篇流露出淡泊名利的闲适与对自然的依恋。通过阅读，读者能沉浸于唐代文人追求宁静、回归田园的审美情趣，体悟山水间的清幽与诗意。",
+    "summary_en": "These poems focus on reclusive life, depicting visits to hermits and boating on lakes. They reveal a detached, leisurely spirit and a deep attachment to nature. Readers can immerse themselves in the aesthetic pursuit of tranquility and the poetic charm of the pastoral landscape.",
+    "poems": 18,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "崔颢": {
+    "summary": "诗集聚焦于登高怀远与羁旅乡愁。作品中既有对壮丽河山的咏叹，也有对时光流逝的感伤。阅读这些诗篇，读者能领略唐诗中登高抒怀的经典范式，感受诗人面对广阔天地时，那份深沉而悠远的思乡之情与历史沧桑感。",
+    "summary_en": "This collection focuses on climbing heights, nostalgia, and the weariness of travel. The poems blend admiration for grand landscapes with melancholy over the passage of time. Readers experience classic paradigms of poetic expression, feeling the deep homesickness and historical reflection evoked by vast horizons.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "祖咏": {
+    "summary": "该集收录了大量写景抒情之作，多以山水、雪景及离别为主题。诗风清丽自然，情感真挚。阅读此集，读者能感受到诗人对自然之美的敏锐捕捉，以及在山水间寄托的深厚情谊与淡泊心境，领略唐诗中纯粹的审美体验。",
+    "summary_en": "This collection gathers landscape and lyrical poems centered on nature, snow, and farewells. The style is clear and natural. Readers will appreciate the poet's keen capture of natural beauty and the deep emotions and detached mindset embedded in the landscape, reflecting pure aesthetic experiences.",
+    "poems": 38,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "李颀": {
+    "summary": "此集展现了盛唐气象，涵盖了边塞征战、音乐描写与送别友人。诗作节奏明快，意象宏大。通过阅读，读者能感受到唐代艺术的繁荣与豪放的时代精神，领略诗人将音乐与边塞生活融为一体的独特表现力与艺术张力。",
+    "summary_en": "This collection showcases the High Tang spirit, covering border warfare, musical descriptions, and farewells. The rhythm is brisk and the imagery grand. Readers experience the prosperity and bold spirit of the era, appreciating the poet's unique ability to fuse music with frontier life.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "崔涂": {
+    "summary": "该集多写羁旅漂泊、孤雁离愁与秋夜思绪。诗中充满了漂泊者的孤独与对故乡的深切眷恋。阅读这些作品，读者能深刻体会到唐代诗人身处异乡时的孤寂心境，以及在秋风冷雨中对温暖与归宿的渴望，感悟诗歌中凄美的意境。",
+    "summary_en": "These poems focus on the wanderer's life, the lone wild goose, and autumn night reflections. They are filled with the solitude of the traveler and deep longing for home. Readers will grasp the poignant loneliness of Tang poets abroad and their yearning for belonging.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张祜": {
+    "summary": "此集侧重于宫廷生活与历史感慨，描绘了宫女的哀怨与金陵的兴衰。诗风细腻婉转，意境深远。通过阅读，读者能窥见唐代宫廷文化的侧影，感受诗人对繁华落尽后的历史沉思，领略宫体诗中独特的情感表达与艺术构思。",
+    "summary_en": "This collection focuses on court life and historical reflection, depicting the sorrows of palace maids and the rise and fall of Jinling. The style is delicate and profound. Readers gain glimpses of Tang court culture and the poet's meditation on the fading of prosperity.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王涯": {
+    "summary": "该集涵盖了秋夜抒怀、边塞军旅与春日游赏。作品展现了中唐文人多样的生活面貌与情感寄托。阅读这些诗作，读者能领略不同题材下的唐诗韵律，感受诗人从战场到田园的广阔视野，以及在复杂时代背景下的内心世界。",
+    "summary_en": "This collection covers autumn reflections, military life, and spring outings. It showcases the diverse life and emotions of Mid-Tang poets. Readers will appreciate the varied rhythms of Tang poetry and the poet's broad perspective, spanning from the battlefield to the pastoral landscape.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张九龄": {
+    "summary": "这些诗作以月寄情，抒发高洁志向与深沉怀远。读者可从中领略盛唐文人正直的品格与深邃的忧思，感受其在仕途起伏中坚守自我的精神力量。",
+    "summary_en": "These poems use the moon to express lofty ideals and deep longing. Readers gain insight into the integrity and profound melancholy of a Tang scholar, experiencing the spiritual strength required to maintain one's character amidst the fluctuations of a political career.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "宋之问": {
+    "summary": "诗集收录了羁旅思乡、节令感怀及民俗吟咏。通过这些作品，读者能体会唐代诗人在流寓生活中的孤独与对故土的深情，领略其五言诗的格律之美。",
+    "summary_en": "This collection gathers reflections on travel, homesickness, and seasonal customs. Readers can experience the loneliness and deep nostalgia of a Tang poet in exile, while appreciating the formal beauty and rhythmic precision of his five-character verse.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "高适": {
+    "summary": "此集聚焦边塞风光与慷慨豪迈的从军生活。通过对战争、离别与边疆壮丽景象的描绘，读者能感受到盛唐时期雄浑的时代气象与报国志士的壮志豪情。",
+    "summary_en": "This collection focuses on frontier scenery and the bold life of military service. Through depictions of war, parting, and the grandeur of the borderlands, readers feel the vigorous spirit of the High Tang and the heroic aspirations of those serving their country.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "钱起": {
+    "summary": "诗集展现了文人雅集、送别友人的清丽意境。其诗风新奇、理致清雅，读者可从中领略大历年间文人细腻的审美情趣与淡泊高远的艺术追求。",
+    "summary_en": "These poems capture the elegant atmosphere of literary gatherings and farewells. With a fresh style and refined intellectual depth, the collection allows readers to appreciate the delicate aesthetic sensibilities and the detached, lofty artistic pursuits of the Dali period poets.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "元结": {
+    "summary": "这些诗作直面民生疾苦，记录了动乱后的社会景象与山水间的隐逸情怀。读者通过阅读，能感受到诗人忧国忧民的赤诚之心及其在自然中寻求慰藉的超脱。",
+    "summary_en": "These poems confront the hardships of the people, recording the social aftermath of turmoil and the recluse's joy in nature. Readers encounter the poet's sincere concern for the nation and his detachment as he seeks solace in the landscape.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "韩翃": {
+    "summary": "诗集汇集了宴饮酬唱、节令感怀及生活琐事。作品风格繁富、兴致盎然，为读者呈现了唐代文人丰富多彩的社交生活与细腻的情感世界。",
+    "summary_en": "This collection gathers poems on banquets, seasonal reflections, and daily life. With a rich, vibrant style, it offers readers a glimpse into the diverse social life and the nuanced emotional world of Tang dynasty scholars.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "韦应物": {
+    "summary": "诗作多写闲淡山水、送别与羁旅，风格简远清雅。读者通过这些作品，能领悟诗人淡泊名利的处世哲学，在宁静的诗意中感受心灵的平和与超脱。",
+    "summary_en": "These poems focus on tranquil landscapes, farewells, and travel with a simple, elegant style. Through them, readers grasp the poet's philosophy of detachment from fame, finding peace and liberation within the quiet, poetic atmosphere.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "岑参": {
+    "summary": "诗集描绘了雄奇的边塞风光与壮阔的征战场景。通过这些充满异域风情与豪迈气概的诗篇，读者能感受到大唐边疆的辽阔与将士们保家卫国的慷慨激昂。",
+    "summary_en": "This collection depicts the magnificent frontier scenery and vast battle scenes. Through these poems, filled with exotic atmosphere and heroic spirit, readers experience the scale of the Tang borderlands and the passionate resolve of soldiers defending the empire.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘方平": {
+    "summary": "该集汇集了唐代宫怨与自然抒情诗。诗人以细腻笔触描绘月下孤寂、春日愁绪及古典乐府意象。阅读此集，可领略唐诗中清冷幽微的审美意趣，感受诗人对时光流转与离愁别绪的静谧观照。",
+    "summary_en": "This collection gathers Tang palace laments and nature lyrics. Through delicate imagery of moonlight, spring sorrow, and classical music themes, it offers readers a glimpse into the quiet, ethereal aesthetic of the era and the contemplative nature of Tang poetic expression.",
+    "poems": 31,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘眘虚": {
+    "summary": "这些诗作多描写江南山水与离别之情。诗人将自然景致与羁旅愁思交织，展现了唐代文人恬淡的隐逸情怀。阅读此集，能让学习者在清丽的辞藻中，体悟唐人笔下那份深远且含蓄的诗意空间。",
+    "summary_en": "These poems focus on Southern landscapes and farewells. Interweaving natural scenery with the melancholy of travel, they reflect a tranquil, reclusive spirit. Reading them allows learners to appreciate the profound, subtle poetic atmosphere characteristic of Tang-era landscape verse.",
+    "poems": 17,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "严维": {
+    "summary": "此集收录了大量酬唱与送别之作，展现了唐代文人间的深厚情谊与社交往来。诗中多见寺院禅意与山水寄情。阅读此集，有助于学习者理解唐代文人的生活交游及其在诗歌中构建的雅致社交文化。",
+    "summary_en": "This collection features numerous exchanges and farewell poems, highlighting the deep bonds and social life of Tang literati. Themes of temple serenity and landscape reflection prevail. It helps learners understand the elegant social culture and interpersonal connections reflected in Tang poetry.",
+    "poems": 50,
+    "dynasty": "Tang",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "吴文英": {
+    "summary": "词作风格绵丽深远，多咏物抒怀，营造出凄清婉约的意境。词中常借梦境与物象寄托深情。阅读此集，能让学习者领略南宋词坛精雕细琢的艺术特色，感受那种沉郁而又绮丽的感伤美学。",
+    "summary_en": "These lyrics are characterized by a delicate, profound style, often using objects to express deep, lingering emotions. Through dreamlike imagery, they create a melancholic atmosphere. Learners can appreciate the intricate artistry of Southern Song ci-poetry and its evocative, ornate aesthetic.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "袁去华": {
+    "summary": "该集词作题材广泛，多以婉转笔触抒发人生感慨与羁旅之思。词中融合了古典意象与个人情感，意境开阔。阅读此集，可帮助学习者掌握南宋词作在格律与情感表达上的平衡，体会词人细腻的内心世界。",
+    "summary_en": "Covering diverse themes, these lyrics express life's reflections and the sorrows of travel with a graceful touch. Blending classical imagery with personal sentiment, they offer a broad perspective. This collection helps learners master the balance of rhythm and emotion in Southern Song ci.",
+    "poems": 49,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王安石": {
+    "summary": "这些词作虽出自政治家之手，却展现了深沉的家国情怀与旷达的人生观。词中不仅有怀古之思，亦有对自然与世事的洞察。阅读此集，能让学习者从豪放与婉约并存的笔触中，领略北宋词坛的独特气象。",
+    "summary_en": "Though written by a statesman, these lyrics reveal deep patriotism and a broad outlook on life. They blend historical reflection with insights into nature and society. This collection allows learners to experience the unique, expansive spirit of Northern Song ci-poetry.",
+    "poems": 15,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "晏几道": {
+    "summary": "此集以深情婉转的爱情词为主，词风清丽，情感真挚。诗人常以怀旧之情勾勒往昔欢愉与离别之痛。阅读此集，是学习者体悟北宋婉约词极致艺术表现力与细腻情感刻画的绝佳范本。",
+    "summary_en": "Focusing on poignant, graceful love lyrics, this collection captures sincere emotions and nostalgic longing for past joys and partings. It serves as an excellent model for learners to appreciate the refined artistic expression and emotional depth of Northern Song lyrical poetry.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "李之仪": {
+    "summary": "该集词作情感真挚，多描写生活琐事与自然感悟，风格清新自然。词中流露出文人对世俗生活与情感的细腻体察。阅读此集，能让学习者在平易近人的文字中，感受到北宋词人对生活之美的敏锐捕捉与表达。",
+    "summary_en": "These sincere lyrics focus on daily life and reflections on nature, maintaining a fresh and natural style. They reveal a keen observation of worldly life and human emotion. This collection allows learners to appreciate how Northern Song poets captured and expressed life's beauty.",
+    "poems": 38,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "严仁": {
+    "summary": "这组宋词展现了细腻的春日景致与节令风物。诗中流淌着温婉深情，捕捉了欢聚与离别间的微妙波澜。对学习者而言，它提供了一种感受宋代文人日常雅趣与抒情审美的优美窗口。",
+    "summary_en": "This collection of Song ci showcases delicate spring scenery and seasonal imagery. Overflowing with tender emotion, it captures the subtle ripples between gathering and parting. For learners, it offers a graceful window into the refined daily aesthetics and lyrical sensitivities of Song scholars.",
+    "poems": 17,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘克庄": {
+    "summary": "这组作品汇聚了丰富的生活感慨与时代回响。场景从田园闲适跨越到家国沧桑，情感真挚而深沉。阅读它们能让学习者领略宋代文人兼济天下的胸怀与寄情山水的洒脱，体会词体叙事的广阔张力。",
+    "summary_en": "These works gather rich reflections on life and echoes of the era, spanning from pastoral leisure to national vicissitudes. The emotions are sincere and deep. Reading them allows learners to appreciate the grand vision and free-spirited nature of Song literati.",
+    "poems": 43,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张炎": {
+    "summary": "这组词多写清冷凄迷的残景与落寞情思，常常融景于清秋残春之中。字里行间弥漫着深沉的故国之思与迟暮之悲。对学习者而言，这是领略高超咏物技巧与哀婉美学的高阶范本。",
+    "summary_en": "These lyrics focus on desolate scenery and lonely sentiments, often blending imagery into waning autumns and springs. A profound nostalgia and late-life sorrow permeate the lines. For learners, this is an advanced model for mastering subtle object-describing techniques and elegiac aesthetics.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "韩元吉": {
+    "summary": "这组诗词交织了豪迈的报国之志与细腻的田园闲情。场景涵盖军旅边塞与江南水乡，情感在激昂与温婉间转换。整体阅读赋予学习者全面理解南宋士大夫多面心灵世界的宝贵体验。",
+    "summary_en": "These poems intertwine heroic ambitions with delicate pastoral leisure. Scenes span frontier posts and southern waterways, with emotions shifting between fervor and tenderness. Reading them gives learners a comprehensive experience of the multifaceted inner worlds of Southern Song literati.",
+    "poems": 34,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "贺铸": {
+    "summary": "这组词聚焦于凄清的离别、暮春的雨景与深沉的羁旅乡愁。场景多变而氛围浓郁，情感缠绵悱恻又兼具苍凉之气。学习者可从中体会高超的音律节奏与浓郁的宋代婉约风骨。",
+    "summary_en": "This collection focuses on poignant farewells, late-spring rainscapes, and deep travel weariness. The scenes are varied and rich in atmosphere, with lingering, desolate emotions. Learners can appreciate masterful rhythmic cadences and the rich grace of Song ci.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘辰翁": {
+    "summary": "这组作品深沉悲壮，多表现国破家亡的哀痛与遗民的孤寂。场景多为残山剩水与萧瑟秋景，情感悲凉激切。通过阅读，学习者能深刻感知历史转折期文人的血泪悲歌与艺术坚守。",
+    "summary_en": "These works are deeply solemn and tragic, expressing grief over a fallen state and the solitude of loyalists. Scenes feature ruined landscapes and desolate autumns. Through reading, learners deeply perceive the blood-soaked laments and artistic steadfastness of writers during historical transitions.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "周密": {
+    "summary": "这组词细致描绘了江南的湖光山色、都市繁华与岁时风物。场景优美雅致，情感流露出对旧日时光的无限追怀。阅读这卷诗集，能引领学习者沉浸于宋代精致的审美生活与历史记忆中。",
+    "summary_en": "These lyrics meticulously depict southern lakes and mountains, urban prosperity, and seasonal customs. The scenes are graceful, expressing endless nostalgia for bygone days. Reading this collection immerses learners in the exquisite aesthetic life and historical memory of the Song era.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "彭元逊": {
+    "summary": "这组词多以咏物寓情见长，借自然景物寄托深微的幽怨与身世之感。场景多雾锁重楼、落花残影，氛围幽静含蓄。学习者能从中习得精妙的隐喻手法与含蓄蕴藉的抒情艺术。",
+    "summary_en": "These lyrics excel at conveying emotions through object descriptions, using nature to express subtle grievances. Scenes feature mist-locked towers and fallen blossoms in a quiet atmosphere. Learners can acquire exquisite metaphorical techniques and reserved lyrical art.",
+    "poems": 17,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "仲殊": {
+    "summary": "这组词作风格奇丽清婉，描绘了自然山水与闲适生活。通过阅读，学习者能领略宋词在婉约语境下的灵动意象，感受作者在诗词格律中寄托的超脱心境与细腻情感，体会北宋文人独特的审美情趣。",
+    "summary_en": "These lyrics feature elegant, imaginative styles, depicting natural landscapes and leisurely life. Readers can appreciate the agility of Song poetry, experiencing the author's detached mindset and delicate emotions woven into rhythmic structures, while gaining insight into the unique aesthetic sensibilities of Northern Song literati.",
+    "poems": 31,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "陈与义": {
+    "summary": "这些作品聚焦于战乱时期的动荡与流离，抒发深沉的家国忧思。阅读此集，学习者能深刻体会南宋初年诗人面对时代巨变时的悲凉与坚韧，感受诗词中蕴含的沉郁顿挫之美及忧国忧民的赤子之心。",
+    "summary_en": "These works focus on the turbulence and displacement of wartime, expressing profound concern for the nation. Readers will deeply grasp the melancholy and resilience of early Southern Song poets facing historical upheaval, experiencing the beauty of somber rhythms and a patriotic spirit.",
+    "poems": 12,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张元干": {
+    "summary": "该集词作豪壮激昂，多抒发报国志向与对家国的眷恋。通过阅读，学习者能领悟南宋词人慷慨悲歌的风格，感受在时代风雨中坚守气节的崇高精神，以及词作中展现的宏大叙事与个人情感的交织。",
+    "summary_en": "This collection features bold, stirring lyrics expressing patriotic aspirations and devotion to the nation. Readers will grasp the grand, tragic style of Southern Song poetry, feeling the noble spirit of maintaining integrity amidst historical storms and the interplay between epic narratives and personal emotion.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "吕渭老": {
+    "summary": "这组词作情感真挚，多描写离愁别绪与日常感怀。阅读这些作品，学习者能沉浸在宋代文人细腻的内心世界中，领略其对生活细节的敏锐捕捉与表达，感受简约而深远的抒情艺术，提升对词作意境的感知力。",
+    "summary_en": "These lyrics are sincere, often depicting sorrow of parting and daily reflections. Readers will immerse themselves in the delicate inner world of Song literati, appreciating their keen observation of life's details and the simple yet profound lyrical art, enhancing their perception of poetic atmosphere.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘过": {
+    "summary": "这些词作豪放不羁，展现了抗金志士的壮志豪情与江湖情怀。通过阅读，学习者能感受到南宋词坛的慷慨之风，领略作者在诗词中寄托的英雄气概与对时局的关切，体验豪放派词作的独特感染力。",
+    "summary_en": "These unconstrained lyrics showcase the grand aspirations and wandering spirit of anti-Jin activists. Readers will feel the generous spirit of the Southern Song poetic scene, appreciating the heroic character and concern for current affairs, and experiencing the unique infectious power of the bold school of poetry.",
+    "poems": 30,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张先": {
+    "summary": "该集词作风格婉约，擅长捕捉生活中的细腻情感与优美意象。阅读这些作品，学习者能领略北宋词坛的艺术魅力，感受作者对爱情、离别及自然景物的精妙刻画，提升对词作声律美与情感表达的鉴赏能力。",
+    "summary_en": "These lyrics are elegant, excelling at capturing delicate emotions and beautiful imagery. Readers will appreciate the artistic charm of Northern Song poetry, feeling the exquisite depictions of love, parting, and nature, while enhancing their appreciation for the beauty of rhythm and emotional expression.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "俞国宝": {
+    "summary": "这些词作意境优美，多涉及自然景观与抒情怀古。通过阅读，学习者能领略南宋词作在遣词造句上的精巧，感受作者在山水之间寄托的个人志趣与情感，体会词作作为文人交流媒介的独特文化价值。",
+    "summary_en": "These lyrics possess beautiful imagery, often involving natural landscapes and historical reflection. Readers will appreciate the craftsmanship of Southern Song poetry, feeling the personal interests and emotions projected onto nature, and understanding the unique cultural value of poetry as a medium for literati exchange.",
+    "poems": 10,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "史达祖": {
+    "summary": "这组词作以咏物见长，意象清丽，情感含蓄深沉。阅读此集，学习者能领悟宋词在比兴手法上的精湛造诣，感受作者通过自然万物寄托的深远意蕴，提升对词作意境营造与审美意趣的理解。",
+    "summary_en": "These lyrics excel in object-depiction, featuring elegant imagery and subtle, profound emotion. Readers will grasp the masterful use of metaphor and allusion in Song poetry, feeling the deep significance projected through nature, and enhancing their understanding of atmosphere creation and aesthetic interest.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "卢祖皋": {
+    "summary": "该集汇集了南宋婉约词风，通过对春光、离愁与闲适生活的细腻描绘，展现了词人对时光流转的感怀。阅读这些作品，能让读者领略宋词精致的格律美与深沉的情感意境。",
+    "summary_en": "This collection gathers Southern Song lyrical styles, depicting spring, parting sorrows, and leisure. It captures the passage of time, offering learners an appreciation for the exquisite prosody and profound emotional resonance characteristic of Song dynasty Ci poetry.",
+    "poems": 43,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "蔡伸": {
+    "summary": "这些词作多以抒情见长，描绘了自然山水与深闺愁绪，情感真挚且韵律优美。通过阅读，读者可以感受到宋代词人如何将个人心境与季节更迭巧妙融合，体会词体艺术的温婉魅力。",
+    "summary_en": "These lyrics focus on emotional expression, blending natural landscapes with inner longing. They offer a sincere, rhythmic experience, allowing learners to see how Song poets masterfully wove personal moods into seasonal shifts, revealing the gentle charm of the Ci form.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "晁补之": {
+    "summary": "作品集展现了北宋文人的雅致生活与豪迈胸襟，涵盖了怀古、咏物及抒发个人志向的题材。阅读此集，有助于学习者理解宋词从婉约向豪放过渡的艺术张力与深厚的人文底蕴。",
+    "summary_en": "This collection showcases the refined life and bold spirit of Northern Song literati, covering nostalgia, nature, and personal ambition. It helps learners understand the artistic tension and deep cultural heritage as Ci poetry transitioned from delicate to bold styles.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "王沂孙": {
+    "summary": "该集聚焦于咏物寄情，通过对自然万物的精细刻画，隐喻家国之思与身世之感。其词风清冷幽邃，为读者提供了一个领悟宋末词人如何以物传情、寄托深沉家国情怀的窗口。",
+    "summary_en": "Focusing on using objects to convey emotions, these poems use detailed nature imagery to metaphorically express national sorrow and personal fate. The cold, profound style offers learners a window into how late Song poets channeled deep patriotism through imagery.",
+    "poems": 34,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "蒋捷": {
+    "summary": "这些词作记录了词人从繁华到隐逸的心路历程，充满了对世事沧桑的感慨。通过阅读，学习者能深刻体会到宋末元初文人在时代巨变下的孤独感与对平淡生活的向往。",
+    "summary_en": "These poems document a journey from prosperity to seclusion, filled with reflections on life's vicissitudes. Learners can deeply empathize with the loneliness and longing for simplicity felt by literati during the turbulent transition between the Song and Yuan dynasties.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "叶梦得": {
+    "summary": "作品集多以咏史怀古与抒发政治抱负为主题，展现了词人广阔的胸怀。阅读这些词作，能让学习者感受到北宋末至南宋初文人将家国命运与个人情感结合的独特艺术风格。",
+    "summary_en": "The collection centers on historical reflection and political ambition, revealing the poet's broad perspective. Reading these works allows learners to experience the unique artistic style of early Southern Song literati who intertwined national destiny with personal emotion.",
+    "poems": 30,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "刘一止": {
+    "summary": "该集收录了词人直抒胸臆的感怀之作，描绘了仕途与隐逸间的挣扎。通过阅读，读者可以领略宋代士大夫在政治动荡中保持高洁志趣的内心世界，感受词作中蕴含的坚韧与忧患。",
+    "summary_en": "This collection features candid reflections on the struggle between public service and seclusion. It allows readers to appreciate the inner world of Song officials maintaining integrity amidst political turmoil, highlighting the resilience and anxiety embedded in their poetry.",
+    "poems": 26,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "万俟咏": {
+    "summary": "这些词作效法柳永，长于铺叙与音律，展现了北宋末年词坛的繁荣。阅读此集，能让学习者深入了解宋词在格律与叙事上的创新，体会词作如何通过细腻的铺陈营造出动人的意境。",
+    "summary_en": "Following the style of Liu Yong, these poems excel in narrative detail and musicality, reflecting the prosperity of late Northern Song Ci. It helps learners explore innovations in prosody and storytelling, showing how detailed exposition creates evocative, moving atmospheres.",
+    "poems": 25,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "陈克": {
+    "summary": "该集收录了陈克的词作，多以婉约笔触描绘离愁别绪与闲适生活。通过这些作品，学习者能领略宋词精致的格律美，感受词人细腻的抒情风格及在清雅意境中流露的文人情怀。",
+    "summary_en": "This collection features Chen Ke’s lyrics, focusing on delicate expressions of parting sorrows and leisurely life. Readers can appreciate the refined prosody of Song poetry and experience the poet’s subtle, elegant sentiments within these graceful, atmospheric compositions.",
+    "poems": 16,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "周紫芝": {
+    "summary": "这些词作展现了周紫芝对自然景物与日常情感的捕捉。作品风格平易且富有生活气息，反映了宋代文人的心境。阅读此集有助于学习者理解南宋词风的多样性，体会词人于平凡中寄托的深远意趣。",
+    "summary_en": "These lyrics capture Zhou Zizhi’s observations of nature and daily emotions. With an accessible style reflecting Southern Song life, this collection helps learners appreciate the diversity of the era’s lyricism and the profound meanings found in the poet’s mundane experiences.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "范成大": {
+    "summary": "此集汇集了范成大的词作，题材涵盖田园风光与忧国思绪。诗篇语言清新自然，情感真挚。通过研读，学习者不仅能领略宋代词坛的艺术成就，更能感受到词人对家国山河的深沉眷恋与独特审美。",
+    "summary_en": "This collection gathers Fan Chengda’s lyrics, spanning pastoral scenes and patriotic reflections. The language is fresh and sincere. Studying these works allows learners to appreciate Song dynasty artistic achievements and the poet’s deep attachment to his homeland and unique aesthetic.",
+    "poems": 36,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  },
+  "张孝祥": {
+    "summary": "该集收录了张孝祥的词作，以豪放风格见长，充满壮志豪情与爱国热忱。作品气势磅礴，意境开阔。阅读这些词章，学习者能深刻体会南宋词人慷慨激昂的英雄气概与忧国忧民的赤子之心。",
+    "summary_en": "This collection features Zhang Xiaoxiang’s bold and heroic lyrics, filled with patriotic fervor and grand ambition. The works possess a powerful, expansive atmosphere. Readers can deeply perceive the passionate, heroic spirit and the sincere devotion of a Southern Song patriot.",
+    "poems": 50,
+    "dynasty": "Song",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
+  }
+}

@@ -279,6 +279,39 @@ void main() {
     expect(cardEs.definitionLanguage, 'Spanish');
   });
 
+  test('a copy that cannot answer everyday headwords is not trusted', () async {
+    // `init` re-copies the bundled asset over the local file when the copy
+    // fails this probe. The failure it guards against is silent otherwise:
+    // lookups against such a copy return an empty list rather than an error, so
+    // every character reads as "not in the dictionary" — the Quick Look card
+    // then showed an empty panel. The fixture holds words, but none of the
+    // everyday headwords a dictionary must contain.
+    expect(
+      await GlobalDictionaryRepository.copyAnswersQueries(database),
+      isFalse,
+      reason: 'a copy that answers nothing must not pass for a dictionary',
+    );
+
+    var id = 100;
+    for (final headword in <String>['不', '好', '我', '你', '是']) {
+      await _insertWord(
+        database,
+        id: id++,
+        hanzi: headword,
+        pinyin: 'bu4',
+        definition: 'probe headword',
+        french: 'sonde',
+        spanish: 'sonda',
+      );
+    }
+
+    expect(
+      await GlobalDictionaryRepository.copyAnswersQueries(database),
+      isTrue,
+      reason: 'a copy holding the everyday headwords is usable',
+    );
+  });
+
   test('the bundled dictionary advertises the schema version the app requires',
       () async {
     // `GlobalDictionaryRepository.init` decides whether to copy the dictionary out
@@ -323,6 +356,32 @@ void main() {
         expect(columns, contains('definition_$language'),
             reason: 'init treats a missing definition_$language as a stale asset');
       }
+
+      // The content version is what makes an installed app drop a copy whose
+      // *contents* were replaced without the table shape changing. If the asset
+      // stops advertising it, every device keeps whatever it already has.
+      final content = await bundled.rawQuery(
+        "SELECT value FROM dictionary_metadata "
+        "WHERE key = 'dictionary_content_version'",
+      );
+      expect(content, isNotEmpty,
+          reason: 'the asset must carry dictionary_content_version');
+      expect(
+        content.first['value'],
+        GlobalDictionaryRepository.requiredContentVersion,
+        reason: 'asset and app must agree, or a stale copy is never replaced',
+      );
+
+      // And the copy must be able to answer for the characters a dictionary is
+      // expected to hold: a copy that passes the version checks but answers
+      // nothing is what an interrupted copy looks like, and `init` uses this
+      // probe to replace it. Asserting it here keeps the asset from being
+      // re-copied on every launch.
+      expect(
+        await GlobalDictionaryRepository.copyAnswersQueries(bundled),
+        isTrue,
+        reason: 'the asset must answer everyday headwords',
+      );
     } finally {
       await bundled.close();
     }

@@ -126,6 +126,35 @@ Audit scripts live in `scratch/`:
 | `scratch/fixed_width_text_audit.py` | Containers that size text by pixel, non-flexible button rows |
 | `scratch/layout_l10n_audit.py` | Untranslated UI literals (the ratchet baseline) |
 | `scratch/fix_mojibake.py` | Byte-exact repairs for cp1252-decoded UTF-8 in `lib/` |
+| `scratch/shorten_tone_graph_help.py` | Rewrites the tone-graph explainer in all 14 locales, line by line, keeping CRLF |
+
+---
+
+## 📖 5b. Budget the explanation, not just the label
+
+Section 4 guards every *label* against the longest translation. A **panel** needs a
+second rule, because it can be perfectly translated and still be unusable: on the iPad
+build of 2026-09-29 the tone-graph lightbulb opened a single 590-character paragraph
+(*"Untranslated, too much text"* — it was English in all thirteen locales as well, since
+the seven `toneGraph*` keys lived only in `app_en.arb`).
+
+*   **A reference panel is a list, not an essay.** The rule it has to land is one
+    sentence — *a second stroke is drawn only on a mismatch, and one stroke is never a
+    failure* (audit 39's convention, `docs/LOCAL_TONE_PLAN.md` stage 6) — so the copy
+    around it is four bullets, plus two for the phrase graph's own difference.
+*   **The line breaks live in the ARB, not in the widget.** `\n` inside the value is the
+    break: a translator can see it and keep it, where a delimiter invented in code would
+    have to be explained in a comment nobody reads. `_HelpBullets` in
+    `lib/shared/widgets/tone_graph_help.dart` renders one bullet per line, inside a
+    `Row`, so `Directionality` puts the marker on the right in Arabic.
+*   **The budget is per locale and enforced.** `test/unit_tests/l10n_arb_parity_test.dart`
+    fails if any locale's body exceeds four lines of 130 characters, or the note two, or
+    if either collapses back to a single line of prose. A shrink that landed only in `en`
+    would pass a translation check and still be unreadable in twelve locales.
+*   **Measure it, then pin it.** `scratch/shorten_tone_graph_help.py` is the one-shot that
+    rewrote all 14 locales (10,158 → 7,399 characters) and re-runs idempotently; it
+    refuses to write a line over the budget and verifies the CRLF convention of every ARB
+    it touches.
 
 ---
 

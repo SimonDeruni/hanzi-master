@@ -31,6 +31,7 @@ class _RecordingAudioService extends Fake implements AudioService {
     String voiceName = 'Fenrir',
     double? speechRate,
     double? playbackRate,
+    bool fromQueue = false,
   }) async {
     spoken.add(sentence);
     voiceIds.add(voiceName);

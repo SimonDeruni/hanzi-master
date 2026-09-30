@@ -31,7 +31,24 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 class StorySummaryScreen extends ConsumerStatefulWidget {
   final LibraryStory story;
 
-  const StorySummaryScreen({super.key, required this.story});
+  /// When true this screen is a **pane** beside the list that opened it (iPad):
+  /// it owns no route, so it carries no back arrow and its host supplies the
+  /// way out through [onClose].
+  ///
+  /// Same contract as [BookDetailScreen.embedded], because the two are the same
+  /// surface for two kinds of reading material.
+  final bool embedded;
+
+  /// How the reader dismisses the pane. Only meaningful with [embedded], which
+  /// is exactly the case where this screen **cannot** pop itself.
+  final VoidCallback? onClose;
+
+  const StorySummaryScreen({
+    super.key,
+    required this.story,
+    this.embedded = false,
+    this.onClose,
+  });
 
   @override
   ConsumerState<StorySummaryScreen> createState() => _StorySummaryScreenState();
@@ -189,10 +206,27 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, size: 20, color: primaryText),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        automaticallyImplyLeading: false,
+        // The embedded pane has no route to pop, so its trailing corner is the
+        // only place a dismissal can live. On a phone the leading back arrow
+        // already is one, and the corner stays empty.
+        actions: widget.embedded && widget.onClose != null
+            ? <Widget>[
+                IconButton(
+                  icon: Icon(Icons.close, size: 22, color: primaryText),
+                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+                  onPressed: widget.onClose,
+                ),
+                const SizedBox(width: 4),
+              ]
+            : null,
+        leading: widget.embedded
+            ? null
+            : IconButton(
+                icon:
+                    Icon(Icons.arrow_back_ios_new, size: 20, color: primaryText),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
       ),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -210,11 +244,16 @@ class _StorySummaryScreenState extends ConsumerState<StorySummaryScreen> {
                   ZenFadeIn(
                     child: Center(
                       // Receives the daily-story card's flight from the library
-                      // (`HeroTransition.heroTag('story_library', link)`).
+                      // (`HeroTransition.heroTag('story_library', link)`), except
+                      // while embedded: the library card for this very story is
+                      // then on screen beside the pane with the same tag, so the
+                      // cell and the pane would put two Heroes with one tag
+                      // inside the reading-room route.
                       child: HeroTransition.wrap(
                         context: context,
                         tag: HeroTransition.heroTag(
                             'story_library', widget.story.link),
+                        enabled: !widget.embedded,
                         child: StoryCoverArt(
                           story: widget.story,
                           showSourceBadge: false,

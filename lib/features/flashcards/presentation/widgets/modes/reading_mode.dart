@@ -231,7 +231,10 @@ class _ReadingModeWidgetState extends ConsumerState<ReadingModeWidget> {
             // the swipe itself stamps on the card.
             if (_isRevealed)
               const Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 32),
+                // One strip for every host: this padding is subtracted from the
+                // card above, so a per-screen value made the swipe surface two
+                // different sizes.
+                padding: SwipeToGradeHint.stripPadding,
                 child: SwipeToGradeHint(),
               ),
           ],

@@ -87,10 +87,21 @@ class BookDetailScreen extends ConsumerStatefulWidget {
   /// See `docs/IPAD_ADAPTIVE_PLAN.md`, Phase 2.
   final bool embedded;
 
+  /// How the reader dismisses the pane. Only meaningful with [embedded], which
+  /// is exactly the case where this screen **cannot** pop itself (it owns no
+  /// route), so its host must supply the way out.
+  ///
+  /// Without it the pane had no dismissal of any kind — no back button, no
+  /// close target, no tap-outside — because the catalogue only ever *set*
+  /// `_previewBook`, never cleared it. Reported 2026-09-29: "No way to close
+  /// the right Thing".
+  final VoidCallback? onClose;
+
   const BookDetailScreen({
     super.key,
     required this.book,
     this.embedded = false,
+    this.onClose,
   });
 
   @override
@@ -131,6 +142,10 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     _synopsis = LocalizedCatalogService.getBookSynopsis(
       bookId: widget.book.id,
       localeCode: locale,
+      // The book's own description is already in the reader's language where the
+      // content ships localized (a poet's collection carries the poet's
+      // translated biography there) — English is the last resort, not the first.
+      fallback: widget.book.description,
       fallbackEn: widget.book.descriptionEn,
     );
   }
@@ -162,6 +177,22 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
+        // The embedded pane has no route to pop, so its trailing corner is the
+        // only place a dismissal can live. On a phone the leading back arrow
+        // already is one, and the corner stays empty.
+        actions: widget.embedded && widget.onClose != null
+            ? <Widget>[
+                IconButton(
+                  icon: Icon(Icons.close, size: 22, color: primaryText),
+                  // `MaterialLocalizations` already carries this string in all
+                  // 14 shipped locales, so the affordance is labelled without
+                  // adding an ARB key.
+                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+                  onPressed: widget.onClose,
+                ),
+                const SizedBox(width: 4),
+              ]
+            : null,
         leading: widget.embedded
             ? null
             : IconButton(
@@ -182,10 +213,20 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      // Calligraphic Book Cover (shared element with the catalog)
+                      // Calligraphic Book Cover (shared element with the catalog).
+                      //
+                      // Disabled while embedded: the catalogue's grid card for
+                      // this very book is on screen at the same time and carries
+                      // the same tag, so the cell and the pane put two `Hero`s
+                      // with one tag inside the catalog route — which Flutter
+                      // rejects the moment any page route is pushed from it
+                      // (every micro-read and poem card, `book_reader_screen`'s
+                      // bookmark sheet). There is no flight to make here anyway:
+                      // the pane *is* the destination.
                       HeroTransition.wrap(
                         context: context,
                         tag: HeroTransition.heroTag('book_catalog', book.id),
+                        enabled: !widget.embedded,
                         child: CalligraphicBookCover(
                           book: book,
                           width: 135,
@@ -324,35 +365,45 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                                 size: 22,
                               ),
                               const SizedBox(width: 8),
-                              Text(
-                                downloadState.status ==
-                                        BookDownloadStatus.checking
-                                    ? l10n.checkingDownload
-                                    : downloadState.status ==
-                                            BookDownloadStatus.downloading
-                                        ? l10n.downloadingBook(
-                                            (downloadState.progress * 100)
-                                                .round(),
-                                          )
-                                        : !isDownloaded
-                                            ? (downloadState.status ==
-                                                    BookDownloadStatus.error
-                                                ? l10n.retryDownload
-                                                : l10n.downloadBook)
-                                            : currentProgress > 1
-                                                ? (book.category
-                                                        .contains('Poetry')
-                                                    ? l10n.continueReading
-                                                    : l10n.continueChapter(
-                                                        currentProgress))
-                                                : (book.category
-                                                        .contains('Poetry')
-                                                    ? l10n.readPoem
-                                                    : l10n.startReading),
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.5,
+                              // The app's primary CTA, and its label is
+                              // localized into all 13 languages. Without the
+                              // `Flexible` this `Row` overflowed by 30dp on a
+                              // 390dp phone — found by
+                              // `book_catalog_preview_pane_test.dart`, the
+                              // first test ever to render this screen.
+                              Flexible(
+                                child: Text(
+                                  downloadState.status ==
+                                          BookDownloadStatus.checking
+                                      ? l10n.checkingDownload
+                                      : downloadState.status ==
+                                              BookDownloadStatus.downloading
+                                          ? l10n.downloadingBook(
+                                              (downloadState.progress * 100)
+                                                  .round(),
+                                            )
+                                          : !isDownloaded
+                                              ? (downloadState.status ==
+                                                      BookDownloadStatus.error
+                                                  ? l10n.retryDownload
+                                                  : l10n.downloadBook)
+                                              : currentProgress > 1
+                                                  ? (book.category
+                                                          .contains('Poetry')
+                                                      ? l10n.continueReading
+                                                      : l10n.continueChapter(
+                                                          currentProgress))
+                                                  : (book.category
+                                                          .contains('Poetry')
+                                                      ? l10n.readPoem
+                                                      : l10n.startReading),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.5,
+                                  ),
                                 ),
                               ),
                             ],
@@ -588,7 +639,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
                                   );
                                 }
                                 return Text(
-                                  snapshot.data ?? book.descriptionEn,
+                                  snapshot.data ?? book.description,
                                   style: TextStyle(
                                     fontSize: 14.5,
                                     height: 1.6,

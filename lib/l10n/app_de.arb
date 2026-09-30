@@ -568,6 +568,7 @@
   "created_smart_deck_with_words": "Smart-Deck „{deckName}“ mit {wordCount} Wörtern erstellt!",
   "question": "Frage {current}/{total}",
   "score": "Ergebnis: {score} / {total}",
+  "scoreValue": "Ergebnis: {value}",
   "audio_could_not_start_check_your": "Audio konnte nicht gestartet werden. Prüfe deine Verbindung und die Audioeinstellungen deines Geräts.",
   "sentence": "Satz",
   "error_loading_novels": "Fehler beim Laden der Romane: {error}",
@@ -681,8 +682,8 @@
   "novels96": "Romane (96)",
   "microReads": "Mikro-Lektüren",
   "poetry": "Poesie",
-  "bookmarkRemoved": "书签已移除 · Lesezeichen entfernt",
-  "bookmarkAdded": "已添加书签 · Lesezeichen hinzugefügt: Kapitel {chapter}",
+  "bookmarkRemoved": "Lesezeichen entfernt",
+  "bookmarkAdded": "Lesezeichen hinzugefügt: Kapitel {chapter}",
   "readingVocabulary": "Lesen & Wortschatz",
   "vocabularyBatchUnitindex1": "Vokabel-Deck {index}",
   "yourDailyDropIsHere1": "Dein täglicher Drop ist da! ✨",
@@ -4106,5 +4107,12 @@
   "storyCategoryChineseEpics": "Chinesische Epen",
   "storyCategorySupernaturalFolklore": "Übernatürliches & Folklore",
   "storyCategoryChinesePoetry": "Chinesische Dichtung",
-  "storyCategoryTangPoetry": "Tang-Dichtung"
+  "storyCategoryTangPoetry": "Tang-Dichtung",
+  "toneGraphHowToReadTitle": "So lesen Sie dieses Diagramm",
+  "toneGraphHowToReadBody": "Von links nach rechts ist die Zeit. Von oben nach unten die Tonhöhe: wie hoch Ihre Stimme sitzt, nicht wie laut sie ist.\nLesen Sie die Richtung des Strichs, nicht die Höhe: 1 hoch und gleichbleibend · 2 steigend · 3 tief absinkend · 4 abfallend.\nDer erste Strich ist der Ton, den Sie anstrebten; ein zweiter wird nur gezeichnet, wenn ein anderer Ton gehört wurde.\nEin einziger Strich heißt: Sie haben das Ziel getroffen oder der Ton wurde nicht gemessen — nie, dass Sie falsch lagen.",
+  "toneGraphHowToReadTooltip": "So lesen Sie dieses Diagramm",
+  "toneGraphHowToReadPhraseNote": "Hier ist der gestrichelte Strich die Form der Töne des Satzes, gleichmäßig verteilt.\nWir wissen nicht, wo jede Silbe in Ihrer Aufnahme beginnt — vergleichen Sie die Formen, nicht die Positionen.",
+  "toneGraphNoPitchMeasured": "In dieser Aufnahme wurde keine Tonhöhe gemessen, daher gibt es für Ihre Stimme nichts zu zeichnen. Der gestrichelte Strich ist weiterhin die Form, die Sie anstrebten.",
+  "toneGraphTarget": "Ziel",
+  "toneGraphYourVoice": "Ihre Stimme"
 }

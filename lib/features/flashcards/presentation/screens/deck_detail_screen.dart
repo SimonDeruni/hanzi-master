@@ -89,9 +89,18 @@ class _DailyGoal extends StatelessWidget {
 /// The deck's numbers, shown *beside* the card list on an iPad (≥840dp) rather
 /// than in a header you scroll past.
 ///
-/// Deliberately informational: every action (study, add cards, deck settings)
-/// stays in the list pane, so the phone flow and the wide flow cannot drift
-/// apart, and the iPhone layout is untouched.
+/// Deliberately informational: every action (study, add cards, deck settings,
+/// **writing practice**) stays in the list pane, so the phone flow and the wide
+/// flow cannot drift apart, and the iPhone layout is untouched.
+///
+/// The writing-practice button used to live in here, which broke that rule twice
+/// over. `Practice Writing` is one of six ways to practise a deck, so filing it
+/// under the `My Progress` heading read as a statistic sitting next to
+/// `Number of Cards`; and because this rail only builds at ≥840dp, routing the
+/// bench through it made handwriting practice **unreachable on every iPhone** —
+/// the push used to be the app's only `WritingBenchScreen` route. It now sits in
+/// the action block with Review / Story / Role play, which is where
+/// `docs/IPAD_ADAPTIVE_PLAN.md` put the actions all along.
 class _DeckInsightRail extends StatelessWidget {
   const _DeckInsightRail({
     required this.isDark,
@@ -100,7 +109,6 @@ class _DeckInsightRail extends StatelessWidget {
     required this.newAvailable,
     required this.dailyReviewLimit,
     required this.dailyNewLimit,
-    required this.onPracticeWriting,
   });
 
   final bool isDark;
@@ -109,10 +117,6 @@ class _DeckInsightRail extends StatelessWidget {
   final int newAvailable;
   final int dailyReviewLimit;
   final int dailyNewLimit;
-
-  /// Opens the handwriting practice bench for this deck (iPad only — the rail
-  /// itself is only rendered at ≥840dp).
-  final VoidCallback onPracticeWriting;
 
   static const double width = 320;
 
@@ -187,21 +191,6 @@ class _DeckInsightRail extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              // iPad-only by construction (the rail only exists at ≥840dp): the
-              // handwriting practice bench for this deck.
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton.icon(
-                  onPressed: onPracticeWriting,
-                  icon: const Icon(Icons.edit, size: 18),
-                  label: Text(
-                    l10n.practiceWriting,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
                 ),
               ),
             ],
@@ -658,19 +647,99 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                                   ? const Color(0xFFFFD54F)
                                                   : const Color(0xFF8B0000)),
                                           const SizedBox(width: 6),
-                                          Text(
-                                              AppLocalizations.of(context)!
-                                                  .story,
-                                              style: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  letterSpacing: 0.3)),
+                                          // Some locales are long ("Pratiquer
+                                          // en jeu de rôle"), so the label
+                                          // has to be able to give way.
+                                          Flexible(
+                                            child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .story,
+                                                maxLines: 1,
+                                                overflow:
+                                                    TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0.3)),
+                                          ),
                                         ],
                                       ),
                                     ),
                                   ),
                                 ),
                               ],
+                            ),
+                            const SizedBox(height: 12),
+                            // Writing practice belongs with the other practice
+                            // entry points, not in the iPad insight rail. It is
+                            // one of six ways to practise this deck, and the
+                            // rail only builds at >=840dp, so routing the bench
+                            // through the rail also made the feature
+                            // unreachable on every iPhone.
+                            SizedBox(
+                              height: 54,
+                              width: double.infinity,
+                              child: OutlinedButton(
+                                // Belt-and-braces: this block only renders for a
+                                // non-empty deck, so the guard cannot fire today.
+                                // It keeps a future relaxation of that gate from
+                                // pushing into an empty session, and shows a
+                                // disabled state rather than Role play's silent
+                                // early return.
+                                onPressed: deckCards.isEmpty
+                                    ? null
+                                    : () {
+                                        Navigator.push(
+                                            context,
+                                            SwipeBackPageRoute(
+                                              builder: (context) =>
+                                                  WritingBenchScreen(
+                                                cards: deckCards,
+                                                deckName: _currentDeck
+                                                    .localizedName(context),
+                                              ),
+                                            ));
+                                      },
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: isDark
+                                      ? const Color(0xFFFFD54F)
+                                      : const Color(0xFF1A1A1B),
+                                  backgroundColor: isDark
+                                      ? Colors.white.withValues(alpha: 0.05)
+                                      : Colors.black.withValues(alpha: 0.03),
+                                  side: BorderSide(
+                                      color: isDark
+                                          ? const Color(0xFFFFD54F)
+                                              .withValues(alpha: 0.4)
+                                          : Colors.black
+                                              .withValues(alpha: 0.15),
+                                      width: 1.2),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.edit,
+                                        size: 18,
+                                        color: isDark
+                                            ? const Color(0xFFFFD54F)
+                                            : const Color(0xFF8B0000)),
+                                    const SizedBox(width: 8),
+                                    Flexible(
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .practiceWriting,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 0.3)),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                             const SizedBox(height: 12),
                             SizedBox(
@@ -714,13 +783,19 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                             ? const Color(0xFFFFD54F)
                                             : const Color(0xFF8B0000)),
                                     const SizedBox(width: 8),
-                                    Text(
-                                        AppLocalizations.of(context)!
-                                            .practiceInRoleplay,
-                                        style: const TextStyle(
-                                            fontSize: 15.5,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 0.3)),
+                                    // Flexible for the same reason as Story:
+                                    // this label is the longest of the four.
+                                    Flexible(
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .practiceInRoleplay,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontSize: 15.5,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 0.3)),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1011,15 +1086,6 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                   newAvailable: newAvailable,
                   dailyReviewLimit: _dailyReviewLimit,
                   dailyNewLimit: _dailyNewCardsLimit,
-                  onPracticeWriting: () => Navigator.push(
-                    context,
-                    SwipeBackPageRoute(
-                      builder: (_) => WritingBenchScreen(
-                        cards: deckCards,
-                        deckName: _currentDeck.localizedName(context),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             );

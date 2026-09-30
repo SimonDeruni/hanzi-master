@@ -1158,26 +1158,59 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     );
   }
 
+  /// How wide a component card has to be to stay readable: 24dp padding each
+  /// side, the 60dp radical tile, the 16dp gap beside it, and text with room to
+  /// wrap at word level rather than one character per line.
+  static const double _anatomyCardMinWidth = 232;
+  static const double _anatomyCardGap = 12;
+
   Widget _buildAnatomySection(BuildContext context, bool isDark) {
     if (_anatomyComponents.length == 1) {
       return _buildAnatomyCard(_anatomyComponents.first, isDark);
     }
-    // Expanded shows every component at once: the pills and the 220dp pager
-    // exist to page a narrow column, and a swipe carousel on a wide screen both
-    // hides content and fights two-finger trackpad scrolling.
-    if (context.zenWindow.isExpanded) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _anatomyComponents
-            .map((comp) => Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: _buildAnatomyCard(comp, isDark),
-                  ),
-                ))
-            .toList(),
-      );
-    }
+    // The gate is this section's OWN width, never the window's. On an iPad the
+    // detail sections are laid out as columns, so this widget can be ~285dp wide
+    // on a 1366dp screen. Gating on `window.isExpanded` put one card per
+    // component inside those 285dp — roughly 70dp each — and the card's own row
+    // (a 60dp radical tile plus a 16dp gap, which does not shrink) then left the
+    // text about two pixels to live in: it wrapped one character per line and the
+    // `廣 ANATOMIE` headers, each wider than its card, ran together into
+    // `ANANATOMIEOMIE`. Deciding on the window is right for the page layout and
+    // wrong for a widget that is handed a narrow slice of it.
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final double width = constraints.maxWidth;
+        // Arithmetic rather than a comparison, so no raw pixel threshold can
+        // creep back in: how many cards fit side by side at their minimum width.
+        final int columns = ((width + _anatomyCardGap) /
+                (_anatomyCardMinWidth + _anatomyCardGap))
+            .floor()
+            .clamp(1, _anatomyComponents.length);
+        if (columns < 2) return _buildAnatomyPager(isDark);
+
+        // Every component visible at once, wrapping onto further rows rather
+        // than paging: on a wide screen a swipe carousel both hides content and
+        // fights two-finger trackpad scrolling.
+        final double cardWidth =
+            (width - _anatomyCardGap * (columns - 1)) / columns;
+        return Wrap(
+          spacing: _anatomyCardGap,
+          runSpacing: _anatomyCardGap,
+          children: <Widget>[
+            for (final Map<String, dynamic> comp in _anatomyComponents)
+              SizedBox(width: cardWidth, child: _buildAnatomyCard(comp, isDark)),
+          ],
+        );
+      },
+    );
+  }
+
+  /// The narrow treatment: component pills over a 220dp carousel.
+  ///
+  /// Used only when the section is too narrow to seat two cards side by side, so
+  /// the carousel is what pages a genuine column — not what rescues a layout
+  /// that asked for more width than it was given.
+  Widget _buildAnatomyPager(bool isDark) {
     return Column(
       children: [
         Row(
@@ -1247,22 +1280,22 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    const Icon(Icons.architecture,
-                        size: 18, color: Colors.indigo),
-                    const SizedBox(width: 8),
-                    Text(
-                        "${comp['char']} ${AppLocalizations.of(context)!.anatomy.toUpperCase()}",
-                        style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.indigo,
-                            letterSpacing: 1.0)),
-                  ],
+                const Icon(Icons.architecture, size: 18, color: Colors.indigo),
+                const SizedBox(width: 8),
+                // Flexible, not a nested Row: an unbounded label is what let the
+                // header grow wider than its card and run into the next one.
+                Flexible(
+                  child: Text(
+                      "${comp['char']} ${AppLocalizations.of(context)!.anatomy.toUpperCase()}",
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigo,
+                          letterSpacing: 1.0)),
                 ),
+                const Spacer(),
                 const Icon(Icons.info_outline, size: 16, color: Colors.indigo),
               ],
             ),

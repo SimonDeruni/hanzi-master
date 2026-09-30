@@ -791,6 +791,7 @@
   "scenarioRemoved": "Escenario eliminado",
   "scenarioSavedFindInCustomTab": "¡Escenario guardado! Encuéntralo en la pestaña Personalizado.",
   "score": "Puntuación: {score} / {total}",
+  "scoreValue": "Puntuación: {value}",
   "searchByPinyinOrMeaning": "Buscar por pinyin o significado...",
   "searchByTitleOrTag": "Buscar por título o etiqueta...",
   "searchDictionaryOrTypeCustom": "Buscar en el diccionario o escribir término personalizado",
@@ -1064,8 +1065,8 @@
   "novels96": "Novelas (96)",
   "microReads": "Microlecturas",
   "poetry": "Poesía",
-  "bookmarkRemoved": "书签已移除 · Marcador eliminado",
-  "bookmarkAdded": "已添加书签 · Marcador añadido: Capítulo {chapter}",
+  "bookmarkRemoved": "Marcador eliminado",
+  "bookmarkAdded": "Marcador añadido: Capítulo {chapter}",
   "readingVocabulary": "Lectura y vocabulario",
   "vocabularyBatchUnitindex1": "Lote de vocabulario {index}",
   "yourDailyDropIsHere1": "¡Tu entrega diaria ya está aquí! ✨",
@@ -4163,5 +4164,12 @@
   "storyCategoryChineseEpics": "Epopeyas chinas",
   "storyCategorySupernaturalFolklore": "Sobrenatural y folclore",
   "storyCategoryChinesePoetry": "Poesía china",
-  "storyCategoryTangPoetry": "Poesía Tang"
+  "storyCategoryTangPoetry": "Poesía Tang",
+  "toneGraphHowToReadTitle": "Cómo leer este gráfico",
+  "toneGraphHowToReadBody": "De izquierda a derecha, el tiempo. De arriba abajo, el tono: lo aguda que es tu voz, no lo fuerte.\nLee la dirección del trazo, no su altura: el 1 se mantiene alto y nivelado · el 2 sube · el 3 baja · el 4 cae desde lo alto.\nEl primer trazo es el tono que buscabas; el segundo solo se dibuja cuando se oyó otro tono.\nUn solo trazo significa que acertaste o que el tono no se midió — nunca que te equivocaras.",
+  "toneGraphHowToReadTooltip": "Cómo leer este gráfico",
+  "toneGraphHowToReadPhraseNote": "Aquí el trazo discontinuo es la forma de los tonos de la frase, espaciados por igual.\nNo sabemos dónde empieza cada sílaba en tu grabación: compara las formas, no las posiciones.",
+  "toneGraphNoPitchMeasured": "No se midió ningún tono en esta toma, así que no hay nada que dibujar para tu voz. El trazo discontinuo sigue siendo la forma a la que apuntabas.",
+  "toneGraphTarget": "Objetivo",
+  "toneGraphYourVoice": "Tu voz"
 }

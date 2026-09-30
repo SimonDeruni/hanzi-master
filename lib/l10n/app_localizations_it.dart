@@ -2491,6 +2491,11 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'Punteggio: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'Cerca per pinyin o significato...';
 
   @override
@@ -2666,28 +2671,28 @@ class AppLocalizationsIt extends AppLocalizations {
   String get toneGraph => 'Grafico dei toni';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'La tua voce';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => 'Obiettivo';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'Non è stata misurata alcuna intonazione in questa prova, quindi non c\'è nulla da disegnare per la tua voce. Il tratto tratteggiato è comunque la forma a cui puntavi.';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'Qui il tratto tratteggiato è la forma dei toni della frase, spaziati in modo uniforme.\nNon sappiamo dove inizia ogni sillaba nella tua registrazione: confronta le forme, non le posizioni.';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'Come leggere questo grafico';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'Come leggere questo grafico';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'Da sinistra a destra c’è il tempo. In alto e in basso c’è l’altezza: quanto è acuta la tua voce, non quanto è forte.\nLeggi la direzione del tratto, non la sua altezza: 1 alto e stabile · 2 sale · 3 scende in basso · 4 cade dall’alto.\nIl primo tratto è il tono che volevi; il secondo compare solo quando è stato sentito un tono diverso.\nUn solo tratto significa che hai centrato il bersaglio o che il tono non è stato misurato — mai che hai sbagliato.';
 
   @override
   String get traceLabel => 'Traccia';
@@ -3434,11 +3439,11 @@ class AppLocalizationsIt extends AppLocalizations {
   String get poetry => 'Poesia';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · Segnalibro rimosso';
+  String get bookmarkRemoved => 'Segnalibro rimosso';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Segnalibro aggiunto: Capitolo $chapter';
+    return 'Segnalibro aggiunto: Capitolo $chapter';
   }
 
   @override

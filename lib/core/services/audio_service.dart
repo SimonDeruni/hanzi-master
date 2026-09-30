@@ -96,6 +96,19 @@ class AudioService extends background_audio.BaseAudioHandler {
   String _audiobookVoice = 'Fenrir';
   bool _audiobookActive = false;
   bool _audiobookPlaying = false;
+
+  /// True while the sentence being played belongs to the audiobook *queue*
+  /// (the fullscreen player, the iPad desk, the shell's Now Playing bar).
+  ///
+  /// The queue's next sentence is the engine's business — it owns the track list,
+  /// so it advances itself when a sentence ends. The reader plays one sentence at
+  /// a time through the same engine and waits for the completion event instead.
+  /// Those two cannot share a flag: `playSentence` clears [_audiobookActive] (it
+  /// must, so leaving the reader cannot stop the shell's audiobook) and that
+  /// cleared flag was what the completion handler branched on — so every
+  /// completion was routed to the reader's listener, which the queue surfaces do
+  /// not have, and the queue stalled on its first sentence.
+  bool _queueOwnsPlayback = false;
   bool _stopAtChapterEnd = false;
   bool _advancingAudiobook = false;
 
@@ -307,7 +320,10 @@ class AudioService extends background_audio.BaseAudioHandler {
   }
 
   void _handleEngineCompletion() {
-    if (_audiobookActive && _audiobookPlaying) {
+    // Who asked for the sentence that just ended decides what happens next:
+    // the queue plays its own next track, a single-sentence caller (the reader,
+    // a voice preview) is told and starts the next one itself.
+    if (_queueOwnsPlayback && _audiobookPlaying) {
       unawaited(_advanceAudiobook());
     } else if (!_completeController.isClosed) {
       _completeController.add(null);
@@ -409,8 +425,11 @@ class AudioService extends background_audio.BaseAudioHandler {
     _broadcastPlaybackState(
         processingState: background_audio.AudioProcessingState.loading);
     _emitAudiobookLocation();
-    final started =
-        await playSentence(track.sentence, voiceName: _audiobookVoice);
+    final started = await playSentence(
+      track.sentence,
+      voiceName: _audiobookVoice,
+      fromQueue: true,
+    );
     _audiobookPlaying = started;
     _broadcastPlaybackState(
       processingState: started
@@ -439,6 +458,7 @@ class AudioService extends background_audio.BaseAudioHandler {
                   current.chapterIndex)) {
         _stopAtChapterEnd = false;
         _audiobookPlaying = false;
+        _queueOwnsPlayback = false;
         await _stopEngines();
         _broadcastPlaybackState(
             processingState: background_audio.AudioProcessingState.completed);
@@ -618,12 +638,16 @@ class AudioService extends background_audio.BaseAudioHandler {
     String voiceName = 'Fenrir',
     double? speechRate,
     double? playbackRate,
+    bool fromQueue = false,
   }) async {
     final generation = ++_playbackGeneration;
     // Inline reading-aloud takes the engine over from any background audiobook.
     // Clearing the flag here is what lets the reader stop audio on exit without
     // killing playback the shell's Now Playing bar is controlling.
     _audiobookActive = false;
+    // ...and this is what the completion handler branches on instead: it says
+    // who asked for the sentence that is about to play.
+    _queueOwnsPlayback = fromQueue;
     _currentBoundaries = [];
     _currentBoundaryIndex = 0;
     if (!_isInitialized) await init();
@@ -1465,6 +1489,7 @@ class AudioService extends background_audio.BaseAudioHandler {
     if (_isDisposed) return;
     _audiobookPlaying = false;
     _audiobookActive = false;
+    _queueOwnsPlayback = false;
     _stopAtChapterEnd = false;
     await _runEngineOperation(_stopEngines);
     _broadcastPlaybackState(

@@ -2,8 +2,11 @@ import 'dart:async';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/core/services/audio_service.dart';
 import 'package:hanzi_master/core/services/zen_ambient_service.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
+import 'package:hanzi_master/core/widgets/translated_text.dart';
 import 'package:hanzi_master/shared/widgets/zen_soundscape_sheet.dart';
 import '../providers/story_controller.dart';
 import '../../../../core/services/gemini_service.dart';
@@ -14,6 +17,50 @@ import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
+
+/// Tone-marked pinyin for one story word, derived from the hanzi when the word
+/// does not carry its own.
+///
+/// **Why this exists.** Story words arrive with `pinyin: ''` whenever the word
+/// list was built locally: `GeminiService._deriveWords` makes one word per
+/// character and documents that *"the reader derives pinyin from the hanzi
+/// itself (`PinyinHelper`)"*. `BookReaderScreen` honours that contract in
+/// `_getRubyTokens`; this reader printed `word.pinyin` straight out, so every
+/// derived story showed a blank pinyin line in **every** pinyin mode — which is
+/// why a deck story had no pinyin and no mode change ever brought it back.
+///
+/// A word that already carries pinyin keeps it: the model's answer is better
+/// than a per-character guess for a multi-character word. The one exception is a
+/// "pinyin" that merely echoes the gloss, a known model failure mode that the
+/// transcript pipeline guards against the same way.
+@visibleForTesting
+String storyWordPinyin(String hanzi, String? pinyin, {String? echo}) {
+  final String provided = (pinyin ?? '').trim();
+  final bool echoesGloss =
+      echo != null && provided.toLowerCase() == echo.trim().toLowerCase();
+  if (provided.isNotEmpty && !echoesGloss) return provided;
+  if (hanzi.isEmpty) return '';
+  final String? cached = _storyPinyinCache[hanzi];
+  if (cached != null) return cached;
+  final String derived = _containsHanzi(hanzi)
+      ? PinyinHelper.getPinyinE(
+          hanzi,
+          separator: ' ',
+          format: PinyinFormat.WITH_TONE_MARK,
+        ).trim()
+      : '';
+  _storyPinyinCache[hanzi] = derived;
+  return derived;
+}
+
+/// Bounded in practice by the vocabulary of the stories actually opened, and
+/// the same trade `BookReaderScreen._rubyCache` makes.
+final Map<String, String> _storyPinyinCache = <String, String>{};
+
+final RegExp _hanziRun = RegExp(r'[\u4e00-\u9fff]');
+
+bool _containsHanzi(String text) => _hanziRun.hasMatch(text);
+
 
 class StoryReaderScreen extends ConsumerStatefulWidget {
   final StoryBlueprint blueprint;
@@ -33,7 +80,29 @@ enum PinyinMode { all, ghost, none }
 
 class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   PinyinMode _pinyinMode = PinyinMode.all;
+
+  /// Translations are **on** by default, the same contract the book reader keeps
+  /// (`BookReaderScreen._showAllTranslations`). They used to be opt-in per
+  /// sentence behind an unlabelled grey translate icon, so a freshly opened
+  /// story showed none — "no translation" was the default state, not a bug in
+  /// the data.
+  bool _showAllTranslations = true;
+
+  /// 17 → 20 → 24 → 28 → 17pt, the book reader's ladder. The surface used to
+  /// hard-code 28pt hanzi, which is unwieldy on a phone and immovable on iPad.
+  double _fontSize = 20.0;
+
+  /// Revealed while the global toggle is off.
   final Set<int> _translatedSentences = {};
+
+  /// Hidden again while the global toggle is on, so a tap on a sentence always
+  /// does something visible. The book reader's `_showAllTranslations || isRevealed`
+  /// makes its own per-sentence tap inert while the toolbar toggle is on.
+  final Set<int> _hiddenTranslations = {};
+
+  bool _isTranslationShown(int index) => _showAllTranslations
+      ? !_hiddenTranslations.contains(index)
+      : _translatedSentences.contains(index);
   String? _quickLookSelectedWordKey;
   bool _isPlaying = false;
   bool _isPaused = false;
@@ -67,9 +136,19 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     ];
   }
 
+  /// Captured in `initState` because `ref` cannot be read from `dispose()`.
+  /// Reading the providers inside `dispose` threw `Bad state: Cannot use "ref"
+  /// after the widget was disposed`, so the audio engine was never actually
+  /// stopped and the ambient soundscape never paused when a reader left a story
+  /// — the cleanup line threw instead of running.
+  late final AudioService _audioService;
+  late final ZenAmbientService _ambientService;
+
   @override
   void initState() {
     super.initState();
+    _audioService = ref.read(audioServiceProvider);
+    _ambientService = ref.read(zenAmbientServiceProvider.notifier);
     _initTts();
 
     // Determine if it's a custom unsaved story
@@ -277,9 +356,53 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
     _loadingTimer?.cancel();
     _boundarySub?.cancel();
     _completionSub?.cancel();
-    unawaited(ref.read(audioServiceProvider).stop());
-    unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
+    unawaited(_audioService.stop());
+    unawaited(_ambientService.pause());
     super.dispose();
+  }
+
+  /// all → ghost → none → all, matching the book reader's toggle.
+  void _cyclePinyinMode() {
+    HapticsManager.light();
+    setState(() {
+      if (_pinyinMode == PinyinMode.all) {
+        _pinyinMode = PinyinMode.ghost;
+      } else if (_pinyinMode == PinyinMode.ghost) {
+        _pinyinMode = PinyinMode.none;
+      } else {
+        _pinyinMode = PinyinMode.all;
+      }
+    });
+  }
+
+  void _cycleFontSize() {
+    HapticsManager.light();
+    setState(() {
+      if (_fontSize == 17.0) {
+        _fontSize = 20.0;
+      } else if (_fontSize == 20.0) {
+        _fontSize = 24.0;
+      } else if (_fontSize == 24.0) {
+        _fontSize = 28.0;
+      } else {
+        _fontSize = 17.0;
+      }
+    });
+  }
+
+  /// Flips one sentence's translation against the current global setting: it
+  /// hides when the toolbar toggle is on and reveals when it is off.
+  void _toggleSentenceTranslation(int index) {
+    HapticsManager.light();
+    setState(() {
+      final Set<int> set =
+          _showAllTranslations ? _hiddenTranslations : _translatedSentences;
+      if (set.contains(index)) {
+        set.remove(index);
+      } else {
+        set.add(index);
+      }
+    });
   }
 
   void _showSummary(BuildContext context, AiStory story) {
@@ -420,16 +543,59 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         backgroundColor:
             isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
         appBar: AppBar(
+          // One line, never two. The toolbar must not outgrow a phone: this was
+          // an unbounded two-line Text, so a long deck name plus the HSK prefix
+          // could push the actions off the row — the exact failure the book
+          // reader's toolbar comment documents.
           title: Text(
             widget.hskLevel == 0
                 ? widget.blueprint.title
                 : 'HSK ${widget.hskLevel}: ${widget.blueprint.title}',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                color: isDark ? Colors.white : Colors.black87),
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white : Colors.black87,
+            ),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
+            // Three reading toggles, then everything else one tap deeper — the
+            // book reader's arrangement. This row used to be the ambient button
+            // *plus* two labelled TextButtons for Discard/Save; on a 390dp phone
+            // that pushed the actions over the back arrow.
+            IconButton(
+              icon: Icon(
+                _pinyinMode == PinyinMode.all
+                    ? Icons.spellcheck
+                    : (_pinyinMode == PinyinMode.ghost
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                size: 22,
+                color: isDark ? Colors.white70 : Colors.black87,
+              ),
+              tooltip: AppLocalizations.of(context)!.togglePinyin,
+              onPressed: _cyclePinyinMode,
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.translate_rounded,
+                size: 20,
+                color: _showAllTranslations
+                    ? (isDark ? Colors.amber.shade400 : const Color(0xFF8B0000))
+                    : (isDark ? Colors.white70 : Colors.black87)
+                        .withValues(alpha: 0.6),
+              ),
+              tooltip: _showAllTranslations
+                  ? AppLocalizations.of(context)!.hideTranslation
+                  : AppLocalizations.of(context)!.showTranslation,
+              onPressed: () {
+                HapticsManager.light();
+                setState(() => _showAllTranslations = !_showAllTranslations);
+              },
+            ),
             // Ambient Soundscape Button
             Consumer(
               builder: (context, ref, _) {
@@ -452,31 +618,90 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 );
               },
             ),
-            if (!_isSaved && state.currentStory != null) ...[
-              TextButton.icon(
-                icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
-                label: Text(AppLocalizations.of(context)!.discard,
-                    style: const TextStyle(color: Colors.redAccent)),
-                onPressed: () async {
-                  final controller = ref.read(storyControllerProvider.notifier);
-                  await controller.deleteCustomStory(widget.blueprint);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
+            // Summary, type size, and — for a story not yet saved — the
+            // save/discard pair, which used to be two extra toolbar buttons.
+            PopupMenuButton<String>(
+              icon: Icon(Icons.more_vert_rounded,
+                  size: 22, color: isDark ? Colors.white70 : Colors.black87),
+              color: isDark ? const Color(0xFF1E1E22) : Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-              TextButton.icon(
-                icon: const Icon(Icons.save),
-                label: Text(AppLocalizations.of(context)!.save),
-                onPressed: () {
-                  setState(() {
-                    _isSaved = true;
-                  });
-                  ZenToast.success(context,
-                      AppLocalizations.of(context)!.storySavedToLibrary);
-                },
-              ),
-            ]
+              onSelected: (String action) async {
+                switch (action) {
+                  case 'summary':
+                    _showSummary(
+                      context,
+                      AiStory(sentences: state.currentStory!.sentences),
+                    );
+                    return;
+                  case 'font':
+                    _cycleFontSize();
+                    return;
+                  case 'discard':
+                    final controller =
+                        ref.read(storyControllerProvider.notifier);
+                    await controller.deleteCustomStory(widget.blueprint);
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
+                    return;
+                  case 'save':
+                    setState(() => _isSaved = true);
+                    ZenToast.success(context,
+                        AppLocalizations.of(context)!.storySavedToLibrary);
+                    return;
+                }
+              },
+              itemBuilder: (context) {
+                final l10n = AppLocalizations.of(context)!;
+                return <PopupMenuEntry<String>>[
+                  PopupMenuItem<String>(
+                    value: 'summary',
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.article, size: 20),
+                      title: Text(l10n.summary),
+                    ),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'font',
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.format_size, size: 20),
+                      title: Text(
+                          '${l10n.adjustFontSize}: ${_fontSize.round()} pt'),
+                    ),
+                  ),
+                  if (!_isSaved && state.currentStory != null)
+                    ...<PopupMenuEntry<String>>[
+                      PopupMenuItem<String>(
+                        value: 'discard',
+                        child: ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.delete_outline,
+                              size: 20, color: Colors.redAccent),
+                          title: Text(l10n.discard,
+                              style:
+                                  const TextStyle(color: Colors.redAccent)),
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'save',
+                        child: ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.save, size: 20),
+                          title: Text(l10n.save),
+                        ),
+                      ),
+                    ],
+                ];
+              },
+            ),
           ],
           bottom: const PreferredSize(
             preferredSize: Size.fromHeight(0),
@@ -640,16 +865,21 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                       int currentStringOffset =
                                           globalStringOffset;
 
-                                      sentenceWidgets.add(Column(
+                                      sentenceWidgets.add(GestureDetector(
+                                        // Tapping the sentence toggles its
+                                        // translation, the way the book reader
+                                        // does. This replaces the unlabelled
+                                        // grey translate icon that used to sit
+                                        // at the end of every line and was the
+                                        // only way to see any English at all.
+                                        onTap: () =>
+                                            _toggleSentenceTranslation(
+                                                globalIndex),
+                                        child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Expanded(
-                                                child: Wrap(
+                                          Wrap(
                                                   spacing: 8.0,
                                                   runSpacing: 16.0,
                                                   children: sentence.words
@@ -693,22 +923,46 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
                                                     if (isPunctuation) {
                                                       return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 8.0),
+                                                        // Kept on the hanzi
+                                                        // baseline once the
+                                                        // pinyin line sits above
+                                                        // it.
+                                                        padding: EdgeInsets.only(
+                                                            top: _pinyinMode ==
+                                                                    PinyinMode
+                                                                        .none
+                                                                ? 0
+                                                                : _fontSize *
+                                                                        0.55 *
+                                                                        1.1 +
+                                                                    2),
                                                         child: Text(
                                                           word.hanzi,
                                                           style: TextStyle(
-                                                            fontSize: 26,
+                                                            fontSize: _fontSize,
                                                             color: textColor,
                                                           ),
                                                         ),
                                                       );
                                                     }
 
-                                                    bool shouldShowPinyin =
-                                                        (_pinyinMode ==
-                                                            PinyinMode.all);
+                                                    // Ghost mode renders the
+                                                    // pinyin too, just dimmed.
+                                                    // It was a no-op state that
+                                                    // looked identical to
+                                                    // `none`.
+                                                    final bool shouldShowPinyin =
+                                                        _pinyinMode !=
+                                                            PinyinMode.none;
+
+                                                    // Derived from the hanzi
+                                                    // when the word carries none
+                                                    // — see [storyWordPinyin].
+                                                    final String wordPinyin =
+                                                        storyWordPinyin(
+                                                            word.hanzi,
+                                                            word.pinyin,
+                                                            echo: word.meaning);
 
                                                     final wordKey =
                                                         '${globalIndex}_${wordStart}_${word.hanzi}';
@@ -802,10 +1056,54 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                           mainAxisSize:
                                                               MainAxisSize.min,
                                                           children: [
+                                                            // Tone-marked pinyin
+                                                            // *above* the
+                                                            // character — the
+                                                            // book reader's ruby
+                                                            // alignment. It used
+                                                            // to print below from
+                                                            // `word.pinyin`, which
+                                                            // is empty for every
+                                                            // derived word, so it
+                                                            // never showed.
+                                                            if (shouldShowPinyin)
+                                                              Text(
+                                                                wordPinyin,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: _fontSize *
+                                                                      0.55,
+                                                                  fontWeight: isQuickLookSelected
+                                                                      ? FontWeight
+                                                                          .bold
+                                                                      : FontWeight
+                                                                          .w500,
+                                                                  color: isQuickLookSelected
+                                                                      ? (isDark
+                                                                          ? const Color(
+                                                                              0xFFA5B4FC)
+                                                                          : const Color(
+                                                                              0xFF3730A3))
+                                                                      : (_pinyinMode ==
+                                                                              PinyinMode.ghost
+                                                                          ? (isDark
+                                                                              ? Colors.white30
+                                                                              : Colors.black26)
+                                                                          : (isDark
+                                                                              ? Colors.white70
+                                                                              : const Color(0xFF5A4D41))),
+                                                                  height: 1.1,
+                                                                ),
+                                                              ),
+                                                            if (shouldShowPinyin)
+                                                              const SizedBox(
+                                                                  height: 2),
+                                                            // Chinese Hanzi
+                                                            // character.
                                                             Text(
                                                               word.hanzi,
                                                               style: TextStyle(
-                                                                fontSize: 28,
+                                                                fontSize: _fontSize,
                                                                 fontWeight: (isQuickLookSelected ||
                                                                         dueWords.contains(word
                                                                             .hanzi))
@@ -827,85 +1125,41 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                                                                             : textColor)),
                                                               ),
                                                             ),
-                                                            if (shouldShowPinyin)
-                                                              Text(
-                                                                word.pinyin,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight: isQuickLookSelected
-                                                                      ? FontWeight
-                                                                          .bold
-                                                                      : FontWeight
-                                                                          .normal,
-                                                                  color: isQuickLookSelected
-                                                                      ? (isDark
-                                                                          ? const Color(
-                                                                              0xFFA5B4FC)
-                                                                          : const Color(
-                                                                              0xFF3730A3))
-                                                                      : Colors
-                                                                          .blueAccent,
-                                                                ),
-                                                              ),
                                                           ],
                                                         ),
                                                       ),
                                                     );
                                                   }).toList(),
                                                 ),
-                                              ),
-                                              IconButton(
-                                                icon: const Icon(
-                                                    Icons.translate,
-                                                    color: Colors.grey),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    if (_translatedSentences
-                                                        .contains(
-                                                            globalIndex)) {
-                                                      _translatedSentences
-                                                          .remove(globalIndex);
-                                                    } else {
-                                                      _translatedSentences
-                                                          .add(globalIndex);
-                                                    }
-                                                  });
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                          if (_translatedSentences
-                                              .contains(globalIndex))
+                                          // Shown by default — the book
+                                          // reader's contract — and localized
+                                          // through TranslatedText with the
+                                          // story's own English as the
+                                          // fallback.
+                                          if (_isTranslationShown(
+                                              globalIndex))
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  top: 12.0),
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(12),
-                                                decoration: BoxDecoration(
+                                                  top: 8.0),
+                                              child: TranslatedText(
+                                                sentence.chinese,
+                                                englishFallback: sentence
+                                                        .english.isEmpty
+                                                    ? null
+                                                    : sentence.english,
+                                                style: TextStyle(
+                                                  fontSize: 13,
                                                   color: isDark
-                                                      ? Colors.white.withValues(
-                                                          alpha: 0.05)
-                                                      : Colors.black.withValues(
-                                                          alpha: 0.02),
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                child: Text(
-                                                  sentence.english,
-                                                  style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: isDark
-                                                        ? Colors.white70
-                                                        : Colors.black87,
-                                                    fontStyle: FontStyle.italic,
-                                                  ),
+                                                      ? Colors.white70
+                                                      : const Color(0xFF5A4D41),
+                                                  fontStyle: FontStyle.italic,
+                                                  height: 1.3,
                                                 ),
                                               ),
                                             ),
                                         ],
-                                      ));
+                                      ),
+                                    ));
                                       globalStringOffset = currentStringOffset;
                                     }
 
@@ -919,71 +1173,6 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                               ],
                             ),
                           ),
-        bottomNavigationBar: state.currentStory != null &&
-                !state.isLoading &&
-                state.error == null
-            ? Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                decoration: BoxDecoration(
-                  color: isDark
-                      ? const Color(0xFF1A1A1B)
-                      : const Color(0xFFFDFCF0),
-                  border: Border(
-                      top: BorderSide(
-                          color: isDark ? Colors.white12 : Colors.black12)),
-                ),
-                child: SafeArea(
-                  child: Wrap(
-                    // An action pair: stacks onto a second line instead of
-                    // overflowing once a translation expands the labels.
-                    alignment: WrapAlignment.spaceEvenly,
-                    spacing: 12,
-                    runSpacing: 4,
-                    children: [
-                      TextButton.icon(
-                        icon: const Icon(Icons.article, size: 20),
-                        label: Text(AppLocalizations.of(context)!.summary),
-                        style: TextButton.styleFrom(
-                            foregroundColor:
-                                isDark ? Colors.white70 : Colors.black87),
-                        onPressed: () => _showSummary(context,
-                            AiStory(sentences: state.currentStory!.sentences)),
-                      ),
-                      TextButton.icon(
-                        icon: Icon(
-                            _pinyinMode == PinyinMode.all
-                                ? Icons.visibility
-                                : _pinyinMode == PinyinMode.ghost
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off,
-                            size: 20),
-                        label: Text(_pinyinMode == PinyinMode.all
-                            ? AppLocalizations.of(context)!.allPinyin
-                            : _pinyinMode == PinyinMode.ghost
-                                ? AppLocalizations.of(context)!.ghostPinyin
-                                : AppLocalizations.of(context)!.noPinyin),
-                        style: TextButton.styleFrom(
-                            foregroundColor: _pinyinMode != PinyinMode.none
-                                ? Colors.blueAccent
-                                : (isDark ? Colors.white70 : Colors.black87)),
-                        onPressed: () {
-                          setState(() {
-                            if (_pinyinMode == PinyinMode.all) {
-                              _pinyinMode = PinyinMode.ghost;
-                            } else if (_pinyinMode == PinyinMode.ghost) {
-                              _pinyinMode = PinyinMode.none;
-                            } else {
-                              _pinyinMode = PinyinMode.all;
-                            }
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            : null,
       ),
     );
   }

@@ -2475,6 +2475,11 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'Điểm: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'Tìm theo pinyin hoặc nghĩa...';
 
   @override
@@ -2646,28 +2651,28 @@ class AppLocalizationsVi extends AppLocalizations {
   String get toneGraph => 'Biểu đồ cao độ thanh điệu';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'Giọng của bạn';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => 'Mục tiêu';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'Không có cao độ nào được đo trong lần thu này, nên không có gì để vẽ cho giọng của bạn. Nét đứt vẫn là hình dạng bạn đang hướng tới.';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'Ở đây nét đứt là hình của các thanh trong câu, cách đều nhau.\nChúng tôi không biết mỗi âm tiết bắt đầu từ đâu trong bản ghi, nên hãy so hình dạng, không so vị trí.';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'Cách đọc biểu đồ này';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'Cách đọc biểu đồ này';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'Trái sang phải là thời gian. Lên xuống là cao độ: giọng bạn cao đến đâu, không phải to đến đâu.\nĐọc hướng của nét, không phải độ cao: thanh 1 cao và bằng · thanh 2 đi lên · thanh 3 xuống thấp · thanh 4 rơi từ cao.\nNét đầu là thanh bạn nhắm tới; nét thứ hai chỉ xuất hiện khi nghe thấy thanh khác.\nChỉ một nét nghĩa là bạn đã khớp mục tiêu hoặc thanh đó không được đo — không bao giờ là bạn sai.';
 
   @override
   String get traceLabel => 'Tập viết chữ';
@@ -3411,11 +3416,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get poetry => 'Thơ ca cổ điển';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · Đã gỡ dấu trang';
+  String get bookmarkRemoved => 'Đã gỡ dấu trang';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Đã thêm dấu trang: Chương $chapter';
+    return 'Đã thêm dấu trang: Chương $chapter';
   }
 
   @override

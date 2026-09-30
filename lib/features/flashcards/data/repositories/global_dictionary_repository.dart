@@ -30,6 +30,40 @@ class GlobalDictionaryRepository {
   /// value so it can be labelled in the UI.
   static const String requiredSchemaVersion = '3';
 
+  /// The content version this build expects, mirrored from
+  /// `dictionary_metadata.dictionary_content_version`.
+  ///
+  /// The schema version alone is not enough to guarantee a device stops reading
+  /// a stale copy: it is a string the *previous* asset also chose, and the
+  /// licence audit replaced the dictionary's contents without changing the shape
+  /// of its tables. A device still holding the pre-audit dictionary (its
+  /// definitions came partly from sources that were never licence-verified, and
+  /// its localised cells were thin) therefore kept it, and the reader saw the
+  /// old English glosses — which is what the reported deck screens showed.
+  /// Comparing the content version makes the copy self-invalidating: an asset
+  /// that does not advertise this exact build is replaced on next launch.
+  static const String requiredContentVersion = 'accepted-sources-v2+deepseek-mt';
+
+
+  /// Headwords a usable copy must be able to answer for.
+  ///
+  /// Every everyday character here is present in any CC-CEDICT-derived entry
+  /// list, so a copy that cannot answer one of them is not a smaller
+  /// dictionary, it is a damaged one. `init` treats such a copy as stale and
+  /// copies the bundled asset over it — see [copyAnswersQueries].
+  static const List<String> _probeHeadwords = <String>['不', '好', '我', '你', '是'];
+
+  String? _lastFailure;
+
+  /// Whether the dictionary is open and answering.
+  ///
+  /// Callers need this to tell "the dictionary could not be read" apart from
+  /// "this character is not in the dictionary": both used to surface as a `null`
+  /// card, which the UI rendered as an empty Quick Look panel.
+  bool get isReady => _db != null && _lastFailure == null;
+
+  /// The last lookup or initialisation failure, if any.
+  String? get lastFailure => _lastFailure;
 
   GlobalDictionaryRepository();
 
@@ -40,8 +74,18 @@ class GlobalDictionaryRepository {
   )   : _db = database,
         _popularityRanks = popularityRanks;
 
-  Future<void> init() async {
-    if (_db != null) return;
+  /// Opens the dictionary, repairing the local copy when it cannot be trusted.
+  ///
+  /// [forceRepair] discards the local copy and takes the bundled asset again.
+  /// The file is ~250 MB, so that only happens on an explicit request (a user
+  /// retrying a Quick Look card) or when [init] itself finds the copy unusable.
+  Future<void> init({bool forceRepair = false}) async {
+    if (forceRepair) {
+      await _db?.close();
+      _db = null;
+    } else if (_db != null) {
+      return;
+    }
 
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
       sqfliteFfiInit();
@@ -52,6 +96,15 @@ class GlobalDictionaryRepository {
     final dbPath = join(dbDir.path, "dictionary.db");
     final file = File(dbPath);
 
+    if (forceRepair) {
+      _lastFailure = null;
+      try {
+        if (await file.exists()) await file.delete();
+      } catch (e) {
+        debugPrint('Could not delete the local dictionary copy: $e');
+      }
+    }
+
     bool needsRefresh = false;
     if (!await file.exists()) {
       needsRefresh = true;
@@ -59,31 +112,53 @@ class GlobalDictionaryRepository {
       try {
         // Verify that the local database has the complete multilingual schema
         final tempDb = await databaseFactory.openDatabase(dbPath);
-        final cols = await tempDb.rawQuery("PRAGMA table_info(words)");
-        final colNames = cols.map((c) => c['name'] as String).toSet();
-        final metadata = await tempDb.rawQuery(
-          "SELECT value FROM dictionary_metadata WHERE key = 'dictionary_schema_version'",
-        );
-        await tempDb.close();
+        try {
+          final cols = await tempDb.rawQuery("PRAGMA table_info(words)");
+          final colNames = cols.map((c) => c['name'] as String).toSet();
+          final metadata = await tempDb.rawQuery(
+            "SELECT key, value FROM dictionary_metadata WHERE key IN "
+            "('dictionary_schema_version', 'dictionary_content_version')",
+          );
+          final Map<String, String> keys = <String, String>{
+            for (final Map<String, Object?> row in metadata)
+              row['key']! as String: row['value']! as String,
+          };
 
-        if (!colNames.contains('definition_fr') ||
-            !colNames.contains('definition_ru') ||
-            !colNames.contains('definition_vi') ||
-            !colNames.contains('definition_ja') ||
-            !colNames.contains('definition_es') ||
-            !colNames.contains('definition_ko') ||
-            !colNames.contains('definition_id') ||
-            !colNames.contains('definition_th') ||
-            !colNames.contains('definition_pt') ||
-            !colNames.contains('definition_it') ||
-            !colNames.contains('definition_de') ||
-            !colNames.contains('definition_ar') ||
-            !colNames.contains('definition_hi') ||
-            metadata.isEmpty ||
-            metadata.first['value'] != requiredSchemaVersion) {
-          needsRefresh = true;
+          if (!colNames.contains('definition_fr') ||
+              !colNames.contains('definition_ru') ||
+              !colNames.contains('definition_vi') ||
+              !colNames.contains('definition_ja') ||
+              !colNames.contains('definition_es') ||
+              !colNames.contains('definition_ko') ||
+              !colNames.contains('definition_id') ||
+              !colNames.contains('definition_th') ||
+              !colNames.contains('definition_pt') ||
+              !colNames.contains('definition_it') ||
+              !colNames.contains('definition_de') ||
+              !colNames.contains('definition_ar') ||
+              !colNames.contains('definition_hi') ||
+              metadata.isEmpty ||
+              keys['dictionary_schema_version'] != requiredSchemaVersion ||
+              keys['dictionary_content_version'] != requiredContentVersion) {
+            needsRefresh = true;
+          }
+
+          // The version stamps above are necessary but not sufficient. A copy
+          // interrupted half-way through still advertises them, and every
+          // lookup against it afterwards returns nothing — which is exactly the
+          // state the Quick Look card could not describe. Asking the copy for a
+          // few everyday headwords makes that detectable, and therefore
+          // repairable, before anything reads a definition from it.
+          if (!needsRefresh && !await copyAnswersQueries(tempDb)) {
+            debugPrint('The local dictionary copy cannot answer lookups; '
+                're-copying assets/data/dictionary.db');
+            needsRefresh = true;
+          }
+        } finally {
+          await tempDb.close();
         }
-      } catch (_) {
+      } catch (e) {
+        debugPrint('The local dictionary copy is unreadable ($e); re-copying.');
         needsRefresh = true;
       }
     }
@@ -95,12 +170,41 @@ class GlobalDictionaryRepository {
             data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
         await File(dbPath).writeAsBytes(bytes, flush: true);
       } catch (e) {
-        throw Exception("Failed to load global dictionary: $e");
+        _lastFailure = 'Failed to load global dictionary: $e';
+        throw Exception(_lastFailure);
       }
     }
 
-    _db = await databaseFactory.openDatabase(dbPath);
+    try {
+      _db = await databaseFactory.openDatabase(dbPath);
+    } catch (e) {
+      _lastFailure = 'Failed to open global dictionary: $e';
+      rethrow;
+    }
     _popularityRanks = await _loadPopularityRanks();
+  }
+
+  /// Whether [db] can answer for the everyday headwords a dictionary must hold.
+  ///
+  /// A copy that fails this is treated as unusable and replaced by the bundled
+  /// asset. Exposed for tests: the failure it guards against is otherwise
+  /// invisible, because lookups against such a copy return an empty result
+  /// instead of an error.
+  @visibleForTesting
+  static Future<bool> copyAnswersQueries(Database db) async {
+    try {
+      for (final headword in _probeHeadwords) {
+        final rows = await db.rawQuery(
+          'SELECT rowid FROM words WHERE simplified = ? OR traditional = ? '
+          'LIMIT 1',
+          [headword, headword],
+        );
+        if (rows.isEmpty) return false;
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   Future<Map<String, int>> _loadPopularityRanks() async {
@@ -554,6 +658,11 @@ class GlobalDictionaryRepository {
       await _attachQualityMetadata(results, targetLanguage);
       return _mapRowToCard(results.first, targetLanguage);
     } catch (e) {
+      // Returning an empty result for a failed read is what made a damaged
+      // local copy indistinguishable from an unknown character. The card still
+      // gets nothing, but now it can be told *why* — and retried.
+      _lastFailure = 'getExact($hanzi): $e';
+      debugPrint('GlobalDictionaryRepository.getExact failed: $e');
       return null;
     }
   }
@@ -573,6 +682,40 @@ class GlobalDictionaryRepository {
       await _attachQualityMetadata(results, targetLanguage);
       return _mapRowToCard(results.first, targetLanguage);
     } catch (_) {
+      return null;
+    }
+  }
+
+  /// The specific row a card is pinned to: [wordId], but only while that row
+  /// still spells [hanzi].
+  ///
+  /// A card that came from the dictionary remembers the row it was built from,
+  /// and this is how that identity is spent: 的 has four rows (de5, dí, dì, dī),
+  /// so the row — not the spelling — is what keeps the reader on the sense and
+  /// on the reading they were looking at. The spelling check is what makes the
+  /// id safe to trust: row ids are minted by whichever build shipped
+  /// `dictionary.db`, [init] replaces a stale copy wholesale, and an id saved
+  /// against the previous copy can land on an unrelated row in the current one.
+  /// A `null` here sends the caller back to [getExact], which answers from the
+  /// spelling alone.
+  Future<Flashcard?> getPinnedRow(
+    int wordId,
+    String hanzi, {
+    String? targetLanguage,
+  }) async {
+    if (_db == null || hanzi.trim().isEmpty) return null;
+    try {
+      final results = List<Map<String, dynamic>>.from(await _db!.rawQuery(
+        'SELECT * FROM words WHERE id = ? AND (simplified = ? OR traditional = ?) '
+        'LIMIT 1',
+        [wordId, hanzi.trim(), hanzi.trim()],
+      ));
+      if (results.isEmpty) return null;
+      await _attachQualityMetadata(results, targetLanguage);
+      return _mapRowToCard(results.first, targetLanguage);
+    } catch (e) {
+      _lastFailure = 'getPinnedRow($wordId, $hanzi): $e';
+      debugPrint('GlobalDictionaryRepository.getPinnedRow failed: $e');
       return null;
     }
   }

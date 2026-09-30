@@ -822,6 +822,7 @@
   "scenarioRemoved": "ลบสถานการณ์แล้ว",
   "scenarioSavedFindInCustomTab": "บันทึกสถานการณ์แล้ว! ดูได้ในแท็บ 'กำหนดเอง'",
   "score": "คะแนน: {score}/{total}",
+  "scoreValue": "คะแนน: {value}",
   "searchByPinyinOrMeaning": "ค้นหาตามพินอินหรือความหมาย...",
   "searchByTitleOrTag": "ค้นหาตามชื่อเรื่องหรือแท็ก...",
   "searchDictionaryOrTypeCustom": "ค้นหาในพจนานุกรมหรือพิมพ์คำศัพท์เอง",
@@ -1160,8 +1161,8 @@
   "novels96": "นวนิยาย (96)",
   "microReads": "บทอ่านสั้น",
   "poetry": "บทกวี",
-  "bookmarkRemoved": "ลบที่คั่นหน้าแล้ว · 书签已移除",
-  "bookmarkAdded": "เพิ่มที่คั่นหน้าแล้ว · 已添加书签: บทที่ (chapter)",
+  "bookmarkRemoved": "ลบที่คั่นหน้าแล้ว",
+  "bookmarkAdded": "เพิ่มที่คั่นหน้าแล้ว: บทที่ {chapter}",
   "readingVocabulary": "การอ่านและคำศัพท์",
   "vocabularyBatchUnitindex1": "ชุดคำศัพท์ $(unitIndex + 1)",
   "yourDailyDropIsHere1": "บทเรียนรายวันของคุณมาแล้ว! ✨",
@@ -4240,5 +4241,12 @@
   "storyCategoryChineseEpics": "มหากาพย์จีน",
   "storyCategorySupernaturalFolklore": "เหนือธรรมชาติและคติชน",
   "storyCategoryChinesePoetry": "กวีจีน",
-  "storyCategoryTangPoetry": "กวีสมัยถัง"
+  "storyCategoryTangPoetry": "กวีสมัยถัง",
+  "toneGraphHowToReadTitle": "วิธีอ่านกราฟนี้",
+  "toneGraphHowToReadBody": "ซ้ายไปขวาคือเวลา บนลงล่างคือระดับเสียง: เสียงของคุณสูงแค่ไหน ไม่ใช่ดังแค่ไหน\nอ่านทิศทางของเส้น ไม่ใช่ความสูง: 1 สูงและคงที่ · 2 ขึ้น · 3 ลงต่ำ · 4 ตกลงจากที่สูง\nเส้นแรกคือเสียงที่คุณตั้งใจ ส่วนเส้นที่สองจะปรากฏเมื่อได้ยินเสียงอื่นเท่านั้น\nมีเส้นเดียวหมายถึงคุณตรงเป้า หรือเสียงนั้นไม่ได้ถูกวัด — ไม่ได้แปลว่าคุณผิด",
+  "toneGraphHowToReadTooltip": "วิธีอ่านกราฟนี้",
+  "toneGraphHowToReadPhraseNote": "ที่นี่เส้นประคือรูปของเสียงในประโยค โดยเว้นระยะเท่ากัน\nเราไม่รู้ว่าแต่ละพยางค์เริ่มตรงไหนในไฟล์บันทึกของคุณ จึงให้เทียบรูป ไม่ใช่ตำแหน่ง",
+  "toneGraphNoPitchMeasured": "ไม่มีการวัดระดับเสียงในการบันทึกนี้ จึงไม่มีเส้นแสดงเสียงของคุณ เส้นประคือรูปร่างของเสียงที่คุณตั้งใจจะออก",
+  "toneGraphTarget": "เป้าหมาย",
+  "toneGraphYourVoice": "เสียงของคุณ"
 }

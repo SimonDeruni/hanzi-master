@@ -74,7 +74,7 @@ class BookRepository {
       _poetryEntries = entries
           .map((entry) => Map<String, dynamic>.from(entry as Map))
           .toList();
-      final bios = await _loadPoetBios();
+      final bios = await _loadCollectionDescriptions();
       _poetryCollections = buildPoetryCollections(
         _poetryEntries,
         summaries: bios.$1,
@@ -87,19 +87,63 @@ class BookRepository {
     }
   }
 
-  /// The poet biographies: the Chinese originals plus every translation, so a
-  /// collection can be described in the reader's own language.
+  /// What describes a collection on the shelf and inside its book.
+  ///
+  /// The **collection summary** owns that slot — what is gathered in these poems
+  /// and what reading them together gives — and the poet's **biography** is the
+  /// fallback for a collection whose summary is not on disk yet. The two are
+  /// different texts and both are wanted: the biography is the person
+  /// ("李白是盛唐时期浪漫主义诗人…"), which the author card still gets through
+  /// `BundledAuthorBiographyService`, and before the collection summary existed
+  /// the card had nothing to show but a list of poem titles.
   ///
   /// Each file is optional — a missing catalogue must not cost the poems — so
   /// every part is guarded and the collection simply falls back to the poem
   /// titles it always used.
   Future<(Map<String, String>, Map<String, Map<String, String>>)>
-      _loadPoetBios() async {
+      _loadCollectionDescriptions() async {
+    final collections = await _loadCatalogue(
+      sourceAsset: poetryCollectionsAsset,
+      englishAsset: poetryCollectionsEnAsset,
+      localeTemplate: 'poetry_collections',
+    );
+    final biographies = await _loadCatalogue(
+      sourceAsset: poetBiosAsset,
+      englishAsset: poetBiosEnAsset,
+      localeTemplate: 'poet_bios',
+    );
+
+    // Collection first, biography second: a poet with no collection summary
+    // still says something true about their poems.
+    final summaries = <String, String>{
+      ...biographies.$1,
+      ...collections.$1,
+    };
+    final localized = <String, Map<String, String>>{
+      for (final entry in biographies.$2.entries) entry.key: entry.value,
+    };
+    for (final entry in collections.$2.entries) {
+      localized[entry.key] = <String, String>{
+        ...?localized[entry.key],
+        ...entry.value,
+      };
+    }
+    return (summaries, localized);
+  }
+
+  /// One catalogue pair in the shape [buildPoetryCollections] takes: the Chinese
+  /// source keyed by author, every locale overlay, and the English base locale
+  /// (`loadLocalizedTitlesById` skips `en`, so it is read separately).
+  Future<(Map<String, String>, Map<String, Map<String, String>>)> _loadCatalogue({
+    required String sourceAsset,
+    required String englishAsset,
+    required String localeTemplate,
+  }) async {
     final summaries = <String, String>{};
     final localized = <String, Map<String, String>>{};
     try {
       final raw =
-          jsonDecode(await rootBundle.loadString(poetBiosAsset)) as Map<String, dynamic>;
+          jsonDecode(await rootBundle.loadString(sourceAsset)) as Map<String, dynamic>;
       for (final entry in raw.entries) {
         final value = entry.value;
         final text = value is Map
@@ -109,7 +153,7 @@ class BookRepository {
       }
     } catch (_) {}
     try {
-      final byLocale = await loadLocalizedTitlesById('poet_bios');
+      final byLocale = await loadLocalizedTitlesById(localeTemplate);
       for (final entry in byLocale.entries) {
         localized[entry.key] = <String, String>{
           ...?localized[entry.key],
@@ -119,7 +163,7 @@ class BookRepository {
     } catch (_) {}
     try {
       final english =
-          jsonDecode(await rootBundle.loadString(poetBiosEnAsset)) as Map<String, dynamic>;
+          jsonDecode(await rootBundle.loadString(englishAsset)) as Map<String, dynamic>;
       for (final entry in english.entries) {
         final text = entry.value.toString().trim();
         if (text.isNotEmpty) {

@@ -650,10 +650,23 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     final l10n = AppLocalizations.of(context)!;
     // Landscape on a tablet splits the scanner (row #71): the live preview keeps
     // the left pane and the OCR results take the right, instead of the results
-    // being painted over the preview. The interactive-image step is excluded on
-    // purpose — its markup painter still measures the window (see the plan).
-    final bool wideSplit =
-        context.zenWindow.isExpanded && !_showingInteractiveImage;
+    // being painted over the preview.
+    //
+    // `isLandscape` earns its place beside the width. An iPad in portrait is
+    // 1024dp wide, which cleared `isExpanded` on its own, so the scanner split
+    // into a 460dp camera column beside a 560dp one on a window 1366dp tall —
+    // where the stacked arrangement has more room for both. Landscape is a
+    // property of the window, not the device, so this also keeps a tall narrow
+    // Split View slice on the stacked path.
+    //
+    // The interactive-image step is excluded. Its recorded reason was the painter
+    // trap — the markup painter measured the window — and that trap is now closed
+    // (see `TranslationOverlayPainter` and `_handleArTap`), so the exclusion rests
+    // on what is actually left: the captured page wants the full width, and there
+    // is no second pane of content to stand beside it.
+    final bool wideSplit = context.zenWindow.isExpanded &&
+        context.isLandscapeWindow &&
+        !_showingInteractiveImage;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -716,7 +729,19 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 alignment: Alignment.centerLeft,
                 child: FractionallySizedBox(
                   widthFactor: 0.45,
-                  child: _buildCameraPreview(),
+                  // The framing guide belongs over the *camera*. The guide is
+                  // otherwise painted by `_buildMainContent`, which in the split
+                  // occupies the content pane — so an iPad user was told to align
+                  // the Chinese text inside a frame drawn over the results column
+                  // rather than over the viewfinder. `_buildMainContent` is told
+                  // not to draw it when this branch owns it.
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      _buildCameraPreview(),
+                      if (_framingThePreview) const ScannerOverlay(),
+                    ],
+                  ),
                 ),
               ),
             )
@@ -752,7 +777,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
 
                 // Content Area
                 Expanded(
-                  child: _buildMainContent(theme, l10n),
+                  child: _buildMainContent(theme, l10n,
+                      showFramingGuide: !wideSplit),
                 ),
 
                 // Zoom Slider
@@ -793,26 +819,49 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   /// This is extracted so the landscape split is *correct*: the aspect-fit math
   /// inside runs against the pane's constraints, not the window's, so the
   /// preview fits its half instead of being scaled for the whole screen (#71).
+  ///
+  /// It covers its box rather than letterboxing it. The previous hand-rolled
+  /// `Transform.scale` could not do that: `CameraPreview` already aspect-*fits*
+  /// to its widest constraint, so scaling the result up widened an axis that was
+  /// already at the limit — where it was simply clipped — while the other axis
+  /// stayed short. The pane then showed a banded stripe of camera with the
+  /// scaffold visible above and below it, which is what left every
+  /// white-on-camera control (the title, the framing hint, the shutter) sitting
+  /// illegibly on a pale background, and what made the preview read as a small
+  /// square adrift in its pane.
+  /// True when the user is aiming the camera and there is nothing else to show:
+  /// no sheet, no results, no OCR pass running, no AR boxes. That is the only
+  /// state the framing guide belongs to.
+  bool get _framingThePreview =>
+      _isCameraInitialized &&
+      _cameraController != null &&
+      !_showingInteractiveImage &&
+      !_showingResults &&
+      !_isScanning &&
+      !_isLookingUp &&
+      !_isArLensMode;
+
   Widget _buildCameraPreview() {
     return GestureDetector(
       onScaleStart: _handleScaleStart,
       onScaleUpdate: _handleScaleUpdate,
       child: LayoutBuilder(
-        builder: (context, constraints) {
-          final double screenAspectRatio =
-              constraints.maxWidth / constraints.maxHeight;
-          final double cameraAspectRatio = _cameraController!.value.aspectRatio;
-
-          // In portrait, camera visual ratio is inverted (1 / cameraAspectRatio)
-          final double visualCameraRatio = 1 / cameraAspectRatio;
-
-          double scale = screenAspectRatio / visualCameraRatio;
-          if (scale < 1) scale = 1 / scale;
-
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final Size? preview = _cameraController!.value.previewSize;
+          if (preview == null || constraints.maxWidth <= 0) {
+            return const ColoredBox(color: Colors.black);
+          }
+          // `previewSize` is reported in sensor orientation, and `CameraPreview`
+          // rotates internally, so a box of exactly those dimensions is one the
+          // preview fills edge to edge; `BoxFit.cover` then scales that to the
+          // pane without distorting it.
           return ClipRect(
-            child: Transform.scale(
-              scale: scale,
-              child: Center(
+            child: FittedBox(
+              fit: BoxFit.cover,
+              clipBehavior: Clip.hardEdge,
+              child: SizedBox(
+                width: preview.width,
+                height: preview.height,
                 child: CameraPreview(_cameraController!),
               ),
             ),
@@ -909,7 +958,13 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
   }
 
-  Widget _buildMainContent(ThemeData theme, AppLocalizations l10n) {
+  /// [showFramingGuide] is false when the landscape split has already put the
+  /// guide over the camera pane, so the two arrangements cannot both draw it.
+  Widget _buildMainContent(
+    ThemeData theme,
+    AppLocalizations l10n, {
+    required bool showFramingGuide,
+  }) {
     if (_permissionDenied) {
       return Center(
         child: Padding(
@@ -1136,94 +1191,106 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           InputImageRotationValue.fromRawValue(sensorOrientation);
       if (rawRotation != null) rotation = rawRotation;
 
-      return GestureDetector(
-        onTapUp: (details) {
-          if (_detectedObjects.isEmpty) return;
+      final Size previewSize = _cameraController!.value.previewSize!;
 
-          final size = MediaQuery.sizeOf(context);
-          final imageSize = Size(
-            _cameraController!.value.previewSize!.width,
-            _cameraController!.value.previewSize!.height,
-          );
-
-          final bool isPortrait =
-              rotation == InputImageRotation.rotation90deg ||
-                  rotation == InputImageRotation.rotation270deg;
-          final double imageWidth =
-              isPortrait ? imageSize.height : imageSize.width;
-          final double imageHeight =
-              isPortrait ? imageSize.width : imageSize.height;
-
-          final double scaleX = size.width / imageWidth;
-          final double scaleY = size.height / imageHeight;
-
-          for (final obj in _detectedObjects) {
-            if (obj.labels.isEmpty) continue;
-
-            final rect = ARBoundingBoxPainter.scaleRect(
-              rect: obj.boundingBox,
-              imageSize: imageSize,
-              widgetSize: size,
-              scaleX: scaleX,
-              scaleY: scaleY,
-              rotation: rotation,
-            );
-
-            if (rect.inflate(10.0).contains(details.localPosition)) {
-              final label = obj.labels.first.text;
-              final translated = _translationCache[label]?.hanzi ?? label;
-              _lookupSingleWord(translated);
-              return;
-            }
-          }
-        },
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            CustomPaint(
-              painter: TranslationOverlayPainter(
-                blocks: _translatedBlocks,
-                imageSize: Size(
-                  _cameraController!.value.previewSize!.height,
-                  _cameraController!.value.previewSize!.width,
-                ),
-                screenSize: MediaQuery.sizeOf(context),
-              ),
-            ),
-            CustomPaint(
-              painter: ARBoundingBoxPainter(
-                _detectedObjects,
-                _translationCache,
-                Size(
-                  _cameraController!.value.previewSize!.width,
-                  _cameraController!.value.previewSize!.height,
-                ),
-                rotation,
-              ),
-            ),
-            Positioned(
-              top: 20,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Text(
-                  AppLocalizations.of(context)!
-                      .point_at_chinese_text_to_translate,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    backgroundColor: Colors.black54,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+      // Measure this widget's OWN box, never the window (#71). On an iPad the
+      // scanner is split, so this overlay is handed the right pane while the
+      // window is far wider: a window-sized measurement scales the OCR boxes and
+      // the translated blocks for a width they do not have, painting them over
+      // the results column, and it mis-maps every tap by the same factor.
+      return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final Size overlaySize = constraints.biggest;
+          return GestureDetector(
+            onTapUp: (details) =>
+                _handleArTap(details.localPosition, overlaySize, rotation),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                CustomPaint(
+                  painter: TranslationOverlayPainter(
+                    blocks: _translatedBlocks,
+                    imageSize: Size(previewSize.height, previewSize.width),
                   ),
                 ),
-              ),
+                CustomPaint(
+                  painter: ARBoundingBoxPainter(
+                    _detectedObjects,
+                    _translationCache,
+                    previewSize,
+                    rotation,
+                  ),
+                ),
+                Positioned(
+                  top: 20,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!
+                          .point_at_chinese_text_to_translate,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        backgroundColor: Colors.black54,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       );
     }
 
-    return const ScannerOverlay();
+    return showFramingGuide ? const ScannerOverlay() : const SizedBox.shrink();
+  }
+
+  /// Hit-tests a tap against the detected AR boxes, in the overlay's own box.
+  ///
+  /// [overlaySize] is the box this overlay was actually given — in the iPad split
+  /// that is a pane, not the window. The boxes are painted with exactly this size,
+  /// so the tap has to be measured with it too, or every hit lands off by the
+  /// width of the results column.
+  void _handleArTap(
+    Offset position,
+    Size overlaySize,
+    InputImageRotation rotation,
+  ) {
+    if (_detectedObjects.isEmpty) return;
+    final Size? rawPreview = _cameraController?.value.previewSize;
+    if (rawPreview == null) return;
+    final Size imageSize = Size(rawPreview.width, rawPreview.height);
+
+    final bool isPortrait = rotation == InputImageRotation.rotation90deg ||
+        rotation == InputImageRotation.rotation270deg;
+    final double imageWidth = isPortrait ? imageSize.height : imageSize.width;
+    final double imageHeight = isPortrait ? imageSize.width : imageSize.height;
+
+    final double scaleX = overlaySize.width / imageWidth;
+    final double scaleY = overlaySize.height / imageHeight;
+
+    for (final obj in _detectedObjects) {
+      if (obj.labels.isEmpty) continue;
+
+      final rect = ARBoundingBoxPainter.scaleRect(
+        rect: obj.boundingBox,
+        imageSize: imageSize,
+        widgetSize: overlaySize,
+        scaleX: scaleX,
+        scaleY: scaleY,
+        rotation: rotation,
+      );
+
+      if (rect.inflate(10.0).contains(position)) {
+        final label = obj.labels.first.text;
+        final translated = _translationCache[label]?.hanzi ?? label;
+        _lookupSingleWord(translated);
+        return;
+      }
+    }
   }
 
   Widget _buildZoomSlider() {
@@ -2136,13 +2203,22 @@ class ScannerOverlayPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // The frame is derived from the box this painter is given rather than being a
+    // fixed 280dp square. The guide now sits over the camera pane, which on an iPad
+    // is a fraction of the window, so a fixed square neither fitted the pane nor
+    // left room beneath it for the instruction.
+    final double shortestSide = math.min(size.width, size.height);
+    final double frameSize = math.min(shortestSide * 0.62, 280.0);
     final rect = Rect.fromCenter(
       center: Offset(size.width / 2, size.height / 2),
-      width: 280,
-      height: 280,
+      width: frameSize,
+      height: frameSize,
     );
 
-    const radius = 24.0;
+    // Scale the corner treatment with the frame so a small pane does not get a
+    // bracket nearly as long as the side it sits on.
+    final double radius = math.max(10.0, frameSize * 24 / 280);
+    final double bracketLength = math.max(16.0, frameSize * 40 / 280);
 
     // Removed dimmed background outside the rect
     // Sleek Curved Brackets
@@ -2152,15 +2228,13 @@ class ScannerOverlayPainter extends CustomPainter {
       ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
 
-    const bracketLength = 40.0;
-
     // Top Left
     canvas.drawPath(
         Path()
           ..moveTo(rect.left, rect.top + bracketLength)
           ..lineTo(rect.left, rect.top + radius)
           ..arcToPoint(Offset(rect.left + radius, rect.top),
-              radius: const Radius.circular(radius))
+              radius: Radius.circular(radius))
           ..lineTo(rect.left + bracketLength, rect.top),
         bracketPaint);
 
@@ -2170,7 +2244,7 @@ class ScannerOverlayPainter extends CustomPainter {
           ..moveTo(rect.right, rect.top + bracketLength)
           ..lineTo(rect.right, rect.top + radius)
           ..arcToPoint(Offset(rect.right - radius, rect.top),
-              radius: const Radius.circular(radius), clockwise: false)
+              radius: Radius.circular(radius), clockwise: false)
           ..lineTo(rect.right - bracketLength, rect.top),
         bracketPaint);
 
@@ -2180,7 +2254,7 @@ class ScannerOverlayPainter extends CustomPainter {
           ..moveTo(rect.left, rect.bottom - bracketLength)
           ..lineTo(rect.left, rect.bottom - radius)
           ..arcToPoint(Offset(rect.left + radius, rect.bottom),
-              radius: const Radius.circular(radius), clockwise: false)
+              radius: Radius.circular(radius), clockwise: false)
           ..lineTo(rect.left + bracketLength, rect.bottom),
         bracketPaint);
 
@@ -2190,7 +2264,7 @@ class ScannerOverlayPainter extends CustomPainter {
           ..moveTo(rect.right, rect.bottom - bracketLength)
           ..lineTo(rect.right, rect.bottom - radius)
           ..arcToPoint(Offset(rect.right - radius, rect.bottom),
-              radius: const Radius.circular(radius))
+              radius: Radius.circular(radius))
           ..lineTo(rect.right - bracketLength, rect.bottom),
         bracketPaint);
 
@@ -2198,20 +2272,37 @@ class ScannerOverlayPainter extends CustomPainter {
     final textPainter = TextPainter(
       text: TextSpan(
         text: instruction,
+        // A shadow because this now sits over live camera output, which is often
+        // brighter than the dimmed scene it was originally written against.
         style: TextStyle(
-          color: Colors.white.withValues(alpha: 0.6),
+          color: Colors.white.withValues(alpha: 0.9),
           fontSize: 14,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.5,
+          shadows: const [Shadow(blurRadius: 8, color: Colors.black87)],
         ),
       ),
       textDirection: textDirection,
       textAlign: TextAlign.center,
     );
 
-    textPainter.layout(maxWidth: rect.width);
-    textPainter.paint(canvas,
-        Offset(size.width / 2 - textPainter.width / 2, rect.bottom + 32));
+    // Keep the instruction inside the box. It used to be painted a fixed 32dp
+    // below the frame, which on a short pane fell off the bottom edge and was
+    // clipped mid-word.
+    textPainter.layout(
+        maxWidth: math.max(1.0, math.min(size.width - 16, 360.0)));
+    final double top = math.min(
+      rect.bottom + 24,
+      size.height - textPainter.height - 12,
+    );
+    final double left = (size.width - textPainter.width) / 2;
+    textPainter.paint(
+      canvas,
+      Offset(
+        left.clamp(8.0, math.max(8.0, size.width - textPainter.width - 8.0)),
+        math.max(12.0, top),
+      ),
+    );
   }
 
   @override
@@ -2235,21 +2326,25 @@ class TranslatedTextBlock {
 class TranslationOverlayPainter extends CustomPainter {
   final List<TranslatedTextBlock> blocks;
   final Size imageSize;
-  final Size screenSize;
 
   TranslationOverlayPainter({
     required this.blocks,
     required this.imageSize,
-    required this.screenSize,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
+    // `size` is this painter's own box — the canvas it was handed. The painter
+    // used to accept a field carrying the *window* size instead, which put the
+    // boxes at window coordinates inside a pane: on a split iPad that drew the
+    // translated blocks over the results column rather than over the preview
+    // (#71). The canvas already knows how big it is, so the field is gone.
+    //
     // We must use math.min to match BoxFit.contain
-    final double scale = math.min(screenSize.width / imageSize.width,
-        screenSize.height / imageSize.height);
-    final double offsetX = (screenSize.width - imageSize.width * scale) / 2;
-    final double offsetY = (screenSize.height - imageSize.height * scale) / 2;
+    final double scale =
+        math.min(size.width / imageSize.width, size.height / imageSize.height);
+    final double offsetX = (size.width - imageSize.width * scale) / 2;
+    final double offsetY = (size.height - imageSize.height * scale) / 2;
 
     final Paint bgPaint = Paint()
       ..color = Colors.black.withValues(alpha: 0.8)

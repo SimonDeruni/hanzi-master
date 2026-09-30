@@ -852,6 +852,7 @@
   "scenarioRemoved": "シナリオを削除しました",
   "scenarioSavedFindInCustomTab": "シナリオを保存しました！「カスタム」タブから確認できます。",
   "score": "スコア: {score} / {total}",
+  "scoreValue": "スコア: {value}",
   "searchByPinyinOrMeaning": "ピンインまたは意味で検索…",
   "searchByTitleOrTag": "タイトルまたはタグで検索…",
   "searchDictionaryOrTypeCustom": "辞書を検索するか直接入力",
@@ -1124,8 +1125,8 @@
   "novels96": "小説（96作品）",
   "microReads": "マイクロリーディング",
   "poetry": "詩歌・漢詩",
-  "bookmarkRemoved": "书签已移除 · ブックマークを削除しました",
-  "bookmarkAdded": "已添加书签 · ブックマークを追加しました: 第{chapter}章",
+  "bookmarkRemoved": "ブックマークを削除しました",
+  "bookmarkAdded": "ブックマークを追加しました: 第{chapter}章",
   "readingVocabulary": "読解＆語彙",
   "vocabularyBatchUnitindex1": "語彙バッチ {index}",
   "yourDailyDropIsHere1": "本日のデイリードロップが届きました！✨",
@@ -4220,5 +4221,12 @@
   "storyCategoryChineseEpics": "中国の叙事詩",
   "storyCategorySupernaturalFolklore": "怪異と伝承",
   "storyCategoryChinesePoetry": "中国の詩",
-  "storyCategoryTangPoetry": "唐詩"
+  "storyCategoryTangPoetry": "唐詩",
+  "toneGraphHowToReadTitle": "このグラフの見方",
+  "toneGraphHowToReadBody": "左から右へが時間、上下が音の高さです。声の高さであって、大きさではありません。\n線の高さではなく向きを読み取ります：1 は高く平ら · 2 は上がる · 3 は低く下がる · 4 は高い位置から落ちる。\n最初の線が目指した声調です。2本目の線は、別の声調が聞き取れたときだけ描かれます。\n線が1本なら、目標どおりか、声調が測定されなかったということ。決して「間違い」ではありません。",
+  "toneGraphHowToReadTooltip": "このグラフの見方",
+  "toneGraphHowToReadPhraseNote": "ここでは破線がフレーズの声調の形で、等間隔に並んでいます。\n録音内で各音節がどこから始まるかは分からないため、位置ではなく形を比べてください。",
+  "toneGraphNoPitchMeasured": "このテイクではピッチが測定されなかったため、あなたの声を描画できません。破線は、あなたが目指していた形です。",
+  "toneGraphTarget": "ターゲット",
+  "toneGraphYourVoice": "あなたの声"
 }

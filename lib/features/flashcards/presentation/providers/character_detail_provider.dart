@@ -73,8 +73,24 @@ final quickLookProvider =
   // reported definitionLanguage (previously only metadata was copied, causing
   // English text to be tagged as the target language and silently skipping
   // translation).
+  //
+  // A card that came from the dictionary names the row it came from, and that
+  // row is what the reader must be shown: `definition_<language>` belongs to a
+  // row, so re-resolving by spelling alone would answer with whichever sibling
+  // row wins the sense heuristics — a different reading and another row's
+  // definition, hidden behind the same character. Characters tapped fresh out
+  // of an article have no row yet, so there the spelling decides.
   final dictionaryRepo = ref.read(globalDictionaryRepositoryProvider);
-  final dictionaryCard =
+  final int? pinnedWordId = localMatch?.dictionaryWordId;
+  Flashcard? dictionaryCard;
+  if (pinnedWordId != null) {
+    dictionaryCard = await dictionaryRepo.getPinnedRow(
+      pinnedWordId,
+      hanzi,
+      targetLanguage: targetLanguage,
+    );
+  }
+  dictionaryCard ??=
       await dictionaryRepo.getExact(hanzi, targetLanguage: targetLanguage);
   if (localMatch == null || dictionaryCard == null) {
     return dictionaryCard ?? localMatch;

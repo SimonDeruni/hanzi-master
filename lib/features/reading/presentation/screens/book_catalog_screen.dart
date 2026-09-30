@@ -45,6 +45,19 @@ class _BookCatalogScreenState extends ConsumerState<BookCatalogScreen> {
   /// selected. The phone never sets it: it pushes [BookDetailScreen] instead.
   BookModel? _previewBook;
 
+  /// A micro-read (a Mandarin Bean story) shown in the same pane. Stories are
+  /// not books — they open [StorySummaryScreen] — so the pane keeps one slot per
+  /// kind, and setting either clears the other.
+  LibraryStory? _previewStory;
+
+  /// Closes whichever detail the pane is showing.
+  void _closeDetailPane() {
+    setState(() {
+      _previewBook = null;
+      _previewStory = null;
+    });
+  }
+
   // Novel filters
   String _selectedNovelCategory = 'ALL';
 
@@ -238,17 +251,29 @@ const SizedBox(height: 12),
               ],
             ),
           ),
-          // iPad only: the shelf stays visible while a book's detail is open.
-          // The pane hosts the very same screen the phone pushes, in `embedded`
-          // mode so it carries no back button (there is no route to pop).
-          if (context.zenWindow.isExpanded && _previewBook != null) ...<Widget>[
+          // iPad only: the shelf stays visible while a book's detail — or a
+          // micro-read's summary — is open. The pane hosts the very same screen
+          // the phone pushes, in `embedded` mode so it carries no back button
+          // (there is no route to pop) — which is why the catalogue must hand it
+          // `onClose`: the pane cannot dismiss itself, and until 2026-09-29
+          // nothing cleared `_previewBook`, so the pane was permanent once
+          // opened.
+          if (context.zenWindow.isExpanded &&
+              (_previewBook != null || _previewStory != null)) ...<Widget>[
             const VerticalDivider(width: 1),
             SizedBox(
               width: 420,
-              child: BookDetailScreen(
-                book: _previewBook!,
-                embedded: true,
-              ),
+              child: _previewStory != null
+                  ? StorySummaryScreen(
+                      story: _previewStory!,
+                      embedded: true,
+                      onClose: _closeDetailPane,
+                    )
+                  : BookDetailScreen(
+                      book: _previewBook!,
+                      embedded: true,
+                      onClose: _closeDetailPane,
+                    ),
             ),
           ],
         ],
@@ -731,7 +756,10 @@ if (filtered.isEmpty)
         // iPad (≥840dp): the detail opens *beside* the shelf instead of covering
         // it. Phones keep the pushed route, unchanged.
         if (context.zenWindow.isExpanded) {
-          setState(() => _previewBook = book);
+          setState(() {
+            _previewBook = book;
+            _previewStory = null;
+          });
           return;
         }
         Navigator.of(context).push(
@@ -941,6 +969,16 @@ if (filtered.isEmpty)
       scaleFactor: 0.96,
       onPressed: () {
         HapticsManager.light();
+        // iPad (≥840dp): the summary opens *beside* the shelf instead of
+        // covering it, exactly as a book's detail does. Phones keep the pushed
+        // route, unchanged.
+        if (context.zenWindow.isExpanded) {
+          setState(() {
+            _previewStory = story;
+            _previewBook = null;
+          });
+          return;
+        }
         Navigator.of(context).push(
           SwipeBackPageRoute(
             builder: (_) => StorySummaryScreen(story: story),

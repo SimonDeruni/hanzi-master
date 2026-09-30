@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/features/media/data/story_fetcher_service.dart';
 import 'package:hanzi_master/features/media/domain/models/library_story.dart';
@@ -18,6 +19,7 @@ import 'package:hanzi_master/features/reading/domain/entities/poetry_collection.
 import 'package:hanzi_master/features/reading/presentation/screens/book_detail_screen.dart';
 import 'package:hanzi_master/features/reading/presentation/screens/book_catalog_screen.dart';
 import 'package:hanzi_master/features/reading/domain/entities/poetry_story_id.dart';
+import 'package:hanzi_master/features/reading/presentation/providers/book_providers.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
@@ -123,12 +125,25 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
       );
     }).toList();
 
+    // One card per poet. A poem is a chapter of its collection now, so the
+    // library lists the books rather than 100 four-line cards — and the per-poem
+    // cards it replaces are removed, not left beside them.
+    //
+    // The repository's collections are the ones the books are built from, and
+    // they carry the collection summaries; regrouping the raw asset here would
+    // drop them and put the poem-title list back on every card. The local build
+    // stays as the fallback for a repository that has not loaded.
+    List<PoetryCollection> fromRepository = const <PoetryCollection>[];
+    try {
+      fromRepository = await ref.read(poetryCollectionsProvider.future);
+    } catch (_) {}
+    final poetryCollections = fromRepository.isNotEmpty
+        ? fromRepository
+        : buildPoetryCollections(poetryEntries);
+
     if (mounted) {
       setState(() {
-        // One card per poet. A poem is a chapter of its collection now, so the
-        // library lists the books rather than 100 four-line cards — and the
-        // per-poem cards it replaces are removed, not left beside them.
-        _poetryCollections = buildPoetryCollections(poetryEntries);
+        _poetryCollections = poetryCollections;
         final poetryStories = <LibraryStory>[
           for (final collection in _poetryCollections)
             _collectionStory(collection),
@@ -175,14 +190,24 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     // the card fell to the generic topic gradient, which is why 100 poet books
     // looked coverless however many cover files were bundled.
     final String coverAsset = poetryCoverAssetPath(collection.id);
+    // The card previews what is *in* the collection. The summary is the
+    // collection's own text in the reader's language; the poem titles are only
+    // the fallback for a collection whose summary is not on disk yet.
+    final String collectionSummary = collection
+        .localizedSummary(Localizations.localeOf(context).toLanguageTag())
+        .trim();
     return LibraryStory(
       title: collection.author,
       titleEn: authorEn.isNotEmpty ? authorEn : collection.author,
       link: collection.id,
       sourceName: collection.author,
       imageUrl: coverAsset,
-      summary: titles('title'),
-      summaryEn: titles('title_en'),
+      summary: collectionSummary.isNotEmpty
+          ? collectionSummary
+          : titles('title'),
+      summaryEn: collection.summaryEn.trim().isNotEmpty
+          ? collection.summaryEn.trim()
+          : titles('title_en'),
       category: 'Chinese Poetry',
       sourceType: StorySourceType.json,
       hskLevel: collection.hskLevel,
@@ -190,70 +215,50 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
     );
   }
 
+  /// The card whose detail is open in the trailing pane on an iPad, or `null`
+  /// when nothing is selected. A phone never sets these: it pushes the route
+  /// instead — [BookDetailScreen] for a poem, [StorySummaryScreen] for a story.
+  ///
+  /// The two are mutually exclusive: [LibraryStory] always clears the book, and
+  /// the other way round, so the pane can never show a stale neighbour.
+  LibraryStory? _previewStory;
+  BookModel? _previewBook;
+
+  /// Opens a card: beside the grid on an iPad, over it on a phone.
+  ///
+  /// The pane is the point of the iPad branch — the reading room keeps its grid,
+  /// its search and its filters while the detail is open, exactly as the
+  /// catalogue keeps its shelf beside a book.
   void _openStory(LibraryStory story) {
-    if (isPoetryStoryId(story.link) || isPoetryCategory(story.category)) {
-      // A poet's collection card: its link *is* the author book.
-      for (final collection in _poetryCollections) {
-        if (collection.id != story.link) continue;
-        Navigator.push(
-          context,
-          SwipeBackPageRoute(
-            builder: (context) => BookDetailScreen(
-              book: poetryCollectionToBook(
-                collection,
-                localeCode: Localizations.localeOf(context).toLanguageTag(),
-              ),
-            ),
-          ),
-        );
+    HapticsManager.light();
+    final bool beside = context.zenWindow.isExpanded;
+
+    // A poem is a chapter of its poet's collection, so it opens the author's
+    // book — the same id the reader, the shelf and the migration use, which
+    // keeps progress and bookmarks pointing at one book.
+    final BookModel? poemBook = _poemBook(story);
+    if (poemBook != null) {
+      if (beside) {
+        setState(() {
+          _previewBook = poemBook;
+          _previewStory = null;
+        });
         return;
       }
-      // A single poem — a legacy link or a saved item: a poem is a chapter of
-      // its poet's collection, so it opens the author's book, the same id the
-      // reader, the shelf and the migration use. That keeps progress and
-      // bookmarks pointing at one book.
-      final collection = collectionForPoem(_poetryCollections, story.link);
-      if (collection != null) {
-        Navigator.push(
-          context,
-          SwipeBackPageRoute(
-            builder: (context) => BookDetailScreen(
-              book: poetryCollectionToBook(
-                collection,
-                localeCode: Localizations.localeOf(context).toLanguageTag(),
-              ),
-            ),
-          ),
-        );
-        return;
-      }
-      // The poem is not in the store: fall back to presenting it on its own.
-      final book = BookModel(
-        id: story.link,
-        title: story.title,
-        titleEn: story.titleEn ?? story.title,
-        localizedTitles: story.localizedTitles,
-        author: story.sourceName,
-        authorEn: story.sourceName,
-        category: story.category.isNotEmpty
-            ? AppLocalizations.of(context)!.storyCategoryLabel(story.category)
-            : AppLocalizations.of(context)!.chinesePoetry,
-        description: story.summary,
-        descriptionEn: story.summaryEn ?? story.summary,
-        dynastyOrEra: 'Tang Dynasty',
-        hskLevel: story.hskLevel,
-        totalChapters: 1,
-        coverEmoji: '📜',
-        tags: story.keywords.isNotEmpty
-            ? story.keywords
-            : const ['Poetry', 'Classical', 'Verse'],
-      );
       Navigator.push(
         context,
         SwipeBackPageRoute(
-          builder: (context) => BookDetailScreen(book: book),
+          builder: (context) => BookDetailScreen(book: poemBook),
         ),
       );
+      return;
+    }
+
+    if (beside) {
+      setState(() {
+        _previewStory = story;
+        _previewBook = null;
+      });
       return;
     }
     Navigator.push(
@@ -262,6 +267,61 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
         builder: (context) => StorySummaryScreen(story: story),
       ),
     );
+  }
+
+  void _closeDetailPane() {
+    setState(() {
+      _previewStory = null;
+      _previewBook = null;
+    });
+  }
+
+  /// A poem card as the book it opens: its poet's collection when the store has
+  /// it (a collection card's link *is* the author book, a single poem's link is
+  /// a chapter inside one), otherwise a one-off book carrying the poem's own
+  /// metadata. `null` for a story card, which opens its summary.
+  BookModel? _poemBook(LibraryStory story) {
+    if (!isPoetryStoryId(story.link) && !isPoetryCategory(story.category)) {
+      return null;
+    }
+    final collection = _collectionForCard(story) ??
+        collectionForPoem(_poetryCollections, story.link);
+    if (collection != null) {
+      return poetryCollectionToBook(
+        collection,
+        localeCode: Localizations.localeOf(context).toLanguageTag(),
+      );
+    }
+    // The poem is not in the store: fall back to presenting it on its own.
+    return BookModel(
+      id: story.link,
+      title: story.title,
+      titleEn: story.titleEn ?? story.title,
+      localizedTitles: story.localizedTitles,
+      author: story.sourceName,
+      authorEn: story.sourceName,
+      category: story.category.isNotEmpty
+          ? AppLocalizations.of(context)!.storyCategoryLabel(story.category)
+          : AppLocalizations.of(context)!.chinesePoetry,
+      description: story.summary,
+      descriptionEn: story.summaryEn ?? story.summary,
+      dynastyOrEra: 'Tang Dynasty',
+      hskLevel: story.hskLevel,
+      totalChapters: 1,
+      coverEmoji: '📜',
+      tags: story.keywords.isNotEmpty
+          ? story.keywords
+          : const ['Poetry', 'Classical', 'Verse'],
+    );
+  }
+
+  /// The collection whose card is [story] — a poet's card links to the author
+  /// book, not to one of its poems.
+  PoetryCollection? _collectionForCard(LibraryStory story) {
+    for (final collection in _poetryCollections) {
+      if (collection.id == story.link) return collection;
+    }
+    return null;
   }
 
   List<LibraryStory> get _filteredStories {
@@ -299,7 +359,7 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
+    final Widget screen = Scaffold(
       backgroundColor: isDark
           ? const Color(0xFF1A1A1B)
           : const Color(0xFFFDFCF0), // Zen Paper
@@ -404,6 +464,36 @@ class _StoryLibraryScreenState extends ConsumerState<StoryLibraryScreen> {
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold)),
       ),
+    );
+
+    // iPad only: the reading room stays visible while a card's detail is open
+    // beside it. The pane hosts the very same screens the phone pushes, in
+    // `embedded` mode so they carry no back arrow (there is no route to pop) —
+    // which is why the reader is handed `onClose`: the pane cannot dismiss
+    // itself. A story that never opened anything on the right was this branch,
+    // missing.
+    if (!context.zenWindow.isExpanded) return screen;
+    final Widget? pane = _previewBook != null
+        ? BookDetailScreen(
+            book: _previewBook!,
+            embedded: true,
+            onClose: _closeDetailPane,
+          )
+        : _previewStory != null
+            ? StorySummaryScreen(
+                story: _previewStory!,
+                embedded: true,
+                onClose: _closeDetailPane,
+              )
+            : null;
+    if (pane == null) return screen;
+
+    return Row(
+      children: <Widget>[
+        Expanded(child: screen),
+        const VerticalDivider(width: 1),
+        SizedBox(width: 420, child: pane),
+      ],
     );
   }
 

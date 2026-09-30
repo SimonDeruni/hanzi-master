@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0+564] - 2026-09-30
+- **`[🚀 RELEASE]` Build Bump to 1.0.0+564**: iPad adaptive layout integration, flashcard review screens, book catalog preview pane, poetry collections and 15-locale translations synchronization to GitLab master.
+
 ## [1.0.0+563] - 2026-09-29
 - **`[🚀 RELEASE]` Build Bump to 1.0.0+563**: Automated build bump and release synchronization to GitLab master.
 

@@ -2489,6 +2489,11 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String scoreValue(Object value) {
+    return 'Баллы: $value';
+  }
+
+  @override
   String get searchByPinyinOrMeaning => 'Поиск по пиньиню или значению...';
 
   @override
@@ -2661,28 +2666,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get toneGraph => 'График высоты тона';
 
   @override
-  String get toneGraphYourVoice => 'Your voice';
+  String get toneGraphYourVoice => 'Ваш голос';
 
   @override
-  String get toneGraphTarget => 'Target';
+  String get toneGraphTarget => 'Цель';
 
   @override
   String get toneGraphNoPitchMeasured =>
-      'No pitch was measured in this take, so there is nothing to draw for your voice. The dashed stroke is still the shape you were aiming for.';
+      'В этой попытке высота тона не была измерена, поэтому для вашего голоса нечего рисовать. Пунктирная линия по-прежнему показывает форму, к которой вы стремились.';
 
   @override
   String get toneGraphHowToReadPhraseNote =>
-      'Here the dashed stroke is the shape of the phrase\'s tones, spaced evenly. We do not know where each syllable starts inside your recording, so the two strokes are not lined up in time — compare their shapes, not their positions. Your own stroke is the measured one.';
+      'Здесь пунктирная линия — форма тонов фразы, с равными интервалами.\nМы не знаем, где начинается каждый слог в вашей записи, поэтому сравнивайте формы, а не позиции.';
 
   @override
-  String get toneGraphHowToReadTitle => 'How to read this graph';
+  String get toneGraphHowToReadTitle => 'Как читать этот график';
 
   @override
-  String get toneGraphHowToReadTooltip => 'How to read this graph';
+  String get toneGraphHowToReadTooltip => 'Как читать этот график';
 
   @override
   String get toneGraphHowToReadBody =>
-      'Left to right is time. Up and down is pitch — how high your voice sits, not how loud it is. Read the direction of the stroke, not its height: tone 1 stays level and high, tone 2 rises, tone 3 dips low and often does not fully come back up, tone 4 falls from high. The first stroke is the tone you were aiming for. A second stroke is drawn only when a different tone was heard, so when you see two, the second is what was detected. Seeing only one stroke means either you matched the target or the tone was not measured — it never means you were wrong.';
+      'Слева направо — время. Сверху вниз — высота тона: насколько высоко звучит ваш голос, а не насколько громко.\nЧитайте направление линии, а не её высоту: 1 — высоко и ровно · 2 — подъём · 3 — низкое падение · 4 — резкий спад.\nПервая линия — тон, к которому вы стремились; вторая рисуется только тогда, когда был услышан другой тон.\nОдна линия означает, что вы попали в цель или тон не был измерен, — но никогда, что вы ошиблись.';
 
   @override
   String get traceLabel => 'Написание по контуру';
@@ -3423,11 +3428,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get poetry => 'Классическая поэзия';
 
   @override
-  String get bookmarkRemoved => '书签已移除 · Закладка удалена';
+  String get bookmarkRemoved => 'Закладка удалена';
 
   @override
   String bookmarkAdded(Object chapter) {
-    return '已添加书签 · Закладка добавлена: Глава $chapter';
+    return 'Закладка добавлена: Глава $chapter';
   }
 
   @override
@@ -11559,7 +11564,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get documentTitle => 'document.title';
 
   @override
-  String get processing => 'Processingâ€¦';
+  String get processing => 'Идёт обработка…';
 
   @override
   String get keepItUp => '好！Keep it up';
@@ -11652,7 +11657,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get closePurchaseOffer => 'Закрыть предложение о покупке';
 
   @override
-  String get loading => 'Loading...';
+  String get loading => 'Загрузка…';
 
   @override
   String get analyzingImage2 => 'Анализ изображения…';
