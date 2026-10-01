@@ -1865,6 +1865,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deckName => 'Deck Name';
 
   @override
+  String get renameDeck => 'Rename Deck';
+
+  @override
+  String get deckRenamed => 'Deck renamed successfully';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Deck name cannot be empty';
+
+  @override
   String get deckStory => 'Deck Story';
 
   @override

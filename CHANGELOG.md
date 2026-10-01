@@ -2,6 +2,72 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+## [1.0.0+567] - 2026-10-01
+
+- **`[🚀 RELEASE]` Build Bump to 1.0.0+567**: Removed burned-in subtitle overlay from YouTube video player in Smart Media Desk, restored full-screen iPad camera viewfinder in Universal Scanner, pruned "Pratiquer l'écriture" button from deck screen, cleaned channel shortlist placeholders, pruned poetry books from book shelf to preserve section boundaries, redesigned Web Explorer card to Zen & Ink aesthetic, resolved iPad landscape video stage overflow, enabled custom deck renaming with localized dialog, and updated test suites.
+
+### [2026-10-01] Removed On-Player Subtitle Overlay from Smart Media Desk Video Player
+
+- **`[📺 MEDIA]` Removed Burned-In Subtitle Overlay from YouTube Player.** In `SmartMediaDeskScreen` (`lib/features/media/presentation/screens/smart_media_desk_screen.dart`), removed the redundant subtitle overlay (`_buildSubtitleOverlay`) that was rendered directly inside `YoutubePlayer`'s `controlsBuilder`. This previously placed an oversized caption box (up to 44pt Hanzi + 22pt Pinyin with semi-transparent background) directly over the video playback picture, obscuring up to 50% of the video frame.
+- **`[✨ UX]` Unobscured Video Surface with Interactive Transcript Preservation.** The video player now plays on a completely clean, unobscured stage. The interactive transcript column beside (on iPad/desktop) or below (on phones) the player remains the dedicated, synchronized home for reading aids with active line highlighting, pinyin, English/localized translations, word quick-lookup popovers, and tap-to-seek functionality. Removed unused constants `kSubtitleHeightFactor`, `kSubtitleMaxWidth`, and unused helper `_subtitleTranscript`.
+- **`[🧪 TEST]` Layout & Media Suite Verified.** Updated `test/features/media/smart_media_desk_ipad_layout_test.dart` to assert that the video stage is clean without on-picture subtitle obstruction while verifying the tap blocker and transcript interactions remain intact (10/10 passing). Verified `test/features/media/premium_subtitles_typography_test.dart` (3/3 passing) and `test/core/adaptive_layout_guard_test.dart` (26/26 passing); `flutter analyze lib` reports 0 issues.
+
+### [2026-10-01] Restored Full-Screen Camera Viewfinder on iPad in Universal Scanner
+
+- **`[📷 SCANNER]` Restored Full-Screen Camera Viewfinder on iPad.** Resolved an issue where opening `UniversalScannerScreen` on an iPad in landscape squashed the camera viewfinder into a 45% width column on the left, leaving the right 55% of the screen completely empty with shutter controls stranded on the right. Across all form factors (iPad and iPhone, landscape and portrait), the live camera preview is now full-screen (`Positioned.fill(child: _buildCameraPreview())`) with `BoxFit.cover`.
+- **`[📱 ADAPTIVE]` Ergonomically Centered iPad Controls & Overlays.** Centered the bottom control panel (`_buildBottomControls`) and zoom slider (`_buildZoomSlider`) with `ConstrainedBox(maxWidth: 480)` so capture buttons form a balanced, accessible dock at the bottom of the screen. Centered the framing guide (`ScannerOverlay`) over the viewfinder and constrained the results list (`_buildResultsList`) with `ConstrainedBox(maxWidth: 720)` over the blurred background for optimal reading ergonomics on wide displays.
+- **`[🧪 TEST]` Layout & Adaptive Guard Suite Verified.** Updated `test/features/premium/scanner_ipad_layout_test.dart` to assert full-screen camera preview across viewports, removal of the 45% split, centered control constraints, and proper aiming guards (11/11 passing). Synchronized `test/core/adaptive_layout_guard_test.dart` adaptive markers (4/4 passing). Verified all 28 tests in `test/features/premium/` passing; `flutter analyze lib` reports 0 issues.
+
+### [2026-10-01] Removed "Pratiquer l'écriture" Button from Deck Screen
+
+- **`[🎴 FLASHCARDS]` Removed "Pratiquer l'écriture" button from deck screen.** Per user request, removed the full-width `OutlinedButton` ("Pratiquer l'écriture" / `practiceWriting`) from `lib/features/flashcards/presentation/screens/deck_detail_screen.dart`. This eliminates UI clutter and removes redundancy between standalone writing and review modes. The primary deck action row cleanly features Review (Réviser) and Story (Histoire), followed by Practice in Roleplay (Pratiquer en jeu de rôle).
+- **`[🧪 TEST]` Updated layout suite and verified hygiene.** Updated `test/features/flashcards/deck_detail_ipad_layout_test.dart` to assert the removal of the "Practice Writing" button and verify that core actions (Review, Story, Roleplay) render cleanly without overflow across phone and iPad viewports. All 182 flashcards tests pass; `flutter analyze lib` reports 0 issues.
+
+### [2026-10-01] Pruned Placeholders and "One in a Billion" from Recommended Channel Shortlist
+
+- **`[📺 MEDIA]` Removed "Channel" and "One in a Billion" from `ChannelsData.entries`.** In response to learner feedback, removed the generic placeholder `"Channel"` entries (which relied on temporary video resolution) and `"One in a Billion"` (which displayed as `"One in a...."` due to UI tile width limits) from the quick-access recommended channel shortlist (`lib/features/media/data/channels_data.dart`). The channel row now consists exclusively of 11 verified YouTube channels with direct handles or channel IDs.
+- **`[🌐 I18N]` Synchronized localized channel description catalogs.** Removed the dead `@One-In-a-Billion` and `Channel` description keys from `assets/data/l10n/channels_*.json` across all 13 supported language locales, maintaining clean 1:1 parity with active channel entries.
+- **`[🧪 TEST]` Channel shortlist contract tests added.** Created `test/features/media/channel_shortlist_test.dart` (2/2 passing) asserting that no placeholder titles or video-resolution entries remain and that all entries have authentic identifiers, logos, and descriptions. Verified media suite; `flutter analyze lib` reports 0 issues.
+
+
+### [2026-10-01] Poetry Books Pruned from Book Section to Preserve Section Boundaries
+
+- **`[📚 READING]` Poetry removed from book catalog (`grand_library_catalog.json`).** In response to learner feedback, removed the 12 poetry books that resided on the Novels/Books shelf (`ReadingRoomSection.novels`): the 11 Classical Poetry collections (`the_bamboo_studio_collection`, `caocao`, `chuci`, `huajianji`, `nalanxingde`, `nantang`, `qianjiashi`, `shijing`, `songci`, `tangshisanbaishou`, `yuanqu`) plus Yue Fei's *Manjianghong* (`manjianghong`, which was historically miscategorized under Classical Novels). The book section now contains solely authentic prose, epics, classical novels, philosophical treatises, primers, drama, and essays (101 books total, down from 113).
+- **`[🌸 POETRY]` Dedicated Poetry Section preserved intact.** The dedicated Poetry section (`ReadingRoomSection.poetry`, backed by `assets/data/famous_chinese_poetry.json`, `poetryCollectionsProvider`, and author collections) remains untouched and is now the exclusive home for Chinese poetry in the reading room.
+- **`[🖼️ ASSETS]` Cover manifest & placeholder synchronization.** Pruned the 10 CC0 Cleveland Museum cover provenance entries from `assets/data/book_cover_manifest.json` (23 -> 13). Pruned `the_bamboo_studio_collection` and `manjianghong` from `gutenbergPlaceholderCoverIds` in `lib/features/reading/domain/entities/poetry_story_id.dart` (68 -> 66). Deleted the 12 unneeded bundled book JSONs and cover images.
+- **`[🧪 TEST]` Unit tests and ratchets verified.** Updated the book count assertion in `test/unit_tests/grand_library_catalog_test.dart` to 101. Verified `book_cover_manifest_test.dart` and `book_cover_placeholder_test.dart` (13/13 passing); verified `poetry_collection_test.dart` (36/36 passing); verified reading suite; `flutter analyze lib` reports 0 issues.
+
+### [2026-10-01] Web Explorer Hero Card Redesigned to Zen & Ink Design Language
+
+- **`[🎨 UI/UX]` Web Explorer Hero Card Redesign.** Redesigned the Web Explorer hero card (`_buildWebExplorerHeroCard`) on the Web Explore tab (`MediaHubScreen`). Replaced the legacy dark gradient (`[0xFF24252A, 0xFF16171A]`), neon yellow radial blur (`0xFFFFB300`), and neon amber borders with the canonical **Zen & Ink** card aesthetic matching the Book (`BookCatalogScreen`) and Video (`MediaSearchScreen`) tabs.
+- **`[🎨 UI/UX]` Dynamic Light/Dark Surface & Refined Calligraphic Polish.** The card now uses dynamic `AppTheme.cardBgOf(context)` (pure Xuan card in light mode, `#1E1E22` in dark mode), hairline borders (`isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06)`), and natural soft Zen drop shadows. Features an elegant calligraphic Hanzi watermark (`'网'` - Web/Net) in the background, a refined Live Overlay pill badge (`AppTheme.accentFire`), deep carbon ink CTA button, and `HapticsManager.light()` micro-tap feedback on press.
+- **`[🧪 TEST]` Design contract & ordering suite verified.** Added `test/features/media/web_explorer_hero_card_design_test.dart` (5/5 passing) asserting token compliance, watermark presence, removal of neon artifacts, and micro-haptics. Verified `test/features/media/media_hub_ordering_test.dart` (3/3 passing). `flutter analyze lib` clean (0 issues).
+
+### [2026-10-01] Smart Media Desk Video Stage Overflow Remediated
+
+- **`[🔧 FIX]` Video player overflow on iPad landscape split view.** In `SmartMediaDeskScreen`, `YoutubePlayer` was wrapped in an artificial `Transform.scale(scale: 1.05)` (originally intended to crop YouTube native watermarks, which failed because iframe controls are injected dynamically). On iOS/iPadOS, native `WKWebView` platform views ignore Flutter's software `ClipRect` across transforms, causing the video frame to protrude 15px over the stage border, vertical divider, and into the right transcript/prep column.
+- **`[🎨 UI/UX]` Flush calligraphic stage layout.** Removed the 1.05x artificial scale and its `1 / 1.05` counter-scale in `controlsBuilder`. `YoutubePlayer` now respects its exact 16:9 aspect ratio and box constraints, remaining centered and flush inside the black stage without horizontal or vertical bleeding.
+- **`[🧪 TEST]` Layout regression test added.** Updated `test/features/media/smart_media_desk_ipad_layout_test.dart` to assert that `YoutubePlayer` remains unscaled and respects stage bounds (11/11 passing). Verified `flutter analyze lib` reports 0 issues.
+
+
+### [2026-10-01] Learners Can Rename Custom Flashcard Decks
+
+- **`[✨ FEATURE]` Custom flashcard decks can now be renamed directly from the UI.** Learners can rename custom decks either directly from `DeckDetailScreen` (via a dedicated rename action in the app bar or by tapping the deck title) or through `DeckSettingsSheet` via a calligraphic Deck Name tile with an edit action. Fixed system decks (`default`, HSK levels 1–6, and thematic decks) remain protected with their canonical localized curricula titles.
+- **`[🎨 UI/UX]` Calligraphic `showRenameDeckDialog` in Zen & Ink aesthetic.** Built with Xuan paper and dark carbon ink palette, Emperor's Gold hairline border, autofocus `HanziTextField` with full pinyin/Chinese input support, live validation preventing empty names, and haptic feedback micro-taps.
+- **`[⚡ ARCHITECTURE]` Reactive updates and state synchronization.** Added `renameDeck(deckId, newName)` on `DeckController` that persists updates to Hive (`DeckRepositoryImpl.updateDeck`) and synchronizes state without intermediate loading flashes. Added `isCustom` and `isSystemDeck` getters on `Deck`. `DeckDetailScreen` synchronizes `_currentDeck` reactively with `deckControllerProvider`.
+- **`[🌐 I18N]` Full 14-locale coverage.** Added localized strings (`renameDeck`, `deckRenamed`, `deckNameCannotBeEmpty`) across all 14 supported languages (`ar`, `de`, `en`, `es`, `fr`, `hi`, `id`, `it`, `ja`, `ko`, `pt`, `ru`, `th`, `vi`) with 0 untranslated messages in `flutter gen-l10n`.
+- **`[🧪 TEST]` Comprehensive test suite (`test/features/flashcards/deck_rename_test.dart` 11/11 passing).** Covers custom vs system deck classification, `DeckController.renameDeck` persistence and validation, dialog interaction (typing, submit, cancel), and `DeckSettingsSheet` integration. All existing regression tests remain 100% green.
+
+
+### [2026-10-01] The Shelf Stops Wearing Project Gutenberg's Placeholder Covers
+
+- **`[🔧 FIX]` 68 Gutenberg imports showed PG's auto-generated placeholder cover, not a jacket.** Every Gutenberg-sourced book (`docs/BOOK_SOURCES.md`) shipped the image PG draws when a book has no jacket art — a flat colour field with a few random shapes and a "Project Gutenberg" stamp — and `CalligraphicBookCover` rendered it with `BoxFit.cover`, which cropped the Chinese title off the top and the stamp off the bottom and left a band of abstract colour blocks beside the hand-picked jackets and the CC0 museum plates. `CalligraphicBookCover` now draws its own calligraphic plate (`_buildCalligraphicFallback`) for those books; the file stays bundled, so the cover-manifest contract is unchanged and the art returns as soon as a book is given a real cover.
+- **`[🔧 FIX]` The list is derived, not hand-guessed.** `poetry_story_id.dart` gains `gutenbergPlaceholderCoverIds` + `bookCoverIsPlaceholder` — exactly the `gutenberg.org` sources in `docs/BOOK_SOURCES.md` (68 ids). `scratch/_cover_placeholder_probe.py` prints and re-validates it. A file-size rule would have been wrong: the four sub-20 KB covers outside Gutenberg (`dao_de_jing`, `journey_to_the_west`, `records_grand_historian`, `the_art_of_war`) are real, hand-picked jackets.
+- **`[🧪 TEST]` `test/unit_tests/book_cover_placeholder_test.dart` 5/5** (new) — the id set stays inside the catalog, every placeholder book still ships a file, the four jackets are never swept in, and a widget test proves a placeholder book paints the plate (no `Image`) while a real jacket is still a picture.
+
+
 ## [1.0.0+566] - 2026-09-30
 - **`[🚀 RELEASE]` Build Bump to 1.0.0+566**: Shadowing studio practice mode polish, birthday shelf updates, personal reading content and hanbaobao branch sync.
 

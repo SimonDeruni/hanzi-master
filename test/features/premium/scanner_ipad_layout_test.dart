@@ -1,27 +1,19 @@
-/// The scanner's landscape split (#71 of `docs/IPAD_ADAPTIVE_PLAN.md`) — and the
-/// two things that make it safe to have on an iPad at all:
+/// The scanner's iPad layout (#71 of `docs/IPAD_ADAPTIVE_PLAN.md`):
 ///
-///  1. **The gate is the window class, and a phone gets `widthFactor: 1.0`.**
-///     The content pane's factor is `wideSplit ? 0.55 : 1.0`, so every phone and
-///     medium window lays out exactly as before.
+///  1. **The camera preview is full-screen across all viewports.**
+///     `Positioned.fill(child: _buildCameraPreview())` ensures that on an iPad
+///     (in both portrait and landscape) as well as a phone, the camera covers the
+///     entire screen for an immersive viewfinder rather than being squeezed into
+///     an awkward side pane.
 ///  2. **The camera is extracted into `_buildCameraPreview()`** so its aspect-fit
-///     math runs against the *pane's* constraints rather than the window's. That
-///     is the whole reason the preview fits its half instead of being scaled for
-///     the full screen.
-///
-///  3. **Nothing in the scanner measures the window.** The painter trap is
-///     closed: the AR overlay and its tap map measure the box they are given (a
-///     `LayoutBuilder`), and `TranslationOverlayPainter` uses the `size` the
-///     canvas hands it instead of a `screenSize` field fed from `MediaQuery`.
-///     Before this a split drew the OCR boxes and the translated blocks at window
-///     coordinates over the results column, and mis-mapped every tap by the width
-///     of that column.
-///  4. **The preview covers its pane, and the framing guide sits on the camera.**
-///     A hand-rolled `Transform.scale` letterboxed the preview: it scaled an
-///     already aspect-fitted child, so one axis was clipped at its limit while the
-///     other stayed short, leaving the scaffold visible behind white-on-camera
-///     chrome. The guide was painted in the content pane, so on an iPad it was
-///     drawn over the results column rather than over the viewfinder.
+///     math uses `BoxFit.cover` against its constraints without letterboxing or
+///     distorting.
+///  3. **Controls are centered and ergonomically constrained.**
+///     `_buildBottomControls` and `_buildZoomSlider` are centered with
+///     `ConstrainedBox(maxWidth: 480)` so they remain comfortable to use
+///     on large iPad screens without stretching or drifting off to the side.
+///  4. **The framing guide sits over the full camera preview.**
+///     `ScannerOverlay` draws its framing brackets centered over the camera.
 ///
 /// A camera plugin cannot run in a widget test, so — like
 /// `book_reader_toolbar_density_test.dart` for the reader — the layout decisions
@@ -59,44 +51,14 @@ void main() {
     return source.substring(start, end == -1 ? source.length : end);
   }
 
-  group('scanner landscape split', () {
-    test('is gated on the window class, never a raw width', () {
-      expect(source, contains('final bool wideSplit ='));
-      expect(source, contains('context.zenWindow.isExpanded'));
-      expect(
-        RegExp(r'(width|shortestSide)\s*[><]=?\s*\d{3}').hasMatch(source),
-        isFalse,
-        reason: 'A Split View slice must not be handed the landscape layout by '
-            'a magic number',
-      );
-    });
-
-    test('does not split a tablet held in portrait', () {
-      // A 1024dp-wide iPad in portrait cleared `isExpanded` on its own, so the
-      // split fired and gave the camera a 460dp column beside a 560dp one on a
-      // window 1366dp tall — less room for both than the stacked arrangement.
-      expect(source, contains('context.isLandscapeWindow'),
-          reason: 'Hosting the split on the camera means the window shape has to '
-              'gate it, not only the width');
+  group('scanner iPad full-screen layout', () {
+    test('camera preview fills the entire screen across all viewports', () {
       final String build = body('Widget build(BuildContext context) {');
-      final int widthGate = build.indexOf('context.zenWindow.isExpanded');
-      final int landscapeGate = build.indexOf('context.isLandscapeWindow');
-      expect(widthGate, greaterThan(-1));
-      expect(landscapeGate, greaterThan(widthGate),
-          reason: 'Both conditions belong to `wideSplit`');
-    });
-
-    test('the live preview keeps the left pane', () {
-      final String build = body('Widget build(BuildContext context) {');
-      expect(build, contains('widthFactor: 0.45'));
-      expect(build, contains('Alignment.centerLeft'));
-      expect(build, contains('_buildCameraPreview()'));
-    });
-
-    test('the content takes the right pane, and a phone is unchanged', () {
-      final String build = body('Widget build(BuildContext context) {');
-      expect(build, contains('widthFactor: wideSplit ? 0.55 : 1.0'));
-      expect(build, contains('Alignment.centerRight'));
+      expect(build, contains('Positioned.fill(child: _buildCameraPreview())'));
+      expect(build, isNot(contains('widthFactor: 0.45')),
+          reason: 'The live camera preview must never be squeezed into a narrow side pane');
+      expect(build, isNot(contains('widthFactor: wideSplit')),
+          reason: 'Controls must not be offset into a split column');
     });
 
     test('the camera preview covers its pane instead of letterboxing it', () {
@@ -113,21 +75,31 @@ void main() {
       expect(camera, contains('previewSize'));
     });
 
-    test('the framing guide is drawn over the camera, not the content pane', () {
-      final String build = body('Widget build(BuildContext context) {');
-      final int cameraPane = build.indexOf('widthFactor: 0.45');
-      final int guide = build.indexOf('if (_framingThePreview) const ScannerOverlay()');
-      expect(guide, greaterThan(cameraPane),
-          reason: 'The guide has to live inside the camera pane, or an iPad user '
-              'is told to align text inside a frame over the results column');
-      // ...and the content pane must not draw a second one.
-      expect(source, contains('showFramingGuide: !wideSplit'));
+    test('bottom controls and zoom slider are centered with max constraints on iPad', () {
+      final String controls = body('Widget _buildBottomControls(');
+      expect(controls, contains('Center('));
+      expect(controls, contains('ConstrainedBox('));
+      expect(controls, contains('maxWidth: 480'));
+
+      final String zoom = body('Widget _buildZoomSlider() {');
+      expect(zoom, contains('Center('));
+      expect(zoom, contains('ConstrainedBox('));
+      expect(zoom, contains('maxWidth: 480'));
+    });
+
+    test('the framing guide is drawn over the camera and guarded by aiming state', () {
+      expect(source, contains('_framingThePreview'));
       expect(
         source,
-        contains('return showFramingGuide ? const ScannerOverlay() : '
-            'const SizedBox.shrink();'),
-        reason: 'Exactly one arrangement may draw the guide',
+        contains('return (showFramingGuide && _framingThePreview)'),
+        reason: 'The framing guide is drawn when the user is aiming the camera',
       );
+    });
+
+    test('results view is ergonomically constrained on wide screens', () {
+      final String build = body('Widget _buildMainContent(');
+      expect(build, contains('maxWidth: 720'));
+      expect(build, contains('_buildResultsList('));
     });
   });
 

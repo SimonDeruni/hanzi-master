@@ -14,10 +14,10 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/review_stats.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/study_mode.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/flashcard_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_detail_screen.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/writing_bench_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,14 +46,22 @@ class _FakeFlashcardController extends FlashcardController {
   Future<List<Flashcard>> build() async => cards;
 }
 
+class _FakeDeckController extends StateNotifier<AsyncValue<List<Deck>>>
+    implements DeckController {
+  _FakeDeckController([List<Deck> decks = const <Deck>[]])
+      : super(AsyncValue<List<Deck>>.data(decks));
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 Deck _deck() => Deck(
       id: 'hsk1',
       name: 'HSK 1',
       createdAt: DateTime(2026, 1, 1),
     );
 
-/// One reviewable card, so the deck's actions are enabled (the writing button
-/// disables itself on an empty deck rather than opening an empty session).
+/// One reviewable card, so the deck's actions are enabled.
 Flashcard _card(String hanzi) => Flashcard(
       id: 'card-$hanzi',
       deckId: 'hsk1',
@@ -71,6 +79,8 @@ Widget _host({
 }) =>
     ProviderScope(
       overrides: <Override>[
+        deckControllerProvider
+            .overrideWith((ref) => _FakeDeckController(<Deck>[_deck()])),
         flashcardControllerProvider
             .overrideWith(() => _FakeFlashcardController(cards)),
         ...overrides,
@@ -89,13 +99,6 @@ Widget _host({
       ),
     );
 
-/// The bench's stroke-order animation restarts itself four times a second off a
-/// `Future.delayed`, which cannot be cancelled — so the tree is disposed and the
-/// orphaned timer is then fired (the same dance as `writing_bench_test.dart`).
-Future<void> _disposeBench(WidgetTester tester) async {
-  await tester.pumpWidget(const SizedBox.shrink());
-  await tester.pump(const Duration(seconds: 3));
-}
 
 Future<void> _pumpAt(
   WidgetTester tester,
@@ -159,12 +162,9 @@ void main() {
     expect(find.text('Number of Cards'), findsNothing);
   });
 
-  // Writing practice is one of six ways to practise a deck, so it is a deck
-  // *action*. It used to live in the insight rail, which only builds at >=840dp
-  // — and it was the app's only `WritingBenchScreen` route, so handwriting
-  // practice could not be reached on a phone at all.
-  group('writing practice is a deck action, not a rail statistic', () {
-    testWidgets('a phone can reach the writing bench',
+  // Deck actions live in the list pane, not in the insight rail.
+  group('deck actions stay in the list pane, out of the rail', () {
+    testWidgets('a phone renders deck actions without Practice Writing button',
         (WidgetTester tester) async {
       await _pumpAt(
         tester,
@@ -173,35 +173,24 @@ void main() {
         overrides: await _cardRowOverrides(),
       );
 
-      final Finder button =
-          find.widgetWithText(OutlinedButton, 'Practice Writing');
-      expect(button, findsOneWidget);
+      // Practice Writing button was removed per user request
       expect(
-        tester.widget<OutlinedButton>(button).onPressed,
-        isNotNull,
-        reason: 'a deck with cards must be able to open the bench',
+        find.widgetWithText(OutlinedButton, 'Practice Writing'),
+        findsNothing,
       );
 
-      // All four action labels have to fit. English is already a generous case:
-      // the test font renders every glyph as a full em square, so these labels
-      // come out roughly twice as wide as they do with Roboto — which is what
-      // caught Story and Role play having no `Flexible` (and no test could see it
-      // before, because the action block only renders for a non-empty deck).
+      // Remaining core actions render cleanly
+      expect(find.widgetWithText(ElevatedButton, 'Review'), findsOneWidget);
+      expect(find.widgetWithText(OutlinedButton, 'Story'), findsOneWidget);
+      expect(
+        find.widgetWithText(OutlinedButton, 'Practice in Roleplay'),
+        findsOneWidget,
+      );
+
       expectNoOverflow(tester, reason: 'phone deck actions in en');
-
-      // Tapped directly: the action block sits above the fold on a phone, so no
-      // scrolling is needed. That matters — any scroll collapses the pinned app
-      // bar, whose two-line `FlexibleSpaceBar` title overflows its 48dp toolbar
-      // (a pre-existing app-bar issue, unrelated to the actions).
-      await tester.tap(button);
-      await tester.pumpAndSettle();
-
-      expect(find.byType(WritingBenchScreen), findsOneWidget);
-
-      await _disposeBench(tester);
     });
 
-    testWidgets('an iPad keeps the button in the list pane, out of the rail',
+    testWidgets('an iPad keeps deck actions in the list pane, out of the rail',
         (WidgetTester tester) async {
       await _pumpAt(
         tester,
@@ -213,16 +202,23 @@ void main() {
       // The rail is there...
       expect(find.text('My Progress'), findsOneWidget);
       expectNoOverflow(tester, reason: 'iPad deck actions in en');
-      // ...and the writing action is not in it: the rail is 320dp of a 1024dp
-      // window, so a button belonging to the list pane ends well left of it.
+
+      expect(
+        find.widgetWithText(OutlinedButton, 'Practice Writing'),
+        findsNothing,
+      );
+
+      // ...and the deck actions are not in the rail: the rail is 320dp of a 1024dp
+      // window, so buttons belonging to the list pane end well left of it.
       const double railWidth = 320;
       const double windowWidth = 1024;
-      final Rect button = tester
-          .getRect(find.widgetWithText(OutlinedButton, 'Practice Writing'));
+      final Rect button = tester.getRect(
+        find.widgetWithText(OutlinedButton, 'Practice in Roleplay'),
+      );
       expect(
         button.right,
         lessThanOrEqualTo(windowWidth - railWidth),
-        reason: 'the writing bench is an action; actions live in the list pane',
+        reason: 'deck actions live in the list pane',
       );
     });
   });

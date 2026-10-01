@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +14,6 @@ import '../../../../core/services/gemini_service.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_ai_prep_card.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/features/media/presentation/widgets/premium_transcript_line.dart';
-import 'package:hanzi_master/features/media/presentation/widgets/premium_subtitles_overlay.dart';
 import 'package:hanzi_master/core/presentation/widgets/ai_progress_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
@@ -33,18 +31,6 @@ enum _MediaLoadingStep {
   generatingBriefing,
   translatingSubtitles,
 }
-
-/// The share of the picture the desk's caption may ever cover.
-///
-/// A subtitle that grows past this covers the very thing being watched, so a
-/// long line is scaled down as a block instead of being allowed to take the
-/// frame (see `_buildSubtitleOverlay`).
-const double kSubtitleHeightFactor = 0.72;
-
-/// The width a caption line may wrap at on a wide picture — beyond roughly this
-/// the eye has to travel to follow the line, and a 12.9" iPad would otherwise
-/// stretch it across 1366dp.
-const double kSubtitleMaxWidth = 760;
 
 class SmartMediaDeskScreen extends ConsumerStatefulWidget {
   final YoutubeVideo video;
@@ -1049,165 +1035,59 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
   /// The video surface, as a widget — extracted so the landscape split can put
   /// it in a pane beside the transcript without duplicating the player (#44).
   ///
-  /// It is a **stage**: a black box at 16:9 with the picture centred in it and
-  /// the desk's own subtitles burned on top. Two things follow from that, and
-  /// both were broken on an iPad before:
+  /// It is a **stage**: a black box at 16:9 with the picture centred in it.
+  /// Two invariants govern it:
   ///
   ///  * the player never takes the screen (`autoFullScreen: false` — the split
   ///    panes *are* the tablet treatment, so the package's fullscreen is only
   ///    ever a way to lose the transcript), and
-  ///  * the subtitles are on the picture, not only in the pane beside it: a
-  ///    learner watching a video should not have to look away from it to read
-  ///    the line, and at arm's length on a tablet the pane is too far away to
-  ///    be the only copy.
+  ///  * the player frame stays clean and unobscured without on-picture subtitle
+  ///    overlays, allowing the learner to watch the video unimpeded while the
+  ///    interactive transcript column beside/below provides full synchronized
+  ///    Hanzi, Pinyin, and translations.
   Widget _buildVideoPane() {
     return ColoredBox(
       color: Colors.black,
       child: Center(
         child: ClipRect(
-          child: Transform.scale(
-            scale: 1.05,
-            child: YoutubePlayer(
-              controller: _playerController,
-              aspectRatio: 16 / 9,
-              // The player fullscreens itself on rotation and on a vertical
-              // drag by default. On a tablet in landscape that replaced the
-              // whole desk with a bare letterboxed video — no transcript, no
-              // transport, no subtitles — so it is handed off: the desk owns
-              // the layout (see also `_guardAgainstPlayerFullscreen`).
-              autoFullScreen: false,
-              enableFullScreenOnVerticalDrag: false,
-              controlsBuilder: (context, isFullscreen) {
-                return Transform.scale(
-                  scale: 1 / 1.05,
-                  child: LayoutBuilder(
-                    // The stage's own size, so the caption can be sized against
-                    // the picture it has to fit on (see `_buildSubtitleOverlay`).
-                    builder: (BuildContext _, BoxConstraints picture) => Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
-                        Positioned.fill(
-                          child: IgnorePointer(
-                            ignoring: _isAdPlaying,
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                if (_playerController.value.playerState ==
-                                    PlayerState.playing) {
-                                  _playerController.pauseVideo();
-                                } else {
-                                  _playerController.playVideo();
-                                }
-                              },
-                              child: const SizedBox.expand(),
-                            ),
-                          ),
-                        ),
-                        // After the blocker, so a tap on a character reaches the
-                        // subtitle's own word handler; the rest of the caption's
-                        // box is transparent to hits and still pauses the video.
-                        if (_transcript != null)
-                          _buildSubtitleOverlay(_transcript!, picture.biggest),
-                      ],
+          child: YoutubePlayer(
+            controller: _playerController,
+            aspectRatio: 16 / 9,
+            // The player fullscreens itself on rotation and on a vertical
+            // drag by default. On a tablet in landscape that replaced the
+            // whole desk with a bare letterboxed video — no transcript, no
+            // transport, no subtitles — so it is handed off: the desk owns
+            // the layout (see also `_guardAgainstPlayerFullscreen`).
+            autoFullScreen: false,
+            enableFullScreenOnVerticalDrag: false,
+            controlsBuilder: (context, isFullscreen) {
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  // BLOCK TOUCHES TO YOUTUBE NATIVE CONTROLS
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      ignoring: _isAdPlaying,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () {
+                          if (_playerController.value.playerState ==
+                              PlayerState.playing) {
+                            _playerController.pauseVideo();
+                          } else {
+                            _playerController.playVideo();
+                          }
+                        },
+                        child: const SizedBox.expand(),
+                      ),
                     ),
                   ),
-                );
-              },
-            ),
+                ],
+              );
+            },
           ),
         ),
       ),
-    );
-  }
-
-  /// The desk's subtitles, pinned to the bottom of the picture.
-  ///
-  /// Two rules keep the caption readable rather than merely present, and both
-  /// come from the picture's own size:
-  ///
-  ///  * **It may not cover the frame.** A 14-character line at 44pt wraps twice,
-  ///    and with the pinyin and the translation under it the caption was taller
-  ///    than a phone's 219dp picture — where the [Stack] then clipped it from
-  ///    the top, hiding the line the learner was reading. So the caption is
-  ///    capped at [kSubtitleHeightFactor] of the picture and *scaled down* as a
-  ///    block if it does not fit, which keeps every line on screen.
-  ///  * **The picture carries what is legible at its size.** Three lines at 36pt
-  ///    do not fit a 219dp phone picture at a readable size (the caption had to
-  ///    shrink to ~56%), so on a compact window the picture carries the subtitle
-  ///    proper — the hanzi line — and the pinyin and the translation follow the
-  ///    learner's toggles in the pane directly underneath it. From
-  ///    [ZenWindowClass.medium] up the pane is *beside* the video and the eye is
-  ///    further away, so the reading aids ride on the picture too.
-  ///
-  /// Inside the inverse of the stage's 1.05 crop, so the type is drawn at the
-  /// size [PremiumSubtitlesOverlay] ramps for the window class and not 5% larger.
-  Widget _buildSubtitleOverlay(VideoTranscript transcript, Size picture) {
-    final double captionWidth = math.min(picture.width - 32, kSubtitleMaxWidth);
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 16,
-          right: 16,
-          // A tablet sits further from the eye than a phone, so the caption
-          // lifts off the picture edge with the window class.
-          bottom: zenValue<double>(context,
-              compact: 10, medium: 14, expanded: 18),
-        ),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: captionWidth,
-              maxHeight: picture.height * kSubtitleHeightFactor,
-            ),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.bottomCenter,
-              // The inner cap is what wraps the line; the outer one is what the
-              // caption's height budget is measured against.
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: captionWidth),
-                child: PremiumSubtitlesOverlay(
-                  transcript: _subtitleTranscript(transcript),
-                  currentIndex: _currentIndex,
-                  currentPosition: _currentPosition,
-                  onWordTapped: _onWordTapped,
-                  showHanzi: true,
-                  showPinyin: _showPinyin && context.zenWindow.isAtLeastMedium,
-                  showEnglish:
-                      _showEnglish && context.zenWindow.isAtLeastMedium,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// The subtitles as they should read on the picture — the HSK-simplified
-  /// text when the learner turned that on, so the video and the transcript pane
-  /// never disagree about the line. A rewritten line drops its own pinyin (it
-  /// belongs to the text that is no longer shown) and the overlay derives it
-  /// from the new one.
-  VideoTranscript _subtitleTranscript(VideoTranscript transcript) {
-    if (!_isHskSimplified) return transcript;
-    return VideoTranscript(
-      videoId: transcript.videoId,
-      lines: <TranscriptLine>[
-        for (int i = 0; i < transcript.lines.length; i++)
-          if ((_simplifiedTranscript[i] ?? '').trim().isEmpty)
-            transcript.lines[i]
-          else
-            transcript.lines[i].copyWith(
-              text: _simplifiedTranscript[i],
-              pinyin: '',
-            ),
-      ],
     );
   }
 

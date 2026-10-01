@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/rename_deck_dialog.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 class DeckSettingsSheet extends ConsumerStatefulWidget {
   final Deck deck;
@@ -16,16 +18,19 @@ class DeckSettingsSheet extends ConsumerStatefulWidget {
 class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
   late int _newCardsLimit;
   late int _reviewLimit;
+  late String _deckName;
 
   @override
   void initState() {
     super.initState();
     _newCardsLimit = widget.deck.dailyNewCardsLimit;
     _reviewLimit = widget.deck.dailyReviewLimit;
+    _deckName = widget.deck.name;
   }
 
   Future<void> _saveSettings() async {
     final updatedDeck = widget.deck.copyWith(
+      name: _deckName.trim().isNotEmpty ? _deckName.trim() : widget.deck.name,
       dailyNewCardsLimit: _newCardsLimit,
       dailyReviewLimit: _reviewLimit,
     );
@@ -40,7 +45,7 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1E1E) : const Color(0xFFFDFCF0),
+        color: isDark ? AppTheme.cardBgDark : AppTheme.xuanPaperLight,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       padding: EdgeInsets.only(
@@ -69,20 +74,97 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: isDark ? Colors.white : const Color(0xFF1A1A1B),
+              color: isDark ? Colors.white : AppTheme.carbonInkLight,
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
-          Text(
-            widget.deck.localizedName(context),
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? Colors.white70 : Colors.black54,
+          if (widget.deck.isCustom) ...[
+            const SizedBox(height: 16),
+            InkWell(
+              onTap: () async {
+                final updated = await showRenameDeckDialog(
+                  context,
+                  ref: ref,
+                  deck: widget.deck.copyWith(name: _deckName),
+                );
+                if (updated != null && mounted) {
+                  setState(() {
+                    _deckName = updated.name;
+                  });
+                }
+              },
+              borderRadius: BorderRadius.circular(16),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                decoration: BoxDecoration(
+                  color: (isDark ? Colors.white : Colors.black)
+                      .withValues(alpha: 0.04),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : const Color(0xFFD4AF37).withValues(alpha: 0.35),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.drive_file_rename_outline_rounded,
+                      size: 20,
+                      color: isDark
+                          ? Colors.amber.shade300
+                          : const Color(0xFF8B0000),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            l10n.deckName,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isDark ? Colors.white54 : Colors.black45,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            _deckName,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: isDark
+                                  ? Colors.white
+                                  : AppTheme.carbonInkLight,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.edit_outlined,
+                      size: 18,
+                      color: isDark ? Colors.white60 : Colors.black54,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 32),
+          ] else ...[
+            const SizedBox(height: 8),
+            Text(
+              widget.deck.localizedName(context),
+              style: TextStyle(
+                fontSize: 14,
+                color: isDark ? Colors.white70 : Colors.black54,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+          const SizedBox(height: 28),
           _buildLimitSetting(
             title: l10n.dailyNewCards,
             value: _newCardsLimit,
@@ -102,16 +184,18 @@ class _DeckSettingsSheetState extends ConsumerState<DeckSettingsSheet> {
             color: Colors.indigo,
             isDark: isDark,
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 36),
           ElevatedButton(
             onPressed: _saveSettings,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.indigo,
-              foregroundColor: Colors.white,
+              backgroundColor:
+                  isDark ? Colors.amber.shade700 : AppTheme.carbonInkLight,
+              foregroundColor:
+                  isDark ? AppTheme.carbonInkLight : Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16)),
-              elevation: 4,
+              elevation: 2,
             ),
             child: Text(
               l10n.saveSettings,

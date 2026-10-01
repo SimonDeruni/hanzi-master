@@ -205,6 +205,12 @@ class CalligraphicBookCover extends StatelessWidget {
         book.id.startsWith('poetry_') ||
         book.id.startsWith('tang_poetry_');
     final imagePath = bookCoverAssetPath(book.id, isPoetry: isPoetry);
+    // A Project Gutenberg import ships PG's auto-generated geometric cover, not a
+    // jacket: `BoxFit.cover` crops it to a band of random colour blocks. Draw the
+    // calligraphic plate for those instead of photographing them (see
+    // `bookCoverIsPlaceholder`). Real jackets and the CC0 museum plates are
+    // untouched.
+    final drawPlate = !isPoetry && bookCoverIsPlaceholder(book.id);
 
     return Container(
       width: width,
@@ -225,14 +231,17 @@ class CalligraphicBookCover extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            isPoetry
-                ? _buildPoetryCover(context, isDark)
-                : Image.asset(
-                    imagePath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                        _buildCalligraphicFallback(context, isDark),
-                  ),
+            if (isPoetry)
+              _buildPoetryCover(context, isDark)
+            else if (drawPlate)
+              _buildCalligraphicFallback(context, isDark)
+            else
+              Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    _buildCalligraphicFallback(context, isDark),
+              ),
 // 2. Subtle Spine Left Shadow (Tactile 3D book illusion)
             Positioned(
               left: 0,

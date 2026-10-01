@@ -4,7 +4,6 @@ import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/shared/widgets/pinyin_text.dart';
@@ -649,26 +648,8 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
-    // Landscape on a tablet splits the scanner (row #71): the live preview keeps
-    // the left pane and the OCR results take the right, instead of the results
-    // being painted over the preview.
-    //
-    // `isLandscape` earns its place beside the width. An iPad in portrait is
-    // 1024dp wide, which cleared `isExpanded` on its own, so the scanner split
-    // into a 460dp camera column beside a 560dp one on a window 1366dp tall —
-    // where the stacked arrangement has more room for both. Landscape is a
-    // property of the window, not the device, so this also keeps a tall narrow
-    // Split View slice on the stacked path.
-    //
-    // The interactive-image step is excluded. Its recorded reason was the painter
-    // trap — the markup painter measured the window — and that trap is now closed
-    // (see `TranslationOverlayPainter` and `_handleArTap`), so the exclusion rests
-    // on what is actually left: the captured page wants the full width, and there
-    // is no second pane of content to stand beside it.
-    final bool wideSplit = context.zenWindow.isExpanded &&
-        context.isLandscapeWindow &&
-        !_showingInteractiveImage;
-
+    // Across all form factors (phones and iPads in portrait and landscape),
+    // the live viewfinder is full-screen for an immersive capture experience.
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -718,35 +699,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       ),
       body: Stack(
         children: [
-          // Camera Preview (hidden when gallery image is shown). In the split it
-          // keeps the left pane; the extracted widget means its fit math runs
-          // against the *pane's* constraints rather than the window's.
+          // Camera Preview (hidden when gallery image is shown).
+          // Always fills the entire viewport without letterboxing or squashing.
           if (_isCameraInitialized &&
-              _cameraController != null &&
-              !_showingInteractiveImage &&
-              wideSplit)
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: FractionallySizedBox(
-                  widthFactor: 0.45,
-                  // The framing guide belongs over the *camera*. The guide is
-                  // otherwise painted by `_buildMainContent`, which in the split
-                  // occupies the content pane — so an iPad user was told to align
-                  // the Chinese text inside a frame drawn over the results column
-                  // rather than over the viewfinder. `_buildMainContent` is told
-                  // not to draw it when this branch owns it.
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      _buildCameraPreview(),
-                      if (_framingThePreview) const ScannerOverlay(),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          else if (_isCameraInitialized &&
               _cameraController != null &&
               !_showingInteractiveImage)
             Positioned.fill(child: _buildCameraPreview())
@@ -764,22 +719,15 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
               ),
             ),
 
-          // Main UI Content
-          // Main UI Content. When split, it takes the right pane: the camera owns
-          // the left and the results stop being painted over the live preview.
-          // widthFactor 1.0 leaves every phone and medium window byte-identical.
-          FractionallySizedBox(
-            widthFactor: wideSplit ? 0.55 : 1.0,
-            alignment: Alignment.centerRight,
-            child: SafeArea(
+          // Main UI Content (framing guide, results, zoom, and capture controls)
+          SafeArea(
             child: Column(
               children: [
                 const SizedBox(height: 16),
 
                 // Content Area
                 Expanded(
-                  child: _buildMainContent(theme, l10n,
-                      showFramingGuide: !wideSplit),
+                  child: _buildMainContent(theme, l10n),
                 ),
 
                 // Zoom Slider
@@ -808,7 +756,6 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
                 if (!_showingResults) _buildBottomControls(theme, l10n),
               ],
             ),
-          ),
           ),
         ],
       ),
@@ -968,12 +915,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
   }
 
-  /// [showFramingGuide] is false when the landscape split has already put the
-  /// guide over the camera pane, so the two arrangements cannot both draw it.
   Widget _buildMainContent(
     ThemeData theme,
     AppLocalizations l10n, {
-    required bool showFramingGuide,
+    bool showFramingGuide = true,
   }) {
     if (_permissionDenied) {
       return Center(
@@ -1087,55 +1032,60 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
     }
 
     if (_showingResults) {
-      return Column(
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      icon: const Icon(Icons.close, color: Colors.white),
-                      onPressed: () {
-                        setState(() {
-                          _showingResults = false;
-                          if (_capturedImage != null && !_isArLensMode) {
-                            _showingInteractiveImage = true;
-                          }
-                        });
-                      }),
-                  // Flexible: a longer translation shrinks this title instead of
-                  // pushing the trailing icon out of the header row.
-                  Expanded(
-                    child: Text(AppLocalizations.of(context)!.results,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.titleMedium
-                            ?.copyWith(color: Colors.white)),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.camera_alt_outlined,
-                        color: Colors.white),
-                    tooltip: AppLocalizations.of(context)!.scanAnother,
-                    onPressed: () {
-                      setState(() {
-                        _showingResults = false;
-                        _capturedImage = null;
-                        _recognizedText = null;
-                        _aiTextBlocks = [];
-                        _matchedCharacters = [];
-                        _selectedWordIndices.clear();
-                        _rawExtractedText = "";
-                        _fullTranslation = "";
-                      });
-                    },
-                  ),
-                ]),
+      return Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 720),
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          icon: const Icon(Icons.close, color: Colors.white),
+                          onPressed: () {
+                            setState(() {
+                              _showingResults = false;
+                              if (_capturedImage != null && !_isArLensMode) {
+                                _showingInteractiveImage = true;
+                              }
+                            });
+                          }),
+                      // Flexible: a longer translation shrinks this title instead of
+                      // pushing the trailing icon out of the header row.
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.results,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.titleMedium
+                                ?.copyWith(color: Colors.white)),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.camera_alt_outlined,
+                            color: Colors.white),
+                        tooltip: AppLocalizations.of(context)!.scanAnother,
+                        onPressed: () {
+                          setState(() {
+                            _showingResults = false;
+                            _capturedImage = null;
+                            _recognizedText = null;
+                            _aiTextBlocks = [];
+                            _matchedCharacters = [];
+                            _selectedWordIndices.clear();
+                            _rawExtractedText = "";
+                            _fullTranslation = "";
+                          });
+                        },
+                      ),
+                    ]),
+              ),
+              Expanded(child: _buildResultsList(theme, l10n)),
+            ],
           ),
-          Expanded(child: _buildResultsList(theme, l10n)),
-        ],
+        ),
       );
     }
 
@@ -1255,7 +1205,9 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
       );
     }
 
-    return showFramingGuide ? const ScannerOverlay() : const SizedBox.shrink();
+    return (showFramingGuide && _framingThePreview)
+        ? const ScannerOverlay()
+        : const SizedBox.shrink();
   }
 
   /// Hit-tests a tap against the detected AR boxes, in the overlay's own box.
@@ -1306,107 +1258,117 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
   Widget _buildZoomSlider() {
     if (_minZoomLevel >= _maxZoomLevel) return const SizedBox.shrink();
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 8.0),
-      child: Row(
-        children: [
-          const Icon(Icons.zoom_out, color: Colors.white70, size: 20),
-          Expanded(
-            child: Slider(
-              value: _currentZoomLevel,
-              min: _minZoomLevel,
-              max: _maxZoomLevel,
-              activeColor: Colors.white,
-              inactiveColor: Colors.white30,
-              onChanged: (value) async {
-                setState(() => _currentZoomLevel = value);
-                await _cameraController?.setZoomLevel(value);
-              },
-              // Zoom is continuous, so tick once when the drag settles.
-              onChangeEnd: (_) => HapticsManager.selection(),
-            ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 8.0),
+          child: Row(
+            children: [
+              const Icon(Icons.zoom_out, color: Colors.white70, size: 20),
+              Expanded(
+                child: Slider(
+                  value: _currentZoomLevel,
+                  min: _minZoomLevel,
+                  max: _maxZoomLevel,
+                  activeColor: Colors.white,
+                  inactiveColor: Colors.white30,
+                  onChanged: (value) async {
+                    setState(() => _currentZoomLevel = value);
+                    await _cameraController?.setZoomLevel(value);
+                  },
+                  // Zoom is continuous, so tick once when the drag settles.
+                  onChangeEnd: (_) => HapticsManager.selection(),
+                ),
+              ),
+              const Icon(Icons.zoom_in, color: Colors.white70, size: 20),
+            ],
           ),
-          const Icon(Icons.zoom_in, color: Colors.white70, size: 20),
-        ],
+        ),
       ),
     );
   }
 
   Widget _buildBottomControls(ThemeData theme, AppLocalizations l10n) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 32.0, left: 32.0, right: 32.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(40),
-        child: BackdropFilter(
-          filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-            decoration: BoxDecoration(
-              color: Colors.black.withValues(alpha: 0.2),
-              border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.1), width: 1),
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // Left Side: Gallery Button or spacing
-                if (!_isArLensMode)
-                  _buildSideButton(
-                    icon: Icons.photo_library_outlined,
-                    onTap: _pickFromGallery,
-                  )
-                else if (widget.intent != CameraIntent.textExtraction)
-                  const SizedBox(width: 60), // Maintain layout balance
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 32.0, left: 32.0, right: 32.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: BackdropFilter(
+              filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.2),
+                  border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.1), width: 1),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    // Left Side: Gallery Button or spacing
+                    if (!_isArLensMode)
+                      _buildSideButton(
+                        icon: Icons.photo_library_outlined,
+                        onTap: _pickFromGallery,
+                      )
+                    else if (widget.intent != CameraIntent.textExtraction)
+                      const SizedBox(width: 60), // Maintain layout balance
 
-                // Center: Premium Shutter Button or Scanner mode return
-                if (!_isArLensMode || widget.intent == CameraIntent.travelAR)
-                  GestureDetector(
-                    onTap: () {
-                      if (widget.intent == CameraIntent.textExtraction) {
-                        // Raw capture is handled inside `_takePhoto` and `_processExtractedText`
-                        _takePhoto();
-                      } else {
-                        _takePhoto();
-                      }
-                    },
-                    child: Container(
-                      width: 76,
-                      height: 76,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.8),
-                            width: 3),
-                        color: Colors.transparent,
-                      ),
-                      child: Center(
+                    // Center: Premium Shutter Button or Scanner mode return
+                    if (!_isArLensMode || widget.intent == CameraIntent.travelAR)
+                      GestureDetector(
+                        onTap: () {
+                          if (widget.intent == CameraIntent.textExtraction) {
+                            // Raw capture is handled inside `_takePhoto` and `_processExtractedText`
+                            _takePhoto();
+                          } else {
+                            _takePhoto();
+                          }
+                        },
                         child: Container(
-                          width: 62,
-                          height: 62,
-                          decoration: const BoxDecoration(
+                          width: 76,
+                          height: 76,
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.white,
+                            border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.8),
+                                width: 3),
+                            color: Colors.transparent,
+                          ),
+                          child: Center(
+                            child: Container(
+                              width: 62,
+                              height: 62,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
+                      )
+                    else if (widget.intent != CameraIntent.textExtraction)
+                      _buildSideButton(
+                        icon: Icons.document_scanner,
+                        isActive: false,
+                        onTap: () => _setMode(false),
                       ),
-                    ),
-                  )
-                else if (widget.intent != CameraIntent.textExtraction)
-                  _buildSideButton(
-                    icon: Icons.document_scanner,
-                    isActive: false,
-                    onTap: () => _setMode(false),
-                  ),
 
-                // Right Side: AR Lens Button
-                if (widget.intent != CameraIntent.textExtraction)
-                  _buildSideButton(
-                    icon: Icons.view_in_ar,
-                    isActive: _isArLensMode,
-                    onTap: () => _setMode(!_isArLensMode),
-                  ),
-              ],
+                    // Right Side: AR Lens Button
+                    if (widget.intent != CameraIntent.textExtraction)
+                      _buildSideButton(
+                        icon: Icons.view_in_ar,
+                        isActive: _isArLensMode,
+                        onTap: () => _setMode(!_isArLensMode),
+                      ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

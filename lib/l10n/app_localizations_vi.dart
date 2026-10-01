@@ -1872,6 +1872,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deckName => 'Tên bộ thẻ';
 
   @override
+  String get renameDeck => 'Đổi tên bộ thẻ';
+
+  @override
+  String get deckRenamed => 'Đã đổi tên bộ thẻ thành công';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Tên bộ thẻ không được để trống';
+
+  @override
   String get deckStory => 'Câu chuyện bộ thẻ';
 
   @override

@@ -1,7 +1,6 @@
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/layout/zen_layout.dart';
-import 'package:hanzi_master/features/flashcards/presentation/screens/writing_bench_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
@@ -19,6 +18,7 @@ import 'package:hanzi_master/core/services/analytics_service.dart';
 import 'package:hanzi_master/shared/widgets/staggered_list_item.dart';
 
 import 'package:hanzi_master/features/flashcards/presentation/widgets/deck_settings_sheet.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/rename_deck_dialog.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraphy_background.dart';
 import 'package:hanzi_master/features/flashcards/presentation/screens/story_mode_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/study_mode_selection_sheet.dart';
@@ -89,18 +89,9 @@ class _DailyGoal extends StatelessWidget {
 /// The deck's numbers, shown *beside* the card list on an iPad (≥840dp) rather
 /// than in a header you scroll past.
 ///
-/// Deliberately informational: every action (study, add cards, deck settings,
-/// **writing practice**) stays in the list pane, so the phone flow and the wide
-/// flow cannot drift apart, and the iPhone layout is untouched.
-///
-/// The writing-practice button used to live in here, which broke that rule twice
-/// over. `Practice Writing` is one of six ways to practise a deck, so filing it
-/// under the `My Progress` heading read as a statistic sitting next to
-/// `Number of Cards`; and because this rail only builds at ≥840dp, routing the
-/// bench through it made handwriting practice **unreachable on every iPhone** —
-/// the push used to be the app's only `WritingBenchScreen` route. It now sits in
-/// the action block with Review / Story / Role play, which is where
-/// `docs/IPAD_ADAPTIVE_PLAN.md` put the actions all along.
+/// Deliberately informational: every action (study, add cards, deck settings)
+/// stays in the list pane, so the phone flow and the wide flow cannot drift
+/// apart, and the iPhone layout is untouched.
 class _DeckInsightRail extends StatelessWidget {
   const _DeckInsightRail({
     required this.isDark,
@@ -250,10 +241,42 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
     super.dispose();
   }
 
+  Future<void> _renameCurrentDeck() async {
+    final l10n = AppLocalizations.of(context)!;
+    final messenger = ScaffoldMessenger.of(context);
+    final updated = await showRenameDeckDialog(
+      context,
+      ref: ref,
+      deck: _currentDeck,
+    );
+    if (updated != null && mounted) {
+      setState(() {
+        _currentDeck = updated;
+      });
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(l10n.deckRenamed),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final asyncFlashcards = ref.watch(flashcardControllerProvider);
+    final asyncDecks = ref.watch(deckControllerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
+
+    // Keep _currentDeck in sync with provider state if updated externally
+    final deckFromProvider = asyncDecks.valueOrNull?.firstWhere(
+      (d) => d.id == widget.deck.id,
+      orElse: () => _currentDeck,
+    );
+    if (deckFromProvider != null && deckFromProvider != _currentDeck) {
+      _currentDeck = deckFromProvider;
+    }
 
     return DefaultTabController(
       length: 2,
@@ -268,7 +291,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                     SwipeBackPageRoute(
                       builder: (context) => DeckCardPickerScreen(
                           deckId: widget.deck.id,
-                          deckName: widget.deck.localizedName(context)),
+                          deckName: _currentDeck.localizedName(context)),
                     ),
                   );
                 },
@@ -326,18 +349,42 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       title: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            widget.deck.localizedName(context),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: isDark
-                                  ? Colors.white
-                                  : const Color(0xFF2C2C2C),
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                              letterSpacing: 0.5,
+                          GestureDetector(
+                            onTap: _currentDeck.isCustom
+                                ? _renameCurrentDeck
+                                : null,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    _currentDeck.localizedName(context),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: isDark
+                                          ? Colors.white
+                                          : const Color(0xFF2C2C2C),
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 16,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ),
+                                if (_currentDeck.isCustom) ...[
+                                  const SizedBox(width: 4),
+                                  Icon(
+                                    Icons.edit_outlined,
+                                    size: 13,
+                                    color: (isDark
+                                            ? Colors.white
+                                            : const Color(0xFF2C2C2C))
+                                        .withValues(alpha: 0.45),
+                                  ),
+                                ],
+                              ],
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -369,6 +416,15 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                       ),
                     ),
                     actions: [
+                      if (_currentDeck.isCustom)
+                        IconButton(
+                          icon: Icon(
+                            Icons.drive_file_rename_outline_rounded,
+                            color: isDark ? Colors.white70 : Colors.black87,
+                          ),
+                          tooltip: l10n.renameDeck,
+                          onPressed: _renameCurrentDeck,
+                        ),
                       IconButton(
                         icon: Icon(Icons.settings_outlined,
                             color: isDark ? Colors.white70 : Colors.black87),
@@ -413,7 +469,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                 content: Text(
                                     AppLocalizations.of(context)!
                                         .are_you_sure_you_want_to(
-                                            widget.deck.name),
+                                            _currentDeck.name),
                                     style: TextStyle(
                                         color: isDark
                                             ? Colors.white70
@@ -507,7 +563,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                   context,
                                   SwipeBackPageRoute(
                                     builder: (_) => DailyStudyDashboardScreen(
-                                      deck: widget.deck.copyWith(
+                                      deck: _currentDeck.copyWith(
                                         dailyNewCardsLimit: _dailyNewCardsLimit,
                                         dailyReviewLimit: _dailyReviewLimit,
                                       ),
@@ -613,7 +669,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                             SwipeBackPageRoute(
                                               builder: (context) =>
                                                   StoryModeScreen(
-                                                      deck: widget.deck,
+                                                      deck: _currentDeck,
                                                       cards: deckCards),
                                             ));
                                       },
@@ -670,78 +726,6 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                               ],
                             ),
                             const SizedBox(height: 12),
-                            // Writing practice belongs with the other practice
-                            // entry points, not in the iPad insight rail. It is
-                            // one of six ways to practise this deck, and the
-                            // rail only builds at >=840dp, so routing the bench
-                            // through the rail also made the feature
-                            // unreachable on every iPhone.
-                            SizedBox(
-                              height: 54,
-                              width: double.infinity,
-                              child: OutlinedButton(
-                                // Belt-and-braces: this block only renders for a
-                                // non-empty deck, so the guard cannot fire today.
-                                // It keeps a future relaxation of that gate from
-                                // pushing into an empty session, and shows a
-                                // disabled state rather than Role play's silent
-                                // early return.
-                                onPressed: deckCards.isEmpty
-                                    ? null
-                                    : () {
-                                        Navigator.push(
-                                            context,
-                                            SwipeBackPageRoute(
-                                              builder: (context) =>
-                                                  WritingBenchScreen(
-                                                cards: deckCards,
-                                                deckName: _currentDeck
-                                                    .localizedName(context),
-                                              ),
-                                            ));
-                                      },
-                                style: OutlinedButton.styleFrom(
-                                  foregroundColor: isDark
-                                      ? const Color(0xFFFFD54F)
-                                      : const Color(0xFF1A1A1B),
-                                  backgroundColor: isDark
-                                      ? Colors.white.withValues(alpha: 0.05)
-                                      : Colors.black.withValues(alpha: 0.03),
-                                  side: BorderSide(
-                                      color: isDark
-                                          ? const Color(0xFFFFD54F)
-                                              .withValues(alpha: 0.4)
-                                          : Colors.black
-                                              .withValues(alpha: 0.15),
-                                      width: 1.2),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16)),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.edit,
-                                        size: 18,
-                                        color: isDark
-                                            ? const Color(0xFFFFD54F)
-                                            : const Color(0xFF8B0000)),
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Text(
-                                          AppLocalizations.of(context)!
-                                              .practiceWriting,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              letterSpacing: 0.3)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 12),
                             SizedBox(
                               height: 54,
                               width: double.infinity,
@@ -752,7 +736,7 @@ class _DeckDetailScreenState extends ConsumerState<DeckDetailScreen> {
                                       SwipeBackPageRoute(
                                         builder: (context) =>
                                             ScenarioSelectionScreen(
-                                                deck: widget.deck),
+                                                deck: _currentDeck),
                                       ));
                                 },
                                 style: OutlinedButton.styleFrom(

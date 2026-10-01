@@ -49,10 +49,38 @@ class DeckController extends StateNotifier<AsyncValue<List<Deck>>> {
         return null;
       },
       (updatedDeck) {
-        loadDecks();
+        final currentDecks = state.valueOrNull;
+        if (currentDecks != null) {
+          state = AsyncValue.data(
+            currentDecks
+                .map((d) => d.id == updatedDeck.id ? updatedDeck : d)
+                .toList(),
+          );
+        } else {
+          loadDecks();
+        }
         return updatedDeck;
       },
     );
+  }
+
+  /// Renames an existing deck by its [deckId] and persists it via Hive.
+  Future<Deck?> renameDeck(String deckId, String newName) async {
+    final trimmed = newName.trim();
+    if (trimmed.isEmpty) return null;
+
+    final currentDecks = state.valueOrNull ?? [];
+    final deckIndex = currentDecks.indexWhere((d) => d.id == deckId);
+    if (deckIndex == -1) {
+      final res = await _repository.getDeckById(deckId);
+      return res.fold(
+        (error) => null,
+        (deck) => updateDeck(deck.copyWith(name: trimmed)),
+      );
+    }
+    final targetDeck = currentDecks[deckIndex];
+    if (targetDeck.name == trimmed) return targetDeck;
+    return updateDeck(targetDeck.copyWith(name: trimmed));
   }
 
   Future<void> deleteDeck(String id) async {

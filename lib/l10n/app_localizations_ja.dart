@@ -1820,6 +1820,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get deckName => 'デッキ名';
 
   @override
+  String get renameDeck => 'デッキの名前を変更';
+
+  @override
+  String get deckRenamed => 'デッキの名前を変更しました';
+
+  @override
+  String get deckNameCannotBeEmpty => 'デッキ名は空にできません';
+
+  @override
   String get deckStory => 'デッキストーリー';
 
   @override

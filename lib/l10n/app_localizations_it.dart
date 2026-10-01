@@ -1883,6 +1883,15 @@ class AppLocalizationsIt extends AppLocalizations {
   String get deckName => 'Nome del mazzo';
 
   @override
+  String get renameDeck => 'Rinomina mazzo';
+
+  @override
+  String get deckRenamed => 'Mazzo rinominato con successo';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Il nome del mazzo non può essere vuoto';
+
+  @override
   String get deckStory => 'Storia del mazzo';
 
   @override

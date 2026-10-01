@@ -1218,6 +1218,16 @@ if (filtered.isEmpty)
       scaleFactor: 0.96,
       onPressed: () {
         HapticsManager.light();
+        // iPad (≥840dp): the poem's detail opens *beside* the shelf instead of
+        // covering it, exactly as a novel's or a micro-read's does. Phones keep
+        // the pushed route, unchanged.
+        if (context.zenWindow.isExpanded) {
+          setState(() {
+            _previewBook = book;
+            _previewStory = null;
+          });
+          return;
+        }
         Navigator.of(context).push(
           SwipeBackPageRoute(
             builder: (_) => BookDetailScreen(book: book),

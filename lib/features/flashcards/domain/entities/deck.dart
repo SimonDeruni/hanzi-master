@@ -19,6 +19,16 @@ class Deck extends Equatable {
     this.dailyReviewLimit = 100,
   });
 
+  /// Whether this deck was authored by the learner (as opposed to being a
+  /// fixed system deck like `default`, HSK levels 1–6, or a thematic deck).
+  bool get isCustom =>
+      id != 'default' &&
+      !RegExp(r'^hsk[1-6]$').hasMatch(id) &&
+      !id.startsWith('thematic_');
+
+  /// Whether this is a fixed system curriculum deck.
+  bool get isSystemDeck => !isCustom;
+
   /// The deck's name in the reader's own language.
   ///
   /// Deck names are **content**, not chrome: the 20 thematic decks carry an

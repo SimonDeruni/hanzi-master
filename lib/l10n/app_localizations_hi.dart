@@ -1873,6 +1873,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deckName => 'डेक का नाम';
 
   @override
+  String get renameDeck => 'डेक का नाम बदलें';
+
+  @override
+  String get deckRenamed => 'डेक का नाम सफलतापूर्वक बदला गया';
+
+  @override
+  String get deckNameCannotBeEmpty => 'डेक का नाम खाली नहीं हो सकता';
+
+  @override
   String get deckStory => 'डेक की कहानी';
 
   @override

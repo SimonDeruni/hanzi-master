@@ -122,22 +122,10 @@ class ChannelsData {
       ],
     ),
     ChannelEntry(
-      displayName: 'One in a Billion',
-      handle: '@One-In-a-Billion',
-      logoUrl:
-          'https://yt3.googleusercontent.com/ytc/APkrFKYuYuYuYuYuYuYuYuYuYuYuYuYuYuYuYuYuY=s176-c-k-c0x00ffffff-no-rj',
-      sourceType: SourceType.handle,
-      descriptionPoints: [
-        'Intimate portraits and stories of unique individuals in contemporary China.',
-        'Explores diverse life choices, youth culture, and modern social shifts.',
-        'Deep narrative storytelling with rich vocabulary and authentic voices.',
-      ],
-    ),
-    ChannelEntry(
       displayName: 'Vicky Soup',
       handle: '@VickySoupsss',
       logoUrl:
-          'https://yt3.googleusercontent.com/ytc/APkrFKYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpY=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/ytc/APkrFKYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpYpY=s176-c-k-c0x00ffffff-no-rj',
       sourceType: SourceType.handle,
       descriptionPoints: [
         'Aesthetic lifestyle vlogs, fashion styling, and daily routines.',
@@ -155,30 +143,6 @@ class ChannelsData {
         'High-quality animated educational lessons on science, philosophy, and history.',
         'Thought-provoking riddles, classic literature, and psychology mysteries.',
         'Impeccable voice-over Mandarin with synchronized bilingual subtitles.',
-      ],
-    ),
-    ChannelEntry(
-      displayName: 'Channel',
-      resolveVideoId: 'gAmulPjb1Ds',
-      logoUrl:
-          'https://yt3.googleusercontent.com/ytc/APkrFKbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbR=s176-c-k-c0x00ffffff-no-rj',
-      sourceType: SourceType.video,
-      descriptionPoints: [
-        'Curated cultural documentaries and Chinese lifestyle highlights.',
-        'Exploring traditional arts, heritage craftsmanship, and modern trends.',
-        'High quality audio with synchronized Chinese closed captions.',
-      ],
-    ),
-    ChannelEntry(
-      displayName: 'Channel',
-      resolveVideoId: '66p6ZBxl264',
-      logoUrl:
-          'https://yt3.googleusercontent.com/ytc/APkrFKbIbIbIbIbIbIbIbIbIbIbIbIbIbIbIbIbIbI=s176-c-k-c0x00ffffff-no-rj',
-      sourceType: SourceType.video,
-      descriptionPoints: [
-        'Interesting stories and creative video projects across the Chinese web.',
-        'Engaging interviews, storytelling, and visual explorations.',
-        'Great listening material with standard pronunciation.',
       ],
     ),
   ];

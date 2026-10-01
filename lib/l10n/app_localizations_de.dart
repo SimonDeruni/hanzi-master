@@ -1886,6 +1886,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get deckName => 'Deck-Name';
 
   @override
+  String get renameDeck => 'Deck umbenennen';
+
+  @override
+  String get deckRenamed => 'Deck erfolgreich umbenannt';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Der Deckname darf nicht leer sein';
+
+  @override
   String get deckStory => 'Deck-Geschichte';
 
   @override

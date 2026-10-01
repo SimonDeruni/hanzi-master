@@ -228,14 +228,14 @@ void main() {
         'Future<bool> _addSelectedWordsToDeck(',
         'void _dismissExtracted(List<AiWord>? value) {',
       ],
-      // Phase 3: the scanner's landscape split (#71) — live camera left, results
-      // right, with the camera extracted so its fit math uses the pane.
+      // Phase 3: the scanner's adaptive full-screen preview (#71) — full-screen
+      // camera preview on iPad and phone, with BoxFit.cover and centered controls.
       'lib/features/premium/presentation/screens/universal_scanner_screen.dart':
           <String>[
-        'final bool wideSplit =',
-        'widthFactor: 0.45',
-        'widthFactor: wideSplit ? 0.55 : 1.0',
+        'Positioned.fill(child: _buildCameraPreview())',
         'Widget _buildCameraPreview() {',
+        'Widget _buildBottomControls(',
+        'Widget _buildZoomSlider()',
       ],
       // Phase 3: the media desk's landscape split (#44) — video + transport left,
       // AI prep + transcript right, with the phone column expressed once.

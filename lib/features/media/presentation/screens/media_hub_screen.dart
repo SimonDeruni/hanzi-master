@@ -11,6 +11,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/core/config/app_features.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
@@ -221,11 +222,18 @@ const SliverToBoxAdapter(child: SizedBox(height: 40)),
   }
 
   Widget _buildWebExplorerHeroCard(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
+
+    final primaryText = isDark ? Colors.white : AppTheme.carbonInkLight;
+    final secondaryText = isDark ? Colors.white70 : const Color(0xFF555558);
+    final primaryColor = theme.colorScheme.primary;
 
     return BouncingButton(
       scaleFactor: 0.98,
       onPressed: () {
+        HapticsManager.light();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const WebBrowserScreen()),
@@ -234,53 +242,43 @@ const SliverToBoxAdapter(child: SizedBox(height: 40)),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: isDark
-                ? const [Color(0xFF26262B), Color(0xFF141416)]
-                : const [Color(0xFF24252A), Color(0xFF16171A)],
-          ),
-          borderRadius: BorderRadius.circular(24),
+          color: AppTheme.cardBgOf(context),
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color:
-                const Color(0xFFFFD54F).withValues(alpha: isDark ? 0.22 : 0.28),
-            width: 1.2,
+            color: isDark ? Colors.white10 : Colors.black.withValues(alpha: 0.06),
+            width: 1.0,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.45 : 0.25),
-              blurRadius: 24,
-              offset: const Offset(0, 10),
+              color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
+              blurRadius: 14,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(20),
           child: Stack(
             children: [
-              // Ambient Gold Glow
+              // Subtle Calligraphic Hanzi Watermark ('网' - Web/Net)
               Positioned(
-                top: -40,
-                right: -20,
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: RadialGradient(
-                      colors: [
-                        const Color(0xFFFFB300).withValues(alpha: 0.18),
-                        Colors.transparent,
-                      ],
+                top: -18,
+                right: -8,
+                child: IgnorePointer(
+                  child: Text(
+                    '网',
+                    style: TextStyle(
+                      fontSize: 128,
+                      fontWeight: FontWeight.w900,
+                      color: primaryText.withValues(alpha: isDark ? 0.045 : 0.035),
+                      height: 1.0,
                     ),
                   ),
                 ),
               ),
-// Content Layout
+              // Content Layout
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0, vertical: 24.0),
+                padding: const EdgeInsets.all(22.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -292,18 +290,16 @@ const SliverToBoxAdapter(child: SizedBox(height: 40)),
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color:
-                                const Color(0xFFFFB300).withValues(alpha: 0.15),
+                            color: primaryColor.withValues(alpha: isDark ? 0.16 : 0.08),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xFFFFB300)
-                                  .withValues(alpha: 0.35),
+                              color: primaryColor.withValues(alpha: isDark ? 0.28 : 0.16),
                               width: 1,
                             ),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.language_rounded,
-                            color: Color(0xFFFFD54F),
+                            color: primaryColor,
                             size: 22,
                           ),
                         ),
@@ -311,28 +307,29 @@ const SliverToBoxAdapter(child: SizedBox(height: 40)),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
-                            color:
-                                const Color(0xFFFFB300).withValues(alpha: 0.12),
+                            color: AppTheme.accentFire.withValues(alpha: 0.10),
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: const Color(0xFFFFB300)
-                                  .withValues(alpha: 0.3),
+                              color: AppTheme.accentFire.withValues(alpha: 0.28),
                               width: 1,
                             ),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(Icons.auto_awesome,
-                                  color: Color(0xFFFFD54F), size: 12),
+                              const Icon(
+                                Icons.auto_awesome,
+                                color: AppTheme.accentFire,
+                                size: 12,
+                              ),
                               const SizedBox(width: 5),
                               Text(
-                                AppLocalizations.of(context)!.liveOverlay,
+                                l10n.liveOverlay,
                                 style: const TextStyle(
-                                  color: Color(0xFFFFE082),
-                                  fontSize: 10,
+                                  color: AppTheme.accentFire,
+                                  fontSize: 10.5,
                                   fontWeight: FontWeight.w800,
-                                  letterSpacing: 1.0,
+                                  letterSpacing: 0.8,
                                 ),
                               ),
                             ],
@@ -340,62 +337,72 @@ const SliverToBoxAdapter(child: SizedBox(height: 40)),
                         ),
                       ],
                     ),
-const SizedBox(height: 18),
-// Headline
+                    const SizedBox(height: 16),
+                    // Headline
                     Text(
-                      AppLocalizations.of(context)!.webExplorer,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .browseAnyChineseWebsiteWithRealtime,
+                      l10n.webExplorer,
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.78),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        height: 1.35,
+                        color: primaryText,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0.5,
                       ),
                     ),
-const SizedBox(height: 20),
-// Refined CTA Button
+                    const SizedBox(height: 6),
+                    // Subtitle / Description
+                    Text(
+                      l10n.browseAnyChineseWebsiteWithRealtime,
+                      style: TextStyle(
+                        color: secondaryText,
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w400,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    // Refined CTA Button
                     Row(
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 7),
+                              horizontal: 14, vertical: 8),
                           decoration: BoxDecoration(
-                            color:
-                                const Color(0xFFFFB300).withValues(alpha: 0.18),
+                            color: isDark
+                                ? const Color(0xFF2C2C32)
+                                : AppTheme.carbonInkLight,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: const Color(0xFFFFB300)
-                                  .withValues(alpha: 0.4),
+                              color: isDark
+                                  ? Colors.white.withValues(alpha: 0.12)
+                                  : Colors.black.withValues(alpha: 0.08),
                               width: 1,
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black
+                                    .withValues(alpha: isDark ? 0.25 : 0.08),
+                                blurRadius: 6,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.startExploring,
+                                l10n.startExploring,
                                 style: const TextStyle(
-                                  color: Color(0xFFFFE082),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w800,
-                                  letterSpacing: 1.0,
+                                  color: Colors.white,
+                                  fontSize: 11.5,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 0.6,
                                 ),
                               ),
                               const SizedBox(width: 6),
                               const Icon(
                                 Icons.arrow_forward_rounded,
-                                color: Color(0xFFFFE082),
-                                size: 14,
+                                color: Colors.white,
+                                size: 13,
                               ),
                             ],
                           ),

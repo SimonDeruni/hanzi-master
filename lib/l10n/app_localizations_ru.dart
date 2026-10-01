@@ -1885,6 +1885,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get deckName => 'Название колоды';
 
   @override
+  String get renameDeck => 'Переименовать колоду';
+
+  @override
+  String get deckRenamed => 'Колода успешно переименована';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Название колоды не может быть пустым';
+
+  @override
   String get deckStory => 'История колоды';
 
   @override

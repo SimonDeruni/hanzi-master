@@ -1893,6 +1893,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get deckName => 'Nom du deck';
 
   @override
+  String get renameDeck => 'Renommer le paquet';
+
+  @override
+  String get deckRenamed => 'Paquet renommé avec succès';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Le nom du paquet ne peut pas être vide';
+
+  @override
   String get deckStory => 'Histoire du deck';
 
   @override

@@ -1861,6 +1861,15 @@ class AppLocalizationsTh extends AppLocalizations {
   String get deckName => 'ชื่อสำรับ';
 
   @override
+  String get renameDeck => 'เปลี่ยนชื่อสำรับ';
+
+  @override
+  String get deckRenamed => 'เปลี่ยนชื่อสำรับสำเร็จแล้ว';
+
+  @override
+  String get deckNameCannotBeEmpty => 'ชื่อสำรับต้องไม่ว่างเปล่า';
+
+  @override
   String get deckStory => 'เรื่องราวประจำสำรับ';
 
   @override

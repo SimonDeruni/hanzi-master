@@ -19,38 +19,6 @@
       "sha256": "645a53e50d876dbc360ff338ab497eba9151e9958267e5bb7c4579f1e058fa09"
     },
     {
-      "id": "caocao",
-      "asset": "assets/images/books/caocao.jpg",
-      "accessionNumber": "2025.192",
-      "objectTitle": "Retreat on an Autumn Day, in Cursive Script",
-      "objectDate": "dated 1523",
-      "culture": [
-        "China, Ming dynasty (1368–1644)"
-      ],
-      "type": "Calligraphy",
-      "sourcePage": "https://www.clevelandart.org/art/2025.192",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/2025.192/2025.192_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "6f15923ba88d3cbae7e1b03593667453ec160b966e72b12d41da2bb3f6167897"
-    },
-    {
-      "id": "chuci",
-      "asset": "assets/images/books/chuci.jpg",
-      "accessionNumber": "1997.103",
-      "objectTitle": "Washing the Feet (from the Dusty World)",
-      "objectDate": "1570",
-      "culture": [
-        "China, Ming dynasty (1368–1644)"
-      ],
-      "type": "Painting",
-      "sourcePage": "https://www.clevelandart.org/art/1997.103",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1997.103/1997.103_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "6c946ff125c7a7ee48373cc237f4b727de0b6ff2325897303bfa112718d36a02"
-    },
-    {
       "id": "daxue",
       "asset": "assets/images/books/daxue.jpg",
       "accessionNumber": "1995.389",
@@ -97,70 +65,6 @@
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "sha256": "b0b588d31e25291874ce7fb84101c41f0c9151da29e1b299ddae997b3c0007c2"
-    },
-    {
-      "id": "huajianji",
-      "asset": "assets/images/books/huajianji.jpg",
-      "accessionNumber": "1995.1",
-      "objectTitle": "Canopy with Dragon among Flowers",
-      "objectDate": "1100s/1400s",
-      "culture": [
-        "China, Center: Southern Song dynasty (1127-1270)  Border: Ming dynasty (1368-1644)"
-      ],
-      "type": "Textile",
-      "sourcePage": "https://www.clevelandart.org/art/1995.1",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1995.1/1995.1_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "98218f02a21c82a4ff10627d6125f418cc938f26f1098fd43f2af69c3670c824"
-    },
-    {
-      "id": "nalanxingde",
-      "asset": "assets/images/books/nalanxingde.jpg",
-      "accessionNumber": "1999.6",
-      "objectTitle": "Pipa (Loquats)",
-      "objectDate": "c. 1888–89",
-      "culture": [
-        "China, Yangzhou, Qing dynasty (1644–1911)"
-      ],
-      "type": "Painting",
-      "sourcePage": "https://www.clevelandart.org/art/1999.6",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1999.6/1999.6_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "b263aa33222ab0076872778cae8c3ac2e8e02e1038de6f1d4cbe270bcb46b00e"
-    },
-    {
-      "id": "nantang",
-      "asset": "assets/images/books/nantang.jpg",
-      "accessionNumber": "1997.92",
-      "objectTitle": "Buddha's Conversion of Five Bhiksu",
-      "objectDate": "mid-1300s",
-      "culture": [
-        "China, Yuan dynasty (1271–1368)"
-      ],
-      "type": "Painting",
-      "sourcePage": "https://www.clevelandart.org/art/1997.92",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1997.92/1997.92_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "2e582a99c0ab9c56084e86fc6688e435af57ba2eef711699dc30161ef28a998f"
-    },
-    {
-      "id": "qianjiashi",
-      "asset": "assets/images/books/qianjiashi.jpg",
-      "accessionNumber": "1988.75",
-      "objectTitle": "Brush Holder with Figures in Landscape and Poetic Inscription by Wang Meilin from Jiading",
-      "objectDate": "1800s",
-      "culture": [
-        "China, Qing dynasty (1644-1911), Daoguang reign (1821-50)"
-      ],
-      "type": "Wood",
-      "sourcePage": "https://www.clevelandart.org/art/1988.75",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1988.75/1988.75_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "0343ba564ae9de87a3fd6a31464edb6c974bfeb81978f0488c19687036f66501"
     },
     {
       "id": "qianziwen",
@@ -211,54 +115,6 @@
       "sha256": "1bca257ff72b6dc8e76d39f885a0bb381039716d807649ce367e23fda8c1b270"
     },
     {
-      "id": "shijing",
-      "asset": "assets/images/books/shijing.jpg",
-      "accessionNumber": "1998.78",
-      "objectTitle": "Eighteen Views of Huzhou",
-      "objectDate": "c. 1588",
-      "culture": [
-        "China, Ming dynasty (1368–1644), Wanli reign (1573–1620)"
-      ],
-      "type": "Painting",
-      "sourcePage": "https://www.clevelandart.org/art/1998.78",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1998.78/1998.78_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "5359faa0e0873394e24b336803b8624b59445a25b1c84722ca7de578db9dae9c"
-    },
-    {
-      "id": "songci",
-      "asset": "assets/images/books/songci.jpg",
-      "accessionNumber": "1987.57",
-      "objectTitle": "Buddhist Priest's Ceremonial Robe",
-      "objectDate": "1400s",
-      "culture": [
-        "China, Ming dynasty (1368–1644)"
-      ],
-      "type": "Garment",
-      "sourcePage": "https://www.clevelandart.org/art/1987.57",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1987.57/1987.57_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "d9fac6fdf8feaf21545eec8df0166c4e0c7c71c0b487b50bfe9e7f08e1df21a9"
-    },
-    {
-      "id": "tangshisanbaishou",
-      "asset": "assets/images/books/tangshisanbaishou.jpg",
-      "accessionNumber": "1972.96",
-      "objectTitle": "Virupa",
-      "objectDate": "early 1400s",
-      "culture": [
-        "China, Ming dynasty (1368-1644), Yongle reign (1403-1424)"
-      ],
-      "type": "Sculpture",
-      "sourcePage": "https://www.clevelandart.org/art/1972.96",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1972.96/1972.96_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "2e6fe433f219a5f8932f8e709030f571def82824c5784d66706b819ba7e0728c"
-    },
-    {
       "id": "wenzimengqiu",
       "asset": "assets/images/books/wenzimengqiu.jpg",
       "accessionNumber": "1983.86",
@@ -305,22 +161,6 @@
       "license": "CC0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "sha256": "776aef13f61deb56c40601212316ca5b4620b1d2fe664be3fa72d88d75e37b9c"
-    },
-    {
-      "id": "yuanqu",
-      "asset": "assets/images/books/yuanqu.jpg",
-      "accessionNumber": "1997.94",
-      "objectTitle": "Writing Books under the Pine Trees",
-      "objectDate": "c. 1308–85",
-      "culture": [
-        "China, Yuan dynasty (1271–1368)"
-      ],
-      "type": "Painting",
-      "sourcePage": "https://www.clevelandart.org/art/1997.94",
-      "sourceImage": "https://openaccess-cdn.clevelandart.org/1997.94/1997.94_web.jpg",
-      "license": "CC0",
-      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "sha256": "37e85d5df01d82307345ffc8f3897a35aab7f9393246a1a8cee914cf0cab27d1"
     },
     {
       "id": "zengguangxianwen",

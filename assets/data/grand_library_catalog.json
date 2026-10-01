@@ -513,23 +513,6 @@
     "descriptionEn": "Wei Liaozi (尉缭子) is a Warring States work attributed to Wei Liao. The complete text, in classical Chinese. It belongs to the military classics tradition and has been read continuously in China for centuries."
   },
   {
-    "id": "the_bamboo_studio_collection",
-    "title": "竹斋集",
-    "titleEn": "The Bamboo Studio Collection",
-    "author": "Mian Wang",
-    "authorEn": "Liu Ji",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Ming Dynasty",
-    "hskLevel": 5,
-    "totalChapters": 1,
-    "coverEmoji": "🎋",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《竹斋集》明代文献，归入古典诗词类。",
-    "descriptionEn": "The Bamboo Studio Collection (竹斋集) is a Ming Dynasty work attributed to Liu Ji. The complete text, in classical Chinese. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
     "id": "further_records_of_searching_for_spirits",
     "title": "搜神后记",
     "titleEn": "Further Records of Searching for Spirits",
@@ -1159,23 +1142,6 @@
     "descriptionEn": "A Fool's Dream Talk (痴人说梦记) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
   },
   {
-    "id": "manjianghong",
-    "title": "满江红",
-    "titleEn": "Manjianghong",
-    "author": "Fei Yue",
-    "authorEn": "Various",
-    "category": "Classical Novels",
-    "dynastyOrEra": "Qing Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 1,
-    "coverEmoji": "🌊",
-    "tags": [
-      "Novels"
-    ],
-    "description": "《满江红》清代文献，归入古典小说类。",
-    "descriptionEn": "Manjianghong (满江红) is a Qing Dynasty work attributed to Various. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
-  },
-  {
     "id": "water_margin",
     "title": "水浒传",
     "titleEn": "Water Margin",
@@ -1720,23 +1686,6 @@
     "descriptionEn": "Children's Knowledge Treasury (幼学琼林) is a Ming Dynasty work attributed to Cheng Yunsheng. A children's encyclopedia of the classical world. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
   },
   {
-    "id": "qianjiashi",
-    "title": "千家诗",
-    "titleEn": "Poems of a Thousand Families",
-    "author": "佚名",
-    "authorEn": "Anonymous",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Song Dynasty",
-    "hskLevel": 3,
-    "totalChapters": 219,
-    "coverEmoji": "🌸",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《千家诗》旧题佚名所著，宋代文献，归入古典诗词类。",
-    "descriptionEn": "Poems of a Thousand Families (千家诗) is a Song Dynasty work attributed to Anonymous. The poems every literate household once knew by heart. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
     "id": "wenzimengqiu",
     "title": "文字蒙求",
     "titleEn": "Learning Characters",
@@ -1788,40 +1737,6 @@
     "descriptionEn": "The Doctrine of the Mean (中庸) is a Warring States work attributed to Zisi. On balance, sincerity and the middle way. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
   },
   {
-    "id": "shijing",
-    "title": "诗经",
-    "titleEn": "The Book of Songs",
-    "author": "佚名",
-    "authorEn": "Anonymous",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Zhou Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 305,
-    "coverEmoji": "🍃",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《诗经》旧题佚名所著，周代文献，归入古典诗词类。",
-    "descriptionEn": "The Book of Songs (诗经) is a Zhou Dynasty work attributed to Anonymous. China's oldest poetry collection - 305 songs. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "chuci",
-    "title": "楚辞",
-    "titleEn": "Songs of Chu",
-    "author": "屈原等",
-    "authorEn": "Qu Yuan et al.",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Warring States",
-    "hskLevel": 5,
-    "totalChapters": 65,
-    "coverEmoji": "🐉",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《楚辞》旧题屈原等所著，战国文献，归入古典诗词类。",
-    "descriptionEn": "Songs of Chu (楚辞) is a Warring States work attributed to Qu Yuan et al.. Qu Yuan's southern songs, the root of Chinese lyric. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
     "id": "youmengying",
     "title": "幽梦影",
     "titleEn": "Quiet Dream Shadows",
@@ -1839,40 +1754,6 @@
     "descriptionEn": "Quiet Dream Shadows (幽梦影) is a Qing Dynasty work attributed to Zhang Chao. A Qing aesthete's reflections, with his friends' replies. It belongs to the classical essays tradition and has been read continuously in China for centuries."
   },
   {
-    "id": "nalanxingde",
-    "title": "纳兰性德诗集",
-    "titleEn": "The Poems of Nalan Xingde",
-    "author": "纳兰性德",
-    "authorEn": "Nalan Xingde",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Qing Dynasty",
-    "hskLevel": 5,
-    "totalChapters": 258,
-    "coverEmoji": "💧",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《纳兰性德诗集》旧题纳兰性德所著，清代文献，归入古典诗词类。",
-    "descriptionEn": "The Poems of Nalan Xingde (纳兰性德诗集) is a Qing Dynasty work attributed to Nalan Xingde. The most quoted ci poet of the Qing. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "yuanqu",
-    "title": "元曲",
-    "titleEn": "Yuan Opera Songs",
-    "author": "关汉卿等",
-    "authorEn": "Guan Hanqing et al.",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Yuan Dynasty",
-    "hskLevel": 5,
-    "totalChapters": 390,
-    "coverEmoji": "🎭",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《元曲》旧题关汉卿等所著，元代文献，归入古典诗词类。",
-    "descriptionEn": "Yuan Opera Songs (元曲) is a Yuan Dynasty work attributed to Guan Hanqing et al.. Arias from the Yuan stage. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
     "id": "guwenguanzhi",
     "title": "古文观止",
     "titleEn": "Guwen Guanzhi: The Finest Classical Prose",
@@ -1888,90 +1769,5 @@
     ],
     "description": "《古文观止》旧题吴楚材、吴调侯所著，清代文献，归入Classical Prose类。",
     "descriptionEn": "Guwen Guanzhi: The Finest Classical Prose (古文观止) is a Qing Dynasty work attributed to Wu Chucai & Wu Tiaohou. The 1694 anthology that defined classical Chinese prose. It belongs to the classical prose tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "tangshisanbaishou",
-    "title": "唐诗三百首",
-    "titleEn": "Three Hundred Tang Poems",
-    "author": "蘅塘退士",
-    "authorEn": "Hengtang Tuishi",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Qing Dynasty",
-    "hskLevel": 4,
-    "totalChapters": 320,
-    "coverEmoji": "🏯",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《唐诗三百首》旧题蘅塘退士所著，清代文献，归入古典诗词类。",
-    "descriptionEn": "Three Hundred Tang Poems (唐诗三百首) is a Qing Dynasty work attributed to Hengtang Tuishi. The most-read Tang anthology, chosen to be memorised. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "nantang",
-    "title": "南唐二主词",
-    "titleEn": "The Ci of the Two Southern Tang Rulers",
-    "author": "李璟、李煜",
-    "authorEn": "Li Jing & Li Yu",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Five Dynasties",
-    "hskLevel": 5,
-    "totalChapters": 45,
-    "coverEmoji": "👑",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《南唐二主词》旧题李璟、李煜所著，Five Dynasties文献，归入古典诗词类。",
-    "descriptionEn": "The Ci of the Two Southern Tang Rulers (南唐二主词) is a Five Dynasties work attributed to Li Jing & Li Yu. The lyrics of Li Yu, the last ruler of Southern Tang. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "caocao",
-    "title": "曹操诗集",
-    "titleEn": "The Poems of Cao Cao",
-    "author": "曹操",
-    "authorEn": "Cao Cao",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Three Kingdoms",
-    "hskLevel": 5,
-    "totalChapters": 26,
-    "coverEmoji": "⚔️",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《曹操诗集》旧题曹操所著，三国文献，归入古典诗词类。",
-    "descriptionEn": "The Poems of Cao Cao (曹操诗集) is a Three Kingdoms work attributed to Cao Cao. The verse of the warlord who founded the kingdom of Wei. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "huajianji",
-    "title": "花间集",
-    "titleEn": "Among the Flowers",
-    "author": "温庭筠等",
-    "authorEn": "Wen Tingyun et al.",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Five Dynasties",
-    "hskLevel": 5,
-    "totalChapters": 249,
-    "coverEmoji": "🌺",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《花间集》旧题温庭筠等所著，Five Dynasties文献，归入古典诗词类。",
-    "descriptionEn": "Among the Flowers (花间集) is a Five Dynasties work attributed to Wen Tingyun et al.. The first anthology of ci poetry, 500 lyrics in ten juan. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
-  },
-  {
-    "id": "songci",
-    "title": "全宋词",
-    "titleEn": "Complete Song Ci",
-    "author": "唐圭璋等编",
-    "authorEn": "Compiled by Tang Guizhang et al.",
-    "category": "Classical Poetry",
-    "dynastyOrEra": "Song Dynasty",
-    "hskLevel": 5,
-    "totalChapters": 396,
-    "coverEmoji": "🎼",
-    "tags": [
-      "Poetry"
-    ],
-    "description": "《全宋词》旧题唐圭璋等编所著，宋代文献，归入古典诗词类。",
-    "descriptionEn": "Complete Song Ci (全宋词) is a Song Dynasty work attributed to Compiled by Tang Guizhang et al.. Every surviving ci lyric of the Song dynasty, in full. It belongs to the classical poetry tradition and has been read continuously in China for centuries."
   }
 ]

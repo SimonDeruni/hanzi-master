@@ -1850,6 +1850,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get deckName => 'اسم المجموعة';
 
   @override
+  String get renameDeck => 'إعادة تسمية المجموعة';
+
+  @override
+  String get deckRenamed => 'تمت إعادة تسمية المجموعة بنجاح';
+
+  @override
+  String get deckNameCannotBeEmpty => 'لا يمكن أن يكون اسم المجموعة فارغاً';
+
+  @override
   String get deckStory => 'قصة المجموعة';
 
   @override

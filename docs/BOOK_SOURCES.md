@@ -25,7 +25,7 @@ Fetched 2026-09-27. Regenerate with `python scratch/import_pd_books.py --phase d
 Text is converted traditional → simplified at import time (`opencc`) and pinyin is
 generated locally (`pypinyin`); neither step creates a new copyright.
 
-**91 book(s) recorded.**
+**79 book(s) recorded** (12 poetry collections pruned on 2026-10-01 to preserve exclusive poetry section separation).
 
 | id | 中文名 | English | Author | Source | Licence |
 |---|---|---|---|---|---|
@@ -33,9 +33,7 @@ generated locally (`pypinyin`); neither step creates a new copyright.
 | `a_play_within_a_play` |  | A Play Within a Play | Anonymous | [link](https://www.gutenberg.org/ebooks/24225) | Project Gutenberg License (public-domain text) |
 | `anecdotes_from_court_and_country` |  | Anecdotes from Court and Country | Zhang Zhuo | [link](https://www.gutenberg.org/ebooks/26997) | Project Gutenberg License (public-domain text) |
 | `baijiaxing` | 百家姓 | Hundred Family Surnames | 佚名 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/baijiaxing.json) | MIT (chinese-poetry) |
-| `caocao` | 曹操诗集 | The Poems of Cao Cao | 曹操 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E6%9B%B9%E6%93%8D%E8%AF%97%E9%9B%86/caocao.json) | MIT (chinese-poetry) |
 | `casual_expressions_of_idle_feeling` |  | Casual Expressions of Idle Feeling | Li Yu | [link](https://www.gutenberg.org/ebooks/25471) | Project Gutenberg License (public-domain text) |
-| `chuci` | 楚辞 | Songs of Chu | 屈原等 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E6%A5%9A%E8%BE%9E/chuci.json) | MIT (chinese-poetry) |
 | `daxue` | 大学 | The Great Learning | 曾子 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E5%9B%9B%E4%B9%A6%E4%BA%94%E7%BB%8F/daxue.json) | MIT (chinese-poetry) |
 | `deng_xizi` |  | Deng Xizi | Deng Xi | [link](https://www.gutenberg.org/ebooks/7215) | Project Gutenberg License (public-domain text) |
 | `discourses_of_the_states` |  | Discourses of the States | Anonymous | [link](https://www.gutenberg.org/ebooks/23911) | Project Gutenberg License (public-domain text) |
@@ -49,35 +47,26 @@ generated locally (`pypinyin`); neither step creates a new copyright.
 | `gongsun_longzi` |  | Gongsun Longzi | Gongsun Long | [link](https://www.gutenberg.org/ebooks/7216) | Project Gutenberg License (public-domain text) |
 | `guanzi` |  | Guanzi | Guan Zhong et al. | [link](https://www.gutenberg.org/ebooks/7367) | Project Gutenberg License (public-domain text) |
 | `guwenguanzhi` | 古文观止 | Guwen Guanzhi: The Finest Classical Prose | 吴楚材、吴调侯 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/guwenguanzhi.json) | MIT (chinese-poetry) |
-| `huajianji` | 花间集 | Among the Flowers | 温庭筠等 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E4%BA%94%E4%BB%A3%E8%AF%97%E8%AF%8D/huajianji/) | MIT (chinese-poetry) |
 | `idle_talk_under_the_bean_arbor` |  | Idle Talk Under the Bean Arbor | Aina Jushi | [link](https://www.gutenberg.org/ebooks/25328) | Project Gutenberg License (public-domain text) |
 | `lord_liang_s_nine_remonstrances` |  | Lord Liang's Nine Remonstrances | Anonymous | [link](https://www.gutenberg.org/ebooks/26886) | Project Gutenberg License (public-domain text) |
 | `love_in_the_mountains_and_waters` |  | Love in the Mountains and Waters | Anonymous | [link](https://www.gutenberg.org/ebooks/25146) | Project Gutenberg License (public-domain text) |
-| `manjianghong` |  | Manjianghong | Various | [link](https://www.gutenberg.org/ebooks/27204) | Project Gutenberg License (public-domain text) |
 | `miscellaneous_records_of_duyang` |  | Miscellaneous Records of Duyang | Su E | [link](https://www.gutenberg.org/ebooks/25253) | Project Gutenberg License (public-domain text) |
 | `miscellanies_of_the_western_capital` |  | Miscellanies of the Western Capital | Anonymous | [link](https://www.gutenberg.org/ebooks/23951) | Project Gutenberg License (public-domain text) |
-| `nalanxingde` | 纳兰性德诗集 | The Poems of Nalan Xingde | 纳兰性德 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E7%BA%B3%E5%85%B0%E6%80%A7%E5%BE%B7/%E7%BA%B3%E5%85%B0%E6%80%A7%E5%BE%B7%E8%AF%97%E9%9B%86.json) | MIT (chinese-poetry) |
-| `nantang` | 南唐二主词 | The Ci of the Two Southern Tang Rulers | 李璟、李煜 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E4%BA%94%E4%BB%A3%E8%AF%97%E8%AF%8D/nantang/poetrys.json) | MIT (chinese-poetry) |
 | `new_prefaces` |  | New Prefaces | Liu Xiang | [link](https://www.gutenberg.org/ebooks/23945) | Project Gutenberg License (public-domain text) |
 | `notes_from_the_thatched_hut` |  | Notes from the Thatched Hut | Ji Yun | [link](https://www.gutenberg.org/ebooks/23817) | Project Gutenberg License (public-domain text) |
 | `officialdom_unmasked` |  | Officialdom Unmasked | Li Baojia | [link](https://www.gutenberg.org/ebooks/24138) | Project Gutenberg License (public-domain text) |
 | `outer_traditions_of_the_han_school_of_so` |  | Outer Traditions of the Han School of Songs | Han Ying | [link](https://www.gutenberg.org/ebooks/7290) | Project Gutenberg License (public-domain text) |
-| `qianjiashi` | 千家诗 | Poems of a Thousand Families | 佚名 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/qianjiashi.json) | MIT (chinese-poetry) |
 | `qianziwen` | 千字文 | Thousand Character Classic | 周兴嗣 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/qianziwen.json) | MIT (chinese-poetry) |
 | `reflections_on_things_at_hand` |  | Reflections on Things at Hand | Zhu Xi & Lu Zuqian | [link](https://www.gutenberg.org/ebooks/23840) | Project Gutenberg License (public-domain text) |
 | `romance_of_the_sui_and_tang` |  | Romance of the Sui and Tang | Chu Renhuo | [link](https://www.gutenberg.org/ebooks/23835) | Project Gutenberg License (public-domain text) |
 | `romance_of_the_western_chamber` |  | Romance of the Western Chamber | Wang Shifu | [link](https://www.gutenberg.org/ebooks/23906) | Project Gutenberg License (public-domain text) |
 | `sanzijing` | 三字经 | Three Character Classic | 王应麟 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/sanzijing-new.json) | MIT (chinese-poetry) |
 | `shenglvqimeng` | 声律启蒙 | Rhyme Enlightenment | 车万育 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/shenglvqimeng.json) | MIT (chinese-poetry) |
-| `shijing` | 诗经 | The Book of Songs | 佚名 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%AF%97%E7%BB%8F/shijing.json) | MIT (chinese-poetry) |
 | `six_secret_teachings` |  | Six Secret Teachings | Jiang Ziya | [link](https://www.gutenberg.org/ebooks/7340) | Project Gutenberg License (public-domain text) |
-| `songci` | 全宋词 | Complete Song Ci | 唐圭璋等编 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E5%AE%8B%E8%AF%8D/) | MIT (chinese-poetry) |
 | `spring_in_the_jade_tower` |  | Spring in the Jade Tower | Anonymous | [link](https://www.gutenberg.org/ebooks/25422) | Project Gutenberg License (public-domain text) |
 | `stories_to_enlighten_the_world` |  | Stories to Enlighten the World | Feng Menglong | [link](https://www.gutenberg.org/ebooks/27582) | Project Gutenberg License (public-domain text) |
 | `study_of_human_abilities` |  | Study of Human Abilities | Liu Shao | [link](https://www.gutenberg.org/ebooks/7217) | Project Gutenberg License (public-domain text) |
 | `tales_of_the_tang` |  | Tales of the Tang | Anonymous | [link](https://www.gutenberg.org/ebooks/23824) | Project Gutenberg License (public-domain text) |
-| `tangshisanbaishou` | 唐诗三百首 | Three Hundred Tang Poems | 蘅塘退士 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/tangshisanbaishou.json) | MIT (chinese-poetry) |
-| `the_bamboo_studio_collection` |  | The Bamboo Studio Collection | Liu Ji | [link](https://www.gutenberg.org/ebooks/7220) | Project Gutenberg License (public-domain text) |
 | `the_book_of_lord_shang` |  | The Book of Lord Shang | Shang Yang | [link](https://www.gutenberg.org/ebooks/7383) | Project Gutenberg License (public-domain text) |
 | `the_cases_of_judge_dee` |  | The Cases of Judge Dee | Anonymous | [link](https://www.gutenberg.org/ebooks/27686) | Project Gutenberg License (public-domain text) |
 | `the_cases_of_judge_hai` |  | The Cases of Judge Hai | Anonymous | [link](https://www.gutenberg.org/ebooks/54494) | Project Gutenberg License (public-domain text) |
@@ -115,7 +104,6 @@ generated locally (`pypinyin`); neither step creates a new copyright.
 | `youmengying` | 幽梦影 | Quiet Dream Shadows | 张潮 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E5%B9%BD%E6%A2%A6%E5%BD%B1/youmengying.json) | MIT (chinese-poetry) |
 | `youxueqionglin` | 幼学琼林 | Children's Knowledge Treasury | 程允升 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/youxueqionglin.json) | MIT (chinese-poetry) |
 | `yu_jiao_li` |  | Yu Jiao Li | Anonymous | [link](https://www.gutenberg.org/ebooks/23877) | Project Gutenberg License (public-domain text) |
-| `yuanqu` | 元曲 | Yuan Opera Songs | 关汉卿等 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E5%85%83%E6%9B%B2/yuanqu.json) | MIT (chinese-poetry) |
 | `yuli_zi` |  | Yuli Zi | Liu Ji | [link](https://www.gutenberg.org/ebooks/25298) | Project Gutenberg License (public-domain text) |
 | `zengguangxianwen` | 增广贤文 | Enlarged Collection of Maxims | 佚名 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E8%92%99%E5%AD%A6/zengguangxianwen.json) | MIT (chinese-poetry) |
 | `zhongyong` | 中庸 | The Doctrine of the Mean | 子思 | [link](https://raw.githubusercontent.com/chinese-poetry/chinese-poetry/master/%E5%9B%9B%E4%B9%A6%E4%BA%94%E7%BB%8F/zhongyong.json) | MIT (chinese-poetry) |

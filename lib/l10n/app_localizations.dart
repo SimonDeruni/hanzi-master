@@ -3596,6 +3596,24 @@ abstract class AppLocalizations {
   /// **'Deck Name'**
   String get deckName;
 
+  /// No description provided for @renameDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename Deck'**
+  String get renameDeck;
+
+  /// No description provided for @deckRenamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck renamed successfully'**
+  String get deckRenamed;
+
+  /// No description provided for @deckNameCannotBeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Deck name cannot be empty'**
+  String get deckNameCannotBeEmpty;
+
   /// No description provided for @deckStory.
   ///
   /// In en, this message translates to:

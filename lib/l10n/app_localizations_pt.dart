@@ -1887,6 +1887,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get deckName => 'Nome do baralho';
 
   @override
+  String get renameDeck => 'Renomear baralho';
+
+  @override
+  String get deckRenamed => 'Baralho renomeado com sucesso';
+
+  @override
+  String get deckNameCannotBeEmpty => 'O nome do baralho não pode estar vazio';
+
+  @override
   String get deckStory => 'História do baralho';
 
   @override

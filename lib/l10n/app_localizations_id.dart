@@ -1876,6 +1876,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get deckName => 'Nama Dek';
 
   @override
+  String get renameDeck => 'Ganti Nama Dek';
+
+  @override
+  String get deckRenamed => 'Nama dek berhasil diubah';
+
+  @override
+  String get deckNameCannotBeEmpty => 'Nama dek tidak boleh kosong';
+
+  @override
   String get deckStory => 'Cerita Dek';
 
   @override

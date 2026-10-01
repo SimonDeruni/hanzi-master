@@ -1823,6 +1823,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get deckName => '덱 이름';
 
   @override
+  String get renameDeck => '덱 이름 변경';
+
+  @override
+  String get deckRenamed => '덱 이름이 변경되었습니다';
+
+  @override
+  String get deckNameCannotBeEmpty => '덱 이름은 비워둘 수 없습니다';
+
+  @override
   String get deckStory => '덱 스토리';
 
   @override
