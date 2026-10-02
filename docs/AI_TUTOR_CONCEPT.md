@@ -169,3 +169,227 @@ builder may read — and nothing else.
 | `errorHeatmap` | the radical grid coloured by *your* stroke accuracy (idea #19) | stroke history | new |
 | `sessionSummary` | what just happened, what to fix | session + SRS delta | new |
 
+### 4.3 The rule that makes it trustworthy: **the model chooses, the app builds**
+
+> **An artefact may only be built from data the app already owns.**
+> The tutor selects *which* widget and *with what arguments*; it never supplies
+> content. Every hanzi in an artefact must exist in `dictionary.db` or
+> `hanzi_metadata.json`; every pinyin, definition and radical comes from those
+> files; every stroke from the vector data.
+
+That single rule is what turns "the AI generated a lesson" from a liability into
+a feature. It is also **testable**: hand a builder a hanzi that is not in the
+dictionary and it must refuse — the generalised form of today's `_attachArtefact`.
+
+Consequences worth stating out loud:
+
+* A hallucinated character, pinyin, definition or radical is **impossible**, not
+  merely unlikely.
+* If the data is missing (no strokes loaded, no radicals), the artefact is
+  dropped and the prose explains instead — never a broken widget, never a fake.
+* The model's job is still genuinely valuable: picking the right widget for the
+  question, choosing the examples that discriminate, ordering the plan.
+
+### 4.4 The interaction contract
+
+| Class | Examples | Behaviour |
+|---|---|---|
+| **Read-only** | every Notice artefact, all Reports | render inline, nothing is written anywhere |
+| **Practice** | every Drill artefact, `quizSet` | graded in place, the result is *shown*; the SRS write is a proposal |
+| **Mutating (proposal)** | "add these 12 words to review", "schedule this drill tomorrow", "start a mock HSK 3" | rendered as a **confirm card**: the tutor proposes, the learner commits in one tap |
+
+No silent writes. A tutor that quietly edits your SRS queue is one you cannot
+trust with your study history, and it turns every bug into a data-loss bug.
+
+### 4.5 The plumbing (so this stays maintainable)
+
+```
+ScholarReply      { say, artefacts: List<ArtefactSpec> }          // parsed & validated
+ArtefactSpec      { type: ArtefactType, args: ArtefactArgs }       // sealed per type
+ArtefactType      enum (strokeOrder, characterAnatomy, …)
+ArtefactRegistry  Map<ArtefactType, ArtefactBuilder>
+ArtefactBuilder   (BuildContext, ArtefactArgs) -> Widget?          // null = drop
+ArtefactValidator args parser per type; rejects, never throws
+```
+
+* **One file per family** (`artefacts/notice/*.dart`), one builder per artefact.
+* **Adding an artefact = enum + args model + builder + registry entry + a test.**
+  No other file changes — exactly what the current `if (q.contains(…))` chain
+  cannot do.
+* **Builders are pure** given args + repositories, which makes them
+  unit-testable without a model and widget-testable from a fixture.
+
+---
+
+## 5. Exams — what it can create
+
+### 5.1 Two layers, deliberately different
+
+| Layer | Where | Shape | Timing | Grading |
+|---|---|---|---|---|
+| **Drill set** | in the chat, as an artefact | 4-10 items, adaptive, immediate feedback | untimed | per item, instantly |
+| **Paper** | a dedicated flow | sections × items, no hints, no answers | sectional timer | at the end, then a report |
+
+Drills build the skill; papers *prove* it. Conflating them is how an app ends up
+with "quizzes" that teach nothing and exams nobody respects.
+
+### 5.2 The blueprint — the constraint that keeps exams honest
+
+An exam is **not** conjured from a prompt. It is assembled from a **blueprint**
+that lives in the repo, versioned, with an allowed vocabulary set:
+
+```json
+{
+  "id": "hsk3-mock-v1",
+  "level": 3,
+  "allowedVocabulary": "hsk3-decks+lower",
+  "sections": [
+    { "kind": "listening", "items": 4, "types": ["toneChoice","dictation"], "minutes": 4 },
+    { "kind": "reading",   "items": 5, "types": ["fillBlank","quizSet"],    "minutes": 6 },
+    { "kind": "writing",   "items": 2, "types": ["writePrompt"],            "minutes": 5 }
+  ],
+  "passMark": 0.8
+}
+```
+
+* The model **fills** the blueprint (which allowed words, which stems, which
+  distractors); the app **validates** every item against the vocabulary set and
+  **derives the answer key locally**.
+* So "mock HSK 3" means the same thing on Tuesday as on Monday: the blueprint is
+  versioned, which is what makes two attempts comparable at all.
+* Out-of-scope vocabulary fails **the item**, not the learner.
+
+### 5.3 Item types it can build
+
+| Type | Section | Auto-graded | Needs |
+|---|---|---|---|
+| `toneChoice` (which tone?) | listening | yes | TTS + tone data |
+| `dictation` (hear → write) | listening | yes | TTS + stroke matcher / text |
+| `quizSet` (hanzi ↔ meaning) | reading | yes | flashcards (**exists**) |
+| `fillBlank` | reading | yes | sentences + dictionary |
+| `orderTokens` | reading / writing | yes | sentences |
+| `writePrompt` (draw it) | writing | yes | stroke matcher + strictness |
+| `speakingPrompt` (say it) | speaking | yes, **on device** | tone / pronunciation graders |
+| "find the error" | grammar | yes | corrected-sentence pairs |
+| free production ("explain …") | writing | **AI, with a rubric, disputable** | rubric + a second pass |
+
+### 5.4 Grading and integrity rules
+
+1. **The answer key is never in the prompt that generated the items.** Two calls:
+   items first, keys derived locally from the app's own data.
+2. **No answers before submission** — no "show me" during a paper.
+3. **Timers are app-side**, and a backgrounded paper is *paused*, not silently
+   lost.
+4. **AI grading only for open answers**, always with its rubric on screen, and
+   always disputable (a second pass with the rubric restated). Closed items are
+   never AI-graded: the app already knows the answer.
+5. **Speaking is graded on device** (`LocalToneGrader`), so it works offline and
+   uploads nothing.
+6. **A report always ends in a teaching action** — failed items become SRS entries
+   and/or a `remediationPlan`. An exam that does not change what you study next is
+   entertainment.
+7. **What it must never claim**: native authenticity, official HSK certification,
+   or a score that implies one.
+
+---
+
+## 6. What the tutor knows about you (the memory that makes it a tutor)
+
+A generic chat starts from zero every time. This one starts from **evidence the
+app already recorded**, assembled into a small local profile — a "learner card"
+put in front of every request:
+
+| Signal | Already recorded by | What the tutor does with it |
+|---|---|---|
+| Stroke accuracy per radical/character | `StrokeMatcher` history | diagnose the *specific* mistake, build the remedial lesson (#14) |
+| Tone error profile | `LocalToneGrader` | choose tone drills, order the examples |
+| Wrong options chosen | quiz state | build `contrastTable`s for the pairs you confuse |
+| SRS state (due, lapses, ease) | `SrsLogic`, `ReviewStats` | `studyPlan`, `reviewPreview` |
+| Mastery by deck | flashcards | scope explanations to what you know |
+| Target level + exam history | profile, exam reports | pick blueprint difficulty, keep attempts comparable |
+
+Stored locally (Hive), like the rest of the learner's data: the tutor's context is
+assembled per request and never becomes a server-side profile.
+
+**One new table underpins most of it**: an `error log` — one row per failure
+`{kind: stroke|tone|option|order, target, expected, actual, at, source}`. It is
+what turns "you got a few wrong" into "you draw 氵's second dot short, in four
+different characters, and that is why these three are shaky".
+
+---
+
+## 7. Guardrails (this repo's reality, not a wish list)
+
+* **Tier the calls.** A small/cheap model classifies the request and fills
+  blueprints; a stronger one writes the explanation. One call per turn, artefacts
+  batched into it — never one call per widget.
+* **Cache like the app already caches AI** (`docs/AI_CACHING_ROADMAP.md`): key on
+  (learner card hash + normalised question), and reuse the existing proxy/caching
+  path. Explanations are stable; they should cost once.
+* **Degrade, never break.** No key or offline: locally-buildable artefacts still
+  work (`strokeOrder`, `characterAnatomy` come from bundled data with a static
+  caption), and new *papers* are unavailable rather than half-valid.
+* **Localised in, localised out.** Labels from ARB; content from the app's own
+  localised sources; the model answers in the interface language (the locale
+  plumbing already exists).
+* **Honest about its own confidence.** It grades what it can measure, declines
+  what it cannot ("I can't assess your handwriting on paper"), and shows the data
+  behind a claim.
+* **Testable without a model.** The envelope parser, every validator, and every
+  builder are pure; the registry is unit-tested, the widgets fixture-tested, and
+  one test enforces the §4.3 rule (no invented content) across all artefacts.
+
+---
+
+## 8. Where it appears
+
+The tutor should be **in-context, not a destination**. Recommended entry points:
+
+| Entry | Trigger | Likely artefacts |
+|---|---|---|
+| Character chat (exists — "Bureau du savant") | tap a character, ask | anatomy, stroke order, drills |
+| Word / dictionary sheet | look up a word | `vocabularyCard`, `contrastTable`, `measureWordTable` |
+| After a failure | wrong stroke, wrong option, bad tone | explanation + the artefact for *that* error |
+| Review summary | end of a review session | `sessionSummary`, `remediationPlan` |
+| Exam flow | "build me a paper", "review my last paper" | `examPaper`, `masteryReport` |
+| Today / plan surface | open the app | `studyPlan` — the one place the tutor talks first |
+
+That last row is the honest answer to "should there be a Tutor tab": the tab that
+earns its place is not a chat box, it is **the day's plan**, which happens to be
+generated by the tutor and links into the drills.
+
+---
+
+## 9. Build order
+
+| Phase | Scope | Ships |
+|---|---|---|
+| **P0 — exists** | keyword-detected `strokeOrder` artefact; Echo Hall roleplay; MCQ quiz; SRS; tone grading | today |
+| **P1 — the envelope** | `ScholarReply` + registry + validators; migrate `strokeOrder`; add `characterAnatomy`, `characterMap` (pure local data — reuses the metadata-first radical work) | the tutor can *choose* a widget, and unknown types can no longer break a bubble |
+| **P2 — drills** | `quizSet` (reuse `QuizQuestion`), `fillBlank`, `toneChoice`; practice outcomes start the error log | the tutor can make you produce, not just read |
+| **P3 — diagnosis** | error log; `remediationPlan`; `errorHeatmap` | "triage": the tutor fixes causes, not symptoms |
+| **P4 — exams** | blueprint model + assembler + timers + report; writing and speaking sections | real papers, comparable across attempts |
+| **P5 — planning & curation** | `studyPlan`, `reviewPreview`, Tutorials hand-off | the tutor decides what happens next |
+
+Each phase is independently shippable, and each artefact must arrive with its
+validator test and a "no invented content" test.
+
+---
+
+## 10. Open decisions (the questions this design needs you to answer)
+
+1. **Who decides what?** My recommendation: the model picks from a *menu* of
+   app-owned widgets and fills blueprints; the app validates and renders. The
+   alternative (free-form generation) cannot satisfy §4.3.
+2. **How much exam, how much drill?** Drills only (small, safe, quick) or a real
+   mock-HSK flow with sections, timers and scores?
+3. **May the tutor write?** Read-only artefacts plus explicit one-tap commits
+   (recommended), or may it edit decks and the SRS queue directly?
+4. **Where does it live?** In-context only, or also a "Today" surface that leads
+   with the `studyPlan`?
+5. **Open-ended grading?** Auto-graded only, or AI-graded free production with a
+   rubric and a dispute path?
+
+
+
+
