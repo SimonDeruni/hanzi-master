@@ -139,6 +139,9 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    // This screen carries its own transport, so the app-wide host stands down
+    // while it is on screen (see playerOwnsTransportProvider).
+    ref.read(playerOwnsTransportProvider.notifier).state = true;
     _currentChapterIndex =
         widget.initialChapterIndex.clamp(0, widget.chapters.length - 1);
     _currentSentenceIndex = widget.initialSentenceIndex;
@@ -328,6 +331,10 @@ class _AudiobookPlayerScreenState extends ConsumerState<AudiobookPlayerScreen>
       unawaited(audio.stop());
     }
     unawaited(ref.read(zenAmbientServiceProvider.notifier).pause());
+    // Hand the transport back to the app-wide host: leaving the player while it
+    // plays keeps the audio going (background listening is the feature), and the
+    // host is what makes it stoppable from whatever route the learner lands on.
+    ref.read(playerOwnsTransportProvider.notifier).state = false;
     _scrollController.dispose();
     super.dispose();
   }

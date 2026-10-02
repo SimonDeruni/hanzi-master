@@ -8,6 +8,7 @@ import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/features/reading/domain/entities/book_model.dart';
 import 'package:hanzi_master/features/reading/presentation/providers/now_playing_provider.dart';
 import 'package:hanzi_master/features/reading/presentation/widgets/now_playing_bar.dart';
+import 'package:hanzi_master/features/reading/presentation/widgets/now_playing_host.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 
 /// Guards the in-app transport for background audiobook playback.
@@ -176,6 +177,143 @@ void main() {
       expect(service, contains('_audiobookActive = false;'),
           reason:
               'Inline reading-aloud takes the engine over from the audiobook');
+    });
+  });
+
+  /// The bug this closes: the shell's bar lives inside the shell's `Scaffold`, so
+  /// every route pushed above the shell covers it — and leaving a *playing*
+  /// audiobook deliberately lands on exactly such a route.
+  group('NowPlayingHost keeps the transport reachable', () {
+    Future<AudioRouteObserver> pumpHost(
+      WidgetTester tester, {
+      required GlobalKey<NavigatorState> navKey,
+      bool playerOwnsTransport = false,
+    }) async {
+      final AudioRouteObserver observer = AudioRouteObserver();
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: <Override>[
+            nowPlayingProvider
+                .overrideWith((ref) => Stream<NowPlayingInfo?>.value(_playing)),
+            nowPlayingBookProvider.overrideWith(
+                (ref) => NowPlayingBook(book: _book, chapters: _chapters)),
+            if (playerOwnsTransport)
+              playerOwnsTransportProvider.overrideWith((ref) => true),
+          ],
+          child: MaterialApp(
+            navigatorKey: navKey,
+            navigatorObservers: <NavigatorObserver>[observer],
+            locale: const Locale('fr'),
+            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            builder: (BuildContext context, Widget? child) => Column(
+              children: <Widget>[
+                Expanded(child: child ?? const SizedBox.shrink()),
+                NowPlayingHost(shellBuried: observer.shellBuried),
+              ],
+            ),
+            home: const Scaffold(body: Text('shell')),
+          ),
+        ),
+      );
+      await tester.pump();
+      return observer;
+    }
+
+    testWidgets('the observer reports a buried shell, and recovers on pop',
+        (WidgetTester tester) async {
+      final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+      final AudioRouteObserver observer =
+          await pumpHost(tester, navKey: navKey);
+
+      expect(observer.shellBuried.value, isFalse,
+          reason: 'The shell is the first route');
+
+      navKey.currentState!.push(MaterialPageRoute<void>(
+          builder: (_) => const Scaffold(body: Text('pushed'))));
+      await tester.pumpAndSettle();
+      expect(observer.shellBuried.value, isTrue);
+
+      navKey.currentState!.pop();
+      await tester.pumpAndSettle();
+      expect(observer.shellBuried.value, isFalse,
+          reason: 'Popping hands the transport back to the shell');
+    });
+
+    testWidgets('the bar follows the learner onto a pushed route',
+        (WidgetTester tester) async {
+      final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+      await pumpHost(tester, navKey: navKey);
+
+      // On the shell, the shell draws its own bar above the tabs.
+      expect(find.byType(NowPlayingBar), findsNothing);
+
+      navKey.currentState!.push(MaterialPageRoute<void>(
+          builder: (_) => const Scaffold(body: Text('pushed'))));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(NowPlayingBar), findsOneWidget,
+          reason:
+              'This is the route a playing audiobook used to be stranded on');
+      expect(find.byIcon(Icons.close_rounded), findsOneWidget,
+          reason: 'The stop control is the whole point');
+
+      navKey.currentState!.pop();
+      await tester.pumpAndSettle();
+      expect(find.byType(NowPlayingBar), findsNothing,
+          reason: 'The shell draws its own; the host must not double it');
+    });
+
+    testWidgets('the host stands down while the player owns the transport',
+        (WidgetTester tester) async {
+      final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+      await pumpHost(tester, navKey: navKey, playerOwnsTransport: true);
+
+      navKey.currentState!.push(MaterialPageRoute<void>(
+          builder: (_) => const Scaffold(body: Text('pushed'))));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(NowPlayingBar), findsNothing,
+          reason: 'The player carries its own, and tapping the host bar would '
+              'push a second player');
+    });
+  });
+
+  group('NowPlayingHost wiring', () {
+    test('the app mounts the transport above the Navigator', () {
+      final String app =
+          File('lib/main.dart').readAsStringSync().replaceAll('\r\n', '\n');
+
+      expect(app,
+          contains('navigatorObservers: <NavigatorObserver>[_audioRouteObserver],'));
+      expect(
+          app,
+          contains(
+              'builder: (BuildContext context, Widget? child) => Column('),
+          reason: 'A builder is the only seam above the Navigator');
+      expect(app,
+          contains('NowPlayingHost(shellBuried: _audioRouteObserver.shellBuried),'));
+    });
+
+    test('the player claims the transport on entry and releases it on exit', () {
+      final String player = File(
+              'lib/features/reading/presentation/screens/audiobook_player_screen.dart')
+          .readAsStringSync()
+          .replaceAll('\r\n', '\n');
+
+      expect(
+          player,
+          contains(
+              'ref.read(playerOwnsTransportProvider.notifier).state = true;'));
+      expect(
+          player,
+          contains(
+              'ref.read(playerOwnsTransportProvider.notifier).state = false;'));
     });
   });
 }

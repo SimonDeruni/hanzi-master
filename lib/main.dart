@@ -30,6 +30,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:hanzi_master/firebase_options.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/features/reading/data/repositories/story_repository.dart';
+import 'package:hanzi_master/features/reading/presentation/widgets/now_playing_host.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -381,6 +382,14 @@ class StartupErrorScreen extends StatelessWidget {
   }
 }
 
+/// The app's one [NavigatorObserver], feeding the global audiobook transport host
+/// with "is the shell buried?".
+///
+/// Module scope rather than a `State` field because `HanziMasterApp` is a
+/// `ConsumerWidget`: the same instance has to reach both `navigatorObservers` and
+/// the host that listens to it, and it must outlive rebuilds.
+final AudioRouteObserver _audioRouteObserver = AudioRouteObserver();
+
 class HanziMasterApp extends ConsumerWidget {
   const HanziMasterApp({super.key});
 
@@ -414,6 +423,17 @@ class HanziMasterApp extends ConsumerWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: activeSupportedLocales,
+          navigatorObservers: <NavigatorObserver>[_audioRouteObserver],
+          // The audiobook transport is mounted *above* the Navigator, so no
+          // pushed route can bury it - leaving a playing audiobook used to land
+          // on a route that covered the shell's own bar, stranding playback with
+          // no in-app control (see NowPlayingHost).
+          builder: (BuildContext context, Widget? child) => Column(
+            children: <Widget>[
+              Expanded(child: child ?? const SizedBox.shrink()),
+              NowPlayingHost(shellBuried: _audioRouteObserver.shellBuried),
+            ],
+          ),
           home: const AppStartupFlow(),
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/echo_hall/presentation/screens/scenario_selection_screen.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
+import 'package:hanzi_master/features/tutor/presentation/screens/tutor_screen.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/core/theme/app_theme.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
@@ -74,6 +75,19 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
                         isDark: isDark,
                       ),
                     ),
+                    const SizedBox(width: 2),
+                    // The tutor is a third mode of the same hub, not a new
+                    // destination: ask, and the answer is a widget, a citation or
+                    // an exam folder (docs/AI_TUTOR_CONCEPT.md).
+                    Expanded(
+                      child: _buildSegmentTab(
+                        index: 2,
+                        icon: Icons.school_outlined,
+                        label: AppLocalizations.of(context)!.askTutor,
+                        isSelected: _selectedTab == 2,
+                        isDark: isDark,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -86,6 +100,7 @@ class _AiHubScreenState extends ConsumerState<AiHubScreen> {
                 children: const [
                   ScenarioSelectionScreen(showBackButton: false),
                   ShadowingStudioScreen(showBackButton: false),
+                  TutorScreen(),
                 ],
               ),
             ),

@@ -19,6 +19,15 @@ class NowPlayingBook {
 /// Published by `AudiobookPlayerScreen` when it hands the book to the engine.
 final nowPlayingBookProvider = StateProvider<NowPlayingBook?>((ref) => null);
 
+/// True while a player screen is on screen and therefore provides its own
+/// transport.
+///
+/// `NowPlayingHost` uses it to stay out of the way: the full-screen player (and
+/// the iPad two-pane that embeds it) already carries play/pause and stop, so the
+/// host's bar would both duplicate it and — because tapping the bar reopens the
+/// player — offer to push a *second* one.
+final playerOwnsTransportProvider = StateProvider<bool>((ref) => false);
+
 /// What the shell's Now Playing bar renders.
 class NowPlayingInfo {
   const NowPlayingInfo({

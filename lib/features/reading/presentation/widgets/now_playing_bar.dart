@@ -59,6 +59,7 @@ class NowPlayingBar extends ConsumerWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -84,23 +85,34 @@ class NowPlayingBar extends ConsumerWidget {
                   ],
                 ),
               ),
-              IconButton(
-                icon: Icon(
-                  info.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                  size: 24,
-                  color: ink,
+              // No `tooltip:` on these two: the bar is also mounted *above* the
+              // Navigator (see `NowPlayingHost`), where there is no `Overlay` for
+              // a `Tooltip` to hang on — it throws at build time. The label is
+              // carried by `Semantics` instead, so screen readers still announce
+              // both controls wherever the bar is mounted.
+              Semantics(
+                label: info.playing ? l10n.pause : l10n.play,
+                child: IconButton(
+                  icon: Icon(
+                    info.playing
+                        ? Icons.pause_rounded
+                        : Icons.play_arrow_rounded,
+                    size: 24,
+                    color: ink,
+                  ),
+                  onPressed: () => _togglePlayPause(ref, info.playing),
                 ),
-                tooltip: info.playing ? l10n.pause : l10n.play,
-                onPressed: () => _togglePlayPause(ref, info.playing),
               ),
-              IconButton(
-                icon: Icon(
-                  Icons.close_rounded,
-                  size: 20,
-                  color: ink.withValues(alpha: 0.55),
+              Semantics(
+                label: l10n.stop,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.close_rounded,
+                    size: 20,
+                    color: ink.withValues(alpha: 0.55),
+                  ),
+                  onPressed: () => _stop(ref),
                 ),
-                tooltip: l10n.stop,
-                onPressed: () => _stop(ref),
               ),
             ],
           ),
