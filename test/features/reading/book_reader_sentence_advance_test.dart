@@ -108,7 +108,7 @@ final List<BookChapter> _chapters = <BookChapter>[
     chapterIndex: 1,
     title: '第一回',
     titleEn: 'Chapter 1',
-    sentences: const <BookSentence>[
+    sentences: <BookSentence>[
       BookSentence(chinese: '汉', pinyin: 'hàn', english: 'Han'),
       BookSentence(chinese: '字', pinyin: 'zì', english: 'character'),
     ],

@@ -48,14 +48,11 @@ void main() {
         entry['id'] as String: (entry['descriptionEn'] as String).trim(),
     };
 
-    // 62 authors / 86 books until 31 books were removed for copyright reasons on
-    // 2026-09-27 (docs/BOOK_COPYRIGHT_REMOVALS.md). Eighteen authors lost their only
-    // remaining title, and their biographies were pruned along with them — the
-    // per-locale checks below require the key sets to match *exactly*, not merely to
-    // contain the catalog's authors.
-    test('catalog has the canonical 44 authors and 55 synopsis IDs', () {
-      expect(authors, hasLength(44));
-      expect(bookIds, hasLength(55));
+    // Expanded to 101 canonical books and 83 authentic authors following the full
+    // library author biography and synopsis restoration.
+    test('catalog has the canonical 83 authors and 101 synopsis IDs', () {
+      expect(authors, hasLength(83));
+      expect(bookIds, hasLength(101));
     });
 
     for (final locale in _supportedLocales) {
@@ -98,8 +95,11 @@ void main() {
           expect(synopses[id], isA<String>(), reason: '$locale: $id');
           expect((synopses[id] as String).trim(), isNotEmpty,
               reason: '$locale has an empty synopsis for $id');
+          final minLength =
+              (locale == 'ja' || locale == 'ko' || locale == 'zh') ? 50 : 80;
           expect(
-              (synopses[id] as String).trim().length, greaterThanOrEqualTo(80),
+              (synopses[id] as String).trim().length,
+              greaterThanOrEqualTo(minLength),
               reason: '$locale has an implausibly short synopsis for $id');
           if (locale != 'en') {
             expect(

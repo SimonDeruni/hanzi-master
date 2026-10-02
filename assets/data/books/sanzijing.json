@@ -1,0 +1,702 @@
+[
+  {
+    "id": "sanzijing_ch_1",
+    "bookId": "sanzijing",
+    "chapterIndex": 1,
+    "title": "三字经·第1部分",
+    "titleEn": "Chapter 1: 三字经·第1部分",
+    "sentences": [
+      {
+        "chinese": "人之初，性本善，性相近，习相远。",
+        "pinyin": "rén zhī chū ， xìng běn shàn ， xìng xiāng jìn ， xí xiāng yuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "茍不教，性乃迁，教之道，贵以专。",
+        "pinyin": "jì bù jiào ， xìng nǎi qiān ， jiào zhī dào ， guì yǐ zhuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔孟母，择邻处，子不学，断机杼。",
+        "pinyin": "xī mèng mǔ ， zé lín chù ， zi bù xué ， duàn jī zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "窦燕山，有义方，教五子，名俱扬。",
+        "pinyin": "dòu yān shān ， yǒu yì fāng ， jiào wǔ zi ， míng jù yáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "养不教，父之过，教不严，师之惰。",
+        "pinyin": "yǎng bù jiào ， fù zhī guò ， jiào bù yán ， shī zhī duò 。",
+        "english": ""
+      },
+      {
+        "chinese": "子不学，非所宜，幼不学，老何为？",
+        "pinyin": "zi bù xué ， fēi suǒ yí ， yòu bù xué ， lǎo hé wèi ？",
+        "english": ""
+      },
+      {
+        "chinese": "玉不琢，不成器，人不学，不知义。",
+        "pinyin": "yù bù zuó ， bù chéng qì ， rén bù xué ， bù zhī yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人子，方少时，亲师友，习礼仪。",
+        "pinyin": "wéi rén zi ， fāng shǎo shí ， qīn shī yǒu ， xí lǐ yí 。",
+        "english": ""
+      },
+      {
+        "chinese": "香九龄，能温席，孝于亲，所当执。",
+        "pinyin": "xiāng jiǔ líng ， néng wēn xí ， xiào yú qīn ， suǒ dāng zhí 。",
+        "english": ""
+      },
+      {
+        "chinese": "融四岁，能让梨，弟于长，宜先知。",
+        "pinyin": "róng sì suì ， néng ràng lí ， dì yú zhǎng ， yí xiān zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "首孝弟，次见闻，知某数，识某文。",
+        "pinyin": "shǒu xiào dì ， cì jiàn wén ， zhī mǒu shù ， shí mǒu wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "一而十，十而百，百而千，千而万。",
+        "pinyin": "yī ér shí ， shí ér bǎi ， bǎi ér qiān ， qiān ér wàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "三才者，天地人，三光者，日月星。",
+        "pinyin": "sān cái zhě ， tiān dì rén ， sān guāng zhě ， rì yuè xīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "三纲者，君臣义，父子亲，夫妇顺。",
+        "pinyin": "sān gāng zhě ， jūn chén yì ， fù zǐ qīn ， fū fù shùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰春夏，曰秋冬，此四时，运不穷。",
+        "pinyin": "yuē chūn xià ， yuē qiū dōng ， cǐ sì shí ， yùn bù qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰南北，曰西东，此四方，应乎中。",
+        "pinyin": "yuē nán běi ， yuē xī dōng ， cǐ sì fāng ， yīng hū zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰水火，木金土，此五行，本乎数。",
+        "pinyin": "yuē shuǐ huǒ ， mù jīn tǔ ， cǐ wǔ xíng ， běn hū shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "十干者，甲至癸，十二支，子至亥。",
+        "pinyin": "shí gàn zhě ， jiǎ zhì guǐ ， shí èr zhī ， zi zhì hài 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰黄道，日所躔，曰赤道，当中权。",
+        "pinyin": "yuē huáng dào ， rì suǒ chán ， yuē chì dào ， dāng zhōng quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "赤道下，温暖极，我中华，在东北。",
+        "pinyin": "chì dào xià ， wēn nuǎn jí ， wǒ zhōng huá ， zài dōng běi 。",
+        "english": ""
+      },
+      {
+        "chinese": "寒燠均，霜露改，右高原，左大海。",
+        "pinyin": "hán yù jūn ， shuāng lù gǎi ， yòu gāo yuán ， zuǒ dà hǎi 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰江河，曰淮济，此四渎，水之纪。",
+        "pinyin": "yuē jiāng hé ， yuē huái jì ， cǐ sì dú ， shuǐ zhī jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰岱华，嵩恒衡，此五岳，山之名。",
+        "pinyin": "yuē dài huá ， sōng héng héng ， cǐ wǔ yuè ， shān zhī míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "古九州，今改制，称行省，三十五。",
+        "pinyin": "gǔ jiǔ zhōu ， jīn gǎi zhì ， chēng xíng shěng ， sān shí wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰士农，曰工商，此四民，国之良。",
+        "pinyin": "yuē shì nóng ， yuē gōng shāng ， cǐ sì mín ， guó zhī liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "地所生，有草木，此植物，遍水陆。",
+        "pinyin": "dì suǒ shēng ， yǒu cǎo mù ， cǐ zhí wù ， biàn shuǐ lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "有虫鱼，有鸟兽，此动物，能飞走。",
+        "pinyin": "yǒu chóng yú ， yǒu niǎo shòu ， cǐ dòng wù ， néng fēi zǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "稻粱菽，麦黍稷，此六谷，人所食。",
+        "pinyin": "dào liáng shū ， mài shǔ jì ， cǐ liù gǔ ， rén suǒ shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "马牛羊，鸡犬豕，此六畜，人所饲。",
+        "pinyin": "mǎ niú yáng ， jī quǎn shǐ ， cǐ liù chù ， rén suǒ sì 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰喜怒，曰哀惧，爱恶欲，七情具。",
+        "pinyin": "yuē xǐ nù ， yuē āi jù ， ài è yù ， qī qíng jù 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "sanzijing_ch_2",
+    "bookId": "sanzijing",
+    "chapterIndex": 2,
+    "title": "三字经·第2部分",
+    "titleEn": "Chapter 2: 三字经·第2部分",
+    "sentences": [
+      {
+        "chinese": "曰仁义，礼智信，此五常，不容紊。",
+        "pinyin": "yuē rén yì ， lǐ zhì xìn ， cǐ wǔ cháng ， bù róng wěn 。",
+        "english": ""
+      },
+      {
+        "chinese": "青赤黄，及白黑，此五色，目所识。",
+        "pinyin": "qīng chì huáng ， jí bái hēi ， cǐ wǔ sè ， mù suǒ shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "酸甘甘，及辛咸，此五味，口所含。",
+        "pinyin": "suān gān gān ， jí xīn xián ， cǐ wǔ wèi ， kǒu suǒ hán 。",
+        "english": ""
+      },
+      {
+        "chinese": "膻焦香，及腥朽，此五臭，鼻所嗅。",
+        "pinyin": "shān jiāo xiāng ， jí xīng xiǔ ， cǐ wǔ chòu ， bí suǒ xiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "宫商角，及征羽，此五音，耳所取。",
+        "pinyin": "gōng shāng jiǎo ， jí zhēng yǔ ， cǐ wǔ yīn ， ěr suǒ qǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "匏土革，木石金，与丝竹，乃八音。",
+        "pinyin": "páo tǔ gé ， mù shí jīn ， yǔ sī zhú ， nǎi bā yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "曰平上，曰去入，此四声，宜调叶。",
+        "pinyin": "yuē píng shàng ， yuē qù rù ， cǐ sì shēng ， yí diào yè 。",
+        "english": ""
+      },
+      {
+        "chinese": "九族者，序宗亲，高曾祖，父而身。",
+        "pinyin": "jiǔ zú zhě ， xù zōng qīn ， gāo zēng zǔ ， fù ér shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "身而子，子而孙，自子孙，至曾玄。",
+        "pinyin": "shēn ér zi ， zi ér sūn ， zì zǐ sūn ， zhì céng xuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "五伦者，始夫妇，父子先，君臣后。",
+        "pinyin": "wǔ lún zhě ， shǐ fū fù ， fù zǐ xiān ， jūn chén hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "次兄弟，及朋友，当顺叙，勿违背。",
+        "pinyin": "cì xiōng dì ， jí péng yǒu ， dāng shùn xù ， wù wéi bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "有伯叔，有舅甥，婿妇翁，三党名。",
+        "pinyin": "yǒu bó shū ， yǒu jiù shēng ， xù fù wēng ， sān dǎng míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡训蒙，须讲究，详训故，明句读。",
+        "pinyin": "fán xùn méng ， xū jiǎng jiū ， xiáng xùn gù ， míng jù dòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "礼乐射，御书数，古六艺，今不具。",
+        "pinyin": "lǐ yuè shè ， yù shū shù ， gǔ liù yì ， jīn bù jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "帷书学，人共遵，既识字，讲说文。",
+        "pinyin": "wéi shū xué ， rén gòng zūn ， jì shí zì ， jiǎng shuō wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "有古文，大小篆，隶草继，不可乱。",
+        "pinyin": "yǒu gǔ wén ， dà xiǎo zhuàn ， lì cǎo jì ， bù kě luàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若广学，惧其繁，但略说，能知源。",
+        "pinyin": "ruò guǎng xué ， jù qí fán ， dàn lüè shuō ， néng zhī yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "为学者，必有初，小学终，至四书。",
+        "pinyin": "wèi xué zhě ， bì yǒu chū ， xiǎo xué zhōng ， zhì sì shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "论语者，二十篇，群弟子，记善言。",
+        "pinyin": "lún yǔ zhě ， èr shí piān ， qún dì zǐ ， jì shàn yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "孟子者，七篇止，辨王载，说仁义。",
+        "pinyin": "mèng zi zhě ， qī piān zhǐ ， biàn wáng zài ， shuō rén yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "中庸者，子思笔，中不偏，庸不易。",
+        "pinyin": "zhōng yōng zhě ， zi sī bǐ ， zhōng bù piān ， yōng bù yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "大学者，乃曾子，自修齐，至治平。",
+        "pinyin": "dà xué zhě ， nǎi céng zi ， zì xiū qí ， zhì zhì píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "此二篇，在礼记，今单行，至治平。",
+        "pinyin": "cǐ èr piān ， zài lǐ jì ， jīn dān xíng ， zhì zhì píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "四书通，孝经熟，如六经，始可读。",
+        "pinyin": "sì shū tōng ， xiào jīng shú ， rú liù jīng ， shǐ kě dú 。",
+        "english": ""
+      },
+      {
+        "chinese": "六经者，统儒术，文作周，孔子述。",
+        "pinyin": "liù jīng zhě ， tǒng rú shù ， wén zuò zhōu ， kǒng zi shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "易诗书，礼春秋，乐经亡，余可求。",
+        "pinyin": "yì shī shū ， lǐ chūn qiū ， lè jīng wáng ， yú kě qiú 。",
+        "english": ""
+      },
+      {
+        "chinese": "有连山，有归藏，有周易，三易详。",
+        "pinyin": "yǒu lián shān ， yǒu guī cáng ， yǒu zhōu yì ， sān yì xiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有典谟，有训诰，有誓命，书之奥。",
+        "pinyin": "yǒu diǎn mó ， yǒu xùn gào ， yǒu shì mìng ， shū zhī ào 。",
+        "english": ""
+      },
+      {
+        "chinese": "有国风，有雅颂，号四诗，当讽诵。",
+        "pinyin": "yǒu guó fēng ， yǒu yǎ sòng ， hào sì shī ， dāng fěng sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "周礼者，箸六官，仪礼者，十七篇。",
+        "pinyin": "zhōu lǐ zhě ， zhù liù guān ， yí lǐ zhě ， shí qī piān 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "sanzijing_ch_3",
+    "bookId": "sanzijing",
+    "chapterIndex": 3,
+    "title": "三字经·第3部分",
+    "titleEn": "Chapter 3: 三字经·第3部分",
+    "sentences": [
+      {
+        "chinese": "大小戴，集礼记，述圣言，礼法备。",
+        "pinyin": "dà xiǎo dài ， jí lǐ jì ， shù shèng yán ， lǐ fǎ bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "王迹息，春秋作，寓褒贬，别善恶。",
+        "pinyin": "wáng jì xī ， chūn qiū zuò ， yù bāo biǎn ， bié shàn è 。",
+        "english": ""
+      },
+      {
+        "chinese": "王传者，有公羊，有左氏，有谷梁。",
+        "pinyin": "wáng chuán zhě ， yǒu gōng yáng ， yǒu zuǒ shì ， yǒu gǔ liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "尔雅者，善辨言，求经训，此莫先。",
+        "pinyin": "ěr yǎ zhě ， shàn biàn yán ， qiú jīng xùn ， cǐ mò xiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "古圣著，先贤传，注疏备，十三经。",
+        "pinyin": "gǔ shèng zhù ， xiān xián chuán ， zhù shū bèi ， shí sān jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "左传外，有国语，合群经，数十五。",
+        "pinyin": "zuǒ zhuàn wài ， yǒu guó yǔ ， hé qún jīng ， shù shí wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "经既明，方读子，撮其要，记其事。",
+        "pinyin": "jīng jì míng ， fāng dú zi ， cuō qí yào ， jì qí shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "古九流，多亡佚，取五种，修文质。",
+        "pinyin": "gǔ jiǔ liú ， duō wáng yì ， qǔ wǔ zhǒng ， xiū wén zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "五子者，有荀扬，文中子，及老庄。",
+        "pinyin": "wǔ zi zhě ， yǒu xún yáng ， wén zhōng zi ， jí lǎo zhuāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "经子通，读诸史，考世系，知终始。",
+        "pinyin": "jīng zi tōng ， dú zhū shǐ ， kǎo shì xì ， zhī zhōng shǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "自羲农，至黄帝，号三皇，在上世。",
+        "pinyin": "zì xī nóng ， zhì huáng dì ， hào sān huáng ， zài shàng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "尧舜兴，禅尊位，号唐虞，为二帝。",
+        "pinyin": "yáo shùn xīng ， chán zūn wèi ， hào táng yú ， wèi èr dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏有禹，商有汤，周文武，称三王。",
+        "pinyin": "xià yǒu yǔ ， shāng yǒu tāng ， zhōu wén wǔ ， chēng sān wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏传子，家天下，四百载，迁夏社。",
+        "pinyin": "xià chuán zi ， jiā tiān xià ， sì bǎi zài ， qiān xià shè 。",
+        "english": ""
+      },
+      {
+        "chinese": "汤伐夏，国号商，六百载，至纣亡。",
+        "pinyin": "tāng fá xià ， guó hào shāng ， liù bǎi zài ， zhì zhòu wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "周武王，始诛纣，八百载，最长久。",
+        "pinyin": "zhōu wǔ wáng ， shǐ zhū zhòu ， bā bǎi zài ， zuì cháng jiǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "周共和，始纪年，历宣幽，遂东迁。",
+        "pinyin": "zhōu gòng hé ， shǐ jì nián ， lì xuān yōu ， suì dōng qiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "周道衰，王纳坠，逞士戈，尚游说。",
+        "pinyin": "zhōu dào shuāi ， wáng nà zhuì ， chěng shì gē ， shàng yóu shuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "始春秋，终战国，五霸强，七雄出。",
+        "pinyin": "shǐ chūn qiū ， zhōng zhàn guó ， wǔ bà qiáng ， qī xióng chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "蠃秦氏，始兼并，传二世，楚汉争。",
+        "pinyin": "luǒ qín shì ， shǐ jiān bìng ， chuán èr shì ， chǔ hàn zhēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "高祖兴，汉业建，至孝平，王莽篡。",
+        "pinyin": "gāo zǔ xīng ， hàn yè jiàn ， zhì xiào píng ， wáng mǎng cuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "先武兴，为东汉，四百年，终于献。",
+        "pinyin": "xiān wǔ xīng ， wèi dōng hàn ， sì bǎi nián ， zhōng yú xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏蜀吴，争汉鼎，号三国，迄两晋。",
+        "pinyin": "wèi shǔ wú ， zhēng hàn dǐng ， hào sān guó ， qì liǎng jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋齐继，梁陈承，为南朝，都金陵。",
+        "pinyin": "sòng qí jì ， liáng chén chéng ， wèi nán cháo ， dōu jīn líng 。",
+        "english": ""
+      },
+      {
+        "chinese": "北元魏，分东西，宇文周，与高齐。",
+        "pinyin": "běi yuán wèi ， fēn dōng xī ， yǔ wén zhōu ， yǔ gāo qí 。",
+        "english": ""
+      },
+      {
+        "chinese": "迨至隋，一土宇，不再传，失统绪。",
+        "pinyin": "dài zhì suí ， yī tǔ yǔ ， bù zài chuán ， shī tǒng xù 。",
+        "english": ""
+      },
+      {
+        "chinese": "唐高祖，起义师，除隋乱，创国基。",
+        "pinyin": "táng gāo zǔ ， qǐ yì shī ， chú suí luàn ， chuàng guó jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "二十传，三百载，梁灭之，国乃改。",
+        "pinyin": "èr shí chuán ， sān bǎi zài ， liáng miè zhī ， guó nǎi gǎi 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁唐晋，及汉周，称五代，皆有由。",
+        "pinyin": "liáng táng jìn ， jí hàn zhōu ， chēng wǔ dài ， jiē yǒu yóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "赵宋兴，受周祥，十八传，南北混。",
+        "pinyin": "zhào sòng xīng ， shòu zhōu xiáng ， shí bā chuán ， nán běi hùn 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "sanzijing_ch_4",
+    "bookId": "sanzijing",
+    "chapterIndex": 4,
+    "title": "三字经·第4部分",
+    "titleEn": "Chapter 4: 三字经·第4部分",
+    "sentences": [
+      {
+        "chinese": "辽兴金，皆夷裔，元灭之，绝宋世。",
+        "pinyin": "liáo xīng jīn ， jiē yí yì ， yuán miè zhī ， jué sòng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "莅中国，兼戎狄，九十年，返沙碛。",
+        "pinyin": "lì zhōng guó ， jiān róng dí ， jiǔ shí nián ， fǎn shā qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "太祖兴，称大明，纪洪武，都金陵。",
+        "pinyin": "tài zǔ xīng ， chēng dà míng ， jì hóng wǔ ， dōu jīn líng 。",
+        "english": ""
+      },
+      {
+        "chinese": "迨成祖，迁宛平，十六世，至崇祯。",
+        "pinyin": "dài chéng zǔ ， qiān wǎn píng ， shí liù shì ， zhì chóng zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "权阉肆，流寇起，自成入，神器毁。",
+        "pinyin": "quán yān sì ， liú kòu qǐ ， zì chéng rù ， shén qì huǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "清太祖，兴辽东，金之后，受明封。",
+        "pinyin": "qīng tài zǔ ， xīng liáo dōng ， jīn zhī hòu ， shòu míng fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "至世祖，乃大同，十二世，清祚终。",
+        "pinyin": "zhì shì zǔ ， nǎi dà tóng ， shí èr shì ， qīng zuò zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡正史，廿四部，益以清，成廿五。",
+        "pinyin": "fán zhèng shǐ ， niàn sì bù ， yì yǐ qīng ， chéng niàn wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "史虽繁，读有次，史记一，汉书二。",
+        "pinyin": "shǐ suī fán ， dú yǒu cì ， shǐ jì yī ， hàn shū èr 。",
+        "english": ""
+      },
+      {
+        "chinese": "后汉三，国志四，此四史，最精致。",
+        "pinyin": "hòu hàn sān ， guó zhì sì ， cǐ sì shǐ ， zuì jīng zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "先四史，兼证经，参通鉴，约而精。",
+        "pinyin": "xiān sì shǐ ， jiān zhèng jīng ， cān tōng jiàn ， yuē ér jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "历代事，全在兹，载治乱，知兴衰。",
+        "pinyin": "lì dài shì ， quán zài zī ， zài zhì luàn ， zhī xīng shuāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "读史者，考实录，通古今，若亲目。",
+        "pinyin": "dú shǐ zhě ， kǎo shí lù ， tōng gǔ jīn ， ruò qīn mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "汉贾董，及许郑，皆经师，能述圣。",
+        "pinyin": "hàn jiǎ dǒng ， jí xǔ zhèng ， jiē jīng shī ， néng shù shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋周程，张朱陆，明王氏，皆道学。",
+        "pinyin": "sòng zhōu chéng ， zhāng zhū lù ， míng wáng shì ， jiē dào xué 。",
+        "english": ""
+      },
+      {
+        "chinese": "屈原赋，本风人，逮邹枚，暨卿云。",
+        "pinyin": "qū yuán fù ， běn fēng rén ， dǎi zōu méi ， jì qīng yún 。",
+        "english": ""
+      },
+      {
+        "chinese": "韩与柳，并文雄，李若杜，为诗宗。",
+        "pinyin": "hán yǔ liǔ ， bìng wén xióng ， lǐ ruò dù ， wèi shī zōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡学者，宜兼通，翼圣教，振民风。",
+        "pinyin": "fán xué zhě ， yí jiān tōng ， yì shèng jiào ， zhèn mín fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "口而诵，心而帷，朝于斯，夕于斯。",
+        "pinyin": "kǒu ér sòng ， xīn ér wéi ， cháo yú sī ， xī yú sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔仲尼，师项橐，古圣贤，尚勤学。",
+        "pinyin": "xī zhòng ní ， shī xiàng tuó ， gǔ shèng xián ， shàng qín xué 。",
+        "english": ""
+      },
+      {
+        "chinese": "赵中令，读鲁论，彼既仕，学且勤。",
+        "pinyin": "zhào zhōng lìng ， dú lǔ lùn ， bǐ jì shì ， xué qiě qín 。",
+        "english": ""
+      },
+      {
+        "chinese": "披薄编，削竹简，彼无书，且知勉。",
+        "pinyin": "pī báo biān ， xuē zhú jiǎn ， bǐ wú shū ， qiě zhī miǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "头悬梁，锥刺股，彼不教，自勤苦。",
+        "pinyin": "tóu xuán liáng ， zhuī cì gǔ ， bǐ bù jiào ， zì qín kǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "如囊萤，如映雪，家虽贫，学不辍。",
+        "pinyin": "rú náng yíng ， rú yìng xuě ， jiā suī pín ， xué bù chuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "如负薪，如挂角，身虽劳，犹苦卓。",
+        "pinyin": "rú fù xīn ， rú guà jiǎo ， shēn suī láo ， yóu kǔ zhuó 。",
+        "english": ""
+      },
+      {
+        "chinese": "苏明允，二十七，始发愤，读书籍。",
+        "pinyin": "sū míng yǔn ， èr shí qī ， shǐ fā fèn ， dú shū jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼既老，犹悔迟，尔小生，宜早思。",
+        "pinyin": "bǐ jì lǎo ， yóu huǐ chí ， ěr xiǎo shēng ， yí zǎo sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "若荀卿，年五十，游稷下，习儒业。",
+        "pinyin": "ruò xún qīng ， nián wǔ shí ， yóu jì xià ， xí rú yè 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼既成，众称异，尔小生，宜立志。",
+        "pinyin": "bǐ jì chéng ， zhòng chēng yì ， ěr xiǎo shēng ， yí lì zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "莹八岁，能咏诗，泌七岁，能赋棋。",
+        "pinyin": "yíng bā suì ， néng yǒng shī ， mì qī suì ， néng fù qí 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "sanzijing_ch_5",
+    "bookId": "sanzijing",
+    "chapterIndex": 5,
+    "title": "三字经·第5部分",
+    "titleEn": "Chapter 5: 三字经·第5部分",
+    "sentences": [
+      {
+        "chinese": "彼颖悟，人称奇，尔幼学，当效之。",
+        "pinyin": "bǐ yǐng wù ， rén chēng qí ， ěr yòu xué ， dāng xiào zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "蔡文姬，能辩琴，谢道韫，能咏吟。",
+        "pinyin": "cài wén jī ， néng biàn qín ， xiè dào yùn ， néng yǒng yín 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼女子，且聪敏，尔男子，当自警。",
+        "pinyin": "bǐ nǚ zǐ ， qiě cōng mǐn ， ěr nán zi ， dāng zì jǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "唐刘晏，方七岁，举神童，作正字。",
+        "pinyin": "táng liú yàn ， fāng qī suì ， jǔ shén tóng ， zuò zhèng zì 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼虽幼，身已仕，尔细学，勉而致。",
+        "pinyin": "bǐ suī yòu ， shēn yǐ shì ， ěr xì xué ， miǎn ér zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "犬守夜，鸡司晨，茍不学，曷为人？",
+        "pinyin": "quǎn shǒu yè ， jī sī chén ， jì bù xué ， hé wéi rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "蚕吐丝，蜂酿蜜，人不学，不如物。",
+        "pinyin": "cán tǔ sī ， fēng niàng mì ， rén bù xué ， bù rú wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "幼习业，壮致身，上匡国，下利民。",
+        "pinyin": "yòu xí yè ， zhuàng zhì shēn ， shàng kuāng guó ， xià lì mín 。",
+        "english": ""
+      },
+      {
+        "chinese": "扬名声，显父母，光于前，裕于后。",
+        "pinyin": "yáng míng shēng ， xiǎn fù mǔ ， guāng yú qián ， yù yú hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "人遗子，金满籯，我教子，帷一经。",
+        "pinyin": "rén yí zi ， jīn mǎn yíng ， wǒ jiào zi ， wéi yī jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "勤有功，戏无益，戒之哉，宜勉力。",
+        "pinyin": "qín yǒu gōng ， xì wú yì ， jiè zhī zāi ， yí miǎn lì 。",
+        "english": ""
+      }
+    ]
+  }
+]

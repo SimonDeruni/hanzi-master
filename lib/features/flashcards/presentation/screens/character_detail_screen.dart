@@ -56,7 +56,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   // Lazy Load State
   Flashcard? _hydratedCard;
-  bool _isLoadingStrokes = true;
+  late bool _isLoadingStrokes;
 
   // Personal Notes
   final TextEditingController _notesController = TextEditingController();
@@ -143,6 +143,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   @override
   void initState() {
     super.initState();
+    _isLoadingStrokes = widget.card.strokePaths.isEmpty;
     _pageController = PageController();
     _scrollController.addListener(_onScroll);
     _hydrateStrokes();
@@ -369,7 +370,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     final targetLanguage = ref.watch(translationLanguageProvider);
     final allCards = ref.watch(flashcardControllerProvider).value ?? [];
     final savedCard = allCards.firstWhere(
-      (c) => c.id == widget.card.id,
+      (c) => c.id == widget.card.id || c.hanzi == widget.card.hanzi,
       orElse: () => widget.card,
     );
 
@@ -377,14 +378,27 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     // results may contain a newly localized definition for a saved card, so do
     // not replace them wholesale with the persisted (often English) snapshot.
     var current = widget.card.copyWith(
-      deckId: savedCard.deckId,
-      strokePaths: savedCard.strokePaths,
-      medianPaths: savedCard.medianPaths,
+      id: savedCard.id != widget.card.id && !savedCard.id.startsWith('global_')
+          ? savedCard.id
+          : widget.card.id,
+      deckId:
+          savedCard.deckId.isNotEmpty ? savedCard.deckId : widget.card.deckId,
+      strokePaths: savedCard.strokePaths.isNotEmpty
+          ? savedCard.strokePaths
+          : widget.card.strokePaths,
+      medianPaths: savedCard.medianPaths.isNotEmpty
+          ? savedCard.medianPaths
+          : widget.card.medianPaths,
       isFlipped: savedCard.isFlipped,
-      modeStats: savedCard.modeStats,
+      modeStats: savedCard.modeStats.isNotEmpty
+          ? savedCard.modeStats
+          : widget.card.modeStats,
       inkPoints: savedCard.inkPoints,
-      sourceSentence: savedCard.sourceSentence,
-      sourceContext: savedCard.sourceContext,
+      sourceSentence: savedCard.sourceSentence ?? widget.card.sourceSentence,
+      sourceContext: savedCard.sourceContext ?? widget.card.sourceContext,
+      hskLevel: savedCard.hskLevel > 0
+          ? savedCard.hskLevel
+          : (widget.card.hskLevel > 0 ? widget.card.hskLevel : 0),
     );
 
     // A routed dictionary card can outlive the locale in which it was loaded.
@@ -401,12 +415,17 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     }
 
     final hydrated = _hydratedCard;
-    if (current.strokePaths.isEmpty && hydrated != null) {
+    if (current.strokePaths.isEmpty &&
+        hydrated != null &&
+        hydrated.strokePaths.isNotEmpty) {
       current = current.copyWith(
         strokePaths: hydrated.strokePaths,
         medianPaths: hydrated.medianPaths,
         isFlipped: hydrated.isFlipped,
       );
+    }
+    if (current.hskLevel == 0 && hydrated != null && hydrated.hskLevel > 0) {
+      current = current.copyWith(hskLevel: hydrated.hskLevel);
     }
     return current;
   }
@@ -963,7 +982,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
     int charIdx = 0;
     int localIdx = 0;
 
-    final currentCard = _hydratedCard ?? widget.card;
+    final currentCard = _getCurrentCard();
     for (int i = 0; i < currentCard.strokePaths.length; i++) {
       if (currentCard.strokePaths[i] == '__CHAR_SEPARATOR__') {
         charIdx++;
@@ -981,7 +1000,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
   Widget _buildStrokeTimeline(bool isDark) {
     if (_isLoadingStrokes) return const SizedBox(height: 48);
-    final currentCard = _hydratedCard ?? widget.card;
+    final currentCard = _getCurrentCard();
     if (currentCard.strokePaths.isEmpty) return const SizedBox(height: 48);
 
     // Parse character groups from strokePaths using __CHAR_SEPARATOR__
@@ -1503,7 +1522,8 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   }
 
   Widget _buildAiContextSection(BuildContext context, bool isDark) {
-    final aiContextAsync = ref.watch(characterContextProvider(widget.card));
+    final currentCard = _getCurrentCard();
+    final aiContextAsync = ref.watch(characterContextProvider(currentCard));
     final showMemoryHook = Localizations.localeOf(context).languageCode == 'en';
 
     return aiContextAsync.when(
@@ -1679,7 +1699,7 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
               IconButton(
                 icon: const Icon(Icons.refresh),
                 onPressed: () {
-                  ref.invalidate(characterContextProvider(widget.card));
+                  ref.invalidate(characterContextProvider(_getCurrentCard()));
                 },
               ),
             ],

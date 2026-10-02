@@ -6,6 +6,13 @@ class LocalizedCatalogService {
   static final Map<String, Map<String, String>> _bookCache = {};
   static final Map<String, Map<String, String>> _showCache = {};
 
+  static String normalizeLocale(String raw) {
+    final trimmed = raw.trim();
+    if (trimmed.isEmpty) return 'en';
+    final token = trimmed.split(RegExp(r'[-_]')).first.toLowerCase();
+    return token.isEmpty ? 'en' : token;
+  }
+
   /// Loads and returns the localized book synopsis for [bookId] and [localeCode].
   ///
   /// Precedence: the bundled overlay for this locale → [fallback] (the book's own
@@ -22,22 +29,23 @@ class LocalizedCatalogService {
     required String fallbackEn,
     String? fallback,
   }) async {
-    if (localeCode == 'en' || localeCode.isEmpty) {
+    final languageCode = normalizeLocale(localeCode);
+    if (languageCode == 'en' || languageCode.isEmpty) {
       return fallbackEn;
     }
 
-    if (!_bookCache.containsKey(localeCode)) {
+    if (!_bookCache.containsKey(languageCode)) {
       try {
         final jsonStr = await rootBundle
-            .loadString('assets/data/l10n/books_$localeCode.json');
+            .loadString('assets/data/l10n/books_$languageCode.json');
         final Map<String, dynamic> raw = json.decode(jsonStr);
-        _bookCache[localeCode] = raw.map((k, v) => MapEntry(k, v.toString()));
+        _bookCache[languageCode] = raw.map((k, v) => MapEntry(k, v.toString()));
       } catch (_) {
-        _bookCache[localeCode] = {};
+        _bookCache[languageCode] = {};
       }
     }
 
-    final localized = _bookCache[localeCode]?[bookId];
+    final localized = _bookCache[languageCode]?[bookId];
     if (localized != null && localized.isNotEmpty) {
       return localized;
     }
@@ -56,22 +64,23 @@ class LocalizedCatalogService {
     required String localeCode,
     required String fallbackEn,
   }) async {
-    if (localeCode == 'en' || localeCode.isEmpty) {
+    final languageCode = normalizeLocale(localeCode);
+    if (languageCode == 'en' || languageCode.isEmpty) {
       return fallbackEn;
     }
 
-    if (!_showCache.containsKey(localeCode)) {
+    if (!_showCache.containsKey(languageCode)) {
       try {
         final jsonStr = await rootBundle
-            .loadString('assets/data/l10n/shows_$localeCode.json');
+            .loadString('assets/data/l10n/shows_$languageCode.json');
         final Map<String, dynamic> raw = json.decode(jsonStr);
-        _showCache[localeCode] = raw.map((k, v) => MapEntry(k, v.toString()));
+        _showCache[languageCode] = raw.map((k, v) => MapEntry(k, v.toString()));
       } catch (_) {
         _showCache[localeCode] = {};
       }
     }
 
-    final localized = _showCache[localeCode]?[showTitle];
+    final localized = _showCache[languageCode]?[showTitle];
     if (localized != null && localized.isNotEmpty) {
       return localized;
     }
@@ -85,28 +94,29 @@ class LocalizedCatalogService {
     required String localeCode,
     required List<String> fallbackPoints,
   }) async {
-    if (localeCode == 'en' || localeCode.isEmpty) {
+    final languageCode = normalizeLocale(localeCode);
+    if (languageCode == 'en' || languageCode.isEmpty) {
       return fallbackPoints;
     }
 
-    if (!_channelCache.containsKey(localeCode)) {
+    if (!_channelCache.containsKey(languageCode)) {
       try {
         final jsonStr = await rootBundle
-            .loadString('assets/data/l10n/channels_$localeCode.json');
+            .loadString('assets/data/l10n/channels_$languageCode.json');
         final Map<String, dynamic> raw = json.decode(jsonStr);
-        _channelCache[localeCode] = raw.map((k, v) => MapEntry(
+        _channelCache[languageCode] = raw.map((k, v) => MapEntry(
             k,
             (v as List<dynamic>)
                 .map((e) => e.toString())
                 .where((s) => s.isNotEmpty)
                 .toList()));
       } catch (_) {
-        _channelCache[localeCode] = {};
+        _channelCache[languageCode] = {};
       }
     }
 
-    final localized = _channelCache[localeCode]?[channelKey] ??
-        _channelCache[localeCode]?['DEFAULT'];
+    final localized = _channelCache[languageCode]?[channelKey] ??
+        _channelCache[languageCode]?['DEFAULT'];
     if (localized != null && localized.isNotEmpty) {
       return localized;
     }
@@ -124,8 +134,8 @@ class LocalizedCatalogService {
     required String localeCode,
     Map<String, String> localizedTitles = const {},
   }) async {
+    final languageCode = normalizeLocale(localeCode);
     final normalizedLocale = localeCode.replaceAll('-', '_').toLowerCase();
-    final languageCode = normalizedLocale.split('_').first;
     final suppliedTitle =
         localizedTitles[normalizedLocale] ?? localizedTitles[languageCode];
     if (suppliedTitle != null && suppliedTitle.trim().isNotEmpty) {
@@ -204,8 +214,7 @@ class LocalizedCatalogService {
   /// Loads and returns the complete dictionary of 71 radicals localized for [localeCode].
   /// Falls back to English (assets/data/radicals.json) if not found or if English is selected.
   static Future<Map<String, dynamic>> getRadicals(String localeCode) async {
-    final normalizedLocale = localeCode.replaceAll('-', '_').toLowerCase();
-    final languageCode = normalizedLocale.split('_').first;
+    final languageCode = normalizeLocale(localeCode);
 
     if (languageCode.isEmpty) {
       return _loadFallbackRadicals();

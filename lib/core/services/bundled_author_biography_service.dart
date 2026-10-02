@@ -41,10 +41,9 @@ class BundledAuthorBiographyService {
   final AssetBundle _bundle;
   final Map<String, Future<Map<String, String>>> _localeLoads = {};
 
-  /// The biography catalogues, in lookup order.
-  static const List<String> _catalogueFiles = <String>[
-    'assets/data/l10n/author_bios_%s.json',
-    'assets/data/l10n/poet_bios_%s.json',
+  static const List<String> _cataloguePrefixes = <String>[
+    'assets/data/l10n/author_bios_',
+    'assets/data/l10n/poet_bios_',
   ];
 
   /// Resolves [author] in [localeCode], falling back to the bundled English
@@ -52,13 +51,21 @@ class BundledAuthorBiographyService {
   Future<AuthorBiography?> biographyFor({
     required String author,
     required String localeCode,
+    String? authorEn,
   }) async {
     final requestedLocale = normalizeLocale(localeCode);
+    final cleanAuthor = author.trim();
+    final cleanAuthorEn = authorEn?.trim();
     final localized = await _loadLocale(requestedLocale);
-    final localizedText = localized[author];
+    var localizedText = localized[cleanAuthor];
+    if (localizedText == null &&
+        cleanAuthorEn != null &&
+        cleanAuthorEn.isNotEmpty) {
+      localizedText = localized[cleanAuthorEn];
+    }
     if (localizedText != null) {
       return AuthorBiography(
-        author: author,
+        author: cleanAuthor,
         text: localizedText,
         requestedLocale: requestedLocale,
         resolvedLocale: requestedLocale,
@@ -66,10 +73,16 @@ class BundledAuthorBiographyService {
     }
 
     if (requestedLocale == 'en') return null;
-    final englishText = (await _loadLocale('en'))[author];
+    final englishBios = await _loadLocale('en');
+    var englishText = englishBios[cleanAuthor];
+    if (englishText == null &&
+        cleanAuthorEn != null &&
+        cleanAuthorEn.isNotEmpty) {
+      englishText = englishBios[cleanAuthorEn];
+    }
     if (englishText == null) return null;
     return AuthorBiography(
-      author: author,
+      author: cleanAuthor,
       text: englishText,
       requestedLocale: requestedLocale,
       resolvedLocale: 'en',
@@ -81,10 +94,9 @@ class BundledAuthorBiographyService {
         // Every catalogue is optional: a missing or corrupt regional file is a
         // recoverable fallback case, never a reason to lose the ones that load.
         final merged = <String, String>{};
-        for (final template in _catalogueFiles) {
+        for (final prefix in _cataloguePrefixes) {
           try {
-            final source =
-                await _bundle.loadString(template.replaceFirst('%s', locale));
+            final source = await _bundle.loadString('$prefix$locale.json');
             final decoded = jsonDecode(source);
             if (decoded is! Map<String, dynamic>) continue;
             for (final entry in decoded.entries) {

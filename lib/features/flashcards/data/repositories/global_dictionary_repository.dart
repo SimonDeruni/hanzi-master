@@ -523,10 +523,15 @@ class GlobalDictionaryRepository {
     final hasLocalizedDefinition =
         localizedDef != null && localizedDef.trim().isNotEmpty;
     final chosenDef = hasLocalizedDefinition ? localizedDef.trim() : defEn;
+    final hanzi = row['simplified'] as String;
+    final int rank = _popularityRanks[hanzi] ??
+        _popularityRanks[row['traditional'] as String? ?? ''] ??
+        0;
+    final int hskLevel = (rank >= 1 && rank <= 6) ? rank : 0;
 
     return Flashcard(
       id: 'global_${row['id']}',
-      hanzi: row['simplified'] as String,
+      hanzi: hanzi,
       pinyin: PinyinUtils.convertNumericToMarks(rawPinyin),
       definition: chosenDef,
       definitionLanguage:
@@ -537,7 +542,7 @@ class GlobalDictionaryRepository {
           (row['localized_quality_score'] as num?)?.toInt(),
       isExpansionEligible: row['expansion_eligible'] == 1,
       sourceDefinitionHash: _decodeSourceHash(row['source_definition_hash']),
-      hskLevel: 0,
+      hskLevel: hskLevel,
       strokePaths: const [],
       modeStats: const {},
     );

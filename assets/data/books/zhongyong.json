@@ -1,0 +1,1505 @@
+[
+  {
+    "id": "zhongyong_ch_1",
+    "bookId": "zhongyong",
+    "chapterIndex": 1,
+    "title": "中庸·第1部分",
+    "titleEn": "Chapter 1: 中庸·第1部分",
+    "sentences": [
+      {
+        "chinese": "天命之谓性，率性之谓道，修道之谓教。",
+        "pinyin": "tiān mìng zhī wèi xìng ， shuài xìng zhī wèi dào ， xiū dào zhī wèi jiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "道也者，不可须臾离也，可离非道也。",
+        "pinyin": "dào yě zhě ， bù kě xū yú lí yě ， kě lí fēi dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故君子戒慎乎其所不睹，恐惧乎其所不闻。",
+        "pinyin": "shì gù jūn zǐ jiè shèn hū qí suǒ bù dǔ ， kǒng jù hū qí suǒ bù wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫见乎隐，莫显乎微。",
+        "pinyin": "mò jiàn hū yǐn ， mò xiǎn hū wēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子慎其独也。",
+        "pinyin": "gù jūn zǐ shèn qí dú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "喜怒哀乐之未发，谓之中；",
+        "pinyin": "xǐ nù āi lè zhī wèi fā ， wèi zhī zhōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "发而皆中节，谓之和；",
+        "pinyin": "fā ér jiē zhōng jié ， wèi zhī hé ；",
+        "english": ""
+      },
+      {
+        "chinese": "中也者，天下之大本也；",
+        "pinyin": "zhōng yě zhě ， tiān xià zhī dà běn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "和也者，天下之达道也。",
+        "pinyin": "hé yě zhě ， tiān xià zhī dá dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "致中和，天地位焉，万物育焉。",
+        "pinyin": "zhì zhōng hé ， tiān dì wèi yān ， wàn wù yù yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "仲尼曰：「君子中庸，小人反中庸。",
+        "pinyin": "zhòng ní yuē ：「 jūn zǐ zhōng yōng ， xiǎo rén fǎn zhōng yōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子之中庸也，君子而时中；",
+        "pinyin": "jūn zǐ zhī zhōng yōng yě ， jūn zǐ ér shí zhōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "小人之中庸也，小人而无忌惮也。",
+        "pinyin": "xiǎo rén zhī zhōng yōng yě ， xiǎo rén ér wú jì dàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「中庸其至矣乎！",
+        "pinyin": "zi yuē ：「 zhōng yōng qí zhì yǐ hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "民鲜能久矣！",
+        "pinyin": "mín xiān néng jiǔ yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「道之不行也，我知之矣：知者过之，愚者不及也。",
+        "pinyin": "zi yuē ：「 dào zhī bù xíng yě ， wǒ zhī zhī yǐ ： zhī zhě guò zhī ， yú zhě bù jí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "道之不明也，我知之矣：贤者过之，不肖者不及也。",
+        "pinyin": "dào zhī bù míng yě ， wǒ zhī zhī yǐ ： xián zhě guò zhī ， bù xiào zhě bù jí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "人莫不饮食也，鲜能知味也。",
+        "pinyin": "rén mò bù yǐn shí yě ， xiān néng zhī wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「道其不行矣夫。",
+        "pinyin": "zi yuē ：「 dào qí bù xíng yǐ fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「舜其大知也与！",
+        "pinyin": "zi yuē ：「 shùn qí dà zhī yě yǔ ！",
+        "english": ""
+      },
+      {
+        "chinese": "舜好问而好察迩言，隐恶而扬善，执其两端，用其中于民，其斯以为舜乎！",
+        "pinyin": "shùn hǎo wèn ér hǎo chá ěr yán ， yǐn è ér yáng shàn ， zhí qí liǎng duān ， yòng qí zhōng yú mín ， qí sī yǐ wéi shùn hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「人皆曰『予知』，驱而纳诸罟擭陷阱之中，而莫之知辟也。",
+        "pinyin": "zi yuē ：「 rén jiē yuē 『 yǔ zhī 』， qū ér nà zhū gǔ wò xiàn jǐng zhī zhōng ， ér mò zhī zhī pì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "人皆曰『予知』，择乎中庸，而不能期月守也。",
+        "pinyin": "rén jiē yuē 『 yǔ zhī 』， zé hū zhōng yōng ， ér bù néng qī yuè shǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「回之为人也，择乎中庸，得一善，则拳拳服膺而弗失之矣。",
+        "pinyin": "zi yuē ：「 huí zhī wéi rén yě ， zé hū zhōng yōng ， dé yī shàn ， zé quán quán fú yīng ér fú shī zhī yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「天下国家可均也，爵禄可辞也，白刃可蹈也，中庸不可能也。",
+        "pinyin": "zi yuē ：「 tiān xià guó jiā kě jūn yě ， jué lù kě cí yě ， bái rèn kě dǎo yě ， zhōng yōng bù kě néng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子路问强。",
+        "pinyin": "zi lù wèn qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「南方之强与？",
+        "pinyin": "zi yuē ：「 nán fāng zhī qiáng yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "北方之强与？",
+        "pinyin": "běi fāng zhī qiáng yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "抑而强与？",
+        "pinyin": "yì ér qiáng yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "宽柔以教，不报无道，南方之强也，君子居之。",
+        "pinyin": "kuān róu yǐ jiào ， bù bào wú dào ， nán fāng zhī qiáng yě ， jūn zǐ jū zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "衽金革，死而不厌，北方之强也，而强者居之。",
+        "pinyin": "rèn jīn gé ， sǐ ér bù yàn ， běi fāng zhī qiáng yě ， ér qiáng zhě jū zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子和而不流，强哉矫！",
+        "pinyin": "gù jūn zǐ hé ér bù liú ， qiáng zāi jiǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "中立而不倚，强哉矫！",
+        "pinyin": "zhōng lì ér bù yǐ ， qiáng zāi jiǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "国有道，不变塞焉，强哉矫！",
+        "pinyin": "guó yǒu dào ， bù biàn sāi yān ， qiáng zāi jiǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "国无道，至死不变，强哉矫！",
+        "pinyin": "guó wú dào ， zhì sǐ bù biàn ， qiáng zāi jiǎo ！",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「素隐行怪，后世有述焉，吾弗为之矣。",
+        "pinyin": "zi yuē ：「 sù yǐn xíng guài ， hòu shì yǒu shù yān ， wú fú wèi zhī yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子遵道而行，半涂而废，吾弗能已矣。",
+        "pinyin": "jūn zǐ zūn dào ér xíng ， bàn tú ér fèi ， wú fú néng yǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子依乎中庸，遁世不见知而不悔，唯圣者能之。",
+        "pinyin": "jūn zǐ yī hū zhōng yōng ， dùn shì bú jiàn zhī ér bù huǐ ， wéi shèng zhě néng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子之道费而隐。",
+        "pinyin": "jūn zǐ zhī dào fèi ér yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫妇之愚，可以与知焉，及其至也，虽圣人亦有所不知焉；",
+        "pinyin": "fū fù zhī yú ， kě yǐ yǔ zhī yān ， jí qí zhì yě ， suī shèng rén yì yǒu suǒ bù zhī yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "夫妇之不肖，可以能行焉，及其至也，虽圣人亦有所不能焉。",
+        "pinyin": "fū fù zhī bù xiào ， kě yǐ néng xíng yān ， jí qí zhì yě ， suī shèng rén yì yǒu suǒ bù néng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "天地之大也，人犹有所憾，故君子语大，天下莫能载焉；",
+        "pinyin": "tiān dì zhī dà yě ， rén yóu yǒu suǒ hàn ， gù jūn zǐ yǔ dà ， tiān xià mò néng zài yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "语小，天下莫能破焉。",
+        "pinyin": "yǔ xiǎo ， tiān xià mò néng pò yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》云：『鸢飞戾天，鱼跃于渊。",
+        "pinyin": "《 shī 》 yún ：『 yuān fēi lì tiān ， yú yuè yú yuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "』言其上下察也。",
+        "pinyin": "』 yán qí shàng xià chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子之道，造端乎夫妇，及其至也，察乎天地。",
+        "pinyin": "jūn zǐ zhī dào ， zào duān hū fū fù ， jí qí zhì yě ， chá hū tiān dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「道不远人。",
+        "pinyin": "zi yuē ：「 dào bù yuǎn rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "人之为道而远人，不可以为道。",
+        "pinyin": "rén zhī wèi dào ér yuǎn rén ， bù kě yǐ wéi dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》云：『伐柯伐柯，其则不远。",
+        "pinyin": "《 shī 》 yún ：『 fá kē fá kē ， qí zé bù yuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "』执柯以伐柯，睨而视之，犹以为远。",
+        "pinyin": "』 zhí kē yǐ fá kē ， nì ér shì zhī ， yóu yǐ wéi yuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子以人治人，改而止。",
+        "pinyin": "gù jūn zǐ yǐ rén zhì rén ， gǎi ér zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "忠恕违道不远，施诸己而不愿，亦勿施于人。",
+        "pinyin": "zhōng shù wéi dào bù yuǎn ， shī zhū jǐ ér bù yuàn ， yì wù shī yú rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子之道四，丘未能一焉：所求乎子以事父，未能也；",
+        "pinyin": "jūn zǐ zhī dào sì ， qiū wèi néng yī yān ： suǒ qiú hū zi yǐ shì fù ， wèi néng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "所求乎臣以事君，未能也；",
+        "pinyin": "suǒ qiú hū chén yǐ shì jūn ， wèi néng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "所求乎弟以事兄，未能也；",
+        "pinyin": "suǒ qiú hū dì yǐ shì xiōng ， wèi néng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "所求乎朋友先施之，未能也。",
+        "pinyin": "suǒ qiú hū péng yǒu xiān shī zhī ， wèi néng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "庸德之行，庸言之谨，有所不足，不敢不勉，有余不敢尽；",
+        "pinyin": "yōng dé zhī xíng ， yōng yán zhī jǐn ， yǒu suǒ bù zú ， bù gǎn bù miǎn ， yǒu yú bù gǎn jǐn ；",
+        "english": ""
+      },
+      {
+        "chinese": "言顾行，行顾言，君子胡不慥慥尔！",
+        "pinyin": "yán gù xíng ， xíng gù yán ， jūn zǐ hú bù zào zào ěr ！",
+        "english": ""
+      },
+      {
+        "chinese": "君子素其位而行，不愿乎其外。",
+        "pinyin": "jūn zǐ sù qí wèi ér xíng ， bù yuàn hū qí wài 。",
+        "english": ""
+      },
+      {
+        "chinese": "素富贵，行乎富贵；",
+        "pinyin": "sù fù guì ， xíng hū fù guì ；",
+        "english": ""
+      },
+      {
+        "chinese": "素贫贱，行乎贫贱；",
+        "pinyin": "sù pín jiàn ， xíng hū pín jiàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "素夷狄，行乎夷狄；",
+        "pinyin": "sù yí dí ， xíng hū yí dí ；",
+        "english": ""
+      },
+      {
+        "chinese": "素患难，行乎患难：君子无入而不自得焉。",
+        "pinyin": "sù huàn nàn ， xíng hū huàn nàn ： jūn zǐ wú rù ér bù zì dé yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "在上位不陵下，在下位不援上，正己而不求于人，则无怨。",
+        "pinyin": "zài shàng wèi bù líng xià ， zài xià wèi bù yuán shàng ， zhèng jǐ ér bù qiú yú rén ， zé wú yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "上不怨天，下不尤人。",
+        "pinyin": "shàng bù yuàn tiān ， xià bù yóu rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子居易以俟命，小人行险以徼幸。",
+        "pinyin": "gù jūn zǐ jū yì yǐ qí mìng ， xiǎo rén xíng xiǎn yǐ jiǎo xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「射有似乎君子，失诸正鹄，反求诸其身。",
+        "pinyin": "zi yuē ：「 shè yǒu sì hū jūn zǐ ， shī zhū zhèng gǔ ， fǎn qiú zhū qí shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子之道，辟如行远必自迩，辟如登高必自卑。",
+        "pinyin": "jūn zǐ zhī dào ， pì rú xíng yuǎn bì zì ěr ， pì rú dēng gāo bì zì bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：『妻子好合，如鼓瑟琴；",
+        "pinyin": "《 shī 》 yuē ：『 qī zǐ hǎo hé ， rú gǔ sè qín ；",
+        "english": ""
+      },
+      {
+        "chinese": "兄弟既翕，和乐且耽。",
+        "pinyin": "xiōng dì jì xī ， hé lè qiě dān 。",
+        "english": ""
+      },
+      {
+        "chinese": "宜尔室家，乐尔妻帑。",
+        "pinyin": "yí ěr shì jiā ， lè ěr qī tǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "』」子曰：「父母其顺矣乎！",
+        "pinyin": "』」 zi yuē ：「 fù mǔ qí shùn yǐ hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「鬼神之为德，其盛矣乎！",
+        "pinyin": "zi yuē ：「 guǐ shén zhī wèi dé ， qí shèng yǐ hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "视之而弗见，听之而弗闻，体物而不可遗。",
+        "pinyin": "shì zhī ér fú jiàn ， tīng zhī ér fú wén ， tǐ wù ér bù kě yí 。",
+        "english": ""
+      },
+      {
+        "chinese": "使天下之人齐明盛服，以承祭祀，洋洋乎如在其上，如在其左右。",
+        "pinyin": "shǐ tiān xià zhī rén qí míng shèng fú ， yǐ chéng jì sì ， yáng yáng hū rú zài qí shàng ， rú zài qí zuǒ yòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：『神之格思，不可度思！",
+        "pinyin": "《 shī 》 yuē ：『 shén zhī gé sī ， bù kě dù sī ！",
+        "english": ""
+      },
+      {
+        "chinese": "矧可射思！",
+        "pinyin": "shěn kě shè sī ！",
+        "english": ""
+      },
+      {
+        "chinese": "』夫微之显，诚之不可掩如此夫。",
+        "pinyin": "』 fū wēi zhī xiǎn ， chéng zhī bù kě yǎn rú cǐ fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「舜其大孝也与！",
+        "pinyin": "zi yuē ：「 shùn qí dà xiào yě yǔ ！",
+        "english": ""
+      },
+      {
+        "chinese": "德为圣人，尊为天子，富有四海之内。",
+        "pinyin": "dé wèi shèng rén ， zūn wèi tiān zi ， fù yǒu sì hǎi zhī nèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "宗庙飨之，子孙保之。",
+        "pinyin": "zōng miào xiǎng zhī ， zǐ sūn bǎo zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故大德必得其位，必得其禄，必得其名，必得其寿。",
+        "pinyin": "gù dà dé bì děi qí wèi ， bì děi qí lù ， bì děi qí míng ， bì děi qí shòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "故天之生物，必因其材而笃焉。",
+        "pinyin": "gù tiān zhī shēng wù ， bì yīn qí cái ér dǔ yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "故栽者培之，倾者覆之。",
+        "pinyin": "gù zāi zhě péi zhī ， qīng zhě fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：『嘉乐君子，宪宪令德！",
+        "pinyin": "《 shī 》 yuē ：『 jiā lè jūn zǐ ， xiàn xiàn lìng dé ！",
+        "english": ""
+      },
+      {
+        "chinese": "宜民宜人，受禄于天。",
+        "pinyin": "yí mín yí rén ， shòu lù yú tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "保佑命之，自天申之！",
+        "pinyin": "bǎo yòu mìng zhī ， zì tiān shēn zhī ！",
+        "english": ""
+      },
+      {
+        "chinese": "』故大德者必受命。",
+        "pinyin": "』 gù dà dé zhě bì shòu mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「无忧者其惟文王乎！",
+        "pinyin": "zi yuē ：「 wú yōu zhě qí wéi wén wáng hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "以王季为父，以武王为子，父作之，子述之。",
+        "pinyin": "yǐ wáng jì wèi fù ， yǐ wǔ wáng wèi zi ， fù zuò zhī ， zi shù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "武王缵大王、王季、文王之绪，壹戎衣而有天下，身不失天下之显名；",
+        "pinyin": "wǔ wáng zuǎn dà wáng 、 wáng jì 、 wén wáng zhī xù ， yī róng yī ér yǒu tiān xià ， shēn bù shī tiān xià zhī xiǎn míng ；",
+        "english": ""
+      },
+      {
+        "chinese": "尊为天子，富有四海之内。",
+        "pinyin": "zūn wèi tiān zi ， fù yǒu sì hǎi zhī nèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "宗庙飨之，子孙保之。",
+        "pinyin": "zōng miào xiǎng zhī ， zǐ sūn bǎo zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "武王末受命，周公成文、武之德，追王大王、王季，上祀先公以天子之礼。",
+        "pinyin": "wǔ wáng mò shòu mìng ， zhōu gōng chéng wén 、 wǔ zhī dé ， zhuī wáng dà wáng 、 wáng jì ， shàng sì xiān gōng yǐ tiān zi zhī lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "斯礼也，达乎诸侯、大夫及士、庶人。",
+        "pinyin": "sī lǐ yě ， dá hū zhū hóu 、 dà fū jí shì 、 shù rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "父为大夫，子为士，葬以大夫，祭以士。",
+        "pinyin": "fù wèi dà fū ， zi wèi shì ， zàng yǐ dà fū ， jì yǐ shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "父为士，子为大夫，葬以士，祭以大夫。",
+        "pinyin": "fù wèi shì ， zi wèi dà fū ， zàng yǐ shì ， jì yǐ dà fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "期之丧，达乎大夫；",
+        "pinyin": "qī zhī sàng ， dá hū dà fū ；",
+        "english": ""
+      },
+      {
+        "chinese": "三年之丧，达乎天子；",
+        "pinyin": "sān nián zhī sàng ， dá hū tiān zi ；",
+        "english": ""
+      },
+      {
+        "chinese": "父母之丧，无贵贱，一也。",
+        "pinyin": "fù mǔ zhī sàng ， wú guì jiàn ， yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「武王、周公，其达孝矣乎！",
+        "pinyin": "zi yuē ：「 wǔ wáng 、 zhōu gōng ， qí dá xiào yǐ hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "夫孝者：善继人之志，善述人之事者也。",
+        "pinyin": "fū xiào zhě ： shàn jì rén zhī zhì ， shàn shù rén zhī shì zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "春、秋修其祖庙，陈其宗器，设其裳衣，荐其时食。",
+        "pinyin": "chūn 、 qiū xiū qí zǔ miào ， chén qí zōng qì ， shè qí shang yī ， jiàn qí shí shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "宗庙之礼，所以序昭穆也；",
+        "pinyin": "zōng miào zhī lǐ ， suǒ yǐ xù zhāo mù yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "序爵，所以辨贵贱也；",
+        "pinyin": "xù jué ， suǒ yǐ biàn guì jiàn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "序事，所以辨贤也；",
+        "pinyin": "xù shì ， suǒ yǐ biàn xián yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "旅酬下为上，所以逮贱也；",
+        "pinyin": "lǚ chóu xià wèi shàng ， suǒ yǐ dǎi jiàn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "燕毛，所以序齿也。",
+        "pinyin": "yàn máo ， suǒ yǐ xù chǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "践其位，行其礼，奏其乐，敬其所尊，爱其所亲，事死如事生，事亡如事存，孝之至也。",
+        "pinyin": "jiàn qí wèi ， xíng qí lǐ ， zòu qí lè ， jìng qí suǒ zūn ， ài qí suǒ qīn ， shì sǐ rú shì shēng ， shì wáng rú shì cún ， xiào zhī zhì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "郊社之礼，所以事上帝也；",
+        "pinyin": "jiāo shè zhī lǐ ， suǒ yǐ shì shàng dì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "宗庙之礼，所以祀乎其先也。",
+        "pinyin": "zōng miào zhī lǐ ， suǒ yǐ sì hū qí xiān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "明乎郊社之礼、禘尝之义，治国其如示诸掌乎！",
+        "pinyin": "míng hū jiāo shè zhī lǐ 、 dì cháng zhī yì ， zhì guó qí rú shì zhū zhǎng hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "哀公问政。",
+        "pinyin": "āi gōng wèn zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「文、武之政，布在方策，其人存，则其政举；",
+        "pinyin": "zi yuē ：「 wén 、 wǔ zhī zhèng ， bù zài fāng cè ， qí rén cún ， zé qí zhèng jǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "其人亡，则其政息。",
+        "pinyin": "qí rén wáng ， zé qí zhèng xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "人道敏政，地道敏树。",
+        "pinyin": "rén dào mǐn zhèng ， dì dào mǐn shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫政也者，蒲卢也。",
+        "pinyin": "fū zhèng yě zhě ， pú lú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故为政在人，取人以身，修身以道，修道以仁。",
+        "pinyin": "gù wéi zhèng zài rén ， qǔ rén yǐ shēn ， xiū shēn yǐ dào ， xiū dào yǐ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "仁者人也，亲亲为大；",
+        "pinyin": "rén zhě rén yě ， qīn qīn wèi dà ；",
+        "english": ""
+      },
+      {
+        "chinese": "义者宜也，尊贤为大。",
+        "pinyin": "yì zhě yí yě ， zūn xián wèi dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "亲亲之杀，尊贤之等，礼所生也。",
+        "pinyin": "qīn qīn zhī shā ， zūn xián zhī děng ， lǐ suǒ shēng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "在下位不获乎上，民不可得而治矣！",
+        "pinyin": "zài xià wèi bù huò hū shàng ， mín bù kě dé ér zhì yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "故君子不可以不修身；",
+        "pinyin": "gù jūn zǐ bù kě yǐ bù xiū shēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "思修身，不可以不事亲；",
+        "pinyin": "sī xiū shēn ， bù kě yǐ bù shì qīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "思事亲，不可以不知人；",
+        "pinyin": "sī shì qīn ， bù kě yǐ bù zhī rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "思知人，不可以不知天。",
+        "pinyin": "sī zhī rén ， bù kě yǐ bù zhī tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下之达道五，所以行之者三，曰：君臣也，父子也，夫妇也，昆弟也，朋友之交也，五者天下之达道也。",
+        "pinyin": "tiān xià zhī dá dào wǔ ， suǒ yǐ xíng zhī zhě sān ， yuē ： jūn chén yě ， fù zǐ yě ， fū fù yě ， kūn dì yě ， péng yǒu zhī jiāo yě ， wǔ zhě tiān xià zhī dá dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知仁勇三者，天下之达德也，所以行之者一也。",
+        "pinyin": "zhī rén yǒng sān zhě ， tiān xià zhī dá dé yě ， suǒ yǐ xíng zhī zhě yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "或生而知之，或学而知之，或困而知之，及其知之，一也；",
+        "pinyin": "huò shēng ér zhī zhī ， huò xué ér zhī zhī ， huò kùn ér zhī zhī ， jí qí zhī zhī ， yī yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "或安而行之，或利而行之，或勉强而行之，及其成功，一也。",
+        "pinyin": "huò ān ér xíng zhī ， huò lì ér xíng zhī ， huò miǎn qiǎng ér xíng zhī ， jí qí chéng gōng ， yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「好学近乎知，力行近乎仁，知耻近乎勇。",
+        "pinyin": "zi yuē ：「 hào xué jìn hū zhī ， lì xíng jìn hū rén ， zhī chǐ jìn hū yǒng 。",
+        "english": ""
+      },
+      {
+        "chinese": "知斯三者，则知所以修身；",
+        "pinyin": "zhī sī sān zhě ， zé zhī suǒ yǐ xiū shēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "知所以修身，则知所以治人；",
+        "pinyin": "zhī suǒ yǐ xiū shēn ， zé zhī suǒ yǐ zhì rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "知所以治人，则知所以治天下国家矣。",
+        "pinyin": "zhī suǒ yǐ zhì rén ， zé zhī suǒ yǐ zhì tiān xià guó jiā yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡为天下国家有九经，曰：修身也，尊贤也，亲亲也，敬大臣也，体群臣也，子庶民也，来百工也，柔远人也，怀诸侯也。",
+        "pinyin": "fán wèi tiān xià guó jiā yǒu jiǔ jīng ， yuē ： xiū shēn yě ， zūn xián yě ， qīn qīn yě ， jìng dà chén yě ， tǐ qún chén yě ， zi shù mín yě ， lái bǎi gōng yě ， róu yuǎn rén yě ， huái zhū hóu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "修身则道立，尊贤则不惑，亲亲则诸父昆弟不怨，敬大臣则不眩，体群臣则士之报礼重，子庶民则百姓劝，来百工则财用足，柔远人则四方归之，怀诸侯则天下畏之。",
+        "pinyin": "xiū shēn zé dào lì ， zūn xián zé bù huò ， qīn qīn zé zhū fù kūn dì bù yuàn ， jìng dà chén zé bù xuàn ， tǐ qún chén zé shì zhī bào lǐ zhòng ， zi shù mín zé bǎi xìng quàn ， lái bǎi gōng zé cái yòng zú ， róu yuǎn rén zé sì fāng guī zhī ， huái zhū hóu zé tiān xià wèi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐明盛服，非礼不动，所以修身也；",
+        "pinyin": "qí míng shèng fú ， fēi lǐ bù dòng ， suǒ yǐ xiū shēn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "去谗远色，贱货而贵德，所以劝贤也；",
+        "pinyin": "qù chán yuǎn sè ， jiàn huò ér guì dé ， suǒ yǐ quàn xián yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "尊其位，重其禄，同其好恶，所以劝亲亲也；",
+        "pinyin": "zūn qí wèi ， zhòng qí lù ， tóng qí hào wù ， suǒ yǐ quàn qīn qīn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "官盛任使，所以劝大臣也；",
+        "pinyin": "guān shèng rèn shǐ ， suǒ yǐ quàn dà chén yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "忠信重禄，所以劝士也；",
+        "pinyin": "zhōng xìn zhòng lù ， suǒ yǐ quàn shì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "时使薄敛，所以劝百姓也；",
+        "pinyin": "shí shǐ báo liǎn ， suǒ yǐ quàn bǎi xìng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "日省月试，既廪称事，所以劝百工也；",
+        "pinyin": "rì xǐng yuè shì ， jì lǐn chēng shì ， suǒ yǐ quàn bǎi gōng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "送往迎来，嘉善而矜不能，所以柔远人也；",
+        "pinyin": "sòng wǎng yíng lái ， jiā shàn ér jīn bù néng ， suǒ yǐ róu yuǎn rén yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "继绝世，举废国，治乱持危，朝聘以时，厚往而薄来，所以怀诸侯也。",
+        "pinyin": "jì jué shì ， jǔ fèi guó ， zhì luàn chí wēi ， cháo pìn yǐ shí ， hòu wǎng ér báo lái ， suǒ yǐ huái zhū hóu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡为天下国家有九经，所以行之者一也。",
+        "pinyin": "fán wèi tiān xià guó jiā yǒu jiǔ jīng ， suǒ yǐ xíng zhī zhě yī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "「凡事豫则立，不豫则废。",
+        "pinyin": "「 fán shì yù zé lì ， bù yù zé fèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "言前定则不跲，事前定则不困，行前定则不疚，道前定则不穷。",
+        "pinyin": "yán qián dìng zé bù jiá ， shì qián dìng zé bù kùn ， xíng qián dìng zé bù jiù ， dào qián dìng zé bù qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "在下位不获乎上，民不可得而治矣；",
+        "pinyin": "zài xià wèi bù huò hū shàng ， mín bù kě dé ér zhì yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "获乎上有道：不信乎朋友，不获乎上矣；",
+        "pinyin": "huò hū shàng yǒu dào ： bù xìn hū péng yǒu ， bù huò hū shàng yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "信乎朋友有道：不顺乎亲，不信乎朋友矣；",
+        "pinyin": "xìn hū péng yǒu yǒu dào ： bù shùn hū qīn ， bù xìn hū péng yǒu yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "顺乎亲有道：反诸身不诚，不顺乎亲矣；",
+        "pinyin": "shùn hū qīn yǒu dào ： fǎn zhū shēn bù chéng ， bù shùn hū qīn yǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "诚身有道：不明乎善，不诚乎身矣。",
+        "pinyin": "chéng shēn yǒu dào ： bù míng hū shàn ， bù chéng hū shēn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚者，天之道也；",
+        "pinyin": "chéng zhě ， tiān zhī dào yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "诚之者，人之道也。",
+        "pinyin": "chéng zhī zhě ， rén zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚者不勉而中，不思而得，从容中道，圣人也。",
+        "pinyin": "chéng zhě bù miǎn ér zhōng ， bù sī ér dé ， cóng róng zhōng dào ， shèng rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚之者，择善而固执之者也。",
+        "pinyin": "chéng zhī zhě ， zé shàn ér gù zhí zhī zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "博学之，审问之，慎思之，明辨之，笃行之。",
+        "pinyin": "bó xué zhī ， shěn wèn zhī ， shèn sī zhī ， míng biàn zhī ， dǔ xíng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "有弗学，学之弗能，弗措也；",
+        "pinyin": "yǒu fú xué ， xué zhī fú néng ， fú cuò yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "有弗问，问之弗知，弗措也；",
+        "pinyin": "yǒu fú wèn ， wèn zhī fú zhī ， fú cuò yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "有弗思，思之弗得，弗措也；",
+        "pinyin": "yǒu fú sī ， sī zhī fú dé ， fú cuò yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "有弗辨，辨之弗明，弗措也，有弗行，行之弗笃，弗措也。",
+        "pinyin": "yǒu fú biàn ， biàn zhī fú míng ， fú cuò yě ， yǒu fú xíng ， xíng zhī fú dǔ ， fú cuò yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "人一能之己百之，人十能之己千之。",
+        "pinyin": "rén yī néng zhī jǐ bǎi zhī ， rén shí néng zhī jǐ qiān zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "果能此道矣，虽愚必明，虽柔必强。",
+        "pinyin": "guǒ néng cǐ dào yǐ ， suī yú bì míng ， suī róu bì qiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      },
+      {
+        "chinese": "自诚明，谓之性；",
+        "pinyin": "zì chéng míng ， wèi zhī xìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "自明诚，谓之教。",
+        "pinyin": "zì míng chéng ， wèi zhī jiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚则明矣，明则诚矣。",
+        "pinyin": "chéng zé míng yǐ ， míng zé chéng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯天下至诚，为能尽其性；",
+        "pinyin": "wéi tiān xià zhì chéng ， wèi néng jǐn qí xìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "能尽其性，则能尽人之性；",
+        "pinyin": "néng jǐn qí xìng ， zé néng jǐn rén zhī xìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "能尽人之性，则能尽物之性；",
+        "pinyin": "néng jǐn rén zhī xìng ， zé néng jǐn wù zhī xìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "能尽物之性，则可以赞天地之化育；",
+        "pinyin": "néng jǐn wù zhī xìng ， zé kě yǐ zàn tiān dì zhī huà yù ；",
+        "english": ""
+      },
+      {
+        "chinese": "可以赞天地之化育，则可以与天地参矣。",
+        "pinyin": "kě yǐ zàn tiān dì zhī huà yù ， zé kě yǐ yǔ tiān dì cān yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其次致曲。",
+        "pinyin": "qí cì zhì qū 。",
+        "english": ""
+      },
+      {
+        "chinese": "曲能有诚，诚则形，形则著，著则明，明则动，动则变，变则化。",
+        "pinyin": "qū néng yǒu chéng ， chéng zé xíng ， xíng zé zhù ， zhù zé míng ， míng zé dòng ， dòng zé biàn ， biàn zé huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯天下至诚为能化。",
+        "pinyin": "wéi tiān xià zhì chéng wèi néng huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "至诚之道，可以前知。",
+        "pinyin": "zhì chéng zhī dào ， kě yǐ qián zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "国家将兴，必有祯祥；",
+        "pinyin": "guó jiā jiāng xīng ， bì yǒu zhēn xiáng ；",
+        "english": ""
+      },
+      {
+        "chinese": "国家将亡，必有妖孽。",
+        "pinyin": "guó jiā jiāng wáng ， bì yǒu yāo niè 。",
+        "english": ""
+      },
+      {
+        "chinese": "见乎蓍龟，动乎四体。",
+        "pinyin": "jiàn hū shī guī ， dòng hū sì tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "祸福将至：善，必先知之；",
+        "pinyin": "huò fú jiàng zhì ： shàn ， bì xiān zhī zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "不善，必先知之。",
+        "pinyin": "bù shàn ， bì xiān zhī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故至诚如神。",
+        "pinyin": "gù zhì chéng rú shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚者自成也，而道自道也。",
+        "pinyin": "chéng zhě zì chéng yě ， ér dào zì dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚者物之终始，不诚无物。",
+        "pinyin": "chéng zhě wù zhī zhōng shǐ ， bù chéng wú wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故君子诚之为贵。",
+        "pinyin": "shì gù jūn zǐ chéng zhī wèi guì 。",
+        "english": ""
+      },
+      {
+        "chinese": "诚者非自成己而已也，所以成物也。",
+        "pinyin": "chéng zhě fēi zì chéng jǐ ér yǐ yě ， suǒ yǐ chéng wù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "成己，仁也；",
+        "pinyin": "chéng jǐ ， rén yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "成物，知也。",
+        "pinyin": "chéng wù ， zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "性之德也，合外内之道也，故时措之宜也。",
+        "pinyin": "xìng zhī dé yě ， hé wài nèi zhī dào yě ， gù shí cuò zhī yí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故至诚无息。",
+        "pinyin": "gù zhì chéng wú xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "不息则久，久则征，征则悠远，悠远则博厚，博厚则高明。",
+        "pinyin": "bù xī zé jiǔ ， jiǔ zé zhēng ， zhēng zé yōu yuǎn ， yōu yuǎn zé bó hòu ， bó hòu zé gāo míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "博厚，所以载物也；",
+        "pinyin": "bó hòu ， suǒ yǐ zài wù yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "高明，所以覆物也；",
+        "pinyin": "gāo míng ， suǒ yǐ fù wù yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "悠久，所以成物也。",
+        "pinyin": "yōu jiǔ ， suǒ yǐ chéng wù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "博厚配地，高明配天，悠久无疆。",
+        "pinyin": "bó hòu pèi dì ， gāo míng pèi tiān ， yōu jiǔ wú jiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "如此者，不见而章，不动而变，无为而成。",
+        "pinyin": "rú cǐ zhě ， bú jiàn ér zhāng ， bù dòng ér biàn ， wú wéi ér chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "天地之道，可壹言而尽也。",
+        "pinyin": "tiān dì zhī dào ， kě yī yán ér jǐn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其为物不贰，则其生物不测。",
+        "pinyin": "qí wèi wù bù èr ， zé qí shēng wù bù cè 。",
+        "english": ""
+      },
+      {
+        "chinese": "天地之道，博也厚也，高也明也，悠也久也。",
+        "pinyin": "tiān dì zhī dào ， bó yě hòu yě ， gāo yě míng yě ， yōu yě jiǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今夫天，斯昭昭之多，及其无穷也，日月星辰系焉，万物覆焉。",
+        "pinyin": "jīn fū tiān ， sī zhāo zhāo zhī duō ， jí qí wú qióng yě ， rì yuè xīng chén xì yān ， wàn wù fù yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "今夫地，一撮土之多，及其广厚，载华岳而不重，振河海而不泄，万物载焉。",
+        "pinyin": "jīn fū dì ， yī zuǒ tǔ zhī duō ， jí qí guǎng hòu ， zài huá yuè ér bù zhòng ， zhèn hé hǎi ér bù xiè ， wàn wù zài yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "今夫山，一拳石之多，及其广大，草木生之，禽兽居之，宝藏兴焉。",
+        "pinyin": "jīn fū shān ， yī quán shí zhī duō ， jí qí guǎng dà ， cǎo mù shēng zhī ， qín shòu jū zhī ， bǎo zàng xīng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "今夫水，一勺之多，及其不测，鼋鼍、蛟龙、鱼鳖生焉，货财殖焉。",
+        "pinyin": "jīn fū shuǐ ， yī sháo zhī duō ， jí qí bù cè ， yuán tuó 、 jiāo lóng 、 yú biē shēng yān ， huò cái zhí yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》云：「维天之命，於穆不已！",
+        "pinyin": "《 shī 》 yún ：「 wéi tiān zhī mìng ， yú mù bù yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "」盖曰天之所以为天也。",
+        "pinyin": "」 gài yuē tiān zhī suǒ yǐ wéi tiān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "「於乎不显！",
+        "pinyin": "「 yú hū bù xiǎn ！",
+        "english": ""
+      },
+      {
+        "chinese": "文王之德之纯！",
+        "pinyin": "wén wáng zhī dé zhī chún ！",
+        "english": ""
+      },
+      {
+        "chinese": "」盖曰文王之所以为文也，纯亦不已。",
+        "pinyin": "」 gài yuē wén wáng zhī suǒ yǐ wéi wén yě ， chún yì bù yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "大哉，圣人之道！",
+        "pinyin": "dà zāi ， shèng rén zhī dào ！",
+        "english": ""
+      },
+      {
+        "chinese": "洋洋乎发育万物，峻极于天。",
+        "pinyin": "yáng yáng hū fā yù wàn wù ， jùn jí yú tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "优优大哉！",
+        "pinyin": "yōu yōu dà zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "礼仪三百，威仪三千，待其人然后行。",
+        "pinyin": "lǐ yí sān bǎi ， wēi yí sān qiān ， dài qí rén rán hòu xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：苟不至德，至道不凝焉。",
+        "pinyin": "gù yuē ： gǒu bù zhì dé ， zhì dào bù níng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子尊德性而道问学，致广大而尽精微，极高明而中庸。",
+        "pinyin": "gù jūn zǐ zūn dé xìng ér dào wèn xué ， zhì guǎng dà ér jǐn jīng wēi ， jí gāo míng ér zhōng yōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "温故而知新，敦厚以崇礼。",
+        "pinyin": "wēn gù ér zhī xīn ， dūn hòu yǐ chóng lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故居上不骄，为下不倍；",
+        "pinyin": "shì gù jū shàng bù jiāo ， wèi xià bù bèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "国有道，其言足以兴，国无道，其默足以容。",
+        "pinyin": "guó yǒu dào ， qí yán zú yǐ xīng ， guó wú dào ， qí mò zú yǐ róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：「既明且哲，以保其身。",
+        "pinyin": "《 shī 》 yuē ：「 jì míng qiě zhé ， yǐ bǎo qí shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」其此之谓与！",
+        "pinyin": "」 qí cǐ zhī wèi yǔ ！",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「愚而好自用，贱而好自专，生乎今之世，反古之道。",
+        "pinyin": "zi yuē ：「 yú ér hǎo zì yòng ， jiàn ér hǎo zì zhuān ， shēng hū jīn zhī shì ， fǎn gǔ zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "如此者，灾及其身者也。",
+        "pinyin": "rú cǐ zhě ， zāi jí qí shēn zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」非天子，不议礼，不制度，不考文。",
+        "pinyin": "」 fēi tiān zi ， bù yì lǐ ， bù zhì dù ， bù kǎo wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "今天下车同轨，书同文，行同伦。",
+        "pinyin": "jīn tiān xià chē tóng guǐ ， shū tóng wén ， xíng tóng lún 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽有其位，苟无其德，不敢作礼乐焉；",
+        "pinyin": "suī yǒu qí wèi ， gǒu wú qí dé ， bù gǎn zuò lǐ yuè yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "虽有其德，苟无其位，亦不敢作礼乐焉。",
+        "pinyin": "suī yǒu qí dé ， gǒu wú qí wèi ， yì bù gǎn zuò lǐ yuè yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "子曰：「吾说夏礼，杞不足征也。",
+        "pinyin": "zi yuē ：「 wú shuō xià lǐ ， qǐ bù zú zhēng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "吾学殷礼，有宋存焉；",
+        "pinyin": "wú xué yīn lǐ ， yǒu sòng cún yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "吾学周礼，今用之，吾从周。",
+        "pinyin": "wú xué zhōu lǐ ， jīn yòng zhī ， wú cóng zhōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "」王天下有三重焉，其寡过矣乎！",
+        "pinyin": "」 wàng tiān xià yǒu sān chóng yān ， qí guǎ guò yǐ hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "上焉者虽善无征，无征不信，不信民弗从；",
+        "pinyin": "shàng yān zhě suī shàn wú zhēng ， wú zhēng bù xìn ， bù xìn mín fú cóng ；",
+        "english": ""
+      },
+      {
+        "chinese": "下焉者虽善不尊，不尊不信，不信民弗从。",
+        "pinyin": "xià yān zhě suī shàn bù zūn ， bù zūn bù xìn ， bù xìn mín fú cóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子之道本诸身，征诸庶民，考诸三王而不缪，建诸天地而不悖，质诸鬼神而无疑，百世以俟圣人而不惑。",
+        "pinyin": "gù jūn zǐ zhī dào běn zhū shēn ， zhēng zhū shù mín ， kǎo zhū sān wáng ér bù móu ， jiàn zhū tiān dì ér bù bèi ， zhì zhū guǐ shén ér wú yí ， bǎi shì yǐ qí shèng rén ér bù huò 。",
+        "english": ""
+      },
+      {
+        "chinese": "质诸鬼神而无疑，知天也；",
+        "pinyin": "zhì zhū guǐ shén ér wú yí ， zhī tiān yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "百世以俟圣人而不惑，知人也。",
+        "pinyin": "bǎi shì yǐ qí shèng rén ér bù huò ， zhī rén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是故君子动而世为天下道，行而世为天下法，言而世为天下则。",
+        "pinyin": "shì gù jūn zǐ dòng ér shì wèi tiān xià dào ， xíng ér shì wèi tiān xià fǎ ， yán ér shì wèi tiān xià zé 。",
+        "english": ""
+      },
+      {
+        "chinese": "远之则有望，近之则不厌。",
+        "pinyin": "yuǎn zhī zé yǒu wàng ， jìn zhī zé bù yàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：「在彼无恶，在此无射；",
+        "pinyin": "《 shī 》 yuē ：「 zài bǐ wú è ， zài cǐ wú shè ；",
+        "english": ""
+      },
+      {
+        "chinese": "庶几夙夜，以永终誉！",
+        "pinyin": "shù jǐ sù yè ， yǐ yǒng zhōng yù ！",
+        "english": ""
+      },
+      {
+        "chinese": "」君子未有不如此而蚤有誉于天下者也。",
+        "pinyin": "」 jūn zǐ wèi yǒu bù rú cǐ ér zǎo yǒu yù yú tiān xià zhě yě 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "zhongyong_ch_2",
+    "bookId": "zhongyong",
+    "chapterIndex": 2,
+    "title": "中庸·第2部分",
+    "titleEn": "Chapter 2: 中庸·第2部分",
+    "sentences": [
+      {
+        "chinese": "仲尼祖述尧、舜，宪章文、武；",
+        "pinyin": "zhòng ní zǔ shù yáo 、 shùn ， xiàn zhāng wén 、 wǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "上律天时，下袭水土。",
+        "pinyin": "shàng lǜ tiān shí ， xià xí shuǐ tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "辟如天地之无不持载，无不复帱，辟如四时之错行，如日月之代明。",
+        "pinyin": "pì rú tiān dì zhī wú bù chí zài ， wú bù fù chóu ， pì rú sì shí zhī cuò xíng ， rú rì yuè zhī dài míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "万物并育而不相害，道并行而不相悖，小德川流，大德敦化，此天地之所以为大也。",
+        "pinyin": "wàn wù bìng yù ér bù xiāng hài ， dào bìng xíng ér bù xiāng bèi ， xiǎo dé chuān liú ， dà dé dūn huà ， cǐ tiān dì zhī suǒ yǐ wéi dà yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯天下至圣，为能聪明睿知，足以有临也；",
+        "pinyin": "wéi tiān xià zhì shèng ， wèi néng cōng míng ruì zhī ， zú yǐ yǒu lín yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "宽裕温柔，足以有容也；",
+        "pinyin": "kuān yù wēn róu ， zú yǐ yǒu róng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "发强刚毅，足以有执也；",
+        "pinyin": "fā qiáng gāng yì ， zú yǐ yǒu zhí yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "齐庄中正，足以有敬也；",
+        "pinyin": "qí zhuāng zhōng zhèng ， zú yǐ yǒu jìng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "文理密察，足以有别也。",
+        "pinyin": "wén lǐ mì chá ， zú yǐ yǒu bié yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "溥博渊泉，而时出之。",
+        "pinyin": "pǔ bó yuān quán ， ér shí chū zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "溥博如天，渊泉如渊。",
+        "pinyin": "pǔ bó rú tiān ， yuān quán rú yuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "见而民莫不敬，言而民莫不信，行而民莫不说。",
+        "pinyin": "jiàn ér mín mò bù jìng ， yán ér mín mò bù xìn ， xíng ér mín mò bù shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "是以声名洋溢乎中国，施及蛮貊；",
+        "pinyin": "shì yǐ shēng míng yáng yì hū zhōng guó ， shī jí mán mò ；",
+        "english": ""
+      },
+      {
+        "chinese": "舟车所至，人力所通，天之所覆，地之所载，日月所照，霜露所队；",
+        "pinyin": "zhōu chē suǒ zhì ， rén lì suǒ tōng ， tiān zhī suǒ fù ， dì zhī suǒ zài ， rì yuè suǒ zhào ， shuāng lù suǒ duì ；",
+        "english": ""
+      },
+      {
+        "chinese": "凡有血气者，莫不尊亲，故曰配天。",
+        "pinyin": "fán yǒu xuè qì zhě ， mò bù zūn qīn ， gù yuē pèi tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯天下至诚，为能经纶天下之大经，立天下之大本，知天地之化育。",
+        "pinyin": "wéi tiān xià zhì chéng ， wèi néng jīng lún tiān xià zhī dà jīng ， lì tiān xià zhī dà běn ， zhī tiān dì zhī huà yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫焉有所倚？",
+        "pinyin": "fū yān yǒu suǒ yǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "肫肫其仁！",
+        "pinyin": "zhūn zhūn qí rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "渊渊其渊！",
+        "pinyin": "yuān yuān qí yuān ！",
+        "english": ""
+      },
+      {
+        "chinese": "浩浩其天！",
+        "pinyin": "hào hào qí tiān ！",
+        "english": ""
+      },
+      {
+        "chinese": "苟不固聪明圣知达天德者，其孰能知之？",
+        "pinyin": "gǒu bù gù cōng míng shèng zhī dá tiān dé zhě ， qí shú néng zhī zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：「衣锦尚䌹」，恶其文之著也。",
+        "pinyin": "《 shī 》 yuē ：「 yī jǐn shàng jiǒng 」， è qí wén zhī zhù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故君子之道，暗然而日章；",
+        "pinyin": "gù jūn zǐ zhī dào ， àn rán ér rì zhāng ；",
+        "english": ""
+      },
+      {
+        "chinese": "小人之道，的然而日亡。",
+        "pinyin": "xiǎo rén zhī dào ， de rán ér rì wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子之道：淡而不厌，简而文，温而理，知远之近，知风之自，知微之显，可与入德矣。",
+        "pinyin": "jūn zǐ zhī dào ： dàn ér bù yàn ， jiǎn ér wén ， wēn ér lǐ ， zhī yuǎn zhī jìn ， zhī fēng zhī zì ， zhī wēi zhī xiǎn ， kě yǔ rù dé yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》云：「潜虽伏矣，亦孔之昭！",
+        "pinyin": "《 shī 》 yún ：「 qián suī fú yǐ ， yì kǒng zhī zhāo ！",
+        "english": ""
+      },
+      {
+        "chinese": "」故君子内省不疚，无恶于志。",
+        "pinyin": "」 gù jūn zǐ nèi xǐng bù jiù ， wú è yú zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子所不可及者，其唯人之所不见乎！",
+        "pinyin": "jūn zǐ suǒ bù kě jí zhě ， qí wéi rén zhī suǒ bú jiàn hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》云：「相在尔室，尚不愧于屋漏。",
+        "pinyin": "《 shī 》 yún ：「 xiāng zài ěr shì ， shàng bù kuì yú wū lòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "」故君子不动而敬，不言而信。",
+        "pinyin": "」 gù jūn zǐ bù dòng ér jìng ， bù yán ér xìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：「奏假无言，时靡有争。",
+        "pinyin": "《 shī 》 yuē ：「 zòu jiǎ wú yán ， shí mí yǒu zhēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」是故君子不赏而民劝，不怒而民威于𫓧钺。",
+        "pinyin": "」 shì gù jūn zǐ bù shǎng ér mín quàn ， bù nù ér mín wēi yú fū yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：「不显惟德！",
+        "pinyin": "《 shī 》 yuē ：「 bù xiǎn wéi dé ！",
+        "english": ""
+      },
+      {
+        "chinese": "百辟其刑之。",
+        "pinyin": "bǎi pì qí xíng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」是故君子笃恭而天下平。",
+        "pinyin": "」 shì gù jūn zǐ dǔ gōng ér tiān xià píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "《诗》曰：「予怀明德，不大声以色。",
+        "pinyin": "《 shī 》 yuē ：「 yǔ huái míng dé ， bù dà shēng yǐ sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」子曰：「声色之于以化民，末也。",
+        "pinyin": "」 zi yuē ：「 shēng sè zhī yú yǐ huà mín ， mò yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」《诗》曰：「德𬨎如毛」，毛犹有伦；",
+        "pinyin": "」《 shī 》 yuē ：「 dé yóu rú máo 」， máo yóu yǒu lún ；",
+        "english": ""
+      },
+      {
+        "chinese": "「上天之载，无声无臭」，至矣！",
+        "pinyin": "「 shàng tiān zhī zài ， wú shēng wú xiù 」， zhì yǐ ！",
+        "english": ""
+      }
+    ]
+  }
+]

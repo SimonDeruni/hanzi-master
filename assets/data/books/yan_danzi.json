@@ -1,0 +1,956 @@
+[
+  {
+    "id": "yan_danzi_ch_1",
+    "bookId": "yan_danzi",
+    "chapterIndex": 1,
+    "title": "燕丹子",
+    "titleEn": "Chapter 1: 燕丹子",
+    "sentences": [
+      {
+        "chinese": "燕太子丹质于秦，秦王遇之无礼，不得意，欲求归。",
+        "pinyin": "yàn tài zi dān zhì yú qín ， qín wáng yù zhī wú lǐ ， bù dé yì ， yù qiú guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦王不听，谬言曰令乌白头、马生角，乃可许耳。",
+        "pinyin": "qín wáng bù tīng ， miù yán yuē lìng wū bái tóu 、 mǎ shēng jué ， nǎi kě xǔ ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹仰天叹，乌即白头，马生角。",
+        "pinyin": "dān yǎng tiān tàn ， wū jí bái tóu ， mǎ shēng jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦王不得已而遣之，为机发之桥，欲陷丹。",
+        "pinyin": "qín wáng bù dé yǐ ér qiǎn zhī ， wèi jī fā zhī qiáo ， yù xiàn dān 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹过之，桥为不发。",
+        "pinyin": "dān guò zhī ， qiáo wèi bù fā 。",
+        "english": ""
+      },
+      {
+        "chinese": "夜到关，关门未开。",
+        "pinyin": "yè dào guān ， guān mén wèi kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹为鸡鸣，众鸡皆鸣，遂得逃归。",
+        "pinyin": "dān wèi jī míng ， zhòng jī jiē míng ， suì dé táo guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "深怨于秦，求欲复之。",
+        "pinyin": "shēn yuàn yú qín ， qiú yù fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "奉养勇士，无所不至。",
+        "pinyin": "fèng yǎng yǒng shì ， wú suǒ bù zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹与其傅曲武书，曰：「丹不肖，生于僻陋之国，长于不毛之地，未尝得覩君子雅训、达人之道也。",
+        "pinyin": "dān yǔ qí fù qū wǔ shū ， yuē ：「 dān bù xiào ， shēng yú pì lòu zhī guó ， cháng yú bù máo zhī dì ， wèi cháng dé dǔ jūn zǐ yǎ xùn 、 dá rén zhī dào yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然鄙意欲有所陈，幸傅垂览之。",
+        "pinyin": "rán bǐ yì yù yǒu suǒ chén ， xìng fù chuí lǎn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹闻丈夫所耻，耻受辱以生于世也；",
+        "pinyin": "dān wén zhàng fū suǒ chǐ ， chǐ shòu rǔ yǐ shēng yú shì yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "贞女所羞，羞见劫以亏其节也。",
+        "pinyin": "zhēn nǚ suǒ xiū ， xiū jiàn jié yǐ kuī qí jié yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故有刎喉不顾、据鼎不避者，斯岂乐死而忘生哉，其心有所守也。",
+        "pinyin": "gù yǒu wěn hóu bù gù 、 jù dǐng bù bì zhě ， sī qǐ lè sǐ ér wàng shēng zāi ， qí xīn yǒu suǒ shǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今秦王反戾天常，虎狼其行，遇丹无礼，为诸侯最。",
+        "pinyin": "jīn qín wáng fǎn lì tiān cháng ， hǔ láng qí xíng ， yù dān wú lǐ ， wèi zhū hóu zuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹每念之，痛入骨髓。",
+        "pinyin": "dān měi niàn zhī ， tòng rù gǔ suǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "计燕国之众不能敌之，旷年相守，力固不足。",
+        "pinyin": "jì yàn guó zhī zhòng bù néng dí zhī ， kuàng nián xiāng shǒu ， lì gù bù zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲收天下之勇士，集海内之英雄，破国空藏，以奉养之，重币甘辞以市于秦。",
+        "pinyin": "yù shōu tiān xià zhī yǒng shì ， jí hǎi nèi zhī yīng xióng ， pò guó kōng cáng ， yǐ fèng yǎng zhī ， zhòng bì gān cí yǐ shì yú qín 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦贪我赂，而信我辞，则一剑之任，可当百万之师；",
+        "pinyin": "qín tān wǒ lù ， ér xìn wǒ cí ， zé yī jiàn zhī rèn ， kě dāng bǎi wàn zhī shī ；",
+        "english": ""
+      },
+      {
+        "chinese": "须臾之间，可解丹万世之耻。",
+        "pinyin": "xū yú zhī jiān ， kě jiě dān wàn shì zhī chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若其不然，令丹生无面目于天下，死怀恨于九泉。",
+        "pinyin": "ruò qí bù rán ， lìng dān shēng wú miàn mù yú tiān xià ， sǐ huái hèn yú jiǔ quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "必令诸侯无以为叹，易水之北，未知谁有。",
+        "pinyin": "bì lìng zhū hóu wú yǐ wéi tàn ， yì shuǐ zhī běi ， wèi zhī shuí yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "此盖亦子大夫之耻也。",
+        "pinyin": "cǐ gài yì zi dà fū zhī chǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "谨遣书，愿熟思之。",
+        "pinyin": "jǐn qiǎn shū ， yuàn shú sī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曲武报书曰：「臣闻快于意者亏于行，甘于心者伤于性。",
+        "pinyin": "」 qū wǔ bào shū yuē ：「 chén wén kuài yú yì zhě kuī yú xíng ， gān yú xīn zhě shāng yú xìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今太子欲灭悁悁之耻，除久久之恨，此实臣所当麋躯碎首而不避也。",
+        "pinyin": "jīn tài zi yù miè yuān yuān zhī chǐ ， chú jiǔ jiǔ zhī hèn ， cǐ shí chén suǒ dāng mí qū suì shǒu ér bù bì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "私以为智者不冀侥幸以要功，明者不苟从志以顺心。",
+        "pinyin": "sī yǐ wéi zhì zhě bù jì jiǎo xìng yǐ yào gōng ， míng zhě bù gǒu cóng zhì yǐ shùn xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "事必成然后举，身必安而后行。",
+        "pinyin": "shì bì chéng rán hòu jǔ ， shēn bì ān ér hòu xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故发无失举之尤，动无蹉跌之媿也。",
+        "pinyin": "gù fā wú shī jǔ zhī yóu ， dòng wú cuō diē zhī kuì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子贵匹夫之勇，信一剑之任，而欲望功，臣以为疏。",
+        "pinyin": "tài zi guì pǐ fū zhī yǒng ， xìn yī jiàn zhī rèn ， ér yù wàng gōng ， chén yǐ wéi shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "臣愿合从于楚，并势于赵，连衡于韩、魏，然后图秦，秦可破也。",
+        "pinyin": "chén yuàn hé cóng yú chǔ ， bìng shì yú zhào ， lián héng yú hán 、 wèi ， rán hòu tú qín ， qín kě pò yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且韩、魏与秦，外亲内疏。",
+        "pinyin": "qiě hán 、 wèi yǔ qín ， wài qīn nèi shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "若有倡兵，楚乃来应，韩、魏必从，其势可见。",
+        "pinyin": "ruò yǒu chàng bīng ， chǔ nǎi lái yīng ， hán 、 wèi bì cóng ， qí shì kě jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "今臣计从，太子之耻除，愚鄙之累解矣。",
+        "pinyin": "jīn chén jì cóng ， tài zi zhī chǐ chú ， yú bǐ zhī lèi jiě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子虑之。",
+        "pinyin": "tài zi lǜ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子得书，不说，召曲武而问之。",
+        "pinyin": "」 tài zi dé shū ， bù shuō ， zhào qū wǔ ér wèn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "武曰：「臣以为太子行臣言，则易水之北，永无秦忧，四邻诸侯必有求我者矣。",
+        "pinyin": "wǔ yuē ：「 chén yǐ wéi tài zi xíng chén yán ， zé yì shuǐ zhī běi ， yǒng wú qín yōu ， sì lín zhū hóu bì yǒu qiú wǒ zhě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子曰：「此引日缦缦，心不能须也！",
+        "pinyin": "」 tài zi yuē ：「 cǐ yǐn rì màn màn ， xīn bù néng xū yě ！",
+        "english": ""
+      },
+      {
+        "chinese": "」曲武曰：「臣为太子计熟矣。",
+        "pinyin": "」 qū wǔ yuē ：「 chén wèi tài zi jì shú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫有秦，疾不如徐，走不如坐。",
+        "pinyin": "fū yǒu qín ， jí bù rú xú ， zǒu bù rú zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "今合楚、赵，并韩、魏，虽引岁月，其事必成。",
+        "pinyin": "jīn hé chǔ 、 zhào ， bìng hán 、 wèi ， suī yǐn suì yuè ， qí shì bì chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "臣以为良。",
+        "pinyin": "chén yǐ wéi liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子睡卧不听。",
+        "pinyin": "」 tài zi shuì wò bù tīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "曲武曰：「臣不能为太子计。",
+        "pinyin": "qū wǔ yuē ：「 chén bù néng wèi tài zi jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "臣所知田光，其人深中有谋。",
+        "pinyin": "chén suǒ zhī tián guāng ， qí rén shēn zhōng yǒu móu 。",
+        "english": ""
+      },
+      {
+        "chinese": "愿令见太子。",
+        "pinyin": "yuàn lìng jiàn tài zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子曰：「敬诺！",
+        "pinyin": "」 tài zi yuē ：「 jìng nuò ！",
+        "english": ""
+      },
+      {
+        "chinese": "」\n燕丹子卷中\n田光见太子，太子侧阶而迎，迎而再拜。",
+        "pinyin": "」\n yàn dān zi juǎn zhōng \n tián guāng jiàn tài zi ， tài zi cè jiē ér yíng ， yíng ér zài bài 。",
+        "english": ""
+      },
+      {
+        "chinese": "坐定，太子丹曰：「傅不以蛮域而丹不肖，乃使先生来降弊邑。",
+        "pinyin": "zuò dìng ， tài zi dān yuē ：「 fù bù yǐ mán yù ér dān bù xiào ， nǎi shǐ xiān shēng lái jiàng bì yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "今燕国僻在北陲，比于蛮域，而先生不羞之。",
+        "pinyin": "jīn yàn guó pì zài běi chuí ， bǐ yú mán yù ， ér xiān shēng bù xiū zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹得侍左右，睹见玉颜，斯乃上世神灵保祐燕国，令先生设降辱焉。",
+        "pinyin": "dān dé shì zuǒ yòu ， dǔ jiàn yù yán ， sī nǎi shàng shì shén líng bǎo yòu yàn guó ， lìng xiān shēng shè jiàng rǔ yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」田光曰：「结发立身，以至于今，徒慕太子之高行，美太子之令名耳。",
+        "pinyin": "」 tián guāng yuē ：「 jié fà lì shēn ， yǐ zhì yú jīn ， tú mù tài zi zhī gāo xíng ， měi tài zi zhī lìng míng ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子将何以教之﹖」太子膝行而前，涕泪横流曰：「丹尝质于秦，秦遇丹无礼，日夜焦心，思欲复之。",
+        "pinyin": "tài zi jiāng hé yǐ jiào zhī ﹖」 tài zi xī xíng ér qián ， tì lèi héng liú yuē ：「 dān cháng zhì yú qín ， qín yù dān wú lǐ ， rì yè jiāo xīn ， sī yù fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "论众则秦多，计强则燕弱。",
+        "pinyin": "lùn zhòng zé qín duō ， jì qiáng zé yàn ruò 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲曰合从，心复不能。",
+        "pinyin": "yù yuē hé cóng ， xīn fù bù néng 。",
+        "english": ""
+      },
+      {
+        "chinese": "常食不识位，寝不安席。",
+        "pinyin": "cháng shí bù shí wèi ， qǐn bù ān xí 。",
+        "english": ""
+      },
+      {
+        "chinese": "纵令燕秦同日而亡，则为死灰复燃，白骨更生。",
+        "pinyin": "zòng lìng yàn qín tóng rì ér wáng ， zé wèi sǐ huī fù rán ， bái gǔ gēng shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "愿先生图之。",
+        "pinyin": "yuàn xiān shēng tú zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」田光曰：「此国事也，请得思之。",
+        "pinyin": "」 tián guāng yuē ：「 cǐ guó shì yě ， qǐng dé sī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」于是舍光上馆。",
+        "pinyin": "」 yú shì shě guāng shàng guǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子三时进食，存问不绝，如是三月。",
+        "pinyin": "tài zi sān shí jìn shí ， cún wèn bù jué ， rú shì sān yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子怪其无说，就光辟左右，问曰：「先生既垂哀恤，许惠嘉谋。",
+        "pinyin": "tài zi guài qí wú shuō ， jiù guāng pì zuǒ yòu ， wèn yuē ：「 xiān shēng jì chuí āi xù ， xǔ huì jiā móu 。",
+        "english": ""
+      },
+      {
+        "chinese": "侧身倾听，三月于斯，先生岂有意欤﹖」田光曰：「微太子言，固将竭之。",
+        "pinyin": "cè shēn qīng tīng ， sān yuè yú sī ， xiān shēng qǐ yǒu yì yú ﹖」 tián guāng yuē ：「 wēi tài zi yán ， gù jiāng jié zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "臣闻骐骥之少，力轻千里，及其罢朽，不能取道。",
+        "pinyin": "chén wén qí jì zhī shǎo ， lì qīng qiān lǐ ， jí qí bà xiǔ ， bù néng qǔ dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子闻臣时已老矣。",
+        "pinyin": "tài zi wén chén shí yǐ lǎo yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲为太子良谋，则太子不能；",
+        "pinyin": "yù wèi tài zi liáng móu ， zé tài zi bù néng ；",
+        "english": ""
+      },
+      {
+        "chinese": "欲奋筋力，则臣不能。",
+        "pinyin": "yù fèn jīn lì ， zé chén bù néng 。",
+        "english": ""
+      },
+      {
+        "chinese": "然窃观太子客，无可用者。",
+        "pinyin": "rán qiè guān tài zi kè ， wú kě yòng zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏扶，血勇之人，怒而面赤；",
+        "pinyin": "xià fú ， xuè yǒng zhī rén ， nù ér miàn chì ；",
+        "english": ""
+      },
+      {
+        "chinese": "宋意，脉勇之人，怒而面青；",
+        "pinyin": "sòng yì ， mài yǒng zhī rén ， nù ér miàn qīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "武阳，骨勇之人，怒而面白。",
+        "pinyin": "wǔ yáng ， gǔ yǒng zhī rén ， nù ér miàn bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "光所知荆轲，神勇之人，怒而色不变。",
+        "pinyin": "guāng suǒ zhī jīng kē ， shén yǒng zhī rén ， nù ér sè bù biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人博闻强记，体烈骨壮，不拘小节，欲立大功。",
+        "pinyin": "wéi rén bó wén qiáng jì ， tǐ liè gǔ zhuàng ， bù jū xiǎo jié ， yù lì dà gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "尝家于卫，脱贤大夫之急十有余人，其余庸庸不可称。",
+        "pinyin": "cháng jiā yú wèi ， tuō xián dà fū zhī jí shí yǒu yú rén ， qí yú yōng yōng bù kě chēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子欲图事，非此人莫可。",
+        "pinyin": "tài zi yù tú shì ， fēi cǐ rén mò kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子下席再拜曰：「若因先生之灵，得交于荆君，则燕国社稷长为不灭。",
+        "pinyin": "」 tài zi xià xí zài bài yuē ：「 ruò yīn xiān shēng zhī líng ， dé jiāo yú jīng jūn ， zé yàn guó shè jì zhǎng wèi bù miè 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯先生成之。",
+        "pinyin": "wéi xiān shēng chéng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」田光遂行。",
+        "pinyin": "」 tián guāng suì xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子自送，执光手曰：「此国事，愿勿泄之！",
+        "pinyin": "tài zi zì sòng ， zhí guāng shǒu yuē ：「 cǐ guó shì ， yuàn wù xiè zhī ！",
+        "english": ""
+      },
+      {
+        "chinese": "」光笑曰：「诺。",
+        "pinyin": "」 guāng xiào yuē ：「 nuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "」遂见荆轲，曰「光不自度不肖，达足下于太子。",
+        "pinyin": "」 suì jiàn jīng kē ， yuē 「 guāng bù zì dù bù xiào ， dá zú xià yú tài zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫燕太子，真天下之士也，倾心于足下，愿足下勿疑焉。",
+        "pinyin": "fū yàn tài zi ， zhēn tiān xià zhī shì yě ， qīng xīn yú zú xià ， yuàn zú xià wù yí yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」荆轲曰：「有鄙志，常谓心向意投身不顾，情有异一毛不拔。",
+        "pinyin": "」 jīng kē yuē ：「 yǒu bǐ zhì ， cháng wèi xīn xiàng yì tóu shēn bù gù ， qíng yǒu yì yī máo bù bá 。",
+        "english": ""
+      },
+      {
+        "chinese": "今先生令交于太子，敬诺不违。",
+        "pinyin": "jīn xiān shēng lìng jiāo yú tài zi ， jìng nuò bù wéi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」田光谓荆轲曰：「盖闻士不为人所疑。",
+        "pinyin": "」 tián guāng wèi jīng kē yuē ：「 gài wén shì bù wéi rén suǒ yí 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子送光之时，言此国事，愿勿泄，此疑光也。",
+        "pinyin": "tài zi sòng guāng zhī shí ， yán cǐ guó shì ， yuàn wù xiè ， cǐ yí guāng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是疑而生于世，光所羞也。",
+        "pinyin": "shì yí ér shēng yú shì ， guāng suǒ xiū yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」向轲吞舌而死。",
+        "pinyin": "」 xiàng kē tūn shé ér sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲遂之燕。",
+        "pinyin": "kē suì zhī yàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "燕丹子卷下\n荆轲之燕，太子自御，虚左，轲援绥不让。",
+        "pinyin": "yàn dān zi juǎn xià \n jīng kē zhī yàn ， tài zi zì yù ， xū zuǒ ， kē yuán suí bù ràng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自，坐定，宾客满坐，轲言曰：「田光褒扬太子仁爱之风，说太子不世之器，高行厉天，美声盈耳。",
+        "pinyin": "zì ， zuò dìng ， bīn kè mǎn zuò ， kē yán yuē ：「 tián guāng bāo yáng tài zi rén ài zhī fēng ， shuō tài zi bù shì zhī qì ， gāo xíng lì tiān ， měi shēng yíng ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲出卫都，望燕路，历险不以为勤，望远不以为遐。",
+        "pinyin": "kē chū wèi dōu ， wàng yàn lù ， lì xiǎn bù yǐ wéi qín ， wàng yuǎn bù yǐ wéi xiá 。",
+        "english": ""
+      },
+      {
+        "chinese": "今太子礼之以旧故之恩，接之以新人之敬，所以不复让者，士信于知己也。",
+        "pinyin": "jīn tài zi lǐ zhī yǐ jiù gù zhī ēn ， jiē zhī yǐ xīn rén zhī jìng ， suǒ yǐ bù fù ràng zhě ， shì xìn yú zhī jǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子曰：「田先生今无恙乎﹖」轲曰：「光临送轲之时，言太子戒以国事，耻以丈夫而不见信，向轲吞舌而死矣。",
+        "pinyin": "」 tài zi yuē ：「 tián xiān shēng jīn wú yàng hū ﹖」 kē yuē ：「 guāng lín sòng kē zhī shí ， yán tài zi jiè yǐ guó shì ， chǐ yǐ zhàng fū ér bú jiàn xìn ， xiàng kē tūn shé ér sǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子惊愕失色，歔欷饮泪曰：「丹所以戒先生，岂疑先生哉。",
+        "pinyin": "」 tài zi jīng è shī sè ， xū xī yǐn lèi yuē ：「 dān suǒ yǐ jiè xiān shēng ， qǐ yí xiān shēng zāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "今先生自杀，亦令丹自弃于世矣！",
+        "pinyin": "jīn xiān shēng zì shā ， yì lìng dān zì qì yú shì yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "」茫然良久，不怡民氏日太子置酒请轲，酒酣，太子起为寿。",
+        "pinyin": "」 máng rán liáng jiǔ ， bù yí mín shì rì tài zi zhì jiǔ qǐng kē ， jiǔ hān ， tài zi qǐ wèi shòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏扶前曰：「闻士无乡曲之誉，则未可与论行；",
+        "pinyin": "xià fú qián yuē ：「 wén shì wú xiāng qū zhī yù ， zé wèi kě yǔ lùn xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "马无服舆之伎，则未可与决良。",
+        "pinyin": "mǎ wú fú yú zhī jì ， zé wèi kě yǔ jué liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今荆君远至，将何以教太子﹖」欲微感之。",
+        "pinyin": "jīn jīng jūn yuǎn zhì ， jiāng hé yǐ jiào tài zi ﹖」 yù wēi gǎn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲曰：「士有超世之行者，不必合于乡曲；",
+        "pinyin": "kē yuē ：「 shì yǒu chāo shì zhī xíng zhě ， bù bì hé yú xiāng qū ；",
+        "english": ""
+      },
+      {
+        "chinese": "马有千里之相者，何必出于服舆。",
+        "pinyin": "mǎ yǒu qiān lǐ zhī xiāng zhě ， hé bì chū yú fú yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔吕望当屠钓之时，天下之贱丈夫也；",
+        "pinyin": "xī lǚ wàng dāng tú diào zhī shí ， tiān xià zhī jiàn zhàng fū yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "其遇文王，则为周师。",
+        "pinyin": "qí yù wén wáng ， zé wèi zhōu shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "骐骥之在盐车，驽之下也；",
+        "pinyin": "qí jì zhī zài yán chē ， nú zhī xià yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "及遇伯乐，则有千里之功。",
+        "pinyin": "jí yù bó lè ， zé yǒu qiān lǐ zhī gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "如此在乡曲而后发善，服舆而后别良哉！",
+        "pinyin": "rú cǐ zài xiāng qū ér hòu fā shàn ， fú yú ér hòu bié liáng zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "」夏扶问荆轲：「何以教太子﹖」轲曰：「将令燕继召公之迹，追甘棠之化，高欲令四三王，下欲令六五霸。",
+        "pinyin": "」 xià fú wèn jīng kē ：「 hé yǐ jiào tài zi ﹖」 kē yuē ：「 jiàng lìng yàn jì zhào gōng zhī jì ， zhuī gān táng zhī huà ， gāo yù lìng sì sān wáng ， xià yù lìng liù wǔ bà 。",
+        "english": ""
+      },
+      {
+        "chinese": "于君何如也﹖」坐皆称善。",
+        "pinyin": "yú jūn hé rú yě ﹖」 zuò jiē chēng shàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "竟酒，无能屈。",
+        "pinyin": "jìng jiǔ ， wú néng qū 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子甚喜，自以得轲，永无秦忧。",
+        "pinyin": "tài zi shèn xǐ ， zì yǐ dé kē ， yǒng wú qín yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "后日与轲之东宫，临池而观。",
+        "pinyin": "hòu rì yǔ kē zhī dōng gōng ， lín chí ér guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲拾瓦投龟，太子令人奉槃金。",
+        "pinyin": "kē shí wǎ tóu guī ， tài zi lìng rén fèng pán jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲用抵，抵尽复进。",
+        "pinyin": "kē yòng dǐ ， dǐ jǐn fù jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲曰：「非为太子爱金也，但臂痛耳。",
+        "pinyin": "kē yuē ：「 fēi wèi tài zi ài jīn yě ， dàn bì tòng ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」后复共乘千里马。",
+        "pinyin": "」 hòu fù gòng chéng qiān lǐ mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲曰：「闻千里马肝美。",
+        "pinyin": "kē yuē ：「 wén qiān lǐ mǎ gān měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子即杀马进肝。",
+        "pinyin": "」 tài zi jí shā mǎ jìn gān 。",
+        "english": ""
+      },
+      {
+        "chinese": "暨樊将军得罪于秦，秦求之急，乃来归太子。",
+        "pinyin": "jì fán jiāng jūn dé zuì yú qín ， qín qiú zhī jí ， nǎi lái guī tài zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子为置酒华阳之台。",
+        "pinyin": "tài zi wèi zhì jiǔ huá yáng zhī tái 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒中，太子出美人能琴者。",
+        "pinyin": "jiǔ zhōng ， tài zi chū měi rén néng qín zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲曰：「好手琴者！",
+        "pinyin": "kē yuē ：「 hǎo shǒu qín zhě ！",
+        "english": ""
+      },
+      {
+        "chinese": "」太子即进之。",
+        "pinyin": "」 tài zi jí jìn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲曰：「但爱其手耳。",
+        "pinyin": "kē yuē ：「 dàn ài qí shǒu ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子即断其手，盛以玉槃奉之。",
+        "pinyin": "」 tài zi jí duàn qí shǒu ， shèng yǐ yù pán fèng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子常与轲同案而食，同床而寝。",
+        "pinyin": "tài zi cháng yǔ kē tóng àn ér shí ， tóng chuáng ér qǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "后日，轲从容曰：「轲侍太子，三年于斯矣，而太子遇轲甚厚，黄金投龟，千里马肝，姬人好手，盛以玉槃。",
+        "pinyin": "hòu rì ， kē cóng róng yuē ：「 kē shì tài zi ， sān nián yú sī yǐ ， ér tài zi yù kē shèn hòu ， huáng jīn tóu guī ， qiān lǐ mǎ gān ， jī rén hǎo shǒu ， shèng yǐ yù pán 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡庸人当之，犹尚乐出尺寸之长，当犬马之用。",
+        "pinyin": "fán yōng rén dāng zhī ， yóu shàng lè chū chǐ cùn zhī zhǎng ， dāng quǎn mǎ zhī yòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今轲常侍君子之侧，闻烈士之节，死有重于太山，有轻于鸿毛者，但问用之所在耳。",
+        "pinyin": "jīn kē cháng shì jūn zǐ zhī cè ， wén liè shì zhī jié ， sǐ yǒu zhòng yú tài shān ， yǒu qīng yú hóng máo zhě ， dàn wèn yòng zhī suǒ zài ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子幸教之。",
+        "pinyin": "tài zi xìng jiào zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子敛袂，正色而言曰：「丹尝游秦，秦遇丹不道，丹耻与俱生。",
+        "pinyin": "」 tài zi liǎn mèi ， zhèng sè ér yán yuē ：「 dān cháng yóu qín ， qín yù dān bù dào ， dān chǐ yǔ jù shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今荆君不以丹不肖，降辱小国。",
+        "pinyin": "jīn jīng jūn bù yǐ dān bù xiào ， jiàng rǔ xiǎo guó 。",
+        "english": ""
+      },
+      {
+        "chinese": "今丹以社稷干长者，不知所谓。",
+        "pinyin": "jīn dān yǐ shè jì gàn zhǎng zhě ， bù zhī suǒ wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」轲曰：「今天下彊国莫彊于秦。",
+        "pinyin": "」 kē yuē ：「 jīn tiān xià jiàng guó mò jiàng yú qín 。",
+        "english": ""
+      },
+      {
+        "chinese": "今太子力不能威诸侯，诸侯未肯为太子用也。",
+        "pinyin": "jīn tài zi lì bù néng wēi zhū hóu ， zhū hóu wèi kěn wèi tài zi yòng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子率燕国之众而当之，犹使羊将狼，使狼追虎耳。",
+        "pinyin": "tài zi lǜ yàn guó zhī zhòng ér dāng zhī ， yóu shǐ yáng jiàng láng ， shǐ láng zhuī hǔ ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子曰：「丹之忧计久，不知安出﹖」轲曰：「樊於期得罪于秦，秦求之急。",
+        "pinyin": "」 tài zi yuē ：「 dān zhī yōu jì jiǔ ， bù zhī ān chū ﹖」 kē yuē ：「 fán yú qī dé zuì yú qín ， qín qiú zhī jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "又督亢之地，秦所贪也。",
+        "pinyin": "yòu dū kàng zhī dì ， qín suǒ tān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今得樊於期首、督亢地图，则事可成也。",
+        "pinyin": "jīn dé fán yú qī shǒu 、 dū kàng dì tú ， zé shì kě chéng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」太子曰：「若事可成，举燕国而献之，丹甘心焉。",
+        "pinyin": "」 tài zi yuē ：「 ruò shì kě chéng ， jǔ yàn guó ér xiàn zhī ， dān gān xīn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "樊将军以穷归我，而丹卖之，心不忍也。",
+        "pinyin": "fán jiāng jūn yǐ qióng guī wǒ ， ér dān mài zhī ， xīn bù rěn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」轲默然不应。",
+        "pinyin": "」 kē mò rán bù yīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "居五月，太子恐轲悔，见轲曰：「今秦已破赵国，兵临燕，事已迫急。",
+        "pinyin": "jū wǔ yuè ， tài zi kǒng kē huǐ ， jiàn kē yuē ：「 jīn qín yǐ pò zhào guó ， bīng lín yàn ， shì yǐ pò jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽欲足下计，安施之﹖今欲先遣武阳，何如﹖」轲怒曰：「何太子所遣，往而不返者，竖子也！",
+        "pinyin": "suī yù zú xià jì ， ān shī zhī ﹖ jīn yù xiān qiǎn wǔ yáng ， hé rú ﹖」 kē nù yuē ：「 hé tài zi suǒ qiǎn ， wǎng ér bù fǎn zhě ， shù zi yě ！",
+        "english": ""
+      },
+      {
+        "chinese": "轲所以未行者，待吾客耳。",
+        "pinyin": "kē suǒ yǐ wèi xíng zhě ， dài wú kè ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」于是轲潜见樊於期曰：「闻将军得罪于秦，父母妻子皆见焚烧，求将军邑万户、金千斤。",
+        "pinyin": "」 yú shì kē qián jiàn fán yú qī yuē ：「 wén jiāng jūn dé zuì yú qín ， fù mǔ qī zǐ jiē jiàn fén shāo ， qiú jiāng jūn yì wàn hù 、 jīn qiān jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲为将军痛之。",
+        "pinyin": "kē wèi jiāng jūn tòng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "今有一言，除将军之辱，解燕国之耻，将军岂有意乎﹖」于期曰：「常念之，日夜饮泪，不知所出。",
+        "pinyin": "jīn yǒu yī yán ， chú jiāng jūn zhī rǔ ， jiě yàn guó zhī chǐ ， jiāng jūn qǐ yǒu yì hū ﹖」 yú qī yuē ：「 cháng niàn zhī ， rì yè yǐn lèi ， bù zhī suǒ chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "荆君幸教，愿闻命矣！",
+        "pinyin": "jīng jūn xìng jiào ， yuàn wén mìng yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "」轲曰：「今愿得将军之首，与燕督亢地图进之，秦王必喜。",
+        "pinyin": "」 kē yuē ：「 jīn yuàn dé jiāng jūn zhī shǒu ， yǔ yàn dū kàng dì tú jìn zhī ， qín wáng bì xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "喜必见轲，轲因左手把其袖，右手椹其胸，数以负燕之罪，责以将军之雠。",
+        "pinyin": "xǐ bì jiàn kē ， kē yīn zuǒ shǒu bǎ qí xiù ， yòu shǒu shèn qí xiōng ， shù yǐ fù yàn zhī zuì ， zé yǐ jiāng jūn zhī chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "而燕国见陵雪，将军积忿之怒除矣。",
+        "pinyin": "ér yàn guó jiàn líng xuě ， jiāng jūn jī fèn zhī nù chú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」于期起，扼腕执刀曰：「是于期日夜所欲，而今闻命矣！",
+        "pinyin": "」 yú qī qǐ ， è wàn zhí dāo yuē ：「 shì yú qī rì yè suǒ yù ， ér jīn wén mìng yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "」于是自刭，头坠背后，两目不瞑。",
+        "pinyin": "」 yú shì zì jǐng ， tóu zhuì bèi hòu ， liǎng mù bù míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "太子闻之，自驾驰往，伏于期尸而哭，悲不自胜。",
+        "pinyin": "tài zi wén zhī ， zì jià chí wǎng ， fú yú qī shī ér kū ， bēi bù zì shèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "良久，无奈何，遂函盛于期首与燕督亢地图以献秦，武阳为副。",
+        "pinyin": "liáng jiǔ ， wú nài hé ， suì hán shèng yú qī shǒu yǔ yàn dū kàng dì tú yǐ xiàn qín ， wǔ yáng wèi fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "荆轲入秦，不择日而发，太子与知谋者皆素衣冠送之，于易水之上。",
+        "pinyin": "jīng kē rù qín ， bù zé rì ér fā ， tài zi yǔ zhī móu zhě jiē sù yī guān sòng zhī ， yú yì shuǐ zhī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "荆轲起为寿，歌曰：「风萧萧兮易水寒，壮士一去兮不复还。",
+        "pinyin": "jīng kē qǐ wèi shòu ， gē yuē ：「 fēng xiāo xiāo xī yì shuǐ hán ， zhuàng shì yī qù xī bù fù hái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」高渐离击筑，宋意和之。",
+        "pinyin": "」 gāo jiàn lí jī zhù ， sòng yì hé zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "为壮声则发怒冲冠，为哀声则士皆流涕。",
+        "pinyin": "wèi zhuàng shēng zé fà nù chōng guān ， wèi āi shēng zé shì jiē liú tì 。",
+        "english": ""
+      },
+      {
+        "chinese": "二人皆升车，终已不顾也。",
+        "pinyin": "èr rén jiē shēng chē ， zhōng yǐ bù gù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "二子行过，夏扶当车前刎颈以送。",
+        "pinyin": "èr zi xíng guò ， xià fú dāng chē qián wěn jǐng yǐ sòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "二子行过阳翟，轲买肉争轻重，屠者辱之，武阳欲击，轲止之。",
+        "pinyin": "èr zi xíng guò yáng dí ， kē mǎi ròu zhēng qīng zhòng ， tú zhě rǔ zhī ， wǔ yáng yù jī ， kē zhǐ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "西入秦，至咸阳，因中庶子蒙白曰：「燕太子丹畏大王之威，今奉樊於期首与督亢地图，愿为北蕃臣妾。",
+        "pinyin": "xī rù qín ， zhì xián yáng ， yīn zhōng shù zi méng bái yuē ：「 yàn tài zi dān wèi dà wáng zhī wēi ， jīn fèng fán yú qī shǒu yǔ dū kàng dì tú ， yuàn wèi běi fān chén qiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "」秦王喜。",
+        "pinyin": "」 qín wáng xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "百官陪位，陛戟数百，见燕使者。",
+        "pinyin": "bǎi guān péi wèi ， bì jǐ shù bǎi ， jiàn yàn shǐ zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲奉于期首，武阳奉地图。",
+        "pinyin": "kē fèng yú qī shǒu ， wǔ yáng fèng dì tú 。",
+        "english": ""
+      },
+      {
+        "chinese": "钟鼓并发，群臣皆呼万岁。",
+        "pinyin": "zhōng gǔ bìng fā ， qún chén jiē hū wàn suì 。",
+        "english": ""
+      },
+      {
+        "chinese": "武阳大恐，两足不能相过，面如死灰色。",
+        "pinyin": "wǔ yáng dà kǒng ， liǎng zú bù néng xiāng guò ， miàn rú sǐ huī sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦王怪之。",
+        "pinyin": "qín wáng guài zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲顾武阳前，谢曰：「北蕃蛮夷之鄙人，未见天子。",
+        "pinyin": "kē gù wǔ yáng qián ， xiè yuē ：「 běi fān mán yí zhī bǐ rén ， wèi jiàn tiān zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "愿陛下少假借之，使得毕事于前。",
+        "pinyin": "yuàn bì xià shǎo jiǎ jiè zhī ， shǐ de bì shì yú qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "」秦王曰：「轲起，督亢图进之。",
+        "pinyin": "」 qín wáng yuē ：「 kē qǐ ， dū kàng tú jìn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」秦王发图，图穷而匕首出。",
+        "pinyin": "」 qín wáng fā tú ， tú qióng ér bǐ shǒu chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲左手把秦王袖，右手椹其胸，数之曰：「足下负燕日久，贪暴海内，不知厌足。",
+        "pinyin": "kē zuǒ shǒu bǎ qín wáng xiù ， yòu shǒu shèn qí xiōng ， shù zhī yuē ：「 zú xià fù yàn rì jiǔ ， tān bào hǎi nèi ， bù zhī yàn zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "于期无罪而夷其族。",
+        "pinyin": "yú qī wú zuì ér yí qí zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲将海内报雠。",
+        "pinyin": "kē jiāng hǎi nèi bào chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "今燕王母病，与轲促期，从吾计则生，不从则死。",
+        "pinyin": "jīn yàn wáng mǔ bìng ， yǔ kē cù qī ， cóng wú jì zé shēng ， bù cóng zé sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」秦王曰：「今日之事，从子计耳！",
+        "pinyin": "」 qín wáng yuē ：「 jīn rì zhī shì ， cóng zi jì ěr ！",
+        "english": ""
+      },
+      {
+        "chinese": "乞听琴声而死。",
+        "pinyin": "qǐ tīng qín shēng ér sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」召姬人鼓琴，琴声曰：「罗縠单衣，可掣而绝。",
+        "pinyin": "」 zhào jī rén gǔ qín ， qín shēng yuē ：「 luó hú dān yī ， kě chè ér jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "八尺屏风，可超而越。",
+        "pinyin": "bā chǐ píng fēng ， kě chāo ér yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "鹿卢之剑，可负而拔。",
+        "pinyin": "lù lú zhī jiàn ， kě fù ér bá 。",
+        "english": ""
+      },
+      {
+        "chinese": "」轲不解音。",
+        "pinyin": "」 kē bù jiě yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦王从琴声负剑拔之，于是奋袖超屏风而走，轲拔匕首擿之，决秦王，耳入铜柱，火出。",
+        "pinyin": "qín wáng cóng qín shēng fù jiàn bá zhī ， yú shì fèn xiù chāo píng fēng ér zǒu ， kē bá bǐ shǒu tī zhī ， jué qín wáng ， ěr rù tóng zhù ， huǒ chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "秦王还断轲两手。",
+        "pinyin": "qín wáng hái duàn kē liǎng shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "轲因倚柱而笑，箕踞而骂，曰：「吾坐轻易，为竖子所欺。",
+        "pinyin": "kē yīn yǐ zhù ér xiào ， jī jù ér mà ， yuē ：「 wú zuò qīng yì ， wèi shù zi suǒ qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "燕国之不报，我事之不立哉！",
+        "pinyin": "yàn guó zhī bù bào ， wǒ shì zhī bù lì zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "」",
+        "pinyin": "」",
+        "english": ""
+      }
+    ]
+  }
+]

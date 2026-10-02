@@ -1,0 +1,1801 @@
+[
+  {
+    "id": "the_classic_of_tea_ch_1",
+    "bookId": "the_classic_of_tea",
+    "chapterIndex": 1,
+    "title": "茶经",
+    "titleEn": "Chapter 1: 茶经",
+    "sentences": [
+      {
+        "chinese": "茶者，南方之嘉木也，一尺二尺，乃至数十尺。",
+        "pinyin": "chá zhě ， nán fāng zhī jiā mù yě ， yī chǐ èr chǐ ， nǎi zhì shù shí chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其巴山峡川有两人合抱者，伐而掇之，其树如瓜芦，叶如栀子，花如白蔷薇，实如栟榈，叶如丁香，根如胡桃。",
+        "pinyin": "qí bā shān xiá chuān yǒu liǎng rén hé bào zhě ， fá ér duō zhī ， qí shù rú guā lú ， yè rú zhī zi ， huā rú bái qiáng wēi ， shí rú bēn lǘ ， yè rú dīng xiāng ， gēn rú hú táo 。",
+        "english": ""
+      },
+      {
+        "chinese": "其字或从草，或从木，或草木并。",
+        "pinyin": "qí zì huò cóng cǎo ， huò cóng mù ， huò cǎo mù bìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其名一曰茶，二曰槚，三曰<艸设>，四曰茗，五曰荈。",
+        "pinyin": "qí míng yī yuē chá ， èr yuē jiǎ ， sān yuē < cǎo shè >， sì yuē míng ， wǔ yuē chuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "其地：上者生烂石，中者生栎壤，下者生黄土。",
+        "pinyin": "qí dì ： shàng zhě shēng làn shí ， zhōng zhě shēng lì rǎng ， xià zhě shēng huáng tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡艺而不实，植而罕茂，法如种瓜，三岁可采。",
+        "pinyin": "fán yì ér bù shí ， zhí ér hǎn mào ， fǎ rú zhǒng guā ， sān suì kě cǎi 。",
+        "english": ""
+      },
+      {
+        "chinese": "野者上，园者次；",
+        "pinyin": "yě zhě shàng ， yuán zhě cì ；",
+        "english": ""
+      },
+      {
+        "chinese": "阳崖阴林紫者上，绿者次；",
+        "pinyin": "yáng yá yīn lín zǐ zhě shàng ， lǜ zhě cì ；",
+        "english": ""
+      },
+      {
+        "chinese": "笋者上，牙者次；",
+        "pinyin": "sǔn zhě shàng ， yá zhě cì ；",
+        "english": ""
+      },
+      {
+        "chinese": "叶卷上，叶舒次。",
+        "pinyin": "yè juǎn shàng ， yè shū cì 。",
+        "english": ""
+      },
+      {
+        "chinese": "阴山坡谷者不堪采掇，性凝滞，结瘕疾。",
+        "pinyin": "yīn shān pō gǔ zhě bù kān cǎi duō ， xìng níng zhì ， jié jiǎ jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶之用，味至寒，饮最宜精行俭德之人，若热渴、凝闷、脑疼、目涩、四支烦、百节不舒，聊四五啜，与醍醐、甘露抗衡也。",
+        "pinyin": "chá zhī yòng ， wèi zhì hán ， yǐn zuì yí jīng xíng jiǎn dé zhī rén ， ruò rè kě 、 níng mèn 、 nǎo téng 、 mù sè 、 sì zhī fán 、 bǎi jié bù shū ， liáo sì wǔ chuài ， yǔ tí hú 、 gān lù kàng héng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "采不时，造不精，杂以卉，莽饮之成疾，茶累也。",
+        "pinyin": "cǎi bù shí ， zào bù jīng ， zá yǐ huì ， mǎng yǐn zhī chéng jí ， chá lèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "亦犹人参，上者生上党，中者生百济、新罗，下者生高丽。",
+        "pinyin": "yì yóu rén shēn ， shàng zhě shēng shàng dǎng ， zhōng zhě shēng bǎi jì 、 xīn luó ， xià zhě shēng gāo lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "有生泽州、易州、幽州、檀州者，药无效，况非此者！",
+        "pinyin": "yǒu shēng zé zhōu 、 yì zhōu 、 yōu zhōu 、 tán zhōu zhě ， yào wú xiào ， kuàng fēi cǐ zhě ！",
+        "english": ""
+      },
+      {
+        "chinese": "设服荠<艸尼>，使六疾不瘳。",
+        "pinyin": "shè fú jì < cǎo ní >， shǐ liù jí bù chōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "知人参累，则茶累尽矣。",
+        "pinyin": "zhī rén cān lèi ， zé chá lèi jǐn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "二之具，一曰篮，一曰笼，一曰筥。",
+        "pinyin": "èr zhī jù ， yī yuē lán ， yī yuē lóng ， yī yuē jǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "以竹织之，受五升，或一斗、二斗、三斗者，茶人负以采茶也。",
+        "pinyin": "yǐ zhú zhī zhī ， shòu wǔ shēng ， huò yī dòu 、 èr dòu 、 sān dòu zhě ， chá rén fù yǐ cǎi chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "无用<穴犮>者，釜用唇口者。",
+        "pinyin": "wú yòng < xué bá > zhě ， fǔ yòng chún kǒu zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "甑，或木或瓦，匪腰而泥，篮以箪之，篾以系之。",
+        "pinyin": "zèng ， huò mù huò wǎ ， fěi yāo ér ní ， lán yǐ dān zhī ， miè yǐ xì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "始其蒸也，入乎箪，既其熟也，出乎箪。",
+        "pinyin": "shǐ qí zhēng yě ， rù hū dān ， jì qí shú yě ， chū hū dān 。",
+        "english": ""
+      },
+      {
+        "chinese": "釜涸注于甑中，又以谷木枝三亚者制之，散所蒸牙笋并叶，畏流其膏。",
+        "pinyin": "fǔ hé zhù yú zèng zhōng ， yòu yǐ gǔ mù zhī sān yà zhě zhì zhī ， sàn suǒ zhēng yá sǔn bìng yè ， wèi liú qí gāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "杵臼，一曰碓，惟琤峈怢峞C规，一曰模，一曰棬。",
+        "pinyin": "chǔ jiù ， yī yuē duì ， wéi chēng luò tū wéi C guī ， yī yuē mó ， yī yuē quān 。",
+        "english": ""
+      },
+      {
+        "chinese": "以铁制之，或圆或方或花。",
+        "pinyin": "yǐ tiě zhì zhī ， huò yuán huò fāng huò huā 。",
+        "english": ""
+      },
+      {
+        "chinese": "承，一曰台，一曰砧。",
+        "pinyin": "chéng ， yī yuē tái ， yī yuē zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "以石之，不然以槐、桑木半埋地中，遣无所摇动。",
+        "pinyin": "yǐ shí zhī ， bù rán yǐ huái 、 sāng mù bàn mái dì zhōng ， qiǎn wú suǒ yáo dòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "簷，一曰衣。",
+        "pinyin": "yán ， yī yuē yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "以油绢或雨衫单服败者之，以簷置承上，又以规置簷上，以造茶也。",
+        "pinyin": "yǐ yóu juàn huò yǔ shān dān fú bài zhě zhī ， yǐ yán zhì chéng shàng ， yòu yǐ guī zhì yán shàng ， yǐ zào chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶成，举而易之。",
+        "pinyin": "chá chéng ， jǔ ér yì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "芘莉，一曰羸子，一曰<}旁>筤。",
+        "pinyin": "pí lì ， yī yuē léi zi ， yī yuē <} páng > láng 。",
+        "english": ""
+      },
+      {
+        "chinese": "以二小竹长三赤，躯二赤五寸，柄五寸，以篾织，方眼如圃，人土罗阔二赤，以列茶也。",
+        "pinyin": "yǐ èr xiǎo zhú zhǎng sān chì ， qū èr chì wǔ cùn ， bǐng wǔ cùn ， yǐ miè zhī ， fāng yǎn rú pǔ ， rén tǔ luó kuò èr chì ， yǐ liè chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "棨，一曰锥刀，柄以坚木之，用穿茶也。",
+        "pinyin": "qǐ ， yī yuē zhuī dāo ， bǐng yǐ jiān mù zhī ， yòng chuān chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "扑，一曰鞭。",
+        "pinyin": "pū ， yī yuē biān 。",
+        "english": ""
+      },
+      {
+        "chinese": "以竹之，穿茶以解茶也。",
+        "pinyin": "yǐ zhú zhī ， chuān chá yǐ jiě chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "焙，凿地深二尺，阔二尺五寸，长一丈，上作短墙，高二尺，泥之。",
+        "pinyin": "bèi ， záo dì shēn èr chǐ ， kuò èr chǐ wǔ cùn ， zhǎng yī zhàng ， shàng zuò duǎn qiáng ， gāo èr chǐ ， ní zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "贯，削竹之，长二尺五寸，以贯茶焙之。",
+        "pinyin": "guàn ， xuē zhú zhī ， zhǎng èr chǐ wǔ cùn ， yǐ guàn chá bèi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "棚，一曰栈，以木构于焙上，编木两层，高一尺，以焙茶也。",
+        "pinyin": "péng ， yī yuē zhàn ， yǐ mù gòu yú bèi shàng ， biān mù liǎng céng ， gāo yī chǐ ， yǐ bèi chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶之半干升下棚，全干升上棚。",
+        "pinyin": "chá zhī bàn gàn shēng xià péng ， quán gàn shēng shàng péng 。",
+        "english": ""
+      },
+      {
+        "chinese": "穿，江东淮南剖竹之，巴川峡山纫谷皮之。",
+        "pinyin": "chuān ， jiāng dōng huái nán pōu zhú zhī ， bā chuān xiá shān rèn gǔ pí zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "江东以一斤上穿，半斤中穿，四两五两小穿。",
+        "pinyin": "jiāng dōng yǐ yī jīn shàng chuān ， bàn jīn zhōng chuān ， sì liǎng wǔ liǎng xiǎo chuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "峡中以一百二十斤上，八十斤中穿，五十斤小穿。",
+        "pinyin": "xiá zhōng yǐ yì bǎi èr shí jīn shàng ， bā shí jīn zhōng chuān ， wǔ shí jīn xiǎo chuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "字旧作钗钏之“钏”，字或作贯串，今则不然。",
+        "pinyin": "zì jiù zuò chāi chuàn zhī “ chuàn ”， zì huò zuò guàn chuàn ， jīn zé bù rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "如磨、扇、弹、钻、缝五字，文以平声书之，义以去声呼之，其字以穿名之。",
+        "pinyin": "rú mó 、 shàn 、 dàn 、 zuān 、 fèng wǔ zì ， wén yǐ píng shēng shū zhī ， yì yǐ qù shēng hū zhī ， qí zì yǐ chuān míng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "育，以木制之，以竹编之，以纸糊之，中有隔，上有覆，下有床，傍有门，掩一扇，中置一器，贮煻煨火，令然，江南梅雨时焚之以火。",
+        "pinyin": "yù ， yǐ mù zhì zhī ， yǐ zhú biān zhī ， yǐ zhǐ hú zhī ， zhōng yǒu gé ， shàng yǒu fù ， xià yǒu chuáng ， bàng yǒu mén ， yǎn yī shàn ， zhōng zhì yī qì ， zhù táng wēi huǒ ， lìng rán ， jiāng nán méi yǔ shí fén zhī yǐ huǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "三之造凡采茶，在二月三月四月之间。",
+        "pinyin": "sān zhī zào fán cǎi chá ， zài èr yuè sān yuè sì yuè zhī jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶之笋者生烂石沃土，长四五寸，若薇蕨始抽，凌露采焉。",
+        "pinyin": "chá zhī sǔn zhě shēng làn shí wò tǔ ， zhǎng sì wǔ cùn ， ruò wēi jué shǐ chōu ， líng lù cǎi yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶之牙者，发于丛薄之上，有三枝四枝五枝者，选其中枝颖拔者采焉，其日有雨不采，晴有云不采。",
+        "pinyin": "chá zhī yá zhě ， fā yú cóng báo zhī shàng ， yǒu sān zhī sì zhī wǔ zhī zhě ， xuǎn qí zhōng zhī yǐng bá zhě cǎi yān ， qí rì yǒu yǔ bù cǎi ， qíng yǒu yún bù cǎi 。",
+        "english": ""
+      },
+      {
+        "chinese": "晴采之，蒸之，捣之，拍之，焙之，穿之，封之，茶之干矣。",
+        "pinyin": "qíng cǎi zhī ， zhēng zhī ， dǎo zhī ， pāi zhī ， bèi zhī ， chuān zhī ， fēng zhī ， chá zhī gàn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶有千万状，卤莽而言，如胡人靴者蹙缩然，犎牛臆者廉簷然，浮云出山者轮菌然，轻拂水者涵澹然。",
+        "pinyin": "chá yǒu qiān wàn zhuàng ， lǔ mǎng ér yán ， rú hú rén xuē zhě cù suō rán ， fēng niú yì zhě lián yán rán ， fú yún chū shān zhě lún jūn rán ， qīng fú shuǐ zhě hán dàn rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "有如陶家之子罗，膏土以水澄泚之。",
+        "pinyin": "yǒu rú táo jiā zhī zi luó ， gāo tǔ yǐ shuǐ chéng cǐ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "又如新治地者，遇暴雨流潦之所经，此皆茶之精腴。",
+        "pinyin": "yòu rú xīn zhì dì zhě ， yù bào yǔ liú lǎo zhī suǒ jīng ， cǐ jiē chá zhī jīng yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "有如竹箨者，枝干坚实，艰于蒸捣，故其形<}丽>簁然；",
+        "pinyin": "yǒu rú zhú tuò zhě ， zhī gàn jiān shí ， jiān yú zhēng dǎo ， gù qí xíng <} lì > shāi rán ；",
+        "english": ""
+      },
+      {
+        "chinese": "有如霜荷者，至叶凋，沮易其状貌，故厥状委萃然，此皆茶之瘠老者也。",
+        "pinyin": "yǒu rú shuāng hé zhě ， zhì yè diāo ， jǔ yì qí zhuàng mào ， gù jué zhuàng wěi cuì rán ， cǐ jiē chá zhī jí lǎo zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "自采至于封七经目，自胡靴至于霜荷八等，或以光黑平正，言嘉者，斯鉴之下也；",
+        "pinyin": "zì cǎi zhì yú fēng qī jīng mù ， zì hú xuē zhì yú shuāng hé bā děng ， huò yǐ guāng hēi píng zhèng ， yán jiā zhě ， sī jiàn zhī xià yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "以皱黄坳垤言佳者；",
+        "pinyin": "yǐ zhòu huáng ào dié yán jiā zhě ；",
+        "english": ""
+      },
+      {
+        "chinese": "鉴之次也。",
+        "pinyin": "jiàn zhī cì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若皆言嘉及皆言不嘉者，鉴之上也。",
+        "pinyin": "ruò jiē yán jiā jí jiē yán bù jiā zhě ， jiàn zhī shàng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "何者？",
+        "pinyin": "hé zhě ？",
+        "english": ""
+      },
+      {
+        "chinese": "出膏者光，含膏者皱，宿制者则黑，日成者则黄，蒸压则平正，纵之则坳垤，此茶与草木叶一也，茶之否臧，存于口诀。",
+        "pinyin": "chū gāo zhě guāng ， hán gāo zhě zhòu ， sù zhì zhě zé hēi ， rì chéng zhě zé huáng ， zhēng yā zé píng zhèng ， zòng zhī zé ào dié ， cǐ chá yǔ cǎo mù yè yī yě ， chá zhī fǒu zāng ， cún yú kǒu jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "四之器风炉：风炉以铜铁铸之，如古鼎形，厚三分，缘阔九分，令六分虚中，致其圬墁，凡三足。",
+        "pinyin": "sì zhī qì fēng lú ： fēng lú yǐ tóng tiě zhù zhī ， rú gǔ dǐng xíng ， hòu sān fēn ， yuán kuò jiǔ fēn ， lìng liù fēn xū zhōng ， zhì qí wū màn ， fán sān zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "古文书二十一字，一足云“坎上巽下离于中”，一足云“体均五行去百疾”，一足云“圣唐灭胡明年铸”。",
+        "pinyin": "gǔ wén shū èr shí yī zì ， yī zú yún “ kǎn shàng xùn xià lí yú zhōng ”， yī zú yún “ tǐ jūn wǔ xíng qù bǎi jí ”， yī zú yún “ shèng táng miè hú míng nián zhù ”。",
+        "english": ""
+      },
+      {
+        "chinese": "其三足之间设三窗，底一窗，以通漏烬之所，上并古文书六字：一窗之上书“伊公”二字，一窗之上书“羹陆”二字，一窗之上书“氏茶”二字，所谓“伊公羹陆氏茶”也。",
+        "pinyin": "qí sān zú zhī jiān shè sān chuāng ， dǐ yī chuāng ， yǐ tōng lòu jìn zhī suǒ ， shàng bìng gǔ wén shū liù zì ： yī chuāng zhī shàng shū “ yī gōng ” èr zì ， yī chuāng zhī shàng shū “ gēng lù ” èr zì ， yī chuāng zhī shàng shū “ shì chá ” èr zì ， suǒ wèi “ yī gōng gēng lù shì chá ” yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "置墆粟憍颡鉹满A设三格：其一格有翟焉，翟者，火禽也，画一卦曰离；",
+        "pinyin": "zhì zhì sù jiāo sǎng chǐ mǎn A shè sān gé ： qí yī gé yǒu dí yān ， dí zhě ， huǒ qín yě ， huà yī guà yuē lí ；",
+        "english": ""
+      },
+      {
+        "chinese": "其一格有彪焉，彪者，风兽也，画一卦曰巽；",
+        "pinyin": "qí yī gé yǒu biāo yān ， biāo zhě ， fēng shòu yě ， huà yī guà yuē xùn ；",
+        "english": ""
+      },
+      {
+        "chinese": "其一格有鱼焉，鱼者，水虫也，画一卦曰坎。",
+        "pinyin": "qí yī gé yǒu yú yān ， yú zhě ， shuǐ chóng yě ， huà yī guà yuē kǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "巽主风，离主火，坎主水。",
+        "pinyin": "xùn zhǔ fēng ， lí zhǔ huǒ ， kǎn zhǔ shuǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "风能兴火，火能熟水，故备其三卦焉。",
+        "pinyin": "fēng néng xīng huǒ ， huǒ néng shú shuǐ ， gù bèi qí sān guà yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "其饰以连葩、垂蔓、曲水、方文之类。",
+        "pinyin": "qí shì yǐ lián pā 、 chuí màn 、 qǔ shuǐ 、 fāng wén zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "其炉或锻铁之，或运泥之，其灰承作三足，铁柈台之。",
+        "pinyin": "qí lú huò duàn tiě zhī ， huò yùn ní zhī ， qí huī chéng zuò sān zú ， tiě bàn tái zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "筥：筥以竹织之，高一尺二寸，径阔七寸，或用藤作，木楦，如筥形，织之六出，固眼其底，盖若利箧口铄之。",
+        "pinyin": "jǔ ： jǔ yǐ zhú zhī zhī ， gāo yī chǐ èr cùn ， jìng kuò qī cùn ， huò yòng téng zuò ， mù xuàn ， rú jǔ xíng ， zhī zhī liù chū ， gù yǎn qí dǐ ， gài ruò lì qiè kǒu shuò zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "炭挝：炭挝以铁六棱制之，长一尺，锐一丰，中执细头，系一小展，以饰挝也。",
+        "pinyin": "tàn wō ： tàn wō yǐ tiě liù léng zhì zhī ， zhǎng yī chǐ ， ruì yī fēng ， zhōng zhí xì tóu ， xì yī xiǎo zhǎn ， yǐ shì wō yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若今之河陇军人木吾也，或作锤，或作斧，随其便也。",
+        "pinyin": "ruò jīn zhī hé lǒng jūn rén mù wú yě ， huò zuò chuí ， huò zuò fǔ ， suí qí biàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "火䇲：火䇲一名箸，若常用者圆直一尺三寸，顶平截，无葱台勾锁之属，以铁或熟铜制之。",
+        "pinyin": "huǒ cè ： huǒ cè yī míng zhù ， ruò cháng yòng zhě yuán zhí yī chǐ sān cùn ， dǐng píng jié ， wú cōng tái gōu suǒ zhī shǔ ， yǐ tiě huò shú tóng zhì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "鍑：鍑以生铁之，今人有业冶者所谓急铁。",
+        "pinyin": "fù ： fù yǐ shēng tiě zhī ， jīn rén yǒu yè yě zhě suǒ wèi jí tiě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其铁以耕刀之趄炼而铸之，内摸土而外摸沙土。",
+        "pinyin": "qí tiě yǐ gēng dāo zhī jū liàn ér zhù zhī ， nèi mō tǔ ér wài mō shā tǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "滑于内，易其摩涤；",
+        "pinyin": "huá yú nèi ， yì qí mó dí ；",
+        "english": ""
+      },
+      {
+        "chinese": "沙涩于外，吸其炎焰。",
+        "pinyin": "shā sè yú wài ， xī qí yán yàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "方其耳，以正令也；",
+        "pinyin": "fāng qí ěr ， yǐ zhèng lìng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "广其缘，以务远也；",
+        "pinyin": "guǎng qí yuán ， yǐ wù yuǎn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "长其脐，以守中也。",
+        "pinyin": "zhǎng qí qí ， yǐ shǒu zhōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "脐长则沸中，沸中则末易扬，末易扬则其味淳也。",
+        "pinyin": "qí zhǎng zé fèi zhōng ， fèi zhōng zé mò yì yáng ， mò yì yáng zé qí wèi chún yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "洪州以瓷之，莱州以石之，瓷与石皆雅器也，性非坚实，难可持久。",
+        "pinyin": "hóng zhōu yǐ cí zhī ， lái zhōu yǐ shí zhī ， cí yǔ shí jiē yǎ qì yě ， xìng fēi jiān shí ， nán kě chí jiǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "用银之，至洁，但涉于侈丽。",
+        "pinyin": "yòng yín zhī ， zhì jié ， dàn shè yú chǐ lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "雅则雅矣，洁亦洁矣，若用之琣茖臕k于银也。",
+        "pinyin": "yǎ zé yǎ yǐ ， jié yì jié yǐ ， ruò yòng zhī běng gé biāo k yú yín yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "交床：交床以十字交之，剜中令虚，以支鍑也夹：夹以小青竹之，长一尺二寸，令一寸有节，节已上剖之，以炙茶也。",
+        "pinyin": "jiāo chuáng ： jiāo chuáng yǐ shí zì jiāo zhī ， wān zhōng lìng xū ， yǐ zhī fù yě jiā ： jiā yǐ xiǎo qīng zhú zhī ， zhǎng yī chǐ èr cùn ， lìng yī cùn yǒu jié ， jié yǐ shàng pōu zhī ， yǐ zhì chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼竹之筱津润于火，假其香洁以益茶味，恐非林谷间莫之致。",
+        "pinyin": "bǐ zhú zhī xiǎo jīn rùn yú huǒ ， jiǎ qí xiāng jié yǐ yì chá wèi ， kǒng fēi lín gǔ jiān mò zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "或用精铁熟铜之类，取其久也。",
+        "pinyin": "huò yòng jīng tiě shú tóng zhī lèi ， qǔ qí jiǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "纸囊：纸囊以剡藤纸白厚者夹缝之，以贮所炙茶，使不泄其香也。",
+        "pinyin": "zhǐ náng ： zhǐ náng yǐ shàn téng zhǐ bái hòu zhě jiā fèng zhī ， yǐ zhù suǒ zhì chá ， shǐ bù xiè qí xiāng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "碾：碾以橘木之，次以梨、桑、桐柘臼，内圆而外方。",
+        "pinyin": "niǎn ： niǎn yǐ jú mù zhī ， cì yǐ lí 、 sāng 、 tóng zhè jiù ， nèi yuán ér wài fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "内圆备于运行也，外方制其倾危也。",
+        "pinyin": "nèi yuán bèi yú yùn xíng yě ， wài fāng zhì qí qīng wēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "内容堕而外无余木，堕形如车轮，不辐而轴焉，长九寸，阔一寸七分，堕径三寸八分，中厚一寸，边厚半寸，轴中方而执圆，其拂末以鸟羽制之。",
+        "pinyin": "nèi róng duò ér wài wú yú mù ， duò xíng rú chē lún ， bù fú ér zhóu yān ， zhǎng jiǔ cùn ， kuò yī cùn qī fēn ， duò jìng sān cùn bā fēn ， zhōng hòu yī cùn ， biān hòu bàn cùn ， zhóu zhōng fāng ér zhí yuán ， qí fú mò yǐ niǎo yǔ zhì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "罗合：罗末以合盖贮之，以则置合中，用巨竹剖而屈之，以纱绢衣之，其合以竹节之，或屈杉以漆之。",
+        "pinyin": "luó hé ： luó mò yǐ hé gài zhù zhī ， yǐ zé zhì hé zhōng ， yòng jù zhú pōu ér qū zhī ， yǐ shā juàn yī zhī ， qí hé yǐ zhú jié zhī ， huò qū shān yǐ qī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "高三寸，盖一寸，底二寸，口径四寸。",
+        "pinyin": "gāo sān cùn ， gài yī cùn ， dǐ èr cùn ， kǒu jìng sì cùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "则：则以海贝蛎蛤之属，或以铜铁竹匕策之类。",
+        "pinyin": "zé ： zé yǐ hǎi bèi lì há zhī shǔ ， huò yǐ tóng tiě zhú bǐ cè zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "则者，量也，准也，度也。",
+        "pinyin": "zé zhě ， liàng yě ， zhǔn yě ， dù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡煮水一升，用末方寸匕。",
+        "pinyin": "fán zhǔ shuǐ yī shēng ， yòng mò fāng cùn bǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若好薄者减之，嗜浓者增之，故云则也。",
+        "pinyin": "ruò hǎo báo zhě jiǎn zhī ， shì nóng zhě zēng zhī ， gù yún zé yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "水方：水方以椆木、槐、楸、梓等合之，其堥畴~缝漆之，受一斗。",
+        "pinyin": "shuǐ fāng ： shuǐ fāng yǐ chóu mù 、 huái 、 qiū 、 zǐ děng hé zhī ， qí máo chóu ~ fèng qī zhī ， shòu yī dòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "漉水囊：漉水囊若常用者，其格以生铜铸之，以备水湿，无有苔秽腥涩。",
+        "pinyin": "lù shuǐ náng ： lù shuǐ náng ruò cháng yòng zhě ， qí gé yǐ shēng tóng zhù zhī ， yǐ bèi shuǐ shī ， wú yǒu tái huì xīng sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "意以熟铜苔秽、铁腥涩也。",
+        "pinyin": "yì yǐ shú tóng tái huì 、 tiě xīng sè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "林栖谷隐者或用之竹木，木与竹非持久涉远之具，故用之生铜。",
+        "pinyin": "lín qī gǔ yǐn zhě huò yòng zhī zhú mù ， mù yǔ zhú fēi chí jiǔ shè yuǎn zhī jù ， gù yòng zhī shēng tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其囊织青竹以卷之，裁碧缣以缝之，纽翠钿以缀之，又作绿油囊以贮之，圆径五寸，柄一寸五分。",
+        "pinyin": "qí náng zhī qīng zhú yǐ juǎn zhī ， cái bì jiān yǐ fèng zhī ， niǔ cuì diàn yǐ zhuì zhī ， yòu zuò lǜ yóu náng yǐ zhù zhī ， yuán jìng wǔ cùn ， bǐng yī cùn wǔ fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "瓢：瓢一曰牺杓，剖瓠之，或刊木之。",
+        "pinyin": "piáo ： piáo yī yuē xī biāo ， pōu hù zhī ， huò kān mù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋舍人杜毓《荈赋》云：“酌之以匏。",
+        "pinyin": "jìn shě rén dù yù 《 chuǎn fù 》 yún ：“ zhuó zhī yǐ páo 。",
+        "english": ""
+      },
+      {
+        "chinese": "”匏，瓢也，口阔胫薄柄短。",
+        "pinyin": "” páo ， piáo yě ， kǒu kuò jìng báo bǐng duǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "永嘉中，余姚人虞洪入瀑布山采茗，遇一道士云：“吾丹丘子，祈子他日瓯牺之余乞相遗也。",
+        "pinyin": "yǒng jiā zhōng ， yú yáo rén yú hóng rù pù bù shān cǎi míng ， yù yī dào shì yún ：“ wú dān qiū zi ， qí zi tā rì ōu xī zhī yú qǐ xiāng yí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "”牺，木杓也，今常用以梨木之。",
+        "pinyin": "” xī ， mù biāo yě ， jīn cháng yòng yǐ lí mù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "竹䇲：竹䇲或以桃、柳、蒲、葵木之，或以柿心木之，长一尺，银裹两头。",
+        "pinyin": "zhú cè ： zhú cè huò yǐ táo 、 liǔ 、 pú 、 kuí mù zhī ， huò yǐ shì xīn mù zhī ， zhǎng yī chǐ ， yín guǒ liǎng tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "鹾簋：鹾簋以瓷之，圆径四寸。",
+        "pinyin": "cuó guǐ ： cuó guǐ yǐ cí zhī ， yuán jìng sì cùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若合形，或瓶或罍，贮盐花也。",
+        "pinyin": "ruò hé xíng ， huò píng huò léi ， zhù yán huā yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其揭竹制，长四寸一分，阔九分。",
+        "pinyin": "qí jiē zhú zhì ， zhǎng sì cùn yī fēn ， kuò jiǔ fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "揭，策也。",
+        "pinyin": "jiē ， cè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "熟盂：熟盂以贮熟水，或瓷或沙，受二升。",
+        "pinyin": "shú yú ： shú yú yǐ zhù shú shuǐ ， huò cí huò shā ， shòu èr shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "碗：碗，越州上，鼎州次，婺州次，岳州次，寿州、洪州次。",
+        "pinyin": "wǎn ： wǎn ， yuè zhōu shàng ， dǐng zhōu cì ， wù zhōu cì ， yuè zhōu cì ， shòu zhōu 、 hóng zhōu cì 。",
+        "english": ""
+      },
+      {
+        "chinese": "或者以邢州处越州上，殊不然。",
+        "pinyin": "huò zhě yǐ xíng zhōu chù yuè zhōu shàng ， shū bù rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "若邢瓷类银，越瓷类玉，邢不如越一也；",
+        "pinyin": "ruò xíng cí lèi yín ， yuè cí lèi yù ， xíng bù rú yuè yī yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "若邢瓷类雪，则越瓷类冰，邢不如越二也；",
+        "pinyin": "ruò xíng cí lèi xuě ， zé yuè cí lèi bīng ， xíng bù rú yuè èr yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "邢瓷白而茶色丹，越瓷青而茶色绿，邢不如越三也。",
+        "pinyin": "xíng cí bái ér chá sè dān ， yuè cí qīng ér chá sè lǜ ， xíng bù rú yuè sān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋·杜毓《荈赋》所谓器择陶拣，出自东瓯。",
+        "pinyin": "jìn · dù yù 《 chuǎn fù 》 suǒ wèi qì zé táo jiǎn ， chū zì dōng ōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "瓯，越也。",
+        "pinyin": "ōu ， yuè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "瓯，越州上口唇不卷，底卷而浅，受半升已下。",
+        "pinyin": "ōu ， yuè zhōu shàng kǒu chún bù juǎn ， dǐ juǎn ér qiǎn ， shòu bàn shēng yǐ xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "越州瓷、岳瓷皆青，青则益茶，茶作白红之色。",
+        "pinyin": "yuè zhōu cí 、 yuè cí jiē qīng ， qīng zé yì chá ， chá zuò bái hóng zhī sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "邢州瓷白，茶色红；",
+        "pinyin": "xíng zhōu cí bái ， chá sè hóng ；",
+        "english": ""
+      },
+      {
+        "chinese": "寿州瓷黄，茶色紫；",
+        "pinyin": "shòu zhōu cí huáng ， chá sè zǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "洪州瓷褐，茶色黑：悉不宜茶。",
+        "pinyin": "hóng zhōu cí hè ， chá sè hēi ： xī bù yí chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "畚：畚以白蒲卷而编之，可贮碗十枚。",
+        "pinyin": "běn ： běn yǐ bái pú juǎn ér biān zhī ， kě zhù wǎn shí méi 。",
+        "english": ""
+      },
+      {
+        "chinese": "或用筥，其纸帕，以剡纸夹缝令方，亦十之也。",
+        "pinyin": "huò yòng jǔ ， qí zhǐ pà ， yǐ shàn zhǐ jiā fèng lìng fāng ， yì shí zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "劄：劄缉栟榈皮以茱萸木夹而缚之。",
+        "pinyin": "zhā ： zhā jī bēn lǘ pí yǐ zhū yú mù jiā ér fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "或截竹束而管之，若巨笔形。",
+        "pinyin": "huò jié zhú shù ér guǎn zhī ， ruò jù bǐ xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "涤方：涤方以贮涤洗之余，用楸木合之，制如水方，受八升。",
+        "pinyin": "dí fāng ： dí fāng yǐ zhù dí xǐ zhī yú ， yòng qiū mù hé zhī ， zhì rú shuǐ fāng ， shòu bā shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "滓方：滓方以集诸滓，制如涤方，处五升。",
+        "pinyin": "zǐ fāng ： zǐ fāng yǐ jí zhū zǐ ， zhì rú dí fāng ， chù wǔ shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "巾：巾以𫄟之，长二尺，作二枚，玄用之以洁诸器。",
+        "pinyin": "jīn ： jīn yǐ shī zhī ， zhǎng èr chǐ ， zuò èr méi ， xuán yòng zhī yǐ jié zhū qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "具列：具列或作床，或作架，或纯木纯竹而制之，或木法竹黄黑可扃而漆者，长三尺，阔二尺，高六寸，其到者悉敛诸器物，悉以陈列也。",
+        "pinyin": "jù liè ： jù liè huò zuò chuáng ， huò zuò jià ， huò chún mù chún zhú ér zhì zhī ， huò mù fǎ zhú huáng hēi kě jiōng ér qī zhě ， zhǎng sān chǐ ， kuò èr chǐ ， gāo liù cùn ， qí dào zhě xī liǎn zhū qì wù ， xī yǐ chén liè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "都篮：都篮以悉设诸器而名之。",
+        "pinyin": "dōu lán ： dōu lán yǐ xī shè zhū qì ér míng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "以竹篾内作三角方眼，外以双篾阔者经之，以单篾纤者缚之，递压双经作方眼，使玲珑。",
+        "pinyin": "yǐ zhú miè nèi zuò sān jiǎo fāng yǎn ， wài yǐ shuāng miè kuò zhě jīng zhī ， yǐ dān miè xiān zhě fù zhī ， dì yā shuāng jīng zuò fāng yǎn ， shǐ líng lóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "高一尺五寸，底阔一尺，高二寸，长二尺四寸，阔二尺。",
+        "pinyin": "gāo yī chǐ wǔ cùn ， dǐ kuò yī chǐ ， gāo èr cùn ， zhǎng èr chǐ sì cùn ， kuò èr chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "五之煮凡灸茶，慎勿于风烬间灸，辅撑K如钻，使炎凉不均。",
+        "pinyin": "wǔ zhī zhǔ fán jiǔ chá ， shèn wù yú fēng jìn jiān jiǔ ， fǔ chēng K rú zuān ， shǐ yán liáng bù jūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "持以逼火，屡其翻正，候炮出培𪣻状，虾蟆背，然后去火五寸，卷而舒则本其始，又灸之。",
+        "pinyin": "chí yǐ bī huǒ ， lǚ qí fān zhèng ， hòu pào chū péi lóu zhuàng ， há má bèi ， rán hòu qù huǒ wǔ cùn ， juǎn ér shū zé běn qí shǐ ， yòu jiǔ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "若火干者，以气熟止；",
+        "pinyin": "ruò huǒ gàn zhě ， yǐ qì shú zhǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "日干者，以柔止。",
+        "pinyin": "rì gàn zhě ， yǐ róu zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其始若茶之至嫩者，茶罢热捣叶烂而牙笋存焉。",
+        "pinyin": "qí shǐ ruò chá zhī zhì nèn zhě ， chá bà rè dǎo yè làn ér yá sǔn cún yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "假以力者，持千钧杵亦不之烂，如漆科珠，壮士接之不能驻其指，及就则似无禳骨也。",
+        "pinyin": "jiǎ yǐ lì zhě ， chí qiān jūn chǔ yì bù zhī làn ， rú qī kē zhū ， zhuàng shì jiē zhī bù néng zhù qí zhǐ ， jí jiù zé shì wú ráng gǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "灸之，则其节若倪，倪如婴儿之臂耳。",
+        "pinyin": "jiǔ zhī ， zé qí jié ruò ní ， ní rú yīng ér zhī bì ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "既而承热用纸囊贮之，精华之气无所散越。",
+        "pinyin": "jì ér chéng rè yòng zhǐ náng zhù zhī ， jīng huá zhī qì wú suǒ sàn yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "候寒末之其火用炭，次用劲薪。",
+        "pinyin": "hòu hán mò zhī qí huǒ yòng tàn ， cì yòng jìn xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "其炭曾经燔灸，膻腻所及，及膏木败器不用之。",
+        "pinyin": "qí tàn céng jīng fán jiǔ ， shān nì suǒ jí ， jí gāo mù bài qì bù yòng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "古人有劳薪之味，信哉！",
+        "pinyin": "gǔ rén yǒu láo xīn zhī wèi ， xìn zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "其水，用山水上，江水中，井水下。",
+        "pinyin": "qí shuǐ ， yòng shān shuǐ shàng ， jiāng shuǐ zhōng ， jǐng shuǐ xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "其山水，拣乳泉石地慢流者上，其瀑涌湍漱勿食之，久食令人有颈疾。",
+        "pinyin": "qí shān shuǐ ， jiǎn rǔ quán shí dì màn liú zhě shàng ， qí pù yǒng tuān shù wù shí zhī ， jiǔ shí lìng rén yǒu jǐng jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "又多别流于山谷者，澄浸不泄，自火天至霜郊以前，或潜龙畜毒于其间，饮者可决之以流其恶，使新泉涓涓然酌之。",
+        "pinyin": "yòu duō bié liú yú shān gǔ zhě ， chéng jìn bù xiè ， zì huǒ tiān zhì shuāng jiāo yǐ qián ， huò qián lóng chù dú yú qí jiān ， yǐn zhě kě jué zhī yǐ liú qí è ， shǐ xīn quán juān juān rán zhuó zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "其江水，取去人远者。",
+        "pinyin": "qí jiāng shuǐ ， qǔ qù rén yuǎn zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "井取汲多者。",
+        "pinyin": "jǐng qǔ jí duō zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其沸如鱼目，微有声一沸，缘边如涌泉连珠二沸，腾波鼓浪三沸，已上水老不可食也。",
+        "pinyin": "qí fèi rú yú mù ， wēi yǒu shēng yī fèi ， yuán biān rú yǒng quán lián zhū èr fèi ， téng bō gǔ làng sān fèi ， yǐ shàng shuǐ lǎo bù kě shí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "初沸则水合量，调之以盐味，谓弃其啜余，无乃■■而钟其一味乎？",
+        "pinyin": "chū fèi zé shuǐ hé liàng ， diào zhī yǐ yán wèi ， wèi qì qí chuài yú ， wú nǎi ■■ ér zhōng qí yī wèi hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "第二沸出水一瓢，以竹䇲环激汤心，则量末当中心，而下有顷势若奔涛，溅沫以所出水止之，而育其华也。",
+        "pinyin": "dì èr fèi chū shuǐ yī piáo ， yǐ zhú cè huán jī tāng xīn ， zé liàng mò dāng zhōng xīn ， ér xià yǒu qǐng shì ruò bēn tāo ， jiàn mò yǐ suǒ chū shuǐ zhǐ zhī ， ér yù qí huá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡酌置诸碗，令沫饽均。",
+        "pinyin": "fán zhuó zhì zhū wǎn ， lìng mò bō jūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "沫饽，汤之华也。",
+        "pinyin": "mò bō ， tāng zhī huá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "华之薄者曰沫，厚者曰饽，细轻者曰花，如枣花漂漂然于环池之上。",
+        "pinyin": "huá zhī báo zhě yuē mò ， hòu zhě yuē bō ， xì qīng zhě yuē huā ， rú zǎo huā piāo piāo rán yú huán chí zhī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "又如回潭曲渚，青萍之始生；",
+        "pinyin": "yòu rú huí tán qū zhǔ ， qīng píng zhī shǐ shēng ；",
+        "english": ""
+      },
+      {
+        "chinese": "又如晴天爽朗，有浮云鳞然。",
+        "pinyin": "yòu rú qíng tiān shuǎng lǎng ， yǒu fú yún lín rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "其沫者，若绿钱浮于水渭，又如菊英堕于𨱔俎之中。",
+        "pinyin": "qí mò zhě ， ruò lǜ qián fú yú shuǐ wèi ， yòu rú jú yīng duò yú zūn zǔ zhī zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "饽者以滓煮之。",
+        "pinyin": "bō zhě yǐ zǐ zhǔ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "及沸则重华累沫，硉f硉f然若积雪耳。",
+        "pinyin": "jí fèi zé zhòng huá lèi mò ， lù f lù f rán ruò jī xuě ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "《荈赋》所谓“焕如积雪，烨若春艸敷”，有之。",
+        "pinyin": "《 chuǎn fù 》 suǒ wèi “ huàn rú jī xuě ， yè ruò chūn cǎo fū ”， yǒu zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "第一煮水沸，而弃其沫之上，有水膜如黑云母，饮之则其味不正。",
+        "pinyin": "dì yī zhǔ shuǐ fèi ， ér qì qí mò zhī shàng ， yǒu shuǐ mó rú hēi yún mǔ ， yǐn zhī zé qí wèi bù zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其第一者隽永，或留熟以贮之，以备育华救沸之用。",
+        "pinyin": "qí dì yī zhě juàn yǒng ， huò liú shú yǐ zhù zhī ， yǐ bèi yù huá jiù fèi zhī yòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "诸第一与第二第三碗，次之第四第五碗，外非渴甚莫之饮。",
+        "pinyin": "zhū dì yī yǔ dì èr dì sān wǎn ， cì zhī dì sì dì wǔ wǎn ， wài fēi kě shèn mò zhī yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡煮水一升，酌分五碗，乘热连饮之，以重浊凝其下，精英浮其上。",
+        "pinyin": "fán zhǔ shuǐ yī shēng ， zhuó fēn wǔ wǎn ， chéng rè lián yǐn zhī ， yǐ zhòng zhuó níng qí xià ， jīng yīng fú qí shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "如冷则精英随气而竭，饮啜不消亦然矣。",
+        "pinyin": "rú lěng zé jīng yīng suí qì ér jié ， yǐn chuài bù xiāo yì rán yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶性俭，不宜广，则其味黯澹，且如一满碗，啜半而味寡，况其广乎！",
+        "pinyin": "chá xìng jiǎn ， bù yí guǎng ， zé qí wèi àn dàn ， qiě rú yī mǎn wǎn ， chuài bàn ér wèi guǎ ， kuàng qí guǎng hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "其色缃也，其馨■也。",
+        "pinyin": "qí sè xiāng yě ， qí xīn ■ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其味甘也；",
+        "pinyin": "qí wèi gān yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "不甘而苦，荈也；",
+        "pinyin": "bù gān ér kǔ ， chuǎn yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "啜苦咽甘，茶也。",
+        "pinyin": "chuài kǔ yàn gān ， chá yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "六之饮翼而飞，毛而走，去而言，此三者俱生于天地间。",
+        "pinyin": "liù zhī yǐn yì ér fēi ， máo ér zǒu ， qù ér yán ， cǐ sān zhě jù shēng yú tiān dì jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "饮啄以活，饮之时，义远矣哉。",
+        "pinyin": "yǐn zhuó yǐ huó ， yǐn zhī shí ， yì yuǎn yǐ zāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "至若救渴，饮之以浆；",
+        "pinyin": "zhì ruò jiù kě ， yǐn zhī yǐ jiāng ；",
+        "english": ""
+      },
+      {
+        "chinese": "蠲忧忿，饮之以酒；",
+        "pinyin": "juān yōu fèn ， yǐn zhī yǐ jiǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "荡昏寐，饮之以茶。",
+        "pinyin": "dàng hūn mèi ， yǐn zhī yǐ chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶之饮，发乎神农氏，间于鲁周公，齐有晏婴，汉有扬雄、司马相如，吴有韦曜，晋有刘琨、张载远、祖纳、谢安、左思之徒，皆饮焉。",
+        "pinyin": "chá zhī yǐn ， fā hū shén nóng shì ， jiān yú lǔ zhōu gōng ， qí yǒu yàn yīng ， hàn yǒu yáng xióng 、 sī mǎ xiāng rú ， wú yǒu wéi yào ， jìn yǒu liú kūn 、 zhāng zài yuǎn 、 zǔ nà 、 xiè ān 、 zuǒ sī zhī tú ， jiē yǐn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "滂时浸俗，盛于国朝，两都并荆俞间，以比屋之饮。",
+        "pinyin": "pāng shí jìn sú ， shèng yú guó cháo ， liǎng dōu bìng jīng yú jiān ， yǐ bǐ wū zhī yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "饮有粗茶、散茶、末茶、饼茶者，乃斫，乃熬，乃炀，乃舂，贮于瓶缶之中，以汤沃焉，谓之■茶。",
+        "pinyin": "yǐn yǒu cū chá 、 sàn chá 、 mò chá 、 bǐng chá zhě ， nǎi zhuó ， nǎi áo ， nǎi yáng ， nǎi chōng ， zhù yú píng fǒu zhī zhōng ， yǐ tāng wò yān ， wèi zhī ■ chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "或用葱、姜、枣、橘皮、茱萸、薄荷之等，煮之百沸，或扬令滑，或煮去沫，斯沟渠间弃水耳，而习俗不已。",
+        "pinyin": "huò yòng cōng 、 jiāng 、 zǎo 、 jú pí 、 zhū yú 、 bò hé zhī děng ， zhǔ zhī bǎi fèi ， huò yáng lìng huá ， huò zhǔ qù mò ， sī gōu qú jiān qì shuǐ ěr ， ér xí sú bù yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "於戏！",
+        "pinyin": "yú xì ！",
+        "english": ""
+      },
+      {
+        "chinese": "天育万物皆有至妙，人之所工，但猎浅易。",
+        "pinyin": "tiān yù wàn wù jiē yǒu zhì miào ， rén zhī suǒ gōng ， dàn liè qiǎn yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "所庇者屋屋精极，所著者衣衣精极，所饱者饮食，食与酒皆精极之。",
+        "pinyin": "suǒ bì zhě wū wū jīng jí ， suǒ zhù zhě yī yī jīng jí ， suǒ bǎo zhě yǐn shí ， shí yǔ jiǔ jiē jīng jí zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "茶有九难：一曰造，二曰别，三曰器，四曰火，五曰水，六曰炙，七曰末，八曰煮，九曰饮。",
+        "pinyin": "chá yǒu jiǔ nán ： yī yuē zào ， èr yuē bié ， sān yuē qì ， sì yuē huǒ ， wǔ yuē shuǐ ， liù yuē zhì ， qī yuē mò ， bā yuē zhǔ ， jiǔ yuē yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "阴采夜焙非造也，嚼味嗅香非别也，膻鼎\n腥瓯非器也，膏薪庖炭非火也，飞湍壅潦非水也，外熟内生非炙也，碧粉缥尘非末也，操艰搅遽非煮也，夏兴冬废非饮也。",
+        "pinyin": "yīn cǎi yè bèi fēi zào yě ， jué wèi xiù xiāng fēi bié yě ， shān dǐng \n xīng ōu fēi qì yě ， gāo xīn páo tàn fēi huǒ yě ， fēi tuān yōng lǎo fēi shuǐ yě ， wài shú nèi shēng fēi zhì yě ， bì fěn piāo chén fēi mò yě ， cāo jiān jiǎo jù fēi zhǔ yě ， xià xīng dōng fèi fēi yǐn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫珍鲜馥烈者，其碗数三；",
+        "pinyin": "fū zhēn xiān fù liè zhě ， qí wǎn shù sān ；",
+        "english": ""
+      },
+      {
+        "chinese": "次之者，碗数五。",
+        "pinyin": "cì zhī zhě ， wǎn shù wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若坐客数至，五行三碗，至七行五碗。",
+        "pinyin": "ruò zuò kè shù zhì ， wǔ xíng sān wǎn ， zhì qī xíng wǔ wǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若六人已下，不约碗数，但阙一人而已，其隽永补所阙人。",
+        "pinyin": "ruò liù rén yǐ xià ， bù yuē wǎn shù ， dàn quē yī rén ér yǐ ， qí juàn yǒng bǔ suǒ quē rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "七之事王皇炎帝。",
+        "pinyin": "qī zhī shì wáng huáng yán dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "神农氏。",
+        "pinyin": "shén nóng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "周鲁周公旦。",
+        "pinyin": "zhōu lǔ zhōu gōng dàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐相晏婴。",
+        "pinyin": "qí xiāng yàn yīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "汉仙人丹丘子。",
+        "pinyin": "hàn xiān rén dān qiū zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄山君司马文。",
+        "pinyin": "huáng shān jūn sī mǎ wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "园令相如。",
+        "pinyin": "yuán lìng xiāng rú 。",
+        "english": ""
+      },
+      {
+        "chinese": "杨执戟雄。",
+        "pinyin": "yáng zhí jǐ xióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "吴归命侯。",
+        "pinyin": "wú guī mìng hóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "韦太傅弘嗣。",
+        "pinyin": "wéi tài fù hóng sì 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋惠帝。",
+        "pinyin": "jìn huì dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘司空琨。",
+        "pinyin": "liú sī kōng kūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "琨兄子兖州刺史演。",
+        "pinyin": "kūn xiōng zi yǎn zhōu cì shǐ yǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "张黄门孟阳。",
+        "pinyin": "zhāng huáng mén mèng yáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "傅司隶咸。",
+        "pinyin": "fù sī lì xián 。",
+        "english": ""
+      },
+      {
+        "chinese": "江洗马充。",
+        "pinyin": "jiāng xǐ mǎ chōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "孙参军楚。",
+        "pinyin": "sūn cān jūn chǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "左记室太冲。",
+        "pinyin": "zuǒ jì shì tài chòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "陆吴兴纳。",
+        "pinyin": "lù wú xīng nà 。",
+        "english": ""
+      },
+      {
+        "chinese": "纳兄子会稽内史俶。",
+        "pinyin": "nà xiōng zi huì jī nèi shǐ chù 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢冠军安石。",
+        "pinyin": "xiè guàn jūn ān shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "郭弘农璞。",
+        "pinyin": "guō hóng nóng pú 。",
+        "english": ""
+      },
+      {
+        "chinese": "桓扬州温。",
+        "pinyin": "huán yáng zhōu wēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "杜舍人毓。",
+        "pinyin": "dù shě rén yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "武康小山寺释法瑶。",
+        "pinyin": "wǔ kāng xiǎo shān sì shì fǎ yáo 。",
+        "english": ""
+      },
+      {
+        "chinese": "沛国夏侯恺。",
+        "pinyin": "pèi guó xià hóu kǎi 。",
+        "english": ""
+      },
+      {
+        "chinese": "余姚虞洪。",
+        "pinyin": "yú yáo yú hóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "北地傅巽。",
+        "pinyin": "běi dì fù xùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "丹阳弘君举。",
+        "pinyin": "dān yáng hóng jūn jǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "安任育。",
+        "pinyin": "ān rèn yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "宣城秦精。",
+        "pinyin": "xuān chéng qín jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "敦煌单道开。",
+        "pinyin": "dūn huáng dān dào kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "剡县陈务妻。",
+        "pinyin": "shàn xiàn chén wù qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "广陵老姥。",
+        "pinyin": "guǎng líng lǎo lǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "河内山谦之。",
+        "pinyin": "hé nèi shān qiān zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "后魏琅琊王肃。",
+        "pinyin": "hòu wèi láng yá wáng sù 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋新安王子鸾。",
+        "pinyin": "sòng xīn ān wáng zǐ luán 。",
+        "english": ""
+      },
+      {
+        "chinese": "鸾弟豫章王子尚。",
+        "pinyin": "luán dì yù zhāng wáng zǐ shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍昭妹令晖。",
+        "pinyin": "bào zhāo mèi lìng huī 。",
+        "english": ""
+      },
+      {
+        "chinese": "八公山沙门谭济。",
+        "pinyin": "bā gōng shān shā mén tán jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐世祖武帝。",
+        "pinyin": "qí shì zǔ wǔ dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁·刘廷尉。",
+        "pinyin": "liáng · liú tíng wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "陶先生弘景。",
+        "pinyin": "táo xiān shēng hóng jǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "皇朝徐英公𪟝。",
+        "pinyin": "huáng cháo xú yīng gōng jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "《神农·食经》：“茶茗久服，令人有力、悦志”。",
+        "pinyin": "《 shén nóng · shí jīng 》：“ chá míng jiǔ fú ， lìng rén yǒu lì 、 yuè zhì ”。",
+        "english": ""
+      },
+      {
+        "chinese": "周公《尔雅》：“槚，苦茶。",
+        "pinyin": "zhōu gōng 《 ěr yǎ 》：“ jiǎ ， kǔ chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《广雅》云：“荆巴间采叶作饼，叶老者饼成，以米膏出之，欲煮茗饮，先灸，令赤色，捣末置瓷器中，以汤浇覆之，用葱、姜、橘子芼之，其饮醒酒，令人不眠。",
+        "pinyin": "”《 guǎng yǎ 》 yún ：“ jīng bā jiān cǎi yè zuò bǐng ， yè lǎo zhě bǐng chéng ， yǐ mǐ gāo chū zhī ， yù zhǔ míng yǐn ， xiān jiǔ ， lìng chì sè ， dǎo mò zhì cí qì zhōng ， yǐ tāng jiāo fù zhī ， yòng cōng 、 jiāng 、 jú zi mào zhī ， qí yǐn xǐng jiǔ ， lìng rén bù mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《晏子春秋》：“婴相齐景公时，食脱粟之饭，灸三戈五卯茗莱而已。",
+        "pinyin": "”《 yàn zi chūn qiū 》：“ yīng xiāng qí jǐng gōng shí ， shí tuō sù zhī fàn ， jiǔ sān gē wǔ mǎo míng lái ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”司马相如《凡将篇》：“乌啄桔梗芫华，款冬贝母木蒌，芩草芍药桂漏芦，蜚廉雚菌荈诧，白敛白芷菖蒲，芒消莞椒茱萸。",
+        "pinyin": "” sī mǎ xiāng rú 《 fán jiāng piān 》：“ wū zhuó jié gěng yán huá ， kuǎn dōng bèi mǔ mù lóu ， qín cǎo sháo yào guì lòu lú ， fēi lián guàn jūn chuǎn chà ， bái liǎn bái zhǐ chāng pú ， máng xiāo guǎn jiāo zhū yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《方言》：“蜀西南人谓茶曰葭。",
+        "pinyin": "”《 fāng yán 》：“ shǔ xī nán rén wèi chá yuē jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《吴志·韦曜传》：“孙皓每飨宴坐席，无不率以七胜限。",
+        "pinyin": "”《 wú zhì · wéi yào chuán 》：“ sūn hào měi xiǎng yàn zuò xí ， wú bù lǜ yǐ qī shèng xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽不尽入口，皆浇灌取尽，曜饮酒不过二升，皓初礼异，密赐茶荈以代酒。",
+        "pinyin": "suī bù jìn rù kǒu ， jiē jiāo guàn qǔ jǐn ， yào yǐn jiǔ bù guò èr shēng ， hào chū lǐ yì ， mì cì chá chuǎn yǐ dài jiǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《晋中兴书》：“陆纳吴兴太守，时卫将军谢安常欲诣纳，纳兄子俶怪纳，无所备，不敢问之，乃私蓄十数人馔。",
+        "pinyin": "”《 jìn zhōng xīng shū 》：“ lù nà wú xīng tài shǒu ， shí wèi jiāng jūn xiè ān cháng yù yì nà ， nà xiōng zi chù guài nà ， wú suǒ bèi ， bù gǎn wèn zhī ， nǎi sī xù shí shù rén zhuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "安既至，所设唯茶果而已。",
+        "pinyin": "ān jì zhì ， suǒ shè wéi chá guǒ ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "俶遂陈盛馔珍羞必具，及安去，纳杖俶四十，云：‘汝既不能光益叔父，柰何秽吾素业？",
+        "pinyin": "chù suì chén shèng zhuàn zhēn xiū bì jù ， jí ān qù ， nà zhàng chù sì shí ， yún ：‘ rǔ jì bù néng guāng yì shū fù ， nài hé huì wú sù yè ？",
+        "english": ""
+      },
+      {
+        "chinese": "’”《晋书》：“桓温扬州牧，性俭，每燕饮，唯下七奠，拌茶果而已。",
+        "pinyin": "’”《 jìn shū 》：“ huán wēn yáng zhōu mù ， xìng jiǎn ， měi yàn yǐn ， wéi xià qī diàn ， bàn chá guǒ ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《搜神记》：“夏侯恺因疾死，宗人字苟奴，察见鬼神，见恺来收马，并病其妻，著平上帻单衣入，坐生时西壁大床，就人觅茶饮。",
+        "pinyin": "”《 sōu shén jì 》：“ xià hóu kǎi yīn jí sǐ ， zōng rén zì gǒu nú ， chá jiàn guǐ shén ， jiàn kǎi lái shōu mǎ ， bìng bìng qí qī ， zhù píng shàng zé dān yī rù ， zuò shēng shí xī bì dà chuáng ， jiù rén mì chá yǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "”刘琨《与兄子南兖州刺史演书》云：“前得安州干姜一斤、桂一斤、黄芩一斤，皆所须也，吾体中溃闷，常仰真茶，汝可置之。",
+        "pinyin": "” liú kūn 《 yǔ xiōng zi nán yǎn zhōu cì shǐ yǎn shū 》 yún ：“ qián dé ān zhōu gān jiāng yī jīn 、 guì yī jīn 、 huáng qín yī jīn ， jiē suǒ xū yě ， wú tǐ zhōng kuì mèn ， cháng yǎng zhēn chá ， rǔ kě zhì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "”傅咸《司隶教》曰：“闻南方有以困蜀妪作茶粥卖，帘事打破其器具。",
+        "pinyin": "” fù xián 《 sī lì jiào 》 yuē ：“ wén nán fāng yǒu yǐ kùn shǔ yù zuò chá zhōu mài ， lián shì dǎ pò qí qì jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "又卖饼于市，而禁茶粥以蜀姥何哉！",
+        "pinyin": "yòu mài bǐng yú shì ， ér jìn chá zhōu yǐ shǔ lǎo hé zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "”《神异记》：“余姚人虞洪入山采茗，遇一道士牵三青牛，引洪至瀑布山曰：‘予丹丘子也。",
+        "pinyin": "”《 shén yì jì 》：“ yú yáo rén yú hóng rù shān cǎi míng ， yù yī dào shì qiān sān qīng niú ， yǐn hóng zhì pù bù shān yuē ：‘ yǔ dān qiū zi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "闻子善具饮，常思见惠。",
+        "pinyin": "wén zi shàn jù yǐn ， cháng sī jiàn huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "山中有大茗可以相给，祈子他日有瓯牺之余，乞相遗也。",
+        "pinyin": "shān zhōng yǒu dà míng kě yǐ xiāng gěi ， qí zi tā rì yǒu ōu xī zhī yú ， qǐ xiāng yí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "’因立奠祀。",
+        "pinyin": "’ yīn lì diàn sì 。",
+        "english": ""
+      },
+      {
+        "chinese": "后常令家人入山，获大茗焉。",
+        "pinyin": "hòu cháng lìng jiā rén rù shān ， huò dà míng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "”左思《娇女诗》：“吾家有娇女，皎皎颇白皙。",
+        "pinyin": "” zuǒ sī 《 jiāo nǚ shī 》：“ wú jiā yǒu jiāo nǚ ， jiǎo jiǎo pǒ bái xī 。",
+        "english": ""
+      },
+      {
+        "chinese": "小字纨素，口齿自清历\n。",
+        "pinyin": "xiǎo zì wán sù ， kǒu chǐ zì qīng lì \n。",
+        "english": ""
+      },
+      {
+        "chinese": "有姊字惠芳，眉目粲如画。",
+        "pinyin": "yǒu zǐ zì huì fāng ， méi mù càn rú huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "驰骛翔园林，果下皆生摘。",
+        "pinyin": "chí wù xiáng yuán lín ， guǒ xià jiē shēng zhāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "贪华风雨中，倏忽数百适。",
+        "pinyin": "tān huá fēng yǔ zhōng ， shū hū shù bǎi shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "心茶荈剧，吹嘘对鼎历。",
+        "pinyin": "xīn chá chuǎn jù ， chuī xū duì dǐng lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "”张孟阳《登成都楼诗》云：“借问杨子舍，想见长卿庐。",
+        "pinyin": "” zhāng mèng yáng 《 dēng chéng dū lóu shī 》 yún ：“ jiè wèn yáng zi shě ， xiǎng jiàn zhǎng qīng lú 。",
+        "english": ""
+      },
+      {
+        "chinese": "程卓累千金，骄侈拟五侯。",
+        "pinyin": "chéng zhuó lèi qiān jīn ， jiāo chǐ nǐ wǔ hóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "门有连骑客，翠带腰吴。",
+        "pinyin": "mén yǒu lián qí kè ， cuì dài yāo wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "鼎食随时进，百和妙且殊。",
+        "pinyin": "dǐng shí suí shí jìn ， bǎi hé miào qiě shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "披林采秋橘，临江钓春鱼。",
+        "pinyin": "pī lín cǎi qiū jú ， lín jiāng diào chūn yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "黑子过龙醢，果馔逾蟹蝑。",
+        "pinyin": "hēi zi guò lóng hǎi ， guǒ zhuàn yú xiè xū 。",
+        "english": ""
+      },
+      {
+        "chinese": "芳茶冠六情，溢味播九区。",
+        "pinyin": "fāng chá guān liù qíng ， yì wèi bō jiǔ qū 。",
+        "english": ""
+      },
+      {
+        "chinese": "人生苟安乐，兹土聊可娱。",
+        "pinyin": "rén shēng gǒu ān lè ， zī tǔ liáo kě yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《传巽七诲》：“蒲桃、宛柰、齐柿、燕栗、峘阳黄梨、巫山朱橘、南中茶子、西极石蜜。",
+        "pinyin": "”《 chuán xùn qī huì 》：“ pú táo 、 wǎn nài 、 qí shì 、 yàn lì 、 huán yáng huáng lí 、 wū shān zhū jú 、 nán zhōng chá zi 、 xī jí shí mì 。",
+        "english": ""
+      },
+      {
+        "chinese": "”弘君举食檄：寒温既毕，应下霜华之茗，三爵而终，应下诸蔗、木瓜、元李、杨梅、五味橄榄、悬豹、葵羹各一杯。",
+        "pinyin": "” hóng jūn jǔ shí xí ： hán wēn jì bì ， yīng xià shuāng huá zhī míng ， sān jué ér zhōng ， yīng xià zhū zhè 、 mù guā 、 yuán lǐ 、 yáng méi 、 wǔ wèi gǎn lǎn 、 xuán bào 、 kuí gēng gè yī bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "孙楚歌：‘茱萸出芳树颠，鲤鱼出洛水泉，白盐出河东，美豉出鲁渊。",
+        "pinyin": "sūn chǔ gē ：‘ zhū yú chū fāng shù diān ， lǐ yú chū luò shuǐ quán ， bái yán chū hé dōng ， měi shì chū lǔ yuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "姜桂茶荈出巴蜀，椒橘、木兰出高山，蓼苏出沟渠，精稗出中田。",
+        "pinyin": "jiāng guì chá chuǎn chū bā shǔ ， jiāo jú 、 mù lán chū gāo shān ， liǎo sū chū gōu qú ， jīng bài chū zhōng tián 。",
+        "english": ""
+      },
+      {
+        "chinese": "’”华佗《食论》：“苦茶久食益意思。",
+        "pinyin": "’” huà tuó 《 shí lùn 》：“ kǔ chá jiǔ shí yì yì si 。",
+        "english": ""
+      },
+      {
+        "chinese": "”壶居士《食忌》：“苦茶久食羽化。",
+        "pinyin": "” hú jū shì 《 shí jì 》：“ kǔ chá jiǔ shí yǔ huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "与韭同食，令人体重。",
+        "pinyin": "yǔ jiǔ tóng shí ， lìng rén tǐ zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "”郭璞《尔雅注》云：“树小似栀子，冬生叶，可煮羹饮，今呼早取茶，晚取茗，或一曰荈，蜀人名之苦茶。",
+        "pinyin": "” guō pú 《 ěr yǎ zhù 》 yún ：“ shù xiǎo shì zhī zi ， dōng shēng yè ， kě zhǔ gēng yǐn ， jīn hū zǎo qǔ chá ， wǎn qǔ míng ， huò yī yuē chuǎn ， shǔ rén míng zhī kǔ chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《世说》：“任瞻字育长，少时有令名。",
+        "pinyin": "”《 shì shuō 》：“ rèn zhān zì yù zhǎng ， shǎo shí yǒu lìng míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自过江失志，既下饮，问人云：‘此茶茗？",
+        "pinyin": "zì guò jiāng shī zhì ， jì xià yǐn ， wèn rén yún ：‘ cǐ chá míng ？",
+        "english": ""
+      },
+      {
+        "chinese": "’觉人有怪色，乃自分明云：‘向问饮热冷？",
+        "pinyin": "’ jué rén yǒu guài sè ， nǎi zì fèn míng yún ：‘ xiàng wèn yǐn rè lěng ？",
+        "english": ""
+      },
+      {
+        "chinese": "’”《续搜神记·晋武帝》：“宣城人秦精，常入武昌山采茗，遇一毛人长丈余，引精至山下，示以丛茗而去。",
+        "pinyin": "’”《 xù sōu shén jì · jìn wǔ dì 》：“ xuān chéng rén qín jīng ， cháng rù wǔ chāng shān cǎi míng ， yù yī máo rén zhǎng zhàng yú ， yǐn jīng zhì shān xià ， shì yǐ cóng míng ér qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "俄而复还，乃探怀中橘以遗精，精怖，负茗而归。",
+        "pinyin": "é ér fù hái ， nǎi tàn huái zhōng jú yǐ yí jīng ， jīng bù ， fù míng ér guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "”晋四王起事，惠帝蒙尘，还洛阳，黄门以瓦盂盛茶上至尊。",
+        "pinyin": "” jìn sì wáng qǐ shì ， huì dì méng chén ， hái luò yáng ， huáng mén yǐ wǎ yú shèng chá shàng zhì zūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "《异苑》：“剡县陈务妻少，与二子寡居，好饮茶茗。",
+        "pinyin": "《 yì yuàn 》：“ shàn xiàn chén wù qī shǎo ， yǔ èr zi guǎ jū ， hǎo yǐn chá míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "以宅中有古冢，每饮，辄先祀之。",
+        "pinyin": "yǐ zhái zhōng yǒu gǔ zhǒng ， měi yǐn ， zhé xiān sì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "二子患之曰：‘古冢何知？",
+        "pinyin": "èr zi huàn zhī yuē ：‘ gǔ zhǒng hé zhī ？",
+        "english": ""
+      },
+      {
+        "chinese": "徒以劳。",
+        "pinyin": "tú yǐ láo 。",
+        "english": ""
+      },
+      {
+        "chinese": "’意欲掘去之，母苦禁而止。",
+        "pinyin": "’ yì yù jué qù zhī ， mǔ kǔ jìn ér zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其夜梦一人云：吾止此冢三百余年，卿二子痡见毁，赖相保护，又享吾佳茗，虽潜壤朽骨，岂忘翳桑之报。",
+        "pinyin": "qí yè mèng yī rén yún ： wú zhǐ cǐ zhǒng sān bǎi yú nián ， qīng èr zi fū jiàn huǐ ， lài xiāng bǎo hù ， yòu xiǎng wú jiā míng ， suī qián rǎng xiǔ gǔ ， qǐ wàng yì sāng zhī bào 。",
+        "english": ""
+      },
+      {
+        "chinese": "及晓，于庭中获钱十万，似久埋者，但贯新耳。",
+        "pinyin": "jí xiǎo ， yú tíng zhōng huò qián shí wàn ， shì jiǔ mái zhě ， dàn guàn xīn ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "母告，二子惭之，从是祷馈愈甚。",
+        "pinyin": "mǔ gào ， èr zi cán zhī ， cóng shì dǎo kuì yù shèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《广陵耆老传》：“晋元帝时有老姥，每旦独提一器茗，往市鬻之，市人竞买，自旦至夕，其器不减，所得钱散路傍孤贫乞人。",
+        "pinyin": "”《 guǎng líng qí lǎo chuán 》：“ jìn yuán dì shí yǒu lǎo lǎo ， měi dàn dú tí yī qì míng ， wǎng shì yù zhī ， shì rén jìng mǎi ， zì dàn zhì xī ， qí qì bù jiǎn ， suǒ de qián sàn lù bàng gū pín qǐ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "人或异之，州法曹絷之狱中，至夜，老姥执所鬻茗器，从狱牖中飞出。",
+        "pinyin": "rén huò yì zhī ， zhōu fǎ cáo zhí zhī yù zhōng ， zhì yè ， lǎo lǎo zhí suǒ yù míng qì ， cóng yù yǒu zhōng fēi chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《艺术传》：“敦煌人单道开不畏寒暑，常服小石子。",
+        "pinyin": "”《 yì shù chuán 》：“ dūn huáng rén dān dào kāi bù wèi hán shǔ ， cháng fú xiǎo shí zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "所服药有松桂蜜之气，所余茶苏而已。",
+        "pinyin": "suǒ fú yào yǒu sōng guì mì zhī qì ， suǒ yú chá sū ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”释道该说《续名僧传》：“宋释法瑶姓杨氏，河东人，永嘉中过江遇沈台真，请真君武康小山寺，年垂悬车，饭所饮茶，永明中敕吴兴礼致上京，年七十九。",
+        "pinyin": "” shì dào gāi shuō 《 xù míng sēng chuán 》：“ sòng shì fǎ yáo xìng yáng shì ， hé dōng rén ， yǒng jiā zhōng guò jiāng yù shěn tái zhēn ， qǐng zhēn jūn wǔ kāng xiǎo shān sì ， nián chuí xuán chē ， fàn suǒ yǐn chá ， yǒng míng zhōng chì wú xīng lǐ zhì shàng jīng ， nián qī shí jiǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《宋江氏家传》：“江统字应迁，湣怀太子洗马，常上疏谏云：‘今西园卖醯面蓝子菜茶之属，亏败国体。",
+        "pinyin": "”《 sòng jiāng shì jiā chuán 》：“ jiāng tǒng zì yīng qiān ， mǐn huái tài zi xǐ mǎ ， cháng shàng shū jiàn yún ：‘ jīn xī yuán mài xī miàn lán zi cài chá zhī shǔ ， kuī bài guó tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "’”《宋录》：“新安王子鸾、豫章王子尚，诣昙济道人于八公山，道人设茶茗，子尚味之曰：此甘露也，何言茶茗。",
+        "pinyin": "’”《 sòng lù 》：“ xīn ān wáng zǐ luán 、 yù zhāng wáng zǐ shàng ， yì tán jì dào rén yú bā gōng shān ， dào rén shè chá míng ， zi shàng wèi zhī yuē ： cǐ gān lù yě ， hé yán chá míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "”王微《杂诗》：“寂寂掩高阁，寥寥空广厦。",
+        "pinyin": "” wáng wēi 《 zá shī 》：“ jì jì yǎn gāo gé ， liáo liáo kōng guǎng shà 。",
+        "english": ""
+      },
+      {
+        "chinese": "待君竟不归，收领今就槚。",
+        "pinyin": "dài jūn jìng bù guī ， shōu lǐng jīn jiù jiǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "鲍昭妹令晖著《香茗赋》。",
+        "pinyin": "bào zhāo mèi lìng huī zhù 《 xiāng míng fù 》。",
+        "english": ""
+      },
+      {
+        "chinese": "南齐世祖武皇帝遗诏：“我灵座上，慎勿以牲祭，但设饼果、茶饮、干饭、酒脯而已。",
+        "pinyin": "nán qí shì zǔ wǔ huáng dì yí zhào ：“ wǒ líng zuò shàng ， shèn wù yǐ shēng jì ， dàn shè bǐng guǒ 、 chá yǐn 、 gān fàn 、 jiǔ pú ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "”梁刘孝绰、谢晋安王饷米等，传诏：李孟孙宣教旨，垂赐米、酒、瓜、笋、菹、脯、酢、茗八种，气苾新城，味芳云松。",
+        "pinyin": "” liáng liú xiào chuò 、 xiè jìn ān wáng xiǎng mǐ děng ， chuán zhào ： lǐ mèng sūn xuān jiào zhǐ ， chuí cì mǐ 、 jiǔ 、 guā 、 sǔn 、 jū 、 pú 、 cù 、 míng bā zhǒng ， qì bì xīn chéng ， wèi fāng yún sōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "江潭抽节，迈昌荇之珍；",
+        "pinyin": "jiāng tán chōu jié ， mài chāng xìng zhī zhēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "疆场擢翘，越葺精之美。",
+        "pinyin": "jiāng chǎng zhuó qiào ， yuè qì jīng zhī měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "羞非纯束野，裛似雪之驴；",
+        "pinyin": "xiū fēi chún shù yě ， yì shì xuě zhī lǘ ；",
+        "english": ""
+      },
+      {
+        "chinese": "鲊异陶瓶河鲤，操如琼之粲。",
+        "pinyin": "zhǎ yì táo píng hé lǐ ， cāo rú qióng zhī càn 。",
+        "english": ""
+      },
+      {
+        "chinese": "茗同食粲酢，望楫免，千里宿舂，省三月种聚。",
+        "pinyin": "míng tóng shí càn cù ， wàng jí miǎn ， qiān lǐ sù chōng ， shěng sān yuè zhǒng jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "小人怀惠，大懿难忘。",
+        "pinyin": "xiǎo rén huái huì ， dà yì nán wàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "陶弘景《杂录》：“苦茶轻换膏，昔丹丘子青山君服之。",
+        "pinyin": "táo hóng jǐng 《 zá lù 》：“ kǔ chá qīng huàn gāo ， xī dān qiū zi qīng shān jūn fú zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《后魏录》：“琅琊王肃仕南朝，好茗饮莼羹。",
+        "pinyin": "”《 hòu wèi lù 》：“ láng yá wáng sù shì nán cháo ， hǎo míng yǐn chún gēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "及还北地，又好羊肉酪浆，人或问之：茗何如酪？",
+        "pinyin": "jí hái běi dì ， yòu hǎo yáng ròu lào jiāng ， rén huò wèn zhī ： míng hé rú lào ？",
+        "english": ""
+      },
+      {
+        "chinese": "肃曰：茗不堪与酪奴。",
+        "pinyin": "sù yuē ： míng bù kān yǔ lào nú 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《桐君录》：“西阳武昌庐江昔陵好茗，皆东人作清茗。",
+        "pinyin": "”《 tóng jūn lù 》：“ xī yáng wǔ chāng lú jiāng xī líng hǎo míng ， jiē dōng rén zuò qīng míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "茗有饽，饮之宜人。",
+        "pinyin": "míng yǒu bō ， yǐn zhī yí rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡可饮之物，皆多取其叶，天门冬、拔揳取根，皆益人。",
+        "pinyin": "fán kě yǐn zhī wù ， jiē duō qǔ qí yè ， tiān mén dōng 、 bá xiē qǔ gēn ， jiē yì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "又巴东别有真茗茶，煎饮令人不眠。",
+        "pinyin": "yòu bā dōng bié yǒu zhēn míng chá ， jiān yǐn lìng rén bù mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "俗中多煮檀叶，并大皂李作茶，并冷。",
+        "pinyin": "sú zhōng duō zhǔ tán yè ， bìng dà zào lǐ zuò chá ， bìng lěng 。",
+        "english": ""
+      },
+      {
+        "chinese": "又南方有瓜芦木，亦似茗，至苦涩，取屑茶，饮亦可通夜不眠。",
+        "pinyin": "yòu nán fāng yǒu guā lú mù ， yì shì míng ， zhì kǔ sè ， qǔ xiè chá ， yǐn yì kě tōng yè bù mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "煮盐人但资此饮，而交广最重，客来先设，乃加以香芼辈。",
+        "pinyin": "zhǔ yán rén dàn zī cǐ yǐn ， ér jiāo guǎng zuì zhòng ， kè lái xiān shè ， nǎi jiā yǐ xiāng mào bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "《坤元录》：“辰州溆浦县西北三百五十妫L射山，云蛮俗当吉庆之时，亲族集会，歌舞于山上，山多茶树。",
+        "pinyin": "《 kūn yuán lù 》：“ chén zhōu xù pǔ xiàn xī běi sān bǎi wǔ shí guī L shè shān ， yún mán sú dāng jí qìng zhī shí ， qīn zú jí huì ， gē wǔ yú shān shàng ， shān duō chá shù 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《括地图》：“临遂县东一百四十埵陈鸬芊C”山谦之《吴兴记》：“乌程县西二十埵雪聋s，出御荈。",
+        "pinyin": "”《 kuò dì tú 》：“ lín suì xiàn dōng yì bǎi sì shí duǒ chén lú qiān C” shān qiān zhī 《 wú xīng jì 》：“ wū chéng xiàn xī èr shí duǒ xuě lóng s， chū yù chuǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "《夷陵图经》：“黄牛、荆门、女观望州等山，茶茗出焉。",
+        "pinyin": "《 yí líng tú jīng 》：“ huáng niú 、 jīng mén 、 nǚ guān wàng zhōu děng shān ， chá míng chū yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《永嘉图经》：“永嘉县东三百里有白茶山。",
+        "pinyin": "”《 yǒng jiā tú jīng 》：“ yǒng jiā xiàn dōng sān bǎi lǐ yǒu bái chá shān 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《淮阴图经》：“山阳县南二十埵陈谳Y。",
+        "pinyin": "”《 huái yīn tú jīng 》：“ shān yáng xiàn nán èr shí duǒ chén yàn Y。",
+        "english": ""
+      },
+      {
+        "chinese": "”《茶陵图经》云：“茶陵者，所谓陵谷，生茶茗焉。",
+        "pinyin": "”《 chá líng tú jīng 》 yún ：“ chá líng zhě ， suǒ wèi líng gǔ ， shēng chá míng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《本草·木部》：“茗，苦茶，味甘苦，微寒，无毒，主疮，利小便，去痰渴热，令人少睡。",
+        "pinyin": "”《 běn cǎo · mù bù 》：“ míng ， kǔ chá ， wèi gān kǔ ， wēi hán ， wú dú ， zhǔ chuāng ， lì xiǎo biàn ， qù tán kě rè ， lìng rén shǎo shuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "秋采之苦，主下气消食。",
+        "pinyin": "qiū cǎi zhī kǔ ， zhǔ xià qì xiāo shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "注云：春采之。",
+        "pinyin": "zhù yún ： chūn cǎi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《本草·菜部》：“苦茶，一名荼，一名选，一名游冬。",
+        "pinyin": "”《 běn cǎo · cài bù 》：“ kǔ chá ， yī míng tú ， yī míng xuǎn ， yī míng yóu dōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "生益州川谷山陵道傍，凌冬不死。",
+        "pinyin": "shēng yì zhōu chuān gǔ shān líng dào bàng ， líng dōng bù sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "三月三日采干。",
+        "pinyin": "sān yuè sān rì cǎi gàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "注云：疑此即是今茶，一名荼，令人不眠。",
+        "pinyin": "zhù yún ： yí cǐ jí shì jīn chá ， yī míng tú ， lìng rén bù mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "本草注。",
+        "pinyin": "běn cǎo zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "”按《诗》云“谁谓荼苦”，又云“堇荼如饴”，皆苦菜也。",
+        "pinyin": "” àn 《 shī 》 yún “ shuí wèi tú kǔ ”， yòu yún “ jǐn tú rú yí ”， jiē kǔ cài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "陶谓之苦茶，木类，非菜流。",
+        "pinyin": "táo wèi zhī kǔ chá ， mù lèi ， fēi cài liú 。",
+        "english": ""
+      },
+      {
+        "chinese": "茗，春采谓之苦茶。",
+        "pinyin": "míng ， chūn cǎi wèi zhī kǔ chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "《枕中方》：“疗积年，苦茶、蜈蚣并灸，令香熟，等分捣筛，煮甘草汤洗，以末傅之。",
+        "pinyin": "《 zhěn zhōng fāng 》：“ liáo jī nián ， kǔ chá 、 wú gōng bìng jiǔ ， lìng xiāng shú ， děng fēn dǎo shāi ， zhǔ gān cǎo tāng xǐ ， yǐ mò fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "”《孺子方》：“疗小儿无故惊蹶，以葱须煮服之。",
+        "pinyin": "”《 rú zi fāng 》：“ liáo xiǎo ér wú gù jīng jué ， yǐ cōng xū zhǔ fú zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "”\n八之出山南以峡州上，襄州、荆州次，衡州下，金州、梁州又下。",
+        "pinyin": "”\n bā zhī chū shān nán yǐ xiá zhōu shàng ， xiāng zhōu 、 jīng zhōu cì ， héng zhōu xià ， jīn zhōu 、 liáng zhōu yòu xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "淮南以光州上，义阳郡、舒州次，寿州下，蕲州、黄州又下。",
+        "pinyin": "huái nán yǐ guāng zhōu shàng ， yì yáng jùn 、 shū zhōu cì ， shòu zhōu xià ， qí zhōu 、 huáng zhōu yòu xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "浙西以湖州上，常州次，宣州、杭州、睦州、歙州下，润州、苏州又下。",
+        "pinyin": "zhè xī yǐ hú zhōu shàng ， cháng zhōu cì ， xuān zhōu 、 háng zhōu 、 mù zhōu 、 shè zhōu xià ， rùn zhōu 、 sū zhōu yòu xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "剑南以彭州上，绵州、蜀州次，邛州次，雅州、泸州下，眉州、汉州又下\n。",
+        "pinyin": "jiàn nán yǐ péng zhōu shàng ， mián zhōu 、 shǔ zhōu cì ， qióng zhōu cì ， yǎ zhōu 、 lú zhōu xià ， méi zhōu 、 hàn zhōu yòu xià \n。",
+        "english": ""
+      },
+      {
+        "chinese": "浙东以越州上，明州、婺州次，台州下。",
+        "pinyin": "zhè dōng yǐ yuè zhōu shàng ， míng zhōu 、 wù zhōu cì ， tāi zhōu xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "黔中生恩州、播州、费州、夷州，江南生鄂州、袁州、吉州，岭南生福州、建州、韶州、象州。",
+        "pinyin": "qián zhōng shēng ēn zhōu 、 bō zhōu 、 fèi zhōu 、 yí zhōu ， jiāng nán shēng è zhōu 、 yuán zhōu 、 jí zhōu ， lǐng nán shēng fú zhōu 、 jiàn zhōu 、 sháo zhōu 、 xiàng zhōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "其恩、播、费、夷、鄂、袁、吉、福、建、泉、韶、象十一州未详。",
+        "pinyin": "qí ēn 、 bō 、 fèi 、 yí 、 è 、 yuán 、 jí 、 fú 、 jiàn 、 quán 、 sháo 、 xiàng shí yī zhōu wèi xiáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "往往得之，其味极佳。",
+        "pinyin": "wǎng wǎng dé zhī ， qí wèi jí jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "九之略其造具，若方春禁火之时，于野寺山园丛手而掇，乃蒸，乃舂，乃以火干之，则又棨、朴、焙、贯、相、穿、育等七事皆废。",
+        "pinyin": "jiǔ zhī lüè qí zào jù ， ruò fāng chūn jìn huǒ zhī shí ， yú yě sì shān yuán cóng shǒu ér duō ， nǎi zhēng ， nǎi chōng ， nǎi yǐ huǒ gàn zhī ， zé yòu qǐ 、 pǔ 、 bèi 、 guàn 、 xiāng 、 chuān 、 yù děng qī shì jiē fèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "其煮器，若松间石上可坐，则具列，废用槁薪鼎枥之属，则风炉、灰承、炭挝、火䇲、交床等废；",
+        "pinyin": "qí zhǔ qì ， ruò sōng jiān shí shàng kě zuò ， zé jù liè ， fèi yòng gǎo xīn dǐng lì zhī shǔ ， zé fēng lú 、 huī chéng 、 tàn wō 、 huǒ cè 、 jiāo chuáng děng fèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "若瞰泉临涧，则水方、涤方、漉水囊废。",
+        "pinyin": "ruò kàn quán lín jiàn ， zé shuǐ fāng 、 dí fāng 、 lù shuǐ náng fèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "若五人已下，茶可末而精者，则罗废；",
+        "pinyin": "ruò wǔ rén yǐ xià ， chá kě mò ér jīng zhě ， zé luó fèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "若援藟跻嵒，引入洞，于山口灸而末之，或纸包合贮，则碾、拂末等废；",
+        "pinyin": "ruò yuán lěi jī yán ， yǐn rù dòng ， yú shān kǒu jiǔ ér mò zhī ， huò zhǐ bāo hé zhù ， zé niǎn 、 fú mò děng fèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "既瓢碗、䇲、劄、熟盂、醝簋悉以一筥盛之，则都篮废。",
+        "pinyin": "jì piáo wǎn 、 cè 、 zhā 、 shú yú 、 cuō guǐ xī yǐ yī jǔ shèng zhī ， zé dōu lán fèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "但城邑之中，王公之门，二十四器阙一则茶废矣！",
+        "pinyin": "dàn chéng yì zhī zhōng ， wáng gōng zhī mén ， èr shí sì qì quē yī zé chá fèi yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "十之图以绢素或四幅或六幅，分布写之，陈诸座隅，则茶之源、之具、之造、之器、之煮、之饮、之事、之出、之略，目击而存，于是《茶经》之始终备焉。",
+        "pinyin": "shí zhī tú yǐ juàn sù huò sì fú huò liù fú ， fēn bù xiě zhī ， chén zhū zuò yú ， zé chá zhī yuán 、 zhī jù 、 zhī zào 、 zhī qì 、 zhī zhǔ 、 zhī yǐn 、 zhī shì 、 zhī chū 、 zhī lüè ， mù jī ér cún ， yú shì 《 chá jīng 》 zhī shǐ zhōng bèi yān 。",
+        "english": ""
+      }
+    ]
+  }
+]

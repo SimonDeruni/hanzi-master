@@ -270,6 +270,9 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
             localizedDefinitionQuality: masterCard.localizedDefinitionQuality,
             isExpansionEligible: masterCard.isExpansionEligible,
             sourceDefinitionHash: masterCard.sourceDefinitionHash,
+            hskLevel: (libraryCard.hskLevel > 0)
+                ? libraryCard.hskLevel
+                : masterCard.hskLevel,
           );
         }).toList();
 

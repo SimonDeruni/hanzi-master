@@ -138,6 +138,7 @@ class _BookDetailScreenState extends ConsumerState<BookDetailScreen> {
     _biography = BundledAuthorBiographyService.instance.biographyFor(
       author: widget.book.author,
       localeCode: locale,
+      authorEn: widget.book.authorEn,
     );
     _synopsis = LocalizedCatalogService.getBookSynopsis(
       bookId: widget.book.id,

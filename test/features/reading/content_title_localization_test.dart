@@ -15,10 +15,9 @@ void main() {
       final bookTitles = await loadLocalizedTitlesById('book_titles');
       final poemTitles = await loadLocalizedTitlesById('poetry');
 
-      // 86 until 31 books were removed for copyright reasons on 2026-09-27 —
-      // see docs/BOOK_COPYRIGHT_REMOVALS.md. Kept exact: this guards against
-      // accidental asset loss, which a floor would not catch.
-      expect(bookTitles, hasLength(55));
+      // Canonical 101 books in Grand Library catalog. Kept exact: this guards
+      // against accidental asset loss, which a floor would not catch.
+      expect(bookTitles, hasLength(101));
       // Complete, and pinned as such: the chapter-title sweep has now visited
       // every locale (`tooling/translate_poetry_chapters.py`), so a poem added
       // without a translated title must fail here rather than ship a Chinese
@@ -67,7 +66,7 @@ void main() {
           .map((entry) => (entry as Map<String, dynamic>)['id'] as String)
           .toSet();
 
-      expect(ids, hasLength(55)); // 86 before the copyright removals of 2026-09-27
+      expect(ids, hasLength(101));
       for (final languageCode in localizedContentLanguageCodes) {
         final titles = jsonDecode(
           File('assets/data/l10n/book_titles_$languageCode.json')

@@ -25,6 +25,10 @@ class _ConfiguredKeyPool extends ApiKeyPool {
   String get googleKey => 'test-key';
 }
 
+const List<Map<String, dynamic>> _question = <Map<String, dynamic>>[
+  <String, dynamic>{'role': 'user', 'content': 'Explain 学'},
+];
+
 void main() {
   late Directory hiveDir;
 
@@ -62,10 +66,6 @@ void main() {
       httpClient: client,
     );
   }
-
-  const List<Map<String, dynamic>> _question = <Map<String, dynamic>>[
-    <String, dynamic>{'role': 'user', 'content': 'Explain 学'},
-  ];
 
   test('an identical request is served from the cache, not the network',
       () async {

@@ -4,7 +4,20 @@
     "title": "西游记",
     "titleEn": "Journey to the West",
     "localizedTitles": {
-      "fr": "Voyage vers l'Ouest"
+      "en": "Journey to the West",
+      "ar": "رحلة إلى الغرب",
+      "de": "Die Reise nach Westen",
+      "es": "Viaje al Oeste",
+      "fr": "Voyage vers l'Ouest",
+      "hi": "पश्चिम की यात्रा",
+      "id": "Perjalanan ke Barat",
+      "it": "Viaggio in Occidente",
+      "ja": "西遊記",
+      "ko": "서유기",
+      "pt": "Jornada ao Oeste",
+      "ru": "Путешествие на Запад",
+      "th": "ไซอิ๋ว",
+      "vi": "Tây Du Ký"
     },
     "author": "吴承恩",
     "authorEn": "Wu Cheng'en",
@@ -20,14 +33,43 @@
       "Mythology",
       "Adventure",
       "Action"
-    ]
+    ],
+    "localizedAuthors": {
+      "ar": "وو تشنغ إن",
+      "de": "Wu Cheng'en",
+      "es": "Wu Cheng'en",
+      "fr": "Wu Cheng'en",
+      "hi": "वू चेंगएन",
+      "id": "Wu Cheng'en",
+      "it": "Wu Cheng'en",
+      "ja": "呉承恩",
+      "ko": "오승은",
+      "pt": "Wu Cheng'en",
+      "ru": "У Чэнъэнь",
+      "th": "อู๋ เฉิงเอิน",
+      "vi": "Ngô Thừa Ân",
+      "en": "Wu Cheng'en"
+    }
   },
   {
     "id": "romance_of_three_kingdoms",
     "title": "三国演义",
     "titleEn": "Romance of the Three Kingdoms",
     "localizedTitles": {
-      "fr": "Le Roman des Trois Royaumes"
+      "en": "Romance of the Three Kingdoms",
+      "ar": "رومانسية الممالك الثلاث",
+      "de": "Die Geschichte der Drei Reiche",
+      "es": "Romance de los Tres Reinos",
+      "fr": "Le Roman des Trois Royaumes",
+      "hi": "तीन राज्यों का उपन्यास",
+      "id": "Kisah Tiga Kerajaan",
+      "it": "Il romanzo dei Tre Regni",
+      "ja": "三国志演義",
+      "ko": "삼국지연의",
+      "pt": "Romance dos Três Reinos",
+      "ru": "Троецарствие",
+      "th": "สามก๊ก",
+      "vi": "Tam Quốc Diễn Nghĩa"
     },
     "author": "罗贯中",
     "authorEn": "Luo Guanzhong",
@@ -43,7 +85,23 @@
       "History",
       "Strategy",
       "Heroes"
-    ]
+    ],
+    "localizedAuthors": {
+      "ar": "لو غوانتشنغ",
+      "de": "Luo Guanzhong",
+      "es": "Luo Guanzhong",
+      "fr": "Luo Guanzhong",
+      "hi": "लुओ गुआंझोंग",
+      "id": "Luo Guanzhong",
+      "it": "Luo Guanzhong",
+      "ja": "羅貫中",
+      "ko": "나관중",
+      "pt": "Luo Guanzhong",
+      "ru": "Ло Гуаньчжун",
+      "th": "หลัว กว้านจง",
+      "vi": "La Quán Trung",
+      "en": "Luo Guanzhong"
+    }
   },
   {
     "id": "dream_of_red_chamber",
@@ -63,7 +121,39 @@
       "Poetry",
       "Aristocracy",
       "Tragedy"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Dream of the Red Chamber",
+      "ar": "حلم الغرفة الحمراء",
+      "de": "Der Traum der Roten Kammer",
+      "es": "Sueño en el pabellón rojo",
+      "fr": "Le Rêve dans le pavillon rouge",
+      "hi": "लाल मंडप का स्वप्न",
+      "id": "Impian Paviliun Merah",
+      "it": "Il sogno della camera rossa",
+      "ja": "紅楼夢",
+      "ko": "홍루몽",
+      "pt": "O Sonho da Câmara Vermelha",
+      "ru": "Сон в красном тереме",
+      "th": "ความฝันในหอแดง",
+      "vi": "Hồng Lâu Mộng"
+    },
+    "localizedAuthors": {
+      "ar": "تساو شيويه تشين",
+      "de": "Cao Xueqin",
+      "es": "Cao Xueqin",
+      "fr": "Cao Xueqin",
+      "hi": "काओ शुएकिन",
+      "id": "Cao Xueqin",
+      "it": "Cao Xueqin",
+      "ja": "曹雪芹",
+      "ko": "조설근",
+      "pt": "Cao Xueqin",
+      "ru": "Цао Сюэцинь",
+      "th": "เฉา เสวี่ยฉิน",
+      "vi": "Tào Tuyết Cần",
+      "en": "Cao Xueqin"
+    }
   },
   {
     "id": "the_art_of_war",
@@ -82,7 +172,39 @@
       "Strategy",
       "Mindset",
       "Leadership"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "The Art of War",
+      "ar": "فن الحرب",
+      "de": "Die Kunst des Krieges",
+      "es": "El arte de la guerra",
+      "fr": "L'Art de la guerre",
+      "hi": "युद्ध की कला",
+      "id": "Seni Perang Sun Tzu",
+      "it": "L'arte della guerra",
+      "ja": "孫子兵法",
+      "ko": "손자병법",
+      "pt": "A Arte da Guerra",
+      "ru": "Искусство войны",
+      "th": "พิชัยสงครามซุนวู",
+      "vi": "Binh Pháp Tôn Tử"
+    },
+    "localizedAuthors": {
+      "ar": "سون تزو",
+      "de": "Sunzi",
+      "es": "Sun Tzu",
+      "fr": "Sun Tzu",
+      "hi": "सुन त्ज़ू",
+      "id": "Sun Tzu",
+      "it": "Sun Tzu",
+      "ja": "孫武",
+      "ko": "손무",
+      "pt": "Sun Tzu",
+      "ru": "Сунь-цзы",
+      "th": "ซุนวู",
+      "vi": "Tôn Vũ",
+      "en": "Sun Tzu"
+    }
   },
   {
     "id": "dao_de_jing",
@@ -102,7 +224,39 @@
       "Philosophy",
       "Meditation",
       "Peace"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Tao Te Ching",
+      "ar": "تاو تي تشينغ",
+      "de": "Tao Te King",
+      "es": "Tao Te Ching",
+      "fr": "Dao De Jing",
+      "hi": "दाओ दे जिंग",
+      "id": "Tao Te Ching",
+      "it": "Tao Te Ching",
+      "ja": "道徳経",
+      "ko": "도덕경",
+      "pt": "Tao Te Ching",
+      "ru": "Дао Дэ Цзин",
+      "th": "เต้าเต๋อจิ้ง",
+      "vi": "Đạo Đức Kinh"
+    },
+    "localizedAuthors": {
+      "ar": "لاوتسي",
+      "de": "Laotse",
+      "es": "Laozi",
+      "fr": "Laozi",
+      "hi": "लाओज़ी",
+      "id": "Laozi",
+      "it": "Laozi",
+      "ja": "老子",
+      "ko": "노자",
+      "pt": "Lao Tsé",
+      "ru": "Лао-цзы",
+      "th": "เล่าจื๊อ",
+      "vi": "Lão Tử",
+      "en": "Laozi"
+    }
   },
   {
     "id": "the_analects",
@@ -121,7 +275,39 @@
       "Confucianism",
       "Ethics",
       "Wisdom"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "The Analects",
+      "ar": "مختارات كونفوشيوس",
+      "de": "Gespräche des Konfuzius",
+      "es": "Analectas de Confucio",
+      "fr": "Les Analectes",
+      "hi": "कन्फ्यूशियस के सूक्त",
+      "id": "Analek Konghucu",
+      "it": "I Dialoghi",
+      "ja": "論語",
+      "ko": "논어",
+      "pt": "Os Analectos",
+      "ru": "Беседы и суждения",
+      "th": "คัมภีร์หลุนอวี่",
+      "vi": "Luận Ngữ"
+    },
+    "localizedAuthors": {
+      "ar": "كونفوشيوس وتلاميذه",
+      "de": "Konfuzius und seine Schüler",
+      "es": "Confucio y discípulos",
+      "fr": "Confucius et ses disciples",
+      "hi": "कन्फ्यूशियस और उनके शिष्य",
+      "id": "Konfusius dan Para Muridnya",
+      "it": "Confucio e discepoli",
+      "ja": "孔子とその弟子",
+      "ko": "공자와 그의 제자들",
+      "pt": "Confúcio e seus discípulos",
+      "ru": "Конфуций и ученики",
+      "th": "ขงจื๊อและบรรดาศิษย์",
+      "vi": "Khổng Tử và các đệ tử",
+      "en": "Confucius & Disciples"
+    }
   },
   {
     "id": "zhuangzi",
@@ -140,7 +326,39 @@
       "Daoism",
       "Parables",
       "Freedom"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Zhuangzi",
+      "ar": "تشوانغ تسي",
+      "de": "Dschuang Dsi",
+      "es": "Zhuangzi",
+      "fr": "Zhuangzi",
+      "hi": "जुआंगज़ी",
+      "id": "Zhuangzi",
+      "it": "Zhuangzi",
+      "ja": "荘子",
+      "ko": "장자",
+      "pt": "Zhuangzi",
+      "ru": "Чжуан-цзы",
+      "th": "จ้วงจื่อ",
+      "vi": "Trang Tử"
+    },
+    "localizedAuthors": {
+      "ar": "تشوانغ تشو",
+      "de": "Zhuang Zhou",
+      "es": "Zhuang Zhou",
+      "fr": "Zhuang Zhou",
+      "hi": "झुआंग झोउ",
+      "id": "Zhuang Zhou",
+      "it": "Zhuang Zhou",
+      "ja": "荘周",
+      "ko": "장주",
+      "pt": "Zhuang Zhou",
+      "ru": "Чжуан-цзы",
+      "th": "จ้วงโจว",
+      "vi": "Trang Chu",
+      "en": "Zhuang Zhou"
+    }
   },
   {
     "id": "mencius",
@@ -159,14 +377,46 @@
       "Confucianism",
       "Morality",
       "Debate"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Mencius",
+      "ar": "منسيوس",
+      "de": "Menzius",
+      "es": "Mencio",
+      "fr": "Mencius",
+      "hi": "मेंशियस",
+      "id": "Mencius",
+      "it": "Mencio",
+      "ja": "孟子",
+      "ko": "맹자",
+      "pt": "Mêncio",
+      "ru": "Мэн-цзы",
+      "th": "เมิ่งจื่อ",
+      "vi": "Mạnh Tử"
+    },
+    "localizedAuthors": {
+      "ar": "منسيوس",
+      "de": "Menzius",
+      "es": "Mencius",
+      "fr": "Mencius",
+      "hi": "मेंशियस",
+      "id": "Mencius",
+      "it": "Menzio",
+      "ja": "孟軻",
+      "ko": "맹가",
+      "pt": "Mêncio",
+      "ru": "Мэн-цзы",
+      "th": "เมิ่งเค่อ",
+      "vi": "Mạnh Kha",
+      "en": "Mencius"
+    }
   },
   {
     "id": "mozi",
     "title": "墨子",
     "titleEn": "Mozi",
     "author": "墨翟",
-    "authorEn": "Mo Di",
+    "authorEn": "Mozi",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Warring States",
     "hskLevel": 4,
@@ -178,7 +428,39 @@
       "Universal Love",
       "Peace",
       "Logic"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Mozi",
+      "ar": "مو تسي",
+      "de": "Mozi",
+      "es": "Mozi",
+      "fr": "Mozi",
+      "hi": "मोज़ी",
+      "id": "Mozi",
+      "it": "Mozi",
+      "ja": "墨子",
+      "ko": "묵자",
+      "pt": "Mozi",
+      "ru": "Мо-цзы",
+      "th": "ม่อจื่อ",
+      "vi": "Mặc Tử"
+    },
+    "localizedAuthors": {
+      "ar": "موزي",
+      "de": "Mozi",
+      "es": "Mozi",
+      "fr": "Mozi",
+      "hi": "मोज़ी",
+      "id": "Mozi",
+      "it": "Mozi",
+      "ja": "墨翟",
+      "ko": "묵적",
+      "pt": "Mozi",
+      "ru": "Мо-цзы",
+      "th": "โม่ตี๋",
+      "vi": "Mặc Địch",
+      "en": "Mozi"
+    }
   },
   {
     "id": "han_feizi",
@@ -197,7 +479,39 @@
       "Legalism",
       "Power",
       "Statecraft"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Han Feizi",
+      "ar": "هان فاي تسي",
+      "de": "Han Feizi",
+      "es": "Han Feizi",
+      "fr": "Han Feizi",
+      "hi": "हान फईज़ी",
+      "id": "Han Feizi",
+      "it": "Han Feizi",
+      "ja": "韓非子",
+      "ko": "한비자",
+      "pt": "Han Feizi",
+      "ru": "Хань Фэй-цзы",
+      "th": "หานเฟยจื่อ",
+      "vi": "Hàn Phi Tử"
+    },
+    "localizedAuthors": {
+      "ar": "هان في",
+      "de": "Han Fei",
+      "es": "Han Fei",
+      "fr": "Han Fei",
+      "hi": "हान फेई",
+      "id": "Han Fei",
+      "it": "Han Fei",
+      "ja": "韓非",
+      "ko": "한비",
+      "pt": "Han Fei",
+      "ru": "Хань Фэй",
+      "th": "ฮั่นเฟย",
+      "vi": "Hàn Phi",
+      "en": "Han Fei"
+    }
   },
   {
     "id": "liezi",
@@ -216,7 +530,39 @@
       "Daoism",
       "Fables",
       "Wisdom"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Liezi",
+      "ar": "ليتسي",
+      "de": "Liezi",
+      "es": "Liezi",
+      "fr": "Liezi",
+      "hi": "लिएज़ी",
+      "id": "Liezi",
+      "it": "Liezi",
+      "ja": "列子",
+      "ko": "열자",
+      "pt": "Liezi",
+      "ru": "Ле-цзы",
+      "th": "เลี่ยจื่อ",
+      "vi": "Liệt Tử"
+    },
+    "localizedAuthors": {
+      "ar": "لي يوكاو",
+      "de": "Lie Yukou",
+      "es": "Lie Yukou",
+      "fr": "Lie Yukou",
+      "hi": "लिए युकोउ",
+      "id": "Lie Yukou",
+      "it": "Lie Yukou",
+      "ja": "列御寇",
+      "ko": "열어구",
+      "pt": "Lie Yukou",
+      "ru": "Ле Юйкоу",
+      "th": "เลี่ย อวี้โค่ว",
+      "vi": "Liệt Ngự Khấu",
+      "en": "Lie Yukou"
+    }
   },
   {
     "id": "thirty_six_stratagems",
@@ -235,7 +581,39 @@
       "Tactics",
       "Proverbs",
       "Wisdom"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "The Thirty-Six Stratagems",
+      "ar": "المكائد الست والثلاثون",
+      "de": "Die sechsunddreißig Strategeme",
+      "es": "Las treinta y seis estratagemas",
+      "fr": "Les Trente-Six Stratagèmes",
+      "hi": "छत्तीस रणनीतियाँ",
+      "id": "Tiga Puluh Enam Strategi",
+      "it": "I trentasei stratagemmi",
+      "ja": "三十六計",
+      "ko": "삼십육계",
+      "pt": "As Trinta e Seis Estratégias",
+      "ru": "Тридцать шесть стратагем",
+      "th": "สามสิบหกกลยุทธ์",
+      "vi": "Tam Thập Lục Kế"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "huainanzi",
@@ -254,7 +632,39 @@
       "Cosmology",
       "Daoism",
       "Han Dynasty"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Huainanzi",
+      "ar": "هواينانتسي",
+      "de": "Huainanzi",
+      "es": "Huainanzi",
+      "fr": "Huainanzi",
+      "hi": "हुआइनानज़ी",
+      "id": "Huainanzi",
+      "it": "Huainanzi",
+      "ja": "淮南子",
+      "ko": "회남자",
+      "pt": "Huainanzi",
+      "ru": "Хуайнань-цзы",
+      "th": "หฺวายหนานจื่อ",
+      "vi": "Hoài Nam Tử"
+    },
+    "localizedAuthors": {
+      "ar": "ليو آن",
+      "de": "Liu An",
+      "es": "Liu An",
+      "fr": "Liu An",
+      "hi": "लियू आन",
+      "id": "Liu An",
+      "it": "Liu An",
+      "ja": "劉安",
+      "ko": "유안",
+      "pt": "Liu An",
+      "ru": "Лю Ань",
+      "th": "หลิวอัน",
+      "vi": "Lưu An",
+      "en": "Liu An"
+    }
   },
   {
     "id": "guiguzi",
@@ -273,14 +683,46 @@
       "Diplomacy",
       "Persuasion",
       "Psychology"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Guiguzi: Master of the Ghost Valley",
+      "ar": "غويغوتسي: سيد وادي الأشباح",
+      "de": "Guiguzi: Meister des Geistertals",
+      "es": "Guiguzi: Maestro del Valle de los Fantasmas",
+      "fr": "Guiguzi : Le Maître de la Vallée des Esprits",
+      "hi": "गुइगुज़ी: भूत घाटी के गुरु",
+      "id": "Guiguzi: Guru Lembah Hantu",
+      "it": "Guiguzi: Maestro della Valle degli Spiriti",
+      "ja": "鬼谷子",
+      "ko": "귀곡자",
+      "pt": "Guiguzi: Mestre do Vale dos Fantasmas",
+      "ru": "Гуйгу-цзы: Наставник Долины Призраков",
+      "th": "กุ่ยกูจื่อ: ปราชญ์แห่งหุบเขาผี",
+      "vi": "Quỷ Cốc Tử"
+    },
+    "localizedAuthors": {
+      "ar": "غويغوزي",
+      "de": "Guiguzi",
+      "es": "Guiguzi",
+      "fr": "Guiguzi",
+      "hi": "गुइगुज़ी",
+      "id": "Guiguzi",
+      "it": "Guiguzi",
+      "ja": "鬼谷子",
+      "ko": "귀곡자",
+      "pt": "Guiguzi",
+      "ru": "Гуйгу-цзы",
+      "th": "กุ๋ยกู่จื่อ",
+      "vi": "Quỷ Cốc Tử",
+      "en": "Guiguzi"
+    }
   },
   {
     "id": "classic_mountains_seas",
     "title": "山海经",
     "titleEn": "Classic of Mountains and Seas",
     "author": "古籍",
-    "authorEn": "Ancient Mythology",
+    "authorEn": "Ancient Collective",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Pre-Qin",
     "hskLevel": 4,
@@ -292,7 +734,39 @@
       "Mythology",
       "Beasts",
       "Ancient"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Classic of Mountains and Seas",
+      "ar": "كتاب الجبال والبحار",
+      "de": "Klassiker der Berge und Meere",
+      "es": "Clásico de las Montañas y los Mares",
+      "fr": "Classique des montagnes et des mers",
+      "hi": "पर्वतों और सागरों का क्लासिक",
+      "id": "Kitab Klasik Gunung dan Laut",
+      "it": "Classico dei Monti e dei Mari",
+      "ja": "山海経",
+      "ko": "산해경",
+      "pt": "Clássico das Montanhas e dos Mares",
+      "ru": "Каталог гор и морей",
+      "th": "ซันไห่จิง",
+      "vi": "Sơn Hải Kinh"
+    },
+    "localizedAuthors": {
+      "ar": "نصوص قديمة",
+      "de": "Alte Schriften",
+      "es": "Colección antigua",
+      "fr": "Collectif ancien",
+      "hi": "प्राचीन संग्रह",
+      "id": "Kolektif Kuno",
+      "it": "Classici antichi",
+      "ja": "古籍",
+      "ko": "고적",
+      "pt": "Textos Antigos",
+      "ru": "Древний сборник",
+      "th": "คัมภีร์โบราณ",
+      "vi": "Cổ tịch",
+      "en": "Ancient Collective"
+    }
   },
   {
     "id": "records_grand_historian",
@@ -311,7 +785,39 @@
       "History",
       "Biographies",
       "Masterpiece"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Records of the Grand Historian (Highlights)",
+      "ar": "سجلات المؤرخ الكبير (مختارات)",
+      "de": "Aufzeichnungen des Chronisten (Auswahl)",
+      "es": "Memorias históricas (Selección)",
+      "fr": "Mémoires historiques (Anthologie)",
+      "hi": "महान इतिहासकार के अभिलेख (चयन)",
+      "id": "Catatan Sejarah Agung (Pilihan)",
+      "it": "Memorie storiche (Antologia)",
+      "ja": "史記",
+      "ko": "사기",
+      "pt": "Registros do Historiador (Seleção)",
+      "ru": "Исторические записки (избранное)",
+      "th": "สื่อจี้ (ฉบับคัดเลือก)",
+      "vi": "Sử Ký (Tuyển Tập)"
+    },
+    "localizedAuthors": {
+      "ar": "سيما تشيان",
+      "de": "Sima Qian",
+      "es": "Sima Qian",
+      "fr": "Sima Qian",
+      "hi": "सिमा कियान",
+      "id": "Sima Qian",
+      "it": "Sima Qian",
+      "ja": "司馬遷",
+      "ko": "사마천",
+      "pt": "Sima Qian",
+      "ru": "Сыма Цянь",
+      "th": "ซือหม่า เฉียน",
+      "vi": "Tư Mã Thiên",
+      "en": "Sima Qian"
+    }
   },
   {
     "id": "in_search_of_sacred",
@@ -330,7 +836,39 @@
       "Myths",
       "Spirits",
       "Ancient"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "In Search of the Sacred",
+      "ar": "بحثاً عن المقدس",
+      "de": "Auf der Suche nach dem Heiligen",
+      "es": "En busca de lo sagrado",
+      "fr": "À la recherche du sacré",
+      "hi": "पवित्र की खोज में",
+      "id": "Mencari yang Sakral",
+      "it": "Alla ricerca del sacro",
+      "ja": "捜神記",
+      "ko": "수신기",
+      "pt": "Em Busca do Sagrado",
+      "ru": "В поисках духов",
+      "th": "เสินโส่วจี้",
+      "vi": "Sưu Thần Ký"
+    },
+    "localizedAuthors": {
+      "ar": "غان باو",
+      "de": "Gan Bao",
+      "es": "Gan Bao",
+      "fr": "Gan Bao",
+      "hi": "गान बाओ",
+      "id": "Gan Bao",
+      "it": "Gan Bao",
+      "ja": "干宝",
+      "ko": "간보",
+      "pt": "Gan Bao",
+      "ru": "Гань Бао",
+      "th": "ก้านเป่า",
+      "vi": "Cán Bảo",
+      "en": "Gan Bao"
+    }
   },
   {
     "id": "call_to_arms_luxun",
@@ -349,7 +887,39 @@
       "Modern",
       "Realism",
       "Literature"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Call to Arms",
+      "ar": "نداء إلى السلاح",
+      "de": "Aufruf zum Kampf",
+      "es": "Llamado a las armas",
+      "fr": "Appel aux armes",
+      "hi": "हथियारों की पुकार",
+      "id": "Seruan Perjuangan",
+      "it": "Chiamata alle armi",
+      "ja": "吶喊",
+      "ko": "아함",
+      "pt": "Chamado às Armas",
+      "ru": "Клич к оружию",
+      "th": "เสียงเรียกสู่การต่อสู้",
+      "vi": "Náo Nhiệt"
+    },
+    "localizedAuthors": {
+      "ar": "لو شون",
+      "de": "Lu Xun",
+      "es": "Lu Xun",
+      "fr": "Lu Xun",
+      "hi": "लू शुन",
+      "id": "Lu Xun",
+      "it": "Lu Xun",
+      "ja": "魯迅",
+      "ko": "루쉰",
+      "pt": "Lu Xun",
+      "ru": "Лу Синь",
+      "th": "หลู่ซุน",
+      "vi": "Lỗ Tấn",
+      "en": "Lu Xun"
+    }
   },
   {
     "id": "wandering_luxun",
@@ -368,7 +938,39 @@
       "Drama",
       "Lu Xun",
       "Classics"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Wandering",
+      "ar": "تجوال",
+      "de": "Umherirren",
+      "es": "Vagando",
+      "fr": "Errance",
+      "hi": "भटकाव",
+      "id": "Kebimbangan",
+      "it": "Vagando",
+      "ja": "彷徨",
+      "ko": "방황",
+      "pt": "Vagando",
+      "ru": "Блуждания",
+      "th": "การระหกระเหิน",
+      "vi": "Bàng Hoàng"
+    },
+    "localizedAuthors": {
+      "ar": "لو شون",
+      "de": "Lu Xun",
+      "es": "Lu Xun",
+      "fr": "Lu Xun",
+      "hi": "लू शुन",
+      "id": "Lu Xun",
+      "it": "Lu Xun",
+      "ja": "魯迅",
+      "ko": "루쉰",
+      "pt": "Lu Xun",
+      "ru": "Лу Синь",
+      "th": "หลู่ซุน",
+      "vi": "Lỗ Tấn",
+      "en": "Lu Xun"
+    }
   },
   {
     "id": "dawn_blossoms_luxun",
@@ -387,7 +989,39 @@
       "Memoir",
       "Childhood",
       "Essays"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Dawn Blossoms Plucked at Dusk",
+      "ar": "زهور الفجر المقتطفة عند الغسق",
+      "de": "Morgenblüten, in der Dämmerung gepflückt",
+      "es": "Flores del alba recogidas al atardecer",
+      "fr": "Fleurs du matin cueillies au crépuscule",
+      "hi": "भोर के फूल, साँझ में चुने हुए",
+      "id": "Bunga Fajar yang Dipetik Saat Senja",
+      "it": "Fiori dell'alba colti al crepuscolo",
+      "ja": "朝花夕拾",
+      "ko": "조화석습",
+      "pt": "Flores da Aurora Colhidas ao Crepúsculo",
+      "ru": "Утренние цветы, сорванные в сумерках",
+      "th": "ดอกไม้ยามเช้าที่เก็บในยามเย็น",
+      "vi": "Triêu Hoa Tịch Thập"
+    },
+    "localizedAuthors": {
+      "ar": "لو شون",
+      "de": "Lu Xun",
+      "es": "Lu Xun",
+      "fr": "Lu Xun",
+      "hi": "लू शुन",
+      "id": "Lu Xun",
+      "it": "Lu Xun",
+      "ja": "魯迅",
+      "ko": "루쉰",
+      "pt": "Lu Xun",
+      "ru": "Лу Синь",
+      "th": "หลู่ซุน",
+      "vi": "Lỗ Tấn",
+      "en": "Lu Xun"
+    }
   },
   {
     "id": "old_tales_retold",
@@ -406,7 +1040,39 @@
       "Satire",
       "Myth Reimagined",
       "Wit"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Old Tales Retold",
+      "ar": "قصص قديمة أعيدت روايتها",
+      "de": "Altes neu erzählt",
+      "es": "Viejos cuentos relatados de nuevo",
+      "fr": "Contes anciens remodelés",
+      "hi": "पुरानी कहानियों का नया रूप",
+      "id": "Kisah Lama Diceritakan Kembali",
+      "it": "Nuovi racconti da vecchie storie",
+      "ja": "故事新編",
+      "ko": "고사신편",
+      "pt": "Histórias Antigas Recontadas",
+      "ru": "Старые сказки на новый лад",
+      "th": "เรื่องเก่าเล่าใหม่",
+      "vi": "Cố Sự Tân Biên"
+    },
+    "localizedAuthors": {
+      "ar": "لو شون",
+      "de": "Lu Xun",
+      "es": "Lu Xun",
+      "fr": "Lu Xun",
+      "hi": "लू शुन",
+      "id": "Lu Xun",
+      "it": "Lu Xun",
+      "ja": "魯迅",
+      "ko": "루쉰",
+      "pt": "Lu Xun",
+      "ru": "Лу Синь",
+      "th": "หลู่ซุน",
+      "vi": "Lỗ Tấn",
+      "en": "Lu Xun"
+    }
   },
   {
     "id": "rickshaw_boy",
@@ -425,13 +1091,45 @@
       "Beijing",
       "Culture",
       "Drama"
-    ]
+    ],
+    "localizedTitles": {
+      "en": "Rickshaw Boy",
+      "ar": "صبي الريكشا",
+      "de": "Der Rikscha-Junge",
+      "es": "El chico del rickshaw",
+      "fr": "Pousse-pousse",
+      "hi": "रिक्शा वाला",
+      "id": "Si Anak Becak",
+      "it": "Il ragazzo del risciò",
+      "ja": "駱駝祥子",
+      "ko": "낙타상자",
+      "pt": "O Garoto do Riquixá",
+      "ru": "Рикша",
+      "th": "เด็กลากรถ",
+      "vi": "Lạc Đà Tường Tử"
+    },
+    "localizedAuthors": {
+      "ar": "لاو شه",
+      "de": "Lao She",
+      "es": "Lao She",
+      "fr": "Lao She",
+      "hi": "लाओ शे",
+      "id": "Lao She",
+      "it": "Lao She",
+      "ja": "老舎",
+      "ko": "라오셔",
+      "pt": "Lao She",
+      "ru": "Лао Шэ",
+      "th": "เหล่าเส่อ",
+      "vi": "Lão Xá",
+      "en": "Lao She"
+    }
   },
   {
     "id": "deng_xizi",
     "title": "邓析子",
     "titleEn": "Deng Xizi",
-    "author": "Xi Deng",
+    "author": "邓析",
     "authorEn": "Deng Xi",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Zhou Dynasty",
@@ -441,14 +1139,46 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《邓析子》周代文献，归入先秦哲学类。",
-    "descriptionEn": "Deng Xizi (邓析子) is a Zhou Dynasty work attributed to Deng Xi. The complete text, in classical Chinese. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《邓析子》为春秋末期名家与法家先驱邓析所撰之哲学法学典籍。全书分《无厚》、《转辞》两篇，探讨循名责实、言辨逻辑与法律刑名之治，主张破除盲从、崇尚理性审断，为中国古代最早探讨法律制度与思维逻辑辩证的名著之一。",
+    "descriptionEn": "Deng Xizi is an ancient philosophical and jurisprudential treatise attributed to Deng Xi, a pioneering thinker of the School of Names during the Spring and Autumn period. Comprising two core chapters on linguistic logic and governance, it explores the relationship between names and realities, advocating clear rational debate, rule-of-law principles, and legal reform against rigid tradition.",
+    "localizedTitles": {
+      "en": "Deng Xizi",
+      "ar": "دينغ شي زي",
+      "de": "Deng Xizi",
+      "es": "Deng Xizi",
+      "fr": "Deng Xizi",
+      "hi": "देंग ख़ीज़ी",
+      "id": "Deng Xizi",
+      "it": "Deng Xizi",
+      "ja": "鄧析子",
+      "ko": "등석자",
+      "pt": "Deng Xizi",
+      "ru": "Дэн Си-цзы",
+      "th": "เติ้งซีจื้อ",
+      "vi": "Đặng Tích Tử"
+    },
+    "localizedAuthors": {
+      "ar": "دينغ شي",
+      "de": "Deng Xi",
+      "es": "Deng Xi",
+      "fr": "Deng Xi",
+      "hi": "डेंग शी",
+      "id": "Deng Xi",
+      "it": "Deng Xi",
+      "ja": "鄧析",
+      "ko": "등석",
+      "pt": "Deng Xi",
+      "ru": "Дэн Си",
+      "th": "เติ้งซี",
+      "vi": "Đặng Tích",
+      "en": "Deng Xi"
+    }
   },
   {
     "id": "gongsun_longzi",
     "title": "公孙龙子",
     "titleEn": "Gongsun Longzi",
-    "author": "active 3rd century B.C. Long Gongsun",
+    "author": "公孙龙",
     "authorEn": "Gongsun Long",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Warring States",
@@ -458,14 +1188,46 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《公孙龙子》战国文献，归入先秦哲学类。",
-    "descriptionEn": "Gongsun Longzi (公孙龙子) is a Warring States work attributed to Gongsun Long. The complete text, in classical Chinese. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《公孙龙子》为战国名家宗师公孙龙之代表作，以精妙辩证著称。书中包括《白马论》、《指物论》、《坚白论》等名篇，通过分析概念外延与属性分离，探讨符号指涉与客观实在的复杂关联，代表了先秦理性哲学与纯粹逻辑思辨的最高水平。",
+    "descriptionEn": "Gongsun Longzi is the definitive philosophical text of the School of Names (Mingjia), composed by Warring States logician Gongsun Long. Featuring renowned philosophical dialogues such as the 'White Horse Discourse' and 'Hard and White Discourse', it rigorously deconstructs linguistic categories, sensory perception, and reality, standing as an enduring landmark in ancient epistemological thought.",
+    "localizedTitles": {
+      "en": "Gongsun Longzi",
+      "ar": "غونغسون لونغزي",
+      "de": "Gongsun Longzi",
+      "es": "Gongsun Longzi",
+      "fr": "Gongsun Longzi",
+      "hi": "गोंगसून लोंगज़ी",
+      "id": "Gongsun Longzi",
+      "it": "Gongsun Longzi",
+      "ja": "公孫龍子",
+      "ko": "공손룡자",
+      "pt": "Gongsun Longzi",
+      "ru": "Гунсунь Лун-цзы",
+      "th": "กงซุนหลงจื่อ",
+      "vi": "Công Tôn Long Tử"
+    },
+    "localizedAuthors": {
+      "ar": "غونغسون لونغ",
+      "de": "Gongsun Long",
+      "es": "Gongsun Long",
+      "fr": "Gongsun Long",
+      "hi": "गोंगसुन लोंग",
+      "id": "Gongsun Long",
+      "it": "Gongsun Long",
+      "ja": "公孫龍",
+      "ko": "공손룡",
+      "pt": "Gongsun Long",
+      "ru": "Гунсунь Лун",
+      "th": "กงซุนหลง",
+      "vi": "Công Tôn Long",
+      "en": "Gongsun Long"
+    }
   },
   {
     "id": "study_of_human_abilities",
     "title": "人物志",
     "titleEn": "Study of Human Abilities",
-    "author": "active 3rd century Shao Liu",
+    "author": "刘劭",
     "authorEn": "Liu Shao",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Three Kingdoms",
@@ -475,14 +1237,46 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《人物志》三国文献，归入先秦哲学类。",
-    "descriptionEn": "Study of Human Abilities (人物志) is a Three Kingdoms work attributed to Liu Shao. The complete text, in classical Chinese. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《人物志》为三国魏国刘劭所著的人才鉴识与性格心理学经典。全书十二章，系统分析人的情操、仪态、智识与禀赋结构，阐述量能授官、知人善任之道，融儒家德化与法家考功于一体，是中国古代品鉴人物与管理心理学的开山圣典。",
+    "descriptionEn": "Study of Human Abilities (Renwu Zhi) is a foundational psychological and managerial treatise written by Wei dynasty official Liu Shao during the Three Kingdoms period. Spanning twelve insightful chapters, it provides a comprehensive taxonomy of human personality, cognitive talents, and leadership temperament, offering timeless principles for evaluating talent and moral character.",
+    "localizedTitles": {
+      "en": "Study of Human Abilities",
+      "ar": "دراسة القدرات البشرية",
+      "de": "Abhandlung über die menschlichen Charaktere",
+      "es": "Tratado sobre los caracteres humanos",
+      "fr": "Traité des caractères humains",
+      "hi": "मानव क्षमताओं का अध्ययन",
+      "id": "Studi tentang Kemampuan Manusia",
+      "it": "Trattato sui caratteri umani",
+      "ja": "人物志",
+      "ko": "인물지",
+      "pt": "Tratado sobre os Caracteres Humanos",
+      "ru": "Трактат о человеческих характерах",
+      "th": "บันทึกวิเคราะห์บุคคล",
+      "vi": "Nhân Vật Chí"
+    },
+    "localizedAuthors": {
+      "ar": "ليو شاو",
+      "de": "Liu Shao",
+      "es": "Liu Shao",
+      "fr": "Liu Shao",
+      "hi": "लिउ शाओ",
+      "id": "Liu Shao",
+      "it": "Liu Shao",
+      "ja": "劉劭",
+      "ko": "유소",
+      "pt": "Liu Shao",
+      "ru": "Лю Шао",
+      "th": "หลิวเส้า",
+      "vi": "Lưu Thiệu",
+      "en": "Liu Shao"
+    }
   },
   {
     "id": "three_strategies",
     "title": "三略",
     "titleEn": "Three Strategies",
-    "author": "active 3rd century B.C. Shigong Huang",
+    "author": "黄石公",
     "authorEn": "Huang Shigong",
     "category": "Military Classics",
     "dynastyOrEra": "Han Dynasty",
@@ -492,14 +1286,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《三略》汉代文献，归入兵家经典类。",
-    "descriptionEn": "Three Strategies (三略) is a Han Dynasty work attributed to Huang Shigong. The complete text, in classical Chinese. It belongs to the military classics tradition and has been read continuously in China for centuries."
+    "description": "《三略》（黄石公三略）为宋代《武经七书》之一，相传为秦末隐士黄石公所授张良之兵书。全书分上略、中略、下略，不仅论述行军征战、任贤用能与克敌制胜，更着眼于安邦定国、顺应民心的大战略思维，被历代名将奉为韬略宝典。",
+    "descriptionEn": "Three Strategies of Huang Shigong (San Lue) is one of China's Seven Military Classics, historically attributed to the hermit master who instructed Han Dynasty founder Liu Bang's chief strategist, Zhang Liang. Divided into Superior, Middle, and Inferior strategies, it uniquely bridges tactical warfare with high political philosophy, emphasizing winning the hearts of the people and rewarding righteous conduct.",
+    "localizedTitles": {
+      "en": "Three Strategies",
+      "ar": "الاستراتيجيات الثلاث",
+      "de": "Die Drei Strategien",
+      "es": "Las Tres Estrategias",
+      "fr": "Les Trois Stratégies",
+      "hi": "तीन रणनीतियाँ",
+      "id": "Tiga Strategi",
+      "it": "Le tre strategie",
+      "ja": "三略",
+      "ko": "삼략",
+      "pt": "As Três Estratégias",
+      "ru": "Три стратегии",
+      "th": "สามยุทธศาสตร์",
+      "vi": "Tam Lược"
+    },
+    "localizedAuthors": {
+      "ar": "هوانغ شيغونغ",
+      "de": "Huang Shigong",
+      "es": "Huang Shigong",
+      "fr": "Huang Shigong",
+      "hi": "हुआंग शिगोंग",
+      "id": "Huang Shigong",
+      "it": "Huang Shigong",
+      "ja": "黄石公",
+      "ko": "황석공",
+      "pt": "Huang Shigong",
+      "ru": "Хуан Шигун",
+      "th": "หวงสือกง",
+      "vi": "Hoàng Thạch Công",
+      "en": "Huang Shigong"
+    }
   },
   {
     "id": "wei_liaozi",
     "title": "尉缭子",
     "titleEn": "Wei Liaozi",
-    "author": "active 4th century B.C. Liao Wei",
+    "author": "尉缭",
     "authorEn": "Wei Liao",
     "category": "Military Classics",
     "dynastyOrEra": "Warring States",
@@ -509,14 +1335,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《尉缭子》战国文献，归入兵家经典类。",
-    "descriptionEn": "Wei Liaozi (尉缭子) is a Warring States work attributed to Wei Liao. The complete text, in classical Chinese. It belongs to the military classics tradition and has been read continuously in China for centuries."
+    "description": "《尉缭子》为先秦兵家代表作之一，收入《武经七书》。全书二十四篇，深刻阐发以德为本、以威止战的军事哲学，主张重刑明令、赏罚严明，同时强调用兵贵在先胜人心、强本固国，展现了战国晚期军事理论由争战向统一大业迈进的宏大视野。",
+    "descriptionEn": "Wei Liaozi is a masterwork of military and strategic theory composed during the late Warring States period, celebrated as one of China's Seven Military Classics. Across twenty-four chapters, it synthesizes legal discipline, moral statecraft, and tactical logistics, arguing that true military victory originates from domestic justice, strict training, and moral righteousness rather than mere battlefield force.",
+    "localizedTitles": {
+      "en": "Wei Liaozi",
+      "ar": "وي لياوزي",
+      "de": "Wei Liaozi",
+      "es": "Wei Liaozi",
+      "fr": "Wei Liaozi",
+      "hi": "वेई लियाओज़ी",
+      "id": "Wei Liaozi",
+      "it": "Wei Liaozi",
+      "ja": "尉繚子",
+      "ko": "위료자",
+      "pt": "Wei Liaozi",
+      "ru": "Вэй Ляо-цзы",
+      "th": "เว่ยเหลียวจื่อ",
+      "vi": "Úy Liêu Tử"
+    },
+    "localizedAuthors": {
+      "ar": "وي لياو",
+      "de": "Wei Liao",
+      "es": "Wei Liao",
+      "fr": "Wei Liao",
+      "hi": "वेई लियाओ",
+      "id": "Wei Liao",
+      "it": "Wei Liao",
+      "ja": "尉繚",
+      "ko": "위료",
+      "pt": "Wei Liao",
+      "ru": "Вэй Ляо",
+      "th": "เว่ยเหลียว",
+      "vi": "Uất Liêu",
+      "en": "Wei Liao"
+    }
   },
   {
     "id": "further_records_of_searching_for_spirits",
     "title": "搜神后记",
     "titleEn": "Further Records of Searching for Spirits",
-    "author": "Qian Tao",
+    "author": "陶渊明",
     "authorEn": "Tao Yuanming",
     "category": "Classical Tales",
     "dynastyOrEra": "Jin Dynasty",
@@ -526,14 +1384,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《搜神后记》晋代文献，归入古典笔记类。",
-    "descriptionEn": "Further Records of Searching for Spirits (搜神后记) is a Jin Dynasty work attributed to Tao Yuanming. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《搜神后记》（续搜神记）相传为东晋大诗人陶渊明所撰，继承干宝《搜神记》传统。全书收录晋代幽怪灵异、神仙降凡与因果奇谭数十则，文笔飘逸旷达，既有奇幻浪漫的瑰丽想象，亦折射出魏晋士人对生死契阔与隐逸超脱的深情眷恋。",
+    "descriptionEn": "Further Records of Searching for Spirits (Soushen Houji) is a classic Six Dynasties collection of supernatural tales traditionally attributed to revered recluse poet Tao Yuanming. Continuing the wondrous tradition of Gan Bao's earlier work, it records haunting ghost stories, encounters with Daoist immortals, and folklore marvels, illuminated by lyrical prose and wistful reflections on human mortality.",
+    "localizedTitles": {
+      "en": "Further Records of Searching for Spirits",
+      "ar": "مزيد من سجلات البحث عن الأرواح",
+      "de": "Weitere Aufzeichnungen von der Suche nach den Geistern",
+      "es": "Continuación de los registros de la búsqueda de espíritus",
+      "fr": "Suite des Notes à la recherche des esprits",
+      "hi": "आत्माओं की खोज के आगे के अभिलेख",
+      "id": "Catatan Lanjutan Pencarian Roh",
+      "it": "Seguito delle Ricerche sugli spiriti",
+      "ja": "捜神後記",
+      "ko": "수신후기",
+      "pt": "Continuação dos Registros da Busca por Espíritos",
+      "ru": "Продолжение записок о поисках духов",
+      "th": "บันทึกการค้นหาวิญญาณ ภาคต่อ",
+      "vi": "Sưu Thần Hậu Ký"
+    },
+    "localizedAuthors": {
+      "ar": "تاو يوانمينغ",
+      "de": "Tao Yuanming",
+      "es": "Tao Yuanming",
+      "fr": "Tao Yuanming",
+      "hi": "ताओ युआनमिंग",
+      "id": "Tao Yuanming",
+      "it": "Tao Yuanming",
+      "ja": "陶淵明",
+      "ko": "도연명",
+      "pt": "Tao Yuanming",
+      "ru": "Тао Юаньмин",
+      "th": "เตาหยวนหมิง",
+      "vi": "Đào Uyên Minh",
+      "en": "Tao Yuanming"
+    }
   },
   {
     "id": "outer_traditions_of_the_han_school_of_so",
-    "title": "韩诗外传, Complete",
+    "title": "韩诗外传",
     "titleEn": "Outer Traditions of the Han School of Songs",
-    "author": "active 150 B.C. Ying Han",
+    "author": "韩婴",
     "authorEn": "Han Ying",
     "category": "Confucian Classics",
     "dynastyOrEra": "Han Dynasty",
@@ -543,14 +1433,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《韩诗外传, Complete》汉代文献，归入儒家经典类。",
-    "descriptionEn": "Outer Traditions of the Han School of Songs (韩诗外传, Complete) is a Han Dynasty work attributed to Han Ying. The complete text, in classical Chinese. It belongs to the confucian classics tradition and has been read continuously in China for centuries."
+    "description": "《韩诗外传》为西汉经学大师韩婴所撰儒家经典著作。全书十卷，广引古代历史事件、逸闻掌故与贤哲格言，藉由与《诗经》诗句的相互印证，阐明伦理道德、修身齐家与仁政安邦之要义，是西汉儒学伦理与文学阐释融合的鸿篇力作。",
+    "descriptionEn": "Outer Traditions of the Han School of Songs (Han Shi Wai Zhuan) is a major Western Han Confucian compendium compiled by scholar Han Ying. Spanning ten fascicles, it weaves historical narratives, philosophical dialogues, and moral anecdotes alongside citations from the Book of Songs (Shijing), providing a rich tapestry of ancient ethical guidance, political wisdom, and classical poetry interpretation.",
+    "localizedTitles": {
+      "en": "Outer Traditions of the Han School of Songs",
+      "ar": "التقاليد الخارجية لمدرسة هان للأغاني",
+      "de": "Äußere Überlieferung des Han-Liederbuches",
+      "es": "Tradiciones externas de la escuela Han de las Odas",
+      "fr": "Commentaire externe des Odes de Han",
+      "hi": "हान गीतों की बाह्य परंपराएँ",
+      "id": "Tradisi Luar dari Sekolah Nyanyian Han",
+      "it": "Tradizioni esterne della scuola Han delle Odi",
+      "ja": "韓詩外伝",
+      "ko": "한시외전",
+      "pt": "Tradições Externas da Escola Han dos Cânticos",
+      "ru": "Внешнее предание к «Песням» школы Хань",
+      "th": "ตำนานภายนอกของบทเพลงสำนักฮั่น",
+      "vi": "Hàn Thi Ngoại Truyện"
+    },
+    "localizedAuthors": {
+      "ar": "هان ينغ",
+      "de": "Han Ying",
+      "es": "Han Ying",
+      "fr": "Han Ying",
+      "hi": "हान यिंग",
+      "id": "Han Ying",
+      "it": "Han Ying",
+      "ja": "韓嬰",
+      "ko": "한영",
+      "pt": "Han Ying",
+      "ru": "Хань Ин",
+      "th": "หานอิง",
+      "vi": "Hàn Anh",
+      "en": "Han Ying"
+    }
   },
   {
     "id": "dream_pool_essays",
-    "title": "梦溪笔谈,",
+    "title": "梦溪笔谈",
     "titleEn": "Dream Pool Essays",
-    "author": "Kuo Shen",
+    "author": "沈括",
     "authorEn": "Shen Kuo",
     "category": "Classical Essays",
     "dynastyOrEra": "Song Dynasty",
@@ -560,14 +1482,46 @@
     "tags": [
       "Essays"
     ],
-    "description": "《梦溪笔谈,》宋代文献，归入古典散文类。",
-    "descriptionEn": "Dream Pool Essays (梦溪笔谈,) is a Song Dynasty work attributed to Shen Kuo. The complete text, in classical Chinese. It belongs to the classical essays tradition and has been read continuously in China for centuries."
+    "description": "《梦溪笔谈》为北宋博学家沈括晚年隐居润州梦溪园时所著的百科全书式巨著。全书二十六卷，涵盖天文、历法、数学、地质、物理、工程、医药及毕昇活字印刷等重大发明，翔实严谨，文辞优雅，被世界科技史誉为中国古代科学技术的黄金里程碑。",
+    "descriptionEn": "Dream Pool Essays (Mengxi Bitan) is an encyclopedic landmark of science and humanities compiled by Northern Song polymath Shen Kuo. Across twenty-six fascicles, it documents world-first scientific discoveries—from magnetic declination and petroleum to movable-type printing and geological sedimentology—blended with literary critiques and historical reflections that showcase the peak of ancient Chinese inquiry.",
+    "localizedTitles": {
+      "en": "Dream Pool Essays",
+      "ar": "مقالات بحيرة الأحلام",
+      "de": "Pinselnotizen am Traumbach",
+      "es": "Ensayos del Pincel desde el Arroyo de los Sueños",
+      "fr": "Essais du pinceau du Ruisseau des Rêves",
+      "hi": "स्वप्न सरिता विचार",
+      "id": "Esai Kolam Impian",
+      "it": "Conversazioni col pennello a Mengxi",
+      "ja": "夢渓筆談",
+      "ko": "몽계필담",
+      "pt": "Ensaios do Pincel no Riacho dos Sonhos",
+      "ru": "Записки у ручья грёз",
+      "th": "บันทึกพู่กันจากลำธารฝัน",
+      "vi": "Mộng Khê Bút Đàm"
+    },
+    "localizedAuthors": {
+      "ar": "شين كو",
+      "de": "Shen Kuo",
+      "es": "Shen Kuo",
+      "fr": "Shen Kuo",
+      "hi": "शेन कुओ",
+      "id": "Shen Kuo",
+      "it": "Shen Kuo",
+      "ja": "沈括",
+      "ko": "심괄",
+      "pt": "Shen Kuo",
+      "ru": "Шэнь Куо",
+      "th": "เฉินคัว",
+      "vi": "Thẩm Khoát",
+      "en": "Shen Kuo"
+    }
   },
   {
     "id": "garden_of_stories",
     "title": "说苑",
     "titleEn": "Garden of Stories",
-    "author": "Xiang Liu",
+    "author": "刘向",
     "authorEn": "Liu Xiang",
     "category": "Confucian Classics",
     "dynastyOrEra": "Han Dynasty",
@@ -577,15 +1531,47 @@
     "tags": [
       "Classics"
     ],
-    "description": "《说苑》汉代文献，归入儒家经典类。",
-    "descriptionEn": "Garden of Stories (说苑) is a Han Dynasty work attributed to Liu Xiang. The complete text, in classical Chinese. It belongs to the confucian classics tradition and has been read continuously in China for centuries."
+    "description": "《说苑》为西汉学者刘向校订整理皇家秘籍后编撰之历史寓言汇编。全书二十卷，按君道、政理、建本、复恩等主题分类，通过生动详实的历史对话与先秦名臣故事，寄托儒家仁政、以民为本与直谏守信之宏旨，文思敏赡，教化深远。",
+    "descriptionEn": "Garden of Stories (Shuo Yuan) is a classical anthology of historical anecdotes and moral parables compiled by Western Han bibliographer Liu Xiang. Organized across twenty thematic chapters—including the conduct of rulers, righteous ministers, and filial duty—it preserves ancient historical tales and philosophical dialogues designed to instruct rulers in benevolent governance and ethical leadership.",
+    "localizedTitles": {
+      "en": "Garden of Stories",
+      "ar": "حديقة القصص",
+      "de": "Garten der Geschichten",
+      "es": "Jardín de historias",
+      "fr": "Jardin d'histoires",
+      "hi": "कथा उद्यान",
+      "id": "Kebun Cerita",
+      "it": "Giardino delle storie",
+      "ja": "説苑",
+      "ko": "설원",
+      "pt": "Jardim de Histórias",
+      "ru": "Сад красноречия",
+      "th": "ซั่วหยวน",
+      "vi": "Thuyết Uyển"
+    },
+    "localizedAuthors": {
+      "ar": "ليو شيانغ",
+      "de": "Liu Xiang",
+      "es": "Liu Xiang",
+      "fr": "Liu Xiang",
+      "hi": "लिउ शियांग",
+      "id": "Liu Xiang",
+      "it": "Liu Xiang",
+      "ja": "劉向",
+      "ko": "유향",
+      "pt": "Liu Xiang",
+      "ru": "Лю Сян",
+      "th": "หลิวเซี่ยง",
+      "vi": "Lưu Hướng",
+      "en": "Liu Xiang"
+    }
   },
   {
     "id": "six_secret_teachings",
     "title": "六韬",
     "titleEn": "Six Secret Teachings",
-    "author": "Shang Lü",
-    "authorEn": "Jiang Ziya",
+    "author": "吕尚",
+    "authorEn": "Lü Shang (Jiang Ziya)",
     "category": "Military Classics",
     "dynastyOrEra": "Zhou Dynasty",
     "hskLevel": 5,
@@ -594,14 +1580,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《六韬》周代文献，归入兵家经典类。",
-    "descriptionEn": "Six Secret Teachings (六韬) is a Zhou Dynasty work attributed to Jiang Ziya. The complete text, in classical Chinese. It belongs to the military classics tradition and has been read continuously in China for centuries."
+    "description": "《六韬》（太公六韬）为中国古代著名兵书，位列《武经七书》前茅，相传为周初太师姜子牙所撰。全书分为文韬、武韬、龙韬、虎韬、豹韬、犬韬六部，系统论述富国强兵之政略、将帅修养、阵法战术与特种地形交战原则，博大精深，影响深远。",
+    "descriptionEn": "Six Secret Teachings of Taigong (Liu Tao) is an ancient military and political treatise traditionally attributed to Jiang Ziya, founding strategist of the Zhou Dynasty, and ranked among the Seven Military Classics. Divided into civil, martial, dragon, tiger, leopard, and canine strategies, it details state enrichment, commander psychology, chariot and cavalry maneuvers, and covert warfare tactics.",
+    "localizedTitles": {
+      "en": "Six Secret Teachings",
+      "ar": "التعاليم السرية الستة",
+      "de": "Sechs Geheime Strategien",
+      "es": "Las seis estrategias secretas",
+      "fr": "Les Six Stratégies secrètes",
+      "hi": "छह गुप्त शिक्षाएं",
+      "id": "Enam Ajaran Rahasia",
+      "it": "Sei insegnamenti segreti",
+      "ja": "六韜",
+      "ko": "육도",
+      "pt": "As Seis Estratégias Secretas",
+      "ru": "Шесть тайных учений",
+      "th": "หกกลยุทธ์ลับ",
+      "vi": "Lục Thao"
+    },
+    "localizedAuthors": {
+      "ar": "لو شانغ (جيانغ تسيا)",
+      "de": "Lü Shang",
+      "es": "Lü Shang (Jiang Ziya)",
+      "fr": "Lü Shang",
+      "hi": "ल्यू शांग (जिआंग ज़िया)",
+      "id": "Lu Shang",
+      "it": "Lü Shang",
+      "ja": "呂尚",
+      "ko": "여상",
+      "pt": "Lü Shang (Jiang Ziya)",
+      "ru": "Люй Шан",
+      "th": "ลฺวี่ซาง (เจียงจื่อหยา)",
+      "vi": "Lữ Thượng (Khương Tử Nha)",
+      "en": "Lü Shang (Jiang Ziya)"
+    }
   },
   {
     "id": "the_poets_grading",
     "title": "诗品",
     "titleEn": "The Poets' Grading",
-    "author": "active 502-519 Rong Zhong",
+    "author": "钟嵘",
     "authorEn": "Zhong Rong",
     "category": "Literary Criticism",
     "dynastyOrEra": "Liang Dynasty",
@@ -611,15 +1629,47 @@
     "tags": [
       "Criticism"
     ],
-    "description": "《诗品》梁代文献，归入文学批评类。",
-    "descriptionEn": "The Poets' Grading (诗品) is a Liang Dynasty work attributed to Zhong Rong. The complete text, in classical Chinese. It belongs to the literary criticism tradition and has been read continuously in China for centuries."
+    "description": "《诗品》为南朝梁代钟嵘所撰中国古代诗歌批评理论专著。全书分为三卷，首创上、中、下三品分级品评体系，对汉魏至南朝的一百二十二位五言诗诗人进行系统甄别与溯源，倡导“直寻”自然真情，反对过度声律用典，奠定了中国诗歌美学批评的万古基石。",
+    "descriptionEn": "The Poets' Grading (Shi Pin) is a pioneering work of literary criticism composed by Zhong Rong during the Southern Dynasties. Systematically ranking 122 five-character poets from the Han to Liang dynasties into three aesthetic tiers, it traces poetic lineages, champions authentic emotional expression over artificial erudition, and established the foundational framework of classical Chinese poetic theory.",
+    "localizedTitles": {
+      "en": "The Poets' Grading",
+      "ar": "تصنيف الشعراء",
+      "de": "Bewertung der Dichter",
+      "es": "Calificación de los poetas",
+      "fr": "La Classification des poètes",
+      "hi": "कवियों का वर्गीकरण",
+      "id": "Klasifikasi Penyair",
+      "it": "La classificazione dei poeti",
+      "ja": "詩品",
+      "ko": "시품",
+      "pt": "A Classificação dos Poetas",
+      "ru": "Категории стихов",
+      "th": "วิจารณ์กวีนิพนธ์",
+      "vi": "Thi Phẩm"
+    },
+    "localizedAuthors": {
+      "ar": "تشونغ رونغ",
+      "de": "Zhong Rong",
+      "es": "Zhong Rong",
+      "fr": "Zhong Rong",
+      "hi": "झोंग रोंग",
+      "id": "Zhong Rong",
+      "it": "Zhong Rong",
+      "ja": "鍾嶸",
+      "ko": "종영",
+      "pt": "Zhong Rong",
+      "ru": "Чжун Жун",
+      "th": "จงหรง",
+      "vi": "Chung Vinh",
+      "en": "Zhong Rong"
+    }
   },
   {
     "id": "guanzi",
     "title": "管子",
     "titleEn": "Guanzi",
-    "author": "Zhong Guan",
-    "authorEn": "Guan Zhong et al.",
+    "author": "管仲",
+    "authorEn": "Guan Zhong",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Warring States",
     "hskLevel": 5,
@@ -628,14 +1678,46 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《管子》战国文献，归入先秦哲学类。",
-    "descriptionEn": "Guanzi (管子) is a Warring States work attributed to Guan Zhong et al.. The complete text, in classical Chinese. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《管子》是先秦齐国政治家管仲及其后学思想的宏伟结集。全书八十六篇（现存七十六篇），融汇法家治道、道家无为、儒家礼乐与墨家务实，尤其独创“轻重之术”等先进国家宏观经济调控思想，主张仓廪实而知礼节，为中国古代经世致用之学极峰。",
+    "descriptionEn": "Guanzi is a monumental philosophical and administrative compendium named after Spring and Autumn statesman Guan Zhong. Synthesizing early Daoism, Legalism, and Confucianism, its eighty-six treatises are world-renowned for pioneering advanced economic concepts—such as state price stabilization, fiscal monopolies, and economic statecraft—proclaiming that moral culture flourishes only when material life is secure.",
+    "localizedTitles": {
+      "en": "Guanzi",
+      "ar": "غوانزي",
+      "de": "Guanzi",
+      "es": "Guanzi",
+      "fr": "Guanzi",
+      "hi": "गुआनज़ी",
+      "id": "Guanzi",
+      "it": "Guanzi",
+      "ja": "管子",
+      "ko": "관자",
+      "pt": "Guanzi",
+      "ru": "Гуань-цзы",
+      "th": "ก๋วนจื่อ",
+      "vi": "Quản Tử"
+    },
+    "localizedAuthors": {
+      "ar": "غوان تشونغ",
+      "de": "Guan Zhong",
+      "es": "Guan Zhong",
+      "fr": "Guan Zhong",
+      "hi": "गुआन झोंग",
+      "id": "Guan Zhong",
+      "it": "Guan Zhong",
+      "ja": "管仲",
+      "ko": "관중",
+      "pt": "Guan Zhong",
+      "ru": "Гуань Чжун",
+      "th": "ก่วนจ้ง",
+      "vi": "Quản Trọng",
+      "en": "Guan Zhong"
+    }
   },
   {
     "id": "the_book_of_lord_shang",
     "title": "商子",
     "titleEn": "The Book of Lord Shang",
-    "author": "Yang Shang",
+    "author": "商鞅",
     "authorEn": "Shang Yang",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Warring States",
@@ -645,14 +1727,46 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《商子》战国文献，归入先秦哲学类。",
-    "descriptionEn": "The Book of Lord Shang (商子) is a Warring States work attributed to Shang Yang. The complete text, in classical Chinese. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《商子》（商君书）为战国秦国相国商鞅及其法家学派论著汇编。全书阐述以法治国、壹民农战与废除贵族特权的根本治策，主张富国强兵必须建立绝对公正严明的法律规范与军功爵制，思想峻拔冷峻，深刻塑造了中国两千余年大一统中央帝国的制度底色。",
+    "descriptionEn": "The Book of Lord Shang (Shang Jun Shu) is a seminal Legalist foundational text attributed to Shang Yang, whose state reforms transformed Qin into an unstoppable military superpower. Advocating absolute rule of law, meritocratic agrarian militarism, and the eradication of aristocratic privilege, it articulates a rigorous, unsentimental political philosophy that laid the institutional framework for imperial China.",
+    "localizedTitles": {
+      "en": "The Book of Lord Shang",
+      "ar": "كتاب اللورد شانغ",
+      "de": "Das Buch des Fürsten von Shang",
+      "es": "El libro del señor Shang",
+      "fr": "Le Livre du Prince de Shang",
+      "hi": "लॉर्ड श्यांग की पुस्तक",
+      "id": "Kitab Tuan Shang",
+      "it": "Il libro del Signore di Shang",
+      "ja": "商君書",
+      "ko": "상군서",
+      "pt": "O Livro do Senhor Shang",
+      "ru": "Книга правителя области Шан",
+      "th": "คัมภีร์เจ้าเมืองซาง",
+      "vi": "Thương Quân Thư"
+    },
+    "localizedAuthors": {
+      "ar": "شانغ يانغ",
+      "de": "Shang Yang",
+      "es": "Shang Yang",
+      "fr": "Shang Yang",
+      "hi": "शांग यांग",
+      "id": "Shang Yang",
+      "it": "Shang Yang",
+      "ja": "商鞅",
+      "ko": "상앙",
+      "pt": "Shang Yang",
+      "ru": "Шан Ян",
+      "th": "ซางยาง",
+      "vi": "Thương Ưởng",
+      "en": "Shang Yang"
+    }
   },
   {
     "id": "the_classic_of_tea",
     "title": "茶经",
     "titleEn": "The Classic of Tea",
-    "author": "Yu Lu",
+    "author": "陆羽",
     "authorEn": "Lu Yu",
     "category": "Classical Arts",
     "dynastyOrEra": "Tang Dynasty",
@@ -662,15 +1776,47 @@
     "tags": [
       "Arts"
     ],
-    "description": "《茶经》唐代文献，归入古代技艺类。",
-    "descriptionEn": "The Classic of Tea (茶经) is a Tang Dynasty work attributed to Lu Yu. The complete text, in classical Chinese. It belongs to the classical arts tradition and has been read continuously in China for centuries."
+    "description": "《茶经》为唐代“茶圣”陆羽所撰，是人类历史上第一部系统论述茶文化的经典巨著。全书分三卷十章，详述茶的源流、采制、器具、煮泉、品饮乃至茶事典故与地域分布，将日常饮茶提炼升华为人与自然和谐共生的精雅道境，孕育了流传千古的东方茶道美学。",
+    "descriptionEn": "The Classic of Tea (Cha Jing) is the world's very first comprehensive monograph on tea, authored by Tang dynasty scholar Lu Yu, revered as the Sage of Tea. Across three volumes and ten chapters, it meticulously codifies tea botany, harvesting, specialized brewing implements, water grading, and tasting rituals, elevating tea consumption from a physical beverage to a meditative spiritual art.",
+    "localizedTitles": {
+      "en": "The Classic of Tea",
+      "ar": "كلاسيكيات الشاي",
+      "de": "Das Klassische Buch vom Tee",
+      "es": "El clásico del té",
+      "fr": "Le Classique du thé",
+      "hi": "चाय का शास्त्र",
+      "id": "Kitab Klasik Teh",
+      "it": "Il classico del tè",
+      "ja": "茶経",
+      "ko": "다경",
+      "pt": "O Clássico do Chá",
+      "ru": "Чайный канон",
+      "th": "คัมภีร์ชา",
+      "vi": "Trà Kinh"
+    },
+    "localizedAuthors": {
+      "ar": "لو يو",
+      "de": "Lu Yu",
+      "es": "Lu Yu",
+      "fr": "Lu Yu",
+      "hi": "लू यु",
+      "id": "Lu Yu",
+      "it": "Lu Yu",
+      "ja": "陸羽",
+      "ko": "육우",
+      "pt": "Lu Yu",
+      "ru": "Лу Юй",
+      "th": "ลู่ยวี่",
+      "vi": "Lục Vũ",
+      "en": "Lu Yu"
+    }
   },
   {
     "id": "the_classic_of_go",
     "title": "棋经",
     "titleEn": "The Classic of Go",
-    "author": "Ni Zhang",
-    "authorEn": "Various",
+    "author": "张拟",
+    "authorEn": "Zhang Ni",
     "category": "Classical Arts",
     "dynastyOrEra": "Song Dynasty",
     "hskLevel": 4,
@@ -679,14 +1825,46 @@
     "tags": [
       "Arts"
     ],
-    "description": "《棋经》宋代文献，归入古代技艺类。",
-    "descriptionEn": "The Classic of Go (棋经) is a Song Dynasty work attributed to Various. The complete text, in classical Chinese. It belongs to the classical arts tradition and has been read continuously in China for centuries."
+    "description": "《棋经十三篇》为北宋张拟所撰的围棋战略名著。该书仿照《孙子兵法》体例，设本局、得算、权舆、合战等十三章，不仅条分缕析行棋战术与棋理死活，更将兵法攻守虚实与阴阳哲学融入十九道方寸之间，被历代棋手奉为围棋理论的无上指南。",
+    "descriptionEn": "The Classic of Go (Qi Jing Shi San Pian) is a revered treatise on the ancient game of Weiqi, composed by Northern Song scholar Zhang Ni. Modeled after Sun Tzu's The Art of War, its thirteen chapters systematically distill board strategy, positional calculation, fighting tactics, and psychological balance, uniting competitive gaming with deep Daoist and military philosophy on a 19x19 grid.",
+    "localizedTitles": {
+      "en": "The Classic of Go",
+      "ar": "كلاسيكيات لعبة الغو",
+      "de": "Das Klassische Buch des Go",
+      "es": "El clásico del go",
+      "fr": "Le Classique du go",
+      "hi": "गो का शास्त्र",
+      "id": "Kitab Klasik Go",
+      "it": "Il classico del go",
+      "ja": "棋経",
+      "ko": "기경",
+      "pt": "O Clássico do Go",
+      "ru": "Канон игры в го",
+      "th": "คัมภีร์หมากล้อม",
+      "vi": "Kỳ Kinh"
+    },
+    "localizedAuthors": {
+      "ar": "تشانغ ني",
+      "de": "Zhang Ni",
+      "es": "Zhang Ni",
+      "fr": "Zhang Ni",
+      "hi": "झांग नी",
+      "id": "Zhang Ni",
+      "it": "Zhang Ni",
+      "ja": "張擬",
+      "ko": "장의",
+      "pt": "Zhang Ni",
+      "ru": "Чжан Ни",
+      "th": "จางหนี่",
+      "vi": "Trương Nghĩ",
+      "en": "Zhang Ni"
+    }
   },
   {
     "id": "extended_reflections",
     "title": "申鉴",
     "titleEn": "Extended Reflections",
-    "author": "Yue Xun",
+    "author": "荀悦",
     "authorEn": "Xun Yue",
     "category": "Confucian Classics",
     "dynastyOrEra": "Han Dynasty",
@@ -696,14 +1874,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《申鉴》汉代文献，归入儒家经典类。",
-    "descriptionEn": "Extended Reflections (申鉴) is a Han Dynasty work attributed to Xun Yue. The complete text, in classical Chinese. It belongs to the confucian classics tradition and has been read continuously in China for centuries."
+    "description": "《申鉴》为东汉末年政论家荀悦向汉献帝所呈进的政论专著。全书五卷，分政体、时事、俗嫌、杂言等篇，痛陈东汉王纲解纽与宦官外戚弄权之弊，主张仁德与刑法并用、正心求实，文笔条达精审，洋溢着忧国伤时的儒者风骨。",
+    "descriptionEn": "Extended Reflections (Shen Jian) is an insightful political and philosophical treatise presented to the Han Emperor Xian by historian Xun Yue during the tumultuous final years of the Eastern Han dynasty. Across five essays, it dissects bureaucratic corruption, excessive luxury, and administrative decay, proposing a balanced synthesis of Confucian moral governance and Legalist state accountability.",
+    "localizedTitles": {
+      "en": "Extended Reflections",
+      "ar": "تأملات موسعة",
+      "de": "Erweiterte Betrachtungen",
+      "es": "Reflexiones extendidas",
+      "fr": "Réflexions approfondies",
+      "hi": "विस्तारित चिंतन",
+      "id": "Refleksi Luas",
+      "it": "Riflessioni estese",
+      "ja": "申鑑",
+      "ko": "신감",
+      "pt": "Reflexões Extendidas",
+      "ru": "Расширенные размышления",
+      "th": "เซินเจี้ยน",
+      "vi": "Thân Giám"
+    },
+    "localizedAuthors": {
+      "ar": "شيون يويه",
+      "de": "Xun Yue",
+      "es": "Xun Yue",
+      "fr": "Xun Yue",
+      "hi": "शुन युए",
+      "id": "Xun Yue",
+      "it": "Xun Yue",
+      "ja": "荀悦",
+      "ko": "순열",
+      "pt": "Xun Yue",
+      "ru": "Сюнь Юэ",
+      "th": "สวินเยว่",
+      "vi": "Tuân Duyệt",
+      "en": "Xun Yue"
+    }
   },
   {
     "id": "the_family_instructions_of_master_yan",
-    "title": "颜氏家训 —",
+    "title": "颜氏家训",
     "titleEn": "The Family Instructions of Master Yan",
-    "author": "Zhitui Yan",
+    "author": "颜之推",
     "authorEn": "Yan Zhitui",
     "category": "Confucian Classics",
     "dynastyOrEra": "Northern Qi",
@@ -713,14 +1923,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《颜氏家训 —》北齐文献，归入儒家经典类。",
-    "descriptionEn": "The Family Instructions of Master Yan (颜氏家训 —) is a Northern Qi work attributed to Yan Zhitui. The complete text, in classical Chinese. It belongs to the confucian classics tradition and has been read continuously in China for centuries."
+    "description": "《颜氏家训》为北齐至隋代文儒颜之推所撰家训经典，被誉为“古今家训之祖”。全书二十篇，结合魏晋六朝乱世教训，训导子孙修身治学、为官自律、治家持俭、审慎处世，文质彬彬，情真意切，对后世中国士大夫家庭伦理产生了极为深远的影响。",
+    "descriptionEn": "The Family Instructions of Master Yan (Yan Shi Jia Xun) is the preeminent classical masterpiece of household ethics and personal cultivation, written by Six Dynasties scholar Yan Zhitui. Drawing on bitter historical lessons of civil war and dynastic collapse, its twenty chapters instruct descendants in scholarly diligence, family governance, phonology, and moral integrity amid uncertain times.",
+    "localizedTitles": {
+      "en": "The Family Instructions of Master Yan",
+      "ar": "وصايا عائلة المعلم يان",
+      "de": "Familienunterweisungen der Familie Yan",
+      "es": "Instrucciones familiares del Maestro Yan",
+      "fr": "Instructions familiales du Maître Yan",
+      "hi": "मास्टर यान के पारिवारिक निर्देश",
+      "id": "Petunjuk Keluarga Master Yan",
+      "it": "Istruzioni familiari del Maestro Yan",
+      "ja": "顔氏家訓",
+      "ko": "안씨가훈",
+      "pt": "Instruções Familiares do Mestre Yan",
+      "ru": "Семейные наставления господина Янь",
+      "th": "คำสอนประจำตระกูลหยาน",
+      "vi": "Nhan Thị Gia Huấn"
+    },
+    "localizedAuthors": {
+      "ar": "يان تشيتوي",
+      "de": "Yan Zhitui",
+      "es": "Yan Zhitui",
+      "fr": "Yan Zhitui",
+      "hi": "यान झितुई",
+      "id": "Yan Zhitui",
+      "it": "Yan Zhitui",
+      "ja": "顔之推",
+      "ko": "안지추",
+      "pt": "Yan Zhitui",
+      "ru": "Янь Чжитуй",
+      "th": "เอี๊ยนจือทุย",
+      "vi": "Nhan Chi Thôi",
+      "en": "Yan Zhitui"
+    }
   },
   {
     "id": "yan_danzi",
     "title": "燕丹子",
     "titleEn": "Yan Danzi",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Tales",
     "dynastyOrEra": "Warring States",
@@ -730,14 +1972,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《燕丹子》战国文献，归入古典笔记类。",
-    "descriptionEn": "Yan Danzi (燕丹子) is a Warring States work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《燕丹子》为先秦至两汉时期的文言历史小说，生动再现战国末年燕太子丹招募荆轲刺杀秦王的壮烈史实。全书叙事紧张激烈，跌宕起伏，以悲壮凄美的笔调塑造了舍生取义的刺客形象，开创了中国古代侠义与刺客传记文学的先河。",
+    "descriptionEn": "Yan Danzi is an ancient historical novella from the Qin-Han period that dramatizes Crown Prince Dan of Yan's daring recruitment of the assassin Jing Ke to assassinate the King of Qin. Characterized by taut pacing and tragic grandeur, it captures the chivalric code, patriotic sacrifice, and doomed heroism of late Warring States knights-errant with unforgettable literary intensity.",
+    "localizedTitles": {
+      "en": "Prince Dan of Yan",
+      "ar": "الأمير دان من يان",
+      "de": "Prinz Dan von Yan",
+      "es": "El príncipe Dan de Yan",
+      "fr": "Le Prince Dan de Yan",
+      "hi": "यान के राजकुमार दान",
+      "id": "Pangeran Dan dari Yan",
+      "it": "Il principe Dan di Yan",
+      "ja": "燕丹子",
+      "ko": "연단자",
+      "pt": "O Príncipe Dan de Yan",
+      "ru": "Янь Дань-цзы",
+      "th": "เจ้าชายตั้นแห่งแคว้นเยี่ยน",
+      "vi": "Yến Đan Tử"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "yin_wenzi",
     "title": "尹文子",
     "titleEn": "Yin Wenzi",
-    "author": "Wen Yin",
+    "author": "尹文",
     "authorEn": "Yin Wen",
     "category": "Ancient Philosophy",
     "dynastyOrEra": "Warring States",
@@ -747,15 +2021,47 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《尹文子》战国文献，归入先秦哲学类。",
-    "descriptionEn": "Yin Wenzi (尹文子) is a Warring States work attributed to Yin Wen. The complete text, in classical Chinese. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《尹文子》为战国稷下名家兼道家学者尹文所撰哲学著作。书中主张“名者名形者也”，通过大道顺应、名分审正与形名参验，寻求大道无为与社会法度治理的和谐统一，对于理解先秦黄老之学与名家思想之交融具有独到的学术价值。",
+    "descriptionEn": "Yin Wenzi is a Warring States philosophical work by Jixia Academy thinker Yin Wen, harmonizing early Daoist naturalism with Legalist administrative theory and the School of Names. Focusing on the correlation between names, shapes, and social roles, it advocates an equitable legal order aligned with the effortless flow of the Dao, ensuring social harmony without tyrannical coercion.",
+    "localizedTitles": {
+      "en": "Yin Wenzi",
+      "ar": "يين وينزي",
+      "de": "Yin Wenzi",
+      "es": "Yin Wenzi",
+      "fr": "Yin Wenzi",
+      "hi": "यिन वेन्ज़ी",
+      "id": "Yin Wenzi",
+      "it": "Yin Wenzi",
+      "ja": "尹文子",
+      "ko": "윤문자",
+      "pt": "Yin Wenzi",
+      "ru": "Инь Вэнь-цзы",
+      "th": "อิ่นเหวินจื่อ",
+      "vi": "Doãn Văn Tử"
+    },
+    "localizedAuthors": {
+      "ar": "يين ون",
+      "de": "Yin Wen",
+      "es": "Yin Wen",
+      "fr": "Yin Wen",
+      "hi": "यिन वेन",
+      "id": "Yin Wen",
+      "it": "Yin Wen",
+      "ja": "尹文",
+      "ko": "윤문",
+      "pt": "Yin Wen",
+      "ru": "Инь Вэнь",
+      "th": "หยิ่นเหวิน",
+      "vi": "Doãn Văn",
+      "en": "Yin Wen"
+    }
   },
   {
     "id": "yuli_zi",
     "title": "郁离子",
     "titleEn": "Yuli Zi",
-    "author": "Ji Liu",
-    "authorEn": "Liu Ji",
+    "author": "刘基",
+    "authorEn": "Liu Ji (Liu Bowen)",
     "category": "Classical Tales",
     "dynastyOrEra": "Ming Dynasty",
     "hskLevel": 5,
@@ -764,14 +2070,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《郁离子》明代文献，归入古典笔记类。",
-    "descriptionEn": "Yuli Zi (郁离子) is a Ming Dynasty work attributed to Liu Ji. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《郁离子》为明代开国功臣刘伯温晚年退隐时所作的哲学寓言巨著。“郁离”意为文采光华，全书托古设喻，借郁离子游历言论，通过百余则奇巧幽默的寓言故事针砭元末时政颓败，纵论治国治军、察人任士之大道，辞意高迈，千载流芳。",
+    "descriptionEn": "Yulizi is a celebrated collection of philosophical allegories written by Liu Ji (Liu Bowen), the legendary strategist behind the founding of the Ming Dynasty. Through the fictional persona of Master Yuli, over a hundred brilliant fables satirize political folly, hypocritical scholarship, and societal decay, dispensing profound lessons on wisdom, moral governance, and military insight.",
+    "localizedTitles": {
+      "en": "Yuli Zi",
+      "ar": "يولي زي",
+      "de": "Yuli Zi",
+      "es": "Yuli Zi",
+      "fr": "Yuli Zi",
+      "hi": "यूली ज़ी",
+      "id": "Yuli Zi",
+      "it": "Yuli Zi",
+      "ja": "郁離子",
+      "ko": "욱리자",
+      "pt": "Yuli Zi",
+      "ru": "Юйли-цзы",
+      "th": "อวี้หลีจื่อ",
+      "vi": "Uất Ly Tử"
+    },
+    "localizedAuthors": {
+      "ar": "ليو جي (ليو بوون)",
+      "de": "Liu Ji",
+      "es": "Liu Ji (Liu Bowen)",
+      "fr": "Liu Ji",
+      "hi": "लिउ जी (लिउ बोवेन)",
+      "id": "Liu Ji",
+      "it": "Liu Ji",
+      "ja": "劉基",
+      "ko": "유기",
+      "pt": "Liu Ji (Liu Bowen)",
+      "ru": "Лю Цзи",
+      "th": "หลิวจี (หลิวปั๋วเวิน)",
+      "vi": "Lưu Cơ (Lưu Bá Ôn)",
+      "en": "Liu Ji (Liu Bowen)"
+    }
   },
   {
     "id": "anecdotes_from_court_and_country",
     "title": "朝野佥载",
     "titleEn": "Anecdotes from Court and Country",
-    "author": "Zhuo Zhang",
+    "author": "张鷟",
     "authorEn": "Zhang Zhuo",
     "category": "Classical Tales",
     "dynastyOrEra": "Tang Dynasty",
@@ -781,14 +2119,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《朝野佥载》唐代文献，归入古典笔记类。",
-    "descriptionEn": "Anecdotes from Court and Country (朝野佥载) is a Tang Dynasty work attributed to Zhang Zhuo. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《朝野佥载》为唐代张鷟所撰之笔记小说名作。全书广记隋唐两代、特别是武则天执政时期的宫廷秘闻、酷吏恶行、名士诙谐与民间奇术，文字生动传神，嬉笑怒骂间尽显世态炎凉，是研究盛唐社会风尚与政治实录不可多得的珍贵宝库。",
+    "descriptionEn": "Anecdotes from Court and Country (Chaoye Qianzai) is a lively Tang-dynasty anecdotal notebook compiled by official and writer Zhang Zhuo. Focusing heavily on the reign of Empress Wu Zetian, it records court gossip, notorious inquisitors, witty scholars, and eccentric folklore, providing an indispensable and delightfully candid window into early and high Tang everyday society.",
+    "localizedTitles": {
+      "en": "Anecdotes from Court and Country",
+      "ar": "حكايات من البلاط والريف",
+      "de": "Anekdoten aus Hof und Land",
+      "es": "Anécdotas de la corte y el campo",
+      "fr": "Anecdotes de la cour et de la campagne",
+      "hi": "दरबार और देहात की कथाएँ",
+      "id": "Anekdot dari Istana dan Desa",
+      "it": "Aneddoti di corte e di campagna",
+      "ja": "朝野僉載",
+      "ko": "조야첨재",
+      "pt": "Anedotas da Corte e do Campo",
+      "ru": "Записи о делах при дворе и в народе",
+      "th": "เรื่องเล่าจากราชสำนักและบ้านนอก",
+      "vi": "Triều Dã Thiêm Tái"
+    },
+    "localizedAuthors": {
+      "ar": "تشانغ تشو",
+      "de": "Zhang Zhuo",
+      "es": "Zhang Zhuo",
+      "fr": "Zhang Zhuo",
+      "hi": "झांग जुओ",
+      "id": "Zhang Zhuo",
+      "it": "Zhang Zhuo",
+      "ja": "張鷟",
+      "ko": "장탁",
+      "pt": "Zhang Zhuo",
+      "ru": "Чжан Чжо",
+      "th": "จางจั๋ว",
+      "vi": "Trương Trạc",
+      "en": "Zhang Zhuo"
+    }
   },
   {
     "id": "miscellaneous_records_of_duyang",
     "title": "杜阳杂编",
     "titleEn": "Miscellaneous Records of Duyang",
-    "author": "jin shi 886 E Su",
+    "author": "苏鹗",
     "authorEn": "Su E",
     "category": "Classical Tales",
     "dynastyOrEra": "Tang Dynasty",
@@ -798,14 +2168,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《杜阳杂编》唐代文献，归入古典笔记类。",
-    "descriptionEn": "Miscellaneous Records of Duyang (杜阳杂编) is a Tang Dynasty work attributed to Su E. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《杜阳杂编》为晚唐进士苏鹗所著之传奇笔记珍品。书中专记唐代宗至懿宗数朝宫廷珍宝异物、西域朝贡秘器、幻术异能与宫闱琐事，文笔清丽典雅，富于浪漫奇幻色彩，生动再现了晚唐帝国夕阳余晖下那华美迷离的物质文明与异域想象。",
+    "descriptionEn": "Miscellaneous Records of Duyang (Duyang Zabian) is an exquisite late Tang miscellany compiled by jinshi scholar Su E. Chronicling the reigns from Emperor Daizong to Yizong, it vividly recounts exotic tributary treasures from the Silk Road, mysterious illusions, and palace marvels, capturing the opulent, twilight splendor and material fascinations of the fading Tang Empire.",
+    "localizedTitles": {
+      "en": "Miscellaneous Records of Duyang",
+      "ar": "سجلات دويانغ المتنوعة",
+      "de": "Vermischte Aufzeichnungen aus Duyang",
+      "es": "Registros misceláneos de Duyang",
+      "fr": "Notes diverses de Duyang",
+      "hi": "दुयांग के विविध अभिलेख",
+      "id": "Catatan Aneka Duyang",
+      "it": "Registrazioni varie di Duyang",
+      "ja": "杜陽雑編",
+      "ko": "두양잡편",
+      "pt": "Registros Diversos de Duyang",
+      "ru": "Разные записи о Дуяне",
+      "th": "บันทึกเบ็ดเตล็ดเมืองตูหยาง",
+      "vi": "Đỗ Dương Tạp Biên"
+    },
+    "localizedAuthors": {
+      "ar": "سو إي",
+      "de": "Su E",
+      "es": "Su E",
+      "fr": "Su E",
+      "hi": "सु ए",
+      "id": "Su E",
+      "it": "Su E",
+      "ja": "蘇鶚",
+      "ko": "소악",
+      "pt": "Su E",
+      "ru": "Су Э",
+      "th": "ซูเอ้อ",
+      "vi": "Tô Ngạc",
+      "en": "Su E"
+    }
   },
   {
     "id": "casual_expressions_of_idle_feeling",
     "title": "闲情偶寄",
     "titleEn": "Casual Expressions of Idle Feeling",
-    "author": "Yu Li",
+    "author": "李渔",
     "authorEn": "Li Yu",
     "category": "Classical Essays",
     "dynastyOrEra": "Qing Dynasty",
@@ -815,14 +2217,46 @@
     "tags": [
       "Essays"
     ],
-    "description": "《闲情偶寄》清代文献，归入古典散文类。",
-    "descriptionEn": "Casual Expressions of Idle Feeling (闲情偶寄) is a Qing Dynasty work attributed to Li Yu. The complete text, in classical Chinese. It belongs to the classical essays tradition and has been read continuously in China for centuries."
+    "description": "《闲情偶寄》为清代戏剧家、美学宗师李渔（李笠翁）的传世生活美学杰作。全书包揽词曲、演习、声容、居室、器玩、饮馔、种植、颐养八部，纵论剧作编排、园林建筑、服饰妆容与茶饭养生之真谛，笔调幽默潇洒，开创了中国古典生活艺术化之极峰境界。",
+    "descriptionEn": "Casual Expressions of Idle Feeling (Xianqing Ouji) is an immortal masterpiece of Chinese lifestyle aesthetics composed by Qing playwright and connoisseur Li Yu. Across eight sections, it shares witty, practical, and luminous insights on theatre production, garden landscaping, interior design, culinary arts, bonsai, and the art of joyful longevity, establishing a timeless philosophy of refined living.",
+    "localizedTitles": {
+      "en": "Casual Expressions of Idle Feeling",
+      "ar": "خواطر عفوية عن المشاعر الفارغة",
+      "de": "Beiläufige Äußerungen müßiger Gefühle",
+      "es": "Expresiones casuales de sentimiento ocioso",
+      "fr": "Expressions familières de sentiment oisif",
+      "hi": "निष्क्रिय भाव की आकस्मिक अभिव्यक्तियाँ",
+      "id": "Ungkapan Santai Perasaan Senggang",
+      "it": "Espressioni casuali di sentimento ozioso",
+      "ja": "閑情偶寄",
+      "ko": "한정우기",
+      "pt": "Expressões Casuais de Sentimento Ocioso",
+      "ru": "Случайные выражения праздного чувства",
+      "th": "บันทึกอารมณ์ว่าง",
+      "vi": "Nhàn Tình Ngẫu Ký"
+    },
+    "localizedAuthors": {
+      "ar": "لي يو",
+      "de": "Li Yu",
+      "es": "Li Yu",
+      "fr": "Li Yu",
+      "hi": "ली यू",
+      "id": "Li Yu",
+      "it": "Li Yu",
+      "ja": "李漁",
+      "ko": "이어",
+      "pt": "Li Yu",
+      "ru": "Ли Юй",
+      "th": "หลี่ ยวี่",
+      "vi": "Lý Ngư",
+      "en": "Li Yu"
+    }
   },
   {
     "id": "stories_to_enlighten_the_world",
     "title": "喻世明言",
     "titleEn": "Stories to Enlighten the World",
-    "author": "Menglong Feng",
+    "author": "冯梦龙",
     "authorEn": "Feng Menglong",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
@@ -832,14 +2266,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《喻世明言》明代文献，归入古典小说类。",
-    "descriptionEn": "Stories to Enlighten the World (喻世明言) is a Ming Dynasty work attributed to Feng Menglong. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《喻世明言》（古今小说）为明代冯梦龙编纂之“三言”第一部。全书收录宋元明三代话本与拟话本四十篇，涵盖忠奸恩怨、男女情义、文人轶事与神怪传奇，如《蒋兴哥重会珍珠衫》等脍炙人口的名篇，以极具市井生趣的白话叙事绘就了古代市民社会的万千画卷。",
+    "descriptionEn": "Stories to Enlighten the World (Yushi Mingyan) is the premier anthology of vernacular short fiction compiled by late Ming author Feng Menglong as the opening collection of the famed 'Three Words'. Comprising forty vibrant stories from the Song, Yuan, and Ming dynasties, it brings to life merchants, courtesans, and scholars, exploring loyalty, romance, and moral destiny with unparalleled realism.",
+    "localizedTitles": {
+      "en": "Stories to Enlighten the World",
+      "ar": "قصص لتنوير العالم",
+      "de": "Geschichten zur Erleuchtung der Welt",
+      "es": "Historias para iluminar el mundo",
+      "fr": "Histoires pour éclairer le monde",
+      "hi": "संसार को प्रबुद्ध करने वाली कथाएँ",
+      "id": "Kisah-kisah Pencerahan Dunia",
+      "it": "Storie per illuminare il mondo",
+      "ja": "喩世明言",
+      "ko": "유세명언",
+      "pt": "Histórias para Iluminar o Mundo",
+      "ru": "Рассказы, просвещающие мир",
+      "th": "เรื่องเล่าเพื่อส่องสว่างโลก",
+      "vi": "Dụ Thế Minh Ngôn"
+    },
+    "localizedAuthors": {
+      "ar": "فنغ منغ لونغ",
+      "de": "Feng Menglong",
+      "es": "Feng Menglong",
+      "fr": "Feng Menglong",
+      "hi": "फेंग मेंगलोंग",
+      "id": "Feng Menglong",
+      "it": "Feng Menglong",
+      "ja": "馮夢龍",
+      "ko": "풍몽룡",
+      "pt": "Feng Menglong",
+      "ru": "Фэн Мэнлун",
+      "th": "เฟิง เมิ่งหลง",
+      "vi": "Phùng Mộng Long",
+      "en": "Feng Menglong"
+    }
   },
   {
     "id": "officialdom_unmasked",
     "title": "官场现形记",
     "titleEn": "Officialdom Unmasked",
-    "author": "Boyuan Li",
+    "author": "李宝嘉",
     "authorEn": "Li Baojia",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -849,14 +2315,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《官场现形记》清代文献，归入古典小说类。",
-    "descriptionEn": "Officialdom Unmasked (官场现形记) is a Qing Dynasty work attributed to Li Baojia. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《官场现形记》为晚清谴责小说的代表巨作，由李宝嘉（李伯元）所撰。全书六十回，以连环短篇交织的形式，辛辣讽刺了晚清从军机重臣到州县小吏卖官鬻爵、钻营贪墨、丧权辱国的丑态，以逼真的笔触全景式展现了封建帝制末期的沉沦与崩溃。",
+    "descriptionEn": "Officialdom Unmasked (Guanchang Xianxing Ji) is the crowning satirical novel of the late Qing dynasty, authored by crusading journalist Li Baojia. Over sixty interconnected chapters, it delivers an uncompromising, darkly comic exposé of rampant bureaucratic bribery, hollow vanity, and moral decay throughout the Qing administrative apparatus on the eve of revolution.",
+    "localizedTitles": {
+      "en": "Officialdom Unmasked",
+      "ar": "كشف قناع البيروقراطية",
+      "de": "Die enthüllte Beamtenwelt",
+      "es": "La burocracia al desnudo",
+      "fr": "Le monde officiel démasqué",
+      "hi": "अनावृत अधिकारितंत्र",
+      "id": "Dunia Pejabat Terbuka",
+      "it": "La burocrazia smascherata",
+      "ja": "官場現形記",
+      "ko": "관장현형기",
+      "pt": "A Burocracia Desmascarada",
+      "ru": "Разоблачённый чиновничий мир",
+      "th": "เปิดโปงวงข้าราชการ",
+      "vi": "Quan Trường Hiện Hình Ký"
+    },
+    "localizedAuthors": {
+      "ar": "لي باو جيا",
+      "de": "Li Baojia",
+      "es": "Li Baojia",
+      "fr": "Li Baojia",
+      "hi": "ली बाओजिया",
+      "id": "Li Baojia",
+      "it": "Li Baojia",
+      "ja": "李宝嘉",
+      "ko": "이보가",
+      "pt": "Li Baojia",
+      "ru": "Ли Баоцзя",
+      "th": "หลี่ เป่าเจีย",
+      "vi": "Lý Bảo Gia",
+      "en": "Li Baojia"
+    }
   },
   {
     "id": "the_cases_of_judge_shi",
     "title": "施公案",
     "titleEn": "The Cases of Judge Shi",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -866,14 +2364,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《施公案》清代文献，归入古典小说类。",
-    "descriptionEn": "The Cases of Judge Shi (施公案) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《施公案》是清代流传极广的长篇公案侠义小说，以康熙年间清官施世纶为主角。书中将严谨断案与江湖侠义熔为一炉，讲述施公在黄天霸等各路江湖义士协助下，微服私访、惩治贪官豪强、平定绿林匪盗的惊险传奇，为中国公案武侠文学的里程碑。",
+    "descriptionEn": "The Cases of Judge Shi (Shi Gong An) is a celebrated Qing-dynasty courtroom and chivalric detective saga based on historical incorruptible magistrate Shi Shilun. Blending legal mystery with martial arts adventure, it follows Judge Shi and loyal martial heroes—most famously Huang Tianba—as they infiltrate bandit lairs, expose judicial corruption, and enforce righteous justice across the empire.",
+    "localizedTitles": {
+      "en": "The Cases of Judge Shi",
+      "ar": "قضايا القاضي شي",
+      "de": "Die Fälle des Richters Shi",
+      "es": "Los casos del juez Shi",
+      "fr": "Les affaires du juge Shi",
+      "hi": "न्यायाधीश शि के मुकदमे",
+      "id": "Perkara-perkara Hakim Shi",
+      "it": "I casi del giudice Shi",
+      "ja": "施公案",
+      "ko": "시공안",
+      "pt": "Os Casos do Juiz Shi",
+      "ru": "Дела судьи Ши",
+      "th": "คดีของผู้พิพากษาสือ",
+      "vi": "Thi Công Án"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_cases_of_judge_dee",
     "title": "狄公案",
     "titleEn": "The Cases of Judge Dee",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -883,14 +2413,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《狄公案》清代文献，归入古典小说类。",
-    "descriptionEn": "The Cases of Judge Dee (狄公案) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《狄公案》（武则天四大奇案）为清代公案小说经典，讲述唐代名相狄仁杰任职昌平知县期间审理离奇大案的精彩过程。小说构思巧妙，悬念迭起，狄公以敏锐洞察力与浩然正气拨开迷雾、平反冤狱，后经高罗佩翻译改编而享誉全球侦探文坛。",
+    "descriptionEn": "The Cases of Judge Dee (Di Gong An) is the legendary Chinese detective novel chronicling the brilliant forensic investigations of Tang Dynasty statesman Di Renjie. Investigating intertwined murders, phantom apparitions, and treacherous conspiracies with razor-sharp deduction and moral courage, this work inspired Robert van Gulik's world-famous Judge Dee mysteries.",
+    "localizedTitles": {
+      "en": "The Cases of Judge Dee",
+      "ar": "قضايا القاضي دي",
+      "de": "Die Fälle des Richters Di",
+      "es": "Los casos del juez Dee",
+      "fr": "Les affaires du juge Di",
+      "hi": "न्यायाधीश डी के मुकदमे",
+      "id": "Perkara-perkara Hakim Dee",
+      "it": "I casi del giudice Dee",
+      "ja": "狄公案",
+      "ko": "적공안",
+      "pt": "Os Casos do Juiz Dee",
+      "ru": "Дела судьи Ди",
+      "th": "คดีของผู้พิพากษาตี",
+      "vi": "Địch Công Án"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_cases_of_judge_hai",
     "title": "海公案",
     "titleEn": "The Cases of Judge Hai",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
@@ -900,14 +2462,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《海公案》明代文献，归入古典小说类。",
-    "descriptionEn": "The Cases of Judge Hai (海公案) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《海公案》（海刚峰先生居官公案）为明清著名清官公案小说，以明代万世敬仰的廉吏海瑞为主角。小说以动人心魄的情节再现海青天不畏权贵、为民请命、智断疑难悬案的铁面形象，寄托了广大百姓对清廉公正与天下太平的永恒期盼。",
+    "descriptionEn": "The Cases of Judge Hai (Hai Gong An) is an influential Ming-Qing legal detective novel honoring Hai Rui, historical symbol of incorruptible magistracy. Depicting Hai Rui's relentless defense of ordinary peasants against oppressive aristocrats and corrupt officials, the novel blends courtroom trials with moral bravery, celebrating the enduring Chinese ideal of judicial integrity.",
+    "localizedTitles": {
+      "en": "The Cases of Judge Hai",
+      "ar": "قضايا القاضي هاي",
+      "de": "Die Fälle des Richters Hai",
+      "es": "Los casos del juez Hai",
+      "fr": "Les affaires du juge Hai",
+      "hi": "न्यायाधीश हाई के मुकदमे",
+      "id": "Perkara-perkara Hakim Hai",
+      "it": "I casi del giudice Hai",
+      "ja": "海公案",
+      "ko": "해공안",
+      "pt": "Os Casos do Juiz Hai",
+      "ru": "Дела судьи Хай",
+      "th": "คดีของผู้พิพากษาไห่",
+      "vi": "Hải Công Án"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_strange_tale_of_the_woman_mulan",
     "title": "木兰奇女传",
     "titleEn": "The Strange Tale of the Woman Mulan",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -917,14 +2511,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《木兰奇女传》清代文献，归入古典小说类。",
-    "descriptionEn": "The Strange Tale of the Woman Mulan (木兰奇女传) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《木兰奇女传》为清代中叶流传的英雄传奇长篇小说，生动扩充了乐府民歌中花木兰代父从军的经典神话。作品细腻刻画了木兰在沙场上的绝世智勇、抵御外侮的爱国情操以及对父母的至孝深情，文风慷慨激昂，堪称中国古代女性英雄主义的光辉赞歌。",
+    "descriptionEn": "The Strange Tale of the Woman Mulan (Mulan Qi Nü Zhuan) is a Qing-dynasty historical novel expanding the legendary ballad of Hua Mulan into a rich epic romance. Chronicling Mulan's filial decision to disguise herself as a male soldier, her martial mastery on border battlefields, and her virtue upon returning home, it stands as a triumphant celebration of feminine courage, patriotism, and filial piety.",
+    "localizedTitles": {
+      "en": "The Strange Tale of the Woman Mulan",
+      "ar": "قصة امرأة مولان العجيبة",
+      "de": "Die seltsame Geschichte der Frau Mulan",
+      "es": "La extraña historia de la mujer Mulan",
+      "fr": "L'Histoire merveilleuse de la femme Mulan",
+      "hi": "अद्भुत स्त्री मूलान की कथा",
+      "id": "Kisah Ajaib Wanita Mulan",
+      "it": "La strana storia della donna Mulan",
+      "ja": "木蘭奇女伝",
+      "ko": "목란기녀전",
+      "pt": "A Estranha História da Mulher Mulan",
+      "ru": "Повесть об удивительной женщине Мулань",
+      "th": "ตำนานอัศจรรย์ของสตรีมู่หลาน",
+      "vi": "Mộc Lan Kỳ Nữ Truyện"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_green_peony",
     "title": "绿牡丹",
     "titleEn": "The Green Peony",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -934,14 +2560,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《绿牡丹》清代文献，归入古典小说类。",
-    "descriptionEn": "The Green Peony (绿牡丹) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《绿牡丹》（四海齐欢喜庆全传）是清代侠义公案与才子佳人融汇的经典长篇小说。故事围绕武则天执政时期，骆宏勋与花碧莲等侠义青年为护国安民、伸张正义，与恶霸奸佞展开的惊险智斗与浪漫爱情，行文流利，武戏扣人心弦，深受民间说书喜爱。",
+    "descriptionEn": "The Green Peony (Lü Mudan) is a captivating Qing-dynasty martial arts and romance novel set in the era of Empress Wu Zetian. Following the romantic and heroic trials of young swordfighter Luo Hongxun and the spirited martial artist Hua Bilian, the story blends thrilling acrobatic combat, bandit showdowns, and devoted romantic loyalty into a crowd-pleasing adventure.",
+    "localizedTitles": {
+      "en": "The Green Peony",
+      "ar": "الفايوان الأخضر",
+      "de": "Die grüne Pfingstrose",
+      "es": "La peonía verde",
+      "fr": "La Pivoine verte",
+      "hi": "हरा पियोनी",
+      "id": "Peoni Hijau",
+      "it": "La peonia verde",
+      "ja": "緑牡丹",
+      "ko": "녹모단",
+      "pt": "A Peônia Verde",
+      "ru": "Зелёный пион",
+      "th": "โบตั๋นเขียว",
+      "vi": "Lục Mẫu Đơn"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "love_in_the_mountains_and_waters",
     "title": "山水情",
     "titleEn": "Love in the Mountains and Waters",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
@@ -951,15 +2609,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《山水情》明代文献，归入古典小说类。",
-    "descriptionEn": "Love in the Mountains and Waters (山水情) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《山水情》为明清民间文学传世之作，以清丽典雅之笔描绘知音相惜、寄情山水的旷达情怀。作品融传统文人隐逸意趣、古琴乐理与江南胜景于一体，生动展现了中国古典文化中师徒传道、天人合一与高山流水的深邃艺术美感。",
+    "descriptionEn": "Love in the Mountains and Waters (Shan Shui Qing) is an evocative classical tale celebrating spiritual friendship, nature's tranquility, and the ancient art of the guqin (Chinese zither). Through lyrical descriptions of misty rivers and solitary pines, it recounts a wandering master passing the legacy of music and Daoist harmony to a gifted young pupil, embodying the transcendent ideal of artistic kinship.",
+    "localizedTitles": {
+      "en": "Love in the Mountains and Waters",
+      "ar": "حب الجبال والمياه",
+      "de": "Liebe zu Bergen und Gewässern",
+      "es": "Amor entre montañas y aguas",
+      "fr": "Sentiments des monts et des eaux",
+      "hi": "पर्वत और जल का प्रेम",
+      "id": "Cinta di antara Gunung dan Air",
+      "it": "Sentimenti di montagne e acque",
+      "ja": "山水情",
+      "ko": "산수정",
+      "pt": "Amor Entre Montanhas e Águas",
+      "ru": "Любовь гор и вод",
+      "th": "สายสัมพันธ์ขุนเขาและสายน้ำ",
+      "vi": "Sơn Thủy Tình"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_complete_tale_of_feituo",
     "title": "飞跎全传",
     "titleEn": "The Complete Tale of Feituo",
-    "author": "Zou Bixian",
-    "authorEn": "Anonymous",
+    "author": "邹必显",
+    "authorEn": "Zou Bixian",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 4,
@@ -968,14 +2658,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《飞跎全传》清代文献，归入古典小说类。",
-    "descriptionEn": "The Complete Tale of Feituo (飞跎全传) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《飞跎全传》为清代乾隆年间邹必显所撰武侠传奇小说。全书三十回，生动描写了江湖侠士凭借超凡绝伦的飞跎神技与过人胆识，纵横武林、扶危济困、惩处贪官恶霸的侠义壮举，充满质朴豪迈的民间绿林豪气与浓厚的平民正义感。",
+    "descriptionEn": "The Complete Tale of Feituo (Feituo Quan Zhuan) is an exhilarating 18th-century martial adventure novel composed by Zou Bixian. Chronicling the exploits of righteous swordsmen gifted with extraordinary agility and weapon mastery as they right wrongs across the martial underworld, it pulsates with outlaw camaraderie, righteous rebellion, and popular folk justice.",
+    "localizedTitles": {
+      "en": "The Complete Tale of Feituo",
+      "ar": "الحكاية الكاملة لفيتوو",
+      "de": "Die vollständige Geschichte von Feituo",
+      "es": "Historia completa de Feituo",
+      "fr": "L'Histoire complète de Feituo",
+      "hi": "फ़ेईतुओ की सम्पूर्ण कथा",
+      "id": "Kisah Lengkap Feituo",
+      "it": "Storia completa di Feituo",
+      "ja": "飛駝全伝",
+      "ko": "비타전전",
+      "pt": "A História Completa de Feituo",
+      "ru": "Полное сказание о Фэйто",
+      "th": "ตำนานสมบูรณ์ของเฟยทั่ว",
+      "vi": "Phi Đà Toàn Truyện"
+    },
+    "localizedAuthors": {
+      "ar": "زو بي شيان",
+      "de": "Zou Bixian",
+      "es": "Zou Bixian",
+      "fr": "Zou Bixian",
+      "hi": "ज़ोउ बिक्सियान",
+      "id": "Zou Bixian",
+      "it": "Zou Bixian",
+      "ja": "鄒必顕",
+      "ko": "추필현",
+      "pt": "Zou Bixian",
+      "ru": "Цзоу Бисянь",
+      "th": "โจว ปี้เสี่ยน",
+      "vi": "Trâu Tất Hiển",
+      "en": "Zou Bixian"
+    }
   },
   {
     "id": "the_unicorn_child",
     "title": "麟儿报",
     "titleEn": "The Unicorn Child",
-    "author": "Anonymous",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
@@ -985,14 +2707,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《麟儿报》明代文献，归入古典小说类。",
-    "descriptionEn": "The Unicorn Child (麟儿报) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《麟儿报》为清代初期才子佳人白话小说佳作。全书十六回，讲述名门之后历经家族变故与恶人构陷，坚守忠义孝悌、刻苦求学，最终金榜题名、阖家团圆的传奇经历。作品构思巧妙，重在劝善向善，展现了中国传统社会对美德善报的坚信与向往。",
+    "descriptionEn": "The Unicorn Child (Lin'er Bao) is a classic 17th-century scholar-and-beauty novel celebrating moral perseverance and celestial justice. Centering on a virtuous young scholar who navigates familial misfortune, jealousy, and treacherous adversaries before triumphing at the imperial civil examinations, it beautifully illustrates the traditional conviction that Heaven unfailingly rewards integrity and filial piety.",
+    "localizedTitles": {
+      "en": "The Unicorn Child",
+      "ar": "طفل الكيرين",
+      "de": "Das Einhorn-Kind",
+      "es": "El niño unicornio",
+      "fr": "L'Enfant Licorne",
+      "hi": "यूनिकॉर्न बालक",
+      "id": "Anak Qilin",
+      "it": "Il bambino unicorno",
+      "ja": "麟児報",
+      "ko": "인아보",
+      "pt": "O Filho Unicórnio",
+      "ru": "Повесть о сыне-цилине",
+      "th": "กิเลนน้อย",
+      "vi": "Lân Nhi Báo"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_heavenly_leopard",
     "title": "天豹图",
     "titleEn": "The Heavenly Leopard",
-    "author": "Unknown",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1002,15 +2756,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《天豹图》清代文献，归入古典小说类。",
-    "descriptionEn": "The Heavenly Leopard (天豹图) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《天豹图》为清代侠义英雄传奇小说，讲述明末清初一群忠良义士抗击奸邪、保家卫国的壮烈风云。书中情节跌宕起伏，武打场面逼真生动，既有深厚的家国大义，亦展现了民间侠士重然诺、轻生死的崇高品格，极具传统通俗文学感染力。",
+    "descriptionEn": "The Heavenly Leopard (Tian Bao Tu) is a heroic martial arts chronicle from the Qing dynasty depicting a league of patriotic martial masters struggling against villainous usurpers. Driven by breathless combat encounters, military stratagems, and loyal oaths of brotherhood, the narrative champions the eternal chivalric ideals of righteousness, loyalty, and protective honor.",
+    "localizedTitles": {
+      "en": "The Heavenly Leopard",
+      "ar": "النمر السماوي",
+      "de": "Der Himmlische Leopard",
+      "es": "El leopardo celestial",
+      "fr": "Le Léopard céleste",
+      "hi": "स्वर्गीय तेंदुआ",
+      "id": "Macan Tutul Surgawi",
+      "it": "Il leopardo celeste",
+      "ja": "天豹図",
+      "ko": "천표도",
+      "pt": "O Leopardo Celestial",
+      "ru": "Небесный барс",
+      "th": "ภาพเสือดาวสวรรค์",
+      "vi": "Thiên Báo Đồ"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "spring_in_the_jade_tower",
     "title": "玉楼春",
     "titleEn": "Spring in the Jade Tower",
-    "author": "Baiyundaoren",
-    "authorEn": "Anonymous",
+    "author": "白云道人",
+    "authorEn": "Baiyun Daoren",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 4,
@@ -1019,15 +2805,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《玉楼春》清代文献，归入古典小说类。",
-    "descriptionEn": "Spring in the Jade Tower (玉楼春) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《玉楼春》为清代白云道人所著才子佳人言情名著。全书二十四回，围绕世家子弟与聪颖佳人的坎坷情缘展开，细腻勾勒明清江南豪门宅院之风雅生活与悲欢离合，文辞流美，意态闲雅，对传统礼教与青年真情之交织有生动细致之刻画。",
+    "descriptionEn": "Spring in the Jade Tower (Yu Lou Chun) is a charming Qing-dynasty romance authored by Baiyun Daoren. Chronicling the trials and triumphs of gifted youths navigating romantic courtship within wealthy households, the novel blends lyrical poetry, delicate societal etiquette, and dramatic misunderstandings, depicting genuine emotional devotion overcoming social constraints.",
+    "localizedTitles": {
+      "en": "Spring in the Jade Tower",
+      "ar": "الربيع في البرج اليشمي",
+      "de": "Frühling im Jade-Pavillon",
+      "es": "Primavera en el pabellón de jade",
+      "fr": "Printemps dans le pavillon de jade",
+      "hi": "जेड भवन में वसंत",
+      "id": "Musim Semi di Menara Giok",
+      "it": "Primavera nel padiglione di giada",
+      "ja": "玉楼春",
+      "ko": "옥루춘",
+      "pt": "Primavera no Pavilhão de Jade",
+      "ru": "Весна в нефритовом тереме",
+      "th": "วสันต์ในหอหยก",
+      "vi": "Ngọc Lâu Xuân"
+    },
+    "localizedAuthors": {
+      "ar": "باي يون داورن",
+      "de": "Baiyun Daoren",
+      "es": "Baiyun Daoren",
+      "fr": "Baiyun Daoren",
+      "hi": "बैयुन दाओरेन",
+      "id": "Baiyun Daoren",
+      "it": "Baiyun Daoren",
+      "ja": "白雲道人",
+      "ko": "백운도인",
+      "pt": "Baiyun Daoren",
+      "ru": "Байюнь Даожэнь",
+      "th": "ไป๋อวิ๋นเต้าเหริน",
+      "vi": "Bạch Vân Đạo Nhân",
+      "en": "Baiyun Daoren"
+    }
   },
   {
     "id": "the_phoenix_flute",
     "title": "引凤萧",
     "titleEn": "The Phoenix Flute",
-    "author": "Banyunyou",
-    "authorEn": "Anonymous",
+    "author": "半云友",
+    "authorEn": "Ban Yunyou",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
     "hskLevel": 4,
@@ -1036,15 +2854,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《引凤萧》明代文献，归入古典小说类。",
-    "descriptionEn": "The Phoenix Flute (引凤萧) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《引凤萧》为清代才子佳人长篇白话小说，半云友所撰。全书以音律神箫为线索，串联起两对男女知音相识相恋、历经权奸阻挠而矢志不渝的深情传奇，结构工巧，韵味典雅，借乐寄情，将东方古典爱情与音乐艺术之美发挥得淋漓尽致。",
+    "descriptionEn": "The Phoenix Flute (Yin Feng Xiao) is a graceful romance novel of the mid-Qing period by Ban Yunyou. Threaded around the symbolic motif of an enchanted jade flute, it weaves the interconnected fates of two pairs of lovers whose mutual passion for music and moral virtue guides them through political perils, providing a tender homage to romantic fidelity and classical music.",
+    "localizedTitles": {
+      "en": "The Phoenix Flute",
+      "ar": "مزمار العنقاء",
+      "de": "Die Phönixflöte",
+      "es": "La flauta del fénix",
+      "fr": "La Flûte du phénix",
+      "hi": "फिनिक्स बांसुरी",
+      "id": "Seruling Feniks",
+      "it": "Il flauto del fenice",
+      "ja": "引鳳簫",
+      "ko": "인봉소",
+      "pt": "A Flauta do Fênix",
+      "ru": "Флейта, манящая феникса",
+      "th": "ขลุ่ยเรียกหงส์",
+      "vi": "Dẫn Phụng Tiêu"
+    },
+    "localizedAuthors": {
+      "ar": "بان يون يو",
+      "de": "Ban Yunyou",
+      "es": "Ban Yunyou",
+      "fr": "Ban Yunyou",
+      "hi": "बान युनयोउ",
+      "id": "Ban Yunyou",
+      "it": "Ban Yunyou",
+      "ja": "半雲友",
+      "ko": "반운우",
+      "pt": "Ban Yunyou",
+      "ru": "Бань Юнью",
+      "th": "ปั้นอวิ๋นโหยว",
+      "vi": "Bán Vân Hữu",
+      "en": "Ban Yunyou"
+    }
   },
   {
     "id": "a_play_within_a_play",
     "title": "戏中戏",
     "titleEn": "A Play Within a Play",
-    "author": "Aiyuezhuren",
-    "authorEn": "Anonymous",
+    "author": "爱月主人",
+    "authorEn": "Aiyue Zhuren",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 4,
@@ -1053,14 +2903,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《戏中戏》清代文献，归入古典小说类。",
-    "descriptionEn": "A Play Within a Play (戏中戏) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《戏中戏》为清代爱月主人所撰才子佳人名著。小说巧妙采用戏曲搬演与现实人生虚实交错的“套层”结构，展现风流才子与绝色佳人借戏抒怀、以戏定情的奇特经历，文笔风趣诙谐，极富舞台戏剧感与市井人生洞察力。",
+    "descriptionEn": "A Play Within a Play (Xi Zhong Xi) is an ingenious Qing-dynasty meta-theatrical novel penned by Aiyue Zhuren. Utilizing an innovative framing device where theatrical performances parallel real-life romantic intrigue, the novel playfully explores disguise, performance, and true identity, showing how art reflects and shapes human destiny.",
+    "localizedTitles": {
+      "en": "A Play Within a Play",
+      "ar": "مسرحية داخل مسرحية",
+      "de": "Ein Schauspiel im Schauspiel",
+      "es": "Una obra dentro de la obra",
+      "fr": "Une pièce dans la pièce",
+      "hi": "नाटक के भीतर नाटक",
+      "id": "Drama dalam Drama",
+      "it": "Una commedia nella commedia",
+      "ja": "戯中戯",
+      "ko": "희중희",
+      "pt": "Uma Peça Dentro da Peça",
+      "ru": "Пьеса в пьесе",
+      "th": "ละครซ้อนละคร",
+      "vi": "Hí Trung Hí"
+    },
+    "localizedAuthors": {
+      "ar": "آي يوي تشو رن",
+      "de": "Aiyue Zhuren",
+      "es": "Aiyue Zhuren",
+      "fr": "Aiyue Zhuren",
+      "hi": "ऐयुए झुरेन",
+      "id": "Aiyue Zhuren",
+      "it": "Aiyue Zhuren",
+      "ja": "愛月主人",
+      "ko": "애월주인",
+      "pt": "Aiyue Zhuren",
+      "ru": "Айюэ Чжужэнь",
+      "th": "อ้ายเยว่จู่เหริน",
+      "vi": "Ái Nguyệt Chủ Nhân",
+      "en": "Aiyue Zhuren"
+    }
   },
   {
     "id": "the_flounder",
     "title": "比目鱼",
     "titleEn": "The Flounder",
-    "author": "Aiyuezhuren",
+    "author": "李渔",
     "authorEn": "Li Yu",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1070,14 +2952,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《比目鱼》清代文献，归入古典小说类。",
-    "descriptionEn": "The Flounder (比目鱼) is a Qing Dynasty work attributed to Li Yu. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《比目鱼》（连香伴姊妹作）为清代戏曲巨匠李渔所著传世名剧与小说。作品讲述戏班生角谭楚玉与旦角刘淼娘因同台演戏结缘，情比金坚，冲破世俗阻挠誓死相随，最终双双投江化为比目双鱼的凄美神话，文思灵动，为中国古代爱情悲喜剧之绝唱。",
+    "descriptionEn": "The Flounder (Bi Mu Yu) is a renowned romantic drama and novella composed by Qing aesthetician Li Yu. Recounting the ill-fated yet transcendent love between opera actors Tan Chuyu and Liu Miaoniang, their tragic leap into the river culminates in their miraculous transformation into a pair of inseparable flounders, offering a brilliant defense of passionate artistic devotion.",
+    "localizedTitles": {
+      "en": "The Flounder",
+      "ar": "سمكة الصول",
+      "de": "Die Scholle",
+      "es": "La platija",
+      "fr": "Le Pleuronecte",
+      "hi": "चपटी मछली",
+      "id": "Ikan Sebelah",
+      "it": "La sogliola",
+      "ja": "比目魚",
+      "ko": "비목어",
+      "pt": "O Linguado",
+      "ru": "Камбала",
+      "th": "ปลาตาเดียว",
+      "vi": "Tỷ Mục Ngư"
+    },
+    "localizedAuthors": {
+      "ar": "لي يو",
+      "de": "Li Yu",
+      "es": "Li Yu",
+      "fr": "Li Yu",
+      "hi": "ली यू",
+      "id": "Li Yu",
+      "it": "Li Yu",
+      "ja": "李漁",
+      "ko": "이어",
+      "pt": "Li Yu",
+      "ru": "Ли Юй",
+      "th": "หลี่ ยวี่",
+      "vi": "Lý Ngư",
+      "en": "Li Yu"
+    }
   },
   {
     "id": "idle_talk_under_the_bean_arbor",
     "title": "豆棚闲话",
     "titleEn": "Idle Talk Under the Bean Arbor",
-    "author": "Ainajushi",
+    "author": "艾衲居士",
     "authorEn": "Aina Jushi",
     "category": "Classical Tales",
     "dynastyOrEra": "Qing Dynasty",
@@ -1087,14 +3001,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《豆棚闲话》清代文献，归入古典笔记类。",
-    "descriptionEn": "Idle Talk Under the Bean Arbor (豆棚闲话) is a Qing Dynasty work attributed to Aina Jushi. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《豆棚闲话》为清初艾衲居士所著白话短篇讽刺小说集。全书以夏日乡野避暑豆棚为背景，借各色村夫野老乘凉闲话之机，串联起十二则荒诞风趣的古今寓言，借嬉笑怒骂剖析人间虚伪、宗族伪善与改朝换代之世变，构思独特，妙趣横生。",
+    "descriptionEn": "Idle Talk Under the Bean Arbor (Dou Peng Xian Hua) is a brilliant early-Qing satirical story cycle by Aina Jushi. Framed around village villagers gathering beneath a shady bean trellis on hot summer afternoons to swap tales, its twelve biting satires mock sanctimonious scholars, dynastic loyalties, and human foibles with earthy humor and philosophical depth.",
+    "localizedTitles": {
+      "en": "Idle Talk Under the Bean Arbor",
+      "ar": "أحاديث تحت تعريشة الفاصوليا",
+      "de": "Müßige Gespräche unter der Bohnenlaube",
+      "es": "Charlas ociosas bajo la enramada de judías",
+      "fr": "Causeries sous la tonnelle de haricots",
+      "hi": "सेम के छप्पर के नीचे बेकार की बातें",
+      "id": "Obrolan Santai di Bawah Naungan Kacang",
+      "it": "Chiacchiere sotto il pergolato di fagioli",
+      "ja": "豆棚閑話",
+      "ko": "두팽한화",
+      "pt": "Conversas Ociosas Sob a Latada de Feijões",
+      "ru": "Праздные разговоры под бобовой беседкой",
+      "th": "เรื่องเล่าใต้ซุ้มถั่ว",
+      "vi": "Đậu Bằng Nhàn Thoại"
+    },
+    "localizedAuthors": {
+      "ar": "آي نا جو شي",
+      "de": "Aina Jushi",
+      "es": "Aina Jushi",
+      "fr": "Aina Jushi",
+      "hi": "ऐना जुशी",
+      "id": "Aina Jushi",
+      "it": "Aina Jushi",
+      "ja": "艾衲居士",
+      "ko": "애납거사",
+      "pt": "Aina Jushi",
+      "ru": "Айна Цзюйши",
+      "th": "อ้ายน่าจวีซื่อ",
+      "vi": "Ngải Nạp Cư Sĩ",
+      "en": "Aina Jushi"
+    }
   },
   {
     "id": "lord_liang_s_nine_remonstrances",
     "title": "梁公九谏",
     "titleEn": "Lord Liang's Nine Remonstrances",
-    "author": "Unknown",
+    "author": "佚名",
     "authorEn": "Anonymous",
     "category": "Classical Tales",
     "dynastyOrEra": "Tang Dynasty",
@@ -1104,14 +3050,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《梁公九谏》唐代文献，归入古典笔记类。",
-    "descriptionEn": "Lord Liang's Nine Remonstrances (梁公九谏) is a Tang Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《梁公九谏》为记述唐代名相狄仁杰（封梁国公）直谏武则天的传奇小说。作品通过九次惊心动魄的廷试抗辩，展现狄梁公在强权与杀机面前刚正不阿、智护忠良、规谏女皇还政李唐的非凡气魄，是弘扬臣节大义与政治智慧的千古佳作。",
+    "descriptionEn": "Lord Liang's Nine Remonstrances (Liang Gong Jiu Jian) is a dramatic historical chronicle celebrating Tang Chancellor Di Renjie, Duke of Liang, and his fearless counsel to Empress Wu Zetian. Depicting nine pivotal confrontations at court where Di Renjie risked his life to check tyranny and safeguard the rightful royal lineage, it stands as a tribute to moral courage in statesmanship.",
+    "localizedTitles": {
+      "en": "Lord Liang's Nine Remonstrances",
+      "ar": "التنبيهات التسعة للسيّد ليانغ",
+      "de": "Die neun Ermahnungen des Herzogs Liang",
+      "es": "Las nueve amonestaciones del Señor Liang",
+      "fr": "Les Neuf Remontrances du seigneur Liang",
+      "hi": "लॉर्ड लियांग के नौ सुझाव",
+      "id": "Sembilan Nasihat Tuan Liang",
+      "it": "Le nove ammonizioni del Signore Liang",
+      "ja": "梁公九諫",
+      "ko": "양공구간",
+      "pt": "As Nove Remonstrâncias do Senhor Liang",
+      "ru": "Девять увещеваний князя Ляна",
+      "th": "คำทัดทานเก้าประการของท่านเหลียง",
+      "vi": "Lương Công Cửu Gián"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "the_tale_of_li_wa",
     "title": "李娃传",
     "titleEn": "The Tale of Li Wa",
-    "author": "Xingjian Bai",
+    "author": "白行简",
     "authorEn": "Bai Xingjian",
     "category": "Classical Tales",
     "dynastyOrEra": "Tang Dynasty",
@@ -1121,15 +3099,47 @@
     "tags": [
       "Tales"
     ],
-    "description": "《李娃传》唐代文献，归入古典笔记类。",
-    "descriptionEn": "The Tale of Li Wa (李娃传) is a Tang Dynasty work attributed to Bai Xingjian. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《李娃传》为唐代白行简所作传世传奇小说之极品。讲述陇西荥阳郑生赴京赶考，迷恋名妓李娃耗尽家资，遭父痛笞弃尸荒野、沦为丧乐唱挽之人；李娃深感其情，将其救起并督促其苦读，郑生终登甲科拜官，二人终谐连理。情节曲折悲喜，被誉为唐传奇第一抒情叙事杰构。",
+    "descriptionEn": "The Tale of Li Wa (Li Wa Zhuan) is one of the supreme masterpieces of Tang Dynasty chuanqi prose fiction, composed by Bai Xingjian. Recounting the tumultuous romance between a promising young scholar and a famed Chang'an courtesan—from intoxicating ruin and destitute destitution to tender redemption and triumphant honor—it remains an immortal classic of devotion overcoming strict class boundaries.",
+    "localizedTitles": {
+      "en": "The Tale of Li Wa",
+      "ar": "حكاية لي وا",
+      "de": "Die Geschichte von Li Wa",
+      "es": "La historia de Li Wa",
+      "fr": "L'Histoire de Li Wa",
+      "hi": "ली वा की कहानी",
+      "id": "Kisah Li Wa",
+      "it": "La storia di Li Wa",
+      "ja": "李娃伝",
+      "ko": "이와전",
+      "pt": "A História de Li Wa",
+      "ru": "Повесть о Ли Ва",
+      "th": "ตำนานหลี่วา",
+      "vi": "Lý Wa Truyện"
+    },
+    "localizedAuthors": {
+      "ar": "باي شينغ جيان",
+      "de": "Bai Xingjian",
+      "es": "Bai Xingjian",
+      "fr": "Bai Xingjian",
+      "hi": "बाई शिंगजियान",
+      "id": "Bai Xingjian",
+      "it": "Bai Xingjian",
+      "ja": "白行簡",
+      "ko": "백행간",
+      "pt": "Bai Xingjian",
+      "ru": "Бай Синцзянь",
+      "th": "ไป๋ สิงเจี่ยน",
+      "vi": "Bạch Hành Giản",
+      "en": "Bai Xingjian"
+    }
   },
   {
     "id": "a_fool_s_dream_talk",
     "title": "痴人说梦记",
     "titleEn": "A Fool's Dream Talk",
-    "author": "Sheng Lü",
-    "authorEn": "Anonymous",
+    "author": "吕生",
+    "authorEn": "Lü Sheng",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 4,
@@ -1138,14 +3148,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《痴人说梦记》清代文献，归入古典小说类。",
-    "descriptionEn": "A Fool's Dream Talk (痴人说梦记) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《痴人说梦记》为清代吕生所撰长篇讽世讽喻小说。全书借主人公神游梦境之荒诞经历，将人间追逐功名、贪得无厌、虚伪伪善的万千世相化为梦中镜像，笔调荒诞幽默而寓意深邃，在庄周梦蝶般的玄思中寄托对人生终极意义的冷峻省察。",
+    "descriptionEn": "A Fool's Dream Talk (Chi Ren Shuo Meng Ji) is a philosophical and satirical Qing-dynasty novel by Lü Sheng. Utilizing an allegorical dream framework reminiscent of Zhuangzi's butterfly parable, it transports a weary protagonist through bizarre dreamscapes that satirize bureaucratic vanity, greed, and the ephemeral illusions of mortal glory with bittersweet wit.",
+    "localizedTitles": {
+      "en": "A Fool's Dream Talk",
+      "ar": "أحاديث أحلام الأحمق",
+      "de": "Traumreden eines Narren",
+      "es": "Relato de los sueños de un insensato",
+      "fr": "Propos de rêve d'un insensé",
+      "hi": "एक मूर्ख के सपनों की बात",
+      "id": "Catatan Bualan Impian Si Bodoh",
+      "it": "Racconto dei sogni di uno stolto",
+      "ja": "痴人説夢記",
+      "ko": "치인설몽기",
+      "pt": "Relato dos Sonhos de um Tolo",
+      "ru": "Записки о снах дурака",
+      "th": "บันทึกฝันเพ้อเจ้อของคนเขลา",
+      "vi": "Si Nhân Thuyết Mộng Ký"
+    },
+    "localizedAuthors": {
+      "ar": "لو شنغ",
+      "de": "Lü Sheng",
+      "es": "Lü Sheng",
+      "fr": "Lü Sheng",
+      "hi": "लू शेंग",
+      "id": "Lü Sheng",
+      "it": "Lü Sheng",
+      "ja": "呂生",
+      "ko": "여생",
+      "pt": "Lü Sheng",
+      "ru": "Люй Шэн",
+      "th": "ลวี่ เซิง",
+      "vi": "Lữ Sinh",
+      "en": "Lü Sheng"
+    }
   },
   {
     "id": "water_margin",
     "title": "水浒传",
     "titleEn": "Water Margin",
-    "author": "Nai'an Shi",
+    "author": "施耐庵",
     "authorEn": "Shi Nai'an",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
@@ -1155,14 +3197,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《水浒传》明代文献，归入古典小说类。",
-    "descriptionEn": "Water Margin (水浒传) is a Ming Dynasty work attributed to Shi Nai'an. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《水浒传》是中国古典四大名著之一，成书于元末明初，施耐庵所著。全书以北宋末年宋江起义为背景，生动刻画了一百单八位梁山好汉因不堪官逼民反、聚义水泊梁山、替天行道、除暴安良的悲壮史诗。作品语言酣畅淋漓，人物个性鲜明，是中国古代英雄传奇与白话长篇小说的巅峰丰碑。",
+    "descriptionEn": "Water Margin (Shui Hu Zhuan), also known as Outlaws of the Marsh, is one of China's Four Great Classical Novels, composed by Shi Nai'an. Spanning 120 monumental chapters, it chronicles the rebellion of 108 outlaw heroes gathered at Mount Liang against corrupt imperial magistrates under the banner of 'Delivering Justice for Heaven', standing as China's greatest epic of martial chivalry and brotherhood.",
+    "localizedTitles": {
+      "en": "Water Margin",
+      "ar": "حافة الماء",
+      "de": "Die Räuber vom Liang-Schan-Moor",
+      "es": "A orillas del agua",
+      "fr": "Au bord de l'eau",
+      "hi": "वॉटर मार्जिन",
+      "id": "Batas Air",
+      "it": "I briganti",
+      "ja": "水滸伝",
+      "ko": "수호전",
+      "pt": "À Margem da Água",
+      "ru": "Речные заводи",
+      "th": "ซ้องกั๋ง",
+      "vi": "Thủy Hử"
+    },
+    "localizedAuthors": {
+      "ar": "شي ناي آن",
+      "de": "Shi Nai'an",
+      "es": "Shi Nai'an",
+      "fr": "Shi Nai'an",
+      "hi": "शी नाइआन",
+      "id": "Shi Nai'an",
+      "it": "Shi Nai'an",
+      "ja": "施耐庵",
+      "ko": "시내암",
+      "pt": "Shi Nai'an",
+      "ru": "Ши Найань",
+      "th": "ซือ ไน่อาน",
+      "vi": "Thi Nại Am",
+      "en": "Shi Nai'an"
+    }
   },
   {
     "id": "the_scholars",
     "title": "儒林外史",
     "titleEn": "The Scholars",
-    "author": "Jingzi Wu",
+    "author": "吴敬梓",
     "authorEn": "Wu Jingzi",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1172,14 +3246,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《儒林外史》清代文献，归入古典小说类。",
-    "descriptionEn": "The Scholars (儒林外史) is a Qing Dynasty work attributed to Wu Jingzi. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《儒林外史》为清代讽刺小说大师吴敬梓的传世长篇巨著。全书五十六回，以敏锐细腻的写实笔调和入木三分的幽默讽刺，全景式揭露科举功名对士人灵魂的扭曲与摧残，生动刻画了周进、范进、严监生等不朽人物形象，被鲁迅誉为中国古典讽刺小说第一高峰。",
+    "descriptionEn": "The Scholars (Rulin Waishi) is the pinnacle of classical Chinese satirical fiction, composed during the Qing Dynasty by Wu Jingzi. Through episodic portraits of corrupt bureaucrats, fraudulent philosophers, and tragic examination candidates like Fan Jin, it mounts a brilliant, compassionate, and devastating critique of the imperial civil service examination system and Confucian hypocrisy.",
+    "localizedTitles": {
+      "en": "The Scholars",
+      "ar": "التاريخ غير الرسمي للعلماء",
+      "de": "Inoffizielle Geschichte der Gelehrten",
+      "es": "Historia no oficial del bosque de letrados",
+      "fr": "Histoire de la forêt des lettrés",
+      "hi": "विद्वानों का अनौपचारिक इतिहास",
+      "id": "Sejarah Unresmi Para Cendekiawan",
+      "it": "Storia non ufficiale dei letterati",
+      "ja": "儒林外史",
+      "ko": "유림외사",
+      "pt": "História Não Oficial dos Literatos",
+      "ru": "Неофициальная история конфуцианцев",
+      "th": "จูหลินไว่สื่อ",
+      "vi": "Nho Lâm Ngoại Sử"
+    },
+    "localizedAuthors": {
+      "ar": "وو جينغ زي",
+      "de": "Wu Jingzi",
+      "es": "Wu Jingzi",
+      "fr": "Wu Jingzi",
+      "hi": "वू जिंगज़ी",
+      "id": "Wu Jingzi",
+      "it": "Wu Jingzi",
+      "ja": "呉敬梓",
+      "ko": "오경재",
+      "pt": "Wu Jingzi",
+      "ru": "У Цзинцзы",
+      "th": "อู๋ จิ้งจื่อ",
+      "vi": "Ngô Kính Tử",
+      "en": "Wu Jingzi"
+    }
   },
   {
     "id": "the_investiture_of_the_gods",
     "title": "封神演义",
     "titleEn": "The Investiture of the Gods",
-    "author": "Xixing Lu",
+    "author": "许仲琳",
     "authorEn": "Xu Zhonglin",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
@@ -1189,14 +3295,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《封神演义》明代文献，归入古典小说类。",
-    "descriptionEn": "The Investiture of the Gods (封神演义) is a Ming Dynasty work attributed to Xu Zhonglin. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《封神演义》（封神榜）为明代许仲琳所著宏篇神魔史诗小说。全书一百回，以商周更替为宏大历史背景，展开阐教与截教、神仙妖魔两界惊天动地的神话较量；姜子牙下山统军、哪吒闹海、杨戬显圣，最终周灭商定、分封诸神，瑰丽浪漫，气象万千，深受历代读者喜爱。",
+    "descriptionEn": "The Investiture of the Gods (Fengshen Yanyi) is an epic Ming-dynasty mythological saga attributed to Xu Zhonglin. Blending the historical overthrow of the Shang Dynasty by King Wu of Zhou with cosmic battles between Daoist immortals, demons, and deities—featuring iconic figures like Nezha, Erlang Shen, and Jiang Ziya—it culminates in the divine canonization of the gods on the heavenly roster.",
+    "localizedTitles": {
+      "en": "The Investiture of the Gods",
+      "ar": "تنصيب الآلهة",
+      "de": "Die Erhebung zur Gottheit",
+      "es": "La investidura de los dioses",
+      "fr": "L'Investiture des dieux",
+      "hi": "देवताओं का राज्याभिषेक",
+      "id": "Penobatan Para Dewa",
+      "it": "L'investitura degli dei",
+      "ja": "封神演義",
+      "ko": "봉신연의",
+      "pt": "A Investidura dos Deuses",
+      "ru": "Возвышение в ранг духов",
+      "th": "ห้องสิน",
+      "vi": "Phong Thần Diễn Nghĩa"
+    },
+    "localizedAuthors": {
+      "ar": "شو تشونغ لين",
+      "de": "Xu Zhonglin",
+      "es": "Xu Zhonglin",
+      "fr": "Xu Zhonglin",
+      "hi": "शू झोंगलिन",
+      "id": "Xu Zhonglin",
+      "it": "Xu Zhonglin",
+      "ja": "許仲琳",
+      "ko": "허중림",
+      "pt": "Xu Zhonglin",
+      "ru": "Сюй Чжунлинь",
+      "th": "ซวี จ้งหลิน",
+      "vi": "Hứa Trọng Lâm",
+      "en": "Xu Zhonglin"
+    }
   },
   {
     "id": "flowers_in_the_mirror",
     "title": "镜花缘",
     "titleEn": "Flowers in the Mirror",
-    "author": "Ruzhen Li",
+    "author": "李汝珍",
     "authorEn": "Li Ruzhen",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1206,14 +3344,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《镜花缘》清代文献，归入古典小说类。",
-    "descriptionEn": "Flowers in the Mirror (镜花缘) is a Qing Dynasty work attributed to Li Ruzhen. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《镜花缘》为清代才子李汝珍所撰奇幻长篇名著。全书百回，前半部借唐敖泛海游历君子国、黑齿国、女儿国等海外奇境，借异域风物寓讽世道人心；后半部叙百花仙子降生人间、百名才女参加武则天开设女试、大展才华之壮举，博大精微，兼具奇幻色彩与超前女权意识。",
+    "descriptionEn": "Flowers in the Mirror (Jing Hua Yuan) is a dazzling Qing-dynasty fantasy novel authored by polymath Li Ruzhen. The narrative combines the fantastical maritime voyages of Tang Ao through allegorical kingdoms—such as the Country of Two-Faced People and the Women's Kingdom—with a pioneering celebration of women's intellectual equality, culminating in an empire-wide imperial examination for talented women scholars.",
+    "localizedTitles": {
+      "en": "Flowers in the Mirror",
+      "ar": "زهور في المرآة",
+      "de": "Blumen im Spiegel",
+      "es": "Flores en el espejo",
+      "fr": "Fleurs dans le miroir",
+      "hi": "दर्पण में फूल",
+      "id": "Bunga-Bunga di Dalam Cermin",
+      "it": "Fiori nello specchio",
+      "ja": "鏡花縁",
+      "ko": "경화연",
+      "pt": "Flores no Espelho",
+      "ru": "Цветы в зеркале",
+      "th": "บุปผาในกระจก",
+      "vi": "Kính Hoa Duyên"
+    },
+    "localizedAuthors": {
+      "ar": "لي رو تشن",
+      "de": "Li Ruzhen",
+      "es": "Li Ruzhen",
+      "fr": "Li Ruzhen",
+      "hi": "ली रूझेन",
+      "id": "Li Ruzhen",
+      "it": "Li Ruzhen",
+      "ja": "李汝珍",
+      "ko": "이여진",
+      "pt": "Li Ruzhen",
+      "ru": "Ли Жучжэнь",
+      "th": "หลี่ รู่เจิน",
+      "vi": "Lý Nhữ Trân",
+      "en": "Li Ruzhen"
+    }
   },
   {
     "id": "the_travels_of_lao_can",
     "title": "老残游记",
     "titleEn": "The Travels of Lao Can",
-    "author": "E Liu",
+    "author": "刘鹗",
     "authorEn": "Liu E",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1223,14 +3393,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《老残游记》清代文献，归入古典小说类。",
-    "descriptionEn": "The Travels of Lao Can (老残游记) is a Qing Dynasty work attributed to Liu E. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《老残游记》为晚清“四大谴责小说”之一，由刘鹗所著。作品借摇串铃的游医老残游历山东各地的所见所闻，以如诗如画的山水风景描摹与犀利辛辣的社会观察相交融，深刻揭露“清官之酷烈甚于贪官”的惊世见解，文采斐然，饱含对国家危亡与生灵涂炭的深沉忧患。",
+    "descriptionEn": "The Travels of Lao Can (Lao Can Youji) is a landmark late Qing novel composed by reformer Liu E. Chronicling the travels of Lao Can, an itinerant doctor carrying traditional physician's bells across northern China, it pairs exquisite landscape prose with a profound and startling moral revelation: that self-righteous 'incorruptible' officials can cause far greater cruelty and devastation than overtly greedy ones.",
+    "localizedTitles": {
+      "en": "The Travels of Lao Can",
+      "ar": "رحلات لاو تشان",
+      "de": "Die Reisen des Lao Can",
+      "es": "Los viajes de Lao Can",
+      "fr": "L'Odyssée de Lao Can",
+      "hi": "लाओत्सान की यात्राएँ",
+      "id": "Perjalanan Lao Can",
+      "it": "I viaggi di Lao Can",
+      "ja": "老残遊記",
+      "ko": "노잔유기",
+      "pt": "As Viagens de Lao Can",
+      "ru": "Путешествие Лао Цаня",
+      "th": "ท่องเที่ยวของเหล่าชาน",
+      "vi": "Lão Tàn Du Ký"
+    },
+    "localizedAuthors": {
+      "ar": "ليو إه",
+      "de": "Liu E",
+      "es": "Liu E",
+      "fr": "Liu E",
+      "hi": "लियू ए",
+      "id": "Liu E",
+      "it": "Liu E",
+      "ja": "劉鶚",
+      "ko": "유악",
+      "pt": "Liu E",
+      "ru": "Лю Э",
+      "th": "หลิว เอ่อ",
+      "vi": "Lưu Ngạc",
+      "en": "Liu E"
+    }
   },
   {
     "id": "the_literary_mind_and_the_carving_of_dra",
     "title": "文心雕龙",
     "titleEn": "The Literary Mind and the Carving of Dragons",
-    "author": "Xie Liu",
+    "author": "刘勰",
     "authorEn": "Liu Xie",
     "category": "Literary Criticism",
     "dynastyOrEra": "Liang Dynasty",
@@ -1240,14 +3442,46 @@
     "tags": [
       "Criticism"
     ],
-    "description": "《文心雕龙》梁代文献，归入文学批评类。",
-    "descriptionEn": "The Literary Mind and the Carving of Dragons (文心雕龙) is a Liang Dynasty work attributed to Liu Xie. The complete text, in classical Chinese. It belongs to the literary criticism tradition and has been read continuously in China for centuries."
+    "description": "《文心雕龙》为南朝梁代刘勰所撰，是中国文学批评史上的空前绝后之作。全书五十篇，系统论述文学起源、体裁流变、创作构思、修辞技法与批评标准，“文心”探究用思立意，“雕龙”阐发雕琢文辞之术，体大思精，骈骊生辉，堪称东方文论之最高峰。",
+    "descriptionEn": "The Literary Mind and the Carving of Dragons (Wen Xin Diao Long) is China's magnum opus of literary theory and aesthetic criticism, written by Liu Xie during the Southern Dynasties. Organized into fifty impeccably structured chapters in parallel prose (pianwen), it synthesizes cosmic origins, genre evolution, creative psychology, and rhetorical refinement into a comprehensive theory of the written word.",
+    "localizedTitles": {
+      "en": "The Literary Mind and the Carving of Dragons",
+      "ar": "العقل الأدبي ونحت التنانين",
+      "de": "Der literarische Geist und das Schnitzen von Drachen",
+      "es": "El corazón de la literatura y la talla de dragones",
+      "fr": "L'Esprit de la littérature et la sculpture des dragons",
+      "hi": "साहित्यिक मन और ड्रैगन की नक्काशी",
+      "id": "Pikiran Sastra dan Ukiran Naga",
+      "it": "Il cuore della letteratura e la scultura dei dragoni",
+      "ja": "文心彫竜",
+      "ko": "문심조룡",
+      "pt": "A Mente Literária e a Escultura de Dragões",
+      "ru": "Дракон, изваянный в сердце письмен",
+      "th": "วู่ซินเตียวหลง",
+      "vi": "Văn Tâm Điêu Long"
+    },
+    "localizedAuthors": {
+      "ar": "ليو شييه",
+      "de": "Liu Xie",
+      "es": "Liu Xie",
+      "fr": "Liu Xie",
+      "hi": "लियू शिए",
+      "id": "Liu Xie",
+      "it": "Liu Xie",
+      "ja": "劉勰",
+      "ko": "유협",
+      "pt": "Liu Xie",
+      "ru": "Лю Се",
+      "th": "หลิว เซี่ย",
+      "vi": "Lưu Hiệp",
+      "en": "Liu Xie"
+    }
   },
   {
     "id": "the_platform_sutra_of_the_sixth_patriarc",
     "title": "六祖坛经",
     "titleEn": "The Platform Sutra of the Sixth Patriarch",
-    "author": "Huineng",
+    "author": "惠能",
     "authorEn": "Huineng",
     "category": "Buddhist Classics",
     "dynastyOrEra": "Tang Dynasty",
@@ -1257,14 +3491,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《六祖坛经》唐代文献，归入佛家经典类。",
-    "descriptionEn": "The Platform Sutra of the Sixth Patriarch (六祖坛经) is a Tang Dynasty work attributed to Huineng. The complete text, in classical Chinese. It belongs to the buddhist classics tradition and has been read continuously in China for centuries."
+    "description": "《六祖坛经》记录禅宗六祖惠能大师在韶州大梵寺的说法法语与生平开示，是中国僧人著作中唯一被尊为“经”的佛典宝典。经中阐发“不立文字，教外别传，直指人心，见性成佛”的南宗顿悟宗风，扫除一切繁琐名相，对中国哲学、文学与艺术产生了震撼千古的深远影响。",
+    "descriptionEn": "The Platform Sutra of the Sixth Patriarch (Liuzu Tanjing) is the central foundational scripture of Chan (Zen) Buddhism, recording the oral teachings, spontaneous dialogues, and spiritual journey of the illiterate master Huineng. Articulating the revolutionary doctrine of sudden enlightenment—that one's inherent Buddha-nature is directly awakened without rigid scholasticism—it transformed East Asian spirituality.",
+    "localizedTitles": {
+      "en": "The Platform Sutra of the Sixth Patriarch",
+      "ar": "سوترا المنصة للبطريرك السادس",
+      "de": "Das Plattform-Sutra des sechsten Patriarchen",
+      "es": "El Sutra de la Plataforma del Sexto Patriarca",
+      "fr": "Le Sutra de la Plateforme du Sixième Patriarche",
+      "hi": "छठे पितृपुरुष का प्लेटफ़ॉर्म सूत्र",
+      "id": "Sutra Platform Patriark Keenam",
+      "it": "Il Sutra della Piattaforma del Sesto Patriarca",
+      "ja": "六祖壇経",
+      "ko": "육조단경",
+      "pt": "O Sutra da Plataforma do Sexto Patriarca",
+      "ru": "Сутра помоста шестого патриарха",
+      "th": "สูตรแท่นธรรมของพระสังฆปรินายกองค์ที่หก",
+      "vi": "Lục Tổ Đàn Kinh"
+    },
+    "localizedAuthors": {
+      "ar": "هوي ننغ",
+      "de": "Huineng",
+      "es": "Huineng",
+      "fr": "Huineng",
+      "hi": "हुइनेंग",
+      "id": "Huineng",
+      "it": "Huineng",
+      "ja": "恵能",
+      "ko": "혜능",
+      "pt": "Huineng",
+      "ru": "Хуэйнэн",
+      "th": "ฮุ่ยเหนิง",
+      "vi": "Huệ Năng",
+      "en": "Huineng"
+    }
   },
   {
     "id": "romance_of_the_western_chamber",
     "title": "西厢记",
     "titleEn": "Romance of the Western Chamber",
-    "author": "Shifu Wang",
+    "author": "王实甫",
     "authorEn": "Wang Shifu",
     "category": "Classical Drama",
     "dynastyOrEra": "Yuan Dynasty",
@@ -1274,14 +3540,46 @@
     "tags": [
       "Drama"
     ],
-    "description": "《西厢记》元代文献，归入古典戏曲类。",
-    "descriptionEn": "Romance of the Western Chamber (西厢记) is a Yuan Dynasty work attributed to Wang Shifu. The complete text, in classical Chinese. It belongs to the classical drama tradition and has been read continuously in China for centuries."
+    "description": "《西厢记》（崔莺莺待月西厢记）为元代剧作家王实甫所创杂剧经典，位列中国古典戏曲极峰。全剧五本二十一折，讲述书生张君瑞与名门相国之女崔莺莺在红娘的机智帮助下，冲破封建礼教藩篱、追求自主真爱之动人传奇。词章绮丽多姿，唱腔流转生动，被誉为“天下夺魁之作”。",
+    "descriptionEn": "Romance of the Western Chamber (Xi Xiang Ji) is the crowning jewel of Yuan-dynasty dramatic zaju literature, crafted by Wang Shifu. Across twenty-one acts, it portrays the passionate, secret love between scholar Zhang Sheng and aristocratic beauty Cui Yingying, assisted by their witty maid Hongniang, defying feudal social taboos to celebrate the triumph of authentic love over rigid arranged convention.",
+    "localizedTitles": {
+      "en": "Romance of the Western Chamber",
+      "ar": "قصة الغرفة الغربية",
+      "de": "Der Westpavillon",
+      "es": "Romance de la Cámara Occidental",
+      "fr": "Le Pavillon de l'Ouest",
+      "hi": "पश्चिमी कक्ष की प्रेमकथा",
+      "id": "Kisah Kamar Barat",
+      "it": "Il Padiglione Occidentale",
+      "ja": "西廂記",
+      "ko": "서상기",
+      "pt": "Romance da Câmara Ocidental",
+      "ru": "Западный флигель",
+      "th": "ห้องประจิม",
+      "vi": "Tây Sương Ký"
+    },
+    "localizedAuthors": {
+      "ar": "وانغ شي فو",
+      "de": "Wang Shifu",
+      "es": "Wang Shifu",
+      "fr": "Wang Shifu",
+      "hi": "वांग शिफू",
+      "id": "Wang Shifu",
+      "it": "Wang Shifu",
+      "ja": "王実甫",
+      "ko": "왕실보",
+      "pt": "Wang Shifu",
+      "ru": "Ван Шифу",
+      "th": "หวัง สือฝู",
+      "vi": "Vương Thật Phủ",
+      "en": "Wang Shifu"
+    }
   },
   {
     "id": "the_travels_of_xu_xiake",
     "title": "徐霞客游记",
     "titleEn": "The Travels of Xu Xiake",
-    "author": "Hongzu Xu",
+    "author": "徐霞客",
     "authorEn": "Xu Xiake",
     "category": "Classical Essays",
     "dynastyOrEra": "Ming Dynasty",
@@ -1291,14 +3589,46 @@
     "tags": [
       "Essays"
     ],
-    "description": "《徐霞客游记》明代文献，归入古典散文类。",
-    "descriptionEn": "The Travels of Xu Xiake (徐霞客游记) is a Ming Dynasty work attributed to Xu Xiake. The complete text, in classical Chinese. It belongs to the classical essays tradition and has been read continuously in China for centuries."
+    "description": "《徐霞客游记》为明代地理学家与旅行家徐霞客三十余年跋涉华夏山川的日记体巨著。书中以精确的实地考察与优美绚丽的散文笔法，首次对中国西南喀斯特岩溶地貌进行科学系统记录，并探明长江源头金沙江，兼具世界级地理科学价值与崇高的山水文学品格。",
+    "descriptionEn": "The Travels of Xu Xiake (Xu Xiake Youji) is the epic travel diary and scientific exploration journal kept by Ming dynasty adventurer Xu Xiake over three decades of solo exploration. Documenting intrepid journeys across southern and western China, it provides the world's earliest systematic studies of karst landforms, limestone caves, and river hydrography, set down in magnificent poetic prose.",
+    "localizedTitles": {
+      "en": "The Travels of Xu Xiake",
+      "ar": "رحلات شو شياكه",
+      "de": "Die Reisen des Xu Xiake",
+      "es": "Los viajes de Xu Xiake",
+      "fr": "Les Voyages de Xu Xiake",
+      "hi": "शू शियाके की यात्राएँ",
+      "id": "Perjalanan Xu Xiake",
+      "it": "I viaggi di Xu Xiake",
+      "ja": "徐霞客遊記",
+      "ko": "서하객유기",
+      "pt": "As Viagens de Xu Xiake",
+      "ru": "Путешествия Сюй Сякэ",
+      "th": "บันทึกการเดินทางของสวีเสียเค่อ",
+      "vi": "Từ Hà Khách Du Ký"
+    },
+    "localizedAuthors": {
+      "ar": "شو شيا كه",
+      "de": "Xu Xiake",
+      "es": "Xu Xiake",
+      "fr": "Xu Xiake",
+      "hi": "शू शियाके",
+      "id": "Xu Xiake",
+      "it": "Xu Xiake",
+      "ja": "徐霞客",
+      "ko": "서하객",
+      "pt": "Xu Xiake",
+      "ru": "Сюй Сякэ",
+      "th": "ซวี เซี่ยเค่อ",
+      "vi": "Từ Hà Khách",
+      "en": "Xu Xiake"
+    }
   },
   {
     "id": "romance_of_the_sui_and_tang",
     "title": "隋唐演义",
     "titleEn": "Romance of the Sui and Tang",
-    "author": "active 1675-1695 Renhu Chu",
+    "author": "褚人获",
     "authorEn": "Chu Renhuo",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1308,14 +3638,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《隋唐演义》清代文献，归入古典小说类。",
-    "descriptionEn": "Romance of the Sui and Tang (隋唐演义) is a Qing Dynasty work attributed to Chu Renhuo. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《隋唐演义》为清代褚人获所撰的一百回历史演义长篇巨著。小说全景再现隋朝开国、隋炀帝荒淫暴虐、秦叔宝与程咬金等瓦岗寨群雄聚义、李世民横戈跃马平定天下乃至开创大唐贞观之治的壮烈风云，情节波澜壮阔，人物栩栩如生，是古典英雄演义之集大成者。",
+    "descriptionEn": "Romance of the Sui and Tang (Sui Tang Yanyi) is a sweeping 100-chapter historical epic compiled by Qing scholar Chu Renhuo. Spanning the decline of the Northern and Southern Dynasties through the rise and fall of the tyrannical Emperor Yang of Sui to the founding of the glorious Tang Dynasty by Emperor Taizong, it orchestrates military campaigns, outlaw brotherhood, and palace drama into an enduring masterpiece.",
+    "localizedTitles": {
+      "en": "Romance of the Sui and Tang",
+      "ar": "قصة سوي وتانغ",
+      "de": "Die Geschichte der Sui- und Tang-Dynastie",
+      "es": "Romance de los Sui y los Tang",
+      "fr": "Le Roman des Sui et des Tang",
+      "hi": "सुई और तांग की प्रेमकथा",
+      "id": "Kisah Dinasti Sui dan Tang",
+      "it": "Il Romanzo dei Sui e dei Tang",
+      "ja": "隋唐演義",
+      "ko": "수당연의",
+      "pt": "Romance dos Sui e Tang",
+      "ru": "Сказание о Суй и Тан",
+      "th": "สามก๊กยุคสุยถัง",
+      "vi": "Tùy Đường Diễn Nghĩa"
+    },
+    "localizedAuthors": {
+      "ar": "تشو رن هوو",
+      "de": "Chu Renhuo",
+      "es": "Chu Renhuo",
+      "fr": "Chu Renhuo",
+      "hi": "चू रेनहुओ",
+      "id": "Chu Renhuo",
+      "it": "Chu Renhuo",
+      "ja": "褚人獲",
+      "ko": "저인획",
+      "pt": "Chu Renhuo",
+      "ru": "Чжу Жэньхо",
+      "th": "ฉู่ เหรินฮั่ว",
+      "vi": "Chử Nhân Hoạch",
+      "en": "Chu Renhuo"
+    }
   },
   {
     "id": "the_peony_pavilion",
     "title": "牡丹亭",
     "titleEn": "The Peony Pavilion",
-    "author": "Xianzu Tang",
+    "author": "汤显祖",
     "authorEn": "Tang Xianzu",
     "category": "Classical Drama",
     "dynastyOrEra": "Ming Dynasty",
@@ -1325,15 +3687,47 @@
     "tags": [
       "Drama"
     ],
-    "description": "《牡丹亭》明代文献，归入古典戏曲类。",
-    "descriptionEn": "The Peony Pavilion (牡丹亭) is a Ming Dynasty work attributed to Tang Xianzu. The complete text, in classical Chinese. It belongs to the classical drama tradition and has been read continuously in China for centuries."
+    "description": "《牡丹亭》（还魂记）为明代戏剧大师汤显祖“临川四梦”之冠，是中国戏曲浪漫主义的登峰造极之作。全剧五十五出，讲述太守之女杜丽娘因梦生情、寻梦而亡，化为幽魂寻访书生柳梦梅，终得起死回生、喜结连理的神奇恋歌。作品高举至情大旗，词藻清绝，开创了中国戏剧抒情的最高境界。",
+    "descriptionEn": "The Peony Pavilion (Mudan Ting) is the crowning masterpiece of Ming Dynasty romantic drama, composed by China's Shakespeare, Tang Xianzu. Across fifty-five poetically sublime scenes, it recounts how young maiden Du Liniang falls mortally lovesick after dreaming of scholar Liu Mengmei; her spirit searches for him in death, miraculously reviving to reunite in physical love, elevating romantic passion above mortality itself.",
+    "localizedTitles": {
+      "en": "The Peony Pavilion",
+      "ar": "جناح الفاوانيا",
+      "de": "Der Pfingstrosenpavillon",
+      "es": "El Pabellón de las Peonías",
+      "fr": "Le Pavillon aux Pivoines",
+      "hi": "पियोनी मंडप",
+      "id": "Paviliun Peoni",
+      "it": "Il Padiglione delle Peonie",
+      "ja": "牡丹亭",
+      "ko": "모란정",
+      "pt": "O Pavilhão das Peônias",
+      "ru": "Пионовая беседка",
+      "th": "ศาลาโบตั๋น",
+      "vi": "Mẫu Đơn Đình"
+    },
+    "localizedAuthors": {
+      "ar": "تانغ شيانتسو",
+      "de": "Tang Xianzu",
+      "es": "Tang Xianzu",
+      "fr": "Tang Xianzu",
+      "hi": "तांग शियानज़ू",
+      "id": "Tang Xianzu",
+      "it": "Tang Xianzu",
+      "ja": "湯顕祖",
+      "ko": "탕현조",
+      "pt": "Tang Xianzu",
+      "ru": "Тан Сяньцзу",
+      "th": "ถัง เสี่ยนจู่",
+      "vi": "Thang Hiển Tổ",
+      "en": "Tang Xianzu"
+    }
   },
   {
     "id": "discourses_of_the_states",
     "title": "国语",
     "titleEn": "Discourses of the States",
-    "author": "Ming Zuoqiu",
-    "authorEn": "Anonymous",
+    "author": "左丘明",
+    "authorEn": "Zuo Qiuming",
     "category": "Histories",
     "dynastyOrEra": "Zhou Dynasty",
     "hskLevel": 5,
@@ -1342,14 +3736,46 @@
     "tags": [
       "Histories"
     ],
-    "description": "《国语》周代文献，归入史书类。",
-    "descriptionEn": "Discourses of the States (国语) is a Zhou Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the histories tradition and has been read continuously in China for centuries."
+    "description": "《国语》为中国第一部国别体史书，相传由春秋鲁太史左丘明所撰。全书二十一卷，按周、鲁、齐、晋、郑、楚、吴、越八国分列，记录西周末年至战国初期两百余年间各国君臣的谋略对话与重大会变，言辞雄辩宏深，文风古朴庄重，富含深沉的历史反思与修齐治平智慧。",
+    "descriptionEn": "Discourses of the States (Guo Yu) is ancient China's earliest regional historical chronicle, traditionally credited to Spring and Autumn scribe Zuo Qiuming. Spanning twenty-one volumes categorized across eight warring kingdoms from late Western Zhou to early Warring States, it records eloquent diplomatic dialogues, political counsels, and moral reflections that influenced centuries of Chinese historiography.",
+    "localizedTitles": {
+      "en": "Discourses of the States",
+      "ar": "أحاديث الدول",
+      "de": "Gespräche der Staaten",
+      "es": "Discursos de los Estados",
+      "fr": "Discours des États",
+      "hi": "राज्यों के प्रवचन",
+      "id": "Wacana Negara-Negara",
+      "it": "Discorsi degli Stati",
+      "ja": "国語",
+      "ko": "국어",
+      "pt": "Discursos dos Estados",
+      "ru": "Речи царств",
+      "th": "วาทะแห่งแว่นแคว้น",
+      "vi": "Quốc Ngữ"
+    },
+    "localizedAuthors": {
+      "ar": "زو تشيومينغ",
+      "de": "Zuo Qiuming",
+      "es": "Zuo Qiuming",
+      "fr": "Zuo Qiuming",
+      "hi": "ज़ुओ छ्यूमिंग",
+      "id": "Zuo Qiuming",
+      "it": "Zuo Qiuming",
+      "ja": "左丘明",
+      "ko": "좌구명",
+      "pt": "Zuo Qiuming",
+      "ru": "Цзо Цюмин",
+      "th": "จั๋ว ชิวหมิง",
+      "vi": "Tả Khâu Minh",
+      "en": "Zuo Qiuming"
+    }
   },
   {
     "id": "new_prefaces",
     "title": "新序",
     "titleEn": "New Prefaces",
-    "author": "Xiang Liu",
+    "author": "刘向",
     "authorEn": "Liu Xiang",
     "category": "Classical Tales",
     "dynastyOrEra": "Han Dynasty",
@@ -1359,15 +3785,47 @@
     "tags": [
       "Tales"
     ],
-    "description": "《新序》汉代文献，归入古典笔记类。",
-    "descriptionEn": "New Prefaces (新序) is a Han Dynasty work attributed to Liu Xiang. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《新序》为西汉刘向所撰历史笔记寓言集，与《说苑》互为表里。全书十卷，辑录先秦至秦汉名君贤臣、忠勇侠义与德化天下的历史事迹，按杂事、刺奢、节士等品类编次，旨在以古鉴今、劝诫人君任贤去邪，文笔质实苍劲，寄寓深厚的儒家经世情怀。",
+    "descriptionEn": "New Prefaces (Xin Xu) is an influential didactic historical compendium compiled by Western Han imperial bibliographer Liu Xiang. Organized across ten thematic chapters highlighting virtuous kings, loyal remonstrances, and heroic martyrs, it draws upon early historical lore and moral fables to admonish imperial rulers, emphasizing that national survival hinges upon righteousness, humility, and moral integrity.",
+    "localizedTitles": {
+      "en": "New Prefaces",
+      "ar": "مقدمات جديدة",
+      "de": "Neue Vorworte",
+      "es": "Nuevos Prefacios",
+      "fr": "Nouvelles Préfaces",
+      "hi": "नई प्रस्तावनाएँ",
+      "id": "Kata Pengantar Baru",
+      "it": "Nuove Prefazioni",
+      "ja": "新序",
+      "ko": "신서",
+      "pt": "Novos Prefácios",
+      "ru": "Новые предисловия",
+      "th": "อารัมภบทใหม่",
+      "vi": "Tân Tự"
+    },
+    "localizedAuthors": {
+      "ar": "ليو شيانغ",
+      "de": "Liu Xiang",
+      "es": "Liu Xiang",
+      "fr": "Liu Xiang",
+      "hi": "लिउ शियांग",
+      "id": "Liu Xiang",
+      "it": "Liu Xiang",
+      "ja": "劉向",
+      "ko": "유향",
+      "pt": "Liu Xiang",
+      "ru": "Лю Сян",
+      "th": "หลิวเซี่ยง",
+      "vi": "Lưu Hướng",
+      "en": "Liu Xiang"
+    }
   },
   {
     "id": "miscellanies_of_the_western_capital",
     "title": "西京杂记",
     "titleEn": "Miscellanies of the Western Capital",
-    "author": "Xin Liu",
-    "authorEn": "Anonymous",
+    "author": "刘歆",
+    "authorEn": "Liu Xin",
     "category": "Classical Tales",
     "dynastyOrEra": "Han Dynasty",
     "hskLevel": 5,
@@ -1376,14 +3834,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《西京杂记》汉代文献，归入古典笔记类。",
-    "descriptionEn": "Miscellanies of the Western Capital (西京杂记) is a Han Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《西京杂记》相传为西汉刘歆所撰、东晋葛洪编缀之笔记名作。全书六卷，详录西汉都城长安宫殿建筑、御苑奇禽异草、司马相如与卓文君风流韵事、昭君出塞及霍光专权等宫闱故实，辞章华瞻瑰丽，兼具小说逸闻与珍稀文献史料价值。",
+    "descriptionEn": "Miscellanies of the Western Capital (Xijing Zaji) is a vibrant collection of palace anecdotes, imperial legends, and cultural lore set in the Western Han capital of Chang'an, attributed to Liu Xin and preserved by Ge Hong. Across six fascicles, it details opulent imperial architecture, botanical gardens, artistic rivalries, and romantic intrigues, capturing the romance and myth of the Han court.",
+    "localizedTitles": {
+      "en": "Miscellanies of the Western Capital",
+      "ar": "متنوعات العاصمة الغربية",
+      "de": "Vermischte Schriften der Westlichen Hauptstadt",
+      "es": "Misceláneas de la Capital Occidental",
+      "fr": "Mélanges de la Capitale de l'Ouest",
+      "hi": "पश्चिमी राजधानी के विविध संस्मरण",
+      "id": "Aneka Catatan Ibu Kota Barat",
+      "it": "Miscellanee della Capitale Occidentale",
+      "ja": "西京雑記",
+      "ko": "서경잡기",
+      "pt": "Miscelâneas da Capital Ocidental",
+      "ru": "Разные записи о Западной столице",
+      "th": "บันทึก miscellaneous แห่งนครหลวงตะวันตก",
+      "vi": "Tây Kinh Tạp Ký"
+    },
+    "localizedAuthors": {
+      "ar": "ليو شين",
+      "de": "Liu Xin",
+      "es": "Liu Xin",
+      "fr": "Liu Xin",
+      "hi": "ल्यू शिन",
+      "id": "Liu Xin",
+      "it": "Liu Xin",
+      "ja": "劉歆",
+      "ko": "유흠",
+      "pt": "Liu Xin",
+      "ru": "Лю Синь",
+      "th": "หลิว ซิน",
+      "vi": "Lưu Hân",
+      "en": "Liu Xin"
+    }
   },
   {
     "id": "reflections_on_things_at_hand",
     "title": "近思录",
     "titleEn": "Reflections on Things at Hand",
-    "author": "Xi Zhu",
+    "author": "朱熹、吕祖谦",
     "authorEn": "Zhu Xi & Lu Zuqian",
     "category": "Confucian Classics",
     "dynastyOrEra": "Song Dynasty",
@@ -1393,14 +3883,46 @@
     "tags": [
       "Classics"
     ],
-    "description": "《近思录》宋代文献，归入儒家经典类。",
-    "descriptionEn": "Reflections on Things at Hand (近思录) is a Song Dynasty work attributed to Zhu Xi & Lu Zuqian. The complete text, in classical Chinese. It belongs to the confucian classics tradition and has been read continuously in China for centuries."
+    "description": "《近思录》为南宋大儒朱熹与吕祖谦共同编选的理学奠基之作。全书十四卷，精选北宋周敦颐、程颢、程颐、张载四子之哲学论述六百二十二条，系统阐析道体、为学、致知、修己、治道之脉络，被尊为宋明理学的入门阶梯与程朱学派的最高纲领。",
+    "descriptionEn": "Reflections on Things at Hand (Jin Si Lu) is the foundational anthological syllabus of Neo-Confucianism, compiled by philosophers Zhu Xi and Lü Zuqian during the Southern Song dynasty. Selecting 622 key philosophical passages from Northern Song masters Zhou Dunyi, Zhang Zai, and the Cheng brothers, it systematically synthesizes cosmology, moral self-cultivation, and statecraft for scholars.",
+    "localizedTitles": {
+      "en": "Reflections on Things at Hand",
+      "ar": "تأملات في الأشياء القريبة",
+      "de": "Betrachtungen über die Dinge des Alltags",
+      "es": "Reflexiones sobre las cosas cotidianas",
+      "fr": "Réflexions sur les choses à portée de main",
+      "hi": "निकट की वस्तुओं पर चिंतन",
+      "id": "Renungan atas Hal-Hal di Tangan",
+      "it": "Riflessioni sulle cose a portata di mano",
+      "ja": "近思録",
+      "ko": "근사록",
+      "pt": "Reflexões sobre as Coisas ao Alcance",
+      "ru": "Размышления о близких вещах",
+      "th": "บันทึกความคิดใกล้ตัว",
+      "vi": "Cận Tư Lục"
+    },
+    "localizedAuthors": {
+      "ar": "تشو شي ولو زوتشيان",
+      "de": "Zhu Xi und Lu Zuqian",
+      "es": "Zhu Xi y Lu Zuqian",
+      "fr": "Zhu Xi et Lu Zuqian",
+      "hi": "झू शी और ल्यू ज़ूछियान",
+      "id": "Zhu Xi dan Lu Zuqian",
+      "it": "Zhu Xi e Lu Zuqian",
+      "ja": "朱熹・呂祖謙",
+      "ko": "주희, 여조겸",
+      "pt": "Zhu Xi e Lu Zuqian",
+      "ru": "Чжу Си и Люй Цзуцянь",
+      "th": "จู ซี และ ลู่ จู่เชียน",
+      "vi": "Chu Hi, Lữ Tổ Khiêm",
+      "en": "Zhu Xi & Lu Zuqian"
+    }
   },
   {
     "id": "waiting_for_the_dawn",
     "title": "明夷待访录",
     "titleEn": "Waiting for the Dawn",
-    "author": "Zongxi Huang",
+    "author": "黄宗羲",
     "authorEn": "Huang Zongxi",
     "category": "Political Philosophy",
     "dynastyOrEra": "Ming Dynasty",
@@ -1410,15 +3932,47 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《明夷待访录》明代文献，归入政治哲学类。",
-    "descriptionEn": "Waiting for the Dawn (明夷待访录) is a Ming Dynasty work attributed to Huang Zongxi. The complete text, in classical Chinese. It belongs to the political philosophy tradition and has been read continuously in China for centuries."
+    "description": "《明夷待访录》为明末清初启蒙思想家黄宗羲所撰政治哲学宣言。全书分《原君》、《原臣》、《原法》、《学校》等二十一篇，痛斥封建君主“以天下利尽归于己”为天下大害，倡导设宰相分君权、以法治代人治、以学校主导舆论与民主监督，被誉为近代中国民主思想的最早晨曦。",
+    "descriptionEn": "Waiting for the Dawn: A Plan for the Prince (Mingyi Daifang Lu) is a revolutionary political treatise written by Ming loyalist and philosopher Huang Zongxi in the wake of the Manchu conquest. Famously critiquing despotic imperial autocracy with the maxim that the people are the true masters of the nation, it advocated separation of executive powers, equitable legal codes, and academic freedom.",
+    "localizedTitles": {
+      "en": "Waiting for the Dawn",
+      "ar": "انتظار الفجر",
+      "de": "Warten auf die Morgendämmerung",
+      "es": "Esperando el amanecer",
+      "fr": "En attendant l'aube",
+      "hi": "प्रभात की प्रतीक्षा",
+      "id": "Menanti Fajar",
+      "it": "In attesa dell'alba",
+      "ja": "明夷待訪録",
+      "ko": "명이대방록",
+      "pt": "Esperando o Amanhecer",
+      "ru": "В ожидании рассвета",
+      "th": "รออรุณรุ่ง",
+      "vi": "Minh Di Đãi Phỏng Lục"
+    },
+    "localizedAuthors": {
+      "ar": "هوانغ زونغشي",
+      "de": "Huang Zongxi",
+      "es": "Huang Zongxi",
+      "fr": "Huang Zongxi",
+      "hi": "हुआंग ज़ोंगशी",
+      "id": "Huang Zongxi",
+      "it": "Huang Zongxi",
+      "ja": "黄宗羲",
+      "ko": "황종희",
+      "pt": "Huang Zongxi",
+      "ru": "Хуан Цзунси",
+      "th": "หวง จงซี",
+      "vi": "Hoàng Tông Hy",
+      "en": "Huang Zongxi"
+    }
   },
   {
     "id": "notes_from_the_thatched_hut",
     "title": "阅微草堂笔记",
     "titleEn": "Notes from the Thatched Hut",
-    "author": "Yun Ji",
-    "authorEn": "Ji Yun",
+    "author": "纪昀",
+    "authorEn": "Ji Yun (Ji Xiaolan)",
     "category": "Classical Tales",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 5,
@@ -1427,15 +3981,47 @@
     "tags": [
       "Tales"
     ],
-    "description": "《阅微草堂笔记》清代文献，归入古典笔记类。",
-    "descriptionEn": "Notes from the Thatched Hut (阅微草堂笔记) is a Qing Dynasty work attributed to Ji Yun. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《阅微草堂笔记》为清代文宗纪晓岚晚年所撰志怪文言笔记巅峰之作。全书分为五部共二十四卷，记述狐仙鬼魅、因果业报与市井怪谈千余则，文风仿效汉晋质朴古风，摒弃雕琢，借冥司惩恶昭示儒家仁孝真谛，辛辣讽刺伪道学之迂腐虚伪，与《聊斋志异》并称文言小说双璧。",
+    "descriptionEn": "Notes from the Thatched Hut for Examining Subtleties (Yuewei Caotang Biji) is an extraordinary collection of supernatural tales and philosophical notebooks written by imperial scholar Ji Yun (Ji Xiaolan). Encompassing over a thousand accounts of fox spirits, ghosts, and moral retributions, its unadorned prose delivers wry, humane satire targeting Confucian pedantry and moral hypocrisy.",
+    "localizedTitles": {
+      "en": "Notes from the Thatched Hut of Close Scrutiny",
+      "ar": "ملاحظات من كوخ القش للدراسة الدقيقة",
+      "de": "Notizen aus der Reethütte der feinen Beobachtung",
+      "es": "Notas de la cabaña de paja de la observación minuciosa",
+      "fr": "Notes de la chaumière de l'observation minutieuse",
+      "hi": "सूक्ष्म निरीक्षण के घास-फूस की कुटिया से टिप्पणियाँ",
+      "id": "Catatan dari Pondok Jerami Pengamatan Cermat",
+      "it": "Note della capanna di paglia della minuziosa osservazione",
+      "ja": "閲微草堂筆記",
+      "ko": "열미초당필기",
+      "pt": "Notas da Cabana de Palha da Observação Minuciosa",
+      "ru": "Записки из избушки с соломенной крышей",
+      "th": "บันทึกจากกระท่อมหญ้าเย่ว์เวย",
+      "vi": "Duyệt Vi Thảo Đường Bút Ký"
+    },
+    "localizedAuthors": {
+      "ar": "جي يون (جي شياولان)",
+      "de": "Ji Yun",
+      "es": "Ji Yun (Ji Xiaolan)",
+      "fr": "Ji Yun (Ji Xiaolan)",
+      "hi": "जी युन (जी श्याओलान)",
+      "id": "Ji Yun (Ji Xiaolan)",
+      "it": "Ji Yun (Ji Xiaolan)",
+      "ja": "紀昀",
+      "ko": "기윤",
+      "pt": "Ji Yun (Ji Xiaolan)",
+      "ru": "Цзи Юнь",
+      "th": "จี้ หยุน (จี้ เสี่ยวหลาน)",
+      "vi": "Kỷ Quân (Kỷ Hiểu Lam)",
+      "en": "Ji Yun (Ji Xiaolan)"
+    }
   },
   {
     "id": "tales_of_the_tang",
     "title": "说唐",
     "titleEn": "Tales of the Tang",
-    "author": "Guanzhong Luo",
-    "authorEn": "Anonymous",
+    "author": "罗贯中",
+    "authorEn": "Luo Guanzhong",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 4,
@@ -1444,15 +4030,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《说唐》清代文献，归入古典小说类。",
-    "descriptionEn": "Tales of the Tang (说唐) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《说唐》（说唐全传）为清代风行天下的英雄传奇长篇演义小说。全书以隋炀帝无道、秦琼、罗成、程咬金、单雄信等十八路反王聚义瓦岗为焦点，着力赞颂瓦岗豪杰的武勇侠义与李世民的知人善任，故事脍炙人口，武将斗法威震山河，是中国说唱评话艺术的经典母本。",
+    "descriptionEn": "Tales of the Tang (Shuo Tang) is a classic historical and martial romance novel originating in oral storytelling traditions. Recounting the tumultuous downfall of the corrupt Sui Dynasty and the legendary brotherhood of Wagang fortress heroes—including Qin Qiong, Luo Cheng, and Cheng Yaojin—as they battle tyrants to assist Li Shimin in founding the Tang Dynasty, it is renowned for its thrilling martial duels.",
+    "localizedTitles": {
+      "en": "Tales of the Tang",
+      "ar": "حكايات أسرة تانغ",
+      "de": "Erzählungen aus der Tang-Dynastie",
+      "es": "Historias de la dinastía Tang",
+      "fr": "Les Contes des Tang",
+      "hi": "तांग राजवंश की कथाएँ",
+      "id": "Kisah Dinasti Tang",
+      "it": "Racconti della dinastia Tang",
+      "ja": "説唐演義",
+      "ko": "설당연의",
+      "pt": "Contos da Dinastia Tang",
+      "ru": "Сказания о династии Тан",
+      "th": "เรื่องเล่าแห่งราชวงศ์ถัง",
+      "vi": "Thuyết Đường Diễn Nghĩa"
+    },
+    "localizedAuthors": {
+      "ar": "لو غوانتشنغ",
+      "de": "Luo Guanzhong",
+      "es": "Luo Guanzhong",
+      "fr": "Luo Guanzhong",
+      "hi": "लुओ गुआंझोंग",
+      "id": "Luo Guanzhong",
+      "it": "Luo Guanzhong",
+      "ja": "羅貫中",
+      "ko": "나관중",
+      "pt": "Luo Guanzhong",
+      "ru": "Ло Гуаньчжун",
+      "th": "หลัว กว้านจง",
+      "vi": "La Quán Trung",
+      "en": "Luo Guanzhong"
+    }
   },
   {
     "id": "yu_jiao_li",
     "title": "玉娇梨",
     "titleEn": "Yu Jiao Li",
-    "author": "Tianhuazangzhuren",
-    "authorEn": "Anonymous",
+    "author": "天花藏主人",
+    "authorEn": "Tianhuazang Zhuren",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
     "hskLevel": 4,
@@ -1461,15 +4079,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《玉娇梨》清代文献，归入古典小说类。",
-    "descriptionEn": "Yu Jiao Li (玉娇梨) is a Qing Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《玉娇梨》（双美奇缘）为明末清初天花藏主人所撰才子佳人小说极品。全书二十回，讲述才子苏友德与才女白红玉（无娇）、卢梦梨冲破重重误会阻挠、终结良缘的离合故事。全书词采华赡，双美并峙，极早译介至西方，曾深受歌德、伏尔泰等欧洲文豪由衷赞赏。",
+    "descriptionEn": "Yu Jiao Li (The Two Fair Cousins) is a seminal 17th-century scholar-and-beauty romance novel authored by Tianhuazang Zhuren. Featuring intricate poetic competitions, mistaken identities, and devoted romance between brilliant scholar Su Youde and two peerlessly talented heroines, it was among the earliest Chinese novels translated into French and English, earning admiration from Johann Wolfgang von Goethe.",
+    "localizedTitles": {
+      "en": "Yu Jiao Li",
+      "ar": "يو جياو لي",
+      "de": "Yu Jiao Li",
+      "es": "Yu Jiao Li",
+      "fr": "Yu Jiao Li",
+      "hi": "यु जिआओ ली",
+      "id": "Yu Jiao Li",
+      "it": "Yu Jiao Li",
+      "ja": "玉嬌梨",
+      "ko": "옥교리",
+      "pt": "Yu Jiao Li",
+      "ru": "Юй Цзяо Ли",
+      "th": "หยกเกี้ยวลี่",
+      "vi": "Ngọc Kiều Lê"
+    },
+    "localizedAuthors": {
+      "ar": "تيانهوازانغ تشورين",
+      "de": "Tianhuazang Zhuren",
+      "es": "Tianhuazang Zhuren",
+      "fr": "Tianhuazang Zhuren",
+      "hi": "तियानहुआज़ांग झुरेन",
+      "id": "Tianhuazang Zhuren",
+      "it": "Tianhuazang Zhuren",
+      "ja": "天花蔵主人",
+      "ko": "천화장주인",
+      "pt": "Tianhuazang Zhuren",
+      "ru": "Тяньхуацзан чжужэнь",
+      "th": "เทียนฮวาจ้างจู่เหริน",
+      "vi": "Thiên Hoa Tạng Chủ Nhân",
+      "en": "Tianhuazang Zhuren"
+    }
   },
   {
     "id": "generals_of_the_yang_family",
     "title": "杨家将",
     "titleEn": "Generals of the Yang Family",
-    "author": "active 16th century Damu Xiong",
-    "authorEn": "Anonymous",
+    "author": "熊大木",
+    "authorEn": "Xiong Damu",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
     "hskLevel": 4,
@@ -1478,15 +4128,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《杨家将》明代文献，归入古典小说类。",
-    "descriptionEn": "Generals of the Yang Family (杨家将) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《杨家将演义》（北宋志传）为明代熊大木编纂的历史军事传奇巨著。作品以北宋名将杨业一门英烈抗击契丹辽兵为核心，真实与传奇交织，生动讴歌了杨继业血战金沙滩、杨六郎镇守三关、乃至佘太君率杨门女将挂帅出征的壮烈浩气，千百年来成为中国爱国主义文学的忠烈图腾。",
+    "descriptionEn": "Generals of the Yang Family (Yang Jia Jiang) is an immortal martial and patriotic epic compiled by Ming novelist Xiong Damu. Following the multigenerational sacrifice of the Yang military clan defending the Northern Song dynasty against northern invaders—from patriarch Yang Ye's last stand to the renowned military expeditions of the widowed Yang Clan Women Warriors—it stands as an eternal monument to martial loyalty.",
+    "localizedTitles": {
+      "en": "Generals of the Yang Family",
+      "ar": "جنرالات عائلة يانغ",
+      "de": "Die Generäle der Familie Yang",
+      "es": "Los generales de la familia Yang",
+      "fr": "Les Généraux de la famille Yang",
+      "hi": "यंग परिवार के सेनापति",
+      "id": "Jenderal-Jenderal Keluarga Yang",
+      "it": "I generali della famiglia Yang",
+      "ja": "楊家将演義",
+      "ko": "양가장연의",
+      "pt": "Os Generais da Família Yang",
+      "ru": "Генералы семьи Ян",
+      "th": "ขุนศึกตระกูลหยาง",
+      "vi": "Dương Gia Tướng"
+    },
+    "localizedAuthors": {
+      "ar": "شيونغ دامو",
+      "de": "Xiong Damu",
+      "es": "Xiong Damu",
+      "fr": "Xiong Damu",
+      "hi": "श्योंग दामू",
+      "id": "Xiong Damu",
+      "it": "Xiong Damu",
+      "ja": "熊大木",
+      "ko": "웅대목",
+      "pt": "Xiong Damu",
+      "ru": "Сюн Даму",
+      "th": "เสียง ต้าหมู่",
+      "vi": "Hùng Đại Mộc",
+      "en": "Xiong Damu"
+    }
   },
   {
     "id": "the_slaying_of_the_ghosts",
     "title": "斩鬼传",
     "titleEn": "The Slaying of the Ghosts",
-    "author": "Zhang Liu",
-    "authorEn": "Anonymous",
+    "author": "刘璋",
+    "authorEn": "Liu Zhang",
     "category": "Classical Novels",
     "dynastyOrEra": "Ming Dynasty",
     "hskLevel": 4,
@@ -1495,15 +4177,47 @@
     "tags": [
       "Novels"
     ],
-    "description": "《斩鬼传》明代文献，归入古典小说类。",
-    "descriptionEn": "The Slaying of the Ghosts (斩鬼传) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《斩鬼传》（平鬼传）为清代刘璋所撰神魔讽刺小说。全书十回，借阴司钟馗奉玉帝之旨下凡捉拿人间诸般恶鬼（如假清高鬼、促狭鬼、急投胎鬼、财鬼、色鬼等）为主线，以诙谐奇诡之笔拟人写鬼，撕下世间奸巧虚伪之面具，构思奇崛，讽谕入木三分。",
+    "descriptionEn": "The Slaying of the Ghosts (Zhan Gui Zhuan) is a dark, allegorical satire penned by Qing author Liu Zhang. Employing the legendary demon-quelling judge Zhong Kui as its avenging protagonist, the novel follows his righteous crusade across earth to hunt down human vices personified as grotesque demons—including the Hypocrisy Ghost, Flattery Ghost, and Greed Ghost—delivering razor-sharp moral comedy.",
+    "localizedTitles": {
+      "en": "The Slaying of the Ghosts",
+      "ar": "قصة القضاء على الأشباح",
+      "de": "Die Vernichtung der Geister",
+      "es": "La decapitación de los fantasmas",
+      "fr": "L'Extermination des fantômes",
+      "hi": "प्रेत-संहार की कथा",
+      "id": "Kisah Pembasmian Hantu",
+      "it": "Lo sterminio dei fantasmi",
+      "ja": "斬鬼伝",
+      "ko": "참귀전",
+      "pt": "A Exterminação dos Fantasmas",
+      "ru": "Повесть об истреблении бесов",
+      "th": "ตำนานประหารผี",
+      "vi": "Trảm Quỷ Truyện"
+    },
+    "localizedAuthors": {
+      "ar": "ليو تشانغ",
+      "de": "Liu Zhang",
+      "es": "Liu Zhang",
+      "fr": "Liu Zhang",
+      "hi": "ल्यू झांग",
+      "id": "Liu Zhang",
+      "it": "Liu Zhang",
+      "ja": "劉璋",
+      "ko": "유장",
+      "pt": "Liu Zhang",
+      "ru": "Лю Чжан",
+      "th": "หลิว จาง",
+      "vi": "Lưu Chương",
+      "en": "Liu Zhang"
+    }
   },
   {
     "id": "the_drunken_awakening_stone",
     "title": "醉醒石",
     "titleEn": "The Drunken Awakening Stone",
-    "author": "active 17th century Donglugukuangsheng",
-    "authorEn": "Anonymous",
+    "author": "东鲁古狂生",
+    "authorEn": "Donglu Gukuangsheng",
     "category": "Classical Tales",
     "dynastyOrEra": "Ming Dynasty",
     "hskLevel": 5,
@@ -1512,14 +4226,46 @@
     "tags": [
       "Tales"
     ],
-    "description": "《醉醒石》明代文献，归入古典笔记类。",
-    "descriptionEn": "The Drunken Awakening Stone (醉醒石) is a Ming Dynasty work attributed to Anonymous. The complete text, in classical Chinese. It belongs to the classical tales tradition and has been read continuously in China for centuries."
+    "description": "《醉醒石》为明末清初东鲁古狂生所著白话短篇小说集。全书十五卷，以“醉者醒之，狂者正之”为旨，通过真实生动的市井人事、商贾行止与官宦兴衰，针砭晚明世风日下、唯利是图的拜金陋习与纲常沦丧，语言朴素自然，体现了深刻的儒家入世省思与教化热忱。",
+    "descriptionEn": "The Drunken Awakening Stone (Zui Xing Shi) is a compelling 17th-century collection of fifteen vernacular moral tales composed by Donglu Gukuangsheng. Written during the Ming-Qing dynastic transition, its realistic domestic stories aim to awaken readers from the intoxicated stupor of greed, vanity, and corruption, offering an indispensable portrait of urban life and merchant ethics.",
+    "localizedTitles": {
+      "en": "The Drunken Awakening Stone",
+      "ar": "حجر الاستفاقة من السكر",
+      "de": "Der Stein des Erwachens aus dem Rausch",
+      "es": "La piedra del despertar de la embriaguez",
+      "fr": "La Pierre d'éveil de l'ivresse",
+      "hi": "मद्यहोश-जागरण शिला",
+      "id": "Batu Kesadaran dari Mabuk",
+      "it": "La pietra del risveglio dall'ubriachezza",
+      "ja": "酔醒石",
+      "ko": "취성석",
+      "pt": "A Pedra do Despertar da Embriaguez",
+      "ru": "Камень пробуждения от хмеля",
+      "th": "หินตื่นจากความเมา",
+      "vi": "Túy Tỉnh Thạch"
+    },
+    "localizedAuthors": {
+      "ar": "دونغلو غوكوانغشينغ",
+      "de": "Donglu Gukuangsheng",
+      "es": "Donglu Gukuangsheng",
+      "fr": "Donglu Gukuangsheng",
+      "hi": "डोंग्लू गुकुआंगशेंग",
+      "id": "Donglu Gukuangsheng",
+      "it": "Donglu Gukuangsheng",
+      "ja": "東魯古狂生",
+      "ko": "동로고광생",
+      "pt": "Donglu Gukuangsheng",
+      "ru": "Дунлу Гукуаншэн",
+      "th": "ตงหลูกู่คว่างเซิง",
+      "vi": "Đông Lỗ Cổ Cuồng Sinh",
+      "en": "Donglu Gukuangsheng"
+    }
   },
   {
     "id": "the_lone_swan",
     "title": "断鸿零雁记",
     "titleEn": "The Lone Swan",
-    "author": "Manshu Su",
+    "author": "苏曼殊",
     "authorEn": "Su Manshu",
     "category": "Classical Novels",
     "dynastyOrEra": "Qing Dynasty",
@@ -1529,14 +4275,46 @@
     "tags": [
       "Novels"
     ],
-    "description": "《断鸿零雁记》清代文献，归入古典小说类。",
-    "descriptionEn": "The Lone Swan (断鸿零雁记) is a Qing Dynasty work attributed to Su Manshu. The complete text, in classical Chinese. It belongs to the classical novels tradition and has been read continuously in China for centuries."
+    "description": "《断鸿零雁记》为近代著名诗僧苏曼殊的半自传体抒情言情小说杰作。全书讲述身世凄迷的青年三郎在东洋与中华大地辗转飘零，面对真挚纯洁的儿女情丝与佛门清规之严苛冲突，最终舍爱入道、孤独终老的悲剧宿命。文辞哀艳凄楚，意境空灵，被公认为中国现代言情小说先声。",
+    "descriptionEn": "The Lone Swan (Duan Hong Ling Yan Ji) is a poignantly autobiographical romantic novella written by poet, painter, and Buddhist monk Su Manshu during the dawn of the Republican era. Depicting the tragic wandering of the sensitive youth Sanlang between Japan and China as he is torn between pure romantic love and ascetic monastic vows, it is hailed as a landmark in early modern Chinese psychological romance.",
+    "localizedTitles": {
+      "en": "The Lone Swan",
+      "ar": "البجعة الوحيدة",
+      "de": "Der einsame Schwan",
+      "es": "El cisne solitario",
+      "fr": "Le Cygne solitaire",
+      "hi": "एकाकी हंस",
+      "id": "Angsa Soliter",
+      "it": "Il cigno solitario",
+      "ja": "断鴻零雁記",
+      "ko": "단홍영암기",
+      "pt": "O Cisne Solitário",
+      "ru": "Одинокий лебедь",
+      "th": "หงส์ผู้โดดเดี่ยว",
+      "vi": "Đoạn Hồng Linh Nhạn Ký"
+    },
+    "localizedAuthors": {
+      "ar": "سو مانشو",
+      "de": "Su Manshu",
+      "es": "Su Manshu",
+      "fr": "Su Manshu",
+      "hi": "सू मान्शू",
+      "id": "Su Manshu",
+      "it": "Su Manshu",
+      "ja": "蘇曼殊",
+      "ko": "소만수",
+      "pt": "Su Manshu",
+      "ru": "Су Маньшу",
+      "th": "ซู หม่านซู",
+      "vi": "Tô Mạn Thù",
+      "en": "Su Manshu"
+    }
   },
   {
     "id": "the_new_book_of_jia_yi",
     "title": "贾谊新书",
     "titleEn": "The New Book of Jia Yi",
-    "author": "Yi Jia",
+    "author": "贾谊",
     "authorEn": "Jia Yi",
     "category": "Political Philosophy",
     "dynastyOrEra": "Han Dynasty",
@@ -1546,8 +4324,40 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《贾谊新书》汉代文献，归入政治哲学类。",
-    "descriptionEn": "The New Book of Jia Yi (贾谊新书) is a Han Dynasty work attributed to Jia Yi. The complete text, in classical Chinese. It belongs to the political philosophy tradition and has been read continuously in China for centuries."
+    "description": "《贾谊新书》（新书）为西汉杰出政治家、辞赋大家贾谊之政论巨著。全书十卷，收入《过秦论》、《治安策》等千古政论名篇，全面总结秦亡暴政之深刻教训，建言汉文帝众建诸侯而少其力、重农抑商、以礼乐教化天下，文气沛然如江河奔涌，为中国政治哲学的千古雄文。",
+    "descriptionEn": "The New Book of Jia Yi (Jia Yi Xin Shu) is a monumental political treatise by brilliant Western Han statesman and poet Jia Yi. Comprising celebrated essays such as 'Faults of Qin' and 'Discourse on Law and Order', it provides incisive post-mortems on the collapse of totalitarian Qin and outlines enduring Confucian statecraft: decentralizing feudal warlordism, prioritizing agriculture, and governing through ritual.",
+    "localizedTitles": {
+      "en": "The New Book of Jia Yi",
+      "ar": "الكتاب الجديد لـ جيا يي",
+      "de": "Das Neue Buch von Jia Yi",
+      "es": "El nuevo libro de Jia Yi",
+      "fr": "Le Nouveau Livre de Jia Yi",
+      "hi": "जिया यी की नई पुस्तक",
+      "id": "Buku Baru Jia Yi",
+      "it": "Il nuovo libro di Jia Yi",
+      "ja": "賈誼新書",
+      "ko": "가의신서",
+      "pt": "O Novo Livro de Jia Yi",
+      "ru": "Новая книга Цзя И",
+      "th": "คัมภีร์ใหม่ของเจี่ยอี้",
+      "vi": "Giả Nghị Tân Thư"
+    },
+    "localizedAuthors": {
+      "ar": "جيا يي",
+      "de": "Jia Yi",
+      "es": "Jia Yi",
+      "fr": "Jia Yi",
+      "hi": "ज्या यी",
+      "id": "Jia Yi",
+      "it": "Jia Yi",
+      "ja": "賈誼",
+      "ko": "가의",
+      "pt": "Jia Yi",
+      "ru": "Цзя И",
+      "th": "เจี่ย อี้",
+      "vi": "Giả Nghị",
+      "en": "Jia Yi"
+    }
   },
   {
     "id": "sanzijing",
@@ -1563,8 +4373,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《三字经》旧题王应麟所著，宋代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Three Character Classic (三字经) is a Song Dynasty work attributed to Wang Yinglin. The primer that taught Chinese children to read for 700 years. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《三字经》为中国古代最著名的蒙学识字经典，相传为南宋王应麟所编。全书以三字一句、押韵朗朗上口的形式，融汇了“人之初，性本善”的伦理纲常、经史子集、历史兴衰及苦学励志故事，篇幅短小而包罗万象，数百年间成为中华民族妇孺皆知的启蒙第一书。",
+    "descriptionEn": "The Three Character Classic (San Zi Jing) is the most celebrated and ubiquitous literacy primer in Chinese civilization, traditionally attributed to Song scholar Wang Yinglin. Composed in rhythmic triplets of three characters, it introduces fundamental Confucian ethics, core classical texts, dynastic history from the mythical Yellow Emperor to the Song, and inspirational tales of academic diligence.",
+    "localizedTitles": {
+      "en": "Three Character Classic",
+      "ar": "كلاسيكية الشخصيات الثلاث",
+      "de": "Drei-Zeichen-Klassiker",
+      "es": "Clásico de los tres caracteres",
+      "fr": "Le Classique des trois caractères",
+      "hi": "त्रि-अक्षर सूत्र",
+      "id": "Tiga Karakter Klasik",
+      "it": "Il classico dei tre caratteri",
+      "ja": "三字経",
+      "ko": "삼자경",
+      "pt": "Clássico dos Três Caracteres",
+      "ru": "Троесловие",
+      "th": "ซำจื้อเก็ง",
+      "vi": "Tam Tự Kinh"
+    },
+    "localizedAuthors": {
+      "ar": "وانغ ينغلين",
+      "de": "Wang Yinglin",
+      "es": "Wang Yinglin",
+      "fr": "Wang Yinglin",
+      "hi": "वांग यिंगलिन",
+      "id": "Wang Yinglin",
+      "it": "Wang Yinglin",
+      "ja": "王応麟",
+      "ko": "왕응린",
+      "pt": "Wang Yinglin",
+      "ru": "Ван Инлинь",
+      "th": "หวัง ยิ่งหลิน",
+      "vi": "Vương Ứng Lân",
+      "en": "Wang Yinglin"
+    }
   },
   {
     "id": "qianziwen",
@@ -1580,8 +4422,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《千字文》旧题周兴嗣所著，梁代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Thousand Character Classic (千字文) is a Liang Dynasty work attributed to Zhou Xingsi. A thousand characters, no two alike, in rhymed couplets. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《千字文》为南朝梁代周兴嗣奉梁武帝之命编缀之传世名篇。全书精选一千个互不重复的汉字，以四言韵语连缀成篇，自“天地玄黄，宇宙洪荒”开篇，涵盖天文地理、历史兴替、修身立节与田园生活，文辞优美典雅，兼具识字启蒙与高妙书法审美的双重境界。",
+    "descriptionEn": "The Thousand Character Classic (Qian Zi Wen) is an astonishing literary tour de force composed overnight by Liang Dynasty scholar Zhou Xingsi using exactly one thousand unique Chinese characters without a single repetition. Arranged in four-character rhyming couplets, it sweeps from cosmic creation and world geography through dynastic lore to moral self-cultivation, beloved both as a primer and a calligraphic model.",
+    "localizedTitles": {
+      "en": "Thousand Character Classic",
+      "ar": "كلاسيكية الألف شخصية",
+      "de": "Tausend-Zeichen-Klassiker",
+      "es": "Clásico de los mil caracteres",
+      "fr": "Le Classique des mille caractères",
+      "hi": "सहस्र-अक्षर सूत्र",
+      "id": "Seribu Karakter Klasik",
+      "it": "Il classico dei mille caratteri",
+      "ja": "千字文",
+      "ko": "천자문",
+      "pt": "Clássico dos Mil Caracteres",
+      "ru": "Тысячесловие",
+      "th": "ชยันจื้อเหวิน",
+      "vi": "Thiên Tự Văn"
+    },
+    "localizedAuthors": {
+      "ar": "تشو شينغسي",
+      "de": "Zhou Xingsi",
+      "es": "Zhou Xingsi",
+      "fr": "Zhou Xingsi",
+      "hi": "झोउ शिंगसी",
+      "id": "Zhou Xingsi",
+      "it": "Zhou Xingsi",
+      "ja": "周興嗣",
+      "ko": "주흥사",
+      "pt": "Zhou Xingsi",
+      "ru": "Чжоу Синсы",
+      "th": "โจว ซิงซื่อ",
+      "vi": "Chu Hưng Tự",
+      "en": "Zhou Xingsi"
+    }
   },
   {
     "id": "baijiaxing",
@@ -1597,8 +4471,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《百家姓》旧题佚名所著，宋代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Hundred Family Surnames (百家姓) is a Song Dynasty work attributed to Anonymous. The rhyming roll-call of Chinese surnames. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《百家姓》为北宋初期钱塘儒生编纂之传统蒙学识字读本。全书以“赵钱孙李，周吴郑王”开篇，采用四言韵文将中华常见姓氏五百余个连缀成文，四字一句，音调铿锵，易于成诵，不仅是历代儿童识字认姓的必读教材，更是凝聚中华宗族寻根情结的文化密码。",
+    "descriptionEn": "The Hundred Family Surnames (Bai Jia Xing) is an ancient Song-dynasty literacy primer assembling over five hundred authentic Chinese surnames into rhythmic four-character verses. Opening with 'Zhao, Qian, Sun, Li', its melodic cadence allowed generations of children to master character reading while simultaneously preserving ancestral roots, clan lineages, and family identity across China.",
+    "localizedTitles": {
+      "en": "Hundred Family Surnames",
+      "ar": "أسماء العائلات المائة",
+      "de": "Die Hundert Familiennamen",
+      "es": "Los cien apellidos",
+      "fr": "Les Cent Noms de famille",
+      "hi": "सौ पारिवारिक उपनाम",
+      "id": "Ratusan Marga Keluarga",
+      "it": "I cento cognomi",
+      "ja": "百家姓",
+      "ko": "백가성",
+      "pt": "Os Cem Sobrenomes",
+      "ru": "Фамилии ста семей",
+      "th": "แป๊ะแกแซ",
+      "vi": "Bách Gia Tính"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "dizigui",
@@ -1614,8 +4520,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《弟子规》旧题李毓秀所著，清代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Standards for Students (弟子规) is a Qing Dynasty work attributed to Li Yuxiu. Rules for young scholars, in three-character lines. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《弟子规》原名《训蒙文》，为清代康熙年间李毓秀根据《论语·学而》篇精神编写之童蒙品行规箴。全书以三字一句、押韵顺畅的形式，分为入则孝、出则悌、谨、信、泛爱众、亲仁、余力学文七个方面，具体规范少年儿童之日常行止与道德操守，为传统家风德育的典范教材。",
+    "descriptionEn": "Standards for Students (Di Zi Gui) is a widely revered Qing-dynasty moral primer composed by educator Li Yuxiu, derived from Confucius's Analects. Formatted in three-character couplets, it provides practical behavioral rules across seven ethical virtues: filial piety, fraternal love, conscientiousness, trustworthiness, universal benevolence, closeness to virtuous teachers, and scholarly dedication.",
+    "localizedTitles": {
+      "en": "Standards for Students",
+      "ar": "قواعد التلاميذ",
+      "de": "Regeln für Schüler",
+      "es": "Normas para estudiantes",
+      "fr": "Règles pour les disciples",
+      "hi": "छात्रों के लिए मानक",
+      "id": "Aturan untuk Murid",
+      "it": "Norme per i discepoli",
+      "ja": "弟子規",
+      "ko": "제자규",
+      "pt": "Normas para os Discípulos",
+      "ru": "Правила для учащихся",
+      "th": "เต็กจื้อกุย",
+      "vi": "Đệ Tử Quy"
+    },
+    "localizedAuthors": {
+      "ar": "لي يوشيو",
+      "de": "Li Yuxiu",
+      "es": "Li Yuxiu",
+      "fr": "Li Yuxiu",
+      "hi": "ली युश्यु",
+      "id": "Li Yuxiu",
+      "it": "Li Yuxiu",
+      "ja": "李毓秀",
+      "ko": "이육수",
+      "pt": "Li Yuxiu",
+      "ru": "Ли Юйсю",
+      "th": "หลี่ ยวี่ซิ่ว",
+      "vi": "Lý Dục Tú",
+      "en": "Li Yuxiu"
+    }
   },
   {
     "id": "zengguangxianwen",
@@ -1631,8 +4569,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《增广贤文》旧题佚名所著，明代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Enlarged Collection of Maxims (增广贤文) is a Ming Dynasty work attributed to Anonymous. Folk wisdom in rhymed proverbs. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《增广贤文》（昔时贤文）为明清民间流传极广的通俗为人处世名言格言总集。书中荟萃先秦诸子名句、唐宋诗词、民间俗谚与市井生活体验，涉及人情冷暖、世态善恶、修身齐家与处世智慧，言简意赅，对仗工整，被誉为透彻洞悉中国传统乡土社会人情世故的民间百科全书。",
+    "descriptionEn": "Augmented Words of Wisdom (Zeng Guang Xian Wen) is a beloved compendium of traditional Chinese proverbs, philosophical maxims, and folk aphorisms compiled during the Ming and Qing dynasties. Assembling wisdom from classical poetry, Daoist proverbs, and hard-earned social experience, it offers pragmatic insights into human nature, worldly fortune, friendship, and moral prudence.",
+    "localizedTitles": {
+      "en": "Enlarged Collection of Maxims",
+      "ar": "المجموع الموسع لأقوال الحكماء",
+      "de": "Erweiterte Sammlung weiser Sprüche",
+      "es": "Colección ampliada de proverbios sabios",
+      "fr": "Recueil élargi de maximes des sages",
+      "hi": "बुद्धिमानों के कथनों का संवर्धित संग्रह",
+      "id": "Kumpulan Kata Bijak yang Diperluas",
+      "it": "Raccolta ampliata di detti saggi",
+      "ja": "増広賢文",
+      "ko": "증광현문",
+      "pt": "Coleção Ampliada de Máximas dos Sábios",
+      "ru": "Расширенный сборник изречений мудрых",
+      "th": "เซิงกวงเสียนเวิน",
+      "vi": "Tăng Quảng Hiền Văn"
+    },
+    "localizedAuthors": {
+      "ar": "مجهول",
+      "de": "Anonym",
+      "es": "Anónimo",
+      "fr": "Anonyme",
+      "hi": "अज्ञात",
+      "id": "Anonim",
+      "it": "Anonimo",
+      "ja": "作者不詳",
+      "ko": "작자 미상",
+      "pt": "Anônimo",
+      "ru": "Аноним",
+      "th": "ไม่ปรากฏนาม",
+      "vi": "Khuyết danh",
+      "en": "Anonymous"
+    }
   },
   {
     "id": "shenglvqimeng",
@@ -1648,8 +4618,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《声律启蒙》旧题车万育所著，清代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Rhyme Enlightenment (声律启蒙) is a Qing Dynasty work attributed to Che Wanyu. Rhyme and tone taught by contrast and echo. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《声律启蒙》为清代学者车万育编撰之传统声律与诗赋启蒙教材。全书按平水韵上、下平声三十个韵部编排，自单字对（“云对雨，雪对风”）逐步扩展至十一字对，音韵协调，平仄严谨，典故璀璨，不仅训练学子掌握古典诗律之美，更能丰富辞藻与文化常识，千古传诵。",
+    "descriptionEn": "Rhyme Enlightenment (Sheng Lü Qi Meng) is the premier classical primer for training students in the tonal rhythms, antithetical parallelism, and rhyming meters of classical Chinese poetry, composed by Qing scholar Che Wanyu. Structured around thirty traditional rhyme groups—from simple single-character contrasts to grand eleven-character couplets—it instills an innate sense of verbal music.",
+    "localizedTitles": {
+      "en": "Primer of Tone and Rhyme",
+      "ar": "مبادئ التناغم والقافية",
+      "de": "Einführung in Poesie und Reimkunst",
+      "es": "Iniciación a la métrica y la rima",
+      "fr": "Initiation à la prosodie et aux rimes",
+      "hi": "छंद और तुकबंदी की शुरुआती पुस्तक",
+      "id": "Pengantar Rima dan Métrica",
+      "it": "Iniziazione alla metrica e alla rima",
+      "ja": "声律啓蒙",
+      "ko": "성율계몽",
+      "pt": "Iniciação à Métrica e Rima",
+      "ru": "Введение в правила рифмы и тона",
+      "th": "เซิงลู่ฉี่เหมิง",
+      "vi": "Thanh Luật Khải Mông"
+    },
+    "localizedAuthors": {
+      "ar": "تشي وانيو",
+      "de": "Che Wanyu",
+      "es": "Che Wanyu",
+      "fr": "Che Wanyu",
+      "hi": "छे वान्यू",
+      "id": "Che Wanyu",
+      "it": "Che Wanyu",
+      "ja": "車万育",
+      "ko": "차만육",
+      "pt": "Che Wanyu",
+      "ru": "Чэ Ваньюй",
+      "th": "เชอ ว่านยู่",
+      "vi": "Xa Vạn Dục",
+      "en": "Che Wanyu"
+    }
   },
   {
     "id": "zhuzijiaxun",
@@ -1665,8 +4667,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《朱子家训》旧题朱柏庐所著，清代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Zhu Family Maxims (朱子家训) is a Qing Dynasty work attributed to Zhu Bailu. A household's rules for living, in brief couplets. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《朱子家训》（朱子治家格言）为明末清初理学家朱柏庐所作传世家训经典。全篇五百零六字，以“黎明即起，洒扫庭除”为发端，倡导勤俭持家、克己厚人、积德从善、谨言慎行的生活准则，语句精警凝练，字字箴规，数百年来被无数华人家庭奉为堂前立身的传家至宝。",
+    "descriptionEn": "Zhu's Family Instructions (Zhu Zi Jia Xun), also known as Zhu's Maxims on Family Management, is a concise ethical masterpiece written by Ming-Qing scholar Zhu Bailu. Opening with the famous adage 'Rise at dawn, sweep the courtyard clean,' its 506 characters articulate foundational domestic rules on frugality, humility, honesty, and moral discipline, cherished across generations as a model for family governance.",
+    "localizedTitles": {
+      "en": "Master Zhu's Family Maxims",
+      "ar": "وصايا المعلم تشو العائلية",
+      "de": "Familienregeln des Meisters Zhu",
+      "es": "Máximas familiares del maestro Zhu",
+      "fr": "Maximes familiales du Maître Zhu",
+      "hi": "मास्टर ज़ू के पारिवारिक निर्देश",
+      "id": "Petuah Keluarga Master Zhu",
+      "it": "Massime familiari del Maestro Zhu",
+      "ja": "朱子家訓",
+      "ko": "주자가훈",
+      "pt": "Máximas Familiares do Mestre Zhu",
+      "ru": "Семейные наставления Учителя Чжу",
+      "th": "จูจื่อเจียซุ่น",
+      "vi": "Chu Tử Gia Huấn"
+    },
+    "localizedAuthors": {
+      "ar": "تشو بيلو",
+      "de": "Zhu Bailu",
+      "es": "Zhu Bailu",
+      "fr": "Zhu Bailu",
+      "hi": "झू बालू",
+      "id": "Zhu Bailu",
+      "it": "Zhu Bailu",
+      "ja": "朱柏廬",
+      "ko": "주백로",
+      "pt": "Zhu Bailu",
+      "ru": "Чжу Байлу",
+      "th": "จู ไป๋หลู",
+      "vi": "Chu Bá Lư",
+      "en": "Zhu Bailu"
+    }
   },
   {
     "id": "youxueqionglin",
@@ -1682,8 +4716,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《幼学琼林》旧题程允升所著，明代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Children's Knowledge Treasury (幼学琼林) is a Ming Dynasty work attributed to Cheng Yunsheng. A children's encyclopedia of the classical world. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《幼学琼林》（幼学故事琼林）为明代程允升编撰的百科全书式传统蒙学典籍。全书分天文、地舆、岁时、朝廷、文事等三十三类，采用严谨精美的对偶骈句，囊括古代典章制度、神话传说与成语典故，文采飞扬，对仗工巧，世有“读了增广会说话，读了幼学走天下”之赞誉。",
+    "descriptionEn": "Gems of Early Learning (You Xue Qiong Lin) is a comprehensive encyclopedic primer composed by Ming scholar Cheng Yunsheng. Spanning thirty-three categories—from astronomy and geography to bureaucratic rites, literary allusions, and social customs—it presents essential classical knowledge through parallel rhyming couplets, famously celebrated as an indispensable passport to Chinese cultural literacy.",
+    "localizedTitles": {
+      "en": "Jade Forest of Early Learning",
+      "ar": "غابة العقيق للمعرفة المبكرة",
+      "de": "Der Jaddewald des frühen Lernens",
+      "es": "El bosque de jade del aprendizaje infantil",
+      "fr": "La Forêt de jade du savoir enfantin",
+      "hi": "प्रारंभिक शिक्षा का माणिक वन",
+      "id": "Hutan Giok Pengetahuan Anak",
+      "it": "La foresta di giada dell'apprendimento infantile",
+      "ja": "幼学瓊林",
+      "ko": "유학경림",
+      "pt": "A Floresta de Jade da Aprendizagem Infantil",
+      "ru": "Нефритовый лес первоначального обучения",
+      "th": "ยู่เสวียโฉียงหลิน",
+      "vi": "Ấu Học Quỳnh Lâm"
+    },
+    "localizedAuthors": {
+      "ar": "تشينغ يونشينغ",
+      "de": "Cheng Yunsheng",
+      "es": "Cheng Yunsheng",
+      "fr": "Cheng Yunsheng",
+      "hi": "चेंग युनशेंग",
+      "id": "Cheng Yunsheng",
+      "it": "Cheng Yunsheng",
+      "ja": "程允升",
+      "ko": "정윤승",
+      "pt": "Cheng Yunsheng",
+      "ru": "Чэн Юньшэн",
+      "th": "เฉิง ยวิ่นเซิง",
+      "vi": "Trình Doãn Thăng",
+      "en": "Cheng Yunsheng"
+    }
   },
   {
     "id": "wenzimengqiu",
@@ -1699,8 +4765,40 @@
     "tags": [
       "Primers"
     ],
-    "description": "《文字蒙求》旧题王筠所著，清代文献，归入Mengxue Primers类。",
-    "descriptionEn": "Learning Characters (文字蒙求) is a Qing Dynasty work attributed to Wang Yun. Character forms explained for the very first reader. It belongs to the mengxue primers tradition and has been read continuously in China for centuries."
+    "description": "《文字蒙求》为清代乾嘉文字学大师王筠为童蒙启蒙而作的汉字形体源流专著。全书精选二千余个常用汉字，严格依据《说文解字》六书造字法（象形、指事、会意、形声），深入浅出剖析汉字字根结构与笔画渊源，化繁为简，引导初学者由识字而明造字之理，是汉字科学启蒙之瑰宝。",
+    "descriptionEn": "Wenzi Mengqiu is a classical etymological primer created by Qing-dynasty philologist Wang Yun to demystify Chinese characters for beginners. Rooted in the principles of the ancient dictionary Shuowen Jiezi, it methodically breaks down over two thousand essential characters into their radical building blocks and historical pictographic origins, revealing the profound logic and aesthetic beauty of Hanzi.",
+    "localizedTitles": {
+      "en": "Elementary Study of Chinese Characters",
+      "ar": "دراسة أولية للحروف الصينية",
+      "de": "Einführung in die Erforschung der Schriftzeichen",
+      "es": "Primeros estudios de los caracteres chinos",
+      "fr": "Initiation à la connaissance des caractères",
+      "hi": "चीनी वर्णों का प्राथमिक अध्ययन",
+      "id": "Pengantar Belajar Aksara",
+      "it": "Primo studio dei caratteri cinesi",
+      "ja": "文字蒙求",
+      "ko": "문자몽구",
+      "pt": "Estudo Elementar dos Caracteres Chineses",
+      "ru": "Начальное изучение иероглифов",
+      "th": "เหวินจื้อเหมิงฉิว",
+      "vi": "Văn Tự Mông Cầu"
+    },
+    "localizedAuthors": {
+      "ar": "وانغ يون",
+      "de": "Wang Yun",
+      "es": "Wang Yun",
+      "fr": "Wang Yun",
+      "hi": "वांग युन",
+      "id": "Wang Yun",
+      "it": "Wang Yun",
+      "ja": "王筠",
+      "ko": "왕균",
+      "pt": "Wang Yun",
+      "ru": "Ван Юнь",
+      "th": "หวัง หยุน",
+      "vi": "Vương Quân",
+      "en": "Wang Yun"
+    }
   },
   {
     "id": "daxue",
@@ -1716,8 +4814,40 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《大学》旧题曾子所著，战国文献，归入先秦哲学类。",
-    "descriptionEn": "The Great Learning (大学) is a Warring States work attributed to Zengzi. The short text that opens the Confucian curriculum. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《大学》原为《礼记》第四十二篇，相传为孔子弟子曾子所作，南宋朱熹将其列入儒家“四书”之首。全书开宗明义提出“明明德、亲民、止于至善”之三纲领，并阐明“格物、致知、诚意、正心、修身、齐家、治国、平天下”之八条目，是中国古代知识分子内圣外王修己安人的根本纲领。",
+    "descriptionEn": "The Great Learning (Da Xue) is a premier foundational scripture of Confucianism, traditionally attributed to Confucius's disciple Zengzi and honored by Zhu Xi as the first of the Four Books. Articulating the Three Pillars (manifesting virtue, loving the people, abiding in highest excellence) and the Eight Steps (from investigating things and sincerity of mind to world peace), it is the ultimate blueprint of moral self-realization.",
+    "localizedTitles": {
+      "en": "The Great Learning",
+      "ar": "التعلم الأكبر",
+      "de": "Das Große Lernen",
+      "es": "El Gran Aprendizaje",
+      "fr": "La Grande Étude",
+      "hi": "महान शिक्षा",
+      "id": "Ajaran Agung",
+      "it": "Il Grande Studio",
+      "ja": "大学",
+      "ko": "대학",
+      "pt": "O Grande Ensino",
+      "ru": "Великое учение",
+      "th": "ต้าเสวีย",
+      "vi": "Đại Học"
+    },
+    "localizedAuthors": {
+      "ar": "تسنغزي",
+      "de": "Zengzi",
+      "es": "Zengzi",
+      "fr": "Zengzi",
+      "hi": "ज़ेंगज़ी",
+      "id": "Zengzi",
+      "it": "Zengzi",
+      "ja": "曾子",
+      "ko": "증자",
+      "pt": "Zengzi",
+      "ru": "Цзэнцзы",
+      "th": "เซิงจื่อ",
+      "vi": "Tăng Tử",
+      "en": "Zengzi"
+    }
   },
   {
     "id": "zhongyong",
@@ -1733,8 +4863,40 @@
     "tags": [
       "Philosophy"
     ],
-    "description": "《中庸》旧题子思所著，战国文献，归入先秦哲学类。",
-    "descriptionEn": "The Doctrine of the Mean (中庸) is a Warring States work attributed to Zisi. On balance, sincerity and the middle way. It belongs to the ancient philosophy tradition and has been read continuously in China for centuries."
+    "description": "《中庸》原为《礼记》第三十一篇，相传为孔子之孙子思所作，位列儒家“四书”之一。全书深刻阐述“不偏之谓中，不易之谓庸”的哲学义理，倡导“极高明而道中庸”，将道德自律提升至天命自性与天人合一之崇高神圣境界，是中国传统哲学探索心性本体与中和之美的最高智慧结晶。",
+    "descriptionEn": "The Doctrine of the Mean (Zhong Yong) is an essential Confucian spiritual classic attributed to Confucius's grandson Zisi, revered as one of the Four Books. Exploring the golden mean—perfect equilibrium and unwavering harmony with Heaven—it teaches that by cultivating profound sincerity and moral self-watchfulness, humans participate directly in the creative and sustaining powers of the cosmos.",
+    "localizedTitles": {
+      "en": "The Doctrine of the Mean",
+      "ar": "عقيدة الوسطية",
+      "de": "Maß und Mitte",
+      "es": "El medio constante",
+      "fr": "L'Invariable Milieu",
+      "hi": "मध्य मार्ग का सिद्धांत",
+      "id": "Doktrin Jalan Tengah",
+      "it": "L'invariabile mezzo",
+      "ja": "中庸",
+      "ko": "중용",
+      "pt": "O Meio Justo",
+      "ru": "Срединное и неизменное",
+      "th": "จงหยง",
+      "vi": "Trung Dung"
+    },
+    "localizedAuthors": {
+      "ar": "زيسي",
+      "de": "Zisi",
+      "es": "Zisi",
+      "fr": "Zisi",
+      "hi": "ज़ीसी",
+      "id": "Zisi",
+      "it": "Zisi",
+      "ja": "子思",
+      "ko": "자사",
+      "pt": "Zisi",
+      "ru": "Цзысы",
+      "th": "จื่อซือ",
+      "vi": "Tử Tư",
+      "en": "Zisi"
+    }
   },
   {
     "id": "youmengying",
@@ -1750,8 +4912,40 @@
     "tags": [
       "Essays"
     ],
-    "description": "《幽梦影》旧题张潮所著，清代文献，归入古典散文类。",
-    "descriptionEn": "Quiet Dream Shadows (幽梦影) is a Qing Dynasty work attributed to Zhang Chao. A Qing aesthete's reflections, with his friends' replies. It belongs to the classical essays tradition and has been read continuously in China for centuries."
+    "description": "《幽梦影》为清代名士张潮所撰清言小品之绝妙代表作。全书以二百一十九则隽永警策的格言短章，闲赏自然风月、花鸟竹石，体悟诗文妙味、世态人情，字里行间灵光闪烁，机智绝俗，配以当时众多名士的即兴眉批旁注，生动再现了中国古典文人优雅从容的精神乐园。",
+    "descriptionEn": "Quiet Dream Shadows (You Meng Ying) is an enchanting masterpiece of aphoristic prose penned by Qing connoisseur Zhang Chao. Across 219 witty, lyrical reflections on landscapes, classical books, friendship, wine, and floral beauty—accompanied by commentary from contemporary literati—it crafts a serene spiritual refuge, capturing the essence of Chinese poetic contemplation and artistic leisure.",
+    "localizedTitles": {
+      "en": "Quiet Dream Shadows",
+      "ar": "ظلال الأحلام الهادئة",
+      "de": "Schatten stiller Träume",
+      "es": "Sombras de sueños tranquilos",
+      "fr": "Ombres des songes paisibles",
+      "hi": "शांत सपनों की छाया",
+      "id": "Bayangan Mimpi Hening",
+      "it": "Ombre di sogni quieti",
+      "ja": "幽夢影",
+      "ko": "유몽영",
+      "pt": "Sombras de Sonhos Tranquilos",
+      "ru": "Тени глубокого сна",
+      "th": "โยวเมิ่งหยิ่ง",
+      "vi": "U Mộng Ảnh"
+    },
+    "localizedAuthors": {
+      "ar": "تشانغ تشاو",
+      "de": "Zhang Chao",
+      "es": "Zhang Chao",
+      "fr": "Zhang Chao",
+      "hi": "झांग चाओ",
+      "id": "Zhang Chao",
+      "it": "Zhang Chao",
+      "ja": "張潮",
+      "ko": "장조",
+      "pt": "Zhang Chao",
+      "ru": "Чжан Чао",
+      "th": "จาง เฉา",
+      "vi": "Trương Trào",
+      "en": "Zhang Chao"
+    }
   },
   {
     "id": "guwenguanzhi",
@@ -1767,7 +4961,39 @@
     "tags": [
       "Prose"
     ],
-    "description": "《古文观止》旧题吴楚材、吴调侯所著，清代文献，归入Classical Prose类。",
-    "descriptionEn": "Guwen Guanzhi: The Finest Classical Prose (古文观止) is a Qing Dynasty work attributed to Wu Chucai & Wu Tiaohou. The 1694 anthology that defined classical Chinese prose. It belongs to the classical prose tradition and has been read continuously in China for centuries."
+    "description": "《古文观止》为清代康熙年间吴楚材、吴调侯叔侄所选编的古代文言散文权威总集。“观止”取自左传叹美吴季札观乐之语，意即至善至美无以复加。全书十二卷，精选先秦至明末传世散文二百二十二篇，因选目精当、剪裁得体、评点深中肯綮，三百年来成为中国古典散文学习流传最广的无上读本。",
+    "descriptionEn": "Guwen Guanzhi (The Finest Classical Prose) is the definitive, timeless anthology of classical Chinese prose compiled by Qing educators Wu Chucai and Wu Tiaohou. Gathering 222 immortal essays spanning over eighteen centuries—from Warring States chronicles to Ming masterpieces—with lucid critical commentaries, it has served for over three hundred years as the gold standard for mastering classical Chinese writing.",
+    "localizedTitles": {
+      "en": "Guwen Guanzhi: The Finest Classical Prose",
+      "ar": "غو وين غوان تشي: أروع النثر الكلاسيكي",
+      "de": "Guwen Guanzhi: Die schönste klassische Prosa",
+      "es": "Guwen Guanzhi: La mejor prosa clásica",
+      "fr": "Guwen Guanzhi : La fine fleur de la prose classique",
+      "hi": "गुवेन गुआनझी: उत्कृष्ट शास्त्रीय गद्य",
+      "id": "Guwen Guanzhi: Kumpulan Prosa Klasik Terbaik",
+      "it": "Guwen Guanzhi: La migliore prosa classica",
+      "ja": "古文観止",
+      "ko": "고문관지",
+      "pt": "Guwen Guanzhi: A Melhor Prosa Clássica",
+      "ru": "Гувэнь гуаньчжи: Избранные шедевры классической прозы",
+      "th": "กู่เหวินกวนจื่อ: รวมบทความร้อยแก้วคลาสสิกชั้นเยี่ยม",
+      "vi": "Cổ Văn Quán Chỉ"
+    },
+    "localizedAuthors": {
+      "ar": "وو تشوتساي وو تياوهو",
+      "de": "Wu Chucai und Wu Tiaohou",
+      "es": "Wu Chucai y Wu Tiaohou",
+      "fr": "Wu Chucai et Wu Tiaohou",
+      "hi": "वू छू-त्साई और वू तियाओ-हो",
+      "id": "Wu Chucai dan Wu Tiaohou",
+      "it": "Wu Chucai e Wu Tiaohou",
+      "ja": "呉楚材、呉調侯",
+      "ko": "오초재, 오조후",
+      "pt": "Wu Chucai e Wu Tiaohou",
+      "ru": "У Чуцай и У Тяохоу",
+      "th": "อู๋ ฉู่ไฉ และ อู๋ เถียวโหว",
+      "vi": "Ngô Sở Tài và Ngô Điều Hầu",
+      "en": "Wu Chucai & Wu Tiaohou"
+    }
   }
 ]

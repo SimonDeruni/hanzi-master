@@ -328,15 +328,29 @@ class _QuickLookSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final wordId = initialCard?.dictionaryWordId;
+    final allCards = ref.watch(flashcardControllerProvider).value ?? [];
+    Flashcard? localCard;
+    try {
+      localCard = allCards.firstWhere(
+        (c) =>
+            c.hanzi == hanzi ||
+            (initialCard != null && c.id == initialCard!.id),
+      );
+    } catch (_) {
+      localCard = null;
+    }
+    final inDeck = localCard != null || allCards.any((c) => c.hanzi == hanzi);
+
+    final wordId =
+        initialCard?.dictionaryWordId ?? localCard?.dictionaryWordId;
     final AsyncValue<Flashcard?> asyncCard;
     if (wordId != null) {
       asyncCard = ref.watch(dictionaryWordProvider(wordId)).whenData((fresh) {
-        final initial = initialCard;
-        if (fresh == null || initial == null) return initial;
+        final base = localCard ?? initialCard;
+        if (fresh == null || base == null) return base;
         // Keep the saved card identity/study state while refreshing all
         // dictionary-owned fields for the currently selected language.
-        return initial.copyWith(
+        return base.copyWith(
           pinyin: fresh.pinyin,
           definition: fresh.definition,
           definitionLanguage: fresh.definitionLanguage,
@@ -345,17 +359,27 @@ class _QuickLookSheet extends ConsumerWidget {
           localizedDefinitionQuality: fresh.localizedDefinitionQuality,
           isExpansionEligible: fresh.isExpansionEligible,
           sourceDefinitionHash: fresh.sourceDefinitionHash,
+          hskLevel: base.hskLevel > 0 ? base.hskLevel : fresh.hskLevel,
+          strokePaths: base.strokePaths.isNotEmpty
+              ? base.strokePaths
+              : (fresh.strokePaths.isNotEmpty
+                  ? fresh.strokePaths
+                  : base.strokePaths),
+          medianPaths: base.medianPaths.isNotEmpty
+              ? base.medianPaths
+              : (fresh.medianPaths.isNotEmpty
+                  ? fresh.medianPaths
+                  : base.medianPaths),
         );
       });
-    } else if (initialCard == null) {
+    } else if (initialCard == null && localCard == null) {
       asyncCard = ref.watch(quickLookProvider(hanzi));
     } else {
       // Custom and legacy cards have no stable global-dictionary identity.
-      asyncCard = AsyncValue<Flashcard?>.data(initialCard);
+      final base = localCard ?? initialCard;
+      asyncCard = AsyncValue<Flashcard?>.data(base);
     }
     final asyncCommon = ref.watch(commonWordsProvider(hanzi));
-    final allCards = ref.watch(flashcardControllerProvider).value ?? [];
-    final inDeck = allCards.any((c) => c.hanzi == hanzi);
 
     return asyncCard.when(
       loading: () => _LoadingBody(isDark: isDark),
@@ -860,9 +884,9 @@ class _FoundBody extends ConsumerWidget {
                   isPrimary: true,
                   isDisabled: false,
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
+                    final nav = Navigator.of(context, rootNavigator: true);
+                    nav.pop();
+                    nav.push(
                       SwipeBackPageRoute(
                           builder: (_) => CharacterDetailScreen(card: card)),
                     );

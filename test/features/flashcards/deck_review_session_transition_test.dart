@@ -21,7 +21,6 @@ import 'package:hanzi_master/features/flashcards/presentation/providers/settings
 import 'package:hanzi_master/features/flashcards/presentation/screens/deck_review_session_screen.dart';
 import 'package:hanzi_master/features/flashcards/presentation/widgets/modes/reading_mode.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
-import 'package:hanzi_master/shared/widgets/hanko_seal_stamp.dart';
 import 'package:hanzi_master/shared/widgets/swipeable_flashcard.dart';
 import 'package:hanzi_master/shared/widgets/zen_flip_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';

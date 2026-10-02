@@ -1,0 +1,1521 @@
+[
+  {
+    "id": "gongsun_longzi_ch_1",
+    "bookId": "gongsun_longzi",
+    "chapterIndex": 1,
+    "title": "公孙龙子",
+    "titleEn": "Chapter 1: 公孙龙子",
+    "sentences": [
+      {
+        "chinese": "公孙龙，六国时辩士也。",
+        "pinyin": "gōng sūn lóng ， liù guó shí biàn shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "疾名实之散乱，因资材之所长，为「守白」之论。",
+        "pinyin": "jí míng shí zhī sǎn luàn ， yīn zī cái zhī suǒ zhǎng ， wèi 「 shǒu bái 」 zhī lùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "假物取譬，以「守白」辩，谓白马为非马也。",
+        "pinyin": "jiǎ wù qǔ pì ， yǐ 「 shǒu bái 」 biàn ， wèi bái mǎ wèi fēi mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "白马为非马者：言白，所以名色；",
+        "pinyin": "bái mǎ wèi fēi mǎ zhě ： yán bái ， suǒ yǐ míng sè ；",
+        "english": ""
+      },
+      {
+        "chinese": "言马，所以名形也。",
+        "pinyin": "yán mǎ ， suǒ yǐ míng xíng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "色非形，形非色也。",
+        "pinyin": "sè fēi xíng ， xíng fēi sè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫言色，则形不当与；",
+        "pinyin": "fū yán sè ， zé xíng bù dàng yǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "言形，则色不宜从。",
+        "pinyin": "yán xíng ， zé sè bù yí cóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今合以为物，非也。",
+        "pinyin": "jīn hé yǐ wéi wù ， fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "如求白马于厩中，无有，而有骊色之马；",
+        "pinyin": "rú qiú bái mǎ yú jiù zhōng ， wú yǒu ， ér yǒu lí sè zhī mǎ ；",
+        "english": ""
+      },
+      {
+        "chinese": "然不可以应有白马也。",
+        "pinyin": "rán bù kě yǐ yīng yǒu bái mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不可以应有白马，则所求之马亡矣，亡则白马竟穿曰：「素闻先生高谊，愿为弟子久；",
+        "pinyin": "bù kě yǐ yīng yǒu bái mǎ ， zé suǒ qiú zhī mǎ wáng yǐ ， wáng zé bái mǎ jìng chuān yuē ：「 sù wén xiān shēng gāo yì ， yuàn wèi dì zǐ jiǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "但不取先生以白马为非马耳。",
+        "pinyin": "dàn bù qǔ xiān shēng yǐ bái mǎ wèi fēi mǎ ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "请去此术，则穿请为弟子」。",
+        "pinyin": "qǐng qù cǐ shù ， zé chuān qǐng wèi dì zǐ 」。",
+        "english": ""
+      },
+      {
+        "chinese": "龙曰：「先生之言悖！",
+        "pinyin": "lóng yuē ：「 xiān shēng zhī yán bèi ！",
+        "english": ""
+      },
+      {
+        "chinese": "龙之所以为名者，乃以白马之论尔。",
+        "pinyin": "lóng zhī suǒ yǐ wéi míng zhě ， nǎi yǐ bái mǎ zhī lùn ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "今使龙去之，则无以教焉。",
+        "pinyin": "jīn shǐ lóng qù zhī ， zé wú yǐ jiào yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "且欲师之者，以智与学不如也。",
+        "pinyin": "qiě yù shī zhī zhě ， yǐ zhì yǔ xué bù rú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今使龙去之，此先教而后师之也。",
+        "pinyin": "jīn shǐ lóng qù zhī ， cǐ xiān jiào ér hòu shī zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "先教而后师之者，悖。",
+        "pinyin": "xiān jiào ér hòu shī zhī zhě ， bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "且白马非马，乃仲尼之所取。",
+        "pinyin": "qiě bái mǎ fēi mǎ ， nǎi zhòng ní zhī suǒ qǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "龙闻楚王张繁弱之弓，载忘归之矣，以射蛟兕于云梦之圃。",
+        "pinyin": "lóng wén chǔ wáng zhāng fán ruò zhī gōng ， zài wàng guī zhī yǐ ， yǐ shè jiāo sì yú yún mèng zhī pǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "而丧其弓，左右请求之，王曰：『止！",
+        "pinyin": "ér sàng qí gōng ， zuǒ yòu qǐng qiú zhī ， wáng yuē ：『 zhǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "楚王遗弓，楚人得之，又何求焉？",
+        "pinyin": "chǔ wáng yí gōng ， chǔ rén dé zhī ， yòu hé qiú yān ？",
+        "english": ""
+      },
+      {
+        "chinese": "』仲尼闻之曰：『楚王仁义而未遂也。",
+        "pinyin": "』 zhòng ní wén zhī yuē ：『 chǔ wáng rén yì ér wèi suì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "亦曰丑　公孙龙，赵平原君之客也。",
+        "pinyin": "yì yuē chǒu 　 gōng sūn lóng ， zhào píng yuán jūn zhī kè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "孔穿，孔子之叶也。",
+        "pinyin": "kǒng chuān ， kǒng zi zhī yè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "穿与龙会，穿谓龙曰：「臣居鲁，侧闻下风，高先生之智，说先生之行，愿受业之日久矣，乃今得见。",
+        "pinyin": "chuān yǔ lóng huì ， chuān wèi lóng yuē ：「 chén jū lǔ ， cè wén xià fēng ， gāo xiān shēng zhī zhì ， shuō xiān shēng zhī xíng ， yuàn shòu yè zhī rì jiǔ yǐ ， nǎi jīn dé jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "然所不取先生者，独不取先生之以白马为非马耳。",
+        "pinyin": "rán suǒ bù qǔ xiān shēng zhě ， dú bù qǔ xiān shēng zhī yǐ bái mǎ wèi fēi mǎ ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "请去白马非马之学，穿请为弟子。",
+        "pinyin": "qǐng qù bái mǎ fēi mǎ zhī xué ， chuān qǐng wèi dì zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」公孙龙曰：「先生之言，悖！",
+        "pinyin": "」 gōng sūn lóng yuē ：「 xiān shēng zhī yán ， bèi ！",
+        "english": ""
+      },
+      {
+        "chinese": "龙之学，以白马为非马著也。",
+        "pinyin": "lóng zhī xué ， yǐ bái mǎ wèi fēi mǎ zhù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "使龙去之，则龙无以教。",
+        "pinyin": "shǐ lóng qù zhī ， zé lóng wú yǐ jiào 。",
+        "english": ""
+      },
+      {
+        "chinese": "无以教，而乃学于龙也者，悖。",
+        "pinyin": "wú yǐ jiào ， ér nǎi xué yú lóng yě zhě ， bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "且夫欲学于龙者，以智与学焉为不逮也。",
+        "pinyin": "qiě fū yù xué yú lóng zhě ， yǐ zhì yǔ xué yān wèi bù dǎi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "今教龙去白马非马，是先教而后师之也。",
+        "pinyin": "jīn jiào lóng qù bái mǎ fēi mǎ ， shì xiān jiào ér hòu shī zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "先教而后师之，不可。",
+        "pinyin": "xiān jiào ér hòu shī zhī ， bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "先生之所以教龙者，似齐王之谓尹文也。",
+        "pinyin": "xiān shēng zhī suǒ yǐ jiào lóng zhě ， shì qí wáng zhī wèi yǐn wén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐王之谓尹文曰：『寡人甚好士，以齐国无士何也？",
+        "pinyin": "qí wáng zhī wèi yǐn wén yuē ：『 guǎ rén shèn hǎo shì ， yǐ qí guó wú shì hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "』尹文曰：『愿闻大王之所谓士者』齐王无以应。",
+        "pinyin": "』 yǐn wén yuē ：『 yuàn wén dà wáng zhī suǒ wèi shì zhě 』 qí wáng wú yǐ yīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "尹文曰：『今有人于此，事君则忠，事亲则孝，交友则信，处乡则顺。",
+        "pinyin": "yǐn wén yuē ：『 jīn yǒu rén yú cǐ ， shì jūn zé zhōng ， shì qīn zé xiào ， jiāo yǒu zé xìn ， chù xiāng zé shùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "有此四行，可谓士乎？",
+        "pinyin": "yǒu cǐ sì xíng ， kě wèi shì hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "』齐王曰：『善！",
+        "pinyin": "』 qí wáng yuē ：『 shàn ！",
+        "english": ""
+      },
+      {
+        "chinese": "此真吾所谓士也。",
+        "pinyin": "cǐ zhēn wú suǒ wèi shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "』尹文曰：『王得此人，肯以为臣乎？",
+        "pinyin": "』 yǐn wén yuē ：『 wáng dé cǐ rén ， kěn yǐ wéi chén hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "』王曰：『所愿而不可得也。",
+        "pinyin": "』 wáng yuē ：『 suǒ yuàn ér bù kě dé yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "』是时，齐王好勇，于是尹文曰：『使此人广庭大众之中，见侵侮而终不敢斗，王将以为臣乎？",
+        "pinyin": "』 shì shí ， qí wáng hǎo yǒng ， yú shì yǐn wén yuē ：『 shǐ cǐ rén guǎng tíng dà zhòng zhī zhōng ， jiàn qīn wǔ ér zhōng bù gǎn dòu ， wáng jiāng yǐ wéi chén hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "』王曰：『巨士也，见侮而不斗，辱也。",
+        "pinyin": "』 wáng yuē ：『 jù shì yě ， jiàn wǔ ér bù dòu ， rǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "辱，则寡人不以为臣矣。",
+        "pinyin": "rǔ ， zé guǎ rén bù yǐ wéi chén yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "』尹文曰：『唯见辱而不斗，未失其四行也。",
+        "pinyin": "』 yǐn wén yuē ：『 wéi jiàn rǔ ér bù dòu ， wèi shī qí sì xíng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是人未失其四行，其所以为士也。",
+        "pinyin": "shì rén wèi shī qí sì xíng ， qí suǒ yǐ wéi shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "然而王一以为臣，一不以为臣，则向之所谓士者，乃非士乎？",
+        "pinyin": "rán ér wáng yī yǐ wéi chén ， yī bù yǐ wéi chén ， zé xiàng zhī suǒ wèi shì zhě ， nǎi fēi shì hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "』齐王无以应。",
+        "pinyin": "』 qí wáng wú yǐ yīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "尹文曰：『今有人君，将理其国，人有非，则非之。",
+        "pinyin": "yǐn wén yuē ：『 jīn yǒu rén jūn ， jiāng lǐ qí guó ， rén yǒu fēi ， zé fēi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "无非，则亦非之。",
+        "pinyin": "wú fēi ， zé yì fēi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "有功，则赏之。",
+        "pinyin": "yǒu gōng ， zé shǎng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "无功，则亦赏之。",
+        "pinyin": "wú gōng ， zé yì shǎng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "而怨人之不理也，可乎？",
+        "pinyin": "ér yuàn rén zhī bù lǐ yě ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "』齐王曰：『不可。",
+        "pinyin": "』 qí wáng yuē ：『 bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "』尹文曰：『臣窃观下吏之理齐，其方若此矣。",
+        "pinyin": "』 yǐn wén yuē ：『 chén qiè guān xià lì zhī lǐ qí ， qí fāng ruò cǐ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "』王曰：『寡人理国，信若先生之言，人虽不理，寡人不敢怨也。",
+        "pinyin": "』 wáng yuē ：『 guǎ rén lǐ guó ， xìn ruò xiān shēng zhī yán ， rén suī bù lǐ ， guǎ rén bù gǎn yuàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "意未至然与？",
+        "pinyin": "yì wèi zhì rán yǔ ？",
+        "english": ""
+      },
+      {
+        "chinese": "』尹文曰：『言之，敢无说乎？",
+        "pinyin": "』 yǐn wén yuē ：『 yán zhī ， gǎn wú shuō hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "王之令曰：杀人者死，伤人者刑。",
+        "pinyin": "wáng zhī lìng yuē ： shā rén zhě sǐ ， shāng rén zhě xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人有畏王之令者，见侮而终不敢斗，是全王之令也。",
+        "pinyin": "rén yǒu wèi wáng zhī lìng zhě ， jiàn wǔ ér zhōng bù gǎn dòu ， shì quán wáng zhī lìng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "而王曰：见侮而不敢斗者，辱也。",
+        "pinyin": "ér wáng yuē ： jiàn wǔ ér bù gǎn dòu zhě ， rǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "谓之辱，非之也。",
+        "pinyin": "wèi zhī rǔ ， fēi zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "无非，而王辱之，故因除籍不以为臣也。",
+        "pinyin": "wú fēi ， ér wáng rǔ zhī ， gù yīn chú jí bù yǐ wéi chén yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不以为臣者，罚之也。",
+        "pinyin": "bù yǐ wéi chén zhě ， fá zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "此无罪而王罚之也。",
+        "pinyin": "cǐ wú zuì ér wáng fá zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且王辱不敢斗者，必荣敢斗者也。",
+        "pinyin": "qiě wáng rǔ bù gǎn dòu zhě ， bì róng gǎn dòu zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "荣敢斗者是而王是之，必以为臣矣。",
+        "pinyin": "róng gǎn dòu zhě shì ér wáng shì zhī ， bì yǐ wéi chén yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "必以为臣者，赏之也。",
+        "pinyin": "bì yǐ wéi chén zhě ， shǎng zhī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "彼无功而王赏之。",
+        "pinyin": "bǐ wú gōng ér wáng shǎng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "王之所赏，吏之所诛也。",
+        "pinyin": "wáng zhī suǒ shǎng ， lì zhī suǒ zhū yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "上之所是，而法之所非也。",
+        "pinyin": "shàng zhī suǒ shì ， ér fǎ zhī suǒ fēi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "赏罚是非，相与四谬，虽十黄帝，不能理也。",
+        "pinyin": "shǎng fá shì fēi ， xiāng yǔ sì miù ， suī shí huáng dì ， bù néng lǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "』齐王无以应焉。",
+        "pinyin": "』 qí wáng wú yǐ yīng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "故龙以子之言有似齐王。",
+        "pinyin": "gù lóng yǐ zi zhī yán yǒu shì qí wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "子知难白马之非马，不知所以难之说。",
+        "pinyin": "zi zhī nán bái mǎ zhī fēi mǎ ， bù zhī suǒ yǐ nán zhī shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "以此犹知好士之名，而不知察士之类。",
+        "pinyin": "yǐ cǐ yóu zhī hǎo shì zhī míng ， ér bù zhī chá shì zhī lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n〔白马论〕\n「白马非马，可乎？",
+        "pinyin": "」\n〔 bái mǎ lùn 〕\n「 bái mǎ fēi mǎ ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「可。",
+        "pinyin": "」 yuē ：「 kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「何哉？",
+        "pinyin": "」 yuē ：「 hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「马者，所以命形也。",
+        "pinyin": "」 yuē ：「 mǎ zhě ， suǒ yǐ mìng xíng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "白者，所以命色也。",
+        "pinyin": "bái zhě ， suǒ yǐ mìng sè yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "命色者，非命形也，故曰白马非马。",
+        "pinyin": "mìng sè zhě ， fēi mìng xíng yě ， gù yuē bái mǎ fēi mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「有白马，不可谓无马也。",
+        "pinyin": "」\n yuē ：「 yǒu bái mǎ ， bù kě wèi wú mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不可谓无马者，非马也？",
+        "pinyin": "bù kě wèi wú mǎ zhě ， fēi mǎ yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "有白马为有马，白之非马，何也？",
+        "pinyin": "yǒu bái mǎ wèi yǒu mǎ ， bái zhī fēi mǎ ， hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「求马，黄、黑马皆可致。",
+        "pinyin": "」\n yuē ：「 qiú mǎ ， huáng 、 hēi mǎ jiē kě zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "求白马，黄、黑马不可致。",
+        "pinyin": "qiú bái mǎ ， huáng 、 hēi mǎ bù kě zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "使白马乃马也，是所求一也，所求一者，白者不异马也。",
+        "pinyin": "shǐ bái mǎ nǎi mǎ yě ， shì suǒ qiú yī yě ， suǒ qiú yī zhě ， bái zhě bù yì mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "所求不异，如黄、黑马有可有不可，何也？",
+        "pinyin": "suǒ qiú bù yì ， rú huáng 、 hēi mǎ yǒu kě yǒu bù kě ， hé yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "可与不可其相非明。",
+        "pinyin": "kě yǔ bù kě qí xiāng fēi míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "故黄、黑马一也，而可以应有马，而不可以应有白马，是白马之非马审矣。",
+        "pinyin": "gù huáng 、 hēi mǎ yī yě ， ér kě yǐ yīng yǒu mǎ ， ér bù kě yǐ yīng yǒu bái mǎ ， shì bái mǎ zhī fēi mǎ shěn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「以马之有色为非马，天下非有无色之马也。",
+        "pinyin": "」\n yuē ：「 yǐ mǎ zhī yǒu sè wèi fēi mǎ ， tiān xià fēi yǒu wú sè zhī mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无马，可乎？",
+        "pinyin": "tiān xià wú mǎ ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「马固有色，故有白马。",
+        "pinyin": "」\n yuē ：「 mǎ gù yǒu sè ， gù yǒu bái mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "使马无色，有马如已耳，安取白马？",
+        "pinyin": "shǐ mǎ wú sè ， yǒu mǎ rú yǐ ěr ， ān qǔ bái mǎ ？",
+        "english": ""
+      },
+      {
+        "chinese": "故白者非马也。",
+        "pinyin": "gù bái zhě fēi mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "白马者，马与白也；",
+        "pinyin": "bái mǎ zhě ， mǎ yǔ bái yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "马与白马也，故曰：白马非马也。",
+        "pinyin": "mǎ yǔ bái mǎ yě ， gù yuē ： bái mǎ fēi mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「马未与白为马，白未与马为白。",
+        "pinyin": "」\n yuē ：「 mǎ wèi yǔ bái wèi mǎ ， bái wèi yǔ mǎ wèi bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "合马与白，复名白马，是相与以不相与为名，未可。",
+        "pinyin": "hé mǎ yǔ bái ， fù míng bái mǎ ， shì xiāng yǔ yǐ bù xiāng yǔ wèi míng ， wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：白马非马，未可。",
+        "pinyin": "gù yuē ： bái mǎ fēi mǎ ， wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「以有白马为有马，谓有白马为有黄马，可乎？",
+        "pinyin": "」\n yuē ：「 yǐ yǒu bái mǎ wèi yǒu mǎ ， wèi yǒu bái mǎ wèi yǒu huáng mǎ ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「未可。",
+        "pinyin": "」 yuē ：「 wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「以有马为异有黄马，是异黄马于马也。",
+        "pinyin": "」 yuē ：「 yǐ yǒu mǎ wèi yì yǒu huáng mǎ ， shì yì huáng mǎ yú mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "异黄马于马，是以黄马为非马。",
+        "pinyin": "yì huáng mǎ yú mǎ ， shì yǐ huáng mǎ wèi fēi mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "以黄马为非马，而以白马为有马；",
+        "pinyin": "yǐ huáng mǎ wèi fēi mǎ ， ér yǐ bái mǎ wèi yǒu mǎ ；",
+        "english": ""
+      },
+      {
+        "chinese": "此飞者入池，而棺椁异处；",
+        "pinyin": "cǐ fēi zhě rù chí ， ér guān guǒ yì chù ；",
+        "english": ""
+      },
+      {
+        "chinese": "此天下之悖言乱辞也。",
+        "pinyin": "cǐ tiān xià zhī bèi yán luàn cí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「有白马，不可谓无马者，离白之谓也。",
+        "pinyin": "」\n yuē ：「 yǒu bái mǎ ， bù kě wèi wú mǎ zhě ， lí bái zhī wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是离者有白马不可谓有马也。",
+        "pinyin": "shì lí zhě yǒu bái mǎ bù kě wèi yǒu mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故所以为有马者，独以马为有马耳，非有白马为有马。",
+        "pinyin": "gù suǒ yǐ wéi yǒu mǎ zhě ， dú yǐ mǎ wèi yǒu mǎ ěr ， fēi yǒu bái mǎ wèi yǒu mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故其为有马也，不可以谓马马也。",
+        "pinyin": "gù qí wèi yǒu mǎ yě ， bù kě yǐ wèi mǎ mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「白者不定所白，忘之而可也。",
+        "pinyin": "」\n yuē ：「 bái zhě bù dìng suǒ bái ， wàng zhī ér kě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "白马者，言定所白也。",
+        "pinyin": "bái mǎ zhě ， yán dìng suǒ bái yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "定所白者，非白也。",
+        "pinyin": "dìng suǒ bái zhě ， fēi bái yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "马者无去取于色，故黄、黑皆所以应。",
+        "pinyin": "mǎ zhě wú qù qǔ yú sè ， gù huáng 、 hēi jiē suǒ yǐ yīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "白马者，有去取于色，黄、黑马皆所以色去，故唯白马独可以应耳。",
+        "pinyin": "bái mǎ zhě ， yǒu qù qǔ yú sè ， huáng 、 hēi mǎ jiē suǒ yǐ sè qù ， gù wéi bái mǎ dú kě yǐ yīng ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "无去者非有去也。",
+        "pinyin": "wú qù zhě fēi yǒu qù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：白马非马。",
+        "pinyin": "gù yuē ： bái mǎ fēi mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n〔指物论〕\n物莫非指，而指非指。",
+        "pinyin": "」\n〔 zhǐ wù lùn 〕\n wù mò fēi zhǐ ， ér zhǐ fēi zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无指，物无可以谓物。",
+        "pinyin": "tiān xià wú zhǐ ， wù wú kě yǐ wèi wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "非指者，天下而物，可谓指乎？",
+        "pinyin": "fēi zhǐ zhě ， tiān xià ér wù ， kě wèi zhǐ hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "指也者，天下之所无也。",
+        "pinyin": "zhǐ yě zhě ， tiān xià zhī suǒ wú yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "物也者，天下之所有也。",
+        "pinyin": "wù yě zhě ， tiān xià zhī suǒ yǒu yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以天下之所有，为天下之所无，未可。",
+        "pinyin": "yǐ tiān xià zhī suǒ yǒu ， wèi tiān xià zhī suǒ wú ， wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无指，而物不可谓指也。",
+        "pinyin": "tiān xià wú zhǐ ， ér wù bù kě wèi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不可谓指者。",
+        "pinyin": "bù kě wèi zhǐ zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非指也。",
+        "pinyin": "fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非指者，物莫非指也。",
+        "pinyin": "fēi zhǐ zhě ， wù mò fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无指，而物不可谓指者，非有非指也。",
+        "pinyin": "tiān xià wú zhǐ ， ér wù bù kě wèi zhǐ zhě ， fēi yǒu fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非有非指者，物莫非指也。",
+        "pinyin": "fēi yǒu fēi zhǐ zhě ， wù mò fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "物莫非指者，而指非指也。",
+        "pinyin": "wù mò fēi zhǐ zhě ， ér zhǐ fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无指者，生于物之各有名，不为指也。",
+        "pinyin": "tiān xià wú zhǐ zhě ， shēng yú wù zhī gè yǒu míng ， bù wèi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不为指而谓之指，是兼不为指。",
+        "pinyin": "bù wèi zhǐ ér wèi zhī zhǐ ， shì jiān bù wèi zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "以有不为指之无不为指，未可。",
+        "pinyin": "yǐ yǒu bù wèi zhǐ zhī wú bù wèi zhǐ ， wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "且指者，天下之所兼。",
+        "pinyin": "qiě zhǐ zhě ， tiān xià zhī suǒ jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无指者，物不可谓无指也。",
+        "pinyin": "tiān xià wú zhǐ zhě ， wù bù kě wèi wú zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不可谓无指者，非有非指也。",
+        "pinyin": "bù kě wèi wú zhǐ zhě ， fēi yǒu fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非有非指者，物莫非指，指非非指也。",
+        "pinyin": "fēi yǒu fēi zhǐ zhě ， wù mò fēi zhǐ ， zhǐ fēi fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "指与物，非指也。",
+        "pinyin": "zhǐ yǔ wù ， fēi zhǐ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "使天下无物指，谁径谓非指？",
+        "pinyin": "shǐ tiān xià wú wù zhǐ ， shuí jìng wèi fēi zhǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "天下无物，谁径谓指？",
+        "pinyin": "tiān xià wú wù ， shuí jìng wèi zhǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "天下有指，无物指，谁径谓非指？",
+        "pinyin": "tiān xià yǒu zhǐ ， wú wù zhǐ ， shuí jìng wèi fēi zhǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "径谓无物非指？",
+        "pinyin": "jìng wèi wú wù fēi zhǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "且夫指固自为非指，奚待于物，而乃与为指？",
+        "pinyin": "qiě fū zhǐ gù zì wèi fēi zhǐ ， xī dài yú wù ， ér nǎi yǔ wèi zhǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "〔通变论〕\n曰：「二有一乎？",
+        "pinyin": "〔 tōng biàn lùn 〕\n yuē ：「 èr yǒu yī hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二无一。",
+        "pinyin": "」 yuē ：「 èr wú yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二有右乎？",
+        "pinyin": "」 yuē ：「 èr yǒu yòu hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二无右。",
+        "pinyin": "」 yuē ：「 èr wú yòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二有左乎？",
+        "pinyin": "」 yuē ：「 èr yǒu zuǒ hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二无左。",
+        "pinyin": "」 yuē ：「 èr wú zuǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「右可谓二乎？",
+        "pinyin": "」 yuē ：「 yòu kě wèi èr hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「不可。",
+        "pinyin": "」 yuē ：「 bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「左可谓二乎」曰：「不可。",
+        "pinyin": "」 yuē ：「 zuǒ kě wèi èr hū 」 yuē ：「 bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「左与右可谓二乎？",
+        "pinyin": "」 yuē ：「 zuǒ yǔ yòu kě wèi èr hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「可。",
+        "pinyin": "」 yuē ：「 kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「谓变非不变，可乎？",
+        "pinyin": "」 yuē ：「 wèi biàn fēi bù biàn ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「可。",
+        "pinyin": "」 yuē ：「 kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「右有与，可谓变乎？",
+        "pinyin": "」 yuē ：「 yòu yǒu yǔ ， kě wèi biàn hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「可。",
+        "pinyin": "」 yuē ：「 kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「变只？",
+        "pinyin": "」 yuē ：「 biàn zhǐ ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「右」曰：「右苟变，安可谓右？",
+        "pinyin": "」 yuē ：「 yòu 」 yuē ：「 yòu gǒu biàn ， ān kě wèi yòu ？",
+        "english": ""
+      },
+      {
+        "chinese": "苟不变，安可谓变？",
+        "pinyin": "gǒu bù biàn ， ān kě wèi biàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二苟无左又无右，二者左与右奈何？",
+        "pinyin": "」 yuē ：「 èr gǒu wú zuǒ yòu wú yòu ， èr zhě zuǒ yǔ yòu nài hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "羊合牛非马，牛合羊非鸡。",
+        "pinyin": "yáng hé niú fēi mǎ ， niú hé yáng fēi jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「何哉？",
+        "pinyin": "」 yuē ：「 hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「羊与牛唯异，羊有齿，牛无齿。",
+        "pinyin": "」 yuē ：「 yáng yǔ niú wéi yì ， yáng yǒu chǐ ， niú wú chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "而羊牛之非羊也，之非牛也，未可。",
+        "pinyin": "ér yáng niú zhī fēi yáng yě ， zhī fēi niú yě ， wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是不俱有，而或类焉。",
+        "pinyin": "shì bù jù yǒu ， ér huò lèi yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「羊有角、牛有角。",
+        "pinyin": "」\n「 yáng yǒu jiǎo 、 niú yǒu jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "牛之而羊也；",
+        "pinyin": "niú zhī ér yáng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "羊之而牛也，未可。",
+        "pinyin": "yáng zhī ér niú yě ， wèi kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "是俱有，而类之不同也。",
+        "pinyin": "shì jù yǒu ， ér lèi zhī bù tóng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「羊牛有角，马无角；",
+        "pinyin": "」\n「 yáng niú yǒu jiǎo ， mǎ wú jiǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "马有尾，羊牛无尾。",
+        "pinyin": "mǎ yǒu wěi ， yáng niú wú wěi 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：羊合牛非马也。",
+        "pinyin": "gù yuē ： yáng hé niú fēi mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "非马者，无马也。",
+        "pinyin": "fēi mǎ zhě ， wú mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "无马者，羊不二，牛不二，而羊牛二。",
+        "pinyin": "wú mǎ zhě ， yáng bù èr ， niú bù èr ， ér yáng niú èr 。",
+        "english": ""
+      },
+      {
+        "chinese": "是而羊，而牛，非马，可也。",
+        "pinyin": "shì ér yáng ， ér niú ， fēi mǎ ， kě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「若举而以是；",
+        "pinyin": "」\n「 ruò jǔ ér yǐ shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "犹类之不同。",
+        "pinyin": "yóu lèi zhī bù tóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "若左右犹是举。",
+        "pinyin": "ruò zuǒ yòu yóu shì jǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「牛羊有毛，鸡有羽。",
+        "pinyin": "」\n「 niú yáng yǒu máo ， jī yǒu yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "谓鸡足，一。",
+        "pinyin": "wèi jī zú ， yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "数鸡足，二。",
+        "pinyin": "shù jī zú ， èr 。",
+        "english": ""
+      },
+      {
+        "chinese": "二而一，故三。",
+        "pinyin": "èr ér yī ， gù sān 。",
+        "english": ""
+      },
+      {
+        "chinese": "谓牛羊足，一。",
+        "pinyin": "wèi niú yáng zú ， yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "数足，四。",
+        "pinyin": "shù zú ， sì 。",
+        "english": ""
+      },
+      {
+        "chinese": "四而一，故五。",
+        "pinyin": "sì ér yī ， gù wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "牛、羊足五，鸡足三。",
+        "pinyin": "niú 、 yáng zú wǔ ， jī zú sān 。",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：牛合羊非鸡。",
+        "pinyin": "gù yuē ： niú hé yáng fēi jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "非有以非鸡也。",
+        "pinyin": "fēi yǒu yǐ fēi jī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "「与马以鸡，宁马。",
+        "pinyin": "「 yǔ mǎ yǐ jī ， níng mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "材，不材，其无以类审矣。",
+        "pinyin": "cái ， bù cái ， qí wú yǐ lèi shěn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "举是乱名，是谓狂举。",
+        "pinyin": "jǔ shì luàn míng ， shì wèi kuáng jǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「他辩。",
+        "pinyin": "」\n yuē ：「 tā biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「青以白非黄，白以青非碧。",
+        "pinyin": "」 yuē ：「 qīng yǐ bái fēi huáng ， bái yǐ qīng fēi bì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「何哉？",
+        "pinyin": "」 yuē ：「 hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「青白不相与而相与，反而对也。",
+        "pinyin": "」 yuē ：「 qīng bái bù xiāng yǔ ér xiāng yǔ ， fǎn ér duì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不相邻而相邻，不害其方也。",
+        "pinyin": "bù xiāng lín ér xiāng lín ， bù hài qí fāng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "不害其方者，反而对。",
+        "pinyin": "bù hài qí fāng zhě ， fǎn ér duì 。",
+        "english": ""
+      },
+      {
+        "chinese": "各当其所，左右不骊。",
+        "pinyin": "gè dāng qí suǒ ， zuǒ yòu bù lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「故一于青不可，一于白不可。",
+        "pinyin": "」\n「 gù yī yú qīng bù kě ， yī yú bái bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "恶乎其有黄矣哉？",
+        "pinyin": "è hū qí yǒu huáng yǐ zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "黄其正矣，是正举也。",
+        "pinyin": "huáng qí zhèng yǐ ， shì zhèng jǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其有君臣之于国焉，故强寿矣。",
+        "pinyin": "qí yǒu jūn chén zhī yú guó yān ， gù qiáng shòu yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「而且青骊乎白，而白不胜也。",
+        "pinyin": "」\n「 ér qiě qīng lí hū bái ， ér bái bù shèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "白足之胜矣，而不胜，是木贼金也。",
+        "pinyin": "bái zú zhī shèng yǐ ， ér bù shèng ， shì mù zéi jīn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "木贼金者碧，碧则非正举矣。",
+        "pinyin": "mù zéi jīn zhě bì ， bì zé fēi zhèng jǔ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「青白不相与而相与，不相胜，则两明也。",
+        "pinyin": "」\n「 qīng bái bù xiāng yǔ ér xiāng yǔ ， bù xiāng shèng ， zé liǎng míng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "争而明，其色碧也。",
+        "pinyin": "zhēng ér míng ， qí sè bì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「与其碧，宁黄。",
+        "pinyin": "」\n「 yǔ qí bì ， níng huáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄，其马也。",
+        "pinyin": "huáng ， qí mǎ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其与类乎，碧其鸡也，其与暴乎。",
+        "pinyin": "qí yǔ lèi hū ， bì qí jī yě ， qí yǔ bào hū 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「暴则君臣争而两明也。",
+        "pinyin": "」\n「 bào zé jūn chén zhēng ér liǎng míng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "两明者，昏不明，非正举也。",
+        "pinyin": "liǎng míng zhě ， hūn bù míng ， fēi zhèng jǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「非正举者，名实无当，骊色章焉，故曰：两明也。",
+        "pinyin": "」\n「 fēi zhèng jǔ zhě ， míng shí wú dāng ， lí sè zhāng yān ， gù yuē ： liǎng míng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "两明而道丧，其无有以正焉。",
+        "pinyin": "liǎng míng ér dào sàng ， qí wú yǒu yǐ zhèng yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n　〔坚白论〕\n「坚、白、石、三，可乎？",
+        "pinyin": "」\n　〔 jiān bái lùn 〕\n「 jiān 、 bái 、 shí 、 sān ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「不可。",
+        "pinyin": "」 yuē ：「 bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「二可乎？",
+        "pinyin": "」 yuē ：「 èr kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「可。",
+        "pinyin": "」 yuē ：「 kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「何哉？",
+        "pinyin": "」 yuē ：「 hé zāi ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「无坚得白，其举也二；",
+        "pinyin": "」 yuē ：「 wú jiān dé bái ， qí jǔ yě èr ；",
+        "english": ""
+      },
+      {
+        "chinese": "无白得坚，其举也二。",
+        "pinyin": "wú bái dé jiān ， qí jǔ yě èr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「得其所白，不可谓无白。",
+        "pinyin": "」 yuē ：「 dé qí suǒ bái ， bù kě wèi wú bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "得其所坚，不可谓无坚。",
+        "pinyin": "dé qí suǒ jiān ， bù kě wèi wú jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "而之石也，之于然，非三也？",
+        "pinyin": "ér zhī shí yě ， zhī yú rán ， fēi sān yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「视不得其所坚，而得其所白者，无坚也。",
+        "pinyin": "」\n yuē ：「 shì bù dé qí suǒ jiān ， ér dé qí suǒ bái zhě ， wú jiān yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "拊不得其所白，而得其所坚。",
+        "pinyin": "fǔ bù dé qí suǒ bái ， ér dé qí suǒ jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "得其坚也，无白。",
+        "pinyin": "dé qí jiān yě ， wú bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「天下无白，不可以视石。",
+        "pinyin": "」\n yuē ：「 tiān xià wú bái ， bù kě yǐ shì shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无坚，不可以谓石。",
+        "pinyin": "tiān xià wú jiān ， bù kě yǐ wèi shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "坚白石不相外，藏三，可乎？",
+        "pinyin": "jiān bái shí bù xiāng wài ， cáng sān ， kě hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「有自藏也，非藏而藏也。",
+        "pinyin": "」\n yuē ：「 yǒu zì cáng yě ， fēi cáng ér cáng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「其白也，其坚也，而石必得以相盛盈，其自藏奈何？",
+        "pinyin": "」 yuē ：「 qí bái yě ， qí jiān yě ， ér shí bì děi yǐ xiāng shèng yíng ， qí zì cáng nài hé ？",
+        "english": ""
+      },
+      {
+        "chinese": "」曰：「得其白，得其坚，见与不见离。",
+        "pinyin": "」 yuē ：「 dé qí bái ， dé qí jiān ， jiàn yǔ bú jiàn lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "不见离，一一不相盈，故离。",
+        "pinyin": "bú jiàn lí ， yī yī bù xiāng yíng ， gù lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "离也者，藏也。",
+        "pinyin": "lí yě zhě ， cáng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「石之白，石之坚，见与不见，二与三，若广修而相盈也，其非举乎。",
+        "pinyin": "」\n yuē ：「 shí zhī bái ， shí zhī jiān ， jiàn yǔ bú jiàn ， èr yǔ sān ， ruò guǎng xiū ér xiāng yíng yě ， qí fēi jǔ hū 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「物白焉，不定其所白。",
+        "pinyin": "」\n yuē ：「 wù bái yān ， bù dìng qí suǒ bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "物坚焉，不定其所坚。",
+        "pinyin": "wù jiān yān ， bù dìng qí suǒ jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "不定者兼，恶乎其石也？",
+        "pinyin": "bù dìng zhě jiān ， è hū qí shí yě ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「循石，非彼无石，非石无所取乎白。",
+        "pinyin": "」\n yuē ：「 xún shí ， fēi bǐ wú shí ， fēi shí wú suǒ qǔ hū bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "（坚、白）石不相离者固乎。",
+        "pinyin": "（ jiān 、 bái ） shí bù xiāng lí zhě gù hū 。",
+        "english": ""
+      },
+      {
+        "chinese": "然其无已。",
+        "pinyin": "rán qí wú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「于石一也，坚白二也，而在于石。",
+        "pinyin": "」\n yuē ：「 yú shí yī yě ， jiān bái èr yě ， ér zài yú shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "故有知焉；",
+        "pinyin": "gù yǒu zhī yān ；",
+        "english": ""
+      },
+      {
+        "chinese": "有不知焉，有见焉，有不见焉。",
+        "pinyin": "yǒu bù zhī yān ， yǒu jiàn yān ， yǒu bú jiàn yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "故知与不知相与离，见与不见相与藏。",
+        "pinyin": "gù zhī yǔ bù zhī xiāng yǔ lí ， jiàn yǔ bú jiàn xiāng yǔ cáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "藏故，孰谓之不离？",
+        "pinyin": "cáng gù ， shú wèi zhī bù lí ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「目不能坚，手不能白。",
+        "pinyin": "」\n yuē ：「 mù bù néng jiān ， shǒu bù néng bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "不可谓无坚，不可谓无白。",
+        "pinyin": "bù kě wèi wú jiān ， bù kě wèi wú bái 。",
+        "english": ""
+      },
+      {
+        "chinese": "其异任也，其无以代也。",
+        "pinyin": "qí yì rèn yě ， qí wú yǐ dài yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "坚白域于石，恶乎离？",
+        "pinyin": "jiān bái yù yú shí ， è hū lí ？",
+        "english": ""
+      },
+      {
+        "chinese": "」\n曰：「坚未与石为坚，而物兼。",
+        "pinyin": "」\n yuē ：「 jiān wèi yǔ shí wèi jiān ， ér wù jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "未与物为兼，而坚必坚─其不坚石、物而坚。",
+        "pinyin": "wèi yǔ wù wèi jiān ， ér jiān bì jiān ─ qí bù jiān shí 、 wù ér jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下未有若坚而坚藏。",
+        "pinyin": "tiān xià wèi yǒu ruò jiān ér jiān cáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「白固不能自白，恶能白石物乎？",
+        "pinyin": "」\n「 bái gù bù néng zì bái ， è néng bái shí wù hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "若白者必白，则不白物而白焉，黄黑与之然。",
+        "pinyin": "ruò bái zhě bì bái ， zé bù bái wù ér bái yān ， huáng hēi yǔ zhī rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「石其无有，恶取坚白石乎？",
+        "pinyin": "」\n「 shí qí wú yǒu ， è qǔ jiān bái shí hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "故离也。",
+        "pinyin": "gù lí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "离也者，因是。",
+        "pinyin": "lí yě zhě ， yīn shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「力与知，果不若因是。",
+        "pinyin": "」\n「 lì yǔ zhī ， guǒ bù ruò yīn shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "且犹白以目见，目以火见，而火不见。",
+        "pinyin": "qiě yóu bái yǐ mù jiàn ， mù yǐ huǒ jiàn ， ér huǒ bú jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "则火与目不见而神见。",
+        "pinyin": "zé huǒ yǔ mù bú jiàn ér shén jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "神不见，而见离。",
+        "pinyin": "shén bú jiàn ， ér jiàn lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「坚以手，而手以捶，是捶与手知而不知。",
+        "pinyin": "」\n「 jiān yǐ shǒu ， ér shǒu yǐ chuí ， shì chuí yǔ shǒu zhī ér bù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "而神与不知。",
+        "pinyin": "ér shén yǔ bù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "神乎，是之谓离焉。",
+        "pinyin": "shén hū ， shì zhī wèi lí yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n「离也者天下，故独而正。",
+        "pinyin": "」\n「 lí yě zhě tiān xià ， gù dú ér zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n〔名实论〕\n天地与其所产焉，物也。",
+        "pinyin": "」\n〔 míng shí lùn 〕\n tiān dì yǔ qí suǒ chǎn yān ， wù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "物以物其所物而不过焉，实也。",
+        "pinyin": "wù yǐ wù qí suǒ wù ér bù guò yān ， shí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "实以实其所实而不旷焉，位也。",
+        "pinyin": "shí yǐ shí qí suǒ shí ér bù kuàng yān ， wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "出其所位，非位。",
+        "pinyin": "chū qí suǒ wèi ， fēi wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "位其所位，正也。",
+        "pinyin": "wèi qí suǒ wèi ， zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "以其所正，正其所不正，疑其所正。",
+        "pinyin": "yǐ qí suǒ zhèng ， zhèng qí suǒ bù zhèng ， yí qí suǒ zhèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其正者，正其所实也。",
+        "pinyin": "qí zhèng zhě ， zhèng qí suǒ shí yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "正其所实者，正其名也。",
+        "pinyin": "zhèng qí suǒ shí zhě ， zhèng qí míng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "其名正，则唯乎其彼此焉。",
+        "pinyin": "qí míng zhèng ， zé wéi hū qí bǐ cǐ yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "谓彼而彼不唯乎彼，则彼谓不行；",
+        "pinyin": "wèi bǐ ér bǐ bù wéi hū bǐ ， zé bǐ wèi bù xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "谓此而此不唯乎此，则此谓不行。",
+        "pinyin": "wèi cǐ ér cǐ bù wéi hū cǐ ， zé cǐ wèi bù xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其以当，不当也；",
+        "pinyin": "qí yǐ dāng ， bù dàng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "不当而当，乱也。",
+        "pinyin": "bù dàng ér dāng ， luàn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故彼彼当乎彼，则唯乎彼，其谓行彼；",
+        "pinyin": "gù bǐ bǐ dāng hū bǐ ， zé wéi hū bǐ ， qí wèi xíng bǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "此此当乎此，则唯乎此，其谓行此。",
+        "pinyin": "cǐ cǐ dāng hū cǐ ， zé wéi hū cǐ ， qí wèi xíng cǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "其以当而当，以当而当，正也。",
+        "pinyin": "qí yǐ dāng ér dāng ， yǐ dāng ér dāng ， zhèng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "故彼彼止于彼，此此止于此，可；",
+        "pinyin": "gù bǐ bǐ zhǐ yú bǐ ， cǐ cǐ zhǐ yú cǐ ， kě ；",
+        "english": ""
+      },
+      {
+        "chinese": "彼此而彼且此，此彼而此且彼，不可。",
+        "pinyin": "bǐ cǐ ér bǐ qiě cǐ ， cǐ bǐ ér cǐ qiě bǐ ， bù kě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫名，实谓也。",
+        "pinyin": "fū míng ， shí wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知此之非此也，知此之不在此也，则不谓也。",
+        "pinyin": "zhī cǐ zhī fēi cǐ yě ， zhī cǐ zhī bù zài cǐ yě ， zé bù wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "知彼之非彼也，知彼之不在彼也，则不谓也。",
+        "pinyin": "zhī bǐ zhī fēi bǐ yě ， zhī bǐ zhī bù zài bǐ yě ， zé bù wèi yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "至矣哉！",
+        "pinyin": "zhì yǐ zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "古之明王。",
+        "pinyin": "gǔ zhī míng wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "审其名实，甚其所谓。",
+        "pinyin": "shěn qí míng shí ， shèn qí suǒ wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "至矣哉！",
+        "pinyin": "zhì yǐ zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "古之明王。",
+        "pinyin": "gǔ zhī míng wáng 。",
+        "english": ""
+      }
+    ]
+  }
+]

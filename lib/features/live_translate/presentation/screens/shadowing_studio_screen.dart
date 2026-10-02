@@ -47,7 +47,14 @@ import '../widgets/tone_graph_card.dart';
 /// alone (the chip is only built for her — see the practice-mode row) and its four
 /// sentences are `HerContent.shadowingDateSentences` rather than anything the model
 /// writes.
-enum ShadowingMode { freeFlow, ourDates, theme, deck, customWord, customSentence }
+enum ShadowingMode {
+  freeFlow,
+  ourDates,
+  theme,
+  deck,
+  customWord,
+  customSentence
+}
 
 class ShadowingStudioScreen extends ConsumerStatefulWidget {
   final String? initialHanzi;
@@ -1467,7 +1474,7 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         ),
                       ),
                     ),
-GridView(
+                    GridView(
                         gridDelegate: ZenGrid.tiles(
                             maxTileWidth: 170,
                             childAspectRatio: 2.35,
@@ -1512,14 +1519,14 @@ GridView(
                             isDark: isDark,
                           ),
                         ]),
-const SizedBox(height: 14),
+                    const SizedBox(height: 14),
 // ── Configuration Section ─────────────────────
                     _buildSectionLabel(
                       icon: Icons.settings_rounded,
                       title: AppLocalizations.of(context)!.configuration,
                       isDark: isDark,
                     ),
-if (_selectedMode == ShadowingMode.freeFlow) ...[
+                    if (_selectedMode == ShadowingMode.freeFlow) ...[
                       _buildConfigCard(
                         isDark: isDark,
                         label: l10n.practiceMode,
@@ -1571,7 +1578,7 @@ if (_selectedMode == ShadowingMode.freeFlow) ...[
                         ),
                       ),
                     ],
-if (_selectedMode == ShadowingMode.ourDates) ...[
+                    if (_selectedMode == ShadowingMode.ourDates) ...[
                       _buildConfigCard(
                         isDark: isDark,
                         label: HerContent.shadowingDateModeLabel,
@@ -1610,7 +1617,7 @@ if (_selectedMode == ShadowingMode.ourDates) ...[
                         ),
                       ),
                     ],
-if (_selectedMode == ShadowingMode.customWord) ...[
+                    if (_selectedMode == ShadowingMode.customWord) ...[
                       _buildConfigCard(
                         isDark: isDark,
                         label: AppLocalizations.of(context)!.chinese_character,
@@ -1835,7 +1842,7 @@ if (_selectedMode == ShadowingMode.customWord) ...[
                             ),
                       ),
                     ],
-const SizedBox(height: 12),
+                    const SizedBox(height: 12),
                   ],
                 ),
               ),
@@ -2033,256 +2040,243 @@ const SizedBox(height: 12),
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
+              final isTablet = context.isTabletWindow;
+              final sessionContent = Column(
+                children: [
+                  // Top Bar
+                  if (!widget.isCompact)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 16, 24, 12),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.keyboard_arrow_down,
+                                size: 32, color: _inkOf(isDark)),
+                            tooltip: l10n?.back,
+                            onPressed: () =>
+                                _showSessionSummaryDialog(context, isDark),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  l10n?.shadowingStudio ?? "Shadowing Studio",
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: _inkOf(isDark)),
+                                ),
+                                Text(
+                                  (_selectedMode == ShadowingMode.customWord ||
+                                          _selectedMode ==
+                                              ShadowingMode.customSentence)
+                                      ? (l10n?.singlePhrasePractice ??
+                                          "Single Phrase Practice")
+                                      : (l10n?.endlessAiStreamSentence(
+                                              _sentenceCount) ??
+                                          "Endless AI Stream • Sentence $_sentenceCount"),
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: _accentOf(isDark),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          _buildSpeedToggle(isDark),
+                        ],
+                      ),
+                    ),
+// Gold hairline under the header, as on every other
+                  // calligraphic surface.
+                  if (!widget.isCompact)
+                    Container(
+                      height: 1,
+                      margin: const EdgeInsets.symmetric(horizontal: 24),
+                      color: _goldOf(isDark).withValues(alpha: 0.25),
+                    ),
+                  if (_errorMessage != null)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Text(_errorMessage!,
+                              style: TextStyle(color: _alertOf(isDark)),
+                              textAlign: TextAlign.center),
+                          if (_errorMessage!
+                              .contains("Failed to generate phrase")) ...[
+                            const SizedBox(height: 8),
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                setState(() {
+                                  _errorMessage = null;
+                                });
+                                if (_currentPhrase == null) {
+                                  _fetchNextPhrase();
+                                }
+                              },
+                              icon: const Icon(Icons.refresh, size: 16),
+                              label: Text(AppLocalizations.of(context)!.retry),
+                            ),
+                          ]
+                        ],
+                      ),
+                    ),
+// Main Content Area
+                  Expanded(
+                    child: _isLoadingNextPhrase
+                        ? Center(child: ZenLoader(color: _accentOf(isDark)))
+                        : _currentPhrase == null
+                            ? Center(
+                                child: Text(
+                                    AppLocalizations.of(context)!.readyToStart))
+                            : _buildPhraseCard(isDark, isTablet: isTablet),
+                  ),
+// Bottom Actions Area
+                  if (_currentPhrase != null && !_isLoadingNextPhrase)
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: isTablet ? 16.0 : 32.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Grading State
+                          if (_isGrading) ...[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // ZenLoader, not a bare spinner: the
+                                // standard forbids a section-level
+                                // CircularProgressIndicator.
+                                ZenLoader(
+                                    strokeWidth: 2, color: _accentOf(isDark)),
+                                const SizedBox(width: 12),
+                                Flexible(
+                                  child: Text(
+                                    l10n?.aiIsGradingYourPronunciation ??
+                                        "AI is grading your pronunciation...",
+                                    style: TextStyle(
+                                        color: _accentOf(isDark), fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: isTablet ? 12 : 20),
+                          ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              // Play Button
+                              IconButton(
+                                iconSize: widget.isCompact ? 36 : 48,
+                                color: _inkOf(isDark),
+                                icon: const Icon(Icons.play_circle_fill),
+                                tooltip: l10n?.play,
+                                onPressed: _playNativeAudio,
+                              ),
+// Record Button (Hold)
+                              GestureDetector(
+                                onLongPressStart: (_) => _startRecording(),
+                                onLongPressEnd: (_) => _stopRecordingAndGrade(),
+                                child: BreathingWidget(
+                                  isBreathing: _isRecording,
+                                  child: AnimatedBuilder(
+                                    animation: _pulseAnimation,
+                                    builder: (context, child) {
+                                      return Transform.scale(
+                                        scale: _pulseAnimation.value,
+                                        child: Container(
+                                          width: widget.isCompact ? 64 : 80,
+                                          height: widget.isCompact ? 64 : 80,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: _isRecording
+                                                ? _alertOf(isDark)
+                                                : _accentOf(isDark),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: (_isRecording
+                                                          ? _alertOf(isDark)
+                                                          : _accentOf(isDark))
+                                                      .withValues(alpha: 0.35),
+                                                  blurRadius:
+                                                      _isRecording ? 20 : 10,
+                                                  spreadRadius:
+                                                      _isRecording ? 5 : 2),
+                                            ],
+                                          ),
+                                          child: Icon(Icons.mic,
+                                              size: widget.isCompact ? 28 : 36,
+                                              // The dark-mode accent is
+                                              // light amber, so its glyph
+                                              // has to be ink; the light-mode
+                                              // accent (and both alert reds)
+                                              // are dark, so white wins.
+                                              color: isDark && !_isRecording
+                                                  ? const Color(0xFF1A1A1B)
+                                                  : Colors.white),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+// Next Button / Done Button
+                              if (!widget.isCompact)
+                                IconButton(
+                                  iconSize: 48,
+                                  color: _mutedOf(isDark),
+                                  icon: Icon((_selectedMode ==
+                                              ShadowingMode.customWord ||
+                                          _selectedMode ==
+                                              ShadowingMode.customSentence)
+                                      ? Icons.check_circle_outline
+                                      : Icons.skip_next),
+                                  tooltip: l10n?.skip,
+                                  onPressed: () {
+                                    if (_selectedMode ==
+                                            ShadowingMode.customWord ||
+                                        _selectedMode ==
+                                            ShadowingMode.customSentence) {
+                                      Navigator.of(context).pop();
+                                    } else {
+                                      _fetchNextPhrase();
+                                    }
+                                  },
+                                ),
+                            ],
+                          ),
+                          SizedBox(height: widget.isCompact ? 8 : 16),
+                          Text(
+                            l10n?.holdMicToRecordReleaseToGrade ??
+                                "Hold mic to record. Release to grade.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: _mutedOf(isDark),
+                                fontSize: widget.isCompact ? 12 : 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              );
+
+              if (isTablet) {
+                return SizedBox(
+                  height: constraints.maxHeight,
+                  width: constraints.maxWidth,
+                  child: sessionContent,
+                );
+              }
+
               return SingleChildScrollView(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: IntrinsicHeight(
-                    child: Column(
-                      children: [
-                        // Top Bar
-                        if (!widget.isCompact)
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(24, 16, 24, 12),
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.keyboard_arrow_down,
-                                      size: 32, color: _inkOf(isDark)),
-                                  tooltip: l10n?.back,
-                                  onPressed: () => _showSessionSummaryDialog(
-                                      context, isDark),
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        l10n?.shadowingStudio ??
-                                            "Shadowing Studio",
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold,
-                                            color: _inkOf(isDark)),
-                                      ),
-                                      Text(
-                                        (_selectedMode ==
-                                                    ShadowingMode.customWord ||
-                                                _selectedMode ==
-                                                    ShadowingMode
-                                                        .customSentence)
-                                            ? (l10n?.singlePhrasePractice ??
-                                                "Single Phrase Practice")
-                                            : (l10n?.endlessAiStreamSentence(
-                                                    _sentenceCount) ??
-                                                "Endless AI Stream • Sentence $_sentenceCount"),
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: _accentOf(isDark),
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                _buildSpeedToggle(isDark),
-                              ],
-                            ),
-                          ),
-// Gold hairline under the header, as on every other
-                        // calligraphic surface.
-                        if (!widget.isCompact)
-                          Container(
-                            height: 1,
-                            margin: const EdgeInsets.symmetric(horizontal: 24),
-                            color: _goldOf(isDark).withValues(alpha: 0.25),
-                          ),
-if (_errorMessage != null)
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              children: [
-                                Text(_errorMessage!,
-                                    style: TextStyle(color: _alertOf(isDark)),
-                                    textAlign: TextAlign.center),
-                                if (_errorMessage!
-                                    .contains("Failed to generate phrase")) ...[
-                                  const SizedBox(height: 8),
-                                  ElevatedButton.icon(
-                                    onPressed: () {
-                                      setState(() {
-                                        _errorMessage = null;
-                                      });
-                                      if (_currentPhrase == null) {
-                                        _fetchNextPhrase();
-                                      }
-                                    },
-                                    icon: const Icon(Icons.refresh, size: 16),
-                                    label: Text(
-                                        AppLocalizations.of(context)!.retry),
-                                  ),
-                                ]
-                              ],
-                            ),
-                          ),
-// Main Content Area
-                        Expanded(
-                          child: _isLoadingNextPhrase
-                              ? Center(
-                                  child: ZenLoader(color: _accentOf(isDark)))
-                              : _currentPhrase == null
-                                  ? Center(
-                                      child: Text(AppLocalizations.of(context)!
-                                          .readyToStart))
-                                  : _buildPhraseCard(isDark),
-                        ),
-// Bottom Actions Area
-                        if (_currentPhrase != null && !_isLoadingNextPhrase)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24.0, vertical: 32.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                // Grading State
-                                if (_isGrading)
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      // ZenLoader, not a bare spinner: the
-                                      // standard forbids a section-level
-                                      // CircularProgressIndicator.
-                                      ZenLoader(
-                                          strokeWidth: 2,
-                                          color: _accentOf(isDark)),
-                                      const SizedBox(width: 12),
-                                      Flexible(
-                                        child: Text(
-                                          l10n?.aiIsGradingYourPronunciation ??
-                                              "AI is grading your pronunciation...",
-                                          style: TextStyle(
-                                              color: _accentOf(isDark),
-                                              fontSize: 16),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-const SizedBox(height: 24),
-Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    // Play Button
-                                    IconButton(
-                                      iconSize: widget.isCompact ? 36 : 48,
-                                      color: _inkOf(isDark),
-                                      icon: const Icon(Icons.play_circle_fill),
-                                      tooltip: l10n?.play,
-                                      onPressed: _playNativeAudio,
-                                    ),
-// Record Button (Hold)
-                                    GestureDetector(
-                                      onLongPressStart: (_) =>
-                                          _startRecording(),
-                                      onLongPressEnd: (_) =>
-                                          _stopRecordingAndGrade(),
-                                      child: BreathingWidget(
-                                        isBreathing: _isRecording,
-                                        child: AnimatedBuilder(
-                                          animation: _pulseAnimation,
-                                          builder: (context, child) {
-                                            return Transform.scale(
-                                              scale: _pulseAnimation.value,
-                                              child: Container(
-                                                width:
-                                                    widget.isCompact ? 64 : 80,
-                                                height:
-                                                    widget.isCompact ? 64 : 80,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: _isRecording
-                                                      ? _alertOf(isDark)
-                                                      : _accentOf(isDark),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: (_isRecording
-                                                                ? _alertOf(
-                                                                    isDark)
-                                                                : _accentOf(
-                                                                    isDark))
-                                                            .withValues(
-                                                                alpha: 0.35),
-                                                        blurRadius: _isRecording
-                                                            ? 20
-                                                            : 10,
-                                                        spreadRadius:
-                                                            _isRecording
-                                                                ? 5
-                                                                : 2),
-                                                  ],
-                                                ),
-                                                child: Icon(Icons.mic,
-                                                    size: widget.isCompact
-                                                        ? 28
-                                                        : 36,
-                                                    // The dark-mode accent is
-                                                    // light amber, so its glyph
-                                                    // has to be ink; the light-mode
-                                                    // accent (and both alert reds)
-                                                    // are dark, so white wins.
-                                                    color:
-                                                        isDark && !_isRecording
-                                                            ? const Color(
-                                                                0xFF1A1A1B)
-                                                            : Colors.white),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-// Next Button / Done Button
-                                    if (!widget.isCompact)
-                                      IconButton(
-                                        iconSize: 48,
-                                        color: _mutedOf(isDark),
-                                        icon: Icon((_selectedMode ==
-                                                    ShadowingMode.customWord ||
-                                                _selectedMode ==
-                                                    ShadowingMode
-                                                        .customSentence)
-                                            ? Icons.check_circle_outline
-                                            : Icons.skip_next),
-                                        tooltip: l10n?.skip,
-                                        onPressed: () {
-                                          if (_selectedMode ==
-                                                  ShadowingMode.customWord ||
-                                              _selectedMode ==
-                                                  ShadowingMode
-                                                      .customSentence) {
-                                            Navigator.of(context).pop();
-                                          } else {
-                                            _fetchNextPhrase();
-                                          }
-                                        },
-                                      ),
-                                  ],
-                                ),
-                                SizedBox(height: widget.isCompact ? 8 : 16),
-                                Text(
-                                  l10n?.holdMicToRecordReleaseToGrade ??
-                                      "Hold mic to record. Release to grade.",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: _mutedOf(isDark),
-                                      fontSize: widget.isCompact ? 12 : 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                      ],
-                    ),
+                    child: sessionContent,
                   ),
                 ),
               );
@@ -2314,7 +2308,7 @@ Row(
     }
   }
 
-  Widget _buildPhraseCard(bool isDark) {
+  Widget _buildPhraseCard(bool isDark, {bool isTablet = false}) {
     final l10n = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -2324,8 +2318,9 @@ Row(
           // If we have a grade, show it above the text!
           if (_lastGrade != null)
             Container(
-              margin: const EdgeInsets.only(bottom: 32),
-              padding: const EdgeInsets.all(24),
+              margin: EdgeInsets.only(bottom: isTablet ? 16 : 32),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 24, vertical: isTablet ? 14 : 24),
               decoration: BoxDecoration(
                 color: _cardOf(isDark),
                 borderRadius: BorderRadius.circular(18),
@@ -2432,11 +2427,11 @@ Row(
             ),
           ],
           if (_lastGrade != null && _userPitch.isNotEmpty) ...[
-            const SizedBox(height: 24),
+            SizedBox(height: isTablet ? 14 : 24),
             ToneGraphCard(
               userPitch: _userPitch,
               idealPitch: _idealPitch,
-              height: 120,
+              height: isTablet ? 100 : 120,
               // The two strokes are not time-aligned here — Azure returns no syllable
               // offsets, so the target is drawn as equal slots — and the lightbulb is
               // where that gets said, rather than letting the graph imply an alignment
@@ -2446,7 +2441,7 @@ Row(
             ),
           ],
 
-          const SizedBox(height: 24),
+          SizedBox(height: isTablet ? 14 : 24),
           TranslatedDefinition(
             definition: _currentPhrase!['english']!,
             hanzi: _currentPhrase!['hanzi'],
@@ -2564,7 +2559,7 @@ Row(
                     ),
                   ),
                 ],
-if (wordData['phonemes'] != null &&
+                if (wordData['phonemes'] != null &&
                     (wordData['phonemes'] as List).isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Row(
@@ -2682,7 +2677,7 @@ if (wordData['phonemes'] != null &&
                     ),
                   ),
                 ],
-if (feedback.isNotEmpty) ...[
+                if (feedback.isNotEmpty) ...[
                   const SizedBox(height: 16),
                   Text(
                     feedback,

@@ -1,0 +1,1886 @@
+[
+  {
+    "id": "the_poets_grading_ch_1",
+    "bookId": "the_poets_grading",
+    "chapterIndex": 1,
+    "title": "诗品",
+    "titleEn": "Chapter 1: 诗品",
+    "sentences": [
+      {
+        "chinese": "气之动物，物之感人，故摇荡性情，行诸舞咏。",
+        "pinyin": "qì zhī dòng wù ， wù zhī gǎn rén ， gù yáo dàng xìng qíng ， xíng zhū wǔ yǒng 。",
+        "english": ""
+      },
+      {
+        "chinese": "照烛三才，晖丽万有，灵衹待之以致飨，幽微藉之以昭告，动天地，感鬼神，莫近于诗。",
+        "pinyin": "zhào zhú sān cái ， huī lì wàn yǒu ， líng zhǐ dài zhī yǐ zhì xiǎng ， yōu wēi jí zhī yǐ zhāo gào ， dòng tiān dì ， gǎn guǐ shén ， mò jìn yú shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔〈南风〉之词，〈卿云〉之颂，厥义敻矣。",
+        "pinyin": "xī 〈 nán fēng 〉 zhī cí ，〈 qīng yún 〉 zhī sòng ， jué yì xiòng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "夏歌曰：「郁陶乎予心。",
+        "pinyin": "xià gē yuē ：「 yù táo hū yǔ xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」楚谣曰：「名予曰正则。",
+        "pinyin": "」 chǔ yáo yuē ：「 míng yǔ yuē zhèng zé 。",
+        "english": ""
+      },
+      {
+        "chinese": "」虽诗体未全，然是五言之滥觞也。",
+        "pinyin": "」 suī shī tǐ wèi quán ， rán shì wǔ yán zhī làn shāng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "逮汉李陵，始著五言之目矣。",
+        "pinyin": "dǎi hàn lǐ líng ， shǐ zhù wǔ yán zhī mù yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "古诗眇邈，人世难详，推其文体，固是炎汉之制，非衰周之倡也。",
+        "pinyin": "gǔ shī miǎo miǎo ， rén shì nán xiáng ， tuī qí wén tǐ ， gù shì yán hàn zhī zhì ， fēi shuāi zhōu zhī chàng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "自王、扬、枚、马之徒，词赋竞爽，而吟咏靡闻。",
+        "pinyin": "zì wáng 、 yáng 、 méi 、 mǎ zhī tú ， cí fù jìng shuǎng ， ér yín yǒng mí wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "从李都尉迄班婕妤，将百年间，有妇人焉，一人而已。",
+        "pinyin": "cóng lǐ dū wèi qì bān jié yú ， jiāng bǎi nián jiān ， yǒu fù rén yān ， yī rén ér yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "诗人之风，顿已缺丧。",
+        "pinyin": "shī rén zhī fēng ， dùn yǐ quē sàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "东京二百载中，惟有班固〈咏史〉，质木无文。",
+        "pinyin": "dōng jīng èr bǎi zài zhōng ， wéi yǒu bān gù 〈 yǒng shǐ 〉， zhì mù wú wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "降及建安，曹公父子笃好斯文，平原兄弟郁为文栋，刘桢、王粲为其羽翼。",
+        "pinyin": "jiàng jí jiàn ān ， cáo gōng fù zǐ dǔ hǎo sī wén ， píng yuán xiōng dì yù wèi wén dòng ， liú zhēn 、 wáng càn wèi qí yǔ yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "次有攀龙托凤，自致于属车者，盖将百计。",
+        "pinyin": "cì yǒu pān lóng tuō fèng ， zì zhì yú shǔ chē zhě ， gài jiāng bǎi jì 。",
+        "english": ""
+      },
+      {
+        "chinese": "彬彬之盛，大备于时矣。",
+        "pinyin": "bīn bīn zhī shèng ， dà bèi yú shí yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "尔后陵迟衰微，迄于有晋。",
+        "pinyin": "ěr hòu líng chí shuāi wēi ， qì yú yǒu jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "太康中，三张、二陆、两潘、一左，勃尔复兴，踵武前王，风流未沫，亦文章之中兴也。",
+        "pinyin": "tài kāng zhōng ， sān zhāng 、 èr lù 、 liǎng pān 、 yī zuǒ ， bó ěr fù xīng ， zhǒng wǔ qián wáng ， fēng liú wèi mò ， yì wén zhāng zhī zhōng xīng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "永嘉时，贵黄、老，稍尚虚谈。",
+        "pinyin": "yǒng jiā shí ， guì huáng 、 lǎo ， shāo shàng xū tán 。",
+        "english": ""
+      },
+      {
+        "chinese": "于时篇什，理过其辞，淡乎寡味。",
+        "pinyin": "yú shí piān shí ， lǐ guò qí cí ， dàn hū guǎ wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "爰及江表，微波尚传，孙绰、许询、桓、庾诸公诗，皆平典似《道德论》，建安风力尽矣。",
+        "pinyin": "yuán jí jiāng biǎo ， wēi bō shàng chuán ， sūn chuò 、 xǔ xún 、 huán 、 yǔ zhū gōng shī ， jiē píng diǎn shì 《 dào dé lùn 》， jiàn ān fēng lì jǐn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "先是郭景纯用隽上之才，变创其体。",
+        "pinyin": "xiān shì guō jǐng chún yòng juàn shàng zhī cái ， biàn chuàng qí tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "刘越石仗清刚之气，赞成厥美。",
+        "pinyin": "liú yuè shí zhàng qīng gāng zhī qì ， zàn chéng jué měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "然彼众我寡，未能动俗。",
+        "pinyin": "rán bǐ zhòng wǒ guǎ ， wèi néng dòng sú 。",
+        "english": ""
+      },
+      {
+        "chinese": "逮义熙中，谢益寿斐然继作。",
+        "pinyin": "dǎi yì xī zhōng ， xiè yì shòu fěi rán jì zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "元嘉中，有谢灵运，才高词盛，富艳难踪，固已含跨刘、郭，陵轹潘、左。",
+        "pinyin": "yuán jiā zhōng ， yǒu xiè líng yùn ， cái gāo cí shèng ， fù yàn nán zōng ， gù yǐ hán kuà liú 、 guō ， líng lì pān 、 zuǒ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故知陈思为建安之杰，公干、仲宣为辅。",
+        "pinyin": "gù zhī chén sī wèi jiàn ān zhī jié ， gōng gàn 、 zhòng xuān wèi fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "陆机为太康之英，安仁、景阳为辅。",
+        "pinyin": "lù jī wèi tài kāng zhī yīng ， ān rén 、 jǐng yáng wèi fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢客为元嘉之雄，颜延年为辅。",
+        "pinyin": "xiè kè wèi yuán jiā zhī xióng ， yán yán nián wèi fǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "斯皆五言之冠冕，文词之命世也。",
+        "pinyin": "sī jiē wǔ yán zhī guān miǎn ， wén cí zhī mìng shì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫四言，文约意广，取效《风》、《骚》，便可多得。",
+        "pinyin": "fū sì yán ， wén yuē yì guǎng ， qǔ xiào 《 fēng 》、《 sāo 》， biàn kě duō dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "每苦文繁而意少，故世罕习焉。",
+        "pinyin": "měi kǔ wén fán ér yì shǎo ， gù shì hǎn xí yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "五言居文词之要，是众作之有滋味者也，故云会于流俗。",
+        "pinyin": "wǔ yán jū wén cí zhī yào ， shì zhòng zuò zhī yǒu zī wèi zhě yě ， gù yún huì yú liú sú 。",
+        "english": ""
+      },
+      {
+        "chinese": "岂不以指事造形，穷情写物，最为详切者耶？",
+        "pinyin": "qǐ bù yǐ zhǐ shì zào xíng ， qióng qíng xiě wù ， zuì wèi xiáng qiè zhě yé ？",
+        "english": ""
+      },
+      {
+        "chinese": "故诗有三义焉：一曰兴，二曰比，三曰赋。",
+        "pinyin": "gù shī yǒu sān yì yān ： yī yuē xīng ， èr yuē bǐ ， sān yuē fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "文已尽而意有余，兴也；",
+        "pinyin": "wén yǐ jǐn ér yì yǒu yú ， xīng yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "因物喻志，比也；",
+        "pinyin": "yīn wù yù zhì ， bǐ yě ；",
+        "english": ""
+      },
+      {
+        "chinese": "直书其事，寓言写物，赋也。",
+        "pinyin": "zhí shū qí shì ， yù yán xiě wù ， fù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "宏斯三义，酌而用之，干之以风力，润之以丹彩，使味之者无极，闻之者动心，是诗之至也。",
+        "pinyin": "hóng sī sān yì ， zhuó ér yòng zhī ， gàn zhī yǐ fēng lì ， rùn zhī yǐ dān cǎi ， shǐ wèi zhī zhě wú jí ， wén zhī zhě dòng xīn ， shì shī zhī zhì yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "若专用比兴，患在意深，意深则词踬。",
+        "pinyin": "ruò zhuān yòng bǐ xīng ， huàn zài yì shēn ， yì shēn zé cí zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "若但用赋体，患在意浮，意浮则文散，嬉成流移，文无止泊，有芜漫之累矣。",
+        "pinyin": "ruò dàn yòng fù tǐ ， huàn zài yì fú ， yì fú zé wén sàn ， xī chéng liú yí ， wén wú zhǐ pō ， yǒu wú màn zhī lèi yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若乃春风春鸟，秋月秋蝉，夏云暑雨，冬月祁寒，斯四候之感诸诗者也。",
+        "pinyin": "ruò nǎi chūn fēng chūn niǎo ， qiū yuè qiū chán ， xià yún shǔ yǔ ， dōng yuè qí hán ， sī sì hòu zhī gǎn zhū shī zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "嘉会寄诗以亲，离群托诗以怨。",
+        "pinyin": "jiā huì jì shī yǐ qīn ， lí qún tuō shī yǐ yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "至于楚臣去境，汉妾辞宫；",
+        "pinyin": "zhì yú chǔ chén qù jìng ， hàn qiè cí gōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "或骨横朔野，或魂逐飞蓬；",
+        "pinyin": "huò gǔ héng shuò yě ， huò hún zhú fēi péng ；",
+        "english": ""
+      },
+      {
+        "chinese": "或负戈外戍，杀气雄边；",
+        "pinyin": "huò fù gē wài shù ， shā qì xióng biān ；",
+        "english": ""
+      },
+      {
+        "chinese": "塞客衣单，孀闺泪尽；",
+        "pinyin": "sāi kè yī dān ， shuāng guī lèi jǐn ；",
+        "english": ""
+      },
+      {
+        "chinese": "或士有解佩出朝，一去忘返；",
+        "pinyin": "huò shì yǒu jiě pèi chū cháo ， yī qù wàng fǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "女有扬蛾入宠，再盼倾国。",
+        "pinyin": "nǚ yǒu yáng é rù chǒng ， zài pàn qīng guó 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡斯种种，感荡心灵，非陈诗何以展其义；",
+        "pinyin": "fán sī zhǒng zhǒng ， gǎn dàng xīn líng ， fēi chén shī hé yǐ zhǎn qí yì ；",
+        "english": ""
+      },
+      {
+        "chinese": "非长歌何以骋其情？",
+        "pinyin": "fēi zhǎng gē hé yǐ chěng qí qíng ？",
+        "english": ""
+      },
+      {
+        "chinese": "故曰：「《诗》可以群，可以怨。",
+        "pinyin": "gù yuē ：「《 shī 》 kě yǐ qún ， kě yǐ yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」使穷贱易安，幽居靡闷，莫尚于诗矣。",
+        "pinyin": "」 shǐ qióng jiàn yì ān ， yōu jū mí mèn ， mò shàng yú shī yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故词人作者，罔不爱好。",
+        "pinyin": "gù cí rén zuò zhě ， wǎng bù ài hào 。",
+        "english": ""
+      },
+      {
+        "chinese": "今之士俗，斯风炽矣。",
+        "pinyin": "jīn zhī shì sú ， sī fēng chì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "才能胜衣，甫就小学，必甘心而驰骛焉。",
+        "pinyin": "cái néng shèng yī ， fǔ jiù xiǎo xué ， bì gān xīn ér chí wù yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "于是庸音杂体，人各为容。",
+        "pinyin": "yú shì yōng yīn zá tǐ ， rén gè wèi róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "至使膏腴子弟，耻文不逮，终朝点缀，分夜呻吟。",
+        "pinyin": "zhì shǐ gāo yú zǐ dì ， chǐ wén bù dǎi ， zhōng cháo diǎn zhuì ， fēn yè shēn yín 。",
+        "english": ""
+      },
+      {
+        "chinese": "独观谓为警策，众睹终沦平钝。",
+        "pinyin": "dú guān wèi wèi jǐng cè ， zhòng dǔ zhōng lún píng dùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "次有轻薄之徒，笑曹、刘为古拙，谓鲍照羲皇上人，谢朓今古独步。",
+        "pinyin": "cì yǒu qīng bó zhī tú ， xiào cáo 、 liú wèi gǔ zhuō ， wèi bào zhào xī huáng shàng rén ， xiè tiǎo jīn gǔ dú bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "而师鲍照终不及「日中市朝满」，学谢朓劣得「黄鸟度青枝」。",
+        "pinyin": "ér shī bào zhào zhōng bù jí 「 rì zhōng shì cháo mǎn 」， xué xiè tiǎo liè dé 「 huáng niǎo dù qīng zhī 」。",
+        "english": ""
+      },
+      {
+        "chinese": "徒自弃于高明，无涉于文流矣。",
+        "pinyin": "tú zì qì yú gāo míng ， wú shè yú wén liú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "观王公缙绅之士，每博论之余，何尝不以诗为口实。",
+        "pinyin": "guān wáng gōng jìn shēn zhī shì ， měi bó lùn zhī yú ， hé cháng bù yǐ shī wèi kǒu shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "随其嗜欲，商搉不同，淄、渑并泛，朱紫相夺，喧议竞起，准的无依。",
+        "pinyin": "suí qí shì yù ， shāng què bù tóng ， zī 、 miǎn bìng fàn ， zhū zǐ xiāng duó ， xuān yì jìng qǐ ， zhǔn de wú yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "近彭城刘士章，俊赏之士，疾其淆乱，欲为当世诗品，口陈标榜。",
+        "pinyin": "jìn péng chéng liú shì zhāng ， jùn shǎng zhī shì ， jí qí xiáo luàn ， yù wèi dāng shì shī pǐn ， kǒu chén biāo bǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其文未遂感而作焉。",
+        "pinyin": "qí wén wèi suì gǎn ér zuò yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔九品论人，《七略》裁士，校以贵实，诚多未值。",
+        "pinyin": "xī jiǔ pǐn lùn rén ，《 qī lüè 》 cái shì ， xiào yǐ guì shí ， chéng duō wèi zhí 。",
+        "english": ""
+      },
+      {
+        "chinese": "至若诗之为技，较尔可知。",
+        "pinyin": "zhì ruò shī zhī wèi jì ， jiào ěr kě zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "以类推之，殆均博弈。",
+        "pinyin": "yǐ lèi tuī zhī ， dài jūn bó yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "方今皇帝，资生知之上才，体沈郁之幽思，文丽日月，赏究天人。",
+        "pinyin": "fāng jīn huáng dì ， zī shēng zhī zhī shàng cái ， tǐ shěn yù zhī yōu sī ， wén lì rì yuè ， shǎng jiū tiān rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔在贵游，已为称首。",
+        "pinyin": "xī zài guì yóu ， yǐ wèi chēng shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "况八纮既奄风靡云蒸，抱玉者联肩，握珠者踵武。",
+        "pinyin": "kuàng bā hóng jì yǎn fēng mǐ yún zhēng ， bào yù zhě lián jiān ， wò zhū zhě zhǒng wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "以瞰汉、魏而不顾，吞晋、宋于胸中。",
+        "pinyin": "yǐ kàn hàn 、 wèi ér bù gù ， tūn jìn 、 sòng yú xiōng zhōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "谅非农歌辕议，敢致流别。",
+        "pinyin": "liàng fēi nóng gē yuán yì ， gǎn zhì liú bié 。",
+        "english": ""
+      },
+      {
+        "chinese": "嵘之今录，庶周旋于闾里，均之于谈笑耳。",
+        "pinyin": "róng zhī jīn lù ， shù zhōu xuán yú lǘ lǐ ， jūn zhī yú tán xiào ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "一品之中，略以世代为先后，不以优劣为诠次。",
+        "pinyin": "yī pǐn zhī zhōng ， lüè yǐ shì dài wéi xiān hòu ， bù yǐ yōu liè wèi quán cì 。",
+        "english": ""
+      },
+      {
+        "chinese": "又其人既往，其文克定。",
+        "pinyin": "yòu qí rén jì wǎng ， qí wén kè dìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今所寓言，不录存者。",
+        "pinyin": "jīn suǒ yù yán ， bù lù cún zhě 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫属词比事，乃为通谈。",
+        "pinyin": "fū zhǔ cí bǐ shì ， nǎi wèi tōng tán 。",
+        "english": ""
+      },
+      {
+        "chinese": "若乃经国文符，应资博古，撰德驳奏。",
+        "pinyin": "ruò nǎi jīng guó wén fú ， yīng zī bó gǔ ， zhuàn dé bó zòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "宜穷往烈。",
+        "pinyin": "yí qióng wǎng liè 。",
+        "english": ""
+      },
+      {
+        "chinese": "至乎吟咏情性，亦何贵于用事？",
+        "pinyin": "zhì hū yín yǒng qíng xìng ， yì hé guì yú yòng shì ？",
+        "english": ""
+      },
+      {
+        "chinese": "「思君如流水」，既是即目。",
+        "pinyin": "「 sī jūn rú liú shuǐ 」， jì shì jí mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "「高台多悲风」，亦惟所见。",
+        "pinyin": "「 gāo tái duō bēi fēng 」， yì wéi suǒ jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "「清晨登陇首」，羌无故实。",
+        "pinyin": "「 qīng chén dēng lǒng shǒu 」， qiāng wú gù shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "「明月照积雪」，讵出经史。",
+        "pinyin": "「 míng yuè zhào jī xuě 」， jù chū jīng shǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "观古今胜语，多非补假，皆由直寻。",
+        "pinyin": "guān gǔ jīn shèng yǔ ， duō fēi bǔ jià ， jiē yóu zhí xún 。",
+        "english": ""
+      },
+      {
+        "chinese": "颜延、谢庄，尤为繁密，于时化之。",
+        "pinyin": "yán yán 、 xiè zhuāng ， yóu wèi fán mì ， yú shí huà zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "故大明、泰始中，文章殆同书抄近任昉、王元长等，词不贵奇，竞须新事，尔来作者，寖以成俗。",
+        "pinyin": "gù dà míng 、 tài shǐ zhōng ， wén zhāng dài tóng shū chāo jìn rèn fǎng 、 wáng yuán zhǎng děng ， cí bù guì qí ， jìng xū xīn shì ， ěr lái zuò zhě ， jìn yǐ chéng sú 。",
+        "english": ""
+      },
+      {
+        "chinese": "遂乃句无虚语，语无虚字，拘挛补衲，蠹文已甚。",
+        "pinyin": "suì nǎi jù wú xū yǔ ， yǔ wú xū zì ， jū luán bǔ nà ， dù wén yǐ shèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但自然英旨，罕值其人。",
+        "pinyin": "dàn zì rán yīng zhǐ ， hǎn zhí qí rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "词既失高，则宜加事义。",
+        "pinyin": "cí jì shī gāo ， zé yí jiā shì yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽谢天才，且表学问，亦一理乎！",
+        "pinyin": "suī xiè tiān cái ， qiě biǎo xué wèn ， yì yī lǐ hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "陆机 〈文赋〉通而无贬；",
+        "pinyin": "lù jī  〈 wén fù 〉 tōng ér wú biǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "李充《翰林》，疏而不切；",
+        "pinyin": "lǐ chōng 《 hàn lín 》， shū ér bù qiè ；",
+        "english": ""
+      },
+      {
+        "chinese": "王微《鸿宝》，密而无裁；",
+        "pinyin": "wáng wēi 《 hóng bǎo 》， mì ér wú cái ；",
+        "english": ""
+      },
+      {
+        "chinese": "颜延论文，精而难晓；",
+        "pinyin": "yán yán lùn wén ， jīng ér nán xiǎo ；",
+        "english": ""
+      },
+      {
+        "chinese": "挚虞《文志》详而博赡，颇曰知言：观斯数家，皆就谈文体，而不显优劣。",
+        "pinyin": "zhì yú 《 wén zhì 》 xiáng ér bó shàn ， pǒ yuē zhī yán ： guān sī shù jiā ， jiē jiù tán wén tǐ ， ér bù xiǎn yōu liè 。",
+        "english": ""
+      },
+      {
+        "chinese": "至于谢客集诗，逢诗辄取；",
+        "pinyin": "zhì yú xiè kè jí shī ， féng shī zhé qǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "张骘《文士》，逢文即书：诸英志录，并义在文，曾无品第。",
+        "pinyin": "zhāng zhì 《 wén shì 》， féng wén jí shū ： zhū yīng zhì lù ， bìng yì zài wén ， céng wú pǐn dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "嵘今所录，止乎五言。",
+        "pinyin": "róng jīn suǒ lù ， zhǐ hū wǔ yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽然，网罗今古，词文殆集。",
+        "pinyin": "suī rán ， wǎng luó jīn gǔ ， cí wén dài jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "轻欲辨彰清浊，掎摭病利，凡百二十人。",
+        "pinyin": "qīng yù biàn zhāng qīng zhuó ， jǐ zhí bìng lì ， fán bǎi èr shí rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "预此宗流者，便称才子。",
+        "pinyin": "yù cǐ zōng liú zhě ， biàn chēng cái zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "至斯三品升降，差非定制，方申变裁，请寄知者尔。",
+        "pinyin": "zhì sī sān pǐn shēng jiàng ， chà fēi dìng zhì ， fāng shēn biàn cái ， qǐng jì zhī zhě ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "昔曹、刘殆文章之圣，陆、谢为体贰之才，锐精研思，千百年中，而不闻宫商之辨，四声之论。",
+        "pinyin": "xī cáo 、 liú dài wén zhāng zhī shèng ， lù 、 xiè wèi tǐ èr zhī cái ， ruì jīng yán sī ， qiān bǎi nián zhōng ， ér bù wén gōng shāng zhī biàn ， sì shēng zhī lùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "或谓前达偶然不见，岂其然乎？",
+        "pinyin": "huò wèi qián dá ǒu rán bú jiàn ， qǐ qí rán hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "尝试言之，古曰诗颂，皆被之金竹，故非调五音，无以谐会。",
+        "pinyin": "cháng shì yán zhī ， gǔ yuē shī sòng ， jiē bèi zhī jīn zhú ， gù fēi diào wǔ yīn ， wú yǐ xié huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "若「置酒高堂上」、「明月照高楼」，为韵之首。",
+        "pinyin": "ruò 「 zhì jiǔ gāo táng shàng 」、「 míng yuè zhào gāo lóu 」， wèi yùn zhī shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "故三祖之词，文或不工，而韵入歌唱，此重音韵之义也，与世之言宫商异矣。",
+        "pinyin": "gù sān zǔ zhī cí ， wén huò bù gōng ， ér yùn rù gē chàng ， cǐ zhòng yīn yùn zhī yì yě ， yǔ shì zhī yán gōng shāng yì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "今既不被管弦，亦何取于声律邪？",
+        "pinyin": "jīn jì bù bèi guǎn xián ， yì hé qǔ yú shēng lǜ xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "齐有王元长者，尝谓余云：「宫商与二仪俱生，自古词人不知之。",
+        "pinyin": "qí yǒu wáng yuán zhǎng zhě ， cháng wèi yú yún ：「 gōng shāng yǔ èr yí jù shēng ， zì gǔ cí rén bù zhī zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯颜宪子乃云『律吕音调』，而其实大谬。",
+        "pinyin": "wéi yán xiàn zi nǎi yún 『 lǜ lǚ yīn diào 』， ér qí shí dà miù 。",
+        "english": ""
+      },
+      {
+        "chinese": "唯见范晔、谢庄颇识之耳。",
+        "pinyin": "wéi jiàn fàn yè 、 xiè zhuāng pǒ shí zhī ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "尝欲进〈知音论〉，未就。",
+        "pinyin": "cháng yù jìn 〈 zhī yīn lùn 〉， wèi jiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」王元长创其首谢、沈约扬其波。",
+        "pinyin": "」 wáng yuán zhǎng chuàng qí shǒu xiè 、 shěn yuē yáng qí bō 。",
+        "english": ""
+      },
+      {
+        "chinese": "三贤或贵公子孙，幼有文辩，于是士流景慕，务为精密。",
+        "pinyin": "sān xián huò guì gōng zǐ sūn ， yòu yǒu wén biàn ， yú shì shì liú jǐng mù ， wù wèi jīng mì 。",
+        "english": ""
+      },
+      {
+        "chinese": "襞积细微，专相凌架。",
+        "pinyin": "bì jī xì wēi ， zhuān xiāng líng jià 。",
+        "english": ""
+      },
+      {
+        "chinese": "故使文多拘忌，伤其真美。",
+        "pinyin": "gù shǐ wén duō jū jì ， shāng qí zhēn měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "余谓文制本须讽读，不可蹇碍，但令清浊通流，口吻调利，斯为足矣。",
+        "pinyin": "yú wèi wén zhì běn xū fěng dú ， bù kě jiǎn ài ， dàn lìng qīng zhuó tōng liú ， kǒu wěn diào lì ， sī wèi zú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "至平上去入，则余病未能；",
+        "pinyin": "zhì píng shàng qù rù ， zé yú bìng wèi néng ；",
+        "english": ""
+      },
+      {
+        "chinese": "蜂腰、鹤膝，闾里已具。",
+        "pinyin": "fēng yāo 、 hè xī ， lǘ lǐ yǐ jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "陈思赠弟，仲宣〈七哀〉，公干思友，阮籍〈咏怀〉，子卿「双凫」，叔夜「双鸾」，茂先寒夕，平叔衣单，安仁倦暑，景阳苦雨，灵运〈邺中〉，士衡〈拟古〉，越石感乱，景纯咏仙，王微风月，谢客山泉，叔源离宴，鲍照戍边，太冲〈咏史 〉，颜延入洛，陶公咏贫之制，惠连〈捣衣〉之作，斯皆五言之警策者也。",
+        "pinyin": "chén sī zèng dì ， zhòng xuān 〈 qī āi 〉， gōng gàn sī yǒu ， ruǎn jí 〈 yǒng huái 〉， zi qīng 「 shuāng fú 」， shū yè 「 shuāng luán 」， mào xiān hán xī ， píng shū yī dān ， ān rén juàn shǔ ， jǐng yáng kǔ yǔ ， líng yùn 〈 yè zhōng 〉， shì héng 〈 nǐ gǔ 〉， yuè shí gǎn luàn ， jǐng chún yǒng xiān ， wáng wēi fēng yuè ， xiè kè shān quán ， shū yuán lí yàn ， bào zhào shù biān ， tài chòng 〈 yǒng shǐ  〉， yán yán rù luò ， táo gōng yǒng pín zhī zhì ， huì lián 〈 dǎo yī 〉 zhī zuò ， sī jiē wǔ yán zhī jǐng cè zhě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以谓篇章之珠泽，文彩之邓林。",
+        "pinyin": "suǒ yǐ wèi piān zhāng zhī zhū zé ， wén cǎi zhī dèng lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "诗品．卷上\n古诗其体源出于《 国风》。",
+        "pinyin": "shī pǐn ． juǎn shàng \n gǔ shī qí tǐ yuán chū yú 《  guó fēng 》。",
+        "english": ""
+      },
+      {
+        "chinese": "陆机所拟十四首，文温以丽，意悲而远，惊心动魄，可谓几乎一字千金！",
+        "pinyin": "lù jī suǒ nǐ shí sì shǒu ， wén wēn yǐ lì ， yì bēi ér yuǎn ， jīng xīn dòng pò ， kě wèi jī hū yī zì qiān jīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "其外「去者日以疏」四十五首，虽多哀怨，颇为总杂。",
+        "pinyin": "qí wài 「 qù zhě rì yǐ shū 」 sì shí wǔ shǒu ， suī duō āi yuàn ， pǒ wèi zǒng zá 。",
+        "english": ""
+      },
+      {
+        "chinese": "旧疑是建安中曹､王所制。",
+        "pinyin": "jiù yí shì jiàn ān zhōng cáo ､ wáng suǒ zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "「客从远方来」、「橘柚垂华实」，亦为惊绝矣！",
+        "pinyin": "「 kè cóng yuǎn fāng lái 」、「 jú yòu chuí huá shí 」， yì wèi jīng jué yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "人代冥灭，而清音独远，悲夫！",
+        "pinyin": "rén dài míng miè ， ér qīng yīn dú yuǎn ， bēi fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "汉都尉李陵其源出于《 楚辞 》。",
+        "pinyin": "hàn dū wèi lǐ líng qí yuán chū yú 《  chǔ cí  》。",
+        "english": ""
+      },
+      {
+        "chinese": "文多凄怆，怨者之流。",
+        "pinyin": "wén duō qī chuàng ， yuàn zhě zhī liú 。",
+        "english": ""
+      },
+      {
+        "chinese": "陵，名家子，有殊才，生命不谐，声颓身丧。",
+        "pinyin": "líng ， míng jiā zi ， yǒu shū cái ， shēng mìng bù xié ， shēng tuí shēn sàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "使陵不遭辛苦，其文亦何能至此！",
+        "pinyin": "shǐ líng bù zāo xīn kǔ ， qí wén yì hé néng zhì cǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "汉婕妤班姬其源出于李陵。",
+        "pinyin": "hàn jié yú bān jī qí yuán chū yú lǐ líng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〈团扇〉短章，词旨清捷，怨深文绮，得匹妇之致。",
+        "pinyin": "〈 tuán shàn 〉 duǎn zhāng ， cí zhǐ qīng jié ， yuàn shēn wén qǐ ， dé pǐ fù zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "侏儒一节，可以知其工矣！",
+        "pinyin": "zhū rú yī jié ， kě yǐ zhī qí gōng yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "魏陈思王植其源出于《国风》。",
+        "pinyin": "wèi chén sī wáng zhí qí yuán chū yú 《 guó fēng 》。",
+        "english": ""
+      },
+      {
+        "chinese": "骨气奇高，词采华茂，情兼雅怨，体被文质，粲溢今古，卓尔不群。",
+        "pinyin": "gǔ qì qí gāo ， cí cǎi huá mào ， qíng jiān yǎ yuàn ， tǐ bèi wén zhì ， càn yì jīn gǔ ， zhuó ěr bù qún 。",
+        "english": ""
+      },
+      {
+        "chinese": "嗟乎！",
+        "pinyin": "jiē hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "陈思之于文章也，譬人伦之有周、孔，鳞羽之有龙凤，音乐之有琴笙，女工之有黼黻。",
+        "pinyin": "chén sī zhī yú wén zhāng yě ， pì rén lún zhī yǒu zhōu 、 kǒng ， lín yǔ zhī yǒu lóng fèng ， yīn yuè zhī yǒu qín shēng ， nǚ gōng zhī yǒu fǔ fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "俾尔怀铅吮墨者，抱篇章而景慕，映余晖以自烛。",
+        "pinyin": "bǐ ěr huái qiān shǔn mò zhě ， bào piān zhāng ér jǐng mù ， yìng yú huī yǐ zì zhú 。",
+        "english": ""
+      },
+      {
+        "chinese": "故孔氏之门如用诗，则公干升堂，思王入室，景阳、潘、陆，自可坐于廊庑之间矣。",
+        "pinyin": "gù kǒng shì zhī mén rú yòng shī ， zé gōng gàn shēng táng ， sī wáng rù shì ， jǐng yáng 、 pān 、 lù ， zì kě zuò yú láng wǔ zhī jiān yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏文学刘桢其源出于《古诗》。",
+        "pinyin": "wèi wén xué liú zhēn qí yuán chū yú 《 gǔ shī 》。",
+        "english": ""
+      },
+      {
+        "chinese": "仗气爱奇，动多振绝。",
+        "pinyin": "zhàng qì ài qí ， dòng duō zhèn jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "真骨凌霜，高风跨俗。",
+        "pinyin": "zhēn gǔ líng shuāng ， gāo fēng kuà sú 。",
+        "english": ""
+      },
+      {
+        "chinese": "但气过其文，雕润恨少。",
+        "pinyin": "dàn qì guò qí wén ， diāo rùn hèn shǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "然自陈思已下，桢称独步。",
+        "pinyin": "rán zì chén sī yǐ xià ， zhēn chēng dú bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏侍中王粲其源出于李陵。",
+        "pinyin": "wèi shì zhōng wáng càn qí yuán chū yú lǐ líng 。",
+        "english": ""
+      },
+      {
+        "chinese": "发愀怆之词，文秀而质羸。",
+        "pinyin": "fā qiǎo chuàng zhī cí ， wén xiù ér zhì léi 。",
+        "english": ""
+      },
+      {
+        "chinese": "在曹、刘间，别构一体。",
+        "pinyin": "zài cáo 、 liú jiān ， bié gòu yī tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "方陈思不足，比魏文有余。",
+        "pinyin": "fāng chén sī bù zú ， bǐ wèi wén yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋步兵阮籍其源出于《小雅》。",
+        "pinyin": "jìn bù bīng ruǎn jí qí yuán chū yú 《 xiǎo yǎ 》。",
+        "english": ""
+      },
+      {
+        "chinese": "无雕虫之功。",
+        "pinyin": "wú diāo chóng zhī gōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "而〈咏怀〉之作，可以陶性灵，发幽思。",
+        "pinyin": "ér 〈 yǒng huái 〉 zhī zuò ， kě yǐ táo xìng líng ， fā yōu sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "言在耳目之内，情寄八荒之表。",
+        "pinyin": "yán zài ěr mù zhī nèi ， qíng jì bā huāng zhī biǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "洋洋乎会于《风》、《雅》，使人忘其鄙近，自致远大，颇多感慨之词。",
+        "pinyin": "yáng yáng hū huì yú 《 fēng 》、《 yǎ 》， shǐ rén wàng qí bǐ jìn ， zì zhì yuǎn dà ， pǒ duō gǎn kǎi zhī cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "厥旨渊放，归趣难求。",
+        "pinyin": "jué zhǐ yuān fàng ， guī qù nán qiú 。",
+        "english": ""
+      },
+      {
+        "chinese": "颜延年注解，怯言其志。",
+        "pinyin": "yán yán nián zhù jiě ， qiè yán qí zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋平原相陆机其源出于陈思。",
+        "pinyin": "jìn píng yuán xiāng lù jī qí yuán chū yú chén sī 。",
+        "english": ""
+      },
+      {
+        "chinese": "才高词赡，举体华美。",
+        "pinyin": "cái gāo cí shàn ， jǔ tǐ huá měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "气少于公干，文劣于仲宣。",
+        "pinyin": "qì shǎo yú gōng gàn ， wén liè yú zhòng xuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "尚规矩，不贵绮错，有伤直致之奇。",
+        "pinyin": "shàng guī jǔ ， bù guì qǐ cuò ， yǒu shāng zhí zhì zhī qí 。",
+        "english": ""
+      },
+      {
+        "chinese": "然其咀嚼英华，厌饫膏泽，文章之渊泉也。",
+        "pinyin": "rán qí jǔ jué yīng huá ， yàn yù gāo zé ， wén zhāng zhī yuān quán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "张公叹其大才，信矣！",
+        "pinyin": "zhāng gōng tàn qí dà cái ， xìn yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "晋黄门郎潘岳其源出于仲宣。",
+        "pinyin": "jìn huáng mén láng pān yuè qí yuán chū yú zhòng xuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "《翰林》叹其翩翩然如翔禽之有羽毛，衣服之有绡縠，犹浅于陆机。",
+        "pinyin": "《 hàn lín 》 tàn qí piān piān rán rú xiáng qín zhī yǒu yǔ máo ， yī fú zhī yǒu xiāo hú ， yóu qiǎn yú lù jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢混云：「潘诗烂若舒锦，无处不佳，陆文如披沙简金，往往见宝。",
+        "pinyin": "xiè hùn yún ：「 pān shī làn ruò shū jǐn ， wú chǔ bù jiā ， lù wén rú pī shā jiǎn jīn ， wǎng wǎng jiàn bǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "」嵘谓益寿轻华，故以潘为胜；",
+        "pinyin": "」 róng wèi yì shòu qīng huá ， gù yǐ pān wèi shèng ；",
+        "english": ""
+      },
+      {
+        "chinese": "《翰林》笃论，故叹陆为深。",
+        "pinyin": "《 hàn lín 》 dǔ lùn ， gù tàn lù wèi shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "余常言陆才如海，潘才如江。",
+        "pinyin": "yú cháng yán lù cái rú hǎi ， pān cái rú jiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋黄门郎张协其源出于王粲。",
+        "pinyin": "jìn huáng mén láng zhāng xié qí yuán chū yú wáng càn 。",
+        "english": ""
+      },
+      {
+        "chinese": "文体华净， 少病累。",
+        "pinyin": "wén tǐ huá jìng ，  shǎo bìng lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "又巧构形似之言，雄于潘岳，靡于太仲。",
+        "pinyin": "yòu qiǎo gòu xíng sì zhī yán ， xióng yú pān yuè ， mí yú tài zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "风流调达，实旷代之高手。",
+        "pinyin": "fēng liú diào dá ， shí kuàng dài zhī gāo shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "调采葱菁，音韵铿锵，使人味之亹亹不倦。",
+        "pinyin": "diào cǎi cōng jīng ， yīn yùn kēng qiāng ， shǐ rén wèi zhī wěi wěi bù juàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋记室左思其源出于公干。",
+        "pinyin": "jìn jì shì zuǒ sī qí yuán chū yú gōng gàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "文典以怨，颇为精切，得讽谕之致。",
+        "pinyin": "wén diǎn yǐ yuàn ， pǒ wèi jīng qiè ， dé fěng yù zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽野于陆机，而深于潘岳。",
+        "pinyin": "suī yě yú lù jī ， ér shēn yú pān yuè 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢康乐尝言：「左太冲诗，潘安仁诗，古今难比。",
+        "pinyin": "xiè kāng lè cháng yán ：「 zuǒ tài chòng shī ， pān ān rén shī ， gǔ jīn nán bǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n宋临川太守谢灵运其源出于陈思 ， 杂有景阳之体。",
+        "pinyin": "」\n sòng lín chuān tài shǒu xiè líng yùn qí yuán chū yú chén sī  ，  zá yǒu jǐng yáng zhī tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故尚巧似，而逸荡过之，颇以繁芜为累。",
+        "pinyin": "gù shàng qiǎo shì ， ér yì dàng guò zhī ， pǒ yǐ fán wú wèi lèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "嵘谓若人兴多才高，寓目辄书，内无乏思，外无遗物，其繁富宜哉！",
+        "pinyin": "róng wèi ruò rén xīng duō cái gāo ， yù mù zhé shū ， nèi wú fá sī ， wài wú yí wù ， qí fán fù yí zāi ！",
+        "english": ""
+      },
+      {
+        "chinese": "然名章迥句，处处间起；",
+        "pinyin": "rán míng zhāng jiǒng jù ， chù chù jiān qǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "丽典新声，络绎奔会。",
+        "pinyin": "lì diǎn xīn shēng ， luò yì bēn huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬犹青松之拔灌木，白玉之映尘沙，未足贬其高洁也。",
+        "pinyin": "pì yóu qīng sōng zhī bá guàn mù ， bái yù zhī yìng chén shā ， wèi zú biǎn qí gāo jié yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "初，钱塘杜明师夜梦东南有人来入其馆，是夕，即灵运生于会稽。",
+        "pinyin": "chū ， qián táng dù míng shī yè mèng dōng nán yǒu rén lái rù qí guǎn ， shì xī ， jí líng yùn shēng yú huì jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "旬日，而谢玄亡。",
+        "pinyin": "xún rì ， ér xiè xuán wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "其家以子孙难得，送灵运于杜治养之。",
+        "pinyin": "qí jiā yǐ zǐ sūn nán dé ， sòng líng yùn yú dù zhì yǎng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "十五方还都，故名「客儿」。",
+        "pinyin": "shí wǔ fāng hái dōu ， gù míng 「 kè ér 」。",
+        "english": ""
+      },
+      {
+        "chinese": "诗品．卷中\n汉上计秦嘉嘉妻徐淑夫妻事既可伤，文亦凄怨。",
+        "pinyin": "shī pǐn ． juǎn zhōng \n hàn shàng jì qín jiā jiā qī xú shū fū qī shì jì kě shāng ， wén yì qī yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "为五言者，不过数家，而妇人居二。",
+        "pinyin": "wèi wǔ yán zhě ， bù guò shù jiā ， ér fù rén jū èr 。",
+        "english": ""
+      },
+      {
+        "chinese": "徐淑叙别之作，亚于〈团扇〉矣。",
+        "pinyin": "xú shū xù bié zhī zuò ， yà yú 〈 tuán shàn 〉 yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏文帝其源出于李陵，颇有仲宣之体。",
+        "pinyin": "wèi wén dì qí yuán chū yú lǐ líng ， pǒ yǒu zhòng xuān zhī tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "则所计百许篇，率皆鄙质如偶语。",
+        "pinyin": "zé suǒ jì bǎi xǔ piān ， lǜ jiē bǐ zhì rú ǒu yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "惟「西北有浮云」十余首，殊美赡可玩，始见其工矣。",
+        "pinyin": "wéi 「 xī běi yǒu fú yún 」 shí yú shǒu ， shū měi shàn kě wán ， shǐ jiàn qí gōng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "不然，何以铨衡群彦，对扬厥弟者邪？",
+        "pinyin": "bù rán ， hé yǐ quán héng qún yàn ， duì yáng jué dì zhě xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "晋中散嵇康颇似魏文。",
+        "pinyin": "jìn zhōng sàn jī kāng pǒ shì wèi wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "过为峻切，讦直露才，伤渊雅之致。",
+        "pinyin": "guò wèi jùn qiè ， jié zhí lù cái ， shāng yuān yǎ zhī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "然托喻清远，良有鉴裁，亦未失高流矣。",
+        "pinyin": "rán tuō yù qīng yuǎn ， liáng yǒu jiàn cái ， yì wèi shī gāo liú yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋司空张华其源出于王粲。",
+        "pinyin": "jìn sī kōng zhāng huá qí yuán chū yú wáng càn 。",
+        "english": ""
+      },
+      {
+        "chinese": "其体华艳，兴托不奇，巧用文字，务为妍冶。",
+        "pinyin": "qí tǐ huá yàn ， xīng tuō bù qí ， qiǎo yòng wén zì ， wù wèi yán yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽名高曩代，而疏亮之士，犹恨其儿女情多，风云气少。",
+        "pinyin": "suī míng gāo nǎng dài ， ér shū liàng zhī shì ， yóu hèn qí ér nǚ qíng duō ， fēng yún qì shǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢康乐云：「张公虽复千篇，犹一体耳。",
+        "pinyin": "xiè kāng lè yún ：「 zhāng gōng suī fù qiān piān ， yóu yī tǐ ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」今置之中品疑弱，处之下科恨少，在季、孟之间矣。",
+        "pinyin": "」 jīn zhì zhī zhōng pǐn yí ruò ， chù zhī xià kē hèn shǎo ， zài jì 、 mèng zhī jiān yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏尚书何晏晋冯翊守孙楚 晋著作王赞 晋司徒掾张翰 晋中书令潘尼平叔鸿鹄之篇，风规见矣。",
+        "pinyin": "wèi shàng shū hé yàn jìn féng yì shǒu sūn chǔ   jìn zhù zuò wáng zàn   jìn sī tú yuàn zhāng hàn   jìn zhōng shū lìng pān ní píng shū hóng gǔ zhī piān ， fēng guī jiàn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "子荆零雨之外，正长朔风之后，虽有累札，良亦无闻。",
+        "pinyin": "zi jīng líng yǔ zhī wài ， zhèng zhǎng shuò fēng zhī hòu ， suī yǒu lèi zhá ， liáng yì wú wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "季鹰黄华之唱，正叔绿之章，虽不具美，而文彩高丽，并得虬龙片甲，凤凰一毛。",
+        "pinyin": "jì yīng huáng huá zhī chàng ， zhèng shū lǜ zhī zhāng ， suī bù jù měi ， ér wén cǎi gāo lí ， bìng dé qiú lóng piàn jiǎ ， fèng huáng yī máo 。",
+        "english": ""
+      },
+      {
+        "chinese": "事同驳圣，宜居中品。",
+        "pinyin": "shì tóng bó shèng ， yí jū zhōng pǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏侍中应璩祖袭魏文。",
+        "pinyin": "wèi shì zhōng yīng qú zǔ xí wèi wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "善为古语，指事殷勤，雅意深笃，得诗人激刺之旨。",
+        "pinyin": "shàn wèi gǔ yǔ ， zhǐ shì yīn qín ， yǎ yì shēn dǔ ， dé shī rén jī cì zhī zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "至于「济济今日所」，华靡可讽味焉。",
+        "pinyin": "zhì yú 「 jì jì jīn rì suǒ 」， huá mí kě fěng wèi yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋清河守陆云晋侍中石崇 晋襄城太守曹摅 晋朗陵公何劭清河之方平原，殆如陈思之匹白马。",
+        "pinyin": "jìn qīng hé shǒu lù yún jìn shì zhōng shí chóng   jìn xiāng chéng tài shǒu cáo shū   jìn lǎng líng gōng hé shào qīng hé zhī fāng píng yuán ， dài rú chén sī zhī pǐ bái mǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "于其哲昆，故称二陆。",
+        "pinyin": "yú qí zhé kūn ， gù chēng èr lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "季伦、颜远，并有英篇。",
+        "pinyin": "jì lún 、 yán yuǎn ， bìng yǒu yīng piān 。",
+        "english": ""
+      },
+      {
+        "chinese": "笃而论之，朗陵为最。",
+        "pinyin": "dǔ ér lùn zhī ， lǎng líng wèi zuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋太尉刘琨晋中郎卢谌其源出于王粲。",
+        "pinyin": "jìn tài wèi liú kūn jìn zhōng láng lú chén qí yuán chū yú wáng càn 。",
+        "english": ""
+      },
+      {
+        "chinese": "善为凄戾之词，自有清拔之气。",
+        "pinyin": "shàn wèi qī lì zhī cí ， zì yǒu qīng bá zhī qì 。",
+        "english": ""
+      },
+      {
+        "chinese": "琨既体良才，又罹厄运，故善叙丧乱，多感恨之词。",
+        "pinyin": "kūn jì tǐ liáng cái ， yòu lí è yùn ， gù shàn xù sāng luàn ， duō gǎn hèn zhī cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "中郎仰之，微不逮者矣。",
+        "pinyin": "zhōng láng yǎng zhī ， wēi bù dǎi zhě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋弘农太守郭璞宪章潘岳，文体相辉，彪炳可玩。",
+        "pinyin": "jìn hóng nóng tài shǒu guō pú xiàn zhāng pān yuè ， wén tǐ xiāng huī ， biāo bǐng kě wán 。",
+        "english": ""
+      },
+      {
+        "chinese": "始变永嘉平淡之体，故称中兴第一。",
+        "pinyin": "shǐ biàn yǒng jiā píng dàn zhī tǐ ， gù chēng zhōng xīng dì yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "《翰林》以为诗首。",
+        "pinyin": "《 hàn lín 》 yǐ wéi shī shǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "但〈游仙〉之作，词多慷慨，乖远玄宗。",
+        "pinyin": "dàn 〈 yóu xiān 〉 zhī zuò ， cí duō kāng kǎi ， guāi yuǎn xuán zōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "而云：「柰何虎豹姿。",
+        "pinyin": "ér yún ：「 nài hé hǔ bào zī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」又云：「戢翼栖榛梗。",
+        "pinyin": "」 yòu yún ：「 jí yì qī zhēn gěng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」乃是坎𡒄咏怀，非列仙之趣也。",
+        "pinyin": "」 nǎi shì kǎn lǎn yǒng huái ， fēi liè xiān zhī qù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋吏部郎袁宏彦伯〈咏史〉，虽文体未遒，而鲜明紧健，去凡俗远矣。",
+        "pinyin": "jìn lì bù láng yuán hóng yàn bó 〈 yǒng shǐ 〉， suī wén tǐ wèi qiú ， ér xiān míng jǐn jiàn ， qù fán sú yuǎn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋处士郭泰机晋常侍顾恺之 宋谢世基 宋参军顾迈 宋参军戴凯泰机寒女之制，孤怨宜恨。",
+        "pinyin": "jìn chǔ shì guō tài jī jìn cháng shì gù kǎi zhī   sòng xiè shì jī   sòng cān jūn gù mài   sòng cān jūn dài kǎi tài jī hán nǚ zhī zhì ， gū yuàn yí hèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "长康能以二韵答四首之美。",
+        "pinyin": "zhǎng kāng néng yǐ èr yùn dá sì shǒu zhī měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "世基横海，顾迈鸿飞。",
+        "pinyin": "shì jī héng hǎi ， gù mài hóng fēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "戴凯人实贫羸，而才章富健。",
+        "pinyin": "dài kǎi rén shí pín léi ， ér cái zhāng fù jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "观此五子，文虽不多，气调警拔，吾许其进，则鲍照、江淹未足逮止。",
+        "pinyin": "guān cǐ wǔ zi ， wén suī bù duō ， qì diào jǐng bá ， wú xǔ qí jìn ， zé bào zhào 、 jiāng yān wèi zú dǎi zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "越居中品，佥曰宜哉。",
+        "pinyin": "yuè jū zhōng pǐn ， qiān yuē yí zāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋征士陶潜其源出于应璩，又协左思风力。",
+        "pinyin": "sòng zhēng shì táo qián qí yuán chū yú yīng qú ， yòu xié zuǒ sī fēng lì 。",
+        "english": ""
+      },
+      {
+        "chinese": "文体省净，殆无长语。",
+        "pinyin": "wén tǐ shěng jìng ， dài wú zhǎng yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "笃意真古，辞兴婉惬。",
+        "pinyin": "dǔ yì zhēn gǔ ， cí xīng wǎn qiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "每观其文，想其人德。",
+        "pinyin": "měi guān qí wén ， xiǎng qí rén dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "世叹其质直。",
+        "pinyin": "shì tàn qí zhì zhí 。",
+        "english": ""
+      },
+      {
+        "chinese": "至如「懽言醉春酒」、「日暮天无云」，风华清靡，岂直为田家语邪？",
+        "pinyin": "zhì rú 「 huān yán zuì chūn jiǔ 」、「 rì mù tiān wú yún 」， fēng huá qīng mí ， qǐ zhí wèi tián jiā yǔ xié ？",
+        "english": ""
+      },
+      {
+        "chinese": "古今隐逸诗人之宗也。",
+        "pinyin": "gǔ jīn yǐn yì shī rén zhī zōng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋光禄大夫颜延之其源出于陆机。",
+        "pinyin": "sòng guāng lù dà fū yán yán zhī qí yuán chū yú lù jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "尚巧似。",
+        "pinyin": "shàng qiǎo shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "体裁绮密，情喻渊深，动无虚散，一句一字，皆致意焉。",
+        "pinyin": "tǐ cái qǐ mì ， qíng yù yuān shēn ， dòng wú xū sàn ， yī jù yī zì ， jiē zhì yì yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "又喜用古事，弥见拘束，虽乖秀逸，是经纶文雅才。",
+        "pinyin": "yòu xǐ yòng gǔ shì ， mí jiàn jū shù ， suī guāi xiù yì ， shì jīng lún wén yǎ cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "雅才减若人，则蹈于困踬矣。",
+        "pinyin": "yǎ cái jiǎn ruò rén ， zé dǎo yú kùn zhì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "汤惠休曰：「 谢诗如芙蓉出水，颜如错彩镂金。",
+        "pinyin": "tāng huì xiū yuē ：「  xiè shī rú fú róng chū shuǐ ， yán rú cuò cǎi lòu jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」颜终身病之。",
+        "pinyin": "」 yán zhōng shēn bìng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋豫章太守谢瞻宋仆射谢混 宋太尉袁淑 宋征君王微 宋征虏将军王僧达其源出于张华。",
+        "pinyin": "sòng yù zhāng tài shǒu xiè zhān sòng pū shè xiè hùn   sòng tài wèi yuán shū   sòng zhēng jūn wáng wēi   sòng zhēng lǔ jiāng jūn wáng sēng dá qí yuán chū yú zhāng huá 。",
+        "english": ""
+      },
+      {
+        "chinese": "才力苦弱，故务其清浅，殊得风流媚趣。",
+        "pinyin": "cái lì kǔ ruò ， gù wù qí qīng qiǎn ， shū dé fēng liú mèi qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "课其实录，则豫章仆射，宜分庭抗礼。",
+        "pinyin": "kè qí shí lù ， zé yù zhāng pū shè ， yí fēn tíng kàng lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "征君、太尉，可托乘后车。",
+        "pinyin": "zhēng jūn 、 tài wèi ， kě tuō chéng hòu chē 。",
+        "english": ""
+      },
+      {
+        "chinese": "征虏卓卓，殆欲度骅骝前。",
+        "pinyin": "zhēng lǔ zhuó zhuó ， dài yù dù huá liú qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋法曹参军谢惠连小谢才思富捷，恨其兰玉夙凋，故长辔未骋。",
+        "pinyin": "sòng fǎ cáo cān jūn xiè huì lián xiǎo xiè cái sī fù jié ， hèn qí lán yù sù diāo ， gù zhǎng pèi wèi chěng 。",
+        "english": ""
+      },
+      {
+        "chinese": "〈秋怀〉、〈捣衣〉之作，虽复灵运锐思，亦何以加焉。",
+        "pinyin": "〈 qiū huái 〉、〈 dǎo yī 〉 zhī zuò ， suī fù líng yùn ruì sī ， yì hé yǐ jiā yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "又工为绮丽歌谣，风人第一。",
+        "pinyin": "yòu gōng wèi qǐ lì gē yáo ， fēng rén dì yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "《谢氏家录》云：「康乐每对惠连，辄得佳语。",
+        "pinyin": "《 xiè shì jiā lù 》 yún ：「 kāng lè měi duì huì lián ， zhé dé jiā yǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "后在永嘉西堂，思诗竟日不就。",
+        "pinyin": "hòu zài yǒng jiā xī táng ， sī shī jìng rì bù jiù 。",
+        "english": ""
+      },
+      {
+        "chinese": "寤寐间忽见惠连，即成『池塘生春草』。",
+        "pinyin": "wù mèi jiān hū jiàn huì lián ， jí chéng 『 chí táng shēng chūn cǎo 』。",
+        "english": ""
+      },
+      {
+        "chinese": "故尝云：『此语有神助，非吾语也。",
+        "pinyin": "gù cháng yún ：『 cǐ yǔ yǒu shén zhù ， fēi wú yǔ yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "』」\n宋参军鲍照其源出于二张，善制形状写物之词，得景阳之諔诡，含茂先之靡嫚。",
+        "pinyin": "』」\n sòng cān jūn bào zhào qí yuán chū yú èr zhāng ， shàn zhì xíng zhuàng xiě wù zhī cí ， dé jǐng yáng zhī chù guǐ ， hán mào xiān zhī mí mān 。",
+        "english": ""
+      },
+      {
+        "chinese": "骨节强于谢混，驱迈疾于颜延。",
+        "pinyin": "gǔ jié qiáng yú xiè hùn ， qū mài jí yú yán yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "总四家而擅美，跨两代而孤出。",
+        "pinyin": "zǒng sì jiā ér shàn měi ， kuà liǎng dài ér gū chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "嗟其才秀人微，故取湮当代。",
+        "pinyin": "jiē qí cái xiù rén wēi ， gù qǔ yān dāng dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "然贵尚巧似，不避危仄，颇伤清雅之调。",
+        "pinyin": "rán guì shàng qiǎo shì ， bù bì wēi zè ， pǒ shāng qīng yǎ zhī diào 。",
+        "english": ""
+      },
+      {
+        "chinese": "故言险俗者，多以附照。",
+        "pinyin": "gù yán xiǎn sú zhě ， duō yǐ fù zhào 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐吏部谢朓其源出于谢混，微伤细密，颇在不伦。",
+        "pinyin": "qí lì bù xiè tiǎo qí yuán chū yú xiè hùn ， wēi shāng xì mì ， pǒ zài bù lún 。",
+        "english": ""
+      },
+      {
+        "chinese": "一章之中，自有玉石，然奇章秀句，往往警遒，足使叔源失步，明远变色。",
+        "pinyin": "yī zhāng zhī zhōng ， zì yǒu yù shí ， rán qí zhāng xiù jù ， wǎng wǎng jǐng qiú ， zú shǐ shū yuán shī bù ， míng yuǎn biàn sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "善自发诗端，而末篇多踬，此意锐而才弱也，至为后进士子之所嗟慕。",
+        "pinyin": "shàn zì fā shī duān ， ér mò piān duō zhì ， cǐ yì ruì ér cái ruò yě ， zhì wéi hòu jìn shì zi zhī suǒ jiē mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "朓极与余论诗，感激顿挫过其文。",
+        "pinyin": "tiǎo jí yǔ yú lùn shī ， gǎn jī dùn cuò guò qí wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐光禄江淹文通诗体总杂，善于摹拟，筋力于王微，成就于谢朓。",
+        "pinyin": "qí guāng lù jiāng yān wén tōng shī tǐ zǒng zá ， shàn yú mó nǐ ， jīn lì yú wáng wēi ， chéng jiù yú xiè tiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "初，淹罢宣城郡，遂宿冶亭，梦一美丈夫，自称郭璞，谓淹曰：「我有笔在卿处多年矣，可以见还。",
+        "pinyin": "chū ， yān bà xuān chéng jùn ， suì sù yě tíng ， mèng yī měi zhàng fū ， zì chēng guō pú ， wèi yān yuē ：「 wǒ yǒu bǐ zài qīng chù duō nián yǐ ， kě yǐ jiàn hái 。",
+        "english": ""
+      },
+      {
+        "chinese": "」淹探怀中，得五色笔以授之。",
+        "pinyin": "」 yān tàn huái zhōng ， dé wǔ sè bǐ yǐ shòu zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "尔后为诗，不复成语，故世传江淹才尽。",
+        "pinyin": "ěr hòu wèi shī ， bù fù chéng yǔ ， gù shì chuán jiāng yān cái jìn 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁卫将军范云梁中书郎邱迟范诗清便宛转，如流风回雪。",
+        "pinyin": "liáng wèi jiāng jūn fàn yún liáng zhōng shū láng qiū chí fàn shī qīng biàn wǎn zhuǎn ， rú liú fēng huí xuě 。",
+        "english": ""
+      },
+      {
+        "chinese": "邱诗点缀映媚，似落花依草。",
+        "pinyin": "qiū shī diǎn zhuì yìng mèi ， shì luò huā yī cǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "故当浅于江淹，而秀于任昉。",
+        "pinyin": "gù dāng qiǎn yú jiāng yān ， ér xiù yú rèn fǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁太常任昉彦升少年为诗不工，故世称沈诗任笔，昉深恨之。",
+        "pinyin": "liáng tài cháng rèn fǎng yàn shēng shào nián wèi shī bù gōng ， gù shì chēng shěn shī rèn bǐ ， fǎng shēn hèn zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "晚节爱好既笃，文亦遒变。",
+        "pinyin": "wǎn jié ài hào jì dǔ ， wén yì qiú biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "善铨事理，拓体渊雅，得国士之风，故擢居中品。",
+        "pinyin": "shàn quán shì lǐ ， tuò tǐ yuān yǎ ， dé guó shì zhī fēng ， gù zhuó jū zhōng pǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "但昉既博物，动辄用事，所以诗不得奇。",
+        "pinyin": "dàn fǎng jì bó wù ， dòng zhé yòng shì ， suǒ yǐ shī bù dé qí 。",
+        "english": ""
+      },
+      {
+        "chinese": "少年士子，效其如此，弊矣。",
+        "pinyin": "shào nián shì zi ， xiào qí rú cǐ ， bì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁左光禄沈约观休文众制，五言最优。",
+        "pinyin": "liáng zuǒ guāng lù shěn yuē guān xiū wén zhòng zhì ， wǔ yán zuì yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "详其文体，察其余论，固知宪章鲍明远也。",
+        "pinyin": "xiáng qí wén tǐ ， chá qí yú lùn ， gù zhī xiàn zhāng bào míng yuǎn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "所以不闲于经纶，而长于清怨。",
+        "pinyin": "suǒ yǐ bù xián yú jīng lún ， ér cháng yú qīng yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "永明相王爱文，王元长等皆宗附之。",
+        "pinyin": "yǒng míng xiāng wáng ài wén ， wáng yuán zhǎng děng jiē zōng fù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "约于时谢朓未遒，江淹才尽，范云名级故微，故约称独步。",
+        "pinyin": "yuē yú shí xiè tiǎo wèi qiú ， jiāng yān cái jìn ， fàn yún míng jí gù wēi ， gù yuē chēng dú bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽文不至其工丽，亦一时之选也。",
+        "pinyin": "suī wén bù zhì qí gōng lì ， yì yī shí zhī xuǎn yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "见重闾里，诵咏成音。",
+        "pinyin": "jiàn zhòng lǘ lǐ ， sòng yǒng chéng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "嵘谓约所著既多，今翦除淫杂，收其精要，允为中品之第矣。",
+        "pinyin": "róng wèi yuē suǒ zhù jì duō ， jīn jiǎn chú yín zá ， shōu qí jīng yào ， yǔn wèi zhōng pǐn zhī dì yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "故当词密于范，意浅于江也。",
+        "pinyin": "gù dāng cí mì yú fàn ， yì qiǎn yú jiāng yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "诗品．卷下\n汉令史班固汉孝廉郦炎 汉上计赵壹孟坚才流，而老于掌故。",
+        "pinyin": "shī pǐn ． juǎn xià \n hàn lìng shǐ bān gù hàn xiào lián lì yán   hàn shàng jì zhào yī mèng jiān cái liú ， ér lǎo yú zhǎng gù 。",
+        "english": ""
+      },
+      {
+        "chinese": "观其〈咏史〉，有感叹之词。",
+        "pinyin": "guān qí 〈 yǒng shǐ 〉， yǒu gǎn tàn zhī cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "文胜托咏灵芝，怀寄不浅。",
+        "pinyin": "wén shèng tuō yǒng líng zhī ， huái jì bù qiǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "元叔散愤兰蕙，指斥囊钱。",
+        "pinyin": "yuán shū sàn fèn lán huì ， zhǐ chì náng qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "苦言切句，良亦勤矣。",
+        "pinyin": "kǔ yán qiè jù ， liáng yì qín yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "斯人也，而有斯困，悲夫！",
+        "pinyin": "sī rén yě ， ér yǒu sī kùn ， bēi fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "魏武帝魏明帝曹公古直，甚有悲凉之句。",
+        "pinyin": "wèi wǔ dì wèi míng dì cáo gōng gǔ zhí ， shèn yǒu bēi liáng zhī jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "叡不如丕，亦称三祖。",
+        "pinyin": "ruì bù rú pī ， yì chēng sān zǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏白马王彪魏文学徐干白马与陈思答赠，伟长与公干往复，虽曰「以莛叩钟」，亦能闲雅矣。",
+        "pinyin": "wèi bái mǎ wáng biāo wèi wén xué xú gān bái mǎ yǔ chén sī dá zèng ， wěi zhǎng yǔ gōng gàn wǎng fù ， suī yuē 「 yǐ tíng kòu zhōng 」， yì néng xián yǎ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "魏仓曹属阮瑀晋顿邱太守欧阳建 晋文学应璩 晋中书令嵇含 晋河南太守阮侃 晋侍中　　　　嵇绍晋黄门枣据元瑜、坚石七君诗，并平典，不失古体。",
+        "pinyin": "wèi cāng cáo shǔ ruǎn yǔ jìn dùn qiū tài shǒu ōu yáng jiàn   jìn wén xué yīng qú   jìn zhōng shū lìng jī hán   jìn hé nán tài shǒu ruǎn kǎn   jìn shì zhōng 　　　　 jī shào jìn huáng mén zǎo jù yuán yú 、 jiān shí qī jūn shī ， bìng píng diǎn ， bù shī gǔ tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "大检似，而二嵇微优矣。",
+        "pinyin": "dà jiǎn shì ， ér èr jī wēi yōu yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋中书张载晋司隶傅玄 晋太仆傅咸 晋侍中缪袭 晋散骑常侍夏侯湛孟阳诗， 乃远惭厥弟，而近超两傅。",
+        "pinyin": "jìn zhōng shū zhāng zài jìn sī lì fù xuán   jìn tài pū fù xián   jìn shì zhōng móu xí   jìn sàn qí cháng shì xià hóu zhàn mèng yáng shī ，  nǎi yuǎn cán jué dì ， ér jìn chāo liǎng fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "长、虞父子，繁富可嘉。",
+        "pinyin": "zhǎng 、 yú fù zǐ ， fán fù kě jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "孝冲虽曰后进，见重安仁。",
+        "pinyin": "xiào chōng suī yuē hòu jìn ， jiàn zhòng ān rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "熙伯〈挽歌〉，唯以造哀尔。",
+        "pinyin": "xī bó 〈 wǎn gē 〉， wéi yǐ zào āi ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋骠骑王济晋征南将军杜预 晋廷尉孙绰 晋征士许询永嘉以来，清虚在俗。",
+        "pinyin": "jìn piào qí wáng jì jìn zhēng nán jiāng jūn dù yù   jìn tíng wèi sūn chuò   jìn zhēng shì xǔ xún yǒng jiā yǐ lái ， qīng xū zài sú 。",
+        "english": ""
+      },
+      {
+        "chinese": "王武子辈诗，贵道家之言。",
+        "pinyin": "wáng wǔ zi bèi shī ， guì dào jiā zhī yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "爰洎江表，玄风尚备。",
+        "pinyin": "yuán jì jiāng biǎo ， xuán fēng shàng bèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "真长、仲祖、桓、庾诸公犹相袭。",
+        "pinyin": "zhēn zhǎng 、 zhòng zǔ 、 huán 、 yǔ zhū gōng yóu xiāng xí 。",
+        "english": ""
+      },
+      {
+        "chinese": "世称孙、许，弥善恬淡之词。",
+        "pinyin": "shì chēng sūn 、 xǔ ， mí shàn tián dàn zhī cí 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋征士戴逵晋东阳太守殷仲文安道诗虽嫩弱，有清上之句，裁长补短，袁彦伯之亚乎？",
+        "pinyin": "jìn zhēng shì dài kuí jìn dōng yáng tài shǒu yīn zhòng wén ān dào shī suī nèn ruò ， yǒu qīng shàng zhī jù ， cái cháng bǔ duǎn ， yuán yàn bó zhī yà hū ？",
+        "english": ""
+      },
+      {
+        "chinese": "逵子颙，亦有一时之誉。",
+        "pinyin": "kuí zi yóng ， yì yǒu yī shí zhī yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "晋、宋之际，殆无诗乎！",
+        "pinyin": "jìn 、 sòng zhī jì ， dài wú shī hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "义熙中，以谢益寿、殷仲文为华绮之冠，殷不竞矣。",
+        "pinyin": "yì xī zhōng ， yǐ xiè yì shòu 、 yīn zhòng wén wèi huá qǐ zhī guān ， yīn bù jìng yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋尚书令傅亮季友文，余常忽而不察。",
+        "pinyin": "sòng shàng shū lìng fù liàng jì yǒu wén ， yú cháng hū ér bù chá 。",
+        "english": ""
+      },
+      {
+        "chinese": "今沈特进撰诗，载其数首，亦复平美。",
+        "pinyin": "jīn shěn tè jìn zhuàn shī ， zài qí shù shǒu ， yì fù píng měi 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋记室何长瑜羊曜璠 宋詹事范晔才难，信矣！",
+        "pinyin": "sòng jì shì hé zhǎng yú yáng yào fán   sòng zhān shì fàn yè cái nán ， xìn yǐ ！",
+        "english": ""
+      },
+      {
+        "chinese": "以康乐与羊、何若此，而□令辞，殆不足奇。",
+        "pinyin": "yǐ kāng lè yǔ yáng 、 hé ruò cǐ ， ér □ lìng cí ， dài bù zú qí 。",
+        "english": ""
+      },
+      {
+        "chinese": "乃不称其才，亦为鲜举矣。",
+        "pinyin": "nǎi bù chēng qí cái ， yì wèi xiān jǔ yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋孝武帝宋南平王铄 宋建平王宏孝武诗，雕文织彩，过为精密，为二藩希慕，见称轻巧矣。",
+        "pinyin": "sòng xiào wǔ dì sòng nán píng wáng shuò   sòng jiàn píng wáng hóng xiào wǔ shī ， diāo wén zhī cǎi ， guò wèi jīng mì ， wèi èr fān xī mù ， jiàn chēng qīng qiǎo yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋光禄谢庄希逸诗，气候清雅，不逮于范、袁。",
+        "pinyin": "sòng guāng lù xiè zhuāng xī yì shī ， qì hòu qīng yǎ ， bù dǎi yú fàn 、 yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "然兴属闲长，良无鄙促也。",
+        "pinyin": "rán xīng shǔ xián zhǎng ， liáng wú bǐ cù yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋御史苏宝生宋中书令史陵修之 宋典祠令任昙绪 宋越骑戴兴苏、陵、任、戴，并著篇章，亦为搢绅之所嗟咏。",
+        "pinyin": "sòng yù shǐ sū bǎo shēng sòng zhōng shū lìng shǐ líng xiū zhī   sòng diǎn cí lìng rèn tán xù   sòng yuè qí dài xīng sū 、 líng 、 rèn 、 dài ， bìng zhù piān zhāng ， yì wèi jìn shēn zhī suǒ jiē yǒng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人非文才是愈，甚可嘉焉。",
+        "pinyin": "rén fēi wén cái shì yù ， shèn kě jiā yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "宋监典事区惠恭惠恭本胡人 ， 为颜师伯干。",
+        "pinyin": "sòng jiān diǎn shì qū huì gōng huì gōng běn hú rén  ，  wèi yán shī bó gàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "颜为诗笔，辄偷定之。",
+        "pinyin": "yán wèi shī bǐ ， zhé tōu dìng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "后造〈独乐赋〉，语侵给主，被斥。",
+        "pinyin": "hòu zào 〈 dú lè fù 〉， yǔ qīn gěi zhǔ ， bèi chì 。",
+        "english": ""
+      },
+      {
+        "chinese": "及大将军修北第，差充作长。",
+        "pinyin": "jí dà jiāng jūn xiū běi dì ， chà chōng zuò zhǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "时谢惠连兼记室参军，惠恭时往共安陵嘲调。",
+        "pinyin": "shí xiè huì lián jiān jì shì cān jūn ， huì gōng shí wǎng gòng ān líng cháo diào 。",
+        "english": ""
+      },
+      {
+        "chinese": "末作〈双枕诗〉以示谢。",
+        "pinyin": "mò zuò 〈 shuāng zhěn shī 〉 yǐ shì xiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢曰：「君诚能，恐人未重。",
+        "pinyin": "xiè yuē ：「 jūn chéng néng ， kǒng rén wèi zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "且可以为谢法曹造。",
+        "pinyin": "qiě kě yǐ wèi xiè fǎ cáo zào 。",
+        "english": ""
+      },
+      {
+        "chinese": "」遗大将军。",
+        "pinyin": "」 yí dà jiāng jūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "见之赏叹，以锦二端赐谢。",
+        "pinyin": "jiàn zhī shǎng tàn ， yǐ jǐn èr duān cì xiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "谢辞曰：「此诗，公作长所制，请以锦赐之。",
+        "pinyin": "xiè cí yuē ：「 cǐ shī ， gōng zuò zhǎng suǒ zhì ， qǐng yǐ jǐn cì zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n齐惠休上人齐道猷上人 齐释宝月惠休淫靡，情过其才。",
+        "pinyin": "」\n qí huì xiū shàng rén qí dào yóu shàng rén   qí shì bǎo yuè huì xiū yín mí ， qíng guò qí cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "世遂匹之鲍照，恐商、周矣。",
+        "pinyin": "shì suì pǐ zhī bào zhào ， kǒng shāng 、 zhōu yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "羊曜璠云 ： 「 是颜公忌照之文，故立休、鲍之论。",
+        "pinyin": "yáng yào fán yún  ： 「  shì yán gōng jì zhào zhī wén ， gù lì xiū 、 bào zhī lùn 。",
+        "english": ""
+      },
+      {
+        "chinese": "」庾、帛二胡，亦有清句。",
+        "pinyin": "」 yǔ 、 bó èr hú ， yì yǒu qīng jù 。",
+        "english": ""
+      },
+      {
+        "chinese": "〈行路难〉是东阳柴廓所造。",
+        "pinyin": "〈 xíng lù nán 〉 shì dōng yáng chái kuò suǒ zào 。",
+        "english": ""
+      },
+      {
+        "chinese": "宝月尝憩其家，会廓亡，因窃而有之。",
+        "pinyin": "bǎo yuè cháng qì qí jiā ， huì kuò wáng ， yīn qiè ér yǒu zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "廓子赉手本出都，欲讼此事，乃厚赂止之。",
+        "pinyin": "kuò zi lài shǒu běn chū dōu ， yù sòng cǐ shì ， nǎi hòu lù zhǐ zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐高帝齐征北将军张永 齐太尉王文宪齐高帝诗，词藻意深，无所云少。",
+        "pinyin": "qí gāo dì qí zhēng běi jiāng jūn zhāng yǒng   qí tài wèi wáng wén xiàn qí gāo dì shī ， cí zǎo yì shēn ， wú suǒ yún shǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "张景云虽谢文体，颇有古意。",
+        "pinyin": "zhāng jǐng yún suī xiè wén tǐ ， pǒ yǒu gǔ yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "至如王师文宪，既经国图远，或忽是雕虫。",
+        "pinyin": "zhì rú wáng shī wén xiàn ， jì jīng guó tú yuǎn ， huò hū shì diāo chóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐黄门谢超宗齐浔阳太守丘灵鞠 齐给事中郎刘祥 齐司徒长史檀超 齐正员郎钟宪 齐诸暨令颜则齐秀才顾则心檀､谢七君，并祖袭颜延，欣欣不倦，得士大夫之雅致乎！",
+        "pinyin": "qí huáng mén xiè chāo zōng qí xún yáng tài shǒu qiū líng jū   qí gěi shì zhōng láng liú xiáng   qí sī tú zhǎng shǐ tán chāo   qí zhèng yuán láng zhōng xiàn   qí zhū jì lìng yán zé qí xiù cái gù zé xīn tán ､ xiè qī jūn ， bìng zǔ xí yán yán ， xīn xīn bù juàn ， dé shì dà fū zhī yǎ zhì hū ！",
+        "english": ""
+      },
+      {
+        "chinese": "余从祖正员尝云：「大明、泰始中，鲍、休美文，殊已动俗，惟此诸人，傅颜､陆体。",
+        "pinyin": "yú cóng zǔ zhèng yuán cháng yún ：「 dà míng 、 tài shǐ zhōng ， bào 、 xiū měi wén ， shū yǐ dòng sú ， wéi cǐ zhū rén ， fù yán ､ lù tǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "用固执不移，颜诸暨最荷家声。",
+        "pinyin": "yòng gù zhí bù yí ， yán zhū jì zuì hé jiā shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n齐参军毛伯成齐朝请吴迈远 齐朝请许瑶之伯成文不全佳，亦多惆怅。",
+        "pinyin": "」\n qí cān jūn máo bó chéng qí cháo qǐng wú mài yuǎn   qí cháo qǐng xǔ yáo zhī bó chéng wén bù quán jiā ， yì duō chóu chàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "吴善于风人答赠。",
+        "pinyin": "wú shàn yú fēng rén dá zèng 。",
+        "english": ""
+      },
+      {
+        "chinese": "许长于短句咏物。",
+        "pinyin": "xǔ cháng yú duǎn jù yǒng wù 。",
+        "english": ""
+      },
+      {
+        "chinese": "汤休谓远云：「我诗可为汝诗父。",
+        "pinyin": "tāng xiū wèi yuǎn yún ：「 wǒ shī kě wèi rǔ shī fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」以访谢光禄，云：「不然尔，汤可为庶兄。",
+        "pinyin": "」 yǐ fǎng xiè guāng lù ， yún ：「 bù rán ěr ， tāng kě wèi shù xiōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n齐鲍令晖齐韩兰英令晖歌诗，往往断绝清巧，拟古尤胜，唯百愿淫矣。",
+        "pinyin": "」\n qí bào lìng huī qí hán lán yīng lìng huī gē shī ， wǎng wǎng duàn jué qīng qiǎo ， nǐ gǔ yóu shèng ， wéi bǎi yuàn yín yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "照尝答孝武云：「臣妹才自亚于左芬，臣才不及太冲尔。",
+        "pinyin": "zhào cháng dá xiào wǔ yún ：「 chén mèi cái zì yà yú zuǒ fēn ， chén cái bù jí tài chòng ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "」兰英绮密，甚有名篇。",
+        "pinyin": "」 lán yīng qǐ mì ， shèn yǒu míng piān 。",
+        "english": ""
+      },
+      {
+        "chinese": "又善谈笑，齐武谓韩云：「借使二媛生于上叶，则玉阶之赋，纨素之辞，未讵多也。",
+        "pinyin": "yòu shàn tán xiào ， qí wǔ wèi hán yún ：「 jiè shǐ èr yuàn shēng yú shàng yè ， zé yù jiē zhī fù ， wán sù zhī cí ， wèi jù duō yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n齐司徒长史张融齐詹事孔稚珪思光纡缓诞放，纵有乖文体，然亦捷疾丰饶，差不局促。",
+        "pinyin": "」\n qí sī tú zhǎng shǐ zhāng róng qí zhān shì kǒng zhì guī sī guāng yū huǎn dàn fàng ， zòng yǒu guāi wén tǐ ， rán yì jié jí fēng ráo ， chà bù jú cù 。",
+        "english": ""
+      },
+      {
+        "chinese": "德璋生于封谿，而文为雕饰，青于蓝矣。",
+        "pinyin": "dé zhāng shēng yú fēng xī ， ér wén wèi diāo shì ， qīng yú lán yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐宁朔将军王融齐中庶子刘绘元长、士章，并有盛才。",
+        "pinyin": "qí níng shuò jiāng jūn wáng róng qí zhōng shù zi liú huì yuán zhǎng 、 shì zhāng ， bìng yǒu shèng cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "词美英净，至于五言之作，几乎尺有所短。",
+        "pinyin": "cí měi yīng jìng ， zhì yú wǔ yán zhī zuò ， jī hū chǐ yǒu suǒ duǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "譬应变将略，非武侯所长，未足以贬卧龙。",
+        "pinyin": "pì yìng biàn jiāng lüè ， fēi wǔ hóu suǒ zhǎng ， wèi zú yǐ biǎn wò lóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐仆射江祏诗猗猗清润，弟祀明靡可怀。",
+        "pinyin": "qí pū shè jiāng shí shī yī yī qīng rùn ， dì sì míng mí kě huái 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐记室王巾齐绥远太守卞彬 齐端溪令卞录王巾、二卞诗，并爱奇崭绝。",
+        "pinyin": "qí jì shì wáng jīn qí suí yuǎn tài shǒu biàn bīn   qí duān xī lìng biàn lù wáng jīn 、 èr biàn shī ， bìng ài qí zhǎn jué 。",
+        "english": ""
+      },
+      {
+        "chinese": "慕袁彦伯之风。",
+        "pinyin": "mù yuán yàn bó zhī fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "虽不宏绰，而文体勦净，去平美远矣。",
+        "pinyin": "suī bù hóng chuò ， ér wén tǐ chāo jìng ， qù píng měi yuǎn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "齐诸暨令袁嘏嘏诗平平耳，多自谓能。",
+        "pinyin": "qí zhū jì lìng yuán gǔ gǔ shī píng píng ěr ， duō zì wèi néng 。",
+        "english": ""
+      },
+      {
+        "chinese": "尝语徐太尉云：「我诗有生气，须人捉著。",
+        "pinyin": "cháng yǔ xú tài wèi yún ：「 wǒ shī yǒu shēng qì ， xū rén zhuō zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "不尔，便飞去。",
+        "pinyin": "bù ěr ， biàn fēi qù 。",
+        "english": ""
+      },
+      {
+        "chinese": "」\n齐雍州刺史张欣泰梁中书郎范缜欣泰、子真，并希古胜文，鄙薄俗制，赏心流亮，不失雅宗。",
+        "pinyin": "」\n qí yōng zhōu cì shǐ zhāng xīn tài liáng zhōng shū láng fàn zhěn xīn tài 、 zi zhēn ， bìng xī gǔ shèng wén ， bǐ bó sú zhì ， shǎng xīn liú liàng ， bù shī yǎ zōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁秀才陆厥观厥文纬，具识丈夫之情状。",
+        "pinyin": "liáng xiù cái lù jué guān jué wén wěi ， jù shí zhàng fū zhī qíng zhuàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自制未优，非言之失也。",
+        "pinyin": "zì zhì wèi yōu ， fēi yán zhī shī yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁常侍虞羲梁建阳令江洪子阳诗奇句清拔，谢朓常嗟颂之。",
+        "pinyin": "liáng cháng shì yú xī liáng jiàn yáng lìng jiāng hóng zi yáng shī qí jù qīng bá ， xiè tiǎo cháng jiē sòng zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "洪虽无多，亦能自迥出。",
+        "pinyin": "hóng suī wú duō ， yì néng zì jiǒng chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "梁步兵鲍行卿梁晋陵令孙察",
+        "pinyin": "liáng bù bīng bào xíng qīng liáng jìn líng lìng sūn chá",
+        "english": ""
+      }
+    ]
+  }
+]

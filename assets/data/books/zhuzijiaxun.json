@@ -1,0 +1,275 @@
+[
+  {
+    "id": "zhuzijiaxun_ch_1",
+    "bookId": "zhuzijiaxun",
+    "chapterIndex": 1,
+    "title": "朱子家训·第1部分",
+    "titleEn": "Chapter 1: 朱子家训·第1部分",
+    "sentences": [
+      {
+        "chinese": "黎明即起，洒扫庭除，要内外整洁；",
+        "pinyin": "lí míng jí qǐ ， sǎ sǎo tíng chú ， yào nèi wài zhěng jié ；",
+        "english": ""
+      },
+      {
+        "chinese": "既昏便息，关锁门户，必亲自检点。",
+        "pinyin": "jì hūn biàn xī ， guān suǒ mén hù ， bì qīn zì jiǎn diǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一粥一饭，当思来处不易；",
+        "pinyin": "yī zhōu yī fàn ， dāng sī lái chù bù yì ；",
+        "english": ""
+      },
+      {
+        "chinese": "半丝半缕，恒念物力维艰。",
+        "pinyin": "bàn sī bàn lǚ ， héng niàn wù lì wéi jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "宜未雨而绸缪，毋临渴而掘井。",
+        "pinyin": "yí wèi yǔ ér chóu móu ， wú lín kě ér jué jǐng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自奉必须俭约，宴客切勿流连。",
+        "pinyin": "zì fèng bì xū jiǎn yuē ， yàn kè qiè wù liú lián 。",
+        "english": ""
+      },
+      {
+        "chinese": "器具质而洁，瓦缶胜金玉；",
+        "pinyin": "qì jù zhì ér jié ， wǎ fǒu shèng jīn yù ；",
+        "english": ""
+      },
+      {
+        "chinese": "饮食约而精，园蔬愈珍馐。",
+        "pinyin": "yǐn shí yuē ér jīng ， yuán shū yù zhēn xiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "勿营华屋，勿谋良田。",
+        "pinyin": "wù yíng huá wū ， wù móu liáng tián 。",
+        "english": ""
+      },
+      {
+        "chinese": "三姑六婆，实淫盗之媒；",
+        "pinyin": "sān gū liù pó ， shí yín dào zhī méi ；",
+        "english": ""
+      },
+      {
+        "chinese": "婢美妾娇，非闺房之福。",
+        "pinyin": "bì měi qiè jiāo ， fēi guī fáng zhī fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "僮仆勿用俊美，妻妾切忌艳装。",
+        "pinyin": "tóng pú wù yòng jùn měi ， qī qiè qiè jì yàn zhuāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "祖宗虽远，祭祀不可不诚；",
+        "pinyin": "zǔ zōng suī yuǎn ， jì sì bù kě bù chéng ；",
+        "english": ""
+      },
+      {
+        "chinese": "子孙虽愚，经书不可不读。",
+        "pinyin": "zǐ sūn suī yú ， jīng shū bù kě bù dú 。",
+        "english": ""
+      },
+      {
+        "chinese": "居身务期质朴，教子要有义方。",
+        "pinyin": "jū shēn wù qī zhì piáo ， jiào zi yào yǒu yì fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "勿贪意外之财，勿饮过量之酒。",
+        "pinyin": "wù tān yì wài zhī cái ， wù yǐn guò liàng zhī jiǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "与肩挑贸易，毋占便宜；",
+        "pinyin": "yǔ jiān tiāo mào yì ， wú zhàn pián yí ；",
+        "english": ""
+      },
+      {
+        "chinese": "见贫苦亲邻，须加温恤。",
+        "pinyin": "jiàn pín kǔ qīn lín ， xū jiā wēn xù 。",
+        "english": ""
+      },
+      {
+        "chinese": "刻薄成家，理无久享；",
+        "pinyin": "kè bó chéng jiā ， lǐ wú jiǔ xiǎng ；",
+        "english": ""
+      },
+      {
+        "chinese": "伦常乖舛，立见消亡。",
+        "pinyin": "lún cháng guāi chuǎn ， lì jiàn xiāo wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "兄弟叔侄，需分多润寡；",
+        "pinyin": "xiōng dì shū zhí ， xū fēn duō rùn guǎ ；",
+        "english": ""
+      },
+      {
+        "chinese": "长幼内外，宜法肃辞严。",
+        "pinyin": "zhǎng yòu nèi wài ， yí fǎ sù cí yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "听妇言乖骨肉，岂是丈夫？",
+        "pinyin": "tīng fù yán guāi gǔ ròu ， qǐ shì zhàng fū ？",
+        "english": ""
+      },
+      {
+        "chinese": "重资财薄父母，不成人子。",
+        "pinyin": "zhòng zī cái báo fù mǔ ， bù chéng rén zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "嫁女择佳婿，毋索重聘；",
+        "pinyin": "jià nǚ zé jiā xù ， wú suǒ zhòng pìn ；",
+        "english": ""
+      },
+      {
+        "chinese": "娶媳求淑女，勿计厚奁。",
+        "pinyin": "qǔ xí qiú shū nǚ ， wù jì hòu lián 。",
+        "english": ""
+      },
+      {
+        "chinese": "见富贵而生谄容者最可耻；",
+        "pinyin": "jiàn fù guì ér shēng chǎn róng zhě zuì kě chǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "遇贫穷而作骄态者贱莫甚。",
+        "pinyin": "yù pín qióng ér zuò jiāo tài zhě jiàn mò shèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "居家戒争讼，讼则终凶；",
+        "pinyin": "jū jiā jiè zhēng sòng ， sòng zé zhōng xiōng ；",
+        "english": ""
+      },
+      {
+        "chinese": "处世戒多言，言多必失。",
+        "pinyin": "chǔ shì jiè duō yán ， yán duō bì shī 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "zhuzijiaxun_ch_2",
+    "bookId": "zhuzijiaxun",
+    "chapterIndex": 2,
+    "title": "朱子家训·第2部分",
+    "titleEn": "Chapter 2: 朱子家训·第2部分",
+    "sentences": [
+      {
+        "chinese": "勿恃势力而凌逼孤寡，毋贪口腹而恣杀生禽。",
+        "pinyin": "wù shì shì lì ér líng bī gū guǎ ， wú tān kǒu fù ér zì shā shēng qín 。",
+        "english": ""
+      },
+      {
+        "chinese": "乖僻自是，悔误必多；",
+        "pinyin": "guāi pì zì shì ， huǐ wù bì duō ；",
+        "english": ""
+      },
+      {
+        "chinese": "颓惰自甘，家道难成。",
+        "pinyin": "tuí duò zì gān ， jiā dào nán chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "狎昵恶少，久必受其累；",
+        "pinyin": "xiá nì è shào ， jiǔ bì shòu qí lèi ；",
+        "english": ""
+      },
+      {
+        "chinese": "屈志老成，急则可相依。",
+        "pinyin": "qū zhì lǎo chéng ， jí zé kě xiāng yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "轻听发言，安知非人之谮诉，当忍耐三思；",
+        "pinyin": "qīng tīng fā yán ， ān zhī fēi rén zhī zèn sù ， dāng rěn nài sān sī ；",
+        "english": ""
+      },
+      {
+        "chinese": "因事相争，焉知非我之不是，需平心暗想。",
+        "pinyin": "yīn shì xiāng zhēng ， yān zhī fēi wǒ zhī bú shì ， xū píng xīn àn xiǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "施惠无念，受恩莫忘。",
+        "pinyin": "shī huì wú niàn ， shòu ēn mò wàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡事当留余地，得意不宜再往。",
+        "pinyin": "fán shì dāng liú yú dì ， dé yì bù yí zài wǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人有喜庆，不可生嫉妒心；",
+        "pinyin": "rén yǒu xǐ qìng ， bù kě shēng jí dù xīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "人有祸患，不可生喜幸心。",
+        "pinyin": "rén yǒu huò huàn ， bù kě shēng xǐ xìng xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "善欲人见，不是真善；",
+        "pinyin": "shàn yù rén jiàn ， bú shì zhēn shàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "恶恐人知，便是大恶。",
+        "pinyin": "è kǒng rén zhī ， biàn shì dà è 。",
+        "english": ""
+      },
+      {
+        "chinese": "见色而起淫心，报在妻女；",
+        "pinyin": "jiàn sè ér qǐ yín xīn ， bào zài qī nǚ ；",
+        "english": ""
+      },
+      {
+        "chinese": "匿怨而用暗箭，祸延子孙。",
+        "pinyin": "nì yuàn ér yòng àn jiàn ， huò yán zǐ sūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "家门和顺，虽饔飧不继，亦有余欢；",
+        "pinyin": "jiā mén hé shùn ， suī yōng sūn bù jì ， yì yǒu yú huān ；",
+        "english": ""
+      },
+      {
+        "chinese": "国课早完，即囊橐无余，自得至乐。",
+        "pinyin": "guó kè zǎo wán ， jí náng tuó wú yú ， zì dé zhì lè 。",
+        "english": ""
+      },
+      {
+        "chinese": "读书志在圣贤，非徒科第；",
+        "pinyin": "dú shū zhì zài shèng xián ， fēi tú kē dì ；",
+        "english": ""
+      },
+      {
+        "chinese": "为官心存君国，岂计身家？",
+        "pinyin": "wèi guān xīn cún jūn guó ， qǐ jì shēn jiā ？",
+        "english": ""
+      },
+      {
+        "chinese": "守分安命，顺时听天。",
+        "pinyin": "shǒu fèn ān mìng ， shùn shí tīng tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人若此，庶乎近焉。",
+        "pinyin": "wéi rén ruò cǐ ， shù hū jìn yān 。",
+        "english": ""
+      }
+    ]
+  }
+]

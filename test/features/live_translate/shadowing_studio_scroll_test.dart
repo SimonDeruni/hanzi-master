@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hanzi_master/features/flashcards/presentation/providers/settings_controller.dart';
 import 'package:hanzi_master/features/live_translate/presentation/screens/shadowing_studio_screen.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   testWidgets('Shadowing Studio hub is scrollable so the custom-word search field stays reachable',
@@ -170,5 +172,131 @@ void main() {
 
     expect(find.text('Studio de répétition et analyse visuelle des tons'),
         findsOneWidget);
+  });
+
+  testWidgets(
+      'Shadowing Studio session on iPad does not need or allow scrolling',
+      (tester) async {
+    // 10.2" iPad landscape viewport
+    tester.view.devicePixelRatio = 1.0;
+    tester.view.physicalSize = const Size(1024, 768);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+        ],
+        child: const MaterialApp(
+          locale: Locale('fr'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ShadowingStudioScreen(
+            initialHanzi: '你好',
+            initialPinyin: 'nǐ hǎo',
+            initialTranslation: 'Bonjour',
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // On iPad, session UI is fixed: no SingleChildScrollView is rendered so the user
+    // cannot scroll down and all controls are comfortably visible.
+    expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(find.text('你好'), findsOneWidget);
+    expect(find.byIcon(Icons.mic), findsOneWidget);
+  });
+
+  testWidgets(
+      'Shadowing Studio session on iPad portrait does not need or allow scrolling',
+      (tester) async {
+    // 10.2" iPad portrait viewport
+    tester.view.devicePixelRatio = 1.0;
+    tester.view.physicalSize = const Size(768, 1024);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+        ],
+        child: const MaterialApp(
+          locale: Locale('fr'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ShadowingStudioScreen(
+            initialHanzi: '你好',
+            initialPinyin: 'nǐ hǎo',
+            initialTranslation: 'Bonjour',
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(find.text('你好'), findsOneWidget);
+    expect(find.byIcon(Icons.mic), findsOneWidget);
+  });
+
+  testWidgets(
+      'Shadowing Studio session on mobile phone retains scroll view for compact screens',
+      (tester) async {
+    // Standard phone viewport
+    tester.view.devicePixelRatio = 1.0;
+    tester.view.physicalSize = const Size(390, 844);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+        ],
+        child: const MaterialApp(
+          locale: Locale('fr'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ShadowingStudioScreen(
+            initialHanzi: '你好',
+            initialPinyin: 'nǐ hǎo',
+            initialTranslation: 'Bonjour',
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // On phones, session UI preserves SingleChildScrollView so small viewports don't clip.
+    expect(find.byType(SingleChildScrollView), findsOneWidget);
+    expect(find.text('你好'), findsOneWidget);
+    expect(find.byIcon(Icons.mic), findsOneWidget);
   });
 }

@@ -32,6 +32,8 @@ GEMINI_URL = ("https://generativelanguage.googleapis.com/v1beta/models/"
 GEMINI_MODEL = "gemini-3.6-flash"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MODEL = "google/gemini-3.6-flash"
+DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
+DEEPSEEK_MODEL = "deepseek-chat"
 
 _print_lock = threading.Lock()
 
@@ -105,8 +107,9 @@ class Channel:
                 headers={"Content-Type": "application/json", "x-goog-api-key": self.key},
             )
         else:
+            url = DEEPSEEK_URL if self.kind == "deepseek" else OPENROUTER_URL
             request = urllib.request.Request(
-                OPENROUTER_URL,
+                url,
                 data=json.dumps({
                     "model": self.model,
                     "messages": [{"role": "user", "content": prompt}],
@@ -174,6 +177,7 @@ def load_channels(rpm):
 
     add("gemini(.env)", "gemini", env.get("GEMINI_API_KEY"), GEMINI_MODEL)
     add("gemini(functions)", "gemini", functions.get("GEMINI_API_KEY_LOCAL"), GEMINI_MODEL)
+    add("deepseek(.env)", "deepseek", env.get("DEEPSEEK_API_KEY"), DEEPSEEK_MODEL)
     add("openrouter(.env)", "openrouter", env.get("OPENROUTER_API_KEY"), OPENROUTER_MODEL)
     add("openrouter(functions)", "openrouter", functions.get("OPENROUTER_API_KEY"),
         OPENROUTER_MODEL)

@@ -19,8 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// of its contract: the English is used verbatim when English is the target
 /// (with no request spent), and it is only a placeholder otherwise.
 class _RecordingTranslationService extends LocalTranslationService {
-  _RecordingTranslationService({required String targetLanguage})
-      : super(targetLanguage: targetLanguage);
+  _RecordingTranslationService({required super.targetLanguage});
 
   final List<String> requests = <String>[];
   String result = 'TRADUIT';

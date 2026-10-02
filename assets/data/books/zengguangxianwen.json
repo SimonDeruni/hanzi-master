@@ -1,0 +1,3820 @@
+[
+  {
+    "id": "zengguangxianwen_ch_1",
+    "bookId": "zengguangxianwen",
+    "chapterIndex": 1,
+    "title": "上集",
+    "titleEn": "Chapter 1: 上集",
+    "sentences": [
+      {
+        "chinese": "昔时贤文，诲汝谆谆。",
+        "pinyin": "xī shí xián wén ， huì rǔ zhūn zhūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "集韵增广，多见多闻。",
+        "pinyin": "jí yùn zēng guǎng ， duō jiàn duō wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "观今宜鉴古，无古不成今。",
+        "pinyin": "guān jīn yí jiàn gǔ ， wú gǔ bù chéng jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "知己知彼，将心比心。",
+        "pinyin": "zhī jǐ zhī bǐ ， jiāng xīn bǐ xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒逢知己饮，诗向会人吟。",
+        "pinyin": "jiǔ féng zhī jǐ yǐn ， shī xiàng huì rén yín 。",
+        "english": ""
+      },
+      {
+        "chinese": "相识满天下，知心能几人？",
+        "pinyin": "xiāng shí mǎn tiān xià ， zhī xīn néng jǐ rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "相逢好似初相识，到老终无怨恨心。",
+        "pinyin": "xiāng féng hǎo sì chū xiāng shí ， dào lǎo zhōng wú yuàn hèn xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "近水知鱼性，近山识鸟音。",
+        "pinyin": "jìn shuǐ zhī yú xìng ， jìn shān shí niǎo yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "易涨易退山溪水，易反易覆小人心。",
+        "pinyin": "yì zhǎng yì tuì shān xī shuǐ ， yì fǎn yì fù xiǎo rén xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "运去金成铁，时来铁似金。",
+        "pinyin": "yùn qù jīn chéng tiě ， shí lái tiě shì jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "读书须用意，一字值千金。",
+        "pinyin": "dú shū xū yòng yì ， yī zì zhí qiān jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "逢人且说三分话，未可全抛一片心。",
+        "pinyin": "féng rén qiě shuō sān fēn huà ， wèi kě quán pāo yī piàn xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "有意栽花花不发，无心插柳柳成荫。",
+        "pinyin": "yǒu yì zāi huā huā bù fā ， wú xīn chā liǔ liǔ chéng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "画虎画皮难画骨，知人知面不知心。",
+        "pinyin": "huà hǔ huà pí nán huà gǔ ， zhī rén zhī miàn bù zhī xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "钱财如粪土，仁义值千金。",
+        "pinyin": "qián cái rú fèn tǔ ， rén yì zhí qiān jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "流水下滩非有意，白云出岫本无心。",
+        "pinyin": "liú shuǐ xià tān fēi yǒu yì ， bái yún chū xiù běn wú xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "当时若不登高望，谁信东流海洋深？",
+        "pinyin": "dāng shí ruò bù dēng gāo wàng ， shuí xìn dōng liú hǎi yáng shēn ？",
+        "english": ""
+      },
+      {
+        "chinese": "路遥知马力，日久见人心。",
+        "pinyin": "lù yáo zhī mǎ lì ， rì jiǔ jiàn rén xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "两人一般心，无钱堪买金；",
+        "pinyin": "liǎng rén yì bān xīn ， wú qián kān mǎi jīn ；",
+        "english": ""
+      },
+      {
+        "chinese": "一人一般心，有钱难买针。",
+        "pinyin": "yī rén yì bān xīn ， yǒu qián nán mǎi zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "相见易得好，久住难为人。",
+        "pinyin": "xiāng jiàn yì dé hǎo ， jiǔ zhù nán wéi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "马行无力皆因瘦，人不风流只为贫。",
+        "pinyin": "mǎ xíng wú lì jiē yīn shòu ， rén bù fēng liú zhǐ wèi pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "饶人不是痴汉，痴汉不会饶人。",
+        "pinyin": "ráo rén bú shì chī hàn ， chī hàn bú huì ráo rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "是亲不是亲，非亲却是亲。",
+        "pinyin": "shì qīn bú shì qīn ， fēi qīn què shì qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "美不美，乡中水；",
+        "pinyin": "měi bù měi ， xiāng zhōng shuǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "亲不亲，故乡人。",
+        "pinyin": "qīn bù qīn ， gù xiāng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "莺花犹怕春光老，岂可教人枉度春？",
+        "pinyin": "yīng huā yóu pà chūn guāng lǎo ， qǐ kě jiào rén wǎng dù chūn ？",
+        "english": ""
+      },
+      {
+        "chinese": "相逢不饮空归去，洞口桃花也笑人。",
+        "pinyin": "xiāng féng bù yǐn kōng guī qù ， dòng kǒu táo huā yě xiào rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "红粉佳人休使老，风流浪子莫教贫。",
+        "pinyin": "hóng fěn jiā rén xiū shǐ lǎo ， fēng liú làng zi mò jiào pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "在家不会迎宾客，出门方知少主人。",
+        "pinyin": "zài jiā bú huì yíng bīn kè ， chū mén fāng zhī shǎo zhǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄芩无假，阿魏无真。",
+        "pinyin": "huáng qín wú jiǎ ， ā wèi wú zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "客来主不顾，自是无良宾。",
+        "pinyin": "kè lái zhǔ bù gù ， zì shì wú liáng bīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "良宾方不顾，应恐是痴人。",
+        "pinyin": "liáng bīn fāng bù gù ， yīng kǒng shì chī rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "贫居闹市无人问，富在深山有远亲。",
+        "pinyin": "pín jū nào shì wú rén wèn ， fù zài shēn shān yǒu yuǎn qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "谁人背后无人说，哪个人前不说人？",
+        "pinyin": "shuí rén bèi hòu wú rén shuō ， nǎ ge rén qián bù shuō rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "有钱道真语，无钱语不真。",
+        "pinyin": "yǒu qián dào zhēn yǔ ， wú qián yǔ bù zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "不信但看筵中酒，杯杯先劝有钱人。",
+        "pinyin": "bù xìn dàn kàn yán zhōng jiǔ ， bēi bēi xiān quàn yǒu qián rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "闹里挣钱，静处安身。",
+        "pinyin": "nào lǐ zhèng qián ， jìng chù ān shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "来如风雨，去似微尘。",
+        "pinyin": "lái rú fēng yǔ ， qù shì wēi chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "长江后浪推前浪，世上新人赶旧人。",
+        "pinyin": "cháng jiāng hòu làng tuī qián làng ， shì shàng xīn rén gǎn jiù rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "近水楼台先得月，向阳花木早逢春。",
+        "pinyin": "jìn shuǐ lóu tái xiān dé yuè ， xiàng yáng huā mù zǎo féng chūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "古人不见今时月，今月曾经照古人。",
+        "pinyin": "gǔ rén bú jiàn jīn shí yuè ， jīn yuè céng jīng zhào gǔ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "先到为君，后到为臣。",
+        "pinyin": "xiān dào wèi jūn ， hòu dào wèi chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫道君行早，更有早行人。",
+        "pinyin": "mò dào jūn xíng zǎo ， gèng yǒu zǎo xíng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫信直中直，须防仁不仁。",
+        "pinyin": "mò xìn zhí zhōng zhí ， xū fáng rén bù rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "山中有直树，世上无直人。",
+        "pinyin": "shān zhōng yǒu zhí shù ， shì shàng wú zhí rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "自恨枝无叶，莫怨太阳偏。",
+        "pinyin": "zì hèn zhī wú yè ， mò yuàn tài yáng piān 。",
+        "english": ""
+      },
+      {
+        "chinese": "一切都是命，半点不由人。",
+        "pinyin": "yī qiè dōu shì mìng ， bàn diǎn bù yóu rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "一年之计在于春，一日之计在于寅。",
+        "pinyin": "yī nián zhī jì zài yú chūn ， yī rì zhī jì zài yú yín 。",
+        "english": ""
+      },
+      {
+        "chinese": "一家之计在于和，一生之计在于勤。",
+        "pinyin": "yī jiā zhī jì zài yú hé ， yī shēng zhī jì zài yú qín 。",
+        "english": ""
+      },
+      {
+        "chinese": "责人之心责己，恕己之心恕人。",
+        "pinyin": "zé rén zhī xīn zé jǐ ， shù jǐ zhī xīn shù rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "守口如瓶，防意如城。",
+        "pinyin": "shǒu kǒu rú píng ， fáng yì rú chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁可人负我，切莫我负人。",
+        "pinyin": "nìng kě rén fù wǒ ， qiè mò wǒ fù rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "再三须慎意，第一莫欺心。",
+        "pinyin": "zài sān xū shèn yì ， dì yī mò qī xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "虎身犹可近，人毒不堪亲。",
+        "pinyin": "hǔ shēn yóu kě jìn ， rén dú bù kān qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "来说是非者，便是是非人。",
+        "pinyin": "lái shuō shì fēi zhě ， biàn shì shì fēi rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "远水难救近火，远亲不如近邻。",
+        "pinyin": "yuǎn shuǐ nán jiù jìn huǒ ， yuǎn qīn bù rú jìn lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "有酒有肉多兄弟，急难何曾见一人？",
+        "pinyin": "yǒu jiǔ yǒu ròu duō xiōng dì ， jí nàn hé zēng jiàn yī rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "人情似纸张张薄，世事如棋局局新。",
+        "pinyin": "rén qíng shì zhǐ zhāng zhāng báo ， shì shì rú qí jú jú xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "山中也有千年树，世上难逢百岁人。",
+        "pinyin": "shān zhōng yě yǒu qiān nián shù ， shì shàng nán féng bǎi suì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "力微休负重，言轻莫劝人。",
+        "pinyin": "lì wēi xiū fù zhòng ， yán qīng mò quàn rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "无钱休入众，遭难莫寻亲。",
+        "pinyin": "wú qián xiū rù zhòng ， zāo nàn mò xún qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "平生不做皱眉事，世上应无切齿人。",
+        "pinyin": "píng shēng bù zuò zhòu méi shì ， shì shàng yīng wú qiè chǐ rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "士者国之宝，儒为席上珍。",
+        "pinyin": "shì zhě guó zhī bǎo ， rú wèi xí shàng zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "若要断酒法，醒眼看醉人。",
+        "pinyin": "ruò yào duàn jiǔ fǎ ， xǐng yǎn kàn zuì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "求人须求大丈夫，济人须济急时无。",
+        "pinyin": "qiú rén xū qiú dà zhàng fū ， jì rén xū jì jí shí wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "渴时一滴如甘露，醉后添杯不如无。",
+        "pinyin": "kě shí yī dī rú gān lù ， zuì hòu tiān bēi bù rú wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "久住令人贱，频来亲也疏。",
+        "pinyin": "jiǔ zhù lìng rén jiàn ， pín lái qīn yě shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒中不语真君子，财上分明大丈夫。",
+        "pinyin": "jiǔ zhōng bù yǔ zhēn jūn zǐ ， cái shàng fēn míng dà zhàng fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "出家如初，成佛有余。",
+        "pinyin": "chū jiā rú chū ， chéng fú yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "积金千两，不如明解经书。",
+        "pinyin": "jī jīn qiān liǎng ， bù rú míng jiě jīng shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "养子不教如养驴，养女不教如养猪。",
+        "pinyin": "yǎng zi bù jiào rú yǎng lǘ ， yǎng nǚ bù jiào rú yǎng zhū 。",
+        "english": ""
+      },
+      {
+        "chinese": "有田不耕仓廪虚，有书不读子孙愚。",
+        "pinyin": "yǒu tián bù gēng cāng lǐn xū ， yǒu shū bù dú zǐ sūn yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "仓廪虚兮岁月乏，子孙愚兮礼仪疏。",
+        "pinyin": "cāng lǐn xū xī suì yuè fá ， zǐ sūn yú xī lǐ yí shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "听君一席话，胜读十年书。",
+        "pinyin": "tīng jūn yī xí huà ， shèng dú shí nián shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "人不通今古，马牛如襟裾。",
+        "pinyin": "rén bù tōng jīn gǔ ， mǎ niú rú jīn jū 。",
+        "english": ""
+      },
+      {
+        "chinese": "茫茫四海人无数，哪个男儿是丈夫？",
+        "pinyin": "máng máng sì hǎi rén wú shù ， nǎ ge nán ér shì zhàng fū ？",
+        "english": ""
+      },
+      {
+        "chinese": "白酒酿成缘好客，黄金散尽为收书。",
+        "pinyin": "bái jiǔ niàng chéng yuán hào kè ， huáng jīn sàn jǐn wèi shōu shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "救人一命，胜造七级浮屠。",
+        "pinyin": "jiù rén yī mìng ， shèng zào qī jí fú tú 。",
+        "english": ""
+      },
+      {
+        "chinese": "城门失火，殃及池鱼。",
+        "pinyin": "chéng mén shī huǒ ， yāng jí chí yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "庭前生瑞草，好事不如无。",
+        "pinyin": "tíng qián shēng ruì cǎo ， hǎo shì bù rú wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲求生富贵，须下死工夫。",
+        "pinyin": "yù qiú shēng fù guì ， xū xià sǐ gōng fu 。",
+        "english": ""
+      },
+      {
+        "chinese": "百年成之不足，一旦坏之有余。",
+        "pinyin": "bǎi nián chéng zhī bù zú ， yí dàn huài zhī yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "人心似铁，官法如炉。",
+        "pinyin": "rén xīn shì tiě ， guān fǎ rú lú 。",
+        "english": ""
+      },
+      {
+        "chinese": "善化不足，恶化有余。",
+        "pinyin": "shàn huà bù zú ， è huà yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "水至清则无鱼，人太急则无智。",
+        "pinyin": "shuǐ zhì qīng zé wú yú ， rén tài jí zé wú zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "知者减半，愚者全无。",
+        "pinyin": "zhī zhě jiǎn bàn ， yú zhě quán wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "在家由父，出嫁从夫。",
+        "pinyin": "zài jiā yóu fù ， chū jià cóng fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "痴人畏妇，贤女敬夫。",
+        "pinyin": "chī rén wèi fù ， xián nǚ jìng fū 。",
+        "english": ""
+      },
+      {
+        "chinese": "是非终日有，不听自然无。",
+        "pinyin": "shì fēi zhōng rì yǒu ， bù tīng zì rán wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "竹篱茅舍风光好，道院僧房终不如。",
+        "pinyin": "zhú lí máo shè fēng guāng hǎo ， dào yuàn sēng fáng zhōng bù rú 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁可正而不足，不可邪而有余。",
+        "pinyin": "nìng kě zhèng ér bù zú ， bù kě xié ér yǒu yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁可信其有，不可信其无。",
+        "pinyin": "nìng kě xìn qí yǒu ， bù kě xìn qí wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "命里有时终须有，命里无时莫强求。",
+        "pinyin": "mìng lǐ yǒu shí zhōng xū yǒu ， mìng lǐ wú shí mò qiǎng qiú 。",
+        "english": ""
+      },
+      {
+        "chinese": "道院迎仙客，书堂隐相儒。",
+        "pinyin": "dào yuàn yíng xiān kè ， shū táng yǐn xiāng rú 。",
+        "english": ""
+      },
+      {
+        "chinese": "庭栽栖凤竹，池养化龙鱼。",
+        "pinyin": "tíng zāi qī fèng zhú ， chí yǎng huà lóng yú 。",
+        "english": ""
+      },
+      {
+        "chinese": "结交须胜己，似我不如无。",
+        "pinyin": "jié jiāo xū shèng jǐ ， shì wǒ bù rú wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "但看三五日，相见不如初。",
+        "pinyin": "dàn kàn sān wǔ rì ， xiāng jiàn bù rú chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "人情似水分高下，世事如云任卷舒。",
+        "pinyin": "rén qíng shì shuǐ fèn gāo xià ， shì shì rú yún rèn juǎn shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "会说说都是，不会说无理。",
+        "pinyin": "huì shuō shuō dōu shì ， bú huì shuō wú lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "磨刀恨不利，刀利伤人指；",
+        "pinyin": "mó dāo hèn bù lì ， dāo lì shāng rén zhǐ ；",
+        "english": ""
+      },
+      {
+        "chinese": "求财恨不多，财多害自己。",
+        "pinyin": "qiú cái hèn bù duō ， cái duō hài zì jǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "知足常足，终身不辱；",
+        "pinyin": "zhī zú cháng zú ， zhōng shēn bù rǔ ；",
+        "english": ""
+      },
+      {
+        "chinese": "知止常止，终身不耻。",
+        "pinyin": "zhī zhǐ cháng zhǐ ， zhōng shēn bù chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "有福伤财，无福伤己。",
+        "pinyin": "yǒu fú shāng cái ， wú fú shāng jǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "差之毫厘，失之千里。",
+        "pinyin": "chā zhī háo lí ， shī zhī qiān lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若登高必自卑，若涉远必自迩。",
+        "pinyin": "ruò dēng gāo bì zì bēi ， ruò shè yuǎn bì zì ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "三思而行，再思可矣。",
+        "pinyin": "sān sī ér xíng ， zài sī kě yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "动口不如亲为，求人不如求己。",
+        "pinyin": "dòng kǒu bù rú qīn wéi ， qiú rén bù rú qiú jǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "小时是兄弟，长大各乡里。",
+        "pinyin": "xiǎo shí shì xiōng dì ， zhǎng dà gè xiāng lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "嫉财莫嫉食，怨生莫怨死。",
+        "pinyin": "jí cái mò jí shí ， yuàn shēng mò yuàn sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "人见白头嗔，我见白头喜。",
+        "pinyin": "rén jiàn bái tóu chēn ， wǒ jiàn bái tóu xǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "多少少年郎，不到白头死。",
+        "pinyin": "duō shǎo shào nián láng ， bú dào bái tóu sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "墙有缝，壁有耳。",
+        "pinyin": "qiáng yǒu fèng ， bì yǒu ěr 。",
+        "english": ""
+      },
+      {
+        "chinese": "好事不出门，坏事传千里。",
+        "pinyin": "hǎo shì bù chū mén ， huài shì chuán qiān lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "若要人不知，除非己莫为。",
+        "pinyin": "ruò yào rén bù zhī ， chú fēi jǐ mò wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人不做亏心事，半夜敲门心不惊。",
+        "pinyin": "wéi rén bù zuò kuī xīn shì ， bàn yè qiāo mén xīn bù jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "贼是小人，智过君子。",
+        "pinyin": "zéi shì xiǎo rén ， zhì guò jūn zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子固穷，小人穷斯滥矣。",
+        "pinyin": "jūn zǐ gù qióng ， xiǎo rén qióng sī làn yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "富贵多忧，贫穷自在。",
+        "pinyin": "fù guì duō yōu ， pín qióng zì zài 。",
+        "english": ""
+      },
+      {
+        "chinese": "不以我为德，反以我为仇。",
+        "pinyin": "bù yǐ wǒ wèi dé ， fǎn yǐ wǒ wèi chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁可直中取，不可曲中求。",
+        "pinyin": "nìng kě zhí zhōng qǔ ， bù kě qū zhōng qiú 。",
+        "english": ""
+      },
+      {
+        "chinese": "人无远虑，必有近忧。",
+        "pinyin": "rén wú yuǎn lǜ ， bì yǒu jìn yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "知我者谓我心忧，不知我者谓我何求？",
+        "pinyin": "zhī wǒ zhě wèi wǒ xīn yōu ， bù zhī wǒ zhě wèi wǒ hé qiú ？",
+        "english": ""
+      },
+      {
+        "chinese": "晴天不肯去，直待雨淋头。",
+        "pinyin": "qíng tiān bù kěn qù ， zhí dài yǔ lín tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "成事莫说，覆水难收。",
+        "pinyin": "chéng shì mò shuō ， fù shuǐ nán shōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "是非只为多开口，烦恼皆因强出头。",
+        "pinyin": "shì fēi zhǐ wèi duō kāi kǒu ， fán nǎo jiē yīn qiáng chū tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "忍得一时之气，免得百日之忧。",
+        "pinyin": "rěn dé yī shí zhī qì ， miǎn de bǎi rì zhī yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "近来学得乌龟法，得缩头时且缩头。",
+        "pinyin": "jìn lái xué dé wū guī fǎ ， dé suō tóu shí qiě suō tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "惧法朝朝乐，欺公日日忧。",
+        "pinyin": "jù fǎ cháo cháo lè ， qī gōng rì rì yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "人生一世，草长一春。",
+        "pinyin": "rén shēng yī shì ， cǎo zhǎng yī chūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "黑发不知勤学早，转眼便是白头翁。",
+        "pinyin": "hēi fà bù zhī qín xué zǎo ， zhuǎn yǎn biàn shì bái tóu wēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "月过十五光明少，人到中年万事休。",
+        "pinyin": "yuè guò shí wǔ guāng míng shǎo ， rén dào zhōng nián wàn shì xiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "儿孙自有儿孙福，莫为儿孙做马牛。",
+        "pinyin": "ér sūn zì yǒu ér sūn fú ， mò wèi ér sūn zuò mǎ niú 。",
+        "english": ""
+      },
+      {
+        "chinese": "人生不满百，常怀千岁忧。",
+        "pinyin": "rén shēng bù mǎn bǎi ， cháng huái qiān suì yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "今朝有酒今朝醉，明日愁来明日忧。",
+        "pinyin": "jīn zhāo yǒu jiǔ jīn zhāo zuì ， míng rì chóu lái míng rì yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "路逢险处须回避，事到临头不自由。",
+        "pinyin": "lù féng xiǎn chù xū huí bì ， shì dào lín tóu bù zì yóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "人贫不语，水平不流。",
+        "pinyin": "rén pín bù yǔ ， shuǐ píng bù liú 。",
+        "english": ""
+      },
+      {
+        "chinese": "一家养女百家求，一马不行百马忧。",
+        "pinyin": "yī jiā yǎng nǚ bǎi jiā qiú ， yī mǎ bù xíng bǎi mǎ yōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "有花方酌酒，无月不登楼。",
+        "pinyin": "yǒu huā fāng zhuó jiǔ ， wú yuè bù dēng lóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "三杯通大道，一醉解千愁。",
+        "pinyin": "sān bēi tōng dà dào ， yī zuì jiě qiān chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "深山毕竟藏猛虎，大海终须纳细流。",
+        "pinyin": "shēn shān bì jìng cáng měng hǔ ， dà hǎi zhōng xū nà xì liú 。",
+        "english": ""
+      },
+      {
+        "chinese": "惜花须检点，爱月不梳头。",
+        "pinyin": "xī huā xū jiǎn diǎn ， ài yuè bù shū tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "大抵选她肌骨好，不搽红粉也风流。",
+        "pinyin": "dà dǐ xuǎn tā jī gǔ hǎo ， bù chá hóng fěn yě fēng liú 。",
+        "english": ""
+      },
+      {
+        "chinese": "受恩深处宜先退，得意浓时便可休。",
+        "pinyin": "shòu ēn shēn chù yí xiān tuì ， dé yì nóng shí biàn kě xiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫待是非来入耳，从前恩爱反为仇。",
+        "pinyin": "mò dài shì fēi lái rù ěr ， cóng qián ēn ài fǎn wèi chóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "留得五湖明月在，不愁无处下金钩。",
+        "pinyin": "liú dé wǔ hú míng yuè zài ， bù chóu wú chǔ xià jīn gōu 。",
+        "english": ""
+      },
+      {
+        "chinese": "休别有鱼处，莫恋浅滩头。",
+        "pinyin": "xiū bié yǒu yú chù ， mò liàn qiǎn tān tóu 。",
+        "english": ""
+      },
+      {
+        "chinese": "去时终须去，再三留不住。",
+        "pinyin": "qù shí zhōng xū qù ， zài sān liú bú zhù 。",
+        "english": ""
+      },
+      {
+        "chinese": "忍一句，息一怒，饶一着，退一步。",
+        "pinyin": "rěn yī jù ， xī yī nù ， ráo yī zhe ， tuì yī bù 。",
+        "english": ""
+      },
+      {
+        "chinese": "三十不豪，四十不富，五十将来寻死路。",
+        "pinyin": "sān shí bù háo ， sì shí bù fù ， wǔ shí jiāng lái xún sǐ lù 。",
+        "english": ""
+      },
+      {
+        "chinese": "生不认魂，死不认尸。",
+        "pinyin": "shēng bù rèn hún ， sǐ bù rèn shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "一寸光阴一寸金，寸金难买寸光阴。",
+        "pinyin": "yī cùn guāng yīn yī cùn jīn ， cùn jīn nán mǎi cùn guāng yīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "父母恩深终有别，夫妻义重也分离。",
+        "pinyin": "fù mǔ ēn shēn zhōng yǒu bié ， fū qī yì zhòng yě fēn lí 。",
+        "english": ""
+      },
+      {
+        "chinese": "人生似鸟同林宿，大难来时各自飞。",
+        "pinyin": "rén shēng shì niǎo tóng lín sù ， dà nàn lái shí gè zì fēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "人善被人欺，马善被人骑。",
+        "pinyin": "rén shàn bèi rén qī ， mǎ shàn bèi rén qí 。",
+        "english": ""
+      },
+      {
+        "chinese": "人无横财不富，马无夜草不肥。",
+        "pinyin": "rén wú hèng cái bù fù ， mǎ wú yè cǎo bù féi 。",
+        "english": ""
+      },
+      {
+        "chinese": "人恶人怕天不怕，人善人欺天不欺。",
+        "pinyin": "rén è rén pà tiān bù pà ， rén shàn rén qī tiān bù qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "善恶到头终有报，只盼来早与来迟。",
+        "pinyin": "shàn è dào tóu zhōng yǒu bào ， zhǐ pàn lái zǎo yǔ lái chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄河尚有澄清日，岂能人无得运时？",
+        "pinyin": "huáng hé shàng yǒu chéng qīng rì ， qǐ néng rén wú dé yùn shí ？",
+        "english": ""
+      },
+      {
+        "chinese": "得宠思辱，居安思危。",
+        "pinyin": "dé chǒng sī rǔ ， jū ān sī wēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "念念有如临敌日，心心常似过桥时。",
+        "pinyin": "niàn niàn yǒu rú lín dí rì ， xīn xīn cháng shì guò qiáo shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "英雄行险道，富贵似花枝。",
+        "pinyin": "yīng xióng xíng xiǎn dào ， fù guì shì huā zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "人情莫道春光好，只怕秋来有冷时。",
+        "pinyin": "rén qíng mò dào chūn guāng hǎo ， zhǐ pà qiū lái yǒu lěng shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "送君千里，终有一别。",
+        "pinyin": "sòng jūn qiān lǐ ， zhōng yǒu yī bié 。",
+        "english": ""
+      },
+      {
+        "chinese": "但将冷眼观螃蟹，看你横行到几时。",
+        "pinyin": "dàn jiāng lěng yǎn guān páng xiè ， kàn nǐ héng xíng dào jǐ shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "见事莫说，问事不知。",
+        "pinyin": "jiàn shì mò shuō ， wèn shì bù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "闲事莫管，无事早归。",
+        "pinyin": "xián shì mò guǎn ， wú shì zǎo guī 。",
+        "english": ""
+      },
+      {
+        "chinese": "假缎染就真红色，也被旁人说是非。",
+        "pinyin": "jiǎ duàn rǎn jiù zhēn hóng sè ， yě bèi páng rén shuō shì fēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "善事可做，恶事莫为。",
+        "pinyin": "shàn shì kě zuò ， è shì mò wèi 。",
+        "english": ""
+      },
+      {
+        "chinese": "许人一物，千金不移。",
+        "pinyin": "xǔ rén yī wù ， qiān jīn bù yí 。",
+        "english": ""
+      },
+      {
+        "chinese": "龙生龙子，虎生虎儿。",
+        "pinyin": "lóng shēng lóng zi ， hǔ shēng hǔ ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "龙游浅水遭虾戏，虎落平原被犬欺。",
+        "pinyin": "lóng yóu qiǎn shuǐ zāo xiā xì ， hǔ luò píng yuán bèi quǎn qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "一举首登龙虎榜，十年身到凤凰池。",
+        "pinyin": "yī jǔ shǒu dēng lóng hǔ bǎng ， shí nián shēn dào fèng huáng chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "十年寒窗无人问，一举成名天下知。",
+        "pinyin": "shí nián hán chuāng wú rén wèn ， yī jǔ chéng míng tiān xià zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒债寻常处处有，人生七十古来稀！",
+        "pinyin": "jiǔ zhài xún cháng chù chù yǒu ， rén shēng qī shí gǔ lái xī ！",
+        "english": ""
+      },
+      {
+        "chinese": "养儿防老，积谷防饥。",
+        "pinyin": "yǎng ér fáng lǎo ， jī gǔ fáng jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "鸡豚狗彘之畜，无失其时，数口之家，可以无饥矣。",
+        "pinyin": "jī tún gǒu zhì zhī chù ， wú shī qí shí ， shù kǒu zhī jiā ， kě yǐ wú jī yǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "当家才知盐米贵，养子方知父母恩。",
+        "pinyin": "dāng jiā cái zhī yán mǐ guì ， yǎng zi fāng zhī fù mǔ ēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "常将有日思无日，莫把无时当有时。",
+        "pinyin": "cháng jiāng yǒu rì sī wú rì ， mò bǎ wú shí dāng yǒu shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "树欲静而风不止，子欲养而亲不待。",
+        "pinyin": "shù yù jìng ér fēng bù zhǐ ， zi yù yǎng ér qīn bù dài 。",
+        "english": ""
+      },
+      {
+        "chinese": "时来风送滕王阁，运去雷轰荐福碑。",
+        "pinyin": "shí lái fēng sòng téng wáng gé ， yùn qù léi hōng jiàn fú bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "入门休问荣枯事，且看容颜便得知。",
+        "pinyin": "rù mén xiū wèn róng kū shì ， qiě kàn róng yán biàn dé zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "官清司吏瘦，神灵庙祝肥。",
+        "pinyin": "guān qīng sī lì shòu ， shén líng miào zhù féi 。",
+        "english": ""
+      },
+      {
+        "chinese": "息却雷霆之怒，罢却虎豹之威。",
+        "pinyin": "xī què léi tíng zhī nù ， bà què hǔ bào zhī wēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "饶人算之本，输人算之机。",
+        "pinyin": "ráo rén suàn zhī běn ， shū rén suàn zhī jī 。",
+        "english": ""
+      },
+      {
+        "chinese": "好言难得，恶语易施。",
+        "pinyin": "hǎo yán nán dé ， è yǔ yì shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "一言既出，驷马难追。",
+        "pinyin": "yī yán jì chū ， sì mǎ nán zhuī 。",
+        "english": ""
+      },
+      {
+        "chinese": "道吾好者是吾贼，道吾恶者是吾师。",
+        "pinyin": "dào wú hǎo zhě shì wú zéi ， dào wú è zhě shì wú shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "路逢侠客须呈剑，不是才人莫献诗。",
+        "pinyin": "lù féng xiá kè xū chéng jiàn ， bú shì cái rén mò xiàn shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "三人行必有我师焉。",
+        "pinyin": "sān rén xíng bì yǒu wǒ shī yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "择其善者而从之，其不善者而改之。",
+        "pinyin": "zé qí shàn zhě ér cóng zhī ， qí bù shàn zhě ér gǎi zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲昌和顺须为善，要振家声在读书。",
+        "pinyin": "yù chāng hé shùn xū wèi shàn ， yào zhèn jiā shēng zài dú shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "少壮不努力，老大徒伤悲。",
+        "pinyin": "shào zhuàng bù nǔ lì ， lǎo dà tú shāng bēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "人有善愿，天必佑之。",
+        "pinyin": "rén yǒu shàn yuàn ， tiān bì yòu zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫饮卯时酒，昏昏醉到酉。",
+        "pinyin": "mò yǐn mǎo shí jiǔ ， hūn hūn zuì dào yǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫骂酉时妻，一夜受孤凄。",
+        "pinyin": "mò mà yǒu shí qī ， yī yè shòu gū qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "种麻得麻，种豆得豆。",
+        "pinyin": "zhǒng má dé má ， zhòng dòu dé dòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "天眼恢恢，疏而不漏。",
+        "pinyin": "tiān yǎn huī huī ， shū ér bù lòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "见官莫向前，作客莫在后。",
+        "pinyin": "jiàn guān mò xiàng qián ， zuò kè mò zài hòu 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁添一斗，莫添一口。",
+        "pinyin": "níng tiān yī dòu ， mò tiān yī kǒu 。",
+        "english": ""
+      },
+      {
+        "chinese": "螳螂捕蝉，岂知黄雀在后？",
+        "pinyin": "táng láng bǔ chán ， qǐ zhī huáng què zài hòu ？",
+        "english": ""
+      },
+      {
+        "chinese": "不求金玉重重贵，但愿儿孙个个贤。",
+        "pinyin": "bù qiú jīn yù chóng chóng guì ， dàn yuàn ér sūn gè gè xián 。",
+        "english": ""
+      },
+      {
+        "chinese": "一日夫妻，百世姻缘。",
+        "pinyin": "yī rì fū qī ， bǎi shì yīn yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "百世修来同船渡，千世修来共枕眠。",
+        "pinyin": "bǎi shì xiū lái tóng chuán dù ， qiān shì xiū lái gòng zhěn mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "杀人一万，自损三千。",
+        "pinyin": "shā rén yī wàn ， zì sǔn sān qiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "伤人一语，利如刀割。",
+        "pinyin": "shāng rén yī yǔ ， lì rú dāo gē 。",
+        "english": ""
+      },
+      {
+        "chinese": "枯木逢春犹再发，人无两度再少年。",
+        "pinyin": "kū mù féng chūn yóu zài fā ， rén wú liǎng dù zài shào nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "未晚先投宿，鸡鸣早看天。",
+        "pinyin": "wèi wǎn xiān tóu sù ， jī míng zǎo kàn tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "将相顶头堪走马，公侯肚内好撑船。",
+        "pinyin": "jiàng xiàng dǐng tóu kān zǒu mǎ ， gōng hóu dù nèi hǎo chēng chuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "富人思来年，穷人想眼前。",
+        "pinyin": "fù rén sī lái nián ， qióng rén xiǎng yǎn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "世上若要人情好，赊去物品莫取钱。",
+        "pinyin": "shì shàng ruò yào rén qíng hǎo ， shē qù wù pǐn mò qǔ qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "生死有命，富贵在天。",
+        "pinyin": "shēng sǐ yǒu mìng ， fù guì zài tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "击石原有火，不击乃无烟。",
+        "pinyin": "jī shí yuán yǒu huǒ ， bù jī nǎi wú yān 。",
+        "english": ""
+      },
+      {
+        "chinese": "人学始知道，不学亦徒然。",
+        "pinyin": "rén xué shǐ zhī dào ， bù xué yì tú rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫笑他人老，终须还到老。",
+        "pinyin": "mò xiào tā rén lǎo ， zhōng xū hái dào lǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "和得邻里好，犹如拾片宝。",
+        "pinyin": "hé dé lín lǐ hǎo ， yóu rú shí piàn bǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "但能守本分，终身无烦恼。",
+        "pinyin": "dàn néng shǒu běn fèn ， zhōng shēn wú fán nǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "大家做事寻常，小家做事慌张。",
+        "pinyin": "dà jiā zuò shì xún cháng ， xiǎo jiā zuò shì huāng zhāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "大家礼义教子弟，小家凶恶训儿郎。",
+        "pinyin": "dà jiā lǐ yì jiào zǐ dì ， xiǎo jiā xiōng è xùn ér láng 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子爱财，取之有道。",
+        "pinyin": "jūn zǐ ài cái ， qǔ zhī yǒu dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "贞妇爱色，纳之以礼。",
+        "pinyin": "zhēn fù ài sè ， nà zhī yǐ lǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "善有善报，恶有恶报。",
+        "pinyin": "shàn yǒu shàn bào ， è yǒu è bào 。",
+        "english": ""
+      },
+      {
+        "chinese": "不是不报，时候未到。",
+        "pinyin": "bú shì bù bào ， shí hòu wèi dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "万恶淫为首，百行孝当先。",
+        "pinyin": "wàn è yín wéi shǒu ， bǎi xíng xiào dāng xiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "人而无信，不知其可也。",
+        "pinyin": "rén ér wú xìn ， bù zhī qí kě yě 。",
+        "english": ""
+      },
+      {
+        "chinese": "一人道虚，千人传实。",
+        "pinyin": "yī rén dào xū ， qiān rén chuán shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡事要好，须问三老。",
+        "pinyin": "fán shì yào hǎo ， xū wèn sān lǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "若争小利，便失大道。",
+        "pinyin": "ruò zhēng xiǎo lì ， biàn shī dà dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "家中不和邻里欺，邻里不和说是非。",
+        "pinyin": "jiā zhōng bù hé lín lǐ qī ， lín lǐ bù hé shuō shì fēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "年年防饥，夜夜防盗。",
+        "pinyin": "nián nián fáng jī ， yè yè fáng dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "学者是好，不学不好。",
+        "pinyin": "xué zhě shì hǎo ， bù xué bù hǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "学者如禾如稻，不学如草如蒿。",
+        "pinyin": "xué zhě rú hé rú dào ， bù xué rú cǎo rú hāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "遇饮酒时须防醉，得高歌处且高歌。",
+        "pinyin": "yù yǐn jiǔ shí xū fáng zuì ， dé gāo gē chù qiě gāo gē 。",
+        "english": ""
+      },
+      {
+        "chinese": "因风吹火，用力不多。",
+        "pinyin": "yīn fēng chuī huǒ ， yòng lì bù duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "不因渔夫引，怎能见波涛？",
+        "pinyin": "bù yīn yú fū yǐn ， zěn néng jiàn bō tāo ？",
+        "english": ""
+      },
+      {
+        "chinese": "无求到处人情好，不饮任他酒价高。",
+        "pinyin": "wú qiú dào chù rén qíng hǎo ， bù yǐn rèn tā jiǔ jià gāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "知事少时烦恼少，识人多处是非多。",
+        "pinyin": "zhī shì shǎo shí fán nǎo shǎo ， shí rén duō chù shì fēi duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "进山不怕伤人虎，只怕人情两面刀。",
+        "pinyin": "jìn shān bù pà shāng rén hǔ ， zhǐ pà rén qíng liǎng miàn dāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "强中更有强中手，恶人须用恶人磨。",
+        "pinyin": "qiáng zhōng gèng yǒu qiáng zhōng shǒu ， è rén xū yòng è rén mó 。",
+        "english": ""
+      },
+      {
+        "chinese": "会使不在家富豪，风流不用衣着佳。",
+        "pinyin": "huì shǐ bù zài jiā fù háo ， fēng liú bù yòng yī zhuó jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "光阴似箭，日月如梭。",
+        "pinyin": "guāng yīn sì jiàn ， rì yuè rú suō 。",
+        "english": ""
+      },
+      {
+        "chinese": "天时不如地利，地利不如人和。",
+        "pinyin": "tiān shí bù rú dì lì ， dì lì bù rú rén hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄金未为贵，安乐值钱多。",
+        "pinyin": "huáng jīn wèi wèi guì ， ān lè zhí qián duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "为善最乐，作恶难逃。",
+        "pinyin": "wéi shàn zuì lè ， zuò è nán táo 。",
+        "english": ""
+      },
+      {
+        "chinese": "羊有跪乳之恩，鸦有反哺之情。",
+        "pinyin": "yáng yǒu guì rǔ zhī ēn ， yā yǒu fǎn bǔ zhī qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "孝顺还生孝顺子，忤逆还生忤逆儿。",
+        "pinyin": "xiào shùn hái shēng xiào shùn zi ， wǔ nì hái shēng wǔ nì ér 。",
+        "english": ""
+      },
+      {
+        "chinese": "不信但看檐前水，点点滴滴旧窝池。",
+        "pinyin": "bù xìn dàn kàn yán qián shuǐ ， diǎn diǎn dī dī jiù wō chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "隐恶扬善，执其两端。",
+        "pinyin": "yǐn è yáng shàn ， zhí qí liǎng duān 。",
+        "english": ""
+      },
+      {
+        "chinese": "妻贤夫祸少，子孝父心宽。",
+        "pinyin": "qī xián fū huò shǎo ， zi xiào fù xīn kuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "已覆之水，收之实难。",
+        "pinyin": "yǐ fù zhī shuǐ ， shōu zhī shí nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "人生知足时常足，人老偷闲且是闲。",
+        "pinyin": "rén shēng zhī zú shí cháng zú ， rén lǎo tōu xián qiě shì xián 。",
+        "english": ""
+      },
+      {
+        "chinese": "处处绿杨堪系马，家家有路通长安。",
+        "pinyin": "chù chù lǜ yáng kān xì mǎ ， jiā jiā yǒu lù tōng cháng ān 。",
+        "english": ""
+      },
+      {
+        "chinese": "既坠釜甑，反顾何益。",
+        "pinyin": "jì zhuì fǔ zèng ， fǎn gù hé yì 。",
+        "english": ""
+      },
+      {
+        "chinese": "见者易，学者难。",
+        "pinyin": "jiàn zhě yì ， xué zhě nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "厌静还思喧，嫌喧又忆山。",
+        "pinyin": "yàn jìng hái sī xuān ， xián xuān yòu yì shān 。",
+        "english": ""
+      },
+      {
+        "chinese": "自从心定后，无处不安然。",
+        "pinyin": "zì cóng xīn dìng hòu ， wú chǔ bù ān rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫将容易得，便作等闲看。",
+        "pinyin": "mò jiāng róng yì dé ， biàn zuò děng xián kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "用心计较般般错，退后思量事事宽。",
+        "pinyin": "yòng xīn jì jiào bān bān cuò ， tuì hòu sī liáng shì shì kuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "道路各别，养家一般。",
+        "pinyin": "dào lù gè bié ， yǎng jiā yì bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "由俭入奢易，从奢入俭难。",
+        "pinyin": "yóu jiǎn rù shē yì ， cóng shē rù jiǎn nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "知音说与知音听，不是知音莫与谈。",
+        "pinyin": "zhī yīn shuō yǔ zhī yīn tīng ， bú shì zhī yīn mò yǔ tán 。",
+        "english": ""
+      },
+      {
+        "chinese": "点石化为金，人心犹未足。",
+        "pinyin": "diǎn shí huà wèi jīn ， rén xīn yóu wèi zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "信了赌，卖了屋。",
+        "pinyin": "xìn le dǔ ， mài le wū 。",
+        "english": ""
+      },
+      {
+        "chinese": "他人观花，不涉你目。",
+        "pinyin": "tā rén guān huā ， bù shè nǐ mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "他人碌碌，不涉你足。",
+        "pinyin": "tā rén lù lù ， bù shè nǐ zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "谁人不爱子孙贤，谁人不爱千锺粟。",
+        "pinyin": "shuí rén bù ài zǐ sūn xián ， shuí rén bù ài qiān zhōng sù 。",
+        "english": ""
+      },
+      {
+        "chinese": "奈五行，不是这般题目。",
+        "pinyin": "nài wǔ xíng ， bú shì zhè bān tí mù 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫把真心空计较，儿孙自有儿孙福。",
+        "pinyin": "mò bǎ zhēn xīn kōng jì jiào ， ér sūn zì yǒu ér sūn fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "书到用时方恨少，事非经过不知难。",
+        "pinyin": "shū dào yòng shí fāng hèn shǎo ， shì fēi jīng guò bù zhī nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "天下无不是的父母，世上最难得者兄弟。",
+        "pinyin": "tiān xià wú bù shì de fù mǔ ， shì shàng zuì nán dé zhě xiōng dì 。",
+        "english": ""
+      },
+      {
+        "chinese": "与人不和，劝人养鹅；",
+        "pinyin": "yǔ rén bù hé ， quàn rén yǎng é ；",
+        "english": ""
+      },
+      {
+        "chinese": "与人不睦，劝人架屋。",
+        "pinyin": "yǔ rén bù mù ， quàn rén jià wū 。",
+        "english": ""
+      },
+      {
+        "chinese": "但行好事，莫问前程。",
+        "pinyin": "dàn xíng hǎo shì ， mò wèn qián chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "不交僧道，便是好人。",
+        "pinyin": "bù jiāo sēng dào ， biàn shì hǎo rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "河狭水激，人急计生。",
+        "pinyin": "hé xiá shuǐ jī ， rén jí jì shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "明知山有虎，莫向虎山行。",
+        "pinyin": "míng zhī shān yǒu hǔ ， mò xiàng hǔ shān xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "路不铲不平，事不为不成。",
+        "pinyin": "lù bù chǎn bù píng ， shì bù wèi bù chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "无钱方断酒，临老始读经。",
+        "pinyin": "wú qián fāng duàn jiǔ ， lín lǎo shǐ dú jīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "点塔七层，不如暗处一灯。",
+        "pinyin": "diǎn tǎ qī céng ， bù rú àn chù yī dēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "堂上二老是活佛，何用灵山朝世尊。",
+        "pinyin": "táng shàng èr lǎo shì huó fó ， hé yòng líng shān cháo shì zūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "万事劝人休瞒昧，举头三尺有神明。",
+        "pinyin": "wàn shì quàn rén xiū mán mèi ， jǔ tóu sān chǐ yǒu shén míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但存方寸土，留与子孙耕。",
+        "pinyin": "dàn cún fāng cùn tǔ ， liú yǔ zǐ sūn gēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "灭却心头火，剔起佛前灯。",
+        "pinyin": "miè què xīn tóu huǒ ， tī qǐ fú qián dēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "惺惺多不足，蒙蒙作公卿。",
+        "pinyin": "xīng xīng duō bù zú ， méng méng zuò gōng qīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "众星朗朗，不如孤月独明。",
+        "pinyin": "zhòng xīng lǎng lǎng ， bù rú gū yuè dú míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "兄弟相害，不如友生。",
+        "pinyin": "xiōng dì xiāng hài ， bù rú yǒu shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "合理可作，小利不争。",
+        "pinyin": "hé lǐ kě zuò ， xiǎo lì bù zhēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "牡丹花好空入目，枣花虽小结实多。",
+        "pinyin": "mǔ dān huā hǎo kōng rù mù ， zǎo huā suī xiǎo jié shí duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "欺老莫欺小，欺人心不明。",
+        "pinyin": "qī lǎo mò qī xiǎo ， qī rén xīn bù míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "勤奋耕锄收地利，他时饱暖谢苍天。",
+        "pinyin": "qín fèn gēng chú shōu dì lì ， tā shí bǎo nuǎn xiè cāng tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "得忍且忍，得耐且耐，不忍不耐，小事成灾。",
+        "pinyin": "dé rěn qiě rěn ， dé nài qiě nài ， bù rěn bù nài ， xiǎo shì chéng zāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "相论逞英豪，家计渐渐退。",
+        "pinyin": "xiāng lùn chěng yīng háo ， jiā jì jiàn jiàn tuì 。",
+        "english": ""
+      },
+      {
+        "chinese": "贤妇令夫贵，恶妇令夫败。",
+        "pinyin": "xián fù lìng fū guì ， è fù lìng fū bài 。",
+        "english": ""
+      },
+      {
+        "chinese": "一人有庆，兆民咸赖。",
+        "pinyin": "yī rén yǒu qìng ， zhào mín xián lài 。",
+        "english": ""
+      },
+      {
+        "chinese": "人老心未老，人穷志莫穷。",
+        "pinyin": "rén lǎo xīn wèi lǎo ， rén qióng zhì mò qióng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人无千日好，花无百日红。",
+        "pinyin": "rén wú qiān rì hǎo ， huā wú bǎi rì hóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "黄蜂一口针，橘子两边分。",
+        "pinyin": "huáng fēng yī kǒu zhēn ， jú zi liǎng biān fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "世间痛恨事，最毒淫妇心。",
+        "pinyin": "shì jiān tòng hèn shì ， zuì dú yín fù xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "杀人可恕，情理不容。",
+        "pinyin": "shā rén kě shù ， qíng lǐ bù róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "乍富不知新受用，乍贫难改旧家风。",
+        "pinyin": "zhà fù bù zhī xīn shòu yòng ， zhà pín nán gǎi jiù jiā fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "座上客常满，杯中酒不空。",
+        "pinyin": "zuò shàng kè cháng mǎn ， bēi zhōng jiǔ bù kōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "屋漏更遭连夜雨，行船又遇打头风。",
+        "pinyin": "wū lòu gèng zāo lián yè yǔ ， xíng chuán yòu yù dǎ tóu fēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "笋因落箨方成竹，鱼为奔波始化龙。",
+        "pinyin": "sǔn yīn luò tuò fāng chéng zhú ， yú wèi bēn bō shǐ huà lóng 。",
+        "english": ""
+      },
+      {
+        "chinese": "记得少年骑竹马，转眼又是白头翁。",
+        "pinyin": "jì de shào nián qí zhú mǎ ， zhuǎn yǎn yòu shì bái tóu wēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "礼义生于富足，盗贼出于赌博。",
+        "pinyin": "lǐ yì shēng yú fù zú ， dào zéi chū yú dǔ bó 。",
+        "english": ""
+      },
+      {
+        "chinese": "天上众星皆拱北，世间无水不朝东。",
+        "pinyin": "tiān shàng zhòng xīng jiē gǒng běi ， shì jiān wú shuǐ bù cháo dōng 。",
+        "english": ""
+      },
+      {
+        "chinese": "士为知己者死，女为悦己者容。",
+        "pinyin": "shì wèi zhī jǐ zhě sǐ ， nǚ wèi yuè jǐ zhě róng 。",
+        "english": ""
+      },
+      {
+        "chinese": "色即是空，空即是色。",
+        "pinyin": "sè jí shì kōng ， kōng jí shì sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子安贫，达人知命。",
+        "pinyin": "jūn zǐ ān pín ， dá rén zhī mìng 。",
+        "english": ""
+      },
+      {
+        "chinese": "良药苦口利于病，忠言逆耳利于行。",
+        "pinyin": "liáng yào kǔ kǒu lì yú bìng ， zhōng yán nì ěr lì yú xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "顺天者昌，逆天者亡。",
+        "pinyin": "shùn tiān zhě chāng ， nì tiān zhě wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有缘千里来相会，无缘对面不相逢。",
+        "pinyin": "yǒu yuán qiān lǐ lái xiāng huì ， wú yuán duì miàn bù xiāng féng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有福者昌，无福者亡。",
+        "pinyin": "yǒu fú zhě chāng ， wú fú zhě wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人为财死，鸟为食亡。",
+        "pinyin": "rén wéi cái sǐ ， niǎo wèi shí wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫妻相和好，琴瑟与笙簧。",
+        "pinyin": "fū qī xiāng hé hǎo ， qín sè yǔ shēng huáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "红粉易妆娇态女，无钱难作好儿郎。",
+        "pinyin": "hóng fěn yì zhuāng jiāo tài nǚ ， wú qián nán zuò hǎo ér láng 。",
+        "english": ""
+      },
+      {
+        "chinese": "有子之人贫不久，无儿无女富不长。",
+        "pinyin": "yǒu zi zhī rén pín bù jiǔ ， wú ér wú nǚ fù bù zhǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "善必寿老，恶必早亡。",
+        "pinyin": "shàn bì shòu lǎo ， è bì zǎo wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "爽口食多偏作病，快心事过恐遭殃。",
+        "pinyin": "shuǎng kǒu shí duō piān zuò bìng ， kuài xīn shì guò kǒng zāo yāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "富贵定要依本分，贫穷不必再思量。",
+        "pinyin": "fù guì dìng yào yī běn fèn ， pín qióng bù bì zài sī liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "画水无风空作浪，绣花虽好不闻香。",
+        "pinyin": "huà shuǐ wú fēng kōng zuò làng ， xiù huā suī hǎo bù wén xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "贪他一斗米，失却半年粮。",
+        "pinyin": "tān tā yī dòu mǐ ， shī què bàn nián liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "争他一脚豚，反失一肘羊。",
+        "pinyin": "zhēng tā yī jiǎo tún ， fǎn shī yī zhǒu yáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "龙归晚洞云犹湿，麝过春山草木香。",
+        "pinyin": "lóng guī wǎn dòng yún yóu shī ， shè guò chūn shān cǎo mù xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "平生只会说人短，何不回头把己量？",
+        "pinyin": "píng shēng zhǐ huì shuō rén duǎn ， hé bù huí tóu bǎ jǐ liàng ？",
+        "english": ""
+      },
+      {
+        "chinese": "见善如不及，见恶如探汤。",
+        "pinyin": "jiàn shàn rú bù jí ， jiàn è rú tàn tāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人穷志短，马瘦毛长。",
+        "pinyin": "rén qióng zhì duǎn ， mǎ shòu máo cháng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自家心里急，他人未知忙。",
+        "pinyin": "zì jiā xīn lǐ jí ， tā rén wèi zhī máng 。",
+        "english": ""
+      },
+      {
+        "chinese": "贫无达士将金赠，病有高人说药方。",
+        "pinyin": "pín wú dá shì jiāng jīn zèng ， bìng yǒu gāo rén shuō yào fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "触来莫与竞，事过心清凉。",
+        "pinyin": "chù lái mò yǔ jìng ， shì guò xīn qīng liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "秋来满山多秀色，春来无处不花香。",
+        "pinyin": "qiū lái mǎn shān duō xiù sè ， chūn lái wú chǔ bù huā xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "凡人不可貌相，海水不可斗量。",
+        "pinyin": "fán rén bù kě mào xiàng ， hǎi shuǐ bù kě dǒu liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "清清之水为土所防，济济之士为酒所伤。",
+        "pinyin": "qīng qīng zhī shuǐ wèi tǔ suǒ fáng ， jì jì zhī shì wèi jiǔ suǒ shāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "蒿草之下或有兰香，茅茨之屋或有侯王。",
+        "pinyin": "hāo cǎo zhī xià huò yǒu lán xiāng ， máo cí zhī wū huò yǒu hóu wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "无限朱门生饿殍，几多白屋出公卿。",
+        "pinyin": "wú xiàn zhū mén shēng è piǎo ， jǐ duō bái wū chū gōng qīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒里乾坤大，壶中日月长。",
+        "pinyin": "jiǔ lǐ qián kūn dà ， hú zhōng rì yuè zhǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "拂石坐来春衫冷，踏花归去马蹄香。",
+        "pinyin": "fú shí zuò lái chūn shān lěng ， tà huā guī qù mǎ tí xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "万事前身定，浮生空自忙。",
+        "pinyin": "wàn shì qián shēn dìng ， fú shēng kōng zì máng 。",
+        "english": ""
+      },
+      {
+        "chinese": "叫月子规喉舌冷，宿花蝴蝶梦魂香。",
+        "pinyin": "jiào yuè zi guī hóu shé lěng ， sù huā hú dié mèng hún xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一言不中，千言不用。",
+        "pinyin": "yī yán bù zhōng ， qiān yán bù yòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一人传虚，百人传实。",
+        "pinyin": "yī rén chuán xū ， bǎi rén chuán shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "万金良药，不如无疾。",
+        "pinyin": "wàn jīn liáng yào ， bù rú wú jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "千里送鹅毛，礼轻情义重。",
+        "pinyin": "qiān lǐ sòng é máo ， lǐ qīng qíng yì zhòng 。",
+        "english": ""
+      },
+      {
+        "chinese": "世事如明镜，前程暗似漆。",
+        "pinyin": "shì shì rú míng jìng ， qián chéng àn shì qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子怀刑，小人怀惠。",
+        "pinyin": "jūn zǐ huái xíng ， xiǎo rén huái huì 。",
+        "english": ""
+      },
+      {
+        "chinese": "架上碗儿轮流转，媳妇自有做婆时。",
+        "pinyin": "jià shàng wǎn ér lún liú zhuǎn ， xí fù zì yǒu zuò pó shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "人生一世，如驹过隙。",
+        "pinyin": "rén shēng yī shì ， rú jū guò xì 。",
+        "english": ""
+      },
+      {
+        "chinese": "良田万顷，日食一升。",
+        "pinyin": "liáng tián wàn qǐng ， rì shí yī shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "大厦千间，夜眠八尺。",
+        "pinyin": "dà shà qiān jiān ， yè mián bā chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "千经万典，孝义为先。",
+        "pinyin": "qiān jīng wàn diǎn ， xiào yì wèi xiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "天上人间，方便第一。",
+        "pinyin": "tiān shàng rén jiān ， fāng biàn dì yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "一字入公门，九牛拔不出。",
+        "pinyin": "yī zì rù gōng mén ， jiǔ niú bá bù chū 。",
+        "english": ""
+      },
+      {
+        "chinese": "八字衙门向南开，有理无钱莫进来。",
+        "pinyin": "bā zì yá mén xiàng nán kāi ， yǒu lǐ wú qián mò jìn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "欲求天下事，须用世间财。",
+        "pinyin": "yù qiú tiān xià shì ， xū yòng shì jiān cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "富从升合起，贫因不算来。",
+        "pinyin": "fù cóng shēng hé qǐ ， pín yīn bù suàn lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "近河不得枉使水，近山不得枉烧柴。",
+        "pinyin": "jìn hé bù dé wǎng shǐ shuǐ ， jìn shān bù dé wǎng shāo chái 。",
+        "english": ""
+      },
+      {
+        "chinese": "家无读书子，官从何处来？",
+        "pinyin": "jiā wú dú shū zi ， guān cóng hé chù lái ？",
+        "english": ""
+      },
+      {
+        "chinese": "慈不掌兵，义不掌财。",
+        "pinyin": "cí bù zhǎng bīng ， yì bù zhǎng cái 。",
+        "english": ""
+      },
+      {
+        "chinese": "一夫当关，万夫莫开。",
+        "pinyin": "yī fū dāng guān ， wàn fū mò kāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "万事不由人计较，一生都是命安排。",
+        "pinyin": "wàn shì bù yóu rén jì jiào ， yī shēng dōu shì mìng ān pái 。",
+        "english": ""
+      },
+      {
+        "chinese": "白云本是无心物，却被清风引出来。",
+        "pinyin": "bái yún běn shì wú xīn wù ， què bèi qīng fēng yǐn chū lái 。",
+        "english": ""
+      },
+      {
+        "chinese": "慢行急行，逆取顺取。",
+        "pinyin": "màn xíng jí xíng ， nì qǔ shùn qǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "命中只有如许财，丝毫不可有闪失。",
+        "pinyin": "mìng zhòng zhǐ yǒu rú xǔ cái ， sī háo bù kě yǒu shǎn shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "人间私语，天闻若雷。",
+        "pinyin": "rén jiān sī yǔ ， tiān wén ruò léi 。",
+        "english": ""
+      },
+      {
+        "chinese": "暗室亏心，神目如电。",
+        "pinyin": "àn shì kuī xīn ， shén mù rú diàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一毫之恶，劝人莫作。",
+        "pinyin": "yī háo zhī è ， quàn rén mò zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "一毫之善，与人方便。",
+        "pinyin": "yī háo zhī shàn ， yǔ rén fāng biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "亏人是祸，饶人是福，天眼恢恢，报应甚速。",
+        "pinyin": "kuī rén shì huò ， ráo rén shì fú ， tiān yǎn huī huī ， bào yìng shèn sù 。",
+        "english": ""
+      },
+      {
+        "chinese": "圣贤言语，神钦鬼服。",
+        "pinyin": "shèng xián yán yǔ ， shén qīn guǐ fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "人各有心，心各有见。",
+        "pinyin": "rén gè yǒu xīn ， xīn gè yǒu jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "口说不如身逢，耳闻不如目见。",
+        "pinyin": "kǒu shuō bù rú shēn féng ， ěr wén bù rú mù jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "见人富贵生欢喜，莫把心头似火烧。",
+        "pinyin": "jiàn rén fù guì shēng huān xǐ ， mò bǎ xīn tóu shì huǒ shāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "养兵千日，用在一时。",
+        "pinyin": "yǎng bīng qiān rì ， yòng zài yī shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "国清才子贵，家富小儿娇。",
+        "pinyin": "guó qīng cái zi guì ， jiā fù xiǎo ér jiāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "利刀割体疮犹使，恶语伤人恨不消。",
+        "pinyin": "lì dāo gē tǐ chuāng yóu shǐ ， è yǔ shāng rén hèn bù xiāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "公道世间唯白发，贵人头上不曾饶。",
+        "pinyin": "gōng dào shì jiān wéi bái fà ， guì rén tóu shàng bù céng ráo 。",
+        "english": ""
+      },
+      {
+        "chinese": "有才堪出众，无衣懒出门。",
+        "pinyin": "yǒu cái kān chū zhòng ， wú yī lǎn chū mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "为官须作相，及第必争先。",
+        "pinyin": "wèi guān xū zuò xiāng ， jí dì bì zhēng xiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "苗从地发，树由枝分。",
+        "pinyin": "miáo cóng dì fā ， shù yóu zhī fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "宅里燃火，烟气成云。",
+        "pinyin": "zhái lǐ rán huǒ ， yān qì chéng yún 。",
+        "english": ""
+      },
+      {
+        "chinese": "以直报怨，知恩报恩。",
+        "pinyin": "yǐ zhí bào yuàn ， zhī ēn bào ēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "红颜今日虽欺我，白发他时不放君。",
+        "pinyin": "hóng yán jīn rì suī qī wǒ ， bái fà tā shí bù fàng jūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "借问酒家何处有，牧童遥指杏花村。",
+        "pinyin": "jiè wèn jiǔ jiā hé chù yǒu ， mù tóng yáo zhǐ xìng huā cūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "父子和而家不退，兄弟和而家不分。",
+        "pinyin": "fù zǐ hé ér jiā bù tuì ， xiōng dì hé ér jiā bù fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一片云间不相识，三千里外却逢君。",
+        "pinyin": "yī piàn yún jiān bù xiāng shí ， sān qiān lǐ wài què féng jūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "官有公法，民有私约。",
+        "pinyin": "guān yǒu gōng fǎ ， mín yǒu sī yuē 。",
+        "english": ""
+      },
+      {
+        "chinese": "平时不烧香，临时抱佛脚。",
+        "pinyin": "píng shí bù shāo xiāng ， lín shí bào fó jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "幸生太平无事日，恐防年老不多时。",
+        "pinyin": "xìng shēng tài píng wú shì rì ， kǒng fáng nián lǎo bù duō shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "国乱思良将，家贫思良妻。",
+        "pinyin": "guó luàn sī liáng jiàng ， jiā pín sī liáng qī 。",
+        "english": ""
+      },
+      {
+        "chinese": "池塘积水须防旱，田地深耕足养家。",
+        "pinyin": "chí táng jī shuǐ xū fáng hàn ， tián dì shēn gēng zú yǎng jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "根深不怕风摇动，树正何愁月影斜。",
+        "pinyin": "gēn shēn bù pà fēng yáo dòng ， shù zhèng hé chóu yuè yǐng xié 。",
+        "english": ""
+      },
+      {
+        "chinese": "争得猫儿，失却牛脚。",
+        "pinyin": "zhēng de māo ér ， shī què niú jiǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "愚者千虑，必有一得，智者千虑，必有一失。",
+        "pinyin": "yú zhě qiān lǜ ， bì yǒu yī dé ， zhì zhě qiān lǜ ， bì yǒu yī shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "始吾于人也，听其言而信其行。",
+        "pinyin": "shǐ wú yú rén yě ， tīng qí yán ér xìn qí xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "今吾于人也，听其言而观其行。",
+        "pinyin": "jīn wú yú rén yě ， tīng qí yán ér guān qí xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "哪个梳头无乱发，情人眼里出西施。",
+        "pinyin": "nǎ ge shū tóu wú luàn fà ， qíng rén yǎn lǐ chū xī shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "珠沉渊而川媚，玉韫石而山辉。",
+        "pinyin": "zhū chén yuān ér chuān mèi ， yù yùn shí ér shān huī 。",
+        "english": ""
+      },
+      {
+        "chinese": "夕阳无限好，只恐不多时。",
+        "pinyin": "xī yáng wú xiàn hǎo ， zhǐ kǒng bù duō shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "久旱逢甘霖，他乡遇故知；",
+        "pinyin": "jiǔ hàn féng gān lín ， tā xiāng yù gù zhī ；",
+        "english": ""
+      },
+      {
+        "chinese": "洞房花烛夜，金榜题名时。",
+        "pinyin": "dòng fáng huā zhú yè ， jīn bǎng tí míng shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "惜花春起早，爱月夜眠迟。",
+        "pinyin": "xī huā chūn qǐ zǎo ， ài yuè yè mián chí 。",
+        "english": ""
+      },
+      {
+        "chinese": "掬水月在手，弄花香满衣。",
+        "pinyin": "jū shuǐ yuè zài shǒu ， nòng huā xiāng mǎn yī 。",
+        "english": ""
+      },
+      {
+        "chinese": "桃红李白蔷薇紫，问着东君总不知。",
+        "pinyin": "táo hóng lǐ bái qiáng wēi zǐ ， wèn zhe dōng jūn zǒng bù zhī 。",
+        "english": ""
+      },
+      {
+        "chinese": "教子教孙须教义，栽桑栽柘少栽花。",
+        "pinyin": "jiào zi jiào sūn xū jiào yì ， zāi sāng zāi zhè shǎo zāi huā 。",
+        "english": ""
+      },
+      {
+        "chinese": "休念故乡生处好，受恩深处便为家。",
+        "pinyin": "xiū niàn gù xiāng shēng chù hǎo ， shòu ēn shēn chù biàn wèi jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "学在一人之下，用在万人之上。",
+        "pinyin": "xué zài yī rén zhī xià ， yòng zài wàn rén zhī shàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "一日为师，终生为父。",
+        "pinyin": "yī rì wèi shī ， zhōng shēng wèi fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "忘恩负义，禽兽之徒。",
+        "pinyin": "wàng ēn fù yì ， qín shòu zhī tú 。",
+        "english": ""
+      },
+      {
+        "chinese": "劝君莫将油炒菜，留与儿孙夜读书。",
+        "pinyin": "quàn jūn mò jiāng yóu chǎo cài ， liú yǔ ér sūn yè dú shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "书中自有千锺粟，书中自有颜如玉。",
+        "pinyin": "shū zhōng zì yǒu qiān zhōng sù ， shū zhōng zì yǒu yán rú yù 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫怨天来莫怨人，五行八字命生成。",
+        "pinyin": "mò yuàn tiān lái mò yuàn rén ， wǔ xíng bā zì mìng shēng chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫怨自己穷，穷要穷得干净；",
+        "pinyin": "mò yuàn zì jǐ qióng ， qióng yào qióng dé gān jìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "莫羡他人富，富要富得清高。",
+        "pinyin": "mò xiàn tā rén fù ， fù yào fù dé qīng gāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "别人骑马我骑驴，仔细思量我不如，",
+        "pinyin": "bié rén qí mǎ wǒ qí lǘ ， zǐ xì sī liáng wǒ bù rú ，",
+        "english": ""
+      },
+      {
+        "chinese": "待我回头看，还有挑脚汉。",
+        "pinyin": "dài wǒ huí tóu kàn ， hái yǒu tiāo jiǎo hàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "路上有饥人，家中有剩饭。",
+        "pinyin": "lù shàng yǒu jī rén ， jiā zhōng yǒu shèng fàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "积德与儿孙，要广行方便。",
+        "pinyin": "jī dé yǔ ér sūn ， yào guǎng xíng fāng biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "作善鬼神钦，作恶遭天遣。",
+        "pinyin": "zuò shàn guǐ shén qīn ， zuò è zāo tiān qiǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "积钱积谷不如积德，买田买地不如买书。",
+        "pinyin": "jī qián jī gǔ bù rú jī dé ， mǎi tián mǎi dì bù rú mǎi shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "一日春工十日粮，十日春工半年粮。",
+        "pinyin": "yī rì chūn gōng shí rì liáng ， shí rì chūn gōng bàn nián liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "疏懒人没吃，勤俭粮满仓。",
+        "pinyin": "shū lǎn rén méi chī ， qín jiǎn liáng mǎn cāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人亲财不亲，财利要分清。",
+        "pinyin": "rén qīn cái bù qīn ， cái lì yào fēn qīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "十分伶俐使七分，常留三分与儿孙，",
+        "pinyin": "shí fēn líng lì shǐ qī fēn ， cháng liú sān fēn yǔ ér sūn ，",
+        "english": ""
+      },
+      {
+        "chinese": "若要十分都使尽，远在儿孙近在身。",
+        "pinyin": "ruò yào shí fēn dōu shǐ jǐn ， yuǎn zài ér sūn jìn zài shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子乐得做君子，小人枉自做小人。",
+        "pinyin": "jūn zǐ lè dé zuò jūn zǐ ， xiǎo rén wǎng zì zuò xiǎo rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "好学者则庶民之子为公卿，不好学者则公卿之子为庶民。",
+        "pinyin": "hào xué zhě zé shù mín zhī zi wèi gōng qīng ， bù hǎo xué zhě zé gōng qīng zhī zi wèi shù mín 。",
+        "english": ""
+      },
+      {
+        "chinese": "惜钱莫教子，护短莫从师。",
+        "pinyin": "xī qián mò jiào zi ， hù duǎn mò cóng shī 。",
+        "english": ""
+      },
+      {
+        "chinese": "记得旧文章，便是新举子。",
+        "pinyin": "jì de jiù wén zhāng ， biàn shì xīn jǔ zi 。",
+        "english": ""
+      },
+      {
+        "chinese": "人在家中坐，祸从天上落。",
+        "pinyin": "rén zài jiā zhōng zuò ， huò cóng tiān shàng luò 。",
+        "english": ""
+      },
+      {
+        "chinese": "但求心无愧，不怕有后灾。",
+        "pinyin": "dàn qiú xīn wú kuì ， bù pà yǒu hòu zāi 。",
+        "english": ""
+      },
+      {
+        "chinese": "只有和气去迎人，哪有相打得太平。",
+        "pinyin": "zhǐ yǒu hé qì qù yíng rén ， nǎ yǒu xiāng dǎ dé tài píng 。",
+        "english": ""
+      },
+      {
+        "chinese": "忠厚自有忠厚报，豪强一定受官刑。",
+        "pinyin": "zhōng hòu zì yǒu zhōng hòu bào ， háo qiáng yí dìng shòu guān xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人到公门正好修，留些阴德在后头。",
+        "pinyin": "rén dào gōng mén zhèng hǎo xiū ， liú xiē yīn dé zài hòu tou 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人何必争高下，一旦无命万事休。",
+        "pinyin": "wéi rén hé bì zhēng gāo xià ， yí dàn wú mìng wàn shì xiū 。",
+        "english": ""
+      },
+      {
+        "chinese": "山高不算高，人心比天高。",
+        "pinyin": "shān gāo bù suàn gāo ， rén xīn bǐ tiān gāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "白水变酒卖，还嫌猪无糟。",
+        "pinyin": "bái shuǐ biàn jiǔ mài ， hái xián zhū wú zāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "贫寒休要怨，宝贵不须骄。",
+        "pinyin": "pín hán xiū yào yuàn ， bǎo guì bù xū jiāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "善恶随人作，祸福自己招。",
+        "pinyin": "shàn è suí rén zuò ， huò fú zì jǐ zhāo 。",
+        "english": ""
+      },
+      {
+        "chinese": "奉劝君子，各宜守己。",
+        "pinyin": "fèng quàn jūn zǐ ， gè yí shǒu jǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "只此呈示，万无一失。",
+        "pinyin": "zhī cǐ chéng shì ， wàn wú yī shī 。",
+        "english": ""
+      }
+    ]
+  },
+  {
+    "id": "zengguangxianwen_ch_2",
+    "bookId": "zengguangxianwen",
+    "chapterIndex": 2,
+    "title": "下集",
+    "titleEn": "Chapter 2: 下集",
+    "sentences": [
+      {
+        "chinese": "前人俗语，言浅理深。",
+        "pinyin": "qián rén sú yǔ ， yán qiǎn lǐ shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "补遗增广，集成书文。",
+        "pinyin": "bǔ yí zēng guǎng ， jí chéng shū wén 。",
+        "english": ""
+      },
+      {
+        "chinese": "世上无难事，只怕不专心。",
+        "pinyin": "shì shàng wú nán shì ， zhǐ pà bù zhuān xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "成人不自在，自在不成人；",
+        "pinyin": "chéng rén bù zì zài ， zì zài bù chéng rén ；",
+        "english": ""
+      },
+      {
+        "chinese": "金凭火炼方知色，与人交财便知心。",
+        "pinyin": "jīn píng huǒ liàn fāng zhī sè ， yǔ rén jiāo cái biàn zhī xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "乞丐无粮，懒惰而成。",
+        "pinyin": "qǐ gài wú liáng ， lǎn duò ér chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "勤俭为无价之宝，节粮乃众妙之门。",
+        "pinyin": "qín jiǎn wèi wú jià zhī bǎo ， jié liáng nǎi zhòng miào zhī mén 。",
+        "english": ""
+      },
+      {
+        "chinese": "省事俭用，免得求人。",
+        "pinyin": "shěng shì jiǎn yòng ， miǎn de qiú rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "量大祸不在，机深祸亦深。",
+        "pinyin": "liàng dà huò bù zài ， jī shēn huò yì shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "善为至宝深深用，心作良田世世耕。",
+        "pinyin": "shàn wèi zhì bǎo shēn shēn yòng ， xīn zuò liáng tián shì shì gēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "群居防口，独坐防心。",
+        "pinyin": "qún jū fáng kǒu ， dú zuò fáng xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "体无病为富贵，身平安莫怨贫。",
+        "pinyin": "tǐ wú bìng wèi fù guì ， shēn píng ān mò yuàn pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "败家子弟挥金如土，贫家子弟积土成金。",
+        "pinyin": "bài jiā zǐ dì huī jīn rú tǔ ， pín jiā zǐ dì jī tǔ chéng jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "富贵非关天地，祸福不是鬼神。",
+        "pinyin": "fù guì fēi guān tiān dì ， huò fú bú shì guǐ shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "安分贫一时，本分终不贫。",
+        "pinyin": "ān fèn pín yī shí ， běn fèn zhōng bù pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "不拜父母拜干亲，弟兄不和结外人。",
+        "pinyin": "bù bài fù mǔ bài gān qīn ， dì xiōng bù hé jié wài rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "人过留名，雁过留声。",
+        "pinyin": "rén guò liú míng ， yàn guò liú shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "择子莫择父，择亲莫择邻。",
+        "pinyin": "zé zi mò zé fù ， zé qīn mò zé lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "爱妻之心是主，爱子之心是亲。",
+        "pinyin": "ài qī zhī xīn shì zhǔ ， ài zi zhī xīn shì qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "事从根起，藕叶连心。",
+        "pinyin": "shì cóng gēn qǐ ， ǒu yè lián xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "祸与福同门，利与害同城。",
+        "pinyin": "huò yǔ fú tóng mén ， lì yǔ hài tóng chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "清酒红人脸，财帛动人心！",
+        "pinyin": "qīng jiǔ hóng rén liǎn ， cái bó dòng rén xīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "宁可荤口念佛，不可素口骂人。",
+        "pinyin": "nìng kě hūn kǒu niàn fó ， bù kě sù kǒu mà rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "有钱能说话，无钱话不灵。",
+        "pinyin": "yǒu qián néng shuō huà ， wú qián huà bù líng 。",
+        "english": ""
+      },
+      {
+        "chinese": "岂能尽如人意？",
+        "pinyin": "qǐ néng jìn rú rén yì ？",
+        "english": ""
+      },
+      {
+        "chinese": "但求不愧吾心。",
+        "pinyin": "dàn qiú bù kuì wú xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "不说自己井绳短，反说他人箍井深。",
+        "pinyin": "bù shuō zì jǐ jǐng shéng duǎn ， fǎn shuō tā rén gū jǐng shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "恩爱多生病，无钱便觉贫。",
+        "pinyin": "ēn ài duō shēng bìng ， wú qián biàn jué pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "只学斟酒意，莫学下棋心。",
+        "pinyin": "zhǐ xué zhēn jiǔ yì ， mò xué xià qí xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "孝莫假意，转眼便为人父母。",
+        "pinyin": "xiào mò jiǎ yì ， zhuǎn yǎn biàn wéi rén fù mǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "善休望报，回头只看汝儿孙！",
+        "pinyin": "shàn xiū wàng bào ， huí tóu zhǐ kàn rǔ ér sūn ！",
+        "english": ""
+      },
+      {
+        "chinese": "口开神气散，舌出是非生！",
+        "pinyin": "kǒu kāi shén qì sàn ， shé chū shì fēi shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "弹琴费指甲，说话费精神。",
+        "pinyin": "tán qín fèi zhǐ jiǎ ， shuō huà fèi jīng shén 。",
+        "english": ""
+      },
+      {
+        "chinese": "千贯买田，万贯结邻。",
+        "pinyin": "qiān guàn mǎi tián ， wàn guàn jié lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "人言未必犹尽，听话只听三分。",
+        "pinyin": "rén yán wèi bì yóu jǐn ， tīng huà zhǐ tīng sān fēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "隔壁岂无耳，窗外岂无人？",
+        "pinyin": "gé bì qǐ wú ěr ， chuāng wài qǐ wú rén ？",
+        "english": ""
+      },
+      {
+        "chinese": "财可养生须注意，事不关己不劳心。",
+        "pinyin": "cái kě yǎng shēng xū zhù yì ， shì bù guān jǐ bù láo xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "酒不护贤，色不护病；",
+        "pinyin": "jiǔ bù hù xián ， sè bù hù bìng ；",
+        "english": ""
+      },
+      {
+        "chinese": "财不护亲，气不护命！",
+        "pinyin": "cái bù hù qīn ， qì bù hù mìng ！",
+        "english": ""
+      },
+      {
+        "chinese": "一日不可无常业，安闲便易起邪心！",
+        "pinyin": "yī rì bù kě wú cháng yè ， ān xián biàn yì qǐ xié xīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "炎凉世态，富贵更甚于贫贱；",
+        "pinyin": "yán liáng shì tài ， fù guì gèng shén yú pín jiàn ；",
+        "english": ""
+      },
+      {
+        "chinese": "嫉妒人心，骨肉更甚于外人！",
+        "pinyin": "jí dù rén xīn ， gǔ ròu gèng shén yú wài rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "瓜熟蒂落，水到渠成。",
+        "pinyin": "guā shú dì luò ， shuǐ dào qú chéng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人情送匹马，买卖不饶针！",
+        "pinyin": "rén qíng sòng pǐ mǎ ， mǎi mài bù ráo zhēn ！",
+        "english": ""
+      },
+      {
+        "chinese": "过头饭好吃，过头话难听！",
+        "pinyin": "guò tóu fàn hǎo chī ， guò tóu huà nán tīng ！",
+        "english": ""
+      },
+      {
+        "chinese": "事多累了自己，田多养了众人。",
+        "pinyin": "shì duō lèi le zì jǐ ， tián duō yǎng le zhòng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "怕事忍事不生事自然无事；",
+        "pinyin": "pà shì rěn shì bù shēng shì zì rán wú shì ；",
+        "english": ""
+      },
+      {
+        "chinese": "平心静心不欺心何等放心！",
+        "pinyin": "píng xīn jìng xīn bù qī xīn hé děng fàng xīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "天子至尊不过于理，在理良心天下通行。",
+        "pinyin": "tiān zi zhì zūn bù guò yú lǐ ， zài lǐ liáng xīn tiān xià tōng xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "好话不在多说，有理不在高声！",
+        "pinyin": "hǎo huà bù zài duō shuō ， yǒu lǐ bù zài gāo shēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "一朝权在手，便把令来行。",
+        "pinyin": "yī zhāo quán zài shǒu ， biàn bǎ lìng lái xíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "甘草味甜人可食，巧言妄语不可听。",
+        "pinyin": "gān cǎo wèi tián rén kě shí ， qiǎo yán wàng yǔ bù kě tīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "当场不论，过后枉然。",
+        "pinyin": "dāng chǎng bù lùn ， guò hòu wǎng rán 。",
+        "english": ""
+      },
+      {
+        "chinese": "贫莫与富斗，富莫与官争！",
+        "pinyin": "pín mò yǔ fù dòu ， fù mò yǔ guān zhēng ！",
+        "english": ""
+      },
+      {
+        "chinese": "官清难逃猾吏手，衙门少有念佛人！",
+        "pinyin": "guān qīng nán táo huá lì shǒu ， yá mén shǎo yǒu niàn fó rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "家有千口，主事一人。",
+        "pinyin": "jiā yǒu qiān kǒu ， zhǔ shì yī rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "父子竭力山成玉，弟兄同心土变金。",
+        "pinyin": "fù zǐ jié lì shān chéng yù ， dì xiōng tóng xīn tǔ biàn jīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "当事者迷，旁观者清。",
+        "pinyin": "dāng shì zhě mí ， páng guān zhě qīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "怪人不知理，知理不怪人。",
+        "pinyin": "guài rén bù zhī lǐ ， zhī lǐ bù guài rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "未富先富终不富，未贫先贫终不贫。",
+        "pinyin": "wèi fù xiān fù zhōng bù fù ， wèi pín xiān pín zhōng bù pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "少当少取，少输当赢！",
+        "pinyin": "shǎo dāng shǎo qǔ ， shǎo shū dāng yíng ！",
+        "english": ""
+      },
+      {
+        "chinese": "饱暖思淫欲，饥寒起盗心！",
+        "pinyin": "bǎo nuǎn sī yín yù ， jī hán qǐ dào xīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "蚊虫遭扇打，只因嘴伤人！",
+        "pinyin": "wén chóng zāo shàn dǎ ， zhǐ yīn zuǐ shāng rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "欲多伤神，财多累心！",
+        "pinyin": "yù duō shāng shén ， cái duō lèi xīn ！",
+        "english": ""
+      },
+      {
+        "chinese": "布衣得暖真为福，千金平安即是春。",
+        "pinyin": "bù yī dé nuǎn zhēn wèi fú ， qiān jīn píng ān jí shì chūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "家贫出孝子，国乱显忠臣！",
+        "pinyin": "jiā pín chū xiào zi ， guó luàn xiǎn zhōng chén ！",
+        "english": ""
+      },
+      {
+        "chinese": "宁做太平犬，莫做离乱人！",
+        "pinyin": "níng zuò tài píng quǎn ， mò zuò lí luàn rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "人有几等，官有几品。",
+        "pinyin": "rén yǒu jǐ děng ， guān yǒu jǐ pǐn 。",
+        "english": ""
+      },
+      {
+        "chinese": "理不卫亲，法不为民。",
+        "pinyin": "lǐ bù wèi qīn ， fǎ bù wèi mín 。",
+        "english": ""
+      },
+      {
+        "chinese": "自重者然后人重，人轻者便是自轻。",
+        "pinyin": "zì zhòng zhě rán hòu rén zhòng ， rén qīng zhě biàn shì zì qīng 。",
+        "english": ""
+      },
+      {
+        "chinese": "自身不谨，扰乱四邻。",
+        "pinyin": "zì shēn bù jǐn ， rǎo luàn sì lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "快意事过非快意，自古败名因败事。",
+        "pinyin": "kuài yì shì guò fēi kuài yì ， zì gǔ bài míng yīn bài shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "伤身事莫做，伤心话莫说。",
+        "pinyin": "shāng shēn shì mò zuò ， shāng xīn huà mò shuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "小人肥口，君子肥身。",
+        "pinyin": "xiǎo rén féi kǒu ， jūn zǐ féi shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "地不生无名之辈，天不生无路之人。",
+        "pinyin": "dì bù shēng wú míng zhī bèi ， tiān bù shēng wú lù zhī rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "一苗露水一苗草，一朝天子一朝臣。",
+        "pinyin": "yī miáo lù shuǐ yī miáo cǎo ， yī cháo tiān zǐ yī cháo chén 。",
+        "english": ""
+      },
+      {
+        "chinese": "读未见书，如得良友；",
+        "pinyin": "dú wèi jiàn shū ， rú dé liáng yǒu ；",
+        "english": ""
+      },
+      {
+        "chinese": "见已读书，如逢故人。",
+        "pinyin": "jiàn yǐ dú shū ， rú féng gù rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "福满须防有祸，凶多料必无争。",
+        "pinyin": "fú mǎn xū fáng yǒu huò ， xiōng duō liào bì wú zhēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "不怕三十而死，只怕死后无名。",
+        "pinyin": "bù pà sān shí ér sǐ ， zhǐ pà sǐ hòu wú míng 。",
+        "english": ""
+      },
+      {
+        "chinese": "但知江湖者，都是薄命人。",
+        "pinyin": "dàn zhī jiāng hú zhě ， dōu shì bó mìng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "不怕方中打死人，只知方中无好人。",
+        "pinyin": "bù pà fāng zhōng dǎ sǐ rén ， zhǐ zhī fāng zhōng wú hǎo rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "说长说短，宁说人长莫说短；",
+        "pinyin": "shuō cháng shuō duǎn ， níng shuō rén zhǎng mò shuō duǎn ；",
+        "english": ""
+      },
+      {
+        "chinese": "施恩施怨，宁施人恩莫施怨。",
+        "pinyin": "shī ēn shī yuàn ， níng shī rén ēn mò shī yuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "育林养虎，虎大伤人。",
+        "pinyin": "yù lín yǎng hǔ ， hǔ dà shāng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "冤家抱头死，事要解交人。",
+        "pinyin": "yuān jiā bào tóu sǐ ， shì yào jiě jiāo rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "卷帘归乳燕，开扇出苍蝇。",
+        "pinyin": "juàn lián guī rǔ yàn ， kāi shàn chū cāng yíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "爱鼠常留饭，怜蛾灯罩纱。",
+        "pinyin": "ài shǔ cháng liú fàn ， lián é dēng zhào shā 。",
+        "english": ""
+      },
+      {
+        "chinese": "人命在天，物命在人。",
+        "pinyin": "rén mìng zài tiān ， wù mìng zài rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "奸不通父母，贼不通地邻。",
+        "pinyin": "jiān bù tōng fù mǔ ， zéi bù tōng dì lín 。",
+        "english": ""
+      },
+      {
+        "chinese": "盗贼多出赌博，人命常出奸情。",
+        "pinyin": "dào zéi duō chū dǔ bó ， rén mìng cháng chū jiān qíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "治国信谗必杀忠臣，治家信谗必疏其亲。",
+        "pinyin": "zhì guó xìn chán bì shā zhōng chén ， zhì jiā xìn chán bì shū qí qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "治国不用佞臣，治家不用佞妇。",
+        "pinyin": "zhì guó bù yòng nìng chén ， zhì jiā bù yòng nìng fù 。",
+        "english": ""
+      },
+      {
+        "chinese": "好臣一国之宝，好妇一家之珍。",
+        "pinyin": "hǎo chén yī guó zhī bǎo ， hǎo fù yī jiā zhī zhēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "稳的不滚，滚的不稳。",
+        "pinyin": "wěn de bù gǔn ， gǔn de bù wěn 。",
+        "english": ""
+      },
+      {
+        "chinese": "儿不嫌母丑，狗不嫌家贫。",
+        "pinyin": "ér bù xián mǔ chǒu ， gǒu bù xián jiā pín 。",
+        "english": ""
+      },
+      {
+        "chinese": "君子千钱不计较，小人一钱恼人心。",
+        "pinyin": "jūn zǐ qiān qián bù jì jiào ， xiǎo rén yī qián nǎo rén xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "人前显贵，闹里夺争。",
+        "pinyin": "rén qián xiǎn guì ， nào lǐ duó zhēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "要知江湖深，一个不做声。",
+        "pinyin": "yào zhī jiāng hú shēn ， yí gè bù zuò shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "知止自当出妄想，安贫须是禁奢心。",
+        "pinyin": "zhī zhǐ zì dāng chū wàng xiǎng ， ān pín xū shì jìn shē xīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "初入行业，三年事成；",
+        "pinyin": "chū rù háng yè ， sān nián shì chéng ；",
+        "english": ""
+      },
+      {
+        "chinese": "初吃馒头，三年口生。",
+        "pinyin": "chū chī mán tou ， sān nián kǒu shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "家无生活计，坐吃如山崩。",
+        "pinyin": "jiā wú shēng huó jì ， zuò chī rú shān bēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "家有良田万顷，不如薄艺在身；",
+        "pinyin": "jiā yǒu liáng tián wàn qǐng ， bù rú báo yì zài shēn ；",
+        "english": ""
+      },
+      {
+        "chinese": "艺多不养家，食多嚼不赢。",
+        "pinyin": "yì duō bù yǎng jiā ， shí duō jué bù yíng 。",
+        "english": ""
+      },
+      {
+        "chinese": "命中只有八合米，走遍天下不满升。",
+        "pinyin": "mìng zhòng zhǐ yǒu bā hé mǐ ， zǒu biàn tiān xià bù mǎn shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "使心用心，反害自身。",
+        "pinyin": "shǐ xīn yòng xīn ， fǎn hài zì shēn 。",
+        "english": ""
+      },
+      {
+        "chinese": "国家无空地，世上无闲人。",
+        "pinyin": "guó jiā wú kòng dì ， shì shàng wú xián rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "妙药难医怨逆病，混财不富穷命人。",
+        "pinyin": "miào yào nán yī yuàn nì bìng ， hùn cái bù fù qióng mìng rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "耽误一年春，十年补不清；",
+        "pinyin": "dān wù yī nián chūn ， shí nián bǔ bù qīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "人能处处能，草能处处生。",
+        "pinyin": "rén néng chù chù néng ， cǎo néng chù chù shēng 。",
+        "english": ""
+      },
+      {
+        "chinese": "会打三班鼓，也要几个人。",
+        "pinyin": "huì dǎ sān bān gǔ ， yě yào jǐ gè rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "人不走不亲，水不打不浑。",
+        "pinyin": "rén bù zǒu bù qīn ， shuǐ bù dǎ bù hún 。",
+        "english": ""
+      },
+      {
+        "chinese": "三贫三富不到老，十年兴败多少人！",
+        "pinyin": "sān pín sān fù bú dào lǎo ， shí nián xīng bài duō shǎo rén ！",
+        "english": ""
+      },
+      {
+        "chinese": "买货买得真，折本折得轻；",
+        "pinyin": "mǎi huò mǎi dé zhēn ， shé běn zhé dé qīng ；",
+        "english": ""
+      },
+      {
+        "chinese": "不怕问到，只怕倒问。",
+        "pinyin": "bù pà wèn dào ， zhǐ pà dào wèn 。",
+        "english": ""
+      },
+      {
+        "chinese": "人强不如货强，价高不如口便。",
+        "pinyin": "rén qiáng bù rú huò qiáng ， jià gāo bù rú kǒu biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "会买买怕人，会卖卖怕人。",
+        "pinyin": "huì mǎi mǎi pà rén ， huì mài mài pà rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "只只船上有梢公，天子足下有贫亲。",
+        "pinyin": "zhǐ zhǐ chuán shàng yǒu shāo gōng ， tiān zi zú xià yǒu pín qīn 。",
+        "english": ""
+      },
+      {
+        "chinese": "既知莫望，不知莫向。",
+        "pinyin": "jì zhī mò wàng ， bù zhī mò xiàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "在一行，练一行；",
+        "pinyin": "zài yī xíng ， liàn yī xíng ；",
+        "english": ""
+      },
+      {
+        "chinese": "穷莫失志，富莫癫狂。",
+        "pinyin": "qióng mò shī zhì ， fù mò diān kuáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "天欲令其灭亡，必先让其疯狂。",
+        "pinyin": "tiān yù lìng qí miè wáng ， bì xiān ràng qí fēng kuáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "梢长人胆大，梢短人心慌。",
+        "pinyin": "shāo zhǎng rén dǎn dà ， shāo duǎn rén xīn huāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "隔行莫贪利，久炼必成钢。",
+        "pinyin": "gé háng mò tān lì ， jiǔ liàn bì chéng gāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "瓶花虽好艳，相看不耐长。",
+        "pinyin": "píng huā suī hǎo yàn ， xiāng kàn bù nài zhǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "早起三光，迟起三慌。",
+        "pinyin": "zǎo qǐ sān guāng ， chí qǐ sān huāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "未来休指望，过去莫思量；",
+        "pinyin": "wèi lái xiū zhǐ wàng ， guò qù mò sī liáng ；",
+        "english": ""
+      },
+      {
+        "chinese": "时来遇好友，病去遇良方。",
+        "pinyin": "shí lái yù hǎo yǒu ， bìng qù yù liáng fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "布得春风有夏雨，哈得秋风大家凉。",
+        "pinyin": "bù dé chūn fēng yǒu xià yǔ ， hā dé qiū fēng dà jiā liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "晴带雨伞，饱带饥粮。",
+        "pinyin": "qíng dài yǔ sǎn ， bǎo dài jī liáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "满壶全不响，半壶响叮当。",
+        "pinyin": "mǎn hú quán bù xiǎng ， bàn hú xiǎng dīng dāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "久利之事莫为，众争之地莫往。",
+        "pinyin": "jiǔ lì zhī shì mò wèi ， zhòng zhēng zhī dì mò wǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "老医迷旧疾，朽药误良方；",
+        "pinyin": "lǎo yī mí jiù jí ， xiǔ yào wù liáng fāng ；",
+        "english": ""
+      },
+      {
+        "chinese": "该在水中死，不在岸上亡。",
+        "pinyin": "gāi zài shuǐ zhōng sǐ ， bù zài àn shàng wáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "舍财不如少取，施药不如传方。",
+        "pinyin": "shě cái bù rú shǎo qǔ ， shī yào bù rú chuán fāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "倒了城墙丑了县官，打了梅香丑了姑娘。",
+        "pinyin": "dào le chéng qiáng chǒu le xiàn guān ， dǎ le méi xiāng chǒu le gū niáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "燕子不进愁门，耗子不钻空仓。",
+        "pinyin": "yàn zi bù jìn chóu mén ， hào zi bù zuān kòng cāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "苍蝇不叮无缝蛋，谣言不找谨慎人。",
+        "pinyin": "cāng yíng bù dīng wú fèng dàn ， yáo yán bù zhǎo jǐn shèn rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "一人舍死，万人难当。",
+        "pinyin": "yī rén shě sǐ ， wàn rén nán dāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "人争一口气，佛争一炷香。",
+        "pinyin": "rén zhēng yì kǒu qì ， fú zhēng yī zhù xiāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "门为小人而设，锁乃君子之防。",
+        "pinyin": "mén wèi xiǎo rén ér shè ， suǒ nǎi jūn zǐ zhī fáng 。",
+        "english": ""
+      },
+      {
+        "chinese": "舌咬只为揉，齿落皆因眶。",
+        "pinyin": "shé yǎo zhǐ wèi róu ， chǐ luò jiē yīn kuàng 。",
+        "english": ""
+      },
+      {
+        "chinese": "硬弩弦先断，钢刀刃自伤。",
+        "pinyin": "yìng nǔ xián xiān duàn ， gāng dāo rèn zì shāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "贼名难受，龟名难当。",
+        "pinyin": "zéi míng nán shòu ， guī míng nán dāng 。",
+        "english": ""
+      },
+      {
+        "chinese": "好事他人未见讲，错处他偏说得长。",
+        "pinyin": "hǎo shì tā rén wèi jiàn jiǎng ， cuò chǔ tā piān shuō dé zhǎng 。",
+        "english": ""
+      },
+      {
+        "chinese": "男子无志纯铁无钢，女子无志烂草无瓤。",
+        "pinyin": "nán zi wú zhì chún tiě wú gāng ， nǚ zǐ wú zhì làn cǎo wú ráng 。",
+        "english": ""
+      },
+      {
+        "chinese": "生男欲得成龙犹恐成獐，生女欲得成凤犹恐成虎。",
+        "pinyin": "shēng nán yù dé chéng lóng yóu kǒng chéng zhāng ， shēng nǚ yù dé chéng fèng yóu kǒng chéng hǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "养男莫听狂言，养女莫叫离母。",
+        "pinyin": "yǎng nán mò tīng kuáng yán ， yǎng nǚ mò jiào lí mǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "男子失教必愚顽，女子失教定粗鲁。",
+        "pinyin": "nán zi shī jiào bì yú wán ， nǚ zǐ shī jiào dìng cū lǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "生男莫教弓与弩，生女莫教歌与舞。",
+        "pinyin": "shēng nán mò jiào gōng yǔ nǔ ， shēng nǚ mò jiào gē yǔ wǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "学成弓弩沙场灾，学成歌舞为人妾。",
+        "pinyin": "xué chéng gōng nǔ shā chǎng zāi ， xué chéng gē wǔ wéi rén qiè 。",
+        "english": ""
+      },
+      {
+        "chinese": "财交者密，财尽者疏。",
+        "pinyin": "cái jiāo zhě mì ， cái jǐn zhě shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "婚姻论财，夫妻之道。",
+        "pinyin": "hūn yīn lùn cái ， fū qī zhī dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "色娇者亲，色衰者疏。",
+        "pinyin": "sè jiāo zhě qīn ， sè shuāi zhě shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "少实胜虚，巧不如拙。",
+        "pinyin": "shǎo shí shèng xū ， qiǎo bù rú zhuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "百战百胜不如无争，万言万中不如一默。",
+        "pinyin": "bǎi zhàn bǎi shèng bù rú wú zhēng ， wàn yán wàn zhōng bù rú yī mò 。",
+        "english": ""
+      },
+      {
+        "chinese": "有钱不置怨逆产，冤家宜解不宜结。",
+        "pinyin": "yǒu qián bù zhì yuàn nì chǎn ， yuān jiā yí jiě bù yí jié 。",
+        "english": ""
+      },
+      {
+        "chinese": "近朱者赤，近墨者黑。",
+        "pinyin": "jìn zhū zhě chì ， jìn mò zhě hēi 。",
+        "english": ""
+      },
+      {
+        "chinese": "一个山头一只虎，恶龙难斗地头蛇。",
+        "pinyin": "yí gè shān tóu yī zhī hǔ ， è lóng nán dòu dì tóu shé 。",
+        "english": ""
+      },
+      {
+        "chinese": "出门看天色，进门看脸色。",
+        "pinyin": "chū mén kàn tiān sè ， jìn mén kàn liǎn sè 。",
+        "english": ""
+      },
+      {
+        "chinese": "商贾买卖如施舍，买卖公平如积德。",
+        "pinyin": "shāng gǔ mǎi mài rú shī shě ， mǎi mài gōng píng rú jī dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "天生一人，地生一穴。",
+        "pinyin": "tiān shēng yī rén ， dì shēng yī xué 。",
+        "english": ""
+      },
+      {
+        "chinese": "家无三年之积不成其家，国无九年之积不成其国。",
+        "pinyin": "jiā wú sān nián zhī jī bù chéng qí jiā ， guó wú jiǔ nián zhī jī bù chéng qí guó 。",
+        "english": ""
+      },
+      {
+        "chinese": "男子有德便是才，女子无才便是德。",
+        "pinyin": "nán zi yǒu dé biàn shì cái ， nǚ zǐ wú cái biàn shì dé 。",
+        "english": ""
+      },
+      {
+        "chinese": "有钱难买子孙贤，女儿不请上门客。",
+        "pinyin": "yǒu qián nán mǎi zǐ sūn xián ， nǚ ér bù qǐng shàng mén kè 。",
+        "english": ""
+      },
+      {
+        "chinese": "男大当婚女大当嫁，不婚不嫁惹出笑话。",
+        "pinyin": "nán dà dāng hūn nǚ dà dāng jià ， bù hūn bù jià rě chū xiào huà 。",
+        "english": ""
+      },
+      {
+        "chinese": "谦虚美德，过谦即诈。",
+        "pinyin": "qiān xū měi dé ， guò qiān jí zhà 。",
+        "english": ""
+      },
+      {
+        "chinese": "自己跌倒自己爬，望人扶持都是假。",
+        "pinyin": "zì jǐ diē dǎo zì jǐ pá ， wàng rén fú chí dōu shì jiǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "人不知己过，牛不知力大。",
+        "pinyin": "rén bù zhī jǐ guò ， niú bù zhī lì dà 。",
+        "english": ""
+      },
+      {
+        "chinese": "一家饱暖千家怨，一物不见赖千家。",
+        "pinyin": "yī jiā bǎo nuǎn qiān jiā yuàn ， yī wù bú jiàn lài qiān jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "当面论人惹恨最大，是与不是随他说吧！",
+        "pinyin": "dāng miàn lùn rén rě hèn zuì dà ， shì yǔ bú shì suí tā shuō ba ！",
+        "english": ""
+      },
+      {
+        "chinese": "谁人做得千年主，转眼流传八百家。",
+        "pinyin": "shuí rén zuò dé qiān nián zhǔ ， zhuǎn yǎn liú chuán bā bǎi jiā 。",
+        "english": ""
+      },
+      {
+        "chinese": "满载芝麻都漏了，还在水里捞油花！",
+        "pinyin": "mǎn zài zhī má dōu lòu le ， hái zài shuǐ lǐ lāo yóu huā ！",
+        "english": ""
+      },
+      {
+        "chinese": "皇帝坐北京，以理统天下。",
+        "pinyin": "huáng dì zuò běi jīng ， yǐ lǐ tǒng tiān xià 。",
+        "english": ""
+      },
+      {
+        "chinese": "五百年前共一家，不同祖宗也同华！",
+        "pinyin": "wǔ bǎi nián qián gòng yī jiā ， bù tóng zǔ zōng yě tóng huá ！",
+        "english": ""
+      },
+      {
+        "chinese": "学堂大如官厅，人情大过王法。",
+        "pinyin": "xué táng dà rú guān tīng ， rén qíng dà guò wáng fǎ 。",
+        "english": ""
+      },
+      {
+        "chinese": "找钱犹如针挑土，用钱犹如水推沙！",
+        "pinyin": "zhǎo qián yóu rú zhēn tiāo tǔ ， yòng qián yóu rú shuǐ tuī shā ！",
+        "english": ""
+      },
+      {
+        "chinese": "害人之心不可有，防人之心不可无！",
+        "pinyin": "hài rén zhī xīn bù kě yǒu ， fáng rén zhī xīn bù kě wú ！",
+        "english": ""
+      },
+      {
+        "chinese": "不愁无路，就怕不做。",
+        "pinyin": "bù chóu wú lù ， jiù pà bù zuò 。",
+        "english": ""
+      },
+      {
+        "chinese": "须向根头寻活计，莫从体面下功夫！",
+        "pinyin": "xū xiàng gēn tóu xún huó jì ， mò cóng tǐ miàn xià gōng fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "祸从口出，病从口入。",
+        "pinyin": "huò cóng kǒu chū ， bìng cóng kǒu rù 。",
+        "english": ""
+      },
+      {
+        "chinese": "药补不如肉补，肉补不如养补。",
+        "pinyin": "yào bǔ bù rú ròu bǔ ， ròu bǔ bù rú yǎng bǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "思虑之害甚于酒色，日日劳力上床呼疾。",
+        "pinyin": "sī lǜ zhī hài shén yú jiǔ sè ， rì rì láo lì shàng chuáng hū jí 。",
+        "english": ""
+      },
+      {
+        "chinese": "人怕不是福，人欺不是辱。",
+        "pinyin": "rén pà bú shì fú ， rén qī bú shì rǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "能言不是真君子，善处方为大丈夫！",
+        "pinyin": "néng yán bú shì zhēn jūn zǐ ， shàn chǔ fāng wèi dà zhàng fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "为人莫犯法，犯法身无主。",
+        "pinyin": "wéi rén mò fàn fǎ ， fàn fǎ shēn wú zhǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "姊妹同肝胆，弟兄同骨肉。",
+        "pinyin": "zǐ mèi tóng gān dǎn ， dì xiōng tóng gǔ ròu 。",
+        "english": ""
+      },
+      {
+        "chinese": "慈母多误子，悍妇必欺夫！",
+        "pinyin": "cí mǔ duō wù zi ， hàn fù bì qī fū ！",
+        "english": ""
+      },
+      {
+        "chinese": "君子千里同舟，小人隔墙易宿。",
+        "pinyin": "jūn zǐ qiān lǐ tóng zhōu ， xiǎo rén gé qiáng yì sù 。",
+        "english": ""
+      },
+      {
+        "chinese": "文钱逼死英雄汉，财不归身恰是无。",
+        "pinyin": "wén qián bī sǐ yīng xióng hàn ， cái bù guī shēn qià shì wú 。",
+        "english": ""
+      },
+      {
+        "chinese": "妻子如衣服，弟兄似手足。",
+        "pinyin": "qī zǐ rú yī fú ， dì xiōng shì shǒu zú 。",
+        "english": ""
+      },
+      {
+        "chinese": "衣服补易新，手足断难续。",
+        "pinyin": "yī fú bǔ yì xīn ， shǒu zú duàn nán xù 。",
+        "english": ""
+      },
+      {
+        "chinese": "盗贼怨失主，不孝怨父母。",
+        "pinyin": "dào zéi yuàn shī zhǔ ， bù xiào yuàn fù mǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "一时劝人以口，百世劝人以书。",
+        "pinyin": "yī shí quàn rén yǐ kǒu ， bǎi shì quàn rén yǐ shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "我不如人我无其福，人不如我我常知足！",
+        "pinyin": "wǒ bù rú rén wǒ wú qí fú ， rén bù rú wǒ wǒ cháng zhī zú ！",
+        "english": ""
+      },
+      {
+        "chinese": "捡金不忘失金人，三两黄铜四两福。",
+        "pinyin": "jiǎn jīn bù wàng shī jīn rén ， sān liǎng huáng tóng sì liǎng fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "因祸得福，求赌必输。",
+        "pinyin": "yīn huò dé fú ， qiú dǔ bì shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "一言而让他人之祸，一忿而折平生之福。",
+        "pinyin": "yī yán ér ràng tā rén zhī huò ， yī fèn ér zhé píng shēng zhī fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "天有不测风云，人有旦夕祸福。",
+        "pinyin": "tiān yǒu bù cè fēng yún ， rén yǒu dàn xī huò fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "不淫当斋，淡饱当肉。",
+        "pinyin": "bù yín dāng zhāi ， dàn bǎo dāng ròu 。",
+        "english": ""
+      },
+      {
+        "chinese": "缓步当车，无祸当福。",
+        "pinyin": "huǎn bù dāng chē ， wú huò dāng fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "男无良友不知己之有过，女无明镜不知面之精粗。",
+        "pinyin": "nán wú liáng yǒu bù zhī jǐ zhī yǒu guò ， nǚ wú míng jìng bù zhī miàn zhī jīng cū 。",
+        "english": ""
+      },
+      {
+        "chinese": "事非亲做，不知难处。",
+        "pinyin": "shì fēi qīn zuò ， bù zhī nán chǔ 。",
+        "english": ""
+      },
+      {
+        "chinese": "十年易读举子，百年难淘江湖！",
+        "pinyin": "shí nián yì dú jǔ zi ， bǎi nián nán táo jiāng hú ！",
+        "english": ""
+      },
+      {
+        "chinese": "积钱不如积德，闲坐不如看书。",
+        "pinyin": "jī qián bù rú jī dé ， xián zuò bù rú kàn shū 。",
+        "english": ""
+      },
+      {
+        "chinese": "思量挑担苦，空手做是福。",
+        "pinyin": "sī liáng tiāo dàn kǔ ， kōng shǒu zuò shì fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "时来易借银千两，运去难赊酒半壶。",
+        "pinyin": "shí lái yì jiè yín qiān liǎng ， yùn qù nán shē jiǔ bàn hú 。",
+        "english": ""
+      },
+      {
+        "chinese": "天晴打过落雨铺，少时享过老来福。",
+        "pinyin": "tiān qíng dǎ guò luò yǔ pù ， shǎo shí xiǎng guò lǎo lái fú 。",
+        "english": ""
+      },
+      {
+        "chinese": "与人方便自己方便，一家打墙两家好看。",
+        "pinyin": "yǔ rén fāng biàn zì jǐ fāng biàn ， yī jiā dǎ qiáng liǎng jiā hǎo kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "当面留一线，过后好相见。",
+        "pinyin": "dāng miàn liú yī xiàn ， guò hòu hǎo xiāng jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "入门掠虎易，开口告人难。",
+        "pinyin": "rù mén lüè hǔ yì ， kāi kǒu gào rén nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "手指要往内撇，家丑不可外传。",
+        "pinyin": "shǒu zhǐ yào wǎng nèi piē ， jiā chǒu bù kě wài zhuàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "浪子出于祖无德，孝子出于前人贤。",
+        "pinyin": "làng zi chū yú zǔ wú dé ， xiào zi chū yú qián rén xián 。",
+        "english": ""
+      },
+      {
+        "chinese": "货离乡贵，人离乡贱。",
+        "pinyin": "huò lí xiāng guì ， rén lí xiāng jiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "树挪死，人挪活。",
+        "pinyin": "shù nuó sǐ ， rén nuó huó 。",
+        "english": ""
+      },
+      {
+        "chinese": "在家千日好，出门处处难。",
+        "pinyin": "zài jiā qiān rì hǎo ， chū mén chù chù nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "三员长者当官员，几个明人当知县？",
+        "pinyin": "sān yuán zhǎng zhě dāng guān yuán ， jǐ gè míng rén dāng zhī xiàn ？",
+        "english": ""
+      },
+      {
+        "chinese": "明人自断，愚人官断。",
+        "pinyin": "míng rén zì duàn ， yú rén guān duàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "人怕三见面，树怕一墨线。",
+        "pinyin": "rén pà sān jiàn miàn ， shù pà yī mò xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "村夫硬似铁，光棍软如棉。",
+        "pinyin": "cūn fū yìng shì tiě ， guāng gùn ruǎn rú mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "不是撑船手，怎敢拿篙竿！",
+        "pinyin": "bú shì chēng chuán shǒu ， zěn gǎn ná gāo gān ！",
+        "english": ""
+      },
+      {
+        "chinese": "天下礼仪无穷，一人知识有限。",
+        "pinyin": "tiān xià lǐ yí wú qióng ， yī rén zhī shí yǒu xiàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "一人不得二人计，宋江难结万人缘。",
+        "pinyin": "yī rén bù dé èr rén jì ， sòng jiāng nán jié wàn rén yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "家有三亩田，不离衙门前，乡间无强汉，衙门就饿饭。",
+        "pinyin": "jiā yǒu sān mǔ tián ， bù lí yá mén qián ， xiāng jiān wú qiáng hàn ， yá mén jiù è fàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "人人依礼仪，天下不设官。",
+        "pinyin": "rén rén yī lǐ yí ， tiān xià bù shè guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "衙门钱，眼睛钱；",
+        "pinyin": "yá mén qián ， yǎn jīng qián ；",
+        "english": ""
+      },
+      {
+        "chinese": "田禾钱，千万年。",
+        "pinyin": "tián hé qián ， qiān wàn nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "诗书必读，不可做官。",
+        "pinyin": "shī shū bì dú ， bù kě zuò guān 。",
+        "english": ""
+      },
+      {
+        "chinese": "为人莫当官，当官皆一般。",
+        "pinyin": "wéi rén mò dāng guān ， dāng guān jiē yì bān 。",
+        "english": ""
+      },
+      {
+        "chinese": "换了你我去，恐比他还贪。",
+        "pinyin": "huàn le nǐ wǒ qù ， kǒng bǐ tā hái tān 。",
+        "english": ""
+      },
+      {
+        "chinese": "官吏清廉如修行，书差方便如行善。",
+        "pinyin": "guān lì qīng lián rú xiū xíng ， shū chà fāng biàn rú xíng shàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "靠山吃山，种田吃田。",
+        "pinyin": "kào shān chī shān ， zhòng tián chī tián 。",
+        "english": ""
+      },
+      {
+        "chinese": "吃尽美味还是盐，穿尽绫罗还是棉。",
+        "pinyin": "chī jǐn měi wèi hái shì yán ， chuān jǐn líng luó hái shì mián 。",
+        "english": ""
+      },
+      {
+        "chinese": "一夫不耕，全家饿饭，一女不织，全家受寒。",
+        "pinyin": "yī fū bù gēng ， quán jiā è fàn ， yī nǚ bù zhī ， quán jiā shòu hán 。",
+        "english": ""
+      },
+      {
+        "chinese": "金银到手非容易，用时方知来时难。",
+        "pinyin": "jīn yín dào shǒu fēi róng yì ， yòng shí fāng zhī lái shí nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "先讲断，后不乱，免得藕断丝不断。",
+        "pinyin": "xiān jiǎng duàn ， hòu bù luàn ， miǎn de ǒu duàn sī bù duàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "听人劝，得一半。",
+        "pinyin": "tīng rén quàn ， dé yí bàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "不怕慢，只怕站。",
+        "pinyin": "bù pà màn ， zhǐ pà zhàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "逢快莫赶，逢贱莫懒。",
+        "pinyin": "féng kuài mò gǎn ， féng jiàn mò lǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "谋事在人，成事在天！",
+        "pinyin": "móu shì zài rén ， chéng shì zài tiān ！",
+        "english": ""
+      },
+      {
+        "chinese": "长路人挑担，短路人赚钱。",
+        "pinyin": "zhǎng lù rén tiāo dàn ， duǎn lù rén zhuàn qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁卖现二，莫卖赊三。",
+        "pinyin": "níng mài xiàn èr ， mò mài shē sān 。",
+        "english": ""
+      },
+      {
+        "chinese": "赚钱往前算，折本往后算。",
+        "pinyin": "zhuàn qián wǎng qián suàn ， shé běn wǎng hòu suàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "小小生意赚大钱，七十二行出状元。",
+        "pinyin": "xiǎo xiǎo shēng yì zhuàn dà qián ， qī shí èr háng chū zhuàng yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "自己无运至，却怨世界难。",
+        "pinyin": "zì jǐ wú yùn zhì ， què yuàn shì jiè nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "胆大不如胆小，心宽甚如屋宽。",
+        "pinyin": "dǎn dà bù rú dǎn xiǎo ， xīn kuān shèn rú wū kuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "妻贤何愁家不富，子孙何须受祖田。",
+        "pinyin": "qī xián hé chóu jiā bù fù ， zǐ sūn hé xū shòu zǔ tián 。",
+        "english": ""
+      },
+      {
+        "chinese": "是儿不死，是财不散。",
+        "pinyin": "shì ér bù sǐ ， shì cái bù sàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "财来生我易，我去生财难。",
+        "pinyin": "cái lái shēng wǒ yì ， wǒ qù shēng cái nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "十月滩头坐，一日下九滩。",
+        "pinyin": "shí yuè tān tóu zuò ， yī rì xià jiǔ tān 。",
+        "english": ""
+      },
+      {
+        "chinese": "结交一人难上难，得罪一人一时间。",
+        "pinyin": "jié jiāo yī rén nán shàng nán ， dé zuì yī rén yī shí jiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "借债经商，卖田还债；",
+        "pinyin": "jiè zhài jīng shāng ， mài tián huán zhài ；",
+        "english": ""
+      },
+      {
+        "chinese": "赊钱起屋，卖屋还钱。",
+        "pinyin": "shē qián qǐ wū ， mài wū huán qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "修起庙来鬼都老，拾得秤来姜卖完。",
+        "pinyin": "xiū qǐ miào lái guǐ dōu lǎo ， shí dé chèng lái jiāng mài wán 。",
+        "english": ""
+      },
+      {
+        "chinese": "不嫖莫转，不赌莫看。",
+        "pinyin": "bù piáo mò zhuǎn ， bù dǔ mò kàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "节食以去病，少食以延年。",
+        "pinyin": "jié shí yǐ qù bìng ， shǎo shí yǐ yán nián 。",
+        "english": ""
+      },
+      {
+        "chinese": "豆腐多了是包水，梢公多了打烂船。",
+        "pinyin": "dòu fǔ duō le shì bāo shuǐ ， shāo gōng duō le dǎ làn chuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "无口过是，无眼过难。",
+        "pinyin": "wú kǒu guò shì ， wú yǎn guò nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "无身过易，无心过难。",
+        "pinyin": "wú shēn guò yì ， wú xīn guò nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "不会凫水怨河湾，不会犁田怨枷担。",
+        "pinyin": "bú huì fú shuǐ yuàn hé wān ， bú huì lí tián yuàn jiā dān 。",
+        "english": ""
+      },
+      {
+        "chinese": "他马莫骑，他弓莫挽。",
+        "pinyin": "tā mǎ mò qí ， tā gōng mò wǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "要知心腹事，但听口中言。",
+        "pinyin": "yào zhī xīn fù shì ， dàn tīng kǒu zhōng yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁在人前全不会，莫在人前会不全。",
+        "pinyin": "níng zài rén qián quán bú huì ， mò zài rén qián huì bù quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "事非亲见，切莫乱谈。",
+        "pinyin": "shì fēi qīn jiàn ， qiè mò luàn tán 。",
+        "english": ""
+      },
+      {
+        "chinese": "打人莫打脸，骂人莫骂短。",
+        "pinyin": "dǎ rén mò dǎ liǎn ， mà rén mò mà duǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "好言一句三冬暖，话不投机六月寒。",
+        "pinyin": "hǎo yán yī jù sān dōng nuǎn ， huà bù tóu jī liù yuè hán 。",
+        "english": ""
+      },
+      {
+        "chinese": "人上十口难盘，帐上万元难还。",
+        "pinyin": "rén shàng shí kǒu nán pán ， zhàng shàng wàn yuán nán hái 。",
+        "english": ""
+      },
+      {
+        "chinese": "放债如施，收债如讨。",
+        "pinyin": "fàng zhài rú shī ， shōu zhài rú tǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "告状讨钱，海底摸盐。",
+        "pinyin": "gào zhuàng tǎo qián ， hǎi dǐ mō yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "衙门深似海，弊病大如天。",
+        "pinyin": "yá mén shēn shì hǎi ， bì bìng dà rú tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "银钱莫欺骗，牛马不好变。",
+        "pinyin": "yín qián mò qī piàn ， niú mǎ bù hǎo biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "好汉莫被人识破，看破不值半文钱。",
+        "pinyin": "hǎo hàn mò bèi rén shí pò ， kàn pò bù zhí bàn wén qián 。",
+        "english": ""
+      },
+      {
+        "chinese": "狗咬对头人，雷打三世冤。",
+        "pinyin": "gǒu yǎo duì tóu rén ， léi dǎ sān shì yuān 。",
+        "english": ""
+      },
+      {
+        "chinese": "不卖香烧无剩钱，井水不打不满边。",
+        "pinyin": "bù mài xiāng shāo wú shèng qián ， jǐng shuǐ bù dǎ bù mǎn biān 。",
+        "english": ""
+      },
+      {
+        "chinese": "事宽则园，太久则偏。",
+        "pinyin": "shì kuān zé yuán ， tài jiǔ zé piān 。",
+        "english": ""
+      },
+      {
+        "chinese": "高人求低易，低人求高难。",
+        "pinyin": "gāo rén qiú dī yì ， dī rén qiú gāo nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "有钱就是男子汉，无钱就是汉子难。",
+        "pinyin": "yǒu qián jiù shì nán zi hàn ， wú qián jiù shì hàn zi nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "人上一百，手艺齐全。",
+        "pinyin": "rén shàng yì bǎi ， shǒu yì qí quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "难者不会，会者不难。",
+        "pinyin": "nán zhě bú huì ， huì zhě bù nán 。",
+        "english": ""
+      },
+      {
+        "chinese": "生就木头造就船，砍的没得车的圆。",
+        "pinyin": "shēng jiù mù tou zào jiù chuán ， kǎn de méi dé chē de yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "心不得满，事不得全。",
+        "pinyin": "xīn bù dé mǎn ， shì bù dé quán 。",
+        "english": ""
+      },
+      {
+        "chinese": "鸟飞不尽，话说不完。",
+        "pinyin": "niǎo fēi bù jìn ， huà shuō bù wán 。",
+        "english": ""
+      },
+      {
+        "chinese": "人无喜色休开店，事不遂心莫怨天。",
+        "pinyin": "rén wú xǐ sè xiū kāi diàn ， shì bù suí xīn mò yuàn tiān 。",
+        "english": ""
+      },
+      {
+        "chinese": "选婿莫选田园，选女莫选嫁奁。",
+        "pinyin": "xuǎn xù mò xuǎn tián yuán ， xuǎn nǚ mò xuǎn jià lián 。",
+        "english": ""
+      },
+      {
+        "chinese": "红颜女子多薄命，福人出在丑人边。",
+        "pinyin": "hóng yán nǚ zǐ duō bó mìng ， fú rén chū zài chǒu rén biān 。",
+        "english": ""
+      },
+      {
+        "chinese": "人将礼义为先，树将花果为园。",
+        "pinyin": "rén jiāng lǐ yì wèi xiān ， shù jiāng huā guǒ wèi yuán 。",
+        "english": ""
+      },
+      {
+        "chinese": "临危许行善，过后心又变。",
+        "pinyin": "lín wēi xǔ xíng shàn ， guò hòu xīn yòu biàn 。",
+        "english": ""
+      },
+      {
+        "chinese": "天意违可以人回，命早定可以心挽。",
+        "pinyin": "tiān yì wéi kě yǐ rén huí ， mìng zǎo dìng kě yǐ xīn wǎn 。",
+        "english": ""
+      },
+      {
+        "chinese": "强盗口内出赦书，君子口中无戏言。",
+        "pinyin": "qiáng dào kǒu nèi chū shè shū ， jūn zǐ kǒu zhōng wú xì yán 。",
+        "english": ""
+      },
+      {
+        "chinese": "贵人语少，贫子话多。",
+        "pinyin": "guì rén yǔ shǎo ， pín zi huà duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "快里须斟酌，耽误莫迟春。",
+        "pinyin": "kuài lǐ xū zhēn zhuó ， dān wù mò chí chūn 。",
+        "english": ""
+      },
+      {
+        "chinese": "读过古华佗，不如见症多。",
+        "pinyin": "dú guò gǔ huà tuó ， bù rú jiàn zhèng duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "东屋未补西屋破，前帐未还后又拖。",
+        "pinyin": "dōng wū wèi bǔ xī wū pò ， qián zhàng wèi hái hòu yòu tuō 。",
+        "english": ""
+      },
+      {
+        "chinese": "今年又说明年富，待到明年差不多。",
+        "pinyin": "jīn nián yòu shuō míng nián fù ， dài dào míng nián chà bu duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "志不同己，不必强合。",
+        "pinyin": "zhì bù tóng jǐ ， bù bì qiáng hé 。",
+        "english": ""
+      },
+      {
+        "chinese": "莫道坐中安乐少，须知世上苦情多。",
+        "pinyin": "mò dào zuò zhōng ān lè shǎo ， xū zhī shì shàng kǔ qíng duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "本少利微强如坐，屋檐水也滴得多。",
+        "pinyin": "běn shǎo lì wēi qiáng rú zuò ， wū yán shuǐ yě dī dé duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "勤俭持家富，谦恭受益多。",
+        "pinyin": "qín jiǎn chí jiā fù ， qiān gōng shòu yì duō 。",
+        "english": ""
+      },
+      {
+        "chinese": "细处不断粗处断，黄梅不落青梅落。",
+        "pinyin": "xì chù bù duàn cū chù duàn ， huáng méi bù luò qīng méi luò 。",
+        "english": ""
+      },
+      {
+        "chinese": "见钱起意便是贼，顺手牵羊乃为盗。",
+        "pinyin": "jiàn qián qǐ yì biàn shì zéi ， shùn shǒu qiān yáng nǎi wèi dào 。",
+        "english": ""
+      },
+      {
+        "chinese": "要做快活人，切莫寻烦恼。",
+        "pinyin": "yào zuò kuài huó rén ， qiè mò xún fán nǎo 。",
+        "english": ""
+      },
+      {
+        "chinese": "要做长寿人，莫做短命事。",
+        "pinyin": "yào zuò cháng shòu rén ， mò zuò duǎn mìng shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "要做有后人，莫做无后事。",
+        "pinyin": "yào zuò yǒu hòu rén ， mò zuò wú hòu shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "不经一事，不长一智。",
+        "pinyin": "bù jīng yī shì ， bù zhǎng yī zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "宁可无钱使，不可无行止。",
+        "pinyin": "nìng kě wú qián shǐ ， bù kě wú xíng zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "栽树要栽松柏，结交要结君子。",
+        "pinyin": "zāi shù yào zāi sōng bǎi ， jié jiāo yào jié jūn zǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "秀才不出门，能知天下事。",
+        "pinyin": "xiù cái bù chū mén ， néng zhī tiān xià shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "钱多不经用，儿多不耐死。",
+        "pinyin": "qián duō bù jīng yòng ， ér duō bù nài sǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "弟兄争财家不穷不止，妻妾争风夫不死不止。",
+        "pinyin": "dì xiōng zhēng cái jiā bù qióng bù zhǐ ， qī qiè zhēng fēng fū bù sǐ bù zhǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "男人有志，妇人有势。",
+        "pinyin": "nán rén yǒu zhì ， fù rén yǒu shì 。",
+        "english": ""
+      },
+      {
+        "chinese": "夫人死百将临门，将军死一卒不至。",
+        "pinyin": "fū rén sǐ bǎi jiāng lín mén ， jiāng jūn sǐ yī zú bù zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "天旱误甲子，人穷误口齿。",
+        "pinyin": "tiān hàn wù jiǎ zi ， rén qióng wù kǒu chǐ 。",
+        "english": ""
+      },
+      {
+        "chinese": "百岁无多日，光阴能几时？",
+        "pinyin": "bǎi suì wú duō rì ， guāng yīn néng jǐ shí ？",
+        "english": ""
+      },
+      {
+        "chinese": "父母养其身，自己立其志。",
+        "pinyin": "fù mǔ yǎng qí shēn ， zì jǐ lì qí zhì 。",
+        "english": ""
+      },
+      {
+        "chinese": "待有余而济人，终无济人之日；",
+        "pinyin": "dài yǒu yú ér jì rén ， zhōng wú jì rén zhī rì ；",
+        "english": ""
+      },
+      {
+        "chinese": "待有闲而读书，终无读书之时。",
+        "pinyin": "dài yǒu xián ér dú shū ， zhōng wú dú shū zhī shí 。",
+        "english": ""
+      },
+      {
+        "chinese": "此书传后世，句句必精读，其中礼和义，奉劝告世人。",
+        "pinyin": "cǐ shū chuán hòu shì ， jù jù bì jīng dú ， qí zhōng lǐ hé yì ， fèng quàn gào shì rén 。",
+        "english": ""
+      },
+      {
+        "chinese": "勤奋读，苦发奋，走遍天涯如游刃。",
+        "pinyin": "qín fèn dú ， kǔ fā fèn ， zǒu biàn tiān yá rú yóu rèn 。",
+        "english": ""
+      }
+    ]
+  }
+]
