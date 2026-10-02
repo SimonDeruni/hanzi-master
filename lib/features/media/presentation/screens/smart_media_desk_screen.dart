@@ -19,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/core/providers/translation_language_provider.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/core/layout/zen_device.dart';
@@ -370,7 +371,8 @@ class _SmartMediaDeskScreenState extends ConsumerState<SmartMediaDeskScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _error = e.toString();
+          // Transcript + AI briefing both need the network; name the cause.
+          _error = NetworkNotice.describe(context, e, fallback: e.toString());
           _isLoading = false;
         });
       }

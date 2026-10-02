@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 /// One entry point for every transient surface (F5 of
 /// `docs/IPAD_ADAPTIVE_PLAN.md`).
@@ -58,6 +60,70 @@ Future<T?> zenSheet<T>(
     backgroundColor: backgroundColor,
     shape: shape,
     builder: builder,
+  );
+}
+
+/// A trailing-edge panel — the tablet form of a detail surface that belongs
+/// *beside* the content rather than centred over it.
+///
+/// On a phone it is the familiar bottom sheet. At expanded (≥840dp) — an iPad in
+/// either orientation — it slides in from the trailing edge as a full-height,
+/// width-capped panel, so a "what do you want to do with this" chooser reads as a
+/// side desk instead of a stretched phone sheet. A centred dialog ([zenDialog])
+/// stays the right form for a plain form; the side panel is for surfaces whose
+/// content the reader wants to keep in view while deciding.
+Future<T?> zenSidePanel<T>(
+  BuildContext context, {
+  required WidgetBuilder builder,
+  bool dismissible = true,
+  bool useRootNavigator = false,
+  bool isScrollControlled = true,
+  double width = 420,
+}) {
+  if (!ZenWindow.of(context).isExpanded) {
+    // Phones (and a Split View half): the bottom sheet is still the idiom.
+    return zenSheet<T>(
+      context,
+      builder: builder,
+      isScrollControlled: isScrollControlled,
+      dismissible: dismissible,
+      useRootNavigator: useRootNavigator,
+      backgroundColor: Colors.transparent,
+    );
+  }
+  return showGeneralDialog<T>(
+    context: context,
+    useRootNavigator: useRootNavigator,
+    barrierDismissible: dismissible,
+    barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+    barrierColor: Colors.black.withValues(alpha: 0.28),
+    transitionDuration: ZenMotion.page,
+    pageBuilder: (BuildContext dialogContext, _, __) => Row(
+      children: <Widget>[
+        const Spacer(),
+        SizedBox(
+          width: width,
+          height: double.infinity,
+          child: SafeArea(left: false, child: builder(dialogContext)),
+        ),
+      ],
+    ),
+    transitionBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation, Widget child) {
+      final CurvedAnimation curved =
+          CurvedAnimation(parent: animation, curve: ZenMotion.settle);
+      // Reduced motion: cross-fade only, no travel.
+      if (context.reduceMotion) {
+        return FadeTransition(opacity: curved, child: child);
+      }
+      return SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(1, 0),
+          end: Offset.zero,
+        ).animate(curved),
+        child: FadeTransition(opacity: curved, child: child),
+      );
+    },
   );
 }
 

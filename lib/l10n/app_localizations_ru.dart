@@ -2287,6 +2287,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get openInYoutube => 'Открыть на YouTube';
 
   @override
+  String get tutorialsTab => 'Уроки';
+
+  @override
+  String get youtubeHostedNotice =>
+      'Видео размещается и воспроизводится на YouTube. Мы не скачиваем и не изменяем его.';
+
+  @override
   String get orderingHanddripCoffeeInShanghai =>
       'Заказ фильтр-кофе пуровер в Шанхае';
 

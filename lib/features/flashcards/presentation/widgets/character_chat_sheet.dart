@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
 import 'package:hanzi_master/core/widgets/translated_definition.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
-import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/shared/widgets/chat_motion.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/core/services/haptics_manager.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/scholar_stroke_lesson.dart';
 
 // ---------------------------------------------------------------------------
 // Data models
@@ -119,105 +123,40 @@ List<CharacterChatPrompt> _chipsForIndex(
   ];
 }
 
+/// A structured artefact the Scholar can attach to a reply instead of prose —
+/// a real widget built from the app's own data (the stroke skeletons on the
+/// card), so "explain the stroke order" answers by *showing* it.
+enum ScholarArtefact { strokeOrder }
+
 class ChatMessage {
+  /// Stable identity, so a bubble animates in exactly once as it is appended.
+  final int id;
   final String text;
   final bool isUser;
   // ignore: library_private_types_in_public_api
   final List<CharacterChatPrompt> chips;
-  ChatMessage(
-      {required this.text, required this.isUser, this.chips = const []});
+
+  /// Optional mini-lesson rendered under the bubble.
+  final ScholarArtefact? artefact;
+
+  ChatMessage({
+    required this.id,
+    required this.text,
+    required this.isUser,
+    this.chips = const [],
+    this.artefact,
+  });
 }
 
 // ---------------------------------------------------------------------------
 // Markdown → TextSpan renderer now handled by TappableMarkdownHanziText.
 // ---------------------------------------------------------------------------
 
-class _InkDots extends StatefulWidget {
-  const _InkDots(); // ignore: prefer_const_constructors_in_immutables
-  @override
-  // ignore: library_private_types_in_public_api
-  State<_InkDots> createState() => _InkDotsState();
-}
-
-class _InkDotsState extends State<_InkDots> with TickerProviderStateMixin {
-  late final List<AnimationController> _controllers;
-  late final List<Animation<double>> _anims;
-
-  /// Cached platform motion preference, refreshed in didChangeDependencies.
-  bool _reduceMotion = false;
-
-  @override
-  void initState() {
-    super.initState();
-    // The repeats are deferred to didChangeDependencies, which is the only
-    // place the platform "Reduce Motion" setting can be read.
-    _controllers = List.generate(
-        3,
-        (i) => AnimationController(
-              vsync: this,
-              duration: ZenMotion.page,
-            ));
-    _anims = _controllers
-        .map((c) => Tween(begin: 0.3, end: 1.0).animate(
-              CurvedAnimation(parent: c, curve: ZenMotion.natural),
-            ))
-        .toList();
-    // Stagger starts
-    Future.delayed(const Duration(milliseconds: 0), () {
-      if (mounted && !_reduceMotion) _controllers[0].forward();
-    });
-    Future.delayed(const Duration(milliseconds: 180), () {
-      if (mounted && !_reduceMotion) _controllers[1].forward();
-    });
-    Future.delayed(const Duration(milliseconds: 360), () {
-      if (mounted && !_reduceMotion) _controllers[2].forward();
-    });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _reduceMotion = context.reduceMotion;
-    // Reduced motion: the ink dots rest fully visible instead of cycling.
-    for (final c in _controllers) {
-      MotionResolution.resolve(
-        context,
-        controller: c,
-        loop: true,
-        staticValue: 1.0,
-      ).apply();
-    }
-  }
-
-  @override
-  void dispose() {
-    for (final c in _controllers) {
-      c.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(
-          3,
-          (i) => AnimatedBuilder(
-                animation: _anims[i],
-                builder: (_, __) => Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  width: 7,
-                  height: 7,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.indigo.withValues(alpha: _anims[i].value),
-                  ),
-                ),
-              )),
-    );
-  }
-}
+// ---------------------------------------------------------------------------
+// The bubble entrance and the typing dots now live in
+// `shared/widgets/chat_motion.dart`, so the Bureau du savant and the Echo Hall
+// roleplay transcripts animate identically.
+// ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
 // Main Drawer Widget
@@ -230,6 +169,23 @@ class CharacterChatSheet extends ConsumerStatefulWidget {
   final String? definitionLanguage;
   final Future<String> Function(String message)? messageSender;
 
+  /// Stroke skeletons, so a stroke-order answer can *show* the animation rather
+  /// than only describe it. Empty when the caller has no hydrated card.
+  final List<String> strokePaths;
+  final List<List<Offset>> medianPaths;
+  final bool isFlipped;
+
+  /// True when the sheet is hosted inside a side pane instead of a modal sheet —
+  /// the iPad "Scholar's Desk on the side" (row 23 of `IPAD_ADAPTIVE_PLAN.md`).
+  /// An embedded panel fills its pane rather than taking 85% of the window, sizes
+  /// its bubbles to the pane instead of the screen, and closes through [onClose]
+  /// instead of popping a route.
+  final bool embedded;
+
+  /// Invoked by the header's close button when [embedded] is true. The modal form
+  /// ignores it and pops its own route.
+  final VoidCallback? onClose;
+
   const CharacterChatSheet({
     super.key,
     required this.hanzi,
@@ -237,6 +193,11 @@ class CharacterChatSheet extends ConsumerStatefulWidget {
     required this.definition,
     this.definitionLanguage,
     this.messageSender,
+    this.strokePaths = const <String>[],
+    this.medianPaths = const <List<Offset>>[],
+    this.isFlipped = false,
+    this.embedded = false,
+    this.onClose,
   });
 
   @override
@@ -252,9 +213,21 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
   bool _isLoading = false;
   int _aiReplyCount = 0;
 
+  /// Monotonic id for each bubble, used as its entrance-animation key.
+  int _nextMessageId = 0;
+
+  /// Whether the composer holds text, so the send button can react to it.
+  bool _hasText = false;
+
   @override
   void initState() {
     super.initState();
+    _textController.addListener(_onComposerChanged);
+  }
+
+  void _onComposerChanged() {
+    final bool hasText = _textController.text.trim().isNotEmpty;
+    if (hasText != _hasText) setState(() => _hasText = hasText);
   }
 
   @override
@@ -271,6 +244,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
 
       final l10n = AppLocalizations.of(context)!;
       _messages.add(ChatMessage(
+        id: _nextMessageId++,
         text: l10n.askMeAnythingAbout(widget.hanzi),
         isUser: false,
         chips: _chipsForIndex(0, l10n),
@@ -280,6 +254,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
 
   @override
   void dispose() {
+    _textController.removeListener(_onComposerChanged);
     _textController.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -290,18 +265,24 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     final consent = await AiConsentSheet.ensureConsent(context);
     if (!consent || !mounted) return;
     final l10n = AppLocalizations.of(context)!;
+    HapticsManager.light();
     setState(() {
-      _messages.add(ChatMessage(text: text, isUser: true));
+      _messages.add(ChatMessage(id: _nextMessageId++, text: text, isUser: true));
       _isLoading = true;
     });
     _textController.clear();
     _scrollToBottom();
 
+    // A chip tap and a typed question both reach here as text, so stroke-order
+    // intent is matched from the wording — but the lesson only attaches when the
+    // card actually carries the skeletons it needs.
+    final ScholarArtefact? reply = _attachArtefact(_detectArtefact(text, l10n));
+
     try {
       if (widget.messageSender != null) {
         final rawText = await widget.messageSender!(text);
         if (rawText.isEmpty) throw Exception('Empty response');
-        _addAiReply(rawText, l10n);
+        _addAiReply(rawText, l10n, artefact: reply);
         return;
       }
 
@@ -320,35 +301,80 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
         await box.put(cacheKey, rawText);
       }
 
-      _addAiReply(rawText, l10n);
+      _addAiReply(rawText, l10n, artefact: reply);
     } catch (e) {
       final errorStr = e.toString();
-      String userMessage = l10n.aiTutorError(errorStr);
 
-      if (errorStr.contains('Quota exceeded') || errorStr.contains('429')) {
+      // Order matters: a lost connection is the one failure the learner can
+      // actually fix, so it must not be buried under the generic
+      // "AI tutor error: <raw exception>" line that used to be shown for it.
+      final String userMessage;
+      if (NetworkFailure.isOffline(e)) {
+        userMessage = NetworkNotice.messageOf(l10n);
+      } else if (errorStr.contains('Quota exceeded') ||
+          errorStr.contains('429')) {
         userMessage = l10n.aiTutorRateLimit;
+      } else {
+        userMessage = l10n.aiTutorError(errorStr);
       }
 
       setState(() {
-        _messages.add(ChatMessage(text: userMessage, isUser: false));
+        _messages.add(
+            ChatMessage(id: _nextMessageId++, text: userMessage, isUser: false));
         _isLoading = false;
       });
       _scrollToBottom();
     }
   }
 
-  void _addAiReply(String text, AppLocalizations l10n) {
+  void _addAiReply(String text, AppLocalizations l10n,
+      {ScholarArtefact? artefact}) {
     _aiReplyCount++;
     setState(() {
       _messages.add(ChatMessage(
+        id: _nextMessageId++,
         text: text,
         isUser: false,
         chips: _chipsForIndex(_aiReplyCount, l10n),
+        artefact: artefact,
       ));
       _isLoading = false;
     });
     _scrollToBottom();
   }
+
+  /// Matches a question to a mini-lesson. Deliberately small and multilingual:
+  /// there is no NLU here, and the only artefact today is the stroke lesson.
+  ScholarArtefact? _detectArtefact(String text, AppLocalizations l10n) {
+    if (text == l10n.explainTheStrokeOrderRulesForThisCh) {
+      return ScholarArtefact.strokeOrder;
+    }
+    final String q = text.toLowerCase();
+    const List<String> needles = <String>[
+      'stroke order',
+      'stroke-order',
+      'ordre des traits',
+      '笔顺',
+      '筆順',
+      '書き順',
+      'ordine dei tratti',
+      'orden de los trazos',
+      'ordem dos traços',
+      'urutan guratan',
+      'thứ tự nét',
+    ];
+    for (final String needle in needles) {
+      if (q.contains(needle)) return ScholarArtefact.strokeOrder;
+    }
+    return null;
+  }
+
+  /// The stroke lesson needs real skeletons; without them the reply stays prose
+  /// rather than showing an empty grid.
+  ScholarArtefact? _attachArtefact(ScholarArtefact? artefact) =>
+      artefact == ScholarArtefact.strokeOrder && widget.strokePaths.isNotEmpty
+          ? artefact
+          : null;
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -368,51 +394,74 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
     final aiBubbleColor =
         isDark ? const Color(0xFF252525) : const Color(0xFFFFF8EE);
     final textColor = isDark ? Colors.white : const Color(0xFF1A1A1B);
-    final screenWidth = MediaQuery.sizeOf(context).width;
-    final drawerWidth = screenWidth * 0.88;
 
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.85,
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Column(
-            children: [
-              const SizedBox(height: 8),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // In a side pane the bubbles size to the *pane*, not the window - 88% of
+        // an iPad is wider than the pane the chat actually lives in.
+        final double drawerWidth = widget.embedded
+            ? constraints.maxWidth
+            : MediaQuery.sizeOf(context).width * 0.88;
 
-              // ── Header ────────────────────────────────────────────────────
-              _buildHeader(isDark, textColor),
+        final Widget column = Column(
+          children: [
+            // Only the modal form needs the grab-handle strip; embedded, the
+            // pane's own header takes that role and the strip is dead air.
+            if (!widget.embedded) const SizedBox(height: 8),
 
-              // ── Character Info Box ─────────────────────────────────────────
-              _buildCharacterBox(isDark, aiBubbleColor, textColor),
+            _buildHeader(isDark, textColor),
 
-              // ── Message List ──────────────────────────────────────────────
-              Expanded(
-                child: ListView.builder(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
-                  itemCount: _messages.length + (_isLoading ? 1 : 0),
-                  itemBuilder: (context, index) {
-                    if (index == _messages.length) {
-                      return _buildTypingIndicator(aiBubbleColor);
-                    }
-                    final msg = _messages[index];
-                    return msg.isUser
+            ChatMessageEntrance(
+              delay: ZenMotion.beat,
+              child: _buildCharacterBox(isDark, aiBubbleColor, textColor),
+            ),
+
+            Expanded(
+              child: ListView.builder(
+                controller: _scrollController,
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
+                itemCount: _messages.length + (_isLoading ? 1 : 0),
+                itemBuilder: (context, index) {
+                  if (index == _messages.length) {
+                    return ChatMessageEntrance(
+                      key: const ValueKey<String>('scholar-typing'),
+                      child: _buildTypingIndicator(aiBubbleColor),
+                    );
+                  }
+                  final msg = _messages[index];
+                  // Each bubble rises in once, keyed by its id so scrolling
+                  // back and forth does not replay the entrance.
+                  return ChatMessageEntrance(
+                    key: ValueKey<int>(msg.id),
+                    child: msg.isUser
                         ? _buildUserBubble(msg, drawerWidth, textColor)
                         : _buildAiBubble(
-                            msg, aiBubbleColor, drawerWidth, textColor, isDark);
-                  },
-                ),
+                            msg, aiBubbleColor, drawerWidth, textColor, isDark),
+                  );
+                },
               ),
+            ),
 
-              // ── Input ─────────────────────────────────────────────────────
-              _buildInputBar(isDark, textColor),
-            ],
+            _buildInputBar(isDark, textColor),
+          ],
+        );
+
+        // Embedded: fill the pane the parent hands us. The parent owns the
+        // height, the border and the safe area, so no modal chrome is added.
+        if (widget.embedded) return column;
+
+        return SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.85,
+          child: SafeArea(
+            top: false,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: column,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -445,7 +494,9 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
           IconButton(
             icon: Icon(Icons.close,
                 size: 20, color: textColor.withValues(alpha: 0.5)),
-            onPressed: () => Navigator.pop(context),
+            onPressed: widget.embedded
+                ? (widget.onClose ?? () {})
+                : () => Navigator.pop(context),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
           ),
@@ -540,6 +591,19 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
             style: TextStyle(fontSize: 14.5, height: 1.5, color: bubbleColor),
           ),
         ),
+        // A mini-lesson built from the app's own data, when words alone are not
+        // enough ("explain the stroke order" → the animated canvas).
+        if (msg.artefact == ScholarArtefact.strokeOrder)
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: drawerWidth * 0.82),
+            child: ScholarStrokeLesson(
+              hanzi: widget.hanzi,
+              strokePaths: widget.strokePaths,
+              medianPaths: widget.medianPaths,
+              isFlipped: widget.isFlipped,
+              isDark: isDark,
+            ),
+          ),
         // Follow-up chips
         if (msg.chips.isNotEmpty)
           Padding(
@@ -548,24 +612,35 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
               spacing: 6,
               runSpacing: 6,
               children: msg.chips
-                  .map((chip) => GestureDetector(
-                        onTap: () => _sendMessage(chip.prompt),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: Colors.indigo
-                                .withValues(alpha: isDark ? 0.2 : 0.08),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                                color: Colors.indigo.withValues(alpha: 0.2)),
-                          ),
-                          child: Text(
-                            chip.label,
-                            style: const TextStyle(
-                              fontSize: 12.5,
-                              color: Colors.indigo,
-                              fontWeight: FontWeight.w500,
+                  .asMap()
+                  .entries
+                  .map((entry) => ChatMessageEntrance(
+                        // The chips follow the bubble in one beat apart, rather
+                        // than all landing at once with it — the same rise-and-fade
+                        // the bubble uses, honouring Reduce Motion.
+                        delay: ZenMotion.beat * (entry.key + 1),
+                        child: GestureDetector(
+                          onTap: () {
+                            HapticsManager.light();
+                            _sendMessage(entry.value.prompt);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.indigo
+                                  .withValues(alpha: isDark ? 0.2 : 0.08),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: Colors.indigo.withValues(alpha: 0.2)),
+                            ),
+                            child: Text(
+                              entry.value.label,
+                              style: const TextStyle(
+                                fontSize: 12.5,
+                                color: Colors.indigo,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -618,7 +693,7 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
             bottomLeft: Radius.circular(4),
           ),
         ),
-        child: const _InkDots(),
+        child: const ChatTypingDots(),
       ),
     );
   }
@@ -666,16 +741,29 @@ class _CharacterChatSheetState extends ConsumerState<CharacterChatSheet> {
                   Padding(
                     padding: const EdgeInsets.only(right: 6),
                     child: GestureDetector(
-                      onTap: () => _sendMessage(_textController.text),
-                      child: Container(
-                        width: 34,
-                        height: 34,
-                        decoration: const BoxDecoration(
-                          color: Colors.indigo,
-                          shape: BoxShape.circle,
+                      onTap: _hasText
+                          ? () => _sendMessage(_textController.text)
+                          : null,
+                      // The brush "presses" only when there is something to
+                      // send, so an empty composer no longer reads as armed.
+                      child: AnimatedScale(
+                        scale: _hasText ? 1.0 : 0.82,
+                        duration: ZenMotion.of(context, ZenMotion.swap),
+                        curve: ZenMotion.natural,
+                        child: AnimatedOpacity(
+                          opacity: _hasText ? 1.0 : 0.55,
+                          duration: ZenMotion.of(context, ZenMotion.swap),
+                          child: Container(
+                            width: 34,
+                            height: 34,
+                            decoration: const BoxDecoration(
+                              color: Colors.indigo,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.arrow_upward,
+                                color: Colors.white, size: 18),
+                          ),
                         ),
-                        child: const Icon(Icons.arrow_upward,
-                            color: Colors.white, size: 18),
                       ),
                     ),
                   ),

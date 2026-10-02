@@ -8,9 +8,11 @@ import 'package:hanzi_master/features/auth/presentation/providers/auth_controlle
 import 'package:hanzi_master/features/flashcards/presentation/screens/main_navigation_screen.dart';
 import 'package:hanzi_master/main.dart';
 import 'package:hanzi_master/features/premium/presentation/screens/custom_paywall_screen.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
@@ -66,8 +68,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     } catch (e) {
       debugPrint("Restore error: $e");
       if (mounted) {
-        ZenToast.error(context,
-            l10n?.noActiveSubscriptionFound ?? "No active subscription found.");
+        // Restoring talks to the store, which needs the network - and "no active
+        // subscription found" is the wrong thing to tell someone in a tunnel.
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+              context,
+              l10n?.noActiveSubscriptionFound ??
+                  "No active subscription found.");
+        }
       }
     } finally {
       if (mounted) {
@@ -223,6 +231,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       HapticsManager.error();
       if (mounted) {
         setState(() {
+          // A transport-level failure of any kind — not only firebase_auth's own
+          // `network-request-failed` code — is the same problem for the learner,
+          // so it is asked once here instead of being enumerated in the switch.
+          if (NetworkFailure.isOffline(e)) {
+            _errorMessage = l10n?.authNetworkError ??
+                "Network error. Please check your connection.";
+            return;
+          }
           switch (e.code) {
             case 'invalid-credential':
             case 'user-not-found':
@@ -245,10 +261,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             case 'too-many-requests':
               _errorMessage = l10n?.authTooManyRequests ??
                   "Too many failed attempts. Please try again later.";
-              break;
-            case 'network-request-failed':
-              _errorMessage = l10n?.authNetworkError ??
-                  "Network error. Please check your connection.";
               break;
             default:
               final errStr = e.message ?? e.toString();

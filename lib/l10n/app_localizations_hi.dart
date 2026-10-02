@@ -2275,6 +2275,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get openInYoutube => 'YouTube में खोलें';
 
   @override
+  String get tutorialsTab => 'ट्यूटोरियल';
+
+  @override
+  String get youtubeHostedNotice =>
+      'ये वीडियो YouTube द्वारा होस्ट और चलाए जाते हैं। हम उन्हें डाउनलोड या बदलते नहीं हैं।';
+
+  @override
   String get orderingHanddripCoffeeInShanghai =>
       'शंघाई में फ़िल्टर कॉफ़ी ऑर्डर करना';
 

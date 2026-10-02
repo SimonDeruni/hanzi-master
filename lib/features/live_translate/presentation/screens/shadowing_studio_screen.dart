@@ -26,6 +26,7 @@ import 'package:hanzi_master/shared/widgets/breathing_widget.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/core/providers.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
+import 'package:hanzi_master/core/utils/dtw_aligner.dart';
 import 'package:hanzi_master/core/utils/shadowing_line.dart';
 import '../../../echo_hall/presentation/widgets/tone_comparison_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
@@ -39,6 +40,8 @@ import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/core/services/pitch_detector_service.dart';
 import 'package:hanzi_master/core/utils/pitch_contour.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import '../widgets/tone_graph_card.dart';
 
 /// How a phrase is chosen for a session.
@@ -443,7 +446,12 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
     } catch (e) {
       if (mounted) {
         setState(() {
-          _errorMessage = "Failed to generate phrase. Please try again.";
+          // Both a hardcoded English literal and a lie for half the causes: a
+          // connection that is off cannot be retried into working. `describe`
+          // says so in the learner's own language, and keeps this line
+          // otherwise.
+          _errorMessage = NetworkNotice.describe(context, e,
+              fallback: "Failed to generate phrase. Please try again.");
           _isLoadingNextPhrase = false;
         });
       }
@@ -600,8 +608,18 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
         if (mounted) {
           setState(() {
             _lastGrade = grade;
-            _userPitch = measuredPitch;
+            // The target is a plan of equal tone slots; the learner's contour is
+            // real time. Warp the learner's contour **onto the target's axis**
+            // (DTW) so the two strokes finally share one x-axis — otherwise the
+            // graph asks the eye to compare two different clocks, and a crossing
+            // point means nothing. DTW does not invent a tone the learner never
+            // said: it only re-times what was measured, and the *verdict* still
+            // comes from `gradeAudio`, never from this warping.
             _idealPitch = _idealPitchFor(grade, measuredPitch);
+            final List<double?> ideal = _idealPitch;
+            _userPitch = ideal.isEmpty
+                ? measuredPitch
+                : DtwAligner.alignPitch(ideal, measuredPitch);
             _isGrading = false;
 
             if (grade['words'] != null) {
@@ -638,8 +656,15 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                   AppLocalizations.of(context)!.azureQuotaExceededTryAgainLater;
             } else if (msg.contains("TimeoutException") ||
                 msg.contains("timed out")) {
-              _errorMessage =
-                  "Azure grading timed out. Check your internet connection.";
+              // Was a hardcoded English literal; the 14-locale key existed for
+              // exactly this sentence and had never been referenced.
+              _errorMessage = AppLocalizations.of(context)!
+                  .azureGradingTimedOutCheckYourIntern;
+            } else if (NetworkFailure.isOffline(e)) {
+              // Anything else that turns out to be a dead connection gets the
+              // shared sentence, asked once through the classifier instead of a
+              // second hand-rolled `msg.contains` chain.
+              _errorMessage = NetworkNotice.message(context);
             } else if (msg.contains("Recognition failed: null") ||
                 msg.contains("null")) {
               _errorMessage = "Could not hear you clearly. Please try again.";
@@ -2431,7 +2456,9 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
             ToneGraphCard(
               userPitch: _userPitch,
               idealPitch: _idealPitch,
-              height: isTablet ? 100 : 120,
+              // Two lanes now (target + your voice), so the box is taller than the
+              // single-lane graphs it replaced.
+              height: isTablet ? 130 : 150,
               // The two strokes are not time-aligned here — Azure returns no syllable
               // offsets, so the target is drawn as equal slots — and the lightbulb is
               // where that gets said, rather than letting the graph imply an alignment
@@ -2600,26 +2627,31 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                         final phonemeStr =
                             (p['phoneme'] ?? '').toString().trim();
 
-                        int tone = 1;
-                        String pinyinBase = phonemeStr;
-                        final match = RegExp(
-                                r'^([a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+)\s*(\d)?$')
-                            .firstMatch(phonemeStr);
-                        if (match != null) {
-                          pinyinBase = match.group(1) ?? phonemeStr;
-                          if (match.group(2) != null) {
-                            tone = int.tryParse(match.group(2)!) ??
-                                PinyinUtils.getTone(pinyinBase);
-                          } else {
-                            tone = PinyinUtils.getTone(pinyinBase);
-                          }
-                        } else {
-                          tone = PinyinUtils.getTone(phonemeStr);
+                        // The recogniser returns bare syllables ("hua") with no
+                        // tone, and `getTone` reads an unmarked syllable as the
+                        // *neutral* tone — so a fourth-tone character (划, huà) was
+                        // shown to the learner as "Neutral (light)". Trust, in
+                        // order: the tone the phoneme states, the word's own
+                        // authored pinyin (`wordData['pinyin']`, tone-marked), then
+                        // the tone the grader itself already resolved.
+                        final String wordPinyin =
+                            (wordData['pinyin'] ?? '').toString().trim();
+                        int tone = PinyinUtils.toneFromSyllable(phonemeStr);
+                        if (tone == 0) {
+                          tone = PinyinUtils.toneFromSyllable(wordPinyin);
+                        }
+                        if (tone == 0) {
+                          tone =
+                              (wordData['expectedTone'] as num?)?.toInt() ?? 5;
                         }
 
                         final char = (word.length > idx) ? word[idx] : word;
-                        final pinyinMarked = PinyinUtils.convertNumericToMarks(
-                            '$pinyinBase$tone');
+                        // Show the authored, tone-marked syllable when there is one;
+                        // otherwise rebuild it from the phoneme and resolved tone.
+                        final pinyinMarked = wordPinyin.isNotEmpty
+                            ? wordPinyin
+                            : PinyinUtils.convertNumericToMarks(
+                                '$phonemeStr$tone');
 
                         return InkWell(
                           onTap: () {
@@ -2727,25 +2759,20 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                               '')
                           .toString()
                           .trim();
-                      int tone = 1;
-                      String pinyinBase = phonemeStr;
-                      final match = RegExp(
-                              r'^([a-zA-ZüÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+)\s*(\d)?$')
-                          .firstMatch(phonemeStr);
-                      if (match != null) {
-                        pinyinBase = match.group(1) ?? phonemeStr;
-                        if (match.group(2) != null) {
-                          tone = int.tryParse(match.group(2)!) ??
-                              PinyinUtils.getTone(pinyinBase);
-                        } else {
-                          tone = PinyinUtils.getTone(pinyinBase);
-                        }
-                      } else {
-                        tone = PinyinUtils.getTone(phonemeStr);
+                      final String wordPinyin =
+                          (wordData['pinyin'] ?? '').toString().trim();
+                      int tone = PinyinUtils.toneFromSyllable(phonemeStr);
+                      if (tone == 0) {
+                        tone = PinyinUtils.toneFromSyllable(wordPinyin);
+                      }
+                      if (tone == 0) {
+                        tone = (wordData['expectedTone'] as num?)?.toInt() ?? 5;
                       }
                       final char = word.isNotEmpty ? word[0] : word;
-                      final pinyinMarked =
-                          PinyinUtils.convertNumericToMarks('$pinyinBase$tone');
+                      final pinyinMarked = wordPinyin.isNotEmpty
+                          ? wordPinyin
+                          : PinyinUtils.convertNumericToMarks(
+                              '$phonemeStr$tone');
                       ToneComparisonSheet.show(
                         context,
                         character: char,
@@ -2759,7 +2786,10 @@ class _ShadowingStudioScreenState extends ConsumerState<ShadowingStudioScreen>
                       );
                     } else {
                       final pinyinStr = (wordData['pinyin'] ?? '').toString();
-                      final tone = PinyinUtils.getTone(pinyinStr);
+                      int tone = PinyinUtils.toneFromSyllable(pinyinStr);
+                      if (tone == 0) {
+                        tone = (wordData['expectedTone'] as num?)?.toInt() ?? 5;
+                      }
                       ToneComparisonSheet.show(
                         context,
                         character: word.isNotEmpty ? word[0] : word,

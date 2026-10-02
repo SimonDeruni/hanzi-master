@@ -7,6 +7,8 @@ import 'package:hanzi_master/features/flashcards/presentation/widgets/calligraph
 import 'package:hanzi_master/features/media/presentation/screens/media_search_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/cultural_context_screen.dart';
 import 'package:hanzi_master/features/media/presentation/screens/web_browser_screen.dart';
+import 'package:hanzi_master/features/media/presentation/screens/tutorials_screen.dart';
+import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hanzi_master/features/media/domain/models/saved_article.dart';
 import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
@@ -47,6 +49,35 @@ const SliverToBoxAdapter(child: SizedBox(height: 24)),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
                 child: _buildWebExplorerHeroCard(context),
+              ),
+            ),
+const SliverToBoxAdapter(child: SizedBox(height: 20)),
+            // 2b. TUTORIALS - teaching shelves, added *beside* the explorer hero
+            // rather than in place of it. It is the only YouTube surface in the app
+            // built purely on the official Data API plus the official player (see
+            // tutorials_repository.dart), and the only one that owns up to it on
+            // screen (the disclosure in tutorials_screen.dart).
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+                child: _buildThematicCard(
+                  context: context,
+                  title: AppLocalizations.of(context)!.tutorialsTab,
+                  // Built from the app's own strings: the shelf says what it
+                  // holds, in every locale, with no new vocabulary.
+                  subtitle: '${AppLocalizations.of(context)!.beginner} · '
+                      '${AppLocalizations.of(context)!.pronunciation} · '
+                      '${AppLocalizations.of(context)!.grammar}',
+                  icon: Icons.school_outlined,
+                  brandColor: const Color(0xFFFF0000),
+                  onTap: () => Navigator.push(
+                    context,
+                    SwipeBackRoute(
+                      builder: (BuildContext context) =>
+                          const TutorialsScreen(),
+                    ),
+                  ),
+                ),
               ),
             ),
 const SliverToBoxAdapter(child: SizedBox(height: 20)),

@@ -14,6 +14,7 @@ import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 
 class CourseSelectionScreen extends ConsumerStatefulWidget {
   const CourseSelectionScreen({super.key});
@@ -162,9 +163,16 @@ class _CourseSelectionScreenState extends ConsumerState<CourseSelectionScreen> {
                         await Future.delayed(Duration.zero);
                         ref.read(aiJobQueueProvider.notifier).removeJob(jobId);
                         if (mounted && context.mounted) {
+                          // Ask about the connection *before* popping: the toast
+                          // rides on this context, and a generated path needs the
+                          // network either way.
+                          final bool offline =
+                              NetworkNotice.showIfOffline(context, e);
                           Navigator.pop(context);
-                          ZenToast.error(context,
-                              "${l10n?.errorGeneratingPath ?? AppLocalizations.of(context)!.errorGeneratingPath}: $e");
+                          if (!offline) {
+                            ZenToast.error(context,
+                                "${l10n?.errorGeneratingPath ?? AppLocalizations.of(context)!.errorGeneratingPath}: $e");
+                          }
                         }
                       }
                     }

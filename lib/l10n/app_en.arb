@@ -794,6 +794,14 @@
   "notes": "Notes",
   "objectivesTitle": "OBJECTIVES",
   "openInYoutube": "Open in YouTube",
+  "tutorialsTab": "Tutorials",
+  "youtubeHostedNotice": "Videos are hosted and played by YouTube. We do not download or change them.",
+  "@tutorialsTab": {
+    "description": "Title of the Tutorials shelf in the Media area."
+  },
+  "@youtubeHostedNotice": {
+    "description": "Disclosure shown under a YouTube-sourced list: the videos are hosted and played by YouTube."
+  },
   "orderingHanddripCoffeeInShanghai": "Ordering Hand-Drip Coffee in Shanghai",
   "orderingSugarcoatedHawsInWinterBeijing": "Ordering Sugar-Coated Haws in Winter Beijing",
   "partnerLang": "Partner ({lang})",

@@ -11,6 +11,7 @@ import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
@@ -457,7 +458,11 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
                               }
                             } catch (e) {
                               if (mounted && context.mounted) {
-                                ZenToast.error(context, "Error: $e");
+                                // Generating the cards needs the network; name it
+                                // when that is what went wrong.
+                                if (!NetworkNotice.showIfOffline(context, e)) {
+                                  ZenToast.error(context, "Error: $e");
+                                }
                               }
                             } finally {
                               if (mounted) {

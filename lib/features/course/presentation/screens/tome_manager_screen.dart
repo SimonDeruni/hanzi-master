@@ -23,6 +23,7 @@ import '../../../../core/widgets/translated_definition.dart';
 import '../widgets/calligraphic_deck_cover.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class _HskCollection {
@@ -409,10 +410,14 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     } catch (error) {
       debugPrint('Installation Error: $error');
       if (mounted) {
-        _showMessage(
-          AppLocalizations.of(context)!.failedToDownload,
-          tone: ZenToastTone.error,
-        );
+        // Installing pulls the shelf down over the network, so a lost
+        // connection is the likeliest cause and the one worth naming.
+        if (!NetworkNotice.showIfOffline(context, error)) {
+          _showMessage(
+            AppLocalizations.of(context)!.failedToDownload,
+            tone: ZenToastTone.error,
+          );
+        }
       }
     } finally {
       if (mounted) setState(() => _busyHskLevel = null);
@@ -502,10 +507,12 @@ class _TomeManagerScreenState extends ConsumerState<TomeManagerScreen> {
     } catch (error) {
       debugPrint('Thematic Install Error: $error');
       if (mounted) {
-        _showMessage(
-          AppLocalizations.of(context)!.failedToDownload,
-          tone: ZenToastTone.error,
-        );
+        if (!NetworkNotice.showIfOffline(context, error)) {
+          _showMessage(
+            AppLocalizations.of(context)!.failedToDownload,
+            tone: ZenToastTone.error,
+          );
+        }
       }
     } finally {
       if (mounted) setState(() => _busyThematicId = null);

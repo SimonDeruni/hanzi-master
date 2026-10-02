@@ -10,7 +10,9 @@ import '../../data/channels_data.dart';
 import '../../data/video_category_queries.dart';
 import '../../data/birthday_playlist.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 
@@ -102,7 +104,11 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
       } catch (e) {
         if (mounted) {
           setState(() {
-            _categoryStates[entry.key] = _CategoryLoadState.error;
+            // A shelf that failed because the radio is off gets its own state,
+            // so it can say *why* rather than the generic failure line.
+            _categoryStates[entry.key] = NetworkFailure.isOffline(e)
+                ? _CategoryLoadState.offline
+                : _CategoryLoadState.error;
           });
         }
       }
@@ -172,7 +178,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _categoryStates[categoryKey] = _CategoryLoadState.error;
+          _categoryStates[categoryKey] = NetworkFailure.isOffline(e)
+              ? _CategoryLoadState.offline
+              : _CategoryLoadState.error;
         });
       }
     }
@@ -209,7 +217,9 @@ class _MediaSearchScreenState extends ConsumerState<MediaSearchScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _error = e.toString();
+          // "Failed host lookup" is not a sentence a learner can act on; the
+          // localized connection notice is.
+          _error = NetworkNotice.describe(context, e, fallback: e.toString());
           _searchStatus = '';
         });
       }
@@ -426,6 +436,7 @@ if (_error != null)
         // rather than re-introducing a "no videos found" shelf.
         return const SizedBox.shrink();
       case _CategoryLoadState.error:
+      case _CategoryLoadState.offline:
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
@@ -433,7 +444,12 @@ if (_error != null)
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  AppLocalizations.of(context)!.failedToLoadContent,
+                  // Both states keep the same retry affordance; only the reason
+                  // differs, and "no internet connection" is the one the learner
+                  // can do something about.
+                  state == _CategoryLoadState.offline
+                      ? NetworkNotice.message(context)
+                      : AppLocalizations.of(context)!.failedToLoadContent,
                   style: const TextStyle(
                     color: Colors.redAccent,
                     fontSize: 14,
@@ -495,6 +511,12 @@ if (_error != null)
     final width = isLarge ? double.infinity : 240.0;
     final imageHeight = isLarge ? 200.0 : 155.0;
 
+    final thumbnailPlaceholder = Container(
+      width: width,
+      height: imageHeight,
+      color: isDark ? const Color(0xFF2C2C2E) : Colors.grey.shade300,
+    );
+
     return GestureDetector(
       onTap: () {
         HapticsManager.medium();
@@ -540,13 +562,24 @@ if (_error != null)
                     width: width,
                     height: imageHeight,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      width: width,
-                      height: imageHeight,
-                      color: isDark
-                          ? const Color(0xFF2C2C2E)
-                          : Colors.grey.shade300,
-                    ),
+                    errorBuilder: (_, __, ___) {
+                      // The 1280x720 still is 404 for uploads with no HD
+                      // rendition; fall back to the guaranteed 480x360 frame
+                      // before showing the flat tile.
+                      final fallback = video.mediumThumbnailUrl;
+                      if (isLarge &&
+                          fallback.isNotEmpty &&
+                          fallback != video.highThumbnailUrl) {
+                        return Image.network(
+                          fallback,
+                          width: width,
+                          height: imageHeight,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => thumbnailPlaceholder,
+                        );
+                      }
+                      return thumbnailPlaceholder;
+                    },
                   ),
                   // Duration badge (bottom-right)
                   Positioned(
@@ -753,7 +786,7 @@ if (_error != null)
 
 // Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬ Loading state enum Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬
 
-enum _CategoryLoadState { loading, loaded, empty, error }
+enum _CategoryLoadState { loading, loaded, empty, error, offline }
 
 // Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬ Shimmer Skeleton Card Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬Ã¢”â‚¬
 

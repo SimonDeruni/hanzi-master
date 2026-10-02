@@ -66,6 +66,15 @@ class _DictionaryExpansionPanelState
     if (_checkingCache) return const SizedBox.shrink();
 
     if (!_requested) {
+      // The compact presentation is the Quick Look card. It shows a brief entry
+      // as-is and never offers the AI "expand" prompt — that control belongs on
+      // the full character reference page. A caller that wants the expansion
+      // shown there (the library's "detail available" chip) passes
+      // `autoExpand: true`, so this skips only the *prompt*, never the panel
+      // itself.
+      if (widget.presentation == DictionaryExpansionPresentation.compact) {
+        return const SizedBox.shrink();
+      }
       return _panel(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -29,6 +29,7 @@ import '../widgets/camera_preview_fit.dart';
 import '../widgets/interactive_image_overlay.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 
 enum CameraIntent { dictionary, translationHub, travelAR, textExtraction }
@@ -581,7 +582,12 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
           _scanPhase = 0;
           _isLookingUp = false;
         });
-        ZenToast.error(context, AppLocalizations.of(context)!.aiAnalysisFailed);
+        // The scan hands its images to the model, so a lost connection is a
+        // first-class cause here and the only one the learner can fix.
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+              context, AppLocalizations.of(context)!.aiAnalysisFailed);
+        }
       }
     }
   }
@@ -909,8 +915,10 @@ class _UniversalScannerScreenState extends ConsumerState<UniversalScannerScreen>
         if (_isArLensMode) {
           _cameraController!.startImageStream(_processCameraImage);
         }
-        ZenToast.error(
-            context, AppLocalizations.of(context)!.aiSceneAnalysisFailed);
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+              context, AppLocalizations.of(context)!.aiSceneAnalysisFailed);
+        }
       }
     }
   }

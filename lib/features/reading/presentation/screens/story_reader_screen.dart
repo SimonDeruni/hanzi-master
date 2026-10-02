@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:hanzi_master/core/utils/network_failure.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -190,6 +192,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
   bool _streamFailed = false;
   String? _streamError;
 
+  /// Whether the failure was a lost connection, so the panel can show the wifi
+  /// glyph instead of a red alert.
+  bool _streamErrorOffline = false;
+
   Future<void> _startStreamingStory() async {
     setState(() {
       _isStreaming = true;
@@ -268,7 +274,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       if (mounted) {
         setState(() {
           _streamFailed = true;
-          _streamError = e.toString();
+          _streamErrorOffline = NetworkFailure.isOffline(e);
+          _streamError =
+              NetworkNotice.describe(context, e, fallback: e.toString());
         });
       }
     }
@@ -760,11 +768,25 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.error_outline,
-                                  size: 64, color: Colors.red),
+                              Icon(
+                                _streamErrorOffline
+                                    ? Icons.wifi_off_rounded
+                                    : Icons.error_outline,
+                                size: 64,
+                                color: _streamErrorOffline
+                                    ? const Color(0xFFB8860B)
+                                    : Colors.red,
+                              ),
                               const SizedBox(height: 16),
                               Text(
-                                  "Failed to generate story:\n${_streamError ?? state.error}",
+                                  // Was a hardcoded English heading wrapped
+                                  // around a raw exception; the heading is now
+                                  // the translated key and the detail underneath
+                                  // is the localized connection sentence when
+                                  // that is what actually went wrong.
+                                  AppLocalizations.of(context)!
+                                      .failedToGenerateStory(
+                                          _streamError ?? state.error ?? ''),
                                   textAlign: TextAlign.center),
                               const SizedBox(height: 24),
                               ElevatedButton(

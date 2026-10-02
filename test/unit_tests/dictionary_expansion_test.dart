@@ -70,7 +70,8 @@ void main() {
     );
   });
 
-  test('dictionary main card and Quick Look share the expansion workflow', () {
+  test('the dictionary card offers expansion; the Quick Look only shows it',
+      () {
     final dictionarySource = File(
       'lib/features/flashcards/presentation/screens/dictionary_screen.dart',
     ).readAsStringSync();
@@ -80,11 +81,21 @@ void main() {
       'lib/features/flashcards/presentation/widgets/dictionary_expansion_panel.dart',
     ).readAsStringSync();
 
+    // The library's "detail available" chip still requests the expansion as it
+    // opens the Quick Look...
     expect(dictionarySource, contains('autoExpand: true'));
     expect(quickLookSource, contains('bool autoExpand = false'));
     expect(
       expansionPanelSource,
       contains('_requested = cached != null || widget.autoExpand'),
+    );
+    // ...but the Quick Look card itself offers no AI "expand" prompt: the
+    // compact presentation shows a brief entry as-is.
+    expect(
+      expansionPanelSource,
+      contains('widget.presentation == DictionaryExpansionPresentation.compact'),
+      reason: 'The floating/bottom Quick Look card must not show an expand '
+          'button',
     );
   });
 }

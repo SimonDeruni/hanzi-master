@@ -1,133 +1,133 @@
-﻿{
+{
   "李白": {
-    "summary": "李白是盛唐时期浪漫主义诗人，世称“诗仙”，诗风豪放飘逸，想象丰富，与杜甫并称“李杜”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "李白（701年－762年），字太白，号青莲居士，是盛唐时期最杰出的浪漫主义诗人，被后世誉为“诗仙”。其诗风豪放飘逸，想象奇特瑰丽，擅长以七言歌行与绝句抒发怀才不遇的感慨及对山水的向往，与杜甫并称“李杜”，在中国文学史上具有崇高的地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "杜甫": {
-    "summary": "杜甫是盛唐时期现实主义诗人，世称“诗圣”，诗歌内容广泛，被称为“诗史”，与李白并称“李杜”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "杜甫（712-770），字子美，自号少陵野老，唐代伟大的现实主义诗人。他处于唐朝由盛转衰的转折时期，诗歌风格沉郁顿挫，题材广泛且深切关怀民生，被誉为“诗史”，其人则被尊为“诗圣”，与李白并称“李杜”，对后世文学产生了深远影响。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "王维": {
-    "summary": "王维是盛唐时期的著名诗人、画家和音乐家，被称为“诗中有画，画中有诗”的代表。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "王维，字摩诘，盛唐时期杰出的诗人、画家与音乐家，官至尚书右丞，故世称“王右丞”。他精通佛理，诗风清幽淡远，擅长描绘山水田园风光，代表作有《鹿柴》、《九月九日忆山东兄弟》等，在诗歌史上被誉为“诗佛”，以“诗中有画，画中有诗”的艺术境界独树一帜。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "孟浩然": {
-    "summary": "孟浩然是盛唐时期襄阳人，以山水田园诗闻名，诗风清远，超然独妙。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "孟浩然（689-740），盛唐时期襄阳人，字浩然，世称“孟襄阳”。他与王维并称“王孟”，是山水田园诗派的代表人物，其诗风清淡自然，意境超逸，在盛唐诗坛占有重要地位，代表作有《春晓》、《宿建德江》等。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "白居易": {
-    "summary": "白居易是中唐现实主义诗人，其诗平易近人，流传甚广，世称“元白”或“刘白”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "白居易（772-846），字乐天，号香山居士，是中唐时期伟大的现实主义诗人。他主张“文章合为时而著，歌诗合为事而作”，诗风平易通俗，代表作有《长恨歌》与《琵琶行》，在诗歌史上与元稹并称“元白”，对后世文学影响深远。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "王昌龄": {
-    "summary": "王昌龄是盛唐著名边塞诗人，其诗作情思清丽，与高适、王之涣齐名，世称“王江宁”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "王昌龄（约698—756），字少伯，盛唐时期杰出的边塞诗人，被誉为“七绝圣手”。他以雄浑苍凉的边塞诗与清丽婉转的宫怨诗著称，代表作有《出塞》与《从军行》，在唐代诗坛享有极高声誉，与高适、王之涣齐名。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "杜牧": {
-    "summary": "杜牧是晚唐时期京兆万年人，世称“小杜”，诗风豪迈俊逸，与李商隐合称“小李杜”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "杜牧（803-852）是晚唐时期京兆万年人，字牧之，世称“小杜”。他以豪迈俊逸、清丽峭拔的诗风著称，擅长七言绝句，代表作有《泊秦淮》《阿房宫赋》等，与李商隐并称“小李杜”，在晚唐诗坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "李商隐": {
-    "summary": "李商隐是晚唐著名诗人，他的诗歌风格瑰丽，情感缠绵，尤其以爱情诗和无题诗著称。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "李商隐（约813年—约858年），字义山，号玉溪生，晚唐时期杰出的诗人。其诗风瑰丽深婉，构思精巧，尤以情感缠绵、意境朦胧的“无题诗”独步诗坛，与杜牧并称“小李杜”，在晚唐诗坛占有极高的艺术地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "柳宗元": {
-    "summary": "柳宗元是唐代著名文学家，主张古文运动，其文章雄深雅健，诗歌也很有名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "柳宗元（773-819），字子厚，唐代河东人，世称“柳河东”。他与韩愈并称“韩柳”，是唐代古文运动的领袖，其诗文风格雄深雅健，尤以贬谪期间创作的《永州八记》及《江雪》等山水诗文最为脍炙人口，在中国文学史上具有崇高地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘禹锡": {
-    "summary": "刘禹锡是唐代诗人、哲学家，曾被贬谪，其诗歌风格豪迈，与白居易并称“刘白”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "刘禹锡（772年－842年），字梦得，唐代中晚期杰出的诗人、哲学家，世称“刘宾客”。他一生仕途坎坷，屡遭贬谪，但诗作风格豪迈刚健，常以咏史怀古抒发忧国忧民之情，代表作有《陋室铭》《竹枝词》等，与白居易并称“刘白”，在唐代诗坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张继": {
-    "summary": "张继，字懿孙，唐代诗人，天宝年间进士。他的诗歌风格清雅，尤以《枫桥夜泊》闻名于世。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "张继，字懿孙，唐代中叶诗人，天宝年间进士。其诗风清雅洗练，尤以羁旅诗作见长，一首《枫桥夜泊》意境深远，使其在唐代诗坛占有重要地位，成为千古绝唱。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "王之涣": {
-    "summary": "王之涣是唐代著名诗人，诗作气势磅礴，其边塞诗成就突出，代表作有《登鹳雀楼》。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "王之涣（688年－742年），字季凌，盛唐时期著名诗人。他以边塞诗著称，风格雄浑阔大、意境深远，其代表作《登鹳雀楼》与《凉州词》脍炙人口，在唐代诗坛享有极高的声誉，被视为盛唐气象的杰出代表。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "孟郊": {
-    "summary": "孟郊，字东野，唐代诗人，韩愈的挚友。他考中进士很晚，以诗风奇涩、苦心孤诣著称。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "孟郊（751—814），字东野，唐代中晚期诗人，韩愈的挚友，被誉为“苦吟诗人”的代表。他仕途坎坷，晚年方中进士，其诗作风格奇崛冷峭，题材多关注民间疾苦与个人穷愁，以《游子吟》等名篇传世，在诗歌史上具有独特的艺术地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "贾岛": {
-    "summary": "贾岛，字浪仙，唐代诗人，曾为僧。他因苦心推敲诗句而有“推敲”典故，诗风清奇、清苦。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "贾岛（779-843），字浪仙，唐代中晚期诗人，早年曾为僧。他以苦吟著称，诗风清奇幽僻，擅长五律，在诗歌史上以“推敲”典故闻名，与孟郊并称“郊寒岛瘦”。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "苏轼": {
-    "summary": "苏轼是北宋时期眉山人，北宋文学家、书法家，与父苏洵、弟苏辙合称“三苏”，词风豪放。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "苏轼（1037-1101），字子瞻，号东坡居士，北宋眉州眉山人，北宋中期的文坛领袖，与父苏洵、弟苏辙并称“三苏”。他不仅是“唐宋八大家”之一，更以豪放词风开创了宋词的新境界，其诗文书画造诣极高，代表作有《赤壁赋》与《念奴娇·赤壁怀古》，在中国文学史上具有崇高的地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "辛弃疾": {
-    "summary": "辛弃疾是南宋时期济南人，豪放派词人代表，与苏轼并称“苏辛”，词作慷慨激昂。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "辛弃疾，字幼安，号稼轩，南宋时期济南人。他是豪放派词人的杰出代表，与苏轼并称“苏辛”，在词坛地位崇高。其词作多抒发恢复中原的壮志与忧国忧民的情怀，风格慷慨悲凉、气势磅礴，代表作有《永遇乐·京口北固亭怀古》等。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "李清照": {
-    "summary": "李清照是宋代著名女词人，号易安居士，以婉约风格独树一帜，代表作有《金石录后序》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "李清照（1084-1155），号易安居士，南宋婉约派词宗，被誉为“千古第一才女”。她以词作见长，前期多写闺情相思，后期因国破家亡转为沉郁悲凉，代表作有《声声慢》《如梦令》及散文《金石录后序》，在文学史上具有极高的艺术成就与地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "柳永": {
-    "summary": "柳永是北宋时期崇安人，善作歌词，是婉约派词人代表。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "柳永，原名三变，字耆卿，北宋崇安人，是婉约派最具代表性的词人。他大力创作长调“慢词”，以铺叙手法展现都市繁华与羁旅行役之苦，代表作有《雨霖铃》等。他在词史上地位崇高，对宋词的发展产生了深远影响，素有“凡有井水饮处，皆能歌柳词”之誉。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "岳飞": {
-    "summary": "岳飞，字鹏举，南宋抗金名将。他忠心报国、战功赫赫，后被奸臣秦桧陷害致死，留下《满江红》等壮词。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "岳飞（1103-1142），字鹏举，南宋抗金名将，杰出的民族英雄。其诗词风格慷慨悲壮，以《满江红·写怀》为代表，抒发了精忠报国、收复河山的宏大志向，在文学史上以“爱国词人”的形象广受尊崇。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "陆游": {
-    "summary": "陆游是南宋诗人、史学家，活了85岁。他主张抗金、收复失地，是著名的爱国诗人，被称为“放翁”。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "陆游（1125—1210），字务观，号放翁，南宋时期杰出的爱国诗人与史学家。他一生坚决主张抗金复国，其诗作风格雄浑豪放，亦不乏细腻婉转，代表作有《示儿》《书愤》等，在中国文学史上享有“爱国诗宗”的美誉。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "范仲淹": {
-    "summary": "范仲淹，字希文，北宋时期政治家、文学家。他曾主持“庆历新政”，以“先天下之忧而忧，后天下之乐而乐”闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "范仲淹（989-1052），字希文，北宋杰出的政治家、文学家，谥号文正。他不仅是“庆历新政”的领袖，更以《岳阳楼记》中“先天下之忧而忧，后天下之乐而乐”的宏大情怀传诵千古，其诗文风格沉郁顿挫，在北宋诗文革新运动中具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "欧阳修": {
-    "summary": "欧阳修是北宋文学家、史学家，唐宋八大家之一，一生经历宦海浮沉，以诗文革新和史学著作闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "欧阳修（1007－1072），字永叔，号醉翁，晚号六一居士，北宋政治家、文学家，唐宋八大家之一。他倡导古文运动，诗风平易清新，词作婉约深沉，代表作有《醉翁亭记》及《秋声赋》，在北宋文坛具有领袖地位，对后世文学影响深远。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "晏殊": {
-    "summary": "晏殊是北宋著名词人，幼年即以神童著称，官至宰相，其词风雍容华丽，世称“宰相词人”。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "晏殊（991-1055），字同叔，北宋抚州临川人，官至宰相，被誉为“宰相词人”。他不仅是北宋词坛的开创者之一，更以其雍容典雅、深婉含蓄的词风著称，代表作《浣溪沙·一曲新词酒一杯》流传千古，在宋词发展史上具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "秦观": {
-    "summary": "秦观是北宋词人，与苏轼、黄庭坚等齐名，是婉约派的代表人物，其词作情感细腻，被称为“淮海居士”。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "秦观（1049-1100），字少游，号淮海居士，北宋时期著名词人，位列“苏门四学士”。他以婉约词风著称，情感细腻深婉，代表作有《鹊桥仙·纤云弄巧》等，在词史上被誉为婉约派之集大成者。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "姜夔": {
-    "summary": "姜夔是南宋著名词人，字尧章，号白石道人，他的诗词自成一派，词风清雅脱俗，精通音律。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "姜夔（1155—1209）字尧章，号白石道人，是南宋时期杰出的词人、音乐家。他精通音律，自度曲多为词坛珍品，其词风清雅脱俗、格调高远，代表作有《扬州慢》等，在宋词发展史上具有“清空骚雅”的独特地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "周邦彦": {
-    "summary": "周邦彦是北宋末年的著名词人，字美成，号清真居士，精通音律，是宋代格律词派的代表。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "周邦彦是北宋末年著名的词人，字美成，号清真居士。他精通音律，擅长铺叙咏物，其词作格律严谨、辞藻华丽，被尊为“格律派”宗师，对后世词学发展影响深远，代表作有《兰陵王·柳》、《苏幕遮·燎沉香》等。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "佚名": {
     "summary": "作者不详的古典诗歌集，选自《诗经》《全唐诗》《宋词》等选本。",
@@ -135,368 +135,368 @@
     "source": "described from the collection's own sources"
   },
   "曹操": {
-    "summary": "曹操是东汉末年著名的政治家、军事家和文学家，他用诗歌反映民生疾苦，抒发政治抱负。",
-    "origin": "source-text",
-    "source": "曹操诗集/README.md [anthology README] @b8594f8"
+    "summary": "曹操（155年－220年），字孟德，东汉末年杰出的政治家、军事家与文学家，建安文学的开创者与领袖。其诗歌风格慷慨悲凉，多以乐府旧题抒发统一天下的政治抱负，并真实记录了战乱时期的民生疾苦，代表作有《短歌行》《观沧海》等，在中国诗歌史上具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "李煜": {
-    "summary": "李煜是南唐末代国君，其词作风格哀婉缠绵，是南唐后期著名的词人，代表作有《虞美人》等。",
-    "origin": "source-text",
-    "source": "宋词/author.song.json [宋词 author index] @b8594f8"
+    "summary": "李煜（937-978），字重光，号钟隐，五代十国时期南唐末代君主，史称南唐后主。他以亡国之痛入词，将词的创作从描写男女情爱拓展至抒发家国兴亡之感，语言清新自然，意境深远，代表作有《虞美人》、《相见欢》等。李煜在词史上具有承前启后的重要地位，被誉为“词中之帝”。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "温庭筠": {
-    "summary": "温庭筠是晚唐诗人、词人，其诗词才华出众，与李商隐齐名，并称“温李”。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "温庭筠（约812—866），字飞卿，晚唐时期著名诗人、词人，与李商隐并称“温李”。他精通音律，词风绮丽浓艳，是“花间派”的鼻祖，对后世词坛影响深远，被誉为“花间词派”的开山之祖。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "韦庄": {
-    "summary": "韦庄是唐末五代诗人、词人，其诗词风格清雅，是花间词派的代表作家。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "韦庄（836-910），字端己，唐末五代时期著名的诗人与词人。他不仅是“花间派”的重要作家，其诗作更以叙事长诗《秦妇吟》闻名，风格清丽婉转，在词史上具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "马致远": {
-    "summary": "马致远是元代中国杂剧和散曲作家，本集收录了他的50首诗歌。",
-    "origin": "wikidata-cc0",
-    "source": "Wikidata Q2634921 (CC0)"
+    "summary": "马致远是元代著名的杂剧与散曲大家，号东篱，被誉为“曲状元”。其作品风格豪放沉郁，尤以《天净沙·秋思》等散曲名篇传诵千古，在元曲史上具有极高的艺术成就与地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张养浩": {
-    "summary": "张养浩是元代散曲作家，本集收录了他的22首作品。",
-    "origin": "wikidata-cc0",
-    "source": "Wikidata Q11066587 (CC0)"
+    "summary": "张养浩（1270-1329），字希孟，号云庄，元代著名散曲作家、政治家。他以“山坡羊·潼关怀古”等忧国忧民的散曲名篇著称，其作品风格沉郁苍凉，深刻反映了元代民生疾苦，在元曲史上占有极高地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "徐再思": {
-    "summary": "徐再思是元代散曲作家，本集收录了他的16首作品。",
-    "origin": "wikidata-cc0",
-    "source": "Wikidata Q8045156 (CC0)"
+    "summary": "徐再思，字德可，号甜斋，元代著名散曲作家。他与乔吉并称“乔徐”，其作品风格清丽婉转，尤擅描写闺情与相思，代表作《水仙子·寻梅》等脍炙人口，在元散曲史上占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "宋方壶": {
-    "summary": "元代散曲作家。本集收录 19 首。",
-    "origin": "derived-from-store",
-    "source": "dynasty + corpus genre + poem count"
+    "summary": "乔吉是元代著名的散曲作家，字梦符，号笙鹤，又号惺惺道人。其作品风格清丽典雅，在元散曲家中独树一帜，代表作有《两世姻缘》等，在元代文坛享有极高声誉。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张可久": {
-    "summary": "张可久是元代散曲作家，本集收录了他的五十首作品。",
-    "origin": "wikidata-cc0",
-    "source": "Wikidata Q11066658 (CC0)"
+    "summary": "张可久，字小山，元代后期著名的散曲作家，与乔吉并称“张乔”。他一生仕途坎坷，其作品多描写自然风光与隐逸生活，格调清丽典雅，被誉为元曲“清丽派”的代表人物，在散曲史上占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "纳兰性德": {
-    "summary": "纳兰性德是清朝初期著名词人，出身显赫，词风真挚婉约，独具特色，年仅三十一岁便去世。",
-    "origin": "source-text",
-    "source": "纳兰性德/README.md [anthology README] @b8594f8"
+    "summary": "纳兰性德，字容若，号楞伽山人，是清代康熙年间著名的满族词人，位列“清词三大家”之一。他的词作以真挚自然著称，风格婉约清丽、哀感顽艳，多涉及悼亡、边塞及羁旅情怀，代表作有《饮水词》。尽管出身显赫，他却在三十一岁时英年早逝，其词作在文学史上享有“北宋以来，一人而已”的高度评价。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "王建": {
-    "summary": "王建是中唐诗人，擅长乐府诗，与张籍齐名，尤以宫词流传甚广。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "王建（约767—830年），字仲初，颍川人，中唐著名诗人，与张籍齐名，并称“张王”。他擅长乐府诗，风格清新质朴，尤以《宫词》百首最为脍炙人口，真实反映了宫廷生活，在唐代诗坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "马戴": {
-    "summary": "马戴是晚唐诗人，主要作品是诗歌，曾任龙阳尉、太学博士等职。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "马戴（799-869），字虞臣，晚唐著名诗人，曾任龙阳尉、太学博士等职。其诗风沉郁苍凉，尤擅五言律诗，以描写边塞风光与羁旅愁思见长，代表作《楚江怀古》被誉为晚唐绝唱，在唐诗史上占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "元稹": {
-    "summary": "元稹是中唐诗人，字微之，与白居易倡和，并称“元白”，是“元和体”的代表人物。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "元稹，字微之，是中唐时期的著名诗人与文学家。他与白居易交谊深厚，共同倡导新乐府运动，以“元白”并称，其诗作风格平易浅切，被称为“元和体”。元稹在唐代诗坛地位显赫，其代表作《离思五首》情深意切，在中国文学史上具有重要影响。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "沈佺期": {
-    "summary": "沈佺期是初唐诗人，尤擅长七言诗，与宋之问并称“沈宋”，是律诗格律的奠基者之一。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "沈佺期（约656-714年），字云卿，相州内黄人，是初唐时期极具影响力的诗人。他与宋之问并称“沈宋”，在诗歌创作中致力于格律的规范化，是近体诗尤其是七言律诗定型的关键奠基人，对盛唐诗歌的繁荣产生了深远影响。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "韩愈": {
-    "summary": "韩愈是中唐杰出的文学家、思想家，古文运动倡导者，其诗歌风格豪放，不避粗险。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "韩愈（768-824），字退之，河南河阳人，世称“韩昌黎”，是中唐时期杰出的文学家、思想家，古文运动的领袖。他以文为诗，风格奇崛险怪、气势豪放，代表作有《左迁至蓝关示侄孙湘》等，在文学史上被尊为“文起八代之衰”的百代文宗。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "杜荀鹤": {
-    "summary": "晚唐诗人杜荀鹤，字彦之，号九华山人，官至翰林学士，作品结为《唐风集》。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "杜荀鹤（846—904），字彦之，号九华山人，晚唐时期著名诗人。其诗作多关注民生疾苦，风格平易近人，代表作有《山中寡妇》等，在晚唐诗坛占有重要地位，作品结集为《唐风集》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "朱庆余": {
-    "summary": "中唐诗人朱庆余，字可久，越州人，受张籍赏识，登进士第，以诗名世。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "朱庆余（字可久，越州人）是中唐时期极具代表性的诗人，早年受张籍赏识并登进士第。其诗作风格清丽婉转，尤以《闺意献张水部》等“闺怨诗”最为脍炙人口，在唐代诗坛占有重要地位，被誉为“诗家之法眼”。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "许浑": {
-    "summary": "晚唐诗人许浑，字用晦，丹阳人，官至刺史。其诗集因别墅所在地丁卯桥而得名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "许浑（791-858），字用晦，润州丹阳人，晚唐时期著名诗人，官至刺史。其诗作多以登临怀古、羁旅愁思为题材，风格清丽沉郁，尤以“许浑千首湿”的佳句传诵于世，在晚唐诗坛占有重要地位，其诗集因居所丁卯桥而被称为《丁卯集》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "李益": {
-    "summary": "中唐诗人李益，字君虞，姑臧人，曾任秘书监。他擅长歌诗，作品常被教坊乐人传唱。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "李益（748—827），字君虞，陇西姑臧（今甘肃武威）人，中唐时期著名诗人，曾任秘书监。他以边塞诗闻名，风格豪迈悲壮，其《夜上受降城闻笛》等作品在当时广为传唱，对唐代边塞诗的发展具有重要意义。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "司空曙": {
-    "summary": "中唐诗人司空曙，字文明，广平人，曾任水部、虞部郎中，诗风清华，位列“大历十才子”之一。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "司空曙，字文明，广平人，中唐大历时期诗人，位列“大历十才子”之一。他曾任水部、虞部郎中，其诗多抒写羁旅愁思与闲适情怀，风格清雅洗练，以《云阳馆与韩绅宿别》等名篇传世，在唐诗发展史上占有独特地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘长卿": {
-    "summary": "刘长卿，唐代诗人，擅长五言诗，被誉为“五言长城”。他曾任监察御史、随州刺史等职。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "刘长卿（约709-780年），字文房，唐代中期著名诗人，历任监察御史、随州刺史。他以五言诗见长，风格清雅洗练，被时人誉为“五言长城”，在唐代诗坛占有重要地位，代表作有《逢雪宿芙蓉山主人》等。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "卢纶": {
-    "summary": "卢纶是唐代诗人，曾任阌乡尉、监察御史等职。他诗风清雅，作品广为流传。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "卢纶（约737-799年），字允言，唐代中叶诗人，“大历十才子”之一。他曾任阌乡尉、监察御史等职，其诗作以边塞题材最为著名，风格雄浑清健，代表作《塞下曲》六首传诵至今，在唐代诗坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "崔颢": {
-    "summary": "崔颢是唐代诗人，开元年间进士及第。他以出色的诗才闻名，尤其以《黄鹤楼》等名篇著称。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "崔颢（约704—754年），唐代汴州人，开元年间进士。他早年诗风浮艳，后转为雄浑奔放，其代表作《黄鹤楼》被誉为唐人七律之冠，在诗歌史上享有极高地位，令后世诗人如李白亦为之搁笔。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "李颀": {
-    "summary": "李颀是唐代诗人，开元年间进士，曾任新乡尉。他的诗作风格独特，流传至今。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "李颀（约690-751年），唐代盛唐时期诗人，字号不详，曾任新乡尉。其诗风雄浑豪放，尤以边塞诗、送别诗及描写音乐的诗作见长，如《听安万善吹觱篥歌》等，在盛唐诗坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "崔涂": {
-    "summary": "崔涂是唐代诗人，光启年间进士，以其诗作名世，著有诗集一卷。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "崔涂，晚唐诗人，字礼山，浙江桐庐人。他于光启年间登进士第，其诗多抒发羁旅愁思与乱世感怀，风格清丽凄婉，代表作有《春夕》等。崔涂是晚唐格律诗的代表人物之一，以深沉的忧患意识在唐诗史上占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张祜": {
-    "summary": "张祜，字承吉，中唐诗人，以宫词闻名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "张祜，字承吉，唐代中晚期诗人。他以宫词创作著称，诗风清丽婉转，擅长描绘宫廷生活与边塞风光，在唐诗史上以“宫词第一”享誉文坛。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "王涯": {
-    "summary": "王涯，字广津，中唐宰相、诗人，博学多才，文有雅思，但最终因党争被杀。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "王涯，字广津，唐代中晚期宰相、诗人。他博学多才，诗风雅致清新，擅长描写宫廷生活与自然景物，代表作有《宫词》等，在唐代诗坛占有一席之地，后因甘露之变卷入党争而遇害。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张九龄": {
-    "summary": "张九龄，字子寿，盛唐宰相、诗人，风度酝藉，为人正直，诗歌亦有盛名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "张九龄（678—740），字子寿，唐代开元盛世的贤相与诗人。其诗风清淡古朴，以《感遇》十二首为代表作，展现了深沉的忧国情怀与高洁的政治抱负，被誉为“岭南第一人”，在唐诗发展史上具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "宋之问": {
-    "summary": "宋之问，字延清，武则天到唐睿宗时期诗人，以五言诗著称，曾依附权臣，后被赐死。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "宋之问，字延清，唐代初年诗人，活跃于武则天至唐睿宗时期。他与沈佺期并称“沈宋”，是五言律诗定型过程中的关键人物，其诗作辞藻华丽，对律诗格律的成熟贡献卓著。虽因依附权臣武三思而政治声名狼藉，终被赐死，但在文学史上具有重要的过渡地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "高适": {
-    "summary": "高适，字达夫，盛唐诗人、节度使，五十岁后才开始写诗，以边塞诗和慷慨气概闻名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "高适（704-765），字达夫，盛唐时期著名的边塞诗人，曾官至节度使。他以慷慨豪迈的诗风著称，代表作《燕歌行》展现了边塞生活的艰辛与壮阔，在唐代诗坛享有极高地位，与岑参并称“高岑”。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "钱起": {
-    "summary": "钱起，字仲文，唐代诗人，与韩翃、李端等并称“大历十才子”，诗风新奇，理致清赡。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "钱起，字仲文，唐代中期的著名诗人，为“大历十才子”之首。其诗风清雅新奇，理致深远，尤以山水田园诗与送别诗见长，在唐诗发展史上具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "元结": {
-    "summary": "元结，字次山，唐代官员、诗人。曾任道州刺史，为民兴利除弊，诗歌多反映民生疾苦。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "元结，字次山，唐代中期著名官员与诗人。他曾任道州刺史，为政清廉，其诗作多关注民生疾苦，风格古朴刚健，在唐代诗歌史上以“中兴颂”与“箧中集”闻名，是现实主义诗歌的重要先驱。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "韩翃": {
-    "summary": "韩翃，字君平，唐代诗人，“大历十才子”之一。他的诗歌兴致繁富，备受推崇。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "韩翃，字君平，唐代中期的代表诗人，位列“大历十才子”之首。其诗风清丽婉转，尤以描写离情别绪与边塞风光见长，名篇《寒食》传诵千古，在唐诗发展史上占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "韦应物": {
-    "summary": "韦应物，唐代诗人，曾任苏州刺史。他的诗歌闲淡简远，人称“陶韦”，与陶渊明齐名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "韦应物（737-792年），唐代中期诗人，字义博，曾任苏州刺史，故称“韦苏州”。其诗风清峻高雅、闲淡简远，擅长山水田园诗，与陶渊明并称“陶韦”，在唐代诗坛占有重要地位，是盛唐向中唐过渡时期的代表诗人之一。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "岑参": {
-    "summary": "岑参，唐代诗人，曾多次出使边塞，其诗辞意清切，风格雄奇，多有边塞风情。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "岑参（约715-770年），唐代盛唐时期著名诗人，字嘉州，以边塞诗著称。他曾两度从军西域，诗风雄奇瑰丽，辞意清切，代表作有《白雪歌送武判官归京》等，与高适并称“高岑”，在唐代边塞诗派中占有极高地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "严维": {
-    "summary": "严维是唐代诗人，字正文，越州山阴人。他以辞藻宏丽的诗歌闻名，并曾担任秘书省校书郎。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "严维，字正文，越州山阴人，唐代中期诗人。他曾任秘书省校书郎，其诗作辞藻宏丽，格调清雅，尤以描写山水田园的佳作传世，在唐诗发展史上占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "吴文英": {
-    "summary": "吴文英是南宋词人，字君特，号梦窗。他一生未仕，但创作了大量以绵丽、深远著称的词作。",
-    "origin": "source-text",
-    "source": "宋词/author.song.json [宋词 author index] @b8594f8"
+    "summary": "吴文英是南宋晚期著名词人，字君特，号梦窗，一生未仕，游历于权门。他的词作以辞采华茂、意境深邃、结构复杂著称，是南宋“格律派”的集大成者，代表作有《莺啼序》等。其风格密丽深幽，在词史上享有“词中李商隐”之美誉，对后世影响深远。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "晏几道": {
-    "summary": "晏几道是北宋词人，字叔原，号小山。他以乐府词作著称，有《小山词》传世。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "晏几道是北宋中后期的著名词人，字叔原，号小山，为晏殊第七子。他承袭父风，以深情婉约、工于言情的词风著称，其词作多收录于《小山词》中，在北宋词坛占有重要地位，被誉为“古之伤心人”。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张炎": {
-    "summary": "张炎是南宋末、元初词人，字叔夏，号玉田。宋亡后不仕，以长短句尤其是“春水词”闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "张炎是南宋末至元初的著名词人，字叔夏，号玉田，晚年号乐笑翁。他承袭周邦彦、姜夔词风，主张“清空”与“骚雅”，与周密并称“二窗”，是格律派词人的杰出代表。其词多咏物抒怀，寄托亡国之思，以《词源》论著及《山中白云词》传世，在词坛享有极高地位。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "贺铸": {
-    "summary": "贺铸是北宋词人，字方回，号庆湖遗老。他以填词名家，因“梅子黄时雨”一句被称为“贺梅子”。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "贺铸（1052-1125），字方回，号庆湖遗老，北宋词人。他博学多才，词风兼具婉约与豪放，擅长化用前人诗句，代表作《青玉案·凌波不过横塘路》中“试问闲愁都几许？一川烟草，满城风絮，梅子黄时雨”传诵千古，因此得名“贺梅子”，在北宋词坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘辰翁": {
-    "summary": "刘辰翁（1232—1297），字会孟，号须溪，南宋末年江西吉安人，以诗文名世，作品收录于《须溪先生集》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "刘辰翁（1232—1297），字会孟，号须溪，江西吉安人，是南宋末年著名的爱国词人与文学家。其词作多抒发故国之思与遗民之痛，风格沉郁悲凉，在宋末词坛独树一帜，代表作有《兰陵王·丙子送春》等，其文学成就对后世词学研究具有重要意义。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "周密": {
-    "summary": "周密（1232—1298），字公谨，号草窗，南宋末年重要的词人、史学家和目录学家，著有《武林旧事》、《齐东野语》等。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "周密（1232—1298），字公谨，号草窗，为南宋末年杰出的词人、史学家与目录学家。他不仅是“南宋词坛四大家”之一，其词作风格清丽雅致，更以《武林旧事》等笔记体著作详实记录了临安的繁华与宋室遗韵，在文学与史学史上均占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张元干": {
-    "summary": "张元干（1091—1161），字仲宗，号芦川居士，南宋爱国词人，词风豪壮，作品收录于《芦川居士词》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "张元干（1091—1161），字仲宗，号芦川居士，南宋初期爱国词人。其词风豪放激越，多抒发忧国忧民之情，是南宋词坛“豪放派”的重要代表人物，代表作有《石州慢·己酉秋吴兴秋观雪》等，作品辑为《芦川居士词》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "吕渭老": {
-    "summary": "吕渭老，字圣求，嘉兴人，是北宋末年的一位朝士诗人，其诗作流传不多。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "吕渭老，字圣求，嘉兴人，北宋末年词人。其词作多写离愁别绪与羁旅之思，风格婉约清丽，存词数量虽不多，但多有佳作，在宋词史上占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张先": {
-    "summary": "张先（990—1078），字子野，北宋词人，与柳永齐名，以词著称，作品收录于《张都官集》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "张先（990—1078），字子野，北宋时期著名词人，因其词作常有佳句，被誉为“张三影”。他承袭柳永词风，擅长描写羁旅愁绪与闺阁情思，在北宋词坛由小令向慢词过渡的过程中起到了重要的承前启后作用，代表作有《天仙子·水调数声持酒听》等。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "史达祖": {
-    "summary": "史达祖是南宋词人，字邦卿，号梅溪，善作词，有《梅溪词》传世。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "史达祖是南宋中后期的著名词人，字邦卿，号梅溪。他以咏物词见长，辞藻精工、构思奇巧，其代表作《梅溪词》在南宋词坛独树一帜，对后世词风产生了深远影响。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "蔡伸": {
-    "summary": "蔡伸是北宋末南宋初的词人，字申道，他曾担任多个地方官职。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "蔡伸（1088-1156），字申道，号友古居士，北宋末南宋初词人。他曾任多地地方官，其词风承袭北宋词坛余绪，多抒写羁旅愁思与闺阁情怀，代表作有《友古词》，在宋代词坛占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "晁补之": {
-    "summary": "晁补之是北宋著名文学家，字无咎，号归来子，与黄庭坚等并称苏门四学士，有《鸡肋集》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "晁补之（1053—1110），北宋文学家，字无咎，号归来子。他师从苏轼，与黄庭坚、秦观、张耒并称“苏门四学士”，其诗文风格清丽典雅，词作多抒发怀才不遇之感，代表作有《鸡肋集》。他在北宋文坛地位显赫，是江西诗派的重要先驱之一。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "蒋捷": {
-    "summary": "蒋捷是南宋词人，字胜欲，号竹山，入元后隐居不仕，以词著称，有《竹山词》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "蒋捷（1245-1305年后），字胜欲，号竹山，南宋末年至元初词人。其词作风格深婉而多忧患，尤以入元后隐居不仕时期的作品最为沉郁苍凉，代表作有《虞美人·听雨》等，在词史上以“竹山词”著称，展现了遗民词人的独特心境。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "周紫芝": {
-    "summary": "周紫芝是南宋诗人、词人，字少隐，号竹坡居士，著有《太仓稊米集》和《竹坡诗话》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "周紫芝（1082—1155）是南宋中期的著名诗人与词人，字少隐，号竹坡居士。其诗风清丽自然，词作多抒发羁旅愁绪与家国之思，著有《太仓稊米集》及诗论著作《竹坡诗话》，在南宋诗坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "张孝祥": {
-    "summary": "张孝祥（1132-1170）是南宋著名的词人与爱国官员，以其豪放的诗词风格闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "张孝祥（1132-1170），字安国，号于湖居士，是南宋杰出的爱国词人与书法家。其词风承苏轼、开辛弃疾，以豪放雄健著称，代表作《念奴娇·过洞庭》展现了其高洁的人格与阔大的胸襟。他在南宋词坛地位崇高，是豪放派词风的重要奠基人与代表人物。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "袁去华": {
-    "summary": "袁去华是南宋绍兴年间的进士，词作流传至今，著有《适斋类稿》和《袁宣卿词》。",
-    "origin": "source-text",
-    "source": "宋词/author.song.json [宋词 author index] @b8594f8"
+    "summary": "袁去华，南宋绍兴年间进士，字宣卿，号适斋，是南宋中期的著名词人。其词风清丽婉约，深得苏轼、黄庭坚词风影响，尤擅抒写羁旅愁思与身世之感，在宋词史上占有一席之地，传世作品有《适斋类稿》及《袁宣卿词》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘克庄": {
-    "summary": "刘克庄（1187-1269），南宋著名文学家、史学家，诗文兼长，被誉为“后村先生”。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "刘克庄（1187-1269），字潜夫，号后村，是南宋末年著名的文学家与史学家，江湖诗派的领军人物。他的诗歌风格豪迈，多反映社会现实并寄托爱国情怀，词作则深受辛弃疾影响，气势磅礴。作为南宋文坛的集大成者，其《后村先生大全集》及《后村诗话》在诗歌批评与文学史上具有重要地位。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "卢祖皋": {
-    "summary": "卢祖皋是南宋永嘉人，庆元五年（1199）进士，其词作《蒲江词》流传于世。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "卢祖皋（1174-1224），字申之，号蒲江，南宋永嘉人。他于庆元五年登进士第，其词作《蒲江词》格调清婉，擅长描写羁旅愁思与闺阁情韵，是“永嘉四灵”之后南宋词坛的重要词人，在词史上占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "祖咏": {
-    "summary": "祖咏是唐代洛阳诗人，开元年间进士，与王维交好，以其一卷诗集留名。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "祖咏（699—746），唐代洛阳人，盛唐时期诗人，开元年间进士，与王维交好。其诗作多描写山水田园，风格清淡雅致，代表作《终南望余雪》以“诗中有画”著称，在盛唐诗坛占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "李之仪": {
-    "summary": "李之仪，北宋文学家，神宗熙宁年间进士，以词和诗著称，著有《姑溪居士前后集》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "李之仪（1048-1117），字端叔，号姑溪居士，北宋沧州无棣人。他师从苏轼，词风婉约清丽，尤以《卜算子·我住长江头》传诵千古，在北宋词坛占有重要地位，著有《姑溪居士前后集》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "范成大": {
-    "summary": "范成大是南宋时期（1126-1193年）著名的文学家、诗人，以诗歌成就卓著闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "范成大（1126-1193），字致能，号石湖居士，南宋中兴四大诗人之一。他以田园诗著称，其《四时田园杂兴》真实描绘了农村生活与民生疾苦，诗风清丽婉转，在宋代诗坛具有极高的艺术地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "韩元吉": {
-    "summary": "韩元吉（1118-约1186），南宋大臣、学者，官至吏部尚书，以文学闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "韩元吉（1118-约1186），字无咎，号南涧，南宋中后期大臣、词人。他官至吏部尚书，诗词风格清劲俊逸，尤以词作见长，是南宋“南涧体”的代表人物，在词坛占有重要地位，代表作有《送陆务观福建提仓》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "王沂孙": {
-    "summary": "王沂孙是南宋末年到元初的词人，以创作豪放词闻名，有《碧山乐府》传世。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "王沂孙，字圣与，号碧山，南宋末年至元初词人，为“宋末四大家”之一。他以咏物词见长，风格深婉含蓄，常寄托家国之恸，代表作有《齐天乐·蝉》、《花犯·苔梅》等，传世词集为《碧山乐府》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘方平": {
-    "summary": "刘方平是唐代河南人，他与元德秀交好但不愿为官，以一卷诗集流传于世。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "刘方平，唐代河南洛阳人，天宝年间名士，与元德秀交好。他一生隐居不仕，诗风清丽自然，尤以描写闺情与自然小景见长。其代表作《月夜》与《春怨》意境深婉，在唐诗中占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3-flash-preview"
   },
   "仲殊": {
-    "summary": "仲殊是北宋僧人，原名张挥，擅长诗词创作，词风奇丽清婉，曾与苏轼交游。",
-    "origin": "source-text",
-    "source": "宋词/author.song.json [宋词 author index] @b8594f8"
+    "summary": "仲殊，北宋僧人，本名张挥，字师利，安徽人。他不仅是苏轼的挚友，更以词风奇丽清婉著称，其作品多描写山水风物与禅意生活，在北宋词坛占有一席之地，代表作有《南柯子·忆旧》等。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘过": {
-    "summary": "刘过是南宋诗人、抗金志士，字改之，号龙洲道人，一生未仕，诗作豪放不羁，与陆游等诗人唱和。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "刘过（1154-1206），字改之，号龙洲道人，南宋中后期豪放派诗人、词人，亦是热忱的抗金志士。他一生布衣，未曾入仕，其诗词风格豪迈奔放，常抒发忧国忧民的壮志，与陆游、辛弃疾等名家交游唱和，在南宋词坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "叶梦得": {
-    "summary": "叶梦得是北宋末至南宋初的官员、文学家，字少蕴，号石林居士，因著述繁多、诗文俱佳而闻名。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "叶梦得（1077—1148），字少蕴，号石林居士，北宋末至南宋初的词人与官员。其词风由北宋的婉约转向南宋的豪放，开创了南宋爱国词派的先声，代表作有《石林词》及词作《贺新郎·睡起流莺语》。他在文学史上以博学多才著称，是连接两宋词风演变的关键人物。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘一止": {
-    "summary": "刘一止是南宋官员、诗人，字行简，多次因直言进谏而罢官，诗文收录于《苕溪集》。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "刘一止（1078—1161），字行简，南宋时期官员、文学家。他一生仕途坎坷，多次因直言进谏而遭贬斥，其诗文风格清劲峻拔，收录于《苕溪集》中，在南宋前期文坛占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "万俟咏": {
-    "summary": "万俟咏是北宋末词人，字雅言，号大梁词隐，擅长自度新声，其词风格效法柳永。",
-    "origin": "source-text",
-    "source": "宋词/author.song.json [宋词 author index] @b8594f8"
+    "summary": "万俟咏（约1061-1129年后），字雅言，号大梁词隐，北宋末年词人。他擅长自度新声，词风深得柳永遗韵，以铺叙见长，在词坛享有盛誉，是宋词发展中承前启后的重要人物。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "丘为": {
-    "summary": "丘为是唐朝诗人，享年九十六岁，与王维、刘长卿为友，诗作流传至今。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "丘为是唐代盛唐至中唐时期的诗人，字子庭，以长寿闻名，与王维、刘长卿等名家交游甚广。其诗作风格清丽自然，尤以山水田园诗见长，代表作有《寻西山隐者不遇》，在唐代诗坛占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "刘眘虚": {
-    "summary": "刘眘虚是唐朝天宝年间的诗人，曾任夏县县令，作品流传一卷。",
-    "origin": "source-text",
-    "source": "authors.tang.json [authors index] @b8594f8"
+    "summary": "刘眘虚，唐代天宝年间诗人，字全乙，曾任夏县县令。其诗风清雅淡远，多描写山水田园，以《阙题》等作传世，被誉为盛唐山水田园诗派的重要诗人，在诗歌史上占有独特地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "严仁": {
-    "summary": "严仁是宋朝邵武人，号樵溪，与严羽、严参并称“邵武三严”，诗歌多已佚失。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "严仁，字次山，号樵溪，南宋邵武人，与严羽、严参并称“邵武三严”。其诗词风格清丽婉约，多抒发羁旅愁绪与身世之感，虽传世作品不多，但在宋末词坛仍占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "彭元逊": {
-    "summary": "彭元逊生卒年不详，是宋代词人，作品散见于《全宋词》，以婉约风格著称。",
-    "origin": "source-text",
-    "source": "宋词/author.song.json [宋词 author index] @b8594f8"
+    "summary": "彭元逊，南宋末年词人，字巽甫，号紫芝。其词作多收录于《全宋词》，风格深婉清丽，深受姜夔、张炎等格律派词人影响，在宋末词坛占有一席之地。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "陈克": {
-    "summary": "陈克是宋朝临海人，字子高，号赤城居士，曾任敕令所删定官，有诗文集传世。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "陈克（1081—1137），字子高，号赤城居士，南宋临海人。他曾任敕令所删定官，其诗作风格清丽婉约，深得江西诗派影响，在宋代诗坛占有一席之地，传世有《赤城集》。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "王安石": {
-    "summary": "王安石是北宋著名政治家、思想家、文学家，他推行了影响深远的新法。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "王安石（1021-1086），字介甫，号半山，北宋时期杰出的政治家、思想家与文学家，也是“唐宋八大家”之一。他推行变法以图强，其诗文风格雄健峭拔、深邃精警，尤以咏史怀古与描写山水之作见长，在文学史上占有重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "陈与义": {
-    "summary": "陈与义是南宋初年的诗人，以诗文著称，作品多反映战乱中的流离生活与爱国情怀。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "陈与义（1090-1139），字去非，号简斋，南宋初年杰出的“江西诗派”殿军。其诗风由早期的清丽婉约转为沉郁顿挫，尤擅七言律诗，作品多抒发国破家亡之痛与流离失所之感，代表作有《登岳阳楼》等，在南宋诗坛具有承前启后的重要地位。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   },
   "俞国宝": {
-    "summary": "俞国宝是南宋孝宗淳熙年间的太学生，因在西湖酒肆素屏上题词被高宗赏识而入仕。",
-    "origin": "source-text",
-    "source": "authors.song.json [authors index] @b8594f8"
+    "summary": "俞国宝，南宋淳熙年间太学生，字不详。他以在西湖酒肆素屏题写《卜算子》词闻名，深得宋高宗赏识并由此入仕，其词作风格清新，在宋词史上以词坛逸事流传。",
+    "origin": "model",
+    "source": "gemini-3.1-flash-lite"
   }
 }

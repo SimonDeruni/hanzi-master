@@ -202,13 +202,14 @@ void main() {
       ],
       // Phase 2, last screen: the character reference. The wide layout already
       // existed; what changed is *when* it fires (window class, never a raw
-      // width) and what expanded does with the sections.
+      // width). The sections are now always two columns beside the card, so
+      // every entry point — floating Quick Look or the dictionary sheet — lands
+      // on the same page and the pill bar is never built here.
       'lib/features/flashcards/presentation/screens/character_detail_screen.dart':
           <String>[
         'window.isAtLeastMedium',
         'ZenBreakpoints.compactMax',
-        '_buildDetailColumns(',
-        'if (context.zenWindow.isExpanded) ...[',
+        '_buildDetailColumns(context, isDark)',
       ],
       // Phase 3, first slice: the video subtitles ramp with the window class so
       // a tablet's viewing distance is not a phone's.

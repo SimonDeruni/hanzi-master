@@ -8,6 +8,7 @@ import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/tappable_hanzi_text.dart';
 import 'package:hanzi_master/core/utils/pinyin_utils.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
@@ -143,7 +144,11 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
             if (_streamedText.isNotEmpty) {
               _error = 'Generation interrupted. Showing partial result.';
             } else {
-              _error = e.toString();
+              // A dead socket mid-stream is the common case on this path, and
+              // "check your network" is the only actionable thing to say about
+              // it.
+              _error =
+                  NetworkNotice.describe(context, e, fallback: e.toString());
             }
             _isLoading = false;
             _statusText = '';
@@ -156,7 +161,7 @@ class _NuanceCompareSheetState extends ConsumerState<NuanceCompareSheet> {
       _statusTimer?.cancel();
       _timeoutTimer?.cancel();
       setState(() {
-        _error = e.toString();
+        _error = NetworkNotice.describe(context, e, fallback: e.toString());
         _isLoading = false;
         _statusText = '';
       });

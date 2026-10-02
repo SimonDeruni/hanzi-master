@@ -4,12 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
+/// The one colour vocabulary every pitch graph in the app shares.
+///
+/// **Blue is the learner's own voice; grey is the target.** `ToneGraphCard` and
+/// `ToneGraphPainter` (the phrase graph in the shadowing studio) already used this
+/// mapping. This contour used the *opposite* one — a solid azure stroke for the
+/// target and amber for the learner — so the same blue meant "target" on the tone
+/// sheet and "your voice" on the phrase graph, and a learner moving between the two
+/// could not carry a single mental model. The strokes now agree.
+abstract final class PitchGraphPalette {
+  /// The learner's own measured voice — solid blue, everywhere.
+  static const Color userVoice = Color(0xFF3B82F6); // Scholar Azure / Royal Blue
+
+  /// The target the learner is aiming at — grey, dashed, everywhere.
+  static const Color target = Color(0xFF9E9E9E); // Xuan ink grey
+
+  /// The target, inked jade, when the learner's tone matched it.
+  static const Color match = Color(0xFF10B981); // Jade Emerald
+}
+
 /// A Zen & Ink calligraphic pitch contour canvas.
 ///
-/// The target tone contour is laid down left-to-right like an authentic Chinese
-/// brush stroke over [ZenMotion.quick] with [ZenMotion.enter] rather than
-/// popping in complete, and the student's tone pitch is overlaid to show
-/// acoustic divergence.
+/// The **target** tone is inked as a grey dashed reference, and the **learner's**
+/// own contour is laid down over it as a solid blue brush stroke, revealed
+/// left-to-right over [ZenMotion.quick] with [ZenMotion.enter] rather than popping
+/// in complete. That is the same colour language as the phrase graph, so "blue is
+/// you" holds on every screen.
 ///
 /// Only a genuinely new contour replays the stroke — a parent that streams the
 /// same contour back leaves the running trace alone. See
@@ -254,9 +274,32 @@ class _PitchContourPainter extends CustomPainter {
       }
     }
 
-    // 2. If student tone exists and differs, draw student contour first (Amber/Red dashed)
-    if (actualTone != null && actualTone != expectedTone && actualTone! > 0) {
-      const studentColor = Color(0xFFF59E0B); // Amber warning
+    // 2. The target: a grey dashed reference, drawn first so the learner's own
+    // stroke reads on top of it. Grey-for-target is the same mapping
+    // `ToneGraphPainter` uses, so the two graphs finally agree.
+    final bool matched =
+        actualTone != null && actualTone! > 0 && actualTone == expectedTone;
+    final targetPath = _generateTonePath(
+      tone: expectedTone,
+      left: leftMargin,
+      top: topMargin,
+      width: plotWidth,
+      height: plotHeight,
+    );
+    _drawCalligraphicTrace(
+      canvas: canvas,
+      path: targetPath,
+      reveal: 1.0,
+      color: matched ? PitchGraphPalette.match : PitchGraphPalette.target,
+      isDashed: true,
+      baseStrokeWidth: isCompact ? 2.5 : 3.5,
+    );
+
+    // 3. The learner's own voice: the solid blue calligraphic brush, revealed
+    // left-to-right. Drawn when a tone was actually measured and diverged from the
+    // target — on a match the jade target is the message, and on "we heard
+    // nothing" the graph stays honestly empty of a learner stroke.
+    if (actualTone != null && actualTone! > 0 && !matched) {
       final studentPath = _generateTonePath(
         tone: actualTone!,
         left: leftMargin,
@@ -267,34 +310,13 @@ class _PitchContourPainter extends CustomPainter {
       _drawCalligraphicTrace(
         canvas: canvas,
         path: studentPath,
-        reveal: math.min(1.0, reveal * 1.1),
-        color: studentColor,
-        isDashed: true,
-        baseStrokeWidth: isCompact ? 2.5 : 3.5,
+        reveal: reveal,
+        color: PitchGraphPalette.userVoice,
+        isDashed: false,
+        baseStrokeWidth: isCompact ? 3.0 : 4.5,
+        drawBrushTip: !isCompact && reveal > 0.02 && reveal < 0.98,
       );
     }
-
-    // 3. Draw Target Tone Contour (Authentic Calligraphic Brush Stroke)
-    final targetColor = (actualTone == expectedTone && actualTone != null)
-        ? const Color(0xFF10B981) // Jade Emerald on match
-        : const Color(0xFF3B82F6); // Scholar Azure / Royal Blue
-    final targetPath = _generateTonePath(
-      tone: expectedTone,
-      left: leftMargin,
-      top: topMargin,
-      width: plotWidth,
-      height: plotHeight,
-    );
-
-    _drawCalligraphicTrace(
-      canvas: canvas,
-      path: targetPath,
-      reveal: reveal,
-      color: targetColor,
-      isDashed: false,
-      baseStrokeWidth: isCompact ? 3.0 : 4.5,
-      drawBrushTip: !isCompact && reveal > 0.02 && reveal < 0.98,
-    );
   }
 
   /// Generates the standard Chao 5-Level tone path:

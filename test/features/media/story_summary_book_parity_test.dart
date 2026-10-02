@@ -32,6 +32,8 @@ class _RecordingStoryController extends StoryController {
       : super(
           geminiService: _FakeGeminiService(),
           repository: _FakeStoryRepository(),
+          // See story_reader_design_test: the constructor takes a localizer now.
+          l10n: () => lookupAppLocalizations(const Locale('en')),
         );
 
   final List<String> calls;

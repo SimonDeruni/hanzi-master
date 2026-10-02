@@ -1,10 +1,12 @@
 # 🧠 SESSION_STATE.md - The Hanzi Master "Scholar's Baton"
 
 #### 🎯 Current Context
-- **Objective:** Release 1.0.0+568 (build bump +1), GitLab CI verification, and push to master.
+- **Objective:** Release 1.0.0+569 (build bump +1), commit and push to gitlab master.
 - **Status:** 🟢 **COMPLETED.**
 - **Hygiene:** `flutter analyze` reports 0 issues repo-wide (Total Hygiene State).
 - **Locked Files:** None.
+
+- [x] **Release 1.0.0+569 Build Bump, Tone Graph Unification, Tablet Polish & Push (2026-10-02):** (1) **Requested:** *"please push on gitlab yaml + 1 commit"*; (2) **Build Bump:** Incremented version in `pubspec.yaml` from `1.0.0+568` to `1.0.0+569`; (3) **Changelog & Documentation:** Documented release `## [1.0.0+569] - 2026-10-02` in `CHANGELOG.md` covering unified pitch graph color vocabulary and dual-lane geometry, resolved neutral tone misattribution on multi-pronunciation characters (including 划), localized network offline handling across 14 languages, high-definition YouTube thumbnail resolution ladder, poet biography enrichments across all 14 locales, iPad side panel docks for Scholar's Desk and Scenario Launcher with motion-safe animations; (4) **Verification:** Repo-wide `flutter analyze` passed with 0 issues (Total Hygiene State); (5) **Locks released:** all locks released.
 
 - [x] **Release 1.0.0+568 Build Bump, GitLab CI Verification, and Repository Push (2026-10-02):** (1) **Requested:** *"please gitlab yaml + 1 push on master branch"*; (2) **Build Bump:** Incremented version in `pubspec.yaml` from `1.0.0+567` to `1.0.0+568`; (3) **Changelog & Documentation:** Documented release `## [1.0.0+568] - 2026-10-02` in `CHANGELOG.md` encompassing Character Detail Screen unification, Shadowing Studio iPad fixed stage, complete 14-locale Sinological poem titles and book titles, 14-locale book synopses and author biographies, and hybrid CC0 poet portrait/seal covers; (4) **CI & Hygiene Verification:** Fixed test lints repo-wide (`_question` naming in `ai_transport_cache_test.dart`, `super.targetLanguage` parameter in `translated_text_english_fallback_test.dart`, redundant `const` in `book_reader_sentence_advance_test.dart`, unused imports in `deck_review_session_transition_test.dart` and `deck_stats_insight_test.dart`). Verified `.gitlab-ci.yml` pipeline stages (`flutter_analyze`, `flutter_test_locale`, `flutter_test_ipad`, and `pages`), local Python expansion audit, and `flutter analyze` passing with 0 issues repo-wide; (5) **Locks released:** all locks released.
 

@@ -6,12 +6,19 @@ import '../../domain/entities/graded_story.dart';
 import '../../../../core/services/gemini_service.dart';
 import '../../../../core/services/story_parse_contract.dart';
 import 'package:flutter/services.dart';
+import 'package:hanzi_master/core/providers/l10n_provider.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import '../../data/repositories/story_repository.dart';
 
 final storyControllerProvider = StateNotifierProvider<StoryController, StoryState>((ref) {
   return StoryController(
     geminiService: ref.watch(geminiServiceProvider),
     repository: ref.watch(storyRepositoryProvider),
+    // Read lazily from the catch block, never watched here: a locale change must
+    // not rebuild this notifier and discard the story being generated.
+    l10n: () => ref.read(l10nProvider),
   );
 });
 
@@ -89,12 +96,29 @@ class StoryController extends StateNotifier<StoryState> {
   final GeminiService geminiService;
   final StoryRepository repository;
 
+  /// Resolved at the moment of an error, never watched: a locale change must not
+  /// rebuild this notifier and discard the story being generated.
+  final AppLocalizations Function() _l10n;
+
   StoryController({
     required this.geminiService,
     required this.repository,
-  }) : super(const StoryState()) {
+    required AppLocalizations Function() l10n,
+  })  : _l10n = l10n,
+        super(const StoryState()) {
     _init();
   }
+
+  /// A lost connection described in the learner's own language; anything else
+  /// keeps the raw detail, which the reader renders under its "failed to
+  /// generate" heading.
+  ///
+  /// [StoryState.error] is only ever a `String`, so this is the last place the
+  /// exception's *kind* is still visible before it becomes prose - which is why
+  /// the classification happens here rather than in the screen.
+  String _describeError(Object error) => NetworkFailure.isOffline(error)
+      ? NetworkNotice.messageOf(_l10n())
+      : error.toString();
 
   Future<void> _init() async {
     final customBlueprints = await repository.getCustomBlueprints();
@@ -263,7 +287,8 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
+      state = state.copyWith(
+          isLoading: false, error: _describeError(e), clearCurrentStory: true);
     }
   }
 
@@ -327,7 +352,8 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
+      state = state.copyWith(
+          isLoading: false, error: _describeError(e), clearCurrentStory: true);
     }
   }
 
@@ -399,7 +425,8 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
+      state = state.copyWith(
+          isLoading: false, error: _describeError(e), clearCurrentStory: true);
     }
   }
 
@@ -446,7 +473,7 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      state = state.copyWith(isLoading: false, error: _describeError(e));
     }
   }
 
@@ -512,7 +539,8 @@ class StoryController extends StateNotifier<StoryState> {
 
       state = state.copyWith(isLoading: false, currentStory: newStory);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString(), clearCurrentStory: true);
+      state = state.copyWith(
+          isLoading: false, error: _describeError(e), clearCurrentStory: true);
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanzi_master/features/auth/domain/repositories/auth_repository.dart';
 import 'package:hanzi_master/features/auth/presentation/providers/auth_controller.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -125,13 +126,16 @@ class _DeleteAccountScreenState extends ConsumerState<DeleteAccountScreen> {
           return l10n.accountReauthenticationFailed;
       }
     }
+    // Transport-level failures of any kind — not only firebase_auth's own
+    // `network-request-failed` — are the same problem for the learner.
+    if (NetworkFailure.isOffline(error)) {
+      return l10n.accountDeletionNetworkError;
+    }
     if (error is FirebaseAuthException) {
       switch (error.code) {
         case 'wrong-password':
         case 'invalid-credential':
           return l10n.accountPasswordIncorrect;
-        case 'network-request-failed':
-          return l10n.accountDeletionNetworkError;
         case 'requires-recent-login':
         case 'user-mismatch':
           return l10n.accountReauthenticationFailed;

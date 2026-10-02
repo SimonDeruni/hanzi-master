@@ -4,6 +4,7 @@ import 'package:html/parser.dart' as html_parser;
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
+import 'package:hanzi_master/core/utils/youtube_thumbnail.dart';
 import 'package:hanzi_master/features/media/domain/models/daily_media_item.dart';
 
 class DailyDiscoveryRepository {
@@ -58,10 +59,10 @@ class DailyDiscoveryRepository {
   /// header. `maxresdefault` is 1280x720 and is verified to exist before use,
   /// falling back to `hqdefault` when the upload has no HD rendition.
   static String _highResYoutubeImage(String videoId) =>
-      'https://img.youtube.com/vi/$videoId/maxresdefault.jpg';
+      YouTubeThumbnail.maxRes(videoId);
 
   static String _standardYoutubeImage(String videoId) =>
-      'https://img.youtube.com/vi/$videoId/hqdefault.jpg';
+      YouTubeThumbnail.high(videoId);
 
   /// Returns true when the given YouTube thumbnail URL actually exists.
   Future<bool> _youtubeThumbExists(String url) async {

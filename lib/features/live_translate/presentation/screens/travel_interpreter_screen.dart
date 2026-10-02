@@ -12,6 +12,7 @@ import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
@@ -267,7 +268,10 @@ class _TravelInterpreterScreenState
         setState(() {
           _recordingSide = null;
           _hasError = true;
-          _errorDetails = e.toString();
+          // Speech streaming needs the network; say which problem it was rather
+          // than handing the learner a raw exception.
+          _errorDetails =
+              NetworkNotice.describe(context, e, fallback: e.toString());
           _status = _InterpreterStatus.error;
           // Remove draft message on error
           if (_messages.isNotEmpty &&

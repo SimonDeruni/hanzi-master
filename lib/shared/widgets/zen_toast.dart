@@ -8,7 +8,7 @@ import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 /// The tone of a [ZenToast]: which accent, icon and semantic colour it wears.
-enum ZenToastTone { success, error, info }
+enum ZenToastTone { success, error, info, offline }
 
 /// A calligraphic confirmation toast in the Zen & Ink language.
 ///
@@ -87,6 +87,18 @@ class ZenToast {
   /// A neutral hint: the canonical app accent.
   static void info(BuildContext context, String message) =>
       show(context, message, tone: ZenToastTone.info);
+
+  /// A missing connection: the wifi glyph, in Emperor's Gold.
+  ///
+  /// Its own tone rather than `error` because the advice is different. An error
+  /// says *"that didn't work, try again"*; this says *"nothing can work until
+  /// you turn the network back on"* — and a learner who sees a red alert for
+  /// "no wifi" learns to retry a request that cannot possibly succeed. The
+  /// haptic is kept: it is still a refusal.
+  static void offline(BuildContext context, String message) {
+    HapticsManager.error();
+    show(context, message, tone: ZenToastTone.offline);
+  }
 
   /// Removes the visible toast immediately, if any.
   static void dismiss() {
@@ -251,18 +263,24 @@ class _ZenToastHostState extends State<_ZenToastHost>
 class _ZenToastPalette {
   _ZenToastPalette({required ZenToastTone tone, required bool isDark})
       : accent = switch (tone) {
-          // Jade Green for success, Cinnabar for an error, otherwise the
-          // canonical app accent (Cinnabar in light, Emperor's Gold in dark).
+          // Jade Green for success, Cinnabar for an error, Emperor's Gold for a
+          // lost connection, otherwise the canonical app accent (Cinnabar in
+          // light, Emperor's Gold in dark).
           ZenToastTone.success => const Color(0xFF2E7D32),
           ZenToastTone.error =>
             isDark ? Colors.redAccent : const Color(0xFFC62828),
           ZenToastTone.info =>
             isDark ? AppTheme.accentDark : AppTheme.accentLight,
+          // Emperor's Gold, matching the hairline this surface already wears,
+          // so "no network" is legible as a *condition*, not an error state.
+          ZenToastTone.offline =>
+            isDark ? Colors.amber.shade500 : const Color(0xFFB8860B),
         },
         icon = switch (tone) {
           ZenToastTone.success => Icons.check_rounded,
           ZenToastTone.error => Icons.error_outline_rounded,
           ZenToastTone.info => Icons.info_outline_rounded,
+          ZenToastTone.offline => Icons.wifi_off_rounded,
         },
         ink = isDark ? AppTheme.carbonInkDark : AppTheme.carbonInkLight,
         hairline = (isDark ? Colors.amber.shade700 : const Color(0xFFD4AF37))

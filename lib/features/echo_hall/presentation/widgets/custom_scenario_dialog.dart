@@ -12,6 +12,7 @@ import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/global_blurred_bottom_sheet.dart';
 import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenario_content.dart';
@@ -270,10 +271,14 @@ Respond ONLY in valid JSON format:
       }
     } catch (e) {
       if (mounted) {
-        ZenToast.error(
-          context,
-          '${AppLocalizations.of(context)!.errorPrefix}$e',
-        );
+        // The scenario is written by the model; offline is the likeliest failure
+        // and the only one the learner can act on.
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+            context,
+            '${AppLocalizations.of(context)!.errorPrefix}$e',
+          );
+        }
       }
     } finally {
       if (mounted) {

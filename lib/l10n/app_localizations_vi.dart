@@ -2273,6 +2273,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get openInYoutube => 'Mở trên YouTube';
 
   @override
+  String get tutorialsTab => 'Hướng dẫn';
+
+  @override
+  String get youtubeHostedNotice =>
+      'Các video này do YouTube lưu trữ và phát. Chúng tôi không tải xuống hay chỉnh sửa chúng.';
+
+  @override
   String get orderingHanddripCoffeeInShanghai =>
       'Gọi cà phê pha thủ công (pour-over) ở Thượng Hải';
 

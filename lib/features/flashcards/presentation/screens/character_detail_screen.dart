@@ -32,6 +32,7 @@ import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
 
 class CharacterDetailScreen extends ConsumerStatefulWidget {
   final Flashcard card;
@@ -64,6 +65,11 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
   // --- Pill Tab Navigation ---
   final ScrollController _scrollController = ScrollController();
   int _activeTabIndex = 0;
+
+  /// On a tablet the Scholar's Desk docks to the trailing edge instead of opening
+  /// a modal sheet — a chat wants height, not a sheet (row 23 of
+  /// `docs/IPAD_ADAPTIVE_PLAN.md`). Never read on a phone, which keeps the sheet.
+  bool _scholarDeskOpen = false;
 
   /// Section keys, in display order. The pill bar is built from this same list
   /// so a pill can never point at a section that is not rendered.
@@ -234,10 +240,45 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         '？'
       ];
 
+      /// The description to show for a component: the curated catalog's entry when
+      /// it has one (name + meaning + mnemonic, translated per locale), otherwise
+      /// the metadata's own definition.
+      ///
+      /// The catalog is a *subset*: `assets/data/radicals.json` carries 71 entries,
+      /// but the metadata assigns a radical to each of the 9574 characters it
+      /// covers, and 3795 of those assignments (39.6%) name a radical the catalog
+      /// does not carry — 阝, ⺼, 虫, 米, 牛, 穴, 舟, 王, 酉, 攵, 礻 and 216 others.
+      /// Gating on the catalog therefore dropped two out of five radicals and left
+      /// 122 HSK characters (4.7% of the vocabulary: 出, 对, 非, 牛, 面, 用, 也,
+      /// 已, 书 …) with no anatomy at all. The metadata describes every one of
+      /// them, so the catalog now *enriches* a component instead of vetoing it.
+      Map<String, dynamic>? describeComponent(String char) {
+        final Object? curated = radicalData[char];
+        if (curated is Map) return curated.cast<String, dynamic>();
+
+        for (final Object? source in <Object?>[hanziMeta, hsk2Meta]) {
+          if (source is! Map) continue;
+          final Object? entry = source[char];
+          if (entry is! Map) continue;
+          final Object? definition = entry['definition'];
+          if (definition is String && definition.isNotEmpty) {
+            return <String, dynamic>{
+              'name': definition,
+              'meaning': '',
+              // No mnemonic of our own: the card hides that block when it is null.
+              'mnemonic': null,
+            };
+          }
+        }
+        return null;
+      }
+
+      bool describesComponent(String char) => describeComponent(char) != null;
+
       Set<String> findBaseRadicals(String char) {
         Set<String> found = {};
 
-        if (radicalData.containsKey(char)) {
+        if (describesComponent(char)) {
           found.add(char);
           return found;
         }
@@ -249,8 +290,9 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
 
         if (meta != null) {
           final primaryRadical = meta['radical'];
-          if (primaryRadical != null &&
-              radicalData.containsKey(primaryRadical)) {
+          if (primaryRadical is String &&
+              !structuralChars.contains(primaryRadical) &&
+              describesComponent(primaryRadical)) {
             found.add(primaryRadical);
           }
 
@@ -270,18 +312,18 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       for (var char in chars) {
         final components = findBaseRadicals(char);
         for (final comp in components) {
-          if (radicalData.containsKey(comp)) {
-            // Avoid adding duplicates of the same radical
-            if (!foundComponents.any((element) => element['radical'] == comp)) {
-              foundComponents.add({
-                'char': char,
-                'radical': comp,
-                'info': radicalData[comp],
-                'definitionLanguage':
-                    translationLanguageForLocale(effectiveLocale),
-                'decomposition': hanziMeta[char]?['decomposition'] ?? '',
-              });
-            }
+          final Map<String, dynamic>? info = describeComponent(comp);
+          if (info == null) continue;
+          // Avoid adding duplicates of the same radical
+          if (!foundComponents.any((element) => element['radical'] == comp)) {
+            foundComponents.add({
+              'char': char,
+              'radical': comp,
+              'info': info,
+              'definitionLanguage':
+                  translationLanguageForLocale(effectiveLocale),
+              'decomposition': hanziMeta[char]?['decomposition'] ?? '',
+            });
           }
         }
       }
@@ -816,23 +858,82 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Expanded: the sections are columns, so the pill bar (whose only
-                // job is jumping between stacked sections) is not built at all —
-                // no dead control above content that is already on screen.
-                if (context.zenWindow.isExpanded) ...[
-                  _buildDetailColumns(context, isDark),
-                ] else ...[
-                  _buildPillTabBar(isDark, floating: false),
-                  const SizedBox(height: 16),
-                  _buildDetailSections(context, isDark),
-                ],
+                // The character card already sits beside the sections in this
+                // layout, so the sections are always split into two columns —
+                // the pill bar (whose only job is jumping between *stacked*
+                // sections) is never built here. Keeping the arrangement
+                // independent of the window class is what makes the page a
+                // reader reaches from a floating Quick Look identical to the one
+                // they reach from the dictionary's bottom sheet: same card, same
+                // two section columns, no pills.
+                _buildDetailColumns(context, isDark),
                 const SizedBox(height: 40),
                 _buildBottomActions(currentCard),
               ],
             ),
           ),
         ),
+        // The Scholar's Desk, docked to the trailing edge (animated open/closed).
+        _buildScholarDeskPane(currentCard, isDark),
       ],
+    );
+  }
+
+  /// The Scholar's Desk, docked to the trailing edge on a tablet.
+  ///
+  /// Row 23 of `docs/IPAD_ADAPTIVE_PLAN.md` asks for the chat to become a side
+  /// panel at tablet widths — "a chat wants height, not a sheet". The same
+  /// [CharacterChatSheet] is reused in its `embedded` form, so there is one chat
+  /// implementation with two presentations; a phone keeps the modal sheet.
+  Widget _buildScholarDeskPane(Flashcard currentCard, bool isDark) {
+    // Only at true tablet widths — a 380dp pane beside the two columns needs the
+    // room, so a window squeezed below `expanded` simply drops the pane.
+    if (!context.zenWindow.isExpanded) return const SizedBox.shrink();
+    final Widget panel = SizedBox(
+      width: 380,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+          border: Border(
+            left: BorderSide(color: isDark ? Colors.white12 : Colors.black12),
+          ),
+        ),
+        child: CharacterChatSheet(
+          embedded: true,
+          onClose: () => setState(() => _scholarDeskOpen = false),
+          hanzi: currentCard.hanzi,
+          pinyin: currentCard.pinyin,
+          definition: currentCard.definition,
+          definitionLanguage: currentCard.definitionLanguage,
+          strokePaths: currentCard.strokePaths,
+          medianPaths: currentCard.medianPaths,
+          isFlipped: currentCard.isFlipped,
+        ),
+      ),
+    );
+
+    return AnimatedSize(
+      duration: ZenMotion.of(context, ZenMotion.page),
+      curve: ZenMotion.natural,
+      alignment: Alignment.centerLeft,
+      child: !_scholarDeskOpen
+          ? const SizedBox.shrink()
+          // Slides in from the trailing edge the first time it opens; rests at the
+          // end state under Reduce Motion.
+          : (context.reduceMotion
+              ? panel
+              : TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 0, end: 1),
+                  duration: ZenMotion.of(context, ZenMotion.page),
+                  curve: ZenMotion.enter,
+                  builder: (BuildContext context, double t, Widget? c) =>
+                      Opacity(
+                    opacity: t,
+                    child: Transform.translate(
+                        offset: Offset((1 - t) * 28, 0), child: c),
+                  ),
+                  child: panel,
+                )),
     );
   }
 
@@ -853,19 +954,36 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
         title: Text(AppLocalizations.of(context)!.characterReference),
         actions: const [],
       ),
-      floatingActionButton: Builder(builder: (context) {
-        return FloatingActionButton.extended(
-          onPressed: () {
-            GlobalBlurredBottomSheet.show(
-              context,
-              child: CharacterChatSheet(
-                hanzi: currentCard.hanzi,
-                pinyin: currentCard.pinyin,
-                definition: currentCard.definition,
-                definitionLanguage: currentCard.definitionLanguage,
-              ),
-            );
-          },
+      // The FAB is the phone's way in. On a tablet the chat is docked to the side,
+      // so the FAB is withdrawn while the panel is open — otherwise it floats over
+      // the very panel it opened.
+      floatingActionButton: _scholarDeskOpen
+          ? null
+          : Builder(builder: (context) {
+              return FloatingActionButton.extended(
+                onPressed: () {
+                  // Tablet: dock the Scholar's Desk to the trailing edge instead
+                  // of a sheet — "a chat wants height, not a sheet" (row 23 of
+                  // `docs/IPAD_ADAPTIVE_PLAN.md`). Phone: the modal sheet, as before.
+                  if (context.zenWindow.isExpanded) {
+                    setState(() => _scholarDeskOpen = true);
+                    return;
+                  }
+                  GlobalBlurredBottomSheet.show(
+                    context,
+                    child: CharacterChatSheet(
+                      hanzi: currentCard.hanzi,
+                      pinyin: currentCard.pinyin,
+                      definition: currentCard.definition,
+                      definitionLanguage: currentCard.definitionLanguage,
+                      // Hand the skeletons over so a stroke-order answer can show
+                      // the animation instead of only describing it.
+                      strokePaths: currentCard.strokePaths,
+                      medianPaths: currentCard.medianPaths,
+                      isFlipped: currentCard.isFlipped,
+                    ),
+                  );
+                },
           icon: const Icon(Icons.auto_awesome),
           label: Text(AppLocalizations.of(context)!.askTutor),
           backgroundColor: Colors.indigo,
@@ -1731,12 +1849,21 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
             children: [
               Icon(icon, size: 18, color: Colors.indigo),
               const SizedBox(width: 8),
-              Text(title.toUpperCase(),
+              // The same header sits in a full-width stack on a phone but in a
+              // half-width column beside the character card, so it must be able
+              // to shrink instead of overflowing the column.
+              Flexible(
+                child: Text(
+                  title.toUpperCase(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
-                      letterSpacing: 1.0)),
+                      letterSpacing: 1.0),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -1761,13 +1888,19 @@ class _CharacterDetailScreenState extends ConsumerState<CharacterDetailScreen> {
       children: [
         Icon(icon, size: 18, color: Colors.indigo),
         const SizedBox(width: 8),
-        Text(
-          title.toUpperCase(),
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-            color: isDark ? Colors.white70 : Colors.black54,
-            letterSpacing: 1.2,
+        // Shrinks with the column (see `_buildInfoSection`): the heading shares
+        // a section column with the character card in the wide layout.
+        Flexible(
+          child: Text(
+            title.toUpperCase(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+              color: isDark ? Colors.white70 : Colors.black54,
+              letterSpacing: 1.2,
+            ),
           ),
         ),
         const SizedBox(width: 12),

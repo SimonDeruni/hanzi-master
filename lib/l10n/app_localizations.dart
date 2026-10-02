@@ -4334,6 +4334,18 @@ abstract class AppLocalizations {
   /// **'Open in YouTube'**
   String get openInYoutube;
 
+  /// Title of the Tutorials shelf in the Media area.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutorials'**
+  String get tutorialsTab;
+
+  /// Disclosure shown under a YouTube-sourced list: the videos are hosted and played by YouTube.
+  ///
+  /// In en, this message translates to:
+  /// **'Videos are hosted and played by YouTube. We do not download or change them.'**
+  String get youtubeHostedNotice;
+
   /// No description provided for @orderingHanddripCoffeeInShanghai.
   ///
   /// In en, this message translates to:

@@ -3,6 +3,7 @@ import 'package:hanzi_master/core/widgets/ltr_sanctuary.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/tone_graph_help.dart';
 
+import 'calligraphic_pitch_contour.dart';
 import 'tone_graph_painter.dart';
 
 /// The measured pitch contour drawn against the shape that was asked for.
@@ -123,14 +124,15 @@ class ToneGraphCard extends StatelessWidget {
           Row(
             children: [
               _LegendSwatch(
-                color: Colors.blue.shade600,
+                color: PitchGraphPalette.userVoice,
                 label: l10n?.toneGraphYourVoice ?? 'Your voice',
                 style: _legendStyle(theme, isDark),
               ),
               const SizedBox(width: 16),
               _LegendSwatch(
-                // Matches the alpha `ToneGraphPainter` draws the dashed target with.
-                color: Colors.grey.shade400.withValues(alpha: 0.45),
+                // Same grey `ToneGraphPainter` draws the dashed target with, and the
+                // same one the tone sheet's key uses — one vocabulary, one source.
+                color: PitchGraphPalette.target,
                 label: l10n?.toneGraphTarget ?? 'Target',
                 style: _legendStyle(theme, isDark),
               ),

@@ -41,6 +41,9 @@ class _FakeStoryController extends StoryController {
       : super(
           geminiService: _FakeGeminiService(),
           repository: _FakeStoryRepository(),
+          // The controller now localizes its own failures; this fake never
+          // reaches one, but English satisfies the constructor.
+          l10n: () => lookupAppLocalizations(const Locale('en')),
         ) {
     state = state.copyWith(currentStory: story);
   }

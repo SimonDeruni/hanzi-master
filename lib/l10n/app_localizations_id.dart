@@ -2276,6 +2276,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get openInYoutube => 'Buka di YouTube';
 
   @override
+  String get tutorialsTab => 'Tutorial';
+
+  @override
+  String get youtubeHostedNotice =>
+      'Video ini dihosting dan diputar oleh YouTube. Kami tidak mengunduh atau mengubahnya.';
+
+  @override
   String get orderingHanddripCoffeeInShanghai =>
       'Memesan Kopi Manual Brew di Shanghai';
 

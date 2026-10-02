@@ -5,6 +5,7 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:hanzi_master/core/services/monetization_service.dart';
 import 'package:hanzi_master/core/providers/premium_controller.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 
 class PaywallSheet {
   /// Helper to show the RevenueCat paywall easily from anywhere
@@ -39,7 +40,11 @@ class PaywallSheet {
     } catch (e) {
       debugPrint("Error presenting RevenueCat UI: $e");
       if (context.mounted) {
-        ZenToast.error(context, "Error presenting payment: $e");
+        // The store's paywall cannot render without a connection, and that is
+        // the one failure here the learner can do something about.
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(context, "Error presenting payment: $e");
+        }
       }
       return false;
     }

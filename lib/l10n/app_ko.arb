@@ -736,6 +736,8 @@
   "notes": "메모",
   "objectivesTitle": "학습 목표",
   "openInYoutube": "YouTube에서 열기",
+  "tutorialsTab": "튜토리얼",
+  "youtubeHostedNotice": "동영상은 YouTube가 호스팅하고 재생합니다. 당사는 동영상을 내려받거나 변경하지 않습니다.",
   "orderingHanddripCoffeeInShanghai": "상하이 카페에서 핸드드립 커피 주문하기",
   "orderingSugarcoatedHawsInWinterBeijing": "겨울철 베이징에서 탕후루(산사나무 열매 사탕) 사 먹기",
   "partnerLang": "대화 상대 ({lang})",

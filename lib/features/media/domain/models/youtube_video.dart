@@ -29,6 +29,7 @@ class YoutubeVideo {
 
     final medium = thumbnails['medium'] as Map<String, dynamic>? ?? {};
     final high = thumbnails['high'] as Map<String, dynamic>? ?? {};
+    final maxres = thumbnails['maxres'] as Map<String, dynamic>? ?? {};
 
     // Parse duration from ISO 8601 format (e.g., "PT1H23M45S")
     Duration? duration;
@@ -64,9 +65,14 @@ class YoutubeVideo {
       title: snippet['title'] as String? ?? 'Untitled',
       url: 'https://www.youtube.com/watch?v=$videoId',
       duration: duration,
-      mediumThumbnailUrl: medium['url'] as String? ?? '',
-      highThumbnailUrl:
+      mediumThumbnailUrl:
           high['url'] as String? ?? (medium['url'] as String? ?? ''),
+      // The Data API only surfaces `maxres` when the upload really has a
+      // 1280x720 still, so preferring it here is safe; `high` (480x360) is the
+      // fallback and `medium` (320x180) the last resort.
+      highThumbnailUrl: maxres['url'] as String? ??
+          high['url'] as String? ??
+          (medium['url'] as String? ?? ''),
       uploadDate: uploadDate,
       channelTitle: snippet['channelTitle'] as String? ?? '',
     );

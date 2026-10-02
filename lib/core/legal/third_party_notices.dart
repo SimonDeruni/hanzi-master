@@ -148,6 +148,39 @@ third_party/hanzi-writer-data-LICENSE; the full inventory is recorded in
 third_party/dictionary-sources.md.
 ''';
 
+/// Identifies the YouTube integration in the licences list.
+const String youtubeApiServicesPackageName = 'YouTube API Services';
+
+/// The disclosure the YouTube API Services Terms require an API client to make.
+///
+/// The Tutorials shelf lists videos through the official Data API and plays them
+/// in YouTube's own player. Those terms oblige an API client to disclose that it
+/// uses YouTube API Services and to point at Google's privacy policy — which is
+/// what this notice does, in the one place the app already shows third-party
+/// terms (the licences screen), so it needs no ARB entry yet still appears in
+/// every locale.
+///
+/// It is deliberately explicit about what the app does **not** do (no download,
+/// no copy, no modification), because those are the behaviours the terms forbid
+/// and the reason the shelf is built the way it is.
+const String youtubeApiServicesNotice = '''
+Videos in the Tutorials shelf are provided through YouTube API Services.
+
+By using that shelf you agree to be bound by the YouTube Terms of Service —
+https://www.youtube.com/t/terms
+
+Videos are hosted and played by YouTube. This app does not download, copy or
+modify them, does not separate their audio, and does not extract their captions or
+transcripts; playback happens in YouTube's own player, with YouTube's advertising,
+analytics and branding intact. The channel that published each video is credited on
+the card and in the player, and the watch page is linked from both.
+
+Google's privacy policy applies to the data YouTube collects when a video is
+played: https://policies.google.com/privacy
+
+This app uses YouTube API Services but is not endorsed or certified by YouTube.
+''';
+
 /// Registers every bundled data licence. Call once, before `runApp`.
 void registerThirdPartyNotices() {
   LicenseRegistry.addLicense(() async* {
@@ -158,6 +191,10 @@ void registerThirdPartyNotices() {
     yield const LicenseEntryWithLineBreaks(
       <String>[hanziStrokeDataPackageName],
       hanziStrokeDataNotice,
+    );
+    yield const LicenseEntryWithLineBreaks(
+      <String>[youtubeApiServicesPackageName],
+      youtubeApiServicesNotice,
     );
   });
 }

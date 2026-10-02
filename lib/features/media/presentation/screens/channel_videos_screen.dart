@@ -7,7 +7,9 @@ import 'smart_media_desk_screen.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import '../../data/channels_data.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/core/services/localized_catalog_service.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 
@@ -40,6 +42,10 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
   List<YoutubeVideo> _videos = [];
   bool _isLoading = true;
   String? _error;
+
+  /// Whether [_error] was a lost connection, so the panel can show the wifi
+  /// glyph and the "check your network" sentence instead of a generic alert.
+  bool _errorIsOffline = false;
 
   List<Map<String, String>> _channelInfos = [];
   bool _channelsLoading = true;
@@ -114,6 +120,7 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
     setState(() {
       _isLoading = true;
       _error = null;
+      _errorIsOffline = false;
     });
 
     try {
@@ -131,7 +138,10 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _error = e.toString();
+          _errorIsOffline = NetworkFailure.isOffline(e);
+          _error = _errorIsOffline
+              ? NetworkNotice.message(context)
+              : e.toString();
           _isLoading = false;
         });
       }
@@ -508,7 +518,13 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline, size: 48, color: Colors.redAccent),
+            Icon(
+              _errorIsOffline ? Icons.wifi_off_rounded : Icons.error_outline,
+              size: 48,
+              color: _errorIsOffline
+                  ? const Color(0xFFB8860B)
+                  : Colors.redAccent,
+            ),
             const SizedBox(height: 16),
             Text(
               AppLocalizations.of(context)!.failedToLoadVideos,
@@ -592,8 +608,25 @@ class _ChannelVideosScreenState extends ConsumerState<ChannelVideosScreen> {
                           // back instantly from the cache.
                           placeholder: (context, url) =>
                               _thumbPlaceholder(isDark),
+                          // `highThumbnailUrl` may be the 1280x720
+                          // `maxresdefault` still, which YouTube 404s for
+                          // uploads with no HD rendition. Step down to the
+                          // guaranteed 480x360 frame before giving up.
                           errorWidget: (context, url, error) =>
-                              _thumbPlaceholder(isDark),
+                              video.mediumThumbnailUrl.isEmpty ||
+                                      video.mediumThumbnailUrl ==
+                                          video.highThumbnailUrl
+                                  ? _thumbPlaceholder(isDark)
+                                  : CachedNetworkImage(
+                                      imageUrl: video.mediumThumbnailUrl,
+                                      width: double.infinity,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          _thumbPlaceholder(isDark),
+                                      errorWidget: (context, url, error) =>
+                                          _thumbPlaceholder(isDark),
+                                    ),
                           fadeInDuration: const Duration(milliseconds: 220),
                         ),
                 ),

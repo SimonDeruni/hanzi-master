@@ -31,6 +31,34 @@ class PinyinUtils {
     return 5; // Neutral tone
   }
 
+  /// True when [syllable] states a tone at all: a trailing `1`–`5`, or a tone mark.
+  static bool hasToneInformation(String syllable) {
+    final String trimmed = syllable.trim();
+    if (RegExp(r'[1-5]$').hasMatch(trimmed)) return true;
+    return tone1Chars.split('').any(trimmed.contains) ||
+        tone2Chars.split('').any(trimmed.contains) ||
+        tone3Chars.split('').any(trimmed.contains) ||
+        tone4Chars.split('').any(trimmed.contains);
+  }
+
+  /// The tone a syllable **explicitly** states: `1`–`4` from a tone mark, `5` from
+  /// an explicit `5`, or **`0` when the syllable says nothing about its tone**.
+  ///
+  /// [getTone] reports *every* unmarked syllable as `5` (neutral), which silently
+  /// turns "the recogniser gave us no tone" into a confident neutral-tone verdict.
+  /// That is how a fourth-tone character (划, huà) came to be shown to the learner
+  /// as "Neutral (light)". This returns `0` for the absence of information so the
+  /// caller can fall back to the authored pinyin or the grader's own verdict
+  /// instead of asserting a tone nobody provided.
+  static int toneFromSyllable(String syllable) {
+    final String trimmed = syllable.trim();
+    final RegExpMatch? numeric = RegExp(r'([1-5])$').firstMatch(trimmed);
+    if (numeric != null) return int.parse(numeric.group(1)!);
+    if (hasToneInformation(trimmed)) return getTone(trimmed);
+    return 0;
+  }
+
+
   static const Map<String, String> _vowelMap = {
     'a1': 'ā', 'a2': 'á', 'a3': 'ǎ', 'a4': 'à',
     'e1': 'ē', 'e2': 'é', 'e3': 'ě', 'e4': 'è',

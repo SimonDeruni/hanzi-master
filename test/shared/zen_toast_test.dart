@@ -125,6 +125,19 @@ void main() {
       await _clear(tester);
     });
 
+    testWidgets('a lost connection wears the wifi glyph, in Emperor\'s Gold',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(_host(tone: ZenToastTone.offline));
+      await _raise(tester);
+
+      // Distinct from the Cinnabar alert on purpose: "no network" is a
+      // condition to fix, not a failed attempt to repeat.
+      final Icon icon =
+          tester.widget<Icon>(find.byIcon(Icons.wifi_off_rounded));
+      expect(icon.color, const Color(0xFFB8860B));
+      await _clear(tester);
+    });
+
     testWidgets('reduced motion shows it instantly, without a tween',
         (WidgetTester tester) async {
       await tester.pumpWidget(_host(reduceMotion: true));

@@ -2216,6 +2216,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get openInYoutube => 'YouTube에서 열기';
 
   @override
+  String get tutorialsTab => '튜토리얼';
+
+  @override
+  String get youtubeHostedNotice =>
+      '동영상은 YouTube가 호스팅하고 재생합니다. 당사는 동영상을 내려받거나 변경하지 않습니다.';
+
+  @override
   String get orderingHanddripCoffeeInShanghai => '상하이 카페에서 핸드드립 커피 주문하기';
 
   @override

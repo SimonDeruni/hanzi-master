@@ -29,6 +29,7 @@ import 'package:hanzi_master/core/services/haptics_manager.dart';
 import 'package:hanzi_master/shared/routes/swipe_back_route.dart';
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/widgets/loading_swap.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
@@ -1126,7 +1127,12 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ZenToast.error(context, "Analysis failed: $e");
+        // A lost connection is asked first: it is the one cause the learner can
+        // act on, and the shared sentence says so in their own language.
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+              context, AppLocalizations.of(context)!.analysis_failed(e));
+        }
       }
     } finally {
       _endAiRun(generation);
@@ -1236,7 +1242,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       }
     } catch (e) {
       if (mounted) {
-        ZenToast.error(context, "Extraction failed: $e");
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+              context, AppLocalizations.of(context)!.extraction_failed(e));
+        }
       }
     } finally {
       _endAiRun(generation);
@@ -1341,10 +1350,13 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
       );
     } catch (e) {
       if (mounted) {
-        final cleanError = e
-            .toString()
-            .replaceFirst(RegExp(r'^(FormatException|Exception):\s*'), '');
-        ZenToast.error(context, "Simplify failed: $cleanError");
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          final cleanError = e
+              .toString()
+              .replaceFirst(RegExp(r'^(FormatException|Exception):\s*'), '');
+          ZenToast.error(context,
+              AppLocalizations.of(context)!.simplify_failed(cleanError));
+        }
       }
     } finally {
       _endAiRun(generation);
@@ -1465,7 +1477,10 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
         setState(() {
           _isTranslating = false;
         });
-        ZenToast.error(context, "Translation failed: $e");
+        if (!NetworkNotice.showIfOffline(context, e)) {
+          ZenToast.error(
+              context, AppLocalizations.of(context)!.translation_failed(e));
+        }
       }
     }
   }
@@ -1881,13 +1896,16 @@ class _WebBrowserScreenState extends ConsumerState<WebBrowserScreen>
                                   ),
                                 );
                               } catch (e) {
-                                if (mounted) {
+                                if (mounted &&
+                                    !NetworkNotice.showIfOffline(context, e)) {
                                   final cleanError = e.toString().replaceFirst(
                                       RegExp(
                                           r'^(FormatException|Exception):\s*'),
                                       '');
                                   ZenToast.error(
-                                      context, "Simplify failed: $cleanError");
+                                      context,
+                                      AppLocalizations.of(context)!
+                                          .simplify_failed(cleanError));
                                 }
                               } finally {
                                 _endAiRun(generation);

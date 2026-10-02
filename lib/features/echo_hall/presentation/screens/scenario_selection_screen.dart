@@ -24,7 +24,12 @@ import 'package:hanzi_master/features/echo_hall/domain/entities/localized_scenar
 import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/shared/widgets/zen_loader.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:hanzi_master/shared/widgets/zen_filter_pill.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
+import 'package:hanzi_master/core/theme/zen_motion.dart';
+import 'package:hanzi_master/shared/utils/motion_preferences.dart';
+import 'package:hanzi_master/shared/widgets/bouncing_button.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 class ScenarioSelectionScreen extends ConsumerStatefulWidget {
@@ -904,61 +909,90 @@ class _ScenarioSelectionScreenState
     final savedScenarios = ref.read(savedScenariosProvider);
     final isBookmarked = savedScenarios.any((s) => s.id == scenario.id);
 
-    zenSheet(
+    // On an iPad the launcher slides in from the trailing edge as a side desk;
+    // on a phone it stays the familiar bottom sheet. Same content either way.
+    zenSidePanel(
       context,
       useRootNavigator: true,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (ctx) => Container(
-        constraints:
-            BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.7),
-        decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-          border: Border(
-              top: BorderSide(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.1))),
-        ),
-        child: SingleChildScrollView(
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Container(
-                margin: const EdgeInsets.symmetric(vertical: 12),
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                    color: isDark ? Colors.white24 : Colors.black12,
-                    borderRadius: BorderRadius.circular(2))),
+      builder: (ctx) {
+        final bool isPanel = ZenWindow.of(ctx).isExpanded;
+        return _SheetEntrance(
+          child: Container(
+            constraints: isPanel
+                ? null
+                : BoxConstraints(
+                    maxHeight: MediaQuery.sizeOf(ctx).height * 0.7),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF1A1A1B) : const Color(0xFFFDFCF0),
+              borderRadius: isPanel
+                  ? const BorderRadius.horizontal(left: Radius.circular(24))
+                  : const BorderRadius.vertical(top: Radius.circular(24)),
+              border: Border(
+                  top: BorderSide(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.1)
+                          : Colors.black.withValues(alpha: 0.1))),
+            ),
+            child: SingleChildScrollView(
+              // The panel is full height, so the briefing is centred inside it: a
+              // column of content hugging the top of a 1366dp desk reads as a
+              // layout that ran out, not as a docked pane. A sheet stays
+              // content-sized (minHeight 0), so its look is unchanged.
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: isPanel ? MediaQuery.sizeOf(ctx).height - 60 : 0,
+                ),
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // The drag handle is a bottom-sheet affordance; the side panel
+                // gets its dismiss gesture from the scrim instead.
+                if (!isPanel)
+                  Container(
+                      margin: const EdgeInsets.symmetric(vertical: 12),
+                      width: 40,
+                      height: 4,
+                      decoration: BoxDecoration(
+                          color: isDark ? Colors.white24 : Colors.black12,
+                          borderRadius: BorderRadius.circular(2))),
+                // The sheet's top margin comes from that handle, so the panel
+                // needs its own — the SafeArea above only clears the status bar,
+                // which would leave the portrait halo flush against the edge.
+                if (isPanel) const SizedBox(height: 28),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(children: [
-                CircleAvatar(
-                    radius: 28,
-                    backgroundImage: scenario.hasAvatar
-                        ? _getAvatarImage(scenario.resolvedAvatarAssetPath)
-                        : null,
-                    backgroundColor: scenario.hasAvatar
-                        ? Colors.transparent
-                        : (isDark
-                            ? const Color(0xFF2C2C2E)
-                            : const Color(0xFFF0EAE1)),
-                    child: !scenario.hasAvatar
-                        ? Text(
-                            scenario
-                                    .localizedPersonaName(
-                                        Localizations.localeOf(context))
-                                    .isNotEmpty
-                                ? scenario.localizedPersonaName(
-                                    Localizations.localeOf(context))[0]
-                                : (scenario.title.isNotEmpty
-                                    ? scenario.title[0]
-                                    : '悟'),
-                            style: const TextStyle(
-                                color: Color(0xFFFFB300),
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold))
-                        : null),
+                _PersonaHalo(
+                  isDark: isDark,
+                  child: CircleAvatar(
+                      radius: 28,
+                      backgroundImage: scenario.hasAvatar
+                          ? _getAvatarImage(scenario.resolvedAvatarAssetPath)
+                          : null,
+                      backgroundColor: scenario.hasAvatar
+                          ? Colors.transparent
+                          : (isDark
+                              ? const Color(0xFF2C2C2E)
+                              : const Color(0xFFF0EAE1)),
+                      child: !scenario.hasAvatar
+                          ? Text(
+                              scenario
+                                      .localizedPersonaName(
+                                          Localizations.localeOf(context))
+                                      .isNotEmpty
+                                  ? scenario.localizedPersonaName(
+                                      Localizations.localeOf(context))[0]
+                                  : (scenario.title.isNotEmpty
+                                      ? scenario.title[0]
+                                      : '悟'),
+                              style: const TextStyle(
+                                  color: Color(0xFFFFB300),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold))
+                          : null),
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                     child: Column(
@@ -1123,99 +1157,37 @@ class _ScenarioSelectionScreenState
                                     ]))),
                       ])),
             const SizedBox(height: 24),
+            // Two full-width "choice" rows instead of a cramped button pair:
+            // each states what it does, which reads well in both the phone
+            // sheet and the taller iPad side panel.
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 52,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(ctx);
-                          HapticsManager.medium();
-                          _startScenario(context, scenario, true);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: isDark
-                              ? Colors.amber.shade700
-                              : const Color(0xFF1A1A1B),
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          elevation: 4,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.mic, size: 22),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                AppLocalizations.of(context)!.voiceCall,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  letterSpacing: 0.5,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: SizedBox(
-                      height: 52,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          Navigator.pop(ctx);
-                          HapticsManager.light();
-                          _startScenario(context, scenario, false);
-                        },
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: isDark
-                              ? AppTheme.accentDark
-                              : AppTheme.accentLight,
-                          side: BorderSide(
-                            color: isDark
-                                ? AppTheme.accentDark
-                                : AppTheme.accentLight,
-                            width: 1.3,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.chat_bubble_outline, size: 22),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                AppLocalizations.of(context)!.textChat,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  letterSpacing: 0.5,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ])),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(children: [
+                _LauncherAction(
+                  icon: Icons.mic,
+                  title: AppLocalizations.of(context)!.voiceCall,
+                  subtitle: AppLocalizations.of(context)!.immersiveRoleplay,
+                  isDark: isDark,
+                  isPrimary: true,
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _startScenario(context, scenario, true);
+                  },
+                ),
+                const SizedBox(height: 10),
+                _LauncherAction(
+                  icon: Icons.chat_bubble_outline,
+                  title: AppLocalizations.of(context)!.textChat,
+                  subtitle: AppLocalizations.of(context)!.practiceInRoleplay,
+                  isDark: isDark,
+                  isPrimary: false,
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _startScenario(context, scenario, false);
+                  },
+                ),
+              ]),
+            ),
             const SizedBox(height: 12),
             TextButton.icon(
               onPressed: () {
@@ -1245,9 +1217,12 @@ class _ScenarioSelectionScreenState
               ),
             ),
             const SizedBox(height: 16),
-          ]),
-        ),
-      ),
+              ]),
+                ),
+              ),
+            ),
+          );
+      },
     );
   }
 
@@ -1359,10 +1334,14 @@ Respond ONLY in valid JSON format with NO markdown formatting:
     } catch (e) {
       if (!mounted) return;
       debugPrint('Failed to generate deck scenario: $e');
-      ZenToast.error(
-        context,
-        AppLocalizations.of(context)!.failedToGenerateScenario,
-      );
+      // A scenario is written by the model, so no connection means no scenario -
+      // and that is something the learner can act on.
+      if (!NetworkNotice.showIfOffline(context, e)) {
+        ZenToast.error(
+          context,
+          AppLocalizations.of(context)!.failedToGenerateScenario,
+        );
+      }
     } finally {
       if (mounted) {
         setState(() => _isGenerating = false);
@@ -1391,3 +1370,230 @@ Respond ONLY in valid JSON format with NO markdown formatting:
     return AssetImage(path);
   }
 }
+
+/// Entrance for the roleplay launcher: a short fade with a small lift, so the
+/// content settles in behind the sheet/panel instead of snapping into place.
+///
+/// One-shot on mount (no timers) and reduced-motion aware — with reduce motion
+/// the controller rests at its end value, so the content is simply present.
+class _SheetEntrance extends StatefulWidget {
+  const _SheetEntrance({required this.child});
+
+  final Widget child;
+
+  @override
+  State<_SheetEntrance> createState() => _SheetEntranceState();
+}
+
+class _SheetEntranceState extends State<_SheetEntrance>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: ZenMotion.entrance,
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    MotionResolution.resolve(context, controller: _controller).apply();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> curved =
+        CurvedAnimation(parent: _controller, curve: ZenMotion.enter);
+    return FadeTransition(
+      opacity: curved,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0, 0.02),
+          end: Offset.zero,
+        ).animate(curved),
+        child: widget.child,
+      ),
+    );
+  }
+}
+
+/// A soft breathing halo behind the persona portrait.
+///
+/// The launcher's only piece of ambient life, and the focal point of the header
+/// on the tall iPad side panel. Perpetual, so under reduce motion it settles to a
+/// static ring instead of pulsing.
+class _PersonaHalo extends StatefulWidget {
+  const _PersonaHalo({required this.child, required this.isDark});
+
+  final Widget child;
+  final bool isDark;
+
+  @override
+  State<_PersonaHalo> createState() => _PersonaHaloState();
+}
+
+class _PersonaHaloState extends State<_PersonaHalo>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: ZenMotion.ambient,
+    value: 1,
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    MotionResolution.resolve(context, controller: _controller, loop: true)
+        .apply();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Color ring =
+        widget.isDark ? const Color(0xFFFFB300) : AppTheme.accentLight;
+    return SizedBox(
+      width: 72,
+      height: 72,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (BuildContext context, Widget? child) => Container(
+              width: 64 + (8 * _controller.value),
+              height: 64 + (8 * _controller.value),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color:
+                    ring.withValues(alpha: 0.12 - (0.07 * _controller.value)),
+              ),
+            ),
+          ),
+          widget.child,
+        ],
+      ),
+    );
+  }
+}
+
+/// One roleplay entry mode — "Voice Call" or "Text Chat".
+///
+/// A full-width card rather than a split button row, because it can then carry a
+/// one-line description: that is the difference between guessing and choosing,
+/// especially for a learner who has never placed an AI voice call. Press feedback
+/// comes from [BouncingButton] (scale + haptic), matching every other tappable
+/// card in the app.
+class _LauncherAction extends StatelessWidget {
+  const _LauncherAction({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.isDark,
+    required this.isPrimary,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final bool isDark;
+  final bool isPrimary;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color accent = isDark ? AppTheme.accentDark : AppTheme.accentLight;
+    final Color background = isPrimary
+        ? (isDark ? Colors.amber.shade700 : const Color(0xFF1A1A1B))
+        : (isDark ? Colors.white.withValues(alpha: 0.04) : AppTheme.cardBgLight);
+    final Color titleColor =
+        isPrimary ? Colors.white : (isDark ? Colors.white : const Color(0xFF1A1A1B));
+    final Color bodyColor = isPrimary
+        ? Colors.white.withValues(alpha: 0.78)
+        : (isDark
+            ? Colors.white.withValues(alpha: 0.6)
+            : Colors.black.withValues(alpha: 0.55));
+
+    return BouncingButton(
+      onPressed: onTap,
+      child: Semantics(
+        button: true,
+        label: title,
+        hint: subtitle,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          decoration: BoxDecoration(
+            color: background,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(
+              color: isPrimary ? Colors.transparent : accent.withValues(alpha: 0.45),
+              width: 1.3,
+            ),
+            boxShadow: isPrimary
+                ? [
+                    BoxShadow(
+                      color: background.withValues(alpha: 0.28),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : null,
+          ),
+          child: Row(children: [
+            Container(
+              width: 42,
+              height: 42,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isPrimary
+                    ? Colors.white.withValues(alpha: 0.18)
+                    : accent.withValues(alpha: 0.12),
+              ),
+              child: Icon(icon, size: 22, color: isPrimary ? Colors.white : accent),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: titleColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      letterSpacing: 0.3,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: TextStyle(color: bodyColor, fontSize: 12, height: 1.25),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Icon(Icons.chevron_right, size: 20, color: bodyColor),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+

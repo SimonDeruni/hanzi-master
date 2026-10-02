@@ -6,9 +6,10 @@
 ///     "iPad" layout. Now: `window.isAtLeastMedium` plus the pane width against
 ///     the named `ZenBreakpoints.compactMax` — no magic numbers, which is what
 ///     also lets the adoption ledger scan this file.
-///  2. **At expanded the sections stop being a stack behind pills.** They become
-///     side-by-side columns and the pill bar is not built (its only job was
-///     jumping between stacked sections).
+///  2. **In the wide layout the sections are always side-by-side columns.** The
+///     pill bar (whose only job was jumping between *stacked* sections) is never
+///     built beside the character card, so the page is identical whichever
+///     Quick Look landed on it — the floating popover or the dictionary sheet.
 ///  3. **The anatomy layout measures its own slice, not the window.** Rule 1
 ///     fixed the *page* gate and left the anatomy one reading
 ///     `window.isExpanded`, which is a different question: at expanded the
@@ -90,25 +91,25 @@ void main() {
       expect(columns, contains('Row('));
     });
 
-    test('expanded drops the pill bar, the narrow path keeps it', () {
+    test('the landscape layout always uses the columns arrangement', () {
+      // Every entry point — a floating Quick Look or the dictionary sheet's
+      // "Open card" — must land on the same page: the card on the left, the
+      // sections split into two columns on the right, and no pill bar. The
+      // arrangement no longer depends on the window class.
       final String landscape = body('Widget _buildLandscapeLayout(');
-      final int gate = landscape.indexOf('if (context.zenWindow.isExpanded)');
-      expect(gate, greaterThan(-1));
-      final int elseAt = landscape.indexOf('] else ...[', gate);
-      expect(elseAt, greaterThan(gate));
-      final String expandedBranch = landscape.substring(gate, elseAt);
-      expect(expandedBranch, contains('_buildDetailColumns('));
-      expect(expandedBranch, isNot(contains('_buildPillTabBar(')),
+      expect(landscape, contains('_buildDetailColumns('));
+      expect(landscape, isNot(contains('_buildPillTabBar(')),
           reason: 'No dead pill bar above content already on screen');
-      expect(landscape.substring(elseAt),
-          contains('_buildPillTabBar(isDark, floating: false)'));
+      expect(landscape, isNot(contains('_buildDetailSections(')),
+          reason: 'The landscape layout never stacks the sections behind pills');
     });
 
-    test('the phone arrangement is untouched', () {
-      expect(body('Widget _buildLandscapeLayout('),
-          contains('_buildDetailSections(context, isDark)'));
+    test('the pills and the stack survive only on the phone arrangement', () {
       expect(body('Widget _buildPortraitLayout('),
           contains('_buildDetailSections(context, isDark)'));
+      expect(body('Widget build(BuildContext context) {'),
+          contains('_buildPillTabBar(isDark, floating: true)'),
+          reason: 'The phone layout keeps its jump-to-section pills');
     });
   });
 

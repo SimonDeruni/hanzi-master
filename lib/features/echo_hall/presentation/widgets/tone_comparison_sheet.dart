@@ -455,6 +455,41 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
                     height: 110,
                   ),
                 ),
+                const SizedBox(height: 8),
+                // The graph's key. Without it the solid stroke read as the learner's
+                // own voice — which is what blue means on the phrase graph — when
+                // here it is the target. The swatches take their colours from
+                // `PitchGraphPalette`, the one place the vocabulary is defined, so
+                // the key cannot drift from what is actually drawn.
+                Row(
+                  children: [
+                    _GraphSwatch(
+                      color: PitchGraphPalette.userVoice,
+                      label: AppLocalizations.of(context)?.toneGraphYourVoice ??
+                          'Your voice',
+                      isDark: isDark,
+                    ),
+                    const SizedBox(width: 16),
+                    _GraphSwatch(
+                      color: PitchGraphPalette.target,
+                      label: AppLocalizations.of(context)?.toneGraphTarget ??
+                          'Target',
+                      isDark: isDark,
+                    ),
+                  ],
+                ),
+                // "We measured nothing" and "you got it wrong" are different
+                // messages. With no measured tone the graph carries the target
+                // stroke only, so say so rather than let a bare box imply failure.
+                if (!toneMeasured) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    AppLocalizations.of(context)?.toneGraphNoPitchMeasured ?? '',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: onSurface.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -528,6 +563,21 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
               pinyinWithTone: toneMap[tone] ?? '',
               isExpected: tone == widget.expectedTone,
               isActual: tone == widget.actualTone,
+              comparisonPinyin: comparisonPinyin,
+              theme: theme,
+            ),
+            const SizedBox(height: 8),
+          ],
+          // The neutral tone is not one of the "four tones", so it keeps its own
+          // row, shown only when it is actually in play. Without it a neutral-tone
+          // target had no row to highlight at all: the sheet named a tone it never
+          // demonstrated.
+          if (widget.expectedTone == 5 || widget.actualTone == 5) ...[
+            _buildToneCard(
+              tone: 5,
+              pinyinWithTone: toneMap[5] ?? comparisonPinyin,
+              isExpected: widget.expectedTone == 5,
+              isActual: widget.actualTone == 5,
               comparisonPinyin: comparisonPinyin,
               theme: theme,
             ),
@@ -781,5 +831,47 @@ class _ToneComparisonSheetState extends ConsumerState<ToneComparisonSheet> {
       default:
         return "·";
     }
+  }
+}
+
+/// A short line in a graph stroke's own colour, beside its name.
+///
+/// Deliberately identical to the swatch `ToneGraphCard` draws, so the key under
+/// the tone sheet and the key under the phrase graph look like the same key —
+/// which they now are, for the same two colours.
+class _GraphSwatch extends StatelessWidget {
+  const _GraphSwatch({
+    required this.color,
+    required this.label,
+    required this.isDark,
+  });
+
+  final Color color;
+  final String label;
+  final bool isDark;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 16,
+          height: 3,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+        const SizedBox(width: 6),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                fontSize: 11,
+                color: isDark ? Colors.white60 : Colors.black54,
+              ),
+        ),
+      ],
+    );
   }
 }

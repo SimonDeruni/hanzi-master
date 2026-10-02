@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:hanzi_master/core/providers/l10n_provider.dart';
+import 'package:hanzi_master/core/utils/network_failure.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
+import 'package:hanzi_master/shared/widgets/network_notice.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/scenario.dart';
@@ -20,6 +24,9 @@ final conversationControllerProvider = StateNotifierProvider.autoDispose<Convers
     audioService: ref.watch(audioRecordingServiceProvider),
     geminiService: ref.watch(geminiServiceProvider),
     localTranslationService: ref.watch(localTranslationServiceProvider),
+    // Read lazily from the catch block, never watched here: a locale change must
+    // not rebuild this notifier and discard the conversation in progress.
+    l10n: () => ref.read(l10nProvider),
   );
 });
 
@@ -61,15 +68,21 @@ class ConversationController extends StateNotifier<ConversationState> {
   final GeminiService _geminiService;
   final LocalTranslationService _localTranslationService;
 
+  /// Resolved at the moment of an error, so a provider failure can be described
+  /// in the learner's own language instead of an English literal.
+  final AppLocalizations Function() _l10n;
+
   ConversationController({
     required EchoHallService echoHallService,
     required AudioRecordingService audioService,
     required GeminiService geminiService,
     required LocalTranslationService localTranslationService,
+    required AppLocalizations Function() l10n,
   })  : _echoHallService = echoHallService,
         _audioService = audioService,
         _geminiService = geminiService,
         _localTranslationService = localTranslationService,
+        _l10n = l10n,
         super(ConversationState());
 
   Future<void> startScenario(ConversationScenario scenario) async {
@@ -227,15 +240,16 @@ class ConversationController extends StateNotifier<ConversationState> {
             isProcessing: false,
             error: "We couldn't understand your pronunciation. Please speak clearly and try again.",
           );
-        } else if (msg.contains('timeout') || msg.contains('timed out')) {
+        } else if (NetworkFailure.isOffline(e)) {
+          // Replaces a hand-rolled `contains('socket') || contains('network')`
+          // sniff that missed the Firebase codes, and an English literal that
+          // was the same sentence left untranslated in the other thirteen
+          // locales the app ships. A timeout lands here too - `isOffline` counts
+          // it, because an unanswered request is indistinguishable from a radio
+          // that is off, from the learner's chair.
           state = state.copyWith(
             isProcessing: false,
-            error: "The server is taking too long to respond. Please try again.",
-          );
-        } else if (msg.contains('socket') || msg.contains('network') || msg.contains('connection')) {
-          state = state.copyWith(
-            isProcessing: false,
-            error: "No internet connection. Please check your network and try again.",
+            error: NetworkNotice.messageOf(_l10n()),
           );
         } else {
           state = state.copyWith(
@@ -375,24 +389,16 @@ class ConversationController extends StateNotifier<ConversationState> {
       
       state = state.copyWith(messages: [...state.messages, aiMsg], isProcessing: false);
     } catch (e) {
-      // Catch ALL error types (not just Exception) and guarantee isProcessing reset
-      final msg = e.toString().toLowerCase();
-      if (msg.contains('timeout') || msg.contains('timed out')) {
-        state = state.copyWith(
-          isProcessing: false,
-          error: "The server is taking too long to respond. Please try again.",
-        );
-      } else if (msg.contains('socket') || msg.contains('network') || msg.contains('connection')) {
-        state = state.copyWith(
-          isProcessing: false,
-          error: "No internet connection. Please check your network and try again.",
-        );
-      } else {
-        state = state.copyWith(
-          isProcessing: false,
-          error: "Our AI tutors are currently offline, please try again later.",
-        );
-      }
+      // Catch ALL error types (not just Exception) and guarantee isProcessing
+      // reset. The fallback is the key that already said exactly this sentence,
+      // in all fourteen locales, and had never been referenced.
+      final AppLocalizations l10n = _l10n();
+      state = state.copyWith(
+        isProcessing: false,
+        error: NetworkFailure.isOffline(e)
+            ? NetworkNotice.messageOf(l10n)
+            : l10n.ourAiTutorsAreCurrentlyOfflinePleas,
+      );
     }
   }
 

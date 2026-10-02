@@ -791,6 +791,8 @@
   "notes": "メモ",
   "objectivesTitle": "目標",
   "openInYoutube": "YouTubeで開く",
+  "tutorialsTab": "チュートリアル",
+  "youtubeHostedNotice": "動画はYouTubeが配信・再生します。当アプリは動画をダウンロードしたり改変したりしません。",
   "orderingHanddripCoffeeInShanghai": "上海のカフェでハンドドリップコーヒーを注文",
   "orderingSugarcoatedHawsInWinterBeijing": "冬の北京で糖葫芦（サンザシ飴）を買う",
   "partnerLang": "パートナー（{lang}）",

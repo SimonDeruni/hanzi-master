@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:lpinyin/lpinyin.dart';
 import 'package:xml/xml.dart' as xml;
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
+import 'package:hanzi_master/core/utils/youtube_thumbnail.dart';
 import '../domain/models/youtube_video.dart';
 import '../domain/models/video_transcript.dart';
 
@@ -88,20 +89,26 @@ class YoutubeRepository {
 
   /// Converts a youtube_explode_dart [Video] to our [YoutubeVideo] domain model.
   YoutubeVideo _videoToModel(Video video) {
-    String thumb = video.thumbnails.highResUrl;
-    if (thumb.isEmpty) {
-      thumb = video.thumbnails.mediumResUrl;
-    }
-    if (thumb.isEmpty) {
-      thumb = 'https://img.youtube.com/vi/${video.id.value}/hqdefault.jpg';
-    }
+    final id = video.id.value;
+    // Reach for the 1280x720 `maxresdefault` still first: `maxResUrl` is only
+    // populated for uploads that really have one, so it can be used as-is.
+    // `highResUrl` (480x360) is the guaranteed floor, and [YouTubeThumbnail.high]
+    // covers the case where even that is missing.
+    final high = video.thumbnails.highResUrl.isNotEmpty
+        ? video.thumbnails.highResUrl
+        : YouTubeThumbnail.high(id);
+    final thumb = video.thumbnails.maxResUrl.isNotEmpty
+        ? video.thumbnails.maxResUrl
+        : high;
 
     return YoutubeVideo(
-      id: video.id.value,
+      id: id,
       title: video.title,
-      url: 'https://www.youtube.com/watch?v=${video.id.value}',
+      url: 'https://www.youtube.com/watch?v=$id',
       duration: video.duration,
-      mediumThumbnailUrl: thumb,
+      // Both slots carry the best rendition we have; the lower one is only ever
+      // read as a pre-load placeholder or an `errorBuilder` fallback.
+      mediumThumbnailUrl: high,
       highThumbnailUrl: thumb,
       uploadDate: video.publishDate,
       channelTitle: video.author,
@@ -558,10 +565,16 @@ class YoutubeRepository {
               title: title,
               url: 'https://www.youtube.com/watch?v=${video.id.value}',
               duration: video.duration,
-              mediumThumbnailUrl: video.thumbnails.mediumResUrl,
+              // 480x360 `hqdefault` rather than the 320x180 `mqdefault`; this
+              // URL doubles as the HD still's `errorBuilder` fallback.
+              mediumThumbnailUrl: video.thumbnails.highResUrl.isNotEmpty
+                  ? video.thumbnails.highResUrl
+                  : YouTubeThumbnail.high(video.id.value),
               highThumbnailUrl: video.thumbnails.maxResUrl.isNotEmpty
                   ? video.thumbnails.maxResUrl
-                  : video.thumbnails.mediumResUrl,
+                  : (video.thumbnails.highResUrl.isNotEmpty
+                      ? video.thumbnails.highResUrl
+                      : YouTubeThumbnail.high(video.id.value)),
               uploadDate: video.publishDate,
               channelTitle:
                   video.author.isNotEmpty ? video.author : (channelName ?? ''),

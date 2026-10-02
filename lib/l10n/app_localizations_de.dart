@@ -2290,6 +2290,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get openInYoutube => 'In YouTube öffnen';
 
   @override
+  String get tutorialsTab => 'Tutorials';
+
+  @override
+  String get youtubeHostedNotice =>
+      'Die Videos werden von YouTube gehostet und abgespielt. Wir laden sie nicht herunter und verändern sie nicht.';
+
+  @override
   String get orderingHanddripCoffeeInShanghai =>
       'Handfilterkaffee in Shanghai bestellen';
 
