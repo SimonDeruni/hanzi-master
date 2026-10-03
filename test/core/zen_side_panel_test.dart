@@ -16,7 +16,10 @@ library;
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hanzi_master/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 
 void main() {
@@ -110,5 +113,53 @@ void main() {
     expect(screen, contains('zenSidePanel('));
     expect(screen, isNot(contains('showModalBottomSheet(')),
         reason: 'Every transient surface goes through the overlay helpers');
+  });
+
+  group('the deck generator', () {
+    test('opens through the side-panel helper on a tablet only', () {
+      final String sheet = File(
+        'lib/features/flashcards/presentation/widgets/ai_deck_generator_sheet.dart',
+      ).readAsStringSync();
+
+      expect(sheet, contains('zenSidePanel<void>('));
+      expect(sheet, contains('ZenWindow.of(context).isExpanded'),
+          reason: 'The window class decides the form, not the call site');
+      expect(sheet, contains('GlobalBlurredBottomSheet.show('),
+          reason: 'A phone keeps the blurred sheet it already had');
+    });
+
+    testWidgets('wears its own chrome inside the panel',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: Scaffold(
+              body: SizedBox(
+                height: 900,
+                child: AiDeckGeneratorSheet(embedded: true),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      // `zenSidePanel`'s barrier is transparent on purpose, so the pane has to be
+      // its own surface — without this chrome the form renders on nothing at all,
+      // which is exactly what happened the first time it was docked.
+      expect(
+        find.byWidgetPredicate(
+          (Widget widget) =>
+              widget is Container &&
+              widget.decoration is BoxDecoration &&
+              (widget.decoration! as BoxDecoration).borderRadius ==
+                  const BorderRadius.horizontal(left: Radius.circular(28)),
+        ),
+        findsOneWidget,
+        reason: 'The docked pane is rounded on the edge it is docked to',
+      );
+    });
   });
 }

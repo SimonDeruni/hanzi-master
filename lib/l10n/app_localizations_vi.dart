@@ -13327,5 +13327,210 @@ class AppLocalizationsVi extends AppLocalizations {
   String get storyCategoryChinesePoetry => 'Thơ Trung Hoa';
 
   @override
+  String get tutorChooseDeck => 'Bài kiểm tra sẽ lấy câu hỏi từ bộ thẻ nào?';
+
+  @override
+  String tutorQuizProposal(int count, String deck) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tôi có thể tạo bài kiểm tra $count mục từ $deck.',
+      one: 'Tôi có thể tạo bài kiểm tra 1 mục từ $deck.',
+    );
+    return '$_temp0 Mọi mục đều lấy từ bộ thẻ đó, không có gì bịa ra.';
+  }
+
+  @override
+  String tutorCharacterIntro(String hanzi) {
+    return 'Đây là cách $hanzi được cấu tạo và cách viết.';
+  }
+
+  @override
+  String get tutorFallbackIntro =>
+      'Hãy hỏi tôi về một chữ Hán — tôi sẽ cho bạn thấy nó được cấu tạo và viết như thế nào — hoặc yêu cầu tôi tạo bài kiểm tra từ một trong các bộ thẻ của bạn.';
+
+  @override
+  String tutorComponentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count thành phần',
+      one: '1 thành phần',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tutorQuizFolderName(String deck) {
+    return '$deck — Bài kiểm tra';
+  }
+
+  @override
+  String get tutorAnsweredLocally => 'Trả lời từ dữ liệu của chính bạn.';
+
+  @override
+  String get tutorOpenQuiz => 'Mở bài kiểm tra';
+
+  @override
+  String get tutorSavedToLibrary => 'Đã lưu trong Thư viện bộ thẻ của bạn.';
+
+  @override
+  String examTitle(int level) {
+    return 'Bài thi thử HSK $level';
+  }
+
+  @override
+  String examNotOfficial(int level) {
+    return 'Bài thi thử trong phạm vi HSK $level. Không phải kỳ thi HSK chính thức và không phải điểm HSK.';
+  }
+
+  @override
+  String get examStart => 'Bắt đầu làm bài';
+
+  @override
+  String get examSectionListening => 'Nghe hiểu';
+
+  @override
+  String get examSectionWriting => 'Viết';
+
+  @override
+  String examPassMark(int percent) {
+    return 'Điểm đạt: $percent%';
+  }
+
+  @override
+  String examQuestionProgress(int index, int total) {
+    return 'Câu $index / $total';
+  }
+
+  @override
+  String get examTimeUp => 'Đã hết thời gian cho phần này.';
+
+  @override
+  String get examChooseAnAnswer => 'Hãy chọn một đáp án trước.';
+
+  @override
+  String get examPromptAudio => 'Bạn nghe thấy chữ nào?';
+
+  @override
+  String get examPromptMeaning => 'Chữ này nghĩa là gì?';
+
+  @override
+  String get examPromptPinyin => 'Chữ này đọc thế nào?';
+
+  @override
+  String get examPromptFill => 'Từ nào điền vào chỗ trống?';
+
+  @override
+  String get examPromptTone => 'Bạn nghe thấy thanh nào?';
+
+  @override
+  String get examPromptDictation => 'Nghe và nhập pinyin.';
+
+  @override
+  String get examHintPinyin => 'ví dụ: hao3 hoặc hǎo';
+
+  @override
+  String get examPromptOrder => 'Sắp xếp các từ theo đúng thứ tự.';
+
+  @override
+  String get examPromptGrammar => 'Câu nào có lỗi?';
+
+  @override
+  String get examReplay => 'Phát lại';
+
+  @override
+  String get examPassed => 'Đạt';
+
+  @override
+  String get examNotPassed => 'Không đạt';
+
+  @override
+  String tutorReadingPack(int level) {
+    return 'Gói đọc HSK $level';
+  }
+
+  @override
+  String get tutorInUse => 'Cách dùng';
+
+  @override
+  String get tutorFromYourCards => 'Từ thẻ của bạn';
+
+  @override
+  String get tutorReviewSprint => 'Ôn tập hôm nay';
+
+  @override
+  String get tutorOpenStory => 'Đọc truyện';
+
+  @override
+  String tutorStoryQuestions(int count) {
+    return 'Câu hỏi về truyện ($count)';
+  }
+
+  @override
+  String get tutorNothingDue => 'Hiện chưa có gì cần ôn.';
+
+  @override
+  String get tutorMakeFailed => 'Không tạo được. Hãy thử lại sau giây lát.';
+
+  @override
+  String get examHistory => 'Bài thi của bạn';
+
+  @override
+  String examPracticeMissed(int count) {
+    return 'Làm lại $count câu đó';
+  }
+
+  @override
+  String examPracticeWriting(int count) {
+    return 'Viết $count chữ';
+  }
+
+  @override
+  String examPreviousScore(int score, int total) {
+    return 'Kết quả tốt nhất của bạn: $score/$total';
+  }
+
+  @override
+  String examDropped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Không tạo được $count mục nên đã bỏ ra.',
+      one: 'Không tạo được 1 mục nên đã bỏ ra.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String examStudyMissed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Ôn $count mục đã làm sai',
+      one: 'Ôn mục đã làm sai',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get examAllCorrect => 'Đúng tất cả.';
+
+  @override
+  String examMissedDeckName(int level) {
+    return 'HSK $level — để ôn lại';
+  }
+
+  @override
+  String examTitleDeck(String deck) {
+    return '$deck — bài thi thử';
+  }
+
+  @override
+  String examFromDeck(String deck) {
+    return 'Bài thi thử được tạo từ bộ thẻ $deck của bạn. Không phải kỳ thi HSK chính thức và không phải điểm HSK.';
+  }
+
+  @override
   String get storyCategoryTangPoetry => 'Thơ Đường';
 }

@@ -13398,5 +13398,213 @@ class AppLocalizationsEs extends AppLocalizations {
   String get storyCategoryChinesePoetry => 'Poesía china';
 
   @override
+  String get tutorChooseDeck =>
+      '¿De qué mazo debe tomar las preguntas el cuestionario?';
+
+  @override
+  String tutorQuizProposal(int count, String deck) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          'Puedo crear un cuestionario de $count elementos a partir de $deck.',
+      one: 'Puedo crear un cuestionario de un solo elemento a partir de $deck.',
+    );
+    return '$_temp0 Cada elemento procede de ese mazo, no se inventa nada.';
+  }
+
+  @override
+  String tutorCharacterIntro(String hanzi) {
+    return 'Así se construye $hanzi y así se escribe.';
+  }
+
+  @override
+  String get tutorFallbackIntro =>
+      'Pregúntame por un carácter: te mostraré cómo se construye y cómo se escribe, o pídeme un cuestionario sobre uno de tus mazos.';
+
+  @override
+  String tutorComponentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count componentes',
+      one: '1 componente',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tutorQuizFolderName(String deck) {
+    return '$deck — Cuestionario';
+  }
+
+  @override
+  String get tutorAnsweredLocally => 'Respuesta a partir de tus propios datos.';
+
+  @override
+  String get tutorOpenQuiz => 'Abrir cuestionario';
+
+  @override
+  String get tutorSavedToLibrary => 'Guardado en tu Biblioteca de mazos.';
+
+  @override
+  String examTitle(int level) {
+    return 'Examen de práctica HSK $level';
+  }
+
+  @override
+  String examNotOfficial(int level) {
+    return 'Un examen de práctica del ámbito HSK $level. No es un examen oficial de HSK ni una puntuación HSK.';
+  }
+
+  @override
+  String get examStart => 'Empezar el examen';
+
+  @override
+  String get examSectionListening => 'Comprensión auditiva';
+
+  @override
+  String get examSectionWriting => 'Expresión escrita';
+
+  @override
+  String examPassMark(int percent) {
+    return 'Nota de aprobado: $percent %';
+  }
+
+  @override
+  String examQuestionProgress(int index, int total) {
+    return 'Pregunta $index de $total';
+  }
+
+  @override
+  String get examTimeUp => 'Se acabó el tiempo de esta sección.';
+
+  @override
+  String get examChooseAnAnswer => 'Elige primero una respuesta.';
+
+  @override
+  String get examPromptAudio => '¿Qué carácter has oído?';
+
+  @override
+  String get examPromptMeaning => '¿Qué significa esto?';
+
+  @override
+  String get examPromptPinyin => '¿Cómo se pronuncia?';
+
+  @override
+  String get examPromptFill => '¿Qué palabra falta en el hueco?';
+
+  @override
+  String get examPromptTone => '¿Qué tono has oído?';
+
+  @override
+  String get examPromptDictation => 'Escucha y escribe el pinyin.';
+
+  @override
+  String get examHintPinyin => 'p. ej. hao3 o hǎo';
+
+  @override
+  String get examPromptOrder => 'Ordena las palabras correctamente.';
+
+  @override
+  String get examPromptGrammar => '¿Qué frase tiene un error?';
+
+  @override
+  String get examReplay => 'Reproducir otra vez';
+
+  @override
+  String get examPassed => 'Aprobado';
+
+  @override
+  String get examNotPassed => 'No aprobado';
+
+  @override
+  String tutorReadingPack(int level) {
+    return 'Paquete de lectura HSK $level';
+  }
+
+  @override
+  String get tutorInUse => 'En uso';
+
+  @override
+  String get tutorFromYourCards => 'De tus tarjetas';
+
+  @override
+  String get tutorReviewSprint => 'Repaso de hoy';
+
+  @override
+  String get tutorOpenStory => 'Leer la historia';
+
+  @override
+  String tutorStoryQuestions(int count) {
+    return 'Preguntas sobre ella ($count)';
+  }
+
+  @override
+  String get tutorNothingDue => 'Ahora mismo no toca repasar nada.';
+
+  @override
+  String get tutorMakeFailed =>
+      'No se pudo crear. Inténtalo de nuevo en un momento.';
+
+  @override
+  String get examHistory => 'Tus exámenes';
+
+  @override
+  String examPracticeMissed(int count) {
+    return 'Responder esas $count otra vez';
+  }
+
+  @override
+  String examPracticeWriting(int count) {
+    return 'Escribir los $count caracteres';
+  }
+
+  @override
+  String examPreviousScore(int score, int total) {
+    return 'Tu mejor resultado: $score/$total';
+  }
+
+  @override
+  String examDropped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count elementos no se pudieron crear y se han omitido.',
+      one: '1 elemento no se pudo crear y se ha omitido.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String examStudyMissed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Estudiar los $count elementos fallados',
+      one: 'Estudiar el elemento fallado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get examAllCorrect => 'Todo correcto.';
+
+  @override
+  String examMissedDeckName(int level) {
+    return 'HSK $level — para repasar';
+  }
+
+  @override
+  String examTitleDeck(String deck) {
+    return '$deck — examen de práctica';
+  }
+
+  @override
+  String examFromDeck(String deck) {
+    return 'Un examen de práctica creado a partir de tu mazo $deck. No es un examen oficial de HSK ni una puntuación HSK.';
+  }
+
+  @override
   String get storyCategoryTangPoetry => 'Poesía Tang';
 }

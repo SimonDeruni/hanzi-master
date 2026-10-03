@@ -2,6 +2,7 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hanzi_master/core/presentation/widgets/hanzi_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hanzi_master/core/layout/zen_layout.dart';
 import 'package:hanzi_master/core/services/gemini_service.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
@@ -12,17 +13,40 @@ import 'package:hanzi_master/shared/widgets/ai_consent_sheet.dart';
 import 'package:hanzi_master/core/theme/zen_motion.dart';
 import 'package:hanzi_master/shared/widgets/zen_toast.dart';
 import 'package:hanzi_master/shared/widgets/network_notice.dart';
+import 'package:hanzi_master/shared/widgets/zen_overlay.dart';
 import 'package:hanzi_master/core/services/haptics_manager.dart';
 
 class AiDeckGeneratorSheet extends ConsumerStatefulWidget {
-  const AiDeckGeneratorSheet({super.key});
+  const AiDeckGeneratorSheet({super.key, this.embedded = false});
 
+  /// True inside the trailing side panel (an iPad), false inside the blurred
+  /// bottom sheet. Only the chrome differs; the form is the same widget.
+  final bool embedded;
+
+  /// The deck generator, in whichever form the window calls for.
+  ///
+  /// On an iPad it docks to the trailing edge as a side desk rather than
+  /// stretching a sheet across the bottom of a 1366dp display. That is the point
+  /// of a form on a tablet: the topic being described is usually the word the
+  /// learner is already looking at, and a sheet covers it. Phones — and a Split
+  /// View half at 700dp — keep the blurred bottom sheet, because there the sheet
+  /// *is* the platform idiom (see `docs/IPAD_ADAPTIVE_PLAN.md`).
   static Future<void> show(BuildContext context) async {
     final consent = await AiConsentSheet.ensureConsent(context);
     if (!consent || !context.mounted) return;
-    GlobalBlurredBottomSheet.show(
+
+    if (!ZenWindow.of(context).isExpanded) {
+      GlobalBlurredBottomSheet.show(
+        context,
+        child: const AiDeckGeneratorSheet(),
+      );
+      return;
+    }
+
+    await zenSidePanel<void>(
       context,
-      child: const AiDeckGeneratorSheet(),
+      builder: (BuildContext ctx) =>
+          const AiDeckGeneratorSheet(embedded: true),
     );
   }
 
@@ -72,7 +96,22 @@ class _AiDeckGeneratorSheetState extends ConsumerState<AiDeckGeneratorSheet> {
     final maxHeight = MediaQuery.sizeOf(context).height * 0.85;
 
     return Container(
-      constraints: BoxConstraints(maxHeight: maxHeight),
+      // The sheet sizes to its content under an 85% cap. The panel is already
+      // full height, so that cap would only ever be a second, smaller ceiling.
+      constraints:
+          widget.embedded ? null : BoxConstraints(maxHeight: maxHeight),
+      // The panel must carry the chrome the blurred sheet used to supply:
+      // `zenSidePanel`'s barrier is transparent by design, because the content is
+      // expected to be its own surface. Without this the form would render on
+      // nothing at all. Rounded on the edge it is docked to, like the desk it is.
+      decoration: widget.embedded
+          ? BoxDecoration(
+              color:
+                  isDark ? const Color(0xFF1C1C1E) : const Color(0xFFFDFCF0),
+              borderRadius:
+                  const BorderRadius.horizontal(left: Radius.circular(28)),
+            )
+          : null,
       child: Padding(
         padding: EdgeInsets.only(
           top: 24,

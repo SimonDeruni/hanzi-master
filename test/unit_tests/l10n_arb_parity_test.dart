@@ -25,11 +25,26 @@ import 'package:hanzi_master/l10n/app_localizations.dart';
 /// wider than 130 characters, in every locale (`docs/LOCALIZATION_PIPELINE.md` §5b).
 void main() {
   const List<String> codes = <String>[
-    'fr', 'de', 'es', 'it', 'pt', 'ru', 'ar', 'hi', 'id', 'ja', 'ko', 'th', 'vi',
+    'fr',
+    'de',
+    'es',
+    'it',
+    'pt',
+    'ru',
+    'ar',
+    'hi',
+    'id',
+    'ja',
+    'ko',
+    'th',
+    'vi',
   ];
 
-  // Must be translated in every locale: the AI overlay, the dock chip and the
-  // tone-graph panel.
+  // Must be translated in every locale: the AI overlay, the dock chip, the
+  // tone-graph panel, and the tutor's own sentences. The tutor is included
+  // because its offline composer answers with *sentences* — a fallback left in
+  // English looks like the tutor ignored the learner's language, and the two
+  // that broke were the quiz proposal and the "ask me about a character" intro.
   const List<String> translatedKeys = <String>[
     'processing',
     'loading',
@@ -46,12 +61,65 @@ void main() {
     'toneGraphNoPitchMeasured',
     'toneGraphTarget',
     'toneGraphYourVoice',
+    // Sentences, never single words: "Quiz" is a legitimate borrowing in four
+    // locales (`tutorQuizFolderName`), but no language shares these by accident.
+    'tutorChooseDeck',
+    'tutorQuizProposal',
+    'tutorCharacterIntro',
+    'tutorFallbackIntro',
+    'tutorComponentCount',
+    // The provenance footnote: a sentence, and one the learner reads whenever the
+    // model is unavailable — the worst place to show English.
+    'tutorAnsweredLocally',
+    // The created folder's link and where it went.
+    'tutorOpenQuiz',
+    'tutorSavedToLibrary',
+    // The exam's sentences: a practise paper the learner sits with a clock on it
+    // is the last place to show English, and `examNotOfficial` is the honesty
+    // notice that has to be readable.
+    'examTitle',
+    'examNotOfficial',
+    'examPassMark',
+    'examQuestionProgress',
+    'examTimeUp',
+    'examChooseAnAnswer',
+    'examPromptAudio',
+    'examPromptMeaning',
+    'examPromptPinyin',
+    'examPromptFill',
+    // The instructions for the newer item kinds: an instruction the learner cannot
+    // read is an item they cannot answer.
+    'examPromptTone',
+    'examPromptDictation',
+    'examHintPinyin',
+    'examPromptOrder',
+    'examPromptGrammar',
+    // The tutor's newer makers and the exam's own history: labels the learner has to
+    // read to act on, and cannot infer from anything else on the screen.
+    'tutorOpenStory',
+    'tutorStoryQuestions',
+    'tutorNothingDue',
+    'tutorMakeFailed',
+    'examHistory',
+    'examPracticeMissed',
+    'examPracticeWriting',
+    'examPreviousScore',
+    'examDropped',
+    'examStudyMissed',
+    'examAllCorrect',
+    'examMissedDeckName',
+    // A deck paper says something different about itself, and that difference is
+    // the honesty rule: "HSK 3 scope" is not a claim a deck's vocabulary makes.
+    'examTitleDeck',
+    'examFromDeck',
   ];
 
   late Map<String, dynamic> english;
 
   Map<String, dynamic> load(String code) => jsonDecode(
-        File('lib/l10n/app_$code.arb').readAsStringSync().replaceFirst('\ufeff', ''),
+        File('lib/l10n/app_$code.arb')
+            .readAsStringSync()
+            .replaceFirst('\ufeff', ''),
       ) as Map<String, dynamic>;
 
   setUpAll(() {
@@ -123,7 +191,8 @@ void main() {
             .toList();
 
         expect(rendered.length, lessThanOrEqualTo(lines.max),
-            reason: 'app_$code.arb $key is ${rendered.length} lines, budget is ${lines.max}');
+            reason:
+                'app_$code.arb $key is ${rendered.length} lines, budget is ${lines.max}');
         expect(rendered.length, greaterThanOrEqualTo(lines.min),
             reason: 'app_$code.arb $key collapsed back into prose');
         expect(rendered.where((String line) => line.isEmpty), isEmpty,
@@ -150,7 +219,10 @@ void main() {
     final List<String> shipped = (['en'] + codes)..sort();
 
     expect(files, shipped);
-    expect(AppLocalizations.supportedLocales.map((locale) => locale.languageCode).toSet(),
+    expect(
+        AppLocalizations.supportedLocales
+            .map((locale) => locale.languageCode)
+            .toSet(),
         containsAll(codes));
   });
 }

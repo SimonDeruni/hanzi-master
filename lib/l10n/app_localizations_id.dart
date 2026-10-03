@@ -13347,5 +13347,210 @@ class AppLocalizationsId extends AppLocalizations {
   String get storyCategoryChinesePoetry => 'Puisi Tiongkok';
 
   @override
+  String get tutorChooseDeck => 'Dari dek mana kuis ini harus mengambil soal?';
+
+  @override
+  String tutorQuizProposal(int count, String deck) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Saya bisa membuat kuis dengan $count item dari $deck.',
+      one: 'Saya bisa membuat kuis dengan satu item dari $deck.',
+    );
+    return '$_temp0 Setiap item berasal dari dek itu, tidak ada yang dibuat-buat.';
+  }
+
+  @override
+  String tutorCharacterIntro(String hanzi) {
+    return 'Berikut cara $hanzi dibentuk dan cara menulisnya.';
+  }
+
+  @override
+  String get tutorFallbackIntro =>
+      'Tanyakan tentang sebuah aksara — saya akan menunjukkan cara aksara itu dibentuk dan ditulis — atau minta saya membuat kuis dari salah satu dek Anda.';
+
+  @override
+  String tutorComponentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count komponen',
+      one: '1 komponen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tutorQuizFolderName(String deck) {
+    return '$deck — Kuis';
+  }
+
+  @override
+  String get tutorAnsweredLocally => 'Dijawab dari data Anda sendiri.';
+
+  @override
+  String get tutorOpenQuiz => 'Buka kuis';
+
+  @override
+  String get tutorSavedToLibrary => 'Disimpan di Perpustakaan Dek Anda.';
+
+  @override
+  String examTitle(int level) {
+    return 'Tes latihan HSK $level';
+  }
+
+  @override
+  String examNotOfficial(int level) {
+    return 'Tes latihan dalam lingkup HSK $level. Bukan tes HSK resmi dan bukan skor HSK.';
+  }
+
+  @override
+  String get examStart => 'Mulai tes';
+
+  @override
+  String get examSectionListening => 'Menyimak';
+
+  @override
+  String get examSectionWriting => 'Menulis';
+
+  @override
+  String examPassMark(int percent) {
+    return 'Nilai kelulusan: $percent%';
+  }
+
+  @override
+  String examQuestionProgress(int index, int total) {
+    return 'Soal $index dari $total';
+  }
+
+  @override
+  String get examTimeUp => 'Waktu bagian ini habis.';
+
+  @override
+  String get examChooseAnAnswer => 'Pilih jawaban dulu.';
+
+  @override
+  String get examPromptAudio => 'Karakter mana yang Anda dengar?';
+
+  @override
+  String get examPromptMeaning => 'Apa artinya ini?';
+
+  @override
+  String get examPromptPinyin => 'Bagaimana cara membacanya?';
+
+  @override
+  String get examPromptFill => 'Kata mana yang cocok di bagian rumpang?';
+
+  @override
+  String get examPromptTone => 'Nada apa yang kamu dengar?';
+
+  @override
+  String get examPromptDictation => 'Dengarkan lalu ketik pinyin-nya.';
+
+  @override
+  String get examHintPinyin => 'mis. hao3 atau hǎo';
+
+  @override
+  String get examPromptOrder => 'Susun kata-kata ini dengan urutan yang benar.';
+
+  @override
+  String get examPromptGrammar => 'Kalimat mana yang salah?';
+
+  @override
+  String get examReplay => 'Putar lagi';
+
+  @override
+  String get examPassed => 'Lulus';
+
+  @override
+  String get examNotPassed => 'Tidak lulus';
+
+  @override
+  String tutorReadingPack(int level) {
+    return 'Pak bacaan HSK $level';
+  }
+
+  @override
+  String get tutorInUse => 'Sedang dipakai';
+
+  @override
+  String get tutorFromYourCards => 'Dari kartumu';
+
+  @override
+  String get tutorReviewSprint => 'Ulangan hari ini';
+
+  @override
+  String get tutorOpenStory => 'Baca ceritanya';
+
+  @override
+  String tutorStoryQuestions(int count) {
+    return 'Soal tentangnya ($count)';
+  }
+
+  @override
+  String get tutorNothingDue => 'Belum ada yang perlu diulang.';
+
+  @override
+  String get tutorMakeFailed => 'Tidak bisa dibuat. Coba lagi sebentar lagi.';
+
+  @override
+  String get examHistory => 'Ujianmu';
+
+  @override
+  String examPracticeMissed(int count) {
+    return 'Jawab $count itu lagi';
+  }
+
+  @override
+  String examPracticeWriting(int count) {
+    return 'Tulis $count aksara itu';
+  }
+
+  @override
+  String examPreviousScore(int score, int total) {
+    return 'Hasil terbaik Anda: $score/$total';
+  }
+
+  @override
+  String examDropped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count item tidak dapat dibuat dan dilewati.',
+      one: '1 item tidak dapat dibuat dan dilewati.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String examStudyMissed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Pelajari $count item yang salah',
+      one: 'Pelajari item yang salah',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get examAllCorrect => 'Semua benar.';
+
+  @override
+  String examMissedDeckName(int level) {
+    return 'HSK $level — untuk diulang';
+  }
+
+  @override
+  String examTitleDeck(String deck) {
+    return '$deck — tes latihan';
+  }
+
+  @override
+  String examFromDeck(String deck) {
+    return 'Tes latihan yang dibuat dari dek $deck Anda. Bukan tes HSK resmi dan bukan skor HSK.';
+  }
+
+  @override
   String get storyCategoryTangPoetry => 'Puisi Tang';
 }

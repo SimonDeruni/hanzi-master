@@ -21,6 +21,7 @@ library;
 
 import 'dart:convert';
 
+import 'package:hanzi_master/features/exam/domain/entities/exam_blueprint.dart';
 import 'package:hanzi_master/features/tutor/domain/entities/tutor_context.dart';
 import 'package:hanzi_master/features/tutor/domain/entities/tutor_reply.dart';
 
@@ -43,7 +44,8 @@ abstract final class TutorEnvelopeParser {
     final TutorReply reply = TutorReply(
       say: _cleanString(json['say']),
       artefacts: _parseArtefacts(json['artefacts'], allowedHanzi: allowedHanzi),
-      cites: _parseCites(json['cites'], context: context, allowed: allowedExternalIds),
+      cites: _parseCites(json['cites'],
+          context: context, allowed: allowedExternalIds),
       makes: _parseMakes(json['make'], context: context),
       ask: _parseAsk(json['ask']),
       fromModel: true,
@@ -92,16 +94,102 @@ abstract final class TutorEnvelopeParser {
       switch (type) {
         case TutorArtefactType.strokeOrder:
         case TutorArtefactType.characterAnatomy:
+        case TutorArtefactType.exampleSet:
           final String hanzi = args['hanzi']?.toString() ?? '';
           // Exactly one character, and one the app can actually draw/build: the
           // §4.3 rule, enforced rather than hoped for.
           if (hanzi.runes.length != 1) continue;
           if (allowedHanzi != null && !allowedHanzi.contains(hanzi)) continue;
           artefacts.add(TutorArtefact(type, <String, Object?>{'hanzi': hanzi}));
+        case TutorArtefactType.contrastTable:
+          final TutorArtefact? table = _contrastTable(args, allowedHanzi);
+          if (table != null) artefacts.add(table);
       }
     }
     return artefacts;
   }
+
+  /// A grammar comparison, checked before it is shown.
+  ///
+  /// The two sides and their examples are the model's — that is what makes the table
+  /// an *explanation* — but nothing reaches the learner unchecked: the labels have to
+  /// be short strings, each row has to be a pair of short examples, and **every
+  /// character in every example has to be one the app can describe**. A row that
+  /// fails is dropped; a table with no rows left is dropped whole.
+  static TutorArtefact? _contrastTable(
+    Map<String, Object?> args,
+    Set<String>? allowedHanzi,
+  ) {
+    final String title = _cleanString(args['title']) ?? '';
+    final String left = _cleanString(args['left']) ?? '';
+    final String right = _cleanString(args['right']) ?? '';
+    if (title.isEmpty || left.isEmpty || right.isEmpty) return null;
+    if (title.runes.length > maxTableLabel ||
+        left.runes.length > maxTableLabel ||
+        right.runes.length > maxTableLabel) {
+      return null;
+    }
+
+    final Object? rawRows = args['rows'];
+    if (rawRows is! List) return null;
+
+    final List<Map<String, Object?>> rows = <Map<String, Object?>>[];
+    for (final Object? entry in rawRows) {
+      if (rows.length >= maxTableRows) break;
+      if (entry is! Map) continue;
+      final Map<String, dynamic> row = entry.cast<String, dynamic>();
+      final String? rowLeft = _cleanString(row['left']);
+      final String? rowRight = _cleanString(row['right']);
+      if (rowLeft == null || rowRight == null) continue;
+      if (rowLeft.runes.length > maxTableCell ||
+          rowRight.runes.length > maxTableCell) {
+        continue;
+      }
+      if (!_describable(rowLeft, allowedHanzi) ||
+          !_describable(rowRight, allowedHanzi)) {
+        continue;
+      }
+      rows.add(<String, Object?>{
+        'left': rowLeft,
+        'right': rowRight,
+        'note': _cleanString(row['note']),
+      });
+    }
+    if (rows.isEmpty) return null;
+
+    return TutorArtefact(
+      TutorArtefactType.contrastTable,
+      <String, Object?>{
+        'title': title,
+        'left': left,
+        'right': right,
+        'rows': rows,
+      },
+    );
+  }
+
+  /// Whether every **character** of [text] is one the app can describe. Punctuation
+  /// and spaces are not characters the app has to know: they carry no reading and no
+  /// anatomy, so they are skipped rather than failing the row.
+  static bool _describable(String text, Set<String>? allowedHanzi) {
+    for (final String char in text.split('')) {
+      if (!_isHan(char)) continue;
+      if (allowedHanzi != null && !allowedHanzi.contains(char)) return false;
+    }
+    return true;
+  }
+
+  static bool _isHan(String char) {
+    if (char.isEmpty) return false;
+    final int rune = char.runes.first;
+    return rune >= 0x4E00 && rune <= 0x9FFF;
+  }
+
+  /// How long a table may get before it stops being a table and becomes a wall of
+  /// text — four rows is two examples a side, which is what a comparison needs.
+  static const int maxTableRows = 4;
+  static const int maxTableLabel = 24;
+  static const int maxTableCell = 40;
 
   static TutorArtefactType? _artefactType(Object? value) {
     switch (value?.toString()) {
@@ -109,6 +197,10 @@ abstract final class TutorEnvelopeParser {
         return TutorArtefactType.strokeOrder;
       case 'characterAnatomy':
         return TutorArtefactType.characterAnatomy;
+      case 'exampleSet':
+        return TutorArtefactType.exampleSet;
+      case 'contrastTable':
+        return TutorArtefactType.contrastTable;
       default:
         return null;
     }
@@ -127,12 +219,9 @@ abstract final class TutorEnvelopeParser {
       final TutorCiteSource? source = _citeSource(map['source']);
       if (source == null) continue;
 
-      final String id = (map['id'] ??
-              map['deckId'] ??
-              map['bookId'] ??
-              map['videoId'] ??
-              '')
-          .toString();
+      final String id =
+          (map['id'] ?? map['deckId'] ?? map['bookId'] ?? map['videoId'] ?? '')
+              .toString();
       if (id.isEmpty) continue;
 
       // The verifiability check: the id must be one we handed over.
@@ -177,8 +266,76 @@ abstract final class TutorEnvelopeParser {
     for (final Object? entry in value) {
       if (entry is! Map) continue;
       final Map<String, dynamic> map = entry.cast<String, dynamic>();
-      if (map['kind']?.toString() != 'examFolder') continue;
+      final String kind = map['kind']?.toString() ?? '';
 
+      // A paper: the **source** is the only real choice here — a deck the learner
+      // already studies, or the bundled vocabulary for a level. Everything else
+      // would be invention, and a wrong key in an exam fails a learner who
+      // answered correctly (§11.3).
+      if (kind == 'examPaper') {
+        // A deck id must resolve in the context, so an invented one cannot become
+        // a paper.
+        final String deckId = map['deckId']?.toString() ?? '';
+        final TutorDeckSummary? deck =
+            deckId.isEmpty ? null : context.deckById(deckId);
+        if (deck != null) {
+          makes.add(TutorMake(
+            kind: TutorMakeKind.examPaper,
+            deckId: deck.id,
+            items: deck.cardCount,
+            title: deck.name,
+          ));
+          continue;
+        }
+
+        final Object? raw = map['level'];
+        final int? level =
+            raw is int ? raw : int.tryParse(raw?.toString() ?? '');
+        final ExamBlueprint? blueprint =
+            level == null ? null : ExamBlueprint.forLevel(level);
+        if (blueprint == null) continue;
+        makes.add(TutorMake(
+          kind: TutorMakeKind.examPaper,
+          level: level,
+          items: blueprint.totalItems,
+          title: 'HSK $level',
+        ));
+        continue;
+      }
+
+      if (kind == 'readingPack') {
+        // A reading pack: a story at a level, plus questions on it. The level is
+        // the only choice worth validating, and it is checked against the app's own
+        // list, exactly as a paper's is — the topic comes from the app's catalogue,
+        // never from the model (§4.3).
+        final Object? raw = map['level'] ?? map['hskLevel'];
+        final int? named =
+            raw is int ? raw : int.tryParse(raw?.toString() ?? '');
+        final int? level = named ?? context.learnerLevel;
+        if (level == null || ExamBlueprint.forLevel(level) == null) continue;
+        makes.add(TutorMake(
+          kind: TutorMakeKind.readingPack,
+          level: level,
+          items: 0,
+          title: _cleanString(map['title']),
+        ));
+        continue;
+      }
+
+      if (kind == 'reviewSprint') {
+        // Takes no arguments: what is due is a fact the app owns, so there is
+        // nothing here for a proposal to get wrong. A cap is accepted because it
+        // only ever makes the folder smaller.
+        final Object? raw = map['items'];
+        final int requested = raw is int ? raw : 20;
+        makes.add(TutorMake(
+          kind: TutorMakeKind.reviewSprint,
+          items: requested.clamp(1, maxItems),
+        ));
+        continue;
+      }
+
+      if (kind != 'examFolder') continue;
       final String deckId = (map['deckId'] ?? '').toString();
       final TutorDeckSummary? deck = context.deckById(deckId);
       // A folder can only be drawn from a deck that exists and has cards — which
@@ -211,7 +368,8 @@ abstract final class TutorEnvelopeParser {
       for (final Object? entry in rawOptions.take(4)) {
         if (entry is Map) {
           final Map<String, dynamic> option = entry.cast<String, dynamic>();
-          final String? label = _cleanString(option['label']) ?? _cleanString(option['value']);
+          final String? label =
+              _cleanString(option['label']) ?? _cleanString(option['value']);
           final String? optionValue = _cleanString(option['value']) ?? label;
           if (label != null && optionValue != null) {
             options.add(TutorAskOption(label: label, value: optionValue));

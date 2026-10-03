@@ -19,7 +19,7 @@ class PinyinUtils {
   /// Determines the tone (1-5) of a single pinyin syllable.
   static int getTone(String syllable) {
     String lower = syllable.toLowerCase();
-    
+
     for (int i = 0; i < lower.length; i++) {
       String char = lower[i];
       if (tone1Chars.contains(char)) return 1;
@@ -27,7 +27,7 @@ class PinyinUtils {
       if (tone3Chars.contains(char)) return 3;
       if (tone4Chars.contains(char)) return 4;
     }
-    
+
     return 5; // Neutral tone
   }
 
@@ -58,14 +58,84 @@ class PinyinUtils {
     return 0;
   }
 
+  /// [syllable] with its tone mark removed, using `v` for ü so that
+  /// `convertNumericToMarks('$base$tone')` gives the marked form back:
+  /// `hǎo` → `hao`, `lǜ` → `lv`.
+  ///
+  /// This is what makes a tone question derivable: the base syllable plus the four
+  /// tone numbers *is* the four minimal-pair options.
+  static String stripTone(String syllable) {
+    final StringBuffer out = StringBuffer();
+    for (final String char in syllable.trim().toLowerCase().split('')) {
+      // A numeric tone is not part of the base either: `hao3` → `hao`.
+      if (_digits.hasMatch(char)) continue;
+      out.write(_untone[char] ?? char);
+    }
+    return out.toString();
+  }
+
+  static final RegExp _digits = RegExp(r'[0-5]');
+
+  static const Map<String, String> _untone = <String, String>{
+    'ā': 'a',
+    'á': 'a',
+    'ǎ': 'a',
+    'à': 'a',
+    'ē': 'e',
+    'é': 'e',
+    'ě': 'e',
+    'è': 'e',
+    'ī': 'i',
+    'í': 'i',
+    'ǐ': 'i',
+    'ì': 'i',
+    'ō': 'o',
+    'ó': 'o',
+    'ǒ': 'o',
+    'ò': 'o',
+    'ū': 'u',
+    'ú': 'u',
+    'ǔ': 'u',
+    'ù': 'u',
+    'ǖ': 'v',
+    'ǘ': 'v',
+    'ǚ': 'v',
+    'ǜ': 'v',
+    'ü': 'v',
+  };
+
+  /// A comparison form for pinyin a learner typed: tone numbers become tone
+  /// marks, case folds, spaces vanish. `hao3`, `hǎo` and `Hǎo` all agree, so a
+  /// dictation item can accept either way of writing a tone without accepting a
+  /// missing one.
+  static String normalizePinyin(String input) => convertNumericToMarks(
+      input.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ''));
 
   static const Map<String, String> _vowelMap = {
-    'a1': 'ā', 'a2': 'á', 'a3': 'ǎ', 'a4': 'à',
-    'e1': 'ē', 'e2': 'é', 'e3': 'ě', 'e4': 'è',
-    'i1': 'ī', 'i2': 'í', 'i3': 'ǐ', 'i4': 'ì',
-    'o1': 'ō', 'o2': 'ó', 'o3': 'ǒ', 'o4': 'ò',
-    'u1': 'ū', 'u2': 'ú', 'u3': 'ǔ', 'u4': 'ù',
-    'ü1': 'ǖ', 'ü2': 'ǘ', 'ü3': 'ǚ', 'ü4': 'ǜ',
+    'a1': 'ā',
+    'a2': 'á',
+    'a3': 'ǎ',
+    'a4': 'à',
+    'e1': 'ē',
+    'e2': 'é',
+    'e3': 'ě',
+    'e4': 'è',
+    'i1': 'ī',
+    'i2': 'í',
+    'i3': 'ǐ',
+    'i4': 'ì',
+    'o1': 'ō',
+    'o2': 'ó',
+    'o3': 'ǒ',
+    'o4': 'ò',
+    'u1': 'ū',
+    'u2': 'ú',
+    'u3': 'ǔ',
+    'u4': 'ù',
+    'ü1': 'ǖ',
+    'ü2': 'ǘ',
+    'ü3': 'ǚ',
+    'ü4': 'ǜ',
   };
 
   /// Converts numeric pinyin (e.g. "jian4", "lu:4", "lv4") to tone marks (e.g. "jiàn", "lǜ")
@@ -89,12 +159,12 @@ class PinyinUtils {
             RegExp(r'^v$', caseSensitive: false),
             (m) => m.group(0) == 'V' ? 'Ü' : 'ü',
           );
-      
+
       if (tone == 5) return word; // Neutral tone has no mark
-      
+
       String lowerWord = word.toLowerCase();
       int targetIdx = -1;
-      
+
       if (lowerWord.contains('a')) {
         targetIdx = lowerWord.indexOf('a');
       } else if (lowerWord.contains('e')) {
@@ -110,17 +180,19 @@ class PinyinUtils {
           }
         }
       }
-      
+
       if (targetIdx != -1) {
         String vowel = word[targetIdx];
         bool isUpper = vowel == vowel.toUpperCase();
         String vKey = "${vowel.toLowerCase()}$tone";
         String markedVowel = _vowelMap[vKey] ?? vowel;
         if (isUpper) markedVowel = markedVowel.toUpperCase();
-        
-        return word.substring(0, targetIdx) + markedVowel + word.substring(targetIdx + 1);
+
+        return word.substring(0, targetIdx) +
+            markedVowel +
+            word.substring(targetIdx + 1);
       }
-      
+
       return word;
     });
   }
@@ -129,18 +201,54 @@ class PinyinUtils {
   static String removeToneMarks(String text) {
     String stripped = text;
     final Map<String, String> stripMap = {
-      'ā': 'a', 'á': 'a', 'ǎ': 'a', 'à': 'a',
-      'ē': 'e', 'é': 'e', 'ě': 'e', 'è': 'e',
-      'ī': 'i', 'í': 'i', 'ǐ': 'i', 'ì': 'i',
-      'ō': 'o', 'ó': 'o', 'ǒ': 'o', 'ò': 'o',
-      'ū': 'u', 'ú': 'u', 'ǔ': 'u', 'ù': 'u',
-      'ǖ': 'ü', 'ǘ': 'ü', 'ǚ': 'ü', 'ǜ': 'ü',
-      'Ā': 'A', 'Á': 'A', 'Ǎ': 'A', 'À': 'A',
-      'Ē': 'E', 'É': 'E', 'Ě': 'E', 'È': 'E',
-      'Ī': 'I', 'Í': 'I', 'Ǐ': 'I', 'Ì': 'I',
-      'Ō': 'O', 'Ó': 'O', 'Ǒ': 'O', 'Ò': 'O',
-      'Ū': 'U', 'Ú': 'U', 'Ǔ': 'U', 'Ù': 'U',
-      'Ǖ': 'Ü', 'Ǘ': 'Ü', 'Ǚ': 'Ü', 'Ǜ': 'Ü',
+      'ā': 'a',
+      'á': 'a',
+      'ǎ': 'a',
+      'à': 'a',
+      'ē': 'e',
+      'é': 'e',
+      'ě': 'e',
+      'è': 'e',
+      'ī': 'i',
+      'í': 'i',
+      'ǐ': 'i',
+      'ì': 'i',
+      'ō': 'o',
+      'ó': 'o',
+      'ǒ': 'o',
+      'ò': 'o',
+      'ū': 'u',
+      'ú': 'u',
+      'ǔ': 'u',
+      'ù': 'u',
+      'ǖ': 'ü',
+      'ǘ': 'ü',
+      'ǚ': 'ü',
+      'ǜ': 'ü',
+      'Ā': 'A',
+      'Á': 'A',
+      'Ǎ': 'A',
+      'À': 'A',
+      'Ē': 'E',
+      'É': 'E',
+      'Ě': 'E',
+      'È': 'E',
+      'Ī': 'I',
+      'Í': 'I',
+      'Ǐ': 'I',
+      'Ì': 'I',
+      'Ō': 'O',
+      'Ó': 'O',
+      'Ǒ': 'O',
+      'Ò': 'O',
+      'Ū': 'U',
+      'Ú': 'U',
+      'Ǔ': 'U',
+      'Ù': 'U',
+      'Ǖ': 'Ü',
+      'Ǘ': 'Ü',
+      'Ǚ': 'Ü',
+      'Ǜ': 'Ü',
     };
     stripMap.forEach((key, value) {
       stripped = stripped.replaceAll(key, value);
@@ -168,7 +276,7 @@ class PinyinUtils {
   static List<Map<String, dynamic>> tokenize(String rawText) {
     final String text = convertNumericToMarks(rawText);
     final List<Map<String, dynamic>> tokens = [];
-    
+
     // Improved Regex to match individual pinyin syllables more accurately.
     // Group 1: Matches a pinyin syllable (consonants + vowels + nasal ending)
     // Group 2: Catch-all for spaces, punctuation, or individual non-syllable letters.
@@ -176,13 +284,13 @@ class PinyinUtils {
       r'([bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]*[aeiouvüAEIOUVÜāēīōūǖáéíóúǘǎěǐǒǔǚàèìòùǜ]+(?:ng?|r)?)|(.)',
       caseSensitive: true,
     );
-    
+
     final Iterable<RegExpMatch> matches = regExp.allMatches(text);
-    
+
     for (final match in matches) {
       String matchedText = match.group(0)!;
       bool isSyllable = match.group(1) != null;
-      
+
       if (isSyllable) {
         tokens.add({
           'text': matchedText,
@@ -196,7 +304,7 @@ class PinyinUtils {
         });
       }
     }
-    
+
     return tokens;
   }
 
@@ -718,5 +826,4 @@ class PinyinUtils {
     'zun': {1: '尊', 3: '僔', 4: '捘'},
     'zuo': {1: '作', 2: '昨', 3: '左', 4: '坐'},
   };
-
 }

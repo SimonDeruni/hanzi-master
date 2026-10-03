@@ -206,6 +206,13 @@ class _HanziMasterBootstrapAppState extends State<HanziMasterBootstrapApp> {
     );
     await safeOpenBox<String>('curriculum_cache_box', cipher: cipher);
     await safeOpenBox<SavedArticle>('saved_articles', cipher: cipher);
+    // Exam papers and their attempts: JSON blobs, like the graded stories above,
+    // so a paper can be re-sat with the answer key it was built with.
+    await safeOpenBox<String>('exams', cipher: cipher);
+    await safeOpenBox<String>('exam_attempts', cipher: cipher);
+    // What the app knows about the learner, as facts it recorded itself (§6.2): one
+    // JSON blob, the same shape as the two above.
+    await safeOpenBox<String>('learner_state_v1', cipher: cipher);
 
     // 3. Create Container for pre-warming providers
     final container = ProviderContainer(

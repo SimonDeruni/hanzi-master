@@ -24382,6 +24382,294 @@ abstract class AppLocalizations {
   /// **'Chinese Poetry'**
   String get storyCategoryChinesePoetry;
 
+  /// No description provided for @tutorChooseDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'Which deck should the quiz draw from?'**
+  String get tutorChooseDeck;
+
+  /// No description provided for @tutorQuizProposal.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{I can build a single-item quiz from {deck}.} other{I can build a {count}-item quiz from {deck}.}} Every item comes from that deck, so nothing is invented.'**
+  String tutorQuizProposal(int count, String deck);
+
+  /// No description provided for @tutorCharacterIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Here is how {hanzi} is built, and how it is written.'**
+  String tutorCharacterIntro(String hanzi);
+
+  /// No description provided for @tutorFallbackIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me about a character — I will show you how it is built and how it is written — or ask me for a quiz on one of your decks.'**
+  String get tutorFallbackIntro;
+
+  /// No description provided for @tutorComponentCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 building block} other{{count} building blocks}}'**
+  String tutorComponentCount(int count);
+
+  /// No description provided for @tutorQuizFolderName.
+  ///
+  /// In en, this message translates to:
+  /// **'{deck} — Quiz'**
+  String tutorQuizFolderName(String deck);
+
+  /// No description provided for @tutorAnsweredLocally.
+  ///
+  /// In en, this message translates to:
+  /// **'Answered from your own data.'**
+  String get tutorAnsweredLocally;
+
+  /// No description provided for @tutorOpenQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Open quiz'**
+  String get tutorOpenQuiz;
+
+  /// No description provided for @tutorSavedToLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved in your Deck Library.'**
+  String get tutorSavedToLibrary;
+
+  /// No description provided for @examTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK {level} practise test'**
+  String examTitle(int level);
+
+  /// No description provided for @examNotOfficial.
+  ///
+  /// In en, this message translates to:
+  /// **'A practise paper in HSK {level} scope. Not an official HSK test, and not an HSK score.'**
+  String examNotOfficial(int level);
+
+  /// No description provided for @examStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start test'**
+  String get examStart;
+
+  /// No description provided for @examSectionListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening'**
+  String get examSectionListening;
+
+  /// No description provided for @examSectionWriting.
+  ///
+  /// In en, this message translates to:
+  /// **'Writing'**
+  String get examSectionWriting;
+
+  /// No description provided for @examPassMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass mark: {percent}%'**
+  String examPassMark(int percent);
+
+  /// No description provided for @examQuestionProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {index} of {total}'**
+  String examQuestionProgress(int index, int total);
+
+  /// No description provided for @examTimeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time is up for this section.'**
+  String get examTimeUp;
+
+  /// No description provided for @examChooseAnAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose an answer first.'**
+  String get examChooseAnAnswer;
+
+  /// No description provided for @examPromptAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Which character did you hear?'**
+  String get examPromptAudio;
+
+  /// No description provided for @examPromptMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'What does this mean?'**
+  String get examPromptMeaning;
+
+  /// No description provided for @examPromptPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'How is this pronounced?'**
+  String get examPromptPinyin;
+
+  /// No description provided for @examPromptFill.
+  ///
+  /// In en, this message translates to:
+  /// **'Which word belongs in the gap?'**
+  String get examPromptFill;
+
+  /// No description provided for @examPromptTone.
+  ///
+  /// In en, this message translates to:
+  /// **'Which tone did you hear?'**
+  String get examPromptTone;
+
+  /// No description provided for @examPromptDictation.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen and type the pinyin.'**
+  String get examPromptDictation;
+
+  /// No description provided for @examHintPinyin.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. hao3 or hǎo'**
+  String get examHintPinyin;
+
+  /// No description provided for @examPromptOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Put the words in the right order.'**
+  String get examPromptOrder;
+
+  /// No description provided for @examPromptGrammar.
+  ///
+  /// In en, this message translates to:
+  /// **'Which sentence has a mistake?'**
+  String get examPromptGrammar;
+
+  /// No description provided for @examReplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play again'**
+  String get examReplay;
+
+  /// No description provided for @examPassed.
+  ///
+  /// In en, this message translates to:
+  /// **'Passed'**
+  String get examPassed;
+
+  /// No description provided for @examNotPassed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not passed'**
+  String get examNotPassed;
+
+  /// No description provided for @tutorReadingPack.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK {level} reading pack'**
+  String tutorReadingPack(int level);
+
+  /// No description provided for @tutorInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'In use'**
+  String get tutorInUse;
+
+  /// No description provided for @tutorFromYourCards.
+  ///
+  /// In en, this message translates to:
+  /// **'From your cards'**
+  String get tutorFromYourCards;
+
+  /// No description provided for @tutorReviewSprint.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s review'**
+  String get tutorReviewSprint;
+
+  /// No description provided for @tutorOpenStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the story'**
+  String get tutorOpenStory;
+
+  /// No description provided for @tutorStoryQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions on it ({count})'**
+  String tutorStoryQuestions(int count);
+
+  /// No description provided for @tutorNothingDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing is due right now.'**
+  String get tutorNothingDue;
+
+  /// No description provided for @tutorMakeFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'That could not be made. Try again in a moment.'**
+  String get tutorMakeFailed;
+
+  /// No description provided for @examHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Your papers'**
+  String get examHistory;
+
+  /// No description provided for @examPracticeMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer those {count} again'**
+  String examPracticeMissed(int count);
+
+  /// No description provided for @examPracticeWriting.
+  ///
+  /// In en, this message translates to:
+  /// **'Write the {count} characters'**
+  String examPracticeWriting(int count);
+
+  /// No description provided for @examPreviousScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Your best so far: {score}/{total}'**
+  String examPreviousScore(int score, int total);
+
+  /// No description provided for @examDropped.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 item could not be built and was left out.} other{{count} items could not be built and were left out.}}'**
+  String examDropped(int count);
+
+  /// No description provided for @examStudyMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Study the missed item} other{Study the {count} missed items}}'**
+  String examStudyMissed(int count);
+
+  /// No description provided for @examAllCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Every item correct.'**
+  String get examAllCorrect;
+
+  /// No description provided for @examMissedDeckName.
+  ///
+  /// In en, this message translates to:
+  /// **'HSK {level} — to review'**
+  String examMissedDeckName(int level);
+
+  /// No description provided for @examTitleDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'{deck} — practise test'**
+  String examTitleDeck(String deck);
+
+  /// No description provided for @examFromDeck.
+  ///
+  /// In en, this message translates to:
+  /// **'A practise paper built from your {deck} deck. Not an official HSK test, and not an HSK score.'**
+  String examFromDeck(String deck);
+
   /// No description provided for @storyCategoryTangPoetry.
   ///
   /// In en, this message translates to:

@@ -12915,5 +12915,210 @@ class AppLocalizationsJa extends AppLocalizations {
   String get storyCategoryChinesePoetry => '中国の詩';
 
   @override
+  String get tutorChooseDeck => 'クイズはどのデッキから出題しますか？';
+
+  @override
+  String tutorQuizProposal(int count, String deck) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$deck から$count問のクイズを作成できます。',
+      one: '$deck から1問のクイズを作成できます。',
+    );
+    return '$_temp0すべての項目はこのデッキから取得され、推測は含まれません。';
+  }
+
+  @override
+  String tutorCharacterIntro(String hanzi) {
+    return '$hanzi の成り立ちと書き方を示します。';
+  }
+
+  @override
+  String get tutorFallbackIntro =>
+      '漢字について聞いてください。成り立ちと書き方をお見せします。また、デッキのクイズを作ることもできます。';
+
+  @override
+  String tutorComponentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countつの部品',
+      one: '1つの部品',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tutorQuizFolderName(String deck) {
+    return '$deck — クイズ';
+  }
+
+  @override
+  String get tutorAnsweredLocally => 'あなた自身のデータから回答しています。';
+
+  @override
+  String get tutorOpenQuiz => 'クイズを開く';
+
+  @override
+  String get tutorSavedToLibrary => 'デッキライブラリに保存されました。';
+
+  @override
+  String examTitle(int level) {
+    return 'HSK $level 練習テスト';
+  }
+
+  @override
+  String examNotOfficial(int level) {
+    return 'HSK $level の範囲の練習用問題です。公式の HSK 試験でも HSK スコアでもありません。';
+  }
+
+  @override
+  String get examStart => 'テストを始める';
+
+  @override
+  String get examSectionListening => '聴解';
+
+  @override
+  String get examSectionWriting => '書く';
+
+  @override
+  String examPassMark(int percent) {
+    return '合格ライン: $percent%';
+  }
+
+  @override
+  String examQuestionProgress(int index, int total) {
+    return '第 $index 問 / $total 問';
+  }
+
+  @override
+  String get examTimeUp => 'このセクションの時間が終了しました。';
+
+  @override
+  String get examChooseAnAnswer => 'まず答えを選んでください。';
+
+  @override
+  String get examPromptAudio => 'どの漢字が聞こえましたか？';
+
+  @override
+  String get examPromptMeaning => 'これはどういう意味ですか？';
+
+  @override
+  String get examPromptPinyin => 'これはどう読みますか？';
+
+  @override
+  String get examPromptFill => '空欄に入る語はどれですか？';
+
+  @override
+  String get examPromptTone => 'どの声調を聞きましたか？';
+
+  @override
+  String get examPromptDictation => '聞いてピンインを入力しましょう。';
+
+  @override
+  String get examHintPinyin => '例：hao3 または hǎo';
+
+  @override
+  String get examPromptOrder => '語を正しい順に並べましょう。';
+
+  @override
+  String get examPromptGrammar => '誤りのある文はどれですか？';
+
+  @override
+  String get examReplay => 'もう一度再生';
+
+  @override
+  String get examPassed => '合格';
+
+  @override
+  String get examNotPassed => '不合格';
+
+  @override
+  String tutorReadingPack(int level) {
+    return 'HSK$levelリーディングパック';
+  }
+
+  @override
+  String get tutorInUse => '使われ方';
+
+  @override
+  String get tutorFromYourCards => '自分のカードから';
+
+  @override
+  String get tutorReviewSprint => '今日の復習';
+
+  @override
+  String get tutorOpenStory => '物語を読む';
+
+  @override
+  String tutorStoryQuestions(int count) {
+    return '内容の質問（$count問）';
+  }
+
+  @override
+  String get tutorNothingDue => '今は復習するものがありません。';
+
+  @override
+  String get tutorMakeFailed => '作成できませんでした。しばらくしてからもう一度お試しください。';
+
+  @override
+  String get examHistory => 'これまでのテスト';
+
+  @override
+  String examPracticeMissed(int count) {
+    return 'この$count問をもう一度';
+  }
+
+  @override
+  String examPracticeWriting(int count) {
+    return '$count字を書く';
+  }
+
+  @override
+  String examPreviousScore(int score, int total) {
+    return 'これまでの最高: $score/$total';
+  }
+
+  @override
+  String examDropped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 問を作成できず除外しました。',
+      one: '1 問を作成できず除外しました。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String examStudyMissed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '間違えた $count 問を学習',
+      one: '間違えた問題を学習',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get examAllCorrect => '全問正解です。';
+
+  @override
+  String examMissedDeckName(int level) {
+    return 'HSK $level — 復習用';
+  }
+
+  @override
+  String examTitleDeck(String deck) {
+    return '$deck — 練習テスト';
+  }
+
+  @override
+  String examFromDeck(String deck) {
+    return 'あなたのデッキ $deck から作成した練習用問題です。公式の HSK 試験でも HSK スコアでもありません。';
+  }
+
+  @override
   String get storyCategoryTangPoetry => '唐詩';
 }

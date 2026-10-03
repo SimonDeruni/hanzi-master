@@ -13377,5 +13377,212 @@ class AppLocalizationsRu extends AppLocalizations {
   String get storyCategoryChinesePoetry => 'Китайская поэзия';
 
   @override
+  String get tutorChooseDeck => 'Из какой колоды викторина возьмёт задания?';
+
+  @override
+  String tutorQuizProposal(int count, String deck) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Могу собрать викторину из $count заданий по колоде $deck.',
+      one: 'Могу собрать викторину из одного задания по колоде $deck.',
+    );
+    return '$_temp0 Все задания взяты из этой колоды, ничего не придумано.';
+  }
+
+  @override
+  String tutorCharacterIntro(String hanzi) {
+    return 'Вот из чего состоит $hanzi и как он пишется.';
+  }
+
+  @override
+  String get tutorFallbackIntro =>
+      'Спросите меня об иероглифе — я покажу, из чего он состоит и как пишется, — или попросите викторину по одной из ваших колод.';
+
+  @override
+  String tutorComponentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count составных частей',
+      one: '1 составная часть',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String tutorQuizFolderName(String deck) {
+    return '$deck — Викторина';
+  }
+
+  @override
+  String get tutorAnsweredLocally =>
+      'Ответ на основе ваших собственных данных.';
+
+  @override
+  String get tutorOpenQuiz => 'Открыть викторину';
+
+  @override
+  String get tutorSavedToLibrary => 'Сохранено в вашей Библиотеке колод.';
+
+  @override
+  String examTitle(int level) {
+    return 'Пробный тест HSK $level';
+  }
+
+  @override
+  String examNotOfficial(int level) {
+    return 'Пробный тест в объёме HSK $level. Это не официальный тест HSK и не оценка HSK.';
+  }
+
+  @override
+  String get examStart => 'Начать тест';
+
+  @override
+  String get examSectionListening => 'Аудирование';
+
+  @override
+  String get examSectionWriting => 'Письмо';
+
+  @override
+  String examPassMark(int percent) {
+    return 'Проходной балл: $percent %';
+  }
+
+  @override
+  String examQuestionProgress(int index, int total) {
+    return 'Вопрос $index из $total';
+  }
+
+  @override
+  String get examTimeUp => 'Время этого раздела истекло.';
+
+  @override
+  String get examChooseAnAnswer => 'Сначала выберите ответ.';
+
+  @override
+  String get examPromptAudio => 'Какой иероглиф вы услышали?';
+
+  @override
+  String get examPromptMeaning => 'Что это значит?';
+
+  @override
+  String get examPromptPinyin => 'Как это произносится?';
+
+  @override
+  String get examPromptFill => 'Какое слово пропущено?';
+
+  @override
+  String get examPromptTone => 'Какой тон вы услышали?';
+
+  @override
+  String get examPromptDictation => 'Прослушайте и введите пиньинь.';
+
+  @override
+  String get examHintPinyin => 'напр. hao3 или hǎo';
+
+  @override
+  String get examPromptOrder => 'Расставьте слова в правильном порядке.';
+
+  @override
+  String get examPromptGrammar => 'В каком предложении есть ошибка?';
+
+  @override
+  String get examReplay => 'Прослушать снова';
+
+  @override
+  String get examPassed => 'Сдано';
+
+  @override
+  String get examNotPassed => 'Не сдано';
+
+  @override
+  String tutorReadingPack(int level) {
+    return 'Пакет чтения HSK $level';
+  }
+
+  @override
+  String get tutorInUse => 'В употреблении';
+
+  @override
+  String get tutorFromYourCards => 'Из ваших карточек';
+
+  @override
+  String get tutorReviewSprint => 'Повторение на сегодня';
+
+  @override
+  String get tutorOpenStory => 'Прочитать историю';
+
+  @override
+  String tutorStoryQuestions(int count) {
+    return 'Вопросы по тексту ($count)';
+  }
+
+  @override
+  String get tutorNothingDue => 'Сейчас повторять нечего.';
+
+  @override
+  String get tutorMakeFailed =>
+      'Не удалось создать. Попробуйте ещё раз через минуту.';
+
+  @override
+  String get examHistory => 'Ваши тесты';
+
+  @override
+  String examPracticeMissed(int count) {
+    return 'Ответить на эти $count снова';
+  }
+
+  @override
+  String examPracticeWriting(int count) {
+    return 'Написать $count иероглифов';
+  }
+
+  @override
+  String examPreviousScore(int score, int total) {
+    return 'Ваш лучший результат: $score/$total';
+  }
+
+  @override
+  String examDropped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count заданий не удалось собрать, и они пропущены.',
+      one: '1 задание не удалось собрать, и оно пропущено.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String examStudyMissed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Повторить $count пропущенных заданий',
+      one: 'Повторить пропущенное задание',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get examAllCorrect => 'Всё верно.';
+
+  @override
+  String examMissedDeckName(int level) {
+    return 'HSK $level — на повторение';
+  }
+
+  @override
+  String examTitleDeck(String deck) {
+    return '$deck — пробный тест';
+  }
+
+  @override
+  String examFromDeck(String deck) {
+    return 'Пробный тест, собранный из вашей колоды $deck. Это не официальный тест HSK и не оценка HSK.';
+  }
+
+  @override
   String get storyCategoryTangPoetry => 'Поэзия Тан';
 }

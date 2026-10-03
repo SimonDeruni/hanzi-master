@@ -4654,5 +4654,196 @@
   "storyCategoryChineseEpics": "Chinese Epics",
   "storyCategorySupernaturalFolklore": "Supernatural & Folklore",
   "storyCategoryChinesePoetry": "Chinese Poetry",
+  "tutorChooseDeck": "Which deck should the quiz draw from?",
+  "tutorQuizProposal": "{count, plural, =1{I can build a single-item quiz from {deck}.} other{I can build a {count}-item quiz from {deck}.}} Every item comes from that deck, so nothing is invented.",
+  "@tutorQuizProposal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "deck": {
+        "type": "String"
+      }
+    }
+  },
+  "tutorCharacterIntro": "Here is how {hanzi} is built, and how it is written.",
+  "@tutorCharacterIntro": {
+    "placeholders": {
+      "hanzi": {
+        "type": "String"
+      }
+    }
+  },
+  "tutorFallbackIntro": "Ask me about a character — I will show you how it is built and how it is written — or ask me for a quiz on one of your decks.",
+  "tutorComponentCount": "{count, plural, =1{1 building block} other{{count} building blocks}}",
+  "@tutorComponentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorQuizFolderName": "{deck} — Quiz",
+  "@tutorQuizFolderName": {
+    "placeholders": {
+      "deck": {
+        "type": "String"
+      }
+    }
+  },
+
+  "tutorAnsweredLocally": "Answered from your own data.",
+
+  "tutorOpenQuiz": "Open quiz",
+  "tutorSavedToLibrary": "Saved in your Deck Library.",
+
+  "examTitle": "HSK {level} practise test",
+  "@examTitle": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "examNotOfficial": "A practise paper in HSK {level} scope. Not an official HSK test, and not an HSK score.",
+  "@examNotOfficial": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "examStart": "Start test",
+  "examSectionListening": "Listening",
+  "examSectionWriting": "Writing",
+  "examPassMark": "Pass mark: {percent}%",
+  "@examPassMark": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "examQuestionProgress": "Question {index} of {total}",
+  "@examQuestionProgress": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "examTimeUp": "Time is up for this section.",
+  "examChooseAnAnswer": "Choose an answer first.",
+  "examPromptAudio": "Which character did you hear?",
+  "examPromptMeaning": "What does this mean?",
+  "examPromptPinyin": "How is this pronounced?",
+  "examPromptFill": "Which word belongs in the gap?",
+  "examPromptTone": "Which tone did you hear?",
+  "examPromptDictation": "Listen and type the pinyin.",
+  "examHintPinyin": "e.g. hao3 or hǎo",
+  "examPromptOrder": "Put the words in the right order.",
+  "examPromptGrammar": "Which sentence has a mistake?",
+
+  "examReplay": "Play again",
+  "examPassed": "Passed",
+  "examNotPassed": "Not passed",
+  "tutorReadingPack": "HSK {level} reading pack",
+  "tutorInUse": "In use",
+  "tutorFromYourCards": "From your cards",
+
+  "@tutorReadingPack": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorReviewSprint": "Today's review",
+  "tutorOpenStory": "Read the story",
+  "tutorStoryQuestions": "Questions on it ({count})",
+  "@tutorStoryQuestions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorNothingDue": "Nothing is due right now.",
+  "tutorMakeFailed": "That could not be made. Try again in a moment.",
+  "examHistory": "Your papers",
+  "examPracticeMissed": "Answer those {count} again",
+  "@examPracticeMissed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "examPracticeWriting": "Write the {count} characters",
+  "@examPracticeWriting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "examPreviousScore": "Your best so far: {score}/{total}",
+  "@examPreviousScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "examDropped": "{count, plural, =1{1 item could not be built and was left out.} other{{count} items could not be built and were left out.}}",
+  "@examDropped": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "examStudyMissed": "{count, plural, =1{Study the missed item} other{Study the {count} missed items}}",
+  "@examStudyMissed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "examAllCorrect": "Every item correct.",
+  "examMissedDeckName": "HSK {level} — to review",
+  "@examMissedDeckName": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+
+  "examTitleDeck": "{deck} — practise test",
+  "@examTitleDeck": {
+    "placeholders": {
+      "deck": {
+        "type": "String"
+      }
+    }
+  },
+  "examFromDeck": "A practise paper built from your {deck} deck. Not an official HSK test, and not an HSK score.",
+  "@examFromDeck": {
+    "placeholders": {
+      "deck": {
+        "type": "String"
+      }
+    }
+  },
+
   "storyCategoryTangPoetry": "Tang Poetry"
 }

@@ -60,11 +60,18 @@ class TutorContext {
     this.learnerLevel,
     this.decks = const [],
     this.references = const [],
+    this.learnerLines = const <String>[],
   });
 
   final String interfaceLanguage;
   final int? learnerLevel;
   final List<TutorDeckSummary> decks;
+
+  /// What the app's own record says about this learner, as a handful of short lines
+  /// (`LearnerState.forPrompt`): weakest areas with their counts, the last mistakes,
+  /// the last thing read. Facts the app observed, so the tutor can be specific
+  /// without being told a story about who the learner is (§6.2).
+  final List<String> learnerLines;
 
   /// The references attached to *this* message.
   final List<TutorReference> references;

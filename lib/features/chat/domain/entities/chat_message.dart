@@ -22,24 +22,24 @@ class ChatMessage {
   });
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'content': content,
-    'pinyin': pinyin,
-    'english': english,
-    'suggestion': suggestion,
-    'role': role.name,
-    'timestamp': timestamp.toIso8601String(),
-  };
+        'id': id,
+        'content': content,
+        'pinyin': pinyin,
+        'english': english,
+        'suggestion': suggestion,
+        'role': role.name,
+        'timestamp': timestamp.toIso8601String(),
+      };
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) => ChatMessage(
-    id: json['id'],
-    content: json['content'],
-    pinyin: json['pinyin'],
-    english: json['english'],
-    suggestion: json['suggestion'],
-    role: ChatRole.values.byName(json['role']),
-    timestamp: DateTime.parse(json['timestamp']),
-  );
+        id: json['id'],
+        content: json['content'],
+        pinyin: json['pinyin'],
+        english: json['english'],
+        suggestion: json['suggestion'],
+        role: ChatRole.values.byName(json['role']),
+        timestamp: DateTime.parse(json['timestamp']),
+      );
 }
 
 class GradedChatMessage extends ChatMessage {

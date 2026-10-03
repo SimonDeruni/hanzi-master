@@ -15,34 +15,9 @@ import 'package:hanzi_master/features/flashcards/domain/entities/deck.dart';
 import 'package:hanzi_master/features/flashcards/domain/entities/flashcard.dart';
 import 'package:hanzi_master/features/flashcards/domain/repositories/flashcard_repository.dart';
 import 'package:hanzi_master/features/flashcards/presentation/providers/deck_controller.dart';
+import 'package:hanzi_master/features/tutor/domain/entities/tutor_make_result.dart';
 import 'package:hanzi_master/features/tutor/domain/entities/tutor_reply.dart';
 import 'package:uuid/uuid.dart';
-
-/// What happened when a proposal was executed.
-class ExamFolderResult {
-  const ExamFolderResult._({
-    required this.status,
-    this.deck,
-    this.itemCount = 0,
-    this.poolSize = 0,
-  });
-
-  const ExamFolderResult.created(Deck deck, int itemCount)
-      : this._(status: ExamFolderStatus.created, deck: deck, itemCount: itemCount);
-
-  const ExamFolderResult.notEnoughCards(int poolSize)
-      : this._(status: ExamFolderStatus.notEnoughCards, poolSize: poolSize);
-
-  const ExamFolderResult.failed()
-      : this._(status: ExamFolderStatus.failed);
-
-  final ExamFolderStatus status;
-  final Deck? deck;
-  final int itemCount;
-  final int poolSize;
-}
-
-enum ExamFolderStatus { created, notEnoughCards, failed }
 
 abstract final class ExamFolderBuilder {
   /// Four is the smallest set a multiple-choice paper can be built from without
@@ -51,7 +26,7 @@ abstract final class ExamFolderBuilder {
 
   /// Creates the folder. [sourceCards] must be every flashcard the app has; the
   /// pool is then filtered to the deck the proposal named.
-  static Future<ExamFolderResult> create({
+  static Future<TutorMakeResult> create({
     required TutorMake make,
     required List<Flashcard> sourceCards,
     required DeckController deckController,
@@ -59,19 +34,41 @@ abstract final class ExamFolderBuilder {
     required String name,
     required String description,
   }) async {
-    final List<Flashcard> pool = sourceCards
-        .where((Flashcard card) => card.deckId == make.deckId)
-        .toList();
+    final String? deckId = make.deckId;
+    if (deckId == null) return const TutorMakeResult.failed();
+    final List<Flashcard> pool =
+        sourceCards.where((Flashcard card) => card.deckId == deckId).toList();
     if (pool.length < minimumCards) {
-      return ExamFolderResult.notEnoughCards(pool.length);
+      return TutorMakeResult.notEnoughCards(pool.length);
     }
 
-    final List<Flashcard> selected = _sample(pool, make.items);
-    final Deck? deck = await deckController.createDeck(name, description: description);
-    if (deck == null) return const ExamFolderResult.failed();
+    return createFromCards(
+      cards: _sample(pool, make.items),
+      name: name,
+      description: description,
+      deckController: deckController,
+      flashcardRepository: flashcardRepository,
+    );
+  }
+
+  /// Creates a folder holding exactly [cards] — the shared half of every folder a
+  /// `make` can produce, whether the cards were sampled from one deck or gathered
+  /// because they are due today.
+  static Future<TutorMakeResult> createFromCards({
+    required List<Flashcard> cards,
+    required String name,
+    required String description,
+    required DeckController deckController,
+    required FlashcardRepository flashcardRepository,
+  }) async {
+    if (cards.isEmpty) return const TutorMakeResult.failed();
+
+    final Deck? deck =
+        await deckController.createDeck(name, description: description);
+    if (deck == null) return const TutorMakeResult.failed();
 
     const Uuid uuid = Uuid();
-    for (final Flashcard card in selected) {
+    for (final Flashcard card in cards) {
       // A copy, not a move: the source deck the learner studies is untouched, and
       // every field that makes the card work offline travels with it.
       await flashcardRepository.saveFlashcard(
@@ -97,7 +94,7 @@ abstract final class ExamFolderBuilder {
     }
 
     await deckController.loadDecks();
-    return ExamFolderResult.created(deck, selected.length);
+    return TutorMakeResult.created(deck, cards.length);
   }
 
   /// A deterministic spread through the deck rather than the first N, so the exam

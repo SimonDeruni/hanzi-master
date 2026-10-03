@@ -139,13 +139,25 @@ builder may read — and nothing else.
 
 | Artefact | Shows | Interactive | Data | Status |
 |---|---|---|---|---|
-| `strokeOrder` | animated stroke order, replay, count | replay / step | `strokePaths`, `medianPaths` | **exists** (`ScholarStrokeLesson`) |
-| `characterAnatomy` | radical + components, each named and explained | tap a component → sheet | `hanzi_metadata` + `radicals.json` | new; reuses `_buildAnatomyCard` |
-| `toneCurve` | the pitch contour, with the target shape over it | play / compare | `LocalToneGrader`, tone graphs | new; reuses `tone_graph_card` |
+| `strokeOrder` | animated stroke order, replay, count | replay / step | the learner's card, **or** `hsk1_strokes.json` | **exists** (`ScholarStrokeLesson`), and now covers every HSK 1 character, not only the ones in the learner's deck |
+| `characterAnatomy` | radical + components, each named and explained | tap a component → sheet | `hanzi_metadata` + `radicals.json` | **exists** |
+| `exampleSet` | the character in the sentences the learner has already met, spelled by the app | — | the card's `sourceSentence`/`sourceContext` + `hanzi_metadata` readings | **exists** — deliberately not a generated example |
+| `contrastTable` | two items side by side with the *discriminating* examples | — | the model's two sides and rows, **checked** against `describableHanzi` and **spelled** from `hanzi_metadata` | **exists** — the explanation is the model's, the table is the app's |
+| `toneCurve` | the pitch contour, with the target shape over it | play / compare | `LocalToneGrader`, tone graphs | **not built, on purpose**: `ToneGraphCard` draws a *measured* recording against a target, so there is nothing honest to draw for a character a learner has not spoken |
 | `strokeHighlight` | one stroke isolated, with its direction | step / replay | stroke vectors | new (an argument of `strokeOrder`) |
-| `contrastTable` | two items side by side with the *discriminating* examples | tap a row → dictionary | `dictionary.db`, sentences | new |
 | `measureWordTable` | noun → 量词 pairs | tap → dictionary | dictionary | new |
 | `characterMap` | "every character containing 氵, by frequency" | tap → card | `hanzi_metadata` radical index | new (the de-constructor, idea #16) |
+
+Four of these are now wired end to end, and the two rules that keep them honest are the
+same two the rest of the tutor runs on: **the parser checks before the learner sees it**
+(a table whose examples use characters this build cannot describe loses that row, or the
+whole table; a widget type the build does not have never reaches the view), and **a
+builder returns `null` rather than a half-widget** (no strokes, no examples, no table —
+the block simply is not there). `exampleSet` and `contrastTable` also demonstrate the
+division of labour the catalogue is built on: the *explanation* — which two things to
+compare, and what the difference is — is the model's, like every other sentence it
+writes; the *structure, the examples and the pronunciation* are the app's.
+
 
 #### B. Drill — make the learner produce it
 
@@ -275,16 +287,19 @@ that lives in the repo, versioned, with an allowed vocabulary set:
 
 ### 5.3 Item types it can build
 
-| Type | Section | Auto-graded | Needs |
+| Type | Section | Built | Needs |
 |---|---|---|---|
-| `toneChoice` (which tone?) | listening | yes | TTS + tone data |
-| `dictation` (hear → write) | listening | yes | TTS + stroke matcher / text |
-| `quizSet` (hanzi ↔ meaning) | reading | yes | flashcards (**exists**) |
-| `fillBlank` | reading | yes | sentences + dictionary |
-| `orderTokens` | reading / writing | yes | sentences |
-| `writePrompt` (draw it) | writing | yes | stroke matcher + strictness |
-| `speakingPrompt` (say it) | speaking | yes, **on device** | tone / pronunciation graders |
-| "find the error" | grammar | yes | corrected-sentence pairs |
+| `toneChoice` (which tone?) | listening | **yes** — minimal pair from the word's own syllable | TTS + `PinyinUtils` |
+| `dictation` (hear → type the pinyin) | writing | **yes** | TTS + pinyin folding |
+| `audioToCharacter` (hear → pick the character) | listening | **yes** | TTS |
+| `characterToMeaning` / `characterToPinyin` | reading | **yes** | the source's own data |
+| `fillBlank` | reading | **yes** | sentences + the source's vocabulary |
+| `passageFill` (a gap in a passage) | reading | **yes** — from text the app already had | a passage, or the source's own sentences |
+| `orderTokens` | writing | **yes** — the sentence's own words, its own order | sentences + a segmenter |
+| `grammarError` (find the error) | reading | **yes** — the app doubles 很 / 不 / 的 in one of four sentences | sentences + declared rules |
+| `writePrompt` (draw it) | writing | not yet — needs drawn geometry through the answer model | stroke matcher (**exists**) |
+| picture items | listening / reading | **no** — the app ships no vocabulary images | vocabulary images |
+| `speakingPrompt` (say it) | speaking | **no, and not just "not yet"** — needs on-device recognition to key it; the app's tone grader is fed by a *cloud* transcript | on-device ASR |
 | free production ("explain …") | writing | **AI, with a rubric, disputable** | rubric + a second pass |
 
 ### 5.4 Grading and integrity rules
@@ -395,8 +410,12 @@ validator test and a "no invented content" test.
 1. **Who decides what?** My recommendation: the model picks from a *menu* of
    app-owned widgets and fills blueprints; the app validates and renders. The
    alternative (free-form generation) cannot satisfy §4.3.
-2. **How much exam, how much drill?** Drills only (small, safe, quick) or a real
-   mock-HSK flow with sections, timers and scores?
+2. **How much exam, how much drill?** ~~Drills only (small, safe, quick) or a real
+   mock-HSK flow with sections, timers and scores?~~ **Answered 2026-02-10: a real
+   paper.** "An exam should really be an exam, like an HSK exam" — so §13 now ships
+   the timed paper (Tier 2.5/3-lite): sections, a clock, a frozen key, local
+   grading and a report. The folder path stays, for drilling the learner's own
+   cards.
 3. **May the tutor write?** Read-only artefacts plus explicit one-tap commits
    (recommended), or may it edit decks and the SRS queue directly?
 4. **Where does it live?** In-context only, or also a "Today" surface that leads
@@ -476,11 +495,12 @@ Two rules, and one of them is a live gap in the existing generator:
 |---|---|---|
 | Vocabulary deck / folder | `Deck`, `createDeck`, review+quiz+SRS | **exists** |
 | Custom role-play scenario | `SavedScenariosNotifier`, Echo Hall | **exists** |
-| Exam folder (Tier 2 / 2.5) | deck + quiz + canvas + tone grader | new, small→medium |
-| Paper pack (Tier 3) | + blueprints, attempts, reports | new, large |
+| Exam folder (Tier 2 / 2.5) | deck + quiz + canvas + tone grader | **exists** |
+| Paper pack (Tier 3) | + blueprints, attempts, reports | **exists**, with "your papers" and a paper built from the mistakes |
+| Reading pack | the reader's story cache + the exam's passage machinery | **exists** — a story at a level, its own words as questions, and the paper's passage |
+| Study plan | SRS + mastery; a "Today" surface | **exists, as a review sprint** — the cards that are due, gathered into one folder |
+| Handwriting worksheet | `WritingBenchScreen` + the learner's stroke data | **exists as a screen**; the tutor does not *make* one, because a sheet is a study action, not a durable object |
 | Remedial lesson folder | radical lesson screen, error log | new, medium |
-| Study plan | SRS + mastery; a "Today" surface | new, medium |
-| Reading pack | the reader + comprehension items | new, medium |
 
 ---
 
@@ -634,18 +654,328 @@ navigation destination and no new localisation keys.
   assigns, the curated catalogue only enriches. `componentsOf()` is the same rule
   as the character sheet, in a form the tutor can call.
 
+### House rules, and what they caught
+
+The first draft looked right in English and in light mode. It was not yet an app
+citizen: six strings were English-only, and three of the repository's design
+ratchets failed the moment they were pointed at it. Both are fixed, and both are
+now enforced rather than remembered.
+
+**Six new strings, in all fourteen locales** (`app_*.arb`). Every one is a
+sentence, because a sentence is what translation is for:
+
+| Key | Why it had to exist |
+| --- | --- |
+| `tutorChooseDeck` | The ASK block's question. `selectDeck` ("Select Deck") is a label, not a question. |
+| `tutorQuizProposal` | The offline proposal: an ICU plural over `{count}` plus the `{deck}` name. |
+| `tutorCharacterIntro` | "Here is how 好 is built, and how it is written." — `{hanzi}` survives translation. |
+| `tutorFallbackIntro` | What the tutor can do. The one answer a learner with no API key ever sees. |
+| `tutorComponentCount` | "3 building blocks" was assembled in Dart by concatenating an `s`. |
+| `tutorQuizFolderName` | The folder's name: `{deck} — Quiz`. |
+
+**Reused rather than invented** — the app already had the words:
+`deckItemsCount` (the item count — the deck picker's own string),
+`notEnoughCardsFor` (the refusal, exactly the sentence a quiz start shows),
+`radical` (the anatomy badge), `practiceQuiz` (which is also now a *recognition*
+word, so an Indonesian learner typing "kuis" is understood), plus `deck`,
+`create`, `done`, `askTutor`, `typeYourMessage` and `generatedByAi`.
+
+**The vocabulary is the app's.** The user-facing word is **quiz**, not "exam":
+`practiceQuiz`, `quizComplete` and `notEnoughCardsFor` already say so, and no
+string in the app said "exam". The concept keeps the name *exam folder* for the
+durable object (§8), but the learner reads "quiz" — the same object under the
+name the rest of the app uses.
+
+**Three ratchets failed, and were the point of them:**
+
+* `a fixed-width box around Text declares how the text degrades` — the 26px
+  component column. A glyph tile may be fixed, but the `Text` inside must say
+  what happens when it does not fit: `FittedBox(fit: BoxFit.scaleDown)`.
+* `an action Row keeps every localized child flexible` — **baseline 0**. The
+  confirm card wrapped one button in a `Row`; with one action there is no row, so
+  it is a `Wrap` (which also survives a second action later).
+* `a width-capped container around text declares how the text degrades` — the
+  question bubble was `maxWidth: 280`, a pixel width fixed at English size. It is
+  now the fraction the app's other chat bubbles use
+  (`MediaQuery.sizeOf(context).width * 0.78`).
+
+Three more things the standards caught that no test would have:
+
+* **`.toLowerCase()` on a translated string.** The refusal read
+  `'${poolSize} ${l10n.deck.toLowerCase()}'` → *"3 deck"*, and lowercasing a
+  German noun is wrong. Deleted, not translated.
+* **A raw ISO date as a folder name** (`2026-02-10`) — user-visible text that no
+  ARB ever saw. The folder is now named in the learner's language.
+* **`Text('RADICAL')`** — an English literal in a widget, which also nudged the
+  untranslated-literal ratchet. It is `l10n.radical`.
+
+**Aligned with the house style, deliberately:** the SAY bubble's colours are the
+same pair the app's other AI bubbles use (`0xFF252525` / `0xFFFFF8EE`); the
+anatomy accent comes from `AppTheme.accentLight`/`accentDark` rather than a
+second copy of the hex; the reply is wrapped in `ZenFadeIn` because it replaces a
+`ZenLoader`; the reference picker is `ZenFilterPill`, the commit action is
+`BouncingButton`, the surface sits on `CalligraphyBackground`.
+
+**The offline composer now takes `AppLocalizations`.** That is a domain file
+importing generated l10n, which the repository already does
+(`flashcards/domain/entities/deck.dart` localises its own name). The alternative
+— returning English and letting the screen fix it — would have put the sentences
+and the logic that chooses them in different layers.
+
+**Enforced by:** `test/features/tutor/tutor_localization_test.dart` (sentences
+differ from English in every locale, the deck name and the character survive
+translation, the app's own word for the feature is recognised, and the reply view
+renders the localised labels in all 14), `l10n_arb_parity_test.dart` (the five
+sentence keys can never ship untranslated), and the three layout ratchets above.
+### Memory that does not grow
+
+A tutor with no memory is a search box; a tutor that replays its transcript is a
+bill that doubles every turn. The way out is to stop treating "memory" as "text":
+the app keeps the transcript, and the model is given a **bounded residue**.
+
+`TutorMemory.from` (`domain/entities/tutor_memory.dart`) carries exactly three
+things, each capped:
+
+| Carried | Cap | Why this and not more |
+| --- | --- | --- |
+| The learner's own asks | 3, 120 characters each | A learner types "and how is it written?" — short by nature, and it is the one part that cannot be reconstructed from anything else |
+| The **first sentence** of the last answer | 1, 160 characters | Enough for a follow-up to have an antecedent; the rest of a paragraph is the single fastest-growing cost, and it is the part the model least needs back |
+| The artefacts already shown | 6, `type(hanzi)` | So it does not show 好's stroke order twice — structure, not prose, which also happens to be what the rule "do not repeat yourself" needs |
+
+Nothing else travels. Not the model's earlier prose, not the learner's long
+messages, not the transcript. `TutorMemory.from` walks the transcript **newest
+first and stops as soon as it has its three**, so a 500-turn session costs the
+same to summarise as a 3-turn one.
+
+**The guarantee is a test, not an intention.**
+`test/features/tutor/tutor_prompt_budget_test.dart` builds the prompt for a
+3-turn and a 50-turn conversation and asserts the two are **the same length** —
+turn 50 cannot cost more than turn 3, whatever happens inside it.
+
+**The other half of the budget was a bug.** The parser's character whitelist is
+the app's real inventory: `hanzi_metadata.json` alone holds **9,574** characters,
+and the screen was handing that same set to the prompt as a suggestion list —
+~10k tokens per request, on every request, for a list the model could not use.
+The two sets are now separate things with separate jobs:
+
+* `TutorArtefactData.describableHanzi` — the **validator's** set: what the app can
+  actually build a widget for. Thousands of characters, and free, because the
+  check happens on the device.
+* `TutorPrompt.shortlist(...)` — the **prompt's** set, capped at 24: the deck in
+  focus's samples plus whatever the learner typed. A shortlist, not an inventory.
+  If a question needs a character that is not on it, the contract says to answer
+  in `say` without an artefact rather than name it.
+
+Deck listings are budgeted the same way: six in full detail (the focused one
+first), twenty listed in total, then a count — so an unlisted deck is a *stated*
+limit the model can speak to, not a silent one.
+
+**What it costs now:** a request is ~2.6k characters, and essentially all of it is
+the contract itself. That is the fixed cost, and the next thing worth attacking
+(shorten the rules, or move them to a system message) — but it no longer grows
+with the conversation, which was the failure that mattered.
+
+**Stated limits.** The model cannot quote its own earlier answers (one sentence
+survives), and a follow-up referring to something older than the residue will not
+resolve. Both are the price of the bound, and both are recoverable if a real need
+appears — but the fix then is a **character budget** (newest turns win, evict
+older ones until it fits), not "send the transcript", because a fixed turn count
+is only bounded if every turn is.
+
+The offline composer gets the same residue (`LocalTutor.compose(memory: ...)`), so
+"and how is it written?" after 好 still answers about 好 with no model at all —
+gated on the message naming nothing else and staying under 48 characters, so a
+real question is never hijacked by the follow-up path.
+
+### Where a created folder lives
+
+There is no separate "exams" store, and that is deliberate: an exam folder **is a
+deck**, so it inherits everything the app already does with decks — study modes,
+spaced repetition, rename, delete, and the same encrypted Hive box.
+
+* **The folder:** the Hive box **`decks`** (`Box<DeckModel>`), keyed by the deck's
+  UUID. `DeckRepositoryImpl.createDeck(name, description:)` writes
+  `{id, name, description, createdAt, dailyNewCardsLimit, dailyReviewLimit}`. The
+  box is opened in `main.dart` and is **AES-encrypted** whenever the app has a
+  cipher. The name is `tutorQuizFolderName(deck)` ("HSK 3 — Quiz") and the
+  description is `generatedByAi`, the same marker the AI deck generator uses.
+* **Its cards:** the Hive box **`flashcards`** (`Box<FlashcardModel>`), one entry
+  per copied card, each with a **fresh UUID** and `deckId` pointing at the new
+  folder. Written through `FlashcardRepository.saveFlashcard` — *not*
+  `addFlashcard`, which de-duplicates by hanzi and would have merged the folder
+  into the source deck instead of copying from it.
+* **In the UI:** the Deck Library (`l10n.deckLibraryTitle`, `HerDeckLibrary`),
+  because it is a deck like any other. The reply's confirm card is the shortcut to
+  it: once the folder exists the card becomes a link ("Open quiz" → resolves the id
+  → `SwipeBackPageRoute` → `DeckDetailScreen`) with the location stated beneath it,
+  so a learner who just made a folder never has to hunt for it.
+
+### A real paper, not a folder of cards
+
+A folder of the learner's own cards is a drill with a schedule; it is not an exam.
+§5 described the shape, and this is what exists now (`lib/features/exam/`):
+
+| Piece | What it does |
+| --- | --- |
+| `ExamBlueprint` | The paper's definition, versioned per level (`hsk3-practise-v1`): sections, item counts, minutes, pass mark 0.6 — HSK's own threshold. HSK 1 opens with a **listening** section, like the real thing |
+| `ExamBuilder` | Assembles items from the **bundled HSK vocabulary**, derives every answer key locally, and counts what it could not build |
+| `ExamPaper` / `ExamItem` | The paper and its **frozen key**, JSON round-trippable so a stored paper can be sat again |
+| `ExamGrader` | On-device grading — a blank is wrong, and the report lists what was missed |
+| `ExamScreen` | Intro → timed sitting → report, with the missed items one tap from becoming study material |
+| `ExamStore` | Papers and attempts as JSON in `Box<String>` (`exams`, `exam_attempts`) |
+
+**Nine item types, all auto-gradable, none generated:** `audioToCharacter` (the
+app's own TTS says the word — `audioServiceProvider.playCharacter`),
+`characterToMeaning`, `characterToPinyin`, `fillBlank` from the bundles;
+`toneChoice`, `orderTokens`, `dictation`, `grammarError` and `passageFill` from the
+same material, each derived rather than written. Every distractor is another word
+from the same source, and a distractor that would be *a second correct answer* (the
+other reading of the same character — HSK lists 只 as both zhī and zhǐ) is excluded
+rather than hoped against.
+
+**What each of the newer five does, and what makes it keyable:**
+
+| Kind | The item | Why the key cannot be argued with |
+|---|---|---|
+| `toneChoice` | The app says a **single-syllable** word; the learner picks the pinyin | The four options are `base+1…base+4` built from the word's own syllable with `PinyinUtils`, so they are a minimal pair: the app chooses neither the syllable nor the tone |
+| `orderTokens` | Jumbled words to put back in order | The tokens are the sentence's *own* words, segmented against the source's vocabulary, and the key is the order the author wrote — the app shuffles, never rewrites |
+| `dictation` | The app says the word; the learner types the pinyin | The key is the word's authored pinyin, compared after folding tone marks and tone numbers to one form — so `hao3` and `hǎo` both pass and a missing tone does not |
+| `grammarError` | Four sentences, one broken | Three are sentences the source authored and the app left alone; the fourth is one of them with a **doubled 很 / 不 / 的**, which is never right |
+| `passageFill` | A passage with one gap | The passage is text the app already had (the caller's, or the source's own sentences) and the key is the word the app removed |
+
+Two types are **absent on purpose**, and not for lack of time: **picture items**
+(HSK 1-3 match a picture, and the app ships no vocabulary images, so the stem cannot
+be built) and **speaking** (grading a read-aloud needs a per-word reading from the
+learner's audio, and the app's only tone grader is fed by a *cloud* transcript —
+`gemini_service` → `LocalToneGrader.apply`). Without on-device recognition the key
+could not be verified locally, and an unverifiable key does not belong in an exam.
+This is a correction to §5.3's earlier claim that speaking was cheap: it is not
+cheap, it is currently impossible offline.
+
+
+**What the sitting enforces**, straight from §5.4: no feedback during the paper
+(the item view cannot turn an option green), no answer accessible before
+submission, a per-section clock that stops when the app is backgrounded instead of
+counting down behind the learner's back, and a report that ends in a **teaching
+action** — the missed items become a deck, borrowing stroke data from the learner's
+own card for that character when they have one.
+
+**Honesty, on the first screen.** `examNotOfficial` says what the paper is: a
+practise paper in HSK scope, not an official HSK test and not an HSK score. The
+item counts are deliberately smaller than a real paper's (an app paper you can sit
+in twenty minutes beats one nobody starts), and §11.3.5 still holds — "HSK 3 scope"
+is honest, a calibrated "HSK score" would not be.
+
+**A paper is built from a *source*, and the source is the choice.** Two exist, and
+they are the same exam:
+
+* the **bundled HSK vocabulary** for a level 1-6 (what "HSK 3 practise test" means);
+* **any deck the learner has** — their own cards are the vocabulary, which is what
+  makes "create an exam from any deck" true rather than a copy of the cards.
+
+The abstraction is one value type: `ExamWord` is either a bundle entry or
+`ExamWord.fromCard(card)`, so the builder, the blueprint and the grader are the same
+code for both. What changes is only what a paper may claim, and how big it is:
+
+* **Sized to the deck.** `ExamBlueprint.forDeck(vocabularySize:)` scales the
+  sections and the clock to the cards the deck actually holds, so a twelve-card
+  deck is a short exam rather than a full paper with two thirds of its slots
+  dropped. Below five usable cards there is no paper at all — the app answers with
+  its existing "not enough cards" message, because four words are not an exam.
+* **Nothing comes from outside the deck.** Every distractor is another card in that
+  deck (there is a test that walks every item and every option and fails if one is
+  vocabulary the deck never taught), and cards that cannot carry a key are left out
+  *before* sizing, so a half-finished deck does not produce a paper full of holes.
+* **It says what it is.** The honesty line switches from "HSK {level} scope" to
+  `examFromDeck` — *"A practise paper built from your {deck} deck"* — because a deck
+  called "Tones" makes no claim about HSK scope, and the report's review deck is
+  named after the source rather than a level number.
+* **A deck id must resolve.** The parser only accepts a deck that exists in the
+  context it was given, so an invented one cannot become a paper — the same rule
+  that makes citations verifiable.
+
+The source is also what splits the two `make` kinds, and the split is the app's own
+vocabulary: *"an exam on this deck"* builds a paper from the deck, while *"quiz me
+on this deck"* still builds the drill folder of the learner's cards. Both are the
+learner's own material; one is a sitting and one is practice.
+
+**The tutor may propose a paper; it may not write one.** `make` gained
+`{"kind":"examPaper","level":N}` **or** `{"kind":"examPaper","deckId":"<id>"}`, and
+the parser accepts **only the source**: items and keys offered by a reply are
+ignored, because the app builds both. Locally, "give me an HSK 3 exam" is
+understood with no model at all, "an exam on this deck" builds the paper from that
+deck, "an HSK test" with no level **asks** for the level (chips 1-4, each sending a
+message that will be understood), and a learner with no decks still gets an exam
+from the bundled vocabulary rather than a dead end. When the paper exists, the
+reply's card becomes a link to it, exactly as the folder's does.
+
+**Writing from HSK 3, as in the real paper — and only where the source can carry
+it.** The blueprint plans a writing section (`orderTokens`, `dictation`) from level
+3, and a deck paper plans one too. Whether a *paper* contains it is the builder's
+answer, not the blueprint's: a section whose kinds the source cannot carry at all is
+simply absent (a level with no sentences has no word-order section), while a section
+that was buildable but thinner than asked for is counted in `dropped` and shown. A
+missing section is truer than a shortfall of items the paper never had.
+
+**Four more `make` kinds, each with a different author.** The tutor now also
+*chooses a level for a **reading pack***, *notices that a learner wants a **review
+sprint***, and the exam gained two actions of its own:
+
+* **A reading pack** is a graded story at the chosen level plus questions about it.
+  It is the first `make` that needs the model to **write**, so the division is
+  sharpest here: the topic comes from the app's own story catalogue (never from the
+  reply), the story is written once and cached under the reading library's own id
+  scheme, and every question is derived from the text that was saved — the pool is
+  the bundled vocabulary for that level *filtered to the words the story actually
+  uses*, and the story itself is the passage its gap-fill items are asked about. A
+  story whose words the app cannot key still makes a pack; it just makes one with no
+  questions.
+* **A paper's passage** stops being example sentences stitched together: when a
+  paper is built for a level the learner already has a story for, that story's text
+  becomes the paper's passage. No story, no passage — and a paper without passage
+  items, exactly as before.
+* **A review sprint** takes **no arguments at all**: what is due is a fact the app
+  owns, so the model can only notice that a learner wants one. The cards come from
+  the SRS state, newest-due first, and nothing about the proposal can influence what
+  ends up in the folder. "Nothing due" is its own answer, worded as the good news it
+  is.
+* **Your papers, and a paper built from your mistakes.** The exam store has held
+  every paper and attempt since the first one was saved, so a "your papers" list on
+  the intro is a surface rather than a feature — and the report's second teaching
+  action asks the learner to *answer* the words they got wrong, assembled by the same
+  builder from `ExamWord.fromItem`, so a retake is a real short paper with a real key
+  rather than a second look at questions whose answers are already known. The
+  report's third action opens the same **writing bench** a deck opens, for the missed
+  characters the learner's own cards carry stroke data for — which is why the tutor
+  does not `make` a worksheet: a sheet is a thing you do, not a thing you keep.
+
+**Still deferred, and deliberately:** speaking and free production items, `writePrompt`
+(draw the character: the stroke matcher exists, but the item needs drawn geometry
+plumbed through the answer model, which is its own slice), picture items, a calibrated
+score, the remedial-lesson folder, and the per-item "report this question" path.
+
+
+
+
 ### Deliberately not done yet
 
-* **The provenance badge.** `TutorReply.fromModel` is carried and tested, but
-  showing "answered without the model" needs one new localisation key.
-* **Opening a created folder from the reply.** The confirm card shows the folder's
-  name; navigating to it needs a deck route that takes an id.
-* **CITE video and CITE book.** The parser already accepts and validates those ids
-  (`allowedExternalIds`); nothing supplies them yet.
-* **MAKE beyond `examFolder`.** One durable object, end to end, before three.
-* **Any exam-taking surface.** The folder is created with the app's existing deck
-  machinery; sitting an exam as a scored paper is §7's blueprints and Tier 2.5/3
-  work.
+* **CITE book and CITE dictionary.** The parser validates those id sets and the
+  prompt has their lines, but nothing supplies them (`bookIds` is never passed, and
+  the screen's allow-map has no dictionary entry), so both chip kinds are
+  unreachable. (CITE **video** is wired: ≤6 candidates per turn, their ids passed,
+  and `onOpenVideo` opens the app's own player.)
+* **MAKE beyond the two.** A folder and a paper exist end to end. The rest of
+  §11.4 — study plan, reading pack, remedial lesson — does not.
+* **Pin/Keep and the "3 more" collapse** (§12.6): a long reply just grows, and a
+  SHOW block cannot yet be saved into the library.
+* **Transcript persistence, clear, retry.** The conversation lives in the screen's
+  state: it survives a tab switch (`IndexedStack`) and not an app restart. There is
+  no cancel and no regenerate.
+* **An artefact catalogue of two, of twenty-one** (§4.2). The registry is built for
+  more — enum + args parser + builder + test — and the app already owns most of the
+  widgets it would need.
+* **The exam's remaining sections** — writing, speaking, free production — and a
+  "my tests" list. See *A real paper, not a folder of cards* above.
 
 
 

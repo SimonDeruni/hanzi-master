@@ -13,8 +13,11 @@
 /// there is one; the *guarantees* are always the app's.
 library;
 
+import 'package:hanzi_master/features/exam/domain/entities/exam_blueprint.dart';
 import 'package:hanzi_master/features/tutor/domain/entities/tutor_context.dart';
+import 'package:hanzi_master/features/tutor/domain/entities/tutor_memory.dart';
 import 'package:hanzi_master/features/tutor/domain/entities/tutor_reply.dart';
+import 'package:hanzi_master/l10n/app_localizations.dart';
 
 abstract final class LocalTutor {
   /// "make me an exam", in the languages the app ships. Matching a request is all
@@ -41,42 +44,87 @@ abstract final class LocalTutor {
     '考',
   ];
 
-  static bool looksLikeExamRequest(String message) {
+  static bool looksLikeExamRequest(String message, {AppLocalizations? l10n}) {
     final String lower = message.toLowerCase();
     for (final String word in _examWords) {
       if (lower.contains(word)) return true;
+    }
+    // The feature's own name, in the learner's language. `_examWords` above is a
+    // keyword list rather than interface text — those are the words a learner
+    // might *type* — but only the ARB knows what the app calls this feature in,
+    // say, Thai or Indonesian, so that one word comes from there.
+    if (l10n != null) {
+      final String named = l10n.practiceQuiz.trim().toLowerCase();
+      if (named.isNotEmpty && lower.contains(named)) return true;
     }
     return false;
   }
 
   /// Composes the best model-free answer available.
+  ///
+  /// Every sentence here comes from the ARB via [l10n]: a fallback that answered
+  /// in English would be worse than no fallback, because it looks like the
+  /// tutor ignored the learner's language.
   static TutorReply compose({
     required String message,
     required TutorContext context,
+    required AppLocalizations l10n,
+    TutorMemory memory = TutorMemory.empty,
   }) {
-    if (looksLikeExamRequest(message)) {
-      final TutorDeckSummary? deck = context.focusedDeck;
-      if (deck == null && context.decks.isNotEmpty) {
-        // Never guess which deck: ask, with the decks as tappable answers.
+    final String lower = message.toLowerCase();
+    if (looksLikeExamRequest(message, l10n: l10n) || lower.contains('hsk')) {
+      // A named level makes it a **paper**, not a folder of the learner's own
+      // cards: the blueprint is the app's (§5.2) and every item comes from the
+      // bundled HSK vocabulary, so the key cannot be wrong (§11.3).
+      final int? level = _levelIn(message);
+      final ExamBlueprint? blueprint =
+          level == null ? null : ExamBlueprint.forLevel(level);
+      if (blueprint != null && level != null) {
         return TutorReply(
-          say: context.decks.length == 1
-              ? null
-              : 'Which deck should the exam draw from?',
-          ask: TutorAsk(
-            question: 'Which deck should the exam draw from?',
-            options: context.decks
-                .take(4)
-                .map((TutorDeckSummary deck) =>
-                    TutorAskOption(label: deck.name, value: deck.id))
-                .toList(),
-          ),
+          say: '${l10n.examTitle(level)} · '
+              '${l10n.deckItemsCount(blueprint.totalItems)}',
+          makes: <TutorMake>[
+            TutorMake(
+              kind: TutorMakeKind.examPaper,
+              level: level,
+              items: blueprint.totalItems,
+              title: l10n.hskLevel('$level'),
+            ),
+          ],
         );
       }
-      if (deck != null && deck.cardCount > 0) {
+
+      // "an HSK test" with no level named is still a paper — asked about, not
+      // guessed at, and not quietly turned into a folder.
+      final TutorDeckSummary? deck = context.focusedDeck;
+      final bool wantsPaper = LocalTutor.wantsPaper(message);
+
+      // An exam on a deck the learner has: their own cards are the vocabulary, so
+      // the paper is built from the deck rather than from the bundled lists. This
+      // is what "create an exam from any deck" means.
+      if (wantsPaper &&
+          deck != null &&
+          deck.cardCount >= ExamBlueprint.minimumVocabulary) {
+        return TutorReply(
+          say: '${l10n.examTitleDeck(deck.name)} · '
+              '${l10n.deckItemsCount(deck.cardCount)}',
+          makes: <TutorMake>[
+            TutorMake(
+              kind: TutorMakeKind.examPaper,
+              deckId: deck.id,
+              items: deck.cardCount,
+              title: deck.name,
+            ),
+          ],
+        );
+      }
+
+      // A deck in hand and no exam flavour ("quiz me on this deck"): the drill
+      // folder it has always been.
+      if (!wantsPaper && deck != null && deck.cardCount > 0) {
         final int items = deck.cardCount < 20 ? deck.cardCount : 20;
         return TutorReply(
-          say: 'I can build a $items-item exam folder from ${deck.name}. '
-              'Every item comes from that deck, so nothing is invented.',
+          say: l10n.tutorQuizProposal(items, deck.name),
           makes: <TutorMake>[
             TutorMake(
               kind: TutorMakeKind.examFolder,
@@ -87,26 +135,131 @@ abstract final class LocalTutor {
           ],
         );
       }
+
+      // Several decks and none in hand: never guess which one, ask.
+      if (deck == null && context.decks.isNotEmpty) {
+        return TutorReply(
+          say: context.decks.length == 1 ? null : l10n.tutorChooseDeck,
+          ask: TutorAsk(
+            question: l10n.tutorChooseDeck,
+            options: context.decks
+                .take(4)
+                .map((TutorDeckSummary deck) =>
+                    TutorAskOption(label: deck.name, value: deck.id))
+                .toList(),
+          ),
+        );
+      }
+
+      // No level and no deck: the bundled vocabulary can still make a paper, so
+      // ask which level. The value is a message that will be understood when it
+      // comes back as one.
+      return TutorReply(
+        ask: TutorAsk(
+          question: l10n.targetHskLevel,
+          options: <TutorAskOption>[
+            for (final int candidate in const <int>[1, 2, 3, 4])
+              TutorAskOption(
+                label: l10n.hskLevel('$candidate'),
+                value: 'HSK $candidate exam',
+              ),
+          ],
+        ),
+      );
     }
 
     // A character in hand is the other thing this can answer without a model.
     final String? hanzi = _singleCharacter(message);
-    if (hanzi != null) {
-      return TutorReply(
-        say: 'Here is how $hanzi is built, and how it is written.',
+    if (hanzi != null) return _characterReply(hanzi, l10n);
+
+    // A follow-up with no subject of its own — "and how is it written?" after 好 —
+    // still has one: the character the conversation is about. The gate is that the
+    // message names nothing else and stays short, so a real question is never
+    // hijacked by it.
+    final String? lastCharacter = memory.lastCharacter;
+    if (lastCharacter != null && _looksLikeFollowUp(message)) {
+      return _characterReply(lastCharacter, l10n);
+    }
+
+    return TutorReply(say: l10n.tutorFallbackIntro);
+  }
+
+  /// Both things this can show for one character, with the sentence that frames
+  /// them.
+  static TutorReply _characterReply(String hanzi, AppLocalizations l10n) =>
+      TutorReply(
+        say: l10n.tutorCharacterIntro(hanzi),
         artefacts: <TutorArtefact>[
-          TutorArtefact(
-              TutorArtefactType.characterAnatomy, <String, Object?>{'hanzi': hanzi}),
+          TutorArtefact(TutorArtefactType.characterAnatomy,
+              <String, Object?>{'hanzi': hanzi}),
           TutorArtefact(
               TutorArtefactType.strokeOrder, <String, Object?>{'hanzi': hanzi}),
         ],
       );
-    }
 
-    return const TutorReply(
-      say: 'Ask me about a character — I will show you how it is built and how it '
-          'is written — or ask me for an exam on one of your decks.',
-    );
+  /// The HSK level named in a message, if any: "hsk 3", "HSK4", "3级".
+  static final RegExp _hskLevel =
+      RegExp(r'hsk\s*([1-6])', caseSensitive: false);
+  static final RegExp _jLevel = RegExp(r'([1-6])\s*级');
+
+  static int? _levelIn(String message) {
+    for (final RegExp pattern in <RegExp>[_hskLevel, _jLevel]) {
+      final RegExpMatch? match = pattern.firstMatch(message);
+      final int? level =
+          match == null ? null : int.tryParse(match.group(1) ?? '');
+      if (level != null &&
+          level >= ExamBlueprint.minLevel &&
+          level <= ExamBlueprint.maxLevel) {
+        return level;
+      }
+    }
+    return null;
+  }
+
+  /// A message that asks for nothing else: no character of its own, no quiz, a
+  /// handful of words. That is what "and how is it written?" looks like.
+  static bool _looksLikeFollowUp(String message) {
+    final String trimmed = message.trim();
+    if (trimmed.isEmpty || trimmed.length > 48) return false;
+    // A word count, approximated. CJK has no spaces, so the length cap above is
+    // the real gate for those languages.
+    return trimmed.split(RegExp(r'\s+')).length <= 7;
+  }
+
+  /// Words that mean "sit a paper" rather than "quiz me".
+  ///
+  /// `_examWords` above is deliberately broad — it decides whether the message is
+  /// about testing at all — while this one decides *what kind*: an exam flavour
+  /// (a timed paper, from a deck or a level) or a drill flavour (a folder of the
+  /// learner's own cards). The app's own word for a quiz is not here, so
+  /// "quiz me on this deck" still builds the drill it always did.
+  static const List<String> _paperWords = <String>[
+    'exam',
+    'test',
+    'examen',
+    'prüfung',
+    'esame',
+    'prova',
+    'экзамен',
+    'тест',
+    '試験',
+    '시험',
+    'สอบ',
+    'thi',
+    'امتحان',
+    'परीक्षा',
+    'ujian',
+    '考试',
+    '考',
+  ];
+
+  static bool wantsPaper(String message) {
+    final String lower = message.toLowerCase();
+    if (lower.contains('hsk')) return true;
+    for (final String word in _paperWords) {
+      if (lower.contains(word)) return true;
+    }
+    return false;
   }
 
   /// The single CJK character in a message, if there is exactly one kind of them.
